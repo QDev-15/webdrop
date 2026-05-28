@@ -3,6 +3,11 @@
 > File này lưu toàn bộ ý tưởng, yêu cầu, giá bán và tiến độ xây dựng dự án.
 > Cập nhật liên tục theo từng giai đoạn phát triển.
 
+
+## Quy tắc bắt buộc
+
+1. Mỗi khi thay đổi code phải review fix bug thành vòng lặp đến khi hết bug.
+2. Update file [CLAUDE.md](./CLAUDE.md) mỗi khi có thay đổi code.
 ---
 
 ## 🎯 MỤC TIÊU DỰ ÁN
