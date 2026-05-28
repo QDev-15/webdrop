@@ -9,7 +9,7 @@
 
 1. Mỗi khi thay đổi code phải review fix bug thành vòng lặp đến khi hết bug.
 2. Update file [CLAUDE.md](./CLAUDE.md) mỗi khi có thay đổi code.
-3. Khi nào có lệnh `/fetch claude`, hãy fetch nội dung mới nhất từ GitHub.
+3. Khi nào có lệnh `/fetch claude`, hãy fetch nội dung mới nhất từ GitHub https://github.com/QDev-15/webdrop/blob/master/.claude/CLAUDE.md.
 ---
 
 ## 🎯 MỤC TIÊU DỰ ÁN
