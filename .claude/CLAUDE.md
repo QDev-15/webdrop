@@ -10,6 +10,8 @@
 1. Mỗi khi thay đổi code phải review fix bug thành vòng lặp đến khi hết bug.
 2. Update file [CLAUDE.md](./CLAUDE.md) mỗi khi có thay đổi code.
 3. Khi nào có lệnh `/fetch claude`, hãy fetch nội dung mới nhất từ GitHub https://github.com/QDev-15/webdrop/blob/master/.claude/CLAUDE.md.
+4. Khi có lệnh `/push claude`, hãy push nội dung file này lên gibhub: [`projects/<tên project>`.](https://github.com/QDev-15/webdrop/blob/master/.claude/CLAUDE.md.)
+
 ---
 
 ## 🎯 MỤC TIÊU DỰ ÁN
@@ -375,16 +377,6 @@ VPS AZDIGI Linux
 - Ecosystem tốt với Next.js (Prisma / Drizzle ORM)
 - Scale tốt về lâu dài, không cần đổi DB
 
-### Storage Strategy
-
-| Loại dữ liệu | Lưu ở đâu | Ghi chú |
-|---|---|---|
-| Ảnh hệ thống (demo, trang bán hàng) | Cloudflare R2 | Nén ảnh trước khi upload, 10GB free là đủ |
-| Ảnh khách upload (Gói B) | Cloudflare R2 | Free bandwidth, chỉ tính phí storage nếu vượt 10GB |
-| Video | YouTube / Vimeo (embed link) | Không lưu trực tiếp, tiết kiệm storage |
-| Source code | GitHub (private repo) | Version control, deploy qua git pull |
-| File nhỏ (contract, design file) | VPS storage | Số lượng ít, không đáng kể |
-| DB backup | GitHub private repo / Google Drive | Backup định kỳ |
 
 > **Lý do chọn Cloudflare R2:** Free bandwidth hoàn toàn (không tính egress fee) — khách upload nhiều ảnh, traffic cao cũng không lo phí phát sinh.
 
