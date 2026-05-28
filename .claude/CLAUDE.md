@@ -1,9 +1,5 @@
 # 📋 PROJECT OVERVIEW — Template & Website Business
 
-> ⚠️ **QUAN TRỌNG — ĐỌC TRƯỚC KHI LÀM:**
-> Đây là file context chính của dự án. Bất kỳ AI agent nào (Claude, Antigravity...) khi bắt đầu làm việc với repo này **phải đọc file này trước tiên** để hiểu rõ mục tiêu, kiến trúc, và các quyết định kỹ thuật đã được chốt.
-> Khi được yêu cầu cập nhật, chỉ update khi người dùng nói rõ **"update vào claude.md"**.
-
 > File này lưu toàn bộ ý tưởng, yêu cầu, giá bán và tiến độ xây dựng dự án.
 > Cập nhật liên tục theo từng giai đoạn phát triển.
 
