@@ -1,0 +1,23 @@
+{
+    "permissions": {
+        "allow": [
+            "Bash(Get-ChildItem -Path \"d:\\\\Working\\\\project\\\\Windows App\\\\Tochuu\" -Recurse)",
+            "Bash(Select-Object FullName)",
+            "Bash(Sort-Object FullName)",
+            "Bash(ConvertTo-Csv -NoTypeInformation)",
+            "Bash(Out-String)",
+            "Bash(dir \"d:\\\\Working\\\\project\\\\Windows App\\\\Tochuu\\\\tochu_solution\" -Name)",
+            "Bash(dotnet build *)",
+            "Bash(python -c \"import docx; print\\('python-docx OK'\\)\")",
+            "Bash(pandoc --version)",
+            "Bash(pandoc USER_GUIDE_clean.md -o \"USER_GUIDE.docx\" --from markdown --to docx -V lang=vi --toc --toc-depth=2)",
+            "Bash(pandoc USER_GUIDE_EN.md -o \"USER_GUIDE_EN.docx\" --from markdown --to docx -V lang=en --toc --toc-depth=2)",
+            "Bash(pandoc USER_GUIDE_JA.md -o \"USER_GUIDE_JA.docx\" --from markdown --to docx -V lang=ja --toc --toc-depth=2)",
+            "Bash(pandoc SETUP_EN.md -o \"SETUP_EN.docx\" --from markdown --to docx -V lang=en --toc --toc-depth=2)",
+            "Bash(pandoc SETUP_JA.md -o \"SETUP_JA.docx\" --from markdown --to docx -V lang=ja --toc --toc-depth=2)",
+            "Bash(cat \"C:\\\\Users\\\\Huu Quynh\\\\.claude\\\\settings.json\" 2>/dev/null || echo \"NOT_FOUND\")",
+            "Read(//c/Users/Huu Quynh/.claude/**)",
+            "Bash(powershell -NonInteractive -ExecutionPolicy Bypass -Command \"Add-Type -AssemblyName System.Windows.Forms; Add-Type -AssemblyName System.Drawing; Write-Output 'Assemblies OK'\")"
+        ]
+    }
+}

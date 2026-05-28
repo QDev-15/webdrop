@@ -7,527 +7,404 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#faf9f7;
-  --surface:#fff;
-  --dark:#0c0b09;
-  --dark2:#141210;
-  --border:#e8e5df;
-  --border-light:#f0ede8;
-  --text:#1a1917;
-  --text-2:#6b6760;
-  --text-3:#a09d97;
-  --accent:#1a6b52;
-  --accent-h:#155a44;
-  --accent-light:#e8f4ef;
-  --accent-mid:#2d9b73;
-  --warm:#f5f0e8;
-  --warm2:#ede8df;
+:root {
+  --bg:#faf9f7; --surface:#fff; --dark:#0c0b09; --dark2:#141210;
+  --border:#e8e5df; --border-light:#f0ede8;
+  --text:#1a1917; --text-2:#6b6760; --text-3:#a09d97;
+  --accent:#1a6b52; --accent-h:#155a44; --accent-light:#e8f4ef; --accent-mid:#2d9b73;
+  --warm:#f5f0e8; --warm2:#ede8df;
   --sans:'DM Sans',sans-serif;
-  --max:1100px;
-  --pad:clamp(20px,5vw,80px);
+  --bs-body-font-family: var(--sans);
+  --bs-body-bg: var(--bg);
+  --bs-body-color: var(--text);
+  --bs-border-color: var(--border);
 }
-html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-thumb{background:var(--warm2);border-radius:4px}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--bg); color: var(--text); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-thumb { background: var(--warm2); border-radius: 4px; }
 
-/* ═══════════════════════════════
-   NAV
-═══════════════════════════════ */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;transition:all 0.4s ease}
-nav.scrolled{background:rgba(250,249,247,0.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-.nav-inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);height:62px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:var(--sans);font-size:17px;font-weight:600;color:#fff;text-decoration:none;letter-spacing:-0.5px;transition:color 0.4s}
-.logo span{color:#4ade80;transition:color 0.4s}
-nav.scrolled .logo{color:var(--text)}
-nav.scrolled .logo span{color:var(--accent)}
-.nav-links{display:flex;gap:30px}
-.nav-links a{font-size:13.5px;font-weight:400;color:rgba(255,255,255,0.65);text-decoration:none;transition:color 0.25s;letter-spacing:0.1px}
-nav.scrolled .nav-links a{color:var(--text-2)}
-.nav-links a:hover{color:#fff}
-nav.scrolled .nav-links a:hover{color:var(--text)}
-.nav-cta{font-size:13px;font-weight:500;font-family:var(--sans);background:#fff;color:var(--dark);padding:9px 22px;border-radius:8px;border:none;cursor:pointer;transition:all 0.2s;text-decoration:none;letter-spacing:-0.1px}
-nav.scrolled .nav-cta{background:var(--text);color:#fff}
-.nav-cta:hover{transform:translateY(-1px);opacity:0.92}
+.wd-container { max-width: 1100px; margin: 0 auto; padding: 0 clamp(20px,5vw,80px); }
 
-/* ═══════════════════════════════
-   HERO SLIDER
-═══════════════════════════════ */
-.hero{height:100vh;min-height:640px;background:var(--dark2);position:relative;overflow:hidden}
+/* ══ NAV ══ */
+#nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; transition: all .4s ease; }
+#nav.scrolled { background: rgba(250,249,247,.9) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+.nav-inner { height: 62px; display: flex; align-items: center; justify-content: space-between; }
+.logo { font-size: 17px; font-weight: 600; color: #fff; text-decoration: none; letter-spacing: -.5px; transition: color .4s; }
+.logo span { color: #4ade80; transition: color .4s; }
+#nav.scrolled .logo { color: var(--text); }
+#nav.scrolled .logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 30px; }
+.nav-links a { font-size: 13.5px; color: rgba(255,255,255,.65); text-decoration: none; transition: color .25s; }
+#nav.scrolled .nav-links a { color: var(--text-2); }
+.nav-links a:hover { color: #fff; }
+#nav.scrolled .nav-links a:hover { color: var(--text); }
+.nav-cta { font-size: 13px; font-weight: 500; background: #fff; color: var(--dark); padding: 9px 22px; border-radius: 8px; border: none; cursor: pointer; transition: all .2s; text-decoration: none; letter-spacing: -.1px; }
+#nav.scrolled .nav-cta { background: var(--text); color: #fff; }
+.nav-cta:hover { transform: translateY(-1px); opacity: .92; color: inherit; }
+@media(max-width:768px) { .nav-links { display: none; } }
 
-/* Ambient glows */
-.hero-glow{position:absolute;border-radius:50%;pointer-events:none}
-.glow-1{width:700px;height:700px;background:radial-gradient(circle,rgba(26,107,82,0.2) 0%,transparent 68%);top:-120px;right:-80px;animation:gPulse 9s ease-in-out infinite}
-.glow-2{width:500px;height:500px;background:radial-gradient(circle,rgba(45,155,115,0.12) 0%,transparent 68%);bottom:-100px;left:-100px;animation:gPulse 12s ease-in-out infinite 3s}
-.glow-3{width:300px;height:300px;background:radial-gradient(circle,rgba(74,222,128,0.07) 0%,transparent 68%);top:40%;left:40%;animation:gPulse 7s ease-in-out infinite 1.5s}
-@keyframes gPulse{0%,100%{opacity:0.7;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
+/* ══ HERO SLIDER ══ */
+.hero { height: 100vh; min-height: 640px; background: var(--dark2); position: relative; overflow: hidden; }
+.hero-glow { position: absolute; border-radius: 50%; pointer-events: none; }
+.glow-1 { width:700px;height:700px;background:radial-gradient(circle,rgba(26,107,82,.2) 0%,transparent 68%);top:-120px;right:-80px;animation:gPulse 9s ease-in-out infinite; }
+.glow-2 { width:500px;height:500px;background:radial-gradient(circle,rgba(45,155,115,.12) 0%,transparent 68%);bottom:-100px;left:-100px;animation:gPulse 12s ease-in-out infinite 3s; }
+.glow-3 { width:300px;height:300px;background:radial-gradient(circle,rgba(74,222,128,.07) 0%,transparent 68%);top:40%;left:40%;animation:gPulse 7s ease-in-out infinite 1.5s; }
+@keyframes gPulse { 0%,100%{opacity:.7;transform:scale(1)} 50%{opacity:1;transform:scale(1.1)} }
+.hero-grain { position:absolute;inset:0;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px;pointer-events:none; }
 
-/* Grain texture */
-.slide-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1s ease;z-index:0}
-.slide-bg.visible{opacity:0.12}
-.hero-grain{position:absolute;inset:0;opacity:0.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px;pointer-events:none}
+.slides-wrap { position: absolute; inset: 0; }
+.slide { position:absolute;inset:0;display:flex;align-items:center;opacity:0;transition:none;pointer-events:none; }
+.slide.entering-right { animation: enterFromRight .72s cubic-bezier(.16,1,.3,1) forwards; }
+.slide.entering-left  { animation: enterFromLeft  .72s cubic-bezier(.16,1,.3,1) forwards; }
+.slide.leaving-left   { animation: leaveToLeft    .5s  cubic-bezier(.4,0,.6,1)  forwards; }
+.slide.leaving-right  { animation: leaveToRight   .5s  cubic-bezier(.4,0,.6,1)  forwards; }
+.slide.active { opacity: 1; pointer-events: auto; }
+@keyframes enterFromRight { from{opacity:0;transform:translateX(52px)} to{opacity:1;transform:translateX(0)} }
+@keyframes enterFromLeft  { from{opacity:0;transform:translateX(-52px)} to{opacity:1;transform:translateX(0)} }
+@keyframes leaveToLeft    { from{opacity:1;transform:translateX(0)} to{opacity:0;transform:translateX(-36px)} }
+@keyframes leaveToRight   { from{opacity:1;transform:translateX(0)} to{opacity:0;transform:translateX(36px)} }
 
-/* Slides container */
-.slides-wrap{position:absolute;inset:0}
-.slide{position:absolute;inset:0;display:flex;align-items:center;opacity:0;transition:none;pointer-events:none}
-.slide.entering-right{animation:enterFromRight 0.72s cubic-bezier(0.16,1,0.3,1) forwards}
-.slide.entering-left{animation:enterFromLeft 0.72s cubic-bezier(0.16,1,0.3,1) forwards}
-.slide.leaving-left{animation:leaveToLeft 0.5s cubic-bezier(0.4,0,0.6,1) forwards}
-.slide.leaving-right{animation:leaveToRight 0.5s cubic-bezier(0.4,0,0.6,1) forwards}
-.slide.active{opacity:1;pointer-events:auto}
+.slide-inner { padding-top: 80px; width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 2; }
+.sl-badge { display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:500;color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.1);padding:6px 14px;border-radius:20px;letter-spacing:.5px;margin-bottom:26px; }
+.sl-badge-dot { width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:dotBlink 2s ease-in-out infinite; }
+@keyframes dotBlink { 0%,100%{opacity:1} 50%{opacity:.25} }
+.sl-title { font-size:clamp(38px,5.5vw,76px);font-weight:600;color:#fff;line-height:1.06;letter-spacing:-1.5px;margin-bottom:18px; }
+.sl-title em { color:#4ade80;font-style:italic;font-weight:300; }
+.sl-title .muted { color:rgba(255,255,255,.38);display:block;font-weight:300; }
+.sl-sub { font-size:clamp(14px,1.5vw,17px);font-weight:300;color:rgba(255,255,255,.45);line-height:1.75;max-width:560px;margin-bottom:36px; }
+.sl-actions { display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px;justify-content:center; }
+.btn-sl-p { font-size:14px;font-weight:500;background:#fff;color:var(--dark);padding:13px 26px;border-radius:9px;border:none;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px; }
+.btn-sl-p:hover { background:#f0fdf4;transform:translateY(-2px); }
+.btn-sl-o { font-size:14px;font-weight:400;background:transparent;color:rgba(255,255,255,.65);padding:13px 26px;border-radius:9px;border:1px solid rgba(255,255,255,.18);cursor:pointer;transition:all .2s; }
+.btn-sl-o:hover { border-color:rgba(255,255,255,.5);color:#fff; }
+.sl-tags { display:flex;gap:8px;flex-wrap:wrap;justify-content:center; }
+.sl-tag { font-size:12px;color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.1);padding:4px 12px;border-radius:6px; }
+.sl-stats { display:flex;gap:40px;padding-top:36px;border-top:1px solid rgba(255,255,255,.07);justify-content:center; }
+.sl-stat-num { font-size:30px;font-weight:600;color:#fff;line-height:1;letter-spacing:-.5px;text-align:center; }
+.sl-stat-label { font-size:11.5px;color:rgba(255,255,255,.3);margin-top:5px;letter-spacing:.3px;text-align:center; }
+.sl-features { display:flex;flex-direction:column;gap:12px;margin-bottom:36px;max-width:560px;width:100%;text-align:left; }
+.sl-feat { display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(255,255,255,.6); }
+.sl-feat-icon { width:28px;height:28px;border-radius:7px;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.2);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0; }
+.sl-cards { display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:36px;max-width:680px;width:100%; }
+.sl-card { background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px;text-align:center; }
+.sl-card-icon { font-size:20px;margin-bottom:8px; }
+.sl-card-title { font-size:13px;font-weight:500;color:rgba(255,255,255,.8);margin-bottom:4px; }
+.sl-card-desc { font-size:12px;color:rgba(255,255,255,.35);line-height:1.5; }
+.sl-pricing { display:flex;gap:10px;margin-bottom:32px;max-width:680px;width:100%; }
+.sl-pkg { background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:16px;flex:1;text-align:center; }
+.sl-pkg.hot { border-color:rgba(74,222,128,.3);background:rgba(26,107,82,.15); }
+.sl-pkg-name { font-size:11px;font-weight:500;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px; }
+.sl-pkg-price { font-size:18px;font-weight:600;color:#fff;letter-spacing:-.3px;margin-bottom:4px; }
+.sl-pkg-desc { font-size:11.5px;color:rgba(255,255,255,.3);line-height:1.5; }
+.sl-pkg-badge { font-size:10px;background:#4ade80;color:var(--dark);padding:2px 8px;border-radius:10px;font-weight:600;display:inline-block;margin-bottom:6px; }
+.sl-quote { font-size:clamp(17px,2.2vw,26px);font-weight:300;color:rgba(255,255,255,.7);line-height:1.65;margin-bottom:28px;letter-spacing:-.2px;font-style:italic;max-width:660px;text-align:center; }
+.sl-quote-mark { font-size:56px;color:rgba(74,222,128,.3);line-height:.8;display:block;margin-bottom:14px;font-style:normal;text-align:center; }
+.sl-author { display:flex;align-items:center;gap:14px;justify-content:center; }
+.sl-author-name { font-size:14px;font-weight:500;color:#fff; }
+.sl-author-role { font-size:12px;color:rgba(255,255,255,.35);margin-top:2px; }
+.slider-bottom { position:absolute;bottom:0;left:0;right:0;z-index:10;padding-bottom:32px; }
+.slide-indicators { display:flex;gap:10px;align-items:center;justify-content:center; }
+.si { width:32px;height:3px;border-radius:2px;background:rgba(255,255,255,.18);cursor:pointer;transition:all .4s cubic-bezier(.16,1,.3,1); }
+.si.active { background:#4ade80;width:52px; }
+.si:hover:not(.active) { background:rgba(255,255,255,.38); }
+@media(max-width:576px) { .sl-cards { grid-template-columns:repeat(2,1fr); } .sl-pricing { flex-direction:column; } .sl-stats { gap:24px; } }
 
-@keyframes enterFromRight{
-  from{opacity:0;transform:translateX(52px)}
-  to{opacity:1;transform:translateX(0)}
-}
-@keyframes enterFromLeft{
-  from{opacity:0;transform:translateX(-52px)}
-  to{opacity:1;transform:translateX(0)}
-}
-@keyframes leaveToLeft{
-  from{opacity:1;transform:translateX(0)}
-  to{opacity:0;transform:translateX(-36px)}
-}
-@keyframes leaveToRight{
-  from{opacity:1;transform:translateX(0)}
-  to{opacity:0;transform:translateX(36px)}
-}
+/* ══ REVEAL ══ */
+.reveal { opacity:0;transform:translateY(32px);transition:opacity .72s cubic-bezier(.16,1,.3,1),transform .72s cubic-bezier(.16,1,.3,1); }
+.reveal.visible { opacity:1;transform:none; }
+.reveal-d1 { transition-delay:.08s; }
+.reveal-d2 { transition-delay:.16s; }
+.reveal-d3 { transition-delay:.24s; }
 
-.slide-inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);padding-top:80px;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center;position:relative;z-index:2}
+/* ══ SECTION SHARED ══ */
+.sec-pad { padding: clamp(72px,10vw,128px) 0; }
+.eyebrow { display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:500;color:var(--accent);text-transform:uppercase;letter-spacing:1.4px;margin-bottom:14px; }
+.eyebrow::before,.eyebrow::after { content:'';width:16px;height:1px;background:var(--accent); }
+.sec-title { font-size:clamp(26px,3.8vw,46px);font-weight:600;color:var(--text);line-height:1.1;letter-spacing:-.8px;margin-bottom:14px; }
+.sec-title em { color:var(--accent);font-style:italic;font-weight:300; }
+.sec-sub { font-size:15.5px;font-weight:300;color:var(--text-2);line-height:1.75;max-width:520px;margin:0 auto; }
+.sec-dark .eyebrow { color:#4ade80; }
+.sec-dark .eyebrow::before,.sec-dark .eyebrow::after { background:#4ade80; }
+.sec-dark .sec-title { color:#fff; }
+.sec-dark .sec-sub { color:rgba(255,255,255,.38); }
 
-/* Slide badge */
-.sl-badge{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:500;color:rgba(255,255,255,0.45);border:1px solid rgba(255,255,255,0.1);padding:6px 14px;border-radius:20px;letter-spacing:0.5px;margin-bottom:26px}
-.sl-badge-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:dotBlink 2s ease-in-out infinite}
-@keyframes dotBlink{0%,100%{opacity:1}50%{opacity:0.25}}
+/* ══ HOW IT WORKS ══ */
+.how-step { display:flex;gap:18px;padding:24px 0;border-bottom:1px solid var(--border-light);transition:all .2s;cursor:default; }
+.how-step:first-child { padding-top:0; }
+.how-step:last-child { border-bottom:none;padding-bottom:0; }
+.how-step:hover .hs-num { background:var(--accent);color:#fff;border-color:var(--accent); }
+.hs-num { width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border);font-size:12px;font-weight:600;color:var(--text-3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;transition:all .2s; }
+.hs-title { font-size:15px;font-weight:500;color:var(--text);margin-bottom:5px; }
+.hs-desc { font-size:13.5px;font-weight:300;color:var(--text-2);line-height:1.65; }
 
-/* Slide title */
-.sl-title{font-size:clamp(38px,5.5vw,76px);font-weight:600;color:#fff;line-height:1.06;letter-spacing:-1.5px;margin-bottom:18px;font-family:var(--sans)}
-.sl-title em{color:#4ade80;font-style:italic;font-weight:300}
-.sl-title .muted{color:rgba(255,255,255,0.38);display:block;font-weight:300}
+/* ══ TEMPLATES ══ */
+.pill { font-size:12.5px;font-weight:400;padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:var(--surface);color:var(--text-2);cursor:pointer;transition:all .15s; }
+.pill.active { background:var(--text);color:#fff;border-color:var(--text); }
+.pill:hover:not(.active) { border-color:var(--text-3);color:var(--text); }
+.tc { background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .28s cubic-bezier(.16,1,.3,1),box-shadow .28s,border-color .2s; }
+.tc:hover { transform:translateY(-7px);box-shadow:0 20px 52px rgba(0,0,0,.1);border-color:transparent; }
+.tc:hover .tc-thumb img { transform:scale(1.06); }
+.tc-thumb { aspect-ratio:16/10;position:relative;overflow:hidden; }
+.tc-hover-layer { position:absolute;inset:0;background:rgba(26,107,82,.07);opacity:0;transition:opacity .22s;display:flex;align-items:center;justify-content:center; }
+.tc:hover .tc-hover-layer { opacity:1; }
+.tc-demo-btn { background:#fff;color:var(--accent);font-size:12px;font-weight:500;padding:8px 16px;border-radius:6px; }
+.tc-body { padding:14px 16px; }
+.tc-name { font-size:13.5px;font-weight:500;color:var(--text);margin-bottom:5px;display:flex;align-items:center;gap:6px; }
+.tc-badge { font-size:10px;background:var(--accent-light);color:var(--accent);padding:2px 8px;border-radius:8px;font-weight:500; }
+.tc-meta { display:flex;justify-content:space-between;align-items:center; }
+.tc-cat { font-size:12px;color:var(--text-3); }
+.tc-price { font-size:15px;font-weight:600;color:var(--text);letter-spacing:-.3px; }
+.btn-more { font-size:14px;background:transparent;color:var(--text);padding:12px 28px;border-radius:9px;border:1px solid var(--border);cursor:pointer;transition:all .2s; }
+.btn-more:hover { background:var(--text);color:#fff; }
 
-/* Slide sub */
-.sl-sub{font-size:clamp(14px,1.5vw,17px);font-weight:300;color:rgba(255,255,255,0.45);line-height:1.75;max-width:560px;margin-bottom:36px;text-align:center}
-/* Slide actions */
-.sl-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px;justify-content:center}
-.btn-sl-p{font-size:14px;font-weight:500;font-family:var(--sans);background:#fff;color:var(--dark);padding:13px 26px;border-radius:9px;border:none;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:8px;letter-spacing:-0.2px}
-.btn-sl-p:hover{background:#f0fdf4;transform:translateY(-2px)}
-.btn-sl-o{font-size:14px;font-weight:400;font-family:var(--sans);background:transparent;color:rgba(255,255,255,0.65);padding:13px 26px;border-radius:9px;border:1px solid rgba(255,255,255,0.18);cursor:pointer;transition:all 0.2s}
-.btn-sl-o:hover{border-color:rgba(255,255,255,0.5);color:#fff}
-/* Slide tag chips */
-.sl-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-.sl-tag{font-size:12px;font-weight:400;color:rgba(255,255,255,0.35);border:1px solid rgba(255,255,255,0.1);padding:4px 12px;border-radius:6px;letter-spacing:0.2px}
-/* Stats row */
-.sl-stats{display:flex;gap:40px;padding-top:36px;border-top:1px solid rgba(255,255,255,0.07);margin-top:0;justify-content:center}
-.sl-stat-num{font-size:30px;font-weight:600;color:#fff;line-height:1;letter-spacing:-0.5px;text-align:center}
-.sl-stat-label{font-size:11.5px;font-weight:400;color:rgba(255,255,255,0.3);margin-top:5px;letter-spacing:0.3px;text-align:center}
-/* Feature list (slide 2) */
-.sl-features{display:flex;flex-direction:column;gap:12px;margin-bottom:36px;max-width:560px;width:100%;text-align:left}
-.sl-feat{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:400;color:rgba(255,255,255,0.6)}
-.sl-feat-icon{width:28px;height:28px;border-radius:7px;background:rgba(74,222,128,0.12);border:1px solid rgba(74,222,128,0.2);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
-/* Card grid (slide 3) */
-.sl-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:36px;max-width:680px;width:100%}
-.sl-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px;text-align:center}
-.sl-card-icon{font-size:20px;margin-bottom:8px}
-.sl-card-title{font-size:13px;font-weight:500;color:rgba(255,255,255,0.8);margin-bottom:4px}
-.sl-card-desc{font-size:12px;color:rgba(255,255,255,0.35);line-height:1.5}
-/* Pricing preview (slide 4) */
-.sl-pricing{display:flex;gap:10px;margin-bottom:32px;max-width:680px;width:100%}
-.sl-pkg{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:16px;flex:1;transition:border-color 0.2s;text-align:center}
-.sl-pkg.hot{border-color:rgba(74,222,128,0.3);background:rgba(26,107,82,0.15)}
-.sl-pkg-name{font-size:11px;font-weight:500;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:6px}
-.sl-pkg-price{font-size:18px;font-weight:600;color:#fff;letter-spacing:-0.3px;margin-bottom:4px}
-.sl-pkg-desc{font-size:11.5px;color:rgba(255,255,255,0.3);line-height:1.5}
-.sl-pkg-badge{font-size:10px;background:#4ade80;color:var(--dark);padding:2px 8px;border-radius:10px;font-weight:600;display:inline-block;margin-bottom:6px}
-/* Testimonial (slide 5) */
-.sl-quote{font-size:clamp(17px,2.2vw,26px);font-weight:300;color:rgba(255,255,255,0.7);line-height:1.65;margin-bottom:28px;letter-spacing:-0.2px;font-style:italic;max-width:660px;text-align:center}
-.sl-quote-mark{font-size:56px;color:rgba(74,222,128,0.3);line-height:0.8;display:block;margin-bottom:14px;font-style:normal;text-align:center}
-.sl-author{display:flex;align-items:center;gap:14px;justify-content:center}
-.sl-author-avatar{width:44px;height:44px;border-radius:50%;background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.25);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#4ade80;flex-shrink:0}
-.sl-author-name{font-size:14px;font-weight:500;color:#fff}
-.sl-author-role{font-size:12px;color:rgba(255,255,255,0.35);margin-top:2px}
-/* ─ SLIDER CONTROLS — dots only ─ */
-.slider-bottom{position:absolute;bottom:0;left:0;right:0;z-index:10;padding-bottom:32px}
-.slider-bottom-inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);display:flex;align-items:center;justify-content:center}
-.slide-indicators{display:flex;gap:10px;align-items:center}
-.si{width:32px;height:3px;border-radius:2px;background:rgba(255,255,255,0.18);cursor:pointer;transition:all 0.4s cubic-bezier(0.16,1,0.3,1)}
-.si.active{background:#4ade80;width:52px}
-.si:hover:not(.active){background:rgba(255,255,255,0.38)}
-.slide-progress-fill{display:none}
+/* ══ WHY US ══ */
+.why-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.06);border-radius:16px;overflow:hidden; }
+.why-item { background:var(--dark2);padding:34px 28px;transition:background .2s;position:relative; }
+.why-item:hover { background:#1c201b; }
+.wi-num { font-size:40px;font-weight:600;color:rgba(255,255,255,.06);line-height:1;margin-bottom:16px;letter-spacing:-1px; }
+.wi-icon { font-size:26px;margin-bottom:14px; }
+.wi-title { font-size:15px;font-weight:500;color:#fff;margin-bottom:8px; }
+.wi-desc { font-size:13px;font-weight:300;color:rgba(255,255,255,.32);line-height:1.65; }
+.wi-sep { position:absolute;right:0;top:32px;bottom:32px;width:1px;background:rgba(255,255,255,.05); }
+.why-item:last-child .wi-sep { display:none; }
+@media(max-width:768px) { .why-grid { grid-template-columns:1fr 1fr; } }
+@media(max-width:480px) { .why-grid { grid-template-columns:1fr; } }
 
-/* ═══════════════════════════════
-   SECTION SHARED
-═══════════════════════════════ */
-.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.72s cubic-bezier(0.16,1,0.3,1),transform 0.72s cubic-bezier(0.16,1,0.3,1)}
-.reveal.visible{opacity:1;transform:none}
-.reveal-d1{transition-delay:0.08s}
-.reveal-d2{transition-delay:0.16s}
-.reveal-d3{transition-delay:0.24s}
-.reveal-d4{transition-delay:0.32s}
+/* ══ PRICING ══ */
+.pc { border:1px solid var(--border);border-radius:16px;padding:28px 24px;position:relative;transition:transform .25s,box-shadow .25s;background:var(--surface); }
+.pc:hover { transform:translateY(-5px);box-shadow:0 14px 44px rgba(0,0,0,.08); }
+.pc.hot { border-color:var(--accent-mid);background:linear-gradient(160deg,var(--accent-light) 0%,#fff 55%); }
+.pc-hot-label { position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:11px;font-weight:600;padding:4px 15px;border-radius:20px;white-space:nowrap;letter-spacing:.5px; }
+.pc-tier { font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px; }
+.pc.hot .pc-tier { color:var(--accent); }
+.pc-price { font-size:clamp(26px,3vw,36px);font-weight:600;color:var(--text);line-height:1;letter-spacing:-.8px;margin-bottom:6px; }
+.pc-price sub { font-size:14px;font-weight:400;color:var(--text-2); }
+.pc-desc { font-size:13px;font-weight:300;color:var(--text-2);margin-bottom:20px;line-height:1.6; }
+.pc-list { list-style:none;padding:0;display:flex;flex-direction:column;gap:9px;margin-bottom:24px; }
+.pc-list li { font-size:13px;color:var(--text-2);display:flex;gap:8px; }
+.pc-list li::before { content:'✓';color:var(--accent);font-weight:600;font-size:11.5px;flex-shrink:0;margin-top:1px; }
+.pc-btn { width:100%;padding:12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:all .2s;border:1px solid var(--border);background:transparent;color:var(--text); }
+.pc-btn:hover { background:var(--warm); }
+.pc.hot .pc-btn { background:var(--accent);color:#fff;border-color:var(--accent); }
+.pc.hot .pc-btn:hover { background:var(--accent-h); }
 
-section{padding:clamp(72px,10vw,128px) 0}
-.inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+/* ══ REVIEWS ══ */
+.rv { background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;transition:transform .22s,box-shadow .22s; }
+.rv:hover { transform:translateY(-4px);box-shadow:0 10px 32px rgba(0,0,0,.07); }
+.rv-stars { color:#f59e0b;font-size:14px;letter-spacing:2px;margin-bottom:14px; }
+.rv-text { font-size:13.5px;font-weight:300;color:var(--text-2);line-height:1.75;margin-bottom:18px;font-style:italic; }
+.rv-quote { font-size:32px;color:var(--accent-light);line-height:.8;display:inline-block;vertical-align:-12px;font-style:normal;margin-right:3px; }
+.rv-foot { display:flex;align-items:center;gap:10px;padding-top:14px;border-top:1px solid var(--border-light); }
+.rv-name { font-size:13px;font-weight:500;color:var(--text); }
+.rv-role { font-size:11.5px;color:var(--text-3); }
 
-/* Centered section header */
-.sec-head{text-align:center;margin-bottom:clamp(40px,6vw,64px)}
-.eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:500;color:var(--accent);text-transform:uppercase;letter-spacing:1.4px;margin-bottom:14px}
-.eyebrow::before,.eyebrow::after{content:'';width:16px;height:1px;background:var(--accent)}
-.sec-title{font-size:clamp(26px,3.8vw,46px);font-weight:600;color:var(--text);line-height:1.1;letter-spacing:-0.8px;margin-bottom:14px;font-family:var(--sans)}
-.sec-title em{color:var(--accent);font-style:italic;font-weight:300}
-.sec-sub{font-size:15.5px;font-weight:300;color:var(--text-2);line-height:1.75;max-width:520px;margin:0 auto}
+/* ══ CTA ══ */
+.cta-section { background:var(--accent);padding:clamp(70px,10vw,110px) 0;text-align:center;position:relative;overflow:hidden; }
+.cta-section::before { content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.1) 0%,transparent 55%); }
+.cta-title { font-size:clamp(28px,4.5vw,54px);font-weight:600;color:#fff;line-height:1.08;margin-bottom:14px;letter-spacing:-1px;position:relative; }
+.cta-sub { font-size:16px;font-weight:300;color:rgba(255,255,255,.65);margin-bottom:32px;position:relative; }
+.btn-cw { font-size:14px;font-weight:500;background:#fff;color:var(--accent);padding:14px 30px;border-radius:9px;border:none;cursor:pointer;transition:all .2s; }
+.btn-cw:hover { transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.14); }
+.btn-cg { font-size:14px;font-weight:400;background:transparent;color:rgba(255,255,255,.75);padding:14px 30px;border-radius:9px;border:1px solid rgba(255,255,255,.3);cursor:pointer;transition:all .2s; }
+.btn-cg:hover { border-color:rgba(255,255,255,.7);color:#fff; }
 
-/* Dark section header */
-.sec-head.dark .eyebrow{color:#4ade80}
-.sec-head.dark .eyebrow::before,.sec-head.dark .eyebrow::after{background:#4ade80}
-.sec-head.dark .sec-title{color:#fff}
-.sec-head.dark .sec-sub{color:rgba(255,255,255,0.38)}
+/* ══ FOOTER ══ */
+footer { background:var(--dark); }
+.ft-logo { font-size:18px;font-weight:600;color:#fff;letter-spacing:-.5px;margin-bottom:13px; }
+.ft-logo span { color:#4ade80; }
+.ft-desc { font-size:13px;font-weight:300;color:rgba(255,255,255,.35);line-height:1.7;max-width:240px;margin-bottom:20px; }
+.ft-socials { display:flex;gap:8px; }
+.ft-soc { width:33px;height:33px;border-radius:8px;border:1px solid rgba(255,255,255,.09);color:rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s; }
+.ft-soc:hover { border-color:rgba(255,255,255,.28);color:rgba(255,255,255,.8); }
+.ft-col-title { font-size:11px;font-weight:600;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.8px;margin-bottom:15px; }
+.ft-links { display:flex;flex-direction:column;gap:9px; }
+.ft-links a { font-size:13px;font-weight:300;color:rgba(255,255,255,.35);text-decoration:none;transition:color .15s; }
+.ft-links a:hover { color:rgba(255,255,255,.75); }
+.ft-map-strip { background:#0a0908;border-top:1px solid rgba(255,255,255,.05); }
+.ft-c-icon { width:27px;height:27px;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0; }
+.ft-c-label { font-size:11px;color:rgba(255,255,255,.22);margin-bottom:1px; }
+.ft-c-val { font-size:13px;font-weight:300;color:rgba(255,255,255,.55); }
+.ft-map { border-radius:11px;overflow:hidden;border:1px solid rgba(255,255,255,.07);height:154px;background:#1a1917;position:relative; }
+.ft-map iframe { width:100%;height:100%;border:none;opacity:.7;filter:grayscale(100%) invert(92%) contrast(82%); }
+.ft-map-pin { position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:16px;height:16px;background:var(--accent);border-radius:50%;border:2.5px solid #fff;box-shadow:0 0 0 5px rgba(26,107,82,.25); }
+.ft-bottom { background:#080706;border-top:1px solid rgba(255,255,255,.04); }
+.ft-copy { font-size:12px;font-weight:300;color:rgba(255,255,255,.18); }
+.ft-legal a { font-size:12px;font-weight:300;color:rgba(255,255,255,.18);text-decoration:none;transition:color .15s; }
+.ft-legal a:hover { color:rgba(255,255,255,.45); }
 
-/* ═══════════════════════════════
-   HOW IT WORKS
-═══════════════════════════════ */
-#how{background:var(--surface)}
-.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
-.how-steps{display:flex;flex-direction:column}
-.how-step{display:flex;gap:18px;padding:24px 0;border-bottom:1px solid var(--border-light);transition:all 0.2s;cursor:default}
-.how-step:first-child{padding-top:0}
-.how-step:last-child{border-bottom:none;padding-bottom:0}
-.how-step:hover .hs-num{background:var(--accent);color:#fff;border-color:var(--accent)}
-.hs-num{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border);font-size:12px;font-weight:600;color:var(--text-3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;transition:all 0.2s;letter-spacing:0}
-.hs-title{font-size:15px;font-weight:500;color:var(--text);margin-bottom:5px;letter-spacing:-0.1px}
-.hs-desc{font-size:13.5px;font-weight:300;color:var(--text-2);line-height:1.65}
-.how-visual{background:var(--warm);border-radius:20px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border:1px solid var(--border)}
-.hv-mockup{width:85%;height:85%;background:var(--surface);border-radius:12px;border:1px solid var(--border);padding:18px;display:flex;flex-direction:column;gap:9px;box-shadow:0 10px 40px rgba(0,0,0,0.07)}
-.hv-nav-row{height:13px;background:var(--warm);border-radius:4px;display:flex;align-items:center;gap:5px;padding:0 7px}
-.hv-dot{width:5px;height:5px;border-radius:50%;background:var(--border-light)}
-.hv-bar{height:6px;border-radius:3px;background:var(--warm2)}
-.hv-bar.g{background:var(--accent-light);border:1px solid var(--accent-mid);width:35%}
-.hv-bar.w60{width:60%}
-.hv-bar.w80{width:80%}
-.hv-hero-box{height:52px;background:var(--warm);border-radius:8px}
-.hv-2col{display:grid;grid-template-columns:1fr 1fr;gap:7px}
-.hv-card{height:44px;background:var(--warm);border-radius:6px;border:1px solid var(--border-light)}
-.hv-cta-bar{height:28px;background:var(--accent);border-radius:6px;opacity:0.75;width:40%}
-
-/* ═══════════════════════════════
-   TEMPLATES
-═══════════════════════════════ */
-#templates{background:var(--bg)}
-.tmpl-filters{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:44px}
-.pill{font-size:12.5px;font-weight:400;padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:var(--surface);color:var(--text-2);cursor:pointer;transition:all 0.15s;font-family:var(--sans)}
-.pill.active{background:var(--text);color:#fff;border-color:var(--text)}
-.pill:hover:not(.active){border-color:var(--text-3);color:var(--text)}
-.tmpl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.tc{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:transform 0.28s cubic-bezier(0.16,1,0.3,1),box-shadow 0.28s,border-color 0.2s}
-.tc:hover{transform:translateY(-7px);box-shadow:0 20px 52px rgba(0,0,0,0.1);border-color:transparent}
-.tc:hover .tc-thumb img{transform:scale(1.06)}
-.tc-thumb{aspect-ratio:16/10;background:var(--warm);position:relative;overflow:hidden}
-.tc-thumb-inner{position:absolute;inset:9px;background:var(--surface);border-radius:8px;border:1px solid var(--border-light);padding:9px;display:flex;flex-direction:column;gap:4px}
-.tt-topbar{height:13px;background:var(--warm);border-radius:3px;display:flex;align-items:center;gap:4px;padding:0 5px;margin-bottom:4px}
-.tt-d{width:5px;height:5px;border-radius:50%;background:var(--border)}
-.tt-b{height:4px;border-radius:2px;background:var(--border-light)}
-.tt-hero{height:30px;border-radius:4px;background:var(--warm)}
-.tt-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin-top:2px}
-.tt-cb{height:16px;border-radius:3px;background:var(--warm)}
-.tc-hover-layer{position:absolute;inset:0;background:rgba(26,107,82,0.07);opacity:0;transition:opacity 0.22s;display:flex;align-items:center;justify-content:center}
-.tc:hover .tc-hover-layer{opacity:1}
-.tc-demo-btn{background:#fff;color:var(--accent);font-size:12px;font-weight:500;padding:8px 16px;border-radius:6px;font-family:var(--sans)}
-.tc-body{padding:14px 16px}
-.tc-name{font-size:13.5px;font-weight:500;color:var(--text);margin-bottom:5px;display:flex;align-items:center;gap:6px;letter-spacing:-0.1px}
-.tc-badge{font-size:10px;background:var(--accent-light);color:var(--accent);padding:2px 8px;border-radius:8px;font-weight:500}
-.tc-meta{display:flex;justify-content:space-between;align-items:center}
-.tc-cat{font-size:12px;color:var(--text-3);font-weight:400}
-.tc-price{font-size:15px;font-weight:600;color:var(--text);letter-spacing:-0.3px}
-.tmpl-more{text-align:center;margin-top:44px}
-.btn-more{font-size:14px;font-weight:400;background:transparent;color:var(--text);padding:12px 28px;border-radius:9px;border:1px solid var(--border);cursor:pointer;font-family:var(--sans);transition:all 0.2s;letter-spacing:-0.1px}
-.btn-more:hover{background:var(--text);color:#fff}
-
-/* ═══════════════════════════════
-   WHY US (dark)
-═══════════════════════════════ */
-#why{background:var(--dark2);position:relative;overflow:hidden}
-#why::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px;opacity:0.025;pointer-events:none}
-.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.06);border-radius:16px;overflow:hidden}
-.why-item{background:var(--dark2);padding:34px 28px;transition:background 0.2s;position:relative}
-.why-item:hover{background:#1c201b}
-.wi-num{font-size:40px;font-weight:600;color:rgba(255,255,255,0.06);line-height:1;margin-bottom:16px;letter-spacing:-1px}
-.wi-icon{font-size:26px;margin-bottom:14px}
-.wi-title{font-size:15px;font-weight:500;color:#fff;margin-bottom:8px;letter-spacing:-0.1px}
-.wi-desc{font-size:13px;font-weight:300;color:rgba(255,255,255,0.32);line-height:1.65}
-.wi-sep{position:absolute;right:0;top:32px;bottom:32px;width:1px;background:rgba(255,255,255,0.05)}
-.why-item:last-child .wi-sep{display:none}
-
-/* ═══════════════════════════════
-   PRICING
-═══════════════════════════════ */
-#pricing{background:var(--surface)}
-.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.pc{border:1px solid var(--border);border-radius:16px;padding:28px 24px;position:relative;transition:transform 0.25s,box-shadow 0.25s,border-color 0.2s;background:var(--surface)}
-.pc:hover{transform:translateY(-5px);box-shadow:0 14px 44px rgba(0,0,0,0.08)}
-.pc.hot{border-color:var(--accent-mid);background:linear-gradient(160deg,var(--accent-light) 0%,#fff 55%)}
-.pc-hot-label{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:11px;font-weight:600;padding:4px 15px;border-radius:20px;white-space:nowrap;letter-spacing:0.5px;font-family:var(--sans)}
-.pc-tier{font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:12px}
-.pc.hot .pc-tier{color:var(--accent)}
-.pc-price{font-size:clamp(26px,3vw,36px);font-weight:600;color:var(--text);line-height:1;letter-spacing:-0.8px;margin-bottom:6px}
-.pc-price sub{font-size:14px;font-weight:400;color:var(--text-2);letter-spacing:0;vertical-align:middle}
-.pc-desc{font-size:13px;font-weight:300;color:var(--text-2);margin-bottom:20px;line-height:1.6}
-.pc-line{height:1px;background:var(--border-light);margin-bottom:18px}
-.pc-list{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:24px}
-.pc-list li{font-size:13px;font-weight:400;color:var(--text-2);display:flex;gap:8px}
-.pc-list li::before{content:'✓';color:var(--accent);font-weight:600;font-size:11.5px;flex-shrink:0;margin-top:1px}
-.pc-btn{width:100%;padding:12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;font-family:var(--sans);transition:all 0.2s;border:1px solid var(--border);background:transparent;color:var(--text);letter-spacing:-0.1px}
-.pc-btn:hover{background:var(--warm)}
-.pc.hot .pc-btn{background:var(--accent);color:#fff;border-color:var(--accent)}
-.pc.hot .pc-btn:hover{background:var(--accent-h)}
-
-/* ═══════════════════════════════
-   REVIEWS
-═══════════════════════════════ */
-#reviews{background:var(--bg)}
-.rv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.rv{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;transition:transform 0.22s,box-shadow 0.22s}
-.rv:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(0,0,0,0.07)}
-.rv-stars{color:#f59e0b;font-size:14px;letter-spacing:2px;margin-bottom:14px}
-.rv-text{font-size:13.5px;font-weight:300;color:var(--text-2);line-height:1.75;margin-bottom:18px;font-style:italic}
-.rv-quote{font-size:32px;color:var(--accent-light);line-height:0.8;display:inline-block;vertical-align:-12px;font-style:normal;margin-right:3px}
-.rv-foot{display:flex;align-items:center;gap:10px;padding-top:14px;border-top:1px solid var(--border-light)}
-.rv-av{width:34px;height:34px;border-radius:50%;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.rv-name{font-size:13px;font-weight:500;color:var(--text);letter-spacing:-0.1px}
-.rv-role{font-size:11.5px;color:var(--text-3);font-weight:400}
-
-/* ═══════════════════════════════
-   CTA
-═══════════════════════════════ */
-#cta{background:var(--accent);padding:clamp(70px,10vw,110px) 0;text-align:center;position:relative;overflow:hidden}
-#cta::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,0.1) 0%,transparent 55%)}
-.cta-title{font-size:clamp(28px,4.5vw,54px);font-weight:600;color:#fff;line-height:1.08;margin-bottom:14px;letter-spacing:-1px;position:relative;font-family:var(--sans)}
-.cta-sub{font-size:16px;font-weight:300;color:rgba(255,255,255,0.65);margin-bottom:32px;position:relative}
-.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
-.btn-cw{font-size:14px;font-weight:500;background:#fff;color:var(--accent);padding:14px 30px;border-radius:9px;border:none;cursor:pointer;font-family:var(--sans);transition:all 0.2s;letter-spacing:-0.1px}
-.btn-cw:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,0.14)}
-.btn-cg{font-size:14px;font-weight:400;background:transparent;color:rgba(255,255,255,0.75);padding:14px 30px;border-radius:9px;border:1px solid rgba(255,255,255,0.3);cursor:pointer;font-family:var(--sans);transition:all 0.2s}
-.btn-cg:hover{border-color:rgba(255,255,255,0.7);color:#fff}
-
-/* ═══════════════════════════════
-   FOOTER
-═══════════════════════════════ */
-footer{background:var(--dark);font-family:var(--sans)}
-.ft-main{max-width:var(--max);margin:0 auto;padding:clamp(48px,7vw,80px) var(--pad) 52px;display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:48px}
-.ft-logo{font-size:18px;font-weight:600;color:#fff;letter-spacing:-0.5px;margin-bottom:13px}
-.ft-logo span{color:#4ade80}
-.ft-desc{font-size:13px;font-weight:300;color:rgba(255,255,255,0.35);line-height:1.7;max-width:240px;margin-bottom:20px}
-.ft-socials{display:flex;gap:8px}
-.ft-soc{width:33px;height:33px;border-radius:8px;border:1px solid rgba(255,255,255,0.09);color:rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s}
-.ft-soc:hover{border-color:rgba(255,255,255,0.28);color:rgba(255,255,255,0.8)}
-.ft-col-title{font-size:11px;font-weight:600;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:15px}
-.ft-links{display:flex;flex-direction:column;gap:9px}
-.ft-links a{font-size:13px;font-weight:300;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.15s}
-.ft-links a:hover{color:rgba(255,255,255,0.75)}
-
-/* Map + contact row */
-.ft-map-strip{background:#0a0908;border-top:1px solid rgba(255,255,255,0.05)}
-.ft-map-inner{max-width:var(--max);margin:0 auto;padding:32px var(--pad);display:grid;grid-template-columns:1fr 260px;gap:40px;align-items:center}
-.ft-contacts{display:flex;flex-direction:column;gap:11px}
-.ft-contact-row{display:flex;gap:10px;align-items:flex-start}
-.ft-c-icon{width:27px;height:27px;border-radius:6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
-.ft-c-label{font-size:11px;font-weight:400;color:rgba(255,255,255,0.22);margin-bottom:1px}
-.ft-c-val{font-size:13px;font-weight:300;color:rgba(255,255,255,0.55)}
-.ft-map{border-radius:11px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);height:154px;background:#1a1917;position:relative;flex-shrink:0}
-.ft-map iframe{width:100%;height:100%;border:none;opacity:0.7;filter:grayscale(100%) invert(92%) contrast(82%)}
-.ft-map-pin{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:16px;height:16px;background:var(--accent);border-radius:50%;border:2.5px solid #fff;box-shadow:0 0 0 5px rgba(26,107,82,0.25)}
-
-/* Footer bottom */
-.ft-bottom{background:#080706;border-top:1px solid rgba(255,255,255,0.04)}
-.ft-bottom-inner{max-width:var(--max);margin:0 auto;padding:14px var(--pad);display:flex;justify-content:space-between;align-items:center}
-.ft-copy{font-size:12px;font-weight:300;color:rgba(255,255,255,0.18)}
-.ft-legal{display:flex;gap:20px}
-.ft-legal a{font-size:12px;font-weight:300;color:rgba(255,255,255,0.18);text-decoration:none;transition:color 0.15s}
-.ft-legal a:hover{color:rgba(255,255,255,0.45)}
-
-/* ─ ZALO FLOAT ─ */
-.zf{position:fixed;bottom:26px;right:26px;z-index:400;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-.zf-tip{font-size:12px;font-weight:400;background:var(--dark);color:rgba(255,255,255,0.75);padding:6px 12px;border-radius:6px;opacity:0;transform:translateX(6px);transition:all 0.2s;pointer-events:none;white-space:nowrap;border:1px solid rgba(255,255,255,0.08)}
-.zf:hover .zf-tip{opacity:1;transform:none}
-.zf-btn{width:48px;height:48px;border-radius:50%;background:#0068FF;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;font-size:22px;box-shadow:0 4px 18px rgba(0,104,255,0.38);transition:transform 0.2s}
-.zf-btn:hover{transform:scale(1.09)}
+/* ── Zalo Float ── */
+.zf { position:fixed;bottom:26px;right:26px;z-index:400;display:flex;flex-direction:column;align-items:flex-end;gap:8px; }
+.zf-tip { font-size:12px;background:var(--dark);color:rgba(255,255,255,.75);padding:6px 12px;border-radius:6px;opacity:0;transform:translateX(6px);transition:all .2s;pointer-events:none;white-space:nowrap;border:1px solid rgba(255,255,255,.08); }
+.zf:hover .zf-tip { opacity:1;transform:none; }
+.zf-btn { width:48px;height:48px;border-radius:50%;background:#0068FF;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;font-size:22px;box-shadow:0 4px 18px rgba(0,104,255,.38);transition:transform .2s; }
+.zf-btn:hover { transform:scale(1.09); }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="nav">
-  <div class="nav-inner">
-    <a class="logo" href="#">web<span>drop</span>.vn</a>
-    <div class="nav-links">
-      <a href="#templates">Mẫu thiết kế</a>
-      <a href="#pricing">Bảng giá</a>
-      <a href="#how">Quy trình</a>
-      <a href="#reviews">Khách hàng</a>
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="#">web<span>drop</span>.vn</a>
+      <div class="nav-links">
+        <a href="#templates">Mẫu thiết kế</a>
+        <a href="#pricing">Bảng giá</a>
+        <a href="#how">Quy trình</a>
+        <a href="#reviews">Khách hàng</a>
+      </div>
+      <a class="nav-cta" href="#pricing">Tư vấn miễn phí</a>
     </div>
-    <a class="nav-cta" href="#pricing">Tư vấn miễn phí</a>
   </div>
 </nav>
 
-<!-- ═══════ HERO SLIDER ═══════ -->
+<!-- HERO SLIDER -->
 <div class="hero" id="hero">
   <div class="hero-grain"></div>
   <div class="hero-glow glow-1"></div>
   <div class="hero-glow glow-2"></div>
   <div class="hero-glow glow-3"></div>
-
   <div class="slides-wrap" id="slides-wrap">
 
-    <!-- Slide 1: Main intro -->
-    <div class="slide active entering" data-idx="0">
-      <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1547658719-da2b51169166?w=1400&q=60&auto=format&fit=crop');background-size:cover;background-position:center;opacity:0.07;z-index:0"></div>
-      <div class="slide-inner">
-        <div class="sl-badge"><span class="sl-badge-dot"></span>Website chuyên nghiệp · Triển khai trọn gói</div>
-        <h1 class="sl-title">Chọn mẫu đẹp,<br>tôi <em>cài đặt</em><span class="muted">cho bạn.</span></h1>
-        <p class="sl-sub">Hơn 30 mẫu thiết kế hiện đại cho mọi ngành nghề. Thanh toán xong — website hoàn chỉnh trong 3–5 ngày làm việc, không cần biết kỹ thuật.</p>
-        <div class="sl-actions">
-          <button class="btn-sl-p" onclick="scrollTo('templates')">Xem mẫu thiết kế →</button>
-          <button class="btn-sl-o" onclick="scrollTo('how')">Cách hoạt động</button>
-        </div>
-        <div class="sl-stats">
-          <div><div class="sl-stat-num">127+</div><div class="sl-stat-label">Khách hàng</div></div>
-          <div><div class="sl-stat-num">30+</div><div class="sl-stat-label">Mẫu thiết kế</div></div>
-          <div><div class="sl-stat-num">3–5</div><div class="sl-stat-label">Ngày bàn giao</div></div>
-          <div><div class="sl-stat-num">4.9 ★</div><div class="sl-stat-label">Đánh giá trung bình</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Slide 2: Features -->
-    <div class="slide" data-idx="1">
-      <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=60&auto=format&fit=crop');background-size:cover;background-position:center;opacity:0.07;z-index:0"></div>
-      <div class="slide-inner">
-        <div class="sl-badge"><span class="sl-badge-dot"></span>Tại sao chọn webdrop.vn</div>
-        <h1 class="sl-title">Không chỉ là<br><em>template</em><span class="muted">— là dịch vụ.</span></h1>
-        <div class="sl-features">
-          <div class="sl-feat"><div class="sl-feat-icon">⚡</div>Bàn giao trong <strong style="color:rgba(255,255,255,0.8);font-weight:500">3–5 ngày làm việc</strong>, không kéo dài hàng tháng</div>
-          <div class="sl-feat"><div class="sl-feat-icon">🎨</div>Hơn 30 mẫu thiết kế hiện đại, <strong style="color:rgba(255,255,255,0.8);font-weight:500">responsive</strong> hoàn toàn trên mọi thiết bị</div>
-          <div class="sl-feat"><div class="sl-feat-icon">🔧</div>Cài đặt, setup hosting, domain, SSL — <strong style="color:rgba(255,255,255,0.8);font-weight:500">tất cả trong một gói</strong></div>
-          <div class="sl-feat"><div class="sl-feat-icon">🛡️</div>Hoàn tiền 100% trong 7 ngày nếu không hài lòng</div>
-        </div>
-        <div class="sl-actions">
-          <button class="btn-sl-p" onclick="scrollTo('how')">Xem quy trình →</button>
-          <button class="btn-sl-o" onclick="scrollTo('pricing')">Xem bảng giá</button>
-        </div>
-        <div class="sl-tags">
-          <span class="sl-tag">SEO chuẩn</span>
-          <span class="sl-tag">PageSpeed 90+</span>
-          <span class="sl-tag">Hỗ trợ tiếng Việt</span>
-          <span class="sl-tag">Gói duy trì hàng tháng</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Slide 3: Template categories -->
-    <div class="slide" data-idx="2">
-      <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1558655146-d09347e92766?w=1400&q=60&auto=format&fit=crop');background-size:cover;background-position:center;opacity:0.07;z-index:0"></div>
-      <div class="slide-inner">
-        <div class="sl-badge"><span class="sl-badge-dot"></span>30+ mẫu thiết kế sẵn có</div>
-        <h1 class="sl-title">Mẫu cho<br><em>mọi ngành</em><span class="muted">nghề.</span></h1>
-        <div class="sl-cards">
-          <div class="sl-card"><div class="sl-card-icon">🏢</div><div class="sl-card-title">Giới thiệu công ty</div><div class="sl-card-desc">Chuyên nghiệp, tối ưu chuyển đổi</div></div>
-          <div class="sl-card"><div class="sl-card-icon">💼</div><div class="sl-card-title">Portfolio cá nhân</div><div class="sl-card-desc">Showcase công việc ấn tượng</div></div>
-          <div class="sl-card"><div class="sl-card-icon">🍜</div><div class="sl-card-title">Nhà hàng & F&B</div><div class="sl-card-desc">Menu, đặt bàn, địa chỉ</div></div>
-          <div class="sl-card"><div class="sl-card-icon">✍️</div><div class="sl-card-title">Blog cá nhân</div><div class="sl-card-desc">Viết bài, phân loại, SEO</div></div>
-          <div class="sl-card"><div class="sl-card-icon">💆</div><div class="sl-card-title">Spa & Làm đẹp</div><div class="sl-card-desc">Dịch vụ, đặt lịch, đội ngũ</div></div>
-          <div class="sl-card"><div class="sl-card-icon">💬</div><div class="sl-card-title">Forum & Community</div><div class="sl-card-desc">Q&A, thảo luận, thành viên</div></div>
-        </div>
-        <div class="sl-actions">
-          <button class="btn-sl-p" onclick="scrollTo('templates')">Xem tất cả mẫu →</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Slide 4: Pricing overview -->
-    <div class="slide" data-idx="3">
-      <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1553484771-371a605b060b?w=1400&q=60&auto=format&fit=crop');background-size:cover;background-position:center;opacity:0.07;z-index:0"></div>
-      <div class="slide-inner">
-        <div class="sl-badge"><span class="sl-badge-dot"></span>Giá minh bạch, không phát sinh</div>
-        <h1 class="sl-title">Phù hợp với<br><em>mọi ngân sách</em><span class="muted">.</span></h1>
-        <div class="sl-pricing">
-          <div class="sl-pkg">
-            <div class="sl-pkg-name">Starter</div>
-            <div class="sl-pkg-price">1.200.000đ</div>
-            <div class="sl-pkg-desc">Mẫu + source code, tự cài đặt theo hướng dẫn</div>
-          </div>
-          <div class="sl-pkg hot">
-            <div class="sl-pkg-badge">PHỔ BIẾN NHẤT</div>
-            <div class="sl-pkg-name">Standard</div>
-            <div class="sl-pkg-price">2.500.000đ</div>
-            <div class="sl-pkg-desc">Cài đặt trọn gói · Hosting · Domain · Nội dung</div>
-          </div>
-          <div class="sl-pkg">
-            <div class="sl-pkg-name">Premium</div>
-            <div class="sl-pkg-price">12.000.000đ</div>
-            <div class="sl-pkg-desc">Thiết kế custom độc quyền theo yêu cầu</div>
-          </div>
-        </div>
-        <div class="sl-actions">
-          <button class="btn-sl-p" onclick="scrollTo('pricing')">Xem chi tiết bảng giá →</button>
-          <button class="btn-sl-o" onclick="scrollTo('templates')">Xem mẫu trước</button>
-        </div>
-        <div class="sl-tags">
-          <span class="sl-tag">Hosting 1 năm included</span>
-          <span class="sl-tag">Hoàn tiền 7 ngày</span>
-          <span class="sl-tag">Hỗ trợ 30 ngày</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Slide 5: Testimonial -->
-    <div class="slide" data-idx="4">
-      <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1400&q=60&auto=format&fit=crop');background-size:cover;background-position:center;opacity:0.07;z-index:0"></div>
-      <div class="slide-inner">
-        <div class="sl-badge"><span class="sl-badge-dot"></span>127 khách hàng đã tin tưởng</div>
-        <span class="sl-quote-mark">"</span>
-        <p class="sl-quote">Tôi không biết gì về website nhưng chỉ cần điền form brief là xong. 4 ngày sau có website đẹp hơn tôi tưởng tượng. Khách hàng hỏi "ai làm web cho bạn vậy?"</p>
-        <div class="sl-author">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80&auto=format&fit=crop&crop=face" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;border:1px solid rgba(74,222,128,0.25)" alt="Nguyễn Lan Anh">
-          <div>
-            <div class="sl-author-name">Nguyễn Lan Anh</div>
-            <div class="sl-author-role">Chủ Spa Lavender · Hà Nội · Gói Standard</div>
-          </div>
-        </div>
-        <div style="margin-top:32px">
+    <!-- Slide 1 -->
+    <div class="slide active" data-idx="0">
+      <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1547658719-da2b51169166?w=1400&q=60&auto=format&fit=crop');background-size:cover;background-position:center;opacity:.07;z-index:0"></div>
+      <div class="wd-container w-100">
+        <div class="slide-inner">
+          <div class="sl-badge"><span class="sl-badge-dot"></span>Website chuyên nghiệp · Triển khai trọn gói</div>
+          <h1 class="sl-title">Chọn mẫu đẹp,<br>tôi <em>cài đặt</em><span class="muted">cho bạn.</span></h1>
+          <p class="sl-sub">Hơn 30 mẫu thiết kế hiện đại cho mọi ngành nghề. Thanh toán xong — website hoàn chỉnh trong 3–5 ngày làm việc, không cần biết kỹ thuật.</p>
           <div class="sl-actions">
-            <button class="btn-sl-p" onclick="scrollTo('templates')">Đặt hàng ngay →</button>
-            <button class="btn-sl-o" onclick="scrollTo('reviews')">Xem thêm đánh giá</button>
+            <button class="btn-sl-p" onclick="scrollToId('templates')">Xem mẫu thiết kế →</button>
+            <button class="btn-sl-o" onclick="scrollToId('how')">Cách hoạt động</button>
+          </div>
+          <div class="sl-stats">
+            <div><div class="sl-stat-num">127+</div><div class="sl-stat-label">Khách hàng</div></div>
+            <div><div class="sl-stat-num">30+</div><div class="sl-stat-label">Mẫu thiết kế</div></div>
+            <div><div class="sl-stat-num">3–5</div><div class="sl-stat-label">Ngày bàn giao</div></div>
+            <div><div class="sl-stat-num">4.9 ★</div><div class="sl-stat-label">Đánh giá trung bình</div></div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Slide 2 -->
+    <div class="slide" data-idx="1">
+      <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=60&auto=format&fit=crop');background-size:cover;background-position:center;opacity:.07;z-index:0"></div>
+      <div class="wd-container w-100">
+        <div class="slide-inner">
+          <div class="sl-badge"><span class="sl-badge-dot"></span>Tại sao chọn webdrop.vn</div>
+          <h1 class="sl-title">Không chỉ là<br><em>template</em><span class="muted">— là dịch vụ.</span></h1>
+          <div class="sl-features">
+            <div class="sl-feat"><div class="sl-feat-icon">⚡</div>Bàn giao trong <strong style="color:rgba(255,255,255,.8);font-weight:500">3–5 ngày làm việc</strong>, không kéo dài hàng tháng</div>
+            <div class="sl-feat"><div class="sl-feat-icon">🎨</div>Hơn 30 mẫu thiết kế hiện đại, <strong style="color:rgba(255,255,255,.8);font-weight:500">responsive</strong> hoàn toàn trên mọi thiết bị</div>
+            <div class="sl-feat"><div class="sl-feat-icon">🔧</div>Cài đặt, setup hosting, domain, SSL — <strong style="color:rgba(255,255,255,.8);font-weight:500">tất cả trong một gói</strong></div>
+            <div class="sl-feat"><div class="sl-feat-icon">🛡️</div>Hoàn tiền 100% trong 7 ngày nếu không hài lòng</div>
+          </div>
+          <div class="sl-actions">
+            <button class="btn-sl-p" onclick="scrollToId('how')">Xem quy trình →</button>
+            <button class="btn-sl-o" onclick="scrollToId('pricing')">Xem bảng giá</button>
+          </div>
+          <div class="sl-tags">
+            <span class="sl-tag">SEO chuẩn</span><span class="sl-tag">PageSpeed 90+</span>
+            <span class="sl-tag">Hỗ trợ tiếng Việt</span><span class="sl-tag">Gói duy trì hàng tháng</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide" data-idx="2">
+      <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1558655146-d09347e92766?w=1400&q=60&auto=format&fit=crop');background-size:cover;background-position:center;opacity:.07;z-index:0"></div>
+      <div class="wd-container w-100">
+        <div class="slide-inner">
+          <div class="sl-badge"><span class="sl-badge-dot"></span>30+ mẫu thiết kế sẵn có</div>
+          <h1 class="sl-title">Mẫu cho<br><em>mọi ngành</em><span class="muted">nghề.</span></h1>
+          <div class="sl-cards">
+            <div class="sl-card"><div class="sl-card-icon">🏢</div><div class="sl-card-title">Giới thiệu công ty</div><div class="sl-card-desc">Chuyên nghiệp, tối ưu chuyển đổi</div></div>
+            <div class="sl-card"><div class="sl-card-icon">💼</div><div class="sl-card-title">Portfolio cá nhân</div><div class="sl-card-desc">Showcase công việc ấn tượng</div></div>
+            <div class="sl-card"><div class="sl-card-icon">🍜</div><div class="sl-card-title">Nhà hàng & F&B</div><div class="sl-card-desc">Menu, đặt bàn, địa chỉ</div></div>
+            <div class="sl-card"><div class="sl-card-icon">✍️</div><div class="sl-card-title">Blog cá nhân</div><div class="sl-card-desc">Viết bài, phân loại, SEO</div></div>
+            <div class="sl-card"><div class="sl-card-icon">💆</div><div class="sl-card-title">Spa & Làm đẹp</div><div class="sl-card-desc">Dịch vụ, đặt lịch, đội ngũ</div></div>
+            <div class="sl-card"><div class="sl-card-icon">💬</div><div class="sl-card-title">Forum & Community</div><div class="sl-card-desc">Q&A, thảo luận, thành viên</div></div>
+          </div>
+          <div class="sl-actions">
+            <button class="btn-sl-p" onclick="scrollToId('templates')">Xem tất cả mẫu →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide" data-idx="3">
+      <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1553484771-371a605b060b?w=1400&q=60&auto=format&fit=crop');background-size:cover;background-position:center;opacity:.07;z-index:0"></div>
+      <div class="wd-container w-100">
+        <div class="slide-inner">
+          <div class="sl-badge"><span class="sl-badge-dot"></span>Giá minh bạch, không phát sinh</div>
+          <h1 class="sl-title">Phù hợp với<br><em>mọi ngân sách</em><span class="muted">.</span></h1>
+          <div class="sl-pricing">
+            <div class="sl-pkg"><div class="sl-pkg-name">Starter</div><div class="sl-pkg-price">1.200.000đ</div><div class="sl-pkg-desc">Mẫu + source code, tự cài đặt theo hướng dẫn</div></div>
+            <div class="sl-pkg hot"><div class="sl-pkg-badge">PHỔ BIẾN NHẤT</div><div class="sl-pkg-name">Standard</div><div class="sl-pkg-price">2.500.000đ</div><div class="sl-pkg-desc">Cài đặt trọn gói · Hosting · Domain · Nội dung</div></div>
+            <div class="sl-pkg"><div class="sl-pkg-name">Premium</div><div class="sl-pkg-price">12.000.000đ</div><div class="sl-pkg-desc">Thiết kế custom độc quyền theo yêu cầu</div></div>
+          </div>
+          <div class="sl-actions">
+            <button class="btn-sl-p" onclick="scrollToId('pricing')">Xem chi tiết bảng giá →</button>
+            <button class="btn-sl-o" onclick="scrollToId('templates')">Xem mẫu trước</button>
+          </div>
+          <div class="sl-tags">
+            <span class="sl-tag">Hosting 1 năm included</span><span class="sl-tag">Hoàn tiền 7 ngày</span><span class="sl-tag">Hỗ trợ 30 ngày</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide" data-idx="4">
+      <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1400&q=60&auto=format&fit=crop');background-size:cover;background-position:center;opacity:.07;z-index:0"></div>
+      <div class="wd-container w-100">
+        <div class="slide-inner">
+          <div class="sl-badge"><span class="sl-badge-dot"></span>127 khách hàng đã tin tưởng</div>
+          <span class="sl-quote-mark">"</span>
+          <p class="sl-quote">Tôi không biết gì về website nhưng chỉ cần điền form brief là xong. 4 ngày sau có website đẹp hơn tôi tưởng tượng. Khách hàng hỏi "ai làm web cho bạn vậy?"</p>
+          <div class="sl-author">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80&auto=format&fit=crop&crop=face" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;border:1px solid rgba(74,222,128,.25)" alt="Nguyễn Lan Anh">
+            <div><div class="sl-author-name">Nguyễn Lan Anh</div><div class="sl-author-role">Chủ Spa Lavender · Hà Nội · Gói Standard</div></div>
+          </div>
+          <div class="mt-4">
+            <div class="sl-actions">
+              <button class="btn-sl-p" onclick="scrollToId('templates')">Đặt hàng ngay →</button>
+              <button class="btn-sl-o" onclick="scrollToId('reviews')">Xem thêm đánh giá</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div><!-- /slides-wrap -->
 
-  <!-- Slider bottom controls -->
   <div class="slider-bottom">
-    <div class="slider-bottom-inner">
-      <div class="slide-indicators" id="indicators">
-        <div class="si active" onclick="goSlide(0)"></div>
-        <div class="si" onclick="goSlide(1)"></div>
-        <div class="si" onclick="goSlide(2)"></div>
-        <div class="si" onclick="goSlide(3)"></div>
-        <div class="si" onclick="goSlide(4)"></div>
-      </div>
+    <div class="slide-indicators" id="indicators">
+      <div class="si active" onclick="goSlide(0)"></div>
+      <div class="si" onclick="goSlide(1)"></div>
+      <div class="si" onclick="goSlide(2)"></div>
+      <div class="si" onclick="goSlide(3)"></div>
+      <div class="si" onclick="goSlide(4)"></div>
     </div>
   </div>
 </div>
 
-<!-- ═══════ HOW IT WORKS ═══════ -->
-<section id="how">
-  <div class="inner">
-    <div class="sec-head reveal">
+<!-- HOW IT WORKS -->
+<section id="how" class="sec-pad" style="background:var(--surface)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
       <div class="eyebrow">Quy trình</div>
       <h2 class="sec-title">Đơn giản từ <em>đầu đến cuối</em></h2>
       <p class="sec-sub">Bạn chỉ cần cung cấp nội dung. Chúng tôi lo toàn bộ phần kỹ thuật còn lại.</p>
     </div>
-    <div class="how-grid">
-      <div class="how-steps reveal reveal-d1">
+    <div class="row g-5 align-items-center">
+      <div class="col-md-6 reveal reveal-d1">
         <div class="how-step">
           <div class="hs-num">01</div>
           <div><div class="hs-title">Chọn mẫu yêu thích</div><div class="hs-desc">Duyệt qua hơn 30 mẫu theo ngành nghề. Xem live demo trực tiếp, không cần cài đặt gì.</div></div>
@@ -545,23 +422,25 @@ footer{background:var(--dark);font-family:var(--sans)}
           <div><div class="hs-title">Nhận website hoàn chỉnh</div><div class="hs-desc">Xem link preview, chỉnh sửa tối đa 2 vòng, bàn giao. Website live trong 3–5 ngày làm việc.</div></div>
         </div>
       </div>
-      <div class="how-visual reveal reveal-d2" style="border-radius:20px;overflow:hidden;aspect-ratio:4/3;position:relative;border:1px solid var(--border)">
-        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80&auto=format&fit=crop" alt="Triển khai website" style="width:100%;height:100%;object-fit:cover;display:block">
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,107,82,0.15) 0%,transparent 60%)"></div>
+      <div class="col-md-6 reveal reveal-d2">
+        <div class="rounded-4 overflow-hidden position-relative border" style="border-color:var(--border)!important;aspect-ratio:4/3">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80&auto=format&fit=crop" alt="Triển khai website" class="w-100 h-100 object-fit-cover d-block">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,107,82,.15) 0%,transparent 60%)"></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════ TEMPLATES ═══════ -->
-<section id="templates">
-  <div class="inner">
-    <div class="sec-head reveal">
+<!-- TEMPLATES -->
+<section id="templates" class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-4">
       <div class="eyebrow">Mẫu thiết kế</div>
       <h2 class="sec-title">Chọn mẫu <em>phù hợp</em> với bạn</h2>
       <p class="sec-sub">Mỗi mẫu được thiết kế bởi chuyên gia, responsive hoàn toàn, tối ưu tốc độ và SEO.</p>
     </div>
-    <div class="tmpl-filters reveal">
+    <div class="d-flex gap-2 justify-content-center flex-wrap mb-4 reveal">
       <div class="pill active" onclick="filterPill(this)">Tất cả</div>
       <div class="pill" onclick="filterPill(this)">Giới thiệu</div>
       <div class="pill" onclick="filterPill(this)">Portfolio</div>
@@ -569,88 +448,52 @@ footer{background:var(--dark);font-family:var(--sans)}
       <div class="pill" onclick="filterPill(this)">F&B</div>
       <div class="pill" onclick="filterPill(this)">Forum</div>
     </div>
-    <div class="tmpl-grid">
-      <div class="tc reveal reveal-d1">
-        <div class="tc-thumb" style="overflow:hidden">
-          <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80&auto=format&fit=crop" alt="Công ty dịch vụ Pro" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease">
-          <div class="tc-hover-layer"><div class="tc-demo-btn">Xem demo →</div></div>
-        </div>
-        <div class="tc-body">
-          <div class="tc-name">Công ty dịch vụ Pro <span class="tc-badge">Bán chạy</span></div>
-          <div class="tc-meta"><span class="tc-cat">Giới thiệu</span><span class="tc-price">2.500.000đ</span></div>
-        </div>
-      </div>
-      <div class="tc reveal reveal-d2">
-        <div class="tc-thumb" style="overflow:hidden">
-          <img src="https://images.unsplash.com/photo-1545665277-5937489579f2?w=600&q=80&auto=format&fit=crop" alt="Portfolio tối" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease">
-          <div class="tc-hover-layer"><div class="tc-demo-btn">Xem demo →</div></div>
-        </div>
-        <div class="tc-body">
-          <div class="tc-name">Portfolio tối <span class="tc-badge">Mới</span></div>
-          <div class="tc-meta"><span class="tc-cat">Cá nhân</span><span class="tc-price">2.000.000đ</span></div>
-        </div>
-      </div>
-      <div class="tc reveal reveal-d3">
-        <div class="tc-thumb" style="overflow:hidden">
-          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&auto=format&fit=crop" alt="Nhà hàng Cafe" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease">
-          <div class="tc-hover-layer"><div class="tc-demo-btn">Xem demo →</div></div>
-        </div>
-        <div class="tc-body">
-          <div class="tc-name">Nhà hàng & Cafe</div>
-          <div class="tc-meta"><span class="tc-cat">F&B</span><span class="tc-price">3.000.000đ</span></div>
-        </div>
-      </div>
-      <div class="tc reveal reveal-d1">
-        <div class="tc-thumb" style="overflow:hidden">
-          <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=80&auto=format&fit=crop" alt="Blog cá nhân" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease">
-          <div class="tc-hover-layer"><div class="tc-demo-btn">Xem demo →</div></div>
-        </div>
-        <div class="tc-body">
-          <div class="tc-name">Blog cá nhân</div>
-          <div class="tc-meta"><span class="tc-cat">Blog</span><span class="tc-price">1.800.000đ</span></div>
-        </div>
-      </div>
-      <div class="tc reveal reveal-d2">
-        <div class="tc-thumb" style="overflow:hidden">
-          <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80&auto=format&fit=crop" alt="Spa làm đẹp" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease">
-          <div class="tc-hover-layer"><div class="tc-demo-btn">Xem demo →</div></div>
-        </div>
-        <div class="tc-body">
-          <div class="tc-name">Spa & Làm đẹp <span class="tc-badge">Mới</span></div>
-          <div class="tc-meta"><span class="tc-cat">Beauty</span><span class="tc-price">2.800.000đ</span></div>
-        </div>
-      </div>
-      <div class="tc reveal reveal-d3">
-        <div class="tc-thumb" style="overflow:hidden">
-          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80&auto=format&fit=crop" alt="Forum cộng đồng" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease">
-          <div class="tc-hover-layer"><div class="tc-demo-btn">Xem demo →</div></div>
-        </div>
-        <div class="tc-body">
-          <div class="tc-name">Forum cộng đồng</div>
-          <div class="tc-meta"><span class="tc-cat">Community</span><span class="tc-price">4.500.000đ</span></div>
-        </div>
-      </div>
+    <div class="row g-3">
+      <div class="col-md-4"><div class="tc reveal reveal-d1">
+        <div class="tc-thumb"><img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80&auto=format&fit=crop" alt="Công ty dịch vụ Pro" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease"><div class="tc-hover-layer"><div class="tc-demo-btn">Xem demo →</div></div></div>
+        <div class="tc-body"><div class="tc-name">Công ty dịch vụ Pro <span class="tc-badge">Bán chạy</span></div><div class="tc-meta"><span class="tc-cat">Giới thiệu</span><span class="tc-price">2.500.000đ</span></div></div>
+      </div></div>
+      <div class="col-md-4"><div class="tc reveal reveal-d2">
+        <div class="tc-thumb"><img src="https://images.unsplash.com/photo-1545665277-5937489579f2?w=600&q=80&auto=format&fit=crop" alt="Portfolio tối" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease"><div class="tc-hover-layer"><div class="tc-demo-btn">Xem demo →</div></div></div>
+        <div class="tc-body"><div class="tc-name">Portfolio tối <span class="tc-badge">Mới</span></div><div class="tc-meta"><span class="tc-cat">Cá nhân</span><span class="tc-price">2.000.000đ</span></div></div>
+      </div></div>
+      <div class="col-md-4"><div class="tc reveal reveal-d3">
+        <div class="tc-thumb"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&auto=format&fit=crop" alt="Nhà hàng Cafe" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease"><div class="tc-hover-layer"><div class="tc-demo-btn">Xem demo →</div></div></div>
+        <div class="tc-body"><div class="tc-name">Nhà hàng & Cafe</div><div class="tc-meta"><span class="tc-cat">F&B</span><span class="tc-price">3.000.000đ</span></div></div>
+      </div></div>
+      <div class="col-md-4"><div class="tc reveal reveal-d1">
+        <div class="tc-thumb"><img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=80&auto=format&fit=crop" alt="Blog cá nhân" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease"><div class="tc-hover-layer"><div class="tc-demo-btn">Xem demo →</div></div></div>
+        <div class="tc-body"><div class="tc-name">Blog cá nhân</div><div class="tc-meta"><span class="tc-cat">Blog</span><span class="tc-price">1.800.000đ</span></div></div>
+      </div></div>
+      <div class="col-md-4"><div class="tc reveal reveal-d2">
+        <div class="tc-thumb"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80&auto=format&fit=crop" alt="Spa làm đẹp" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease"><div class="tc-hover-layer"><div class="tc-demo-btn">Xem demo →</div></div></div>
+        <div class="tc-body"><div class="tc-name">Spa & Làm đẹp <span class="tc-badge">Mới</span></div><div class="tc-meta"><span class="tc-cat">Beauty</span><span class="tc-price">2.800.000đ</span></div></div>
+      </div></div>
+      <div class="col-md-4"><div class="tc reveal reveal-d3">
+        <div class="tc-thumb"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80&auto=format&fit=crop" alt="Forum cộng đồng" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease"><div class="tc-hover-layer"><div class="tc-demo-btn">Xem demo →</div></div></div>
+        <div class="tc-body"><div class="tc-name">Forum cộng đồng</div><div class="tc-meta"><span class="tc-cat">Community</span><span class="tc-price">4.500.000đ</span></div></div>
+      </div></div>
     </div>
-    <div class="tmpl-more reveal">
+    <div class="text-center mt-5 reveal">
       <button class="btn-more">Xem tất cả 30+ mẫu →</button>
     </div>
   </div>
 </section>
 
-<!-- ═══════ WHY US ═══════ -->
-<section id="why" style="position:relative">
-  <div class="inner">
-    <div class="sec-head dark reveal">
+<!-- WHY US -->
+<section id="why" class="sec-pad position-relative" style="background:var(--dark2)">
+  <div class="wd-container">
+    <div class="text-center sec-dark reveal mb-5">
       <div class="eyebrow">Tại sao chọn chúng tôi</div>
       <h2 class="sec-title">Không cần biết <em>kỹ thuật</em></h2>
       <p class="sec-sub">Chúng tôi lo toàn bộ. Bạn chỉ cần cung cấp nội dung và nhận website.</p>
     </div>
-    <div style="border-radius:16px;overflow:hidden;height:220px;margin-bottom:40px;position:relative" class="reveal">
-      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80&auto=format&fit=crop" alt="Team làm việc" style="width:100%;height:100%;object-fit:cover;display:block">
-      <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(12,11,9,0.7) 0%,rgba(12,11,9,0.2) 60%,transparent 100%)"></div>
+    <div class="rounded-3 overflow-hidden mb-4 reveal" style="height:220px;position:relative">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80&auto=format&fit=crop" alt="Team làm việc" class="w-100 h-100 object-fit-cover d-block">
+      <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(12,11,9,.7) 0%,rgba(12,11,9,.2) 60%,transparent 100%)"></div>
       <div style="position:absolute;bottom:24px;left:32px">
-        <div style="font-size:22px;font-weight:600;color:#fff;letter-spacing:-0.4px">Đội ngũ chuyên nghiệp, tận tâm</div>
-        <div style="font-size:14px;color:rgba(255,255,255,0.5);margin-top:4px;font-weight:300">Hỗ trợ trực tiếp qua Zalo — không chatbot</div>
+        <div style="font-size:22px;font-weight:600;color:#fff;letter-spacing:-.4px">Đội ngũ chuyên nghiệp, tận tâm</div>
+        <div style="font-size:14px;color:rgba(255,255,255,.5);margin-top:4px;font-weight:300">Hỗ trợ trực tiếp qua Zalo — không chatbot</div>
       </div>
     </div>
     <div class="why-grid reveal">
@@ -662,95 +505,77 @@ footer{background:var(--dark);font-family:var(--sans)}
   </div>
 </section>
 
-<!-- ═══════ PRICING ═══════ -->
-<section id="pricing">
-  <div class="inner">
-    <div class="sec-head reveal">
+<!-- PRICING -->
+<section id="pricing" class="sec-pad" style="background:var(--surface)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
       <div class="eyebrow">Bảng giá</div>
       <h2 class="sec-title">Minh bạch, <em>không phát sinh</em></h2>
       <p class="sec-sub">Giá cố định, bao gồm tất cả. Không phí ẩn, không thêm chi phí sau khi ký.</p>
     </div>
-    <div class="price-grid">
-      <div class="pc reveal reveal-d1">
+    <div class="row g-3">
+      <div class="col-md-4"><div class="pc reveal reveal-d1">
         <div class="pc-tier">Starter</div>
         <div class="pc-price">1.200.000 <sub>đ</sub></div>
         <div class="pc-desc">Mẫu + source code. Tự cài đặt với tài liệu hướng dẫn đầy đủ.</div>
-        <div class="pc-line"></div>
-        <ul class="pc-list">
-          <li>Source code đầy đủ</li>
-          <li>Tài liệu hướng dẫn PDF</li>
-          <li>Hỗ trợ qua chat 7 ngày</li>
-        </ul>
+        <hr style="border-color:var(--border-light)">
+        <ul class="pc-list"><li>Source code đầy đủ</li><li>Tài liệu hướng dẫn PDF</li><li>Hỗ trợ qua chat 7 ngày</li></ul>
         <button class="pc-btn">Chọn gói này</button>
-      </div>
-      <div class="pc hot reveal reveal-d2">
+      </div></div>
+      <div class="col-md-4"><div class="pc hot reveal reveal-d2">
         <div class="pc-hot-label">✦ Phổ biến nhất</div>
         <div class="pc-tier">Standard</div>
         <div class="pc-price">2.500.000 <sub>đ</sub></div>
         <div class="pc-desc">Cài đặt trọn gói. Nhận website hoàn chỉnh, có domain và hosting.</div>
-        <div class="pc-line"></div>
-        <ul class="pc-list">
-          <li>Hosting 1 năm (SSD, tại VN)</li>
-          <li>Tên miền .com hoặc .vn</li>
-          <li>SSL miễn phí</li>
-          <li>Điền nội dung theo brief</li>
-          <li>Tùy chỉnh màu sắc & logo</li>
-          <li>Hỗ trợ 30 ngày sau bàn giao</li>
-        </ul>
+        <hr style="border-color:var(--border-light)">
+        <ul class="pc-list"><li>Hosting 1 năm (SSD, tại VN)</li><li>Tên miền .com hoặc .vn</li><li>SSL miễn phí</li><li>Điền nội dung theo brief</li><li>Tùy chỉnh màu sắc & logo</li><li>Hỗ trợ 30 ngày sau bàn giao</li></ul>
         <button class="pc-btn">Đặt mua ngay</button>
-      </div>
-      <div class="pc reveal reveal-d3">
+      </div></div>
+      <div class="col-md-4"><div class="pc reveal reveal-d3">
         <div class="pc-tier">Premium</div>
         <div class="pc-price">12.000.000 <sub>đ</sub></div>
         <div class="pc-desc">Thiết kế riêng, độc quyền. Không dùng mẫu có sẵn.</div>
-        <div class="pc-line"></div>
-        <ul class="pc-list">
-          <li>Wireframe & thiết kế UI</li>
-          <li>Lập trình theo yêu cầu</li>
-          <li>Bàn giao source code</li>
-          <li>Hỗ trợ 90 ngày</li>
-        </ul>
+        <hr style="border-color:var(--border-light)">
+        <ul class="pc-list"><li>Wireframe & thiết kế UI</li><li>Lập trình theo yêu cầu</li><li>Bàn giao source code</li><li>Hỗ trợ 90 ngày</li></ul>
         <button class="pc-btn">Liên hệ tư vấn</button>
-      </div>
+      </div></div>
     </div>
   </div>
 </section>
 
-<!-- ═══════ REVIEWS ═══════ -->
-<section id="reviews">
-  <div class="inner">
-    <div class="sec-head reveal">
+<!-- REVIEWS -->
+<section id="reviews" class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
       <div class="eyebrow">Khách hàng nói gì</div>
       <h2 class="sec-title">127 khách hàng <em>đã tin tưởng</em></h2>
       <p class="sec-sub">Không phải lời quảng cáo — đây là trải nghiệm thật từ khách hàng thật.</p>
     </div>
-    <div class="rv-grid">
-      <div class="rv reveal reveal-d1">
+    <div class="row g-3">
+      <div class="col-md-4"><div class="rv reveal reveal-d1">
         <div class="rv-stars">★★★★★</div>
         <div class="rv-text"><span class="rv-quote">"</span>Mẫu rất đẹp và chuyên nghiệp. Anh bên này cài đặt nhanh, chỉ 3 ngày là có website hoàn chỉnh. Khách hàng tôi ai cũng khen.</div>
-        <div class="rv-foot"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80&auto=format&fit=crop&crop=face" style="width:34px;height:34px;border-radius:50%;object-fit:cover;flex-shrink:0" alt="Trần Hoàng Minh"><div><div class="rv-name">Trần Hoàng Minh</div><div class="rv-role">Công ty tư vấn · TP.HCM</div></div></div>
-      </div>
-      <div class="rv reveal reveal-d2">
+        <div class="rv-foot"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80&auto=format&fit=crop&crop=face" style="width:34px;height:34px;border-radius:50%;object-fit:cover;flex-shrink:0" alt=""><div><div class="rv-name">Trần Hoàng Minh</div><div class="rv-role">Công ty tư vấn · TP.HCM</div></div></div>
+      </div></div>
+      <div class="col-md-4"><div class="rv reveal reveal-d2">
         <div class="rv-stars">★★★★★</div>
         <div class="rv-text"><span class="rv-quote">"</span>Tôi không biết gì về web nhưng mọi thứ được lo hết rồi. Form brief rõ ràng, chỉ cần điền thông tin là xong. Rất hài lòng.</div>
-        <div class="rv-foot"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80&auto=format&fit=crop&crop=face" style="width:34px;height:34px;border-radius:50%;object-fit:cover;flex-shrink:0" alt="Nguyễn Lan Anh"><div><div class="rv-name">Nguyễn Lan Anh</div><div class="rv-role">Spa & Beauty · Hà Nội</div></div></div>
-      </div>
-      <div class="rv reveal reveal-d3">
+        <div class="rv-foot"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80&auto=format&fit=crop&crop=face" style="width:34px;height:34px;border-radius:50%;object-fit:cover;flex-shrink:0" alt=""><div><div class="rv-name">Nguyễn Lan Anh</div><div class="rv-role">Spa & Beauty · Hà Nội</div></div></div>
+      </div></div>
+      <div class="col-md-4"><div class="rv reveal reveal-d3">
         <div class="rv-stars">★★★★★</div>
         <div class="rv-text"><span class="rv-quote">"</span>Source code sạch, cấu trúc rõ ràng, tùy chỉnh dễ. Tôi mua để dùng lại cho khách hàng của mình — đáng đồng tiền.</div>
-        <div class="rv-foot"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80&auto=format&fit=crop&crop=face" style="width:34px;height:34px;border-radius:50%;object-fit:cover;flex-shrink:0" alt="Phạm Đức Toàn"><div><div class="rv-name">Phạm Đức Toàn</div><div class="rv-role">Freelancer · Đà Nẵng</div></div></div>
-      </div>
+        <div class="rv-foot"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80&auto=format&fit=crop&crop=face" style="width:34px;height:34px;border-radius:50%;object-fit:cover;flex-shrink:0" alt=""><div><div class="rv-name">Phạm Đức Toàn</div><div class="rv-role">Freelancer · Đà Nẵng</div></div></div>
+      </div></div>
     </div>
   </div>
 </section>
 
-<!-- ═══════ CLIENTS ═══════ -->
-<section style="padding:48px 0;background:var(--surface);border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light)">
-  <div class="inner">
-    <div style="text-align:center;margin-bottom:28px" class="reveal">
-      <p style="font-size:12px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:1.2px">Tin tưởng bởi các doanh nghiệp</p>
-    </div>
-    <div style="display:flex;gap:32px;justify-content:center;align-items:center;flex-wrap:wrap;opacity:0.45;filter:grayscale(100%)" class="reveal">
+<!-- CLIENTS -->
+<section class="py-5" style="background:var(--surface);border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light)">
+  <div class="wd-container">
+    <p class="text-center reveal mb-4" style="font-size:12px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:1.2px">Tin tưởng bởi các doanh nghiệp</p>
+    <div class="d-flex gap-4 justify-content-center align-items-center flex-wrap reveal" style="opacity:.45;filter:grayscale(100%)">
       <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=120&h=40&q=80&auto=format&fit=crop" alt="client" style="height:28px;object-fit:contain">
       <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=120&h=40&q=80&auto=format&fit=crop" alt="client" style="height:28px;object-fit:contain">
       <img src="https://images.unsplash.com/photo-1611532736579-6b16e2b50449?w=120&h=40&q=80&auto=format&fit=crop" alt="client" style="height:28px;object-fit:contain">
@@ -760,94 +585,81 @@ footer{background:var(--dark);font-family:var(--sans)}
   </div>
 </section>
 
-<!-- ═══════ CTA ═══════ -->
-<section id="cta">
-  <div class="inner reveal">
+<!-- CTA -->
+<section id="cta" class="cta-section">
+  <div class="wd-container reveal">
     <h2 class="cta-title">Sẵn sàng có website đẹp?</h2>
     <p class="cta-sub">Bắt đầu ngay hôm nay. Bàn giao trong 3–5 ngày làm việc.</p>
-    <div class="cta-btns">
-      <button class="btn-cw" onclick="scrollTo('templates')">Xem mẫu thiết kế →</button>
-      <button class="btn-cg" onclick="scrollTo('pricing')">Tư vấn miễn phí</button>
+    <div class="d-flex gap-3 justify-content-center flex-wrap position-relative">
+      <button class="btn-cw" onclick="scrollToId('templates')">Xem mẫu thiết kế →</button>
+      <button class="btn-cg" onclick="scrollToId('pricing')">Tư vấn miễn phí</button>
     </div>
   </div>
 </section>
 
-<!-- ═══════ FOOTER ═══════ -->
+<!-- FOOTER IMAGE BANNER -->
 <div style="height:280px;position:relative;overflow:hidden">
-  <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=80&auto=format&fit=crop" alt="Office workspace" style="width:100%;height:100%;object-fit:cover;display:block">
-  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,107,82,0.08) 0%,rgba(12,11,9,0.85) 100%)"></div>
+  <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=80&auto=format&fit=crop" alt="Office workspace" class="w-100 h-100 object-fit-cover d-block">
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,107,82,.08) 0%,rgba(12,11,9,.85) 100%)"></div>
   <div style="position:absolute;bottom:32px;left:50%;transform:translateX(-50%);text-align:center">
-    <div style="font-size:13px;color:rgba(255,255,255,0.4);letter-spacing:0.4px;font-weight:400">READY TO START?</div>
-    <div style="font-size:26px;font-weight:600;color:#fff;letter-spacing:-0.5px;margin-top:6px">Website đẹp, bàn giao trong 3–5 ngày</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.4);letter-spacing:.4px">READY TO START?</div>
+    <div style="font-size:26px;font-weight:600;color:#fff;letter-spacing:-.5px;margin-top:6px">Website đẹp, bàn giao trong 3–5 ngày</div>
   </div>
 </div>
-<footer>
-  <div class="ft-main">
-    <div class="reveal">
-      <div class="ft-logo">web<span>drop</span>.vn</div>
-      <p class="ft-desc">Nền tảng mẫu website chuyên nghiệp và dịch vụ triển khai trọn gói dành cho doanh nghiệp Việt Nam.</p>
-      <div class="ft-socials">
-        <div class="ft-soc">fb</div>
-        <div class="ft-soc">zl</div>
-        <div class="ft-soc">in</div>
-        <div class="ft-soc">yt</div>
-      </div>
-    </div>
-    <div class="reveal reveal-d1">
-      <div class="ft-col-title">Dịch vụ</div>
-      <div class="ft-links">
-        <a href="#">Mẫu thiết kế</a>
-        <a href="#">Cài đặt trọn gói</a>
-        <a href="#">Thiết kế custom</a>
-        <a href="#">Gói duy trì</a>
-        <a href="#">Hosting & Domain</a>
-      </div>
-    </div>
-    <div class="reveal reveal-d2">
-      <div class="ft-col-title">Tài nguyên</div>
-      <div class="ft-links">
-        <a href="#">Hướng dẫn chọn mẫu</a>
-        <a href="#">Blog & Tips</a>
-        <a href="#">FAQ</a>
-        <a href="#">Showcase</a>
-      </div>
-    </div>
-    <div class="reveal reveal-d3">
-      <div class="ft-col-title">Công ty</div>
-      <div class="ft-links">
-        <a href="#">Về chúng tôi</a>
-        <a href="#">Liên hệ</a>
-        <a href="#">Chính sách</a>
-        <a href="#">Điều khoản</a>
-      </div>
-    </div>
-  </div>
 
-  <div class="ft-map-strip">
-    <div class="ft-map-inner">
-      <div class="reveal">
-        <div class="ft-col-title" style="margin-bottom:18px">Liên hệ trực tiếp</div>
-        <div class="ft-contacts">
-          <div class="ft-contact-row"><div class="ft-c-icon">📍</div><div><div class="ft-c-label">Địa chỉ</div><div class="ft-c-val">Tây Hồ, Hà Nội, Việt Nam</div></div></div>
-          <div class="ft-contact-row"><div class="ft-c-icon">📱</div><div><div class="ft-c-label">Zalo / Điện thoại</div><div class="ft-c-val">0901 234 567</div></div></div>
-          <div class="ft-contact-row"><div class="ft-c-icon">✉️</div><div><div class="ft-c-label">Email</div><div class="ft-c-val">hello@webdrop.vn</div></div></div>
-          <div class="ft-contact-row"><div class="ft-c-icon">🕐</div><div><div class="ft-c-label">Giờ hỗ trợ</div><div class="ft-c-val">8:00 – 18:00 · Thứ 2 – Thứ 7</div></div></div>
+<!-- FOOTER -->
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo">web<span>drop</span>.vn</div>
+        <p class="ft-desc">Nền tảng mẫu website chuyên nghiệp và dịch vụ triển khai trọn gói dành cho doanh nghiệp Việt Nam.</p>
+        <div class="ft-socials">
+          <div class="ft-soc">fb</div><div class="ft-soc">zl</div><div class="ft-soc">in</div><div class="ft-soc">yt</div>
         </div>
       </div>
-      <div class="ft-map reveal reveal-d2">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.7!2d105.836!3d21.066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab9bd9861ca1%3A0xe7887f7b72ca17a9!2sTay%20Ho%2C%20Hanoi!5e0!3m2!1sen!2svn!4v1234567890" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <div class="ft-map-pin"></div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Dịch vụ</div>
+        <div class="ft-links"><a href="#">Mẫu thiết kế</a><a href="#">Cài đặt trọn gói</a><a href="#">Thiết kế custom</a><a href="#">Gói duy trì</a><a href="#">Hosting & Domain</a></div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Tài nguyên</div>
+        <div class="ft-links"><a href="#">Hướng dẫn chọn mẫu</a><a href="#">Blog & Tips</a><a href="#">FAQ</a><a href="#">Showcase</a></div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Công ty</div>
+        <div class="ft-links"><a href="#">Về chúng tôi</a><a href="#">Liên hệ</a><a href="#">Chính sách</a><a href="#">Điều khoản</a></div>
       </div>
     </div>
   </div>
-
+  <div class="ft-map-strip">
+    <div class="wd-container">
+      <div class="row g-4 py-4 align-items-center">
+        <div class="col reveal">
+          <div class="ft-col-title mb-3">Liên hệ trực tiếp</div>
+          <div class="d-flex flex-column gap-2">
+            <div class="d-flex gap-2 align-items-start"><div class="ft-c-icon">📍</div><div><div class="ft-c-label">Địa chỉ</div><div class="ft-c-val">Tây Hồ, Hà Nội, Việt Nam</div></div></div>
+            <div class="d-flex gap-2 align-items-start"><div class="ft-c-icon">📱</div><div><div class="ft-c-label">Zalo / Điện thoại</div><div class="ft-c-val">0901 234 567</div></div></div>
+            <div class="d-flex gap-2 align-items-start"><div class="ft-c-icon">✉️</div><div><div class="ft-c-label">Email</div><div class="ft-c-val">hello@webdrop.vn</div></div></div>
+            <div class="d-flex gap-2 align-items-start"><div class="ft-c-icon">🕐</div><div><div class="ft-c-label">Giờ hỗ trợ</div><div class="ft-c-val">8:00 – 18:00 · Thứ 2 – Thứ 7</div></div></div>
+          </div>
+        </div>
+        <div class="col-auto reveal reveal-d2">
+          <div class="ft-map" style="width:260px">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.7!2d105.836!3d21.066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab9bd9861ca1%3A0xe7887f7b72ca17a9!2sTay%20Ho%2C%20Hanoi!5e0!3m2!1sen!2svn!4v1234567890" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="ft-map-pin"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="ft-bottom">
-    <div class="ft-bottom-inner">
-      <div class="ft-copy">© 2026 webdrop.vn · Made in Vietnam 🇻🇳</div>
-      <div class="ft-legal">
-        <a href="#">Chính sách bảo mật</a>
-        <a href="#">Điều khoản sử dụng</a>
-        <a href="#">Chính sách hoàn tiền</a>
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="ft-copy">© 2026 webdrop.vn · Made in Vietnam 🇻🇳</div>
+        <div class="ft-legal d-flex gap-4">
+          <a href="#">Chính sách bảo mật</a><a href="#">Điều khoản sử dụng</a><a href="#">Chính sách hoàn tiền</a>
+        </div>
       </div>
     </div>
   </div>
@@ -859,84 +671,66 @@ footer{background:var(--dark);font-family:var(--sans)}
   <button class="zf-btn">💬</button>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-/* ─── NAV ─── */
+/* NAV */
 const nav = document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60),{passive:true});
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60), {passive:true});
 
-/* ─── SCROLL REVEAL ─── */
-const ro = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target)}});
-},{threshold:0.1,rootMargin:'0px 0px -36px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+/* REVEAL */
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+}, {threshold:.1, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
-/* ─── SLIDER ─── */
-const TOTAL = 5;
-const AUTO_MS = 5000;
-let cur = 0, timer, progTimer, progStart;
-
+/* SLIDER */
+const TOTAL = 5, AUTO_MS = 5000;
+let cur = 0, timer;
 const slides = document.querySelectorAll('.slide');
 const indicators = document.querySelectorAll('.si');
 
-function goSlide(next,dir){
-  if(next===cur) return;
+function goSlide(next, dir) {
+  if (next === cur) return;
   const prev = cur;
-  // Determine direction: if not given, compare indices
-  if(!dir) dir = next > prev ? 'next' : 'prev';
+  if (!dir) dir = next > prev ? 'next' : 'prev';
   cur = ((next % TOTAL) + TOTAL) % TOTAL;
-
-  // Leave current
-  const leaveClass = dir==='next' ? 'leaving-left' : 'leaving-right';
+  const leaveClass = dir === 'next' ? 'leaving-left' : 'leaving-right';
   slides[prev].classList.remove('active','entering-right','entering-left');
   slides[prev].classList.add(leaveClass);
-  setTimeout(()=>{
-    slides[prev].classList.remove(leaveClass);
-  },520);
-
-  // Enter new
-  const enterClass = dir==='next' ? 'entering-right' : 'entering-left';
+  setTimeout(() => slides[prev].classList.remove(leaveClass), 520);
+  const enterClass = dir === 'next' ? 'entering-right' : 'entering-left';
   slides[cur].classList.remove('leaving-left','leaving-right');
   slides[cur].classList.add('active', enterClass);
-  setTimeout(()=>slides[cur].classList.remove(enterClass),750);
-
-  // Indicators
-  indicators.forEach((s,i)=>s.classList.toggle('active',i===cur));
+  setTimeout(() => slides[cur].classList.remove(enterClass), 750);
+  indicators.forEach((s,i) => s.classList.toggle('active', i === cur));
 }
 
-function nextSlide(){ goSlide((cur+1)%TOTAL,'next'); resetAuto(); }
-function prevSlide(){ goSlide((cur-1+TOTAL)%TOTAL,'prev'); resetAuto(); }
-
-
-function resetAuto(){
+function resetAuto() {
   clearInterval(timer);
-  timer = setInterval(()=>{ goSlide((cur+1)%TOTAL,'next'); },AUTO_MS);
+  timer = setInterval(() => goSlide((cur+1)%TOTAL,'next'), AUTO_MS);
 }
-
-// Init
 resetAuto();
 
-/* ─── SMOOTH SCROLL ─── */
-function scrollTo(id){
-  document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});
-}
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const t=document.querySelector(a.getAttribute('href'));
-    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+/* SCROLL */
+function scrollToId(id) { document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'}); }
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
   });
 });
 
-/* ─── PILL FILTER ─── */
-function filterPill(el){
-  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+/* FILTER PILL */
+function filterPill(el) {
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
   el.classList.add('active');
 }
 
-/* ─── KEYBOARD NAV ─── */
-document.addEventListener('keydown',e=>{
-  if(scrollY<window.innerHeight*0.6){
-    if(e.key==='ArrowRight'||e.key==='ArrowDown') nextSlide();
-    if(e.key==='ArrowLeft'||e.key==='ArrowUp') prevSlide();
+/* KEYBOARD */
+document.addEventListener('keydown', e => {
+  if (scrollY < window.innerHeight * .6) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { goSlide((cur+1)%TOTAL,'next'); resetAuto(); }
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { goSlide((cur-1+TOTAL)%TOTAL,'prev'); resetAuto(); }
   }
 });
 </script>

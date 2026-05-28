@@ -3,14 +3,11 @@
 > File này lưu toàn bộ ý tưởng, yêu cầu, giá bán và tiến độ xây dựng dự án.
 > Cập nhật liên tục theo từng giai đoạn phát triển.
 
-
-
 ## Quy tắc bắt buộc
 
 1. Mỗi khi thay đổi code phải review fix bug thành vòng lặp đến khi hết bug.
 2. Update file [CLAUDE.md](./CLAUDE.md) mỗi khi có thay đổi code.
-3. Khi nào có lệnh `/fetch claude`, hãy fetch nội dung mới nhất từ GitHub https://github.com/QDev-15/webdrop/blob/master/.claude/CLAUDE.md.
-4. Khi có lệnh `/push claude`, hãy push nội dung file này lên gibhub: [`projects/<tên project>`.](https://github.com/QDev-15/webdrop/blob/master/.claude/CLAUDE.md.)
+3. Mỗi khi thêm một chức năng hay thay đổi flow thì review fix bug rồi review fix lại cho đến khi hết bug.
 
 ---
 
@@ -19,6 +16,118 @@
 Xây dựng và bán 2 nhóm sản phẩm chính:
 1. **Template** — HTML/CSS thuần dùng Bootstrap, không build system
 2. **Website hoàn chỉnh** — React SPA + PHP API + SQLite, deploy lên hosting là chạy luôn
+
+---
+
+## 🎨 DESIGN SYSTEM — webdrop.vn
+
+> Áp dụng nhất quán cho tất cả các trang: index, checkout, template detail, admin dashboard.
+> **Bootstrap version**: 5.3.3 (CDN: `https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css`)
+
+### Typography
+- **Font chính**: `DM Sans` (Google Fonts) — weights: 300, 400, 500, 600; italic 400
+- `font-family: 'DM Sans', sans-serif` — set qua CSS var `--sans`
+- Không dùng font hệ thống hay font khác
+
+### Color Palette (CSS Custom Properties)
+```css
+:root {
+  --bg: #faf9f7;          /* Nền tổng thể — warm off-white */
+  --surface: #fff;         /* Nền card, panel, nav */
+  --dark: #0c0b09;         /* Nền tối (footer) */
+  --dark2: #141210;        /* Nền tối section (why us, hero) */
+  --sidebar: #111009;      /* Nền sidebar admin */
+  --border: #e8e5df;       /* Border mặc định */
+  --border-light: #f0ede8; /* Border nhẹ (dividers) */
+  --text: #1a1917;         /* Text chính */
+  --text-2: #6b6760;       /* Text phụ */
+  --text-3: #a09d97;       /* Text mờ, placeholder */
+  --accent: #1a6b52;       /* Green accent chính — CTA, link, active */
+  --accent-h: #155a44;     /* Hover của accent */
+  --accent-light: #e8f4ef; /* Nền nhạt của accent */
+  --accent-mid: #2d9b73;   /* Accent trung gian */
+  --warm: #f5f0e8;         /* Warm off-white (backgrounds nhẹ) */
+  --warm2: #ede8df;        /* Warm đậm hơn */
+  --danger: #e24b4a;       /* Màu lỗi/validation */
+}
+```
+
+**Màu bổ sung dùng inline (không qua CSS var):**
+- `#4ade80` — bright green, dùng trên nền tối (logo dot, hero badge, sidebar active)
+- `#f59e0b` — amber/yellow, dùng cho sao đánh giá (★★★★★)
+- `#dc2626` — red, dùng cho trạng thái khẩn cấp, lỗi
+- `#d97706` — amber, trạng thái chờ, cảnh báo
+- `#0068FF` — Zalo blue (nút float Zalo)
+
+### Layout & Spacing
+- **Max width trang**: `1100px` (index, detail) | `960px` (checkout) — class `.wd-container`
+- **Padding ngang**: `clamp(20px, 5vw, 80px)` — co giãn theo viewport
+- **Section padding**: `clamp(72px, 10vw, 128px) 0` — class `.sec-pad`
+- **Bootstrap container**: Không dùng `.container` mặc định, dùng custom `.wd-container`
+- **Grid**: Bootstrap `row` + `col-*` cho tất cả multi-column layout
+
+### Border Radius
+- Card lớn: `14–16px`
+- Card nhỏ: `10–12px`
+- Button: `8–10px`
+- Input: `8px`
+- Badge/pill: `5–20px` (tùy loại)
+- Avatar: `50%`
+
+### Shadows
+- Card hover: `0 20px 52px rgba(0,0,0,.1)`
+- Card nhỏ hover: `0 10px 32px rgba(0,0,0,.07)`
+- Pricing hover: `0 14px 44px rgba(0,0,0,.08)`
+
+### Buttons
+| Tên | Style |
+|---|---|
+| CTA chính (accent) | bg `--accent`, color `#fff`, radius `9px`, hover bg `--accent-h` |
+| Ghost | transparent, border `--border`, color `--text-2`, hover bg `--warm` |
+| Dark (nav scrolled) | bg `--text`, color `#fff` |
+| White on dark | bg `#fff`, color `--dark`, dùng trên hero/dark section |
+| Outline on dark | transparent, border `rgba(255,255,255,.18)`, color `rgba(255,255,255,.65)` |
+
+### Component Patterns
+
+**Nav (index.html)**:
+- `position: fixed`, transparent → `scrolled` class khi scroll > 60px
+- Khi scrolled: `background rgba(250,249,247,.9)`, `backdrop-filter: blur(16px)`, border-bottom
+
+**Cards (template cards)**:
+- Hover: `translateY(-7px)`, shadow tăng, border transparent
+- Image scale 1.06 khi hover
+
+**Section Header**:
+- Eyebrow: `11px uppercase`, màu `--accent`, có dòng kẻ 2 bên (::before/::after)
+- Title: `clamp(26px,3.8vw,46px)`, `font-weight: 600`, `letter-spacing: -.8px`
+- Em italic: màu `--accent`, `font-weight: 300`
+
+**Pricing Cards**:
+- `pc.hot` (gói nổi bật): border `--accent-mid`, background gradient nhạt xanh → trắng
+- Label nổi: absolute, top `-11px`, bg `--accent`
+
+**Status Badges (admin)**:
+- Dạng dot + text, mỗi trạng thái có màu riêng biệt
+- new (xanh dương), brief (amber), building (tím), review (cam), done (xanh lá), maintain (xanh nhạt)
+
+**Reveal Animation**:
+- Class `.reveal`: `opacity:0`, `translateY(32px)` → `.visible`: opacity 1, translateY 0
+- Trigger: `IntersectionObserver` threshold 0.1
+- Delay: `.reveal-d1` 0.08s, `.reveal-d2` 0.16s, `.reveal-d3` 0.24s
+
+### Admin Dashboard Layout
+- Sidebar cố định: `214px` rộng, nền `var(--sidebar)` — `#111009`
+- `body`: `display:flex`, `height:100vh`, `overflow:hidden`
+- Main area: `flex:1`, scroll nội bộ
+
+### Pages & Files
+| File | Mô tả |
+|---|---|
+| `documents/index.html` | Landing page chính — hero slider 5 slide, how-it-works, templates, pricing, reviews, CTA, footer |
+| `documents/checkout_page.html` | 3-step checkout — thông tin → gói dịch vụ → thanh toán |
+| `documents/template_detail_page.html` | Chi tiết template — gallery, tabs (tính năng/trang/kỹ thuật/đánh giá), sidebar mua hàng |
+| `documents/admin_dashboard.html` | Dashboard quản trị — đơn hàng, khách hàng, doanh thu |
 
 ---
 
