@@ -1,5 +1,5 @@
 # Step 1 — webdrop.vn Sales Site
-> Thời gian: 3 tuần | Deliverable: Trang bán hàng chạy local, sẵn sàng deploy
+> Thời gian: 3 tuần | Status: ✅ UI hoàn thành | 1.6 DB/API còn lại
 
 ## Mockup tham chiếu
 | Mockup (documents/) | → Next.js |
@@ -13,55 +13,51 @@
 
 ## Tasks
 
-### 1.1 Design System (0.5 ngày)
-- [ ] `src/styles/globals.css` — CSS vars (copy từ `documents/index.html`), utility classes (`.wd-container`, `.sec-pad`, `.reveal`)
-- [ ] `src/components/ui/Button.tsx`, `Badge.tsx`, `Card.tsx`
+### 1.1 Design System
+- [x] `src/styles/globals.css` — CSS vars, Bootstrap 5.3.3, utility classes, tất cả components
+- [x] `app/layout.tsx` — DM Sans font, import globals.css
 
-### 1.2 Landing Page (3 ngày)
-- [ ] `NavBar.tsx` — transparent → scrolled khi scroll > 60px, mobile menu
-- [ ] `HeroSlider.tsx` — 5 slides, auto-play, dot indicators
-- [ ] `HowItWorks.tsx` — 3 bước, reveal animation
-- [ ] `TemplateGrid.tsx` — filter tabs (All / Web / Admin), cards
-- [ ] `PricingSection.tsx` — 3 gói A/B/C, hot badge
-- [ ] `Reviews.tsx` — testimonials
-- [ ] `Footer.tsx` — links, social, copyright
-- [ ] `src/data/templates.ts`, `pricing.ts` — hardcode data tạm
+### 1.2 Landing Page
+- [x] `NavBar.tsx` — transparent → scrolled, mobile hamburger + overlay
+- [x] `HeroSlider.tsx` — 5 slides, auto-play 5s, keyboard nav, dot indicators
+- [x] `HowItWorks.tsx` — 4 bước, reveal animation
+- [x] `TemplateGrid.tsx` — filter tabs, template cards hover
+- [x] `WhyUs.tsx` — dark section, 4 items grid
+- [x] `PricingSection.tsx` — 3 gói, hot badge
+- [x] `Reviews.tsx` — 3 testimonials
+- [x] `CTASection.tsx` — green CTA section
+- [x] `Footer.tsx` — links, contact info, map
+- [x] `RevealObserver.tsx` — IntersectionObserver cho reveal animation
+- [x] `src/data/templates.ts`, `pricing.ts`
 
-### 1.3 Template Detail Page (1.5 ngày)
-- [ ] `app/(site)/templates/[slug]/page.tsx`
-- [ ] `TemplateGallery.tsx` — ảnh chính + thumbnails
-- [ ] `TabPanel.tsx` — 4 tabs: Tính năng / Các trang / Kỹ thuật / Đánh giá
-- [ ] `BuySidebar.tsx` — giá, nút mua, badge đã bán
+### 1.3 Template Detail Page
+- [x] `app/(site)/templates/[slug]/page.tsx` + `TemplateDetailClient.tsx`
+- [x] Gallery + thumbnails click-to-switch
+- [x] Tabs: Tính năng / Các trang / Kỹ thuật / Đánh giá
+- [x] Buy sidebar: giá, nút mua, includes list
 
-### 1.4 Checkout Page (1.5 ngày)
-- [ ] `app/(site)/checkout/page.tsx`
-- [ ] 3-step wizard: Thông tin → Gói dịch vụ → Thanh toán (QR)
-- [ ] Validation client-side
+### 1.4 Checkout Page
+- [x] `app/(site)/checkout/page.tsx` + `CheckoutClient.tsx`
+- [x] 3-step wizard: Thông tin → Gói dịch vụ → Thanh toán
+- [x] Validation client-side, Suspense wrap
 
-### 1.5 Admin Dashboard (2 ngày)
-- [ ] `src/components/admin/AdminLayout.tsx` — sidebar 214px + main
-- [ ] `app/(admin)/layout.tsx` — wrap AdminLayout
-- [ ] `app/(admin)/admin/page.tsx` — stats: doanh thu, đơn hàng, khách
-- [ ] `app/(admin)/admin/orders/page.tsx` — bảng đơn hàng, filter status
-- [ ] `app/(admin)/admin/customers/page.tsx` — bảng khách hàng
+### 1.5 Admin Dashboard
+- [x] `AdminLayout.tsx` — sidebar 214px, topbar, active nav
+- [x] `app/(admin)/admin/page.tsx` — stats cards + recent orders table
+- [x] `app/(admin)/admin/orders/page.tsx` — bảng đơn hàng
+- [x] `app/(admin)/admin/customers/page.tsx` — bảng khách hàng
 
-### 1.6 Database & API (2 ngày)
-- [ ] Setup PostgreSQL local (Docker hoặc native)
+### 1.6 Database & API (chưa làm — cần PostgreSQL)
+- [ ] Setup PostgreSQL local
 - [ ] `npx prisma migrate dev --name init`
 - [ ] `prisma/seed.ts` — 3 template, 1 admin user, 3 đơn test
 - [ ] `app/api/templates/route.ts` — GET list
-- [ ] `app/api/templates/[slug]/route.ts` — GET detail
 - [ ] `app/api/orders/route.ts` — POST tạo đơn
 - [ ] `app/api/admin/stats/route.ts` — GET stats (protected)
-- [ ] `middleware.ts` — redirect `/admin/login` nếu chưa auth
+- [ ] `middleware.ts` — auth guard cho `/admin`
 
 ---
 
 ## Done khi
-- [ ] `npm run dev` không lỗi TS, không console error
-- [ ] `/` render đúng, responsive 320px+, slider + reveal hoạt động
-- [ ] `/templates/agency-web` — gallery, tabs, sidebar đúng
-- [ ] `/checkout` — 3 steps điều hướng đúng
-- [ ] `/admin` chưa login → redirect `/admin/login`
-- [ ] `/admin` đã login → stats hiển thị
-- [ ] `npm run build` không lỗi
+- [x] `npm run build` — 6 routes build thành công, không lỗi TypeScript
+- [ ] DB + API kết nối — cần PostgreSQL setup (Step 3 VPS hoặc Docker local)

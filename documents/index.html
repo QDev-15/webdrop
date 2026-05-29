@@ -45,6 +45,18 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); over
 #nav.scrolled .nav-cta { background: var(--text); color: #fff; }
 .nav-cta:hover { transform: translateY(-1px); opacity: .92; color: inherit; }
 @media(max-width:768px) { .nav-links { display: none; } }
+.nav-hamburger { display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:transparent;z-index:10; }
+.nav-hamburger span { display:block;width:22px;height:2px;background:rgba(255,255,255,.75);border-radius:2px;transition:all .3s; }
+#nav.scrolled .nav-hamburger span { background:var(--text); }
+.nav-hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity:0; }
+.nav-hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+@media(max-width:768px) { .nav-hamburger { display:flex; } }
+.nav-mobile { position:fixed;inset:0;background:rgba(12,11,9,.96);backdrop-filter:blur(12px);z-index:490;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:opacity .3s; }
+.nav-mobile.open { opacity:1;pointer-events:auto; }
+.nav-mobile a { font-size:22px;font-weight:500;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s; }
+.nav-mobile a:hover { color:#fff; }
+.nav-mobile .nm-cta { font-size:15px;font-weight:500;background:var(--accent);color:#fff;padding:13px 36px;border-radius:9px;margin-top:8px; }
 
 /* ══ HERO SLIDER ══ */
 .hero { height: 100vh; min-height: 640px; background: var(--dark2); position: relative; overflow: hidden; }
@@ -256,10 +268,22 @@ footer { background:var(--dark); }
         <a href="#how">Quy trình</a>
         <a href="#reviews">Khách hàng</a>
       </div>
-      <a class="nav-cta" href="#pricing">Tư vấn miễn phí</a>
+      <a class="nav-cta d-none d-md-inline-flex" href="#pricing">Tư vấn miễn phí</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Mở menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
+
+<!-- Mobile nav overlay -->
+<div class="nav-mobile" id="navMobile" role="dialog" aria-label="Menu điều hướng">
+  <a href="#templates" onclick="closeMobileNav()">Mẫu thiết kế</a>
+  <a href="#pricing"   onclick="closeMobileNav()">Bảng giá</a>
+  <a href="#how"       onclick="closeMobileNav()">Quy trình</a>
+  <a href="#reviews"   onclick="closeMobileNav()">Khách hàng</a>
+  <a href="#pricing" class="nm-cta" onclick="closeMobileNav()">Tư vấn miễn phí</a>
+</div>
 
 <!-- HERO SLIDER -->
 <div class="hero" id="hero">
@@ -725,6 +749,23 @@ function filterPill(el) {
   document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
   el.classList.add('active');
 }
+
+/* MOBILE NAV */
+const navHamburger = document.getElementById('navHamburger');
+const navMobile = document.getElementById('navMobile');
+function closeMobileNav() {
+  navHamburger.classList.remove('open');
+  navHamburger.setAttribute('aria-expanded','false');
+  navMobile.classList.remove('open');
+  document.body.style.overflow = '';
+}
+navHamburger.addEventListener('click', () => {
+  const isOpen = navMobile.classList.toggle('open');
+  navHamburger.classList.toggle('open', isOpen);
+  navHamburger.setAttribute('aria-expanded', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileNav(); });
 
 /* KEYBOARD */
 document.addEventListener('keydown', e => {

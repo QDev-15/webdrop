@@ -1,5 +1,5 @@
 'use client'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 const navItems = [
@@ -12,6 +12,12 @@ const navItems = [
 
 export default function AdminLayout({ children, title }: { children: React.ReactNode; title: string }) {
   const pathname = usePathname()
+  const router = useRouter()
+
+  async function handleLogout() {
+    await fetch('/api/auth/logout', { method: 'POST' })
+    router.push('/admin/login')
+  }
 
   return (
     <div className="admin-body">
@@ -37,7 +43,7 @@ export default function AdminLayout({ children, title }: { children: React.React
           <Link href="/" className="sb-link">
             <span className="sb-link-icon">🌐</span>Xem trang web
           </Link>
-          <div className="sb-link" style={{ marginTop: 'auto', cursor: 'pointer' }}>
+          <div className="sb-link" style={{ marginTop: 'auto', cursor: 'pointer' }} onClick={handleLogout}>
             <span className="sb-link-icon">🚪</span>Đăng xuất
           </div>
         </nav>

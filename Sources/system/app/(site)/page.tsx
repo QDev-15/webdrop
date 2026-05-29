@@ -7,14 +7,50 @@ import Reviews from '@/components/site/Reviews'
 import CTASection from '@/components/site/CTASection'
 import Footer from '@/components/site/Footer'
 import RevealObserver from '@/components/site/RevealObserver'
+import { prisma } from '@/lib/prisma'
+import type { Template } from '@/data/templates'
 
-export default function HomePage() {
+function formatPrice(amount: number | { toNumber(): number }): string {
+  const n = typeof amount === 'number' ? amount : amount.toNumber()
+  return n.toLocaleString('vi-VN') + 'đ'
+}
+
+function toBadge(salesCount: number, createdAt: Date): string | undefined {
+  const daysSince = (Date.now() - new Date(createdAt).getTime()) / 86400000
+  if (salesCount >= 30) return 'Bán chạy'
+  if (daysSince < 30) return 'Mới'
+  return undefined
+}
+
+async function getTemplates(): Promise<Template[]> {
+  try {
+    const rows = await prisma.template.findMany({
+      where: { status: 'published' },
+      include: { industry: { select: { name: true } } },
+      orderBy: { salesCount: 'desc' },
+    })
+    return rows.map((t: { slug: any; name: any; industry: { name: any }; category: any; price: number | { toNumber(): number }; thumbnail: any; salesCount: number; createdAt: Date; demoUrl: any }) => ({
+      slug: t.slug,
+      name: t.name,
+      category: t.industry?.name || t.category,
+      price: formatPrice(t.price as Parameters<typeof formatPrice>[0]),
+      image: t.thumbnail || 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80&auto=format&fit=crop',
+      badge: toBadge(t.salesCount, t.createdAt),
+      demoUrl: t.demoUrl || undefined,
+    }))
+  } catch {
+    return []
+  }
+}
+
+export default async function HomePage() {
+  const dbTemplates = await getTemplates()
   return (
     <>
       <RevealObserver />
       <HeroSlider />
       <HowItWorks />
-      <TemplateGrid />
+      <TemplateGrid templates={dbTemplates.length > 0 ? dbTemplates : undefined} />
       <WhyUs />
       <PricingSection />
       <Reviews />

@@ -119,7 +119,7 @@ model Banner {
   title     String
   image     String
   link      String?
-  target    BannerTarget @default(_self)
+  target    BannerTarget @default(self)
   position  String
   sortOrder Int          @default(0) @map("sort_order")
   status    PostStatus   @default(draft)
@@ -129,8 +129,8 @@ model Banner {
 }
 
 enum BannerTarget {
-  _blank
-  _self
+  blank
+  self
 }
 
 model Contact {

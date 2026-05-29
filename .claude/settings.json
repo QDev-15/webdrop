@@ -1,33 +1,15 @@
 {
-    "permissions": {
-        "allow": [
-            "Bash(sqlcmd -S \"QuynhNH\" -d \"TochuDatabase\" -U \"sa\" -P \"imip@1234\" -Q \"SELECT COLUMN_NAME, DATA_TYPE, NUMERIC_PRECISION, NUMERIC_SCALE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'SI_SEINOUDATA' AND DATA_TYPE = 'decimal' ORDER BY COLUMN_NAME;\")",
-            "Bash(sqlcmd -S QuynhNH -d TochuDatabase -U sa -P imip@1234 -Q ' *)",
-            "Bash(sqlcmd -S \"QuynhNH\" -d \"TochuDatabase\" -U \"sa\" -P \"imip@1234\" -Q \"SELECT COLUMN_NAME, NUMERIC_PRECISION, NUMERIC_SCALE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'SI_SEINOUDATA' AND DATA_TYPE = 'decimal' ORDER BY COLUMN_NAME;\")",
-            "Bash(Get-ChildItem \"d:\\\\Data\\\\Projects\\\\TochuSource\\\\TochuSolution\\\\tochu_solution\\\\IMIP.Tochu.Infrastructure\\\\migrations\\\\\" -Filter \"*.cs\" | Select-Object Name | Sort-Object Name)",
-            "Bash(dotnet build *)",
-            "Bash(python3 -c ' *)",
-            "Bash(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\TochuSource\\\\TochuSolution\\\\tochu_solution\" -Directory)",
-            "Bash(Remove-Item \"d:\\\\Data\\\\Projects\\\\TochuSource\\\\TochuSolution\\\\tochu_solution\\\\IMIP.Tochu.WPF\\\\Views\\\\Windows\\\\LoginWindow.xaml\" -Force)",
-            "Bash(Remove-Item \"d:\\\\Data\\\\Projects\\\\TochuSource\\\\TochuSolution\\\\tochu_solution\\\\IMIP.Tochu.WPF\\\\Views\\\\Windows\\\\LoginWindow.xaml.cs\" -Force)",
-            "Bash(Remove-Item \"d:\\\\Data\\\\Projects\\\\TochuSource\\\\TochuSolution\\\\tochu_solution\\\\IMIP.Tochu.WPF\\\\ViewModels\\\\LoginViewModel.cs\" -Force)",
-            "Bash(Remove-Item \"d:\\\\Data\\\\Projects\\\\TochuSource\\\\TochuSolution\\\\tochu_solution\\\\IMIP.Tochu.WPF\\\\Helpers\\\\SecureStorage.cs\" -Force)",
-            "Bash(Remove-Item \"d:\\\\Data\\\\Projects\\\\TochuSource\\\\TochuSolution\\\\tochu_solution\\\\IMIP.Tochu.WPF\\\\AppData\\\\Constants.cs\" -Force)",
-            "Bash(Get-ChildItem -Recurse -Path . -Name)",
-            "Bash(Select-Object -ExpandProperty Name)",
-            "Bash(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\TochuSource\\\\TochuSolution\\\\tochu_solution\\\\\" -Directory | Select-Object Name)",
-            "Bash(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\TochuSource\\\\TochuSolution\\\\tochu_solution\\\\\" -Directory | Select-Object -ExpandProperty Name)",
-            "Bash(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\TochuSource\\\\TochuSolution\\\\tochu_solution\\\\IMIP.Tochu.WPF\" -Recurse -Filter \"*.cs\" -File)",
-            "Bash(Select-Object -ExpandProperty FullName)",
-            "Bash(Sort-Object)",
-            "Bash(find \"d:\\\\\\\\Data\\\\\\\\Projects\\\\\\\\TochuSource\\\\\\\\TochuSolution\\\\\\\\tochu_solution\\\\\\\\IMIP.Tochu.WPF\" -type f -name \"*.cs\" ! -path \"*/obj/*\" ! -path \"*/.github/*\")",
-            "Bash(find \"d:\\\\\\\\Data\\\\\\\\Projects\\\\\\\\TochuSource\\\\\\\\TochuSolution\\\\\\\\tochu_solution\\\\\\\\IMIP.Tochu.WPF\" -type f \\\\\\( -name \"*.xaml\" -o -name \"*.xaml.cs\" \\\\\\) ! -path \"*/obj/*\")",
-            "Bash(find \"d:\\\\\\\\Data\\\\\\\\Projects\\\\\\\\TochuSource\\\\\\\\TochuSolution\\\\\\\\tochu_solution\\\\\\\\IMIP.Tochu.WPF\" -name \"AnalysisMasterModalViewModel.cs\" ! -path \"*/obj/*\")",
-            "Bash(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\TochuSource\\\\TochuSolution\" -Recurse -Filter \"*.resx\")",
-            "PowerShell(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\TochuSource\\\\TochuSolution\\\\tochu_solution\" -Directory | Where-Object { $_.Name -match '\\(Test|Spec\\)' })",
-            "Read(//c/Users/QuynhNH/.nuget/packages/**)",
-            "Bash(pandoc --version)",
-            "Bash(Remove-Item \"d:\\\\Data\\\\Projects\\\\TochuSource\\\\TochuSolution\\\\tochu_solution\\\\IMIP.Tochu.Core\\\\Interfaces\\\\IDatabaseStartup.cs\")"
+    "hooks": {
+        "Notification": [
+            {
+                "matcher": "",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "powershell.exe -c (New-Object Media.SoundPlayer 'C:\\Windows\\Media\\chimes.wav').PlaySync()"
+                    }
+                ]
+            }
         ]
     }
 }

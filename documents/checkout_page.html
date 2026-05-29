@@ -186,7 +186,12 @@ textarea.form-control { resize: vertical; min-height: 80px; line-height: 1.5; }
 
 @media(max-width:780px) {
   .checkout-body { display: block !important; }
+  .checkout-body > div[style] { width: 100% !important; }
   .summary { position: static; margin-top: 20px; }
+}
+@media(max-width:480px) {
+  .step-label { display: none; }
+  .stepper { gap: 4px; }
 }
 </style>
 </head>
@@ -369,7 +374,7 @@ textarea.form-control { resize: vertical; min-height: 80px; line-height: 1.5; }
   </div>
 
   <!-- SIDEBAR -->
-  <div style="width:300px;flex-shrink:0">
+  <div style="width:clamp(260px,30%,300px);flex-shrink:0">
     <div class="summary">
       <div class="sum-head"><div class="sum-head-title">Tóm tắt đơn hàng</div></div>
       <div class="sum-product">

@@ -1,23 +1,48 @@
 {
-    "permissions": {
-        "allow": [
-            "Bash(Get-ChildItem -Path \"d:\\\\Working\\\\project\\\\Windows App\\\\Tochuu\" -Recurse)",
-            "Bash(Select-Object FullName)",
-            "Bash(Sort-Object FullName)",
-            "Bash(ConvertTo-Csv -NoTypeInformation)",
-            "Bash(Out-String)",
-            "Bash(dir \"d:\\\\Working\\\\project\\\\Windows App\\\\Tochuu\\\\tochu_solution\" -Name)",
-            "Bash(dotnet build *)",
-            "Bash(python -c \"import docx; print\\('python-docx OK'\\)\")",
-            "Bash(pandoc --version)",
-            "Bash(pandoc USER_GUIDE_clean.md -o \"USER_GUIDE.docx\" --from markdown --to docx -V lang=vi --toc --toc-depth=2)",
-            "Bash(pandoc USER_GUIDE_EN.md -o \"USER_GUIDE_EN.docx\" --from markdown --to docx -V lang=en --toc --toc-depth=2)",
-            "Bash(pandoc USER_GUIDE_JA.md -o \"USER_GUIDE_JA.docx\" --from markdown --to docx -V lang=ja --toc --toc-depth=2)",
-            "Bash(pandoc SETUP_EN.md -o \"SETUP_EN.docx\" --from markdown --to docx -V lang=en --toc --toc-depth=2)",
-            "Bash(pandoc SETUP_JA.md -o \"SETUP_JA.docx\" --from markdown --to docx -V lang=ja --toc --toc-depth=2)",
-            "Bash(cat \"C:\\\\Users\\\\Huu Quynh\\\\.claude\\\\settings.json\" 2>/dev/null || echo \"NOT_FOUND\")",
-            "Read(//c/Users/Huu Quynh/.claude/**)",
-            "Bash(powershell -NonInteractive -ExecutionPolicy Bypass -Command \"Add-Type -AssemblyName System.Windows.Forms; Add-Type -AssemblyName System.Drawing; Write-Output 'Assemblies OK'\")"
-        ]
-    }
+  "permissions": {
+    "allow": [
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "Bash(Get-ChildItem \"C:\\\\Users\\\\QuynhNH\\\\.claude\" -Recurse)",
+      "Bash(Select-Object FullName)",
+      "Bash(Format-Table -AutoSize)",
+      "PowerShell(powershell.exe -STA -NonInteractive -WindowStyle Normal -File \"C:\\\\Users\\\\QuynhNH\\\\.claude\\\\hooks\\\\stop-notify.ps1\" 2>&1 | Out-String)",
+      "PowerShell(Move-Item \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\system\" \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\")",
+      "PowerShell(Get-Process | Where-Object { $_.Name -match \"node|next\" } | Select-Object Id, Name, CPU)",
+      "PowerShell(Get-Process -Id 24420)",
+      "PowerShell(Get-Process -Id 11196)",
+      "PowerShell(Stop-Process -Id 24420 -Force)",
+      "PowerShell(Stop-Process -Id 20896 -Force)",
+      "PowerShell(Stop-Process -Id 29452 -Force -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-Process | Where-Object { $_.Name -match \"node|next|code\" } | Select-Object Id, Name)",
+      "PowerShell(robocopy \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\system\" \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\" /E /MOVE /NFL /NDL /NJH /NJS 2>&1)",
+      "PowerShell(tail -5)",
+      "PowerShell(robocopy \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\system\" \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\" /E /MOVE /NFL /NDL /NJH /NJS; $exitCode = $LASTEXITCODE; Write-Host \"Robocopy exit: $exitCode\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(rm \"d:/Data/Projects/AIProject/webdrop/.claude/plans/step-1-webdrop-system.md\" \"d:/Data/Projects/AIProject/webdrop/.claude/plans/phase-1-goi-a-templates.md\" \"d:/Data/Projects/AIProject/webdrop/.claude/plans/phase-2-goi-b-website.md\" \"d:/Data/Projects/AIProject/webdrop/.claude/plans/infra-setup.md\" && echo \"Deleted\")",
+      "PowerShell($env:Path = \"C:\\\\Users\\\\QuynhNH\\\\AppData\\\\Roaming\\\\nvm\\\\v24.16.0;\" + $env:Path; Set-Location \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\"; npm install bootstrap@5.3.3 2>&1 | Select-String -Pattern \"added|error|warn\" | Select-Object -First 5)",
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\\\\src\\\\styles\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\\\\src\\\\data\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\\\\src\\\\components\\\\site\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\\\\src\\\\components\\\\admin\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\\\\src\\\\components\\\\ui\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\\\\app\\\\\\(site\\)\\\\checkout\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\\\\app\\\\\\(admin\\)\\\\admin\\\\orders\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\\\\app\\\\\\(admin\\)\\\\admin\\\\customers\")",
+      "PowerShell($env:Path = \"C:\\\\Users\\\\QuynhNH\\\\AppData\\\\Roaming\\\\nvm\\\\v24.16.0;\" + $env:Path; Set-Location \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\"; npm run build 2>&1 | Select-Object -Last 30)",
+      "PowerShell($env:Path = \"C:\\\\Users\\\\QuynhNH\\\\AppData\\\\Roaming\\\\nvm\\\\v24.16.0;\" + $env:Path; Set-Location \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\"; npm run build 2>&1 | Select-Object -Last 20)",
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\templates\\\\web\\\\spa-beauty\\\\assets\\\\css\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\templates\\\\web\\\\restaurant\\\\assets\\\\css\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\templates\\\\admin\\\\basic-admin\\\\assets\\\\css\")",
+      "Bash(Remove-Item -Recurse -Force \"d:/Data/Projects/AIProject/webdrop/Sources/system/app/\\(site\\)/checkout\")",
+      "PowerShell(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\\\\\" -Force | Select-Object Name, @{N=\"Type\";E={if\\($_.PSIsContainer\\){\"DIR\"}else{\"FILE\"}}})",
+      "Bash(npx tsc *)",
+      "Bash(npx prisma *)",
+      "Bash(Remove-Item -Recurse -Force \"d:/Data/Projects/AIProject/webdrop/Sources/system/.next\" -ErrorAction SilentlyContinue)"
+    ],
+    "additionalDirectories": [
+      "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"
+    ]
+  }
 }

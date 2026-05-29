@@ -1,14 +1,44 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { templates } from '@/data/templates'
+import { prisma } from '@/lib/prisma'
+import { templates as mockTemplates } from '@/data/templates'
+import type { Template } from '@/data/templates'
 import TemplateDetailClient from './TemplateDetailClient'
 
-export function generateStaticParams() {
-  return templates.map(t => ({ slug: t.slug }))
+export async function generateStaticParams() {
+  try {
+    const rows = await prisma.template.findMany({ where: { status: 'published' }, select: { slug: true } })
+    return rows.map((t: { slug: any }) => ({ slug: t.slug }))
+  } catch {
+    return mockTemplates.map(t => ({ slug: t.slug }))
+  }
 }
 
-export default function TemplateDetailPage({ params }: { params: { slug: string } }) {
-  const template = templates.find(t => t.slug === params.slug)
+export default async function TemplateDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+
+  let template: Template | undefined
+  try {
+    const row = await prisma.template.findUnique({
+      where: { slug, status: 'published' },
+      include: { industry: { select: { name: true } } },
+    })
+    if (row) {
+      const n = typeof row.price === 'number' ? row.price : (row.price as { toNumber(): number }).toNumber()
+      template = {
+        slug: row.slug,
+        name: row.name,
+        category: row.industry?.name || row.category,
+        price: n.toLocaleString('vi-VN') + 'đ',
+        image: row.thumbnail || 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80&auto=format&fit=crop',
+        badge: row.salesCount >= 30 ? 'Bán chạy' : undefined,
+        demoUrl: row.demoUrl || undefined,
+      }
+    }
+  } catch {
+    template = mockTemplates.find(t => t.slug === slug)
+  }
+
   if (!template) notFound()
 
   return (

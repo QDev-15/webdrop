@@ -8,7 +8,36 @@
 1. Mỗi khi thay đổi code phải review fix bug thành vòng lặp đến khi hết bug.
 2. Update file [CLAUDE.md](./CLAUDE.md) mỗi khi có thay đổi code.
 3. Mỗi khi thêm một chức năng hay thay đổi flow thì review fix bug rồi review fix lại cho đến khi hết bug.
-4. **Sau mỗi lần thay đổi code, bắt buộc gọi agent `reviewer` để review code, sau đó gọi agent `qa-tester` để test — fix hết issue trước khi commit.**
+4. **Sau mỗi lần thay đổi code, bắt buộc gọi agent `reviewer` để review code, sau đó gọi agent `qa-tester` để test UI/design system — fix hết issue trước khi commit.**
+
+---
+
+## 🛠️ TOOLING & AGENTS
+
+### Agents (`.claude/agents/`)
+| Agent | Dùng khi | Tools |
+|---|---|---|
+| `qa-tester` | Kiểm tra HTML sau khi viết/sửa — design system, Bootstrap, responsive | Read, Glob, Grep, Bash |
+| `reviewer` | Review code trước khi ship — bug, security, logic | Read, Glob, Grep, Bash |
+| `research` | Tra cứu kỹ thuật, tài liệu, so sánh giải pháp | Read, Glob, Grep, WebFetch, Bash |
+| `teacher` | Học Next.js/React qua code thực tế — files, routing, data flow, TypeScript, Prisma | Read, Glob, Grep, WebFetch |
+
+### Project Settings (`.claude/settings.json`)
+
+**PermissionRequest hook** — auto-allow permission dialogs:
+- Mặc định: tắt (hỏi bình thường)
+- Bật: `touch ~/.claude/auto-allow-enabled` → tất cả permission tự động Allow
+- Tắt: `rm ~/.claude/auto-allow-enabled`
+
+**Stop hook** — thông báo khi Claude hoàn thành task:
+- Phát tiếng ting ting + WPF popup "Webdrop Claude đã hoàn thành tác vụ"
+- Script: `C:\Users\QuynhNH\.claude\hooks\stop-notify.ps1`
+
+### Lệnh `/fetch claude`
+Sync CLAUDE.md từ GitHub về context hiện tại:
+```
+/fetch claude
+```
 
 ---
 
@@ -250,24 +279,24 @@ website.vn/admin    → Trang quản trị
 
 Template và website sẽ tập trung vào các ngành có nhu cầu cao tại Việt Nam:
 
-- [ ] Nhà hàng / Quán ăn / Cafe
-- [ ] Spa / Thẩm mỹ / Làm đẹp
+- [x] Nhà hàng / Quán ăn / Cafe — **DONE** (`Sources/templates/web/restaurant/`)
+- [x] Spa / Thẩm mỹ / Làm đẹp — **DONE** (`Sources/templates/web/spa-beauty/`)
 - [ ] Bất động sản
-- [ ] Agency / Portfolio cá nhân
+- [x] Agency / Portfolio cá nhân — **DONE** (`Sources/templates/web/agency-web/`)
 - [ ] Landing page sản phẩm / Dịch vụ
 
 ---
 
 ## 🚀 ROADMAP PHÁT TRIỂN
 
-### Giai đoạn 1 — 0 đến 6 tháng
-- [ ] Xây 2–3 web template theo ngách
-- [ ] Xây 1 admin template cơ bản
-- [ ] Thiết lập kênh bán (website riêng / Gumroad)
+### Giai đoạn 1 — 0 đến 6 tháng ✅ IN PROGRESS
+- [x] Xây 2–3 web template theo ngách — **3 templates xong** (agency, spa, restaurant)
+- [x] Xây 1 admin template cơ bản — **DONE** (`Sources/templates/admin/basic-admin/`)
+- [ ] Thiết lập kênh bán (webdrop.vn) — Next.js đang build
 - [ ] Nhận dự án Gói B để tạo dòng tiền
 
 ### Giai đoạn 2 — 6 đến 18 tháng
-- [ ] Mở rộng thư viện template (5–10 ngành)
+- [ ] Mở rộng thư viện template (5–10 ngành) — còn BĐS, landing page
 - [ ] Đóng gói Gói B thành sản phẩm chuẩn bán nhanh
 - [ ] Nhận dự án Gói C giá trị cao
 - [ ] Xây trang showcase / portfolio
@@ -285,44 +314,32 @@ Template và website sẽ tập trung vào các ngành có nhu cầu cao tại V
 webdrop/                            ← GitHub repo
 ├── .claude/
 │   ├── CLAUDE.md                   ← File này
-│   └── rules/                      ← Coding rules (design-system, db, tech-stack...)
+│   ├── agents/                     ← Custom agents
+│   │   ├── qa-tester.md            ← QA design system + HTML
+│   │   ├── reviewer.md             ← Code review (bug, security, logic)
+│   │   └── research.md             ← Research & documentation
+│   ├── rules/                      ← Coding rules (design-system, db, tech-stack...)
+│   └── settings.json               ← Project settings (hooks, permissions)
 ├── Sources/                        ← Toàn bộ source code sản phẩm
 │   ├── system/                     ← Next.js (System Admin + trang bán hàng webdrop.vn)
-│   │   ├── prisma/
-│   │   │   └── schema.prisma       ← Code-first DB schema (PostgreSQL)
 │   │   ├── app/
-│   │   │   ├── (site)/             ← Trang bán hàng public (route group → URL: /)
-│   │   │   │   ├── layout.tsx
-│   │   │   │   └── page.tsx        ← resolves to /
-│   │   │   ├── (admin)/            ← System Admin (route group → URL: /admin)
-│   │   │   │   ├── layout.tsx
-│   │   │   │   └── admin/
-│   │   │   │       └── page.tsx    ← resolves to /admin
-│   │   │   └── layout.tsx          ← Root layout (DM Sans font, metadata)
-│   │   ├── src/
-│   │   │   └── components/         ← Shared UI components
-│   │   ├── public/                 ← Static assets
-│   │   ├── .env.example            ← Template biến môi trường
-│   │   ├── next.config.ts
-│   │   ├── tsconfig.json
+│   │   │   ├── (site)/             ← Trang bán hàng public (URL: /)
+│   │   │   ├── (checkout)/         ← Checkout flow (URL: /checkout)
+│   │   │   └── (admin)/            ← System Admin (URL: /admin)
+│   │   ├── prisma/schema.prisma    ← PostgreSQL schema (Agency extension)
 │   │   └── package.json
 │   ├── products/
 │   │   └── goi-b/                  ← Base code Gói B (React + PHP + SQLite)
-│   │       ├── frontend/           ← React SPA (Vite + React Router)
-│   │       │   ├── src/
-│   │       │   │   ├── App.tsx
-│   │       │   │   └── main.tsx
-│   │       │   └── package.json
-│   │       └── backend/            ← PHP API
-│   │           ├── config.php      ← Cấu hình DB, app, upload, SMTP
-│   │           ├── index.php       ← Entry point, routing
-│   │           ├── schema.sql      ← SQLite schema + seed mặc định
-│   │           └── .htaccess       ← Chặn truy cập .db và config.php
+│   │       ├── frontend/           ← React SPA (Vite)
+│   │       └── backend/            ← PHP API (config.php, index.php, schema.sql, .htaccess)
 │   └── templates/
-│       ├── web/                    ← Web templates HTML/CSS/Bootstrap
-│       │   └── agency-web/         ← Template agency (lien-he.html, assets/)
-│       └── admin/                  ← Admin templates
-├── documents/                      ← Mockup/prototype UI (index, checkout, admin, detail)
+│       ├── web/                    ← Web templates HTML/CSS/Bootstrap (Gói A)
+│       │   ├── agency-web/         ← ✅ Agency template (index, dich-vu, ve-chung-toi, du-an)
+│       │   ├── spa-beauty/         ← ✅ Spa template (index, dich-vu, dat-lich, lien-he)
+│       │   └── restaurant/         ← ✅ Nhà hàng template (index, thuc-don, dat-ban, lien-he)
+│       └── admin/
+│           └── basic-admin/        ← ✅ Admin template (login, dashboard, posts, users, settings)
+├── documents/                      ← Prototype UI (index, checkout, admin, template-detail)
 └── .gitignore
 ```
 

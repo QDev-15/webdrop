@@ -1,9 +1,12 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
-import { templates, categories } from '../../data/templates'
+import { templates as mockTemplates, categories as mockCategories } from '../../data/templates'
+import type { Template } from '../../data/templates'
 
-export default function TemplateGrid() {
+export default function TemplateGrid({ templates: propTemplates }: { templates?: Template[] }) {
+  const templates = propTemplates || mockTemplates
+  const categories = ['Tất cả', ...Array.from(new Set(templates.map(t => t.category)))]
   const [active, setActive] = useState('Tất cả')
 
   const filtered = active === 'Tất cả' ? templates : templates.filter(t => t.category === active)
