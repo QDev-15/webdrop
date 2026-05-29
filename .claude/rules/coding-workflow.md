@@ -5,6 +5,23 @@
 1. **Bug loop**: Sau mỗi thay đổi code → review bug → fix → review lại cho đến khi hết bug. Không dừng giữa chừng.
 2. **CLAUDE.md sync**: Cập nhật `CLAUDE.md` mỗi khi có thay đổi code, thêm tính năng, hoặc thay đổi flow.
 3. **Feature loop**: Mỗi khi thêm chức năng hoặc thay đổi flow → review → fix bug → review lại cho đến sạch.
+4. **Agent review + QA**: Sau mỗi lần thay đổi code — gọi agent `reviewer` review trước, sau đó gọi agent `qa-tester` test UI/logic. Fix hết issue được report trước khi commit.
+
+## Review & QA Workflow
+
+```
+Thay đổi code
+    ↓
+Agent reviewer  →  phát hiện bug/issue  →  fix  →  reviewer lại
+    ↓ (pass)
+Agent qa-tester  →  test UI + logic + edge cases  →  fix  →  qa-tester lại
+    ↓ (pass)
+Commit
+```
+
+**Khi nào gọi reviewer:** Sau khi viết component mới, sửa logic, thêm API route, thay đổi CSS layout.
+
+**Khi nào gọi qa-tester:** Sau khi reviewer pass — test trên browser, kiểm tra responsive, form validation, edge cases.
 
 ## Workflow Chuẩn
 

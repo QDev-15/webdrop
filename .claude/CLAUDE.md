@@ -8,6 +8,7 @@
 1. Mỗi khi thay đổi code phải review fix bug thành vòng lặp đến khi hết bug.
 2. Update file [CLAUDE.md](./CLAUDE.md) mỗi khi có thay đổi code.
 3. Mỗi khi thêm một chức năng hay thay đổi flow thì review fix bug rồi review fix lại cho đến khi hết bug.
+4. **Sau mỗi lần thay đổi code, bắt buộc gọi agent `reviewer` để review code, sau đó gọi agent `qa-tester` để test — fix hết issue trước khi commit.**
 
 ---
 
