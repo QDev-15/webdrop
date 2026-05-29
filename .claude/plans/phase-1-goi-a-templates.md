@@ -1,97 +1,129 @@
-# Plan: Phase 1 — Gói A Templates (0–6 tháng)
+# Plan: Step 2 — Gói A Templates
+
+> **Vị trí trong Master Roadmap:** Step 2 (sau Step 1 webdrop.vn site)
+> **Thời gian:** ~4 tuần
+> **Deliverable:** 3 web template + 1 admin template sẵn sàng bán
 
 ## Mục tiêu
-Xây 2–3 web template + 1 admin template, thiết lập kênh bán, tạo dòng tiền đầu tiên.
+Xây 3 web template + 1 admin template. Mỗi template có live demo, ZIP download, giá bán rõ ràng, đăng lên webdrop.vn và Gumroad.
 
-## Template cần xây (ưu tiên theo ngách)
+---
 
-### Template 1: Spa & Làm đẹp (ưu tiên cao nhất)
-- **Lý do**: Nhu cầu cao tại VN, khách sẵn sàng trả tiền
-- **Layout**: Hero fullscreen → Dịch vụ grid → Team → Đặt lịch → Testimonials → Liên hệ + Bản đồ
-- **Màu sắc**: Warm rose/gold hoặc Sage green (tùy biến dễ)
-- **Tính năng JS**: Lightbox gallery, smooth scroll, booking form
-- **Giá bán**: 2.800.000đ (gói Standard webdrop)
+## Template cần xây
 
-### Template 2: Nhà hàng / Cafe (ưu tiên cao)
-- **Layout**: Hero video/slider → Menu → About → Gallery → Đặt bàn → Địa chỉ + Map
-- **Màu sắc**: Warm dark (coffee brown) hoặc Fresh green
-- **Tính năng**: Menu tab filter, gallery masonry, reservation form
-- **Giá bán**: 3.000.000đ
+### 2.1 — agency-web: Công ty dịch vụ / Agency
+- **Status:** Đã có `lien-he.html` tại `Sources/templates/web/agency-web/`
+- **Cần thêm:**
+  - `index.html` — Landing page (hero slider, dịch vụ, portfolio, testimonials)
+  - `dich-vu.html` — Danh sách dịch vụ chi tiết
+  - `ve-chung-toi.html` — Giới thiệu công ty, team
+  - `du-an.html` — Portfolio / case studies
+  - `assets/css/style.css` — Shared styles
+- **Màu:** Green accent (`--accent: #1a6b52`) — giữ nguyên design system
+- **Giá bán:** 2.500.000đ (multi-page)
 
-### Template 3: Công ty dịch vụ / Agency
-- **Status**: Đã có design concept từ `documents/index.html` và `documents/template_detail_page.html`
-- **Cần**: Chuyển từ documents sang template hoàn chỉnh + thêm trang phụ
-- **Layout**: Landing + About + Services + Portfolio + Blog + Contact (7 trang)
-- **Giá bán**: 2.500.000đ
+### 2.2 — spa-beauty: Spa & Làm đẹp
+- **Folder:** `Sources/templates/web/spa-beauty/`
+- **Trang:** `index.html`, `dich-vu.html`, `dat-lich.html`, `lien-he.html`
+- **Layout index:** Hero fullscreen → Dịch vụ grid → Team → Đặt lịch form → Testimonials → Footer + Map
+- **Màu chủ đạo:** Override CSS vars sang rose/gold:
+  ```css
+  --accent: #c17a6b;
+  --accent-h: #a8614f;
+  --accent-light: #fdf3f0;
+  ```
+- **JS đặc biệt:** Lightbox gallery, booking form validation
+- **Giá bán:** 2.800.000đ
 
-### Template Admin: Dashboard cơ bản
-- **Status**: Đã có concept từ `documents/admin_dashboard.html`
-- **Cần**: Thêm các màn hình: settings, posts management, media library
-- **Giá bán**: 1.200.000đ (standalone) | bundle với website template
+### 2.3 — restaurant: Nhà hàng / Cafe
+- **Folder:** `Sources/templates/web/restaurant/`
+- **Trang:** `index.html`, `thuc-don.html`, `dat-ban.html`, `lien-he.html`
+- **Layout index:** Hero video/slider → Menu preview tabs → About → Gallery masonry → Đặt bàn → Địa chỉ + Map
+- **Màu chủ đạo:** Override sang warm dark:
+  ```css
+  --accent: #b45309;
+  --accent-h: #92400e;
+  --accent-light: #fef3c7;
+  ```
+- **JS đặc biệt:** Menu tab filter, reservation form
+- **Giá bán:** 3.000.000đ
+
+### 2.4 — basic-admin: Admin Template cơ bản
+- **Folder:** `Sources/templates/admin/basic-admin/`
+- **Base:** Convert từ `documents/admin_dashboard.html`
+- **Trang:**
+  - `dashboard.html` — Stats overview, charts cơ bản
+  - `users.html` — Bảng user management
+  - `posts.html` — Bảng quản lý bài viết
+  - `settings.html` — Form settings theo group
+  - `login.html` — Trang đăng nhập
+- **Giá bán:** 1.200.000đ (standalone) | bundle với web template
 
 ---
 
 ## Checklist mỗi template
 
-### Design
-- [ ] Responsive: 320px, 576px, 768px, 1024px, 1440px
-- [ ] Dark section contrast đủ (WCAG AA)
-- [ ] Hình ảnh placeholder từ Unsplash (đã optimize)
-- [ ] Print stylesheet không bị vỡ
-
 ### Code
-- [ ] Bootstrap 5.3.3 CDN
-- [ ] DM Sans font load
-- [ ] CSS vars từ design-system.md
-- [ ] Không hardcode màu ngoài palette
-- [ ] JS: const/let, không jQuery, passive scroll listener
+- [ ] Bootstrap 5.3.3 CDN (không cài npm)
+- [ ] DM Sans font load từ Google Fonts
+- [ ] CSS vars từ design-system.md (`:root` block đúng)
+- [ ] Không hardcode màu ngoài palette (trừ 5 màu inline được phép)
+- [ ] JS: `const`/`let`, không jQuery, `{passive: true}` cho scroll events
 - [ ] Không `console.log`
+- [ ] Dùng `.wd-container` (không dùng `.container` Bootstrap)
 
 ### HTML
 - [ ] `lang="vi"` trên `<html>`
 - [ ] Meta: charset, viewport, title, description
-- [ ] Semantic HTML: `<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`
+- [ ] Semantic: `<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`
 - [ ] Tất cả `<img>` có `alt`
-- [ ] Form có `label` đúng cho mọi input
-- [ ] Links có text có nghĩa
+- [ ] Form: `<label>` đúng cho mọi input
+- [ ] H1 duy nhất, headings đúng thứ tự
+
+### Responsive
+- [ ] Test 320px (iPhone SE)
+- [ ] Test 576px
+- [ ] Test 768px (tablet)
+- [ ] Test 1024px
+- [ ] Test 1440px+
 
 ### Performance
-- [ ] Hình ảnh dùng `loading="lazy"` (trừ hero)
-- [ ] Không inline CSS >20 lines (dùng `<style>` block)
-- [ ] Không blocking scripts (dùng `defer` hoặc cuối body)
+- [ ] `loading="lazy"` cho ảnh (trừ hero above-the-fold)
+- [ ] Scripts dùng `defer` hoặc cuối body
+- [ ] Ảnh dùng WebP hoặc JPG optimize (<200KB/ảnh)
 
-### SEO Basic
-- [ ] Title page mô tả đúng
-- [ ] Meta description
-- [ ] H1 duy nhất trên trang
-- [ ] Headings theo thứ tự (H1 → H2 → H3)
+### Bàn giao
+- [ ] ZIP file: HTML + CSS + JS + assets
+- [ ] Hình ảnh placeholder từ Unsplash (free commercial use)
+- [ ] `README.md` hướng dẫn chỉnh nội dung cơ bản
+- [ ] Demo live URL (host trên VPS sau Step 3)
+- [ ] Ghi giá bán rõ ràng
 
 ---
 
 ## Kênh bán
 
-### Ưu tiên 1: Website webdrop.vn (tự build)
-- Trang chủ: đã có concept từ `documents/index.html`
-- Trang chi tiết: đã có concept từ `documents/template_detail_page.html`
-- Trang mua hàng: đã có concept từ `documents/checkout_page.html`
+### webdrop.vn (sau Step 1 + 3)
+- Trang chủ: template card trong TemplateGrid
+- Trang chi tiết: `/templates/[slug]`
+- Mua: Checkout 3-step
 
-### Ưu tiên 2: Gumroad / Lemon Squeezy
-- Upload template ZIP
-- Demo link (host trên VPS)
-- Giá: theo bảng giá Gói A
+### Gumroad (song song)
+- Upload ZIP ngay khi có template xong
+- Demo link = URL trên VPS
+- Description + preview screenshots
 
 ### Social
-- Facebook Page + Zalo OA
-- Post demo trực tiếp, không qua link
+- Facebook Page + Zalo OA: post video demo ngắn
+- Không cần website xong mới bán được qua Gumroad
 
 ---
 
 ## Timeline
-| Tuần | Việc cần làm |
+
+| Tuần | Việc |
 |---|---|
-| 1–2 | Hoàn thiện template Spa (design + code + test) |
-| 3–4 | Hoàn thiện template Nhà hàng |
-| 5–6 | Package Công ty dịch vụ từ documents/ |
-| 7–8 | Admin template cơ bản |
-| 9–10 | Setup website bán hàng webdrop.vn |
-| 11–12 | Launch + marketing đầu tiên |
+| 1 | agency-web: thêm index, dich-vu, ve-chung-toi, du-an |
+| 2 | spa-beauty: 4 trang hoàn chỉnh |
+| 3 | restaurant: 4 trang hoàn chỉnh |
+| 4 | basic-admin: 5 trang, đóng gói ZIP, viết README |

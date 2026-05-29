@@ -1,111 +1,239 @@
-# Plan: Infrastructure Setup
+# Plan: Step 3 — Infrastructure & Deploy
 
-## VPS AZDIGI — Setup chuẩn
+> **Vị trí trong Master Roadmap:** Step 3 (sau Step 1 webdrop.vn + Step 2 templates)
+> **Thời gian:** ~1 tuần
+> **Deliverable:** webdrop.vn live, demo templates accessible
 
-### Thông số
+## VPS AZDIGI — Thông số
+
 - 2 vCPU, 2GB RAM, NVMe SSD
 - ~200k–300k/tháng
 - Datacenter: HCM hoặc Bình Dương
 - OS: Ubuntu 22.04 LTS
 
-### Stack
+## Stack
+
 ```
-Nginx          → reverse proxy, serve static
-Node.js + PM2  → Next.js (webdrop.vn + System Admin)
-PHP-FPM        → serve website khách Gói B
-PostgreSQL     → System DB (webdrop.vn)
-SQLite         → Website khách (trong hosting dir)
+VPS AZDIGI Linux
+├── Nginx              → reverse proxy, serve static files, SSL
+├── Node.js 24 + PM2   → Next.js (webdrop.vn + system admin)
+├── PHP-FPM 8.2        → serve website khách Gói B + demo templates
+├── PostgreSQL 16      → System DB (webdrop.vn)
+└── SQLite             → Website khách (trong dir của từng client)
 ```
 
-### Cấu trúc thư mục VPS
+## Cấu trúc thư mục VPS
+
 ```
 /var/www/
-├── webdrop.vn/         ← Next.js (trang bán hàng + system admin)
-├── demo/
-│   ├── spa-lavender/   ← Demo template Spa
-│   ├── nha-hang-pro/   ← Demo template Nhà hàng
-│   └── cong-ty-pro/    ← Demo template Công ty
-└── clients/
-    ├── client-abc/     ← Website khách (PHP + SQLite)
+├── webdrop.vn/           ← Next.js clone từ GitHub (Sources/system/)
+│   ├── .env              ← Production env vars
+│   └── ...
+├── demo/                 ← Static HTML templates (serve bởi Nginx)
+│   ├── agency-web/       ← Sources/templates/web/agency-web/
+│   ├── spa-beauty/       ← Sources/templates/web/spa-beauty/
+│   └── restaurant/       ← Sources/templates/web/restaurant/
+└── clients/              ← Website khách Gói B (PHP + SQLite)
+    ├── client-abc/
     └── client-xyz/
 ```
 
 ---
 
-## Checklist Setup VPS
+## 3.1 — Setup VPS Base
 
-### 1. Base system
-- [ ] Update packages: `apt update && apt upgrade`
-- [ ] Cài Nginx, PHP 8.2+, PHP-FPM
-- [ ] Cài Node.js 20 LTS (via nvm)
-- [ ] Cài PM2: `npm i -g pm2`
-- [ ] Cài PostgreSQL 16
-- [ ] Cài Certbot (Let's Encrypt SSL)
-- [ ] UFW firewall: chỉ open 22, 80, 443
+### Base system
+```bash
+apt update && apt upgrade -y
+apt install -y nginx php8.2-fpm php8.2-sqlite3 php8.2-mbstring php8.2-curl php8.2-zip
+apt install -y postgresql-16 certbot python3-certbot-nginx
+apt install -y git ufw fail2ban
+```
 
-### 2. Nginx config
-- [ ] SSL termination tại Nginx
-- [ ] Reverse proxy `/` → Next.js (port 3000)
-- [ ] PHP-FPM cho demo + clients
-- [ ] Gzip compression bật
-- [ ] Rate limiting cơ bản
+### Node.js 24 + PM2
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+nvm install 24
+npm i -g pm2
+```
 
-### 3. PostgreSQL
-- [ ] Tạo user + database cho webdrop system
-- [ ] Cấu hình backup tự động (cron → Google Drive)
+### UFW Firewall
+```bash
+ufw allow 22/tcp   # SSH (đổi port sau)
+ufw allow 80/tcp
+ufw allow 443/tcp
+ufw enable
+```
 
-### 4. Security
-- [ ] Đổi SSH port
-- [ ] Disable root login SSH
-- [ ] Cài fail2ban
-- [ ] Không expose PostgreSQL port ra ngoài
-
-### 5. PM2
-- [ ] `pm2 start` webdrop.vn
-- [ ] `pm2 startup` (tự start sau reboot)
-- [ ] `pm2 save`
+### Security hardening
+- [ ] Đổi SSH port (không dùng 22)
+- [ ] Disable root SSH login (`PermitRootLogin no`)
+- [ ] Cài fail2ban (chống brute force SSH)
+- [ ] Không expose PostgreSQL port (chỉ listen localhost)
 
 ---
 
-## Cloudflare R2 Setup
+## 3.2 — Nginx Config
+
+### webdrop.vn → Next.js
+```nginx
+server {
+    listen 443 ssl;
+    server_name webdrop.vn www.webdrop.vn;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+### demo.webdrop.vn → Static templates
+```nginx
+server {
+    listen 443 ssl;
+    server_name demo.webdrop.vn;
+    root /var/www/demo;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+```
+
+### Wildcard SSL
+```bash
+certbot certonly --nginx -d webdrop.vn -d www.webdrop.vn -d demo.webdrop.vn
+```
+
+### Tối ưu Nginx
+- [ ] Gzip compression bật (`gzip on; gzip_types text/css application/javascript`)
+- [ ] Static file caching (`expires 30d` cho ảnh, CSS, JS)
+- [ ] Rate limiting: `limit_req_zone` cho `/api/`
+
+---
+
+## 3.3 — PostgreSQL Setup
+
+```bash
+sudo -u postgres psql
+CREATE DATABASE webdrop_system;
+CREATE USER webdrop_user WITH ENCRYPTED PASSWORD 'strong_password';
+GRANT ALL PRIVILEGES ON DATABASE webdrop_system TO webdrop_user;
+```
+
+**Backup tự động (cron):**
+```bash
+# /etc/cron.d/webdrop-backup
+0 2 * * * postgres pg_dump webdrop_system | gzip > /backup/webdrop_$(date +%Y%m%d).sql.gz
+```
+Upload backup lên Google Drive qua `rclone`.
+
+---
+
+## 3.4 — Deploy webdrop.vn
+
+```bash
+# Clone repo
+git clone https://github.com/quynhvp90/webdrop.git /var/www/webdrop.vn
+cd /var/www/webdrop.vn/Sources/system
+
+# Tạo .env production
+cp .env.example .env
+# Điền DATABASE_URL, NEXTAUTH_SECRET, R2_* vars
+
+# Install + build
+npm ci
+npx prisma migrate deploy
+npx prisma db seed
+npm run build
+
+# PM2
+pm2 start npm --name "webdrop" -- start
+pm2 startup
+pm2 save
+```
+
+**Deploy update về sau:**
+```bash
+cd /var/www/webdrop.vn && git pull
+cd Sources/system && npm ci && npx prisma migrate deploy && npm run build
+pm2 restart webdrop
+```
+
+---
+
+## 3.5 — Deploy Demo Templates
+
+```bash
+# Copy template files
+cp -r /var/www/webdrop.vn/Sources/templates/web/agency-web /var/www/demo/
+cp -r /var/www/webdrop.vn/Sources/templates/web/spa-beauty /var/www/demo/
+cp -r /var/www/webdrop.vn/Sources/templates/web/restaurant /var/www/demo/
+
+# Set permissions
+chown -R www-data:www-data /var/www/demo
+```
+
+Demo URLs:
+- `https://demo.webdrop.vn/agency-web/`
+- `https://demo.webdrop.vn/spa-beauty/`
+- `https://demo.webdrop.vn/restaurant/`
+
+---
+
+## 3.6 — Cloudflare R2 Setup
 
 ### Buckets
-- `webdrop-system` — ảnh của webdrop.vn (demo, marketing)
-- `webdrop-clients` — ảnh upload của website khách
+- `webdrop-system` — ảnh sản phẩm webdrop.vn (demo, marketing)
+- `webdrop-clients` — ảnh upload của website khách Gói B
 
-### Cấu hình
-- Public bucket URL qua Cloudflare Workers (không expose R2 URL trực tiếp)
-- Nén ảnh trước upload: WebP, max 1920px width
-- Purge cache khi upload ảnh mới
-
----
-
-## Domain & SSL
-
-### Domains
-- `webdrop.vn` → trang bán hàng + system admin
-- `demo.webdrop.vn` → subdomain cho demo templates
-- Wildcard SSL: `*.webdrop.vn`
-
-### Email
-- Dùng Zoho Mail / Google Workspace hoặc SMTP riêng
-- SPF, DKIM, DMARC setup để email không vào spam
+### Config
+- Public URL qua Cloudflare R2 custom domain (không expose R2 URL trực tiếp)
+- Nén ảnh trước upload: WebP, max 1920px
+- Env vars trong `Sources/system/.env` production:
+  ```
+  R2_ACCOUNT_ID=...
+  R2_ACCESS_KEY_ID=...
+  R2_SECRET_ACCESS_KEY=...
+  R2_BUCKET_NAME=webdrop-system
+  R2_PUBLIC_URL=https://assets.webdrop.vn
+  ```
 
 ---
 
 ## Backup Strategy
+
 | Dữ liệu | Tần suất | Nơi lưu |
 |---|---|---|
-| PostgreSQL dump | Hàng ngày | Google Drive (tự động) |
+| PostgreSQL dump | Hàng ngày 2AM | Google Drive (rclone) |
 | SQLite khách | Hàng tuần | GitHub private repo |
 | Source code | Mỗi commit | GitHub |
-| Nginx config | Khi thay đổi | GitHub |
-| Media/uploads | Hàng tuần | Cloudflare R2 → backup bucket |
+| Nginx config | Khi thay đổi | GitHub (trong repo, folder `infra/`) |
 
 ---
 
-## Monitoring cơ bản
+## Monitoring
+
 - PM2 monitor: `pm2 monit`
-- Nginx access log: `/var/log/nginx/`
-- Uptime check: UptimeRobot (free) hoặc Better Uptime
-- Alert: email khi site down
+- Nginx logs: `/var/log/nginx/`
+- Uptime: UptimeRobot (free) — alert email khi site down
+- PostgreSQL: check `pg_stat_activity` khi cần
+
+---
+
+## Checklist hoàn thành Step 3
+
+- [ ] `curl https://webdrop.vn` → 200
+- [ ] `curl https://webdrop.vn/admin` → redirect login hoặc 200
+- [ ] `curl https://demo.webdrop.vn/agency-web/` → 200
+- [ ] `curl https://demo.webdrop.vn/spa-beauty/` → 200
+- [ ] SSL cert hợp lệ (không warning trên browser)
+- [ ] PM2 tự restart sau reboot (test: `reboot` → check `pm2 list`)
+- [ ] Backup PostgreSQL chạy được (test thủ công)
+- [ ] R2 upload/serve ảnh hoạt động
