@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[TÊN CÔNG TY] — Thiết kế web & Dịch vụ số chuyên nghiệp</title>
+<meta name="description" content="[TÊN CÔNG TY] — Đối tác thiết kế web và dịch vụ số hàng đầu. Giải pháp sáng tạo, triển khai nhanh, hiệu quả bền vững.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+/* Index-specific: hero transparent nav */
+.hero-section { min-height:100vh;background:var(--dark2);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:62px; }
+.hero-bg { position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=60&auto=format&fit=crop');background-size:cover;background-position:center;opacity:.08; }
+.hero-glow-1 { position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(26,107,82,.22) 0%,transparent 68%);top:-100px;right:-50px;pointer-events:none; }
+.hero-glow-2 { position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(45,155,115,.12) 0%,transparent 68%);bottom:-80px;left:-80px;pointer-events:none; }
+.hero-badge { display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:500;color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.1);padding:6px 14px;border-radius:20px;margin-bottom:28px; }
+.hero-dot { width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+.hero-title { font-size:clamp(42px,6vw,80px);font-weight:600;color:#fff;line-height:1.05;letter-spacing:-2px;margin-bottom:20px; }
+.hero-title em { color:#4ade80;font-style:italic;font-weight:300; }
+.hero-sub { font-size:clamp(15px,1.6vw,18px);font-weight:300;color:rgba(255,255,255,.45);line-height:1.75;max-width:520px;margin-bottom:36px; }
+.hero-stats { display:flex;gap:36px;margin-top:48px;padding-top:32px;border-top:1px solid rgba(255,255,255,.08); }
+.hs-num { font-size:28px;font-weight:600;color:#fff;line-height:1;letter-spacing:-.5px; }
+.hs-label { font-size:12px;color:rgba(255,255,255,.3);margin-top:4px; }
+@media(max-width:768px) { .hero-stats{gap:20px} .hs-num{font-size:22px} }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav" class="transparent">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">[TÊN]<span>CÔNG TY</span></a>
+      <div class="nav-links">
+        <a href="index.html" class="active">Trang chủ</a>
+        <a href="dich-vu.html">Dịch vụ</a>
+        <a href="du-an.html">Dự án</a>
+        <a href="ve-chung-toi.html">Về chúng tôi</a>
+      </div>
+      <a href="lien-he.html" class="nav-cta">Liên hệ ngay</a>
+      <button class="nav-hamburger" id="navHamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ</a>
+  <a href="du-an.html">Dự án</a>
+  <a href="ve-chung-toi.html">Về chúng tôi</a>
+  <a href="lien-he.html" class="nm-cta">Liên hệ ngay</a>
+</div>
+
+<!-- HERO -->
+<section class="hero-section">
+  <div class="hero-bg"></div>
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+  <div class="wd-container w-100 position-relative" style="z-index:2">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <div class="hero-badge"><span class="hero-dot"></span>Đối tác chiến lược của doanh nghiệp</div>
+        <h1 class="hero-title">Chúng tôi tạo ra<br><em>kết quả</em> thực sự.</h1>
+        <p class="hero-sub">Từ chiến lược đến thực thi — [TÊN CÔNG TY] đồng hành cùng doanh nghiệp trong hành trình chuyển đổi số toàn diện, bền vững.</p>
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="dich-vu.html" class="btn-white">Khám phá dịch vụ →</a>
+          <a href="du-an.html" class="btn-outline-white">Xem dự án</a>
+        </div>
+        <div class="hero-stats">
+          <div><div class="hs-num">120+</div><div class="hs-label">Dự án hoàn thành</div></div>
+          <div><div class="hs-num">8 năm</div><div class="hs-label">Kinh nghiệm</div></div>
+          <div><div class="hs-num">98%</div><div class="hs-label">Khách hàng hài lòng</div></div>
+        </div>
+      </div>
+      <div class="col-lg-5 d-none d-lg-block">
+        <div style="border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.08);aspect-ratio:4/5;position:relative">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80&auto=format&fit=crop" alt="Team" style="width:100%;height:100%;object-fit:cover;display:block;opacity:.85">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,107,82,.2) 0%,transparent 50%)"></div>
+          <div style="position:absolute;bottom:20px;left:20px;right:20px;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);border-radius:12px;padding:14px 16px;border:1px solid rgba(255,255,255,.08)">
+            <div style="font-size:13px;font-weight:500;color:#fff;margin-bottom:4px">Dự án mới nhất</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.4);font-weight:300">Hoàn thành hôm nay · Website bất động sản</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS STRIP -->
+<div style="background:var(--surface);border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light);padding:28px 0">
+  <div class="wd-container">
+    <p class="text-center mb-4 reveal" style="font-size:11px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:1.2px">Tin tưởng bởi</p>
+    <div class="d-flex gap-4 justify-content-center align-items-center flex-wrap reveal" style="opacity:.4;filter:grayscale(100%)">
+      <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=120&h=40&q=80&auto=format&fit=crop" alt="client" style="height:26px;object-fit:contain" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=120&h=40&q=80&auto=format&fit=crop" alt="client" style="height:26px;object-fit:contain" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1611532736579-6b16e2b50449?w=120&h=40&q=80&auto=format&fit=crop" alt="client" style="height:26px;object-fit:contain" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1611532736573-418f2ab09c32?w=120&h=40&q=80&auto=format&fit=crop" alt="client" style="height:26px;object-fit:contain" loading="lazy">
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Dịch vụ</div>
+      <h2 class="sec-title">Giải pháp toàn diện<br>cho <em>doanh nghiệp</em></h2>
+      <p class="sec-sub">Từ thiết kế đến triển khai, chúng tôi cung cấp đầy đủ dịch vụ số cho doanh nghiệp hiện đại.</p>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-4"><div class="svc-card reveal reveal-d1">
+        <div class="svc-icon">🖥️</div>
+        <div class="svc-title">Thiết kế Website</div>
+        <div class="svc-desc">Website đẹp, responsive, tối ưu tốc độ và SEO. Từ landing page đến hệ thống phức tạp.</div>
+        <a href="dich-vu.html" class="svc-link">Xem thêm →</a>
+      </div></div>
+      <div class="col-md-4"><div class="svc-card reveal reveal-d2">
+        <div class="svc-icon">📱</div>
+        <div class="svc-title">Ứng dụng Di động</div>
+        <div class="svc-desc">App iOS và Android native hoặc cross-platform. UX mượt mà, trải nghiệm người dùng tối ưu.</div>
+        <a href="dich-vu.html" class="svc-link">Xem thêm →</a>
+      </div></div>
+      <div class="col-md-4"><div class="svc-card reveal reveal-d3">
+        <div class="svc-icon">📈</div>
+        <div class="svc-title">Marketing Số</div>
+        <div class="svc-desc">SEO, Google Ads, Facebook Ads, Email Marketing — chiến lược đa kênh tối ưu ROI.</div>
+        <a href="dich-vu.html" class="svc-link">Xem thêm →</a>
+      </div></div>
+      <div class="col-md-4"><div class="svc-card reveal reveal-d1">
+        <div class="svc-icon">🎨</div>
+        <div class="svc-title">Thiết kế Thương hiệu</div>
+        <div class="svc-desc">Logo, bộ nhận diện thương hiệu, brand guideline nhất quán trên mọi điểm chạm.</div>
+        <a href="dich-vu.html" class="svc-link">Xem thêm →</a>
+      </div></div>
+      <div class="col-md-4"><div class="svc-card reveal reveal-d2">
+        <div class="svc-icon">⚙️</div>
+        <div class="svc-title">Hệ thống Quản lý</div>
+        <div class="svc-desc">CRM, ERP, phần mềm nội bộ tuỳ chỉnh theo quy trình nghiệp vụ riêng của doanh nghiệp.</div>
+        <a href="dich-vu.html" class="svc-link">Xem thêm →</a>
+      </div></div>
+      <div class="col-md-4"><div class="svc-card reveal reveal-d3">
+        <div class="svc-icon">🛡️</div>
+        <div class="svc-title">Bảo trì & Hỗ trợ</div>
+        <div class="svc-desc">Gói bảo trì hàng tháng, cập nhật nội dung, giám sát uptime, hỗ trợ kỹ thuật 24/7.</div>
+        <a href="dich-vu.html" class="svc-link">Xem thêm →</a>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO PREVIEW -->
+<section class="sec-pad" style="background:var(--surface)">
+  <div class="wd-container">
+    <div class="d-flex align-items-end justify-content-between flex-wrap gap-3 mb-5 reveal">
+      <div>
+        <div class="eyebrow">Dự án nổi bật</div>
+        <h2 class="sec-title mb-0">Công việc chúng tôi <em>tự hào</em></h2>
+      </div>
+      <a href="du-an.html" class="btn-ghost">Xem tất cả →</a>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-7"><div class="pf-card reveal">
+        <img class="pf-img" src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=900&q=80&auto=format&fit=crop" alt="Dự án website BĐS" loading="lazy">
+        <div class="pf-overlay"></div>
+        <div class="pf-info"><div class="pf-cat">Bất động sản</div><div class="pf-name">Hệ thống Website BĐS — VinGroup</div></div>
+      </div></div>
+      <div class="col-md-5">
+        <div class="pf-card mb-3 reveal reveal-d1">
+          <img class="pf-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&auto=format&fit=crop" alt="Dự án F&B" loading="lazy">
+          <div class="pf-overlay"></div>
+          <div class="pf-info"><div class="pf-cat">F&B</div><div class="pf-name">App đặt bàn — Nhà hàng Sen</div></div>
+        </div>
+        <div class="pf-card reveal reveal-d2">
+          <img class="pf-img" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80&auto=format&fit=crop" alt="Dự án spa" loading="lazy">
+          <div class="pf-overlay"></div>
+          <div class="pf-info"><div class="pf-cat">Beauty & Spa</div><div class="pf-name">Website Spa Lavender</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="sec-pad" style="background:var(--dark2)">
+  <div class="wd-container">
+    <div class="row g-4 text-center">
+      <div class="col-6 col-md-3 reveal"><div class="stat-num" style="color:#fff">120+</div><div class="stat-label" style="color:rgba(255,255,255,.35)">Dự án hoàn thành</div></div>
+      <div class="col-6 col-md-3 reveal reveal-d1"><div class="stat-num" style="color:#fff">50+</div><div class="stat-label" style="color:rgba(255,255,255,.35)">Khách hàng dài hạn</div></div>
+      <div class="col-6 col-md-3 reveal reveal-d2"><div class="stat-num" style="color:#fff">8 năm</div><div class="stat-label" style="color:rgba(255,255,255,.35)">Kinh nghiệm thực chiến</div></div>
+      <div class="col-6 col-md-3 reveal reveal-d3"><div class="stat-num" style="color:#fff">4.9 ★</div><div class="stat-label" style="color:rgba(255,255,255,.35)">Đánh giá trung bình</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Khách hàng nói gì</div>
+      <h2 class="sec-title">Niềm tin từ <em>thực tế</em></h2>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-4"><div class="rv reveal reveal-d1">
+        <div class="rv-stars">★★★★★</div>
+        <div class="rv-text">"Đội ngũ chuyên nghiệp, hiểu sâu về yêu cầu kinh doanh. Website mới tăng 40% tỷ lệ chuyển đổi sau 3 tháng."</div>
+        <div class="rv-foot"><img class="rv-av" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80&auto=format&fit=crop&crop=face" alt=""><div><div class="rv-name">Trần Minh Hoàng</div><div class="rv-role">CEO · Công ty BĐS Minh Phát</div></div></div>
+      </div></div>
+      <div class="col-md-4"><div class="rv reveal reveal-d2">
+        <div class="rv-stars">★★★★★</div>
+        <div class="rv-text">"Bàn giao đúng hạn, không phát sinh chi phí. Tiến độ minh bạch, luôn cập nhật tiến độ qua Zalo mỗi ngày."</div>
+        <div class="rv-foot"><img class="rv-av" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80&auto=format&fit=crop&crop=face" alt=""><div><div class="rv-name">Nguyễn Lan Anh</div><div class="rv-role">Giám đốc Marketing · FoodChain VN</div></div></div>
+      </div></div>
+      <div class="col-md-4"><div class="rv reveal reveal-d3">
+        <div class="rv-stars">★★★★★</div>
+        <div class="rv-text">"App iOS chạy mượt, UI đẹp. User review 4.8* trên App Store ngay tháng đầu ra mắt. Rất ấn tượng."</div>
+        <div class="rv-foot"><img class="rv-av" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80&auto=format&fit=crop&crop=face" alt=""><div><div class="rv-name">Phạm Đức Toàn</div><div class="rv-role">CTO · StartupX</div></div></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="wd-container reveal">
+    <h2 class="cta-title">Bắt đầu dự án của bạn</h2>
+    <p class="cta-sub">Tư vấn miễn phí. Báo giá trong 24 giờ. Không ràng buộc.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap position-relative">
+      <a href="lien-he.html" class="btn-white">Liên hệ tư vấn →</a>
+      <a href="du-an.html" class="btn-outline-white">Xem portfolio</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo">[TÊN]<span>CÔNG TY</span></div>
+        <p class="ft-desc">Đối tác thiết kế web và dịch vụ số đáng tin cậy cho doanh nghiệp Việt Nam.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc">fb</a><a href="#" class="ft-soc">zl</a><a href="#" class="ft-soc">in</a><a href="#" class="ft-soc">yt</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Dịch vụ</div>
+        <div class="ft-links">
+          <a href="dich-vu.html">Thiết kế Website</a>
+          <a href="dich-vu.html">Ứng dụng Di động</a>
+          <a href="dich-vu.html">Marketing Số</a>
+          <a href="dich-vu.html">Thiết kế Thương hiệu</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Công ty</div>
+        <div class="ft-links">
+          <a href="ve-chung-toi.html">Về chúng tôi</a>
+          <a href="du-an.html">Dự án</a>
+          <a href="lien-he.html">Liên hệ</a>
+          <a href="#">Tuyển dụng</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links">
+          <a href="tel:0901234567">📱 0901 234 567</a>
+          <a href="mailto:hello@company.vn">✉️ hello@company.vn</a>
+          <a href="#">📍 Hà Nội, Việt Nam</a>
+          <a href="#">🕐 8:00–18:00 · T2–T7</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="ft-copy">© 2026 [TÊN CÔNG TY] · Made in Vietnam 🇻🇳</div>
+        <div class="d-flex gap-4">
+          <a href="#" style="font-size:12px;color:rgba(255,255,255,.18);text-decoration:none">Chính sách bảo mật</a>
+          <a href="#" style="font-size:12px;color:rgba(255,255,255,.18);text-decoration:none">Điều khoản</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Zalo float -->
+<div class="zf">
+  <div class="zf-tip">Chat Zalo ngay</div>
+  <button class="zf-btn">💬</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY > 80;
+  nav.classList.toggle('transparent', !scrolled);
+}, {passive:true});
+
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+}, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+const hamburger = document.getElementById('navHamburger');
+const mobile = document.getElementById('navMobile');
+hamburger.addEventListener('click', () => {
+  const open = mobile.classList.toggle('open');
+  hamburger.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { mobile.classList.remove('open'); hamburger.classList.remove('open'); document.body.style.overflow = ''; }
+});
+</script>
+</body>
+</html>

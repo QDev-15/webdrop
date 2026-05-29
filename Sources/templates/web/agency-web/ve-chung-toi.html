@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Về chúng tôi — [TÊN CÔNG TY]</title>
+<meta name="description" content="Tìm hiểu về [TÊN CÔNG TY] — đội ngũ, giá trị cốt lõi và hành trình phát triển.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+.value-card { padding:28px;background:var(--surface);border:1px solid var(--border);border-radius:14px;transition:transform .25s,box-shadow .25s;height:100%; }
+.value-card:hover { transform:translateY(-5px);box-shadow:0 14px 40px rgba(0,0,0,.08); }
+.vc-icon { font-size:28px;margin-bottom:14px; }
+.vc-title { font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px;letter-spacing:-.3px; }
+.vc-desc { font-size:13.5px;font-weight:300;color:var(--text-2);line-height:1.7; }
+.timeline-item { display:flex;gap:24px;position:relative; }
+.timeline-item::before { content:'';position:absolute;left:15px;top:36px;bottom:-24px;width:1px;background:var(--border-light); }
+.timeline-item:last-child::before { display:none; }
+.tl-dot { width:32px;height:32px;border-radius:50%;background:var(--accent-light);border:2px solid var(--accent-mid);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--accent);flex-shrink:0; }
+.tl-year { font-size:12px;font-weight:600;color:var(--accent);margin-bottom:4px; }
+.tl-title { font-size:15px;font-weight:500;color:var(--text);margin-bottom:5px; }
+.tl-desc { font-size:13.5px;font-weight:300;color:var(--text-2);line-height:1.65;padding-bottom:24px; }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">[TÊN]<span>CÔNG TY</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="dich-vu.html">Dịch vụ</a>
+        <a href="du-an.html">Dự án</a>
+        <a href="ve-chung-toi.html" class="active">Về chúng tôi</a>
+      </div>
+      <a href="lien-he.html" class="nav-cta">Liên hệ ngay</a>
+      <button class="nav-hamburger" id="navHamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a><a href="dich-vu.html">Dịch vụ</a><a href="du-an.html">Dự án</a><a href="ve-chung-toi.html">Về chúng tôi</a>
+  <a href="lien-he.html" class="nm-cta">Liên hệ ngay</a>
+</div>
+
+<section class="page-hero">
+  <div class="wd-container">
+    <div class="ph-eyebrow">Về chúng tôi</div>
+    <h1 class="ph-title">Đội ngũ <em>đam mê</em><br>công nghệ</h1>
+    <p class="ph-sub">Hơn 8 năm kinh nghiệm, hơn 120 dự án — chúng tôi không chỉ làm website, chúng tôi tạo ra kết quả kinh doanh thực sự.</p>
+  </div>
+</section>
+
+<!-- ABOUT STORY -->
+<section class="sec-pad" style="background:var(--surface)">
+  <div class="wd-container">
+    <div class="row g-5 align-items-center">
+      <div class="col-md-6 reveal">
+        <div style="border-radius:18px;overflow:hidden;aspect-ratio:4/3;position:relative">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80&auto=format&fit=crop" alt="Team" style="width:100%;height:100%;object-fit:cover;display:block">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,107,82,.15) 0%,transparent 60%)"></div>
+          <div style="position:absolute;bottom:20px;left:20px;background:var(--surface);border-radius:12px;padding:14px 18px;border:1px solid var(--border);box-shadow:0 8px 32px rgba(0,0,0,.1)">
+            <div style="font-size:24px;font-weight:600;color:var(--text);letter-spacing:-1px">120+</div>
+            <div style="font-size:12px;color:var(--text-3);font-weight:300">dự án hoàn thành thành công</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 reveal reveal-d1">
+        <div class="eyebrow">Câu chuyện của chúng tôi</div>
+        <h2 class="sec-title">Bắt đầu từ <em>niềm đam mê</em></h2>
+        <p style="font-size:15px;font-weight:300;color:var(--text-2);line-height:1.8;margin-bottom:16px">[TÊN CÔNG TY] được thành lập năm 2016 với một mục tiêu đơn giản: giúp doanh nghiệp Việt Nam tận dụng tối đa sức mạnh của công nghệ số.</p>
+        <p style="font-size:15px;font-weight:300;color:var(--text-2);line-height:1.8;margin-bottom:24px">Từ một nhóm 3 người, chúng tôi đã phát triển thành đội ngũ 25+ chuyên gia với đa dạng kỹ năng: từ thiết kế UI/UX đến backend engineering, từ SEO đến digital marketing.</p>
+        <div class="d-flex gap-4">
+          <div><div class="stat-num">25+</div><div class="stat-label">Thành viên</div></div>
+          <div><div class="stat-num">8 năm</div><div class="stat-label">Kinh nghiệm</div></div>
+          <div><div class="stat-num">98%</div><div class="stat-label">Hài lòng</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Giá trị cốt lõi</div>
+      <h2 class="sec-title">Những điều chúng tôi <em>tin tưởng</em></h2>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-3 col-sm-6"><div class="value-card reveal">
+        <div class="vc-icon">🎯</div>
+        <div class="vc-title">Kết quả thực sự</div>
+        <div class="vc-desc">Chúng tôi đo lường thành công bằng kết quả kinh doanh của khách hàng, không phải số lượng dự án.</div>
+      </div></div>
+      <div class="col-md-3 col-sm-6"><div class="value-card reveal reveal-d1">
+        <div class="vc-icon">🤝</div>
+        <div class="vc-title">Minh bạch tuyệt đối</div>
+        <div class="vc-desc">Timeline rõ ràng, chi phí cố định, không phát sinh. Cập nhật tiến độ hàng ngày không cần nhắc.</div>
+      </div></div>
+      <div class="col-md-3 col-sm-6"><div class="value-card reveal reveal-d2">
+        <div class="vc-icon">🚀</div>
+        <div class="vc-title">Không ngừng học hỏi</div>
+        <div class="vc-desc">Công nghệ thay đổi mỗi ngày. Đội ngũ chúng tôi liên tục cập nhật kiến thức và công cụ mới nhất.</div>
+      </div></div>
+      <div class="col-md-3 col-sm-6"><div class="value-card reveal reveal-d3">
+        <div class="vc-icon">💚</div>
+        <div class="vc-title">Đồng hành lâu dài</div>
+        <div class="vc-desc">Không chỉ là vendor, chúng tôi là đối tác chiến lược — luôn ở đây khi bạn cần.</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="sec-pad" style="background:var(--surface)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Đội ngũ</div>
+      <h2 class="sec-title">Những người <em>tạo nên</em> chúng tôi</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-6 col-md-3"><div class="tm-card reveal">
+        <img class="tm-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80&auto=format&fit=crop&crop=face" alt="CEO">
+        <div class="tm-name">Nguyễn Văn An</div>
+        <div class="tm-role">CEO & Co-founder</div>
+      </div></div>
+      <div class="col-6 col-md-3"><div class="tm-card reveal reveal-d1">
+        <img class="tm-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80&auto=format&fit=crop&crop=face" alt="Designer">
+        <div class="tm-name">Trần Thu Hà</div>
+        <div class="tm-role">Lead Designer</div>
+      </div></div>
+      <div class="col-6 col-md-3"><div class="tm-card reveal reveal-d2">
+        <img class="tm-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80&auto=format&fit=crop&crop=face" alt="CTO">
+        <div class="tm-name">Phạm Minh Tuấn</div>
+        <div class="tm-role">CTO & Lead Developer</div>
+      </div></div>
+      <div class="col-6 col-md-3"><div class="tm-card reveal reveal-d3">
+        <img class="tm-avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80&auto=format&fit=crop&crop=face" alt="Marketing">
+        <div class="tm-name">Lê Ngọc Mai</div>
+        <div class="tm-role">Head of Marketing</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="row g-5 align-items-start">
+      <div class="col-md-5 reveal">
+        <div class="eyebrow">Hành trình</div>
+        <h2 class="sec-title">8 năm <em>phát triển</em></h2>
+        <p class="sec-sub mb-0">Từ startup nhỏ đến công ty công nghệ uy tín — mỗi mốc đều là một bài học và một thành tựu.</p>
+      </div>
+      <div class="col-md-7 reveal reveal-d1">
+        <div class="timeline-item"><div class="tl-dot">16</div><div><div class="tl-year">2016</div><div class="tl-title">Thành lập công ty</div><div class="tl-desc">3 nhà sáng lập, 1 văn phòng nhỏ, và 1 giấc mơ lớn về công nghệ.</div></div></div>
+        <div class="timeline-item"><div class="tl-dot">18</div><div><div class="tl-year">2018</div><div class="tl-title">Đạt mốc 50 dự án</div><div class="tl-desc">Mở rộng đội ngũ lên 12 người, thêm dịch vụ mobile app và marketing số.</div></div></div>
+        <div class="timeline-item"><div class="tl-dot">21</div><div><div class="tl-year">2021</div><div class="tl-title">Top 10 Agency tại Hà Nội</div><div class="tl-desc">Được vinh danh trong danh sách Top Digital Agency, 80+ dự án thành công.</div></div></div>
+        <div class="timeline-item"><div class="tl-dot">24</div><div><div class="tl-year">2024</div><div class="tl-title">120+ dự án, 25 chuyên gia</div><div class="tl-desc">Mở rộng sang TP.HCM, phục vụ khách hàng trên toàn quốc và quốc tế.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-sec">
+  <div class="wd-container reveal">
+    <h2 class="cta-title">Hãy làm việc cùng nhau</h2>
+    <p class="cta-sub">Chúng tôi luôn sẵn sàng lắng nghe và tìm giải pháp tốt nhất cho bạn.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap position-relative">
+      <a href="lien-he.html" class="btn-white">Liên hệ ngay →</a>
+      <a href="dich-vu.html" class="btn-outline-white">Xem dịch vụ</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wd-container"><div class="row g-4 py-5">
+    <div class="col-md-4 reveal"><div class="ft-logo">[TÊN]<span>CÔNG TY</span></div><p class="ft-desc">Đối tác thiết kế web và dịch vụ số đáng tin cậy.</p><div class="ft-socials"><a href="#" class="ft-soc">fb</a><a href="#" class="ft-soc">zl</a><a href="#" class="ft-soc">in</a><a href="#" class="ft-soc">yt</a></div></div>
+    <div class="col reveal reveal-d1"><div class="ft-col-title">Dịch vụ</div><div class="ft-links"><a href="dich-vu.html">Thiết kế Website</a><a href="dich-vu.html">Ứng dụng Di động</a><a href="dich-vu.html">Marketing Số</a></div></div>
+    <div class="col reveal reveal-d2"><div class="ft-col-title">Công ty</div><div class="ft-links"><a href="ve-chung-toi.html">Về chúng tôi</a><a href="du-an.html">Dự án</a><a href="lien-he.html">Liên hệ</a></div></div>
+    <div class="col reveal reveal-d3"><div class="ft-col-title">Liên hệ</div><div class="ft-links"><a href="tel:0901234567">📱 0901 234 567</a><a href="mailto:hello@company.vn">✉️ hello@company.vn</a></div></div>
+  </div></div>
+  <div class="ft-bottom"><div class="wd-container"><div class="d-flex justify-content-between align-items-center py-3"><div class="ft-copy">© 2026 [TÊN CÔNG TY] · Made in Vietnam 🇻🇳</div></div></div></div>
+</footer>
+<div class="zf"><div class="zf-tip">Chat Zalo ngay</div><button class="zf-btn">💬</button></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} }); },{threshold:.08,rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger=document.getElementById('navHamburger'),mobile=document.getElementById('navMobile');
+hamburger.addEventListener('click',()=>{ const o=mobile.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){mobile.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+</script>
+</body>
+</html>

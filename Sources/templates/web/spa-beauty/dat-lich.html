@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đặt lịch — [TÊN SPA]</title>
+<meta name="description" content="Đặt lịch dịch vụ spa tại [TÊN SPA] nhanh chóng, dễ dàng.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+.time-slot { padding:9px 14px;border-radius:10px;border:1px solid var(--border);font-size:13px;color:var(--text-2);cursor:pointer;transition:all .15s;text-align:center;font-family:var(--sans);background:var(--surface); }
+.time-slot:hover { border-color:var(--accent);color:var(--accent);background:var(--accent-light); }
+.time-slot.selected { border-color:var(--accent);background:var(--accent);color:#fff; }
+.time-slot.disabled { opacity:.35;pointer-events:none; }
+.step-badge { width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0; }
+.info-card { background:var(--warm);border:1px solid var(--border);border-radius:16px;padding:22px; }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wd-container"><div class="nav-inner">
+    <a class="logo" href="index.html"><em>[TÊN]</em><span> Spa</span></a>
+    <div class="nav-links"><a href="index.html">Trang chủ</a><a href="dich-vu.html">Dịch vụ</a><a href="dat-lich.html" class="active">Đặt lịch</a><a href="lien-he.html">Liên hệ</a></div>
+    <a href="dat-lich.html" class="nav-cta">Đặt lịch ngay</a>
+    <button class="nav-hamburger" id="navHamburger"><span></span><span></span><span></span></button>
+  </div></div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a><a href="dich-vu.html">Dịch vụ</a><a href="dat-lich.html">Đặt lịch</a><a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="nm-cta">Đặt lịch ngay</a>
+</div>
+
+<section class="page-hero">
+  <div class="wd-container">
+    <div class="ph-eyebrow">Đặt lịch</div>
+    <h1 class="ph-title">Chọn ngày & <em>đặt lịch</em></h1>
+    <p class="ph-sub">Đặt lịch nhanh chóng — chúng tôi sẽ xác nhận qua Zalo trong vòng 15 phút.</p>
+  </div>
+</section>
+
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="row g-5">
+      <!-- Form -->
+      <div class="col-lg-7">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:clamp(24px,4vw,40px)">
+
+          <!-- Step 1: Service -->
+          <div class="mb-4 pb-4" style="border-bottom:1px solid var(--border-light)">
+            <div class="d-flex align-items-center gap-2 mb-16" style="margin-bottom:16px">
+              <span class="step-badge">1</span>
+              <span style="font-size:15px;font-weight:600;color:var(--text)">Chọn dịch vụ</span>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Loại dịch vụ</label>
+              <select class="form-select" id="serviceType">
+                <option value="">-- Chọn dịch vụ --</option>
+                <optgroup label="Massage">
+                  <option>Massage Thụy Điển (60 phút) — 350.000đ</option>
+                  <option>Massage Thụy Điển (90 phút) — 500.000đ</option>
+                  <option>Massage Đá Nóng (90 phút) — 550.000đ</option>
+                  <option>Massage Thái (90 phút) — 450.000đ</option>
+                </optgroup>
+                <optgroup label="Chăm sóc da">
+                  <option>Facial Cơ Bản (75 phút) — 450.000đ</option>
+                  <option>Điều Trị Chuyên Sâu (90 phút) — 750.000đ</option>
+                </optgroup>
+                <optgroup label="Body Treatment">
+                  <option>Tẩy Da Chết Toàn Thân — 400.000đ</option>
+                  <option>Body Wrap (90 phút) — 650.000đ</option>
+                  <option>Gói VIP Toàn Thân (3 giờ) — 1.200.000đ</option>
+                </optgroup>
+              </select>
+            </div>
+            <div>
+              <label class="form-label">Chuyên viên (tùy chọn)</label>
+              <select class="form-select">
+                <option value="">Không có yêu cầu đặc biệt</option>
+                <option>Nguyễn Hoa Ly — Senior Therapist</option>
+                <option>Trần Minh Châu — Skincare Specialist</option>
+                <option>Lê Thu Hà — Nail Artist</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Step 2: Date & Time -->
+          <div class="mb-4 pb-4" style="border-bottom:1px solid var(--border-light)">
+            <div class="d-flex align-items-center gap-2 mb-16" style="margin-bottom:16px">
+              <span class="step-badge">2</span>
+              <span style="font-size:15px;font-weight:600;color:var(--text)">Chọn ngày & giờ</span>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Ngày muốn đến</label>
+              <input type="date" class="form-control" id="bookingDate" min="">
+            </div>
+            <div>
+              <label class="form-label">Chọn khung giờ</label>
+              <div class="row g-2 mt-1">
+                <div class="col-4 col-md-3"><div class="time-slot disabled">09:00</div></div>
+                <div class="col-4 col-md-3"><div class="time-slot" onclick="selectTime(this)">09:30</div></div>
+                <div class="col-4 col-md-3"><div class="time-slot" onclick="selectTime(this)">10:00</div></div>
+                <div class="col-4 col-md-3"><div class="time-slot" onclick="selectTime(this)">10:30</div></div>
+                <div class="col-4 col-md-3"><div class="time-slot" onclick="selectTime(this)">11:00</div></div>
+                <div class="col-4 col-md-3"><div class="time-slot disabled">11:30</div></div>
+                <div class="col-4 col-md-3"><div class="time-slot" onclick="selectTime(this)">13:30</div></div>
+                <div class="col-4 col-md-3"><div class="time-slot" onclick="selectTime(this)">14:00</div></div>
+                <div class="col-4 col-md-3"><div class="time-slot" onclick="selectTime(this)">14:30</div></div>
+                <div class="col-4 col-md-3"><div class="time-slot disabled">15:00</div></div>
+                <div class="col-4 col-md-3"><div class="time-slot" onclick="selectTime(this)">15:30</div></div>
+                <div class="col-4 col-md-3"><div class="time-slot" onclick="selectTime(this)">16:00</div></div>
+                <div class="col-4 col-md-3"><div class="time-slot" onclick="selectTime(this)">16:30</div></div>
+                <div class="col-4 col-md-3"><div class="time-slot" onclick="selectTime(this)">17:00</div></div>
+                <div class="col-4 col-md-3"><div class="time-slot" onclick="selectTime(this)">17:30</div></div>
+                <div class="col-4 col-md-3"><div class="time-slot" onclick="selectTime(this)">18:00</div></div>
+              </div>
+              <p style="font-size:12px;color:var(--text-3);margin-top:8px;font-weight:300">⬜ Có thể đặt &nbsp; ■ Đã đặt</p>
+            </div>
+          </div>
+
+          <!-- Step 3: Contact -->
+          <div class="mb-4">
+            <div class="d-flex align-items-center gap-2 mb-16" style="margin-bottom:16px">
+              <span class="step-badge">3</span>
+              <span style="font-size:15px;font-weight:600;color:var(--text)">Thông tin liên hệ</span>
+            </div>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Họ và tên *</label>
+                <input type="text" class="form-control" placeholder="Nguyễn Thị Lan" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Số điện thoại / Zalo *</label>
+                <input type="tel" class="form-control" placeholder="0901 234 567" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Ghi chú (tùy chọn)</label>
+                <textarea class="form-control" rows="3" placeholder="Dị ứng, yêu cầu đặc biệt, tình trạng sức khỏe cần lưu ý..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-accent w-100" style="padding:14px;font-size:15px" onclick="submitBooking()">
+            Xác nhận đặt lịch →
+          </button>
+          <p style="font-size:12px;color:var(--text-3);text-align:center;margin-top:12px;font-weight:300">Chúng tôi sẽ xác nhận qua Zalo trong 15 phút. Miễn phí hủy trước 2 giờ.</p>
+        </div>
+      </div>
+
+      <!-- Info sidebar -->
+      <div class="col-lg-5">
+        <div class="info-card mb-3 reveal">
+          <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:12px">📍 Địa chỉ & Giờ mở cửa</div>
+          <div style="font-size:14px;color:var(--text-2);font-weight:300;line-height:1.8">
+            <div><strong style="color:var(--text);font-weight:500">Địa chỉ:</strong> [Số nhà, Đường, Quận, TP]</div>
+            <div><strong style="color:var(--text);font-weight:500">Giờ mở cửa:</strong> 9:00 – 20:00 (Hàng ngày, kể cả CN)</div>
+            <div><strong style="color:var(--text);font-weight:500">Điện thoại:</strong> 0901 234 567</div>
+            <div><strong style="color:var(--text);font-weight:500">Zalo:</strong> 0901 234 567</div>
+          </div>
+        </div>
+
+        <div class="info-card mb-3 reveal reveal-d1">
+          <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:12px">✨ Ưu đãi đặc biệt</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="background:var(--surface);border-radius:10px;padding:12px;border:1px solid var(--border)">
+              <div style="font-size:13px;font-weight:500;color:var(--accent)">Lần đầu tiên</div>
+              <div style="font-size:13px;color:var(--text-2);font-weight:300">Giảm 20% tất cả dịch vụ cho khách mới</div>
+            </div>
+            <div style="background:var(--surface);border-radius:10px;padding:12px;border:1px solid var(--border)">
+              <div style="font-size:13px;font-weight:500;color:var(--accent)">Combo 5 buổi</div>
+              <div style="font-size:13px;color:var(--text-2);font-weight:300">Thanh toán trước 5 buổi, tặng 1 buổi miễn phí</div>
+            </div>
+            <div style="background:var(--surface);border-radius:10px;padding:12px;border:1px solid var(--border)">
+              <div style="font-size:13px;font-weight:500;color:var(--accent)">Sinh nhật</div>
+              <div style="font-size:13px;color:var(--text-2);font-weight:300">Miễn phí 1 dịch vụ massage 60 phút vào tháng sinh nhật</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card reveal reveal-d2">
+          <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:12px">💬 Hỗ trợ nhanh</div>
+          <p style="font-size:13px;color:var(--text-2);font-weight:300;line-height:1.7;margin-bottom:14px">Có câu hỏi? Nhắn Zalo để được tư vấn ngay — chúng tôi thường trả lời trong 5 phút.</p>
+          <a href="#" class="btn-accent" style="display:block;text-align:center;padding:11px">💬 Chat Zalo ngay</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wd-container"><div class="row g-4 py-5">
+    <div class="col-md-4 reveal"><div class="ft-logo"><em>[TÊN]</em><span> Spa</span></div><p class="ft-desc">Nơi bạn được chăm sóc, thư giãn và tìm lại chính mình.</p><div class="ft-socials"><a href="#" class="ft-soc">fb</a><a href="#" class="ft-soc">ig</a><a href="#" class="ft-soc">zl</a></div></div>
+    <div class="col reveal reveal-d1"><div class="ft-col-title">Dịch vụ</div><div class="ft-links"><a href="dich-vu.html">Massage</a><a href="dich-vu.html">Chăm sóc da</a><a href="dich-vu.html">Body treatment</a></div></div>
+    <div class="col reveal reveal-d2"><div class="ft-col-title">Thông tin</div><div class="ft-links"><a href="dat-lich.html">Đặt lịch</a><a href="lien-he.html">Liên hệ</a></div></div>
+    <div class="col reveal reveal-d3"><div class="ft-col-title">Liên hệ</div><div class="ft-links"><a href="tel:0901234567">📱 0901 234 567</a><a href="#">📍 [Địa chỉ spa]</a><a href="#">🕐 9:00 – 20:00</a></div></div>
+  </div></div>
+  <div class="ft-bottom"><div class="wd-container"><div class="d-flex justify-content-between align-items-center py-3"><div class="ft-copy">© 2026 [TÊN SPA]</div></div></div></div>
+</footer>
+<div class="zf"><div class="zf-tip">Đặt lịch qua Zalo</div><button class="zf-btn">💬</button></div>
+
+<div id="successModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);z-index:1000;align-items:center;justify-content:center">
+  <div style="background:var(--surface);border-radius:20px;padding:36px;max-width:420px;width:90%;text-align:center">
+    <div style="font-size:48px;margin-bottom:14px">✅</div>
+    <h3 style="font-size:20px;font-weight:600;color:var(--text);margin-bottom:8px">Đặt lịch thành công!</h3>
+    <p style="font-size:14px;color:var(--text-2);font-weight:300;line-height:1.7;margin-bottom:20px">Chúng tôi sẽ xác nhận qua Zalo trong vòng 15 phút. Cảm ơn bạn đã tin tưởng [TÊN SPA].</p>
+    <button class="btn-accent w-100" onclick="document.getElementById('successModal').style.display='none'">Đóng</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Set min date to today
+const dateInput = document.getElementById('bookingDate');
+const today = new Date().toISOString().split('T')[0];
+dateInput.min = today;
+dateInput.value = today;
+
+function selectTime(el) {
+  document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function submitBooking() {
+  const service = document.getElementById('serviceType').value;
+  const date = document.getElementById('bookingDate').value;
+  const timeSelected = document.querySelector('.time-slot.selected');
+  if (!service) { alert('Vui lòng chọn dịch vụ.'); return; }
+  if (!timeSelected) { alert('Vui lòng chọn khung giờ.'); return; }
+  document.getElementById('successModal').style.display = 'flex';
+}
+
+const ro = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} }); },{threshold:.08,rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger=document.getElementById('navHamburger'),mobile=document.getElementById('navMobile');
+hamburger.addEventListener('click',()=>{ const o=mobile.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){mobile.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+</script>
+</body>
+</html>

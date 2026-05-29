@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đăng nhập — Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+:root { --accent:#1a6b52; --accent-h:#155a44; --accent-light:#e8f4ef; --border:#e8e5df; --text:#1a1917; --text-2:#6b6760; --text-3:#a09d97; --sans:'DM Sans',sans-serif; }
+*, *::before, *::after { box-sizing:border-box; }
+body { margin:0; font-family:var(--sans); background:linear-gradient(135deg,#0e1c15 0%,#141210 60%,#0c0b09 100%); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px; -webkit-font-smoothing:antialiased; }
+.login-card { background:#fff; border-radius:20px; padding:clamp(28px,5vw,44px); width:100%; max-width:400px; box-shadow:0 24px 80px rgba(0,0,0,.3); }
+.lc-logo { font-size:18px; font-weight:600; color:var(--text); letter-spacing:-.4px; margin-bottom:6px; }
+.lc-logo span { color:var(--accent); }
+.lc-sub { font-size:13px; color:var(--text-3); margin-bottom:28px; font-weight:300; }
+.form-label { font-size:12px; font-weight:500; color:var(--text-2); display:block; margin-bottom:5px; }
+.form-control { font-family:var(--sans); font-size:14px; font-weight:300; color:var(--text); border:1px solid var(--border); border-radius:8px; padding:10px 12px; width:100%; outline:none; transition:border-color .15s,box-shadow .15s; }
+.form-control:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(26,107,82,.08); }
+.form-group { margin-bottom:16px; }
+.pw-wrap { position:relative; }
+.pw-wrap .form-control { padding-right:40px; }
+.pw-toggle { position:absolute; right:12px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; font-size:15px; color:var(--text-3); }
+.btn-login { width:100%; background:var(--accent); color:#fff; border:none; border-radius:9px; padding:13px; font-size:14px; font-weight:500; cursor:pointer; font-family:var(--sans); transition:all .2s; margin-top:4px; }
+.btn-login:hover { background:var(--accent-h); transform:translateY(-1px); }
+.forgot { font-size:12px; color:var(--text-3); text-align:center; margin-top:16px; }
+.forgot a { color:var(--accent); text-decoration:none; }
+.forgot a:hover { text-decoration:underline; }
+.remember { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-2); margin-bottom:20px; }
+.remember input[type=checkbox] { accent-color:var(--accent); width:14px; height:14px; cursor:pointer; }
+.err-msg { background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:10px 12px; font-size:13px; color:#dc2626; margin-bottom:16px; display:none; }
+</style>
+</head>
+<body>
+<div class="login-card">
+  <div class="lc-logo">[TÊN]<span>Admin</span></div>
+  <div class="lc-sub">Đăng nhập để quản lý hệ thống</div>
+  <div class="err-msg" id="errMsg">Email hoặc mật khẩu không đúng. Vui lòng thử lại.</div>
+  <div class="form-group">
+    <label class="form-label">Email</label>
+    <input type="email" class="form-control" id="email" placeholder="admin@example.com" autocomplete="email">
+  </div>
+  <div class="form-group">
+    <label class="form-label">Mật khẩu</label>
+    <div class="pw-wrap">
+      <input type="password" class="form-control" id="password" placeholder="••••••••" autocomplete="current-password">
+      <button class="pw-toggle" onclick="togglePw()" type="button" id="pwToggle">👁</button>
+    </div>
+  </div>
+  <div class="remember">
+    <input type="checkbox" id="rememberMe"> <label for="rememberMe">Ghi nhớ đăng nhập</label>
+  </div>
+  <button class="btn-login" onclick="doLogin()">Đăng nhập →</button>
+  <div class="forgot"><a href="#">Quên mật khẩu?</a></div>
+</div>
+
+<script>
+function doLogin() {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  if (!email || !password) { document.getElementById('errMsg').style.display = 'block'; return; }
+  // Demo: redirect to dashboard
+  window.location.href = 'dashboard.html';
+}
+function togglePw() {
+  const inp = document.getElementById('password');
+  const btn = document.getElementById('pwToggle');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+  btn.textContent = inp.type === 'password' ? '👁' : '🙈';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+</script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dịch vụ — [TÊN CÔNG TY]</title>
+<meta name="description" content="Khám phá đầy đủ dịch vụ thiết kế web, ứng dụng và marketing số của [TÊN CÔNG TY].">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+.process-step { display:flex;gap:20px;padding:24px 0;border-bottom:1px solid var(--border-light); }
+.process-step:last-child { border-bottom:none; }
+.ps-num { width:36px;height:36px;border-radius:50%;background:var(--accent-light);border:1.5px solid var(--accent-mid);font-size:12px;font-weight:600;color:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px; }
+.ps-title { font-size:15px;font-weight:500;color:var(--text);margin-bottom:5px; }
+.ps-desc { font-size:13.5px;font-weight:300;color:var(--text-2);line-height:1.65; }
+.price-card { background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;transition:transform .25s,box-shadow .25s;height:100%; }
+.price-card:hover { transform:translateY(-5px);box-shadow:0 14px 44px rgba(0,0,0,.08); }
+.price-card.hot { border-color:var(--accent-mid);background:linear-gradient(160deg,var(--accent-light) 0%,#fff 60%); }
+.pc-hot-tag { position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:11px;font-weight:600;padding:4px 14px;border-radius:20px;white-space:nowrap; }
+.pc-tier { font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px; }
+.price-card.hot .pc-tier { color:var(--accent); }
+.pc-price { font-size:clamp(24px,3vw,34px);font-weight:600;color:var(--text);letter-spacing:-.8px;margin-bottom:6px;line-height:1; }
+.pc-price sub { font-size:13px;font-weight:400;color:var(--text-2); }
+.pc-desc { font-size:13px;font-weight:300;color:var(--text-2);margin-bottom:18px;line-height:1.6; }
+.pc-list { list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;margin-bottom:22px; }
+.pc-list li { font-size:13px;color:var(--text-2);display:flex;gap:8px;align-items:flex-start; }
+.pc-list li::before { content:'✓';color:var(--accent);font-weight:600;font-size:11.5px;flex-shrink:0;margin-top:1px; }
+.pc-btn { width:100%;padding:11px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:all .2s;border:1px solid var(--border);background:transparent;color:var(--text);font-family:var(--sans); }
+.pc-btn:hover { background:var(--warm); }
+.price-card.hot .pc-btn { background:var(--accent);color:#fff;border-color:var(--accent); }
+.price-card.hot .pc-btn:hover { background:var(--accent-h); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">[TÊN]<span>CÔNG TY</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="dich-vu.html" class="active">Dịch vụ</a>
+        <a href="du-an.html">Dự án</a>
+        <a href="ve-chung-toi.html">Về chúng tôi</a>
+      </div>
+      <a href="lien-he.html" class="nav-cta">Liên hệ ngay</a>
+      <button class="nav-hamburger" id="navHamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ</a>
+  <a href="du-an.html">Dự án</a>
+  <a href="ve-chung-toi.html">Về chúng tôi</a>
+  <a href="lien-he.html" class="nm-cta">Liên hệ ngay</a>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="wd-container">
+    <div class="ph-eyebrow">Dịch vụ</div>
+    <h1 class="ph-title">Giải pháp số <em>toàn diện</em></h1>
+    <p class="ph-sub">Từ ý tưởng đến sản phẩm hoàn chỉnh — chúng tôi đồng hành cùng bạn ở mọi giai đoạn.</p>
+  </div>
+</section>
+
+<!-- MAIN SERVICES -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="row g-4 mb-5">
+      <div class="col-md-6">
+        <div class="reveal" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;height:100%">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80&auto=format&fit=crop" alt="Website" style="width:100%;height:220px;object-fit:cover;display:block" loading="lazy">
+          <div style="padding:28px">
+            <div class="svc-icon" style="margin-bottom:14px">🖥️</div>
+            <h3 class="svc-title">Thiết kế & Phát triển Website</h3>
+            <p class="svc-desc" style="margin-bottom:16px">Website responsive, tốc độ cao, SEO chuẩn. Từ landing page đơn giản đến portal phức tạp, chúng tôi xây dựng giải pháp web phù hợp ngân sách và mục tiêu kinh doanh.</p>
+            <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:7px;margin-bottom:20px">
+              <li style="font-size:13px;color:var(--text-2);display:flex;gap:8px"><span style="color:var(--accent);font-weight:600">✓</span>Landing page, multi-page website</li>
+              <li style="font-size:13px;color:var(--text-2);display:flex;gap:8px"><span style="color:var(--accent);font-weight:600">✓</span>Tích hợp CMS quản lý nội dung</li>
+              <li style="font-size:13px;color:var(--text-2);display:flex;gap:8px"><span style="color:var(--accent);font-weight:600">✓</span>PageSpeed 90+, Core Web Vitals đạt chuẩn</li>
+            </ul>
+            <a href="lien-he.html" class="btn-accent" style="font-size:13px;padding:10px 20px">Tư vấn miễn phí →</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="reveal reveal-d1" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;height:100%">
+          <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80&auto=format&fit=crop" alt="Mobile App" style="width:100%;height:220px;object-fit:cover;display:block" loading="lazy">
+          <div style="padding:28px">
+            <div class="svc-icon" style="margin-bottom:14px">📱</div>
+            <h3 class="svc-title">Phát triển Ứng dụng Di động</h3>
+            <p class="svc-desc" style="margin-bottom:16px">App iOS và Android native hoặc cross-platform React Native. UI/UX thiết kế theo chuẩn Material và Human Interface Guidelines của Google và Apple.</p>
+            <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:7px;margin-bottom:20px">
+              <li style="font-size:13px;color:var(--text-2);display:flex;gap:8px"><span style="color:var(--accent);font-weight:600">✓</span>iOS, Android, cross-platform</li>
+              <li style="font-size:13px;color:var(--text-2);display:flex;gap:8px"><span style="color:var(--accent);font-weight:600">✓</span>Tích hợp API, payment gateway</li>
+              <li style="font-size:13px;color:var(--text-2);display:flex;gap:8px"><span style="color:var(--accent);font-weight:600">✓</span>Publish lên App Store & CH Play</li>
+            </ul>
+            <a href="lien-he.html" class="btn-accent" style="font-size:13px;padding:10px 20px">Tư vấn miễn phí →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-md-4"><div class="svc-card reveal">
+        <div class="svc-icon">📈</div>
+        <div class="svc-title">Marketing Số</div>
+        <div class="svc-desc">SEO, Google Ads, Facebook/TikTok Ads, Email Marketing tối ưu chi phí và ROI. Báo cáo minh bạch hàng tháng.</div>
+      </div></div>
+      <div class="col-md-4"><div class="svc-card reveal reveal-d1">
+        <div class="svc-icon">🎨</div>
+        <div class="svc-title">Thiết kế Thương hiệu</div>
+        <div class="svc-desc">Logo, brand identity, brand guideline nhất quán. Từ concept đến bộ ấn phẩm hoàn chỉnh.</div>
+      </div></div>
+      <div class="col-md-4"><div class="svc-card reveal reveal-d2">
+        <div class="svc-icon">⚙️</div>
+        <div class="svc-title">Hệ thống Nội bộ</div>
+        <div class="svc-desc">CRM, ERP, phần mềm quản lý kho, nhân sự, bán hàng tuỳ chỉnh theo nghiệp vụ doanh nghiệp.</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="sec-pad" style="background:var(--surface)">
+  <div class="wd-container">
+    <div class="row g-5 align-items-center">
+      <div class="col-md-5 reveal">
+        <div class="eyebrow">Quy trình</div>
+        <h2 class="sec-title">Làm việc <em>minh bạch</em><br>từ đầu đến cuối</h2>
+        <p class="sec-sub mb-0">Mỗi dự án đều có timeline rõ ràng, milestone được xác nhận, cập nhật tiến độ hàng ngày qua Zalo.</p>
+      </div>
+      <div class="col-md-7 reveal reveal-d1">
+        <div class="process-step"><div class="ps-num">01</div><div><div class="ps-title">Tư vấn & Phân tích yêu cầu</div><div class="ps-desc">Gặp gỡ, lắng nghe, phân tích mục tiêu kinh doanh và xác định scope dự án chi tiết.</div></div></div>
+        <div class="process-step"><div class="ps-num">02</div><div><div class="ps-title">Thiết kế & Duyệt giao diện</div><div class="ps-desc">Wireframe → Mockup → Prototype. Duyệt 2 vòng cho đến khi bạn hoàn toàn hài lòng.</div></div></div>
+        <div class="process-step"><div class="ps-num">03</div><div><div class="ps-title">Phát triển & Kiểm thử</div><div class="ps-desc">Lập trình, tích hợp API, test đa thiết bị, performance testing, security review.</div></div></div>
+        <div class="process-step"><div class="ps-num">04</div><div><div class="ps-title">Bàn giao & Hỗ trợ</div><div class="ps-desc">Deploy, training sử dụng, bàn giao source code. Hỗ trợ 30 ngày sau khi live.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Bảng giá</div>
+      <h2 class="sec-title">Phù hợp với <em>mọi ngân sách</em></h2>
+      <p class="sec-sub">Giá cố định, không phát sinh. Liên hệ để nhận báo giá dự án cụ thể.</p>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-4"><div class="price-card reveal reveal-d1" style="position:relative">
+        <div class="pc-tier">Starter</div>
+        <div class="pc-price">15.000.000 <sub>đ</sub></div>
+        <div class="pc-desc">Website landing page đơn giản, responsive, deploy lên hosting.</div>
+        <ul class="pc-list"><li>Tối đa 5 trang</li><li>Thiết kế theo mẫu có sẵn</li><li>Responsive mobile</li><li>Hỗ trợ 1 tháng</li></ul>
+        <button class="pc-btn" onclick="location.href='lien-he.html'">Yêu cầu báo giá</button>
+      </div></div>
+      <div class="col-md-4"><div class="price-card hot reveal reveal-d2" style="position:relative">
+        <div class="pc-hot-tag">✦ Phổ biến nhất</div>
+        <div class="pc-tier">Professional</div>
+        <div class="pc-price">35.000.000 <sub>đ</sub></div>
+        <div class="pc-desc">Website đầy đủ tính năng, CMS admin, SEO cơ bản, 1 năm hosting.</div>
+        <ul class="pc-list"><li>Không giới hạn trang</li><li>Thiết kế riêng theo brand</li><li>CMS quản lý nội dung</li><li>SEO on-page cơ bản</li><li>Hỗ trợ 3 tháng</li></ul>
+        <button class="pc-btn" onclick="location.href='lien-he.html'">Yêu cầu báo giá</button>
+      </div></div>
+      <div class="col-md-4"><div class="price-card reveal reveal-d3" style="position:relative">
+        <div class="pc-tier">Enterprise</div>
+        <div class="pc-price">Liên hệ</div>
+        <div class="pc-desc">Hệ thống phức tạp, tích hợp API, custom logic theo yêu cầu doanh nghiệp.</div>
+        <ul class="pc-list"><li>Phân tích chuyên sâu</li><li>Kiến trúc hệ thống riêng</li><li>Tích hợp bên thứ 3</li><li>Bàn giao source code</li><li>Bảo trì dài hạn</li></ul>
+        <button class="pc-btn" onclick="location.href='lien-he.html'">Liên hệ tư vấn</button>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="wd-container reveal">
+    <h2 class="cta-title">Dự án của bạn bắt đầu từ đây</h2>
+    <p class="cta-sub">Tư vấn miễn phí · Báo giá trong 24 giờ · Không ràng buộc</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap position-relative">
+      <a href="lien-he.html" class="btn-white">Nhận báo giá ngay →</a>
+      <a href="du-an.html" class="btn-outline-white">Xem dự án đã làm</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo">[TÊN]<span>CÔNG TY</span></div>
+        <p class="ft-desc">Đối tác thiết kế web và dịch vụ số đáng tin cậy cho doanh nghiệp Việt Nam.</p>
+        <div class="ft-socials"><a href="#" class="ft-soc">fb</a><a href="#" class="ft-soc">zl</a><a href="#" class="ft-soc">in</a><a href="#" class="ft-soc">yt</a></div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Dịch vụ</div>
+        <div class="ft-links"><a href="dich-vu.html">Thiết kế Website</a><a href="dich-vu.html">Ứng dụng Di động</a><a href="dich-vu.html">Marketing Số</a><a href="dich-vu.html">Thương hiệu</a></div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Công ty</div>
+        <div class="ft-links"><a href="ve-chung-toi.html">Về chúng tôi</a><a href="du-an.html">Dự án</a><a href="lien-he.html">Liên hệ</a></div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links"><a href="tel:0901234567">📱 0901 234 567</a><a href="mailto:hello@company.vn">✉️ hello@company.vn</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom"><div class="wd-container"><div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><div class="ft-copy">© 2026 [TÊN CÔNG TY] · Made in Vietnam 🇻🇳</div></div></div></div>
+</footer>
+<div class="zf"><div class="zf-tip">Chat Zalo ngay</div><button class="zf-btn">💬</button></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} }); }, {threshold:.08,rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger = document.getElementById('navHamburger'), mobile = document.getElementById('navMobile');
+hamburger.addEventListener('click', () => { const o = mobile.classList.toggle('open'); hamburger.classList.toggle('open',o); document.body.style.overflow = o?'hidden':''; });
+document.addEventListener('keydown', e => { if(e.key==='Escape'){mobile.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+</script>
+</body>
+</html>
