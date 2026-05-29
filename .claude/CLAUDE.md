@@ -278,23 +278,51 @@ Template và website sẽ tập trung vào các ngành có nhu cầu cao tại V
 
 ---
 
-## 📁 CẤU TRÚC DỰ ÁN (dự kiến)
+## 📁 CẤU TRÚC DỰ ÁN
 
 ```
-project/
-├── claude.md                  ← File này
-├── templates/
-│   ├── web/                   ← Web templates HTML/CSS/Bootstrap
-│   └── admin/                 ← Admin templates
-├── products/
-│   ├── goi-b-fixed/           ← Website chuẩn Gói B
-│   └── goi-c-custom/          ← Base code Gói C
-├── docs/
-│   ├── huong-dan-bao-gia.md
-│   ├── scope-checklist.md     ← Checklist tránh scope creep
-│   └── huong-dan-ban-giao.md
-└── marketing/
-    └── trang-dich-vu.md       ← Nội dung trang giới thiệu dịch vụ
+webdrop/                            ← GitHub repo
+├── .claude/
+│   ├── CLAUDE.md                   ← File này
+│   └── rules/                      ← Coding rules (design-system, db, tech-stack...)
+├── Sources/                        ← Toàn bộ source code sản phẩm
+│   ├── system/                     ← Next.js (System Admin + trang bán hàng webdrop.vn)
+│   │   ├── prisma/
+│   │   │   └── schema.prisma       ← Code-first DB schema (PostgreSQL)
+│   │   ├── app/
+│   │   │   ├── (site)/             ← Trang bán hàng public (route group → URL: /)
+│   │   │   │   ├── layout.tsx
+│   │   │   │   └── page.tsx        ← resolves to /
+│   │   │   ├── (admin)/            ← System Admin (route group → URL: /admin)
+│   │   │   │   ├── layout.tsx
+│   │   │   │   └── admin/
+│   │   │   │       └── page.tsx    ← resolves to /admin
+│   │   │   └── layout.tsx          ← Root layout (DM Sans font, metadata)
+│   │   ├── src/
+│   │   │   └── components/         ← Shared UI components
+│   │   ├── public/                 ← Static assets
+│   │   ├── .env.example            ← Template biến môi trường
+│   │   ├── next.config.ts
+│   │   ├── tsconfig.json
+│   │   └── package.json
+│   ├── products/
+│   │   └── goi-b/                  ← Base code Gói B (React + PHP + SQLite)
+│   │       ├── frontend/           ← React SPA (Vite + React Router)
+│   │       │   ├── src/
+│   │       │   │   ├── App.tsx
+│   │       │   │   └── main.tsx
+│   │       │   └── package.json
+│   │       └── backend/            ← PHP API
+│   │           ├── config.php      ← Cấu hình DB, app, upload, SMTP
+│   │           ├── index.php       ← Entry point, routing
+│   │           ├── schema.sql      ← SQLite schema + seed mặc định
+│   │           └── .htaccess       ← Chặn truy cập .db và config.php
+│   └── templates/
+│       ├── web/                    ← Web templates HTML/CSS/Bootstrap
+│       │   └── agency-web/         ← Template agency (lien-he.html, assets/)
+│       └── admin/                  ← Admin templates
+├── documents/                      ← Mockup/prototype UI (index, checkout, admin, detail)
+└── .gitignore
 ```
 
 ---

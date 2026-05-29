@@ -1,0 +1,489 @@
+// This is your Prisma schema file
+// System DB — PostgreSQL
+// Docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================
+// CORE SCHEMA
+// ============================================================
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  role      UserRole @default(user)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  posts           Post[]
+  pages           Page[]
+  media           Media[]
+  projectNotes    ProjectNote[]
+  projectFiles    ProjectFile[]
+  activityLogs    ActivityLog[]
+
+  @@map("users")
+}
+
+enum UserRole {
+  superadmin
+  user
+}
+
+model Post {
+  id              Int        @id @default(autoincrement())
+  title           String
+  slug            String     @unique
+  content         String?
+  excerpt         String?
+  thumbnail       String?
+  categoryId      Int?       @map("category_id")
+  status          PostStatus @default(draft)
+  featured        Boolean    @default(false)
+  metaTitle       String?    @map("meta_title")
+  metaDescription String?    @map("meta_description")
+  createdBy       Int?       @map("created_by")
+  createdAt       DateTime   @default(now()) @map("created_at")
+  updatedAt       DateTime   @updatedAt @map("updated_at")
+
+  category  Category? @relation(fields: [categoryId], references: [id])
+  author    User?     @relation(fields: [createdBy], references: [id])
+
+  @@map("posts")
+}
+
+enum PostStatus {
+  draft
+  published
+}
+
+model Category {
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String   @unique
+  description String?
+  thumbnail   String?
+  parentId    Int?     @map("parent_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  parent   Category?  @relation("CategoryChildren", fields: [parentId], references: [id])
+  children Category[] @relation("CategoryChildren")
+  posts    Post[]
+
+  @@map("categories")
+}
+
+model Page {
+  id              Int        @id @default(autoincrement())
+  title           String
+  slug            String     @unique
+  content         String?
+  template        String?
+  metaTitle       String?    @map("meta_title")
+  metaDescription String?    @map("meta_description")
+  status          PostStatus @default(draft)
+  createdAt       DateTime   @default(now()) @map("created_at")
+  updatedAt       DateTime   @updatedAt @map("updated_at")
+  createdBy       Int?       @map("created_by")
+
+  author User? @relation(fields: [createdBy], references: [id])
+
+  @@map("pages")
+}
+
+model Media {
+  id         Int      @id @default(autoincrement())
+  filename   String
+  filepath   String
+  filesize   Int
+  filetype   String
+  altText    String?  @map("alt_text")
+  uploadedBy Int?     @map("uploaded_by")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  uploader User? @relation(fields: [uploadedBy], references: [id])
+
+  @@map("media")
+}
+
+model Banner {
+  id        Int          @id @default(autoincrement())
+  title     String
+  image     String
+  link      String?
+  target    BannerTarget @default(_self)
+  position  String
+  sortOrder Int          @default(0) @map("sort_order")
+  status    PostStatus   @default(draft)
+  createdAt DateTime     @default(now()) @map("created_at")
+
+  @@map("banners")
+}
+
+enum BannerTarget {
+  _blank
+  _self
+}
+
+model Contact {
+  id        Int           @id @default(autoincrement())
+  name      String
+  email     String?
+  phone     String?
+  subject   String?
+  message   String
+  status    ContactStatus @default(new)
+  createdAt DateTime      @default(now()) @map("created_at")
+
+  @@map("contacts")
+}
+
+enum ContactStatus {
+  new
+  read
+  replied
+}
+
+model Setting {
+  key   String @id
+  value String?
+  group String
+
+  @@map("settings")
+}
+
+// ============================================================
+// EXTENSION: AGENCY (System DB — webdrop.vn)
+// ============================================================
+
+model Industry {
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String   @unique
+  description String?
+  status      PostStatus @default(published)
+  sortOrder   Int      @default(0) @map("sort_order")
+
+  templates          Template[]
+  packageIndustries  PackageIndustry[]
+
+  @@map("industries")
+}
+
+model ServicePackage {
+  id          Int        @id @default(autoincrement())
+  name        String
+  code        String     @unique
+  description String?
+  priceFrom   Decimal?   @map("price_from")
+  priceTo     Decimal?   @map("price_to")
+  status      PostStatus @default(published)
+  sortOrder   Int        @default(0) @map("sort_order")
+
+  packageIndustries PackageIndustry[]
+  orders            Order[]
+
+  @@map("service_packages")
+}
+
+model PackageIndustry {
+  packageId  Int @map("package_id")
+  industryId Int @map("industry_id")
+
+  package  ServicePackage @relation(fields: [packageId], references: [id])
+  industry Industry       @relation(fields: [industryId], references: [id])
+
+  @@id([packageId, industryId])
+  @@map("package_industries")
+}
+
+model Template {
+  id          Int          @id @default(autoincrement())
+  name        String
+  slug        String       @unique
+  description String?
+  thumbnail   String?
+  demoUrl     String?      @map("demo_url")
+  downloadUrl String?      @map("download_url")
+  price       Decimal
+  category    TemplateCategory
+  industryId  Int?         @map("industry_id")
+  salesCount  Int          @default(0) @map("sales_count")
+  status      PostStatus   @default(draft)
+  createdAt   DateTime     @default(now()) @map("created_at")
+
+  industry Industry? @relation(fields: [industryId], references: [id])
+
+  @@map("templates")
+}
+
+enum TemplateCategory {
+  web
+  admin
+}
+
+model Customer {
+  id        Int            @id @default(autoincrement())
+  name      String
+  email     String?
+  phone     String?
+  company   String?
+  address   String?
+  note      String?
+  status    CustomerStatus @default(active)
+  createdAt DateTime       @default(now()) @map("created_at")
+
+  contacts  CustomerContact[]
+  orders    Order[]
+  projects  Project[]
+
+  @@map("customers")
+}
+
+enum CustomerStatus {
+  active
+  inactive
+}
+
+model CustomerContact {
+  id         Int     @id @default(autoincrement())
+  customerId Int     @map("customer_id")
+  type       String
+  value      String
+  note       String?
+
+  customer Customer @relation(fields: [customerId], references: [id])
+
+  @@map("customer_contacts")
+}
+
+model Order {
+  id          Int         @id @default(autoincrement())
+  code        String      @unique
+  customerId  Int         @map("customer_id")
+  packageId   Int?        @map("package_id")
+  type        OrderType
+  title       String
+  price       Decimal
+  discount    Decimal     @default(0)
+  total       Decimal
+  status      OrderStatus @default(new)
+  note        String?
+  startedAt   DateTime?   @map("started_at")
+  deadlineAt  DateTime?   @map("deadline_at")
+  completedAt DateTime?   @map("completed_at")
+  createdAt   DateTime    @default(now()) @map("created_at")
+
+  customer  Customer        @relation(fields: [customerId], references: [id])
+  package   ServicePackage? @relation(fields: [packageId], references: [id])
+  items     OrderItem[]
+  contracts Contract[]
+  payments  Payment[]
+  project   Project?
+  revenues  Revenue[]
+
+  @@map("orders")
+}
+
+enum OrderType {
+  template
+  website
+}
+
+enum OrderStatus {
+  new
+  confirmed
+  in_progress
+  delivered
+  completed
+  cancelled
+}
+
+model OrderItem {
+  id        Int      @id @default(autoincrement())
+  orderId   Int      @map("order_id")
+  itemType  String   @map("item_type")
+  itemName  String   @map("item_name")
+  qty       Int      @default(1)
+  unitPrice Decimal  @map("unit_price")
+  subtotal  Decimal
+  note      String?
+
+  order Order @relation(fields: [orderId], references: [id])
+
+  @@map("order_items")
+}
+
+model Contract {
+  id       Int       @id @default(autoincrement())
+  orderId  Int       @map("order_id")
+  fileUrl  String?   @map("file_url")
+  signedAt DateTime? @map("signed_at")
+  note     String?
+
+  order Order @relation(fields: [orderId], references: [id])
+
+  @@map("contracts")
+}
+
+model Payment {
+  id        Int           @id @default(autoincrement())
+  orderId   Int           @map("order_id")
+  amount    Decimal
+  method    PaymentMethod
+  status    PaymentStatus @default(pending)
+  paidAt    DateTime?     @map("paid_at")
+  note      String?
+  receiptUrl String?      @map("receipt_url")
+
+  order    Order     @relation(fields: [orderId], references: [id])
+  revenues Revenue[]
+
+  @@map("payments")
+}
+
+enum PaymentMethod {
+  cash
+  bank
+  momo
+  vnpay
+}
+
+enum PaymentStatus {
+  pending
+  paid
+  refunded
+}
+
+model Project {
+  id          Int           @id @default(autoincrement())
+  orderId     Int           @unique @map("order_id")
+  customerId  Int           @map("customer_id")
+  name        String
+  type        ProjectType
+  status      ProjectStatus @default(planning)
+  hostingInfo String?       @map("hosting_info")
+  domain      String?
+  adminUrl    String?       @map("admin_url")
+  note        String?
+  createdAt   DateTime      @default(now()) @map("created_at")
+
+  order      Order               @relation(fields: [orderId], references: [id])
+  customer   Customer            @relation(fields: [customerId], references: [id])
+  milestones ProjectMilestone[]
+  notes      ProjectNote[]
+  files      ProjectFile[]
+
+  @@map("projects")
+}
+
+enum ProjectType {
+  goi_b
+  goi_c
+}
+
+enum ProjectStatus {
+  planning
+  designing
+  developing
+  reviewing
+  delivered
+  done
+}
+
+model ProjectMilestone {
+  id          Int             @id @default(autoincrement())
+  projectId   Int             @map("project_id")
+  title       String
+  description String?
+  status      MilestoneStatus @default(pending)
+  dueAt       DateTime?       @map("due_at")
+  completedAt DateTime?       @map("completed_at")
+
+  project Project @relation(fields: [projectId], references: [id])
+
+  @@map("project_milestones")
+}
+
+enum MilestoneStatus {
+  pending
+  done
+}
+
+model ProjectNote {
+  id        Int      @id @default(autoincrement())
+  projectId Int      @map("project_id")
+  content   String
+  createdBy Int?     @map("created_by")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  project   Project @relation(fields: [projectId], references: [id])
+  createdByUser User? @relation(fields: [createdBy], references: [id])
+
+  @@map("project_notes")
+}
+
+model ProjectFile {
+  id         Int      @id @default(autoincrement())
+  projectId  Int      @map("project_id")
+  filename   String
+  filepath   String
+  type       String
+  uploadedBy Int?     @map("uploaded_by")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  project    Project @relation(fields: [projectId], references: [id])
+  uploadedByUser User? @relation(fields: [uploadedBy], references: [id])
+
+  @@map("project_files")
+}
+
+model Revenue {
+  id        Int      @id @default(autoincrement())
+  orderId   Int?     @map("order_id")
+  paymentId Int?     @map("payment_id")
+  amount    Decimal
+  month     Int
+  year      Int
+  note      String?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  order   Order?   @relation(fields: [orderId], references: [id])
+  payment Payment? @relation(fields: [paymentId], references: [id])
+
+  @@map("revenues")
+}
+
+model Expense {
+  id     Int      @id @default(autoincrement())
+  type   String
+  title  String
+  amount Decimal
+  paidAt DateTime? @map("paid_at")
+  note   String?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("expenses")
+}
+
+model ActivityLog {
+  id          Int      @id @default(autoincrement())
+  adminId     Int?     @map("admin_id")
+  action      String
+  targetType  String?  @map("target_type")
+  targetId    Int?     @map("target_id")
+  description String?
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  admin User? @relation(fields: [adminId], references: [id])
+
+  @@map("activity_logs")
+}

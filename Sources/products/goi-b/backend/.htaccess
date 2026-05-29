@@ -1,0 +1,19 @@
+Options -Indexes
+
+# Chặn truy cập trực tiếp vào file .db
+<Files "*.db">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Chặn truy cập config.php
+<Files "config.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Route tất cả request qua index.php
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^api/(.*)$ index.php [QSA,L]
