@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[TÊN FORUM] — Cộng đồng trực tuyến</title>
+<meta name="description" content="Diễn đàn cộng đồng — nơi chia sẻ kiến thức, thảo luận và kết nối.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">[Forum]<span>.</span></a>
+      <div class="nav-search-bar">
+        <input type="search" placeholder="Tìm kiếm chủ đề, bài viết...">
+      </div>
+      <div class="nav-actions">
+        <a href="#" class="nav-btn nav-btn-ghost">Đăng nhập</a>
+        <a href="#" class="nav-btn nav-btn-accent">Đăng ký</a>
+      </div>
+      <button class="nav-hamburger" id="navHamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<main style="padding:24px 0 60px">
+  <div class="wd-container">
+
+    <!-- Hero banner -->
+    <div style="background:linear-gradient(135deg,var(--dark2) 0%,#1a1410 100%);border-radius:16px;padding:clamp(28px,4vw,48px);margin-bottom:28px;position:relative;overflow:hidden">
+      <div style="position:absolute;inset:0;background-image:radial-gradient(circle at 80% 50%,rgba(26,107,82,.18) 0%,transparent 55%);pointer-events:none"></div>
+      <div class="row align-items-center g-4" style="position:relative;z-index:1">
+        <div class="col-lg-7">
+          <div style="display:inline-flex;align-items:center;gap:7px;font-size:11px;color:#4ade80;font-weight:500;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:12px">
+            <span style="width:6px;height:6px;border-radius:50%;background:#4ade80;animation:blink 2s infinite;display:inline-block"></span>
+            Cộng đồng đang hoạt động
+          </div>
+          <h1 style="font-size:clamp(24px,3.5vw,42px);font-weight:600;color:#fff;line-height:1.1;letter-spacing:-.8px;margin-bottom:12px">[TÊN FORUM] — <em style="color:#4ade80;font-weight:300;font-style:italic">Nơi kết nối</em> cộng đồng</h1>
+          <p style="font-size:14px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.7;max-width:480px;margin-bottom:20px">Cùng nhau thảo luận, chia sẻ kinh nghiệm và giải quyết vấn đề. Cộng đồng thân thiện, không toxic.</p>
+          <div class="d-flex gap-3 flex-wrap">
+            <a href="#" style="font-size:13px;font-weight:500;background:var(--accent);color:#fff;padding:10px 22px;border-radius:8px;text-decoration:none;transition:all .2s" onmouseover="this.style.background='var(--accent-h)'" onmouseout="this.style.background='var(--accent)'">Tạo chủ đề mới +</a>
+            <a href="#" style="font-size:13px;background:transparent;color:rgba(255,255,255,.55);padding:10px 22px;border-radius:8px;border:1px solid rgba(255,255,255,.15);text-decoration:none;transition:all .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.55)'">Quy tắc cộng đồng</a>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="row g-2">
+            <div class="col-6"><div class="stat-card" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)"><div class="stat-num" style="color:#fff">12,840</div><div class="stat-label" style="color:rgba(255,255,255,.3)">Thành viên</div></div></div>
+            <div class="col-6"><div class="stat-card" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)"><div class="stat-num" style="color:#fff">3,250</div><div class="stat-label" style="color:rgba(255,255,255,.3)">Chủ đề</div></div></div>
+            <div class="col-6"><div class="stat-card" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)"><div class="stat-num" style="color:#4ade80">128</div><div class="stat-label" style="color:rgba(255,255,255,.3)">Online hôm nay</div></div></div>
+            <div class="col-6"><div class="stat-card" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)"><div class="stat-num" style="color:#fff">48,900</div><div class="stat-label" style="color:rgba(255,255,255,.3)">Bài viết</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- Main content -->
+      <div class="col-lg-8">
+
+        <!-- Categories -->
+        <div style="margin-bottom:28px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+            <h2 style="font-size:13px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.8px;margin:0">Danh mục</h2>
+            <a href="#" style="font-size:12px;color:var(--accent);text-decoration:none">Xem tất cả →</a>
+          </div>
+          <div class="row g-2">
+            <div class="col-md-6">
+              <a href="#" class="cat-card">
+                <div class="cat-icon">💻</div>
+                <div class="cat-info">
+                  <div class="cat-name">Lập trình & Công nghệ</div>
+                  <div class="cat-desc">Code, framework, tools, tips & tricks</div>
+                </div>
+                <div class="cat-count"><strong>842</strong>chủ đề</div>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a href="#" class="cat-card">
+                <div class="cat-icon">🎨</div>
+                <div class="cat-info">
+                  <div class="cat-name">Design & UI/UX</div>
+                  <div class="cat-desc">Figma, Photoshop, thiết kế web/app</div>
+                </div>
+                <div class="cat-count"><strong>516</strong>chủ đề</div>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a href="#" class="cat-card">
+                <div class="cat-icon">🚀</div>
+                <div class="cat-info">
+                  <div class="cat-name">Startup & Kinh doanh</div>
+                  <div class="cat-desc">Ý tưởng, gọi vốn, marketing</div>
+                </div>
+                <div class="cat-count"><strong>380</strong>chủ đề</div>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a href="#" class="cat-card">
+                <div class="cat-icon">📚</div>
+                <div class="cat-info">
+                  <div class="cat-name">Học tập & Phát triển</div>
+                  <div class="cat-desc">Career, kỹ năng mềm, review sách</div>
+                </div>
+                <div class="cat-count"><strong>295</strong>chủ đề</div>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a href="#" class="cat-card">
+                <div class="cat-icon">🌱</div>
+                <div class="cat-info">
+                  <div class="cat-name">Góc tự do</div>
+                  <div class="cat-desc">Cuộc sống, sở thích, off-topic</div>
+                </div>
+                <div class="cat-count"><strong>412</strong>chủ đề</div>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a href="#" class="cat-card">
+                <div class="cat-icon">🤝</div>
+                <div class="cat-info">
+                  <div class="cat-name">Tuyển dụng & Hợp tác</div>
+                  <div class="cat-desc">Job, freelance, tìm cộng sự</div>
+                </div>
+                <div class="cat-count"><strong>218</strong>chủ đề</div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent threads -->
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+            <h2 style="font-size:13px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.8px;margin:0">Thảo luận mới nhất</h2>
+            <div class="d-flex gap-2">
+              <button style="font-size:12px;padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:var(--accent);color:#fff;cursor:pointer;font-family:var(--sans)">Mới nhất</button>
+              <button style="font-size:12px;padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text-2);cursor:pointer;font-family:var(--sans)">Hot 🔥</button>
+              <button style="font-size:12px;padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text-2);cursor:pointer;font-family:var(--sans)">Chưa trả lời</button>
+            </div>
+          </div>
+
+          <!-- Pinned -->
+          <a href="#" class="thread-row" style="border-color:var(--accent-light);background:var(--accent-light)">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=60&q=80&auto=format&fit=crop&crop=face" class="thread-avatar" alt="">
+            <div class="thread-main">
+              <div class="thread-title">📌 [Đọc trước] Quy tắc cộng đồng và hướng dẫn đăng bài</div>
+              <div class="thread-meta"><span class="thread-cat-tag">Thông báo</span><span>Admin</span><span>·</span><span>Ghim</span></div>
+            </div>
+            <div class="thread-stats">
+              <span class="thread-replies">248 trả lời</span>
+              <span class="thread-time">Luôn trên đầu</span>
+            </div>
+          </a>
+
+          <a href="#" class="thread-row">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&q=80&auto=format&fit=crop&crop=face" class="thread-avatar" alt="">
+            <div class="thread-main">
+              <div class="thread-title">🔥 Từ 0 đến có việc làm sau 6 tháng học code — chia sẻ kinh nghiệm thực tế</div>
+              <div class="thread-meta"><span class="thread-cat-tag">Lập trình</span><span>Minh Tuấn</span><span>·</span><span>2 giờ trước</span></div>
+            </div>
+            <div class="thread-stats">
+              <span class="thread-replies thread-hot">🔥 84 trả lời</span>
+              <span class="thread-time">Vừa cập nhật</span>
+            </div>
+          </a>
+
+          <a href="#" class="thread-row">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&q=80&auto=format&fit=crop&crop=face" class="thread-avatar" alt="">
+            <div class="thread-main">
+              <div class="thread-title">Figma vs Framer — bạn đang dùng gì cho dự án 2025?</div>
+              <div class="thread-meta"><span class="thread-cat-tag">Design</span><span>Hải Đăng</span><span>·</span><span>4 giờ trước</span></div>
+            </div>
+            <div class="thread-stats">
+              <span class="thread-replies">32 trả lời</span>
+              <span class="thread-time">4 giờ trước</span>
+            </div>
+          </a>
+
+          <a href="#" class="thread-row">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=60&q=80&auto=format&fit=crop&crop=face" class="thread-avatar" alt="">
+            <div class="thread-main">
+              <div class="thread-title">Tuyển Frontend React tại startup fintech TP.HCM — remote 50%</div>
+              <div class="thread-meta"><span class="thread-cat-tag">Tuyển dụng</span><span>Lan Anh</span><span>·</span><span>6 giờ trước</span></div>
+            </div>
+            <div class="thread-stats">
+              <span class="thread-replies">12 trả lời</span>
+              <span class="thread-time">6 giờ trước</span>
+            </div>
+          </a>
+
+          <a href="#" class="thread-row">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&q=80&auto=format&fit=crop&crop=face" class="thread-avatar" alt="">
+            <div class="thread-main">
+              <div class="thread-title">Làm thế nào để định giá dự án freelance web đúng giá trị?</div>
+              <div class="thread-meta"><span class="thread-cat-tag">Startup</span><span>Quang Minh</span><span>·</span><span>Hôm qua</span></div>
+            </div>
+            <div class="thread-stats">
+              <span class="thread-replies">56 trả lời</span>
+              <span class="thread-time">Hôm qua</span>
+            </div>
+          </a>
+
+          <a href="#" class="thread-row">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&q=80&auto=format&fit=crop&crop=face" class="thread-avatar" alt="">
+            <div class="thread-main">
+              <div class="thread-title">Chia sẻ tool AI yêu thích đang dùng hàng ngày [Thread tổng hợp]</div>
+              <div class="thread-meta"><span class="thread-cat-tag">Lập trình</span><span>Thành Nam</span><span>·</span><span>Hôm qua</span></div>
+            </div>
+            <div class="thread-stats">
+              <span class="thread-replies">41 trả lời</span>
+              <span class="thread-time">2 ngày trước</span>
+            </div>
+          </a>
+
+          <a href="#" class="thread-row">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=60&q=80&auto=format&fit=crop&crop=face" class="thread-avatar" alt="">
+            <div class="thread-main">
+              <div class="thread-title">Review sách "The Design of Everyday Things" — Bắt buộc đọc với designer</div>
+              <div class="thread-meta"><span class="thread-cat-tag">Học tập</span><span>Thu Hà</span><span>·</span><span>2 ngày trước</span></div>
+            </div>
+            <div class="thread-stats">
+              <span class="thread-replies">18 trả lời</span>
+              <span class="thread-time">2 ngày trước</span>
+            </div>
+          </a>
+
+          <a href="#" class="thread-row">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=60&q=80&auto=format&fit=crop&crop=face" class="thread-avatar" alt="">
+            <div class="thread-main">
+              <div class="thread-title">Tìm cộng sự làm side project — app quản lý tài chính nhóm bạn bè</div>
+              <div class="thread-meta"><span class="thread-cat-tag">Hợp tác</span><span>Bảo Châu</span><span>·</span><span>3 ngày trước</span></div>
+            </div>
+            <div class="thread-stats">
+              <span class="thread-replies">9 trả lời</span>
+              <span class="thread-time">3 ngày trước</span>
+            </div>
+          </a>
+
+          <!-- Load more -->
+          <div class="text-center mt-4">
+            <button style="font-size:13px;font-weight:500;padding:10px 28px;border-radius:9px;border:1px solid var(--border);background:var(--surface);color:var(--text-2);cursor:pointer;font-family:var(--sans);transition:all .15s" onmouseover="this.style.background='var(--warm)'" onmouseout="this.style.background='var(--surface)'">Xem thêm chủ đề</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-lg-4">
+        <!-- New post CTA -->
+        <div style="background:var(--accent);border-radius:12px;padding:20px;margin-bottom:16px;text-align:center">
+          <div style="font-size:24px;margin-bottom:8px">✍️</div>
+          <div style="font-size:14px;font-weight:600;color:#fff;margin-bottom:6px">Tạo chủ đề mới</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.6);margin-bottom:14px;font-weight:300">Chia sẻ câu hỏi hoặc kinh nghiệm với cộng đồng</div>
+          <a href="#" style="display:block;background:#fff;color:var(--accent);font-size:13px;font-weight:600;padding:9px;border-radius:8px;text-decoration:none;transition:all .15s" onmouseover="this.style.background='#f0fdf4'" onmouseout="this.style.background='#fff'">Bắt đầu viết →</a>
+        </div>
+
+        <!-- Online now -->
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:16px">
+          <div style="font-size:12px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px">Đang online (12)</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=40&q=80&auto=format&fit=crop&crop=face" style="width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid #4ade80" title="Minh Tuấn" alt="">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=40&q=80&auto=format&fit=crop&crop=face" style="width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid #4ade80" title="Lan Anh" alt="">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&q=80&auto=format&fit=crop&crop=face" style="width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid #4ade80" title="Quang Minh" alt="">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&q=80&auto=format&fit=crop&crop=face" style="width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid #4ade80" title="Thu Hà" alt="">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&q=80&auto=format&fit=crop&crop=face" style="width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid #4ade80" title="Hải Đăng" alt="">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--warm);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-3);font-weight:500">+7</div>
+          </div>
+        </div>
+
+        <!-- Top members -->
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:16px">
+          <div style="font-size:12px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px">Thành viên tích cực</div>
+          <div class="member-item">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=60&q=80&auto=format&fit=crop&crop=face" class="member-av" alt="">
+            <div class="member-info">
+              <div class="member-name">Admin Team</div>
+              <div class="member-posts">1,248 bài viết</div>
+            </div>
+            <span class="member-badge badge-admin">Admin</span>
+          </div>
+          <div class="member-item">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&q=80&auto=format&fit=crop&crop=face" class="member-av" alt="">
+            <div class="member-info">
+              <div class="member-name">Minh Tuấn</div>
+              <div class="member-posts">842 bài viết</div>
+            </div>
+            <span class="member-badge badge-mod">Mod</span>
+          </div>
+          <div class="member-item">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=60&q=80&auto=format&fit=crop&crop=face" class="member-av" alt="">
+            <div class="member-info">
+              <div class="member-name">Lan Anh</div>
+              <div class="member-posts">615 bài viết</div>
+            </div>
+          </div>
+          <div class="member-item">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&q=80&auto=format&fit=crop&crop=face" class="member-av" alt="">
+            <div class="member-info">
+              <div class="member-name">Quang Minh</div>
+              <div class="member-posts">504 bài viết</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tags -->
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 20px">
+          <div style="font-size:12px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px">Tags phổ biến</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <a href="#" style="font-size:12px;color:var(--text-2);background:var(--warm);border:1px solid var(--border);padding:4px 10px;border-radius:6px;text-decoration:none;transition:all .15s" onmouseover="this.style.background='var(--accent-light)';this.style.color='var(--accent)'" onmouseout="this.style.background='var(--warm)';this.style.color='var(--text-2)'">#javascript</a>
+            <a href="#" style="font-size:12px;color:var(--text-2);background:var(--warm);border:1px solid var(--border);padding:4px 10px;border-radius:6px;text-decoration:none;transition:all .15s" onmouseover="this.style.background='var(--accent-light)';this.style.color='var(--accent)'" onmouseout="this.style.background='var(--warm)';this.style.color='var(--text-2)'">#react</a>
+            <a href="#" style="font-size:12px;color:var(--text-2);background:var(--warm);border:1px solid var(--border);padding:4px 10px;border-radius:6px;text-decoration:none;transition:all .15s" onmouseover="this.style.background='var(--accent-light)';this.style.color='var(--accent)'" onmouseout="this.style.background='var(--warm)';this.style.color='var(--text-2)'">#nextjs</a>
+            <a href="#" style="font-size:12px;color:var(--text-2);background:var(--warm);border:1px solid var(--border);padding:4px 10px;border-radius:6px;text-decoration:none;transition:all .15s" onmouseover="this.style.background='var(--accent-light)';this.style.color='var(--accent)'" onmouseout="this.style.background='var(--warm)';this.style.color='var(--text-2)'">#figma</a>
+            <a href="#" style="font-size:12px;color:var(--text-2);background:var(--warm);border:1px solid var(--border);padding:4px 10px;border-radius:6px;text-decoration:none;transition:all .15s" onmouseover="this.style.background='var(--accent-light)';this.style.color='var(--accent)'" onmouseout="this.style.background='var(--warm)';this.style.color='var(--text-2)'">#freelance</a>
+            <a href="#" style="font-size:12px;color:var(--text-2);background:var(--warm);border:1px solid var(--border);padding:4px 10px;border-radius:6px;text-decoration:none;transition:all .15s" onmouseover="this.style.background='var(--accent-light)';this.style.color='var(--accent)'" onmouseout="this.style.background='var(--warm)';this.style.color='var(--text-2)'">#career</a>
+            <a href="#" style="font-size:12px;color:var(--text-2);background:var(--warm);border:1px solid var(--border);padding:4px 10px;border-radius:6px;text-decoration:none;transition:all .15s" onmouseover="this.style.background='var(--accent-light)';this.style.color='var(--accent)'" onmouseout="this.style.background='var(--warm)';this.style.color='var(--text-2)'">#startup</a>
+            <a href="#" style="font-size:12px;color:var(--text-2);background:var(--warm);border:1px solid var(--border);padding:4px 10px;border-radius:6px;text-decoration:none;transition:all .15s" onmouseover="this.style.background='var(--accent-light)';this.style.color='var(--accent)'" onmouseout="this.style.background='var(--warm)';this.style.color='var(--text-2)'">#ai-tools</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer style="padding:clamp(36px,5vw,56px) 0 0">
+  <div class="wd-container">
+    <div class="row g-4 pb-4" style="border-bottom:1px solid rgba(255,255,255,.06)">
+      <div class="col-lg-4">
+        <div class="ft-logo">[Forum]<span>.</span></div>
+        <p class="ft-desc">Cộng đồng dành cho những người đam mê công nghệ, thiết kế và kinh doanh tại Việt Nam.</p>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="ft-col-title">Danh mục</div>
+        <div class="ft-links">
+          <a href="#">Lập trình</a>
+          <a href="#">Design</a>
+          <a href="#">Startup</a>
+          <a href="#">Học tập</a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="ft-col-title">Thông tin</div>
+        <div class="ft-links">
+          <a href="#">Về diễn đàn</a>
+          <a href="#">Quy tắc</a>
+          <a href="#">Liên hệ</a>
+          <a href="#">Quảng cáo</a>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="ft-col-title">Tham gia cộng đồng</div>
+        <p style="font-size:13px;font-weight:300;color:rgba(255,255,255,.3);line-height:1.65;margin-bottom:14px">Đăng ký tài khoản để tham gia thảo luận và kết nối với 12,000+ thành viên.</p>
+        <a href="#" style="display:inline-block;font-size:13px;font-weight:500;background:var(--accent);color:#fff;padding:9px 22px;border-radius:8px;text-decoration:none;transition:all .15s" onmouseover="this.style.background='var(--accent-h)'" onmouseout="this.style.background='var(--accent)'">Đăng ký miễn phí →</a>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom py-3">
+    <div class="wd-container">
+      <div class="ft-copy">© 2025 [TÊN FORUM]. Cộng đồng Việt Nam.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const hamburger = document.getElementById('navHamburger');
+hamburger.addEventListener('click', () => hamburger.classList.toggle('open'));
+</script>
+<style>@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}</style>
+</body>
+</html>
