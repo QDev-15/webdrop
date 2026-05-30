@@ -1,14 +1,14 @@
 # Step 2 — Gói A: HTML Templates
-> Status: ✅ Code hoàn thành | Còn lại: README + ZIP + Demo URL (sau Step 3)
+> Status: ✅ Code + README hoàn thành | Còn lại: ZIP + Demo URL (sau khi có hosting)
 
 ## Templates đã xây
 
 | # | Folder | Trang | Màu accent | Giá | Status |
 |---|---|---|---|---|---|
-| 2.1 | `templates/web/agency-web/` | index, dich-vu, ve-chung-toi, du-an, lien-he | `#1a6b52` green | 2.500.000đ | ✅ Code xong |
-| 2.2 | `templates/web/spa-beauty/` | index, dich-vu, dat-lich, lien-he | `#c17a6b` rose | 2.800.000đ | ✅ Code xong |
-| 2.3 | `templates/web/restaurant/` | index, thuc-don, dat-ban, lien-he | `#b45309` amber | 3.000.000đ | ✅ Code xong |
-| 2.4 | `templates/admin/basic-admin/` | login, dashboard, posts, users, settings | `#1a6b52` green | 1.200.000đ | ✅ Code xong |
+| 2.1 | `templates/web/agency-web/` | index, dich-vu, ve-chung-toi, du-an, lien-he | `#1a6b52` green | 2.500.000đ | ✅ Code + README xong |
+| 2.2 | `templates/web/spa-beauty/` | index, dich-vu, dat-lich, lien-he | `#c17a6b` rose | 2.800.000đ | ✅ Code + README xong |
+| 2.3 | `templates/web/restaurant/` | index, thuc-don, dat-ban, lien-he | `#b45309` amber | 3.000.000đ | ✅ Code + README xong |
+| 2.4 | `templates/admin/basic-admin/` | login, dashboard, posts, users, settings | `#1a6b52` green | 1.200.000đ | ✅ Code + README xong |
 
 ## Tính năng đặc biệt mỗi template
 
@@ -19,7 +19,22 @@
 
 ## Còn lại trước khi bán
 
-- [ ] `README.md` hướng dẫn chỉnh nội dung (tiếng Việt) — mỗi template
-- [ ] Đóng gói ZIP: `[tên]-v1.0.zip`
-- [ ] Demo URL sau khi có VPS (Step 3): `demo.webdrop.vn/[tên]/`
+- [ ] Đóng gói ZIP: `[tên]-v1.0.zip` — mỗi template 1 file
+- [ ] Demo URL sau khi có hosting: `demo.webdrop.vn/[tên]/`
+  - Option A: VPS AZDIGI (Step 3)
+  - Option B: Netlify free static hosting (không cần VPS)
 - [ ] Đăng Gumroad ngay khi có demo URL
+
+## Phương án deploy demo không cần VPS (Netlify)
+
+```
+Netlify → New site → Deploy manually
+Upload thư mục Sources/templates/web/agency-web/ → Done
+URL: https://[random].netlify.app hoặc custom subdomain
+```
+
+Cũng có thể dùng GitHub Pages:
+```
+GitHub repo → Settings → Pages → Source: branch main, folder /Sources/templates/web/agency-web
+URL: https://[username].github.io/webdrop/Sources/templates/web/agency-web/
+```

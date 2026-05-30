@@ -1,7 +1,12 @@
 import { scryptSync, randomBytes, createHmac, timingSafeEqual } from 'crypto'
 import { cookies } from 'next/headers'
 
-const SESSION_SECRET = process.env.SESSION_SECRET || 'webdrop-dev-secret-change-in-production'
+const SESSION_SECRET = (() => {
+  const s = process.env.SESSION_SECRET
+  if (!s) throw new Error('SESSION_SECRET env var is required')
+  return s
+})()
+
 const COOKIE_NAME = 'wd_session'
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 7 // 7 days
 
@@ -19,7 +24,11 @@ export function verifyPassword(password: string, stored: string): boolean {
 }
 
 export function createSessionToken(payload: { id: number; email: string; role: string }): string {
-  const data = Buffer.from(JSON.stringify({ ...payload, iat: Date.now() })).toString('base64url')
+  const data = Buffer.from(JSON.stringify({
+    ...payload,
+    iat: Date.now(),
+    exp: Date.now() + COOKIE_MAX_AGE * 1000,
+  })).toString('base64url')
   const sig = createHmac('sha256', SESSION_SECRET).update(data).digest('base64url')
   return `${data}.${sig}`
 }
@@ -29,9 +38,13 @@ export function verifySessionToken(token: string): { id: number; email: string; 
   if (parts.length !== 2) return null
   const [data, sig] = parts
   const expected = createHmac('sha256', SESSION_SECRET).update(data).digest('base64url')
-  if (sig !== expected) return null
+  const sigBuf = Buffer.from(sig, 'base64url')
+  const expectedBuf = Buffer.from(expected, 'base64url')
+  if (sigBuf.length !== expectedBuf.length || !timingSafeEqual(sigBuf, expectedBuf)) return null
   try {
-    return JSON.parse(Buffer.from(data, 'base64url').toString())
+    const payload = JSON.parse(Buffer.from(data, 'base64url').toString())
+    if (payload.exp && Date.now() > payload.exp) return null
+    return payload
   } catch {
     return null
   }

@@ -29,7 +29,7 @@ async function getTemplates(): Promise<Template[]> {
       include: { industry: { select: { name: true } } },
       orderBy: { salesCount: 'desc' },
     })
-    return rows.map((t: { slug: any; name: any; industry: { name: any }; category: any; price: number | { toNumber(): number }; thumbnail: any; salesCount: number; createdAt: Date; demoUrl: any }) => ({
+    return rows.map((t) => ({
       slug: t.slug,
       name: t.name,
       category: t.industry?.name || t.category,
@@ -38,7 +38,8 @@ async function getTemplates(): Promise<Template[]> {
       badge: toBadge(t.salesCount, t.createdAt),
       demoUrl: t.demoUrl || undefined,
     }))
-  } catch {
+  } catch (e) {
+    console.error('[getTemplates] DB error:', e)
     return []
   }
 }
