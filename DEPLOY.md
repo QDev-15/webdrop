@@ -3,9 +3,9 @@
 ## Tổng quan
 
 - **Platform:** Cloudflare Pages
-- **Project name:** `webdrop`
+- **Project name:** `webdrop-eol`
 - **GitHub repo:** `QDev-15/webdrop` (branch `master`)
-- **Demo URL:** `https://webdrop.pages.dev`
+- **Demo URL:** `https://webdrop-eol.pages.dev`
 - **Output dir:** `dist/demo/`
 
 ---
@@ -45,7 +45,7 @@ Cloudflare Pages tự động:
 1. Clone repo
 2. Chạy: `node Sources/templates/_demo-guard/build-demo.js`
 3. Output vào: `dist/demo/`
-4. Deploy lên: `https://webdrop.pages.dev`
+4. Deploy lên: `https://webdrop-eol.pages.dev`
 
 ---
 
@@ -72,7 +72,7 @@ Output: `dist/demo/`
 ## Cấu trúc URL sau khi deploy
 
 ```
-https://webdrop.pages.dev/
+https://webdrop-eol.pages.dev/
 ├── Blogs/blog-ca-nhan/
 ├── Cafes/cafe-thoi-gian/
 ├── Companies/agency-sang-tao/
