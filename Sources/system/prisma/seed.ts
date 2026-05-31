@@ -1,13 +1,11 @@
 import 'dotenv/config'
 import { PrismaClient } from '@prisma/client'
-import { scryptSync, randomBytes } from 'crypto'
+import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
 
 function hashPassword(password: string): string {
-  const salt = randomBytes(16).toString('hex')
-  const hash = scryptSync(password, salt, 64).toString('hex')
-  return `${salt}:${hash}`
+  return bcrypt.hashSync(password, 10)
 }
 
 async function main() {
@@ -507,9 +505,11 @@ async function main() {
   console.log('✅ Settings:', settingsData.length)
 
   console.log('\n🎉 Seed complete!')
-  console.log('   Admin login: admin@webdrop.vn / webdrop@2025')
   console.log(`   Templates  : ${templateData.length} (${templateData.filter(t => t.category === 'web').length} web + ${templateData.filter(t => t.category === 'admin').length} admin)`)
   console.log(`   Demo base  : ${DEMO_BASE}`)
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('   Admin login: admin@webdrop.vn / webdrop@2025')
+  }
 }
 
 main()

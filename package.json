@@ -2,15 +2,22 @@
   "name": "webdrop-templates",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "build:demo": "node Sources/templates/_demo-guard/build-demo.js",
     "build:demo:restaurants": "node Sources/templates/_demo-guard/build-demo.js Restaurants",
     "build:demo:companies": "node Sources/templates/_demo-guard/build-demo.js Companies",
     "build:demo:cafes": "node Sources/templates/_demo-guard/build-demo.js Cafes",
     "build:demo:spa": "node Sources/templates/_demo-guard/build-demo.js Spa-Services",
-    "clean:demo": "node -e \"const fs=require('fs');const p='dist/demo';if(fs.existsSync(p)){fs.rmSync(p,{recursive:true,force:true});console.log('Đã xóa dist/demo/');}else{console.log('dist/demo/ không tồn tại');}\"",
+    "clean:demo": "node Sources/templates/_demo-guard/clean-demo.js",
     "rebuild:demo": "npm run clean:demo && npm run build:demo",
-    "deploy:cf": "npm run build:demo && npx wrangler pages deploy dist/demo --project-name=webdrop-demo",
-    "deploy:gh": "npm run build:demo && npx gh-pages -d dist/demo -b gh-pages"
+    "deploy:cf": "npm run build:demo && wrangler pages deploy dist/demo --project-name=webdrop-demo",
+    "deploy:gh": "npm run build:demo && gh-pages -d dist/demo -b gh-pages"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "wrangler": "^4.0.0"
   }
 }
