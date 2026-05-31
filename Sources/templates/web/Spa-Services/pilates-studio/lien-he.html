@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liên hệ — [TÊN STUDIO] Pilates Studio</title>
+<meta name="description" content="Liên hệ [TÊN STUDIO] Pilates — địa chỉ studio, số điện thoại, giờ mở cửa và form liên hệ trực tuyến. Đặt lịch tư vấn hoặc đăng ký buổi dùng thử.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="wd-container">
+    <div class="ps-nav-inner">
+      <a class="ps-logo" href="index.html">
+        [STUDIO]<span class="ps-logo-dot"></span>
+      </a>
+      <div class="ps-nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="dich-vu.html">Lớp học</a>
+        <a href="dat-lich.html">Đăng ký</a>
+        <a href="lien-he.html" class="active">Liên hệ</a>
+      </div>
+      <a href="dat-lich.html" class="ps-nav-cta">Đăng ký ngay</a>
+      <button class="ps-hamburger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="ps-mob-nav" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Lớp học</a>
+  <a href="dat-lich.html">Đăng ký</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="ps-mob-cta">Đăng ký ngay</a>
+</div>
+
+<!-- PAGE HERO — Dark, geometric style -->
+<section class="ps-page-hero">
+  <div class="wd-container">
+    <div class="ps-page-hero-label">Liên hệ</div>
+    <h1 class="ps-page-hero-title">Liên hệ với studio.</h1>
+    <p class="ps-page-hero-sub">Câu hỏi về lớp học, thiết bị Reformer hay muốn đặt buổi tư vấn cá nhân? Đội ngũ của chúng tôi sẵn sàng hỗ trợ.</p>
+  </div>
+</section>
+
+<!-- CONTACT MAIN SECTION -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="row g-5 align-items-start">
+
+      <!-- LEFT: Dark info panel + map + hours -->
+      <div class="col-lg-5">
+
+        <!-- Info block — dark geometric style -->
+        <div class="ps-contact-info reveal">
+          <div style="font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--stone);margin-bottom:24px">Thông tin studio</div>
+
+          <div class="ps-info-item">
+            <div class="ps-info-icon">📍</div>
+            <div>
+              <div class="ps-info-label">Địa chỉ</div>
+              <div class="ps-info-value">[Số nhà, Tên đường]<br>[Phường/Xã], [Quận/Huyện]<br>[Thành phố]</div>
+            </div>
+          </div>
+
+          <div class="ps-info-item">
+            <div class="ps-info-icon">📱</div>
+            <div>
+              <div class="ps-info-label">Điện thoại & Zalo</div>
+              <div class="ps-info-value">
+                <a href="tel:0901234567" style="color:rgba(255,255,255,.75);text-decoration:none">0901 234 567</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="ps-info-item">
+            <div class="ps-info-icon">✉️</div>
+            <div>
+              <div class="ps-info-label">Email</div>
+              <div class="ps-info-value">
+                <a href="mailto:info@[domain].vn" style="color:var(--stone);text-decoration:none">info@[domain].vn</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Opening Hours -->
+          <div style="margin-top:4px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06)">
+            <div style="font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--stone);margin-bottom:14px">Giờ mở cửa</div>
+            <div class="ps-hours-table">
+              <div class="ps-hours-row">
+                <span class="ps-hours-day">Thứ 2 — Thứ 6</span>
+                <span class="ps-hours-time">6:00 – 21:00</span>
+              </div>
+              <div class="ps-hours-row">
+                <span class="ps-hours-day">Thứ 7</span>
+                <span class="ps-hours-time">6:00 – 21:00</span>
+              </div>
+              <div class="ps-hours-row">
+                <span class="ps-hours-day">Chủ nhật</span>
+                <span class="ps-hours-time">7:00 – 19:00</span>
+              </div>
+            </div>
+            <div style="margin-top:14px;font-size:11px;font-weight:300;color:rgba(255,255,255,.28);line-height:1.65">
+              Lớp cuối cùng bắt đầu trước 60 phút so với giờ đóng cửa. Các buổi Clinical Pilates 1-1 cần đặt lịch ít nhất 24 giờ trước.
+            </div>
+          </div>
+        </div>
+
+        <!-- Google Maps -->
+        <div class="ps-map-wrap reveal reveal-d1" style="margin-top:12px">
+          <div style="background:var(--surface);height:260px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;border-radius:4px">
+            <div style="width:40px;height:40px;border:1px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg)">🗺️</div>
+            <div style="font-size:12px;font-weight:300;color:var(--text-3);text-align:center;line-height:1.65">
+              [Nhúng Google Maps embed tại đây]<br>
+              <span style="font-size:10px;color:var(--text-3)">iframe src="https://maps.google.com/..."</span>
+            </div>
+          </div>
+          <!-- Để nhúng bản đồ thật, thay div trên bằng:
+          <iframe
+            src="https://www.google.com/maps/embed?pb=..."
+            width="100%" height="260" style="border:0;" allowfullscreen=""
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="Bản đồ [TÊN STUDIO] Pilates">
+          </iframe>
+          -->
+        </div>
+
+        <!-- Social quick links -->
+        <div class="row g-2 reveal reveal-d2" style="margin-top:12px">
+          <div class="col-4">
+            <a href="#" rel="noopener noreferrer" class="ps-soc-quick">
+              <span style="font-size:16px">📘</span>
+              <span>Facebook</span>
+            </a>
+          </div>
+          <div class="col-4">
+            <a href="#" rel="noopener noreferrer" class="ps-soc-quick">
+              <span style="font-size:16px">📸</span>
+              <span>Instagram</span>
+            </a>
+          </div>
+          <div class="col-4">
+            <a href="#" rel="noopener noreferrer" class="ps-soc-quick">
+              <span style="font-size:16px">💬</span>
+              <span>Zalo OA</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Contact Form -->
+      <div class="col-lg-7">
+        <div class="ps-form-card reveal reveal-d1">
+          <div class="ps-form-title">Gửi tin nhắn</div>
+          <div class="ps-form-sub">Chúng tôi phản hồi trong vòng 24 giờ làm việc, ngày thường.</div>
+
+          <form novalidate>
+            <div class="row g-3 mb-3">
+              <div class="col-sm-6">
+                <label class="ps-label" for="lh-name">Họ và tên <span style="color:var(--stone)">*</span></label>
+                <input type="text" id="lh-name" class="ps-input" placeholder="[Nguyễn Văn A]" required>
+              </div>
+              <div class="col-sm-6">
+                <label class="ps-label" for="lh-phone">Số điện thoại</label>
+                <input type="tel" id="lh-phone" class="ps-input" placeholder="[0901 234 567]">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="ps-label" for="lh-email">Email <span style="color:var(--stone)">*</span></label>
+              <input type="email" id="lh-email" class="ps-input" placeholder="[email@example.com]" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="ps-label" for="lh-subject">Chủ đề</label>
+              <select id="lh-subject" class="ps-select">
+                <option value="">-- Chọn chủ đề --</option>
+                <option value="dang-ky">Đăng ký lớp học</option>
+                <option value="reformer">Hỏi về Reformer Pilates</option>
+                <option value="clinical">Tư vấn Clinical Pilates</option>
+                <option value="prenatal">Prenatal Pilates</option>
+                <option value="goi">Hỏi về gói thành viên</option>
+                <option value="khac">Khác</option>
+              </select>
+            </div>
+
+            <div class="mb-4">
+              <label class="ps-label" for="lh-message">Nội dung <span style="color:var(--stone)">*</span></label>
+              <textarea id="lh-message" class="ps-textarea" rows="5" placeholder="[Nhập nội dung tin nhắn của bạn...]" required style="min-height:130px"></textarea>
+            </div>
+
+            <button type="submit" class="ps-btn-solid" style="width:100%;text-align:center;letter-spacing:1.5px">
+              Gửi tin nhắn →
+            </button>
+
+            <p style="font-size:11px;font-weight:300;color:var(--text-3);margin-top:12px;text-align:center;line-height:1.6">
+              Thông tin của bạn được bảo mật và chỉ dùng để phản hồi yêu cầu liên hệ.
+            </p>
+          </form>
+        </div>
+
+        <!-- FAQ mini-section below form -->
+        <div class="reveal reveal-d2" style="margin-top:20px">
+          <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);margin-bottom:16px">Câu hỏi thường gặp</div>
+          <div id="faqAccordion">
+            <div class="ps-faq-item">
+              <button class="ps-faq-btn" aria-expanded="false" onclick="toggleFaq(this)">
+                Tôi cần chuẩn bị gì cho buổi học đầu tiên?
+                <span class="ps-faq-icon">+</span>
+              </button>
+              <div class="ps-faq-body" hidden>
+                Bạn không cần mang theo gì đặc biệt — studio cung cấp đầy đủ thảm, vớ pilates và thiết bị. Mặc quần áo tập thoải mái, co giãn tốt. Đến trước 10 phút để làm quen với không gian.
+              </div>
+            </div>
+            <div class="ps-faq-item">
+              <button class="ps-faq-btn" aria-expanded="false" onclick="toggleFaq(this)">
+                Tôi có thể hủy hoặc đổi lịch học không?
+                <span class="ps-faq-icon">+</span>
+              </button>
+              <div class="ps-faq-body" hidden>
+                Có. Bạn có thể hủy hoặc đổi lịch trước 4 giờ so với giờ học qua app hoặc nhắn Zalo. Hủy muộn hơn sẽ tính 1 buổi trong gói thành viên.
+              </div>
+            </div>
+            <div class="ps-faq-item">
+              <button class="ps-faq-btn" aria-expanded="false" onclick="toggleFaq(this)">
+                Buổi dùng thử đầu tiên có thực sự miễn phí không?
+                <span class="ps-faq-icon">+</span>
+              </button>
+              <div class="ps-faq-body" hidden>
+                Hoàn toàn miễn phí cho lần đầu tiên, không điều kiện, không cần đăng ký gói dài hạn sau đó. Chúng tôi muốn bạn trải nghiệm thực tế trước khi quyết định.
+              </div>
+            </div>
+            <div class="ps-faq-item">
+              <button class="ps-faq-btn" aria-expanded="false" onclick="toggleFaq(this)">
+                Clinical Pilates có phù hợp với người đang bị chấn thương không?
+                <span class="ps-faq-icon">+</span>
+              </button>
+              <div class="ps-faq-body" hidden>
+                Có. Clinical Pilates được thiết kế đặc biệt cho người phục hồi chức năng, đau mãn tính hoặc sau phẫu thuật. Huấn luyện viên sẽ đánh giá tình trạng và cá nhân hóa chương trình.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA DARK -->
+<section class="ps-cta-wrap">
+  <div class="wd-container reveal">
+    <div class="ps-cta-title">Buổi dùng thử<br>đầu tiên miễn phí.</div>
+    <p class="ps-cta-sub">Không cam kết dài hạn. Không ràng buộc. Chỉ cần đăng ký và đến.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="dat-lich.html" class="ps-btn-dark">Đăng ký dùng thử →</a>
+      <a href="dich-vu.html" class="ps-btn-outline-light">Xem các lớp học</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ps-footer">
+  <div class="wd-container ps-footer-top">
+    <div class="row g-4">
+      <div class="col-md-4 reveal">
+        <div class="ps-ft-logo">[STUDIO]<span class="ps-ft-logo-dot"></span></div>
+        <p class="ps-ft-desc">Studio pilates chuyên nghiệp — nơi sức khỏe, sự cân bằng và vẻ đẹp gặp nhau.</p>
+        <div class="ps-ft-socials">
+          <a href="#" class="ps-ft-soc" rel="noopener noreferrer">fb</a>
+          <a href="#" class="ps-ft-soc" rel="noopener noreferrer">ig</a>
+          <a href="#" class="ps-ft-soc" rel="noopener noreferrer">yt</a>
+          <a href="#" class="ps-ft-soc" rel="noopener noreferrer">zl</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ps-ft-col-title">Lớp học</div>
+        <div class="ps-ft-links">
+          <a href="dich-vu.html">Mat Pilates</a>
+          <a href="dich-vu.html">Reformer Pilates</a>
+          <a href="dich-vu.html">Clinical Pilates</a>
+          <a href="dich-vu.html">Prenatal Pilates</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ps-ft-col-title">Studio</div>
+        <div class="ps-ft-links">
+          <a href="dat-lich.html">Đăng ký lớp</a>
+          <a href="dich-vu.html#gia">Gói thành viên</a>
+          <a href="dich-vu.html">Huấn luyện viên</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ps-ft-col-title">Liên hệ</div>
+        <div class="ps-ft-links">
+          <a href="tel:0901234567">0901 234 567</a>
+          <a href="#">[Địa chỉ studio]</a>
+          <a href="#">T2–T7: 6:00 – 21:00</a>
+          <a href="#">CN: 7:00 – 19:00</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ps-footer-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="ps-ft-copy">© 2026 [TÊN STUDIO] Pilates. All rights reserved.</div>
+        <div class="ps-ft-copy">Thiết kế bởi webdrop.vn</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Zalo float -->
+<div class="ps-zalo">
+  <div class="ps-zalo-tip">Tư vấn qua Zalo</div>
+  <button class="ps-zalo-btn" aria-label="Chat Zalo">💬</button>
+</div>
+
+<style>
+/* FAQ accordion — inline for lien-he page only */
+.ps-faq-item {
+  border-bottom: 1px solid var(--border);
+}
+.ps-faq-item:last-child { border-bottom: none; }
+.ps-faq-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  background: none;
+  border: none;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  gap: 12px;
+  transition: color .18s;
+}
+.ps-faq-btn:hover { color: var(--stone-h); }
+.ps-faq-icon {
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--text-3);
+  flex-shrink: 0;
+  transition: transform .2s;
+  line-height: 1;
+}
+.ps-faq-btn[aria-expanded="true"] .ps-faq-icon { transform: rotate(45deg); color: var(--text); }
+.ps-faq-body {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-2);
+  line-height: 1.7;
+  padding-bottom: 16px;
+}
+/* Social quick links */
+.ps-soc-quick {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  color: var(--text-3);
+  transition: all .18s;
+}
+.ps-soc-quick:hover {
+  border-color: var(--stone-mid);
+  color: var(--text);
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Nav elevated on scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('elevated', window.scrollY > 40);
+}, { passive: true });
+
+// Reveal animation
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: .08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+// Hamburger menu
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+burger.addEventListener('click', () => {
+  const o = mob.classList.toggle('open');
+  burger.classList.toggle('open', o);
+  document.body.style.overflow = o ? 'hidden' : '';
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && mob.classList.contains('open')) {
+    mob.classList.remove('open');
+    burger.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
+// FAQ toggle
+function toggleFaq(btn) {
+  const isOpen = btn.getAttribute('aria-expanded') === 'true';
+  // Close all
+  document.querySelectorAll('.ps-faq-btn').forEach(b => {
+    b.setAttribute('aria-expanded', 'false');
+    const body = b.nextElementSibling;
+    if (body) body.hidden = true;
+  });
+  // Open clicked if was closed
+  if (!isOpen) {
+    btn.setAttribute('aria-expanded', 'true');
+    const body = btn.nextElementSibling;
+    if (body) body.hidden = false;
+  }
+}
+
+// Form submit handler
+const form = document.querySelector('form');
+if (form) {
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('lh-name').value.trim();
+    const email = document.getElementById('lh-email').value.trim();
+    const message = document.getElementById('lh-message').value.trim();
+    if (!name || !email || !message) {
+      alert('Vui lòng điền đầy đủ thông tin bắt buộc (*).');
+      return;
+    }
+    alert('Cảm ơn bạn đã liên hệ! Đội ngũ của chúng tôi sẽ phản hồi trong vòng 24 giờ.');
+    form.reset();
+  });
+}
+</script>
+</body>
+</html>

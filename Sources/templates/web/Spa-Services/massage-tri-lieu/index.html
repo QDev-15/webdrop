@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[TÊN TRUNG TÂM] — Massage Trị Liệu Chuyên Nghiệp</title>
+<meta name="description" content="[TÊN TRUNG TÂM] — Trung tâm massage trị liệu chuyên sâu. Massage Thái, đá nóng, bấm huyệt, thư giãn toàn thân. Đội ngũ chuyên viên được đào tạo bài bản.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV — Nav-2: Always Solid Light -->
+<nav id="mrt-nav">
+  <div class="wd-container">
+    <div class="mrt-nav-inner">
+      <a class="mrt-logo" href="index.html">
+        <div class="mrt-logo-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 3c-1 3-4 5-4 9a4 4 0 008 0c0-4-3-6-4-9z"/><path d="M8 17s0 3 4 3 4-3 4-3"/></svg>
+        </div>
+        <div>
+          <span class="mrt-logo-text">[TÊN TRUNG TÂM]</span>
+          <span class="mrt-logo-sub">Massage &amp; Trị Liệu</span>
+        </div>
+      </a>
+      <div class="mrt-nav-links">
+        <a href="index.html" class="active">Trang chủ</a>
+        <a href="dich-vu.html">Dịch vụ &amp; Giá</a>
+        <a href="dat-lich.html">Đặt lịch</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-lich.html" class="mrt-nav-cta">Đặt lịch ngay</a>
+      <button class="mrt-burger" id="navBurger" aria-label="Mở menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="mrt-mobile-nav" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ &amp; Giá</a>
+  <a href="dat-lich.html">Đặt lịch</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="mob-cta">Đặt lịch ngay</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- HERO — H10 Geometric Split diagonal clip-path          -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="mrt-hero">
+  <!-- Geometric background nửa phải -->
+  <div class="mrt-hero-geo"></div>
+  <!-- Ảnh overlay -->
+  <div class="mrt-hero-img">
+    <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=1000&q=75&auto=format&fit=crop" alt="Không gian massage thư giãn">
+  </div>
+
+  <div class="wd-container w-100 position-relative" style="z-index:3">
+    <div class="row">
+      <div class="col-lg-6 col-xl-5">
+        <div class="mrt-hero-content">
+          <div class="mrt-hero-chip">
+            <span class="mrt-hero-chip-dot"></span>
+            Trung tâm massage trị liệu
+          </div>
+          <h1 class="mrt-hero-title">
+            Phục hồi<br>
+            <strong>cơ thể</strong> —<br>
+            <em>Tĩnh tâm</em> trí não.
+          </h1>
+          <p class="mrt-hero-desc">
+            Chúng tôi mang đến liệu trình massage trị liệu chuyên sâu — kết hợp kỹ thuật Thái, đá nóng và bấm huyệt truyền thống để phục hồi thể chất và tinh thần toàn diện.
+          </p>
+          <div class="mrt-hero-actions">
+            <a href="dat-lich.html" class="mrt-btn-primary">Đặt lịch trải nghiệm →</a>
+            <a href="dich-vu.html" class="mrt-btn-outline">Xem dịch vụ &amp; giá</a>
+          </div>
+          <div class="mrt-hero-stats">
+            <div class="mrt-stat-item">
+              <div class="mrt-stat-num">1.200<span>+</span></div>
+              <div class="mrt-stat-label">Khách hàng tin tưởng</div>
+            </div>
+            <div class="mrt-stat-item">
+              <div class="mrt-stat-num">8<span>+</span></div>
+              <div class="mrt-stat-label">Năm kinh nghiệm</div>
+            </div>
+            <div class="mrt-stat-item">
+              <div class="mrt-stat-num">12</div>
+              <div class="mrt-stat-label">Chuyên viên trị liệu</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- DỊCH VỤ — Grid Cards                                   -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="mrt-label"><span class="mrt-label-line"></span>Dịch vụ<span class="mrt-label-line"></span></div>
+      <h2 class="mrt-heading">Các liệu trình <em>massage</em> chuyên sâu</h2>
+      <p class="mrt-subtext mx-auto">Từ massage Thái cổ truyền đến liệu trình đá nóng hiện đại — mỗi dịch vụ được thiết kế để mang lại sự thư giãn và phục hồi tối ưu.</p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Massage Thái -->
+      <div class="col-md-6 col-lg-4" data-reveal>
+        <div class="mrt-svc-card">
+          <div class="mrt-svc-thumb-wrap">
+            <img class="mrt-svc-thumb" src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&q=75&auto=format&fit=crop" alt="Massage Thái truyền thống" loading="lazy">
+          </div>
+          <div class="mrt-svc-body">
+            <span class="mrt-svc-tag">Truyền thống</span>
+            <div class="mrt-svc-name">Massage Thái Cổ Truyền</div>
+            <p class="mrt-svc-desc">Kỹ thuật massage toàn thân kết hợp căng giãn cơ theo phong cách Thái Lan — giải phóng năng lượng tắc nghẽn, tăng độ linh hoạt cơ thể.</p>
+            <div class="mrt-svc-footer">
+              <span class="mrt-svc-price">từ 350.000đ</span>
+              <span class="mrt-svc-duration">60 – 120 phút</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Đá nóng -->
+      <div class="col-md-6 col-lg-4" data-reveal class="d1">
+        <div class="mrt-svc-card">
+          <div class="mrt-svc-thumb-wrap">
+            <img class="mrt-svc-thumb" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=75&auto=format&fit=crop" alt="Massage đá nóng" loading="lazy">
+          </div>
+          <div class="mrt-svc-body">
+            <span class="mrt-svc-tag">Nổi bật</span>
+            <div class="mrt-svc-name">Massage Đá Nóng</div>
+            <p class="mrt-svc-desc">Đá bazan tự nhiên được làm nóng đặt lên các điểm huyệt đạo chính — nhiệt năng thấm sâu vào cơ bắp, tan biến mọi căng thẳng.</p>
+            <div class="mrt-svc-footer">
+              <span class="mrt-svc-price">từ 450.000đ</span>
+              <span class="mrt-svc-duration">90 – 120 phút</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bấm huyệt -->
+      <div class="col-md-6 col-lg-4" data-reveal class="d2">
+        <div class="mrt-svc-card">
+          <div class="mrt-svc-thumb-wrap">
+            <img class="mrt-svc-thumb" src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=600&q=75&auto=format&fit=crop" alt="Bấm huyệt trị liệu" loading="lazy">
+          </div>
+          <div class="mrt-svc-body">
+            <span class="mrt-svc-tag">Trị liệu</span>
+            <div class="mrt-svc-name">Bấm Huyệt Trị Liệu</div>
+            <p class="mrt-svc-desc">Kỹ thuật bấm huyệt theo y học cổ truyền — tác động vào các huyệt vị để cân bằng khí huyết, giảm đau nhức và tăng cường miễn dịch.</p>
+            <div class="mrt-svc-footer">
+              <span class="mrt-svc-price">từ 300.000đ</span>
+              <span class="mrt-svc-duration">60 – 90 phút</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Massage mặt -->
+      <div class="col-md-6 col-lg-4" data-reveal>
+        <div class="mrt-svc-card">
+          <div class="mrt-svc-thumb-wrap">
+            <img class="mrt-svc-thumb" src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=75&auto=format&fit=crop" alt="Massage mặt thư giãn" loading="lazy">
+          </div>
+          <div class="mrt-svc-body">
+            <span class="mrt-svc-tag">Làm đẹp</span>
+            <div class="mrt-svc-name">Massage Mặt &amp; Đầu</div>
+            <p class="mrt-svc-desc">Liệu trình massage mặt kết hợp ấn huyệt vùng đầu — kích thích tuần hoàn, giảm căng thẳng và làm sáng da tự nhiên.</p>
+            <div class="mrt-svc-footer">
+              <span class="mrt-svc-price">từ 250.000đ</span>
+              <span class="mrt-svc-duration">45 – 60 phút</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thư giãn toàn thân -->
+      <div class="col-md-6 col-lg-4" data-reveal class="d1">
+        <div class="mrt-svc-card">
+          <div class="mrt-svc-thumb-wrap">
+            <img class="mrt-svc-thumb" src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=75&auto=format&fit=crop" alt="Massage thư giãn toàn thân" loading="lazy">
+          </div>
+          <div class="mrt-svc-body">
+            <span class="mrt-svc-tag">Thư giãn</span>
+            <div class="mrt-svc-name">Thư Giãn Toàn Thân</div>
+            <p class="mrt-svc-desc">Kết hợp các kỹ thuật xoa bóp nhẹ nhàng và tinh dầu thảo mộc — liệu trình lý tưởng để xả stress sau ngày dài làm việc.</p>
+            <div class="mrt-svc-footer">
+              <span class="mrt-svc-price">từ 280.000đ</span>
+              <span class="mrt-svc-duration">60 – 90 phút</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Massage lưng vai gáy -->
+      <div class="col-md-6 col-lg-4" data-reveal class="d2">
+        <div class="mrt-svc-card">
+          <div class="mrt-svc-thumb-wrap">
+            <img class="mrt-svc-thumb" src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=600&q=75&auto=format&fit=crop" alt="Massage lưng vai gáy" loading="lazy">
+          </div>
+          <div class="mrt-svc-body">
+            <span class="mrt-svc-tag">Chuyên sâu</span>
+            <div class="mrt-svc-name">Massage Lưng Vai Gáy</div>
+            <p class="mrt-svc-desc">Tập trung vào vùng lưng — vai — gáy, tác động sâu vào cơ bắp căng cứng do ngồi lâu, phù hợp cho dân văn phòng.</p>
+            <div class="mrt-svc-footer">
+              <span class="mrt-svc-price">từ 200.000đ</span>
+              <span class="mrt-svc-duration">30 – 60 phút</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5" data-reveal>
+      <a href="dich-vu.html" class="mrt-btn-outline">Xem đầy đủ dịch vụ &amp; bảng giá</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- STAT BAR                                               -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="mrt-stat-bar">
+  <div class="wd-container">
+    <div class="mrt-stat-grid">
+      <div class="mrt-stat-box" data-reveal>
+        <div class="mrt-big-num" data-counter="1200" data-suffix="+">1200+</div>
+        <div class="mrt-stat-desc">Khách hàng hài lòng</div>
+      </div>
+      <div class="mrt-stat-box" data-reveal class="d1">
+        <div class="mrt-big-num" data-counter="8" data-suffix="+">8+</div>
+        <div class="mrt-stat-desc">Năm kinh nghiệm</div>
+      </div>
+      <div class="mrt-stat-box" data-reveal class="d2">
+        <div class="mrt-big-num" data-counter="12">12</div>
+        <div class="mrt-stat-desc">Chuyên viên trị liệu</div>
+      </div>
+      <div class="mrt-stat-box" data-reveal class="d3">
+        <div class="mrt-big-num" data-counter="98" data-suffix="%">98%</div>
+        <div class="mrt-stat-desc">Khách quay lại lần 2</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- QUY TRÌNH — Alternating strips + List elegant         -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="sec-pad" style="background:var(--surface)">
+  <div class="wd-container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-5" data-reveal>
+        <div class="mrt-label"><span class="mrt-label-line"></span>Quy trình<span class="mrt-label-line"></span></div>
+        <h2 class="mrt-heading">Hành trình <em>trải nghiệm</em> của bạn</h2>
+        <p class="mrt-subtext">Mỗi buổi trị liệu được thiết kế cẩn thận từ bước đón tiếp đến khi bạn rời đi — đảm bảo trải nghiệm hoàn hảo và hiệu quả tối ưu.</p>
+      </div>
+      <div class="col-lg-7" data-reveal class="d1">
+        <div class="mrt-step-list">
+          <div class="mrt-step-item">
+            <div class="mrt-step-num">01</div>
+            <div>
+              <div class="mrt-step-title">Tư vấn sức khỏe ban đầu</div>
+              <p class="mrt-step-desc">Chuyên viên gặp gỡ, lắng nghe tình trạng sức khỏe, vị trí đau nhức và mong muốn của bạn để lựa chọn liệu trình phù hợp nhất.</p>
+            </div>
+          </div>
+          <div class="mrt-step-item">
+            <div class="mrt-step-num">02</div>
+            <div>
+              <div class="mrt-step-title">Chuẩn bị không gian &amp; thay đồ</div>
+              <p class="mrt-step-desc">Phòng riêng tư được chuẩn bị với nhiệt độ phù hợp, ánh đèn dịu nhẹ, tinh dầu thơm và nhạc thư giãn. Tủ đựng đồ cá nhân có khóa.</p>
+            </div>
+          </div>
+          <div class="mrt-step-item">
+            <div class="mrt-step-num">03</div>
+            <div>
+              <div class="mrt-step-title">Tiến hành liệu trình</div>
+              <p class="mrt-step-desc">Chuyên viên thực hiện liệu trình đã tư vấn với kỹ thuật chuẩn, điều chỉnh lực tác động theo phản hồi thực tế của bạn trong suốt buổi trị liệu.</p>
+            </div>
+          </div>
+          <div class="mrt-step-item">
+            <div class="mrt-step-num">04</div>
+            <div>
+              <div class="mrt-step-title">Nghỉ ngơi &amp; thưởng trà thảo mộc</div>
+              <p class="mrt-step-desc">Sau liệu trình, bạn được nghỉ ngơi 15 phút tại phòng thư giãn với trà thảo mộc nóng và khăn ấm — để cơ thể hấp thụ trọn vẹn hiệu quả trị liệu.</p>
+            </div>
+          </div>
+          <div class="mrt-step-item">
+            <div class="mrt-step-num">05</div>
+            <div>
+              <div class="mrt-step-title">Tư vấn chăm sóc tại nhà</div>
+              <p class="mrt-step-desc">Chuyên viên hướng dẫn các bài tập nhẹ, lời khuyên dinh dưỡng và gợi ý lịch trị liệu tiếp theo để duy trì kết quả lâu dài.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- BENTO GRID — Không gian & điểm nổi bật               -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="mrt-label"><span class="mrt-label-line"></span>Không gian<span class="mrt-label-line"></span></div>
+      <h2 class="mrt-heading">Môi trường <em>trị liệu</em> đẳng cấp</h2>
+    </div>
+    <div class="mrt-bento" data-reveal>
+      <div class="mrt-bento-item large" style="min-height:320px">
+        <img class="mrt-bento-img" src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&q=75&auto=format&fit=crop" alt="Phòng massage cao cấp" loading="lazy" style="min-height:320px">
+        <div class="mrt-bento-overlay"></div>
+        <div class="mrt-bento-content">
+          <div class="mrt-bento-title">Phòng trị liệu riêng tư</div>
+          <div class="mrt-bento-sub">Cách âm hoàn toàn — không gian chỉ dành cho bạn</div>
+        </div>
+      </div>
+      <div class="mrt-bento-item" style="min-height:320px">
+        <img class="mrt-bento-img" src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=600&q=75&auto=format&fit=crop" alt="Không gian thư giãn" loading="lazy" style="min-height:320px">
+        <div class="mrt-bento-overlay"></div>
+        <div class="mrt-bento-content">
+          <div class="mrt-bento-title">Khu nghỉ ngơi</div>
+          <div class="mrt-bento-sub">Trà thảo mộc &amp; trái cây sau liệu trình</div>
+        </div>
+      </div>
+      <div class="mrt-bento-item" style="min-height:240px">
+        <img class="mrt-bento-img" src="https://images.unsplash.com/photo-1609357605129-4022ade88a16?w=600&q=75&auto=format&fit=crop" alt="Tinh dầu thiên nhiên" loading="lazy" style="min-height:240px">
+        <div class="mrt-bento-overlay"></div>
+        <div class="mrt-bento-content">
+          <div class="mrt-bento-title">Tinh dầu thiên nhiên</div>
+          <div class="mrt-bento-sub">100% organic, nhập khẩu trực tiếp</div>
+        </div>
+      </div>
+      <div class="mrt-bento-item large" style="min-height:240px">
+        <img class="mrt-bento-img" src="https://images.unsplash.com/photo-1583416750470-965b2707b355?w=800&q=75&auto=format&fit=crop" alt="Khu vực chờ ấm cúng" loading="lazy" style="min-height:240px">
+        <div class="mrt-bento-overlay"></div>
+        <div class="mrt-bento-content">
+          <div class="mrt-bento-title">Khu vực chờ &amp; tiếp đón</div>
+          <div class="mrt-bento-sub">Không gian ấm áp, thư thái ngay từ khoảnh khắc đầu tiên</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- CHUYÊN VIÊN — Feature icon row                        -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="sec-pad" style="background:var(--surface)">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="mrt-label"><span class="mrt-label-line"></span>Đội ngũ<span class="mrt-label-line"></span></div>
+      <h2 class="mrt-heading">Chuyên viên <em>được đào tạo</em> bài bản</h2>
+      <p class="mrt-subtext mx-auto">Tất cả chuyên viên đều có chứng chỉ hành nghề, được đào tạo chuyên sâu tại các trường y và trung tâm trị liệu uy tín.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-6 col-md-3" data-reveal>
+        <div class="mrt-therapist-card">
+          <div class="mrt-therapist-wrap">
+            <img class="mrt-therapist-img" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200&q=80&auto=format&fit=crop&face" alt="Chuyên viên [Tên]" loading="lazy">
+          </div>
+          <div class="mrt-therapist-name">[Tên chuyên viên]</div>
+          <div class="mrt-therapist-title">Massage Thái &amp; Bấm huyệt</div>
+          <div class="mrt-therapist-exp">10 năm kinh nghiệm</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal class="d1">
+        <div class="mrt-therapist-card">
+          <div class="mrt-therapist-wrap">
+            <img class="mrt-therapist-img" src="https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?w=200&q=80&auto=format&fit=crop&face" alt="Chuyên viên [Tên]" loading="lazy">
+          </div>
+          <div class="mrt-therapist-name">[Tên chuyên viên]</div>
+          <div class="mrt-therapist-title">Massage đá nóng &amp; Aromatherapy</div>
+          <div class="mrt-therapist-exp">8 năm kinh nghiệm</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal class="d2">
+        <div class="mrt-therapist-card">
+          <div class="mrt-therapist-wrap">
+            <img class="mrt-therapist-img" src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=200&q=80&auto=format&fit=crop&face" alt="Chuyên viên [Tên]" loading="lazy">
+          </div>
+          <div class="mrt-therapist-name">[Tên chuyên viên]</div>
+          <div class="mrt-therapist-title">Trị liệu phục hồi &amp; Thể thao</div>
+          <div class="mrt-therapist-exp">6 năm kinh nghiệm</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal class="d3">
+        <div class="mrt-therapist-card">
+          <div class="mrt-therapist-wrap">
+            <img class="mrt-therapist-img" src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=200&q=80&auto=format&fit=crop&face" alt="Chuyên viên [Tên]" loading="lazy">
+          </div>
+          <div class="mrt-therapist-name">[Tên chuyên viên]</div>
+          <div class="mrt-therapist-title">Massage mặt &amp; Dưỡng da</div>
+          <div class="mrt-therapist-exp">5 năm kinh nghiệm</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ALTERNATING STRIPS — Điểm khác biệt                   -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section style="background:var(--bg)">
+  <div class="wd-container">
+    <!-- Strip 1 -->
+    <div class="mrt-strip">
+      <div class="mrt-strip-img-wrap" data-reveal>
+        <img class="mrt-strip-img" src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=700&q=75&auto=format&fit=crop" alt="Kỹ thuật massage chuyên sâu" loading="lazy">
+        <div class="mrt-strip-img-tag">
+          <div class="mrt-strip-img-tag-num">100%</div>
+          <div class="mrt-strip-img-tag-label">Nguyên liệu tự nhiên</div>
+        </div>
+      </div>
+      <div class="mrt-strip-content" data-reveal class="d1">
+        <div class="mrt-label"><span class="mrt-label-line"></span>Cam kết chất lượng</div>
+        <h3 class="mrt-heading">Kỹ thuật trị liệu <em>được kiểm chứng</em></h3>
+        <p class="mrt-subtext">Chúng tôi ứng dụng các kỹ thuật massage được nghiên cứu và chứng minh hiệu quả bởi y học hiện đại, kết hợp với tinh hoa phương Đông truyền thống.</p>
+        <ul class="mrt-benefit-list">
+          <li><span class="mrt-benefit-dot"></span>Phác đồ trị liệu cá nhân hóa theo từng khách</li>
+          <li><span class="mrt-benefit-dot"></span>Tinh dầu 100% organic, không hóa chất</li>
+          <li><span class="mrt-benefit-dot"></span>Thiết bị đá nóng được kiểm soát nhiệt độ chính xác</li>
+          <li><span class="mrt-benefit-dot"></span>Khăn, ga trải được thay mới 100% sau mỗi khách</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Strip 2 (đảo chiều) -->
+    <div class="mrt-strip reverse">
+      <div class="mrt-strip-img-wrap" data-reveal>
+        <img class="mrt-strip-img" src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=700&q=75&auto=format&fit=crop" alt="Không gian trị liệu riêng tư" loading="lazy">
+        <div class="mrt-strip-img-tag">
+          <div class="mrt-strip-img-tag-num">12</div>
+          <div class="mrt-strip-img-tag-label">Phòng trị liệu riêng</div>
+        </div>
+      </div>
+      <div class="mrt-strip-content" data-reveal class="d1">
+        <div class="mrt-label"><span class="mrt-label-line"></span>Riêng tư &amp; an toàn</div>
+        <h3 class="mrt-heading">Không gian <em>hoàn toàn</em> dành cho bạn</h3>
+        <p class="mrt-subtext">Mỗi phòng trị liệu là một thế giới riêng — cách âm, kiểm soát ánh sáng và nhiệt độ độc lập, đảm bảo sự riêng tư tuyệt đối.</p>
+        <ul class="mrt-benefit-list">
+          <li><span class="mrt-benefit-dot"></span>12 phòng trị liệu cách âm hoàn toàn</li>
+          <li><span class="mrt-benefit-dot"></span>Tủ khóa cá nhân cho đồ dùng của bạn</li>
+          <li><span class="mrt-benefit-dot"></span>Camera chỉ ở lối vào chung, không trong phòng</li>
+          <li><span class="mrt-benefit-dot"></span>Chỉ chuyên viên bạn chọn phục vụ trong phòng</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- GÓI COMBO                                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="sec-pad" style="background:var(--surface)">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="mrt-label"><span class="mrt-label-line"></span>Gói Combo<span class="mrt-label-line"></span></div>
+      <h2 class="mrt-heading">Tiết kiệm hơn với <em>gói trọn bộ</em></h2>
+      <p class="mrt-subtext mx-auto">Đặt gói combo để tiết kiệm 15–25% so với giá lẻ và trải nghiệm đầy đủ nhất mọi dịch vụ chúng tôi cung cấp.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4" data-reveal>
+        <div class="mrt-combo-card">
+          <div class="mrt-combo-name">Gói Thư Giãn</div>
+          <div class="mrt-combo-tagline">Lý tưởng cho buổi trải nghiệm đầu tiên — thư giãn trọn vẹn trong 90 phút.</div>
+          <div class="mrt-combo-price-wrap">
+            <div class="mrt-combo-price">490.000đ</div>
+            <div class="mrt-combo-original">Giá lẻ: 580.000đ</div>
+          </div>
+          <ul class="mrt-combo-items">
+            <li>Massage thư giãn toàn thân (60 phút)</li>
+            <li>Massage đầu &amp; cổ vai (20 phút)</li>
+            <li>Trà thảo mộc &amp; nghỉ ngơi (15 phút)</li>
+            <li>Khăn nóng thảo dược</li>
+          </ul>
+          <a href="dat-lich.html" class="mrt-btn-outline d-block text-center">Đặt lịch gói này</a>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal class="d1">
+        <div class="mrt-combo-card featured">
+          <div class="mrt-combo-badge">Phổ biến nhất</div>
+          <div class="mrt-combo-name">Gói Trị Liệu Sâu</div>
+          <div class="mrt-combo-tagline">Phục hồi toàn diện — kết hợp bấm huyệt, đá nóng và thư giãn.</div>
+          <div class="mrt-combo-price-wrap">
+            <div class="mrt-combo-price">790.000đ</div>
+            <div class="mrt-combo-original">Giá lẻ: 980.000đ</div>
+          </div>
+          <ul class="mrt-combo-items">
+            <li>Tư vấn sức khỏe chuyên sâu (15 phút)</li>
+            <li>Bấm huyệt trị liệu (30 phút)</li>
+            <li>Massage đá nóng toàn thân (60 phút)</li>
+            <li>Massage mặt &amp; đầu (20 phút)</li>
+            <li>Trà &amp; nghỉ ngơi phòng riêng</li>
+          </ul>
+          <a href="dat-lich.html" class="mrt-btn-primary d-block text-center">Đặt lịch gói này</a>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal class="d2">
+        <div class="mrt-combo-card">
+          <div class="mrt-combo-name">Gói VIP Trọn Ngày</div>
+          <div class="mrt-combo-tagline">Trải nghiệm spa trọn vẹn nhất — hoàn hảo cho ngày cuối tuần.</div>
+          <div class="mrt-combo-price-wrap">
+            <div class="mrt-combo-price">1.490.000đ</div>
+            <div class="mrt-combo-original">Giá lẻ: 1.980.000đ</div>
+          </div>
+          <ul class="mrt-combo-items">
+            <li>Tư vấn sức khỏe &amp; thiết kế lịch trình</li>
+            <li>Massage Thái cổ truyền (90 phút)</li>
+            <li>Đá nóng &amp; aromatherapy (60 phút)</li>
+            <li>Chăm sóc da mặt (45 phút)</li>
+            <li>Bữa nhẹ lành mạnh &amp; thảo mộc</li>
+            <li>Phòng nghỉ riêng sau trị liệu</li>
+          </ul>
+          <a href="dat-lich.html" class="mrt-btn-outline d-block text-center">Đặt lịch gói này</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ĐÁNH GIÁ                                               -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="mrt-label"><span class="mrt-label-line"></span>Đánh giá<span class="mrt-label-line"></span></div>
+      <h2 class="mrt-heading">Khách hàng <em>nói gì</em> về chúng tôi</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4" data-reveal>
+        <div class="mrt-review-card">
+          <div class="mrt-review-stars">★★★★★</div>
+          <p class="mrt-review-text">"Tôi bị đau lưng kinh niên suốt 3 năm — sau 4 buổi bấm huyệt tại đây, cơn đau giảm hẳn 70%. Chuyên viên rất am hiểu và tận tâm, không tạo áp lực mua thêm dịch vụ."</p>
+          <div class="mrt-review-foot">
+            <img class="mrt-review-av" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=72&q=80&auto=format&fit=crop&face" alt="[Tên khách hàng]" loading="lazy">
+            <div>
+              <div class="mrt-review-name">[Tên khách hàng]</div>
+              <div class="mrt-review-info">Kỹ sư phần mềm, TP.HCM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal class="d1">
+        <div class="mrt-review-card">
+          <div class="mrt-review-stars">★★★★★</div>
+          <p class="mrt-review-text">"Gói VIP Trọn Ngày xứng đáng từng đồng. Không gian phòng trị liệu cực kỳ sạch sẽ và riêng tư. Sau buổi đá nóng, tôi ngủ ngon nhất trong nhiều tháng qua."</p>
+          <div class="mrt-review-foot">
+            <img class="mrt-review-av" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=72&q=80&auto=format&fit=crop&face" alt="[Tên khách hàng]" loading="lazy">
+            <div>
+              <div class="mrt-review-name">[Tên khách hàng]</div>
+              <div class="mrt-review-info">Giám đốc marketing, Hà Nội</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal class="d2">
+        <div class="mrt-review-card">
+          <div class="mrt-review-stars">★★★★★</div>
+          <p class="mrt-review-text">"Đặt lịch online rất tiện, tới nơi không phải chờ. Massage Thái ở đây chuẩn kỹ thuật hơn nhiều chỗ khác. Đã là khách thường xuyên được 2 năm rồi."</p>
+          <div class="mrt-review-foot">
+            <img class="mrt-review-av" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=72&q=80&auto=format&fit=crop&face" alt="[Tên khách hàng]" loading="lazy">
+            <div>
+              <div class="mrt-review-name">[Tên khách hàng]</div>
+              <div class="mrt-review-info">Vận động viên, TP.HCM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- CTA                                                    -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="mrt-cta-sec">
+  <div class="wd-container">
+    <div data-reveal>
+      <h2 class="mrt-cta-title">Sẵn sàng để cơ thể được<br>nghỉ ngơi xứng đáng?</h2>
+      <p class="mrt-cta-sub">Đặt lịch ngay hôm nay — chuyên viên sẽ liên hệ xác nhận trong vòng 30 phút.</p>
+      <div class="mrt-cta-actions">
+        <a href="dat-lich.html" class="mrt-btn-white">Đặt lịch ngay →</a>
+        <a href="lien-he.html" class="mrt-btn-outline" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.25)">Liên hệ tư vấn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- FOOTER                                                 -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<footer id="mrt-footer">
+  <div class="mrt-ft-top">
+    <div class="wd-container">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <a href="index.html" class="mrt-ft-logo">
+            <div class="mrt-ft-logo-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 3c-1 3-4 5-4 9a4 4 0 008 0c0-4-3-6-4-9z"/><path d="M8 17s0 3 4 3 4-3 4-3"/></svg>
+            </div>
+            [TÊN TRUNG TÂM]
+          </a>
+          <p class="mrt-ft-desc">Trung tâm massage trị liệu chuyên nghiệp — nơi cơ thể và tâm trí được phục hồi toàn diện.</p>
+          <div class="mrt-ft-socials">
+            <a href="#" class="mrt-ft-soc" aria-label="Facebook" rel="noopener noreferrer">f</a>
+            <a href="#" class="mrt-ft-soc" aria-label="Zalo" rel="noopener noreferrer">Z</a>
+            <a href="#" class="mrt-ft-soc" aria-label="Instagram" rel="noopener noreferrer">ig</a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <div class="mrt-ft-col-title">Dịch vụ</div>
+          <div class="mrt-ft-links">
+            <a href="dich-vu.html">Massage Thái</a>
+            <a href="dich-vu.html">Đá nóng</a>
+            <a href="dich-vu.html">Bấm huyệt</a>
+            <a href="dich-vu.html">Massage mặt</a>
+            <a href="dich-vu.html">Gói Combo</a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <div class="mrt-ft-col-title">Thông tin</div>
+          <div class="mrt-ft-links">
+            <a href="index.html">Trang chủ</a>
+            <a href="dich-vu.html">Dịch vụ &amp; Giá</a>
+            <a href="dat-lich.html">Đặt lịch</a>
+            <a href="lien-he.html">Liên hệ</a>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="mrt-ft-col-title">Giờ mở cửa</div>
+          <div class="mrt-ft-hours">
+            <div class="mrt-ft-hour-row"><span>Thứ 2 – Thứ 6</span><span>9:00 – 21:00</span></div>
+            <div class="mrt-ft-hour-row"><span>Thứ 7 – Chủ nhật</span><span>8:00 – 22:00</span></div>
+            <div class="mrt-ft-hour-row"><span>Lễ, Tết</span><span>9:00 – 20:00</span></div>
+          </div>
+          <div style="margin-top:20px">
+            <div class="mrt-ft-col-title">Liên hệ</div>
+            <div class="mrt-ft-links">
+              <a href="tel:[SỐ ĐIỆN THOẠI]">[SỐ ĐIỆN THOẠI]</a>
+              <a href="mailto:[EMAIL]">[EMAIL]</a>
+              <a href="lien-he.html">[ĐỊA CHỈ]</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mrt-ft-bottom">
+    <div class="wd-container">
+      <p class="mrt-ft-copy">© 2025 [TÊN TRUNG TÂM]. Bảo lưu mọi quyền.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Zalo float -->
+<a href="https://zalo.me/[SỐ ZALO]" class="zalo-float" aria-label="Chat Zalo" target="_blank" rel="noopener noreferrer">Z</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// === Nav scroll elevation ===
+const nav = document.getElementById('mrt-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('elevated', scrollY > 40);
+}, { passive: true });
+
+// === Mobile hamburger ===
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const isOpen = mob.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+}
+
+// === Reveal animation ===
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+// === Counter animation ===
+document.querySelectorAll('[data-counter]').forEach(el => {
+  const cro = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      const target = +el.dataset.counter;
+      const suffix = el.dataset.suffix || '';
+      let cur = 0;
+      const step = Math.ceil(target / 60);
+      const t = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = cur + suffix;
+        if (cur >= target) clearInterval(t);
+      }, 25);
+      cro.disconnect();
+    }
+  }, { threshold: 0.5 });
+  cro.observe(el);
+});
+</script>
+</body>
+</html>

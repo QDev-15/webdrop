@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[TÊN TIỆM TÓC] — Barber Shop & Hair Salon</title>
+<meta name="description" content="[TÊN TIỆM TÓC] — Tiệm tóc phong cách, chuyên nghiệp. Cắt tóc, uốn nhuộm, cạo râu theo phong cách Mỹ/châu Âu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+/* ── HERO — H10: Full-screen dark + diagonal geometric divider ── */
+.tb-hero {
+  min-height: 100vh;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding-top: 64px;
+}
+.tb-hero-img {
+  position: absolute;
+  top: 0; right: 0;
+  width: 52%;
+  height: 100%;
+  z-index: 0;
+  clip-path: polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+.tb-hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+.tb-hero-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, var(--bg) 0%, transparent 30%);
+}
+.tb-hero-noise {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 55% 70% at 0% 50%, rgba(184,144,42,.06) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 100% 80%, rgba(184,144,42,.04) 0%, transparent 50%);
+}
+.tb-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: clamp(48px,8vw,100px) 0;
+}
+.tb-hero-pre {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 24px;
+  padding: 6px 14px;
+  border: 1px solid var(--border-gold);
+  border-radius: 2px;
+}
+.tb-hero-pulse {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: tbPulse 2s infinite;
+}
+@keyframes tbPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
+.tb-hero-h1 {
+  font-size: clamp(48px, 7vw, 92px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -2px;
+  margin-bottom: 8px;
+}
+.tb-hero-h1 em {
+  display: block;
+  color: var(--accent-bright);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(36px,5vw,68px);
+}
+.tb-hero-rule {
+  width: 60px;
+  height: 2px;
+  background: var(--accent);
+  margin: 28px 0;
+}
+.tb-hero-p {
+  font-size: clamp(15px,1.5vw,17px);
+  font-weight: 300;
+  color: var(--text-2);
+  line-height: 1.75;
+  max-width: 440px;
+  margin-bottom: 36px;
+}
+.tb-hero-trust {
+  display: flex;
+  gap: 28px;
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,.07);
+  flex-wrap: wrap;
+}
+.tb-ht-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: rgba(255,255,255,.35);
+  font-weight: 300;
+}
+.tb-ht-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+@media (max-width: 991px) {
+  .tb-hero-img { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav" data-scroll-nav>
+  <div class="wd-container">
+    <div class="tb-nav-inner">
+      <a class="tb-logo" href="index.html">
+        <span class="tb-logo-mark">B</span>
+        [TÊN TIỆM]
+      </a>
+      <ul class="tb-nav-links">
+        <li><a href="index.html" class="active">Trang chủ</a></li>
+        <li><a href="dich-vu.html">Dịch vụ</a></li>
+        <li><a href="dat-lich.html">Đặt lịch</a></li>
+        <li><a href="lien-he.html">Liên hệ</a></li>
+      </ul>
+      <a href="dat-lich.html" class="tb-nav-cta">Đặt lịch ngay</a>
+      <button class="tb-hamburger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="tb-nav-mob" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ</a>
+  <a href="dat-lich.html">Đặt lịch</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="tb-mob-cta">Đặt lịch ngay</a>
+</div>
+
+<!-- HERO — H10 Geometric Split -->
+<section class="tb-hero">
+  <div class="tb-hero-img">
+    <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=900&q=80&auto=format&fit=crop" alt="Barber đang cắt tóc chuyên nghiệp">
+  </div>
+  <div class="tb-hero-noise"></div>
+  <div class="wd-container w-100">
+    <div class="tb-hero-content">
+      <div class="tb-hero-pre">
+        <span class="tb-hero-pulse"></span>
+        Premium Barber Shop
+      </div>
+      <h1 class="tb-hero-h1">
+        PHONG CÁCH
+        <em>& Đẳng cấp</em>
+      </h1>
+      <div class="tb-hero-rule"></div>
+      <p class="tb-hero-p">Nơi mỗi nhát kéo là một nghệ thuật. Chúng tôi mang đến trải nghiệm cắt tóc cao cấp theo phong cách barber Mỹ — chỉnh chu từng chi tiết, tôn vinh cá tính của bạn.</p>
+      <div class="d-flex gap-3 flex-wrap">
+        <a href="dat-lich.html" class="tb-btn-gold">Đặt lịch ngay</a>
+        <a href="dich-vu.html" class="tb-btn-outline">Xem dịch vụ</a>
+      </div>
+      <div class="tb-hero-trust">
+        <div class="tb-ht-item"><span class="tb-ht-dot"></span>3.000+ khách hàng</div>
+        <div class="tb-ht-item"><span class="tb-ht-dot"></span>8 năm kinh nghiệm</div>
+        <div class="tb-ht-item"><span class="tb-ht-dot"></span>5 stylist chuyên nghiệp</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAT BAR -->
+<section class="tb-stat-bar">
+  <div class="wd-container">
+    <div class="row g-0">
+      <div class="col-6 col-md-3">
+        <div class="tb-stat-item" style="border-right:1px solid rgba(184,144,42,.15)">
+          <div class="tb-stat-num" data-counter="3000" data-suffix="+">0+</div>
+          <div class="tb-stat-label">Khách hàng</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="tb-stat-item" style="border-right:1px solid rgba(184,144,42,.15)">
+          <div class="tb-stat-num" data-counter="8" data-suffix=" năm">0 năm</div>
+          <div class="tb-stat-label">Kinh nghiệm</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="tb-stat-item" style="border-right:1px solid rgba(184,144,42,.15)">
+          <div class="tb-stat-num" data-counter="5" data-suffix="">0</div>
+          <div class="tb-stat-label">Stylist chuyên nghiệp</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="tb-stat-item">
+          <div class="tb-stat-num" data-counter="98" data-suffix="%">0%</div>
+          <div class="tb-stat-label">Khách hài lòng</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DỊCH VỤ NỔI BẬT — GRID-CARDS -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="tb-eyebrow">Dịch vụ</div>
+      <h2 class="tb-title">Chúng tôi <em>làm gì</em></h2>
+      <p class="tb-sub mx-auto">Từ cắt tóc kinh điển đến các kỹ thuật tạo kiểu hiện đại — mỗi dịch vụ được thực hiện với sự tỉ mỉ của nghề thủ công.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3" data-reveal data-delay="1">
+        <div class="tb-svc-card">
+          <div class="tb-svc-img">
+            <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&q=80&auto=format&fit=crop" alt="Cắt tóc nam">
+          </div>
+          <div class="tb-svc-body">
+            <span class="tb-svc-tag">Tóc Nam</span>
+            <h3 class="tb-svc-name">Cắt Tóc Nam</h3>
+            <p class="tb-svc-desc">Cắt tạo kiểu, fade, undercut — chỉnh chu từng đường kéo theo khuôn mặt.</p>
+            <div class="tb-svc-price"><span class="tb-svc-price-from">từ</span>100.000đ</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-reveal data-delay="2">
+        <div class="tb-svc-card">
+          <div class="tb-svc-img">
+            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&q=80&auto=format&fit=crop" alt="Cắt tóc nữ">
+          </div>
+          <div class="tb-svc-body">
+            <span class="tb-svc-tag">Tóc Nữ</span>
+            <h3 class="tb-svc-name">Cắt Tóc Nữ</h3>
+            <p class="tb-svc-desc">Cắt layer, bob, tỉa tóc — phù hợp với từng khuôn mặt và phong cách.</p>
+            <div class="tb-svc-price"><span class="tb-svc-price-from">từ</span>150.000đ</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-reveal data-delay="3">
+        <div class="tb-svc-card">
+          <div class="tb-svc-img">
+            <img src="https://images.unsplash.com/photo-1593702288056-7cc0a831b8da?w=600&q=80&auto=format&fit=crop" alt="Cạo râu barber">
+          </div>
+          <div class="tb-svc-body">
+            <span class="tb-svc-tag">Barber</span>
+            <h3 class="tb-svc-name">Cạo Râu Hot Towel</h3>
+            <p class="tb-svc-desc">Cạo râu truyền thống với dao thẳng, khăn nóng — trải nghiệm barber đích thực.</p>
+            <div class="tb-svc-price"><span class="tb-svc-price-from">từ</span>120.000đ</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-reveal data-delay="3">
+        <div class="tb-svc-card">
+          <div class="tb-svc-img">
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80&auto=format&fit=crop" alt="Uốn nhuộm tóc">
+          </div>
+          <div class="tb-svc-body">
+            <span class="tb-svc-tag">Hóa học</span>
+            <h3 class="tb-svc-name">Uốn / Nhuộm / Duỗi</h3>
+            <p class="tb-svc-desc">Sử dụng sản phẩm cao cấp, bảo vệ tóc và cho màu bền đẹp theo thời gian.</p>
+            <div class="tb-svc-price"><span class="tb-svc-price-from">từ</span>500.000đ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5" data-reveal>
+      <a href="dich-vu.html" class="tb-btn-outline">Xem đầy đủ dịch vụ & bảng giá</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY — Bento Grid -->
+<section class="sec-pad" style="background:var(--bg-2)">
+  <div class="wd-container">
+    <div class="row align-items-end mb-5">
+      <div class="col-md-7" data-reveal>
+        <div class="tb-eyebrow">Gallery</div>
+        <h2 class="tb-title mb-0">Tác phẩm <em>của chúng tôi</em></h2>
+      </div>
+      <div class="col-md-5 text-md-end mt-3 mt-md-0" data-reveal data-delay="1">
+        <p class="tb-sub mb-0" style="margin-left:auto">Mỗi kiểu tóc là một câu chuyện riêng — xem thêm trên trang Instagram của chúng tôi.</p>
+      </div>
+    </div>
+    <div class="tb-gallery-bento" data-reveal>
+      <div class="tb-gb-item">
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=80&auto=format&fit=crop" alt="Cắt tóc fade">
+      </div>
+      <div class="tb-gb-item">
+        <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=400&q=80&auto=format&fit=crop" alt="Kiểu tóc nam đẹp">
+      </div>
+      <div class="tb-gb-item">
+        <img src="https://images.unsplash.com/photo-1562572159-4efd90232432?w=400&q=80&auto=format&fit=crop" alt="Barber shop không gian">
+      </div>
+      <div class="tb-gb-item">
+        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=400&q=80&auto=format&fit=crop" alt="Tóc nữ đẹp">
+      </div>
+      <div class="tb-gb-item">
+        <img src="https://images.unsplash.com/photo-1500840216050-6ffa99d75160?w=400&q=80&auto=format&fit=crop" alt="Nhuộm tóc màu đẹp">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ĐỘI NGŨ STYLIST — Grid cards -->
+<section class="sec-pad tb-sec-light">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="tb-eyebrow-dk">Đội ngũ</div>
+      <h2 class="tb-title-dk">Gặp gỡ <em>các stylist</em></h2>
+      <p class="tb-sub-dk mx-auto">Những nghệ nhân đứng sau từng tác phẩm — đam mê, kỹ thuật và cá tính riêng biệt.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-6 col-md-3" data-reveal data-delay="1">
+        <div class="tb-stylist-card" style="background:#fff;border-color:#e0dbd2">
+          <div class="tb-stylist-img">
+            <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=400&q=80&auto=format&fit=crop" alt="Stylist Minh Tuấn">
+          </div>
+          <div class="tb-stylist-info">
+            <div class="tb-stylist-name" style="color:var(--text-dark)">[Nguyễn Minh Tuấn]</div>
+            <div class="tb-stylist-role">Master Barber</div>
+            <div class="tb-stylist-spec" style="color:var(--text-dark-2)">Chuyên cắt fade, taper. 8 năm kinh nghiệm tại Mỹ & Việt Nam.</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal data-delay="2">
+        <div class="tb-stylist-card" style="background:#fff;border-color:#e0dbd2">
+          <div class="tb-stylist-img">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80&auto=format&fit=crop" alt="Stylist Hùng">
+          </div>
+          <div class="tb-stylist-info">
+            <div class="tb-stylist-name" style="color:var(--text-dark)">[Trần Hùng]</div>
+            <div class="tb-stylist-role">Senior Stylist</div>
+            <div class="tb-stylist-spec" style="color:var(--text-dark-2)">Chuyên về uốn xoăn, nhuộm highlight, balayage.</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal data-delay="3">
+        <div class="tb-stylist-card" style="background:#fff;border-color:#e0dbd2">
+          <div class="tb-stylist-img">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80&auto=format&fit=crop" alt="Stylist Thảo">
+          </div>
+          <div class="tb-stylist-info">
+            <div class="tb-stylist-name" style="color:var(--text-dark)">[Lê Thảo]</div>
+            <div class="tb-stylist-role">Color Specialist</div>
+            <div class="tb-stylist-spec" style="color:var(--text-dark-2)">Chuyên nhuộm màu, tẩy tóc, tóc nữ tạo kiểu.</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal data-delay="3">
+        <div class="tb-stylist-card" style="background:#fff;border-color:#e0dbd2">
+          <div class="tb-stylist-img">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80&auto=format&fit=crop" alt="Stylist Lan">
+          </div>
+          <div class="tb-stylist-info">
+            <div class="tb-stylist-name" style="color:var(--text-dark)">[Phạm Thị Lan]</div>
+            <div class="tb-stylist-role">Junior Stylist</div>
+            <div class="tb-stylist-spec" style="color:var(--text-dark-2)">Cắt tóc nữ layer, dưỡng tóc, gội đầu massage thư giãn.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ĐÁNH GIÁ KHÁCH HÀNG — Grid cards on dark -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="tb-eyebrow">Đánh giá</div>
+      <h2 class="tb-title">Khách hàng <em>nói gì</em></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4" data-reveal data-delay="1">
+        <div class="tb-review-card">
+          <div class="tb-stars">★★★★★</div>
+          <p class="tb-review-text">"Tìm được tiệm tóc ưng ý ở Việt Nam không dễ, nhưng ở đây tôi hoàn toàn hài lòng. Anh Tuấn cắt fade chuẩn như ở Mỹ, rất hiểu ý khách."</p>
+          <div class="tb-review-author">
+            <div class="tb-review-avatar">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80&auto=format&fit=crop" alt="Avatar">
+            </div>
+            <div>
+              <div class="tb-review-name">[Nguyễn Văn A]</div>
+              <div class="tb-review-meta">Khách thường xuyên · 2 năm</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal data-delay="2">
+        <div class="tb-review-card">
+          <div class="tb-stars">★★★★★</div>
+          <p class="tb-review-text">"Nhuộm tóc highlight xong đẹp hơn mình nghĩ rất nhiều. Chị Lan tư vấn màu rất nhiệt tình và chuyên nghiệp. Sẽ quay lại!"</p>
+          <div class="tb-review-author">
+            <div class="tb-review-avatar">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80&auto=format&fit=crop" alt="Avatar">
+            </div>
+            <div>
+              <div class="tb-review-name">[Trần Thị B]</div>
+              <div class="tb-review-meta">Google Reviews</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal data-delay="3">
+        <div class="tb-review-card">
+          <div class="tb-stars">★★★★★</div>
+          <p class="tb-review-text">"Cạo râu hot towel lần đầu tiên trong đời — cảm giác thư giãn không tả được. Không gian tiệm thoải mái, nhạc hay, nhân viên vui vẻ."</p>
+          <div class="tb-review-author">
+            <div class="tb-review-avatar">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80&auto=format&fit=crop" alt="Avatar">
+            </div>
+            <div>
+              <div class="tb-review-name">[Lê Minh C]</div>
+              <div class="tb-review-meta">Facebook Review</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER — Full-bleed dark -->
+<section style="background:var(--bg-2);border-top:1px solid var(--border-gold);border-bottom:1px solid var(--border-gold);padding:clamp(56px,8vw,88px) 0">
+  <div class="wd-container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-8" data-reveal>
+        <div class="tb-eyebrow">Đặt lịch ngay</div>
+        <h2 class="tb-title mb-2">Phong cách bắt đầu từ<br><em>một cuộc hẹn.</em></h2>
+        <p class="tb-sub">Chúng tôi xác nhận lịch hẹn qua Zalo trong vòng 15 phút. Hủy lịch miễn phí trước 2 tiếng.</p>
+      </div>
+      <div class="col-lg-4 text-lg-end" data-reveal data-delay="1">
+        <a href="dat-lich.html" class="tb-btn-gold d-inline-block mb-3">Đặt lịch online →</a>
+        <div style="font-size:13px;color:var(--text-3);font-weight:300">hoặc gọi <a href="tel:0901234567" style="color:var(--accent-bright);text-decoration:none">0901 234 567</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="tb-footer">
+  <div class="wd-container">
+    <div class="tb-footer-top">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <div class="tb-footer-brand">
+            <span class="tb-logo-mark">B</span>
+            [TÊN TIỆM TÓC]
+          </div>
+          <p class="tb-footer-tagline">Tiệm tóc phong cách barber Mỹ — nơi kỹ thuật gặp nghệ thuật. Đặt lịch hôm nay để trải nghiệm sự khác biệt.</p>
+          <div class="tb-footer-social">
+            <a href="#" class="tb-social-link" rel="noopener noreferrer" aria-label="Facebook">f</a>
+            <a href="#" class="tb-social-link" rel="noopener noreferrer" aria-label="Instagram">ig</a>
+            <a href="#" class="tb-social-link" rel="noopener noreferrer" aria-label="TikTok">tt</a>
+            <a href="#" class="tb-social-link" rel="noopener noreferrer" aria-label="Zalo">zl</a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <div class="tb-footer-col-title">Điều hướng</div>
+          <ul class="tb-footer-links">
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="dich-vu.html">Dịch vụ</a></li>
+            <li><a href="dat-lich.html">Đặt lịch</a></li>
+            <li><a href="lien-he.html">Liên hệ</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-2">
+          <div class="tb-footer-col-title">Dịch vụ</div>
+          <ul class="tb-footer-links">
+            <li><a href="dich-vu.html">Cắt tóc nam</a></li>
+            <li><a href="dich-vu.html">Cắt tóc nữ</a></li>
+            <li><a href="dich-vu.html">Cạo râu</a></li>
+            <li><a href="dich-vu.html">Uốn / Nhuộm</a></li>
+            <li><a href="dich-vu.html">Chăm sóc tóc</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4">
+          <div class="tb-footer-col-title">Giờ mở cửa</div>
+          <ul class="tb-footer-hours">
+            <li><span>Thứ 2 – Thứ 6</span><span>8:00 – 20:00</span></li>
+            <li><span>Thứ 7</span><span>8:00 – 21:00</span></li>
+            <li><span>Chủ nhật</span><span>9:00 – 19:00</span></li>
+          </ul>
+          <div style="margin-top:16px;font-size:13px;color:rgba(255,255,255,.35);font-weight:300">
+            📍 [Số nhà, Tên đường, Phường, Quận, TP]
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tb-footer-bottom">
+      <div class="tb-footer-copy">&copy; 2024 [TÊN TIỆM TÓC]. Mọi quyền được bảo lưu.</div>
+      <div class="tb-footer-copy">Được xây dựng bởi <a href="#">webdrop.vn</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ZALO FLOAT -->
+<a href="https://zalo.me/[SỐ_ZALO]" class="tb-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+  <svg width="26" height="26" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><text y="38" font-size="38" fill="#fff">💬</text></svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// === Reveal animation ===
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+// === Nav scroll ===
+const nav = document.getElementById('nav');
+if (nav && nav.dataset.scrollNav !== undefined) {
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', scrollY > 60);
+  }, { passive: true });
+}
+
+// === Mobile hamburger ===
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const o = mob.classList.toggle('open');
+    burger.classList.toggle('open', o);
+    document.body.style.overflow = o ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+}
+
+// === Counter animation ===
+document.querySelectorAll('[data-counter]').forEach(el => {
+  const cro = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      const target = +el.dataset.counter;
+      const suffix = el.dataset.suffix || '';
+      let cur = 0;
+      const step = Math.ceil(target / 60);
+      const t = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = cur + suffix;
+        if (cur >= target) clearInterval(t);
+      }, 25);
+      cro.disconnect();
+    }
+  }, { threshold: 0.5 });
+  cro.observe(el);
+});
+</script>
+</body>
+</html>

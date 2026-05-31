@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dịch vụ & Bảng giá — [TÊN PHÒNG KHÁM]</title>
+<meta name="description" content="Dịch vụ điều trị da liễu chuyên sâu tại [TÊN PHÒNG KHÁM]: mụn, nám, lão hóa, sẹo rỗ. Công nghệ Laser, IPL, Microneedling. Bảng giá minh bạch.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="wd-container">
+    <div class="csd-nav-inner">
+      <a class="csd-logo" href="index.html">
+        <div class="csd-logo-mark">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+        </div>
+        <div class="csd-logo-name">[TÊN]<span>Clinic</span></div>
+      </a>
+      <div class="csd-nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="dich-vu.html" class="active">Dịch vụ & Giá</a>
+        <a href="dat-lich.html">Đặt lịch</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-lich.html" class="csd-nav-cta">Tư vấn miễn phí</a>
+      <button class="csd-burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="csd-mob-menu" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ & Giá</a>
+  <a href="dat-lich.html">Đặt lịch</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="csd-mob-cta">Tư vấn miễn phí</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="csd-page-hero">
+  <div class="wd-container">
+    <div data-reveal>
+      <div class="csd-ph-tag">Dịch vụ điều trị</div>
+      <h1 class="csd-ph-title">Điều trị <em>đúng vấn đề</em> — đúng công nghệ</h1>
+      <p class="csd-ph-sub">Mỗi liệu trình được thiết kế riêng cho từng tình trạng da — không áp dụng gói cố định cho tất cả.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORY TABS -->
+<div style="background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 68px; z-index: 100;">
+  <div class="wd-container">
+    <div class="d-flex gap-0 overflow-auto" style="scrollbar-width:none;" id="catTabs">
+      <button class="csd-cat-tab active" data-cat="mun">Điều trị mụn</button>
+      <button class="csd-cat-tab" data-cat="nam">Nám & Sắc tố</button>
+      <button class="csd-cat-tab" data-cat="laoHoa">Lão hóa</button>
+      <button class="csd-cat-tab" data-cat="seo">Sẹo & Rỗ</button>
+      <button class="csd-cat-tab" data-cat="khac">Khác</button>
+    </div>
+  </div>
+</div>
+<style>
+.csd-cat-tab {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 400;
+  color: var(--text-2);
+  background: transparent;
+  border: none;
+  border-bottom: 2.5px solid transparent;
+  padding: 14px 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color .18s, border-color .18s;
+}
+.csd-cat-tab:hover { color: var(--accent); }
+.csd-cat-tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 500; }
+</style>
+
+<!-- SERVICES GRID -->
+<section class="csd-sec" style="background: var(--bg);">
+  <div class="wd-container">
+
+    <!-- Điều trị mụn -->
+    <div id="sec-mun">
+      <div class="mb-5" data-reveal>
+        <div class="csd-eyebrow">Điều trị mụn trứng cá</div>
+        <h2 class="csd-title">Từ mụn nhẹ đến <em>mụn viêm nặng</em></h2>
+        <p class="csd-sub">Chẩn đoán nguyên nhân gốc rễ — hormone, vi khuẩn, tuyến bã nhờn — để điều trị đúng hướng.</p>
+      </div>
+      <div class="row g-4 mb-5">
+        <div class="col-md-6 col-lg-4" data-reveal>
+          <div class="csd-svc-card">
+            <img class="csd-svc-img"
+              src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80&auto=format&fit=crop"
+              alt="LED Blue Light điều trị mụn" loading="lazy">
+            <div class="csd-svc-body">
+              <div class="csd-svc-category">LED Light Therapy</div>
+              <div class="csd-svc-title">LED Blue Light — Diệt khuẩn mụn</div>
+              <div class="csd-svc-desc">Ánh sáng xanh 415nm tiêu diệt vi khuẩn P.acnes trực tiếp, giảm viêm, kiểm soát dầu. Phù hợp da mụn nhẹ đến trung bình.</div>
+              <div class="csd-svc-meta">
+                <div class="csd-svc-price">350.000đ / buổi</div>
+                <div class="csd-svc-duration">30 phút · 6–10 buổi</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-reveal data-delay="1">
+          <div class="csd-svc-card">
+            <img class="csd-svc-img"
+              src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=600&q=80&auto=format&fit=crop"
+              alt="BHA Chemical Peel" loading="lazy">
+            <div class="csd-svc-body">
+              <div class="csd-svc-category">Chemical Peel</div>
+              <div class="csd-svc-title">Salicylic Acid Peel (BHA)</div>
+              <div class="csd-svc-desc">Peel BHA 20–30% thâm nhập vào lỗ chân lông, loại bỏ bã nhờn, mụn đầu đen và điều chỉnh tiết dầu. Giảm thâm sau mụn.</div>
+              <div class="csd-svc-meta">
+                <div class="csd-svc-price">550.000đ / buổi</div>
+                <div class="csd-svc-duration">45 phút · 4–6 buổi</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-reveal data-delay="2">
+          <div class="csd-svc-card">
+            <img class="csd-svc-img"
+              src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80&auto=format&fit=crop"
+              alt="Laser điều trị mụn" loading="lazy">
+            <div class="csd-svc-body">
+              <div class="csd-svc-category">Laser Therapy</div>
+              <div class="csd-svc-title">Laser Diode 1450nm</div>
+              <div class="csd-svc-desc">Laser tác động trực tiếp vào tuyến bã nhờn, giảm tiết dầu vĩnh viễn. Hiệu quả với mụn nang, mụn bọc tái phát nhiều lần.</div>
+              <div class="csd-svc-meta">
+                <div class="csd-svc-price">900.000đ / buổi</div>
+                <div class="csd-svc-duration">40 phút · 3–6 buổi</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="csd-section-divider mb-5"></div>
+
+    <!-- Nám & Sắc tố -->
+    <div id="sec-nam">
+      <div class="mb-5" data-reveal>
+        <div class="csd-eyebrow">Nám & Rối loạn sắc tố</div>
+        <h2 class="csd-title">Điều trị nám — <em>kiên trì và đúng phác đồ</em></h2>
+        <p class="csd-sub">Nám là vấn đề da phức tạp, cần điều trị kết hợp nhiều phương pháp. Không có giải pháp nào là "một buổi hết ngay".</p>
+      </div>
+      <div class="row g-4 mb-5">
+        <div class="col-md-6 col-lg-4" data-reveal>
+          <div class="csd-svc-card">
+            <img class="csd-svc-img"
+              src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80&auto=format&fit=crop"
+              alt="Laser YAG Q-Switched" loading="lazy">
+            <div class="csd-svc-body">
+              <div class="csd-svc-category">Laser</div>
+              <div class="csd-svc-title">Laser YAG Q-Switched</div>
+              <div class="csd-svc-desc">Xung laser cực ngắn phá vỡ melanin sắc tố, cơ thể tự thải ra ngoài. Hiệu quả với nám nông, tàn nhang, đốm nâu.</div>
+              <div class="csd-svc-meta">
+                <div class="csd-svc-price">1.200.000đ / buổi</div>
+                <div class="csd-svc-duration">30 phút · 6–10 buổi</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-reveal data-delay="1">
+          <div class="csd-svc-card">
+            <img class="csd-svc-img"
+              src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&q=80&auto=format&fit=crop"
+              alt="IPL Intense Pulsed Light" loading="lazy">
+            <div class="csd-svc-body">
+              <div class="csd-svc-category">IPL Technology</div>
+              <div class="csd-svc-title">IPL Intense Pulsed Light</div>
+              <div class="csd-svc-desc">Ánh sáng xung mạnh đa bước sóng — điều trị nám, đốm sắc tố, mao mạch đỏ. Không xâm lấn, không thời gian nghỉ phục hồi.</div>
+              <div class="csd-svc-meta">
+                <div class="csd-svc-price">1.500.000đ / buổi</div>
+                <div class="csd-svc-duration">45 phút · 4–6 buổi</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-reveal data-delay="2">
+          <div class="csd-svc-card">
+            <img class="csd-svc-img"
+              src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80&auto=format&fit=crop"
+              alt="Chemical Peel trị nám" loading="lazy">
+            <div class="csd-svc-body">
+              <div class="csd-svc-category">Chemical Peel</div>
+              <div class="csd-svc-title">Mandelic Acid Peel</div>
+              <div class="csd-svc-desc">AHA phân tử lớn, nhẹ dịu với da nhạy cảm. Tẩy tế bào chết sâu, ức chế melanin, làm đều màu da. Phù hợp tone da tối.</div>
+              <div class="csd-svc-meta">
+                <div class="csd-svc-price">650.000đ / buổi</div>
+                <div class="csd-svc-duration">40 phút · 6–8 buổi</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="csd-section-divider mb-5"></div>
+
+    <!-- Lão hóa -->
+    <div id="sec-laoHoa">
+      <div class="mb-5" data-reveal>
+        <div class="csd-eyebrow">Trẻ hóa & Chống lão hóa</div>
+        <h2 class="csd-title">Phục hồi <em>collagen</em> — căng da không phẫu thuật</h2>
+        <p class="csd-sub">Kích thích tái sinh collagen tự nhiên từ bên trong — kết quả lâu dài hơn bất kỳ kem dưỡng nào.</p>
+      </div>
+      <div class="row g-4 mb-5">
+        <div class="col-md-6 col-lg-4" data-reveal>
+          <div class="csd-svc-card">
+            <img class="csd-svc-img"
+              src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80&auto=format&fit=crop"
+              alt="Laser Fractional CO2" loading="lazy">
+            <div class="csd-svc-body">
+              <div class="csd-svc-category">Fractional Laser</div>
+              <div class="csd-svc-title">Laser Fractional CO2</div>
+              <div class="csd-svc-desc">Laser tạo cột vi nhiệt trong da, kích thích collagen và elastin mới. Xóa nhăn, tái tạo cấu trúc da toàn diện.</div>
+              <div class="csd-svc-meta">
+                <div class="csd-svc-price">3.500.000đ / buổi</div>
+                <div class="csd-svc-duration">60 phút · 1–3 buổi</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-reveal data-delay="1">
+          <div class="csd-svc-card">
+            <img class="csd-svc-img"
+              src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80&auto=format&fit=crop"
+              alt="Microneedling RF" loading="lazy">
+            <div class="csd-svc-body">
+              <div class="csd-svc-category">RF Microneedling</div>
+              <div class="csd-svc-title">Microneedling RF</div>
+              <div class="csd-svc-desc">Kim siêu nhỏ + sóng Radio Frequency — kích thích collagen ở nhiều độ sâu khác nhau. Nâng cơ, căng da, giảm nhăn.</div>
+              <div class="csd-svc-meta">
+                <div class="csd-svc-price">2.800.000đ / buổi</div>
+                <div class="csd-svc-duration">60 phút · 3–4 buổi</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-reveal data-delay="2">
+          <div class="csd-svc-card">
+            <img class="csd-svc-img"
+              src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80&auto=format&fit=crop"
+              alt="HIFU nâng cơ mặt" loading="lazy">
+            <div class="csd-svc-body">
+              <div class="csd-svc-category">HIFU Ultrasound</div>
+              <div class="csd-svc-title">HIFU Nâng cơ mặt</div>
+              <div class="csd-svc-desc">Siêu âm hội tụ cường độ cao tác động vào lớp SMAS — nâng cơ, gọn hàm, xóa chảy xệ. Hiệu quả 6–18 tháng.</div>
+              <div class="csd-svc-meta">
+                <div class="csd-svc-price">5.500.000đ / buổi</div>
+                <div class="csd-svc-duration">90 phút · 1–2 buổi/năm</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="csd-section-divider mb-5"></div>
+
+    <!-- Sẹo & Rỗ -->
+    <div id="sec-seo">
+      <div class="mb-5" data-reveal>
+        <div class="csd-eyebrow">Điều trị sẹo & lỗ chân lông</div>
+        <h2 class="csd-title">Tái tạo bề mặt da — <em>sẹo mờ, da mịn</em></h2>
+        <p class="csd-sub">Sẹo rỗ, sẹo lõm boxcar, sẹo ice pick — mỗi loại sẹo cần kỹ thuật điều trị khác nhau.</p>
+      </div>
+      <div class="row g-4 mb-5">
+        <div class="col-md-6" data-reveal>
+          <div class="csd-svc-card">
+            <img class="csd-svc-img"
+              src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80&auto=format&fit=crop"
+              alt="PRP Platelet Rich Plasma" loading="lazy">
+            <div class="csd-svc-body">
+              <div class="csd-svc-category">Regenerative Therapy</div>
+              <div class="csd-svc-title">Microneedling + PRP (Huyết tương giàu tiểu cầu)</div>
+              <div class="csd-svc-desc">Kết hợp microneedling với PRP tự thân — tiểu cầu kích thích tái sinh mô mạnh mẽ, làm đầy sẹo rỗ từ bên trong. Kết quả ấn tượng sau 3–5 buổi.</div>
+              <div class="csd-svc-meta">
+                <div class="csd-svc-price">2.200.000đ / buổi</div>
+                <div class="csd-svc-duration">75 phút · 4–6 buổi</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6" data-reveal data-delay="1">
+          <div class="csd-svc-card">
+            <img class="csd-svc-img"
+              src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&q=80&auto=format&fit=crop"
+              alt="Laser Fractional sẹo rỗ" loading="lazy">
+            <div class="csd-svc-body">
+              <div class="csd-svc-category">Fractional Ablative</div>
+              <div class="csd-svc-title">Laser Fractional Er:YAG</div>
+              <div class="csd-svc-desc">Laser bào da chính xác từng lớp — tái cấu trúc bề mặt sẹo rỗ, thu nhỏ lỗ chân lông. Ít tổn thương mô xung quanh hơn CO2.</div>
+              <div class="csd-svc-meta">
+                <div class="csd-svc-price">2.800.000đ / buổi</div>
+                <div class="csd-svc-duration">60 phút · 2–4 buổi</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING TABLES -->
+<section class="csd-sec" style="background: var(--surface);">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="csd-eyebrow">Bảng giá chi tiết</div>
+      <h2 class="csd-title">Giá minh bạch — <em>không phát sinh</em></h2>
+      <p class="csd-sub centered">Giá bao gồm thủ thuật và sản phẩm dùng trong buổi. Không có phí ẩn hay phụ thu.</p>
+    </div>
+    <div class="csd-notice mb-5" data-reveal>
+      <strong>Lưu ý:</strong> Phác đồ và số buổi điều trị được bác sĩ xác định sau khi khám. Giá trên là giá tham khảo theo từng kỹ thuật.
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6" data-reveal>
+        <div class="csd-price-table">
+          <div class="csd-pt-head">
+            <div class="csd-pt-head-icon">🔴</div>
+            <div>
+              <div class="csd-pt-head-name">Điều trị mụn & da dầu</div>
+              <div class="csd-pt-head-sub">4 phương pháp chính</div>
+            </div>
+          </div>
+          <div class="csd-pt-row">
+            <div class="csd-pt-service">LED Blue Light Therapy<small>30 phút · phù hợp mọi loại mụn</small></div>
+            <div class="csd-pt-price">350.000đ</div>
+          </div>
+          <div class="csd-pt-row">
+            <div class="csd-pt-service">Salicylic Acid (BHA) Peel<small>45 phút · kiểm soát dầu</small></div>
+            <div class="csd-pt-price">550.000đ</div>
+          </div>
+          <div class="csd-pt-row">
+            <div class="csd-pt-service">Kết hợp LED + BHA Peel<small>60 phút · hiệu quả kép</small></div>
+            <div class="csd-pt-price">780.000đ</div>
+          </div>
+          <div class="csd-pt-row">
+            <div class="csd-pt-service">Laser Diode 1450nm<small>40 phút · giảm tuyến bã nhờn vĩnh viễn</small></div>
+            <div class="csd-pt-price">900.000đ</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6" data-reveal data-delay="1">
+        <div class="csd-price-table">
+          <div class="csd-pt-head">
+            <div class="csd-pt-head-icon">🟤</div>
+            <div>
+              <div class="csd-pt-head-name">Nám, tàn nhang & sắc tố</div>
+              <div class="csd-pt-head-sub">3 phương pháp chính</div>
+            </div>
+          </div>
+          <div class="csd-pt-row">
+            <div class="csd-pt-service">Laser YAG Q-Switched<small>30 phút · nám nông, tàn nhang</small></div>
+            <div class="csd-pt-price">1.200.000đ</div>
+          </div>
+          <div class="csd-pt-row">
+            <div class="csd-pt-service">IPL Intense Pulsed Light<small>45 phút · mao mạch, sắc tố</small></div>
+            <div class="csd-pt-price">1.500.000đ</div>
+          </div>
+          <div class="csd-pt-row">
+            <div class="csd-pt-service">Mandelic Acid Peel<small>40 phút · da nhạy cảm</small></div>
+            <div class="csd-pt-price">650.000đ</div>
+          </div>
+          <div class="csd-pt-row">
+            <div class="csd-pt-service">Tư vấn nám chuyên sâu<small>30 phút · miễn phí khi điều trị</small></div>
+            <div class="csd-pt-price" style="color:var(--accent-mid)">Miễn phí</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6" data-reveal>
+        <div class="csd-price-table">
+          <div class="csd-pt-head">
+            <div class="csd-pt-head-icon">⏳</div>
+            <div>
+              <div class="csd-pt-head-name">Trẻ hóa & Chống lão hóa</div>
+              <div class="csd-pt-head-sub">4 phương pháp tiên tiến</div>
+            </div>
+          </div>
+          <div class="csd-pt-row">
+            <div class="csd-pt-service">Laser Fractional CO2<small>60 phút · tái tạo toàn diện</small></div>
+            <div class="csd-pt-price">3.500.000đ</div>
+          </div>
+          <div class="csd-pt-row">
+            <div class="csd-pt-service">Microneedling RF<small>60 phút · nâng cơ, căng da</small></div>
+            <div class="csd-pt-price">2.800.000đ</div>
+          </div>
+          <div class="csd-pt-row">
+            <div class="csd-pt-service">HIFU Nâng cơ mặt<small>90 phút · nâng SMAS</small></div>
+            <div class="csd-pt-price">5.500.000đ</div>
+          </div>
+          <div class="csd-pt-row">
+            <div class="csd-pt-service">LED Red Light (phục hồi da)<small>30 phút · hỗ trợ sau điều trị</small></div>
+            <div class="csd-pt-price">250.000đ</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6" data-reveal data-delay="1">
+        <div class="csd-price-table">
+          <div class="csd-pt-head">
+            <div class="csd-pt-head-icon">⚡</div>
+            <div>
+              <div class="csd-pt-head-name">Sẹo rỗ & Lỗ chân lông</div>
+              <div class="csd-pt-head-sub">3 phương pháp</div>
+            </div>
+          </div>
+          <div class="csd-pt-row">
+            <div class="csd-pt-service">Microneedling + PRP<small>75 phút · làm đầy sẹo rỗ</small></div>
+            <div class="csd-pt-price">2.200.000đ</div>
+          </div>
+          <div class="csd-pt-row">
+            <div class="csd-pt-service">Laser Fractional Er:YAG<small>60 phút · tái cấu trúc da</small></div>
+            <div class="csd-pt-price">2.800.000đ</div>
+          </div>
+          <div class="csd-pt-row">
+            <div class="csd-pt-service">Chemical Peel TCA<small>45 phút · sẹo nông</small></div>
+            <div class="csd-pt-price">1.100.000đ</div>
+          </div>
+          <div class="csd-pt-row">
+            <div class="csd-pt-service">Gói liệu trình 5 buổi<small>Tiết kiệm 15–20% so với đơn lẻ</small></div>
+            <div class="csd-pt-price">Liên hệ BS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="csd-cta">
+  <div class="wd-container" data-reveal>
+    <h2 class="csd-cta-title">Không chắc nên chọn điều trị nào?</h2>
+    <p class="csd-cta-sub">Đặt lịch tư vấn miễn phí — bác sĩ sẽ phân tích da và đề xuất phác đồ phù hợp nhất với bạn.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap" style="position:relative;">
+      <a href="dat-lich.html" class="csd-btn-white">Đặt lịch tư vấn →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="csd-footer">
+  <div class="wd-container">
+    <div class="row g-5 py-5">
+      <div class="col-md-4" data-reveal>
+        <div class="csd-ft-logo">
+          <div class="csd-ft-logo-mark">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+          </div>
+          <div class="csd-ft-logo-text">[TÊN]<span>Clinic</span></div>
+        </div>
+        <p class="csd-ft-desc">Phòng khám da liễu chuyên sâu — điều trị bằng khoa học, chăm sóc bằng tâm huyết.</p>
+        <div class="csd-ft-socials">
+          <a href="#" class="csd-ft-soc" aria-label="Facebook" rel="noopener noreferrer">fb</a>
+          <a href="#" class="csd-ft-soc" aria-label="Instagram" rel="noopener noreferrer">ig</a>
+          <a href="#" class="csd-ft-soc" aria-label="Zalo" rel="noopener noreferrer">zl</a>
+          <a href="#" class="csd-ft-soc" aria-label="YouTube" rel="noopener noreferrer">yt</a>
+        </div>
+      </div>
+      <div class="col-6 col-md-2" data-reveal data-delay="1">
+        <div class="csd-ft-col-title">Điều trị</div>
+        <div class="csd-ft-links">
+          <a href="dich-vu.html">Điều trị mụn</a>
+          <a href="dich-vu.html">Trị nám</a>
+          <a href="dich-vu.html">Trẻ hóa da</a>
+          <a href="dich-vu.html">Điều trị sẹo</a>
+        </div>
+      </div>
+      <div class="col-6 col-md-2" data-reveal data-delay="2">
+        <div class="csd-ft-col-title">Phòng khám</div>
+        <div class="csd-ft-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="dich-vu.html">Dịch vụ & Giá</a>
+          <a href="dat-lich.html">Đặt lịch</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal data-delay="3">
+        <div class="csd-ft-col-title">Liên hệ</div>
+        <div class="csd-ft-links">
+          <a href="tel:0901234567">📞 0901 234 567</a>
+          <a href="mailto:info@[domain].vn">✉ info@[domain].vn</a>
+          <a href="lien-he.html">📍 [Địa chỉ phòng khám]</a>
+          <a href="#">🕐 Thứ 2 – Thứ 7: 8:00 – 19:00</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="csd-ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="csd-ft-copy">© 2026 [TÊN PHÒNG KHÁM] · Phòng khám Da liễu & Skincare</div>
+        <div class="csd-ft-links-bottom">
+          <a href="#">Chính sách bảo mật</a>
+          <a href="#">Điều khoản</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="csd-zf">
+  <div class="csd-zf-tip">Đặt lịch qua Zalo</div>
+  <a href="https://zalo.me/[ZALO_NUMBER]" class="csd-zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('elevated', window.scrollY > 40);
+}, {passive: true});
+
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+  });
+}, {threshold: .08, rootMargin: '0px 0px -36px 0px'});
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+burger.addEventListener('click', () => {
+  const open = mob.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && mob.classList.contains('open')) {
+    mob.classList.remove('open'); burger.classList.remove('open'); document.body.style.overflow = '';
+  }
+});
+
+// Category tab smooth scroll
+document.querySelectorAll('.csd-cat-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.csd-cat-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const id = 'sec-' + tab.dataset.cat;
+    const target = document.getElementById(id);
+    if (target) {
+      const offset = 140;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({top, behavior: 'smooth'});
+    }
+  });
+});
+</script>
+</body>
+</html>

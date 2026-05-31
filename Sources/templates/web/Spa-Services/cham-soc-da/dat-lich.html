@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đặt lịch tư vấn — [TÊN PHÒNG KHÁM] Da liễu & Skincare</title>
+<meta name="description" content="Đặt lịch tư vấn da liễu miễn phí tại [TÊN PHÒNG KHÁM]. Bác sĩ phân tích da chuyên sâu và lập phác đồ cá nhân hóa cho bạn.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV — Nav-2: Always Solid Light -->
+<nav id="nav">
+  <div class="wd-container">
+    <div class="csd-nav-inner">
+      <a class="csd-logo" href="index.html">
+        <div class="csd-logo-mark">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+        </div>
+        <div class="csd-logo-name">[TÊN]<span>Clinic</span></div>
+      </a>
+      <div class="csd-nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="dich-vu.html">Dịch vụ & Giá</a>
+        <a href="dat-lich.html" class="active">Đặt lịch</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-lich.html" class="csd-nav-cta">Tư vấn miễn phí</a>
+      <button class="csd-burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="csd-mob-menu" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ & Giá</a>
+  <a href="dat-lich.html">Đặt lịch</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="csd-mob-cta">Tư vấn miễn phí</a>
+</div>
+
+<!-- PAGE HERO — small hero, clinical -->
+<section class="csd-page-hero">
+  <div class="wd-container">
+    <div data-reveal>
+      <div class="csd-ph-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Đặt lịch trực tuyến
+      </div>
+      <h1 class="csd-ph-title">Đặt lịch <em>tư vấn da liễu</em></h1>
+      <p class="csd-ph-sub">Buổi tư vấn đầu tiên hoàn toàn miễn phí. Bác sĩ sẽ phân tích da và đề xuất phác đồ phù hợp nhất cho bạn.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN BOOKING SECTION -->
+<section class="csd-sec" style="background: var(--bg);">
+  <div class="wd-container">
+    <div class="row g-5 align-items-start">
+
+      <!-- LEFT: BOOKING FORM -->
+      <div class="col-lg-7" data-reveal>
+        <div class="csd-form-card">
+          <div class="csd-form-title">Thông tin đặt lịch</div>
+          <div class="csd-form-sub">Điền đầy đủ thông tin để chúng tôi chuẩn bị tốt nhất cho buổi tư vấn của bạn.</div>
+
+          <form id="bookingForm" novalidate>
+
+            <!-- Họ tên & Điện thoại -->
+            <div class="row g-3 mb-0">
+              <div class="col-sm-6">
+                <div class="csd-form-group">
+                  <label class="csd-label" for="fullName">Họ và tên <span style="color:var(--accent)">*</span></label>
+                  <input type="text" id="fullName" name="fullName" class="csd-input"
+                    placeholder="Nguyễn Thị Lan Anh" required autocomplete="name">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="csd-form-group">
+                  <label class="csd-label" for="phone">Số điện thoại <span style="color:var(--accent)">*</span></label>
+                  <input type="tel" id="phone" name="phone" class="csd-input"
+                    placeholder="0901 234 567" required autocomplete="tel">
+                </div>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="csd-form-group">
+              <label class="csd-label" for="email">Địa chỉ email</label>
+              <input type="email" id="email" name="email" class="csd-input"
+                placeholder="email@example.com" autocomplete="email">
+            </div>
+
+            <!-- Vấn đề da quan tâm -->
+            <div class="csd-form-group">
+              <label class="csd-label">Vấn đề da quan tâm <span style="color:var(--accent)">*</span></label>
+              <div class="csd-checkbox-group" id="skinConcerns">
+                <label class="csd-skin-opt">
+                  <input type="checkbox" name="concern" value="mun"> Mụn trứng cá
+                </label>
+                <label class="csd-skin-opt">
+                  <input type="checkbox" name="concern" value="nam"> Nám & Tàn nhang
+                </label>
+                <label class="csd-skin-opt">
+                  <input type="checkbox" name="concern" value="lao-hoa"> Lão hóa da
+                </label>
+                <label class="csd-skin-opt">
+                  <input type="checkbox" name="concern" value="lo-chan-long"> Lỗ chân lông to
+                </label>
+                <label class="csd-skin-opt">
+                  <input type="checkbox" name="concern" value="nhay-cam"> Da nhạy cảm
+                </label>
+                <label class="csd-skin-opt">
+                  <input type="checkbox" name="concern" value="seo"> Sẹo & Rỗ
+                </label>
+                <label class="csd-skin-opt">
+                  <input type="checkbox" name="concern" value="khac"> Khác
+                </label>
+              </div>
+            </div>
+
+            <!-- Loại da -->
+            <div class="csd-form-group">
+              <label class="csd-label" for="skinType">Loại da của bạn <span style="color:var(--accent)">*</span></label>
+              <select id="skinType" name="skinType" class="csd-input" required>
+                <option value="" disabled selected>— Chọn loại da —</option>
+                <option value="dau">Da dầu</option>
+                <option value="kho">Da khô</option>
+                <option value="hon-hop">Da hỗn hợp (T-zone dầu, má khô)</option>
+                <option value="nhay-cam">Da nhạy cảm</option>
+                <option value="thuong">Da thường</option>
+                <option value="khong-ro">Chưa xác định được</option>
+              </select>
+            </div>
+
+            <!-- Đã từng điều trị chưa -->
+            <div class="csd-form-group">
+              <label class="csd-label">Bạn đã từng điều trị da tại phòng khám/spa chưa? <span style="color:var(--accent)">*</span></label>
+              <div class="d-flex flex-wrap gap-3 mt-1">
+                <label class="csd-skin-opt">
+                  <input type="radio" name="prevTreatment" value="chua"> Chưa bao giờ
+                </label>
+                <label class="csd-skin-opt">
+                  <input type="radio" name="prevTreatment" value="co-spa"> Có, tại spa/thẩm mỹ viện
+                </label>
+                <label class="csd-skin-opt">
+                  <input type="radio" name="prevTreatment" value="co-pkham"> Có, tại phòng khám da liễu
+                </label>
+              </div>
+            </div>
+
+            <!-- Bác sĩ ưu tiên -->
+            <div class="csd-form-group">
+              <label class="csd-label" for="preferDoctor">Bác sĩ ưu tiên (không bắt buộc)</label>
+              <select id="preferDoctor" name="preferDoctor" class="csd-input">
+                <option value="">— Không có ưu tiên, để phòng khám sắp xếp —</option>
+                <option value="bs-tu">BS. Nguyễn Minh Tú — Điều trị mụn & nám</option>
+                <option value="bs-lan">BS. Trần Thị Lan Anh — Laser & Công nghệ cao</option>
+                <option value="bs-hai">BS. Phạm Thanh Hải — Lão hóa & Tái tạo da</option>
+                <option value="bs-huong">BS. Lê Ngọc Hương — Da nhạy cảm & Sẹo</option>
+              </select>
+            </div>
+
+            <!-- Ngày & Giờ -->
+            <div class="row g-3 mb-0">
+              <div class="col-sm-6">
+                <div class="csd-form-group">
+                  <label class="csd-label" for="apptDate">Ngày mong muốn <span style="color:var(--accent)">*</span></label>
+                  <input type="date" id="apptDate" name="apptDate" class="csd-input" required>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="csd-form-group">
+                  <label class="csd-label" for="apptTime">Khung giờ <span style="color:var(--accent)">*</span></label>
+                  <select id="apptTime" name="apptTime" class="csd-input" required>
+                    <option value="" disabled selected>— Chọn giờ —</option>
+                    <option value="8:00">08:00 – 08:30</option>
+                    <option value="8:30">08:30 – 09:00</option>
+                    <option value="9:00">09:00 – 09:30</option>
+                    <option value="9:30">09:30 – 10:00</option>
+                    <option value="10:00">10:00 – 10:30</option>
+                    <option value="10:30">10:30 – 11:00</option>
+                    <option value="11:00">11:00 – 11:30</option>
+                    <option value="14:00">14:00 – 14:30</option>
+                    <option value="14:30">14:30 – 15:00</option>
+                    <option value="15:00">15:00 – 15:30</option>
+                    <option value="15:30">15:30 – 16:00</option>
+                    <option value="16:00">16:00 – 16:30</option>
+                    <option value="16:30">16:30 – 17:00</option>
+                    <option value="17:00">17:00 – 17:30</option>
+                    <option value="17:30">17:30 – 18:00</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ghi chú -->
+            <div class="csd-form-group">
+              <label class="csd-label" for="note">Ghi chú thêm</label>
+              <textarea id="note" name="note" class="csd-input" rows="3"
+                placeholder="Dị ứng thuốc, tiền sử điều trị, mô tả thêm tình trạng da…"></textarea>
+            </div>
+
+            <!-- Notice: không trang điểm -->
+            <div class="csd-notice mb-4">
+              <strong style="color:var(--accent); font-weight:600;">Lưu ý trước buổi tư vấn:</strong>
+              <ul style="margin: 8px 0 0; padding-left: 18px; font-size:13.5px; color:var(--text-2); font-weight:300; line-height:1.7;">
+                <li>Không trang điểm trước khi đến phòng khám — để bác sĩ quan sát da tự nhiên chính xác nhất.</li>
+                <li>Tránh nắng gắt ít nhất 24 giờ trước buổi tư vấn.</li>
+                <li>Mang theo các sản phẩm skincare đang dùng nếu có thể.</li>
+                <li>Thông báo trước nếu đang dùng thuốc kê đơn hoặc có bệnh nền.</li>
+              </ul>
+            </div>
+
+            <button type="submit" class="csd-btn-accent w-100" style="font-size:15px; padding:14px 24px; border-radius:9px;">
+              Xác nhận đặt lịch →
+            </button>
+
+            <p style="text-align:center; font-size:12px; color:var(--text-3); margin-top:12px; font-weight:300;">
+              Chúng tôi sẽ gọi xác nhận trong vòng 30 phút sau khi nhận yêu cầu.
+            </p>
+          </form>
+
+          <!-- Success state (hidden by default) -->
+          <div id="formSuccess" style="display:none; text-align:center; padding: 48px 0;">
+            <div style="width:60px; height:60px; border-radius:50%; background:var(--accent-light); display:flex; align-items:center; justify-content:center; margin:0 auto 20px; font-size:26px;">✓</div>
+            <div style="font-size:20px; font-weight:600; color:var(--text); margin-bottom:8px;">Đặt lịch thành công!</div>
+            <div style="font-size:14px; font-weight:300; color:var(--text-2); line-height:1.7; max-width:320px; margin:0 auto;">
+              Chúng tôi sẽ gọi xác nhận lịch hẹn trong vòng <strong style="font-weight:500; color:var(--accent)">30 phút</strong> từ số <strong style="font-weight:500; color:var(--text)">0901 234 567</strong>.
+            </div>
+            <a href="index.html" class="csd-btn-ghost" style="margin-top:24px; display:inline-block;">Về trang chủ</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: INFO SIDEBAR -->
+      <div class="col-lg-5">
+
+        <!-- Lý do chọn chúng tôi -->
+        <div class="csd-info-panel mb-4" data-reveal data-delay="1">
+          <div class="csd-info-panel-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align:-2px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Tại sao nên đặt lịch?
+          </div>
+          <ul class="csd-info-list">
+            <li>Tư vấn đầu tiên <strong style="font-weight:500; color:var(--accent)">hoàn toàn miễn phí</strong> — không có nghĩa vụ mua gói ngay.</li>
+            <li>Bác sĩ da liễu chuyên khoa phân tích da bằng máy Visia — chính xác tình trạng dưới bề mặt da.</li>
+            <li>Phác đồ được <strong style="font-weight:500; color:var(--text)">cá nhân hóa 100%</strong> theo loại da, vấn đề và ngân sách của bạn.</li>
+            <li>Không áp dụng công thức chung chung — mỗi bệnh nhân là một ca điều trị riêng biệt.</li>
+            <li>Hỗ trợ theo dõi sau điều trị qua Zalo — không bỏ rơi bệnh nhân giữa chừng.</li>
+          </ul>
+        </div>
+
+        <!-- Giờ làm việc -->
+        <div class="csd-form-card mb-4" data-reveal data-delay="2" style="padding: 24px;">
+          <div class="csd-info-panel-title" style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:14px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align:-2px;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Giờ làm việc
+          </div>
+          <ul class="csd-opening-hours">
+            <li class="csd-oh-item">
+              <strong>Thứ 2 – Thứ 6</strong>
+              <span>08:00 – 18:00</span>
+            </li>
+            <li class="csd-oh-item">
+              <strong>Thứ 7</strong>
+              <span>08:00 – 18:00</span>
+            </li>
+            <li class="csd-oh-item">
+              <strong>Chủ nhật</strong>
+              <span>08:00 – 12:00</span>
+            </li>
+            <li class="csd-oh-item" style="border-bottom:none; padding-bottom:0;">
+              <strong style="color:var(--accent);">Ngày lễ</strong>
+              <span style="color:var(--text-3);">Nghỉ (thông báo trước)</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Liên hệ trực tiếp -->
+        <div class="csd-form-card" data-reveal data-delay="3" style="padding: 24px;">
+          <div class="csd-info-panel-title" style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:16px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align:-2px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.71 3.38 2 2 0 0 1 3.68 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.64a16 16 0 0 0 6 6l1-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Liên hệ trực tiếp
+          </div>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <a href="tel:0901234567" style="display:flex; align-items:center; gap:12px; color:var(--text); transition:color .15s; text-decoration:none;">
+              <div style="width:38px; height:38px; border-radius:8px; background:var(--accent-light); display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0;">📞</div>
+              <div>
+                <div style="font-size:11px; color:var(--text-3); text-transform:uppercase; letter-spacing:.8px; font-weight:600;">Hotline</div>
+                <div style="font-size:15px; font-weight:500; color:var(--text);">0901 234 567</div>
+              </div>
+            </a>
+            <a href="https://zalo.me/[ZALO_NUMBER]" target="_blank" rel="noopener noreferrer"
+              style="display:flex; align-items:center; gap:12px; color:var(--text); transition:color .15s; text-decoration:none;">
+              <div style="width:38px; height:38px; border-radius:8px; background:#e8f0ff; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0;">💬</div>
+              <div>
+                <div style="font-size:11px; color:var(--text-3); text-transform:uppercase; letter-spacing:.8px; font-weight:600;">Zalo</div>
+                <div style="font-size:15px; font-weight:500; color:var(--text);">Chat ngay với phòng khám</div>
+              </div>
+            </a>
+            <a href="mailto:info@[domain].vn" style="display:flex; align-items:center; gap:12px; color:var(--text); transition:color .15s; text-decoration:none;">
+              <div style="width:38px; height:38px; border-radius:8px; background:var(--accent-light); display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0;">✉</div>
+              <div>
+                <div style="font-size:11px; color:var(--text-3); text-transform:uppercase; letter-spacing:.8px; font-weight:600;">Email</div>
+                <div style="font-size:15px; font-weight:500; color:var(--text);">info@[domain].vn</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POST-TREATMENT NOTES — full bleed teal bg -->
+<section style="background: var(--dark2); padding: clamp(48px,7vw,80px) 0;">
+  <div class="wd-container">
+    <div class="row g-5 align-items-center">
+      <div class="col-md-5" data-reveal>
+        <div class="csd-eyebrow" style="color:var(--accent-mid);">Lưu ý quan trọng</div>
+        <h2 class="csd-title" style="color:#fff; font-size:clamp(22px,3vw,36px);">
+          Sau điều trị —<br><em style="color:var(--accent-mid); font-weight:300;">chăm sóc đúng cách</em>
+        </h2>
+        <p class="csd-sub" style="color:rgba(255,255,255,.5);">Tuân thủ hướng dẫn hậu điều trị giúp tối ưu kết quả và tránh các phản ứng không mong muốn.</p>
+      </div>
+      <div class="col-md-7" data-reveal data-delay="2">
+        <div class="row g-3">
+          <div class="col-sm-6">
+            <div style="background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); border-radius:12px; padding:20px;">
+              <div style="font-size:22px; margin-bottom:10px;">🧴</div>
+              <div style="font-size:14px; font-weight:600; color:#fff; margin-bottom:6px;">Dưỡng ẩm đủ</div>
+              <div style="font-size:13px; font-weight:300; color:rgba(255,255,255,.45); line-height:1.65;">Dùng kem dưỡng ẩm nhẹ dịu 2 lần/ngày sau mỗi lần điều trị. Không dùng sản phẩm chứa retinol, AHA/BHA ngay sau điều trị.</div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div style="background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); border-radius:12px; padding:20px;">
+              <div style="font-size:22px; margin-bottom:10px;">☀️</div>
+              <div style="font-size:14px; font-weight:600; color:#fff; margin-bottom:6px;">Tránh nắng sau điều trị</div>
+              <div style="font-size:13px; font-weight:300; color:rgba(255,255,255,.45); line-height:1.65;">Thoa kem chống nắng SPF 50+ mỗi 2–3 tiếng. Hạn chế ra nắng gắt ít nhất 7–14 ngày sau laser hoặc peel.</div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div style="background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); border-radius:12px; padding:20px;">
+              <div style="font-size:22px; margin-bottom:10px;">🚿</div>
+              <div style="font-size:14px; font-weight:600; color:#fff; margin-bottom:6px;">Không chà rửa mạnh</div>
+              <div style="font-size:13px; font-weight:300; color:rgba(255,255,255,.45); line-height:1.65;">Rửa mặt nhẹ nhàng bằng sữa rửa mặt dịu. Không dùng tẩy trang vật lý, khăn cứng ít nhất 3–5 ngày đầu.</div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div style="background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); border-radius:12px; padding:20px;">
+              <div style="font-size:22px; margin-bottom:10px;">💬</div>
+              <div style="font-size:14px; font-weight:600; color:#fff; margin-bottom:6px;">Báo ngay nếu có bất thường</div>
+              <div style="font-size:13px; font-weight:300; color:rgba(255,255,255,.45); line-height:1.65;">Nếu da đỏ, ngứa, phồng bất thường — liên hệ ngay qua Zalo hoặc hotline. Đội ngũ hỗ trợ 24/7.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTORS QUICK VIEW -->
+<section class="csd-sec" style="background: var(--surface);">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="csd-eyebrow">Đội ngũ bác sĩ</div>
+      <h2 class="csd-title">Chọn bác sĩ <em>phù hợp với bạn</em></h2>
+      <p class="csd-sub centered">Mỗi bác sĩ có chuyên môn sâu riêng — chúng tôi sẽ ghép cặp phù hợp nhất nếu bạn không có ưu tiên.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-6 col-lg-3" data-reveal>
+        <div class="csd-doctor-card">
+          <img class="csd-doc-img"
+            src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80&auto=format&fit=crop&crop=faces"
+            alt="BS. Nguyễn Minh Tú" loading="lazy">
+          <div class="csd-doc-body">
+            <div class="csd-doc-name">BS. Nguyễn Minh Tú</div>
+            <div class="csd-doc-role">Bác sĩ Da liễu CKI</div>
+            <div class="csd-doc-exp">12 năm kinh nghiệm</div>
+            <div class="csd-doc-tag">Điều trị mụn & nám</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3" data-reveal data-delay="1">
+        <div class="csd-doctor-card">
+          <img class="csd-doc-img"
+            src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80&auto=format&fit=crop&crop=faces"
+            alt="BS. Trần Thị Lan Anh" loading="lazy">
+          <div class="csd-doc-body">
+            <div class="csd-doc-name">BS. Trần Thị Lan Anh</div>
+            <div class="csd-doc-role">Bác sĩ Thẩm mỹ Da</div>
+            <div class="csd-doc-exp">9 năm kinh nghiệm</div>
+            <div class="csd-doc-tag">Laser & Công nghệ cao</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3" data-reveal data-delay="2">
+        <div class="csd-doctor-card">
+          <img class="csd-doc-img"
+            src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80&auto=format&fit=crop&crop=faces"
+            alt="BS. Phạm Thanh Hải" loading="lazy">
+          <div class="csd-doc-body">
+            <div class="csd-doc-name">BS. Phạm Thanh Hải</div>
+            <div class="csd-doc-role">Bác sĩ Da liễu CKII</div>
+            <div class="csd-doc-exp">15 năm kinh nghiệm</div>
+            <div class="csd-doc-tag">Lão hóa & Tái tạo da</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3" data-reveal data-delay="3">
+        <div class="csd-doctor-card">
+          <img class="csd-doc-img"
+            src="https://images.unsplash.com/photo-1622902046580-2b47f47f5471?w=400&q=80&auto=format&fit=crop&crop=faces"
+            alt="BS. Lê Ngọc Hương" loading="lazy">
+          <div class="csd-doc-body">
+            <div class="csd-doc-name">BS. Lê Ngọc Hương</div>
+            <div class="csd-doc-role">Bác sĩ Skincare</div>
+            <div class="csd-doc-exp">7 năm kinh nghiệm</div>
+            <div class="csd-doc-tag">Da nhạy cảm & Sẹo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="csd-cta">
+  <div class="wd-container" data-reveal>
+    <h2 class="csd-cta-title">Còn thắc mắc? Chúng tôi sẵn sàng tư vấn</h2>
+    <p class="csd-cta-sub">Gọi hotline hoặc nhắn Zalo để được giải đáp ngay — không cần đặt lịch trước.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap" style="position:relative;">
+      <a href="tel:0901234567" class="csd-btn-white">Gọi ngay: 0901 234 567</a>
+      <a href="lien-he.html" class="csd-btn-outline-white">Xem thông tin liên hệ</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="csd-footer">
+  <div class="wd-container">
+    <div class="row g-5 py-5">
+      <div class="col-md-4" data-reveal>
+        <div class="csd-ft-logo">
+          <div class="csd-ft-logo-mark">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+          </div>
+          <div class="csd-ft-logo-text">[TÊN]<span>Clinic</span></div>
+        </div>
+        <p class="csd-ft-desc">Phòng khám da liễu chuyên sâu — điều trị bằng khoa học, chăm sóc bằng tâm huyết.</p>
+        <div class="csd-ft-socials">
+          <a href="#" class="csd-ft-soc" aria-label="Facebook" rel="noopener noreferrer">fb</a>
+          <a href="#" class="csd-ft-soc" aria-label="Instagram" rel="noopener noreferrer">ig</a>
+          <a href="#" class="csd-ft-soc" aria-label="Zalo" rel="noopener noreferrer">zl</a>
+          <a href="#" class="csd-ft-soc" aria-label="YouTube" rel="noopener noreferrer">yt</a>
+        </div>
+      </div>
+      <div class="col-6 col-md-2" data-reveal data-delay="1">
+        <div class="csd-ft-col-title">Điều trị</div>
+        <div class="csd-ft-links">
+          <a href="dich-vu.html">Điều trị mụn</a>
+          <a href="dich-vu.html">Trị nám & tàn nhang</a>
+          <a href="dich-vu.html">Trẻ hóa da</a>
+          <a href="dich-vu.html">Thu nhỏ lỗ chân lông</a>
+          <a href="dich-vu.html">Điều trị sẹo</a>
+        </div>
+      </div>
+      <div class="col-6 col-md-2" data-reveal data-delay="2">
+        <div class="csd-ft-col-title">Phòng khám</div>
+        <div class="csd-ft-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="dich-vu.html">Dịch vụ & Giá</a>
+          <a href="dat-lich.html">Đặt lịch</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal data-delay="3">
+        <div class="csd-ft-col-title">Liên hệ</div>
+        <div class="csd-ft-links">
+          <a href="tel:0901234567">📞 0901 234 567</a>
+          <a href="mailto:info@[domain].vn">✉ info@[domain].vn</a>
+          <a href="lien-he.html">📍 [Địa chỉ phòng khám]</a>
+          <a href="#">🕐 Thứ 2 – Thứ 7: 8:00 – 18:00</a>
+          <a href="#">🕐 Chủ nhật: 8:00 – 12:00</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="csd-ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="csd-ft-copy">© 2026 [TÊN PHÒNG KHÁM] · Phòng khám Da liễu & Skincare</div>
+        <div class="csd-ft-links-bottom">
+          <a href="#">Chính sách bảo mật</a>
+          <a href="#">Điều khoản</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Zalo float -->
+<div class="csd-zf">
+  <div class="csd-zf-tip">Đặt lịch qua Zalo</div>
+  <a href="https://zalo.me/[ZALO_NUMBER]" class="csd-zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Nav elevated on scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('elevated', window.scrollY > 40);
+}, {passive: true});
+
+// Reveal animation
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      ro.unobserve(e.target);
+    }
+  });
+}, {threshold: .08, rootMargin: '0px 0px -36px 0px'});
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+// Mobile menu
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+burger.addEventListener('click', () => {
+  const open = mob.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && mob.classList.contains('open')) {
+    mob.classList.remove('open');
+    burger.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
+// Checkbox toggle visual state (fallback for browsers without :has())
+document.querySelectorAll('.csd-skin-opt').forEach(opt => {
+  const input = opt.querySelector('input');
+  if (!input) return;
+  input.addEventListener('change', () => {
+    if (input.type === 'radio') {
+      // Unmark all siblings in same group
+      document.querySelectorAll(`input[name="${input.name}"]`).forEach(r => {
+        r.closest('.csd-skin-opt').classList.remove('selected');
+      });
+    }
+    opt.classList.toggle('selected', input.checked);
+  });
+});
+
+// Set min date to today for the date input
+const dateInput = document.getElementById('apptDate');
+if (dateInput) {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate() + 1).padStart(2, '0');
+  dateInput.min = `${yyyy}-${mm}-${dd}`;
+}
+
+// Form submit (demo — no backend)
+const form = document.getElementById('bookingForm');
+const formSuccess = document.getElementById('formSuccess');
+if (form && formSuccess) {
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    // Basic required validation
+    const name = document.getElementById('fullName').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const skinType = document.getElementById('skinType').value;
+    const apptDate = document.getElementById('apptDate').value;
+    const apptTime = document.getElementById('apptTime').value;
+    if (!name || !phone || !skinType || !apptDate || !apptTime) {
+      alert('Vui lòng điền đầy đủ các trường bắt buộc (*).');
+      return;
+    }
+    form.style.display = 'none';
+    formSuccess.style.display = 'block';
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[TÊN STUDIO] — Beauty Studio | Tóc · Nail · Makeup · Skincare</title>
+<meta name="description" content="[TÊN STUDIO] — Beauty Studio tổng hợp. Tóc, Nail, Makeup, Skincare chuyên nghiệp. Phong cách trendy, Instagram-worthy ngay tại [THÀNH PHỐ].">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+/* ── HERO — Magazine Split (H3) ── */
+/* Dark 55% left text + right 45% image grid — khác hoàn toàn spa-beauty transparent overlay */
+.bst-hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 55% 45%;
+  padding-top: 64px;
+}
+.bst-hero-left {
+  background: var(--dark2);
+  display: flex;
+  align-items: center;
+  padding: clamp(40px,6vw,80px) clamp(28px,4vw,64px);
+  position: relative;
+  overflow: hidden;
+}
+.bst-hero-left::before {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: -60px;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244,165,181,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.bst-hero-right {
+  position: relative;
+  overflow: hidden;
+}
+.bst-hero-right-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 100%;
+  gap: 4px;
+}
+.bst-hero-right-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .6s ease;
+}
+.bst-hero-right-grid img:hover { transform: scale(1.04); }
+.bst-hero-right-grid .span-full { grid-column: span 2; }
+
+.bst-hero-content { position: relative; z-index: 2; max-width: 520px; }
+.bst-hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  margin-bottom: 28px;
+  padding: 8px 16px;
+  border: 1px solid var(--border-pink);
+  border-radius: 4px;
+  background: var(--accent-light);
+}
+.bst-hero-label-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: bst-pulse 2s infinite;
+}
+@keyframes bst-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .4; transform: scale(.7); }
+}
+.bst-hero-title {
+  font-size: clamp(38px, 5.5vw, 76px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.04;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+}
+.bst-hero-title .bst-accent-word {
+  color: var(--accent);
+  font-weight: 300;
+  font-style: italic;
+  display: block;
+}
+.bst-hero-sub {
+  font-size: clamp(14px, 1.4vw, 16px);
+  font-weight: 300;
+  color: var(--text-2);
+  line-height: 1.75;
+  margin-bottom: 36px;
+}
+.bst-hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.bst-hero-tag {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 12px;
+  transition: all .2s;
+}
+.bst-hero-tag:hover { border-color: var(--accent); color: var(--accent); cursor: default; }
+.bst-hero-trust {
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.bst-ht { font-size: 12px; color: var(--text-3); display: flex; align-items: center; gap: 6px; }
+.bst-ht strong { color: var(--accent); font-weight: 700; font-size: 16px; }
+
+@media (max-width: 991px) {
+  .bst-hero { grid-template-columns: 1fr; }
+  .bst-hero-right { display: none; }
+  .bst-hero-left { padding: clamp(32px,5vw,60px) clamp(20px,5vw,48px); }
+  .bst-hero-title { font-size: clamp(36px,8vw,58px); }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV — Always Solid Dark Bar (Nav-6) -->
+<nav id="nav" data-scroll-nav>
+  <div class="wd-container">
+    <div class="bst-nav-inner">
+      <a href="index.html" class="bst-logo">
+        <span class="bst-logo-dot"></span>
+        [TÊN STUDIO]<span> Studio</span>
+      </a>
+      <ul class="bst-nav-links">
+        <li><a href="index.html" class="active">Trang chủ</a></li>
+        <li><a href="dich-vu.html">Dịch vụ & Giá</a></li>
+        <li><a href="dat-lich.html">Đặt lịch</a></li>
+        <li><a href="lien-he.html">Liên hệ</a></li>
+      </ul>
+      <a href="dat-lich.html" class="bst-nav-cta">
+        Đặt lịch
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <button class="bst-hamburger" id="navBurger" aria-label="Mở menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="bst-nav-mob" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ & Giá</a>
+  <a href="dat-lich.html">Đặt lịch</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="mob-cta">Đặt lịch ngay</a>
+</div>
+
+<!-- HERO — Magazine Split -->
+<section class="bst-hero">
+  <div class="bst-hero-left">
+    <div class="bst-hero-content">
+      <div class="bst-hero-label">
+        <span class="bst-hero-label-dot"></span>
+        Beauty Studio — [THÀNH PHỐ]
+      </div>
+      <h1 class="bst-hero-title">
+        Vẻ đẹp
+        <span class="bst-accent-word">của bạn,</span>
+        toả sáng.
+      </h1>
+      <p class="bst-hero-sub">Không gian làm đẹp tổng hợp — Tóc, Nail, Makeup, Skincare. Phong cách trendy, chuyên nghiệp, Instagram-worthy ngay tại studio của chúng tôi.</p>
+      <div class="bst-hero-tags">
+        <span class="bst-hero-tag">✂ Tóc & Nhuộm</span>
+        <span class="bst-hero-tag">💅 Nail Art</span>
+        <span class="bst-hero-tag">💄 Makeup</span>
+        <span class="bst-hero-tag">✨ Skincare</span>
+      </div>
+      <div class="d-flex gap-3 flex-wrap">
+        <a href="dat-lich.html" class="bst-btn-primary">Đặt lịch ngay</a>
+        <a href="dich-vu.html" class="bst-btn-outline">Xem dịch vụ</a>
+      </div>
+      <div class="bst-hero-trust">
+        <div class="bst-ht"><strong>500+</strong> khách hàng</div>
+        <div class="bst-ht"><strong>4.9</strong> ★ đánh giá</div>
+        <div class="bst-ht"><strong>5+</strong> năm kinh nghiệm</div>
+      </div>
+    </div>
+  </div>
+  <div class="bst-hero-right">
+    <div class="bst-hero-right-grid">
+      <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&q=80&auto=format&fit=crop" alt="Stylist làm tóc chuyên nghiệp" class="span-full">
+      <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&q=80&auto=format&fit=crop" alt="Nail art đẹp">
+      <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&q=80&auto=format&fit=crop" alt="Makeup chuyên nghiệp">
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE GROUPS — 4 nhóm chính, GRID-CARDS layout -->
+<section class="sec-pad" style="background: var(--bg-soft);">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="bst-eyebrow">Dịch vụ của chúng tôi</div>
+      <h2 class="bst-title">4 nhóm dịch vụ <em>chuyên nghiệp</em></h2>
+      <p class="bst-sub mx-auto">Từ tóc đến nail, từ makeup đến skincare — mọi thứ bạn cần để toả sáng đều có tại đây.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-sm-6" data-reveal data-delay="1">
+        <div class="bst-sg-card">
+          <div style="overflow:hidden">
+            <img class="bst-sg-thumb" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80&auto=format&fit=crop" alt="Dịch vụ tóc">
+          </div>
+          <div class="bst-sg-body">
+            <span class="bst-sg-tag">✂ Tóc</span>
+            <div class="bst-sg-title">Hair Styling</div>
+            <p class="bst-sg-desc">Cắt, nhuộm, uốn, duỗi, phục hồi tóc hư tổn. Xu hướng mới nhất 2024.</p>
+            <div class="bst-sg-price">Từ 150.000đ</div>
+            <a href="dich-vu.html" class="bst-sg-link">
+              Xem chi tiết
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6" data-reveal data-delay="2">
+        <div class="bst-sg-card">
+          <div style="overflow:hidden">
+            <img class="bst-sg-thumb" src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80&auto=format&fit=crop" alt="Dịch vụ nail">
+          </div>
+          <div class="bst-sg-body">
+            <span class="bst-sg-tag">💅 Nail</span>
+            <div class="bst-sg-title">Nail Art</div>
+            <p class="bst-sg-desc">Sơn gel, đắp acrylic, vẽ nail art, chăm sóc móng chuyên sâu, tẩy gel.</p>
+            <div class="bst-sg-price">Từ 80.000đ</div>
+            <a href="dich-vu.html" class="bst-sg-link">
+              Xem chi tiết
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6" data-reveal data-delay="3">
+        <div class="bst-sg-card">
+          <div style="overflow:hidden">
+            <img class="bst-sg-thumb" src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&q=80&auto=format&fit=crop" alt="Dịch vụ makeup">
+          </div>
+          <div class="bst-sg-body">
+            <span class="bst-sg-tag">💄 Makeup</span>
+            <div class="bst-sg-title">Makeup Pro</div>
+            <p class="bst-sg-desc">Trang điểm đi tiệc, cô dâu, chụp hình, concept. Artist chuyên nghiệp.</p>
+            <div class="bst-sg-price">Từ 200.000đ</div>
+            <a href="dich-vu.html" class="bst-sg-link">
+              Xem chi tiết
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6" data-reveal data-delay="4">
+        <div class="bst-sg-card">
+          <div style="overflow:hidden">
+            <img class="bst-sg-thumb" src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=600&q=80&auto=format&fit=crop" alt="Dịch vụ skincare">
+          </div>
+          <div class="bst-sg-body">
+            <span class="bst-sg-tag">✨ Skincare</span>
+            <div class="bst-sg-title">Skincare & Facial</div>
+            <p class="bst-sg-desc">Chăm sóc da mặt, điều trị mụn, sáng da, trẻ hoá. Công nghệ hiện đại.</p>
+            <div class="bst-sg-price">Từ 250.000đ</div>
+            <a href="dich-vu.html" class="bst-sg-link">
+              Xem chi tiết
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5" data-reveal>
+      <a href="dich-vu.html" class="bst-btn-ghost">Xem toàn bộ dịch vụ & bảng giá</a>
+    </div>
+  </div>
+</section>
+
+<!-- STAT STRIP -->
+<div class="bst-stat-strip">
+  <div class="wd-container">
+    <div class="row g-0">
+      <div class="col-6 col-md-3">
+        <div class="bst-stat-item">
+          <div class="bst-stat-num"><span data-counter="500" data-suffix="+">500+</span></div>
+          <div class="bst-stat-label">Khách hàng hài lòng</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="bst-stat-item">
+          <div class="bst-stat-num"><span data-counter="5" data-suffix="+">5+</span></div>
+          <div class="bst-stat-label">Năm kinh nghiệm</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="bst-stat-item">
+          <div class="bst-stat-num"><span data-counter="10" data-suffix="">10</span></div>
+          <div class="bst-stat-label">Stylist chuyên nghiệp</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="bst-stat-item">
+          <div class="bst-stat-num">4.9<span style="font-size:28px;letter-spacing:-1px">★</span></div>
+          <div class="bst-stat-label">Đánh giá trung bình</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PORTFOLIO GALLERY — Bento Grid layout -->
+<section class="sec-pad" style="background: var(--bg);">
+  <div class="wd-container">
+    <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-4" data-reveal>
+      <div>
+        <div class="bst-eyebrow">Portfolio</div>
+        <h2 class="bst-title mb-0">Tác phẩm <em>nổi bật</em></h2>
+      </div>
+      <a href="dich-vu.html" class="bst-btn-ghost">Xem thêm tác phẩm</a>
+    </div>
+    <div class="bst-gallery-grid" data-reveal data-delay="1">
+      <div class="bst-gal-item" style="min-height:240px">
+        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&q=80&auto=format&fit=crop" alt="Tóc highlight đẹp">
+        <div class="bst-gal-overlay"><span class="bst-gal-label">Balayage & Highlight</span></div>
+      </div>
+      <div class="bst-gal-item" style="min-height:160px">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&q=80&auto=format&fit=crop" alt="Nail art hoa">
+        <div class="bst-gal-overlay"><span class="bst-gal-label">Nail Art Hoa 3D</span></div>
+      </div>
+      <div class="bst-gal-item" style="min-height:160px">
+        <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=400&q=80&auto=format&fit=crop" alt="Nail đơn giản">
+        <div class="bst-gal-overlay"><span class="bst-gal-label">Ombre Nail Gel</span></div>
+      </div>
+      <div class="bst-gal-item" style="min-height:180px">
+        <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&q=80&auto=format&fit=crop" alt="Makeup cô dâu">
+        <div class="bst-gal-overlay"><span class="bst-gal-label">Bridal Makeup</span></div>
+      </div>
+      <div class="bst-gal-item" style="min-height:180px">
+        <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=400&q=80&auto=format&fit=crop" alt="Skincare facial">
+        <div class="bst-gal-overlay"><span class="bst-gal-label">Deep Cleansing Facial</span></div>
+      </div>
+      <div class="bst-gal-item" style="min-height:180px">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80&auto=format&fit=crop" alt="Tóc layer">
+        <div class="bst-gal-overlay"><span class="bst-gal-label">Layer Cut Trending</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALTERNATING — About studio -->
+<section class="sec-pad" style="background: var(--bg-soft);">
+  <div class="wd-container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5" data-reveal>
+        <div style="position:relative">
+          <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=700&q=80&auto=format&fit=crop" alt="Không gian beauty studio" style="width:100%;border-radius:14px;object-fit:cover;aspect-ratio:4/5">
+          <div style="position:absolute;bottom:24px;right:-20px;background:var(--accent);color:#1a1a1a;border-radius:10px;padding:16px 20px;font-size:13px;font-weight:700;line-height:1.4;box-shadow:0 8px 24px rgba(244,165,181,.35)">
+            <div style="font-size:24px;font-weight:700;letter-spacing:-1px">10+</div>
+            Stylist & Artist<br>chuyên nghiệp
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7" data-reveal data-delay="1">
+        <div class="bst-eyebrow">Về chúng tôi</div>
+        <h2 class="bst-title">Không gian làm đẹp<br><em>đẳng cấp</em> của [THÀNH PHỐ]</h2>
+        <p class="bst-sub mb-4">Thành lập từ [NĂM], [TÊN STUDIO] là điểm đến yêu thích của những ai yêu vẻ đẹp. Chúng tôi mang đến không gian hiện đại, đội ngũ chuyên nghiệp và sản phẩm cao cấp.</p>
+        <div class="row g-3 mb-4">
+          <div class="col-6">
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px">
+              <div style="font-size:22px;margin-bottom:6px">✂</div>
+              <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px">Hair Studio</div>
+              <div style="font-size:12px;color:var(--text-3)">Cắt, nhuộm, uốn duỗi theo xu hướng mới nhất</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px">
+              <div style="font-size:22px;margin-bottom:6px">💅</div>
+              <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px">Nail & Spa</div>
+              <div style="font-size:12px;color:var(--text-3)">Nail art sáng tạo, chăm sóc móng chuyên sâu</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px">
+              <div style="font-size:22px;margin-bottom:6px">💄</div>
+              <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px">Makeup Artist</div>
+              <div style="font-size:12px;color:var(--text-3)">Artist giàu kinh nghiệm, phong cách đa dạng</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px">
+              <div style="font-size:22px;margin-bottom:6px">✨</div>
+              <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px">Skincare Clinic</div>
+              <div style="font-size:12px;color:var(--text-3)">Công nghệ hiện đại, sản phẩm cao cấp</div>
+            </div>
+          </div>
+        </div>
+        <a href="dat-lich.html" class="bst-btn-primary">Đặt lịch trải nghiệm</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM STYLISTS — FEATURE-ICON-ROW style -->
+<section class="sec-pad" style="background: var(--bg);">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="bst-eyebrow">Đội ngũ</div>
+      <h2 class="bst-title">Gặp gỡ các <em>stylist</em> của chúng tôi</h2>
+      <p class="bst-sub mx-auto">Mỗi người là một chuyên gia trong lĩnh vực riêng — đam mê và tận tâm với từng khách hàng.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6" data-reveal data-delay="1">
+        <div class="bst-team-card">
+          <img class="bst-team-img" src="https://images.unsplash.com/photo-1614528024382-90b1b3ef27e2?w=200&q=80&auto=format&fit=crop&faces=1" alt="[TÊN STYLIST 1]">
+          <div class="bst-team-name">[TÊN STYLIST 1]</div>
+          <div class="bst-team-role">Senior Hair Stylist</div>
+          <p class="bst-team-bio">8 năm kinh nghiệm. Chuyên gia balayage, highlight và các kỹ thuật nhuộm Châu Âu.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6" data-reveal data-delay="2">
+        <div class="bst-team-card">
+          <img class="bst-team-img" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=200&q=80&auto=format&fit=crop&faces=1" alt="[TÊN STYLIST 2]">
+          <div class="bst-team-name">[TÊN STYLIST 2]</div>
+          <div class="bst-team-role">Nail Art Specialist</div>
+          <p class="bst-team-bio">6 năm kinh nghiệm. Chuyên nail art 3D, gel extension, thiết kế độc đáo theo yêu cầu.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6" data-reveal data-delay="3">
+        <div class="bst-team-card">
+          <img class="bst-team-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&q=80&auto=format&fit=crop&faces=1" alt="[TÊN STYLIST 3]">
+          <div class="bst-team-name">[TÊN STYLIST 3]</div>
+          <div class="bst-team-role">Makeup Artist</div>
+          <p class="bst-team-bio">5 năm kinh nghiệm. Chuyên trang điểm cô dâu, sự kiện, concept editorial & commercial.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6" data-reveal data-delay="4">
+        <div class="bst-team-card">
+          <img class="bst-team-img" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200&q=80&auto=format&fit=crop&faces=1" alt="[TÊN STYLIST 4]">
+          <div class="bst-team-name">[TÊN STYLIST 4]</div>
+          <div class="bst-team-role">Skincare Therapist</div>
+          <p class="bst-team-bio">7 năm kinh nghiệm. Chuyên điều trị da liễu, laser, RF lifting và chăm sóc da chuyên sâu.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMO COMBOS — BENTO-GRID style -->
+<section class="sec-pad" style="background: var(--bg-soft);">
+  <div class="wd-container">
+    <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-5" data-reveal>
+      <div>
+        <div class="bst-eyebrow">Khuyến mãi</div>
+        <h2 class="bst-title mb-0">Combo tiết kiệm <em>đặc biệt</em></h2>
+      </div>
+      <a href="dich-vu.html" class="bst-btn-ghost">Xem tất cả combo</a>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6" data-reveal data-delay="1">
+        <div class="bst-promo-card">
+          <span class="bst-promo-tag">Hot Deal</span>
+          <div class="bst-promo-title">Combo Tóc & Nail</div>
+          <p class="bst-promo-desc">Cắt + nhuộm 1 màu + phục hồi + sơn gel tay chân. Tiết kiệm 30%.</p>
+          <div class="bst-promo-price">
+            <span class="bst-promo-new">590.000đ</span>
+            <span class="bst-promo-old">850.000đ</span>
+          </div>
+          <a href="dat-lich.html" class="bst-btn-primary" style="font-size:13px;padding:10px 22px">Đặt combo này</a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6" data-reveal data-delay="2">
+        <div class="bst-promo-card">
+          <span class="bst-promo-tag">Best Value</span>
+          <div class="bst-promo-title">Combo Skincare Full</div>
+          <p class="bst-promo-desc">Facial + tẩy da chết + đắp mặt nạ + massage mặt + serum. Làn da rạng rỡ.</p>
+          <div class="bst-promo-price">
+            <span class="bst-promo-new">450.000đ</span>
+            <span class="bst-promo-old">620.000đ</span>
+          </div>
+          <a href="dat-lich.html" class="bst-btn-primary" style="font-size:13px;padding:10px 22px">Đặt combo này</a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-12" data-reveal data-delay="3">
+        <div class="bst-promo-card">
+          <span class="bst-promo-tag">Bride Package</span>
+          <div class="bst-promo-title">Gói Cô Dâu Trọn Gói</div>
+          <p class="bst-promo-desc">Tóc cô dâu + trang điểm cô dâu + nail tay + làm đẹp da mặt. Đẹp hoàn hảo cho ngày trọng đại.</p>
+          <div class="bst-promo-price">
+            <span class="bst-promo-new">1.200.000đ</span>
+            <span class="bst-promo-old">1.800.000đ</span>
+          </div>
+          <a href="dat-lich.html" class="bst-btn-primary" style="font-size:13px;padding:10px 22px">Tư vấn ngay</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS — GRID-CARDS layout -->
+<section class="sec-pad" style="background: var(--bg);">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="bst-eyebrow">Đánh giá</div>
+      <h2 class="bst-title">Khách hàng nói gì <em>về chúng tôi</em></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6" data-reveal data-delay="1">
+        <div class="bst-rv-card">
+          <div class="bst-rv-stars">★★★★★</div>
+          <p class="bst-rv-text">"Mình đã đi rất nhiều tiệm nhưng tóc ở đây làm đẹp nhất! Stylist tư vấn rất kỹ, màu nhuộm đúng tone da và giữ màu lâu. Sẽ quay lại!"</p>
+          <div class="bst-rv-foot">
+            <img class="bst-rv-av" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80&auto=format&fit=crop" alt="[TÊN KHÁCH 1]">
+            <div>
+              <div class="bst-rv-name">[TÊN KHÁCH 1]</div>
+              <div class="bst-rv-date">Tháng 11, 2024</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6" data-reveal data-delay="2">
+        <div class="bst-rv-card">
+          <div class="bst-rv-stars">★★★★★</div>
+          <p class="bst-rv-text">"Nail art ở đây cực đẹp! Bạn nail vẽ rất khéo, tỉ mỉ. Gel bền và không bị tróc sớm như nhiều chỗ khác. Không gian sạch sẽ, thoải mái."</p>
+          <div class="bst-rv-foot">
+            <img class="bst-rv-av" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&q=80&auto=format&fit=crop" alt="[TÊN KHÁCH 2]">
+            <div>
+              <div class="bst-rv-name">[TÊN KHÁCH 2]</div>
+              <div class="bst-rv-date">Tháng 10, 2024</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6" data-reveal data-delay="3">
+        <div class="bst-rv-card">
+          <div class="bst-rv-stars">★★★★★</div>
+          <p class="bst-rv-text">"Skincare facial ở đây thật sự hiệu quả! Da mình vốn nhiều mụn nhưng sau 3 buổi đã cải thiện rõ rệt. Kỹ thuật viên chuyên nghiệp và tận tình."</p>
+          <div class="bst-rv-foot">
+            <img class="bst-rv-av" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&q=80&auto=format&fit=crop" alt="[TÊN KHÁCH 3]">
+            <div>
+              <div class="bst-rv-name">[TÊN KHÁCH 3]</div>
+              <div class="bst-rv-date">Tháng 9, 2024</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="bst-cta-section" data-reveal>
+  <div class="wd-container">
+    <div class="bst-eyebrow mx-auto d-block" style="text-align:center;width:fit-content;margin-bottom:18px">Đặt lịch ngay</div>
+    <h2 class="bst-cta-title">Sẵn sàng để trở nên<br><em>đẹp hơn hôm nay?</em></h2>
+    <p class="bst-cta-sub">Đặt lịch online dễ dàng, xác nhận ngay, không phải chờ đợi lâu. Studio luôn chào đón bạn.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="dat-lich.html" class="bst-btn-primary">Đặt lịch ngay</a>
+      <a href="lien-he.html" class="bst-btn-outline">Liên hệ tư vấn</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bst-footer">
+  <div class="wd-container">
+    <div class="row g-5">
+      <div class="col-lg-4 col-md-6">
+        <a href="index.html" class="bst-footer-logo">
+          <span style="width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0"></span>
+          [TÊN STUDIO]<span> Studio</span>
+        </a>
+        <p class="bst-footer-tagline">Beauty Studio tổng hợp — Tóc, Nail, Makeup, Skincare chuyên nghiệp tại [THÀNH PHỐ].</p>
+        <div class="bst-social-row">
+          <a href="#" class="bst-social-btn" aria-label="Facebook" rel="noopener noreferrer" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="bst-social-btn" aria-label="Instagram" rel="noopener noreferrer" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="bst-social-btn" aria-label="TikTok" rel="noopener noreferrer" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15.2a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.27 8.27 0 0 0 4.83 1.54v-3.4a4.85 4.85 0 0 1-1.06-.14z"/></svg>
+          </a>
+          <a href="#" class="bst-social-btn" aria-label="YouTube" rel="noopener noreferrer" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#0d0d0d"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-3 col-6">
+        <div class="bst-footer-title">Dịch vụ</div>
+        <ul class="bst-footer-links">
+          <li><a href="dich-vu.html">Hair Styling</a></li>
+          <li><a href="dich-vu.html">Nail Art</a></li>
+          <li><a href="dich-vu.html">Makeup</a></li>
+          <li><a href="dich-vu.html">Skincare</a></li>
+          <li><a href="dich-vu.html">Combo Ưu Đãi</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-md-3 col-6">
+        <div class="bst-footer-title">Liên kết</div>
+        <ul class="bst-footer-links">
+          <li><a href="index.html">Trang chủ</a></li>
+          <li><a href="dich-vu.html">Dịch vụ & Giá</a></li>
+          <li><a href="dat-lich.html">Đặt lịch</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="bst-footer-title">Liên hệ</div>
+        <div class="bst-footer-contact-item">
+          <span>📍</span>
+          <span>[SỐ NHÀ, TÊN ĐƯỜNG], [PHƯỜNG/XÃ], [THÀNH PHỐ]</span>
+        </div>
+        <div class="bst-footer-contact-item">
+          <span>📞</span>
+          <span><a href="tel:0900000000">0900 000 000</a></span>
+        </div>
+        <div class="bst-footer-contact-item">
+          <span>📧</span>
+          <span><a href="mailto:hello@beautystudio.vn">hello@[domain].vn</a></span>
+        </div>
+        <div class="bst-footer-contact-item">
+          <span>🕐</span>
+          <span>Thứ 2 – Thứ 7: 8:00 – 20:00<br>Chủ nhật: 9:00 – 18:00</span>
+        </div>
+      </div>
+    </div>
+    <div class="bst-footer-bottom">
+      <div class="bst-footer-copy">© 2024 <a href="index.html">[TÊN STUDIO] Beauty Studio</a>. All rights reserved.</div>
+      <div class="bst-footer-copy">Thiết kế bởi <a href="https://webdrop.vn" target="_blank" rel="noopener noreferrer">webdrop.vn</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ZALO FLOAT -->
+<a href="https://zalo.me/0900000000" class="bst-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="48" height="48" rx="24" fill="#0068FF"/>
+    <text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="14" font-weight="700" font-family="Arial">Zalo</text>
+  </svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// === Reveal animation ===
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+// === Nav scroll border highlight (Nav-6 dark — only border changes) ===
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+}, { passive: true });
+
+// === Mobile hamburger ===
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+burger.addEventListener('click', () => {
+  const isOpen = mob.classList.toggle('open');
+  burger.classList.toggle('open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && mob.classList.contains('open')) {
+    mob.classList.remove('open');
+    burger.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
+// === Counter animation ===
+document.querySelectorAll('[data-counter]').forEach(el => {
+  const cro = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      const target = +el.dataset.counter;
+      const suffix = el.dataset.suffix || '';
+      let cur = 0;
+      const step = Math.ceil(target / 60);
+      const t = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = cur + suffix;
+        if (cur >= target) clearInterval(t);
+      }, 25);
+      cro.disconnect();
+    }
+  }, { threshold: 0.5 });
+  cro.observe(el);
+});
+</script>
+</body>
+</html>

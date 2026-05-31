@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đặt lịch — [TÊN TIỆM NAIL]</title>
+<meta name="description" content="Đặt lịch làm nail tại [TÊN TIỆM NAIL]. Chọn dịch vụ, chọn thợ, chọn giờ — nhanh chóng và tiện lợi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <div class="wd-container">
+    <div class="ns-nav-inner">
+      <a class="ns-logo" href="index.html">
+        <strong>[NAIL</strong> Studio]<span class="ns-logo-dot"></span>
+      </a>
+      <div class="ns-nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="dich-vu.html">Dịch vụ & Bảng giá</a>
+        <a href="dat-lich.html" class="active">Đặt lịch</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-lich.html" class="ns-nav-cta">Đặt lịch ngay</a>
+      <button class="ns-nav-burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="ns-nav-mob" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ & Bảng giá</a>
+  <a href="dat-lich.html">Đặt lịch</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="ns-mob-cta">Đặt lịch ngay</a>
+</div>
+
+<!-- ── PAGE HERO ── -->
+<section class="ns-page-hero">
+  <div class="wd-container">
+    <div data-reveal>
+      <div class="ns-ph-tag">Đặt lịch hẹn</div>
+      <h1 class="ns-ph-title">Đặt lịch <strong>nhanh & dễ</strong></h1>
+      <p class="ns-ph-sub">Điền thông tin bên dưới — chúng tôi sẽ xác nhận lịch hẹn qua điện thoại hoặc Zalo trong vòng 30 phút.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── BOOKING FORM ── -->
+<section class="sec-pad">
+  <div class="wd-container">
+    <div class="row g-5 align-items-start">
+
+      <!-- Form chính -->
+      <div class="col-lg-7" data-reveal>
+        <div class="ns-booking-wrap">
+          <h2 style="font-size:20px;font-weight:600;color:var(--text);margin-bottom:4px;letter-spacing:-.3px">Thông tin đặt lịch</h2>
+          <p style="font-size:13px;font-weight:300;color:var(--text-3);margin-bottom:28px">Điền đầy đủ thông tin để chúng tôi chuẩn bị tốt nhất cho bạn</p>
+
+          <form id="bookingForm" novalidate>
+            <!-- Thông tin cá nhân -->
+            <div style="margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--border)">
+              <div style="font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px">Thông tin cá nhân</div>
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <label class="ns-form-label" for="fullName">Họ và tên *</label>
+                  <input type="text" id="fullName" name="fullName" class="ns-form-control" placeholder="[Nguyễn Thị A]" required>
+                </div>
+                <div class="col-sm-6">
+                  <label class="ns-form-label" for="phone">Số điện thoại *</label>
+                  <input type="tel" id="phone" name="phone" class="ns-form-control" placeholder="[09xx xxx xxx]" required>
+                </div>
+              </div>
+            </div>
+
+            <!-- Chọn dịch vụ -->
+            <div style="margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--border)">
+              <div style="font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px">Dịch vụ</div>
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <label class="ns-form-label" for="service">Loại dịch vụ *</label>
+                  <select id="service" name="service" class="ns-form-select" required>
+                    <option value="" disabled selected>-- Chọn dịch vụ --</option>
+                    <optgroup label="Nail Tay">
+                      <option value="manicure-co-ban">Manicure cơ bản</option>
+                      <option value="nail-gel-1-mau">Nail Gel 1 màu</option>
+                      <option value="nail-gel-ombre">Nail Gel Ombre</option>
+                      <option value="nail-gel-cat-eye">Nail Gel Cat Eye</option>
+                      <option value="nail-art-ve-tay">Nail Art vẽ tay</option>
+                      <option value="nail-art-ca-bo">Nail Art cả bộ</option>
+                      <option value="acrylic-co-ban">Acrylic Nail cơ bản</option>
+                      <option value="acrylic-nail-art">Acrylic + Nail Art</option>
+                    </optgroup>
+                    <optgroup label="Nail Chân & Pedicure">
+                      <option value="pedicure-co-ban">Pedicure cơ bản</option>
+                      <option value="pedicure-nang-cao">Pedicure nâng cao</option>
+                      <option value="pedicure-thao-duoc">Pedicure thảo dược</option>
+                      <option value="gel-chan">Nail Gel chân 1 màu</option>
+                      <option value="combo-pedicure-gel">Combo: Pedicure + Gel chân</option>
+                    </optgroup>
+                    <optgroup label="Dịch vụ đặc biệt">
+                      <option value="bridal-nail">Bridal Nail cưới</option>
+                      <option value="thao-gel">Tháo gel / tháo bột</option>
+                      <option value="nail-duong">Nail Dưỡng & Repair</option>
+                    </optgroup>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label class="ns-form-label" for="technician">Chọn thợ</label>
+                  <select id="technician" name="technician" class="ns-form-select">
+                    <option value="">Bất kỳ thợ nào (mặc định)</option>
+                    <option value="tho-1">[Tên Thợ 1] — Nail Art 3D, Gel</option>
+                    <option value="tho-2">[Tên Thợ 2] — Pedicure, Nail Dưỡng</option>
+                    <option value="tho-3">[Tên Thợ 3] — Ombre, Acrylic</option>
+                    <option value="tho-4">[Tên Thợ 4] — Bridal Nail, 3D Art</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Chọn ngày giờ -->
+            <div style="margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--border)">
+              <div style="font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px">Ngày & Giờ</div>
+              <div class="row g-3 mb-4">
+                <div class="col-sm-6">
+                  <label class="ns-form-label" for="bookDate">Ngày hẹn *</label>
+                  <input type="date" id="bookDate" name="bookDate" class="ns-form-control" required>
+                </div>
+              </div>
+
+              <!-- Time slots -->
+              <label class="ns-form-label">Chọn giờ hẹn *</label>
+              <div class="ns-time-grid" id="timeGrid">
+                <div class="ns-time-slot" data-time="08:00">08:00</div>
+                <div class="ns-time-slot" data-time="08:30">08:30</div>
+                <div class="ns-time-slot" data-time="09:00">09:00</div>
+                <div class="ns-time-slot" data-time="09:30">09:30</div>
+                <div class="ns-time-slot" data-time="10:00">10:00</div>
+                <div class="ns-time-slot" data-time="10:30">10:30</div>
+                <div class="ns-time-slot disabled" data-time="11:00">11:00</div>
+                <div class="ns-time-slot disabled" data-time="11:30">11:30</div>
+                <div class="ns-time-slot" data-time="13:00">13:00</div>
+                <div class="ns-time-slot" data-time="13:30">13:30</div>
+                <div class="ns-time-slot" data-time="14:00">14:00</div>
+                <div class="ns-time-slot" data-time="14:30">14:30</div>
+                <div class="ns-time-slot" data-time="15:00">15:00</div>
+                <div class="ns-time-slot" data-time="15:30">15:30</div>
+                <div class="ns-time-slot disabled" data-time="16:00">16:00</div>
+                <div class="ns-time-slot" data-time="16:30">16:30</div>
+                <div class="ns-time-slot" data-time="17:00">17:00</div>
+                <div class="ns-time-slot" data-time="17:30">17:30</div>
+                <div class="ns-time-slot" data-time="18:00">18:00</div>
+                <div class="ns-time-slot" data-time="19:00">19:00</div>
+              </div>
+              <input type="hidden" id="bookTime" name="bookTime" required>
+              <div style="margin-top:10px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+                <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-3)">
+                  <div style="width:12px;height:12px;border-radius:3px;background:var(--blush)"></div> Đã chọn
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-3)">
+                  <div style="width:12px;height:12px;border-radius:3px;background:var(--border);opacity:.5"></div> Đã đặt
+                </div>
+              </div>
+            </div>
+
+            <!-- Ghi chú -->
+            <div style="margin-bottom:28px">
+              <label class="ns-form-label" for="note">Ghi chú thêm</label>
+              <textarea id="note" name="note" class="ns-form-control" placeholder="[Yêu cầu đặc biệt, mẫu nail muốn làm, hoặc thông tin thêm...]"></textarea>
+              <div style="font-size:11.5px;font-weight:300;color:var(--text-3);margin-top:6px">Bạn có thể gửi ảnh mẫu nail qua Zalo sau khi đặt lịch.</div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="ns-btn-primary w-100" style="font-size:15px;padding:15px">
+              Xác nhận đặt lịch →
+            </button>
+
+            <!-- Success message (hidden) -->
+            <div id="bookingSuccess" style="display:none;margin-top:20px;background:var(--blush-light);border:1px solid rgba(232,164,160,.4);border-radius:14px;padding:20px;text-align:center">
+              <div style="font-size:28px;margin-bottom:10px">🎉</div>
+              <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px">Đặt lịch thành công!</div>
+              <div style="font-size:13px;font-weight:300;color:var(--text-2)">Chúng tôi sẽ xác nhận lịch hẹn qua điện thoại trong vòng 30 phút. Cảm ơn bạn!</div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Sidebar info -->
+      <div class="col-lg-5" data-reveal class="d1">
+        <div class="ns-booking-info" style="position:sticky;top:86px">
+          <div class="ns-info-title">Thông tin cần biết</div>
+
+          <div class="ns-info-item">
+            <div class="ns-info-icon">📍</div>
+            <div class="ns-info-text">
+              <strong>Địa chỉ</strong>
+              <span>[Số nhà, Tên đường, Quận, TP.HCM]</span>
+            </div>
+          </div>
+
+          <div class="ns-info-item">
+            <div class="ns-info-icon">⏰</div>
+            <div class="ns-info-text">
+              <strong>Giờ mở cửa</strong>
+              <span>Thứ 2 – Chủ nhật: 8:00 – 20:00</span>
+            </div>
+          </div>
+
+          <div class="ns-info-item">
+            <div class="ns-info-icon">📞</div>
+            <div class="ns-info-text">
+              <strong>Điện thoại / Zalo</strong>
+              <span>[09xx xxx xxx] — phản hồi trong 30 phút</span>
+            </div>
+          </div>
+
+          <div class="ns-info-item">
+            <div class="ns-info-icon">💳</div>
+            <div class="ns-info-text">
+              <strong>Thanh toán</strong>
+              <span>Tiền mặt, chuyển khoản, Momo, ZaloPay</span>
+            </div>
+          </div>
+
+          <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(0,0,0,.06)">
+            <div style="font-size:12px;font-weight:600;color:var(--text-2);margin-bottom:12px">Lưu ý khi đặt lịch</div>
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px">
+              <li style="font-size:12.5px;font-weight:300;color:var(--text-2);display:flex;gap:8px">
+                <span style="color:var(--blush);flex-shrink:0">•</span>
+                Đến đúng giờ để đảm bảo chất lượng dịch vụ
+              </li>
+              <li style="font-size:12.5px;font-weight:300;color:var(--text-2);display:flex;gap:8px">
+                <span style="color:var(--blush);flex-shrink:0">•</span>
+                Hủy lịch vui lòng báo trước ít nhất 2 tiếng
+              </li>
+              <li style="font-size:12.5px;font-weight:300;color:var(--text-2);display:flex;gap:8px">
+                <span style="color:var(--blush);flex-shrink:0">•</span>
+                Có thể gửi ảnh mẫu nail qua Zalo trước khi đến
+              </li>
+              <li style="font-size:12.5px;font-weight:300;color:var(--text-2);display:flex;gap:8px">
+                <span style="color:var(--blush);flex-shrink:0">•</span>
+                Slot màu xám là giờ đã có người đặt
+              </li>
+            </ul>
+          </div>
+
+          <!-- Quick contact -->
+          <div style="margin-top:24px;padding:16px;background:var(--surface);border-radius:14px;border:1px solid var(--border)">
+            <div style="font-size:12px;font-weight:500;color:var(--text-2);margin-bottom:12px">Hoặc liên hệ trực tiếp</div>
+            <div class="d-flex gap-2 flex-wrap">
+              <a href="tel:[SỐ_ĐIỆN_THOẠI]" class="ns-btn-outline" style="font-size:12.5px;padding:8px 16px">
+                📞 Gọi ngay
+              </a>
+              <a href="https://zalo.me/[SỐ_ZALO]" target="_blank" rel="noopener noreferrer" class="ns-btn-primary" style="font-size:12.5px;padding:8px 16px;background:#0068FF">
+                Zalo chat
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="ns-footer">
+  <div class="wd-container">
+    <div class="ns-ft-inner">
+      <div class="row g-5">
+        <div class="col-lg-4 col-md-6">
+          <a class="ns-ft-logo" href="index.html"><strong>[NAIL</strong> Studio]</a>
+          <p class="ns-ft-desc">Tiệm nail chuyên nghiệp — nơi mỗi bộ móng là một tác phẩm nghệ thuật dành riêng cho bạn.</p>
+          <div class="ns-ft-socials">
+            <a class="ns-ft-soc" href="#" aria-label="Facebook" rel="noopener noreferrer">f</a>
+            <a class="ns-ft-soc" href="#" aria-label="Instagram" rel="noopener noreferrer">in</a>
+            <a class="ns-ft-soc" href="#" aria-label="TikTok" rel="noopener noreferrer">tk</a>
+            <a class="ns-ft-soc" href="#" aria-label="Zalo" rel="noopener noreferrer">z</a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6">
+          <div class="ns-ft-col-title">Dịch vụ</div>
+          <nav class="ns-ft-links">
+            <a href="dich-vu.html">Nail Gel</a>
+            <a href="dich-vu.html">Nail Art</a>
+            <a href="dich-vu.html">Pedicure</a>
+            <a href="dich-vu.html">Acrylic Nail</a>
+            <a href="dich-vu.html">Nail Dưỡng</a>
+          </nav>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6">
+          <div class="ns-ft-col-title">Liên kết</div>
+          <nav class="ns-ft-links">
+            <a href="index.html">Trang chủ</a>
+            <a href="dich-vu.html">Bảng giá</a>
+            <a href="dat-lich.html">Đặt lịch</a>
+            <a href="lien-he.html">Liên hệ</a>
+          </nav>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="ns-ft-col-title">Thông tin</div>
+          <div class="ns-ft-links">
+            <span style="color:rgba(255,255,255,.32);font-size:13px;font-weight:300">📍 [Địa chỉ tiệm nail của bạn]</span>
+            <span style="color:rgba(255,255,255,.32);font-size:13px;font-weight:300">📞 [Số điện thoại]</span>
+            <span style="color:rgba(255,255,255,.32);font-size:13px;font-weight:300">⏰ Thứ 2 – Chủ nhật: 8:00 – 20:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ns-ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <span class="ns-ft-copy">© 2025 [Tên Tiệm Nail]. All rights reserved.</span>
+        <span class="ns-ft-copy">Thiết kế bởi <a href="#" style="color:rgba(255,255,255,.35);text-decoration:none">webdrop.vn</a></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── ZALO FLOAT ── -->
+<div class="ns-zalo-float">
+  <span class="ns-zalo-tip">Chat Zalo với chúng tôi</span>
+  <a class="ns-zalo-btn" href="https://zalo.me/[SỐ_ZALO]" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+    <svg width="26" height="26" viewBox="0 0 48 48" fill="none">
+      <path d="M24 4C13 4 4 12.1 4 22.2c0 5.7 2.9 10.8 7.5 14.2L9.5 44l8.2-3.6C19.7 41.1 21.8 41.4 24 41.4c11 0 20-8.1 20-19.2S35 4 24 4z" fill="#fff"/>
+      <text x="24" y="29" font-family="Arial" font-size="13" font-weight="bold" fill="#0068FF" text-anchor="middle">Zalo</text>
+    </svg>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// === Nav elevated on scroll ===
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('elevated', scrollY > 80);
+}, { passive: true });
+
+// === Mobile hamburger ===
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const isOpen = mob.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+  mob.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+}
+
+// === Reveal animation ===
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+// === Time slot selection ===
+const timeGrid = document.getElementById('timeGrid');
+const bookTimeInput = document.getElementById('bookTime');
+if (timeGrid) {
+  timeGrid.querySelectorAll('.ns-time-slot:not(.disabled)').forEach(slot => {
+    slot.addEventListener('click', () => {
+      timeGrid.querySelectorAll('.ns-time-slot').forEach(s => s.classList.remove('selected'));
+      slot.classList.add('selected');
+      bookTimeInput.value = slot.dataset.time;
+    });
+  });
+}
+
+// === Set min date for booking ===
+const dateInput = document.getElementById('bookDate');
+if (dateInput) {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate()).padStart(2, '0');
+  dateInput.min = `${yyyy}-${mm}-${dd}`;
+}
+
+// === Form submission ===
+const form = document.getElementById('bookingForm');
+const successMsg = document.getElementById('bookingSuccess');
+if (form) {
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    // Validate required fields
+    const name = document.getElementById('fullName').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const service = document.getElementById('service').value;
+    const date = document.getElementById('bookDate').value;
+    const time = bookTimeInput.value;
+
+    if (!name || !phone || !service || !date || !time) {
+      alert('Vui lòng điền đầy đủ thông tin và chọn giờ hẹn.');
+      return;
+    }
+    // Show success message
+    if (successMsg) {
+      successMsg.style.display = 'block';
+      form.querySelector('button[type="submit"]').style.display = 'none';
+      successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  });
+}
+</script>
+</body>
+</html>

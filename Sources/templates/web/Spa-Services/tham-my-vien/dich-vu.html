@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dịch Vụ — [TÊN THẨM MỸ VIỆN]</title>
+<meta name="description" content="Danh mục dịch vụ thẩm mỹ đầy đủ tại [TÊN THẨM MỸ VIỆN]: phẫu thuật mặt, chăm sóc da, laser, thẩm mỹ cơ thể. Giá minh bạch, cam kết chất lượng.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+/* Filter tabs */
+.tmv-filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
+.tmv-filter-btn {
+  font-size: 13px; font-weight: 500; font-family: var(--sans);
+  padding: 8px 18px; border-radius: 20px; border: 1px solid var(--border);
+  background: var(--clinical-white); color: var(--text-2);
+  cursor: pointer; transition: all .2s;
+}
+.tmv-filter-btn:hover, .tmv-filter-btn.active {
+  background: var(--dark2); color: #fff; border-color: var(--dark2);
+}
+.tmv-filter-btn.active { background: var(--accent); border-color: var(--accent); }
+
+/* Service group section */
+.tmv-sg { margin-bottom: 64px; }
+.tmv-sg:last-child { margin-bottom: 0; }
+.tmv-sg-header {
+  display: flex; align-items: center; gap: 16px;
+  padding-bottom: 16px; border-bottom: 1px solid var(--border);
+  margin-bottom: 28px;
+}
+.tmv-sg-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: var(--accent-light); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.tmv-sg-title-text { font-size: 20px; font-weight: 600; color: var(--text); letter-spacing: -.4px; }
+.tmv-sg-count { font-size: 12px; font-weight: 400; color: var(--text-3); margin-top: 2px; }
+
+/* Service row card (list elegant) */
+.tmv-svc-row {
+  display: flex; align-items: flex-start; gap: 20px;
+  padding: 20px; border-radius: 12px;
+  border: 1px solid var(--border); background: var(--clinical-white);
+  transition: transform .22s, box-shadow .22s, border-color .22s;
+  margin-bottom: 12px;
+}
+.tmv-svc-row:last-child { margin-bottom: 0; }
+.tmv-svc-row:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(0,0,0,.07); border-color: var(--gold-border-strong); }
+.tmv-svc-row-img { width: 80px; height: 80px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
+.tmv-svc-row-body { flex: 1; }
+.tmv-svc-row-tag { font-size: 10px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 4px; }
+.tmv-svc-row-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+.tmv-svc-row-desc { font-size: 13px; font-weight: 300; color: var(--text-2); line-height: 1.6; margin-bottom: 10px; }
+.tmv-svc-row-meta { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+.tmv-svc-meta-item { font-size: 12px; color: var(--text-3); display: flex; align-items: center; gap: 5px; }
+.tmv-svc-meta-item strong { color: var(--accent); font-size: 13px; font-weight: 600; }
+.tmv-svc-row-cta { flex-shrink: 0; align-self: center; }
+
+/* Price section */
+.tmv-price-section { background: var(--clinical-white); }
+.tmv-price-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 24px; background: var(--dark2); border-radius: 10px 10px 0 0;
+}
+.tmv-price-header-title { font-size: 14px; font-weight: 600; color: #fff; }
+.tmv-price-header-note { font-size: 12px; font-weight: 300; color: rgba(255,255,255,.4); }
+
+/* Highlight card */
+.tmv-highlight-card {
+  background: linear-gradient(135deg, var(--dark2) 0%, var(--dark3) 100%);
+  border-radius: 14px; padding: 32px;
+  border: 1px solid var(--gold-border);
+  position: relative; overflow: hidden;
+}
+.tmv-highlight-card::before {
+  content: ''; position: absolute; top: -60px; right: -60px;
+  width: 160px; height: 160px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,169,110,.12) 0%, transparent 70%);
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="wd-container">
+    <div class="tmv-nav-inner">
+      <a class="tmv-logo" href="index.html">
+        <div class="tmv-logo-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+            <path d="M8 12h8M12 8v8"/>
+          </svg>
+        </div>
+        <div class="tmv-logo-text">
+          <span class="tmv-logo-name">[TÊN THẨM MỸ VIỆN]</span>
+          <span class="tmv-logo-sub">Medical Aesthetics</span>
+        </div>
+      </a>
+      <nav class="tmv-nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="dich-vu.html" class="active">Dịch vụ</a>
+        <a href="bac-si.html">Bác sĩ</a>
+        <a href="dat-lich.html">Tư vấn</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </nav>
+      <a href="dat-lich.html" class="tmv-nav-cta">Đặt lịch tư vấn</a>
+      <button class="tmv-burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="tmv-mobile-menu" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ</a>
+  <a href="bac-si.html">Bác sĩ</a>
+  <a href="dat-lich.html">Tư vấn</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="tmv-mob-cta">Đặt lịch tư vấn</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="tmv-page-hero">
+  <div class="wd-container">
+    <div class="tmv-ph-badge">Danh mục dịch vụ</div>
+    <h1 class="tmv-ph-title">Dịch vụ thẩm mỹ <em>toàn diện</em></h1>
+    <p class="tmv-ph-sub">Từ phẫu thuật chuyên sâu đến chăm sóc da — mọi nhu cầu làm đẹp đều được đáp ứng bởi đội ngũ bác sĩ hàng đầu.</p>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<section class="sec-pad">
+  <div class="wd-container">
+    <div class="row g-5">
+      <!-- Left: Services -->
+      <div class="col-lg-8">
+
+        <!-- GROUP 1: MẶT -->
+        <div class="tmv-sg" data-reveal>
+          <div class="tmv-sg-header">
+            <div class="tmv-sg-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5">
+                <circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/>
+              </svg>
+            </div>
+            <div>
+              <div class="tmv-sg-title-text">Thẩm mỹ gương mặt</div>
+              <div class="tmv-sg-count">6 dịch vụ</div>
+            </div>
+          </div>
+
+          <div class="tmv-svc-row">
+            <img class="tmv-svc-row-img" src="https://images.unsplash.com/photo-1614859324967-bdf413c35a5b?w=160&q=75&auto=format&fit=crop" alt="Nâng mũi cấu trúc" loading="lazy">
+            <div class="tmv-svc-row-body">
+              <div class="tmv-svc-row-tag">Phẫu thuật</div>
+              <div class="tmv-svc-row-name">Nâng mũi cấu trúc bằng sụn</div>
+              <p class="tmv-svc-row-desc">Kỹ thuật nâng mũi cấu trúc bằng sụn tự thân (sụn vành tai, sụn vách ngăn) hoặc sụn nhân tạo Medpor cao cấp. Kết quả tự nhiên, bền vững, an toàn lâu dài.</p>
+              <div class="tmv-svc-row-meta">
+                <div class="tmv-svc-meta-item"><strong>Từ 15.000.000đ</strong></div>
+                <div class="tmv-svc-meta-item">⏱ Thời gian: 90–120 phút</div>
+                <div class="tmv-svc-meta-item">🔄 Phục hồi: 7–10 ngày</div>
+              </div>
+            </div>
+            <div class="tmv-svc-row-cta d-none d-md-block">
+              <a href="dat-lich.html" class="tmv-btn tmv-btn-outline-gold" style="font-size:12px;padding:8px 16px">Tư vấn</a>
+            </div>
+          </div>
+
+          <div class="tmv-svc-row">
+            <img class="tmv-svc-row-img" src="https://images.unsplash.com/photo-1527613426441-4da17471b66d?w=160&q=75&auto=format&fit=crop" alt="Độn cằm V-Line" loading="lazy">
+            <div class="tmv-svc-row-body">
+              <div class="tmv-svc-row-tag">Phẫu thuật</div>
+              <div class="tmv-svc-row-name">Độn cằm V-Line / Cắt gọt xương hàm</div>
+              <p class="tmv-svc-row-desc">Phẫu thuật độn cằm tạo đường viền mặt V-Line sắc nét, cân đối. Kết hợp cắt gọt xương hàm cho tổng thể khuôn mặt hài hòa, thanh thoát.</p>
+              <div class="tmv-svc-row-meta">
+                <div class="tmv-svc-meta-item"><strong>Từ 12.000.000đ</strong></div>
+                <div class="tmv-svc-meta-item">⏱ 60–90 phút</div>
+                <div class="tmv-svc-meta-item">🔄 5–7 ngày</div>
+              </div>
+            </div>
+            <div class="tmv-svc-row-cta d-none d-md-block">
+              <a href="dat-lich.html" class="tmv-btn tmv-btn-outline-gold" style="font-size:12px;padding:8px 16px">Tư vấn</a>
+            </div>
+          </div>
+
+          <div class="tmv-svc-row">
+            <img class="tmv-svc-row-img" src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=160&q=75&auto=format&fit=crop" alt="Cắt mắt 2 mí" loading="lazy">
+            <div class="tmv-svc-row-body">
+              <div class="tmv-svc-row-tag">Phẫu thuật</div>
+              <div class="tmv-svc-row-name">Cắt mí / Tạo mắt 2 mí Hàn Quốc</div>
+              <p class="tmv-svc-row-desc">Kỹ thuật cắt mí tiên tiến theo phương pháp Hàn Quốc, tạo nếp mí tự nhiên, mắt to sáng, phù hợp từng đặc điểm khuôn mặt.</p>
+              <div class="tmv-svc-row-meta">
+                <div class="tmv-svc-meta-item"><strong>Từ 6.000.000đ</strong></div>
+                <div class="tmv-svc-meta-item">⏱ 45–60 phút</div>
+                <div class="tmv-svc-meta-item">🔄 5–7 ngày</div>
+              </div>
+            </div>
+            <div class="tmv-svc-row-cta d-none d-md-block">
+              <a href="dat-lich.html" class="tmv-btn tmv-btn-outline-gold" style="font-size:12px;padding:8px 16px">Tư vấn</a>
+            </div>
+          </div>
+
+          <div class="tmv-svc-row">
+            <img class="tmv-svc-row-img" src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=160&q=75&auto=format&fit=crop" alt="Tiêm Botox Filler" loading="lazy">
+            <div class="tmv-svc-row-body">
+              <div class="tmv-svc-row-tag">Không phẫu thuật</div>
+              <div class="tmv-svc-row-name">Tiêm Botox &amp; Filler xóa nhăn</div>
+              <p class="tmv-svc-row-desc">Tiêm Botox Allergan và Filler Juvederm/Restylane nhập khẩu chính hãng. Xóa mờ nếp nhăn trán, đuôi mắt, làm đầy vùng thiếu hụt, kết quả tức thì.</p>
+              <div class="tmv-svc-row-meta">
+                <div class="tmv-svc-meta-item"><strong>Từ 3.500.000đ</strong></div>
+                <div class="tmv-svc-meta-item">⏱ 30–45 phút</div>
+                <div class="tmv-svc-meta-item">🔄 Không nghỉ dưỡng</div>
+              </div>
+            </div>
+            <div class="tmv-svc-row-cta d-none d-md-block">
+              <a href="dat-lich.html" class="tmv-btn tmv-btn-outline-gold" style="font-size:12px;padding:8px 16px">Tư vấn</a>
+            </div>
+          </div>
+
+          <div class="tmv-svc-row">
+            <img class="tmv-svc-row-img" src="https://images.unsplash.com/photo-1614859324967-bdf413c35a5b?w=160&q=75&auto=format&fit=crop" alt="Nâng môi" loading="lazy">
+            <div class="tmv-svc-row-body">
+              <div class="tmv-svc-row-tag">Không phẫu thuật</div>
+              <div class="tmv-svc-row-name">Căng mỏng môi / Tiêm filler môi</div>
+              <p class="tmv-svc-row-desc">Tạo hình và bơm đầy môi bằng filler HA mềm mại, cho đôi môi căng mọng, đường viền sắc nét và nụ cười thu hút tự nhiên.</p>
+              <div class="tmv-svc-row-meta">
+                <div class="tmv-svc-meta-item"><strong>Từ 2.500.000đ</strong></div>
+                <div class="tmv-svc-meta-item">⏱ 20–30 phút</div>
+                <div class="tmv-svc-meta-item">🔄 1–2 ngày</div>
+              </div>
+            </div>
+            <div class="tmv-svc-row-cta d-none d-md-block">
+              <a href="dat-lich.html" class="tmv-btn tmv-btn-outline-gold" style="font-size:12px;padding:8px 16px">Tư vấn</a>
+            </div>
+          </div>
+
+          <div class="tmv-svc-row">
+            <img class="tmv-svc-row-img" src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=160&q=75&auto=format&fit=crop" alt="Trẻ hóa mặt" loading="lazy">
+            <div class="tmv-svc-row-body">
+              <div class="tmv-svc-row-tag">Không phẫu thuật</div>
+              <div class="tmv-svc-row-name">PRP / Huyết tương giàu tiểu cầu trẻ hóa da</div>
+              <p class="tmv-svc-row-desc">Liệu pháp PRP sử dụng máu tự thân, kích thích collagen tự nhiên, tái tạo da từ bên trong, cải thiện độ đàn hồi và sắc tố da hiệu quả an toàn.</p>
+              <div class="tmv-svc-row-meta">
+                <div class="tmv-svc-meta-item"><strong>Từ 4.500.000đ</strong></div>
+                <div class="tmv-svc-meta-item">⏱ 45 phút</div>
+                <div class="tmv-svc-meta-item">🔄 1–2 ngày</div>
+              </div>
+            </div>
+            <div class="tmv-svc-row-cta d-none d-md-block">
+              <a href="dat-lich.html" class="tmv-btn tmv-btn-outline-gold" style="font-size:12px;padding:8px 16px">Tư vấn</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- GROUP 2: DA LIỄU -->
+        <div class="tmv-sg" data-reveal>
+          <div class="tmv-sg-header">
+            <div class="tmv-sg-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5">
+                <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4"/>
+              </svg>
+            </div>
+            <div>
+              <div class="tmv-sg-title-text">Chăm sóc da &amp; Laser</div>
+              <div class="tmv-sg-count">4 dịch vụ</div>
+            </div>
+          </div>
+
+          <div class="tmv-svc-row">
+            <img class="tmv-svc-row-img" src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=160&q=75&auto=format&fit=crop" alt="Laser CO2 Fractional" loading="lazy">
+            <div class="tmv-svc-row-body">
+              <div class="tmv-svc-row-tag">Laser</div>
+              <div class="tmv-svc-row-name">Laser CO2 Fractional tái tạo da</div>
+              <p class="tmv-svc-row-desc">Laser phân đoạn CO2 thế hệ mới xóa sẹo, tái tạo da mặt, thu nhỏ lỗ chân lông, điều trị nám và tăng sinh collagen sâu hiệu quả vượt trội.</p>
+              <div class="tmv-svc-row-meta">
+                <div class="tmv-svc-meta-item"><strong>Từ 4.000.000đ</strong></div>
+                <div class="tmv-svc-meta-item">⏱ 45–60 phút</div>
+                <div class="tmv-svc-meta-item">🔄 5–7 ngày</div>
+              </div>
+            </div>
+            <div class="tmv-svc-row-cta d-none d-md-block">
+              <a href="dat-lich.html" class="tmv-btn tmv-btn-outline-gold" style="font-size:12px;padding:8px 16px">Tư vấn</a>
+            </div>
+          </div>
+
+          <div class="tmv-svc-row">
+            <img class="tmv-svc-row-img" src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=160&q=75&auto=format&fit=crop" alt="Pico Laser" loading="lazy">
+            <div class="tmv-svc-row-body">
+              <div class="tmv-svc-row-tag">Laser</div>
+              <div class="tmv-svc-row-name">Pico Laser xóa nám &amp; tàn nhang</div>
+              <p class="tmv-svc-row-desc">Công nghệ Pico Laser thế hệ 4.0 phá vỡ hắc tố nám, tàn nhang, đốm nâu ở cấp độ nano giây, không xâm lấn, không đỏ da kéo dài.</p>
+              <div class="tmv-svc-row-meta">
+                <div class="tmv-svc-meta-item"><strong>Từ 3.000.000đ</strong></div>
+                <div class="tmv-svc-meta-item">⏱ 30–45 phút</div>
+                <div class="tmv-svc-meta-item">🔄 1–3 ngày</div>
+              </div>
+            </div>
+            <div class="tmv-svc-row-cta d-none d-md-block">
+              <a href="dat-lich.html" class="tmv-btn tmv-btn-outline-gold" style="font-size:12px;padding:8px 16px">Tư vấn</a>
+            </div>
+          </div>
+
+          <div class="tmv-svc-row">
+            <img class="tmv-svc-row-img" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=160&q=75&auto=format&fit=crop" alt="HIFU 7D" loading="lazy">
+            <div class="tmv-svc-row-body">
+              <div class="tmv-svc-row-tag">Công nghệ cao</div>
+              <div class="tmv-svc-row-name">HIFU 7D Ultraformer căng da không phẫu thuật</div>
+              <p class="tmv-svc-row-desc">Siêu âm hội tụ cường độ cao 7 lớp, nâng cơ mặt và căng da toàn diện. Hiệu quả duy trì 12–18 tháng, không đau, không nghỉ dưỡng.</p>
+              <div class="tmv-svc-row-meta">
+                <div class="tmv-svc-meta-item"><strong>Từ 8.000.000đ</strong></div>
+                <div class="tmv-svc-meta-item">⏱ 60–90 phút</div>
+                <div class="tmv-svc-meta-item">🔄 Không nghỉ dưỡng</div>
+              </div>
+            </div>
+            <div class="tmv-svc-row-cta d-none d-md-block">
+              <a href="dat-lich.html" class="tmv-btn tmv-btn-outline-gold" style="font-size:12px;padding:8px 16px">Tư vấn</a>
+            </div>
+          </div>
+
+          <div class="tmv-svc-row">
+            <img class="tmv-svc-row-img" src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=160&q=75&auto=format&fit=crop" alt="Chemical Peel" loading="lazy">
+            <div class="tmv-svc-row-body">
+              <div class="tmv-svc-row-tag">Chăm sóc da</div>
+              <div class="tmv-svc-row-name">Peel da hóa học &amp; Microneedling</div>
+              <p class="tmv-svc-row-desc">Liệu trình peel da kết hợp microneedling làm sáng da, giảm thâm mụn, thu nhỏ lỗ chân lông và cải thiện kết cấu da đồng đều toàn diện.</p>
+              <div class="tmv-svc-row-meta">
+                <div class="tmv-svc-meta-item"><strong>Từ 1.800.000đ</strong></div>
+                <div class="tmv-svc-meta-item">⏱ 45–60 phút</div>
+                <div class="tmv-svc-meta-item">🔄 3–5 ngày</div>
+              </div>
+            </div>
+            <div class="tmv-svc-row-cta d-none d-md-block">
+              <a href="dat-lich.html" class="tmv-btn tmv-btn-outline-gold" style="font-size:12px;padding:8px 16px">Tư vấn</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- GROUP 3: CƠ THỂ -->
+        <div class="tmv-sg" data-reveal>
+          <div class="tmv-sg-header">
+            <div class="tmv-sg-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5">
+                <path d="M18 20V10M12 20V4M6 20v-6"/>
+              </svg>
+            </div>
+            <div>
+              <div class="tmv-sg-title-text">Thẩm mỹ cơ thể</div>
+              <div class="tmv-sg-count">3 dịch vụ</div>
+            </div>
+          </div>
+
+          <div class="tmv-svc-row">
+            <img class="tmv-svc-row-img" src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=160&q=75&auto=format&fit=crop" alt="Hút mỡ Body Jet" loading="lazy">
+            <div class="tmv-svc-row-body">
+              <div class="tmv-svc-row-tag">Phẫu thuật cơ thể</div>
+              <div class="tmv-svc-row-name">Hút mỡ điêu khắc Body Jet</div>
+              <p class="tmv-svc-row-desc">Hút mỡ thế hệ mới bằng tia nước (Body Jet) — định hình chính xác vùng bụng, eo, đùi, bắp tay. Phục hồi nhanh, kết quả tự nhiên và lâu dài.</p>
+              <div class="tmv-svc-row-meta">
+                <div class="tmv-svc-meta-item"><strong>Từ 20.000.000đ</strong></div>
+                <div class="tmv-svc-meta-item">⏱ 120–180 phút</div>
+                <div class="tmv-svc-meta-item">🔄 10–14 ngày</div>
+              </div>
+            </div>
+            <div class="tmv-svc-row-cta d-none d-md-block">
+              <a href="dat-lich.html" class="tmv-btn tmv-btn-outline-gold" style="font-size:12px;padding:8px 16px">Tư vấn</a>
+            </div>
+          </div>
+
+          <div class="tmv-svc-row">
+            <img class="tmv-svc-row-img" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=160&q=75&auto=format&fit=crop" alt="Nâng ngực" loading="lazy">
+            <div class="tmv-svc-row-body">
+              <div class="tmv-svc-row-tag">Phẫu thuật cơ thể</div>
+              <div class="tmv-svc-row-name">Nâng ngực túi silicon</div>
+              <p class="tmv-svc-row-desc">Phẫu thuật nâng ngực với túi silicon Motiva/Mentor thế hệ mới, thiết kế đường rạch ẩn, tỷ lệ tự nhiên, bảo hành suốt đời theo cam kết nhà sản xuất.</p>
+              <div class="tmv-svc-row-meta">
+                <div class="tmv-svc-meta-item"><strong>Từ 28.000.000đ</strong></div>
+                <div class="tmv-svc-meta-item">⏱ 90–120 phút</div>
+                <div class="tmv-svc-meta-item">🔄 7–10 ngày</div>
+              </div>
+            </div>
+            <div class="tmv-svc-row-cta d-none d-md-block">
+              <a href="dat-lich.html" class="tmv-btn tmv-btn-outline-gold" style="font-size:12px;padding:8px 16px">Tư vấn</a>
+            </div>
+          </div>
+
+          <div class="tmv-svc-row">
+            <img class="tmv-svc-row-img" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=160&q=75&auto=format&fit=crop" alt="Triệt lông" loading="lazy">
+            <div class="tmv-svc-row-body">
+              <div class="tmv-svc-row-tag">Laser cơ thể</div>
+              <div class="tmv-svc-row-name">Triệt lông vĩnh viễn Laser Diode</div>
+              <p class="tmv-svc-row-desc">Công nghệ Laser Diode 808nm triệt lông toàn thân an toàn cho mọi loại da, không đau, không kích ứng, hiệu quả sau 4–6 buổi điều trị.</p>
+              <div class="tmv-svc-row-meta">
+                <div class="tmv-svc-meta-item"><strong>Từ 500.000đ</strong></div>
+                <div class="tmv-svc-meta-item">⏱ 20–60 phút</div>
+                <div class="tmv-svc-meta-item">🔄 Không nghỉ dưỡng</div>
+              </div>
+            </div>
+            <div class="tmv-svc-row-cta d-none d-md-block">
+              <a href="dat-lich.html" class="tmv-btn tmv-btn-outline-gold" style="font-size:12px;padding:8px 16px">Tư vấn</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: Sidebar pricing + CTA -->
+      <div class="col-lg-4" data-reveal data-delay="1">
+
+        <!-- Quick Price -->
+        <div style="position:sticky;top:88px">
+          <div style="margin-bottom:24px">
+            <div class="tmv-label" style="margin-bottom:12px">Bảng giá tham khảo</div>
+            <div class="tmv-price-header">
+              <div class="tmv-price-header-title">Dịch vụ phổ biến</div>
+              <div class="tmv-price-header-note">Giá chưa VAT</div>
+            </div>
+            <div class="tmv-price-table" style="border-radius:0 0 10px 10px;border-top:none">
+              <div class="tmv-price-row">
+                <div>
+                  <div class="tmv-price-name">Nâng mũi cấu trúc</div>
+                  <div class="tmv-price-note">Sụn tự thân hoặc nhân tạo</div>
+                </div>
+                <div class="tmv-price-val">15–30tr</div>
+              </div>
+              <div class="tmv-price-row">
+                <div>
+                  <div class="tmv-price-name">Cắt mắt 2 mí</div>
+                  <div class="tmv-price-note">Kỹ thuật Hàn Quốc</div>
+                </div>
+                <div class="tmv-price-val">6–12tr</div>
+              </div>
+              <div class="tmv-price-row">
+                <div>
+                  <div class="tmv-price-name">Độn cằm</div>
+                  <div class="tmv-price-note">Filler hoặc silicon</div>
+                </div>
+                <div class="tmv-price-val">3–15tr</div>
+              </div>
+              <div class="tmv-price-row">
+                <div>
+                  <div class="tmv-price-name">Botox xóa nhăn</div>
+                  <div class="tmv-price-note">Allergan chính hãng</div>
+                </div>
+                <div class="tmv-price-val">3.5–6tr</div>
+              </div>
+              <div class="tmv-price-row">
+                <div>
+                  <div class="tmv-price-name">HIFU 7D căng da</div>
+                  <div class="tmv-price-note">Hiệu quả 12–18 tháng</div>
+                </div>
+                <div class="tmv-price-val">8–15tr</div>
+              </div>
+              <div class="tmv-price-row">
+                <div>
+                  <div class="tmv-price-name">Laser CO2 tái tạo da</div>
+                  <div class="tmv-price-note">Trọn mặt</div>
+                </div>
+                <div class="tmv-price-val">4–8tr</div>
+              </div>
+              <div class="tmv-price-row">
+                <div>
+                  <div class="tmv-price-name">Hút mỡ Body Jet</div>
+                  <div class="tmv-price-note">1–2 vùng</div>
+                </div>
+                <div class="tmv-price-val">20–40tr</div>
+              </div>
+            </div>
+            <p style="font-size:12px;color:var(--text-3);margin-top:10px;line-height:1.6">* Giá thực tế phụ thuộc tình trạng cụ thể. Tư vấn miễn phí để có báo giá chính xác.</p>
+          </div>
+
+          <!-- CTA card -->
+          <div class="tmv-highlight-card">
+            <div style="position:relative;z-index:1">
+              <div style="font-size:12px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">Tư vấn miễn phí</div>
+              <div style="font-size:20px;font-weight:600;color:#fff;line-height:1.25;margin-bottom:10px">Không biết nên<br>chọn dịch vụ nào?</div>
+              <p style="font-size:13px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.65;margin-bottom:20px">Bác sĩ sẽ đánh giá và tư vấn phương án phù hợp nhất với bạn — miễn phí, không áp lực.</p>
+              <a href="dat-lich.html" class="tmv-btn tmv-btn-gold" style="width:100%;justify-content:center">Đặt lịch tư vấn →</a>
+              <div style="margin-top:14px;font-size:12px;font-weight:300;color:rgba(255,255,255,.3);text-align:center">Hoặc gọi: <a href="tel:0xx-xxx-xxxx" style="color:var(--accent)">[0xx xxx xxxx]</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wd-container">
+    <div class="tmv-ft-top">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <div class="tmv-ft-logo">
+            <div class="tmv-ft-logo-mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                <path d="M8 12h8M12 8v8"/>
+              </svg>
+            </div>
+            <div>
+              <div class="tmv-ft-logo-name">[TÊN THẨM MỸ VIỆN]</div>
+              <div class="tmv-ft-logo-sub">Medical Aesthetics</div>
+            </div>
+          </div>
+          <p class="tmv-ft-desc">Thẩm mỹ viện chuyên nghiệp với đội ngũ bác sĩ hàng đầu và công nghệ tiên tiến.</p>
+        </div>
+        <div class="col-md-4 col-lg-2 offset-lg-1">
+          <div class="tmv-ft-col-title">Dịch vụ</div>
+          <div class="tmv-ft-links">
+            <a href="dich-vu.html">Nâng mũi</a>
+            <a href="dich-vu.html">Độn cằm</a>
+            <a href="dich-vu.html">Căng da</a>
+            <a href="dich-vu.html">Botox &amp; Filler</a>
+            <a href="dich-vu.html">Điêu khắc cơ thể</a>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-2">
+          <div class="tmv-ft-col-title">Liên kết</div>
+          <div class="tmv-ft-links">
+            <a href="index.html">Trang chủ</a>
+            <a href="dich-vu.html">Dịch vụ</a>
+            <a href="bac-si.html">Đội ngũ bác sĩ</a>
+            <a href="dat-lich.html">Đặt lịch</a>
+            <a href="lien-he.html">Liên hệ</a>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-3">
+          <div class="tmv-ft-col-title">Liên hệ</div>
+          <div class="tmv-ft-contact-item">
+            <div class="tmv-ft-contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <div class="tmv-ft-contact-text">
+              <strong>Địa chỉ</strong>
+              [Số nhà, Tên đường], [Quận], [TP]
+            </div>
+          </div>
+          <div class="tmv-ft-contact-item">
+            <div class="tmv-ft-contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            </div>
+            <div class="tmv-ft-contact-text">
+              <strong>Điện thoại</strong>[0xx xxx xxxx]
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tmv-ft-bottom">
+      <div class="tmv-ft-copy">&copy; 2024 [TÊN THẨM MỸ VIỆN]. Bảo lưu mọi quyền.</div>
+      <div class="tmv-ft-cert"><span>Giấy phép CSYT số [XXX]</span></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ZALO FLOAT -->
+<a href="https://zalo.me/[ZALO_NUMBER]" class="tmv-zalo" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ Zalo">
+  <svg viewBox="0 0 40 40" fill="none"><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="sans-serif">Z</text></svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function(){
+  'use strict';
+  const nav = document.getElementById('nav');
+  if(nav){ window.addEventListener('scroll', () => nav.classList.toggle('nav-elevated', scrollY > 60), {passive:true}); }
+  const burger = document.getElementById('navBurger');
+  const mob = document.getElementById('navMob');
+  if(burger && mob){
+    burger.addEventListener('click', () => {
+      const o = mob.classList.toggle('open');
+      burger.classList.toggle('open', o);
+      document.body.style.overflow = o ? 'hidden' : '';
+    });
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape' && mob.classList.contains('open')){
+        mob.classList.remove('open'); burger.classList.remove('open'); document.body.style.overflow = '';
+      }
+    });
+  }
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); }});
+  }, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+  document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+})();
+</script>
+</body>
+</html>

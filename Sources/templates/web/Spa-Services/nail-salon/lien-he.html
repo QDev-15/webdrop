@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liên hệ — [TÊN TIỆM NAIL]</title>
+<meta name="description" content="Liên hệ với [TÊN TIỆM NAIL]. Địa chỉ, giờ mở cửa, số điện thoại và form liên hệ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <div class="wd-container">
+    <div class="ns-nav-inner">
+      <a class="ns-logo" href="index.html">
+        <strong>[NAIL</strong> Studio]<span class="ns-logo-dot"></span>
+      </a>
+      <div class="ns-nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="dich-vu.html">Dịch vụ & Bảng giá</a>
+        <a href="dat-lich.html">Đặt lịch</a>
+        <a href="lien-he.html" class="active">Liên hệ</a>
+      </div>
+      <a href="dat-lich.html" class="ns-nav-cta">Đặt lịch ngay</a>
+      <button class="ns-nav-burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="ns-nav-mob" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ & Bảng giá</a>
+  <a href="dat-lich.html">Đặt lịch</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="ns-mob-cta">Đặt lịch ngay</a>
+</div>
+
+<!-- ── PAGE HERO ── -->
+<section class="ns-page-hero">
+  <div class="wd-container">
+    <div data-reveal>
+      <div class="ns-ph-tag">Liên hệ</div>
+      <h1 class="ns-ph-title">Chúng tôi <strong>luôn ở đây</strong></h1>
+      <p class="ns-ph-sub">Có bất kỳ câu hỏi nào? Liên hệ ngay — chúng tôi sẽ phản hồi trong vòng 30 phút.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── THÔNG TIN LIÊN HỆ (FEATURE-ICON-ROW) ── -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="row g-4 mb-5">
+      <div class="col-lg-3 col-sm-6" data-reveal>
+        <div class="ns-contact-card">
+          <div class="ns-contact-icon">📍</div>
+          <div class="ns-contact-label">Địa chỉ</div>
+          <div class="ns-contact-val">[Số nhà, Tên đường]<br>[Quận, TP.HCM]</div>
+          <div class="ns-contact-sub">Gần [Địa điểm nổi bật]</div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6" data-reveal class="d1">
+        <div class="ns-contact-card">
+          <div class="ns-contact-icon">📞</div>
+          <div class="ns-contact-label">Điện thoại</div>
+          <div class="ns-contact-val">
+            <a href="tel:[SỐ_ĐIỆN_THOẠI]" style="color:var(--text);text-decoration:none">[09xx xxx xxx]</a>
+          </div>
+          <div class="ns-contact-sub">Zalo cùng số — phản hồi nhanh</div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6" data-reveal class="d2">
+        <div class="ns-contact-card">
+          <div class="ns-contact-icon">⏰</div>
+          <div class="ns-contact-label">Giờ mở cửa</div>
+          <div class="ns-contact-val">Thứ 2 – Thứ 6:<br>8:00 – 20:00</div>
+          <div class="ns-contact-sub">Thứ 7 – CN: 8:00 – 21:00</div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6" data-reveal class="d3">
+        <div class="ns-contact-card">
+          <div class="ns-contact-icon">📱</div>
+          <div class="ns-contact-label">Mạng xã hội</div>
+          <div class="ns-contact-val">
+            <a href="#" rel="noopener noreferrer" style="color:var(--text);text-decoration:none">Facebook</a> ·
+            <a href="#" rel="noopener noreferrer" style="color:var(--text);text-decoration:none">Instagram</a>
+          </div>
+          <div class="ns-contact-sub">TikTok: @[tên_tiệm]</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Map + Form -->
+    <div class="row g-5">
+      <!-- Google Map embed -->
+      <div class="col-lg-6" data-reveal>
+        <h2 class="ns-title" style="margin-bottom:20px"><strong>Tìm đường</strong> đến tiệm</h2>
+        <p class="ns-sub" style="margin-bottom:24px">Tiệm nail nằm ngay trung tâm, dễ tìm, có chỗ để xe thuận tiện.</p>
+
+        <!-- Google Map placeholder — thay src bằng Google Maps embed URL thực tế -->
+        <div class="ns-map-wrap" style="margin-bottom:20px">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4506968732424!2d106.70226231533419!3d10.776889692320065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4b3330bcc7%3A0x4db964d76bf2d292!2sDistric%201%2C%20Ho%20Chi%20Minh%20City!5e0!3m2!1sen!2svn!4v1234567890"
+            width="100%" height="320" style="border:0" allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Bản đồ vị trí tiệm nail">
+          </iframe>
+        </div>
+
+        <!-- Hướng dẫn xe bus / đường đi -->
+        <div style="background:var(--warm);border:1px solid var(--border);border-radius:16px;padding:20px">
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:12px">Hướng dẫn di chuyển</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span style="font-size:16px;flex-shrink:0">🚗</span>
+              <span style="font-size:13px;font-weight:300;color:var(--text-2)">Xe máy: từ [Ngã tư X] đi theo [Đường Y] khoảng 200m, rẽ trái vào [Hẻm Z]</span>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span style="font-size:16px;flex-shrink:0">🚌</span>
+              <span style="font-size:13px;font-weight:300;color:var(--text-2)">Xe buýt: tuyến số [XX], dừng tại [Tên trạm] — đi bộ 3 phút</span>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span style="font-size:16px;flex-shrink:0">🅿️</span>
+              <span style="font-size:13px;font-weight:300;color:var(--text-2)">Có bãi đỗ xe ngay trước tiệm, miễn phí khi dùng dịch vụ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form liên hệ -->
+      <div class="col-lg-6" data-reveal class="d1">
+        <h2 class="ns-title" style="margin-bottom:20px">Gửi <strong>tin nhắn</strong> cho chúng tôi</h2>
+        <div class="ns-booking-wrap" style="box-shadow:none;border-radius:20px">
+          <form id="contactForm" novalidate>
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label class="ns-form-label" for="ctName">Họ và tên *</label>
+                <input type="text" id="ctName" name="name" class="ns-form-control" placeholder="[Nguyễn Thị A]" required>
+              </div>
+              <div class="col-sm-6">
+                <label class="ns-form-label" for="ctPhone">Số điện thoại *</label>
+                <input type="tel" id="ctPhone" name="phone" class="ns-form-control" placeholder="[09xx xxx xxx]" required>
+              </div>
+              <div class="col-12">
+                <label class="ns-form-label" for="ctEmail">Email</label>
+                <input type="email" id="ctEmail" name="email" class="ns-form-control" placeholder="[email@example.com]">
+              </div>
+              <div class="col-12">
+                <label class="ns-form-label" for="ctSubject">Chủ đề</label>
+                <select id="ctSubject" name="subject" class="ns-form-select">
+                  <option value="">-- Chọn chủ đề --</option>
+                  <option value="hoi-gia">Hỏi giá dịch vụ</option>
+                  <option value="tu-van">Tư vấn mẫu nail</option>
+                  <option value="bridal">Nail cưới / sự kiện</option>
+                  <option value="phan-hoi">Phản hồi dịch vụ</option>
+                  <option value="khac">Khác</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="ns-form-label" for="ctMessage">Nội dung *</label>
+                <textarea id="ctMessage" name="message" class="ns-form-control" rows="4" placeholder="[Nhập nội dung tin nhắn...]" required></textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="ns-btn-primary w-100" style="font-size:15px;padding:14px">
+                  Gửi tin nhắn
+                </button>
+              </div>
+            </div>
+
+            <!-- Success message -->
+            <div id="ctSuccess" style="display:none;margin-top:16px;background:var(--blush-light);border:1px solid rgba(232,164,160,.4);border-radius:14px;padding:20px;text-align:center">
+              <div style="font-size:24px;margin-bottom:8px">✅</div>
+              <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px">Gửi thành công!</div>
+              <div style="font-size:13px;font-weight:300;color:var(--text-2)">Chúng tôi sẽ liên hệ lại với bạn sớm nhất có thể.</div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GIỜ MỞ CỬA CHI TIẾT (LIST-ELEGANT pattern) ── -->
+<section class="sec-pad" style="background:var(--warm)">
+  <div class="wd-container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-5" data-reveal>
+        <div class="ns-eyebrow">Lịch làm việc</div>
+        <h2 class="ns-title">Giờ <strong>mở cửa</strong></h2>
+        <p class="ns-sub" style="margin-bottom:28px">Chúng tôi mở cửa 7 ngày trong tuần để phục vụ bạn thuận tiện nhất. Đặt lịch để được ưu tiên phục vụ.</p>
+        <a href="dat-lich.html" class="ns-btn-primary">Đặt lịch online</a>
+      </div>
+      <div class="col-lg-7" data-reveal class="d1">
+        <div class="ns-price-section">
+          <div class="ns-price-list">
+            <div class="ns-price-row">
+              <div class="ns-price-name">Thứ Hai</div>
+              <div class="ns-price-val" style="color:var(--text)">8:00 – 20:00</div>
+            </div>
+            <div class="ns-price-row">
+              <div class="ns-price-name">Thứ Ba</div>
+              <div class="ns-price-val" style="color:var(--text)">8:00 – 20:00</div>
+            </div>
+            <div class="ns-price-row">
+              <div class="ns-price-name">Thứ Tư</div>
+              <div class="ns-price-val" style="color:var(--text)">8:00 – 20:00</div>
+            </div>
+            <div class="ns-price-row">
+              <div class="ns-price-name">Thứ Năm</div>
+              <div class="ns-price-val" style="color:var(--text)">8:00 – 20:00</div>
+            </div>
+            <div class="ns-price-row">
+              <div class="ns-price-name">Thứ Sáu</div>
+              <div class="ns-price-val" style="color:var(--text)">8:00 – 20:00</div>
+            </div>
+            <div class="ns-price-row featured">
+              <div>
+                <div class="ns-price-name">Thứ Bảy <span class="ns-price-badge" style="background:var(--blush)">Mở sớm</span></div>
+                <div class="ns-price-desc">Giờ mở cửa kéo dài cuối tuần</div>
+              </div>
+              <div class="ns-price-val">8:00 – 21:00</div>
+            </div>
+            <div class="ns-price-row featured">
+              <div>
+                <div class="ns-price-name">Chủ Nhật <span class="ns-price-badge" style="background:var(--blush)">Mở sớm</span></div>
+                <div class="ns-price-desc">Giờ mở cửa kéo dài cuối tuần</div>
+              </div>
+              <div class="ns-price-val">8:00 – 21:00</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:12px;padding:14px 18px;background:var(--gold-light);border:1px solid rgba(201,169,110,.2);border-radius:12px">
+          <div style="font-size:12.5px;font-weight:300;color:var(--text-2)">
+            🎉 <strong style="font-weight:500;color:var(--text)">Ngày lễ:</strong> Mở cửa bình thường (8:00 – 18:00). Nhớ đặt lịch trước vì thường đông.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOCIAL CTA ── -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center" data-reveal>
+      <div class="ns-eyebrow">Kết nối với chúng tôi</div>
+      <h2 class="ns-title">Theo dõi <strong>Instagram</strong> của chúng tôi</h2>
+      <p class="ns-sub centered" style="margin-bottom:36px">Cập nhật mẫu nail mới nhất, ưu đãi đặc biệt và cảm hứng làm đẹp mỗi ngày.</p>
+
+      <!-- Instagram-style mini gallery -->
+      <div class="row g-3 mb-4">
+        <div class="col-4 col-md-2" data-reveal>
+          <div style="border-radius:14px;overflow:hidden;aspect-ratio:1">
+            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=300&q=65&auto=format&fit=crop" alt="Instagram post nail" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease;display:block">
+          </div>
+        </div>
+        <div class="col-4 col-md-2" data-reveal class="d1">
+          <div style="border-radius:14px;overflow:hidden;aspect-ratio:1">
+            <img src="https://images.unsplash.com/photo-1604902396830-aca29e19b067?w=300&q=65&auto=format&fit=crop" alt="Instagram post nail art" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+        </div>
+        <div class="col-4 col-md-2" data-reveal class="d2">
+          <div style="border-radius:14px;overflow:hidden;aspect-ratio:1">
+            <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=300&q=65&auto=format&fit=crop" alt="Instagram post pedicure" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+        </div>
+        <div class="col-4 col-md-2" data-reveal class="d3">
+          <div style="border-radius:14px;overflow:hidden;aspect-ratio:1">
+            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=300&q=65&auto=format&fit=crop&crop=top" alt="Instagram post gel" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+        </div>
+        <div class="d-none d-md-block col-md-2" data-reveal class="d4">
+          <div style="border-radius:14px;overflow:hidden;aspect-ratio:1">
+            <img src="https://images.unsplash.com/photo-1604902396830-aca29e19b067?w=300&q=65&auto=format&fit=crop&crop=top" alt="Instagram post" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+        </div>
+        <div class="d-none d-md-block col-md-2" data-reveal class="d4">
+          <div style="border-radius:14px;overflow:hidden;aspect-ratio:1;position:relative">
+            <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=300&q=65&auto=format&fit=crop&crop=bottom" alt="Xem thêm trên Instagram" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.5)">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:500">
+              Xem thêm
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex gap-3 justify-content-center flex-wrap">
+        <a href="https://instagram.com/[TÊN_INSTAGRAM]" target="_blank" rel="noopener noreferrer" class="ns-btn-primary">
+          Theo dõi Instagram
+        </a>
+        <a href="https://zalo.me/[SỐ_ZALO]" target="_blank" rel="noopener noreferrer" class="ns-btn-outline">
+          Chat Zalo
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="ns-cta-sec">
+  <div class="wd-container" style="position:relative;z-index:2">
+    <div data-reveal>
+      <h2 class="ns-cta-title">Sẵn sàng có đôi tay<br><strong>hoàn hảo?</strong></h2>
+      <p class="ns-cta-sub">Đặt lịch ngay hoặc ghé tiệm để được tư vấn trực tiếp miễn phí.</p>
+      <a href="dat-lich.html" class="ns-btn-cta-white">Đặt lịch ngay →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="ns-footer">
+  <div class="wd-container">
+    <div class="ns-ft-inner">
+      <div class="row g-5">
+        <div class="col-lg-4 col-md-6">
+          <a class="ns-ft-logo" href="index.html"><strong>[NAIL</strong> Studio]</a>
+          <p class="ns-ft-desc">Tiệm nail chuyên nghiệp — nơi mỗi bộ móng là một tác phẩm nghệ thuật dành riêng cho bạn.</p>
+          <div class="ns-ft-socials">
+            <a class="ns-ft-soc" href="#" aria-label="Facebook" rel="noopener noreferrer">f</a>
+            <a class="ns-ft-soc" href="#" aria-label="Instagram" rel="noopener noreferrer">in</a>
+            <a class="ns-ft-soc" href="#" aria-label="TikTok" rel="noopener noreferrer">tk</a>
+            <a class="ns-ft-soc" href="#" aria-label="Zalo" rel="noopener noreferrer">z</a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6">
+          <div class="ns-ft-col-title">Dịch vụ</div>
+          <nav class="ns-ft-links">
+            <a href="dich-vu.html">Nail Gel</a>
+            <a href="dich-vu.html">Nail Art</a>
+            <a href="dich-vu.html">Pedicure</a>
+            <a href="dich-vu.html">Acrylic Nail</a>
+            <a href="dich-vu.html">Nail Dưỡng</a>
+          </nav>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6">
+          <div class="ns-ft-col-title">Liên kết</div>
+          <nav class="ns-ft-links">
+            <a href="index.html">Trang chủ</a>
+            <a href="dich-vu.html">Bảng giá</a>
+            <a href="dat-lich.html">Đặt lịch</a>
+            <a href="lien-he.html">Liên hệ</a>
+          </nav>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="ns-ft-col-title">Thông tin</div>
+          <div class="ns-ft-links">
+            <span style="color:rgba(255,255,255,.32);font-size:13px;font-weight:300">📍 [Địa chỉ tiệm nail của bạn]</span>
+            <span style="color:rgba(255,255,255,.32);font-size:13px;font-weight:300">📞 [Số điện thoại]</span>
+            <span style="color:rgba(255,255,255,.32);font-size:13px;font-weight:300">⏰ Thứ 2 – CN: 8:00 – 20:00/21:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ns-ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <span class="ns-ft-copy">© 2025 [Tên Tiệm Nail]. All rights reserved.</span>
+        <span class="ns-ft-copy">Thiết kế bởi <a href="#" style="color:rgba(255,255,255,.35);text-decoration:none">webdrop.vn</a></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── ZALO FLOAT ── -->
+<div class="ns-zalo-float">
+  <span class="ns-zalo-tip">Chat Zalo với chúng tôi</span>
+  <a class="ns-zalo-btn" href="https://zalo.me/[SỐ_ZALO]" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+    <svg width="26" height="26" viewBox="0 0 48 48" fill="none">
+      <path d="M24 4C13 4 4 12.1 4 22.2c0 5.7 2.9 10.8 7.5 14.2L9.5 44l8.2-3.6C19.7 41.1 21.8 41.4 24 41.4c11 0 20-8.1 20-19.2S35 4 24 4z" fill="#fff"/>
+      <text x="24" y="29" font-family="Arial" font-size="13" font-weight="bold" fill="#0068FF" text-anchor="middle">Zalo</text>
+    </svg>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// === Nav elevated on scroll ===
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('elevated', scrollY > 80);
+}, { passive: true });
+
+// === Mobile hamburger ===
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const isOpen = mob.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+  mob.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+}
+
+// === Reveal animation ===
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+// === Contact form submission ===
+const form = document.getElementById('contactForm');
+const successMsg = document.getElementById('ctSuccess');
+if (form) {
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('ctName').value.trim();
+    const phone = document.getElementById('ctPhone').value.trim();
+    const message = document.getElementById('ctMessage').value.trim();
+
+    if (!name || !phone || !message) {
+      alert('Vui lòng điền đầy đủ họ tên, số điện thoại và nội dung.');
+      return;
+    }
+    if (successMsg) {
+      successMsg.style.display = 'block';
+      form.querySelector('button[type="submit"]').style.display = 'none';
+      successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  });
+}
+</script>
+</body>
+</html>

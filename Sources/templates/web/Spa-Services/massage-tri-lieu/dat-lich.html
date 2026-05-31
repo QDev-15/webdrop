@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đặt lịch — [TÊN TRUNG TÂM] Massage &amp; Trị Liệu</title>
+<meta name="description" content="Đặt lịch massage trị liệu tại [TÊN TRUNG TÂM] — chọn dịch vụ, thời lượng, chuyên viên và ngày giờ phù hợp. Xác nhận trong 30 phút.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mrt-nav">
+  <div class="wd-container">
+    <div class="mrt-nav-inner">
+      <a class="mrt-logo" href="index.html">
+        <div class="mrt-logo-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 3c-1 3-4 5-4 9a4 4 0 008 0c0-4-3-6-4-9z"/><path d="M8 17s0 3 4 3 4-3 4-3"/></svg>
+        </div>
+        <div>
+          <span class="mrt-logo-text">[TÊN TRUNG TÂM]</span>
+          <span class="mrt-logo-sub">Massage &amp; Trị Liệu</span>
+        </div>
+      </a>
+      <div class="mrt-nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="dich-vu.html">Dịch vụ &amp; Giá</a>
+        <a href="dat-lich.html" class="active">Đặt lịch</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-lich.html" class="mrt-nav-cta">Đặt lịch ngay</a>
+      <button class="mrt-burger" id="navBurger" aria-label="Mở menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="mrt-mobile-nav" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ &amp; Giá</a>
+  <a href="dat-lich.html">Đặt lịch</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="mob-cta">Đặt lịch ngay</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- PAGE HERO — tông nâu ấm                                -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="mrt-page-hero">
+  <div class="wd-container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6" data-reveal>
+        <div class="mrt-ph-label">Đặt lịch trải nghiệm</div>
+        <h1 class="mrt-ph-title">Đặt lịch <em>thư giãn</em> ngay hôm nay</h1>
+        <p class="mrt-ph-sub">Chọn dịch vụ và khung giờ phù hợp — chuyên viên sẽ xác nhận lịch hẹn trong vòng 30 phút qua điện thoại hoặc Zalo.</p>
+        <div class="mrt-dl-trust">
+          <div class="mrt-dl-trust-item">
+            <span class="mrt-dl-trust-icon">✓</span>
+            Xác nhận trong 30 phút
+          </div>
+          <div class="mrt-dl-trust-item">
+            <span class="mrt-dl-trust-icon">✓</span>
+            Huỷ lịch miễn phí trước 4 tiếng
+          </div>
+          <div class="mrt-dl-trust-item">
+            <span class="mrt-dl-trust-icon">✓</span>
+            Không cần đặt cọc
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6" data-reveal class="d1">
+        <div class="mrt-dl-hero-img-wrap">
+          <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=700&q=80&auto=format&fit=crop" alt="Đặt lịch massage tại [TÊN TRUNG TÂM]" class="mrt-dl-hero-img" loading="eager">
+          <div class="mrt-dl-hero-badge">
+            <div class="mrt-dl-badge-num">30'</div>
+            <div class="mrt-dl-badge-label">Xác nhận tối đa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- NỘI DUNG CHÍNH — Form + Sidebar chính sách            -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="row g-5">
+
+      <!-- Cột trái: Form đặt lịch -->
+      <div class="col-lg-7" data-reveal>
+        <div class="mrt-form-card">
+          <div class="mrt-form-title">Thông tin đặt lịch</div>
+          <p class="mrt-form-sub">Điền đầy đủ thông tin bên dưới — nhân viên sẽ liên hệ xác nhận qua số điện thoại của bạn.</p>
+
+          <form id="bookingForm" novalidate>
+            <!-- Họ tên + Số điện thoại -->
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <div class="mrt-form-group">
+                  <label class="mrt-form-label" for="fullName">Họ và tên <span>*</span></label>
+                  <input type="text" id="fullName" name="fullName" class="mrt-form-control" placeholder="Nguyễn Văn A" required>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="mrt-form-group">
+                  <label class="mrt-form-label" for="phone">Số điện thoại <span>*</span></label>
+                  <input type="tel" id="phone" name="phone" class="mrt-form-control" placeholder="09x xxx xxxx" required>
+                </div>
+              </div>
+            </div>
+
+            <!-- Loại massage -->
+            <div class="mrt-form-group">
+              <label class="mrt-form-label" for="serviceType">Loại massage <span>*</span></label>
+              <select id="serviceType" name="serviceType" class="mrt-form-control" required>
+                <option value="" disabled selected>-- Chọn loại dịch vụ --</option>
+                <option value="thai">Massage Thái Cổ Truyền</option>
+                <option value="da-nong">Massage Đá Nóng</option>
+                <option value="bam-huyet">Bấm Huyệt Trị Liệu</option>
+                <option value="mat">Massage Mặt &amp; Đầu</option>
+                <option value="toan-than">Thư Giãn Toàn Thân</option>
+                <option value="lung-vai-gay">Massage Lưng Vai Gáy</option>
+                <option value="combo-thu-gian">Gói Thư Giãn (Combo)</option>
+                <option value="combo-tri-lieu">Gói Trị Liệu Sâu (Combo)</option>
+                <option value="combo-vip">Gói VIP Trọn Ngày (Combo)</option>
+              </select>
+            </div>
+
+            <!-- Thời lượng + Chuyên viên -->
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <div class="mrt-form-group">
+                  <label class="mrt-form-label" for="duration">Thời lượng <span>*</span></label>
+                  <select id="duration" name="duration" class="mrt-form-control" required>
+                    <option value="" disabled selected>-- Chọn thời lượng --</option>
+                    <option value="30">30 phút</option>
+                    <option value="45">45 phút</option>
+                    <option value="60">60 phút</option>
+                    <option value="90">90 phút</option>
+                    <option value="120">120 phút</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="mrt-form-group">
+                  <label class="mrt-form-label" for="therapist">Chuyên viên</label>
+                  <select id="therapist" name="therapist" class="mrt-form-control">
+                    <option value="any" selected>Không có ưu tiên</option>
+                    <option value="cv1">[Tên chuyên viên 1] — Massage Thái &amp; Bấm huyệt</option>
+                    <option value="cv2">[Tên chuyên viên 2] — Đá nóng &amp; Aromatherapy</option>
+                    <option value="cv3">[Tên chuyên viên 3] — Phục hồi &amp; Thể thao</option>
+                    <option value="cv4">[Tên chuyên viên 4] — Massage mặt &amp; Dưỡng da</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ngày + Giờ -->
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <div class="mrt-form-group">
+                  <label class="mrt-form-label" for="bookDate">Ngày hẹn <span>*</span></label>
+                  <input type="date" id="bookDate" name="bookDate" class="mrt-form-control" required>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="mrt-form-group">
+                  <label class="mrt-form-label" for="bookTime">Giờ hẹn <span>*</span></label>
+                  <select id="bookTime" name="bookTime" class="mrt-form-control" required>
+                    <option value="" disabled selected>-- Chọn giờ --</option>
+                    <option value="09:00">09:00</option>
+                    <option value="09:30">09:30</option>
+                    <option value="10:00">10:00</option>
+                    <option value="10:30">10:30</option>
+                    <option value="11:00">11:00</option>
+                    <option value="11:30">11:30</option>
+                    <option value="13:00">13:00</option>
+                    <option value="13:30">13:30</option>
+                    <option value="14:00">14:00</option>
+                    <option value="14:30">14:30</option>
+                    <option value="15:00">15:00</option>
+                    <option value="15:30">15:30</option>
+                    <option value="16:00">16:00</option>
+                    <option value="16:30">16:30</option>
+                    <option value="17:00">17:00</option>
+                    <option value="17:30">17:30</option>
+                    <option value="18:00">18:00</option>
+                    <option value="18:30">18:30</option>
+                    <option value="19:00">19:00</option>
+                    <option value="19:30">19:30</option>
+                    <option value="20:00">20:00</option>
+                    <option value="20:30">20:30</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ghi chú sức khỏe -->
+            <div class="mrt-form-group">
+              <label class="mrt-form-label" for="healthNote">Ghi chú sức khỏe &amp; yêu cầu đặc biệt</label>
+              <textarea id="healthNote" name="healthNote" class="mrt-form-control" placeholder="Ví dụ: bị đau lưng dưới, dị ứng tinh dầu, đang điều trị bệnh nền, mang thai... Càng cụ thể, chuyên viên càng chuẩn bị tốt cho bạn."></textarea>
+              <div class="mrt-form-hint">Thông tin này được bảo mật và chỉ dùng để chuyên viên chuẩn bị liệu trình phù hợp.</div>
+            </div>
+
+            <button type="submit" class="mrt-form-submit">Gửi yêu cầu đặt lịch →</button>
+
+            <!-- Thông báo thành công (ẩn mặc định) -->
+            <div class="mrt-form-success" id="formSuccess" style="display:none">
+              <div class="mrt-success-icon">✓</div>
+              <div class="mrt-success-title">Đặt lịch thành công!</div>
+              <p class="mrt-success-text">Chúng tôi đã nhận được yêu cầu của bạn. Nhân viên sẽ gọi lại xác nhận trong vòng 30 phút trong giờ làm việc.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Cột phải: Chính sách + Lưu ý + Hotline -->
+      <div class="col-lg-5" data-reveal class="d2">
+
+        <!-- Chính sách đặt lịch -->
+        <div class="mrt-policy-card">
+          <div class="mrt-policy-head">
+            <div class="mrt-policy-icon">📋</div>
+            <div class="mrt-policy-title">Chính sách đặt lịch</div>
+          </div>
+          <div class="mrt-policy-list">
+            <div class="mrt-policy-item">
+              <div class="mrt-policy-dot"></div>
+              <div>
+                <div class="mrt-policy-item-title">Xác nhận lịch hẹn</div>
+                <p class="mrt-policy-item-desc">Chúng tôi sẽ liên hệ xác nhận qua điện thoại hoặc Zalo trong vòng 30 phút (9:00–21:00 các ngày trong tuần).</p>
+              </div>
+            </div>
+            <div class="mrt-policy-item">
+              <div class="mrt-policy-dot"></div>
+              <div>
+                <div class="mrt-policy-item-title">Huỷ &amp; đổi lịch</div>
+                <p class="mrt-policy-item-desc">Huỷ miễn phí nếu báo trước ít nhất 4 tiếng. Đổi lịch không giới hạn số lần, miễn báo trước ít nhất 2 tiếng.</p>
+              </div>
+            </div>
+            <div class="mrt-policy-item">
+              <div class="mrt-policy-dot"></div>
+              <div>
+                <div class="mrt-policy-item-title">Thanh toán</div>
+                <p class="mrt-policy-item-desc">Không cần đặt cọc. Thanh toán tiền mặt hoặc chuyển khoản sau khi hoàn thành dịch vụ tại quầy.</p>
+              </div>
+            </div>
+            <div class="mrt-policy-item">
+              <div class="mrt-policy-dot"></div>
+              <div>
+                <div class="mrt-policy-item-title">Đến muộn</div>
+                <p class="mrt-policy-item-desc">Đến muộn quá 15 phút mà không báo trước, lịch hẹn có thể bị điều chỉnh tùy theo khung giờ còn trống.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lưu ý trước khi đến -->
+        <div class="mrt-notice-card">
+          <div class="mrt-policy-head">
+            <div class="mrt-policy-icon">💡</div>
+            <div class="mrt-policy-title">Lưu ý trước khi đến</div>
+          </div>
+          <ul class="mrt-notice-list">
+            <li>Đến trước giờ hẹn <strong>10–15 phút</strong> để làm thủ tục và tư vấn ban đầu</li>
+            <li>Không ăn no ít nhất <strong>1 tiếng</strong> trước buổi trị liệu</li>
+            <li>Thông báo nếu đang mang thai, có bệnh nền, hoặc đang dùng thuốc</li>
+            <li>Tắt điện thoại hoặc chuyển sang chế độ im lặng khi vào phòng trị liệu</li>
+            <li>Trang phục thoải mái — chúng tôi có đồ thay sẵn cho bạn</li>
+            <li>Không nên tập thể thao mạnh trong <strong>2 tiếng</strong> sau buổi trị liệu</li>
+          </ul>
+        </div>
+
+        <!-- Hotline liên hệ nhanh -->
+        <div class="mrt-hotline-card">
+          <div class="mrt-hotline-label">Cần hỗ trợ ngay?</div>
+          <div class="mrt-hotline-title">Gọi hoặc nhắn Zalo</div>
+          <a href="tel:[SỐ ĐIỆN THOẠI]" class="mrt-hotline-num">[SỐ ĐIỆN THOẠI]</a>
+          <p class="mrt-hotline-hours">Thứ 2 – Chủ nhật: 9:00 – 21:00</p>
+          <div class="mrt-hotline-actions">
+            <a href="tel:[SỐ ĐIỆN THOẠI]" class="mrt-btn-primary" style="flex:1;text-align:center">Gọi ngay</a>
+            <a href="https://zalo.me/[SỐ ZALO]" class="mrt-btn-outline" style="flex:1;text-align:center" target="_blank" rel="noopener noreferrer">Nhắn Zalo</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- THÔNG TIN THÊM — Quy trình sau đặt lịch (STAT-BAR)   -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="mrt-stat-bar">
+  <div class="wd-container">
+    <div class="mrt-stat-grid">
+      <div class="mrt-stat-box" data-reveal>
+        <div class="mrt-dl-flow-num">01</div>
+        <div class="mrt-dl-flow-title">Gửi yêu cầu</div>
+        <div class="mrt-stat-desc">Điền form hoặc gọi hotline đặt lịch</div>
+      </div>
+      <div class="mrt-stat-box" data-reveal class="d1">
+        <div class="mrt-dl-flow-num">02</div>
+        <div class="mrt-dl-flow-title">Xác nhận nhanh</div>
+        <div class="mrt-stat-desc">Nhân viên gọi lại trong 30 phút</div>
+      </div>
+      <div class="mrt-stat-box" data-reveal class="d2">
+        <div class="mrt-dl-flow-num">03</div>
+        <div class="mrt-dl-flow-title">Đến đúng giờ</div>
+        <div class="mrt-stat-desc">Check-in, tư vấn và chuẩn bị phòng</div>
+      </div>
+      <div class="mrt-stat-box" data-reveal class="d3">
+        <div class="mrt-dl-flow-num">04</div>
+        <div class="mrt-dl-flow-title">Trải nghiệm &amp; thư giãn</div>
+        <div class="mrt-stat-desc">Tận hưởng buổi trị liệu chuyên sâu</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- CÁC GÓI PHỔ BIẾN (List Elegant)                       -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="sec-pad" style="background:var(--surface)">
+  <div class="wd-container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-5" data-reveal>
+        <div class="mrt-label"><span class="mrt-label-line"></span>Dịch vụ<span class="mrt-label-line"></span></div>
+        <h2 class="mrt-heading">Chưa biết chọn <em>dịch vụ</em> nào?</h2>
+        <p class="mrt-subtext">Dưới đây là các liệu trình được khách hàng lựa chọn nhiều nhất. Bạn cũng có thể gọi hotline để được tư vấn miễn phí trước khi đặt lịch.</p>
+        <a href="dich-vu.html" class="mrt-btn-outline mt-4" style="display:inline-block">Xem bảng giá chi tiết →</a>
+      </div>
+      <div class="col-lg-7" data-reveal class="d1">
+        <div class="mrt-popular-list">
+          <div class="mrt-popular-item">
+            <div class="mrt-popular-rank">1</div>
+            <div class="mrt-popular-info">
+              <div class="mrt-popular-name">Gói Trị Liệu Sâu</div>
+              <div class="mrt-popular-desc">Bấm huyệt + Đá nóng toàn thân + Massage mặt — 125 phút</div>
+            </div>
+            <div class="mrt-popular-price">790.000đ</div>
+          </div>
+          <div class="mrt-popular-item">
+            <div class="mrt-popular-rank">2</div>
+            <div class="mrt-popular-info">
+              <div class="mrt-popular-name">Massage Thái Cổ Truyền</div>
+              <div class="mrt-popular-desc">Toàn thân, căng giãn cơ — 90 phút</div>
+            </div>
+            <div class="mrt-popular-price">từ 500.000đ</div>
+          </div>
+          <div class="mrt-popular-item">
+            <div class="mrt-popular-rank">3</div>
+            <div class="mrt-popular-info">
+              <div class="mrt-popular-name">Massage Đá Nóng</div>
+              <div class="mrt-popular-desc">Đá bazan tự nhiên, giảm đau cơ — 90 phút</div>
+            </div>
+            <div class="mrt-popular-price">từ 450.000đ</div>
+          </div>
+          <div class="mrt-popular-item">
+            <div class="mrt-popular-rank">4</div>
+            <div class="mrt-popular-info">
+              <div class="mrt-popular-name">Thư Giãn Toàn Thân</div>
+              <div class="mrt-popular-desc">Tinh dầu thảo mộc, xả stress — 60 phút</div>
+            </div>
+            <div class="mrt-popular-price">từ 280.000đ</div>
+          </div>
+          <div class="mrt-popular-item">
+            <div class="mrt-popular-rank">5</div>
+            <div class="mrt-popular-info">
+              <div class="mrt-popular-name">Massage Lưng Vai Gáy</div>
+              <div class="mrt-popular-desc">Tập trung vùng căng cứng, phù hợp văn phòng — 45 phút</div>
+            </div>
+            <div class="mrt-popular-price">từ 200.000đ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- CTA                                                    -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="mrt-cta-sec">
+  <div class="wd-container">
+    <div data-reveal>
+      <h2 class="mrt-cta-title">Cơ thể bạn xứng đáng được<br>nghỉ ngơi đúng cách.</h2>
+      <p class="mrt-cta-sub">Đặt lịch qua form phía trên hoặc gọi trực tiếp — chúng tôi luôn sẵn sàng.</p>
+      <div class="mrt-cta-actions">
+        <a href="tel:[SỐ ĐIỆN THOẠI]" class="mrt-btn-white">Gọi ngay: [SỐ ĐIỆN THOẠI]</a>
+        <a href="lien-he.html" class="mrt-btn-outline" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.25)">Xem bản đồ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- FOOTER                                                 -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<footer id="mrt-footer">
+  <div class="mrt-ft-top">
+    <div class="wd-container">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <a href="index.html" class="mrt-ft-logo">
+            <div class="mrt-ft-logo-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 3c-1 3-4 5-4 9a4 4 0 008 0c0-4-3-6-4-9z"/><path d="M8 17s0 3 4 3 4-3 4-3"/></svg>
+            </div>
+            [TÊN TRUNG TÂM]
+          </a>
+          <p class="mrt-ft-desc">Trung tâm massage trị liệu chuyên nghiệp — nơi cơ thể và tâm trí được phục hồi toàn diện.</p>
+          <div class="mrt-ft-socials">
+            <a href="#" class="mrt-ft-soc" aria-label="Facebook" rel="noopener noreferrer">f</a>
+            <a href="#" class="mrt-ft-soc" aria-label="Zalo" rel="noopener noreferrer">Z</a>
+            <a href="#" class="mrt-ft-soc" aria-label="Instagram" rel="noopener noreferrer">ig</a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <div class="mrt-ft-col-title">Dịch vụ</div>
+          <div class="mrt-ft-links">
+            <a href="dich-vu.html">Massage Thái</a>
+            <a href="dich-vu.html">Đá nóng</a>
+            <a href="dich-vu.html">Bấm huyệt</a>
+            <a href="dich-vu.html">Massage mặt</a>
+            <a href="dich-vu.html">Gói Combo</a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <div class="mrt-ft-col-title">Thông tin</div>
+          <div class="mrt-ft-links">
+            <a href="index.html">Trang chủ</a>
+            <a href="dich-vu.html">Dịch vụ &amp; Giá</a>
+            <a href="dat-lich.html">Đặt lịch</a>
+            <a href="lien-he.html">Liên hệ</a>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="mrt-ft-col-title">Giờ mở cửa</div>
+          <div class="mrt-ft-hours">
+            <div class="mrt-ft-hour-row"><span>Thứ 2 – Thứ 6</span><span>9:00 – 21:00</span></div>
+            <div class="mrt-ft-hour-row"><span>Thứ 7 – Chủ nhật</span><span>8:00 – 22:00</span></div>
+            <div class="mrt-ft-hour-row"><span>Lễ, Tết</span><span>9:00 – 20:00</span></div>
+          </div>
+          <div style="margin-top:20px">
+            <div class="mrt-ft-col-title">Liên hệ</div>
+            <div class="mrt-ft-links">
+              <a href="tel:[SỐ ĐIỆN THOẠI]">[SỐ ĐIỆN THOẠI]</a>
+              <a href="mailto:[EMAIL]">[EMAIL]</a>
+              <a href="lien-he.html">[ĐỊA CHỈ]</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mrt-ft-bottom">
+    <div class="wd-container">
+      <p class="mrt-ft-copy">© 2025 [TÊN TRUNG TÂM]. Bảo lưu mọi quyền.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Zalo float -->
+<a href="https://zalo.me/[SỐ ZALO]" class="zalo-float" aria-label="Chat Zalo" target="_blank" rel="noopener noreferrer">Z</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// === Nav scroll elevation ===
+const nav = document.getElementById('mrt-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('elevated', scrollY > 40);
+}, { passive: true });
+
+// === Mobile hamburger ===
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const isOpen = mob.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+}
+
+// === Reveal animation ===
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+// === Set min date cho input ngày (không cho chọn ngày quá khứ) ===
+const dateInput = document.getElementById('bookDate');
+if (dateInput) {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate()).padStart(2, '0');
+  dateInput.min = `${yyyy}-${mm}-${dd}`;
+}
+
+// === Form submit ===
+const bookingForm = document.getElementById('bookingForm');
+const formSuccess = document.getElementById('formSuccess');
+if (bookingForm && formSuccess) {
+  bookingForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const required = bookingForm.querySelectorAll('[required]');
+    let valid = true;
+    required.forEach(field => {
+      if (!field.value.trim()) {
+        field.style.borderColor = '#e24b4a';
+        valid = false;
+      } else {
+        field.style.borderColor = '';
+      }
+    });
+    if (!valid) return;
+    // Giả lập gửi form thành công
+    bookingForm.style.display = 'none';
+    formSuccess.style.display = 'block';
+    window.scrollTo({ top: formSuccess.getBoundingClientRect().top + window.scrollY - 120, behavior: 'smooth' });
+  });
+  // Reset lỗi khi người dùng nhập lại
+  bookingForm.querySelectorAll('.mrt-form-control').forEach(field => {
+    field.addEventListener('input', () => { field.style.borderColor = ''; });
+  });
+}
+</script>
+
+<style>
+/* ═══ Styles riêng cho trang dat-lich — bổ sung vào style.css inline tránh chỉnh file gốc ═══ */
+
+/* Hero image block */
+.mrt-dl-hero-img-wrap {
+  position: relative; border-radius: 8px; overflow: hidden;
+  aspect-ratio: 4/3;
+}
+.mrt-dl-hero-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mrt-dl-hero-badge {
+  position: absolute; bottom: 20px; left: 20px;
+  background: rgba(250, 246, 242, .92); backdrop-filter: blur(8px);
+  padding: 12px 18px; border-radius: 8px; border: 1px solid var(--border);
+}
+.mrt-dl-badge-num { font-size: 22px; font-weight: 600; color: var(--accent); letter-spacing: -.5px; line-height: 1; }
+.mrt-dl-badge-label { font-size: 11px; font-weight: 400; color: var(--text-3); }
+
+/* Trust strip trong hero */
+.mrt-dl-trust { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+.mrt-dl-trust-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13.5px; font-weight: 300; color: var(--text-2);
+}
+.mrt-dl-trust-icon {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--sage-light); color: var(--sage);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; flex-shrink: 0;
+}
+
+/* Form hint text */
+.mrt-form-hint { font-size: 11.5px; font-weight: 300; color: var(--text-3); margin-top: 6px; line-height: 1.5; }
+
+/* Form success state */
+.mrt-form-success { text-align: center; padding: 40px 20px; }
+.mrt-success-icon {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--sage-light); color: var(--sage);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; font-weight: 700; margin: 0 auto 16px;
+}
+.mrt-success-title { font-size: 20px; font-weight: 600; color: var(--text); margin-bottom: 8px; letter-spacing: -.3px; }
+.mrt-success-text { font-size: 14px; font-weight: 300; color: var(--text-2); line-height: 1.7; }
+
+/* Policy card */
+.mrt-policy-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 24px; margin-bottom: 16px;
+}
+.mrt-policy-head { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.mrt-policy-icon { font-size: 20px; line-height: 1; }
+.mrt-policy-title { font-size: 16px; font-weight: 600; color: var(--text); letter-spacing: -.3px; }
+.mrt-policy-list { display: flex; flex-direction: column; gap: 16px; }
+.mrt-policy-item { display: flex; gap: 12px; align-items: flex-start; }
+.mrt-policy-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+  flex-shrink: 0; margin-top: 6px;
+}
+.mrt-policy-item-title { font-size: 13.5px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.mrt-policy-item-desc { font-size: 12.5px; font-weight: 300; color: var(--text-2); line-height: 1.6; margin: 0; }
+
+/* Notice card */
+.mrt-notice-card {
+  background: var(--cream); border: 1px solid var(--border);
+  border-radius: 8px; padding: 24px; margin-bottom: 16px;
+}
+.mrt-notice-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.mrt-notice-list li {
+  font-size: 13px; font-weight: 300; color: var(--text-2); line-height: 1.6;
+  display: flex; gap: 8px; align-items: flex-start;
+}
+.mrt-notice-list li::before { content: '·'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+.mrt-notice-list li strong { font-weight: 500; color: var(--text); }
+
+/* Hotline card */
+.mrt-hotline-card {
+  background: var(--dark2); border-radius: 8px; padding: 24px;
+}
+.mrt-hotline-label { font-size: 11px; font-weight: 500; color: rgba(255,255,255,.35); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 6px; }
+.mrt-hotline-title { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 10px; letter-spacing: -.3px; }
+.mrt-hotline-num { display: block; font-size: 24px; font-weight: 600; color: var(--sand); letter-spacing: -.5px; text-decoration: none; margin-bottom: 4px; }
+.mrt-hotline-num:hover { color: #fff; }
+.mrt-hotline-hours { font-size: 12px; font-weight: 300; color: rgba(255,255,255,.35); margin-bottom: 20px; }
+.mrt-hotline-actions { display: flex; gap: 10px; }
+.mrt-hotline-actions .mrt-btn-primary { font-size: 13px; padding: 10px 0; }
+.mrt-hotline-actions .mrt-btn-outline { font-size: 13px; padding: 10px 0; border-color: rgba(255,255,255,.2); color: rgba(255,255,255,.55); }
+.mrt-hotline-actions .mrt-btn-outline:hover { background: rgba(255,255,255,.08); color: rgba(255,255,255,.8); border-color: rgba(255,255,255,.35); }
+
+/* Flow numbers (stat bar override) */
+.mrt-dl-flow-num { font-size: clamp(28px, 4vw, 40px); font-weight: 600; color: var(--sand); letter-spacing: -1px; line-height: 1; margin-bottom: 6px; }
+.mrt-dl-flow-title { font-size: 14px; font-weight: 500; color: rgba(255,255,255,.75); margin-bottom: 6px; }
+
+/* Popular services list */
+.mrt-popular-list { display: flex; flex-direction: column; }
+.mrt-popular-item {
+  display: flex; align-items: center; gap: 16px;
+  padding: 18px 0; border-bottom: 1px solid var(--border-light);
+}
+.mrt-popular-item:last-child { border-bottom: none; }
+.mrt-popular-rank {
+  width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--cream); display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 600; color: var(--accent); flex-shrink: 0;
+}
+.mrt-popular-info { flex: 1; }
+.mrt-popular-name { font-size: 14.5px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.mrt-popular-desc { font-size: 12px; font-weight: 300; color: var(--text-3); line-height: 1.5; }
+.mrt-popular-price { font-size: 14px; font-weight: 600; color: var(--accent); white-space: nowrap; flex-shrink: 0; }
+</style>
+
+</body>
+</html>

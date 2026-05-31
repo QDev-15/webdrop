@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[TÊN PHÒNG KHÁM] — Phòng khám Da liễu & Skincare</title>
+<meta name="description" content="[TÊN PHÒNG KHÁM] — Phòng khám da liễu chuyên sâu. Điều trị mụn, nám, lão hóa với công nghệ Laser, IPL, Microneedling hiện đại.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV — Nav-2: Always Solid Light -->
+<nav id="nav">
+  <div class="wd-container">
+    <div class="csd-nav-inner">
+      <a class="csd-logo" href="index.html">
+        <div class="csd-logo-mark">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+        </div>
+        <div class="csd-logo-name">[TÊN]<span>Clinic</span></div>
+      </a>
+      <div class="csd-nav-links">
+        <a href="index.html" class="active">Trang chủ</a>
+        <a href="dich-vu.html">Dịch vụ & Giá</a>
+        <a href="dat-lich.html">Đặt lịch</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-lich.html" class="csd-nav-cta">Tư vấn miễn phí</a>
+      <button class="csd-burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="csd-mob-menu" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ & Giá</a>
+  <a href="dat-lich.html">Đặt lịch</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="csd-mob-cta">Tư vấn miễn phí</a>
+</div>
+
+<!-- HERO — H4: Centered Minimal, light bg, floating image right -->
+<section class="csd-hero">
+  <div class="csd-hero-inner wd-container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6" data-reveal>
+        <div class="csd-hero-label">
+          <span class="csd-hero-dot"></span>
+          Phòng khám Da liễu Chuyên sâu
+        </div>
+        <h1 class="csd-hero-h1">
+          Da khỏe mạnh<br>từ <em>nền tảng</em><br>khoa học.
+        </h1>
+        <p class="csd-hero-p">
+          Chúng tôi kết hợp thẩm quyền y khoa và công nghệ tiên tiến để điều trị mọi vấn đề về da — từ mụn, nám đến lão hóa. Kết quả thực tế, an toàn có kiểm chứng.
+        </p>
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="dat-lich.html" class="csd-btn-accent">Đặt lịch tư vấn →</a>
+          <a href="dich-vu.html" class="csd-btn-ghost">Xem dịch vụ</a>
+        </div>
+        <div class="csd-hero-trust">
+          <div class="csd-ht-item">
+            <span class="csd-ht-icon">🏥</span>
+            Bác sĩ da liễu có chứng chỉ
+          </div>
+          <div class="csd-ht-item">
+            <span class="csd-ht-icon">🔬</span>
+            Công nghệ được FDA chứng nhận
+          </div>
+          <div class="csd-ht-item">
+            <span class="csd-ht-icon">✓</span>
+            3.000+ ca điều trị thành công
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 d-none d-lg-block" data-reveal data-delay="2">
+        <div class="csd-hero-image-wrap">
+          <img class="csd-hero-main-img"
+            src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&q=80&auto=format&fit=crop"
+            alt="Phòng khám da liễu chuyên nghiệp">
+          <div class="csd-hero-badge">
+            <div class="csd-hero-badge-num">98%</div>
+            <div class="csd-hero-badge-label">Tỷ lệ hài lòng của bệnh nhân</div>
+          </div>
+          <div class="csd-hero-badge2">
+            <div class="csd-hero-badge2-text">Đặt lịch trong 2 phút</div>
+            <div class="csd-hero-badge2-sub">Tư vấn miễn phí đầu tiên</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAT BAR -->
+<div class="csd-stat-bar">
+  <div class="wd-container">
+    <div class="row g-0 justify-content-center">
+      <div class="col-6 col-md-3" data-reveal>
+        <div class="csd-stat-item py-2">
+          <div class="csd-stat-num" data-counter="3000" data-suffix="+">3000+</div>
+          <div class="csd-stat-label">Ca điều trị thành công</div>
+        </div>
+      </div>
+      <div class="col-auto d-none d-md-block csd-stat-divider" data-reveal></div>
+      <div class="col-6 col-md-3" data-reveal data-delay="1">
+        <div class="csd-stat-item py-2">
+          <div class="csd-stat-num" data-counter="8" data-suffix=" BS">8 BS</div>
+          <div class="csd-stat-label">Bác sĩ da liễu chuyên khoa</div>
+        </div>
+      </div>
+      <div class="col-auto d-none d-md-block csd-stat-divider" data-reveal></div>
+      <div class="col-6 col-md-3" data-reveal data-delay="2">
+        <div class="csd-stat-item py-2">
+          <div class="csd-stat-num" data-counter="98" data-suffix="%">98%</div>
+          <div class="csd-stat-label">Khách hàng hài lòng</div>
+        </div>
+      </div>
+      <div class="col-auto d-none d-md-block csd-stat-divider" data-reveal></div>
+      <div class="col-6 col-md-3" data-reveal data-delay="3">
+        <div class="csd-stat-item py-2">
+          <div class="csd-stat-num" data-counter="10" data-suffix=" năm">10 năm</div>
+          <div class="csd-stat-label">Kinh nghiệm chuyên môn</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SKIN PROBLEMS — FEATURE-ICON-ROW -->
+<section class="csd-sec" style="background: var(--surface);">
+  <div class="wd-container">
+    <div class="row align-items-end g-0 mb-5">
+      <div class="col-md-7" data-reveal>
+        <div class="csd-eyebrow">Vấn đề da chúng tôi điều trị</div>
+        <h2 class="csd-title">Mọi vấn đề về da —<br><em>một giải pháp đúng chuyên môn</em></h2>
+      </div>
+      <div class="col-md-5 text-md-end" data-reveal data-delay="2">
+        <p class="csd-sub">Phác đồ điều trị được cá nhân hóa theo từng loại da và tình trạng cụ thể.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-6 col-md-4 col-lg-2" data-reveal>
+        <div class="csd-problem-item">
+          <div class="csd-pi-icon">🔴</div>
+          <div class="csd-pi-title">Mụn trứng cá</div>
+          <div class="csd-pi-desc">Mụn viêm, mụn đầu đen, mụn bọc — điều trị tận gốc, ngăn tái phát.</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2" data-reveal data-delay="1">
+        <div class="csd-problem-item">
+          <div class="csd-pi-icon">🟤</div>
+          <div class="csd-pi-title">Nám & Tàn nhang</div>
+          <div class="csd-pi-desc">Nám hỗn hợp, tàn nhang sâu — điều trị bằng laser chuyên biệt.</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2" data-reveal data-delay="2">
+        <div class="csd-problem-item">
+          <div class="csd-pi-icon">⏳</div>
+          <div class="csd-pi-title">Lão hóa da</div>
+          <div class="csd-pi-desc">Nếp nhăn, chảy xệ, mất đàn hồi — phục hồi cấu trúc collagen.</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2" data-reveal data-delay="2">
+        <div class="csd-problem-item">
+          <div class="csd-pi-icon">🔵</div>
+          <div class="csd-pi-title">Lỗ chân lông</div>
+          <div class="csd-pi-desc">Lỗ chân lông to, da sần, da dầu — thu nhỏ và tinh tế hóa bề mặt da.</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2" data-reveal data-delay="3">
+        <div class="csd-problem-item">
+          <div class="csd-pi-icon">🌸</div>
+          <div class="csd-pi-title">Da nhạy cảm</div>
+          <div class="csd-pi-desc">Đỏ mặt, da mỏng, dễ kích ứng — phác đồ nhẹ dịu, phục hồi hàng rào da.</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2" data-reveal data-delay="3">
+        <div class="csd-problem-item">
+          <div class="csd-pi-icon">⚡</div>
+          <div class="csd-pi-title">Sẹo & Rỗ</div>
+          <div class="csd-pi-desc">Sẹo mụn, sẹo lõm, sẹo phì đại — tái tạo bề mặt da không xâm lấn.</div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5" data-reveal>
+      <a href="dich-vu.html" class="csd-btn-ghost">Xem tất cả điều trị →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGIES — BENTO GRID -->
+<section class="csd-sec" style="background: var(--bg);">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="csd-eyebrow">Công nghệ điều trị</div>
+      <h2 class="csd-title">Trang bị <em>công nghệ hiện đại nhất</em></h2>
+      <p class="csd-sub centered">Các công nghệ được FDA (Mỹ) chứng nhận an toàn, hiệu quả — ứng dụng tại phòng khám chúng tôi.</p>
+    </div>
+    <div class="csd-bento" data-reveal>
+      <!-- Large cell: main technology image -->
+      <div class="csd-bento-cell csd-bc-1" style="position:relative; min-height:360px;">
+        <img class="csd-bento-img" style="position:absolute;inset:0;"
+          src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=900&q=80&auto=format&fit=crop"
+          alt="Laser điều trị da" loading="lazy">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(15,30,28,.85) 0%, transparent 55%);"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:28px;">
+          <div class="csd-bc-tech-label" style="color:var(--accent-mid)">Flagship Technology</div>
+          <div class="csd-bc-tech-name" style="color:#fff;font-size:24px;">Laser Fractional CO2</div>
+          <div class="csd-bc-tech-desc" style="color:rgba(255,255,255,.65)">Tái tạo da sâu — xóa sẹo, nám, nhăn, lỗ chân lông. Hiệu quả sau 1–3 buổi.</div>
+          <span class="csd-bc-tag">Nhập khẩu từ Mỹ &amp; Đức</span>
+        </div>
+      </div>
+
+      <div class="csd-bento-cell csd-bc-2">
+        <div class="csd-bento-content">
+          <div>
+            <div class="csd-bc-tech-label">IPL Intense Light</div>
+            <div class="csd-bc-tech-name">Công nghệ IPL</div>
+            <div class="csd-bc-tech-desc">Điều trị nám, đốm sắc tố, mao mạch đỏ không xâm lấn. Không đau, phục hồi nhanh.</div>
+          </div>
+          <span class="csd-bc-tag">Phù hợp mọi tone da</span>
+        </div>
+      </div>
+
+      <div class="csd-bento-cell csd-bc-3">
+        <img class="csd-bento-img" style="height:100%;min-height:160px;"
+          src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=500&q=80&auto=format&fit=crop"
+          alt="Microneedling" loading="lazy">
+      </div>
+
+      <div class="csd-bento-cell csd-bc-4">
+        <div class="csd-bento-content">
+          <div>
+            <div class="csd-bc-tech-label">Collagen Induction</div>
+            <div class="csd-bc-tech-name">Microneedling RF</div>
+            <div class="csd-bc-tech-desc">Kích thích collagen tự nhiên, xóa sẹo rỗ và thu nhỏ lỗ chân lông hiệu quả.</div>
+          </div>
+          <span class="csd-bc-tag">Kết hợp RF sóng cao tần</span>
+        </div>
+      </div>
+
+      <div class="csd-bento-cell csd-bc-5">
+        <div class="csd-bento-content">
+          <div>
+            <div class="csd-bc-tech-label">Chemical Exfoliation</div>
+            <div class="csd-bc-tech-name">Chemical Peel</div>
+            <div class="csd-bc-tech-desc">Peel hóa học nồng độ y tế — làm trắng da, mờ thâm, tái tạo bề mặt da.</div>
+          </div>
+          <span class="csd-bc-tag">TCA / Glycolic / Salicylic</span>
+        </div>
+      </div>
+
+      <div class="csd-bento-cell csd-bc-6">
+        <div class="csd-bento-content">
+          <div>
+            <div class="csd-bc-tech-label">Light Therapy</div>
+            <div class="csd-bc-tech-name">LED Blue / Red</div>
+            <div class="csd-bc-tech-desc">Tiêu diệt vi khuẩn gây mụn (blue), kích thích phục hồi da (red). An toàn 100%.</div>
+          </div>
+          <span class="csd-bc-tag">Không đau, 0 thời gian nghỉ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTORS — GRID-CARDS -->
+<section class="csd-sec" style="background: var(--surface);">
+  <div class="wd-container">
+    <div class="row align-items-end g-0 mb-5">
+      <div class="col-md-7" data-reveal>
+        <div class="csd-eyebrow">Đội ngũ bác sĩ</div>
+        <h2 class="csd-title">Bác sĩ <em>chuyên khoa da liễu</em><br>giàu kinh nghiệm</h2>
+      </div>
+      <div class="col-md-5 text-md-end" data-reveal data-delay="1">
+        <p class="csd-sub">Tốt nghiệp tại các trường đại học y khoa hàng đầu, được đào tạo chuyên sâu về da liễu và thẩm mỹ y tế trong và ngoài nước.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-6 col-lg-3" data-reveal>
+        <div class="csd-doctor-card">
+          <img class="csd-doc-img"
+            src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80&auto=format&fit=crop&crop=faces"
+            alt="Bác sĩ da liễu" loading="lazy">
+          <div class="csd-doc-body">
+            <div class="csd-doc-name">BS. Nguyễn Minh Tú</div>
+            <div class="csd-doc-role">Bác sĩ Da liễu CKI</div>
+            <div class="csd-doc-exp">12 năm kinh nghiệm</div>
+            <div class="csd-doc-tag">Điều trị mụn & nám</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3" data-reveal data-delay="1">
+        <div class="csd-doctor-card">
+          <img class="csd-doc-img"
+            src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80&auto=format&fit=crop&crop=faces"
+            alt="Bác sĩ thẩm mỹ da" loading="lazy">
+          <div class="csd-doc-body">
+            <div class="csd-doc-name">BS. Trần Thị Lan Anh</div>
+            <div class="csd-doc-role">Bác sĩ Thẩm mỹ Da</div>
+            <div class="csd-doc-exp">9 năm kinh nghiệm</div>
+            <div class="csd-doc-tag">Laser & Công nghệ cao</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3" data-reveal data-delay="2">
+        <div class="csd-doctor-card">
+          <img class="csd-doc-img"
+            src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80&auto=format&fit=crop&crop=faces"
+            alt="Bác sĩ da liễu" loading="lazy">
+          <div class="csd-doc-body">
+            <div class="csd-doc-name">BS. Phạm Thanh Hải</div>
+            <div class="csd-doc-role">Bác sĩ Da liễu CKII</div>
+            <div class="csd-doc-exp">15 năm kinh nghiệm</div>
+            <div class="csd-doc-tag">Lão hóa & Tái tạo da</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3" data-reveal data-delay="3">
+        <div class="csd-doctor-card">
+          <img class="csd-doc-img"
+            src="https://images.unsplash.com/photo-1622902046580-2b47f47f5471?w=400&q=80&auto=format&fit=crop&crop=faces"
+            alt="Bác sĩ skincare" loading="lazy">
+          <div class="csd-doc-body">
+            <div class="csd-doc-name">BS. Lê Ngọc Hương</div>
+            <div class="csd-doc-role">Bác sĩ Skincare</div>
+            <div class="csd-doc-exp">7 năm kinh nghiệm</div>
+            <div class="csd-doc-tag">Da nhạy cảm & Sẹo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TREATMENT PROCESS — TIMELINE -->
+<section class="csd-sec" style="background: var(--mint);">
+  <div class="wd-container">
+    <div class="row g-5 align-items-start">
+      <div class="col-md-5" data-reveal>
+        <div class="csd-eyebrow">Quy trình điều trị</div>
+        <h2 class="csd-title">Từ tư vấn đến <em>kết quả rõ ràng</em></h2>
+        <p class="csd-sub" style="margin-bottom:28px;">Mỗi phác đồ được xây dựng riêng cho từng bệnh nhân — không áp dụng công thức chung chung.</p>
+        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=700&q=80&auto=format&fit=crop"
+          alt="Quy trình điều trị da" style="width:100%;border-radius:16px;" loading="lazy">
+      </div>
+      <div class="col-md-7" data-reveal data-delay="2">
+        <ol class="csd-timeline">
+          <li class="csd-tl-item">
+            <div class="csd-tl-num">01</div>
+            <div class="csd-tl-body">
+              <div class="csd-tl-title">Đặt lịch tư vấn</div>
+              <div class="csd-tl-desc">Đặt lịch online hoặc gọi hotline. Tư vấn đầu tiên miễn phí — không cam kết mua ngay.</div>
+            </div>
+          </li>
+          <li class="csd-tl-item">
+            <div class="csd-tl-num">02</div>
+            <div class="csd-tl-body">
+              <div class="csd-tl-title">Khám & phân tích da chuyên sâu</div>
+              <div class="csd-tl-desc">Bác sĩ da liễu khám lâm sàng, sử dụng máy phân tích da Visia để đánh giá tình trạng chính xác dưới da.</div>
+            </div>
+          </li>
+          <li class="csd-tl-item">
+            <div class="csd-tl-num">03</div>
+            <div class="csd-tl-body">
+              <div class="csd-tl-title">Lập phác đồ cá nhân hóa</div>
+              <div class="csd-tl-desc">Bác sĩ đề xuất phác đồ điều trị phù hợp với loại da, tình trạng và ngân sách — trình bày chi tiết, rõ ràng.</div>
+            </div>
+          </li>
+          <li class="csd-tl-item">
+            <div class="csd-tl-num">04</div>
+            <div class="csd-tl-body">
+              <div class="csd-tl-title">Thực hiện điều trị</div>
+              <div class="csd-tl-desc">Thực hiện theo phác đồ, theo dõi phản ứng da sau mỗi buổi, điều chỉnh linh hoạt nếu cần.</div>
+            </div>
+          </li>
+          <li class="csd-tl-item">
+            <div class="csd-tl-num">05</div>
+            <div class="csd-tl-body">
+              <div class="csd-tl-title">Chăm sóc hậu điều trị</div>
+              <div class="csd-tl-desc">Hướng dẫn skincare tại nhà, tái khám định kỳ, hỗ trợ 24/7 qua Zalo. Theo dõi kết quả lâu dài.</div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE/AFTER — ALTERNATING STRIPS -->
+<section class="csd-sec" style="background: var(--surface);">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="csd-eyebrow">Kết quả thực tế</div>
+      <h2 class="csd-title">Before & After — <em>kết quả có kiểm chứng</em></h2>
+      <p class="csd-sub centered">Hình ảnh thực tế của bệnh nhân tại phòng khám. Kết quả có thể khác nhau tùy cơ địa.</p>
+    </div>
+
+    <div class="csd-ba-row" data-reveal>
+      <div class="csd-ba-imgs">
+        <div class="csd-ba-img-wrap">
+          <img class="csd-ba-img"
+            src="https://images.unsplash.com/photo-1555085983-0a3a3e3b5ab9?w=400&q=80&auto=format&fit=crop&crop=face"
+            alt="Trước điều trị mụn" loading="lazy">
+          <span class="csd-ba-label before">Trước</span>
+        </div>
+        <div class="csd-ba-img-wrap">
+          <img class="csd-ba-img"
+            src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80&auto=format&fit=crop&crop=face"
+            alt="Sau điều trị mụn" loading="lazy">
+          <span class="csd-ba-label after">Sau</span>
+        </div>
+      </div>
+      <div>
+        <div class="csd-ba-tag">Điều trị mụn</div>
+        <div class="csd-ba-title">Xóa mụn viêm nặng, phục hồi da sạch</div>
+        <div class="csd-ba-desc">Bệnh nhân nữ 24 tuổi, mụn viêm nặng kết hợp sẹo thâm toàn mặt. Sau 8 buổi điều trị kết hợp LED Blue + Chemical Peel BHA, da cải thiện hoàn toàn.</div>
+        <div class="csd-ba-meta">
+          Phác đồ: LED Blue Light + BHA Peel + Skincare cá nhân hóa · 8 buổi · 3 tháng
+        </div>
+      </div>
+    </div>
+
+    <div class="csd-ba-row reversed" data-reveal>
+      <div class="csd-ba-imgs">
+        <div class="csd-ba-img-wrap">
+          <img class="csd-ba-img"
+            src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80&auto=format&fit=crop&crop=face"
+            alt="Trước điều trị nám" loading="lazy">
+          <span class="csd-ba-label before">Trước</span>
+        </div>
+        <div class="csd-ba-img-wrap">
+          <img class="csd-ba-img"
+            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80&auto=format&fit=crop&crop=face"
+            alt="Sau điều trị nám" loading="lazy">
+          <span class="csd-ba-label after">Sau</span>
+        </div>
+      </div>
+      <div>
+        <div class="csd-ba-tag">Điều trị nám</div>
+        <div class="csd-ba-title">Mờ nám sâu — trả lại làn da đều màu</div>
+        <div class="csd-ba-desc">Bệnh nhân nữ 38 tuổi, nám hỗn hợp nặng sau sinh. Điều trị bằng Laser YAG Q-Switched kết hợp peel nhẹ. Sau 6 tháng, nám mờ đi 85%.</div>
+        <div class="csd-ba-meta">
+          Phác đồ: Laser YAG Q-Switched + Mandelic Peel + Uống thuốc hỗ trợ · 12 buổi · 6 tháng
+        </div>
+      </div>
+    </div>
+
+    <div class="csd-ba-row" data-reveal>
+      <div class="csd-ba-imgs">
+        <div class="csd-ba-img-wrap">
+          <img class="csd-ba-img"
+            src="https://images.unsplash.com/photo-1566454825481-dbd0dae87e3f?w=400&q=80&auto=format&fit=crop&crop=face"
+            alt="Trước điều trị sẹo rỗ" loading="lazy">
+          <span class="csd-ba-label before">Trước</span>
+        </div>
+        <div class="csd-ba-img-wrap">
+          <img class="csd-ba-img"
+            src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&q=80&auto=format&fit=crop&crop=face"
+            alt="Sau điều trị sẹo rỗ" loading="lazy">
+          <span class="csd-ba-label after">Sau</span>
+        </div>
+      </div>
+      <div>
+        <div class="csd-ba-tag">Điều trị sẹo rỗ</div>
+        <div class="csd-ba-title">Làm đầy sẹo rỗ — phục hồi bề mặt da</div>
+        <div class="csd-ba-desc">Bệnh nhân nam 29 tuổi, sẹo rỗ boxcar nặng do mụn. Sau 5 buổi Microneedling RF kết hợp PRP, bề mặt da mịn màng rõ rệt.</div>
+        <div class="csd-ba-meta">
+          Phác đồ: Microneedling RF + PRP · 5 buổi · 4 tháng
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="csd-sec" style="background: var(--bg);">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="csd-eyebrow">Đánh giá từ bệnh nhân</div>
+      <h2 class="csd-title">Họ đã tin tưởng — và <em>thấy kết quả</em></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4" data-reveal>
+        <div class="csd-review-card">
+          <div class="csd-rv-stars">★★★★★</div>
+          <div class="csd-rv-condition">Điều trị mụn</div>
+          <div class="csd-rv-text">"Mình đã thử rất nhiều nơi nhưng không hiệu quả. Sau 3 tháng điều trị tại đây, da sạch mụn hẳn. Bác sĩ giải thích rất kỹ, không hối thúc mua thêm gói."</div>
+          <div class="csd-rv-foot">
+            <img class="csd-rv-av" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80&auto=format&fit=crop&crop=face" alt="Khách hàng">
+            <div>
+              <div class="csd-rv-name">Nguyễn Thị Bích Ngọc</div>
+              <div class="csd-rv-meta">Bệnh nhân · 6 tháng trước</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal data-delay="1">
+        <div class="csd-review-card">
+          <div class="csd-rv-stars">★★★★★</div>
+          <div class="csd-rv-condition">Điều trị nám</div>
+          <div class="csd-rv-text">"Nám của mình rất nặng sau sinh, điều trị ở nhiều spa không khỏi. Sau 6 tháng tại đây, nám mờ đến 80%. Bác sĩ Lan Anh rất tận tâm và hiểu bệnh."</div>
+          <div class="csd-rv-foot">
+            <img class="csd-rv-av" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80&auto=format&fit=crop&crop=face" alt="Khách hàng">
+            <div>
+              <div class="csd-rv-name">Trần Hoàng Anh</div>
+              <div class="csd-rv-meta">Bệnh nhân · 3 tháng trước</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal data-delay="2">
+        <div class="csd-review-card">
+          <div class="csd-rv-stars">★★★★★</div>
+          <div class="csd-rv-condition">Trẻ hóa da</div>
+          <div class="csd-rv-text">"Mình 45 tuổi và da đã cải thiện rõ rệt sau 4 buổi laser fractional. Nếp nhăn mờ, da căng hơn nhiều. Phòng khám sạch sẽ, quy trình rất chuyên nghiệp."</div>
+          <div class="csd-rv-foot">
+            <img class="csd-rv-av" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&q=80&auto=format&fit=crop&crop=face" alt="Khách hàng">
+            <div>
+              <div class="csd-rv-name">Lê Thu Hương</div>
+              <div class="csd-rv-meta">Bệnh nhân · 2 tháng trước</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="csd-cta">
+  <div class="wd-container" data-reveal>
+    <h2 class="csd-cta-title">Bắt đầu hành trình da khỏe mạnh</h2>
+    <p class="csd-cta-sub">Đặt lịch tư vấn miễn phí — bác sĩ phân tích da và lập phác đồ riêng cho bạn.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap" style="position:relative;">
+      <a href="dat-lich.html" class="csd-btn-white">Đặt lịch ngay →</a>
+      <a href="dich-vu.html" class="csd-btn-outline-white">Xem dịch vụ</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="csd-footer">
+  <div class="wd-container">
+    <div class="row g-5 py-5">
+      <div class="col-md-4" data-reveal>
+        <div class="csd-ft-logo">
+          <div class="csd-ft-logo-mark">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+          </div>
+          <div class="csd-ft-logo-text">[TÊN]<span>Clinic</span></div>
+        </div>
+        <p class="csd-ft-desc">Phòng khám da liễu chuyên sâu — điều trị bằng khoa học, chăm sóc bằng tâm huyết.</p>
+        <div class="csd-ft-socials">
+          <a href="#" class="csd-ft-soc" aria-label="Facebook" rel="noopener noreferrer">fb</a>
+          <a href="#" class="csd-ft-soc" aria-label="Instagram" rel="noopener noreferrer">ig</a>
+          <a href="#" class="csd-ft-soc" aria-label="Zalo" rel="noopener noreferrer">zl</a>
+          <a href="#" class="csd-ft-soc" aria-label="YouTube" rel="noopener noreferrer">yt</a>
+        </div>
+      </div>
+      <div class="col-6 col-md-2" data-reveal data-delay="1">
+        <div class="csd-ft-col-title">Điều trị</div>
+        <div class="csd-ft-links">
+          <a href="dich-vu.html">Điều trị mụn</a>
+          <a href="dich-vu.html">Trị nám & tàn nhang</a>
+          <a href="dich-vu.html">Trẻ hóa da</a>
+          <a href="dich-vu.html">Thu nhỏ lỗ chân lông</a>
+          <a href="dich-vu.html">Điều trị sẹo</a>
+        </div>
+      </div>
+      <div class="col-6 col-md-2" data-reveal data-delay="2">
+        <div class="csd-ft-col-title">Phòng khám</div>
+        <div class="csd-ft-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="dich-vu.html">Dịch vụ & Giá</a>
+          <a href="dat-lich.html">Đặt lịch</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal data-delay="3">
+        <div class="csd-ft-col-title">Liên hệ</div>
+        <div class="csd-ft-links">
+          <a href="tel:0901234567">📞 0901 234 567</a>
+          <a href="mailto:info@[domain].vn">✉ info@[domain].vn</a>
+          <a href="lien-he.html">📍 [Địa chỉ phòng khám]</a>
+          <a href="#">🕐 Thứ 2 – Thứ 7: 8:00 – 19:00</a>
+          <a href="#">🕐 Chủ nhật: 9:00 – 17:00</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="csd-ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="csd-ft-copy">© 2026 [TÊN PHÒNG KHÁM] · Phòng khám Da liễu & Skincare</div>
+        <div class="csd-ft-links-bottom">
+          <a href="#">Chính sách bảo mật</a>
+          <a href="#">Điều khoản</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Zalo float -->
+<div class="csd-zf">
+  <div class="csd-zf-tip">Đặt lịch qua Zalo</div>
+  <a href="https://zalo.me/[ZALO_NUMBER]" class="csd-zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Nav elevated on scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('elevated', window.scrollY > 40);
+}, {passive: true});
+
+// Reveal animation
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      ro.unobserve(e.target);
+    }
+  });
+}, {threshold: .08, rootMargin: '0px 0px -36px 0px'});
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+// Mobile menu
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+burger.addEventListener('click', () => {
+  const open = mob.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && mob.classList.contains('open')) {
+    mob.classList.remove('open');
+    burger.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
+// Counter animation
+document.querySelectorAll('[data-counter]').forEach(el => {
+  const cro = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      const target = +el.dataset.counter;
+      const suffix = el.dataset.suffix || '';
+      let cur = 0;
+      const step = Math.ceil(target / 60);
+      const t = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = cur.toLocaleString('vi') + suffix;
+        if (cur >= target) clearInterval(t);
+      }, 25);
+      cro.disconnect();
+    }
+  }, {threshold: .5});
+  cro.observe(el);
+});
+</script>
+</body>
+</html>

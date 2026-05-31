@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[TÊN TIỆM NAIL] — Nail Salon Chuyên Nghiệp</title>
+<meta name="description" content="[TÊN TIỆM NAIL] — Tiệm nail chuyên nghiệp. Nail gel, nail art, pedicure, acrylic. Đặt lịch ngay hôm nay.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- ── NAV (Nav-2: Always Solid Light) ── -->
+<nav id="nav">
+  <div class="wd-container">
+    <div class="ns-nav-inner">
+      <a class="ns-logo" href="index.html">
+        <strong>[NAIL</strong> Studio]<span class="ns-logo-dot"></span>
+      </a>
+      <div class="ns-nav-links">
+        <a href="index.html" class="active">Trang chủ</a>
+        <a href="dich-vu.html">Dịch vụ & Bảng giá</a>
+        <a href="dat-lich.html">Đặt lịch</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-lich.html" class="ns-nav-cta">Đặt lịch ngay</a>
+      <button class="ns-nav-burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="ns-nav-mob" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ & Bảng giá</a>
+  <a href="dat-lich.html">Đặt lịch</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="ns-mob-cta">Đặt lịch ngay</a>
+</div>
+
+<!-- ── HERO (H12: Two-Column Equal 50/50) ── -->
+<section class="ns-hero">
+  <!-- Left: Text -->
+  <div class="ns-hero-left">
+    <div class="ns-hero-badge">
+      <span class="ns-hero-dot"></span> Nail Salon Chuyên Nghiệp
+    </div>
+    <h1 class="ns-hero-title">
+      Đôi tay<br>
+      <strong>hoàn hảo,</strong><br>
+      phong cách riêng.
+    </h1>
+    <p class="ns-hero-sub">
+      Chúng tôi mang đến trải nghiệm làm nail đẳng cấp — từ nail gel cơ bản đến nail art tinh tế, mỗi bộ móng là một tác phẩm nghệ thuật.
+    </p>
+    <div class="ns-hero-actions">
+      <a href="dat-lich.html" class="ns-btn-primary">Đặt lịch ngay</a>
+      <a href="dich-vu.html" class="ns-btn-outline">Xem bảng giá</a>
+    </div>
+    <div class="ns-hero-trust">
+      <div class="ns-trust-item">
+        <span class="ns-trust-num">1.200+</span>
+        <span class="ns-trust-label">Khách hàng</span>
+      </div>
+      <div class="ns-trust-item">
+        <span class="ns-trust-num">8</span>
+        <span class="ns-trust-label">Năm kinh nghiệm</span>
+      </div>
+      <div class="ns-trust-item">
+        <span class="ns-trust-num">4.9★</span>
+        <span class="ns-trust-label">Đánh giá</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: Mosaic images -->
+  <div class="ns-hero-right">
+    <div class="ns-hero-mosaic">
+      <div class="ns-mosaic-item tall">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=70&auto=format&fit=crop" alt="Nail art đẹp" loading="eager">
+      </div>
+      <div class="ns-mosaic-item">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&q=60&auto=format&fit=crop&crop=top" alt="Nail gel" loading="eager">
+      </div>
+      <div class="ns-mosaic-item">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&q=60&auto=format&fit=crop&crop=bottom" alt="Nail dưỡng" loading="eager">
+      </div>
+      <div class="ns-mosaic-item">
+        <img src="https://images.unsplash.com/photo-1604902396830-aca29e19b067?w=400&q=60&auto=format&fit=crop" alt="Không gian tiệm" loading="lazy">
+      </div>
+      <div class="ns-mosaic-item">
+        <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=400&q=60&auto=format&fit=crop" alt="Pedicure" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DỊCH VỤ NỔI BẬT (GRID-CARDS pattern) ── -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="ns-eyebrow">Dịch vụ</div>
+      <h2 class="ns-title">Chúng tôi làm gì <strong>cho bạn</strong></h2>
+      <p class="ns-sub centered">Đa dạng dịch vụ làm nail — từ nail cơ bản đến nail art phức tạp, tất cả đều được thực hiện bởi thợ lành nghề.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-3 col-sm-6" data-reveal class="d1">
+        <div class="ns-svc-card">
+          <div class="ns-svc-thumb">
+            <img class="ns-svc-img"
+              src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=65&auto=format&fit=crop"
+              alt="Nail Gel" loading="lazy">
+          </div>
+          <div class="ns-svc-body">
+            <span class="ns-svc-tag">Phổ biến</span>
+            <div class="ns-svc-name">Nail Gel</div>
+            <p class="ns-svc-desc">Gel trong bền màu, không bong tróc, giữ được 3–4 tuần. Đa dạng màu sắc và họa tiết.</p>
+            <div class="ns-svc-foot">
+              <span class="ns-svc-price">Từ 150.000đ</span>
+              <a href="dich-vu.html" class="ns-svc-link">Chi tiết →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-sm-6" data-reveal class="d2">
+        <div class="ns-svc-card">
+          <div class="ns-svc-thumb">
+            <img class="ns-svc-img"
+              src="https://images.unsplash.com/photo-1604902396830-aca29e19b067?w=600&q=65&auto=format&fit=crop"
+              alt="Nail Art" loading="lazy">
+          </div>
+          <div class="ns-svc-body">
+            <span class="ns-svc-tag">Nổi bật</span>
+            <div class="ns-svc-name">Nail Art</div>
+            <p class="ns-svc-desc">Họa tiết thủ công tinh tế — từ hoa lá đơn giản đến thiết kế 3D độc đáo theo yêu cầu.</p>
+            <div class="ns-svc-foot">
+              <span class="ns-svc-price">Từ 200.000đ</span>
+              <a href="dich-vu.html" class="ns-svc-link">Chi tiết →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-sm-6" data-reveal class="d3">
+        <div class="ns-svc-card">
+          <div class="ns-svc-thumb">
+            <img class="ns-svc-img"
+              src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=600&q=65&auto=format&fit=crop"
+              alt="Pedicure" loading="lazy">
+          </div>
+          <div class="ns-svc-body">
+            <span class="ns-svc-tag">Thư giãn</span>
+            <div class="ns-svc-name">Pedicure</div>
+            <p class="ns-svc-desc">Chăm sóc móng chân toàn diện — ngâm chân thảo dược, tẩy da chết, dưỡng ẩm sâu.</p>
+            <div class="ns-svc-foot">
+              <span class="ns-svc-price">Từ 180.000đ</span>
+              <a href="dich-vu.html" class="ns-svc-link">Chi tiết →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-sm-6" data-reveal class="d4">
+        <div class="ns-svc-card">
+          <div class="ns-svc-thumb">
+            <img class="ns-svc-img"
+              src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=65&auto=format&fit=crop&crop=entropy"
+              alt="Nail Dưỡng" loading="lazy">
+          </div>
+          <div class="ns-svc-body">
+            <span class="ns-svc-tag">Chăm sóc</span>
+            <div class="ns-svc-name">Nail Dưỡng & Repair</div>
+            <p class="ns-svc-desc">Phục hồi móng yếu, bong tróc. Dưỡng móng chuyên sâu giúp móng chắc khỏe tự nhiên.</p>
+            <div class="ns-svc-foot">
+              <span class="ns-svc-price">Từ 120.000đ</span>
+              <a href="dich-vu.html" class="ns-svc-link">Chi tiết →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5" data-reveal>
+      <a href="dich-vu.html" class="ns-btn-outline">Xem tất cả dịch vụ & bảng giá</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS BAR (STAT-BAR pattern) ── -->
+<section class="ns-stat-bar">
+  <div class="wd-container">
+    <div class="row g-0 align-items-center">
+      <div class="col-6 col-md-3" data-reveal>
+        <div class="ns-stat-item">
+          <div class="ns-stat-num" data-counter="1200" data-suffix="+">0+</div>
+          <div class="ns-stat-label">Khách hàng tin tưởng</div>
+        </div>
+      </div>
+      <div class="col-md-auto d-none d-md-block px-0" style="width:1px">
+        <div class="ns-stat-divider" style="height:60px"></div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal class="d1">
+        <div class="ns-stat-item">
+          <div class="ns-stat-num"><strong>8</strong> năm</div>
+          <div class="ns-stat-label">Kinh nghiệm làm nail</div>
+        </div>
+      </div>
+      <div class="col-md-auto d-none d-md-block px-0" style="width:1px">
+        <div class="ns-stat-divider" style="height:60px"></div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal class="d2">
+        <div class="ns-stat-item">
+          <div class="ns-stat-num" data-counter="50" data-suffix="+">0+</div>
+          <div class="ns-stat-label">Mẫu nail độc quyền</div>
+        </div>
+      </div>
+      <div class="col-md-auto d-none d-md-block px-0" style="width:1px">
+        <div class="ns-stat-divider" style="height:60px"></div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal class="d3">
+        <div class="ns-stat-item">
+          <div class="ns-stat-num"><strong>4.9</strong>★</div>
+          <div class="ns-stat-label">Đánh giá trung bình</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY (MASONRY pattern) ── -->
+<section class="sec-pad" style="background:var(--warm)">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="ns-eyebrow">Portfolio</div>
+      <h2 class="ns-title">Mẫu nail <strong>của chúng tôi</strong></h2>
+      <p class="ns-sub centered">Mỗi bộ móng là một câu chuyện riêng — khám phá những tác phẩm nghệ thuật từ đội ngũ thợ tài năng.</p>
+    </div>
+
+    <div class="ns-gallery-grid" data-reveal>
+      <div class="ns-gallery-item">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=500&q=70&auto=format&fit=crop" alt="Nail art hoa" loading="lazy">
+      </div>
+      <div class="ns-gallery-item">
+        <img src="https://images.unsplash.com/photo-1604902396830-aca29e19b067?w=500&q=70&auto=format&fit=crop" alt="Nail gel hồng" loading="lazy">
+      </div>
+      <div class="ns-gallery-item">
+        <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=500&q=70&auto=format&fit=crop" alt="Pedicure" loading="lazy">
+      </div>
+      <div class="ns-gallery-item">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=500&q=70&auto=format&fit=crop&crop=top" alt="Nail 3D" loading="lazy">
+      </div>
+      <div class="ns-gallery-item">
+        <img src="https://images.unsplash.com/photo-1604902396830-aca29e19b067?w=500&q=70&auto=format&fit=crop&crop=center" alt="Nail nude" loading="lazy">
+      </div>
+      <div class="ns-gallery-item">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=500&q=70&auto=format&fit=crop&crop=bottom" alt="Nail acrylic" loading="lazy">
+      </div>
+      <div class="ns-gallery-item">
+        <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=500&q=70&auto=format&fit=crop&crop=top" alt="Nail vẽ tay" loading="lazy">
+      </div>
+      <div class="ns-gallery-item">
+        <img src="https://images.unsplash.com/photo-1604902396830-aca29e19b067?w=500&q=70&auto=format&fit=crop&crop=bottom" alt="Nail đính đá" loading="lazy">
+      </div>
+      <div class="ns-gallery-item">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=500&q=70&auto=format&fit=crop&crop=entropy" alt="Nail ombre" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURE STRIP: TẠI SAO CHỌN CHÚNG TÔI (ALTERNATING-STRIPS pattern) ── -->
+<section class="ns-feature-strip">
+  <div class="wd-container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6" data-reveal>
+        <div class="ns-feature-img">
+          <img src="https://images.unsplash.com/photo-1604902396830-aca29e19b067?w=700&q=70&auto=format&fit=crop" alt="Thợ nail chuyên nghiệp" loading="lazy">
+        </div>
+      </div>
+      <div class="col-lg-6" data-reveal class="d1">
+        <div class="ns-eyebrow">Vì sao chọn chúng tôi</div>
+        <h2 class="ns-title">Trải nghiệm làm nail<br><strong>khác biệt hoàn toàn</strong></h2>
+        <p class="ns-sub" style="margin-bottom:28px">Không chỉ là làm nail — chúng tôi mang đến không gian thư giãn, sản phẩm an toàn và kết quả hoàn hảo mà bạn xứng đáng được hưởng.</p>
+
+        <div class="row g-3">
+          <div class="col-6">
+            <div style="padding:16px;background:var(--blush-light);border-radius:16px">
+              <div style="font-size:22px;margin-bottom:8px">💅</div>
+              <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px">Thợ lành nghề</div>
+              <div style="font-size:12.5px;font-weight:300;color:var(--text-2)">Đào tạo chuyên sâu, 5+ năm kinh nghiệm</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="padding:16px;background:var(--gold-light);border-radius:16px">
+              <div style="font-size:22px;margin-bottom:8px">✨</div>
+              <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px">Sản phẩm cao cấp</div>
+              <div style="font-size:12.5px;font-weight:300;color:var(--text-2)">Gel OPI, Shellac nhập khẩu, an toàn</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="padding:16px;background:var(--warm);border-radius:16px;border:1px solid var(--border)">
+              <div style="font-size:22px;margin-bottom:8px">🧼</div>
+              <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px">Vệ sinh chuẩn</div>
+              <div style="font-size:12.5px;font-weight:300;color:var(--text-2)">Dụng cụ khử khuẩn sau mỗi khách</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="padding:16px;background:var(--warm);border-radius:16px;border:1px solid var(--border)">
+              <div style="font-size:22px;margin-bottom:8px">📱</div>
+              <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px">Đặt lịch dễ dàng</div>
+              <div style="font-size:12.5px;font-weight:300;color:var(--text-2)">Online hoặc qua Zalo, không cần chờ lâu</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ĐỘI NGŨ THỢ (FEATURE-ICON-ROW pattern) ── -->
+<section class="sec-pad" style="background:var(--warm)">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="ns-eyebrow">Đội ngũ</div>
+      <h2 class="ns-title">Những <strong>bàn tay vàng</strong></h2>
+      <p class="ns-sub centered">Mỗi thợ nail tại [TÊN TIỆM] đều được đào tạo bài bản và có đam mê thật sự với nghề.</p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+      <div class="col-lg-3 col-sm-6" data-reveal>
+        <div class="ns-team-card">
+          <div class="ns-team-img-wrap">
+            <img class="ns-team-img"
+              src="https://images.unsplash.com/photo-1598966739654-5e9a252d8c32?w=300&q=70&auto=format&fit=crop&crop=face"
+              alt="[Tên thợ 1]" loading="lazy">
+          </div>
+          <div class="ns-team-name">[Tên Thợ 1]</div>
+          <div class="ns-team-role">Nail Artist Cấp Senior</div>
+          <div class="ns-team-spec">
+            <span class="ns-spec-tag">Nail Art 3D</span>
+            <span class="ns-spec-tag">Gel</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-sm-6" data-reveal class="d1">
+        <div class="ns-team-card">
+          <div class="ns-team-img-wrap">
+            <img class="ns-team-img"
+              src="https://images.unsplash.com/photo-1601412436009-d964bd02edbc?w=300&q=70&auto=format&fit=crop&crop=face"
+              alt="[Tên thợ 2]" loading="lazy">
+          </div>
+          <div class="ns-team-name">[Tên Thợ 2]</div>
+          <div class="ns-team-role">Chuyên gia Pedicure</div>
+          <div class="ns-team-spec">
+            <span class="ns-spec-tag">Pedicure</span>
+            <span class="ns-spec-tag">Nail Dưỡng</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-sm-6" data-reveal class="d2">
+        <div class="ns-team-card">
+          <div class="ns-team-img-wrap">
+            <img class="ns-team-img"
+              src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=300&q=70&auto=format&fit=crop&crop=face"
+              alt="[Tên thợ 3]" loading="lazy">
+          </div>
+          <div class="ns-team-name">[Tên Thợ 3]</div>
+          <div class="ns-team-role">Nail Artist — Ombre Specialist</div>
+          <div class="ns-team-spec">
+            <span class="ns-spec-tag">Ombre</span>
+            <span class="ns-spec-tag">Acrylic</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-sm-6" data-reveal class="d3">
+        <div class="ns-team-card">
+          <div class="ns-team-img-wrap">
+            <img class="ns-team-img"
+              src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=300&q=70&auto=format&fit=crop&crop=face"
+              alt="[Tên thợ 4]" loading="lazy">
+          </div>
+          <div class="ns-team-name">[Tên Thợ 4]</div>
+          <div class="ns-team-role">Quản lý & Nail Artist</div>
+          <div class="ns-team-spec">
+            <span class="ns-spec-tag">Bridal Nail</span>
+            <span class="ns-spec-tag">3D Art</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ĐÁNH GIÁ KHÁCH HÀNG (GRID-CARDS pattern) ── -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="ns-eyebrow">Khách hàng nói gì</div>
+      <h2 class="ns-title">Hơn <strong>1.200 khách hàng</strong> tin tưởng</h2>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6" data-reveal>
+        <div class="ns-review-card">
+          <div class="ns-rv-stars">★★★★★</div>
+          <p class="ns-rv-text">"Tiệm nail sạch sẽ, thợ làm rất tỉ mỉ và cẩn thận. Bộ nail art hoa của mình giữ được 3 tuần vẫn đẹp như mới. Nhất định sẽ quay lại!"</p>
+          <div class="ns-rv-foot">
+            <img class="ns-rv-av" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=70&auto=format&fit=crop&crop=face" alt="[Tên khách hàng]" loading="lazy">
+            <div>
+              <div class="ns-rv-name">[Nguyễn Thị A]</div>
+              <div class="ns-rv-loc">Quận 1, TP.HCM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-reveal class="d1">
+        <div class="ns-review-card">
+          <div class="ns-rv-stars">★★★★★</div>
+          <p class="ns-rv-text">"Lần đầu làm pedicure ở đây, nhưng chắc chắn sẽ không phải lần cuối. Dịch vụ tuyệt vời, không gian thư giãn, thợ rất chuyên nghiệp và vui vẻ."</p>
+          <div class="ns-rv-foot">
+            <img class="ns-rv-av" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=70&auto=format&fit=crop&crop=face" alt="[Tên khách hàng]" loading="lazy">
+            <div>
+              <div class="ns-rv-name">[Trần Thị B]</div>
+              <div class="ns-rv-loc">Quận 3, TP.HCM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-reveal class="d2">
+        <div class="ns-review-card">
+          <div class="ns-rv-stars">★★★★★</div>
+          <p class="ns-rv-text">"Nail art 3D siêu đẹp, đúng như mẫu mình chọn. Đặt lịch qua Zalo rất tiện, không phải chờ. Giá cả hợp lý, chất lượng xứng đáng với tiền bỏ ra."</p>
+          <div class="ns-rv-foot">
+            <img class="ns-rv-av" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&q=70&auto=format&fit=crop&crop=face" alt="[Tên khách hàng]" loading="lazy">
+            <div>
+              <div class="ns-rv-name">[Lê Thị C]</div>
+              <div class="ns-rv-loc">Bình Thạnh, TP.HCM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA SECTION ── -->
+<section class="ns-cta-sec">
+  <div class="wd-container" style="position:relative;z-index:2">
+    <div data-reveal>
+      <h2 class="ns-cta-title">Sẵn sàng để có đôi tay<br><strong>hoàn hảo?</strong></h2>
+      <p class="ns-cta-sub">Đặt lịch ngay hôm nay — thợ nail sẽ chờ bạn với đầy đủ dụng cụ và cảm hứng sáng tạo.</p>
+      <div class="d-flex gap-3 justify-content-center flex-wrap">
+        <a href="dat-lich.html" class="ns-btn-cta-white">Đặt lịch ngay →</a>
+        <a href="lien-he.html" class="ns-btn-outline" style="border-color:rgba(255,255,255,.35);color:#fff">Liên hệ tư vấn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="ns-footer">
+  <div class="wd-container">
+    <div class="ns-ft-inner">
+      <div class="row g-5">
+        <div class="col-lg-4 col-md-6">
+          <a class="ns-ft-logo" href="index.html"><strong>[NAIL</strong> Studio]</a>
+          <p class="ns-ft-desc">Tiệm nail chuyên nghiệp — nơi mỗi bộ móng là một tác phẩm nghệ thuật dành riêng cho bạn.</p>
+          <div class="ns-ft-socials">
+            <a class="ns-ft-soc" href="#" aria-label="Facebook" rel="noopener noreferrer">f</a>
+            <a class="ns-ft-soc" href="#" aria-label="Instagram" rel="noopener noreferrer">in</a>
+            <a class="ns-ft-soc" href="#" aria-label="TikTok" rel="noopener noreferrer">tk</a>
+            <a class="ns-ft-soc" href="#" aria-label="Zalo" rel="noopener noreferrer">z</a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-6">
+          <div class="ns-ft-col-title">Dịch vụ</div>
+          <nav class="ns-ft-links">
+            <a href="dich-vu.html">Nail Gel</a>
+            <a href="dich-vu.html">Nail Art</a>
+            <a href="dich-vu.html">Pedicure</a>
+            <a href="dich-vu.html">Acrylic Nail</a>
+            <a href="dich-vu.html">Nail Dưỡng</a>
+          </nav>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-6">
+          <div class="ns-ft-col-title">Liên kết</div>
+          <nav class="ns-ft-links">
+            <a href="index.html">Trang chủ</a>
+            <a href="dich-vu.html">Bảng giá</a>
+            <a href="dat-lich.html">Đặt lịch</a>
+            <a href="lien-he.html">Liên hệ</a>
+          </nav>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="ns-ft-col-title">Thông tin</div>
+          <div class="ns-ft-links">
+            <span style="color:rgba(255,255,255,.32);font-size:13px;font-weight:300">📍 [Địa chỉ tiệm nail của bạn]</span>
+            <span style="color:rgba(255,255,255,.32);font-size:13px;font-weight:300">📞 [Số điện thoại]</span>
+            <span style="color:rgba(255,255,255,.32);font-size:13px;font-weight:300">⏰ Thứ 2 – Chủ nhật: 8:00 – 20:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ns-ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <span class="ns-ft-copy">© 2025 [Tên Tiệm Nail]. All rights reserved.</span>
+        <span class="ns-ft-copy">Thiết kế bởi <a href="#" style="color:rgba(255,255,255,.35);text-decoration:none">webdrop.vn</a></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── ZALO FLOAT ── -->
+<div class="ns-zalo-float">
+  <span class="ns-zalo-tip">Chat Zalo với chúng tôi</span>
+  <a class="ns-zalo-btn" href="https://zalo.me/[SỐ_ZALO]" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+    <svg width="26" height="26" viewBox="0 0 48 48" fill="none">
+      <path d="M24 4C13 4 4 12.1 4 22.2c0 5.7 2.9 10.8 7.5 14.2L9.5 44l8.2-3.6C19.7 41.1 21.8 41.4 24 41.4c11 0 20-8.1 20-19.2S35 4 24 4z" fill="#fff"/>
+      <text x="24" y="29" font-family="Arial" font-size="13" font-weight="bold" fill="#0068FF" text-anchor="middle">Zalo</text>
+    </svg>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// === Nav elevated on scroll ===
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('elevated', scrollY > 80);
+}, { passive: true });
+
+// === Mobile hamburger ===
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const isOpen = mob.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+  mob.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+}
+
+// === Reveal animation ===
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+// === Counter animation ===
+document.querySelectorAll('[data-counter]').forEach(el => {
+  const cro = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      const target = +el.dataset.counter;
+      const suffix = el.dataset.suffix || '';
+      let cur = 0;
+      const step = Math.ceil(target / 60);
+      const t = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = cur.toLocaleString('vi') + suffix;
+        if (cur >= target) clearInterval(t);
+      }, 25);
+      cro.disconnect();
+    }
+  }, { threshold: 0.5 });
+  cro.observe(el);
+});
+</script>
+</body>
+</html>

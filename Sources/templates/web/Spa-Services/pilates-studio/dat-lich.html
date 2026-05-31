@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đăng ký lớp học — [TÊN STUDIO] Pilates</title>
+<meta name="description" content="Đăng ký lớp pilates tại [TÊN STUDIO]. Chọn loại lớp, cấp độ, lịch ưu tiên và cung cấp thông tin sức khỏe để được tư vấn bài tập phù hợp nhất.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="wd-container">
+    <div class="ps-nav-inner">
+      <a class="ps-logo" href="index.html">
+        [STUDIO]<span class="ps-logo-dot"></span>
+      </a>
+      <div class="ps-nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="dich-vu.html">Lớp học</a>
+        <a href="dat-lich.html" class="active">Đăng ký</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-lich.html" class="ps-nav-cta">Đăng ký ngay</a>
+      <button class="ps-hamburger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="ps-mob-nav" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Lớp học</a>
+  <a href="dat-lich.html">Đăng ký</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="ps-mob-cta">Đăng ký ngay</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="ps-page-hero">
+  <div class="wd-container">
+    <div class="reveal">
+      <div class="ps-page-hero-label">Đăng ký</div>
+      <h1 class="ps-page-hero-title">Bắt đầu hành trình<br>pilates của bạn.</h1>
+      <p class="ps-page-hero-sub">Điền thông tin bên dưới — chúng tôi sẽ liên hệ trong vòng 2 giờ để xác nhận lịch.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTRATION FORM + INFO -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="row g-5">
+
+      <!-- Form -->
+      <div class="col-lg-7 reveal">
+        <div class="ps-form-card">
+          <div class="ps-form-title">Đăng ký lớp học</div>
+          <div class="ps-form-sub">Buổi đầu tiên miễn phí — không cam kết, không ràng buộc.</div>
+
+          <form action="#" method="POST" novalidate>
+            <!-- Personal info -->
+            <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border-light)">Thông tin cá nhân</div>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label class="ps-label" for="reg-name">Họ và tên *</label>
+                <input
+                  class="ps-input"
+                  type="text"
+                  id="reg-name"
+                  name="name"
+                  placeholder="[Nguyễn Văn A]"
+                  required
+                >
+              </div>
+              <div class="col-md-6">
+                <label class="ps-label" for="reg-phone">Số điện thoại *</label>
+                <input
+                  class="ps-input"
+                  type="tel"
+                  id="reg-phone"
+                  name="phone"
+                  placeholder="[09xx xxx xxx]"
+                  required
+                >
+              </div>
+              <div class="col-md-6">
+                <label class="ps-label" for="reg-email">Email</label>
+                <input
+                  class="ps-input"
+                  type="email"
+                  id="reg-email"
+                  name="email"
+                  placeholder="[email@example.com]"
+                >
+              </div>
+              <div class="col-md-6">
+                <label class="ps-label" for="reg-age">Năm sinh</label>
+                <input
+                  class="ps-input"
+                  type="text"
+                  id="reg-age"
+                  name="birth_year"
+                  placeholder="[1990]"
+                >
+              </div>
+            </div>
+
+            <!-- Class selection -->
+            <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border-light)">Lớp học & cấp độ</div>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label class="ps-label" for="reg-class">Loại lớp *</label>
+                <select class="ps-select" id="reg-class" name="class_type" required>
+                  <option value="">-- Chọn loại lớp --</option>
+                  <option value="mat">Mat Pilates</option>
+                  <option value="reformer">Reformer Pilates</option>
+                  <option value="clinical">Clinical Pilates (1-1)</option>
+                  <option value="prenatal">Prenatal Pilates</option>
+                  <option value="trial">Buổi dùng thử miễn phí</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="ps-label" for="reg-level">Cấp độ của bạn *</label>
+                <select class="ps-select" id="reg-level" name="level" required>
+                  <option value="">-- Chọn cấp độ --</option>
+                  <option value="new">Mới bắt đầu (chưa tập pilates)</option>
+                  <option value="beginner">Cơ bản (dưới 6 tháng)</option>
+                  <option value="intermediate">Trung cấp (6–18 tháng)</option>
+                  <option value="advanced">Nâng cao (trên 18 tháng)</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="ps-label" for="reg-package">Gói dịch vụ quan tâm</label>
+                <select class="ps-select" id="reg-package" name="package">
+                  <option value="">-- Chọn gói --</option>
+                  <option value="single">Mua lẻ từng buổi</option>
+                  <option value="basic">Gói Tháng Cơ Bản (8 buổi)</option>
+                  <option value="intensive">Gói Tháng Chuyên Sâu (16 buổi)</option>
+                  <option value="annual">Gói Năm Premium</option>
+                  <option value="undecided">Chưa quyết định</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="ps-label" for="reg-goal">Mục tiêu tập luyện</label>
+                <select class="ps-select" id="reg-goal" name="goal">
+                  <option value="">-- Chọn mục tiêu --</option>
+                  <option value="spine">Cải thiện sức khỏe cột sống</option>
+                  <option value="core">Tăng cường sức mạnh core</option>
+                  <option value="flexibility">Tăng độ linh hoạt</option>
+                  <option value="posture">Cải thiện tư thế</option>
+                  <option value="rehab">Phục hồi chấn thương</option>
+                  <option value="prenatal">Hỗ trợ thai kỳ / sau sinh</option>
+                  <option value="general">Sức khỏe tổng thể</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Preferred schedule -->
+            <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border-light)">Lịch ưu tiên</div>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label class="ps-label" for="reg-days">Ngày ưu tiên *</label>
+                <select class="ps-select" id="reg-days" name="preferred_days" required>
+                  <option value="">-- Chọn ngày --</option>
+                  <option value="weekdays">Ngày trong tuần (T2–T6)</option>
+                  <option value="weekend">Cuối tuần (T7, CN)</option>
+                  <option value="both">Cả hai đều được</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="ps-label" for="reg-time">Khung giờ ưu tiên *</label>
+                <select class="ps-select" id="reg-time" name="preferred_time" required>
+                  <option value="">-- Chọn khung giờ --</option>
+                  <option value="early">Sáng sớm (6:30 – 8:30)</option>
+                  <option value="morning">Giờ hành chính (9:00 – 16:00)</option>
+                  <option value="evening">Buổi tối (17:00 – 21:00)</option>
+                  <option value="flexible">Linh hoạt</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="ps-label" for="reg-start">Ngày bắt đầu dự kiến</label>
+                <input
+                  class="ps-input"
+                  type="date"
+                  id="reg-start"
+                  name="start_date"
+                >
+              </div>
+            </div>
+
+            <!-- Health info -->
+            <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border-light)">Thông tin sức khỏe <span style="font-weight:300;letter-spacing:0;text-transform:none;font-size:11px">(quan trọng để thiết kế bài tập an toàn)</span></div>
+            <div class="row g-3 mb-4">
+              <div class="col-12">
+                <label class="ps-label" for="reg-conditions">Tình trạng sức khỏe / chấn thương hiện tại</label>
+                <textarea
+                  class="ps-textarea"
+                  id="reg-conditions"
+                  name="health_conditions"
+                  rows="3"
+                  placeholder="[Ví dụ: đau thắt lưng, thoát vị đĩa đệm L4-L5, đang mang thai tuần 20, sau mổ gối, không có vấn đề gì...]"
+                ></textarea>
+              </div>
+              <div class="col-12">
+                <label class="ps-label" for="reg-medications">Thuốc đang dùng (nếu có)</label>
+                <input
+                  class="ps-input"
+                  type="text"
+                  id="reg-medications"
+                  name="medications"
+                  placeholder="[Để trống nếu không có]"
+                >
+              </div>
+              <div class="col-12">
+                <label class="ps-label" for="reg-notes">Ghi chú thêm</label>
+                <textarea
+                  class="ps-textarea"
+                  id="reg-notes"
+                  name="notes"
+                  rows="2"
+                  placeholder="[Bất kỳ điều gì bạn muốn chia sẻ thêm...]"
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- Submit -->
+            <div style="padding-top:8px">
+              <button type="submit" class="ps-btn-solid" style="width:100%;text-align:center;padding:14px;font-size:13px">
+                Gửi đăng ký →
+              </button>
+              <p style="font-size:12px;font-weight:300;color:var(--text-3);margin-top:12px;text-align:center;line-height:1.6">
+                Chúng tôi sẽ liên hệ trong vòng 2 giờ để xác nhận lịch.<br>
+                Thông tin sức khỏe được bảo mật tuyệt đối.
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Sidebar info -->
+      <div class="col-lg-5 reveal reveal-d1">
+
+        <!-- Trial class note -->
+        <div style="background:var(--dark2);border-radius:4px;padding:28px;margin-bottom:16px">
+          <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--stone);margin-bottom:12px">Ưu đãi dùng thử</div>
+          <div style="font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.5px;margin-bottom:8px">Buổi đầu tiên<br>miễn phí.</div>
+          <p style="font-size:13px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.7;margin-bottom:16px">
+            Không cam kết dài hạn. Đến thử để trải nghiệm không gian, gặp gỡ huấn luyện viên và cảm nhận phương pháp pilates.
+          </p>
+          <div style="height:1px;background:rgba(255,255,255,.06);margin:16px 0"></div>
+          <div class="ps-hours-table">
+            <div class="ps-hours-row">
+              <div class="ps-hours-day">Thứ Hai – Thứ Sáu</div>
+              <div class="ps-hours-time">6:30 – 21:00</div>
+            </div>
+            <div class="ps-hours-row">
+              <div class="ps-hours-day">Thứ Bảy</div>
+              <div class="ps-hours-time">7:00 – 19:00</div>
+            </div>
+            <div class="ps-hours-row">
+              <div class="ps-hours-day">Chủ Nhật</div>
+              <div class="ps-hours-time">7:00 – 17:00</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Process steps -->
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:28px;margin-bottom:16px">
+          <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);margin-bottom:18px">Quy trình đăng ký</div>
+          <div style="display:flex;flex-direction:column;gap:0">
+            <div style="display:flex;gap:16px;padding-bottom:20px;position:relative">
+              <div style="position:absolute;left:15px;top:32px;bottom:0;width:1px;background:var(--border)"></div>
+              <div style="width:30px;height:30px;background:var(--dark2);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;position:relative;z-index:1">1</div>
+              <div>
+                <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px">Gửi form đăng ký</div>
+                <div style="font-size:13px;font-weight:300;color:var(--text-3)">Điền đầy đủ thông tin bên trái</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:16px;padding-bottom:20px;position:relative">
+              <div style="position:absolute;left:15px;top:32px;bottom:0;width:1px;background:var(--border)"></div>
+              <div style="width:30px;height:30px;background:var(--dark2);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;position:relative;z-index:1">2</div>
+              <div>
+                <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px">Nhận xác nhận trong 2 giờ</div>
+                <div style="font-size:13px;font-weight:300;color:var(--text-3)">Chúng tôi gọi lại để xác nhận lịch</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:16px;padding-bottom:20px;position:relative">
+              <div style="position:absolute;left:15px;top:32px;bottom:0;width:1px;background:var(--border)"></div>
+              <div style="width:30px;height:30px;background:var(--dark2);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;position:relative;z-index:1">3</div>
+              <div>
+                <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px">Đánh giá ban đầu</div>
+                <div style="font-size:13px;font-weight:300;color:var(--text-3)">HLV đánh giá cơ thể và tư vấn lớp phù hợp</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:16px">
+              <div style="width:30px;height:30px;background:var(--stone);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--dark)">4</div>
+              <div>
+                <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px">Bắt đầu tập luyện</div>
+                <div style="font-size:13px;font-weight:300;color:var(--text-3)">Trải nghiệm buổi đầu tiên miễn phí</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:28px">
+          <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);margin-bottom:18px">Câu hỏi thường gặp</div>
+          <div class="accordion accordion-flush" id="faqAccordion">
+            <div class="accordion-item" style="border:none;border-bottom:1px solid var(--border-light)">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" style="font-family:var(--sans);font-size:13px;font-weight:600;color:var(--text);background:transparent;padding:14px 0">
+                  Tôi hoàn toàn chưa biết về pilates có học được không?
+                </button>
+              </h3>
+              <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body" style="font-size:13px;font-weight:300;color:var(--text-2);line-height:1.7;padding:0 0 14px">
+                  Hoàn toàn được! Chúng tôi có lớp cơ bản dành riêng cho người mới. HLV sẽ hướng dẫn từng động tác từ đầu, đảm bảo kỹ thuật đúng và an toàn tuyệt đối.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item" style="border:none;border-bottom:1px solid var(--border-light)">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" style="font-family:var(--sans);font-size:13px;font-weight:600;color:var(--text);background:transparent;padding:14px 0">
+                  Đang bị đau lưng có tập được không?
+                </button>
+              </h3>
+              <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body" style="font-size:13px;font-weight:300;color:var(--text-2);line-height:1.7;padding:0 0 14px">
+                  Pilates đặc biệt hiệu quả cho người đau lưng. HLV sẽ đánh giá tình trạng của bạn và điều chỉnh bài tập phù hợp. Clinical Pilates được thiết kế riêng cho trường hợp này.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item" style="border:none">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" style="font-family:var(--sans);font-size:13px;font-weight:600;color:var(--text);background:transparent;padding:14px 0">
+                  Cần mặc gì khi đến tập?
+                </button>
+              </h3>
+              <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body" style="font-size:13px;font-weight:300;color:var(--text-2);line-height:1.7;padding:0 0 14px">
+                  Trang phục thể thao thoải mái, co giãn tốt. Pilates tập chân trần hoặc vớ grip — không cần giày. Studio cung cấp thảm, khăn và nước uống miễn phí.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ps-footer">
+  <div class="wd-container ps-footer-top">
+    <div class="row g-4">
+      <div class="col-md-4 reveal">
+        <div class="ps-ft-logo">[STUDIO]<span class="ps-ft-logo-dot"></span></div>
+        <p class="ps-ft-desc">Studio pilates chuyên nghiệp — nơi sức khỏe, sự cân bằng và vẻ đẹp gặp nhau.</p>
+        <div class="ps-ft-socials">
+          <a href="#" class="ps-ft-soc" rel="noopener noreferrer">fb</a>
+          <a href="#" class="ps-ft-soc" rel="noopener noreferrer">ig</a>
+          <a href="#" class="ps-ft-soc" rel="noopener noreferrer">yt</a>
+          <a href="#" class="ps-ft-soc" rel="noopener noreferrer">zl</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ps-ft-col-title">Lớp học</div>
+        <div class="ps-ft-links">
+          <a href="dich-vu.html">Mat Pilates</a>
+          <a href="dich-vu.html">Reformer Pilates</a>
+          <a href="dich-vu.html">Clinical Pilates</a>
+          <a href="dich-vu.html">Prenatal Pilates</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ps-ft-col-title">Studio</div>
+        <div class="ps-ft-links">
+          <a href="dat-lich.html">Đăng ký lớp</a>
+          <a href="dich-vu.html#gia">Gói thành viên</a>
+          <a href="lien-he.html">Huấn luyện viên</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ps-ft-col-title">Liên hệ</div>
+        <div class="ps-ft-links">
+          <a href="tel:0901234567">0901 234 567</a>
+          <a href="#">[Địa chỉ studio]</a>
+          <a href="#">T2–T7: 6:30 – 21:00</a>
+          <a href="#">CN: 7:00 – 17:00</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ps-footer-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="ps-ft-copy">© 2026 [TÊN STUDIO] Pilates. All rights reserved.</div>
+        <div class="ps-ft-copy">Thiết kế bởi webdrop.vn</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="ps-zalo">
+  <div class="ps-zalo-tip">Tư vấn qua Zalo</div>
+  <button class="ps-zalo-btn" aria-label="Chat Zalo">💬</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('elevated', window.scrollY > 40);
+}, {passive: true});
+
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+  });
+}, {threshold: .08, rootMargin: '0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+burger.addEventListener('click', () => {
+  const o = mob.classList.toggle('open');
+  burger.classList.toggle('open', o);
+  document.body.style.overflow = o ? 'hidden' : '';
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && mob.classList.contains('open')) {
+    mob.classList.remove('open');
+    burger.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+</script>
+</body>
+</html>

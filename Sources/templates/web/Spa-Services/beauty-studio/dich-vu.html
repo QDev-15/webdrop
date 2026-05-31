@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dịch vụ & Bảng giá — [TÊN STUDIO] Beauty Studio</title>
+<meta name="description" content="Dịch vụ và bảng giá chi tiết tại [TÊN STUDIO] — Tóc, Nail, Makeup, Skincare. Giá minh bạch, chất lượng cao.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+/* Sticky anchor nav for service sections */
+.bst-anchor-nav {
+  position: sticky;
+  top: 64px;
+  z-index: 100;
+  background: var(--dark2);
+  border-bottom: 1px solid var(--border-pink);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.bst-anchor-nav::-webkit-scrollbar { display: none; }
+.bst-anchor-inner {
+  display: flex;
+  gap: 0;
+  min-width: max-content;
+  padding: 0 clamp(20px, 5vw, 80px);
+}
+.bst-anchor-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-3);
+  text-decoration: none;
+  padding: 14px 20px;
+  border-bottom: 2px solid transparent;
+  transition: all .2s;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.bst-anchor-link:hover { color: var(--accent); }
+.bst-anchor-link.active { color: var(--accent); border-bottom-color: var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav" data-scroll-nav>
+  <div class="wd-container">
+    <div class="bst-nav-inner">
+      <a href="index.html" class="bst-logo">
+        <span class="bst-logo-dot"></span>
+        [TÊN STUDIO]<span> Studio</span>
+      </a>
+      <ul class="bst-nav-links">
+        <li><a href="index.html">Trang chủ</a></li>
+        <li><a href="dich-vu.html" class="active">Dịch vụ & Giá</a></li>
+        <li><a href="dat-lich.html">Đặt lịch</a></li>
+        <li><a href="lien-he.html">Liên hệ</a></li>
+      </ul>
+      <a href="dat-lich.html" class="bst-nav-cta">
+        Đặt lịch
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <button class="bst-hamburger" id="navBurger" aria-label="Mở menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="bst-nav-mob" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ & Giá</a>
+  <a href="dat-lich.html">Đặt lịch</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="mob-cta">Đặt lịch ngay</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="bst-page-hero">
+  <div class="wd-container">
+    <div class="bst-ph-eyebrow">Dịch vụ & Bảng giá</div>
+    <h1 class="bst-ph-title">4 nhóm dịch vụ, <em>1 điểm đến</em></h1>
+    <p class="bst-ph-sub">Giá minh bạch, chất lượng đảm bảo. Chọn dịch vụ bạn cần, chúng tôi sẽ lo phần còn lại.</p>
+  </div>
+</div>
+
+<!-- ANCHOR NAV -->
+<div class="bst-anchor-nav">
+  <div class="bst-anchor-inner">
+    <a href="#toc" class="bst-anchor-link active">✂ Tóc</a>
+    <a href="#nail" class="bst-anchor-link">💅 Nail</a>
+    <a href="#makeup" class="bst-anchor-link">💄 Makeup</a>
+    <a href="#skincare" class="bst-anchor-link">✨ Skincare</a>
+    <a href="#combo" class="bst-anchor-link">🎁 Combo</a>
+  </div>
+</div>
+
+<!-- TÓC SERVICE SECTION -->
+<section class="sec-pad" id="toc" style="background:var(--bg);">
+  <div class="wd-container">
+    <div class="row g-5 align-items-start">
+      <div class="col-lg-4" data-reveal>
+        <div class="bst-svc-icon" style="width:56px;height:56px;border-radius:12px;font-size:26px;margin-bottom:18px">✂</div>
+        <div class="bst-eyebrow">Nhóm 01</div>
+        <h2 class="bst-title">Hair<br><em>Styling</em></h2>
+        <p class="bst-sub mb-4">Đội ngũ stylist tóc nhiều năm kinh nghiệm, cập nhật xu hướng liên tục. Sử dụng sản phẩm cao cấp bảo vệ mái tóc.</p>
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80&auto=format&fit=crop" alt="Hair styling" style="width:100%;border-radius:12px;object-fit:cover;aspect-ratio:4/3">
+        <a href="dat-lich.html" class="bst-btn-primary mt-4 d-inline-flex">Đặt lịch tóc</a>
+      </div>
+      <div class="col-lg-8" data-reveal data-delay="1">
+        <div class="bst-svc-panel">
+          <div class="bst-svc-panel-head">
+            <div class="bst-svc-icon">✂</div>
+            <div>
+              <div class="bst-svc-panel-name">Cắt & Tạo kiểu</div>
+              <div class="bst-svc-panel-sub">Basic hair services</div>
+            </div>
+          </div>
+          <div class="bst-svc-panel-body">
+            <table class="bst-price-table">
+              <thead>
+                <tr><th>Dịch vụ</th><th>Mô tả</th><th>Giá</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Cắt tóc nữ</td><td>Cắt + blow dry cơ bản</td><td>150.000 – 250.000đ</td></tr>
+                <tr><td>Cắt tóc nam</td><td>Cắt + sấy tạo kiểu</td><td>80.000 – 150.000đ</td></tr>
+                <tr><td>Gội + blow dry</td><td>Gội dầu + sấy tạo kiểu</td><td>80.000 – 120.000đ</td></tr>
+                <tr><td>Cắt + tạo kiểu nâng cao</td><td>Kỹ thuật cắt layer, thinning, texture</td><td>300.000 – 450.000đ</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="bst-svc-panel" data-reveal data-delay="2">
+          <div class="bst-svc-panel-head">
+            <div class="bst-svc-icon">🎨</div>
+            <div>
+              <div class="bst-svc-panel-name">Nhuộm & Highlight</div>
+              <div class="bst-svc-panel-sub">Color services</div>
+            </div>
+          </div>
+          <div class="bst-svc-panel-body">
+            <table class="bst-price-table">
+              <thead>
+                <tr><th>Dịch vụ</th><th>Mô tả</th><th>Giá</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Nhuộm 1 màu</td><td>Bao gồm công + thuốc nhuộm</td><td>300.000 – 500.000đ</td></tr>
+                <tr><td>Highlight / Balayage</td><td>Kỹ thuật sáng theo tầng</td><td>600.000 – 1.200.000đ</td></tr>
+                <tr><td>Nhuộm Fantasy Color</td><td>Màu cá tính: tím, xanh, hồng, bạch kim...</td><td>700.000 – 1.500.000đ</td></tr>
+                <tr><td>Ombre / Sombre</td><td>Chuyển màu gradient đẹp tự nhiên</td><td>800.000 – 1.400.000đ</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="bst-svc-panel" data-reveal data-delay="3">
+          <div class="bst-svc-panel-head">
+            <div class="bst-svc-icon">💆</div>
+            <div>
+              <div class="bst-svc-panel-name">Uốn, Duỗi & Phục hồi</div>
+              <div class="bst-svc-panel-sub">Treatment services</div>
+            </div>
+          </div>
+          <div class="bst-svc-panel-body">
+            <table class="bst-price-table">
+              <thead>
+                <tr><th>Dịch vụ</th><th>Mô tả</th><th>Giá</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Uốn xoăn</td><td>Uốn lạnh / nhiệt theo kiểu yêu cầu</td><td>400.000 – 800.000đ</td></tr>
+                <tr><td>Duỗi tóc</td><td>Duỗi thẳng / phồng chân tóc</td><td>400.000 – 900.000đ</td></tr>
+                <tr><td>Ép keratin</td><td>Tóc bóng mượt, giảm xơ rối lâu dài</td><td>600.000 – 1.200.000đ</td></tr>
+                <tr><td>Phục hồi tóc hư tổn</td><td>Liệu trình protein + keratin + collagen</td><td>250.000 – 500.000đ</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="bst-pink-line"></div>
+
+<!-- NAIL SERVICE SECTION -->
+<section class="sec-pad" id="nail" style="background:var(--bg-soft);">
+  <div class="wd-container">
+    <div class="row g-5 align-items-start flex-row-reverse">
+      <div class="col-lg-4" data-reveal>
+        <div class="bst-svc-icon" style="width:56px;height:56px;border-radius:12px;font-size:26px;margin-bottom:18px">💅</div>
+        <div class="bst-eyebrow">Nhóm 02</div>
+        <h2 class="bst-title">Nail<br><em>Art</em></h2>
+        <p class="bst-sub mb-4">Nghệ nhân nail với đôi tay khéo léo, tạo ra những bộ móng art độc đáo theo đúng sở thích của bạn.</p>
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80&auto=format&fit=crop" alt="Nail art" style="width:100%;border-radius:12px;object-fit:cover;aspect-ratio:4/3">
+        <a href="dat-lich.html" class="bst-btn-primary mt-4 d-inline-flex">Đặt lịch nail</a>
+      </div>
+      <div class="col-lg-8" data-reveal data-delay="1">
+        <div class="bst-svc-panel">
+          <div class="bst-svc-panel-head">
+            <div class="bst-svc-icon">💅</div>
+            <div>
+              <div class="bst-svc-panel-name">Sơn gel & Acrylic</div>
+              <div class="bst-svc-panel-sub">Basic nail services</div>
+            </div>
+          </div>
+          <div class="bst-svc-panel-body">
+            <table class="bst-price-table">
+              <thead>
+                <tr><th>Dịch vụ</th><th>Mô tả</th><th>Giá</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Sơn gel tay / chân</td><td>Gel màu cơ bản, bền màu 3-4 tuần</td><td>80.000 – 150.000đ</td></tr>
+                <tr><td>Sơn gel + hoa / hình</td><td>Vẽ thêm nail art đơn giản</td><td>150.000 – 250.000đ</td></tr>
+                <tr><td>Đắp acrylic / bột</td><td>Độ dài, độ bền cao</td><td>200.000 – 350.000đ</td></tr>
+                <tr><td>Tẩy gel / acrylic cũ</td><td>Tẩy nhẹ nhàng, không hại móng</td><td>80.000 – 120.000đ</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="bst-svc-panel" data-reveal data-delay="2">
+          <div class="bst-svc-panel-head">
+            <div class="bst-svc-icon">🌸</div>
+            <div>
+              <div class="bst-svc-panel-name">Nail Art nâng cao</div>
+              <div class="bst-svc-panel-sub">Advanced art services</div>
+            </div>
+          </div>
+          <div class="bst-svc-panel-body">
+            <table class="bst-price-table">
+              <thead>
+                <tr><th>Dịch vụ</th><th>Mô tả</th><th>Giá</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Nail art 3D</td><td>Hoa nổi, đá đính, charm, piercing</td><td>250.000 – 500.000đ</td></tr>
+                <tr><td>Nail concept full set</td><td>Full bộ theo chủ đề (anime, floral, abstract...)</td><td>400.000 – 800.000đ</td></tr>
+                <tr><td>Chrome / Mirror nail</td><td>Móng gương ánh kim hiệu ứng metallic</td><td>200.000 – 350.000đ</td></tr>
+                <tr><td>Gel x Builder</td><td>Độn builder gel tạo shape đẹp</td><td>300.000 – 500.000đ</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="bst-svc-panel" data-reveal data-delay="3">
+          <div class="bst-svc-panel-head">
+            <div class="bst-svc-icon">🛁</div>
+            <div>
+              <div class="bst-svc-panel-name">Chăm sóc móng & Spa tay chân</div>
+              <div class="bst-svc-panel-sub">Nail care & pedicure</div>
+            </div>
+          </div>
+          <div class="bst-svc-panel-body">
+            <table class="bst-price-table">
+              <thead>
+                <tr><th>Dịch vụ</th><th>Mô tả</th><th>Giá</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Manicure cơ bản</td><td>Cắt, giũa, đẩy da + sơn thường</td><td>80.000đ</td></tr>
+                <tr><td>Pedicure cơ bản</td><td>Ngâm chân, cắt, chà gót + sơn thường</td><td>100.000đ</td></tr>
+                <tr><td>Spa tay nâng cao</td><td>Tẩy da chết + dưỡng ẩm + massage tay</td><td>150.000 – 220.000đ</td></tr>
+                <tr><td>Spa chân nâng cao</td><td>Ngâm muối thảo mộc + chà gót + mask + massage</td><td>200.000 – 280.000đ</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="bst-pink-line"></div>
+
+<!-- MAKEUP SERVICE SECTION -->
+<section class="sec-pad" id="makeup" style="background:var(--bg);">
+  <div class="wd-container">
+    <div class="row g-5 align-items-start">
+      <div class="col-lg-4" data-reveal>
+        <div class="bst-svc-icon" style="width:56px;height:56px;border-radius:12px;font-size:26px;margin-bottom:18px">💄</div>
+        <div class="bst-eyebrow">Nhóm 03</div>
+        <h2 class="bst-title">Makeup<br><em>Professional</em></h2>
+        <p class="bst-sub mb-4">Makeup artist giàu kinh nghiệm, chuyên nghiệp trong nhiều phong cách — từ tự nhiên đến ấn tượng.</p>
+        <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&q=80&auto=format&fit=crop" alt="Makeup professional" style="width:100%;border-radius:12px;object-fit:cover;aspect-ratio:4/3">
+        <a href="dat-lich.html" class="bst-btn-primary mt-4 d-inline-flex">Đặt lịch makeup</a>
+      </div>
+      <div class="col-lg-8" data-reveal data-delay="1">
+        <div class="bst-svc-panel">
+          <div class="bst-svc-panel-head">
+            <div class="bst-svc-icon">💄</div>
+            <div>
+              <div class="bst-svc-panel-name">Trang điểm ngày thường & Tiệc</div>
+              <div class="bst-svc-panel-sub">Daily & party makeup</div>
+            </div>
+          </div>
+          <div class="bst-svc-panel-body">
+            <table class="bst-price-table">
+              <thead>
+                <tr><th>Dịch vụ</th><th>Mô tả</th><th>Giá</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Makeup ngày thường</td><td>Tự nhiên, nhẹ nhàng, tươi sáng</td><td>200.000 – 300.000đ</td></tr>
+                <tr><td>Makeup đi tiệc</td><td>Đẹp, sang trọng, bền suốt buổi tiệc</td><td>300.000 – 500.000đ</td></tr>
+                <tr><td>Makeup dự sự kiện</td><td>Chụp ảnh, hội nghị, dạ tiệc cao cấp</td><td>450.000 – 700.000đ</td></tr>
+                <tr><td>Makeup concept / Lookbook</td><td>Editorial, thương mại, mạng xã hội</td><td>600.000 – 1.200.000đ</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="bst-svc-panel" data-reveal data-delay="2">
+          <div class="bst-svc-panel-head">
+            <div class="bst-svc-icon">👰</div>
+            <div>
+              <div class="bst-svc-panel-name">Trang điểm Cô dâu</div>
+              <div class="bst-svc-panel-sub">Bridal makeup</div>
+            </div>
+          </div>
+          <div class="bst-svc-panel-body">
+            <table class="bst-price-table">
+              <thead>
+                <tr><th>Dịch vụ</th><th>Mô tả</th><th>Giá</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Makeup cô dâu buổi sáng</td><td>1 lần trang điểm cô dâu ngày cưới</td><td>800.000 – 1.200.000đ</td></tr>
+                <tr><td>Makeup cô dâu + tóc cô dâu</td><td>Trọn gói tóc + makeup đẹp</td><td>1.200.000 – 1.800.000đ</td></tr>
+                <tr><td>Thử makeup cô dâu</td><td>Thử trước ngày cưới, chỉnh style phù hợp</td><td>500.000 – 700.000đ</td></tr>
+                <tr><td>Phù dâu / phụ rể</td><td>Mỗi người</td><td>300.000 – 500.000đ</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="bst-svc-panel" data-reveal data-delay="3">
+          <div class="bst-svc-panel-head">
+            <div class="bst-svc-icon">👁</div>
+            <div>
+              <div class="bst-svc-panel-name">Mi & Lông mày</div>
+              <div class="bst-svc-panel-sub">Lash & brow services</div>
+            </div>
+          </div>
+          <div class="bst-svc-panel-body">
+            <table class="bst-price-table">
+              <thead>
+                <tr><th>Dịch vụ</th><th>Mô tả</th><th>Giá</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Nối mi classic</td><td>Mi tự nhiên, nhẹ nhàng</td><td>250.000 – 400.000đ</td></tr>
+                <tr><td>Nối mi volume</td><td>Mi dày dặn, phồng đẹp</td><td>350.000 – 600.000đ</td></tr>
+                <tr><td>Tỉa & tạo dáng lông mày</td><td>Tỉa + wax + vẽ dáng theo khuôn mặt</td><td>80.000 – 150.000đ</td></tr>
+                <tr><td>Uốn mi / Uốn lông mày</td><td>Giữ form đẹp tự nhiên lâu dài</td><td>180.000 – 280.000đ</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="bst-pink-line"></div>
+
+<!-- SKINCARE SERVICE SECTION -->
+<section class="sec-pad" id="skincare" style="background:var(--bg-soft);">
+  <div class="wd-container">
+    <div class="row g-5 align-items-start flex-row-reverse">
+      <div class="col-lg-4" data-reveal>
+        <div class="bst-svc-icon" style="width:56px;height:56px;border-radius:12px;font-size:26px;margin-bottom:18px">✨</div>
+        <div class="bst-eyebrow">Nhóm 04</div>
+        <h2 class="bst-title">Skincare<br><em>& Facial</em></h2>
+        <p class="bst-sub mb-4">Chăm sóc da bằng công nghệ hiện đại và sản phẩm cao cấp. Làn da khoẻ đẹp từ bên trong.</p>
+        <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=600&q=80&auto=format&fit=crop" alt="Skincare facial" style="width:100%;border-radius:12px;object-fit:cover;aspect-ratio:4/3">
+        <a href="dat-lich.html" class="bst-btn-primary mt-4 d-inline-flex">Đặt lịch skincare</a>
+      </div>
+      <div class="col-lg-8" data-reveal data-delay="1">
+        <div class="bst-svc-panel">
+          <div class="bst-svc-panel-head">
+            <div class="bst-svc-icon">✨</div>
+            <div>
+              <div class="bst-svc-panel-name">Facial & Chăm sóc da cơ bản</div>
+              <div class="bst-svc-panel-sub">Basic facial services</div>
+            </div>
+          </div>
+          <div class="bst-svc-panel-body">
+            <table class="bst-price-table">
+              <thead>
+                <tr><th>Dịch vụ</th><th>Mô tả</th><th>Giá</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Facial cơ bản</td><td>Tẩy trang + rửa mặt + xông hơi + đắp mặt nạ</td><td>200.000 – 300.000đ</td></tr>
+                <tr><td>Deep cleansing facial</td><td>Làm sạch sâu + nặn mụn đầu đen + mask</td><td>300.000 – 450.000đ</td></tr>
+                <tr><td>Facial sáng da</td><td>Vitamin C + niacinamide + LED ánh sáng</td><td>350.000 – 550.000đ</td></tr>
+                <tr><td>Facial cấp ẩm</td><td>HA + ceramide + mask sheetwave</td><td>300.000 – 450.000đ</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="bst-svc-panel" data-reveal data-delay="2">
+          <div class="bst-svc-panel-head">
+            <div class="bst-svc-icon">⚡</div>
+            <div>
+              <div class="bst-svc-panel-name">Điều trị da chuyên sâu</div>
+              <div class="bst-svc-panel-sub">Advanced skin treatments</div>
+            </div>
+          </div>
+          <div class="bst-svc-panel-body">
+            <table class="bst-price-table">
+              <thead>
+                <tr><th>Dịch vụ</th><th>Mô tả</th><th>Giá</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Điều trị mụn</td><td>Xử lý mụn viêm + dưỡng phục hồi + anti-bac</td><td>400.000 – 700.000đ</td></tr>
+                <tr><td>Peel da hoá học</td><td>AHA/BHA/Retinol peel làm mịn, đều màu da</td><td>500.000 – 900.000đ</td></tr>
+                <tr><td>Laser trẻ hoá</td><td>Công nghệ laser làm đều màu da, se khít lỗ chân lông</td><td>700.000 – 1.500.000đ</td></tr>
+                <tr><td>RF Lifting</td><td>Nâng cơ, làm săn chắc da bằng sóng radio</td><td>1.000.000 – 2.000.000đ</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="bst-svc-panel" data-reveal data-delay="3">
+          <div class="bst-svc-panel-head">
+            <div class="bst-svc-icon">🌿</div>
+            <div>
+              <div class="bst-svc-panel-name">Chăm sóc body</div>
+              <div class="bst-svc-panel-sub">Body care services</div>
+            </div>
+          </div>
+          <div class="bst-svc-panel-body">
+            <table class="bst-price-table">
+              <thead>
+                <tr><th>Dịch vụ</th><th>Mô tả</th><th>Giá</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Tẩy da chết body</td><td>Muối / đường / cà phê + dưỡng ẩm body</td><td>200.000 – 350.000đ</td></tr>
+                <tr><td>Triệt lông (Laser)</td><td>Nách / tay / chân / bikini — giá theo vùng</td><td>200.000 – 800.000đ</td></tr>
+                <tr><td>Waxing</td><td>Waxing nhanh, sạch, ít đau — theo vùng</td><td>80.000 – 250.000đ</td></tr>
+                <tr><td>Massage mặt</td><td>Massage thư giãn + lymphatic drainage</td><td>150.000 – 250.000đ</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="bst-pink-line"></div>
+
+<!-- COMBO SECTION -->
+<section class="sec-pad" id="combo" style="background:var(--bg);">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="bst-eyebrow">Combo ưu đãi</div>
+      <h2 class="bst-title">Kết hợp tiết kiệm <em>hơn</em></h2>
+      <p class="bst-sub mx-auto">Đặt combo ngay hôm nay để được giá ưu đãi nhất. Liên hệ để được tư vấn combo theo nhu cầu.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6" data-reveal data-delay="1">
+        <div class="bst-promo-card">
+          <span class="bst-promo-tag">Tiết kiệm 30%</span>
+          <div class="bst-promo-title">Combo Tóc + Nail</div>
+          <ul style="font-size:13px;color:var(--text-2);padding-left:16px;margin-bottom:16px;line-height:2">
+            <li>Cắt + nhuộm 1 màu</li>
+            <li>Phục hồi protein cơ bản</li>
+            <li>Sơn gel tay 10 móng</li>
+          </ul>
+          <div class="bst-promo-price">
+            <span class="bst-promo-new">590.000đ</span>
+            <span class="bst-promo-old">850.000đ</span>
+          </div>
+          <a href="dat-lich.html" class="bst-btn-primary" style="font-size:13px;padding:10px 22px">Đặt ngay</a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6" data-reveal data-delay="2">
+        <div class="bst-promo-card">
+          <span class="bst-promo-tag">Best Value</span>
+          <div class="bst-promo-title">Combo Skincare Full Day</div>
+          <ul style="font-size:13px;color:var(--text-2);padding-left:16px;margin-bottom:16px;line-height:2">
+            <li>Deep cleansing facial</li>
+            <li>LED light therapy</li>
+            <li>Đắp mask sáng da</li>
+            <li>Massage mặt thư giãn</li>
+          </ul>
+          <div class="bst-promo-price">
+            <span class="bst-promo-new">450.000đ</span>
+            <span class="bst-promo-old">620.000đ</span>
+          </div>
+          <a href="dat-lich.html" class="bst-btn-primary" style="font-size:13px;padding:10px 22px">Đặt ngay</a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6" data-reveal data-delay="3">
+        <div class="bst-promo-card">
+          <span class="bst-promo-tag">Glow Up</span>
+          <div class="bst-promo-title">Combo Glow Up Full</div>
+          <ul style="font-size:13px;color:var(--text-2);padding-left:16px;margin-bottom:16px;line-height:2">
+            <li>Cắt + sấy tạo kiểu</li>
+            <li>Makeup tự nhiên</li>
+            <li>Nail gel tay chân</li>
+            <li>Facial cấp ẩm cơ bản</li>
+          </ul>
+          <div class="bst-promo-price">
+            <span class="bst-promo-new">780.000đ</span>
+            <span class="bst-promo-old">1.150.000đ</span>
+          </div>
+          <a href="dat-lich.html" class="bst-btn-primary" style="font-size:13px;padding:10px 22px">Đặt ngay</a>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6" data-reveal data-delay="2">
+        <div class="bst-promo-card">
+          <span class="bst-promo-tag">Bride Package</span>
+          <div class="bst-promo-title">Gói Cô Dâu Trọn Gói</div>
+          <ul style="font-size:13px;color:var(--text-2);padding-left:16px;margin-bottom:16px;line-height:2">
+            <li>Makeup cô dâu chuyên nghiệp</li>
+            <li>Tóc cô dâu (tết / cuộn / thả)</li>
+            <li>Nail tay gel màu theo yêu cầu</li>
+            <li>Facial nhẹ + sáng da trước ngày cưới</li>
+          </ul>
+          <div class="bst-promo-price">
+            <span class="bst-promo-new">1.200.000đ</span>
+            <span class="bst-promo-old">1.800.000đ</span>
+          </div>
+          <a href="dat-lich.html" class="bst-btn-primary" style="font-size:13px;padding:10px 22px">Tư vấn ngay</a>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12" data-reveal data-delay="3">
+        <div class="bst-promo-card" style="height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:var(--accent-light);border-color:var(--border-pink)">
+          <div style="font-size:36px;margin-bottom:12px">🎀</div>
+          <div class="bst-promo-title">Combo theo yêu cầu riêng</div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.7;margin-bottom:20px">Liên hệ để được tư vấn combo phù hợp nhất với nhu cầu và ngân sách của bạn. Báo giá ngay!</p>
+          <a href="lien-he.html" class="bst-btn-primary">Liên hệ tư vấn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="bst-cta-section" data-reveal>
+  <div class="wd-container">
+    <div class="bst-eyebrow mx-auto d-block" style="text-align:center;width:fit-content;margin-bottom:18px">Bắt đầu ngay</div>
+    <h2 class="bst-cta-title">Đã chọn được dịch vụ?<br><em>Đặt lịch ngay thôi!</em></h2>
+    <p class="bst-cta-sub">Đặt lịch online dễ dàng, chọn stylist yêu thích, xác nhận lịch hẹn ngay qua hệ thống hoặc Zalo.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="dat-lich.html" class="bst-btn-primary">Đặt lịch ngay</a>
+      <a href="lien-he.html" class="bst-btn-outline">Liên hệ tư vấn</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bst-footer">
+  <div class="wd-container">
+    <div class="row g-5">
+      <div class="col-lg-4 col-md-6">
+        <a href="index.html" class="bst-footer-logo">
+          <span style="width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0"></span>
+          [TÊN STUDIO]<span> Studio</span>
+        </a>
+        <p class="bst-footer-tagline">Beauty Studio tổng hợp — Tóc, Nail, Makeup, Skincare chuyên nghiệp tại [THÀNH PHỐ].</p>
+        <div class="bst-social-row">
+          <a href="#" class="bst-social-btn" aria-label="Facebook" rel="noopener noreferrer" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="bst-social-btn" aria-label="Instagram" rel="noopener noreferrer" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="bst-social-btn" aria-label="TikTok" rel="noopener noreferrer" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15.2a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.27 8.27 0 0 0 4.83 1.54v-3.4a4.85 4.85 0 0 1-1.06-.14z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-3 col-6">
+        <div class="bst-footer-title">Dịch vụ</div>
+        <ul class="bst-footer-links">
+          <li><a href="#toc">Hair Styling</a></li>
+          <li><a href="#nail">Nail Art</a></li>
+          <li><a href="#makeup">Makeup</a></li>
+          <li><a href="#skincare">Skincare</a></li>
+          <li><a href="#combo">Combo ưu đãi</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-md-3 col-6">
+        <div class="bst-footer-title">Liên kết</div>
+        <ul class="bst-footer-links">
+          <li><a href="index.html">Trang chủ</a></li>
+          <li><a href="dich-vu.html">Dịch vụ & Giá</a></li>
+          <li><a href="dat-lich.html">Đặt lịch</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="bst-footer-title">Liên hệ</div>
+        <div class="bst-footer-contact-item">
+          <span>📍</span>
+          <span>[SỐ NHÀ, TÊN ĐƯỜNG], [PHƯỜNG/XÃ], [THÀNH PHỐ]</span>
+        </div>
+        <div class="bst-footer-contact-item">
+          <span>📞</span><span><a href="tel:0900000000">0900 000 000</a></span>
+        </div>
+        <div class="bst-footer-contact-item">
+          <span>🕐</span>
+          <span>Thứ 2 – Thứ 7: 8:00 – 20:00<br>Chủ nhật: 9:00 – 18:00</span>
+        </div>
+      </div>
+    </div>
+    <div class="bst-footer-bottom">
+      <div class="bst-footer-copy">© 2024 <a href="index.html">[TÊN STUDIO] Beauty Studio</a>. All rights reserved.</div>
+      <div class="bst-footer-copy">Thiết kế bởi <a href="https://webdrop.vn" target="_blank" rel="noopener noreferrer">webdrop.vn</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ZALO FLOAT -->
+<a href="https://zalo.me/0900000000" class="bst-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="48" height="48" rx="24" fill="#0068FF"/>
+    <text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="14" font-weight="700" font-family="Arial">Zalo</text>
+  </svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// === Reveal animation ===
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+// === Nav scroll ===
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+}, { passive: true });
+
+// === Mobile hamburger ===
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+burger.addEventListener('click', () => {
+  const isOpen = mob.classList.toggle('open');
+  burger.classList.toggle('open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && mob.classList.contains('open')) {
+    mob.classList.remove('open');
+    burger.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
+// === Anchor nav active highlight on scroll ===
+const anchorLinks = document.querySelectorAll('.bst-anchor-link');
+const sections = document.querySelectorAll('section[id]');
+const anchorObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      anchorLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+      });
+    }
+  });
+}, { threshold: 0.3 });
+sections.forEach(s => anchorObs.observe(s));
+</script>
+</body>
+</html>

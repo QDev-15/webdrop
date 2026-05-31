@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trải Nghiệm & Gói Spa — [TÊN SPA] Luxury</title>
+<meta name="description" content="Khám phá đầy đủ các gói spa cao cấp tại [TÊN SPA]: Spa Day Package, Couple Package, liệu trình đặc biệt và giá theo gói. Đặt lịch ngay.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="nav" data-scroll-nav>
+  <div class="sl-nav-inner">
+    <a class="sl-logo" href="index.html">
+      <span class="sl-logo-mark">✦</span>
+      <span><span class="sl-logo-name">[Tên Spa]</span>&nbsp;Luxury</span>
+    </a>
+    <div class="sl-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="dich-vu.html" class="active">Trải nghiệm</a>
+      <a href="dat-lich.html">Đặt gói</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <a href="dat-lich.html" class="sl-nav-cta">Đặt gói ngay</a>
+    <button class="sl-burger" id="navBurger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="sl-nav-mob" id="navMob" role="dialog" aria-modal="true" aria-label="Mobile menu">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Trải nghiệm</a>
+  <a href="dat-lich.html">Đặt gói</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="sl-nm-cta">Đặt gói ngay</a>
+</div>
+
+<!-- ══ PAGE HERO ══ -->
+<div class="sl-page-hero">
+  <div class="sl-page-hero-line"></div>
+  <div class="wd-container">
+    <div class="sl-ph-badge">
+      <span class="sl-ph-line"></span>
+      Trải nghiệm & Gói
+      <span class="sl-ph-line"></span>
+    </div>
+    <h1 class="sl-ph-title">Gói spa & <em>liệu trình</em></h1>
+    <p class="sl-ph-sub">Từ trải nghiệm nửa ngày đến spa day package toàn diện — chọn gói phù hợp với nhu cầu của bạn.</p>
+  </div>
+</div>
+
+<!-- ══ SPA DAY PACKAGES — GRID-CARDS ══ -->
+<section style="background:var(--bg);" class="sl-sec-pad">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <span class="sl-eyebrow-dark">Gói spa trọn ngày</span>
+      <h2 class="sl-title-dark">Spa Day <strong>Packages</strong></h2>
+      <p class="sl-sub-dark mx-auto">Tận hưởng trọn vẹn một ngày tại resort — bao gồm tất cả tiện ích và nhiều liệu trình theo lựa chọn.</p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Essential Day -->
+      <div class="col-lg-4 col-md-6" data-reveal>
+        <div class="sl-dv-pkg-card">
+          <div class="sl-dv-pkg-img">
+            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=700&q=75&auto=format&fit=crop" alt="Essential Spa Day Package — gói spa cơ bản trọn ngày" loading="lazy">
+            <div class="sl-dv-pkg-img-overlay"></div>
+          </div>
+          <div class="sl-dv-pkg-body">
+            <div class="sl-dv-pkg-eyebrow">Spa Day</div>
+            <h3 class="sl-dv-pkg-title">Essential Day</h3>
+            <p class="sl-dv-pkg-desc">Trải nghiệm spa trọn buổi — lý tưởng cho lần đầu ghé thăm hoặc ngày thư giãn đơn giản, tinh tế.</p>
+            <ul class="sl-dv-pkg-features">
+              <li>Sử dụng hồ bơi & steam room</li>
+              <li>2 liệu trình tự chọn (60 phút/liệu trình)</li>
+              <li>Bộ amenity cao cấp</li>
+              <li>Trà thảo mộc & healthy snack</li>
+            </ul>
+            <div class="sl-dv-pkg-footer">
+              <div class="sl-dv-pkg-price">2.400.000đ <span>/ người</span></div>
+              <a href="dat-lich.html" class="sl-btn-outline" style="font-size:12px;padding:9px 18px">Đặt ngay</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Premium Day -->
+      <div class="col-lg-4 col-md-6" data-reveal data-delay="1">
+        <div class="sl-dv-pkg-card sl-dv-featured">
+          <div class="sl-dv-pkg-img">
+            <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=700&q=75&auto=format&fit=crop" alt="Premium Spa Day Package — gói spa cao cấp trọn ngày" loading="lazy">
+            <div class="sl-dv-pkg-img-overlay"></div>
+          </div>
+          <div class="sl-dv-pkg-body">
+            <div class="sl-dv-pkg-eyebrow">✦ Phổ biến nhất</div>
+            <h3 class="sl-dv-pkg-title">Premium Day Retreat</h3>
+            <p class="sl-dv-pkg-desc">Trọn ngày từ 9 giờ sáng đến 8 giờ tối — tất cả tiện ích, 3 liệu trình và bữa ăn healthy.</p>
+            <ul class="sl-dv-pkg-features">
+              <li>Hồ bơi vô cực, sauna, steam room</li>
+              <li>3 liệu trình signature (tự chọn)</li>
+              <li>Bữa trưa tại Garden Restaurant</li>
+              <li>Phòng nghỉ riêng trong ngày</li>
+              <li>Amenity set & robe cao cấp</li>
+            </ul>
+            <div class="sl-dv-pkg-footer">
+              <div class="sl-dv-pkg-price">3.900.000đ <span>/ người</span></div>
+              <a href="dat-lich.html" class="sl-btn-gold" style="font-size:12px;padding:9px 18px">Đặt ngay</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIP Day -->
+      <div class="col-lg-4 col-md-6" data-reveal data-delay="2">
+        <div class="sl-dv-pkg-card">
+          <div class="sl-dv-pkg-img">
+            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=700&q=75&auto=format&fit=crop" alt="VIP Spa Day Package — gói spa VIP với villa riêng" loading="lazy">
+            <div class="sl-dv-pkg-img-overlay"></div>
+          </div>
+          <div class="sl-dv-pkg-body">
+            <div class="sl-dv-pkg-eyebrow">VIP Exclusive</div>
+            <h3 class="sl-dv-pkg-title">Royal VIP Day</h3>
+            <p class="sl-dv-pkg-desc">Trải nghiệm đỉnh cao — villa riêng, butler cá nhân phục vụ, liệu trình không giới hạn suốt ngày.</p>
+            <ul class="sl-dv-pkg-features">
+              <li>Villa spa riêng biệt (full day)</li>
+              <li>Butler cá nhân chuyên biệt</li>
+              <li>Liệu trình không giới hạn</li>
+              <li>Fine dining 2 bữa</li>
+              <li>Welcome gift & champagne</li>
+            </ul>
+            <div class="sl-dv-pkg-footer">
+              <div class="sl-dv-pkg-price" style="font-size:16px">Liên hệ báo giá</div>
+              <a href="lien-he.html" class="sl-btn-outline" style="font-size:12px;padding:9px 18px">Tư vấn</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ COUPLE PACKAGES ══ -->
+<section style="background:var(--warm);" class="sl-sec-pad">
+  <div class="wd-container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5" data-reveal>
+        <span class="sl-eyebrow-lt">Dành cho cặp đôi</span>
+        <h2 class="sl-title-lt">Couple <strong>Packages</strong></h2>
+        <p class="sl-sub-lt">Không gian riêng tư, liệu trình song hành và những khoảnh khắc đáng nhớ dành riêng cho hai bạn.</p>
+        <div class="sl-gold-divider"></div>
+        <div class="row g-3 mt-2">
+          <div class="col-6">
+            <div style="padding:16px;background:#fff;border-radius:10px;border:1px solid var(--warm-border);">
+              <div style="font-size:22px;margin-bottom:6px">🌹</div>
+              <div style="font-size:13px;font-weight:500;color:var(--text-inv);margin-bottom:4px">Phòng couple</div>
+              <div style="font-size:12px;color:var(--text-inv-2);font-weight:300">Không gian riêng tư</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="padding:16px;background:#fff;border-radius:10px;border:1px solid var(--warm-border);">
+              <div style="font-size:22px;margin-bottom:6px">🛁</div>
+              <div style="font-size:13px;font-weight:500;color:var(--text-inv);margin-bottom:4px">Bồn tắm hoa</div>
+              <div style="font-size:12px;color:var(--text-inv-2);font-weight:300">Hoa hồng tươi</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="padding:16px;background:#fff;border-radius:10px;border:1px solid var(--warm-border);">
+              <div style="font-size:22px;margin-bottom:6px">🕯️</div>
+              <div style="font-size:13px;font-weight:500;color:var(--text-inv);margin-bottom:4px">Candlelight</div>
+              <div style="font-size:12px;color:var(--text-inv-2);font-weight:300">Bữa tối lãng mạn</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="padding:16px;background:#fff;border-radius:10px;border:1px solid var(--warm-border);">
+              <div style="font-size:22px;margin-bottom:6px">🍾</div>
+              <div style="font-size:13px;font-weight:500;color:var(--text-inv);margin-bottom:4px">Welcome gift</div>
+              <div style="font-size:12px;color:var(--text-inv-2);font-weight:300">Champagne & hoa</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7" data-reveal data-delay="1">
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <!-- Couple Sunset -->
+          <div style="background:#fff;border:1px solid var(--warm-border);border-radius:14px;padding:24px;display:flex;gap:20px;align-items:flex-start;">
+            <div style="font-size:32px;flex-shrink:0">🌅</div>
+            <div style="flex:1;">
+              <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:6px;">
+                <h3 style="font-size:18px;font-weight:500;color:var(--text-inv);margin:0;letter-spacing:-.3px">Couple Sunset</h3>
+                <span style="font-size:20px;font-weight:300;color:var(--accent);letter-spacing:-1px">3.200.000đ<span style="font-size:11px;color:var(--text-inv-2);font-weight:300"> / cặp</span></span>
+              </div>
+              <p style="font-size:13px;color:var(--text-inv-2);font-weight:300;line-height:1.7;margin-bottom:10px">Buổi chiều tà đến tối — massage song hành 90 phút, bồn tắm hoa hồng và bữa tối nhẹ tại khu vườn.</p>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <span style="font-size:10px;color:var(--accent);border:1px solid rgba(201,165,90,.3);padding:3px 10px;border-radius:3px">3 tiếng</span>
+                <span style="font-size:10px;color:var(--accent);border:1px solid rgba(201,165,90,.3);padding:3px 10px;border-radius:3px">Buổi chiều</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Couple Sanctuary -->
+          <div style="background:var(--bg);border:1px solid var(--border-gold);border-radius:14px;padding:24px;display:flex;gap:20px;align-items:flex-start;">
+            <div style="font-size:32px;flex-shrink:0">✦</div>
+            <div style="flex:1;">
+              <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:6px;">
+                <div>
+                  <h3 style="font-size:18px;font-weight:500;color:var(--text);margin:0;letter-spacing:-.3px">Couple Sanctuary</h3>
+                  <span style="font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:2px">★ Signature package</span>
+                </div>
+                <span style="font-size:20px;font-weight:300;color:var(--accent);letter-spacing:-1px">4.500.000đ<span style="font-size:11px;color:var(--text-2);font-weight:300"> / cặp</span></span>
+              </div>
+              <p style="font-size:13px;color:var(--text-2);font-weight:300;line-height:1.7;margin-bottom:10px">Trọn ngày từ sáng đến tối — phòng couple riêng, liệu trình song hành, bồn tắm hoa và bữa tối fine dining candlelight.</p>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <span style="font-size:10px;color:var(--accent);border:1px solid rgba(201,165,90,.3);padding:3px 10px;border-radius:3px">8 tiếng</span>
+                <span style="font-size:10px;color:var(--accent);border:1px solid rgba(201,165,90,.3);padding:3px 10px;border-radius:3px">Phòng riêng</span>
+                <span style="font-size:10px;color:var(--accent);border:1px solid rgba(201,165,90,.3);padding:3px 10px;border-radius:3px">Candlelight dinner</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Couple Weekend -->
+          <div style="background:#fff;border:1px solid var(--warm-border);border-radius:14px;padding:24px;display:flex;gap:20px;align-items:flex-start;">
+            <div style="font-size:32px;flex-shrink:0">🌙</div>
+            <div style="flex:1;">
+              <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:6px;">
+                <h3 style="font-size:18px;font-weight:500;color:var(--text-inv);margin:0;letter-spacing:-.3px">Couple Weekend Escape</h3>
+                <span style="font-size:20px;font-weight:300;color:var(--accent);letter-spacing:-1px">8.500.000đ<span style="font-size:11px;color:var(--text-inv-2);font-weight:300"> / cặp</span></span>
+              </div>
+              <p style="font-size:13px;color:var(--text-inv-2);font-weight:300;line-height:1.7;margin-bottom:10px">2 ngày cuối tuần — villa riêng tư, 6 liệu trình cho 2 người, bữa ăn fine dining và trải nghiệm yoga buổi sáng.</p>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <span style="font-size:10px;color:var(--accent);border:1px solid rgba(201,165,90,.3);padding:3px 10px;border-radius:3px">2 ngày</span>
+                <span style="font-size:10px;color:var(--accent);border:1px solid rgba(201,165,90,.3);padding:3px 10px;border-radius:3px">Villa riêng</span>
+                <span style="font-size:10px;color:var(--accent);border:1px solid rgba(201,165,90,.3);padding:3px 10px;border-radius:3px">Yoga sáng</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-end mt-2">
+            <a href="dat-lich.html" class="sl-btn-gold">Đặt gói couple ngay →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LIỆU TRÌNH ĐẶC BIỆT — Full list ══ -->
+<section style="background:var(--bg);" class="sl-sec-pad">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <span class="sl-eyebrow-dark">Bảng giá đầy đủ</span>
+      <h2 class="sl-title-dark">Tất cả <strong>liệu trình</strong></h2>
+      <p class="sl-sub-dark mx-auto">Chọn từng liệu trình rời hoặc kết hợp nhiều liệu trình trong gói spa day để tiết kiệm hơn.</p>
+    </div>
+
+    <!-- Body Treatments -->
+    <div class="mb-4" data-reveal>
+      <div style="font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:3px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border-gold);">
+        Chăm sóc toàn thân
+      </div>
+      <div class="sl-treat-list">
+        <div class="sl-treat-row">
+          <div class="sl-treat-icon">🪷</div>
+          <div class="sl-treat-body">
+            <div class="sl-treat-name">Royal Lotus Body Wrap</div>
+            <div class="sl-treat-meta">
+              <span class="sl-treat-tag">⏱ 90 phút</span>
+              <span class="sl-treat-tag">Thảo mộc thiên nhiên</span>
+              <span class="sl-treat-tag">Toàn thân</span>
+            </div>
+          </div>
+          <div class="sl-treat-price-col">
+            <div class="sl-treat-price">2.500.000đ</div>
+            <div class="sl-treat-per">/ người</div>
+          </div>
+        </div>
+        <div class="sl-treat-row">
+          <div class="sl-treat-icon">🪨</div>
+          <div class="sl-treat-body">
+            <div class="sl-treat-name">Volcanic Stone Massage</div>
+            <div class="sl-treat-meta">
+              <span class="sl-treat-tag">⏱ 75 phút</span>
+              <span class="sl-treat-tag">Đá núi lửa</span>
+              <span class="sl-treat-tag">Lưng & toàn thân</span>
+            </div>
+          </div>
+          <div class="sl-treat-price-col">
+            <div class="sl-treat-price">1.900.000đ</div>
+            <div class="sl-treat-per">/ người</div>
+          </div>
+        </div>
+        <div class="sl-treat-row">
+          <div class="sl-treat-icon">🌿</div>
+          <div class="sl-treat-body">
+            <div class="sl-treat-name">Balinese Full Body Massage</div>
+            <div class="sl-treat-meta">
+              <span class="sl-treat-tag">⏱ 60 phút</span>
+              <span class="sl-treat-tag">Bali style</span>
+              <span class="sl-treat-tag">Toàn thân</span>
+            </div>
+          </div>
+          <div class="sl-treat-price-col">
+            <div class="sl-treat-price">1.400.000đ</div>
+            <div class="sl-treat-per">/ người</div>
+          </div>
+        </div>
+        <div class="sl-treat-row">
+          <div class="sl-treat-icon">💆</div>
+          <div class="sl-treat-body">
+            <div class="sl-treat-name">Deep Tissue Muscle Release</div>
+            <div class="sl-treat-meta">
+              <span class="sl-treat-tag">⏱ 90 phút</span>
+              <span class="sl-treat-tag">Deep tissue</span>
+              <span class="sl-treat-tag">Cơ bắp & khớp</span>
+            </div>
+          </div>
+          <div class="sl-treat-price-col">
+            <div class="sl-treat-price">1.700.000đ</div>
+            <div class="sl-treat-per">/ người</div>
+          </div>
+        </div>
+        <div class="sl-treat-row">
+          <div class="sl-treat-icon">🛁</div>
+          <div class="sl-treat-body">
+            <div class="sl-treat-name">Rose Petal Bath Ritual</div>
+            <div class="sl-treat-meta">
+              <span class="sl-treat-tag">⏱ 45 phút</span>
+              <span class="sl-treat-tag">Hoa hồng tươi</span>
+              <span class="sl-treat-tag">Thư giãn sâu</span>
+            </div>
+          </div>
+          <div class="sl-treat-price-col">
+            <div class="sl-treat-price">980.000đ</div>
+            <div class="sl-treat-per">/ người</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Facial Treatments -->
+    <div class="mb-4" data-reveal>
+      <div style="font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:3px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border-gold);">
+        Chăm sóc da mặt
+      </div>
+      <div class="sl-treat-list">
+        <div class="sl-treat-row">
+          <div class="sl-treat-icon">✨</div>
+          <div class="sl-treat-body">
+            <div class="sl-treat-name">Gold 24K Facial Treatment</div>
+            <div class="sl-treat-meta">
+              <span class="sl-treat-tag">⏱ 75 phút</span>
+              <span class="sl-treat-tag">Vàng 24K</span>
+              <span class="sl-treat-tag">Anti-aging</span>
+            </div>
+          </div>
+          <div class="sl-treat-price-col">
+            <div class="sl-treat-price">2.200.000đ</div>
+            <div class="sl-treat-per">/ người</div>
+          </div>
+        </div>
+        <div class="sl-treat-row">
+          <div class="sl-treat-icon">💡</div>
+          <div class="sl-treat-body">
+            <div class="sl-treat-name">LED Light Therapy Facial</div>
+            <div class="sl-treat-meta">
+              <span class="sl-treat-tag">⏱ 60 phút</span>
+              <span class="sl-treat-tag">LED therapy</span>
+              <span class="sl-treat-tag">Tái tạo da</span>
+            </div>
+          </div>
+          <div class="sl-treat-price-col">
+            <div class="sl-treat-price">1.600.000đ</div>
+            <div class="sl-treat-per">/ người</div>
+          </div>
+        </div>
+        <div class="sl-treat-row">
+          <div class="sl-treat-icon">🌊</div>
+          <div class="sl-treat-body">
+            <div class="sl-treat-name">Hydra Boost Facial</div>
+            <div class="sl-treat-meta">
+              <span class="sl-treat-tag">⏱ 50 phút</span>
+              <span class="sl-treat-tag">Cấp ẩm sâu</span>
+              <span class="sl-treat-tag">Hyaluronic</span>
+            </div>
+          </div>
+          <div class="sl-treat-price-col">
+            <div class="sl-treat-price">1.200.000đ</div>
+            <div class="sl-treat-per">/ người</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detox & Wellness -->
+    <div data-reveal>
+      <div style="font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:3px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border-gold);">
+        Detox & Wellness
+      </div>
+      <div class="sl-treat-list">
+        <div class="sl-treat-row">
+          <div class="sl-treat-icon">🌸</div>
+          <div class="sl-treat-body">
+            <div class="sl-treat-name">Royal Detox Ritual (Signature)</div>
+            <div class="sl-treat-meta">
+              <span class="sl-treat-tag">⏱ 120 phút</span>
+              <span class="sl-treat-tag">Toàn thân</span>
+              <span class="sl-treat-tag">Đá nóng + thảo mộc</span>
+            </div>
+          </div>
+          <div class="sl-treat-price-col">
+            <div class="sl-treat-price">2.800.000đ</div>
+            <div class="sl-treat-per">/ người</div>
+          </div>
+        </div>
+        <div class="sl-treat-row">
+          <div class="sl-treat-icon">🧘</div>
+          <div class="sl-treat-body">
+            <div class="sl-treat-name">Yoga & Meditation Session</div>
+            <div class="sl-treat-meta">
+              <span class="sl-treat-tag">⏱ 60 phút</span>
+              <span class="sl-treat-tag">Ngoài trời</span>
+              <span class="sl-treat-tag">Mindfulness</span>
+            </div>
+          </div>
+          <div class="sl-treat-price-col">
+            <div class="sl-treat-price">750.000đ</div>
+            <div class="sl-treat-per">/ người</div>
+          </div>
+        </div>
+        <div class="sl-treat-row">
+          <div class="sl-treat-icon">💊</div>
+          <div class="sl-treat-body">
+            <div class="sl-treat-name">Wellness Consultation</div>
+            <div class="sl-treat-meta">
+              <span class="sl-treat-tag">⏱ 30 phút</span>
+              <span class="sl-treat-tag">Tư vấn chuyên gia</span>
+              <span class="sl-treat-tag">Miễn phí khi đặt gói</span>
+            </div>
+          </div>
+          <div class="sl-treat-price-col">
+            <div class="sl-treat-price">Miễn phí</div>
+            <div class="sl-treat-per">khi đặt gói</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA BOOKING ══ -->
+<section class="sl-cta-sec">
+  <div class="sl-cta-overlay"></div>
+  <div class="sl-cta-bg"></div>
+  <div class="wd-container sl-cta-content">
+    <div data-reveal>
+      <span class="sl-eyebrow-dark" style="margin-bottom:24px">Sẵn sàng trải nghiệm?</span>
+      <h2 class="sl-cta-title">Đặt gói <em>ngay hôm nay</em></h2>
+      <p class="sl-cta-sub">Đội ngũ tư vấn sẽ liên hệ xác nhận trong vòng 2 giờ và hỗ trợ bạn chọn gói phù hợp nhất.</p>
+      <div class="d-flex gap-3 justify-content-center flex-wrap">
+        <a href="dat-lich.html" class="sl-btn-gold">Điền form đặt gói →</a>
+        <a href="lien-he.html" class="sl-btn-outline">Gọi tư vấn ngay</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="sl-footer">
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-lg-4 col-md-6">
+        <div class="sl-ft-logo"><strong>[Tên Spa]</strong> <em>Luxury</em></div>
+        <p class="sl-ft-desc">Resort Spa 5 sao — nơi thư giãn đỉnh cao giữa thiên nhiên tĩnh lặng.</p>
+        <div class="sl-ft-socials">
+          <a href="#" class="sl-ft-soc" rel="noopener noreferrer" aria-label="Facebook">f</a>
+          <a href="#" class="sl-ft-soc" rel="noopener noreferrer" aria-label="Instagram">in</a>
+          <a href="#" class="sl-ft-soc" rel="noopener noreferrer" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-3 col-6">
+        <div class="sl-ft-col-title">Dịch vụ</div>
+        <div class="sl-ft-links">
+          <a href="dich-vu.html">Liệu trình signature</a>
+          <a href="dich-vu.html">Gói couple</a>
+          <a href="dich-vu.html">Spa day retreat</a>
+          <a href="dich-vu.html">Chăm sóc da</a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-3 col-6">
+        <div class="sl-ft-col-title">Khám phá</div>
+        <div class="sl-ft-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="dich-vu.html">Trải nghiệm</a>
+          <a href="dat-lich.html">Đặt gói</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="sl-ft-col-title">Thông tin</div>
+        <div class="sl-ft-links">
+          <a href="tel:[SỐ ĐIỆN THOẠI]">[SỐ ĐIỆN THOẠI]</a>
+          <a href="mailto:[EMAIL]">[EMAIL]</a>
+          <span style="color:var(--text-3);font-weight:300;font-size:13px">[ĐỊA CHỈ RESORT/SPA]</span>
+        </div>
+      </div>
+    </div>
+    <div class="sl-ft-bottom">
+      <span class="sl-ft-copy">© 2025 [Tên Spa] Luxury Resort Spa. Mọi quyền được bảo lưu.</span>
+      <div class="sl-ft-gold-line"></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ ZALO FLOAT ══ -->
+<div class="sl-zf">
+  <span class="sl-zf-tip">Nhắn tin Zalo</span>
+  <a href="https://zalo.me/[SỐ_ZALO]" class="sl-zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo">
+    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M13 2C7.477 2 3 6.477 3 12c0 2.136.67 4.116 1.808 5.74L3 23l5.418-1.764A9.953 9.953 0 0013 22c5.523 0 10-4.477 10-10S18.523 2 13 2z" fill="white"/>
+      <path d="M8.5 10h3m-3 3h2m2-3v3m2-3v3" stroke="#0068FF" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const nav = document.getElementById('nav');
+if (nav) {
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('sl-nav-scrolled', window.scrollY > 60);
+  }, { passive: true });
+}
+
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const isOpen = mob.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+  mob.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+}
+
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[TÊN SPA] — Resort Spa Cao Cấp 5 Sao</title>
+<meta name="description" content="[TÊN SPA] — Trải nghiệm thư giãn đỉnh cao tại resort spa 5 sao. Liệu trình massage, chăm sóc toàn thân, hồ bơi vô cực và không gian yên tĩnh giữa thiên nhiên.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- ══ FLOATING PILL NAV ══ -->
+<nav id="nav" data-scroll-nav>
+  <div class="sl-nav-inner">
+    <a class="sl-logo" href="index.html">
+      <span class="sl-logo-mark">✦</span>
+      <span><span class="sl-logo-name">[Tên Spa]</span>&nbsp;Luxury</span>
+    </a>
+    <div class="sl-nav-links">
+      <a href="index.html" class="active">Trang chủ</a>
+      <a href="dich-vu.html">Trải nghiệm</a>
+      <a href="dat-lich.html">Đặt gói</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <a href="dat-lich.html" class="sl-nav-cta">Đặt gói ngay</a>
+    <button class="sl-burger" id="navBurger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="sl-nav-mob" id="navMob" role="dialog" aria-modal="true" aria-label="Mobile menu">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Trải nghiệm</a>
+  <a href="dat-lich.html">Đặt gói</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="sl-nm-cta">Đặt gói ngay</a>
+</div>
+
+<!-- ══ HERO — Full-Screen Overlay, text centered ══ -->
+<section class="sl-hero">
+  <div class="sl-hero-bg" id="heroBg"></div>
+  <div class="sl-hero-veil"></div>
+
+  <div class="sl-hero-content" data-reveal>
+    <div class="sl-hero-badge">
+      <span class="sl-hero-line"></span>
+      Resort Spa 5 Sao
+      <span class="sl-hero-line"></span>
+    </div>
+    <h1 class="sl-hero-title">
+      Nơi thời gian<br>
+      <em>dừng lại</em>
+    </h1>
+    <p class="sl-hero-sub">
+      Trải nghiệm nghỉ dưỡng thư giãn toàn diện — liệu trình cao cấp, không gian thiên nhiên và dịch vụ 5 sao dành riêng cho bạn.
+    </p>
+    <div class="sl-hero-actions">
+      <a href="dat-lich.html" class="sl-btn-gold">Đặt gói trải nghiệm →</a>
+      <a href="dich-vu.html" class="sl-btn-outline">Xem liệu trình</a>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="sl-hero-scroll">
+    <div class="sl-hero-scroll-dot"></div>
+    <span>Scroll</span>
+  </div>
+
+  <!-- Stats bar at bottom -->
+  <div class="sl-hero-stats">
+    <div class="sl-hstat">
+      <div class="sl-hstat-num" data-counter="2000" data-suffix="+">2000+</div>
+      <div class="sl-hstat-label">Khách hài lòng</div>
+    </div>
+    <div class="sl-hstat">
+      <div class="sl-hstat-num" data-counter="12" data-suffix="">12</div>
+      <div class="sl-hstat-label">Liệu trình cao cấp</div>
+    </div>
+    <div class="sl-hstat">
+      <div class="sl-hstat-num" data-counter="5" data-suffix="★">5★</div>
+      <div class="sl-hstat-label">Đánh giá trung bình</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SIGNATURE EXPERIENCES — ALTERNATING-STRIPS ══ -->
+<section class="sl-signature-bg">
+  <div class="wd-container sl-sec-pad">
+    <div class="text-center mb-5" data-reveal>
+      <span class="sl-eyebrow-dark">Trải nghiệm đặc trưng</span>
+      <h2 class="sl-title-dark">Liệu trình <em>signature</em><br><strong>của chúng tôi</strong></h2>
+      <p class="sl-sub-dark mx-auto">Mỗi liệu trình được thiết kế riêng biệt — kết hợp tinh hoa phương Đông và kỹ thuật spa hiện đại quốc tế.</p>
+    </div>
+  </div>
+
+  <!-- Item 1: media trái, text phải -->
+  <div class="sl-sig-item" data-reveal>
+    <div class="sl-sig-media">
+      <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=900&q=75&auto=format&fit=crop" alt="Royal Detox Ritual — liệu trình thanh lọc toàn thân cao cấp" loading="lazy">
+      <div class="sl-sig-media-overlay"></div>
+      <div class="sl-sig-duration">120 phút</div>
+    </div>
+    <div class="sl-sig-content">
+      <div class="sl-sig-num">01 / 04</div>
+      <h3 class="sl-sig-name">Royal<br><strong>Detox Ritual</strong></h3>
+      <p class="sl-sig-desc">Liệu trình thanh lọc sâu toàn thân với thảo mộc quý hiếm, đá nóng và dầu thiên nhiên nguyên chất. Phục hồi năng lượng, tái tạo cơ thể từ bên trong.</p>
+      <div class="sl-sig-tags">
+        <span class="sl-sig-tag">Detox</span>
+        <span class="sl-sig-tag">Đá nóng</span>
+        <span class="sl-sig-tag">Thảo mộc</span>
+        <span class="sl-sig-tag">Toàn thân</span>
+      </div>
+      <div class="sl-sig-price">Từ <strong>2.800.000</strong> đ / người</div>
+      <div class="mt-4">
+        <a href="dat-lich.html" class="sl-btn-outline">Đặt liệu trình này</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Item 2: media phải, text trái -->
+  <div class="sl-sig-item sl-sig-reverse" data-reveal>
+    <div class="sl-sig-media">
+      <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=900&q=75&auto=format&fit=crop" alt="Couple Sanctuary — gói spa dành cho cặp đôi" loading="lazy">
+      <div class="sl-sig-media-overlay"></div>
+      <div class="sl-sig-duration">180 phút</div>
+    </div>
+    <div class="sl-sig-content">
+      <div class="sl-sig-num">02 / 04</div>
+      <h3 class="sl-sig-name">Couple<br><strong>Sanctuary</strong></h3>
+      <p class="sl-sig-desc">Không gian riêng tư dành cho hai người — phòng đôi với bồn tắm hoa, nến thơm và liệu trình chăm sóc song hành. Trải nghiệm lãng mạn không thể quên.</p>
+      <div class="sl-sig-tags">
+        <span class="sl-sig-tag">Couple</span>
+        <span class="sl-sig-tag">Phòng riêng</span>
+        <span class="sl-sig-tag">Bồn tắm hoa</span>
+        <span class="sl-sig-tag">Lãng mạn</span>
+      </div>
+      <div class="sl-sig-price">Từ <strong>4.500.000</strong> đ / cặp</div>
+      <div class="mt-4">
+        <a href="dat-lich.html" class="sl-btn-outline">Đặt liệu trình này</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Item 3: media trái, text phải -->
+  <div class="sl-sig-item" data-reveal>
+    <div class="sl-sig-media">
+      <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=900&q=75&auto=format&fit=crop" alt="Zen Stone Massage — massage đá nóng thiền định" loading="lazy">
+      <div class="sl-sig-media-overlay"></div>
+      <div class="sl-sig-duration">90 phút</div>
+    </div>
+    <div class="sl-sig-content">
+      <div class="sl-sig-num">03 / 04</div>
+      <h3 class="sl-sig-name">Zen Stone<br><strong>Massage</strong></h3>
+      <p class="sl-sig-desc">Massage đá núi lửa kết hợp kỹ thuật Shiatsu truyền thống Nhật Bản. Thư giãn cơ sâu, cân bằng khí huyết, đạt đến trạng thái thiền trong tâm.</p>
+      <div class="sl-sig-tags">
+        <span class="sl-sig-tag">Shiatsu</span>
+        <span class="sl-sig-tag">Đá núi lửa</span>
+        <span class="sl-sig-tag">Giảm stress</span>
+      </div>
+      <div class="sl-sig-price">Từ <strong>1.900.000</strong> đ / người</div>
+      <div class="mt-4">
+        <a href="dat-lich.html" class="sl-btn-outline">Đặt liệu trình này</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Item 4: media phải, text trái -->
+  <div class="sl-sig-item sl-sig-reverse" data-reveal>
+    <div class="sl-sig-media">
+      <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=900&q=75&auto=format&fit=crop" alt="Glow Facial Ritual — chăm sóc da mặt cao cấp" loading="lazy">
+      <div class="sl-sig-media-overlay"></div>
+      <div class="sl-sig-duration">75 phút</div>
+    </div>
+    <div class="sl-sig-content">
+      <div class="sl-sig-num">04 / 04</div>
+      <h3 class="sl-sig-name">Glow<br><strong>Facial Ritual</strong></h3>
+      <p class="sl-sig-desc">Chăm sóc da mặt chuyên sâu với công nghệ LED và serum vàng 24K. Tái tạo độ ẩm, chống lão hóa và trả lại vẻ rạng rỡ tự nhiên.</p>
+      <div class="sl-sig-tags">
+        <span class="sl-sig-tag">LED therapy</span>
+        <span class="sl-sig-tag">Vàng 24K</span>
+        <span class="sl-sig-tag">Anti-aging</span>
+      </div>
+      <div class="sl-sig-price">Từ <strong>2.200.000</strong> đ / người</div>
+      <div class="mt-4">
+        <a href="dat-lich.html" class="sl-btn-outline">Đặt liệu trình này</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STAT BAR ══ -->
+<section class="sl-stat-bg sl-sec-pad-sm">
+  <div class="wd-container">
+    <div class="sl-stat-grid">
+      <div class="sl-stat-item" data-reveal>
+        <div class="sl-stat-num" data-counter="2000" data-suffix="+">2000+</div>
+        <div class="sl-stat-label">Khách hài lòng</div>
+      </div>
+      <div class="sl-stat-item" data-reveal data-delay="1">
+        <div class="sl-stat-num" data-counter="8" data-suffix="">8</div>
+        <div class="sl-stat-label">Năm kinh nghiệm</div>
+      </div>
+      <div class="sl-stat-item" data-reveal data-delay="2">
+        <div class="sl-stat-num" data-counter="12" data-suffix="">12</div>
+        <div class="sl-stat-label">Liệu trình cao cấp</div>
+      </div>
+      <div class="sl-stat-item" data-reveal data-delay="3">
+        <div class="sl-stat-num" data-counter="98" data-suffix="%">98%</div>
+        <div class="sl-stat-label">Đánh giá 5 sao</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GÓI SPA THEO MÙA — BENTO GRID ══ -->
+<section class="sl-pkg-bg sl-sec-pad">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <span class="sl-eyebrow-lt">Gói spa theo mùa</span>
+      <h2 class="sl-title-lt">Chọn trải nghiệm<br><strong>phù hợp với bạn</strong></h2>
+      <p class="sl-sub-lt mx-auto">Mỗi gói được thiết kế để mang lại giá trị tối đa — kết hợp nhiều liệu trình trong không gian riêng tư.</p>
+    </div>
+
+    <div class="sl-pkg-grid" data-reveal>
+      <!-- Featured: Day Retreat -->
+      <div class="sl-pkg-card sl-pkg-featured">
+        <div class="sl-pkg-badge">✦ Phổ biến nhất</div>
+        <div class="sl-pkg-icon">🌸</div>
+        <h3 class="sl-pkg-name">Spa Day Retreat</h3>
+        <p class="sl-pkg-desc">Trọn ngày thư giãn — từ sáng đến chiều tối. Bao gồm tất cả tiện ích khu resort và 3 liệu trình tự chọn.</p>
+        <ul class="sl-pkg-includes">
+          <li>Sử dụng hồ bơi vô cực</li>
+          <li>Sauna & Steam room</li>
+          <li>3 liệu trình tự chọn</li>
+          <li>Bữa trưa healthy tại restaurant</li>
+          <li>Bộ amenity cao cấp</li>
+          <li>Phòng nghỉ riêng trong ngày</li>
+        </ul>
+        <div class="sl-pkg-price-row">
+          <span class="sl-pkg-price">3.900.000</span>
+          <span class="sl-pkg-unit">đ / người</span>
+        </div>
+        <a href="dat-lich.html" class="sl-btn-gold">Đặt gói này →</a>
+      </div>
+
+      <!-- Half Day -->
+      <div class="sl-pkg-card">
+        <div class="sl-pkg-icon">🍃</div>
+        <h3 class="sl-pkg-name">Half Day Escape</h3>
+        <p class="sl-pkg-desc">4 tiếng thư giãn buổi sáng với liệu trình lựa chọn và bữa sáng healthy.</p>
+        <ul class="sl-pkg-includes">
+          <li>Sauna & Steam room</li>
+          <li>2 liệu trình tự chọn</li>
+          <li>Trà thảo mộc & snack</li>
+        </ul>
+        <div class="sl-pkg-price-row">
+          <span class="sl-pkg-price">1.800.000</span>
+          <span class="sl-pkg-unit">đ / người</span>
+        </div>
+        <a href="dat-lich.html" class="sl-btn-dark">Đặt gói</a>
+      </div>
+
+      <!-- Couple Weekend -->
+      <div class="sl-pkg-card">
+        <div class="sl-pkg-icon">💑</div>
+        <h3 class="sl-pkg-name">Couple Weekend</h3>
+        <p class="sl-pkg-desc">Kỳ nghỉ cuối tuần dành riêng cho hai người với phòng couple và liệu trình song hành.</p>
+        <ul class="sl-pkg-includes">
+          <li>Phòng couple riêng tư</li>
+          <li>Bồn tắm hoa hồng</li>
+          <li>4 liệu trình cho 2 người</li>
+          <li>Bữa tối candlelight</li>
+        </ul>
+        <div class="sl-pkg-price-row">
+          <span class="sl-pkg-price">8.500.000</span>
+          <span class="sl-pkg-unit">đ / cặp</span>
+        </div>
+        <a href="dat-lich.html" class="sl-btn-dark">Đặt gói</a>
+      </div>
+
+      <!-- VIP Experience -->
+      <div class="sl-pkg-card">
+        <div class="sl-pkg-icon">👑</div>
+        <h3 class="sl-pkg-name">VIP Experience</h3>
+        <p class="sl-pkg-desc">Trải nghiệm độc bản — villa riêng, butler cá nhân và liệu trình không giới hạn suốt ngày.</p>
+        <ul class="sl-pkg-includes">
+          <li>Villa spa riêng biệt</li>
+          <li>Butler cá nhân</li>
+          <li>Liệu trình không giới hạn</li>
+          <li>Fine dining 3 bữa</li>
+        </ul>
+        <div class="sl-pkg-price-row">
+          <span class="sl-pkg-price">Liên hệ</span>
+        </div>
+        <a href="lien-he.html" class="sl-btn-dark">Tư vấn ngay</a>
+      </div>
+
+      <!-- Seasonal -->
+      <div class="sl-pkg-card">
+        <div class="sl-pkg-icon">🌺</div>
+        <h3 class="sl-pkg-name">Seasonal Ritual</h3>
+        <p class="sl-pkg-desc">Liệu trình thay đổi theo mùa — sử dụng nguyên liệu tươi từ thiên nhiên mùa đó.</p>
+        <ul class="sl-pkg-includes">
+          <li>Liệu trình theo mùa</li>
+          <li>Nguyên liệu fresh tự nhiên</li>
+          <li>Tư vấn dinh dưỡng</li>
+        </ul>
+        <div class="sl-pkg-price-row">
+          <span class="sl-pkg-price">2.400.000</span>
+          <span class="sl-pkg-unit">đ / người</span>
+        </div>
+        <a href="dat-lich.html" class="sl-btn-dark">Đặt gói</a>
+      </div>
+    </div>
+
+    <div class="text-center mt-5" data-reveal>
+      <p class="sl-text-dim" style="font-size:13px;margin-bottom:16px">Xem đầy đủ tất cả gói dịch vụ và mức giá chi tiết</p>
+      <a href="dich-vu.html" class="sl-btn-outline">Xem tất cả gói →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ KHÔNG GIAN — FULL-BLEED MASONRY ══ -->
+<section class="sl-space-bg sl-sec-pad">
+  <div class="wd-container mb-5">
+    <div class="text-center" data-reveal>
+      <span class="sl-eyebrow-dark">Không gian nghỉ dưỡng</span>
+      <h2 class="sl-title-dark">Thiên đường <em>thư giãn</em><br><strong>của bạn</strong></h2>
+      <p class="sl-sub-dark mx-auto">Từ hồ bơi vô cực nhìn ra thiên nhiên, phòng sauna đá muối Himalaya đến khu nghỉ ngơi riêng tư — mọi chi tiết đều được chọn lọc kỹ lưỡng.</p>
+    </div>
+  </div>
+
+  <div class="sl-space-grid" data-reveal>
+    <div class="sl-space-item">
+      <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=900&q=70&auto=format&fit=crop" alt="Hồ bơi vô cực resort spa nhìn ra thiên nhiên" loading="lazy">
+      <div class="sl-space-caption">
+        <div class="sl-space-caption-name">Hồ bơi vô cực</div>
+        <div class="sl-space-caption-desc">Mở cửa 6:00 — 21:00</div>
+      </div>
+    </div>
+    <div class="sl-space-item">
+      <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=600&q=70&auto=format&fit=crop" alt="Phòng sauna đá muối Himalaya" loading="lazy">
+      <div class="sl-space-caption">
+        <div class="sl-space-caption-name">Sauna đá muối</div>
+        <div class="sl-space-caption-desc">Himalayan Salt Sauna</div>
+      </div>
+    </div>
+    <div class="sl-space-item">
+      <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=600&q=70&auto=format&fit=crop" alt="Steam room thư giãn hơi nước thảo mộc" loading="lazy">
+      <div class="sl-space-caption">
+        <div class="sl-space-caption-name">Steam Room</div>
+        <div class="sl-space-caption-desc">Thảo mộc & tinh dầu</div>
+      </div>
+    </div>
+    <div class="sl-space-item">
+      <img src="https://images.unsplash.com/photo-1455238450088-4b1b5f1e1d3e?w=600&q=70&auto=format&fit=crop" alt="Phòng liệu trình riêng tư sang trọng" loading="lazy">
+      <div class="sl-space-caption">
+        <div class="sl-space-caption-name">Phòng liệu trình</div>
+        <div class="sl-space-caption-desc">Không gian riêng tư</div>
+      </div>
+    </div>
+    <div class="sl-space-item">
+      <img src="https://images.unsplash.com/photo-1439130490301-25e322d88054?w=600&q=70&auto=format&fit=crop" alt="Khu nghỉ ngơi ngoài trời giữa vườn cây" loading="lazy">
+      <div class="sl-space-caption">
+        <div class="sl-space-caption-name">Garden Lounge</div>
+        <div class="sl-space-caption-desc">Giữa thiên nhiên</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LIỆU TRÌNH CAO CẤP — LIST-ELEGANT ══ -->
+<section class="sl-treatment-bg sl-sec-pad">
+  <div class="wd-container">
+    <div class="row align-items-end mb-5 g-4">
+      <div class="col-lg-7" data-reveal>
+        <span class="sl-eyebrow-lt">Liệu trình đặc biệt</span>
+        <h2 class="sl-title-lt">Danh mục <strong>liệu trình</strong><br>cao cấp</h2>
+        <p class="sl-sub-lt">Mỗi liệu trình được thực hiện bởi chuyên gia được đào tạo quốc tế, với nguyên liệu thiên nhiên thuần túy nhập khẩu.</p>
+      </div>
+      <div class="col-lg-5 text-lg-end" data-reveal data-delay="1">
+        <a href="dich-vu.html" class="sl-btn-dark">Xem tất cả liệu trình →</a>
+      </div>
+    </div>
+
+    <div class="sl-treat-list" data-reveal>
+      <div class="sl-treat-row">
+        <div class="sl-treat-icon">🪷</div>
+        <div class="sl-treat-body">
+          <div class="sl-treat-name">Royal Lotus Body Wrap</div>
+          <div class="sl-treat-meta">
+            <span class="sl-treat-tag">⏱ 90 phút</span>
+            <span class="sl-treat-tag">🌿 Thảo mộc</span>
+            <span class="sl-treat-tag">Toàn thân</span>
+          </div>
+        </div>
+        <div class="sl-treat-price-col">
+          <div class="sl-treat-price">2.500.000đ</div>
+          <div class="sl-treat-per">/ người</div>
+        </div>
+      </div>
+
+      <div class="sl-treat-row">
+        <div class="sl-treat-icon">🪨</div>
+        <div class="sl-treat-body">
+          <div class="sl-treat-name">Volcanic Stone Massage</div>
+          <div class="sl-treat-meta">
+            <span class="sl-treat-tag">⏱ 75 phút</span>
+            <span class="sl-treat-tag">🔥 Đá núi lửa</span>
+            <span class="sl-treat-tag">Lưng & toàn thân</span>
+          </div>
+        </div>
+        <div class="sl-treat-price-col">
+          <div class="sl-treat-price">1.900.000đ</div>
+          <div class="sl-treat-per">/ người</div>
+        </div>
+      </div>
+
+      <div class="sl-treat-row">
+        <div class="sl-treat-icon">✨</div>
+        <div class="sl-treat-body">
+          <div class="sl-treat-name">Gold 24K Facial Treatment</div>
+          <div class="sl-treat-meta">
+            <span class="sl-treat-tag">⏱ 75 phút</span>
+            <span class="sl-treat-tag">👑 Vàng 24K</span>
+            <span class="sl-treat-tag">Chăm sóc da mặt</span>
+          </div>
+        </div>
+        <div class="sl-treat-price-col">
+          <div class="sl-treat-price">2.200.000đ</div>
+          <div class="sl-treat-per">/ người</div>
+        </div>
+      </div>
+
+      <div class="sl-treat-row">
+        <div class="sl-treat-icon">🌿</div>
+        <div class="sl-treat-body">
+          <div class="sl-treat-name">Balinese Full Body Massage</div>
+          <div class="sl-treat-meta">
+            <span class="sl-treat-tag">⏱ 60 phút</span>
+            <span class="sl-treat-tag">🇮🇩 Bali style</span>
+            <span class="sl-treat-tag">Toàn thân</span>
+          </div>
+        </div>
+        <div class="sl-treat-price-col">
+          <div class="sl-treat-price">1.400.000đ</div>
+          <div class="sl-treat-per">/ người</div>
+        </div>
+      </div>
+
+      <div class="sl-treat-row">
+        <div class="sl-treat-icon">🛁</div>
+        <div class="sl-treat-body">
+          <div class="sl-treat-name">Rose Petal Bath Ritual</div>
+          <div class="sl-treat-meta">
+            <span class="sl-treat-tag">⏱ 45 phút</span>
+            <span class="sl-treat-tag">🌹 Hoa hồng</span>
+            <span class="sl-treat-tag">Thư giãn sâu</span>
+          </div>
+        </div>
+        <div class="sl-treat-price-col">
+          <div class="sl-treat-price">980.000đ</div>
+          <div class="sl-treat-per">/ người</div>
+        </div>
+      </div>
+
+      <div class="sl-treat-row">
+        <div class="sl-treat-icon">💆</div>
+        <div class="sl-treat-body">
+          <div class="sl-treat-name">Deep Tissue Muscle Release</div>
+          <div class="sl-treat-meta">
+            <span class="sl-treat-tag">⏱ 90 phút</span>
+            <span class="sl-treat-tag">💪 Deep tissue</span>
+            <span class="sl-treat-tag">Cơ bắp</span>
+          </div>
+        </div>
+        <div class="sl-treat-price-col">
+          <div class="sl-treat-price">1.700.000đ</div>
+          <div class="sl-treat-per">/ người</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ REVIEWS — GRID-CARDS trên nền be ══ -->
+<section class="sl-review-bg sl-sec-pad">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <span class="sl-eyebrow-lt">Cảm nhận khách hàng</span>
+      <h2 class="sl-title-lt">Họ nói gì về<br><em>trải nghiệm</em> của mình</h2>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6" data-reveal>
+        <div class="sl-rv">
+          <div class="sl-rv-stars">★★★★★</div>
+          <p class="sl-rv-text">"Trải nghiệm hoàn toàn vượt kỳ vọng. Không gian yên tĩnh, liệu trình chuyên nghiệp và đội ngũ tận tâm. Tôi đã quên hoàn toàn áp lực công việc suốt 8 tiếng ở đây."</p>
+          <div class="sl-rv-foot">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80&auto=format&fit=crop&crop=face" alt="Ảnh đại diện khách hàng Nguyễn Thị Lan" class="sl-rv-av" loading="lazy">
+            <div>
+              <div class="sl-rv-name">Nguyễn Thị Lan</div>
+              <div class="sl-rv-meta">Doanh nhân · Hà Nội</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-reveal data-delay="1">
+        <div class="sl-rv">
+          <div class="sl-rv-stars">★★★★★</div>
+          <p class="sl-rv-text">"Gói Couple Sanctuary là món quà tuyệt vời nhất tôi tặng cho vợ nhân dịp kỷ niệm. Phòng riêng, bồn tắm hoa và buổi tối candlelight — không thể nào quên được."</p>
+          <div class="sl-rv-foot">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80&auto=format&fit=crop&crop=face" alt="Ảnh đại diện khách hàng Trần Minh Khoa" class="sl-rv-av" loading="lazy">
+            <div>
+              <div class="sl-rv-name">Trần Minh Khoa</div>
+              <div class="sl-rv-meta">Kiến trúc sư · TP.HCM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-reveal data-delay="2">
+        <div class="sl-rv">
+          <div class="sl-rv-stars">★★★★★</div>
+          <p class="sl-rv-text">"Gold 24K Facial là liệu trình tốt nhất tôi từng làm. Da mặt sau một tuần vẫn căng mịn và sáng bóng. Chắc chắn sẽ quay lại lần thứ 3 trong năm nay."</p>
+          <div class="sl-rv-foot">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80&auto=format&fit=crop&crop=face" alt="Ảnh đại diện khách hàng Phạm Thu Hà" class="sl-rv-av" loading="lazy">
+            <div>
+              <div class="sl-rv-name">Phạm Thu Hà</div>
+              <div class="sl-rv-meta">Bác sĩ · Đà Nẵng</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA BOOKING ══ -->
+<section class="sl-cta-sec">
+  <div class="sl-cta-overlay"></div>
+  <div class="sl-cta-bg"></div>
+  <div class="wd-container sl-cta-content">
+    <div data-reveal>
+      <span class="sl-eyebrow-dark" style="margin-bottom:24px">Đặt gói ngay hôm nay</span>
+      <h2 class="sl-cta-title">Dành thời gian<br>cho <em>bản thân</em></h2>
+      <p class="sl-cta-sub">Liên hệ ngay để nhận tư vấn gói phù hợp và ưu đãi đặt sớm dành riêng cho bạn.</p>
+      <div class="d-flex gap-3 justify-content-center flex-wrap">
+        <a href="dat-lich.html" class="sl-btn-gold">Đặt gói trải nghiệm →</a>
+        <a href="lien-he.html" class="sl-btn-outline">Liên hệ tư vấn</a>
+      </div>
+      <div class="sl-cta-info">
+        <div class="sl-cta-info-item"><span class="sl-cta-info-dot"></span>Xác nhận trong 2 giờ</div>
+        <div class="sl-cta-info-item"><span class="sl-cta-info-dot"></span>Hoàn tiền 100% nếu hủy trước 24h</div>
+        <div class="sl-cta-info-item"><span class="sl-cta-info-dot"></span>Tư vấn miễn phí</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="sl-footer">
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-lg-4 col-md-6">
+        <div class="sl-ft-logo"><strong>[Tên Spa]</strong> <em>Luxury</em></div>
+        <p class="sl-ft-desc">Resort Spa 5 sao — nơi thư giãn đỉnh cao giữa thiên nhiên tĩnh lặng. Mọi chi tiết đều được chăm chút vì sự hoàn hảo của bạn.</p>
+        <div class="sl-ft-socials">
+          <a href="#" class="sl-ft-soc" rel="noopener noreferrer" aria-label="Facebook">f</a>
+          <a href="#" class="sl-ft-soc" rel="noopener noreferrer" aria-label="Instagram">in</a>
+          <a href="#" class="sl-ft-soc" rel="noopener noreferrer" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-3 col-6">
+        <div class="sl-ft-col-title">Dịch vụ</div>
+        <div class="sl-ft-links">
+          <a href="dich-vu.html">Liệu trình signature</a>
+          <a href="dich-vu.html">Gói couple</a>
+          <a href="dich-vu.html">Spa day retreat</a>
+          <a href="dich-vu.html">Chăm sóc da</a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-3 col-6">
+        <div class="sl-ft-col-title">Không gian</div>
+        <div class="sl-ft-links">
+          <a href="index.html#space">Hồ bơi vô cực</a>
+          <a href="index.html#space">Sauna & Steam</a>
+          <a href="index.html#space">Phòng liệu trình</a>
+          <a href="index.html#space">Garden lounge</a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="sl-ft-col-title">Thông tin liên hệ</div>
+        <div class="sl-ft-links">
+          <a href="tel:[SỐ ĐIỆN THOẠI]">[SỐ ĐIỆN THOẠI] (Hotline)</a>
+          <a href="mailto:[EMAIL]">[EMAIL]</a>
+          <span style="color:var(--text-3);font-weight:300;font-size:13px">[ĐỊA CHỈ RESORT/SPA]</span>
+          <a href="dat-lich.html" class="sl-btn-gold mt-2" style="font-size:12px;padding:10px 20px">Đặt gói ngay →</a>
+        </div>
+      </div>
+    </div>
+    <div class="sl-ft-bottom">
+      <span class="sl-ft-copy">© 2025 [Tên Spa] Luxury Resort Spa. Mọi quyền được bảo lưu.</span>
+      <div class="sl-ft-gold-line"></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ ZALO FLOAT ══ -->
+<div class="sl-zf">
+  <span class="sl-zf-tip">Nhắn tin Zalo</span>
+  <a href="https://zalo.me/[SỐ_ZALO]" class="sl-zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo">
+    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M13 2C7.477 2 3 6.477 3 12c0 2.136.67 4.116 1.808 5.74L3 23l5.418-1.764A9.953 9.953 0 0013 22c5.523 0 10-4.477 10-10S18.523 2 13 2z" fill="white"/>
+      <path d="M8.5 10h3m-3 3h2m2-3v3m2-3v3" stroke="#0068FF" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ── Nav floating pill scroll ──
+const nav = document.getElementById('nav');
+if (nav) {
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('sl-nav-scrolled', window.scrollY > 60);
+  }, { passive: true });
+}
+
+// ── Mobile hamburger ──
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const isOpen = mob.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+  mob.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+}
+
+// ── Hero bg subtle ken burns ──
+const heroBg = document.getElementById('heroBg');
+if (heroBg) {
+  window.addEventListener('load', () => heroBg.classList.add('loaded'), { once: true });
+}
+
+// ── Reveal animation ──
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+// ── Counter animation ──
+document.querySelectorAll('[data-counter]').forEach(el => {
+  const cro = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      const target = +el.dataset.counter;
+      const suffix = el.dataset.suffix || '';
+      let cur = 0;
+      const step = Math.ceil(target / 60);
+      const t = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = cur.toLocaleString('vi-VN') + suffix;
+        if (cur >= target) clearInterval(t);
+      }, 25);
+      cro.disconnect();
+    }
+  }, { threshold: 0.5 });
+  cro.observe(el);
+});
+</script>
+</body>
+</html>

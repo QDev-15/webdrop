@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[TÊN TRUNG TÂM] — Yoga & Wellness</title>
+<meta name="description" content="[TÊN TRUNG TÂM] — Không gian yoga & wellness thuần khiết. Hatha, Vinyasa, Thiền định, Prenatal Yoga. Tìm lại sự cân bằng của cơ thể và tâm trí.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+/* ── Hero — Centered Minimal (H4) ── */
+/* Khác spa-beauty (dark overlay), khác agency (split). Dùng light bg + centered layout */
+.yw-hero {
+  min-height: 100vh;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 64px;
+}
+/* Subtle geometric texture — không dùng dark bg overlay */
+.yw-hero-texture {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(124,154,126,.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(124,154,126,.06) 0%, transparent 40%),
+    radial-gradient(circle at 60% 80%, rgba(232,224,212,.5) 0%, transparent 45%);
+  pointer-events: none;
+}
+.yw-hero-inner {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(48px,8vw,100px) 0;
+  position: relative;
+  z-index: 2;
+}
+.yw-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--accent-light);
+  border: 1px solid var(--accent-mid);
+  padding: 6px 16px;
+  border-radius: 9999px;
+  margin-bottom: 28px;
+  letter-spacing: .3px;
+}
+.yw-hero-badge-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: yw-breathe 3s ease-in-out infinite;
+}
+@keyframes yw-breathe { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.6)} }
+.yw-hero-title {
+  font-size: clamp(42px, 6.5vw, 80px);
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1.1;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+}
+.yw-hero-title strong { font-weight: 600; }
+.yw-hero-title em { color: var(--accent); font-style: italic; font-weight: 300; }
+.yw-hero-sub {
+  font-size: clamp(15px, 1.5vw, 17px);
+  font-weight: 300;
+  color: var(--text-2);
+  line-height: 1.85;
+  max-width: 520px;
+  margin: 0 auto 36px;
+}
+.yw-hero-photo-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 56px;
+  justify-content: center;
+}
+.yw-hero-photo {
+  border-radius: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.yw-hero-photo img {
+  object-fit: cover;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform .5s ease;
+}
+.yw-hero-photo:hover img { transform: scale(1.04); }
+.yw-hero-photo:nth-child(1) { width: 220px; height: 280px; }
+.yw-hero-photo:nth-child(2) { width: 280px; height: 340px; margin-top: -30px; }
+.yw-hero-photo:nth-child(3) { width: 220px; height: 280px; }
+@media (max-width: 768px) {
+  .yw-hero-photo-row { display: none; }
+}
+/* Trust strip */
+.yw-trust-row {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.yw-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: var(--text-3);
+  font-weight: 300;
+}
+.yw-trust-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-mid);
+  flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION — Nav-2: Always Solid Warm Light Bar -->
+<nav id="nav">
+  <div class="yw-nav-bar"></div>
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="yw-logo" href="index.html">
+        <div class="yw-logo-mark">🌿</div>
+        <div class="yw-logo-text">[TÊN]<span> Yoga</span></div>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="active">Trang chủ</a>
+        <a href="dich-vu.html">Các lớp học</a>
+        <a href="dat-lich.html">Đăng ký</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-lich.html" class="yw-nav-cta">Đăng ký lớp học</a>
+      <button class="nav-hamburger" id="navBurger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Các lớp học</a>
+  <a href="dat-lich.html">Đăng ký</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="nm-cta">Đăng ký lớp học</a>
+</div>
+
+<!-- HERO — Centered Minimal (H4): Light bg, no dark overlay, centered text + 3 photos below -->
+<section class="yw-hero">
+  <div class="yw-hero-texture"></div>
+  <div class="wd-container w-100">
+    <div class="yw-hero-inner">
+      <div class="yw-hero-badge">
+        <span class="yw-hero-badge-dot"></span>
+        Yoga & Wellness · Không gian bình yên
+      </div>
+      <h1 class="yw-hero-title">
+        Hơi thở. <em>Chuyển động.</em><br>
+        <strong>Cân bằng.</strong>
+      </h1>
+      <p class="yw-hero-sub">
+        Mỗi buổi tập là một hành trình trở về với chính mình. Khám phá không gian yoga thuần khiết, nơi thân và tâm được nuôi dưỡng qua từng hơi thở.
+      </p>
+      <div class="d-flex gap-3 justify-content-center flex-wrap">
+        <a href="dat-lich.html" class="yw-btn">Đăng ký lớp học →</a>
+        <a href="dich-vu.html" class="yw-btn-ghost">Xem các lớp học</a>
+      </div>
+      <div class="yw-trust-row">
+        <div class="yw-trust-item"><span class="yw-trust-dot"></span>600+ học viên</div>
+        <div class="yw-trust-item"><span class="yw-trust-dot"></span>4 chuyên gia</div>
+        <div class="yw-trust-item"><span class="yw-trust-dot"></span>Yoga · Thiền · Wellness</div>
+        <div class="yw-trust-item"><span class="yw-trust-dot"></span>7 năm kinh nghiệm</div>
+      </div>
+      <!-- Three asymmetric photos below text -->
+      <div class="yw-hero-photo-row">
+        <div class="yw-hero-photo">
+          <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=440&q=70&auto=format&fit=crop" alt="Hatha Yoga">
+        </div>
+        <div class="yw-hero-photo">
+          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=560&q=70&auto=format&fit=crop" alt="Thiền định">
+        </div>
+        <div class="yw-hero-photo">
+          <img src="https://images.unsplash.com/photo-1588286840104-8957b019727f?w=440&q=70&auto=format&fit=crop" alt="Vinyasa Flow">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAT BAR -->
+<div class="yw-stat-strip">
+  <div class="wd-container">
+    <div class="row g-4">
+      <div class="col-6 col-md-3" data-reveal>
+        <div class="yw-stat-item">
+          <div class="yw-stat-num" data-counter="600" data-suffix="+">0+</div>
+          <div class="yw-stat-label">Học viên tin tưởng</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal class="rd1">
+        <div class="yw-stat-item">
+          <div class="yw-stat-num">7</div>
+          <div class="yw-stat-label">Năm kinh nghiệm</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal class="rd2">
+        <div class="yw-stat-item">
+          <div class="yw-stat-num">4</div>
+          <div class="yw-stat-label">Phong cách yoga</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal class="rd3">
+        <div class="yw-stat-item">
+          <div class="yw-stat-num">4.9★</div>
+          <div class="yw-stat-label">Đánh giá trung bình</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURED CLASSES — Grid Cards -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="yw-eyebrow">Lớp học nổi bật</div>
+      <h2 class="yw-title">Tìm phong cách yoga <em>phù hợp với bạn</em></h2>
+      <p class="yw-sub centered">Từ nền tảng căn bản đến nâng cao — mỗi lớp học được thiết kế để nuôi dưỡng sức khỏe thể chất và tinh thần.</p>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-6 col-lg-3" data-reveal>
+        <div class="yw-class-card">
+          <img class="yw-card-img" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=70&auto=format&fit=crop" alt="Hatha Yoga" loading="lazy">
+          <div class="yw-card-body">
+            <span class="yw-card-badge">Người mới</span>
+            <div class="yw-card-title">Hatha Yoga</div>
+            <div class="yw-card-desc">Nền tảng yoga cổ điển. Kết hợp tư thế (asana) và hơi thở (pranayama) để xây dựng sức mạnh và sự dẻo dai.</div>
+            <div class="yw-card-meta">
+              <span>⏱ 60 phút</span>
+              <span>👥 Tối đa 15 người</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-reveal class="rd1">
+        <div class="yw-class-card">
+          <img class="yw-card-img" src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=70&auto=format&fit=crop" alt="Vinyasa Flow" loading="lazy">
+          <div class="yw-card-body">
+            <span class="yw-card-badge">Trung cấp</span>
+            <div class="yw-card-title">Vinyasa Flow</div>
+            <div class="yw-card-desc">Dòng chảy liên tục, đồng bộ hơi thở và chuyển động. Đốt cháy năng lượng, tăng độ linh hoạt và tập trung.</div>
+            <div class="yw-card-meta">
+              <span>⏱ 75 phút</span>
+              <span>👥 Tối đa 12 người</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-reveal class="rd2">
+        <div class="yw-class-card">
+          <img class="yw-card-img" src="https://images.unsplash.com/photo-1588286840104-8957b019727f?w=600&q=70&auto=format&fit=crop" alt="Meditation" loading="lazy">
+          <div class="yw-card-body">
+            <span class="yw-card-badge">Mọi cấp độ</span>
+            <div class="yw-card-title">Thiền Định</div>
+            <div class="yw-card-desc">Thực hành mindfulness và thiền chánh niệm. Giảm căng thẳng, cải thiện giấc ngủ và tăng cường sức khỏe tâm trí.</div>
+            <div class="yw-card-meta">
+              <span>⏱ 45 phút</span>
+              <span>👥 Tối đa 20 người</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-reveal class="rd3">
+        <div class="yw-class-card">
+          <img class="yw-card-img" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=70&auto=format&fit=crop" alt="Prenatal Yoga" loading="lazy">
+          <div class="yw-card-body">
+            <span class="yw-card-badge" style="background:#fdf4f0;color:#8b4c3a;border:1px solid #e8c4b4">Bầu bí</span>
+            <div class="yw-card-title">Prenatal Yoga</div>
+            <div class="yw-card-desc">Thiết kế đặc biệt cho mẹ bầu. An toàn, nhẹ nhàng, giúp giảm đau lưng, cải thiện giấc ngủ và chuẩn bị cho sinh nở.</div>
+            <div class="yw-card-meta">
+              <span>⏱ 60 phút</span>
+              <span>👥 Tối đa 8 người</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5" data-reveal>
+      <a href="dich-vu.html" class="yw-btn-ghost">Xem tất cả lớp học →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE — Alternating strip section -->
+<section class="sec-pad" style="background:var(--sage-pale)">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="yw-eyebrow">Lịch học tuần</div>
+      <h2 class="yw-title">Sắp xếp thời gian <strong>phù hợp với bạn</strong></h2>
+    </div>
+
+    <!-- Desktop schedule table -->
+    <div data-reveal>
+      <div class="yw-schedule">
+        <div class="yw-schedule-head">
+          <div>Giờ</div>
+          <div>Thứ 2</div>
+          <div>Thứ 3</div>
+          <div>Thứ 4</div>
+          <div>Thứ 5</div>
+          <div>Thứ 6</div>
+          <div>Thứ 7</div>
+        </div>
+        <div class="yw-schedule-row">
+          <div class="yw-schedule-time">06:00</div>
+          <div class="yw-schedule-cell"><div class="yw-schedule-class">Hatha<br>Cơ bản</div></div>
+          <div class="yw-schedule-cell"></div>
+          <div class="yw-schedule-cell"><div class="yw-schedule-class">Hatha<br>Cơ bản</div></div>
+          <div class="yw-schedule-cell"></div>
+          <div class="yw-schedule-cell"><div class="yw-schedule-class">Hatha<br>Cơ bản</div></div>
+          <div class="yw-schedule-cell"><div class="yw-schedule-class vinyasa">Vinyasa<br>Flow</div></div>
+        </div>
+        <div class="yw-schedule-row">
+          <div class="yw-schedule-time">08:00</div>
+          <div class="yw-schedule-cell"><div class="yw-schedule-class prenatal">Prenatal<br>Yoga</div></div>
+          <div class="yw-schedule-cell"><div class="yw-schedule-class vinyasa">Vinyasa<br>Flow</div></div>
+          <div class="yw-schedule-cell"><div class="yw-schedule-class prenatal">Prenatal<br>Yoga</div></div>
+          <div class="yw-schedule-cell"><div class="yw-schedule-class vinyasa">Vinyasa<br>Flow</div></div>
+          <div class="yw-schedule-cell"><div class="yw-schedule-class prenatal">Prenatal<br>Yoga</div></div>
+          <div class="yw-schedule-cell"><div class="yw-schedule-class">Hatha<br>Trung cấp</div></div>
+        </div>
+        <div class="yw-schedule-row">
+          <div class="yw-schedule-time">17:30</div>
+          <div class="yw-schedule-cell"><div class="yw-schedule-class vinyasa">Vinyasa<br>Flow</div></div>
+          <div class="yw-schedule-cell"><div class="yw-schedule-class meditation">Thiền<br>Định</div></div>
+          <div class="yw-schedule-cell"><div class="yw-schedule-class vinyasa">Vinyasa<br>Nâng cao</div></div>
+          <div class="yw-schedule-cell"><div class="yw-schedule-class meditation">Thiền<br>Định</div></div>
+          <div class="yw-schedule-cell"><div class="yw-schedule-class">Hatha<br>Cơ bản</div></div>
+          <div class="yw-schedule-cell"></div>
+        </div>
+        <div class="yw-schedule-row">
+          <div class="yw-schedule-time">19:00</div>
+          <div class="yw-schedule-cell"><div class="yw-schedule-class meditation">Thiền<br>Định</div></div>
+          <div class="yw-schedule-cell"><div class="yw-schedule-class">Hatha<br>Cơ bản</div></div>
+          <div class="yw-schedule-cell"><div class="yw-schedule-class meditation">Thiền<br>Định</div></div>
+          <div class="yw-schedule-cell"><div class="yw-schedule-class">Hatha<br>Trung cấp</div></div>
+          <div class="yw-schedule-cell"><div class="yw-schedule-class vinyasa">Vinyasa<br>Flow</div></div>
+          <div class="yw-schedule-cell"><div class="yw-schedule-class meditation">Thiền<br>Định</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile: simple list -->
+    <div class="d-md-none mt-4" data-reveal>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden">
+        <div style="padding:14px 18px;background:var(--accent-light);border-bottom:1px solid var(--border);font-size:12px;font-weight:600;color:var(--accent-h);text-transform:uppercase;letter-spacing:.8px">Lịch học mẫu trong tuần</div>
+        <div style="padding:6px 0">
+          <div style="padding:12px 18px;border-bottom:1px solid var(--border-light);font-size:13px;font-weight:300;color:var(--text-2)"><strong style="color:var(--text);font-weight:500">Thứ 2, 4, 6</strong> — 06:00 · Hatha Cơ bản (60 phút)</div>
+          <div style="padding:12px 18px;border-bottom:1px solid var(--border-light);font-size:13px;font-weight:300;color:var(--text-2)"><strong style="color:var(--text);font-weight:500">Thứ 2, 4, 6</strong> — 08:00 · Prenatal Yoga (60 phút)</div>
+          <div style="padding:12px 18px;border-bottom:1px solid var(--border-light);font-size:13px;font-weight:300;color:var(--text-2)"><strong style="color:var(--text);font-weight:500">Thứ 3, 5</strong> — 17:30 · Thiền Định (45 phút)</div>
+          <div style="padding:12px 18px;border-bottom:1px solid var(--border-light);font-size:13px;font-weight:300;color:var(--text-2)"><strong style="color:var(--text);font-weight:500">Thứ 2, 3, 5, 6</strong> — 17:30 · Vinyasa Flow (75 phút)</div>
+          <div style="padding:12px 18px;font-size:13px;font-weight:300;color:var(--text-2)"><strong style="color:var(--text);font-weight:500">Thứ 7, CN</strong> — 06:00–08:00 · Lớp cuối tuần</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <div class="d-flex gap-3 flex-wrap justify-content-center mt-4" data-reveal>
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-2)"><div style="width:10px;height:10px;border-radius:3px;background:var(--accent-light);border:1px solid var(--accent-mid)"></div>Hatha</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-2)"><div style="width:10px;height:10px;border-radius:3px;background:#f8f4e8;border:1px solid #d4c478"></div>Vinyasa</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-2)"><div style="width:10px;height:10px;border-radius:3px;background:#f0f2f8;border:1px solid #b4bce0"></div>Thiền Định</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-2)"><div style="width:10px;height:10px;border-radius:3px;background:#fdf4f0;border:1px solid #e8c4b4"></div>Prenatal</div>
+    </div>
+    <div class="text-center mt-4" data-reveal>
+      <a href="dat-lich.html" class="yw-btn">Đăng ký lớp ngay</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT — Alternating Strip: image left, text right -->
+<section class="sec-pad" style="background:var(--surface)">
+  <div class="wd-container">
+    <div class="row g-5 align-items-center">
+      <div class="col-md-6" data-reveal>
+        <div style="position:relative">
+          <img src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=800&q=70&auto=format&fit=crop" alt="Không gian yoga" style="width:100%;border-radius:24px;display:block" loading="lazy">
+          <!-- Floating card -->
+          <div style="position:absolute;bottom:-18px;right:-18px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:14px 18px;box-shadow:0 10px 36px rgba(124,154,126,.13);max-width:180px">
+            <div style="font-size:9px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px">Học viên hôm nay</div>
+            <div style="font-size:22px;font-weight:600;color:var(--accent);letter-spacing:-1px;line-height:1">24</div>
+            <div style="font-size:11px;color:var(--text-3);font-weight:300;margin-top:2px">Tham gia buổi sáng</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6" data-reveal class="rd1">
+        <div class="yw-eyebrow">Về chúng tôi</div>
+        <h2 class="yw-title">Nơi <em>thân & tâm</em><br><strong>được nuôi dưỡng</strong></h2>
+        <p style="font-size:15px;font-weight:300;color:var(--text-2);line-height:1.85;margin-bottom:16px">[TÊN TRUNG TÂM] ra đời từ niềm tin rằng yoga không chỉ là bài tập thể chất — đó là hành trình tìm về sự cân bằng nội tâm, học cách lắng nghe cơ thể và sống chậm hơn giữa nhịp đời hối hả.</p>
+        <p style="font-size:15px;font-weight:300;color:var(--text-2);line-height:1.85;margin-bottom:28px">Không gian studio rộng thoáng với ánh sáng tự nhiên, sàn gỗ ấm, thảm yoga cao cấp — mọi chi tiết được chăm chút để bạn hoàn toàn thư giãn từ bước chân đầu tiên.</p>
+        <!-- Feature icons -->
+        <div class="row g-3 mb-4">
+          <div class="col-6">
+            <div style="display:flex;align-items:flex-start;gap:10px">
+              <div style="font-size:20px;flex-shrink:0">🌿</div>
+              <div>
+                <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px">Studio thiên nhiên</div>
+                <div style="font-size:12px;font-weight:300;color:var(--text-3)">Cây xanh, ánh sáng tự nhiên</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="display:flex;align-items:flex-start;gap:10px">
+              <div style="font-size:20px;flex-shrink:0">🧘</div>
+              <div>
+                <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px">Lớp học nhỏ</div>
+                <div style="font-size:12px;font-weight:300;color:var(--text-3)">Chú ý từng học viên</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="display:flex;align-items:flex-start;gap:10px">
+              <div style="font-size:20px;flex-shrink:0">🏅</div>
+              <div>
+                <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px">Giáo viên chứng nhận</div>
+                <div style="font-size:12px;font-weight:300;color:var(--text-3)">RYT-200 & RYT-500</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="display:flex;align-items:flex-start;gap:10px">
+              <div style="font-size:20px;flex-shrink:0">🔄</div>
+              <div>
+                <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px">Lịch học linh hoạt</div>
+                <div style="font-size:12px;font-weight:300;color:var(--text-3)">Sáng sớm đến tối muộn</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="dich-vu.html" class="yw-btn">Khám phá lớp học</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHERS — Feature section -->
+<section class="sec-pad" style="background:var(--warm)">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="yw-eyebrow">Giáo viên</div>
+      <h2 class="yw-title">Học từ những <em>chuyên gia tâm huyết</em></h2>
+      <p class="yw-sub centered">Đội ngũ giáo viên được đào tạo chuẩn quốc tế, mỗi người mang một phong cách và chuyên môn riêng.</p>
+    </div>
+    <div class="row g-3">
+      <div class="col-sm-6 col-lg-3" data-reveal>
+        <div class="yw-teacher">
+          <img class="yw-teacher-img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80&auto=format&fit=crop&crop=face" alt="Giáo viên yoga" loading="lazy">
+          <div class="yw-teacher-name">Nguyễn Minh Ngọc</div>
+          <div class="yw-teacher-role">Hatha & Yin Yoga</div>
+          <div class="yw-teacher-exp">RYT-500 · 8 năm kinh nghiệm</div>
+          <div class="yw-teacher-styles">
+            <span>Hatha</span><span>Yin</span><span>Nidra</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3" data-reveal class="rd1">
+        <div class="yw-teacher">
+          <img class="yw-teacher-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80&auto=format&fit=crop&crop=face" alt="Giáo viên yoga" loading="lazy">
+          <div class="yw-teacher-name">Trần Văn Đức</div>
+          <div class="yw-teacher-role">Vinyasa & Ashtanga</div>
+          <div class="yw-teacher-exp">RYT-500 · 6 năm kinh nghiệm</div>
+          <div class="yw-teacher-styles">
+            <span>Vinyasa</span><span>Ashtanga</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3" data-reveal class="rd2">
+        <div class="yw-teacher">
+          <img class="yw-teacher-img" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80&auto=format&fit=crop&crop=face" alt="Giáo viên yoga" loading="lazy">
+          <div class="yw-teacher-name">Lê Phương Linh</div>
+          <div class="yw-teacher-role">Prenatal & Restorative</div>
+          <div class="yw-teacher-exp">RYT-200 · 5 năm kinh nghiệm</div>
+          <div class="yw-teacher-styles">
+            <span>Prenatal</span><span>Restorative</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3" data-reveal class="rd3">
+        <div class="yw-teacher">
+          <img class="yw-teacher-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80&auto=format&fit=crop&crop=face" alt="Giáo viên yoga" loading="lazy">
+          <div class="yw-teacher-name">Phạm Thu Hà</div>
+          <div class="yw-teacher-role">Thiền Định & Mindfulness</div>
+          <div class="yw-teacher-exp">MBSR Certified · 4 năm kinh nghiệm</div>
+          <div class="yw-teacher-styles">
+            <span>Thiền</span><span>Mindfulness</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP PLANS -->
+<section class="sec-pad" style="background:var(--surface)">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="yw-eyebrow">Gói thành viên</div>
+      <h2 class="yw-title">Chọn gói phù hợp với <strong>hành trình của bạn</strong></h2>
+      <p class="yw-sub centered">Linh hoạt, không ràng buộc. Bắt đầu với gói dùng thử trước khi cam kết lâu dài.</p>
+    </div>
+    <div class="row g-3 align-items-start">
+      <div class="col-md-4" data-reveal>
+        <div class="yw-plan">
+          <div class="yw-plan-name">Gói Dùng Thử</div>
+          <div class="yw-plan-price"><sup>đ</sup>150<span style="font-size:18px">.000</span></div>
+          <div class="yw-plan-per">/ buổi đơn lẻ</div>
+          <div class="yw-plan-divider"></div>
+          <div class="yw-plan-feature">1 buổi học tự chọn</div>
+          <div class="yw-plan-feature">Mượn thảm yoga miễn phí</div>
+          <div class="yw-plan-feature">Đặt lịch 24h trước</div>
+          <div class="yw-plan-feature off">Không giới hạn đổi lịch</div>
+          <div class="yw-plan-feature off">Tư vấn cá nhân</div>
+          <a href="dat-lich.html" class="yw-btn-outline d-block text-center mt-4">Thử ngay</a>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal class="rd1">
+        <div class="yw-plan featured">
+          <div class="yw-plan-badge">Phổ biến</div>
+          <div class="yw-plan-name">Gói Tháng</div>
+          <div class="yw-plan-price"><sup>đ</sup>1.2<span style="font-size:18px">tr</span></div>
+          <div class="yw-plan-per">/ tháng · không giới hạn buổi</div>
+          <div class="yw-plan-divider"></div>
+          <div class="yw-plan-feature">Không giới hạn buổi học</div>
+          <div class="yw-plan-feature">Tất cả lớp học & cấp độ</div>
+          <div class="yw-plan-feature">Đổi lịch linh hoạt</div>
+          <div class="yw-plan-feature">Tư vấn dinh dưỡng cơ bản</div>
+          <div class="yw-plan-feature">Giữ thảm riêng tại trung tâm</div>
+          <a href="dat-lich.html" class="yw-btn d-block text-center mt-4">Đăng ký ngay</a>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal class="rd2">
+        <div class="yw-plan">
+          <div class="yw-plan-name">Gói Năm</div>
+          <div class="yw-plan-price"><sup>đ</sup>9.5<span style="font-size:18px">tr</span></div>
+          <div class="yw-plan-per">/ năm · tiết kiệm 34%</div>
+          <div class="yw-plan-divider"></div>
+          <div class="yw-plan-feature">Tất cả quyền lợi Gói Tháng</div>
+          <div class="yw-plan-feature">1 buổi tư vấn cá nhân/tháng</div>
+          <div class="yw-plan-feature">Ưu tiên đăng ký lớp đặc biệt</div>
+          <div class="yw-plan-feature">Quà tặng đầu năm học</div>
+          <div class="yw-plan-feature">Miễn phí mang khách mới 2 lần</div>
+          <a href="dat-lich.html" class="yw-btn-outline d-block text-center mt-4">Tìm hiểu thêm</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="sec-pad" style="background:var(--sage-pale)">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="yw-eyebrow">Đánh giá</div>
+      <h2 class="yw-title">Học viên nói gì về <em>hành trình của họ</em></h2>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-4" data-reveal>
+        <div class="yw-review">
+          <div class="yw-rv-stars">★★★★★</div>
+          <div class="yw-rv-text">"Sau 3 tháng học Hatha tại đây, lưng tôi không còn đau như trước nữa. Giáo viên luôn chú ý đến từng tư thế và điều chỉnh rất tỉ mỉ."</div>
+          <div class="yw-rv-foot">
+            <img class="yw-rv-av" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80&auto=format&fit=crop&crop=face" alt="Học viên" loading="lazy">
+            <div><div class="yw-rv-name">Trần Thị Mai</div><div class="yw-rv-role">Học viên Hatha · 3 tháng</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal class="rd1">
+        <div class="yw-review">
+          <div class="yw-rv-stars">★★★★★</div>
+          <div class="yw-rv-text">"Lớp Prenatal Yoga tuyệt vời! Cô giáo Phương Linh rất am hiểu về thai sản, từng động tác đều được giải thích rõ ràng và an toàn cho mẹ bầu."</div>
+          <div class="yw-rv-foot">
+            <img class="yw-rv-av" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80&auto=format&fit=crop&crop=face" alt="Học viên" loading="lazy">
+            <div><div class="yw-rv-name">Nguyễn Lan Anh</div><div class="yw-rv-role">Học viên Prenatal · 2 tháng</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal class="rd2">
+        <div class="yw-review">
+          <div class="yw-rv-stars">★★★★★</div>
+          <div class="yw-rv-text">"Vinyasa Flow buổi chiều là khoảnh khắc yêu thích trong ngày của tôi. Không gian đẹp, yên tĩnh, thầy Đức dạy rất nhiệt huyết và đúng kỹ thuật."</div>
+          <div class="yw-rv-foot">
+            <img class="yw-rv-av" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&q=80&auto=format&fit=crop&crop=face" alt="Học viên" loading="lazy">
+            <div><div class="yw-rv-name">Lê Quỳnh Như</div><div class="yw-rv-role">Học viên Vinyasa · 6 tháng</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="yw-cta">
+  <div class="wd-container" data-reveal>
+    <h2 class="yw-cta-title">Bắt đầu hành trình<br><strong>bình yên của bạn</strong></h2>
+    <p class="yw-cta-sub">Buổi học đầu tiên miễn phí. Không cần kinh nghiệm. Chỉ cần sự tò mò.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="dat-lich.html" class="yw-btn-on-dark">Đăng ký buổi thử →</a>
+      <a href="lien-he.html" class="yw-btn-outline-dark">Hỏi thêm thông tin</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4" data-reveal>
+        <div class="yw-ft-logo"><div class="yw-ft-logo-dot"></div>[TÊN] Yoga</div>
+        <p class="yw-ft-desc">Không gian yoga & wellness — nơi thân và tâm được nuôi dưỡng qua từng hơi thở.</p>
+        <div class="yw-ft-socials">
+          <a href="#" class="yw-ft-soc" rel="noopener noreferrer">fb</a>
+          <a href="#" class="yw-ft-soc" rel="noopener noreferrer">ig</a>
+          <a href="#" class="yw-ft-soc" rel="noopener noreferrer">yt</a>
+          <a href="#" class="yw-ft-soc" rel="noopener noreferrer">zl</a>
+        </div>
+      </div>
+      <div class="col" data-reveal class="rd1">
+        <div class="yw-ft-col-title">Các lớp học</div>
+        <div class="yw-ft-links">
+          <a href="dich-vu.html">Hatha Yoga</a>
+          <a href="dich-vu.html">Vinyasa Flow</a>
+          <a href="dich-vu.html">Thiền Định</a>
+          <a href="dich-vu.html">Prenatal Yoga</a>
+        </div>
+      </div>
+      <div class="col" data-reveal class="rd2">
+        <div class="yw-ft-col-title">Thông tin</div>
+        <div class="yw-ft-links">
+          <a href="dat-lich.html">Đăng ký lớp</a>
+          <a href="lien-he.html">Liên hệ</a>
+          <a href="index.html">Gói thành viên</a>
+          <a href="index.html">Lịch học tuần</a>
+        </div>
+      </div>
+      <div class="col" data-reveal class="rd3">
+        <div class="yw-ft-col-title">Liên hệ</div>
+        <div class="yw-ft-links">
+          <a href="tel:0901234567">📱 0901 234 567</a>
+          <a href="#">📍 [Địa chỉ trung tâm]</a>
+          <a href="#">🌿 Mở cửa 6:00 – 21:00</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="yw-ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="yw-ft-copy">© 2026 [TÊN TRUNG TÂM] · Yoga & Wellness</div>
+        <div class="yw-ft-copy">Chứng nhận RYT · Yoga Alliance</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Zalo float -->
+<div class="yw-zf">
+  <div class="yw-zf-tip">Nhắn tin qua Zalo</div>
+  <button class="yw-zf-btn" aria-label="Liên hệ Zalo">💬</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Nav scroll shadow
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('yw-shadow', window.scrollY > 40);
+}, { passive: true });
+
+// Reveal animation
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: .08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+// Counter animation
+document.querySelectorAll('[data-counter]').forEach(el => {
+  const cro = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      const target = +el.dataset.counter;
+      const suffix = el.dataset.suffix || '';
+      let cur = 0;
+      const step = Math.ceil(target / 60);
+      const t = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = cur + suffix;
+        if (cur >= target) clearInterval(t);
+      }, 25);
+      cro.disconnect();
+    }
+  }, { threshold: .5 });
+  cro.observe(el);
+});
+
+// Mobile hamburger
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+burger.addEventListener('click', () => {
+  const o = mob.classList.toggle('open');
+  burger.classList.toggle('open', o);
+  document.body.style.overflow = o ? 'hidden' : '';
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && mob.classList.contains('open')) {
+    mob.classList.remove('open');
+    burger.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+</script>
+</body>
+</html>
