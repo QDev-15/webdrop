@@ -20,6 +20,9 @@ Sources/system/.env.local
 # Build output
 Sources/products/goi-b/frontend/dist/
 
+# Demo build (generated — không commit)
+dist/
+
 # OS
 .DS_Store
 Thumbs.db

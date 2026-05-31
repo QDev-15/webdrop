@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảng giá — [Tên Startup] | Gói phù hợp mọi quy mô</title>
+  <meta name="description" content="Xem bảng giá [Tên Startup]: từ gói Starter miễn phí đến Enterprise toàn diện. Không phí ẩn, không ràng buộc dài hạn.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav" role="navigation" aria-label="Điều hướng chính">
+  <div class="st-nav-inner">
+    <a href="index.html" class="st-logo">
+      <span class="logo-dot" aria-hidden="true"></span>[Tên Startup]
+    </a>
+    <ul class="st-nav-links">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="san-pham.html">Sản phẩm</a></li>
+      <li><a href="bang-gia.html" class="active">Bảng giá</a></li>
+      <li><a href="lien-he.html">Liên hệ</a></li>
+    </ul>
+    <div class="st-nav-right">
+      <a href="lien-he.html" class="st-nav-login">Đăng nhập</a>
+      <a href="bang-gia.html" class="st-nav-cta">Dùng thử miễn phí</a>
+    </div>
+    <button class="st-burger" id="navBurger" aria-label="Mở menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="st-mob" id="navMob" role="dialog" aria-label="Menu di động">
+  <a href="index.html">Trang chủ</a>
+  <a href="san-pham.html">Sản phẩm</a>
+  <a href="bang-gia.html">Bảng giá</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="bang-gia.html" class="mob-cta">Dùng thử miễn phí</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="st-page-hero" aria-labelledby="bg-heading">
+  <div class="wd-container">
+    <div class="st-ph-inner">
+      <div class="st-ph-badge">
+        <span aria-hidden="true">💎</span> Bảng giá
+      </div>
+      <h1 class="st-ph-title" id="bg-heading">
+        Đơn giản, minh bạch<br>không <em>phí ẩn</em>
+      </h1>
+      <p class="st-ph-sub">
+        Bắt đầu miễn phí, nâng cấp khi cần. Hủy bất cứ lúc nào — không ràng buộc hợp đồng dài hạn.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING TOGGLE + CARDS -->
+<section class="sec-pad" style="background:var(--bg);" aria-labelledby="pricing-main-heading">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="st-pricing-toggle" role="group" aria-label="Chu kỳ thanh toán">
+        <button class="st-toggle-btn active" data-billing="monthly">Hàng tháng</button>
+        <button class="st-toggle-btn" data-billing="yearly">
+          Hàng năm <span class="st-toggle-badge">Tiết kiệm 20%</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="st-pricing-grid">
+      <!-- Free / Starter -->
+      <div class="st-pricing-card" data-reveal>
+        <div class="st-pricing-tier">Starter</div>
+        <div class="st-price-wrap">
+          <span class="st-price-amount" data-price-monthly>Miễn phí</span>
+          <span class="st-price-amount" data-price-yearly style="display:none">Miễn phí</span>
+        </div>
+        <div class="st-price-period">Vĩnh viễn miễn phí · Không cần thẻ tín dụng</div>
+        <div class="st-pricing-desc">
+          Phù hợp cho cá nhân và startup nhỏ muốn khám phá tự động hóa lần đầu.
+        </div>
+        <ul class="st-pricing-feats">
+          <li>[N] quy trình tự động</li>
+          <li>[N] người dùng</li>
+          <li>Phân tích cơ bản ([N] ngày lịch sử)</li>
+          <li>[N] tích hợp cơ bản</li>
+          <li>[N] GB lưu trữ</li>
+          <li>Hỗ trợ qua email</li>
+          <li class="unavail">AI Assistant</li>
+          <li class="unavail">API access nâng cao</li>
+          <li class="unavail">Custom branding</li>
+        </ul>
+        <a href="lien-he.html" class="st-pricing-cta">Bắt đầu miễn phí</a>
+      </div>
+
+      <!-- Professional — Featured -->
+      <div class="st-pricing-card featured" data-reveal data-reveal-d1>
+        <div class="st-pricing-hot-label">Phổ biến nhất</div>
+        <div class="st-pricing-tier">Professional</div>
+        <div class="st-price-wrap">
+          <span class="st-price-amount" data-price-monthly>[X]</span>
+          <span class="st-price-amount" data-price-yearly style="display:none">[X2]</span>
+          <span class="st-price-unit">đ</span>
+        </div>
+        <div class="st-price-period">
+          /tháng · Thanh toán
+          <span data-price-monthly>hàng tháng</span>
+          <span data-price-yearly style="display:none">hàng năm (tiết kiệm [Z]đ)</span>
+        </div>
+        <div class="st-pricing-desc">
+          Lý tưởng cho doanh nghiệp SME muốn tối ưu toàn diện quy trình vận hành.
+        </div>
+        <ul class="st-pricing-feats">
+          <li>Không giới hạn quy trình tự động</li>
+          <li>[N] người dùng (thêm [giá]/người/tháng)</li>
+          <li>Phân tích AI nâng cao ([N] tháng lịch sử)</li>
+          <li>[N]+ tích hợp</li>
+          <li>[N] GB lưu trữ</li>
+          <li>AI Assistant đầy đủ</li>
+          <li>API RESTful + Webhook</li>
+          <li>Hỗ trợ Zalo + Email ưu tiên</li>
+          <li class="unavail">On-premise deployment</li>
+          <li class="unavail">SLA cam kết hợp đồng</li>
+        </ul>
+        <a href="lien-he.html" class="st-pricing-cta">Dùng thử 14 ngày miễn phí</a>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="st-pricing-card" data-reveal data-reveal-d2>
+        <div class="st-pricing-tier">Enterprise</div>
+        <div class="st-price-wrap">
+          <span class="st-price-amount" style="font-size:26px;letter-spacing:-.5px;padding-bottom:6px;">Liên hệ báo giá</span>
+        </div>
+        <div class="st-price-period">Tùy chỉnh theo quy mô & nhu cầu</div>
+        <div class="st-pricing-desc">
+          Giải pháp toàn diện cho tập đoàn và tổ chức quy mô lớn với yêu cầu bảo mật và tùy chỉnh cao.
+        </div>
+        <ul class="st-pricing-feats">
+          <li>Tất cả tính năng Professional</li>
+          <li>Không giới hạn người dùng</li>
+          <li>On-premise hoặc private cloud</li>
+          <li>Tích hợp hệ thống theo yêu cầu riêng</li>
+          <li>Không giới hạn lưu trữ</li>
+          <li>SLA 99.9% cam kết hợp đồng</li>
+          <li>Hỗ trợ 24/7 có dedicated manager</li>
+          <li>Đào tạo nhân sự tận nơi</li>
+          <li>Custom branding & white-label</li>
+        </ul>
+        <a href="lien-he.html" class="st-pricing-cta">Liên hệ tư vấn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="sec-pad" style="background:var(--dark2);" aria-labelledby="compare-heading">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="st-section-badge">
+        <span aria-hidden="true">📋</span> So sánh chi tiết
+      </div>
+      <h2 class="st-section-title" id="compare-heading">
+        So sánh các gói <span class="st-grad-text">chi tiết</span>
+      </h2>
+    </div>
+
+    <div style="overflow-x:auto;" data-reveal>
+      <table class="st-compare-table" aria-label="Bảng so sánh tính năng các gói">
+        <thead>
+          <tr>
+            <th style="width:40%">Tính năng</th>
+            <th style="text-align:center">Starter</th>
+            <th style="text-align:center;background:rgba(124,58,237,.08);">Professional</th>
+            <th style="text-align:center">Enterprise</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Quy trình tự động</td>
+            <td style="text-align:center">[N] quy trình</td>
+            <td style="text-align:center;background:rgba(124,58,237,.05);">Không giới hạn</td>
+            <td style="text-align:center">Không giới hạn</td>
+          </tr>
+          <tr>
+            <td>Người dùng</td>
+            <td style="text-align:center">[N] người</td>
+            <td style="text-align:center;background:rgba(124,58,237,.05);">[N] người</td>
+            <td style="text-align:center">Không giới hạn</td>
+          </tr>
+          <tr>
+            <td>Lưu trữ dữ liệu</td>
+            <td style="text-align:center">[N] GB</td>
+            <td style="text-align:center;background:rgba(124,58,237,.05);">[N] GB</td>
+            <td style="text-align:center">Không giới hạn</td>
+          </tr>
+          <tr>
+            <td>Tích hợp ứng dụng</td>
+            <td style="text-align:center">[N]+</td>
+            <td style="text-align:center;background:rgba(124,58,237,.05);">[N]+</td>
+            <td style="text-align:center">Tùy chỉnh</td>
+          </tr>
+          <tr>
+            <td>Phân tích & báo cáo</td>
+            <td style="text-align:center">Cơ bản</td>
+            <td style="text-align:center;background:rgba(124,58,237,.05);">Nâng cao + AI</td>
+            <td style="text-align:center">Toàn diện</td>
+          </tr>
+          <tr>
+            <td>AI Assistant</td>
+            <td style="text-align:center"><span class="st-cross" aria-label="Không">—</span></td>
+            <td style="text-align:center;background:rgba(124,58,237,.05);"><span class="st-check" aria-label="Có">✓</span></td>
+            <td style="text-align:center"><span class="st-check" aria-label="Có">✓</span></td>
+          </tr>
+          <tr>
+            <td>API & Webhook</td>
+            <td style="text-align:center"><span class="st-cross" aria-label="Không">—</span></td>
+            <td style="text-align:center;background:rgba(124,58,237,.05);"><span class="st-check" aria-label="Có">✓</span></td>
+            <td style="text-align:center"><span class="st-check" aria-label="Có">✓</span></td>
+          </tr>
+          <tr>
+            <td>Custom branding</td>
+            <td style="text-align:center"><span class="st-cross" aria-label="Không">—</span></td>
+            <td style="text-align:center;background:rgba(124,58,237,.05);"><span class="st-cross" aria-label="Không">—</span></td>
+            <td style="text-align:center"><span class="st-check" aria-label="Có">✓</span></td>
+          </tr>
+          <tr>
+            <td>On-premise deployment</td>
+            <td style="text-align:center"><span class="st-cross" aria-label="Không">—</span></td>
+            <td style="text-align:center;background:rgba(124,58,237,.05);"><span class="st-cross" aria-label="Không">—</span></td>
+            <td style="text-align:center"><span class="st-check" aria-label="Có">✓</span></td>
+          </tr>
+          <tr>
+            <td>Hỗ trợ</td>
+            <td style="text-align:center">Email</td>
+            <td style="text-align:center;background:rgba(124,58,237,.05);">Zalo + Email ưu tiên</td>
+            <td style="text-align:center">24/7 Dedicated</td>
+          </tr>
+          <tr>
+            <td>SLA Uptime</td>
+            <td style="text-align:center">99.5%</td>
+            <td style="text-align:center;background:rgba(124,58,237,.05);">99.9%</td>
+            <td style="text-align:center">99.99% (hợp đồng)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec-pad" style="background:var(--bg);" aria-labelledby="faq-heading">
+  <div class="wd-container">
+    <div class="row">
+      <div class="col-lg-4 mb-5 mb-lg-0" data-reveal>
+        <div class="st-section-badge">
+          <span aria-hidden="true">❓</span> FAQ
+        </div>
+        <h2 class="st-section-title" id="faq-heading">
+          Câu hỏi<br><span class="st-grad-text">thường gặp</span>
+        </h2>
+        <p class="st-section-sub" style="margin-bottom:24px">
+          Không tìm thấy câu trả lời? Liên hệ đội hỗ trợ của chúng tôi.
+        </p>
+        <a href="lien-he.html" class="st-btn-primary">Liên hệ hỗ trợ</a>
+      </div>
+      <div class="col-lg-8" data-reveal data-reveal-d1>
+        <div class="st-faq-item">
+          <div class="st-faq-q">
+            Tôi có thể dùng thử miễn phí bao lâu?
+            <span class="st-faq-icon" aria-hidden="true">+</span>
+          </div>
+          <div class="st-faq-a">
+            Bạn có thể dùng thử gói Professional đầy đủ tính năng trong 14 ngày hoàn toàn miễn phí, không cần thẻ tín dụng. Sau 14 ngày, nếu không nâng cấp, tài khoản sẽ tự động chuyển về gói Starter miễn phí và bạn vẫn giữ được dữ liệu đã tạo.
+          </div>
+        </div>
+        <div class="st-faq-item">
+          <div class="st-faq-q">
+            Tôi có thể thay đổi gói sau khi đăng ký không?
+            <span class="st-faq-icon" aria-hidden="true">+</span>
+          </div>
+          <div class="st-faq-a">
+            Có, bạn có thể nâng cấp hoặc hạ cấp gói bất cứ lúc nào. Khi nâng cấp, bạn chỉ trả thêm phần chênh lệch tính theo ngày còn lại trong chu kỳ hiện tại. Khi hạ cấp, thay đổi sẽ có hiệu lực vào đầu chu kỳ thanh toán tiếp theo.
+          </div>
+        </div>
+        <div class="st-faq-item">
+          <div class="st-faq-q">
+            Dữ liệu của tôi có được bảo mật không?
+            <span class="st-faq-icon" aria-hidden="true">+</span>
+          </div>
+          <div class="st-faq-a">
+            Tất cả dữ liệu được mã hóa AES-256 khi lưu trữ và SSL/TLS khi truyền tải. Chúng tôi tuân thủ tiêu chuẩn ISO 27001 và không bao giờ chia sẻ dữ liệu của bạn với bên thứ ba. Backup tự động mỗi 6 giờ, lưu trữ tối thiểu 90 ngày.
+          </div>
+        </div>
+        <div class="st-faq-item">
+          <div class="st-faq-q">
+            Tôi có thể xuất dữ liệu không nếu muốn chuyển đi?
+            <span class="st-faq-icon" aria-hidden="true">+</span>
+          </div>
+          <div class="st-faq-a">
+            Hoàn toàn có thể. Bạn có thể xuất toàn bộ dữ liệu ở định dạng CSV, JSON hoặc Excel bất cứ lúc nào. Chúng tôi cam kết không giữ dữ liệu làm con tin — dữ liệu của bạn luôn là của bạn.
+          </div>
+        </div>
+        <div class="st-faq-item">
+          <div class="st-faq-q">
+            Gói Enterprise có thể triển khai tại máy chủ riêng không?
+            <span class="st-faq-icon" aria-hidden="true">+</span>
+          </div>
+          <div class="st-faq-a">
+            Có, gói Enterprise hỗ trợ triển khai on-premise trên hạ tầng của doanh nghiệp bạn hoặc private cloud riêng. Đội kỹ thuật của chúng tôi sẽ hỗ trợ toàn bộ quá trình cài đặt, cấu hình và bàn giao vận hành.
+          </div>
+        </div>
+        <div class="st-faq-item">
+          <div class="st-faq-q">
+            Có hỗ trợ thanh toán bằng chuyển khoản ngân hàng không?
+            <span class="st-faq-icon" aria-hidden="true">+</span>
+          </div>
+          <div class="st-faq-a">
+            Có, chúng tôi hỗ trợ thanh toán qua chuyển khoản ngân hàng, MoMo, VNPay và thẻ Visa/Mastercard. Doanh nghiệp có thể xuất hóa đơn VAT theo yêu cầu cho mọi giao dịch.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BADGES -->
+<section class="sec-pad" style="background:var(--surface);border-top:1px solid var(--border-light);" aria-label="Đảm bảo chất lượng">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="st-section-title" style="font-size:clamp(22px,2.5vw,32px);">
+        Cam kết của chúng tôi với bạn
+      </div>
+    </div>
+    <div class="row g-4" data-reveal>
+      <div class="col-6 col-md-3 text-center">
+        <div style="font-size:40px;margin-bottom:12px;" aria-hidden="true">🛡</div>
+        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;">Bảo mật ISO 27001</div>
+        <div style="font-size:13px;color:var(--text-2);">Tiêu chuẩn bảo mật quốc tế được chứng nhận</div>
+      </div>
+      <div class="col-6 col-md-3 text-center">
+        <div style="font-size:40px;margin-bottom:12px;" aria-hidden="true">⏰</div>
+        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;">Uptime 99.9%</div>
+        <div style="font-size:13px;color:var(--text-2);">SLA đảm bảo với khoản bồi thường nếu vi phạm</div>
+      </div>
+      <div class="col-6 col-md-3 text-center">
+        <div style="font-size:40px;margin-bottom:12px;" aria-hidden="true">💬</div>
+        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;">Hỗ trợ tiếng Việt</div>
+        <div style="font-size:13px;color:var(--text-2);">Đội ngũ Việt Nam, phản hồi trong vài phút</div>
+      </div>
+      <div class="col-6 col-md-3 text-center">
+        <div style="font-size:40px;margin-bottom:12px;" aria-hidden="true">🔄</div>
+        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;">Hoàn tiền 30 ngày</div>
+        <div style="font-size:13px;color:var(--text-2);">Không hài lòng? Hoàn tiền 100% trong 30 ngày đầu</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="st-cta-section sec-pad" aria-labelledby="bg-cta-heading">
+  <div class="wd-container">
+    <div class="st-cta-inner" data-reveal>
+      <h2 class="st-cta-title" id="bg-cta-heading">
+        Bắt đầu hành trình<br><span class="st-grad-text">tự động hóa ngay hôm nay</span>
+      </h2>
+      <p class="st-cta-sub">
+        Tham gia cùng [N]+ doanh nghiệp Việt Nam đang sử dụng [Tên Startup] để vận hành thông minh hơn.
+      </p>
+      <div class="st-hero-ctas" style="justify-content:center;">
+        <a href="lien-he.html" class="st-btn-primary">Dùng thử miễn phí 14 ngày</a>
+        <a href="lien-he.html" class="st-btn-ghost">Nói chuyện với team sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="st-footer" role="contentinfo">
+  <div class="wd-container">
+    <div class="st-footer-grid">
+      <div class="st-footer-brand">
+        <a href="index.html" class="st-logo">
+          <span class="logo-dot" aria-hidden="true"></span>[Tên Startup]
+        </a>
+        <p class="st-footer-tagline">
+          Nền tảng [lĩnh vực] thông minh giúp doanh nghiệp Việt Nam vận hành hiệu quả hơn mỗi ngày.
+        </p>
+        <div class="st-social-row" aria-label="Mạng xã hội">
+          <a href="#" class="st-social-icon" aria-label="Facebook" rel="noopener noreferrer">f</a>
+          <a href="#" class="st-social-icon" aria-label="LinkedIn" rel="noopener noreferrer">in</a>
+          <a href="#" class="st-social-icon" aria-label="Twitter" rel="noopener noreferrer">𝕏</a>
+          <a href="#" class="st-social-icon" aria-label="YouTube" rel="noopener noreferrer">▶</a>
+        </div>
+      </div>
+      <div>
+        <div class="st-footer-col-title">Sản phẩm</div>
+        <ul class="st-footer-links">
+          <li><a href="san-pham.html">Tính năng</a></li>
+          <li><a href="bang-gia.html">Bảng giá</a></li>
+          <li><a href="#">Changelog</a></li>
+          <li><a href="#">API Docs</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="st-footer-col-title">Công ty</div>
+        <ul class="st-footer-links">
+          <li><a href="#">Về chúng tôi</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Tuyển dụng</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div class="st-footer-newsletter">
+        <div class="st-footer-col-title">Cập nhật mới nhất</div>
+        <p class="st-newsletter-desc">Nhận thông báo về tính năng mới hàng tuần.</p>
+        <form class="st-newsletter-form" onsubmit="return false;" aria-label="Đăng ký nhận tin">
+          <input type="email" class="st-newsletter-input" placeholder="Email của bạn" aria-label="Email nhận tin" required>
+          <button type="submit" class="st-newsletter-btn">Đăng ký</button>
+        </form>
+      </div>
+    </div>
+    <div class="st-footer-bottom">
+      <span class="st-footer-copy">&copy; [Năm] [Tên Startup]. Bản quyền được bảo lưu.</span>
+      <nav class="st-footer-legal" aria-label="Pháp lý">
+        <a href="#">Điều khoản sử dụng</a>
+        <a href="#">Chính sách bảo mật</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<!-- Zalo Float -->
+<a href="https://zalo.me/[SoDienThoai]" class="st-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo">
+  <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect width="40" height="40" rx="20" fill="#0068FF"/>
+    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#fff" font-size="13" font-weight="700" font-family="sans-serif">Zalo</text>
+  </svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function() {
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+    });
+  }, { threshold: .08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+  const burger = document.getElementById('navBurger');
+  const mob = document.getElementById('navMob');
+  if (burger && mob) {
+    burger.addEventListener('click', () => {
+      const o = mob.classList.toggle('open');
+      burger.classList.toggle('open', o);
+      burger.setAttribute('aria-expanded', o);
+      document.body.style.overflow = o ? 'hidden' : '';
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && mob.classList.contains('open')) {
+        mob.classList.remove('open'); burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+    });
+    mob.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mob.classList.remove('open'); burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  // Pricing toggle
+  const toggleBtns = document.querySelectorAll('[data-billing]');
+  const monthlyEls = document.querySelectorAll('[data-price-monthly]');
+  const yearlyEls = document.querySelectorAll('[data-price-yearly]');
+  toggleBtns.forEach(t => {
+    t.addEventListener('click', () => {
+      const isYearly = t.dataset.billing === 'yearly';
+      toggleBtns.forEach(b => b.classList.toggle('active', b.dataset.billing === t.dataset.billing));
+      monthlyEls.forEach(el => { el.style.display = isYearly ? 'none' : ''; });
+      yearlyEls.forEach(el => { el.style.display = isYearly ? '' : 'none'; });
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sushi Bar — [TÊN NHÀ HÀNG] Omakase & Sushi</title>
+<meta name="description" content="Sushi Bar tại [TÊN NHÀ HÀNG] — Ngồi quầy counter trực tiếp, tương tác với bếp trưởng, thưởng thức omakase set chính thống. Đặt chỗ trước 24 giờ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+.experience-card {
+  padding: 32px 28px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: all .25s;
+  position: relative;
+  overflow: hidden;
+}
+.experience-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--border);
+  transition: background .25s;
+}
+.experience-card:hover::before { background: var(--accent); }
+.experience-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.06); transform: translateY(-4px); }
+.ec-icon { font-size: 28px; margin-bottom: 16px; }
+.ec-title { font-size: 17px; font-weight: 500; color: var(--text); margin-bottom: 8px; letter-spacing: -.3px; }
+.ec-desc { font-size: 13.5px; font-weight: 300; color: var(--text-2); line-height: 1.7; }
+
+/* Omakase set pricing */
+.omakase-pkg {
+  padding: 36px 32px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  position: relative;
+  transition: all .25s;
+}
+.omakase-pkg:hover { box-shadow: 0 16px 44px rgba(0,0,0,.07); transform: translateY(-5px); }
+.omakase-pkg.featured { border-color: var(--accent); }
+.omakase-pkg.featured::after {
+  content: 'Phổ biến nhất';
+  position: absolute;
+  top: -11px; left: 50%; transform: translateX(-50%);
+  background: var(--accent); color: #fff;
+  font-size: 10.5px; font-weight: 500;
+  padding: 3px 14px; text-transform: uppercase; letter-spacing: 1px;
+}
+.pkg-name { font-size: 13px; font-weight: 500; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
+.pkg-jp { font-size: 24px; font-weight: 300; color: var(--text); letter-spacing: -1px; margin-bottom: 4px; }
+.pkg-courses { font-size: 12px; color: var(--text-3); margin-bottom: 20px; }
+.pkg-price { font-size: 32px; font-weight: 300; color: var(--text); letter-spacing: -1.5px; margin-bottom: 4px; }
+.pkg-price span { font-size: 14px; color: var(--text-3); font-weight: 300; }
+.pkg-includes { list-style: none; padding: 0; margin: 20px 0 24px; display: flex; flex-direction: column; gap: 10px; }
+.pkg-includes li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; font-weight: 300; color: var(--text-2); line-height: 1.5; }
+.pkg-includes li::before { content: '–'; color: var(--accent); flex-shrink: 0; }
+
+/* Counter seating visual */
+.counter-visual {
+  background: var(--dark2);
+  padding: clamp(64px,8vw,96px) 0;
+  position: relative;
+  overflow: hidden;
+}
+.counter-img { width: 100%; height: clamp(280px,40vw,480px); object-fit: cover; }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">鮨 [TÊN NHÀ HÀNG] <span class="logo-jp">日本料理</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="thuc-don.html">Thực đơn</a>
+        <a href="sushi-bar.html" class="active">Sushi Bar</a>
+        <a href="dat-ban.html">Đặt bàn</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-ban.html" class="nav-cta">Đặt bàn</a>
+      <button class="nav-hamburger" id="navHamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="thuc-don.html">Thực đơn</a>
+  <a href="sushi-bar.html">Sushi Bar</a>
+  <a href="dat-ban.html">Đặt bàn</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-ban.html" class="nm-cta">Đặt chỗ ngay</a>
+</div>
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="wd-container">
+    <div class="ph-jp">すし カウンター</div>
+    <div class="ph-eyebrow">Sushi Counter</div>
+    <h1 class="ph-title">Sushi Bar <em>Experience</em></h1>
+    <p class="ph-sub">Ngồi trực tiếp tại quầy — quan sát bếp trưởng sáng tạo từng miếng sushi, tương tác và hỏi về từng nguyên liệu.</p>
+  </div>
+</div>
+
+<!-- What is Sushi Bar -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="row align-items-center g-5 mb-5">
+      <div class="col-lg-6 reveal">
+        <div class="eyebrow">Trải nghiệm counter</div>
+        <h2 class="sec-title">Ngồi quầy —<br><em>xem nghệ thuật</em></h2>
+        <p style="font-size:15px;font-weight:300;color:var(--text-2);line-height:1.85;margin-bottom:22px">
+          Sushi Bar tại [TÊN NHÀ HÀNG] có <strong>8 ghế ngồi quầy</strong> — đây là cách thưởng thức sushi truyền thống nhất. Bạn ngồi trực tiếp đối diện với bếp trưởng, quan sát từng động tác tạo hình sushi, hỏi về nguồn gốc nguyên liệu và hương vị.
+        </p>
+        <p style="font-size:15px;font-weight:300;color:var(--text-2);line-height:1.85;margin-bottom:24px">
+          Không có menu cố định — bếp trưởng sẽ hỏi về sở thích và dị ứng của bạn, rồi tạo ra một buổi omakase riêng. Mỗi bàn là một câu chuyện khác nhau.
+        </p>
+        <div style="display:flex;gap:24px;flex-wrap:wrap">
+          <div>
+            <div style="font-size:24px;font-weight:300;color:var(--accent);letter-spacing:-1px">8</div>
+            <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:1px">Ghế quầy counter</div>
+          </div>
+          <div>
+            <div style="font-size:24px;font-weight:300;color:var(--accent);letter-spacing:-1px">2–3</div>
+            <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:1px">Giờ trải nghiệm</div>
+          </div>
+          <div>
+            <div style="font-size:24px;font-weight:300;color:var(--accent);letter-spacing:-1px">24h</div>
+            <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:1px">Đặt trước tối thiểu</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal reveal-d1">
+        <img src="https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=700&q=80&auto=format&fit=crop" alt="Sushi bar counter" style="width:100%;height:400px;object-fit:cover">
+      </div>
+    </div>
+
+    <!-- Experience highlights -->
+    <div class="row g-3">
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="experience-card">
+          <div class="ec-icon">🍣</div>
+          <div class="ec-title">Sushi tươi ngay tay bếp trưởng</div>
+          <p class="ec-desc">Mỗi miếng sushi được tạo hình và trao trực tiếp — ăn ngay trong 30 giây để cảm nhận nhiệt độ cơm hoàn hảo.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal reveal-d1">
+        <div class="experience-card">
+          <div class="ec-icon">💬</div>
+          <div class="ec-title">Tương tác trực tiếp với bếp trưởng</div>
+          <p class="ec-desc">Hỏi về nguồn gốc cá, kỹ thuật cắt, cách ủ cơm — bếp trưởng luôn vui vẻ giải thích mọi điều bạn tò mò.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal reveal-d2">
+        <div class="experience-card">
+          <div class="ec-icon">🎌</div>
+          <div class="ec-title">Nghi lễ ẩm thực Nhật chính thống</div>
+          <p class="ec-desc">Cách ăn sushi đúng — không pha soy và wasabi chung, không dùng đũa, ăn nguyên miếng. Bếp trưởng sẽ hướng dẫn nhẹ nhàng.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal reveal-d3">
+        <div class="experience-card">
+          <div class="ec-icon">🍶</div>
+          <div class="ec-title">Ghép sake với từng món</div>
+          <p class="ec-desc">Sommelière rượu Nhật của chúng tôi sẽ gợi ý sake hoặc trà phù hợp với từng loại sushi trong thực đơn của bạn.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Counter image -->
+<div class="counter-visual">
+  <div class="wd-container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 reveal">
+        <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=700&q=80&auto=format&fit=crop" alt="Sushi đặc sắc" class="counter-img">
+      </div>
+      <div class="col-lg-6 reveal reveal-d1">
+        <div class="ph-eyebrow mb-3">Quy trình</div>
+        <h2 style="font-size:clamp(26px,3.5vw,44px);font-weight:300;color:#fff;letter-spacing:-1.5px;margin-bottom:20px">Từ biển <em style="color:#ef4444">đến tay bạn</em></h2>
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div style="display:flex;gap:16px">
+            <div style="font-size:20px;font-weight:300;color:rgba(255,255,255,.25);flex-shrink:0;width:32px">01</div>
+            <div>
+              <div style="font-size:14px;font-weight:500;color:#fff;margin-bottom:5px">Nhập nguyên liệu sáng sớm</div>
+              <p style="font-size:13px;font-weight:300;color:rgba(255,255,255,.38);line-height:1.65;margin:0">Cá tươi nhập từ 5 giờ sáng, kiểm tra chất lượng theo tiêu chuẩn Nhật trước khi được chọn vào bếp.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px">
+            <div style="font-size:20px;font-weight:300;color:rgba(255,255,255,.25);flex-shrink:0;width:32px">02</div>
+            <div>
+              <div style="font-size:14px;font-weight:500;color:#fff;margin-bottom:5px">Chuẩn bị cơm sushi</div>
+              <p style="font-size:13px;font-weight:300;color:rgba(255,255,255,.38);line-height:1.65;margin:0">Gạo Koshihikari Nhật nấu theo tỉ lệ nước chuẩn, trộn với dấm gạo pha riêng — nền tảng của sushi hoàn hảo.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px">
+            <div style="font-size:20px;font-weight:300;color:rgba(255,255,255,.25);flex-shrink:0;width:32px">03</div>
+            <div>
+              <div style="font-size:14px;font-weight:500;color:#fff;margin-bottom:5px">Tạo hình theo nhiệt độ</div>
+              <p style="font-size:13px;font-weight:300;color:rgba(255,255,255,.38);line-height:1.65;margin:0">Bếp trưởng tạo hình từng miếng nigiri với áp lực tay vừa đủ — cơm đủ ấm để cân bằng với cá lạnh tươi.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px">
+            <div style="font-size:20px;font-weight:300;color:rgba(255,255,255,.25);flex-shrink:0;width:32px">04</div>
+            <div>
+              <div style="font-size:14px;font-weight:500;color:#fff;margin-bottom:5px">Trao tay trong 30 giây</div>
+              <p style="font-size:13px;font-weight:300;color:rgba(255,255,255,.38);line-height:1.65;margin:0">Ăn ngay sau khi nhận — đây là khoảnh khắc hương vị tốt nhất, không để lâu trong đĩa.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Omakase packages -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Gói Omakase</div>
+      <h2 class="sec-title">Chọn trải nghiệm<br><em>phù hợp với bạn</em></h2>
+      <p class="sec-sub">Tất cả các gói đều bao gồm: súp miso khai vị, món tráng miệng và trà xanh. Yêu cầu đặt trước 24 giờ.</p>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4 reveal">
+        <div class="omakase-pkg">
+          <div class="pkg-name">Standard</div>
+          <div class="pkg-jp">おまかせ標準</div>
+          <div class="pkg-courses">8 món · 90–120 phút</div>
+          <div class="pkg-price">[Giá] <span>/người</span></div>
+          <ul class="pkg-includes">
+            <li>Súp miso & tsukemono khai vị</li>
+            <li>6 miếng nigiri tuyển chọn</li>
+            <li>2 cuốn maki</li>
+            <li>Sashimi 3 loại</li>
+            <li>Tráng miệng & trà xanh</li>
+          </ul>
+          <a href="dat-ban.html" class="btn-ghost w-100" style="text-align:center">Đặt gói này</a>
+        </div>
+      </div>
+      <div class="col-md-4 reveal reveal-d1">
+        <div class="omakase-pkg featured" style="margin-top:-16px">
+          <div class="pkg-name">Premium</div>
+          <div class="pkg-jp">おまかせプレミアム</div>
+          <div class="pkg-courses">12 món · 150–180 phút</div>
+          <div class="pkg-price">[Giá] <span>/người</span></div>
+          <ul class="pkg-includes">
+            <li>Khai vị 3 món nhỏ</li>
+            <li>10 miếng nigiri bao gồm Otoro & Uni</li>
+            <li>Sashimi đặc tuyển 5 loại</li>
+            <li>2 cuộn maki đặc biệt</li>
+            <li>Súp clam tươi Nhật</li>
+            <li>Tráng miệng Matcha Parfait</li>
+            <li>Trà Gyokuro hảo hạng</li>
+          </ul>
+          <a href="dat-ban.html" class="btn-accent w-100" style="text-align:center">Đặt gói này</a>
+        </div>
+      </div>
+      <div class="col-md-4 reveal reveal-d2">
+        <div class="omakase-pkg">
+          <div class="pkg-name">Signature</div>
+          <div class="pkg-jp">おまかせシグネチャー</div>
+          <div class="pkg-courses">16 món · 180–240 phút</div>
+          <div class="pkg-price">[Giá] <span>/người</span></div>
+          <ul class="pkg-includes">
+            <li>Tất cả của gói Premium</li>
+            <li>Wagyu Wagyu A5 teppan</li>
+            <li>Uni Don mini</li>
+            <li>Sake ghép theo từng món</li>
+            <li>Foie gras topping</li>
+            <li>Tráng miệng seasonal đặc biệt</li>
+          </ul>
+          <a href="dat-ban.html" class="btn-ghost w-100" style="text-align:center">Đặt gói này</a>
+        </div>
+      </div>
+    </div>
+    <p class="text-center reveal" style="font-size:12px;color:var(--text-3);margin-top:20px">* Giá chưa bao gồm đồ uống thêm và service charge 5%. Yêu cầu đặt cọc khi đặt chỗ Omakase.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--dark2);padding:clamp(56px,8vw,96px) 0">
+  <div class="wd-container">
+    <div class="row align-items-center">
+      <div class="col-md-8 reveal">
+        <h2 style="font-size:clamp(24px,3.5vw,44px);font-weight:300;color:#fff;letter-spacing:-1.5px;margin-bottom:10px">Chỉ còn <em style="color:#ef4444">[X] chỗ trống</em> tuần này</h2>
+        <p style="font-size:14px;font-weight:300;color:rgba(255,255,255,.4);margin-bottom:0">Sushi Bar chỉ phục vụ 8 thực khách mỗi ca — đặt trước để đảm bảo chỗ.</p>
+      </div>
+      <div class="col-md-4 text-md-end mt-3 mt-md-0 reveal reveal-d1">
+        <a href="dat-ban.html" class="btn-accent" style="margin-right:12px">Đặt chỗ ngay</a>
+        <a href="lien-he.html" class="btn-outline-white">Hỏi thêm</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo">鮨 [TÊN NHÀ HÀNG] <span>日本</span></div>
+        <p class="ft-desc">Nhà hàng Nhật Bản chính thống — nơi nghệ thuật ẩm thực và triết lý thiền định gặp nhau trên từng đĩa thức ăn.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc" aria-label="Facebook">fb</a>
+          <a href="#" class="ft-soc" aria-label="Instagram">ig</a>
+          <a href="#" class="ft-soc" aria-label="Zalo">zl</a>
+          <a href="#" class="ft-soc" aria-label="YouTube">yt</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Menu</div>
+        <div class="ft-links">
+          <a href="thuc-don.html">Thực đơn</a>
+          <a href="sushi-bar.html">Sushi Bar</a>
+          <a href="thuc-don.html">Omakase</a>
+          <a href="thuc-don.html">Sake & Rượu</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Nhà hàng</div>
+        <div class="ft-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="dat-ban.html">Đặt bàn</a>
+          <a href="lien-he.html">Liên hệ</a>
+          <a href="#">Sự kiện riêng</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links">
+          <a href="tel:[0901234567]">📱 [0901 234 567]</a>
+          <a href="#">📍 [Địa chỉ nhà hàng]</a>
+          <a href="mailto:[email@nhahangnhat.vn]">✉️ [email@nhahangnhat.vn]</a>
+          <a href="#">🕙 11:30–14:00 / 17:30–22:00</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="ft-copy">© [2024] [TÊN NHÀ HÀNG] · Made in Vietnam 🇻🇳</div>
+        <div class="ft-copy">お食事 寿司 日本料理</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="zf">
+  <div class="zf-tip">Liên hệ Zalo</div>
+  <a href="https://zalo.me/[ZALO_NUMBER]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} });
+}, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+}
+</script>
+</body>
+</html>

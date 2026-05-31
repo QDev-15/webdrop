@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đặt Bàn — [TÊN NHÀ HÀNG] Ẩm Thực Việt Truyền Thống</title>
+<meta name="description" content="Đặt bàn tại [TÊN NHÀ HÀNG] — Chọn ngày, giờ và số người. Đặt trước để có chỗ ngồi đẹp nhất, đặc biệt dịp cuối tuần và lễ Tết.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+.booking-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 36px; }
+.booking-step { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--border-light); }
+.step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-label { font-size: 14px; font-weight: 500; color: var(--text); }
+.info-card { background: var(--warm); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 16px; }
+.info-item { display: flex; gap: 12px; margin-bottom: 16px; }
+.info-item:last-child { margin-bottom: 0; }
+.info-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--accent-light); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.info-label { font-size: 11px; font-weight: 500; color: var(--text-3); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 3px; }
+.info-value { font-size: 14px; font-weight: 500; color: var(--text); }
+.form-submit-btn { width: 100%; padding: 14px; font-size: 15px; font-weight: 500; background: var(--accent); color: #fff; border: none; border-radius: 10px; cursor: pointer; font-family: var(--sans); transition: all .2s; }
+.form-submit-btn:hover { background: var(--accent-h); transform: translateY(-1px); }
+.success-msg { display: none; padding: 16px; background: var(--accent-light); border: 1px solid rgba(180,83,9,.2); border-radius: 10px; color: var(--accent); font-size: 14px; font-weight: 500; text-align: center; }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">🍲 [TÊN] <span>Ẩm Thực</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="thuc-don.html">Thực đơn</a>
+        <a href="dat-ban.html" class="active">Đặt bàn</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-ban.html" class="nav-cta">Đặt bàn ngay</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="thuc-don.html">Thực đơn</a>
+  <a href="dat-ban.html">Đặt bàn</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-ban.html" class="nm-cta">Đặt bàn ngay</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="wd-container">
+    <div class="ph-eyebrow">Đặt bàn trước</div>
+    <h1 class="ph-title">Giữ chỗ để <em>thưởng thức</em></h1>
+    <p class="ph-sub">Đặt bàn trước để có chỗ ngồi đẹp nhất. Xác nhận qua điện thoại trong vòng 30 phút.</p>
+  </div>
+</section>
+
+<!-- BOOKING SECTION -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="row g-4">
+      <!-- Form đặt bàn -->
+      <div class="col-lg-7 reveal">
+        <div class="booking-card">
+          <div class="booking-step">
+            <div class="step-num">1</div>
+            <div class="step-label">Thông tin khách đặt bàn</div>
+          </div>
+          <form id="bookingForm">
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label class="form-label" for="fullName">Họ và tên *</label>
+                <input type="text" id="fullName" class="form-control" placeholder="Nguyễn Văn An" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="phone">Số điện thoại *</label>
+                <input type="tel" id="phone" class="form-control" placeholder="0901 234 567" required>
+              </div>
+            </div>
+
+            <div class="booking-step" style="margin-top:8px">
+              <div class="step-num">2</div>
+              <div class="step-label">Thời gian và số người</div>
+            </div>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label class="form-label" for="bookDate">Ngày đặt bàn *</label>
+                <input type="date" id="bookDate" class="form-control" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="bookTime">Giờ đến *</label>
+                <select id="bookTime" class="form-select" required>
+                  <option value="">Chọn giờ...</option>
+                  <option>10:00</option><option>10:30</option>
+                  <option>11:00</option><option>11:30</option>
+                  <option>12:00</option><option>12:30</option>
+                  <option>13:00</option><option>13:30</option>
+                  <option>14:00</option><option>17:00</option>
+                  <option>17:30</option><option>18:00</option>
+                  <option>18:30</option><option>19:00</option>
+                  <option>19:30</option><option>20:00</option>
+                  <option>20:30</option><option>21:00</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="guests">Số người *</label>
+                <select id="guests" class="form-select" required>
+                  <option value="">Chọn số người...</option>
+                  <option>1 người</option><option>2 người</option>
+                  <option>3 người</option><option>4 người</option>
+                  <option>5 người</option><option>6 người</option>
+                  <option>7–10 người</option><option>11–20 người</option>
+                  <option>Trên 20 người (liên hệ trực tiếp)</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="roomType">Loại bàn</label>
+                <select id="roomType" class="form-select">
+                  <option value="">Không yêu cầu cụ thể</option>
+                  <option>Bàn thường (trong nhà)</option>
+                  <option>Bàn ngoài hiên</option>
+                  <option>Phòng riêng gia đình</option>
+                  <option>Phòng riêng VIP</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="booking-step" style="margin-top:8px">
+              <div class="step-num">3</div>
+              <div class="step-label">Yêu cầu đặc biệt (nếu có)</div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label" for="special">Yêu cầu thêm</label>
+              <textarea id="special" class="form-control" rows="3" placeholder="Ví dụ: Sinh nhật, cần ghế em bé, dị ứng thực phẩm, muốn trang trí bàn..."></textarea>
+            </div>
+
+            <div id="successMsg" class="success-msg mb-3">
+              ✓ Đặt bàn thành công! Chúng tôi sẽ gọi xác nhận trong vòng 30 phút. Cảm ơn bạn!
+            </div>
+            <button type="submit" class="form-submit-btn">Xác nhận đặt bàn →</button>
+            <p style="font-size:12px;color:var(--text-3);text-align:center;margin-top:12px">Bằng cách đặt bàn, bạn đồng ý với <a href="#" style="color:var(--accent)">điều khoản sử dụng</a> của chúng tôi.</p>
+          </form>
+        </div>
+      </div>
+
+      <!-- Thông tin nhà hàng -->
+      <div class="col-lg-5 reveal reveal-d1">
+        <div class="info-card">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:18px">Thông tin nhà hàng</div>
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div><div class="info-label">Địa chỉ</div><div class="info-value">[ĐỊA CHỈ NHÀ HÀNG]</div></div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📱</div>
+            <div><div class="info-label">Điện thoại</div><div class="info-value">[SỐ ĐIỆN THOẠI]</div></div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">🕐</div>
+            <div><div class="info-label">Giờ mở cửa</div><div class="info-value">10:00 – 22:00 (Thứ Hai – Chủ Nhật)</div></div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">🚗</div>
+            <div><div class="info-label">Chỗ đỗ xe</div><div class="info-value">Miễn phí, bãi đỗ riêng 50 xe</div></div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:16px">Lưu ý khi đặt bàn</div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px">
+            <li style="font-size:13px;color:var(--text-2);font-weight:300;display:flex;gap:8px"><span style="color:var(--accent);flex-shrink:0">✓</span> Đặt bàn từ 2 giờ trước khi đến để đảm bảo chỗ ngồi</li>
+            <li style="font-size:13px;color:var(--text-2);font-weight:300;display:flex;gap:8px"><span style="color:var(--accent);flex-shrink:0">✓</span> Nhóm từ 10 người trở lên — liên hệ trực tiếp để được tư vấn menu</li>
+            <li style="font-size:13px;color:var(--text-2);font-weight:300;display:flex;gap:8px"><span style="color:var(--accent);flex-shrink:0">✓</span> Hủy bàn vui lòng thông báo trước ít nhất 2 giờ</li>
+            <li style="font-size:13px;color:var(--text-2);font-weight:300;display:flex;gap:8px"><span style="color:var(--accent);flex-shrink:0">✓</span> Có phòng riêng cho nhóm 8–20 người, cần đặt trước 1 ngày</li>
+            <li style="font-size:13px;color:var(--text-2);font-weight:300;display:flex;gap:8px"><span style="color:var(--accent);flex-shrink:0">✓</span> Dịp sinh nhật, kỷ niệm — yêu cầu bánh kem và trang trí riêng</li>
+          </ul>
+        </div>
+
+        <div style="background:var(--dark2);border-radius:14px;padding:24px;text-align:center">
+          <div style="font-size:13px;color:rgba(255,255,255,.4);margin-bottom:8px">Cần hỗ trợ ngay?</div>
+          <div style="font-size:22px;font-weight:600;color:#fff;letter-spacing:-1px;margin-bottom:4px">[SỐ ĐIỆN THOẠI]</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.3)">Hotline mở cửa 9:00 – 22:00 hàng ngày</div>
+          <a href="https://zalo.me/[SỐ ZALO]" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:13px;background:#0068FF;color:#fff;padding:9px 20px;border-radius:8px;font-weight:500">
+            💬 Nhắn Zalo ngay
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo">🍲 [TÊN] <span>Ẩm Thực</span></div>
+        <p class="ft-desc">Ẩm thực Việt Nam truyền thống, nấu từ tâm — thưởng thức bằng cảm xúc.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc" aria-label="Facebook" rel="noopener noreferrer">fb</a>
+          <a href="#" class="ft-soc" aria-label="Instagram" rel="noopener noreferrer">ig</a>
+          <a href="#" class="ft-soc" aria-label="Zalo" rel="noopener noreferrer">zl</a>
+          <a href="#" class="ft-soc" aria-label="YouTube" rel="noopener noreferrer">yt</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Thực đơn</div>
+        <div class="ft-links">
+          <a href="thuc-don.html">Món khai vị</a>
+          <a href="thuc-don.html">Món chính</a>
+          <a href="thuc-don.html">Tráng miệng</a>
+          <a href="thuc-don.html">Đồ uống</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Thông tin</div>
+        <div class="ft-links">
+          <a href="dat-ban.html">Đặt bàn</a>
+          <a href="lien-he.html">Liên hệ</a>
+          <a href="#">Khuyến mãi</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links">
+          <a href="tel:[SỐ ĐIỆN THOẠI]">📱 [SỐ ĐIỆN THOẠI]</a>
+          <a href="#">📍 [ĐỊA CHỈ NHÀ HÀNG]</a>
+          <a href="#">🕐 10:00 – 22:00 hàng ngày</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="ft-copy">© 2026 [TÊN NHÀ HÀNG] · Made in Vietnam 🇻🇳</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="zf">
+  <div class="zf-tip">Đặt bàn qua Zalo</div>
+  <a href="https://zalo.me/[SỐ ZALO]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} });
+}, {threshold: .08, rootMargin: '0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+}
+// Set min date to today
+const dateInput = document.getElementById('bookDate');
+if (dateInput) {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2,'0');
+  const dd = String(today.getDate()).padStart(2,'0');
+  dateInput.min = `${yyyy}-${mm}-${dd}`;
+}
+// Form submit
+const bookingForm = document.getElementById('bookingForm');
+const successMsg = document.getElementById('successMsg');
+if (bookingForm && successMsg) {
+  bookingForm.addEventListener('submit', e => {
+    e.preventDefault();
+    successMsg.style.display = 'block';
+    bookingForm.querySelectorAll('input,select,textarea').forEach(el => el.disabled = true);
+    bookingForm.querySelector('.form-submit-btn').style.display = 'none';
+  });
+}
+</script>
+</body>
+</html>

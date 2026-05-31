@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Réservation — [TÊN NHÀ HÀNG PHÁP]</title>
+<meta name="description" content="Đặt bàn tại [TÊN NHÀ HÀNG] — nhà hàng Pháp tinh tế. Vui lòng đặt trước ít nhất 24 giờ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+.form-label { font-size:12px; font-weight:500; color:var(--text-3); text-transform:uppercase; letter-spacing:1px; margin-bottom:7px; }
+.form-control, .form-select { font-size:14px; font-family:var(--sans); border:1px solid var(--border); border-radius:8px; padding:12px 16px; background:var(--bg); color:var(--text); transition:border-color .15s; }
+.form-control:focus, .form-select:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(159,18,57,.08); outline:none; }
+.occasion-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.occasion-item { border:1px solid var(--border); border-radius:9px; padding:12px 14px; cursor:pointer; transition:all .15s; }
+.occasion-item:hover, .occasion-item.sel { border-color:var(--accent); background:var(--accent-light); }
+.oc-name { font-size:13px; font-weight:500; color:var(--text); }
+.oc-detail { font-size:11.5px; color:var(--text-3); }
+.res-ornament { display:flex; align-items:center; gap:14px; margin:0 auto 24px; max-width:280px; }
+.res-ornament::before, .res-ornament::after { content:''; flex:1; height:1px; background:var(--border); }
+.ro-diamond { width:5px; height:5px; background:var(--accent); transform:rotate(45deg); flex-shrink:0; }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">[TÊN NHÀ HÀNG] <span>Bistro</span></a>
+      <div class="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="menu.html">Notre Carte</a>
+        <a href="le-chef.html">Le Chef</a>
+        <a href="reservation.html" class="active">Réservation</a>
+        <a href="lien-he.html">Contact</a>
+      </div>
+      <a href="reservation.html" class="nav-cta">Réserver</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a><a href="menu.html">Notre Carte</a><a href="le-chef.html">Le Chef</a><a href="reservation.html">Réservation</a><a href="lien-he.html">Contact</a>
+  <a href="reservation.html" class="nm-cta">Réserver</a>
+</div>
+
+<div class="page-hero">
+  <div class="wd-container">
+    <div class="ph-eyebrow">Réservation</div>
+    <h1 class="ph-title">Đặt bàn cho <em>dịp đặc biệt</em></h1>
+    <p class="ph-sub">Hãy để chúng tôi chuẩn bị một bữa tối không thể quên cho bạn và người thân.</p>
+  </div>
+</div>
+
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="row g-5 justify-content-center">
+      <div class="col-lg-7 reveal">
+        <div class="text-center mb-5">
+          <div class="res-ornament"><div class="ro-diamond"></div></div>
+          <p style="font-size:13px;color:var(--text-3);font-style:italic;max-width:460px;margin:0 auto">Vui lòng đặt bàn trước tối thiểu <strong>24 giờ</strong>. Bàn được giữ trong 15 phút sau giờ đặt.</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6"><label class="form-label">Prénom &amp; Nom *</label><input type="text" class="form-control" placeholder="[Họ và tên]"></div>
+          <div class="col-md-6"><label class="form-label">Téléphone *</label><input type="tel" class="form-control" placeholder="0901 234 567"></div>
+          <div class="col-md-6"><label class="form-label">Email</label><input type="email" class="form-control" placeholder="email@example.com"></div>
+          <div class="col-md-6"><label class="form-label">Nombre de personnes *</label>
+            <select class="form-select">
+              <option>1 người</option><option selected>2 người</option><option>3 người</option><option>4 người</option>
+              <option>5 người</option><option>6 người</option><option>7–10 người</option><option>Trên 10 (liên hệ)</option>
+            </select>
+          </div>
+          <div class="col-md-6"><label class="form-label">Date *</label><input type="date" class="form-control"></div>
+          <div class="col-md-6"><label class="form-label">Heure *</label>
+            <select class="form-select">
+              <option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option>
+              <option>18:00</option><option>18:30</option><option>19:00</option><option>19:30</option>
+              <option>20:00</option><option>20:30</option><option>21:00</option><option>21:30</option>
+            </select>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label" style="display:block;margin-bottom:12px">Occasion</label>
+            <div class="occasion-grid">
+              <div class="occasion-item sel"><div class="oc-name">Dîner romantique</div><div class="oc-detail">Tối lãng mạn đôi</div></div>
+              <div class="occasion-item"><div class="oc-name">Anniversaire</div><div class="oc-detail">Sinh nhật / kỷ niệm</div></div>
+              <div class="occasion-item"><div class="oc-name">Business dinner</div><div class="oc-detail">Tiếp khách doanh nghiệp</div></div>
+              <div class="occasion-item"><div class="oc-name">Célébration familiale</div><div class="oc-detail">Buổi tụ họp gia đình</div></div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label">Demandes spéciales</label>
+            <textarea class="form-control" rows="4" placeholder="Dị ứng thực phẩm, yêu cầu đặc biệt về chỗ ngồi, trang trí bàn cho dịp đặc biệt..."></textarea>
+          </div>
+
+          <div class="col-12">
+            <button type="submit" class="btn-accent" style="width:100%;padding:14px;font-size:15px;font-weight:500;letter-spacing:.3px">Confirmer la Réservation</button>
+            <p style="font-size:12px;color:var(--text-3);text-align:center;margin-top:12px;font-style:italic">Chúng tôi sẽ xác nhận đặt bàn qua điện thoại trong vòng 2 giờ.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 reveal reveal-d1">
+        <div style="position:sticky;top:88px">
+          <div style="background:var(--dark2);border-radius:14px;padding:28px;margin-bottom:16px">
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.25);margin-bottom:16px">Thông tin nhà hàng</div>
+            <div style="font-size:14px;color:rgba(255,255,255,.55);line-height:2;font-weight:300">
+              📍 [Địa chỉ nhà hàng]<br>
+              📱 <a href="tel:[SỐ ĐIỆN THOẠI]" style="color:var(--accent-mid)">[SỐ ĐIỆN THOẠI]</a><br>
+              ✉️ <a href="mailto:[EMAIL]" style="color:var(--accent-mid)">[EMAIL]</a>
+            </div>
+            <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06);font-size:13px;color:rgba(255,255,255,.35);font-weight:300;line-height:1.85">
+              <div style="margin-bottom:6px;font-size:10.5px;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.2)">Horaires</div>
+              Mardi – Jeudi: 18:00 – 22:30<br>
+              Vendredi – Samedi: 18:00 – 23:00<br>
+              Dimanche: 12:00 – 15:00<br>
+              <span style="font-size:11px;color:rgba(255,255,255,.2)">Lundi: Fermé</span>
+            </div>
+          </div>
+          <div style="background:var(--accent-light);border:1px solid var(--border);border-radius:14px;padding:20px">
+            <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:10px">🌸 Dịch vụ đặc biệt</div>
+            <ul style="list-style:none;padding:0;margin:0;font-size:13px;color:var(--text-2);display:flex;flex-direction:column;gap:8px;font-weight:300">
+              <li>✦ Trang trí bàn theo yêu cầu</li>
+              <li>✦ Bánh sinh nhật / kỷ niệm</li>
+              <li>✦ Menu dégustation riêng</li>
+              <li>✦ Chọn rượu vang trước</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-5 reveal">
+        <div class="ft-logo">[TÊN NHÀ HÀNG] <span>Bistro</span></div>
+        <p class="ft-desc">Ẩm thực Pháp tinh tế — không gian lãng mạn.</p>
+        <div class="ft-socials"><a href="#" class="ft-soc" aria-label="Facebook">fb</a><a href="#" class="ft-soc" aria-label="Instagram">ig</a></div>
+      </div>
+      <div class="col reveal reveal-d1"><div class="ft-col-title">Navigation</div><div class="ft-links"><a href="menu.html">Notre Carte</a><a href="le-chef.html">Le Chef</a><a href="reservation.html">Réservation</a></div></div>
+      <div class="col reveal reveal-d2"><div class="ft-col-title">Contact</div><div class="ft-links"><a href="tel:[SỐ ĐIỆN THOẠI]">📱 [SỐ ĐIỆN THOẠI]</a><a href="#">📍 [ĐỊA CHỈ]</a></div></div>
+    </div>
+  </div>
+  <div class="ft-bottom"><div class="wd-container"><div class="d-flex justify-content-between py-3"><div class="ft-copy">© [NĂM] [TÊN NHÀ HÀNG] · Bistro Français</div></div></div></div>
+</footer>
+<div class="zf">
+  <div class="zf-tip">Đặt bàn qua Zalo</div>
+  <a href="https://zalo.me/[SỐ ZALO]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} }); }, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger = document.getElementById('navHamburger'), mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) { hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; }); document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} }); }
+document.querySelectorAll('.occasion-item').forEach(item => {
+  item.addEventListener('click', () => { document.querySelectorAll('.occasion-item').forEach(i => i.classList.remove('sel')); item.classList.add('sel'); });
+});
+</script>
+</body>
+</html>

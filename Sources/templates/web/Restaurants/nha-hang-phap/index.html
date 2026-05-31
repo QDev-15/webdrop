@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trang chủ — [TÊN NHÀ HÀNG PHÁP]</title>
+<meta name="description" content="[TÊN NHÀ HÀNG] — Nhà hàng Pháp tại [Thành phố]. Ẩm thực Pháp tinh tế, không gian lãng mạn, rượu vang chọn lọc. Đặt bàn ngay.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+/* ── Hero ── */
+.hero {
+  min-height:100vh;display:flex;align-items:center;padding-top:64px;
+  background:var(--dark2);position:relative;overflow:hidden;text-align:center;
+}
+.hero-bg {
+  position:absolute;inset:0;
+  background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=60&auto=format&fit=crop');
+  background-size:cover;background-position:center;opacity:.22;
+}
+.hero-overlay {
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(28,16,20,.7) 0%,rgba(28,16,20,.55) 50%,rgba(28,16,20,.85) 100%);
+}
+.hero-content { position:relative;z-index:2;max-width:720px;margin:0 auto; }
+.hero-pretitle {
+  font-size:10.5px;font-weight:400;text-transform:uppercase;letter-spacing:4px;
+  color:rgba(255,255,255,.35);margin-bottom:18px;
+}
+.hero-title {
+  font-size:clamp(42px,5.5vw,74px);font-weight:300;color:#fff;
+  line-height:1.1;letter-spacing:-1px;margin-bottom:20px;
+}
+.hero-title em { color:#fb7185;font-style:italic;font-weight:300; }
+.hero-ornament { display:flex;align-items:center;gap:14px;margin:20px auto 18px;max-width:320px; }
+.hero-ornament::before,.hero-ornament::after { content:'';flex:1;height:1px;background:rgba(255,255,255,.16); }
+.ho-diamond { width:5px;height:5px;background:rgba(251,113,133,.5);transform:rotate(45deg);flex-shrink:0; }
+.hero-sub {
+  font-size:clamp(14px,1.4vw,16px);font-weight:300;color:rgba(255,255,255,.4);
+  line-height:1.85;max-width:440px;margin:0 auto 32px;font-style:italic;
+}
+.hero-cta { display:flex;gap:12px;justify-content:center;flex-wrap:wrap; }
+
+/* ── Scroll hint ── */
+.hero-scroll {
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  font-size:10px;text-transform:uppercase;letter-spacing:2.5px;color:rgba(255,255,255,.2);
+  display:flex;flex-direction:column;align-items:center;gap:10px;z-index:2;
+}
+.scroll-line { width:1px;height:36px;background:rgba(255,255,255,.12); }
+
+/* ── Chef section ── */
+.chef-section { background:var(--dark2);overflow:hidden; }
+</style>
+</head>
+<body>
+
+<nav id="nav" class="transparent">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">[TÊN NHÀ HÀNG] <span>Bistro</span></a>
+      <div class="nav-links">
+        <a href="index.html" class="active">Accueil</a>
+        <a href="menu.html">Notre Carte</a>
+        <a href="le-chef.html">Le Chef</a>
+        <a href="reservation.html">Réservation</a>
+        <a href="lien-he.html">Contact</a>
+      </div>
+      <a href="reservation.html" class="nav-cta">Réserver</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="menu.html">Notre Carte</a>
+  <a href="le-chef.html">Le Chef</a>
+  <a href="reservation.html">Réservation</a>
+  <a href="lien-he.html">Contact</a>
+  <a href="reservation.html" class="nm-cta">Réserver</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="wd-container w-100">
+    <div class="hero-content">
+      <div class="hero-pretitle">Depuis [NĂM THÀNH LẬP] · [Thành phố], Việt Nam</div>
+      <h1 class="hero-title">L'art de la<br><em>cuisine française</em><br>au cœur de Việt Nam.</h1>
+      <div class="hero-ornament"><div class="ho-diamond"></div></div>
+      <p class="hero-sub">Nghệ thuật ẩm thực Pháp — từng món ăn là một trải nghiệm, từng buổi tối là một kỷ niệm không quên.</p>
+      <div class="hero-cta">
+        <a href="reservation.html" class="btn-accent">Réserver une table</a>
+        <a href="menu.html" class="btn-outline-dark">Notre Carte →</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Découvrir</span>
+  </div>
+</section>
+
+<!-- NOTRE CARTE — Chef's selection -->
+<section class="sec-pad" style="background:var(--dark2)">
+  <div class="wd-container">
+    <div class="text-center sec-dark reveal mb-5">
+      <div class="eyebrow">Notre Carte · Thực đơn</div>
+      <h2 class="sec-title">Sélection du <em>Chef</em></h2>
+      <p class="sec-sub">Ba hành trình vị giác — từ khai vị đến tráng miệng, mỗi món là sự chắt lọc của kỹ thuật nấu ăn Pháp cổ điển.</p>
+    </div>
+    <div class="row g-0">
+      <div class="col-md-4 reveal">
+        <div style="padding:32px 28px;border-right:1px solid rgba(255,255,255,.06);height:100%">
+          <div style="font-size:10px;font-weight:400;text-transform:uppercase;letter-spacing:3px;color:#fb7185;margin-bottom:16px">Entrée · Khai vị</div>
+          <div class="plat-item" style="border-bottom-color:rgba(255,255,255,.06)">
+            <div class="pi-info">
+              <div class="pi-fr" style="color:#fff">Foie Gras Poêlé</div>
+              <div class="pi-vi" style="color:rgba(255,255,255,.3)">Gan ngỗng chiên bơ, táo caramel, brioche</div>
+            </div>
+            <div class="pi-price" style="color:#fb7185">385.000đ</div>
+          </div>
+          <div class="plat-item" style="border-bottom-color:rgba(255,255,255,.06)">
+            <div class="pi-info">
+              <div class="pi-fr" style="color:#fff">Bisque de Homard</div>
+              <div class="pi-vi" style="color:rgba(255,255,255,.3)">Súp tôm hùm kem, saffron, bánh mì baguette nướng</div>
+            </div>
+            <div class="pi-price" style="color:#fb7185">245.000đ</div>
+          </div>
+          <div class="plat-item" style="border-bottom:none">
+            <div class="pi-info">
+              <div class="pi-fr" style="color:#fff">Salade Niçoise</div>
+              <div class="pi-vi" style="color:rgba(255,255,255,.3)">Salad cá ngừ kiểu Nice, olive đen, trứng luộc</div>
+            </div>
+            <div class="pi-price" style="color:#fb7185">195.000đ</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 reveal reveal-d1">
+        <div style="padding:32px 28px;border-right:1px solid rgba(255,255,255,.06);height:100%">
+          <div style="font-size:10px;font-weight:400;text-transform:uppercase;letter-spacing:3px;color:#fb7185;margin-bottom:16px">Plat Principal · Món chính</div>
+          <div class="plat-item" style="border-bottom-color:rgba(255,255,255,.06)">
+            <div class="pi-info">
+              <div class="pi-fr" style="color:#fff">Magret de Canard</div>
+              <div class="pi-vi" style="color:rgba(255,255,255,.3)">Ức vịt áp chảo, sốt cherry đỏ, rau thì là Pháp</div>
+            </div>
+            <div class="pi-price" style="color:#fb7185">485.000đ</div>
+          </div>
+          <div class="plat-item" style="border-bottom-color:rgba(255,255,255,.06)">
+            <div class="pi-info">
+              <div class="pi-fr" style="color:#fff">Sole Meunière</div>
+              <div class="pi-vi" style="color:rgba(255,255,255,.3)">Cá bơn chiên bơ tươi, capers, chanh vàng Pháp</div>
+            </div>
+            <div class="pi-price" style="color:#fb7185">545.000đ</div>
+          </div>
+          <div class="plat-item" style="border-bottom:none">
+            <div class="pi-info">
+              <div class="pi-fr" style="color:#fff">Filet de Bœuf</div>
+              <div class="pi-vi" style="color:rgba(255,255,255,.3)">Phi lê bò Úc sốt Béarnaise, khoai tây thyme</div>
+            </div>
+            <div class="pi-price" style="color:#fb7185">685.000đ</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 reveal reveal-d2">
+        <div style="padding:32px 28px;height:100%">
+          <div style="font-size:10px;font-weight:400;text-transform:uppercase;letter-spacing:3px;color:#fb7185;margin-bottom:16px">Dessert · Tráng miệng</div>
+          <div class="plat-item" style="border-bottom-color:rgba(255,255,255,.06)">
+            <div class="pi-info">
+              <div class="pi-fr" style="color:#fff">Crème Brûlée</div>
+              <div class="pi-vi" style="color:rgba(255,255,255,.3)">Kem trứng caramel cháy, vani Madagascar</div>
+            </div>
+            <div class="pi-price" style="color:#fb7185">145.000đ</div>
+          </div>
+          <div class="plat-item" style="border-bottom-color:rgba(255,255,255,.06)">
+            <div class="pi-info">
+              <div class="pi-fr" style="color:#fff">Tarte Tatin</div>
+              <div class="pi-vi" style="color:rgba(255,255,255,.3)">Bánh táo lật ngược truyền thống, kem tươi crème fraîche</div>
+            </div>
+            <div class="pi-price" style="color:#fb7185">155.000đ</div>
+          </div>
+          <div class="plat-item" style="border-bottom:none">
+            <div class="pi-info">
+              <div class="pi-fr" style="color:#fff">Mousse au Chocolat</div>
+              <div class="pi-vi" style="color:rgba(255,255,255,.3)">Mousse socola đen 70%, coulis dâu tây tươi</div>
+            </div>
+            <div class="pi-price" style="color:#fb7185">135.000đ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5 reveal">
+      <a href="menu.html" class="btn-white">Xem toàn bộ thực đơn →</a>
+    </div>
+  </div>
+</section>
+
+<!-- L'ART DE RECEVOIR -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">L'Art de Recevoir</div>
+      <h2 class="sec-title">Nghệ thuật <em>tiếp đón</em> của chúng tôi</h2>
+      <p class="sec-sub">Mỗi buổi tối tại [TÊN NHÀ HÀNG] là một hành trình — từ ly khai vị đến chén rượu tiêu tán, được chăm chút từng chi tiết nhỏ.</p>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-4 reveal reveal-d1">
+        <div class="art-col" style="background:var(--surface);border:1px solid var(--border)">
+          <div class="ac-icon">🥂</div>
+          <div class="ac-title">Apéritif</div>
+          <div class="ac-divider"></div>
+          <div class="ac-text">Khai mạc buổi tối với ly Champagne hoặc Kir Royale — những sip đầu tiên mở ra một trải nghiệm ẩm thực khó quên.</div>
+        </div>
+      </div>
+      <div class="col-md-4 reveal reveal-d2">
+        <div class="art-col" style="background:var(--accent);border:1px solid var(--accent)">
+          <div class="ac-icon" style="filter:grayscale(0)">🍽</div>
+          <div class="ac-title" style="color:#fff">Table d'Hôtes</div>
+          <div class="ac-divider" style="background:rgba(255,255,255,.3)"></div>
+          <div class="ac-text" style="color:rgba(255,255,255,.7)">Bàn ăn được sắp xếp tỉ mỉ — khăn trải bàn lanh Pháp, bộ dao nĩa bạc, nến lung linh trong không gian bistro ấm áp.</div>
+        </div>
+      </div>
+      <div class="col-md-4 reveal reveal-d3">
+        <div class="art-col" style="background:var(--surface);border:1px solid var(--border)">
+          <div class="ac-icon">🍾</div>
+          <div class="ac-title">Digestif</div>
+          <div class="ac-divider"></div>
+          <div class="ac-text">Kết thúc hoàn hảo với Cognac, Armagnac hoặc trà thảo mộc — để dư vị của bữa tối lingering mãi trong ký ức.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LE CHEF -->
+<section class="chef-section">
+  <div class="row g-0">
+    <div class="col-lg-5 d-flex">
+      <img class="chef-img"
+        src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80&auto=format&fit=crop"
+        alt="Bếp trưởng [TÊN BẾP TRƯỞNG]" loading="lazy">
+    </div>
+    <div class="col-lg-7 d-flex align-items-center sec-dark">
+      <div style="padding:clamp(48px,6vw,80px) clamp(28px,5vw,72px)" class="reveal">
+        <div class="eyebrow">Le Chef · Bếp trưởng</div>
+        <h2 class="sec-title">[Tên bếp trưởng]<br><em>Executive Chef</em></h2>
+        <p style="font-size:15px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.85;margin-bottom:16px">
+          Được đào tạo tại [Tên trường nấu ăn Pháp], bếp trưởng [Tên] đã trải qua hơn [số năm] năm làm việc tại các nhà hàng Michelin ở Paris, Lyon và Bordeaux trước khi đem ẩm thực Pháp đích thực về Việt Nam.
+        </p>
+        <p style="font-size:15px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.85;margin-bottom:28px">
+          Triết lý của Chef [Tên]: "Món ăn ngon nhất là món ăn được làm từ nguyên liệu tươi nhất, với kỹ thuật đúng nhất và tình yêu chân thật nhất."
+        </p>
+        <div class="d-flex gap-5 flex-wrap">
+          <div>
+            <div style="font-size:24px;font-weight:300;color:#fff;letter-spacing:-.5px">[Số]+</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:1px;margin-top:4px">Năm kinh nghiệm</div>
+          </div>
+          <div>
+            <div style="font-size:24px;font-weight:300;color:#fff;letter-spacing:-.5px">[Số]+</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:1px;margin-top:4px">Giải thưởng</div>
+          </div>
+          <div>
+            <div style="font-size:24px;font-weight:300;color:#fff;letter-spacing:-.5px">[Số]+</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:1px;margin-top:4px">Món đặc trưng</div>
+          </div>
+        </div>
+        <div class="mt-5">
+          <a href="le-chef.html" class="btn-outline-dark">Về bếp trưởng →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LA CAVE À VINS -->
+<section class="sec-pad" style="background:var(--warm)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">La Cave à Vins</div>
+      <h2 class="sec-title">Hầm rượu <em>tuyển chọn</em></h2>
+      <p class="sec-sub">Hơn 80 nhãn rượu vang từ các vùng nổi tiếng của Pháp — Bordeaux, Bourgogne, Champagne và Rhône — được sommelière tuyển chọn tỉ mỉ.</p>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-3 col-6"><div class="wine-card reveal reveal-d1">
+        <img class="wc-img" src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&q=80&auto=format&fit=crop" alt="Rượu vang Bordeaux" loading="lazy">
+        <div class="wc-body">
+          <div class="wc-region">Bordeaux, Pháp</div>
+          <div class="wc-name">Château Margaux</div>
+          <div class="wc-year">Grand Cru Classé · 2018</div>
+          <div class="wc-desc">Phức tạp, đậm vị với hậu vị dài. Hoàn hảo cùng thịt đỏ.</div>
+          <div class="wc-price">từ 4.200.000đ / chai</div>
+        </div>
+      </div></div>
+      <div class="col-md-3 col-6"><div class="wine-card reveal reveal-d2">
+        <img class="wc-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80&auto=format&fit=crop" alt="Rượu vang Bourgogne" loading="lazy">
+        <div class="wc-body">
+          <div class="wc-region">Bourgogne, Pháp</div>
+          <div class="wc-name">Pinot Noir Prestige</div>
+          <div class="wc-year">Premier Cru · 2020</div>
+          <div class="wc-desc">Mềm mại, hương anh đào đỏ, tanin thanh tao. Cùng với vịt.</div>
+          <div class="wc-price">từ 2.800.000đ / chai</div>
+        </div>
+      </div></div>
+      <div class="col-md-3 col-6"><div class="wine-card reveal reveal-d3">
+        <img class="wc-img" src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=400&q=80&auto=format&fit=crop" alt="Champagne" loading="lazy">
+        <div class="wc-body">
+          <div class="wc-region">Champagne, Pháp</div>
+          <div class="wc-name">Brut Millésimé</div>
+          <div class="wc-year">Vintage · 2019</div>
+          <div class="wc-desc">Bọt mịn, hương bánh mì nướng và đào trắng. Lý tưởng khai vị.</div>
+          <div class="wc-price">từ 3.500.000đ / chai</div>
+        </div>
+      </div></div>
+      <div class="col-md-3 col-6"><div class="wine-card reveal reveal-d3" style="transition-delay:.32s">
+        <img class="wc-img" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&q=80&auto=format&fit=crop" alt="Rượu vang trắng" loading="lazy">
+        <div class="wc-body">
+          <div class="wc-region">Alsace, Pháp</div>
+          <div class="wc-name">Riesling Grand Cru</div>
+          <div class="wc-year">Reserve · 2021</div>
+          <div class="wc-desc">Khô, khoáng, hương hoa trắng tinh tế. Hoàn hảo với cá và hải sản.</div>
+          <div class="wc-price">từ 1.850.000đ / chai</div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RÉSERVATIONS -->
+<section class="sec-pad" style="background:var(--accent-light);border-top:1px solid rgba(159,18,57,.1);border-bottom:1px solid rgba(159,18,57,.1)">
+  <div class="wd-container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-5 reveal">
+        <div class="eyebrow">Réservations</div>
+        <h2 class="sec-title">Đặt bàn<br><em>cho buổi tối đặc biệt</em></h2>
+        <p style="font-size:14px;font-weight:300;color:var(--text-2);line-height:1.8;margin-bottom:20px">
+          Dành cho dịp kỷ niệm, sinh nhật hay buổi tối lãng mạn — chúng tôi sẽ chuẩn bị mọi thứ để đêm đó trở nên hoàn hảo.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--text-2);font-weight:300">
+            <span style="color:var(--accent);font-size:16px">✓</span> Trang trí bàn theo yêu cầu — hoa tươi, nến, banner
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--text-2);font-weight:300">
+            <span style="color:var(--accent);font-size:16px">✓</span> Thực đơn cá nhân hóa theo khẩu vị và dị ứng
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--text-2);font-weight:300">
+            <span style="color:var(--accent);font-size:16px">✓</span> Sommelière tư vấn rượu vang phù hợp từng món
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--text-2);font-weight:300">
+            <span style="color:var(--accent);font-size:16px">✓</span> Nhận đặt sự kiện riêng (tối thiểu 10 khách)
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7 reveal reveal-d1">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:2px;padding:36px" class="elegant-form">
+          <form>
+            <div class="row g-4">
+              <div class="col-md-6">
+                <label class="form-label">Họ tên *</label>
+                <input type="text" class="form-control" placeholder="[Tên của bạn]">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Điện thoại *</label>
+                <input type="tel" class="form-control" placeholder="[Số điện thoại]">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Ngày đặt *</label>
+                <input type="date" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Giờ *</label>
+                <select class="form-select">
+                  <option>Chọn giờ</option>
+                  <option>18:00</option><option>18:30</option><option>19:00</option>
+                  <option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Số khách *</label>
+                <select class="form-select">
+                  <option>1 – 2 người</option>
+                  <option>3 – 4 người</option>
+                  <option>5 – 6 người</option>
+                  <option>7 – 10 người</option>
+                  <option>10+ người</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Dịp đặc biệt</label>
+                <select class="form-select">
+                  <option>Chọn dịp (tuỳ chọn)</option>
+                  <option>Kỷ niệm / Anniversary</option>
+                  <option>Sinh nhật / Birthday</option>
+                  <option>Đề nghị kết hôn</option>
+                  <option>Bữa tối kinh doanh</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Yêu cầu đặc biệt</label>
+                <textarea class="form-control" rows="3" placeholder="Dị ứng thực phẩm, trang trí bàn, yêu cầu đặc biệt..."></textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn-accent" style="width:100%;border:none;cursor:pointer;padding:14px">Confirmer la réservation →</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CE QU'ON DIT — Reviews -->
+<section class="sec-pad" style="background:var(--surface)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Ce Qu'on Dit · Đánh giá</div>
+      <h2 class="sec-title">Những gì thực khách<br><em>cảm nhận</em></h2>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-4"><div class="bq-review reveal reveal-d1">
+        <div class="bq-text">"Trải nghiệm ăn tối Pháp chân thực nhất mà tôi từng có ở Việt Nam. Không gian đẹp, đồ ăn tinh tế, và dịch vụ thực sự tuyệt vời — như đang ngồi ở một bistro tại Paris vậy."</div>
+        <div class="bq-name">Nguyễn Phương Linh</div>
+        <div class="bq-source">Food Critic · Hà Nội</div>
+      </div></div>
+      <div class="col-md-4"><div class="bq-review reveal reveal-d2">
+        <div class="bq-text">"Crème Brûlée ở đây là ngon nhất tôi từng ăn ngoài Paris. Chef thực sự hiểu ẩm thực Pháp — không phải phiên bản 'Việt hoá' mà là bản gốc đích thực."</div>
+        <div class="bq-name">Thomas Beaumont</div>
+        <div class="bq-source">Chef Consultant · Paris & Hà Nội</div>
+      </div></div>
+      <div class="col-md-4"><div class="bq-review reveal reveal-d3">
+        <div class="bq-text">"Tôi đặt bàn kỷ niệm 10 năm ngày cưới. Nhà hàng trang trí bàn đặc biệt theo yêu cầu, thực đơn được thiết kế riêng. Vợ tôi xúc động mãi đến tận hôm nay."</div>
+        <div class="bq-name">Trần Đức Minh</div>
+        <div class="bq-source">Khách hàng thường xuyên</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MINIMAL CTA — address & phone -->
+<section style="background:var(--dark2);padding:clamp(56px,8vw,88px) 0;text-align:center">
+  <div class="wd-container reveal">
+    <div style="font-size:10px;text-transform:uppercase;letter-spacing:3px;color:rgba(255,255,255,.25);margin-bottom:20px">Nous vous attendons</div>
+    <div style="font-size:clamp(28px,4vw,52px);font-weight:300;color:#fff;letter-spacing:-.5px;margin-bottom:8px">[TÊN NHÀ HÀNG PHÁP]</div>
+    <div style="font-size:15px;font-weight:300;color:rgba(255,255,255,.3);margin-bottom:4px;font-style:italic">[Địa chỉ đầy đủ]</div>
+    <div style="font-size:15px;font-weight:300;color:rgba(255,255,255,.3);margin-bottom:28px">Thứ Ba – Chủ Nhật · 18:00 – 22:30</div>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="reservation.html" class="btn-accent">Réserver une table</a>
+      <a href="lien-he.html" class="btn-outline-dark">Contact</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo">[TÊN NHÀ HÀNG] <span>Bistro</span></div>
+        <p class="ft-desc">Nghệ thuật ẩm thực Pháp — mỗi buổi tối là một kỷ niệm.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc" aria-label="Facebook">fb</a>
+          <a href="#" class="ft-soc" aria-label="Instagram">ig</a>
+          <a href="#" class="ft-soc" aria-label="Zalo">zl</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Menu</div>
+        <div class="ft-links">
+          <a href="menu.html">Entrées · Khai vị</a>
+          <a href="menu.html">Plats · Món chính</a>
+          <a href="menu.html">Desserts · Tráng miệng</a>
+          <a href="menu.html">Vins · Rượu vang</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Le Restaurant</div>
+        <div class="ft-links">
+          <a href="le-chef.html">Le Chef</a>
+          <a href="reservation.html">Réservation</a>
+          <a href="lien-he.html">Contact</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Contact</div>
+        <div class="ft-links">
+          <a href="tel:0901234567">📱 [0901 234 567]</a>
+          <a href="#">📍 [Địa chỉ nhà hàng]</a>
+          <a href="#">🕐 Thứ Ba – CN · 18:00 – 22:30</a>
+          <a href="mailto:contact@[domain].vn">✉️ contact@[domain].vn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="ft-copy">© 2026 [TÊN NHÀ HÀNG PHÁP] · La cuisine française au Việt Nam</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="zf">
+  <div class="zf-tip">Réserver via Zalo</div>
+  <a href="https://zalo.me/[SỐ ZALO]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const nav = document.getElementById('nav');
+if (nav && nav.classList.contains('transparent')) {
+  window.addEventListener('scroll', () => { nav.classList.toggle('transparent', window.scrollY < 80); }, {passive:true});
+}
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} });
+}, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+}
+</script>
+</body>
+</html>

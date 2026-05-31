@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cam Kết Tươi Sống — [TÊN NHÀ HÀNG] Hải Sản</title>
+<meta name="description" content="Cam kết hải sản tươi sống của [TÊN NHÀ HÀNG]: nhập mỗi ngày từ ngư dân, không ướp đá lâu, chế biến ngay khi gọi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+.process-step { display:flex; gap:20px; align-items:flex-start; padding:24px; border:1px solid var(--border); border-radius:14px; background:var(--surface); transition:box-shadow .2s; }
+.process-step:hover { box-shadow:0 10px 32px rgba(3,105,161,.08); }
+.ps-icon { font-size:32px; flex-shrink:0; }
+.ps-num { font-size:11px; font-weight:600; color:var(--accent); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+.ps-title { font-size:16px; font-weight:600; color:var(--text); margin-bottom:6px; }
+.ps-desc { font-size:13.5px; font-weight:300; color:var(--text-2); line-height:1.7; }
+.partner-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:24px; }
+.pc-region { font-size:11px; font-weight:600; color:var(--accent); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; }
+.pc-name { font-size:15px; font-weight:600; color:var(--text); margin-bottom:8px; }
+.pc-info { font-size:13px; color:var(--text-2); line-height:1.65; font-weight:300; }
+.quality-row { display:flex; align-items:center; gap:12px; padding:14px 0; border-bottom:1px solid var(--border-light); }
+.quality-row:last-child { border-bottom:none; }
+.qr-check { color:var(--accent); font-size:16px; flex-shrink:0; }
+.qr-text { font-size:14px; color:var(--text-2); font-weight:300; }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">🦞 [TÊN NHÀ HÀNG] <span>Hải Sản</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="thuc-don.html">Thực đơn</a>
+        <a href="cam-ket.html" class="active">Cam kết</a>
+        <a href="dat-ban.html">Đặt bàn</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-ban.html" class="nav-cta">Đặt bàn ngay</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a><a href="thuc-don.html">Thực đơn</a><a href="cam-ket.html">Cam kết</a><a href="dat-ban.html">Đặt bàn</a><a href="lien-he.html">Liên hệ</a>
+  <a href="dat-ban.html" class="nm-cta">Đặt bàn ngay</a>
+</div>
+
+<div class="page-hero">
+  <div class="wd-container">
+    <div class="ph-eyebrow">Cam kết</div>
+    <h1 class="ph-title">Tươi sống — <em>không thỏa hiệp</em></h1>
+    <p class="ph-sub">Mỗi con tôm, mỗi con cua — từ biển đến bàn ăn trong ngày. Đây là cam kết chúng tôi giữ mỗi ngày.</p>
+  </div>
+</div>
+
+<!-- Quy trình -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Quy trình</div>
+      <h2 class="sec-title">Từ <em>biển khơi</em> đến bàn ăn</h2>
+      <p class="sec-sub">Chúng tôi kiểm soát chặt chẽ từng bước — từ lúc thu hoạch đến khi hải sản được chế biến và phục vụ bạn.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 reveal reveal-d1">
+        <div class="process-step">
+          <div class="ps-icon">🌊</div>
+          <div><div class="ps-num">Bước 01</div><div class="ps-title">Thu hoạch từ ngư dân</div><div class="ps-desc">Mỗi sáng sớm (2:00–4:00 AM), thuyền của ngư dân đối tác cập bến. Chúng tôi thu mua trực tiếp — không qua trung gian, không qua chợ đầu mối.</div></div>
+        </div>
+      </div>
+      <div class="col-md-6 reveal reveal-d2">
+        <div class="process-step">
+          <div class="ps-icon">🚚</div>
+          <div><div class="ps-num">Bước 02</div><div class="ps-title">Vận chuyển trong 2 giờ</div><div class="ps-desc">Hải sản được chuyển về nhà hàng trong xe lạnh chuyên dụng. Thời gian từ biển đến nhà bếp không quá 2 tiếng — đảm bảo độ tươi tối đa.</div></div>
+        </div>
+      </div>
+      <div class="col-md-6 reveal">
+        <div class="process-step">
+          <div class="ps-icon">🔬</div>
+          <div><div class="ps-num">Bước 03</div><div class="ps-title">Kiểm tra chất lượng</div><div class="ps-desc">Tất cả hải sản đều qua kiểm tra mắt và cảm quan bởi bếp trưởng. Bất kỳ con nào không đạt tiêu chuẩn tươi sống đều bị loại bỏ ngay lập tức.</div></div>
+        </div>
+      </div>
+      <div class="col-md-6 reveal reveal-d1">
+        <div class="process-step">
+          <div class="ps-icon">🍽️</div>
+          <div><div class="ps-num">Bước 04</div><div class="ps-title">Chế biến ngay khi gọi</div><div class="ps-desc">Không lưu kho, không cấp đông. Khi khách gọi món — hải sản được lấy từ bể sống hoặc khay ướp lạnh nhẹ và chế biến ngay lập tức.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Đối tác ngư dân -->
+<section class="sec-pad" style="background:var(--dark2)">
+  <div class="wd-container">
+    <div class="text-center sec-dark reveal mb-5">
+      <div class="eyebrow">Đối tác</div>
+      <h2 class="sec-title">Ngư dân <em>tin cậy</em></h2>
+      <p class="sec-sub" style="color:rgba(255,255,255,.4)">Chúng tôi hợp tác lâu dài với các gia đình ngư dân uy tín — mối quan hệ xây dựng trên sự tin tưởng và chất lượng.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4 reveal reveal-d1">
+        <div class="partner-card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.07)">
+          <div class="pc-region" style="color:#38bdf8">Vịnh Bắc Bộ</div>
+          <div class="pc-name" style="color:#fff">Gia đình ông [TÊN]</div>
+          <div class="pc-info" style="color:rgba(255,255,255,.4)">Hơn [N] năm kinh nghiệm đánh bắt tôm biển và cua ghẹ. Đội tàu 3 chiếc hoạt động quanh năm tại vùng biển Quảng Ninh.</div>
+        </div>
+      </div>
+      <div class="col-md-4 reveal reveal-d2">
+        <div class="partner-card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.07)">
+          <div class="pc-region" style="color:#38bdf8">Bình Thuận</div>
+          <div class="pc-name" style="color:#fff">HTX Ngư nghiệp [TÊN]</div>
+          <div class="pc-info" style="color:rgba(255,255,255,.4)">Hợp tác xã chuyên cung cấp mực, bạch tuộc và các loại cá biển. Được chứng nhận thực hành đánh bắt bền vững.</div>
+        </div>
+      </div>
+      <div class="col-md-4 reveal reveal-d3">
+        <div class="partner-card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.07)">
+          <div class="pc-region" style="color:#38bdf8">Cà Mau</div>
+          <div class="pc-name" style="color:#fff">Trại nuôi tôm [TÊN]</div>
+          <div class="pc-info" style="color:rgba(255,255,255,.4)">Tôm nuôi sinh thái, không dùng kháng sinh. Nước mặn tự nhiên từ rừng ngập mặn — cho tôm thơm ngon và an toàn tuyệt đối.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tiêu chuẩn chất lượng -->
+<section class="sec-pad" style="background:var(--surface)">
+  <div class="wd-container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6 reveal">
+        <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=700&q=80&auto=format&fit=crop" alt="Hải sản tươi" style="width:100%;border-radius:16px;aspect-ratio:4/3;object-fit:cover" loading="lazy">
+      </div>
+      <div class="col-lg-6 reveal reveal-d1">
+        <div class="eyebrow">Tiêu chuẩn</div>
+        <h2 class="sec-title">12 tiêu chí <em>kiểm tra tươi</em></h2>
+        <p style="font-size:14px;color:var(--text-2);margin-bottom:20px;font-weight:300">Mỗi lô hải sản nhập về đều được đánh giá theo 12 tiêu chí nghiêm ngặt:</p>
+        <div>
+          <div class="quality-row"><span class="qr-check">✓</span><span class="qr-text">Màu sắc tự nhiên, không nhợt nhạt</span></div>
+          <div class="quality-row"><span class="qr-check">✓</span><span class="qr-text">Mùi biển tươi, không có mùi tanh khó chịu</span></div>
+          <div class="quality-row"><span class="qr-check">✓</span><span class="qr-text">Còn sống hoặc vừa ngủ lạnh (không chết)</span></div>
+          <div class="quality-row"><span class="qr-check">✓</span><span class="qr-text">Mắt cá sáng, trong suốt</span></div>
+          <div class="quality-row"><span class="qr-check">✓</span><span class="qr-text">Mang (tôm/cá) còn đỏ tươi</span></div>
+          <div class="quality-row"><span class="qr-check">✓</span><span class="qr-text">Không có dấu hiệu bơm thuốc hay hóa chất</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-sec">
+  <div class="wd-container reveal">
+    <h2 class="cta-title">Trải nghiệm hải sản tươi sống hôm nay</h2>
+    <p class="cta-sub">Đặt bàn trước để chúng tôi chuẩn bị những con hải sản ngon nhất cho bạn.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap position-relative">
+      <a href="dat-ban.html" class="btn-white">Đặt bàn ngay →</a>
+      <a href="thuc-don.html" style="font-size:14px;background:transparent;color:rgba(255,255,255,.75);padding:12px 26px;border-radius:9px;border:1px solid rgba(255,255,255,.3)">Xem thực đơn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo">🦞 [TÊN] <span>Hải Sản</span></div>
+        <p class="ft-desc">Hải sản tươi sống mỗi ngày — từ biển đến bàn ăn.</p>
+        <div class="ft-socials"><a href="#" class="ft-soc" aria-label="Facebook">fb</a><a href="#" class="ft-soc" aria-label="Instagram">ig</a><a href="#" class="ft-soc" aria-label="Zalo">zl</a></div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Menu</div>
+        <div class="ft-links"><a href="thuc-don.html">Thực đơn</a><a href="cam-ket.html">Cam kết</a><a href="dat-ban.html">Đặt bàn</a></div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links"><a href="tel:[SỐ ĐIỆN THOẠI]">📱 [SỐ ĐIỆN THOẠI]</a><a href="#">📍 [ĐỊA CHỈ]</a><a href="#">🕐 10:00 – 22:00</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom"><div class="wd-container"><div class="d-flex justify-content-between py-3"><div class="ft-copy">© [NĂM] [TÊN NHÀ HÀNG] · Tươi sống mỗi ngày 🌊</div></div></div></div>
+</footer>
+<div class="zf">
+  <div class="zf-tip">Đặt bàn qua Zalo</div>
+  <a href="https://zalo.me/[SỐ ZALO]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const nav = document.getElementById('nav');
+if (nav && nav.classList.contains('transparent')) { window.addEventListener('scroll', () => { nav.classList.toggle('transparent', window.scrollY < 80); }, {passive:true}); }
+const ro = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} }); }, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger = document.getElementById('navHamburger'), mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) { hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; }); document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} }); }
+</script>
+</body>
+</html>

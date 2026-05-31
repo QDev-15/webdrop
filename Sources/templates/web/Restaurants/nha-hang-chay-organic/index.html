@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trang Chủ — [TÊN NHÀ HÀNG] Chay Organic</title>
+<meta name="description" content="[TÊN NHÀ HÀNG] Chay Organic — Ẩm thực thuần chay 100%, nguyên liệu organic, không chất bảo quản. Thanh tịnh tâm hồn, nuôi dưỡng sức khỏe.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+/* Hero styles */
+.hero { padding-top:calc(64px + clamp(64px,8vw,100px));padding-bottom:clamp(64px,8vw,100px);background:var(--bg);position:relative;overflow:hidden; }
+.hero::before { content:'';position:absolute;top:0;right:0;width:55%;height:100%;background:url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=60&auto=format&fit=crop') center/cover no-repeat;opacity:.07;border-radius:0 0 0 80px; }
+.hero-inner { position:relative;z-index:2; }
+.hero-title { font-size:clamp(40px,5.5vw,72px);font-weight:600;color:var(--text);line-height:1.08;letter-spacing:-2px;margin-bottom:16px; }
+.hero-title em { color:var(--accent);font-style:italic;font-weight:300; }
+.hero-sub { font-size:clamp(14px,1.5vw,17px);font-weight:300;color:var(--text-2);line-height:1.8;max-width:480px;margin-bottom:8px; }
+.hero-image-card { background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 24px 64px rgba(21,128,61,.1); }
+.hero-food-img { width:100%;aspect-ratio:4/3;object-fit:cover;display:block; }
+.hero-card-caption { padding:14px 18px;display:flex;align-items:center;justify-content:space-between; }
+.hcc-name { font-size:14px;font-weight:600;color:var(--text); }
+.hcc-badge { font-size:11px;font-weight:500;color:var(--accent);background:var(--accent-light);border:1px solid var(--border);padding:4px 10px;border-radius:8px; }
+</style>
+</head>
+<body>
+
+<!-- NAV — solid (không transparent) -->
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">
+        <span class="logo-dot"></span>
+        🌿 [TÊN NHÀ HÀNG] <span>Chay</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="active">Trang chủ</a>
+        <a href="thuc-don.html">Thực đơn</a>
+        <a href="cau-chuyen.html">Về chúng tôi</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="lien-he.html" class="nav-cta">Đặt bàn</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="thuc-don.html">Thực đơn</a>
+  <a href="cau-chuyen.html">Về chúng tôi</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="lien-he.html" class="nm-cta">Đặt bàn</a>
+</div>
+
+<!-- HERO — centered light với badges + floating image -->
+<section class="hero">
+  <div class="wd-container hero-inner">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6">
+        <div style="display:inline-block;font-size:11px;font-weight:500;color:var(--accent);text-transform:uppercase;letter-spacing:1.4px;margin-bottom:18px;border-bottom:2px solid var(--accent-light);padding-bottom:4px">Ẩm thực lành mạnh từ thiên nhiên</div>
+        <h1 class="hero-title">Ăn chay,<br>sống <em>tươi xanh</em>,<br>tâm thêm tịnh.</h1>
+        <p class="hero-sub">Mỗi món ăn là một lựa chọn yêu thương — yêu bản thân, yêu thiên nhiên và yêu những người xung quanh bạn.</p>
+        <div class="hero-pills">
+          <span class="hero-pill">🌱 100% Thuần Chay</span>
+          <span class="hero-pill">🌿 Nguyên Liệu Organic</span>
+          <span class="hero-pill">✨ Không Chất Bảo Quản</span>
+        </div>
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="thuc-don.html" class="btn-accent">Xem thực đơn →</a>
+          <a href="cau-chuyen.html" class="btn-ghost">Câu chuyện của chúng tôi</a>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="hero-image-card">
+          <img class="hero-food-img" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=700&q=80&auto=format&fit=crop" alt="Món chay organic tươi ngon" loading="lazy">
+          <div class="hero-card-caption">
+            <div class="hcc-name">Salad Rau Mầm & Quinoa</div>
+            <div class="hcc-badge">Thực đơn hôm nay</div>
+          </div>
+        </div>
+        <!-- Mini stats below image -->
+        <div class="row g-3 mt-3">
+          <div class="col-4">
+            <div style="text-align:center;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 8px">
+              <div style="font-size:22px;font-weight:600;color:var(--text)">50+</div>
+              <div style="font-size:11px;color:var(--text-2);margin-top:2px">Món chay</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div style="text-align:center;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 8px">
+              <div style="font-size:22px;font-weight:600;color:var(--text)">100%</div>
+              <div style="font-size:11px;color:var(--text-2);margin-top:2px">Organic</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div style="text-align:center;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 8px">
+              <div style="font-size:22px;font-weight:600;color:var(--text)">4.9★</div>
+              <div style="font-size:11px;color:var(--text-2);margin-top:2px">Đánh giá</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRIẾT LÝ — 3 giá trị cốt lõi -->
+<section class="sec-pad" style="background:var(--warm)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Triết lý</div>
+      <h2 class="sec-title">Ba giá trị <em>chúng tôi tin</em></h2>
+      <p class="sec-sub">Không chỉ là ẩm thực — đây là triết lý sống mà chúng tôi muốn lan tỏa đến từng thực khách.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4 reveal reveal-d1">
+        <div class="value-pillar">
+          <div class="vp-icon">🌱</div>
+          <div class="vp-title">Thuần Chay Tuyệt Đối</div>
+          <div class="vp-desc">Không một nguyên liệu động vật nào trong bếp của chúng tôi — từ nước dùng, sốt, đến từng lọ gia vị. Cam kết 100%.</div>
+        </div>
+      </div>
+      <div class="col-md-4 reveal reveal-d2">
+        <div class="value-pillar">
+          <div class="vp-icon">🌿</div>
+          <div class="vp-title">Organic Có Chứng Nhận</div>
+          <div class="vp-desc">Mọi nguyên liệu đều có nguồn gốc rõ ràng, được chứng nhận hữu cơ. Chúng tôi hợp tác trực tiếp với nông trại organic tại Đà Lạt.</div>
+        </div>
+      </div>
+      <div class="col-md-4 reveal reveal-d3">
+        <div class="value-pillar">
+          <div class="vp-icon">✨</div>
+          <div class="vp-title">Không Chất Bảo Quản</div>
+          <div class="vp-desc">Chế biến mỗi ngày, không tích trữ, không chất phụ gia nhân tạo. Những gì bạn ăn là những gì thiên nhiên ban tặng nguyên vẹn.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THỰC ĐƠN ĐẶC SẮC — Seasonal cards -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Thực đơn</div>
+      <h2 class="sec-title">Những món <em>được yêu thích</em> nhất</h2>
+      <p class="sec-sub">Phong phú, đa dạng khẩu vị — từ món nhẹ khai vị đến món chính no bụng, từ tươi mát đến ấm áp nuôi dưỡng.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3 reveal reveal-d1">
+        <div class="seasonal-card" style="background:var(--accent-light);border:1px solid var(--border)">
+          <div class="sc-thumb">
+            <img class="sc-img" src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=500&q=80&auto=format&fit=crop" alt="Buddha Bowl" loading="lazy">
+            <div class="sc-tag-bar">
+              <span class="ingredient-tag">Raw</span>
+              <span class="ingredient-tag">Gluten-free</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-cat">Món chính</div>
+            <div class="sc-name">Buddha Bowl Rực Rỡ</div>
+            <div class="sc-desc">Quinoa, rau mầm, bơ, cà rốt tím, đậu hũ nướng, sốt tahini chanh.</div>
+            <div class="sc-foot"><span class="sc-price">89.000đ</span><span class="sc-cal">320 kcal</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal reveal-d2">
+        <div class="seasonal-card" style="background:#f0fdf4;border:1px solid var(--border)">
+          <div class="sc-thumb">
+            <img class="sc-img" src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=500&q=80&auto=format&fit=crop" alt="Salad Organic" loading="lazy">
+            <div class="sc-tag-bar">
+              <span class="ingredient-tag">Organic</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-cat">Salad</div>
+            <div class="sc-name">Salad Mùa Hè Organic</div>
+            <div class="sc-desc">Rau củ organic Đà Lạt, hạt chia, sốt balsamic mật ong thảo mộc.</div>
+            <div class="sc-foot"><span class="sc-price">69.000đ</span><span class="sc-cal">180 kcal</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal reveal-d3">
+        <div class="seasonal-card" style="background:#fffbeb;border:1px solid var(--border)">
+          <div class="sc-thumb">
+            <img class="sc-img" src="https://images.unsplash.com/photo-1547592180-85f173990554?w=500&q=80&auto=format&fit=crop" alt="Canh nấm truffle" loading="lazy">
+            <div class="sc-tag-bar">
+              <span class="ingredient-tag">Seasonal</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-cat">Món nóng</div>
+            <div class="sc-name">Canh Nấm Hầm Thảo Dược</div>
+            <div class="sc-desc">Nấm đông cô, linh chi, hầm 4 giờ cùng táo đỏ, kỷ tử, sen hạt.</div>
+            <div class="sc-foot"><span class="sc-price">75.000đ</span><span class="sc-cal">210 kcal</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="seasonal-card" style="background:#f5f3ff;border:1px solid var(--border)">
+          <div class="sc-thumb">
+            <img class="sc-img" src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=500&q=80&auto=format&fit=crop" alt="Tráng miệng chay" loading="lazy">
+            <div class="sc-tag-bar">
+              <span class="ingredient-tag">Vegan dessert</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-cat">Tráng miệng</div>
+            <div class="sc-name">Bánh Mousse Xoài & Dừa</div>
+            <div class="sc-desc">Mousse xoài Cát Chu, kem dừa tươi, đế hạt cashew, phủ gelée lá dứa.</div>
+            <div class="sc-foot"><span class="sc-price">55.000đ</span><span class="sc-cal">240 kcal</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5 reveal">
+      <a href="thuc-don.html" class="btn-ghost">Xem toàn bộ thực đơn →</a>
+    </div>
+  </div>
+</section>
+
+<!-- NGUỒN NGUYÊN LIỆU — dark section, 2 col -->
+<section class="sec-pad sec-dark" style="background:var(--dark2)">
+  <div class="wd-container">
+    <div class="row g-5 align-items-center">
+      <div class="col-md-5 reveal">
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=700&q=80&auto=format&fit=crop" alt="Nông trại organic Đà Lạt" style="border-radius:16px;width:100%;height:420px;object-fit:cover" loading="lazy">
+      </div>
+      <div class="col-md-7 sec-dark reveal reveal-d1">
+        <div class="eyebrow">Nguồn nguyên liệu</div>
+        <h2 class="sec-title">Từ nông trại organic<br><em>thẳng đến bàn ăn</em></h2>
+        <p style="font-size:15px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.85;margin-bottom:16px">Chúng tôi hợp tác với 3 nông trại hữu cơ tại Đà Lạt và 1 nông trại tại Lâm Đồng — tất cả đều có chứng nhận VietGAP và organic quốc tế. Mỗi sáng, rau củ được thu hái và chuyển đến nhà hàng trong vòng 6 giờ.</p>
+        <p style="font-size:15px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.85;margin-bottom:28px">Không kho lạnh, không hóa chất bảo quản, không nông sản "qua đêm" — cam kết tươi mỗi ngày, mỗi bữa.</p>
+        <div class="d-flex gap-4">
+          <div>
+            <div style="font-size:24px;font-weight:600;color:#fff;letter-spacing:-1px">3+</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.35);margin-top:2px">Nông trại đối tác</div>
+          </div>
+          <div>
+            <div style="font-size:24px;font-weight:600;color:#fff;letter-spacing:-1px">6h</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.35);margin-top:2px">Thu hái đến bàn ăn</div>
+          </div>
+          <div>
+            <div style="font-size:24px;font-weight:600;color:#fff;letter-spacing:-1px">100%</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.35);margin-top:2px">Có chứng nhận</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LỢI ÍCH SỨC KHỎE — 6 items icon grid -->
+<section class="sec-pad" style="background:var(--surface)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Lợi ích</div>
+      <h2 class="sec-title">Ăn chay — <em>lợi ích không ngờ</em></h2>
+      <p class="sec-sub">Khoa học đã chứng minh: chế độ ăn chay organic giúp cải thiện sức khỏe toàn diện chỉ sau 30 ngày.</p>
+    </div>
+    <div class="row g-3">
+      <div class="col-6 col-md-4 col-lg-2 reveal reveal-d1">
+        <div class="benefit-item">
+          <div class="bi-icon">❤️</div>
+          <div class="bi-title">Tim mạch khỏe</div>
+          <div class="bi-desc">Giảm cholesterol xấu, cải thiện tuần hoàn máu</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 reveal reveal-d2">
+        <div class="benefit-item">
+          <div class="bi-icon">🧠</div>
+          <div class="bi-title">Minh mẫn hơn</div>
+          <div class="bi-desc">Chế độ chay giảm viêm não, tăng sự tập trung</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 reveal reveal-d3">
+        <div class="benefit-item">
+          <div class="bi-icon">⚡</div>
+          <div class="bi-title">Năng lượng bền</div>
+          <div class="bi-desc">Carbs phức tạp từ thực vật cung cấp năng lượng ổn định</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 reveal">
+        <div class="benefit-item">
+          <div class="bi-icon">🌿</div>
+          <div class="bi-title">Tiêu hóa tốt</div>
+          <div class="bi-desc">Chất xơ cao giúp đường ruột hoạt động trơn tru</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 reveal reveal-d1">
+        <div class="benefit-item">
+          <div class="bi-icon">⚖️</div>
+          <div class="bi-title">Cân bằng cân nặng</div>
+          <div class="bi-desc">Ít calo rỗng, nhiều chất dinh dưỡng — dễ kiểm soát cân</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 reveal reveal-d2">
+        <div class="benefit-item">
+          <div class="bi-icon">✨</div>
+          <div class="bi-title">Da sáng khỏe</div>
+          <div class="bi-desc">Rau củ organic giàu antioxidant, làm chậm lão hóa da</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THỰC ĐƠN THEO MÙA -->
+<section class="sec-pad" style="background:var(--warm)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="seasonal-badge">Thực đơn mùa hè 2025 — Đang phục vụ</div>
+      <h2 class="sec-title">Thực đơn <em>theo mùa</em></h2>
+      <p class="sec-sub">Mỗi mùa, chúng tôi thay đổi thực đơn theo những gì thiên nhiên đang cho tươi nhất — không ép vụ, không trái mùa.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-3 col-6 reveal reveal-d1">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden">
+          <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=400&q=80&auto=format&fit=crop" alt="Gỏi xoài xanh" style="width:100%;aspect-ratio:1;object-fit:cover;display:block" loading="lazy">
+          <div style="padding:14px 16px">
+            <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px">Gỏi Xoài Xanh</div>
+            <div style="font-size:12px;color:var(--text-2)">Xoài Cát Chu mùa hè, rau thơm, đậu phộng rang</div>
+            <div style="margin-top:8px;font-size:14px;font-weight:600;color:var(--accent)">55.000đ</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6 reveal reveal-d2">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden">
+          <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&q=80&auto=format&fit=crop" alt="Chè dưỡng sinh" style="width:100%;aspect-ratio:1;object-fit:cover;display:block" loading="lazy">
+          <div style="padding:14px 16px">
+            <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px">Chè Dưỡng Sinh</div>
+            <div style="font-size:12px;color:var(--text-2)">Bạch mộc nhĩ, sen hạt, thạch mã thầy, đường phèn</div>
+            <div style="margin-top:8px;font-size:14px;font-weight:600;color:var(--accent)">45.000đ</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6 reveal reveal-d3">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden">
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80&auto=format&fit=crop" alt="Bowl thanh lý" style="width:100%;aspect-ratio:1;object-fit:cover;display:block" loading="lazy">
+          <div style="padding:14px 16px">
+            <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px">Thanh Lý Bowl</div>
+            <div style="font-size:12px;color:var(--text-2)">Dứa, dưa hấu, việt quất, sữa dừa tươi, hạt chia</div>
+            <div style="margin-top:8px;font-size:14px;font-weight:600;color:var(--accent)">65.000đ</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6 reveal">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden">
+          <img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80&auto=format&fit=crop" alt="Súp bí đỏ" style="width:100%;aspect-ratio:1;object-fit:cover;display:block" loading="lazy">
+          <div style="padding:14px 16px">
+            <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px">Súp Bí Đỏ & Gừng</div>
+            <div style="font-size:12px;color:var(--text-2)">Bí đỏ hữu cơ, gừng tươi, sữa hạnh nhân, tiêu đen</div>
+            <div style="margin-top:8px;font-size:14px;font-weight:600;color:var(--accent)">59.000đ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ĐÁNH GIÁ -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Đánh giá</div>
+      <h2 class="sec-title">Thực khách <em>chia sẻ</em></h2>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="rv reveal reveal-d1">
+          <div class="rv-stars">★★★★★</div>
+          <div class="rv-text">"Tôi không hay ăn chay nhưng người bạn rủ đến đây và tôi hoàn toàn bị thuyết phục. Món Buddha Bowl ngon đến mức khó tin là không có thịt!"</div>
+          <div class="rv-foot">
+            <img class="rv-av" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80&auto=format&fit=crop&crop=face" alt="avatar" loading="lazy">
+            <div><div class="rv-name">Nguyễn Thanh Tùng</div><div class="rv-role">Lần đầu ăn chay · Hà Nội</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="rv reveal reveal-d2">
+          <div class="rv-stars">★★★★★</div>
+          <div class="rv-text">"Không gian trong lành, nhẹ nhàng như thế này rất hiếm ở thành phố. Nguyên liệu organic thực sự tươi và khác biệt. Salad hôm nay ăn xong cảm giác mình thanh thản hẳn."</div>
+          <div class="rv-foot">
+            <img class="rv-av" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80&auto=format&fit=crop&crop=face" alt="avatar" loading="lazy">
+            <div><div class="rv-name">Phạm Bích Hà</div><div class="rv-role">Thực dưỡng · TP.HCM</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="rv reveal reveal-d3">
+          <div class="rv-stars">★★★★★</div>
+          <div class="rv-text">"Mang con nhỏ 3 tuổi đến ăn, con ăn rất ngon miệng. Nhân viên rất thân thiện và tư vấn món phù hợp. Đây là nhà hàng chay duy nhất tôi giới thiệu cho mọi người không ngại ngần."</div>
+          <div class="rv-foot">
+            <img class="rv-av" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80&auto=format&fit=crop&crop=face" alt="avatar" loading="lazy">
+            <div><div class="rv-name">Lê Minh Trí</div><div class="rv-role">Phụ huynh · Đà Nẵng</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="wd-container reveal">
+    <h2 class="cta-title">Hãy bắt đầu<br>hành trình ăn lành hôm nay</h2>
+    <p class="cta-sub">Đặt bàn hoặc đến trực tiếp — chúng tôi luôn sẵn sàng đón bạn với một không gian yên bình và những món ăn từ tim.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap position-relative">
+      <a href="lien-he.html" class="btn-white">Đặt bàn ngay →</a>
+      <a href="thuc-don.html" style="font-size:14px;background:transparent;color:rgba(255,255,255,.7);padding:12px 26px;border-radius:9px;border:1px solid rgba(255,255,255,.3);text-decoration:none;display:inline-block">Xem thực đơn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo">🌿 [TÊN NHÀ HÀNG] <span>Chay</span></div>
+        <p class="ft-desc">Ẩm thực chay organic, nấu từ tâm — mỗi bữa ăn là một lựa chọn yêu thương.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc" aria-label="Facebook">fb</a>
+          <a href="#" class="ft-soc" aria-label="Instagram">ig</a>
+          <a href="#" class="ft-soc" aria-label="Zalo">zl</a>
+          <a href="#" class="ft-soc" aria-label="YouTube">yt</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Thực đơn</div>
+        <div class="ft-links">
+          <a href="thuc-don.html">Khai vị & Salad</a>
+          <a href="thuc-don.html">Món chính</a>
+          <a href="thuc-don.html">Tráng miệng</a>
+          <a href="thuc-don.html">Đồ uống & Trà</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Về chúng tôi</div>
+        <div class="ft-links">
+          <a href="cau-chuyen.html">Câu chuyện</a>
+          <a href="cau-chuyen.html">Đội ngũ</a>
+          <a href="cau-chuyen.html">Chứng nhận</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links">
+          <a href="tel:0901234567">📱 [0901 234 567]</a>
+          <a href="#">📍 [Địa chỉ nhà hàng]</a>
+          <a href="#">🕐 07:00 – 21:00 hàng ngày</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="ft-copy">© 2026 [TÊN NHÀ HÀNG] Chay Organic · Made in Vietnam 🇻🇳</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="zf">
+  <div class="zf-tip">Liên hệ Zalo</div>
+  <a href="https://zalo.me/[SỐ_ZALO]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} });
+}, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+}
+</script>
+</body>
+</html>

@@ -21,6 +21,8 @@
 | `reviewer` | Review code trước khi ship — bug, security, logic | Read, Glob, Grep, Bash |
 | `research` | Tra cứu kỹ thuật, tài liệu, so sánh giải pháp | Read, Glob, Grep, WebFetch, Bash |
 | `teacher` | Học Next.js/React qua code thực tế — files, routing, data flow, TypeScript, Prisma | Read, Glob, Grep, WebFetch |
+| `design-scout` | Thu thập & phân tích design website theo từng ngành → xuất Design Brief làm đầu vào tạo template | WebSearch, WebFetch, Read |
+| `template-builder` | Nhận chủ đề + Design Brief → tạo bộ template HTML/CSS/Bootstrap hoàn chỉnh lưu vào Sources/templates/ | Read, Write, Edit, WebFetch, WebSearch |
 
 ### Project Settings (`.claude/settings.json`)
 
@@ -283,6 +285,7 @@ Template và website sẽ tập trung vào các ngành có nhu cầu cao tại V
 - [x] Spa / Thẩm mỹ / Làm đẹp — **DONE** (`Sources/templates/web/spa-beauty/`)
 - [ ] Bất động sản
 - [x] Agency / Portfolio cá nhân — **DONE** (`Sources/templates/web/agency-web/`)
+- [x] Luật / Văn phòng luật sư — **DONE** (`Sources/templates/web/luat-van-phong/`)
 - [ ] Landing page sản phẩm / Dịch vụ
 
 ---

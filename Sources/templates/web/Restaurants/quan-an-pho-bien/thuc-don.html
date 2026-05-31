@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thực đơn — [TÊN QUÁN ĂN]</title>
+<meta name="description" content="Thực đơn đầy đủ của [TÊN QUÁN ĂN] — Phở, cơm bụi, bún bò, bánh mì và nhiều món street food Việt ngon, rẻ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+.menu-section-title {
+  font-size:clamp(18px,2.2vw,22px);font-weight:700;color:var(--text);
+  letter-spacing:-.4px;padding:16px 0 12px;border-bottom:2px solid var(--accent);
+  margin-bottom:0;display:flex;align-items:center;gap:10px;
+}
+.menu-block { background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:24px; }
+.menu-block-header { padding:16px 20px;background:var(--warm);border-bottom:1px solid var(--border); }
+.menu-block-body { padding:4px 0; }
+.price-note { font-size:12.5px;color:var(--text-3);font-weight:300;margin-left:auto; }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">🍜 [TÊN QUÁN] <span>Phở & Cơm</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="thuc-don.html" class="active">Thực đơn</a>
+        <a href="cua-hang.html">Cửa hàng</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="lien-he.html" class="nav-cta">Gọi ngay</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="thuc-don.html">Thực đơn</a>
+  <a href="cua-hang.html">Cửa hàng</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="lien-he.html" class="nm-cta">Gọi ngay</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="wd-container">
+    <div class="ph-eyebrow">Menu · Thực đơn</div>
+    <h1 class="ph-title">Thực đơn <em>hôm nay</em></h1>
+    <p class="ph-sub">Nấu tươi mỗi ngày — nguyên liệu sạch, giá thật rẻ, phục vụ nhanh.</p>
+  </div>
+</div>
+
+<!-- MENU CONTENT -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="row g-4">
+      <!-- LEFT: Sidebar / category nav -->
+      <div class="col-lg-3 reveal">
+        <div style="position:sticky;top:80px">
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">
+            <div style="padding:12px 16px;background:var(--warm);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--text-3)">Danh mục</div>
+            <div style="padding:8px 0">
+              <a href="#mon-sang" style="display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:13.5px;color:var(--text-2);text-decoration:none;border-left:2px solid transparent;transition:all .15s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='transparent';this.style.color='var(--text-2)'"><span>🌅</span> Món Sáng</a>
+              <a href="#mon-chinh" style="display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:13.5px;color:var(--text-2);text-decoration:none;border-left:2px solid transparent;transition:all .15s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='transparent';this.style.color='var(--text-2)'"><span>🍚</span> Món Trưa & Tối</a>
+              <a href="#do-uong" style="display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:13.5px;color:var(--text-2);text-decoration:none;border-left:2px solid transparent;transition:all .15s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='transparent';this.style.color='var(--text-2)'"><span>🥤</span> Đồ Uống</a>
+              <a href="#trang-miem" style="display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:13.5px;color:var(--text-2);text-decoration:none;border-left:2px solid transparent;transition:all .15s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='transparent';this.style.color='var(--text-2)'"><span>🍡</span> Tráng Miệng</a>
+            </div>
+          </div>
+          <div style="background:var(--accent-light);border:1px solid rgba(217,119,6,.2);border-radius:12px;padding:16px">
+            <div style="font-size:12px;font-weight:600;color:var(--accent);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px">Gọi đặt món</div>
+            <div style="font-size:20px;font-weight:800;color:var(--text);letter-spacing:-1px;margin-bottom:4px">[0901 234 567]</div>
+            <div style="font-size:12px;color:var(--text-2);font-weight:300">Hoặc nhắn Zalo cùng số</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Menu items -->
+      <div class="col-lg-9 reveal reveal-d1">
+
+        <!-- MÓN SÁNG -->
+        <div id="mon-sang" style="scroll-margin-top:80px">
+          <div class="menu-section-title"><span>🌅</span> Món Sáng (6:00 – 10:00)</div>
+        </div>
+        <div class="menu-block mt-3">
+          <div class="menu-block-header d-flex align-items-center">
+            <span style="font-size:13px;font-weight:600;color:var(--text)">Các loại phở</span>
+            <span class="price-note">Giá tô thường / tô lớn</span>
+          </div>
+          <div class="menu-block-body">
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🍜</span><div class="mr-info"><div class="mr-name">Phở Bò Tái Chín <span class="mr-badge">HOT</span></div><div class="mr-desc">Thịt bò tái và chín, gân bò, nước dùng xương bò ninh 8 tiếng</div></div></div><div class="mr-price">45 / 55.000đ</div></div>
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🍜</span><div class="mr-info"><div class="mr-name">Phở Gà Ta</div><div class="mr-desc">Gà ta luộc xé phay, nước dùng thanh trong, thơm gừng</div></div></div><div class="mr-price">40 / 50.000đ</div></div>
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🍜</span><div class="mr-info"><div class="mr-name">Phở Chay</div><div class="mr-desc">Đậu hũ, nấm, rau, nước dùng rau củ thơm ngọt tự nhiên</div></div></div><div class="mr-price">35 / 45.000đ</div></div>
+          </div>
+        </div>
+
+        <div class="menu-block">
+          <div class="menu-block-header d-flex align-items-center">
+            <span style="font-size:13px;font-weight:600;color:var(--text)">Bánh mì & xôi</span>
+            <span class="price-note">Đơn giá</span>
+          </div>
+          <div class="menu-block-body">
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🥖</span><div class="mr-info"><div class="mr-name">Bánh Mì Thịt Đặc Biệt <span class="mr-badge">HOT</span></div><div class="mr-desc">Chả lụa, pa-tê, dưa leo, hành, tương ớt, ớt xanh</div></div></div><div class="mr-price">25.000đ</div></div>
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🥖</span><div class="mr-info"><div class="mr-name">Bánh Mì Trứng Ốp La</div><div class="mr-desc">Trứng chiên, pa-tê, xì dầu, hành lá thơm</div></div></div><div class="mr-price">20.000đ</div></div>
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🍙</span><div class="mr-info"><div class="mr-name">Xôi Gà / Xôi Lạp Xưởng</div><div class="mr-desc">Xôi dẻo, gà xé hoặc lạp xưởng nướng, hành phi vàng thơm</div></div></div><div class="mr-price">25 – 30.000đ</div></div>
+          </div>
+        </div>
+
+        <!-- MÓN TRƯA & TỐI -->
+        <div id="mon-chinh" style="scroll-margin-top:80px;margin-top:16px">
+          <div class="menu-section-title"><span>🍚</span> Món Trưa & Tối (10:00 – 22:00)</div>
+        </div>
+        <div class="menu-block mt-3">
+          <div class="menu-block-header d-flex align-items-center">
+            <span style="font-size:13px;font-weight:600;color:var(--text)">Cơm tấm & cơm bụi</span>
+            <span class="price-note">Giá cơm thường / phần lớn</span>
+          </div>
+          <div class="menu-block-body">
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🍚</span><div class="mr-info"><div class="mr-name">Cơm Tấm Sườn Bì Chả <span class="mr-badge">HOT</span></div><div class="mr-desc">Sườn nướng than, bì sợi giòn, chả trứng mỡ hành</div></div></div><div class="mr-price">45 / 55.000đ</div></div>
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🍚</span><div class="mr-info"><div class="mr-name">Cơm Tấm Gà Nướng</div><div class="mr-desc">Gà nướng lá chanh, cơm tấm, đồ chua, nước mắm chua ngọt</div></div></div><div class="mr-price">42 / 52.000đ</div></div>
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🥩</span><div class="mr-info"><div class="mr-name">Cơm Bụi 2 Món + Canh</div><div class="mr-desc">Cơm trắng + 2 món mặn (đổi mỗi ngày) + canh — no đủ</div></div></div><div class="mr-price">40 – 50.000đ</div></div>
+          </div>
+        </div>
+
+        <div class="menu-block">
+          <div class="menu-block-header d-flex align-items-center">
+            <span style="font-size:13px;font-weight:600;color:var(--text)">Bún & mì</span>
+            <span class="price-note">Giá tô thường / tô lớn</span>
+          </div>
+          <div class="menu-block-body">
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🥣</span><div class="mr-info"><div class="mr-name">Bún Bò Huế <span class="mr-badge">🌶</span></div><div class="mr-desc">Sả mắc khén, chả Huế, thịt bò bắp hầm mềm, tiết cây</div></div></div><div class="mr-price">45 / 55.000đ</div></div>
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🦀</span><div class="mr-info"><div class="mr-name">Bún Riêu Cua Đồng</div><div class="mr-desc">Cua đồng xay, đậu hũ chiên, mọc, cà chua, rau sống</div></div></div><div class="mr-price">45 / 55.000đ</div></div>
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🥗</span><div class="mr-info"><div class="mr-name">Bún Thịt Nướng + Chả Giò</div><div class="mr-desc">Thịt heo nướng, chả giò giòn, bún bạch, rau sống, tương đậu</div></div></div><div class="mr-price">45 / 52.000đ</div></div>
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🍝</span><div class="mr-info"><div class="mr-name">Mì Quảng Gà / Tôm</div><div class="mr-desc">Mì Quảng truyền thống, nước nhưn sệt thơm ngon, đậu phộng rang</div></div></div><div class="mr-price">45 / 55.000đ</div></div>
+          </div>
+        </div>
+
+        <div class="menu-block">
+          <div class="menu-block-header d-flex align-items-center">
+            <span style="font-size:13px;font-weight:600;color:var(--text)">Lẩu (từ 17:00)</span>
+            <span class="price-note">Cho 2 người</span>
+          </div>
+          <div class="menu-block-body">
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🫕</span><div class="mr-info"><div class="mr-name">Lẩu Thái Hải Sản</div><div class="mr-desc">Tôm tươi, mực, nấm, rau, chua cay kiểu Thái, bún tươi kèm</div></div></div><div class="mr-price">180.000đ</div></div>
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🫕</span><div class="mr-info"><div class="mr-name">Lẩu Gà Lá Giang</div><div class="mr-desc">Gà ta chặt miếng, lá giang chua thanh, rau rừng, bún/mì</div></div></div><div class="mr-price">160.000đ</div></div>
+          </div>
+        </div>
+
+        <!-- ĐỒ UỐNG -->
+        <div id="do-uong" style="scroll-margin-top:80px;margin-top:16px">
+          <div class="menu-section-title"><span>🥤</span> Đồ uống</div>
+        </div>
+        <div class="menu-block mt-3">
+          <div class="menu-block-body">
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🥤</span><div class="mr-info"><div class="mr-name">Nước Mía Tươi</div><div class="mr-desc">Mía cây ép tại chỗ, không pha nước, có thêm tắc / gừng</div></div></div><div class="mr-price">15.000đ</div></div>
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🧋</span><div class="mr-info"><div class="mr-name">Trà Sữa Trân Châu</div><div class="mr-desc">Trà đen / trà xanh, sữa tươi, trân châu đen mềm dẻo</div></div></div><div class="mr-price">25.000đ</div></div>
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">☕</span><div class="mr-info"><div class="mr-name">Cà Phê Đá / Nóng</div><div class="mr-desc">Cà phê phin truyền thống, pha với sữa đặc</div></div></div><div class="mr-price">15 – 20.000đ</div></div>
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🍹</span><div class="mr-info"><div class="mr-name">Nước Chanh / Cam Tươi</div><div class="mr-desc">Cam / chanh vắt tại chỗ, đường thốt nốt, ít đá</div></div></div><div class="mr-price">18.000đ</div></div>
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🫖</span><div class="mr-info"><div class="mr-name">Trà Đá</div><div class="mr-desc">Trà đá miễn phí khi ăn tại quán</div></div></div><div class="mr-price">Free</div></div>
+          </div>
+        </div>
+
+        <!-- TRÁNG MIỆNG -->
+        <div id="trang-miem" style="scroll-margin-top:80px;margin-top:16px">
+          <div class="menu-section-title"><span>🍡</span> Tráng miệng</div>
+        </div>
+        <div class="menu-block mt-3">
+          <div class="menu-block-body">
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🍮</span><div class="mr-info"><div class="mr-name">Chè Đậu Đen / Đậu Xanh</div><div class="mr-desc">Nước cốt dừa béo ngậy, đá bào mịn, ngọt vừa</div></div></div><div class="mr-price">15.000đ</div></div>
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🧁</span><div class="mr-info"><div class="mr-name">Chè Ba Màu</div><div class="mr-desc">Đậu đỏ, thạch pandan, đậu xanh, nước cốt dừa, đá bào</div></div></div><div class="mr-price">18.000đ</div></div>
+            <div class="menu-row" style="padding:12px 20px"><div class="mr-left"><span class="mr-icon">🍌</span><div class="mr-info"><div class="mr-name">Chuối Chiên / Khoai Chiên</div><div class="mr-desc">Giòn nóng, rắc muối vừng, ăn kèm nước cốt dừa</div></div></div><div class="mr-price">10.000đ</div></div>
+          </div>
+        </div>
+
+        <div style="background:var(--accent-light);border:1px solid rgba(217,119,6,.2);border-radius:12px;padding:18px 20px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:var(--accent);margin-bottom:5px">📌 Ghi chú</div>
+          <div style="font-size:13px;font-weight:300;color:var(--text-2);line-height:1.7">Giá có thể thay đổi theo ngày. Phần lớn phục vụ đến hết nguyên liệu. Giao hàng bán kính 3km, phí từ 10.000đ — gọi <strong>[0901 234 567]</strong> để đặt.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--dark2);padding:clamp(48px,7vw,80px) 0;text-align:center">
+  <div class="wd-container reveal">
+    <h2 style="font-size:clamp(22px,3vw,36px);font-weight:800;color:#fff;letter-spacing:-1px;margin-bottom:8px">Gọi ngay để đặt món 🍜</h2>
+    <p style="font-size:14px;font-weight:300;color:rgba(255,255,255,.45);margin-bottom:24px">Hoặc ghé trực tiếp — quán mở từ 6:00 sáng đến 22:00 tối</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="lien-he.html" class="btn-accent">Gọi đặt món →</a>
+      <a href="cua-hang.html" class="btn-white">Xem địa chỉ quán</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo">🍜 [TÊN QUÁN] <span>Phở & Cơm</span></div>
+        <p class="ft-desc">Ăn ngon, giá bình dân — nấu từ tâm mỗi ngày từ 6 giờ sáng.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc" aria-label="Facebook">fb</a>
+          <a href="#" class="ft-soc" aria-label="Instagram">ig</a>
+          <a href="#" class="ft-soc" aria-label="Zalo">zl</a>
+          <a href="#" class="ft-soc" aria-label="TikTok">tk</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Thực đơn</div>
+        <div class="ft-links">
+          <a href="thuc-don.html">Món buổi sáng</a>
+          <a href="thuc-don.html">Món trưa - tối</a>
+          <a href="thuc-don.html">Đồ uống</a>
+          <a href="thuc-don.html">Tráng miệng</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Thông tin</div>
+        <div class="ft-links">
+          <a href="cua-hang.html">Cửa hàng & giờ mở</a>
+          <a href="cua-hang.html">Hướng dẫn đi đường</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links">
+          <a href="tel:0901234567">📱 [0901 234 567]</a>
+          <a href="#">📍 [Địa chỉ đầy đủ]</a>
+          <a href="#">🕐 6:00 – 22:00 hàng ngày</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="ft-copy">© 2026 [TÊN QUÁN ĂN] · Made in Vietnam 🇻🇳</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="zf">
+  <div class="zf-tip">Đặt món qua Zalo</div>
+  <a href="https://zalo.me/[SỐ ZALO]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const nav = document.getElementById('nav');
+if (nav && nav.classList.contains('transparent')) {
+  window.addEventListener('scroll', () => { nav.classList.toggle('transparent', window.scrollY < 80); }, {passive:true});
+}
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} });
+}, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+}
+</script>
+</body>
+</html>

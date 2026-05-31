@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trang chủ — [TÊN QUÁN ĂN]</title>
+<meta name="description" content="[TÊN QUÁN ĂN] — Quán ăn bình dân, phở ngon, cơm bụi, street food Việt chính gốc. Mở cửa từ 6:00 sáng đến 22:00 tối hàng ngày.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+/* ── Hero ── */
+.hero {
+  min-height:100vh;display:flex;align-items:center;padding-top:64px;
+  background:var(--dark2);position:relative;overflow:hidden;
+}
+.hero-pattern {
+  position:absolute;inset:0;
+  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.03) 0,rgba(255,255,255,.03) 1px,transparent 1px,transparent 32px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0,rgba(255,255,255,.03) 1px,transparent 1px,transparent 32px);
+}
+.hero-food-img {
+  position:absolute;right:-40px;bottom:0;width:clamp(280px,42vw,560px);height:100%;
+  object-fit:cover;object-position:top center;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.6) 25%,#000 60%,#000 100%);
+  mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.6) 25%,#000 60%,#000 100%);
+  opacity:.55;
+}
+.hero-content { position:relative;z-index:2; }
+.hero-label {
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11.5px;font-weight:500;color:rgba(255,255,255,.5);
+  border:1px solid rgba(252,211,77,.25);padding:6px 14px;border-radius:8px;
+  margin-bottom:22px;background:rgba(252,211,77,.07);
+}
+.hero-title {
+  font-size:clamp(48px,8vw,110px);font-weight:800;color:#fff;
+  line-height:.95;letter-spacing:-3px;margin-bottom:22px;
+}
+.hero-title em { color:#fcd34d;font-style:italic;font-weight:300;letter-spacing:-2px; }
+.hero-sub {
+  font-size:clamp(14px,1.4vw,16px);font-weight:300;
+  color:rgba(255,255,255,.45);line-height:1.8;max-width:400px;margin-bottom:24px;
+}
+.hero-actions { display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px; }
+.btn-hero-cta {
+  font-size:14px;font-weight:600;background:var(--accent);color:#fff;
+  padding:13px 28px;border-radius:9px;border:none;cursor:pointer;
+  font-family:var(--sans);transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-hero-cta:hover { background:var(--accent-h);color:#fff;transform:translateY(-2px); }
+.btn-hero-ghost {
+  font-size:14px;font-weight:400;background:transparent;color:rgba(255,255,255,.65);
+  padding:13px 28px;border-radius:9px;border:1px solid rgba(255,255,255,.18);
+  cursor:pointer;font-family:var(--sans);transition:all .2s;text-decoration:none;display:inline-block;
+}
+.btn-hero-ghost:hover { background:rgba(255,255,255,.08);color:#fff; }
+.hero-meta-bar {
+  display:flex;gap:24px;flex-wrap:wrap;padding-top:22px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.hm-item { font-size:12.5px;color:rgba(255,255,255,.38);display:flex;align-items:center;gap:7px; }
+.hm-dot { width:4px;height:4px;border-radius:50%;background:var(--accent-mid);flex-shrink:0; }
+
+/* ── Daily special scroll wrapper ── */
+.daily-section { background:var(--warm);padding:clamp(56px,8vw,96px) 0; }
+
+/* ── Story dark section ── */
+.story-sec { background:var(--dark2);padding:clamp(72px,10vw,128px) 0; }
+.story-img-grid { display:grid;grid-template-columns:1fr 1fr;gap:10px; }
+.story-img-grid img { border-radius:12px;width:100%;object-fit:cover; }
+.story-img-grid img:nth-child(even) { margin-top:20px; }
+
+/* ── Reasons section ── */
+.reasons-sec { background:var(--bg);padding:clamp(72px,10vw,128px) 0; }
+
+/* ── Location info strip ── */
+.loc-strip { background:var(--dark2);padding:clamp(48px,6vw,72px) 0; }
+.loc-item { text-align:center; }
+.loc-icon { font-size:28px;margin-bottom:10px; }
+.loc-label { font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.3);margin-bottom:6px; }
+.loc-val { font-size:15px;font-weight:500;color:#fff;line-height:1.4; }
+
+@media(max-width:576px) {
+  .hero-food-img { opacity:.15; }
+  .hero-title { font-size:clamp(44px,14vw,72px); }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav" class="transparent">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">🍜 [TÊN QUÁN] <span>Phở & Cơm</span></a>
+      <div class="nav-links">
+        <a href="index.html" class="active">Trang chủ</a>
+        <a href="thuc-don.html">Thực đơn</a>
+        <a href="cua-hang.html">Cửa hàng</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="lien-he.html" class="nav-cta">Gọi ngay</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="thuc-don.html">Thực đơn</a>
+  <a href="cua-hang.html">Cửa hàng</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="lien-he.html" class="nm-cta">Gọi ngay</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-pattern"></div>
+  <img class="hero-food-img"
+    src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=800&q=80&auto=format&fit=crop"
+    alt="Tô phở thơm ngon" loading="eager">
+  <div class="wd-container w-100">
+    <div class="hero-content" style="max-width:560px">
+      <div class="hero-label">⭐ Yêu thích của cả xóm từ năm [NĂM THÀNH LẬP]</div>
+      <h1 class="hero-title">Ngon<br><em>bình dân</em><br>no bụng.</h1>
+      <p class="hero-sub">Bữa ăn ngon không cần đắt tiền — cần thật thà và làm bằng tấm lòng. [TÊN QUÁN] giữ điều đó từ ngày đầu tiên.</p>
+
+      <!-- Food category chips -->
+      <div class="tag-chips">
+        <span class="tag-chip">🍜 Phở</span>
+        <span class="tag-chip">🍚 Cơm tấm</span>
+        <span class="tag-chip">🥘 Bún bò</span>
+        <span class="tag-chip">🫕 Bún riêu</span>
+        <span class="tag-chip">🧆 Bánh mì</span>
+        <span class="tag-chip">🥤 Nước mía</span>
+      </div>
+
+      <div class="hero-actions">
+        <a href="thuc-don.html" class="btn-hero-cta">Xem thực đơn →</a>
+        <a href="cua-hang.html" class="btn-hero-ghost">Tìm đường đến quán</a>
+      </div>
+      <div class="hero-meta-bar">
+        <div class="hm-item"><span class="hm-dot"></span>Mở cửa 6:00 – 22:00</div>
+        <div class="hm-item"><span class="hm-dot"></span>4.8 ★ Google Maps</div>
+        <div class="hm-item"><span class="hm-dot"></span>Từ 20.000đ / tô</div>
+        <div class="hm-item"><span class="hm-dot"></span>Giao hàng tận nơi</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAILY SPECIALS -->
+<section class="daily-section">
+  <div class="wd-container">
+    <div class="d-flex justify-content-between align-items-end mb-4 reveal">
+      <div>
+        <div class="eyebrow">Đặc biệt hôm nay</div>
+        <h2 class="sec-title mb-0">Món ngon <em>mỗi ngày</em></h2>
+      </div>
+      <a href="thuc-don.html" class="btn-ghost d-none d-md-inline-block">Xem tất cả →</a>
+    </div>
+    <div class="daily-scroll reveal reveal-d1">
+      <div class="daily-card">
+        <img class="dc-img" src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=400&q=80&auto=format&fit=crop" alt="Phở bò đặc biệt" loading="lazy">
+        <div class="dc-body">
+          <div class="dc-badge">🔥 Bán chạy #1</div>
+          <div class="dc-name">Phở Bò Tái Chín</div>
+          <div class="dc-price">55.000đ</div>
+        </div>
+      </div>
+      <div class="daily-card">
+        <img class="dc-img" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80&auto=format&fit=crop" alt="Cơm tấm sườn" loading="lazy">
+        <div class="dc-body">
+          <div class="dc-badge">⭐ Phổ biến</div>
+          <div class="dc-name">Cơm Tấm Sườn Bì</div>
+          <div class="dc-price">45.000đ</div>
+        </div>
+      </div>
+      <div class="daily-card">
+        <img class="dc-img" src="https://images.unsplash.com/photo-1514190051997-0f6f39ca5cde?w=400&q=80&auto=format&fit=crop" alt="Bún bò Huế" loading="lazy">
+        <div class="dc-body">
+          <div class="dc-badge">🌶 Cay ngon</div>
+          <div class="dc-name">Bún Bò Huế</div>
+          <div class="dc-price">50.000đ</div>
+        </div>
+      </div>
+      <div class="daily-card">
+        <img class="dc-img" src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400&q=80&auto=format&fit=crop" alt="Bánh mì thịt" loading="lazy">
+        <div class="dc-body">
+          <div class="dc-badge">🥖 Sáng sớm</div>
+          <div class="dc-name">Bánh Mì Thịt Đặc</div>
+          <div class="dc-price">25.000đ</div>
+        </div>
+      </div>
+      <div class="daily-card">
+        <img class="dc-img" src="https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=400&q=80&auto=format&fit=crop" alt="Bún riêu cua" loading="lazy">
+        <div class="dc-body">
+          <div class="dc-badge">🦀 Mới hôm nay</div>
+          <div class="dc-name">Bún Riêu Cua Đồng</div>
+          <div class="dc-price">50.000đ</div>
+        </div>
+      </div>
+      <div class="daily-card">
+        <img class="dc-img" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80&auto=format&fit=crop" alt="Bún thịt nướng" loading="lazy">
+        <div class="dc-body">
+          <div class="dc-badge">🍢 Thơm ngon</div>
+          <div class="dc-name">Bún Thịt Nướng</div>
+          <div class="dc-price">48.000đ</div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-4 d-md-none reveal">
+      <a href="thuc-don.html" class="btn-ghost">Xem toàn bộ thực đơn →</a>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK MENU PREVIEW -->
+<section class="sec-pad" style="background:var(--surface)">
+  <div class="wd-container">
+    <div class="row g-5 align-items-start">
+      <div class="col-lg-5 reveal">
+        <div class="eyebrow">Thực đơn hôm nay</div>
+        <h2 class="sec-title">Ăn sáng, trưa, tối —<br><em>đều có cả.</em></h2>
+        <p style="font-size:14px;font-weight:300;color:var(--text-2);line-height:1.8;margin-bottom:24px">Mỗi bữa trong ngày đều có món phù hợp, đậm vị, no lâu. Không lo hết hàng — quán nấu tươi liên tục.</p>
+        <div class="meal-tabs" id="mealTabs">
+          <button class="meal-tab active" data-panel="sang">🌅 Sáng</button>
+          <button class="meal-tab" data-panel="trua">☀️ Trưa</button>
+          <button class="meal-tab" data-panel="toi">🌙 Tối</button>
+        </div>
+      </div>
+      <div class="col-lg-7 reveal reveal-d1">
+        <div id="panel-sang" class="meal-panel active">
+          <div class="menu-row"><div class="mr-left"><span class="mr-icon">🍜</span><div class="mr-info"><div class="mr-name">Phở Bò Tái Chín <span class="mr-badge">HOT</span></div><div class="mr-desc">Nước dùng ninh xương 8 tiếng, thơm ngọt</div></div></div><div class="mr-price">45–55.000đ</div></div>
+          <div class="menu-row"><div class="mr-left"><span class="mr-icon">🥣</span><div class="mr-info"><div class="mr-name">Bún Bò Huế</div><div class="mr-desc">Chuẩn vị mắm ruốc, thịt heo, chả lụa</div></div></div><div class="mr-price">45–50.000đ</div></div>
+          <div class="menu-row"><div class="mr-left"><span class="mr-icon">🥖</span><div class="mr-info"><div class="mr-name">Bánh Mì Thịt Đặc Biệt</div><div class="mr-desc">Chả, pa-tê, thịt nướng, dưa leo, rau thơm</div></div></div><div class="mr-price">22–28.000đ</div></div>
+          <div class="menu-row"><div class="mr-left"><span class="mr-icon">🥛</span><div class="mr-info"><div class="mr-name">Xôi Mặn</div><div class="mr-desc">Xôi gà, xôi lạc hoặc xôi khúc — ăn no đến trưa</div></div></div><div class="mr-price">20–30.000đ</div></div>
+        </div>
+        <div id="panel-trua" class="meal-panel">
+          <div class="menu-row"><div class="mr-left"><span class="mr-icon">🍚</span><div class="mr-info"><div class="mr-name">Cơm Tấm Sườn Bì Chả</div><div class="mr-desc">Sườn nướng than, bì sợi, chả trứng, mỡ hành</div></div></div><div class="mr-price">45–55.000đ</div></div>
+          <div class="menu-row"><div class="mr-left"><span class="mr-icon">🥩</span><div class="mr-info"><div class="mr-name">Cơm Bụi Nhiều Món</div><div class="mr-desc">Cơm trắng + 2 món mặn + canh — đổi món mỗi ngày</div></div></div><div class="mr-price">40–50.000đ</div></div>
+          <div class="menu-row"><div class="mr-left"><span class="mr-icon">🥗</span><div class="mr-info"><div class="mr-name">Bún Thịt Nướng Chả Giò</div><div class="mr-desc">Bún bạch, thịt heo nướng, chả giò giòn, rau sống</div></div></div><div class="mr-price">45–50.000đ</div></div>
+          <div class="menu-row"><div class="mr-left"><span class="mr-icon">🍲</span><div class="mr-info"><div class="mr-name">Bún Riêu Cua Đồng</div><div class="mr-desc">Cua đồng xay tươi, đậu hũ chiên, cà chua</div></div></div><div class="mr-price">48–55.000đ</div></div>
+        </div>
+        <div id="panel-toi" class="meal-panel">
+          <div class="menu-row"><div class="mr-left"><span class="mr-icon">🫕</span><div class="mr-info"><div class="mr-name">Lẩu Thái Hải Sản (2 người)</div><div class="mr-desc">Tôm, mực, nấm, rau, bún tươi kèm theo</div></div></div><div class="mr-price">180.000đ</div></div>
+          <div class="menu-row"><div class="mr-left"><span class="mr-icon">🥘</span><div class="mr-info"><div class="mr-name">Cháo Lòng Đêm</div><div class="mr-desc">Cháo gạo tấm nấu loãng, lòng heo, tiết, hành lá</div></div></div><div class="mr-price">35–45.000đ</div></div>
+          <div class="menu-row"><div class="mr-left"><span class="mr-icon">🍢</span><div class="mr-info"><div class="mr-name">Chè Đậu Đen / Đậu Xanh</div><div class="mr-desc">Ngọt nhẹ, nước cốt dừa béo thơm, đá bào</div></div></div><div class="mr-price">15–20.000đ</div></div>
+          <div class="menu-row"><div class="mr-left"><span class="mr-icon">🥤</span><div class="mr-info"><div class="mr-name">Nước Mía Tươi / Trà Đá</div><div class="mr-desc">Mía cây ép tại chỗ, hoặc trà đá free kèm món</div></div></div><div class="mr-price">10–20.000đ</div></div>
+        </div>
+        <div class="mt-4">
+          <a href="thuc-don.html" class="btn-accent">Xem thực đơn đầy đủ →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY SECTION -->
+<section class="story-sec">
+  <div class="wd-container">
+    <div class="row g-5 align-items-center">
+      <div class="col-md-5 reveal">
+        <div class="story-img-grid">
+          <img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=400&q=80&auto=format&fit=crop" alt="Quán ăn bình dân" style="height:190px" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80&auto=format&fit=crop" alt="Món ăn ngon" style="height:190px" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=400&q=80&auto=format&fit=crop" alt="Bếp ăn" style="height:190px" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400&q=80&auto=format&fit=crop" alt="Không gian quán" style="height:190px" loading="lazy">
+        </div>
+      </div>
+      <div class="col-md-7 sec-dark reveal reveal-d1">
+        <div class="eyebrow">Câu chuyện quán</div>
+        <h2 class="sec-title">Từ một gánh hàng<br><em>đến quán quen cả xóm.</em></h2>
+        <p style="font-size:15px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:16px">
+          Bà [TÊN CHỦ QUÁN] bắt đầu bán phở từ năm [NĂM THÀNH LẬP] — ban đầu chỉ là một gánh hàng rong trước cổng trường tiểu học. Sáng sớm 5 giờ đã dậy ninh xương, 6 giờ bắt đầu bán, đến 9 giờ là hết veo.
+        </p>
+        <p style="font-size:15px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:28px">
+          Hơn 20 năm sau, gánh hàng nhỏ đó đã trở thành quán ăn quen thuộc của cả phường. Công thức nước dùng vẫn giữ nguyên — nồi xương heo bò ninh từ 4 giờ sáng, không bột ngọt, không phụ gia. Ăn một lần là nhớ mãi.
+        </p>
+        <div class="d-flex gap-4 flex-wrap">
+          <div><div style="font-size:28px;font-weight:800;color:#fff;letter-spacing:-1px">[SỐ NĂM]+</div><div style="font-size:12px;color:rgba(255,255,255,.3);margin-top:3px">Năm kinh nghiệm</div></div>
+          <div><div style="font-size:28px;font-weight:800;color:#fff;letter-spacing:-1px">200+</div><div style="font-size:12px;color:rgba(255,255,255,.3);margin-top:3px">Khách/ngày</div></div>
+          <div><div style="font-size:28px;font-weight:800;color:#fff;letter-spacing:-1px">4.8 ★</div><div style="font-size:12px;color:rgba(255,255,255,.3);margin-top:3px">Google Maps</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 REASONS -->
+<section class="reasons-sec">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Tại sao khách yêu</div>
+      <h2 class="sec-title">4 lý do khách <em>quay lại hoài</em></h2>
+    </div>
+    <div class="row g-3">
+      <div class="col-6 col-md-3"><div class="reason-item reveal reveal-d1">
+        <div class="ri-icon">😋</div>
+        <div class="ri-title">Ngon thật sự</div>
+        <div class="ri-text">Nước dùng ninh tươi mỗi ngày, không bột ngọt, không đường phụ. Vị thật của nguyên liệu.</div>
+      </div></div>
+      <div class="col-6 col-md-3"><div class="reason-item reveal reveal-d2">
+        <div class="ri-icon">💰</div>
+        <div class="ri-title">Giá thật rẻ</div>
+        <div class="ri-text">Từ 20.000đ đã no căng. Sinh viên, công nhân, dân văn phòng — ai cũng ăn được.</div>
+      </div></div>
+      <div class="col-6 col-md-3"><div class="reason-item reveal reveal-d3">
+        <div class="ri-icon">✨</div>
+        <div class="ri-title">Sạch tuyệt đối</div>
+        <div class="ri-text">Bếp ăn dọn sạch 3 lần/ngày. Rau củ rửa kỹ nhiều lần. Dụng cụ tiệt trùng hàng ngày.</div>
+      </div></div>
+      <div class="col-6 col-md-3"><div class="reason-item reveal reveal-d3" style="transition-delay:.32s">
+        <div class="ri-icon">⚡</div>
+        <div class="ri-title">Nhanh khỏi nói</div>
+        <div class="ri-text">Order xong 5 phút là có tô. Không để khách đợi — đặc biệt giờ cao điểm.</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="sec-pad" style="background:var(--warm)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Đánh giá Google Maps</div>
+      <h2 class="sec-title">Khách nói <em>gì về quán</em></h2>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-4"><div class="rv reveal reveal-d1">
+        <div class="rv-head">
+          <img class="rv-av" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80&auto=format&fit=crop&crop=face" alt="">
+          <div class="rv-meta"><div class="rv-name">Nguyễn Văn Hùng</div><div class="rv-src">Đánh giá Google · 2 tháng trước</div></div>
+        </div>
+        <div class="rv-stars">★★★★★</div>
+        <div class="rv-text">"Phở tái chín ngon không chê vào đâu được. Nước dùng đậm vị, thịt tươi mềm, giá lại rẻ. Sáng nào tôi cũng ghé trước khi đi làm."</div>
+      </div></div>
+      <div class="col-md-4"><div class="rv reveal reveal-d2">
+        <div class="rv-head">
+          <img class="rv-av" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80&auto=format&fit=crop&crop=face" alt="">
+          <div class="rv-meta"><div class="rv-name">Trần Thị Lan</div><div class="rv-src">Đánh giá Google · 1 tháng trước</div></div>
+        </div>
+        <div class="rv-stars">★★★★★</div>
+        <div class="rv-text">"Cơm bụi trưa ở đây cực ngon, nhiều món lại rẻ. Bà chủ thân thiện, phục vụ nhanh. Giờ cao điểm 12h trưa nhưng vẫn ra nhanh lắm."</div>
+      </div></div>
+      <div class="col-md-4"><div class="rv reveal reveal-d3">
+        <div class="rv-head">
+          <img class="rv-av" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80&auto=format&fit=crop&crop=face" alt="">
+          <div class="rv-meta"><div class="rv-name">Lê Minh Tuấn</div><div class="rv-src">Đánh giá Google · 3 tuần trước</div></div>
+        </div>
+        <div class="rv-stars">★★★★★</div>
+        <div class="rv-text">"Quán nhỏ nhưng sạch sẽ, thoáng mát. Bún bò Huế đúng chuẩn, cay vừa phải. Đặt ship về nhà nhanh, đóng gói cẩn thận."</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION INFO -->
+<section class="loc-strip">
+  <div class="wd-container">
+    <div class="row g-4 reveal">
+      <div class="col-6 col-md-3"><div class="loc-item">
+        <div class="loc-icon">📍</div>
+        <div class="loc-label">Địa chỉ</div>
+        <div class="loc-val">[Số nhà, đường, phường]<br>[Quận, Thành phố]</div>
+      </div></div>
+      <div class="col-6 col-md-3"><div class="loc-item">
+        <div class="loc-icon">🕐</div>
+        <div class="loc-label">Giờ mở cửa</div>
+        <div class="loc-val">6:00 – 22:00<br>Tất cả các ngày</div>
+      </div></div>
+      <div class="col-6 col-md-3"><div class="loc-item">
+        <div class="loc-icon">📞</div>
+        <div class="loc-label">Điện thoại</div>
+        <div class="loc-val">[0901 234 567]<br>Gọi / nhắn Zalo</div>
+      </div></div>
+      <div class="col-6 col-md-3"><div class="loc-item">
+        <div class="loc-icon">🛵</div>
+        <div class="loc-label">Giao hàng</div>
+        <div class="loc-val">Trong bán kính 3km<br>Phí từ 10.000đ</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="wd-container reveal">
+    <h2 class="cta-title">Bụng đói chưa? 🍜</h2>
+    <p class="cta-sub">Ghé quán hoặc gọi ship về nhà — nhanh gọn, ngon đảm bảo.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap position-relative">
+      <a href="lien-he.html" class="btn-white">Gọi đặt món ngay →</a>
+      <a href="thuc-don.html" style="font-size:14px;background:transparent;color:rgba(255,255,255,.7);padding:12px 26px;border-radius:9px;border:1px solid rgba(255,255,255,.3);text-decoration:none;display:inline-block">Xem thực đơn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo">🍜 [TÊN QUÁN] <span>Phở & Cơm</span></div>
+        <p class="ft-desc">Ăn ngon, giá bình dân — nấu từ tâm mỗi ngày từ 6 giờ sáng.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc" aria-label="Facebook">fb</a>
+          <a href="#" class="ft-soc" aria-label="Instagram">ig</a>
+          <a href="#" class="ft-soc" aria-label="Zalo">zl</a>
+          <a href="#" class="ft-soc" aria-label="TikTok">tk</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Thực đơn</div>
+        <div class="ft-links">
+          <a href="thuc-don.html">Món buổi sáng</a>
+          <a href="thuc-don.html">Món trưa - tối</a>
+          <a href="thuc-don.html">Đồ uống</a>
+          <a href="thuc-don.html">Tráng miệng</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Thông tin</div>
+        <div class="ft-links">
+          <a href="cua-hang.html">Cửa hàng & giờ mở</a>
+          <a href="cua-hang.html">Hướng dẫn đi đường</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links">
+          <a href="tel:0901234567">📱 [0901 234 567]</a>
+          <a href="#">📍 [Địa chỉ đầy đủ]</a>
+          <a href="#">🕐 6:00 – 22:00 hàng ngày</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="ft-copy">© 2026 [TÊN QUÁN ĂN] · Made in Vietnam 🇻🇳</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="zf">
+  <div class="zf-tip">Đặt món qua Zalo</div>
+  <a href="https://zalo.me/[SỐ ZALO]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const nav = document.getElementById('nav');
+if (nav && nav.classList.contains('transparent')) {
+  window.addEventListener('scroll', () => { nav.classList.toggle('transparent', window.scrollY < 80); }, {passive:true});
+}
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} });
+}, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+}
+// Meal tab switcher
+const tabs = document.querySelectorAll('.meal-tab');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const panelId = 'panel-' + tab.dataset.panel;
+    document.querySelectorAll('.meal-panel').forEach(p => p.classList.remove('active'));
+    const panel = document.getElementById(panelId);
+    if (panel) panel.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

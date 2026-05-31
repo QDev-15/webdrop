@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thực đơn — [TÊN QUÁN] Cà Phê Thời Gian</title>
+<meta name="description" content="Thực đơn đầy đủ của [TÊN QUÁN] — cà phê rang xay thủ công, trà, nước ép và bánh ngọt. Xem giá và mô tả từng món.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">☕ [TÊN QUÁN] <span>Cafe</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="menu.html" class="active">Thực đơn</a>
+        <a href="khong-gian.html">Không gian</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="lien-he.html" class="nav-cta">Đặt chỗ trước</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="menu.html" class="active">Thực đơn</a>
+  <a href="khong-gian.html">Không gian</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="lien-he.html" class="nm-cta">Đặt chỗ trước</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="wd-container">
+    <div class="ph-eyebrow">Thực đơn</div>
+    <h1 class="ph-title">Menu <em>đầy đủ</em></h1>
+    <p class="ph-sub">Cà phê rang xay, trà, nước ép và bánh ngọt — tất cả làm từ nguyên liệu chọn lọc.</p>
+  </div>
+</div>
+
+<!-- MENU CONTENT -->
+<section class="sec-pad" style="background:var(--bg);">
+  <div class="wd-container">
+
+    <!-- Espresso Based -->
+    <div class="mb-5 reveal">
+      <div class="menu-section-title">☕ Espresso Based</div>
+      <div class="row g-3">
+        <div class="col-sm-6 col-lg-4">
+          <div class="menu-grid-card">
+            <img class="mgc-img" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&q=80&auto=format&fit=crop" alt="Espresso" loading="lazy">
+            <div class="mgc-body">
+              <div class="mgc-name">Espresso Signature</div>
+              <div class="mgc-desc">Blend Arabica & Robusta, chiết xuất 28 giây, crema dày vàng óng.</div>
+              <div class="mgc-price">45.000đ</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="menu-grid-card">
+            <img class="mgc-img" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&q=80&auto=format&fit=crop" alt="Latte" loading="lazy">
+            <div class="mgc-body">
+              <div class="mgc-name">Latte Sữa Tươi</div>
+              <div class="mgc-desc">Double shot, sữa tươi tiệt trùng hấp nóng 65°C, latte art.</div>
+              <div class="mgc-price">55.000đ</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="menu-grid-card">
+            <img class="mgc-img" src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=500&q=80&auto=format&fit=crop" alt="Cappuccino" loading="lazy">
+            <div class="mgc-body">
+              <div class="mgc-name">Cappuccino</div>
+              <div class="mgc-desc">Espresso, sữa hấp, foam khô đặc theo kiểu Italy truyền thống.</div>
+              <div class="mgc-price">55.000đ</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="menu-grid-card">
+            <img class="mgc-img" src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=500&q=80&auto=format&fit=crop" alt="Americano" loading="lazy">
+            <div class="mgc-body">
+              <div class="mgc-name">Americano</div>
+              <div class="mgc-desc">Espresso pha loãng với nước nóng. Uống nóng hoặc iced đều ngon.</div>
+              <div class="mgc-price">45.000đ</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="menu-grid-card">
+            <img class="mgc-img" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&q=80&auto=format&fit=crop" alt="Flat White" loading="lazy">
+            <div class="mgc-body">
+              <div class="mgc-name">Flat White</div>
+              <div class="mgc-desc">Ristretto double shot, sữa vi foam siêu mịn, đậm hơn latte.</div>
+              <div class="mgc-price">60.000đ</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="menu-grid-card">
+            <img class="mgc-img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&q=80&auto=format&fit=crop" alt="Mocha" loading="lazy">
+            <div class="mgc-body">
+              <div class="mgc-name">Mocha Socola</div>
+              <div class="mgc-desc">Espresso, sốt socola đắng, sữa hấp, whipped cream tươi.</div>
+              <div class="mgc-price">65.000đ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cold Brew & Pour Over -->
+    <div class="mb-5 reveal">
+      <div class="menu-section-title">🧊 Cold Brew & Pour Over</div>
+      <div class="row g-0">
+        <div class="col-12">
+          <div class="menu-list-item"><div><div class="mli-name">Cold Brew Classic</div><div class="mli-desc">Ngâm lạnh 24 giờ, vị mượt mà, không đắng, uống đá</div></div><div class="mli-price">60.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Cold Brew + Sữa Đặc</div><div class="mli-desc">Cold brew đặc + sữa đặc ngọt, thêm đá viên to</div></div><div class="mli-price">65.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Cold Brew + Tonic</div><div class="mli-desc">Cold brew + Fever-Tree tonic, vị chua nhẹ, sảng khoái</div></div><div class="mli-price">70.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Pour Over Đà Lạt</div><div class="mli-desc">Single origin Đà Lạt, hương hoa dại và cherry tươi</div></div><div class="mli-price">65.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Pour Over Ethiopia</div><div class="mli-desc">Yirgacheffe, blueberry, hoa nhài, body nhẹ</div></div><div class="mli-price">75.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">French Press</div><div class="mli-desc">Ngâm 4 phút, body dày, tinh dầu tự nhiên, classic</div></div><div class="mli-price">55.000đ</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trà & Trái cây -->
+    <div class="mb-5 reveal">
+      <div class="menu-section-title">🍵 Trà & Nước Ép</div>
+      <div class="row g-0">
+        <div class="col-12">
+          <div class="menu-list-item"><div><div class="mli-name">Trà Ô Long Sữa</div><div class="mli-desc">Ô long Đài Loan, sữa béo, trân châu đen / trắng</div></div><div class="mli-price">55.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Hồng Trà Đào</div><div class="mli-desc">Hồng trà Sri Lanka, đào ngâm, đá viên, thơm ngọt</div></div><div class="mli-price">60.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Matcha Latte</div><div class="mli-desc">Matcha Nhật premium, sữa tươi, có thể dùng sữa hạt</div></div><div class="mli-price">65.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Trà Sen Vàng</div><div class="mli-desc">Trà mộc ướp sen, pha ấm, hương thơm dịu nhẹ</div></div><div class="mli-price">45.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Nước Ép Cam Gừng</div><div class="mli-desc">Cam tươi vắt, gừng tươi, mật ong, vitamin C cao</div></div><div class="mli-price">55.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Sinh Tố Bơ Sữa</div><div class="mli-desc">Bơ chín, sữa đặc, đá xay, béo ngậy</div></div><div class="mli-price">65.000đ</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bánh ngọt & Ăn nhẹ -->
+    <div class="mb-5 reveal">
+      <div class="menu-section-title">🥐 Bánh Ngọt & Ăn Nhẹ</div>
+      <div class="row g-3">
+        <div class="col-sm-6 col-lg-3">
+          <div class="menu-grid-card">
+            <img class="mgc-img" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&q=80&auto=format&fit=crop" alt="Croissant" loading="lazy">
+            <div class="mgc-body">
+              <div class="mgc-name">Croissant Bơ Pháp</div>
+              <div class="mgc-desc">Bơ AOP, xốp giòn, thơm tầng lớp.</div>
+              <div class="mgc-price">45.000đ</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="menu-grid-card">
+            <img class="mgc-img" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&q=80&auto=format&fit=crop" alt="Cheesecake" loading="lazy">
+            <div class="mgc-body">
+              <div class="mgc-name">Cheesecake New York</div>
+              <div class="mgc-desc">Cream cheese, không nướng, mịn béo.</div>
+              <div class="mgc-price">65.000đ</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="menu-grid-card">
+            <img class="mgc-img" src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=500&q=80&auto=format&fit=crop" alt="Tiramisu" loading="lazy">
+            <div class="mgc-body">
+              <div class="mgc-name">Tiramisu Espresso</div>
+              <div class="mgc-desc">Mascarpone, espresso, biscuit Savoiardi.</div>
+              <div class="mgc-price">70.000đ</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="menu-grid-card">
+            <img class="mgc-img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&q=80&auto=format&fit=crop" alt="Waffle" loading="lazy">
+            <div class="mgc-body">
+              <div class="mgc-name">Waffle Bơ Chuối</div>
+              <div class="mgc-desc">Waffle nóng, bơ, chuối tươi, mật ong.</div>
+              <div class="mgc-price">75.000đ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row g-0 mt-3">
+        <div class="col-12">
+          <div class="menu-list-item"><div><div class="mli-name">Bánh Mì Sandwich</div><div class="mli-desc">Baguette, trứng ốp, dăm bông, rau sống, xốt mayonnaise</div></div><div class="mli-price">55.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Muffin Việt Quất</div><div class="mli-desc">Muffin mềm, việt quất tươi, đường thô phủ mặt</div></div><div class="mli-price">40.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Brownie Socola Đen</div><div class="mli-desc">Socola đắng 70%, texture fudgy, ít đường</div></div><div class="mli-price">55.000đ</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cà phê hạt mang về -->
+    <div class="reveal">
+      <div class="menu-section-title">☕ Cà Phê Hạt Mang Về</div>
+      <div class="row g-0">
+        <div class="col-12">
+          <div class="menu-list-item"><div><div class="mli-name">Blend House — 250g</div><div class="mli-desc">Arabica & Robusta, rang medium, phù hợp mọi phương pháp</div></div><div class="mli-price">180.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Single Origin Đà Lạt — 200g</div><div class="mli-desc">Arabica Cầu Đất, rang light-medium, hương hoa nhẹ</div></div><div class="mli-price">240.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Ethiopia Yirgacheffe — 200g</div><div class="mli-desc">Rang light, blueberry, hoa nhài, body thanh</div></div><div class="mli-price">320.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Cold Brew Concentrate — 500ml</div><div class="mli-desc">Chai đặc pha sẵn, pha với nước hoặc sữa 1:3</div></div><div class="mli-price">150.000đ</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5 reveal">
+      <p style="font-size:13px;color:var(--text-3);margin-bottom:16px;">Giá đã bao gồm VAT. Menu thay đổi theo mùa.</p>
+      <a href="lien-he.html" class="btn-accent">Đặt chỗ ngay</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="wd-container position-relative">
+    <div class="cta-title">Một tách cà phê đang chờ bạn</div>
+    <div class="cta-sub">Ghé thăm [TÊN QUÁN] mỗi ngày 7:00 – 22:00. Đặt chỗ trước để có bàn đẹp.</div>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="lien-he.html" class="btn-white">Đặt chỗ trước</a>
+      <a href="khong-gian.html" class="btn-accent" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;">Xem không gian</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo">☕ [TÊN QUÁN] <span>Cafe</span></div>
+        <p class="ft-desc">Không gian cà phê ấm cúng, rang xay thủ công. Nơi thời gian chậm lại.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc" aria-label="Facebook" target="_blank" rel="noopener noreferrer">fb</a>
+          <a href="#" class="ft-soc" aria-label="Instagram" target="_blank" rel="noopener noreferrer">ig</a>
+          <a href="#" class="ft-soc" aria-label="Zalo" target="_blank" rel="noopener noreferrer">zl</a>
+          <a href="#" class="ft-soc" aria-label="TikTok" target="_blank" rel="noopener noreferrer">tt</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Trang</div>
+        <div class="ft-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="menu.html">Thực đơn</a>
+          <a href="khong-gian.html">Không gian</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Dịch vụ</div>
+        <div class="ft-links">
+          <a href="lien-he.html">Đặt chỗ trước</a>
+          <a href="lien-he.html">Đặt tiệc nhỏ</a>
+          <a href="menu.html">Mua cà phê hạt</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links">
+          <a href="tel:[0901234567]">📱 [0901 234 567]</a>
+          <a href="#">📍 [Địa chỉ quán]</a>
+          <a href="#">🕐 7:00 – 22:00</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="ft-copy">© [NĂM] [TÊN QUÁN] · Made in Vietnam 🇻🇳</div>
+        <div class="ft-copy">Thiết kế bởi webdrop.vn</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="zf">
+  <div class="zf-tip">Liên hệ Zalo</div>
+  <a href="https://zalo.me/[SỐ_ZALO]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const nav = document.getElementById('nav');
+if (nav && nav.classList.contains('transparent')) {
+  window.addEventListener('scroll', () => { nav.classList.toggle('transparent', window.scrollY < 80); }, {passive:true});
+}
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} });
+}, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đặt Bàn — [TÊN QUÁN] BBQ Lửa Hồng</title>
+<meta name="description" content="Đặt bàn trực tuyến tại [TÊN QUÁN] BBQ Lửa Hồng. Chọn loại bàn, số người, thời gian. Xác nhận trong 15 phút qua điện thoại hoặc Zalo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">🔥 [TÊN QUÁN] <span>BBQ</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="thuc-don.html">Thực đơn</a>
+        <a href="khong-gian.html">Không gian</a>
+        <a href="dat-ban.html" class="active">Đặt bàn</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-ban.html" class="nav-cta">Đặt bàn ngay</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="thuc-don.html">Thực đơn</a>
+  <a href="khong-gian.html">Không gian</a>
+  <a href="dat-ban.html">Đặt bàn</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-ban.html" class="nm-cta">Đặt bàn ngay</a>
+</div>
+
+<div class="page-hero">
+  <div class="wd-container">
+    <div class="ph-eyebrow">Đặt bàn</div>
+    <h1 class="ph-title">Đặt Bàn <em>Dễ Dàng</em></h1>
+    <p class="ph-sub">Điền thông tin bên dưới — chúng tôi xác nhận trong 15 phút qua điện thoại hoặc Zalo.</p>
+  </div>
+</div>
+
+<!-- BOOKING FORM -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="row g-5">
+      <!-- Form -->
+      <div class="col-lg-7">
+        <div class="booking-card reveal">
+          <h2 style="font-size:20px;font-weight:700;color:var(--text);margin-bottom:6px">Thông tin đặt bàn</h2>
+          <p style="font-size:13px;color:var(--text-2);margin-bottom:24px">Vui lòng điền đầy đủ để chúng tôi chuẩn bị tốt nhất cho bạn.</p>
+
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Họ và tên *</label>
+              <input type="text" class="form-control" placeholder="Nguyễn Văn A">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Số điện thoại *</label>
+              <input type="tel" class="form-control" placeholder="0901 234 567">
+            </div>
+          </div>
+
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Ngày đặt bàn *</label>
+              <input type="date" class="form-control">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Giờ đến *</label>
+              <select class="form-select">
+                <option>Chọn giờ...</option>
+                <option>17:00 – 17:30</option>
+                <option>17:30 – 18:00</option>
+                <option>18:00 – 18:30</option>
+                <option>18:30 – 19:00</option>
+                <option>19:00 – 19:30</option>
+                <option>19:30 – 20:00</option>
+                <option>20:00 – 20:30</option>
+                <option>20:30 – 21:00</option>
+                <option>21:00 – 21:30</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label">Số người *</label>
+            <select class="form-select">
+              <option>2 người</option>
+              <option>3 người</option>
+              <option>4 người</option>
+              <option>5–6 người</option>
+              <option>7–8 người</option>
+              <option>9–12 người</option>
+              <option>13–20 người</option>
+              <option>20+ người (tiệc — gọi tư vấn)</option>
+            </select>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label">Chọn loại bàn</label>
+            <div class="row g-3">
+              <div class="col-4">
+                <div class="table-type-card selected">
+                  <div class="table-type-icon">🪑</div>
+                  <div class="table-type-name">Bàn thường</div>
+                  <div class="table-type-price">Không cần cọc</div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="table-type-card">
+                  <div class="table-type-icon">👥</div>
+                  <div class="table-type-name">Bàn nhóm</div>
+                  <div class="table-type-price">Cọc 100k</div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="table-type-card">
+                  <div class="table-type-icon">👑</div>
+                  <div class="table-type-name">Phòng VIP</div>
+                  <div class="table-type-price">Cọc 300–500k</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label">Yêu cầu đặc biệt (tuỳ chọn)</label>
+            <textarea class="form-control" rows="3" placeholder="Sinh nhật cần nến/bong bóng? Dị ứng thực phẩm? Yêu cầu riêng?"></textarea>
+          </div>
+
+          <button type="submit" class="btn-accent w-100 text-center" style="font-size:15px;padding:14px">Gửi yêu cầu đặt bàn →</button>
+          <p style="font-size:12px;color:var(--text-3);text-align:center;margin-top:10px">Chúng tôi sẽ gọi điện xác nhận trong vòng 15 phút.</p>
+        </div>
+      </div>
+
+      <!-- Sidebar info -->
+      <div class="col-lg-5">
+        <div class="booking-card reveal mb-4">
+          <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:16px">🕐 Giờ mở cửa</div>
+          <div style="font-size:13.5px;color:var(--text-2)">
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border-light)"><span>Thứ 2 – Thứ 6</span><span style="font-weight:600;color:var(--text)">17:00 – 23:00</span></div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border-light)"><span>Thứ 7</span><span style="font-weight:600;color:var(--text)">11:00 – 23:00</span></div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0"><span>Chủ nhật</span><span style="font-weight:600;color:var(--text)">11:00 – 22:00</span></div>
+          </div>
+        </div>
+
+        <div class="booking-card reveal mb-4">
+          <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:16px">💰 Bảng giá đặt cọc</div>
+          <div class="price-table-mini">
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border-light);font-size:13.5px"><span style="color:var(--text-2)">Bàn thường (2–4 người)</span><span style="font-weight:600;color:var(--accent)">Miễn phí</span></div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border-light);font-size:13.5px"><span style="color:var(--text-2)">Bàn nhóm (4–8 người)</span><span style="font-weight:600;color:var(--accent)">100.000đ</span></div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border-light);font-size:13.5px"><span style="color:var(--text-2)">Phòng VIP nhỏ (6–10 người)</span><span style="font-weight:600;color:var(--accent)">300.000đ</span></div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:13.5px"><span style="color:var(--text-2)">Phòng VIP lớn (12–20 người)</span><span style="font-weight:600;color:var(--accent)">500.000đ</span></div>
+          </div>
+          <div style="margin-top:14px;font-size:12px;color:var(--text-3);line-height:1.6">Cọc được trừ vào bill khi thanh toán. Hủy trước 2 tiếng được hoàn cọc 100%.</div>
+        </div>
+
+        <div class="booking-card reveal">
+          <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:14px">📞 Liên hệ trực tiếp</div>
+          <div class="contact-item">
+            <div class="ci-icon">📱</div>
+            <div><div class="ci-label">Điện thoại</div><div class="ci-value"><a href="tel:0901234567" style="color:var(--text)">[0901 234 567]</a></div><div class="ci-sub">Gọi 17:00 – 23:00 hàng ngày</div></div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">💬</div>
+            <div><div class="ci-label">Zalo</div><div class="ci-value">Nhắn Zalo [0901 234 567]</div><div class="ci-sub">Phản hồi trong 5 phút</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo">🔥 [TÊN QUÁN] <span>BBQ</span></div>
+        <p class="ft-desc">Thịt nướng than hoa tươi ngon, không gian sôi động, ẩm thực BBQ đích thực.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc" aria-label="Facebook">fb</a>
+          <a href="#" class="ft-soc" aria-label="Instagram">ig</a>
+          <a href="#" class="ft-soc" aria-label="Zalo">zl</a>
+          <a href="#" class="ft-soc" aria-label="TikTok">tt</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Thực đơn</div>
+        <div class="ft-links">
+          <a href="thuc-don.html">Thịt bò & cừu</a>
+          <a href="thuc-don.html">Hải sản tươi</a>
+          <a href="thuc-don.html">Combo set</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Thông tin</div>
+        <div class="ft-links">
+          <a href="khong-gian.html">Không gian & bàn</a>
+          <a href="dat-ban.html">Đặt bàn</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links">
+          <a href="tel:0901234567">📱 [0901 234 567]</a>
+          <a href="#">📍 [Địa chỉ quán BBQ]</a>
+          <a href="#">🕐 17:00 – 23:00 hàng ngày</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="ft-copy">© 2026 [TÊN QUÁN] BBQ Lửa Hồng · Made in Vietnam 🇻🇳</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="zf">
+  <div class="zf-tip">Đặt bàn qua Zalo</div>
+  <a href="https://zalo.me/[SỐ_ZALO]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} });
+}, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+}
+// Table type selection
+document.querySelectorAll('.table-type-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('.table-type-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thực Đơn — [TÊN NHÀ HÀNG] Fine Dining</title>
+<meta name="description" content="Thực đơn tasting menu của [TÊN NHÀ HÀNG] — Chef's tasting menu theo mùa với 5 đến 11 món. Kết hợp wine pairing từ sommelier chuyên nghiệp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+.menu-section-header { padding: 32px 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 4px; }
+.menu-section-name { font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 2.5px; }
+.menu-list-item { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding: 22px 0; border-bottom: 1px solid var(--border-light); }
+.menu-list-item:last-child { border-bottom: none; }
+.mli-info { flex: 1; }
+.mli-name { font-size: 17px; font-weight: 500; color: var(--text); margin-bottom: 6px; letter-spacing: -.3px; }
+.mli-desc { font-size: 13.5px; font-weight: 300; color: var(--text-2); line-height: 1.7; }
+.mli-badge { display: inline-block; font-size: 10px; font-weight: 500; color: var(--accent); background: var(--accent-light); padding: 3px 10px; border-radius: 4px; margin-left: 10px; vertical-align: middle; }
+.mli-price { font-size: 16px; font-weight: 500; color: var(--text); white-space: nowrap; }
+.mli-allergen { font-size: 11px; color: var(--text-3); margin-top: 5px; font-style: italic; }
+.wine-card { background: var(--dark2); border-radius: 12px; padding: 24px; }
+.wc-title { font-size: 13px; font-weight: 500; color: var(--accent-mid); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+.wc-item { display: flex; align-items: flex-start; gap: 10px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.05); }
+.wc-item:last-child { border-bottom: none; }
+.wc-pair { font-size: 10px; color: rgba(255,255,255,.25); text-transform: uppercase; letter-spacing: 1px; width: 60px; flex-shrink: 0; padding-top: 2px; }
+.wc-wine { font-size: 14px; font-weight: 500; color: rgba(255,255,255,.7); margin-bottom: 3px; }
+.wc-note { font-size: 12px; color: rgba(255,255,255,.3); font-weight: 300; }
+.sidebar-info { background: var(--warm); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
+.si-title { font-size: 12px; font-weight: 600; color: var(--text); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 14px; }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">[TÊN] <span>Fine Dining</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="menu.html" class="active">Thực đơn</a>
+        <a href="su-kien.html">Sự kiện</a>
+        <a href="dat-ban.html">Đặt bàn</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-ban.html" class="nav-cta">Đặt bàn</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="menu.html">Thực đơn</a>
+  <a href="su-kien.html">Sự kiện</a>
+  <a href="dat-ban.html">Đặt bàn</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-ban.html" class="nm-cta">Đặt bàn ngay</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="wd-container">
+    <div class="ph-eyebrow">Chef's Menu</div>
+    <h1 class="ph-title"><strong>Thực đơn</strong> theo <em>mùa</em></h1>
+    <p class="ph-sub">Menu thay đổi định kỳ theo nguyên liệu tươi ngon nhất trong mùa. Mỗi lần đến là một trải nghiệm mới.</p>
+  </div>
+</section>
+
+<!-- MENU CONTENT -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="row g-4">
+      <!-- Menu chính -->
+      <div class="col-lg-8 reveal">
+        <!-- Chef's note -->
+        <div style="padding:28px;background:var(--surface);border:1px solid var(--border);border-radius:14px;margin-bottom:36px">
+          <div style="font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px">Từ Bếp Trưởng</div>
+          <p style="font-size:14px;font-weight:300;color:var(--text-2);line-height:1.85;font-style:italic;margin:0">
+            "Menu mùa này được lấy cảm hứng từ vùng đồng bằng sông Cửu Long — nơi tôi sinh ra và lớn lên. Tôi muốn tái hiện những hương vị tuổi thơ qua ngôn ngữ fine dining, để mỗi món ăn là một chuyến về quê hương." — <strong>[TÊN BẾP TRƯỞNG]</strong>
+          </p>
+        </div>
+
+        <!-- Amuse-Bouche -->
+        <div>
+          <div class="menu-section-header">
+            <div class="menu-section-name">Amuse-Bouche</div>
+          </div>
+          <div class="menu-list-item">
+            <div class="mli-info">
+              <div class="mli-name">Một miếng chào từ bếp trưởng</div>
+              <div class="mli-desc">Bít tết bạch tuộc — ponzu — tinh dầu mùi tàu, served on ceramic stone</div>
+              <div class="mli-allergen">* Dị ứng: hải sản</div>
+            </div>
+            <div class="mli-price">—</div>
+          </div>
+        </div>
+
+        <!-- Entrée -->
+        <div>
+          <div class="menu-section-header">
+            <div class="menu-section-name">Entrée</div>
+          </div>
+          <div class="menu-list-item">
+            <div class="mli-info">
+              <div class="mli-name">Sò Điệp Áp Chảo <span class="mli-badge">Chef's Signature</span></div>
+              <div class="mli-desc">Sò điệp Cà Mau áp chảo bơ nâu, gelée dưa leo, dầu hoa lài, roe của cá sturgeon nhập khẩu</div>
+              <div class="mli-allergen">* Dị ứng: hải sản, sữa</div>
+            </div>
+            <div class="mli-price">320.000đ</div>
+          </div>
+          <div class="menu-list-item">
+            <div class="mli-info">
+              <div class="mli-name">Foie Gras Tôm Sú</div>
+              <div class="mli-desc">Foie gras sốt xì dầu chua ngọt kiểu Hội An, tôm sú nướng than, brioche nhà làm tươi nóng</div>
+              <div class="mli-allergen">* Dị ứng: gluten, sữa, hải sản</div>
+            </div>
+            <div class="mli-price">385.000đ</div>
+          </div>
+        </div>
+
+        <!-- Poisson -->
+        <div>
+          <div class="menu-section-header">
+            <div class="menu-section-name">Poisson</div>
+          </div>
+          <div class="menu-list-item">
+            <div class="mli-info">
+              <div class="mli-name">Cá Chẽm Nướng Muối Hầm</div>
+              <div class="mli-desc">Cá chẽm biển Phú Quốc nướng trong hầm muối đất sét 45 phút, beurre blanc sả gừng, rau mùi tươi</div>
+              <div class="mli-allergen">* Dị ứng: cá, sữa</div>
+            </div>
+            <div class="mli-price">450.000đ</div>
+          </div>
+          <div class="menu-list-item">
+            <div class="mli-info">
+              <div class="mli-name">Cua Hoàng Đế Alaska Hấp Bia</div>
+              <div class="mli-desc">Cua Alaska thịt trắng ngọt tự nhiên, hấp bia Bỉ, mayonnaise chanh dây, bánh mì sourdough nhà làm</div>
+              <div class="mli-allergen">* Dị ứng: hải sản, gluten, trứng</div>
+            </div>
+            <div class="mli-price">520.000đ</div>
+          </div>
+        </div>
+
+        <!-- Viande -->
+        <div>
+          <div class="menu-section-header">
+            <div class="menu-section-name">Viande</div>
+          </div>
+          <div class="menu-list-item">
+            <div class="mli-info">
+              <div class="mli-name">Bò Wagyu A5 Nướng Charcoal <span class="mli-badge">Premium</span></div>
+              <div class="mli-desc">Wagyu A5 Nhật Bản nướng than hoa 5 phút, jus thịt bò già 24 tháng, củ cải hầm rượu vang đỏ, truffle đen Périgord bào tươi ngay tại bàn</div>
+              <div class="mli-allergen">* Dị ứng: sữa</div>
+            </div>
+            <div class="mli-price">890.000đ</div>
+          </div>
+          <div class="menu-list-item">
+            <div class="mli-info">
+              <div class="mli-name">Vịt Confit 48 Giờ</div>
+              <div class="mli-desc">Đùi vịt ướp muối rồi confit 48 giờ ở 68°C, da giòn hoàn hảo, sauce orange cointreau, đậu lens đen Puy</div>
+              <div class="mli-allergen">* Dị ứng: sữa, rượu</div>
+            </div>
+            <div class="mli-price">480.000đ</div>
+          </div>
+        </div>
+
+        <!-- Cheese -->
+        <div>
+          <div class="menu-section-header">
+            <div class="menu-section-name">Plateau de Fromages</div>
+          </div>
+          <div class="menu-list-item">
+            <div class="mli-info">
+              <div class="mli-name">Cheese Trolley</div>
+              <div class="mli-desc">Tự chọn 3–5 loại phô mai từ xe đẩy: Brie, Camembert, Comté, Roquefort, Manchego — kèm mứt mận, mật ong và bánh mì nướng giòn</div>
+              <div class="mli-allergen">* Dị ứng: sữa, gluten</div>
+            </div>
+            <div class="mli-price">280.000đ</div>
+          </div>
+        </div>
+
+        <!-- Dessert -->
+        <div>
+          <div class="menu-section-header">
+            <div class="menu-section-name">Dessert</div>
+          </div>
+          <div class="menu-list-item">
+            <div class="mli-info">
+              <div class="mli-name">Soufflé Socola Đắng 72% <span class="mli-badge">Phải đặt trước</span></div>
+              <div class="mli-desc">Soufflé nóng hổi từ Valrhona 72%, trứng gà tươi đánh bông, kem vani bourbon Madagasca tự làm, mảnh vàng lá 24k</div>
+              <div class="mli-allergen">* Dị ứng: gluten, trứng, sữa</div>
+            </div>
+            <div class="mli-price">195.000đ</div>
+          </div>
+          <div class="menu-list-item">
+            <div class="mli-info">
+              <div class="mli-name">Tarte Chanh Leo & Dừa</div>
+              <div class="mli-desc">Tart vỏ bơ giòn, curd chanh leo chua ngọt hoàn hảo, dừa nạo nhẹ rang vàng, meringue đốt cháy mặt</div>
+              <div class="mli-allergen">* Dị ứng: gluten, trứng, sữa</div>
+            </div>
+            <div class="mli-price">165.000đ</div>
+          </div>
+        </div>
+
+        <!-- Mignardise -->
+        <div>
+          <div class="menu-section-header">
+            <div class="menu-section-name">Mignardise</div>
+          </div>
+          <div class="menu-list-item">
+            <div class="mli-info">
+              <div class="mli-name">Petit Four Tự Làm Hàng Ngày</div>
+              <div class="mli-desc">Macarons, chocolate truffle, pâte de fruit theo mùa và viên kẹo mềm caramel muối biển — tặng kèm cho tất cả thực khách</div>
+            </div>
+            <div class="mli-price">—</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Wine Pairing -->
+      <div class="col-lg-4 reveal reveal-d1">
+        <div class="sidebar-info">
+          <div class="si-title">Thông tin Menu</div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px">
+            <li style="font-size:13px;color:var(--text-2);font-weight:300;display:flex;gap:8px"><span style="color:var(--accent);flex-shrink:0">—</span> Menu thay đổi theo mùa, có thể thay đổi nguyên liệu theo nguồn cung</li>
+            <li style="font-size:13px;color:var(--text-2);font-weight:300;display:flex;gap:8px"><span style="color:var(--accent);flex-shrink:0">—</span> Thông báo dị ứng thực phẩm khi đặt bàn để bếp chuẩn bị phương án thay thế</li>
+            <li style="font-size:13px;color:var(--text-2);font-weight:300;display:flex;gap:8px"><span style="color:var(--accent);flex-shrink:0">—</span> Thực đơn chay / thuần chay theo yêu cầu với thông báo 48 giờ trước</li>
+            <li style="font-size:13px;color:var(--text-2);font-weight:300;display:flex;gap:8px"><span style="color:var(--accent);flex-shrink:0">—</span> Giá chưa bao gồm thuế VAT 10% và phí dịch vụ 5%</li>
+          </ul>
+        </div>
+
+        <div class="wine-card">
+          <div class="wc-title">Wine Pairing Gợi Ý</div>
+          <div class="wc-item">
+            <div class="wc-pair">Entrée</div>
+            <div>
+              <div class="wc-wine">Sancerre Blanc 2022</div>
+              <div class="wc-note">Chenin blanc Loire Valley · Thanh nhẹ, acid cao</div>
+            </div>
+          </div>
+          <div class="wc-item">
+            <div class="wc-pair">Poisson</div>
+            <div>
+              <div class="wc-wine">Puligny-Montrachet 2021</div>
+              <div class="wc-note">Chardonnay Burgundy · Phức tạp, béo ngậy</div>
+            </div>
+          </div>
+          <div class="wc-item">
+            <div class="wc-pair">Viande</div>
+            <div>
+              <div class="wc-wine">Château Léoville Barton 2019</div>
+              <div class="wc-note">Saint-Julien Bordeaux · Tanin mềm, fruity</div>
+            </div>
+          </div>
+          <div class="wc-item">
+            <div class="wc-pair">Fromage</div>
+            <div>
+              <div class="wc-wine">Sauternes 2018</div>
+              <div class="wc-note">Semillon Bordeaux · Ngọt, mật ong</div>
+            </div>
+          </div>
+          <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06)">
+            <div style="font-size:12px;color:rgba(255,255,255,.25);line-height:1.6">Wine pairing 5 món: +990.000đ / người<br>Tư vấn trực tiếp từ sommelier tại bàn</div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;text-align:center">
+          <a href="dat-ban.html" class="btn-accent" style="display:block;text-align:center">Đặt bàn ngay →</a>
+          <div style="font-size:12px;color:var(--text-3);margin-top:10px">Nhà hàng chỉ nhận đặt trước</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="wd-container reveal">
+    <h2 class="cta-title"><strong>Trải nghiệm ngay</strong> tối nay</h2>
+    <p class="cta-sub">Chỉ 48 chỗ ngồi mỗi tối. Đặt bàn sớm để có trải nghiệm hoàn hảo nhất.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap position-relative">
+      <a href="dat-ban.html" class="btn-white">Đặt bàn ngay →</a>
+      <a href="su-kien.html" class="btn-outline-dark">Phòng riêng & Sự kiện</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-5 reveal">
+        <div class="ft-logo">[TÊN] <em>Fine Dining</em></div>
+        <p class="ft-desc">Ẩm thực fine dining — nơi mỗi bữa ăn là một trải nghiệm không thể quên.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc" aria-label="Facebook" rel="noopener noreferrer">fb</a>
+          <a href="#" class="ft-soc" aria-label="Instagram" rel="noopener noreferrer">ig</a>
+          <a href="#" class="ft-soc" aria-label="Zalo" rel="noopener noreferrer">zl</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Khám phá</div>
+        <div class="ft-links">
+          <a href="menu.html">Thực đơn</a>
+          <a href="su-kien.html">Sự kiện</a>
+          <a href="dat-ban.html">Đặt bàn</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links">
+          <a href="tel:[SỐ ĐIỆN THOẠI]">📱 [SỐ ĐIỆN THOẠI]</a>
+          <a href="#">📍 [ĐỊA CHỈ]</a>
+          <a href="#">🕐 Thứ Ba – CN · 18:00–23:00</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="ft-copy">© 2026 [TÊN NHÀ HÀNG] · Fine Dining · Made in Vietnam 🇻🇳</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="zf">
+  <div class="zf-tip">Tư vấn & đặt bàn</div>
+  <a href="https://zalo.me/[SỐ ZALO]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} });
+}, {threshold: .08, rootMargin: '0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+}
+</script>
+</body>
+</html>

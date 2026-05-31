@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lĩnh Vực Hành Nghề — [Tên Văn Phòng Luật]</title>
+  <meta name="description" content="Các lĩnh vực hành nghề của [Tên VP Luật]: luật doanh nghiệp, M&A, lao động, bất động sản, tranh tụng và tư vấn pháp lý chuyên sâu.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ═══ NAV ═══ -->
+  <nav id="nav" aria-label="Điều hướng chính">
+    <div class="wd-container">
+      <div class="lv-nav-inner">
+        <a href="index.html" class="lv-logo">[Tên VP Luật] <em>&amp; Đồng Nghiệp</em></a>
+        <ul class="lv-nav-links">
+          <li><a href="index.html">Trang Chủ</a></li>
+          <li><a href="dich-vu.html" class="active">Lĩnh Vực</a></li>
+          <li><a href="luat-su.html">Luật Sư</a></li>
+          <li><a href="du-an.html">Vụ Việc</a></li>
+          <li><a href="lien-he.html">Liên Hệ</a></li>
+        </ul>
+        <a href="lien-he.html" class="lv-nav-cta">Tư Vấn Miễn Phí</a>
+        <button class="lv-burger" id="navBurger" aria-label="Mở menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile nav -->
+  <div class="lv-mob-nav" id="navMob" role="dialog" aria-modal="true" aria-label="Menu di động">
+    <a href="index.html">Trang Chủ</a>
+    <a href="dich-vu.html">Lĩnh Vực</a>
+    <a href="luat-su.html">Luật Sư</a>
+    <a href="du-an.html">Vụ Việc</a>
+    <a href="lien-he.html">Liên Hệ</a>
+    <a href="lien-he.html" class="lv-mob-cta">Tư Vấn Miễn Phí</a>
+  </div>
+
+  <!-- ═══ PAGE HERO ═══ -->
+  <section class="lv-page-hero" aria-label="Lĩnh vực hành nghề">
+    <div class="wd-container">
+      <div class="lv-ph-kicker" data-reveal>Chuyên môn pháp lý</div>
+      <h1 class="lv-ph-title" data-reveal data-delay="1">Lĩnh Vực <em>Hành Nghề</em></h1>
+      <p class="lv-ph-sub" data-reveal data-delay="2">Giải pháp pháp lý toàn diện cho doanh nghiệp và cá nhân — từ tư vấn đến tranh tụng.</p>
+    </div>
+  </section>
+
+  <!-- ═══ INTRO ═══ -->
+  <section class="lv-sec-pad" style="background:var(--bg);" aria-label="Giới thiệu lĩnh vực">
+    <div class="wd-container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5" data-reveal>
+          <span class="lv-section-label">Phương châm</span>
+          <h2 class="lv-section-title">Chuyên môn sâu,<br><em>giải pháp toàn diện.</em></h2>
+        </div>
+        <div class="col-lg-7" data-reveal data-delay="1">
+          <p style="font-family:var(--body-font);font-size:16px;font-weight:300;color:var(--text-2);line-height:1.9;margin-bottom:16px;">
+            Với hơn [N] năm hành nghề, chúng tôi đã xây dựng đội ngũ luật sư chuyên sâu trong các lĩnh vực pháp lý trọng yếu của nền kinh tế Việt Nam. Mỗi lĩnh vực đều có luật sư phụ trách riêng, đảm bảo sự am hiểu tường tận và khả năng xử lý mọi tình huống phát sinh.
+          </p>
+          <p style="font-family:var(--body-font);font-size:16px;font-weight:300;color:var(--text-2);line-height:1.9;">
+            Chúng tôi không chỉ tư vấn pháp lý — chúng tôi đồng hành như một đối tác chiến lược, giúp thân chủ đưa ra quyết định đúng đắn và bảo vệ quyền lợi tối đa trong mọi hoàn cảnh.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PRACTICE AREAS — 6 lĩnh vực cards ═══ -->
+  <section style="background:var(--warm);padding:clamp(60px,8vw,100px) 0;" aria-labelledby="areas-heading">
+    <div class="wd-container">
+      <div class="text-center" style="margin-bottom:clamp(40px,5vw,60px);" data-reveal>
+        <span class="lv-section-label">Các lĩnh vực</span>
+        <h2 class="lv-section-title" id="areas-heading">Sáu lĩnh vực <em>chuyên sâu</em></h2>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4" data-reveal>
+          <div class="lv-practice-card">
+            <div class="lv-practice-icon">I.</div>
+            <h3 class="lv-practice-title">Luật Doanh Nghiệp &amp; M&amp;A</h3>
+            <p class="lv-practice-desc">Hỗ trợ doanh nghiệp trong toàn bộ vòng đời pháp lý — từ thành lập, vận hành đến tái cơ cấu và thâu tóm.</p>
+            <ul class="lv-practice-list">
+              <li>Thành lập và tổ chức lại doanh nghiệp</li>
+              <li>Tư vấn và soạn thảo hợp đồng thương mại</li>
+              <li>Mua bán, sáp nhập, thâu tóm (M&amp;A)</li>
+              <li>Tái cơ cấu và giải thể doanh nghiệp</li>
+              <li>Quản trị công ty và tuân thủ pháp luật</li>
+              <li>Đầu tư nước ngoài và liên doanh</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-reveal data-delay="1">
+          <div class="lv-practice-card">
+            <div class="lv-practice-icon">II.</div>
+            <h3 class="lv-practice-title">Luật Lao Động &amp; Quan Hệ Người Sử Dụng</h3>
+            <p class="lv-practice-desc">Bảo vệ toàn diện quyền lợi của người lao động lẫn doanh nghiệp trong các vấn đề lao động phức tạp.</p>
+            <ul class="lv-practice-list">
+              <li>Soạn thảo hợp đồng lao động và nội quy</li>
+              <li>Tranh chấp lao động và kỷ luật sa thải</li>
+              <li>Bảo hiểm xã hội, bảo hiểm thất nghiệp</li>
+              <li>Thương lượng tập thể và đình công</li>
+              <li>Quấy rối và phân biệt đối xử tại nơi làm việc</li>
+              <li>Lao động người nước ngoài</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-reveal data-delay="2">
+          <div class="lv-practice-card">
+            <div class="lv-practice-icon">III.</div>
+            <h3 class="lv-practice-title">Luật Bất Động Sản &amp; Xây Dựng</h3>
+            <p class="lv-practice-desc">Tư vấn pháp lý toàn diện cho các giao dịch bất động sản và dự án xây dựng, từ thẩm định đến hoàn công.</p>
+            <ul class="lv-practice-list">
+              <li>Thẩm định pháp lý dự án bất động sản</li>
+              <li>Soạn thảo hợp đồng mua bán, thuê mướn</li>
+              <li>Tranh chấp đất đai và quyền sử dụng đất</li>
+              <li>Thủ tục cấp phép xây dựng</li>
+              <li>Hợp đồng EPC và tổng thầu xây dựng</li>
+              <li>Thu hồi đất và bồi thường giải phóng mặt bằng</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-reveal>
+          <div class="lv-practice-card">
+            <div class="lv-practice-icon">IV.</div>
+            <h3 class="lv-practice-title">Tranh Tụng &amp; Giải Quyết Tranh Chấp</h3>
+            <p class="lv-practice-desc">Đại diện mạnh mẽ cho thân chủ tại tất cả các cấp tòa án, trong mọi loại tranh chấp dân sự và thương mại.</p>
+            <ul class="lv-practice-list">
+              <li>Tranh tụng dân sự và thương mại</li>
+              <li>Trọng tài thương mại trong nước và quốc tế</li>
+              <li>Hòa giải và thương lượng ngoài tòa án</li>
+              <li>Khiếu nại hành chính</li>
+              <li>Thi hành bản án và phán quyết</li>
+              <li>Bào chữa hình sự kinh tế</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-reveal data-delay="1">
+          <div class="lv-practice-card">
+            <div class="lv-practice-icon">V.</div>
+            <h3 class="lv-practice-title">Sở Hữu Trí Tuệ &amp; Công Nghệ</h3>
+            <p class="lv-practice-desc">Bảo vệ tài sản vô hình của doanh nghiệp — từ nhãn hiệu, bằng sáng chế đến bản quyền phần mềm và dữ liệu.</p>
+            <ul class="lv-practice-list">
+              <li>Đăng ký nhãn hiệu và thương hiệu</li>
+              <li>Bảo hộ bản quyền và sáng chế</li>
+              <li>Hợp đồng li-xăng và chuyển nhượng</li>
+              <li>Tranh chấp xâm phạm quyền SHTT</li>
+              <li>Bảo vệ dữ liệu cá nhân (PDPA)</li>
+              <li>Hợp đồng phần mềm và SaaS</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-reveal data-delay="2">
+          <div class="lv-practice-card">
+            <div class="lv-practice-icon">VI.</div>
+            <h3 class="lv-practice-title">Tư Vấn Cá Nhân &amp; Gia Đình</h3>
+            <p class="lv-practice-desc">Hỗ trợ pháp lý cá nhân trong các vấn đề hôn nhân gia đình, thừa kế và các giao dịch dân sự quan trọng.</p>
+            <ul class="lv-practice-list">
+              <li>Ly hôn và phân chia tài sản</li>
+              <li>Quyền nuôi con và cấp dưỡng</li>
+              <li>Di chúc, thừa kế và phân chia di sản</li>
+              <li>Nhận nuôi con nuôi trong và ngoài nước</li>
+              <li>Hôn nhân có yếu tố nước ngoài</li>
+              <li>Tư vấn ủy quyền và công chứng</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROCESS — Timeline layout ═══ -->
+  <section class="lv-sec-pad" style="background:var(--bg);" aria-labelledby="process-heading">
+    <div class="wd-container">
+      <div class="text-center" style="margin-bottom:clamp(40px,5vw,64px);" data-reveal>
+        <span class="lv-section-label">Quy trình làm việc</span>
+        <h2 class="lv-section-title" id="process-heading">Từ tư vấn đến <em>kết quả.</em></h2>
+        <p class="lv-section-sub" style="margin:0 auto;">Quy trình làm việc minh bạch, rõ ràng — thân chủ luôn biết chúng tôi đang làm gì và tại sao.</p>
+      </div>
+      <div class="row g-4" style="max-width:860px;margin:0 auto;">
+        <div class="col-md-6" data-reveal>
+          <div style="display:flex;gap:20px;align-items:flex-start;padding:24px 0;border-bottom:1px solid var(--border-light);">
+            <div style="font-family:var(--heading-font);font-size:40px;font-weight:300;color:var(--accent-mid);opacity:.5;line-height:1;flex-shrink:0;width:52px;text-align:center;">1</div>
+            <div>
+              <h3 style="font-family:var(--heading-font);font-size:20px;font-weight:400;color:var(--text);margin-bottom:8px;">Tư Vấn Ban Đầu</h3>
+              <p style="font-family:var(--body-font);font-size:13.5px;font-weight:300;color:var(--text-2);line-height:1.75;margin:0;">Buổi tư vấn miễn phí 30–60 phút để hiểu rõ tình huống pháp lý, đánh giá rủi ro và xác định hướng xử lý tốt nhất.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6" data-reveal data-delay="1">
+          <div style="display:flex;gap:20px;align-items:flex-start;padding:24px 0;border-bottom:1px solid var(--border-light);">
+            <div style="font-family:var(--heading-font);font-size:40px;font-weight:300;color:var(--accent-mid);opacity:.5;line-height:1;flex-shrink:0;width:52px;text-align:center;">2</div>
+            <div>
+              <h3 style="font-family:var(--heading-font);font-size:20px;font-weight:400;color:var(--text);margin-bottom:8px;">Phân Tích &amp; Chiến Lược</h3>
+              <p style="font-family:var(--body-font);font-size:13.5px;font-weight:300;color:var(--text-2);line-height:1.75;margin:0;">Nghiên cứu hồ sơ, phân tích pháp luật và án lệ, xây dựng chiến lược pháp lý tối ưu, báo giá dịch vụ minh bạch.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6" data-reveal>
+          <div style="display:flex;gap:20px;align-items:flex-start;padding:24px 0;border-bottom:1px solid var(--border-light);">
+            <div style="font-family:var(--heading-font);font-size:40px;font-weight:300;color:var(--accent-mid);opacity:.5;line-height:1;flex-shrink:0;width:52px;text-align:center;">3</div>
+            <div>
+              <h3 style="font-family:var(--heading-font);font-size:20px;font-weight:400;color:var(--text);margin-bottom:8px;">Triển Khai &amp; Thực Hiện</h3>
+              <p style="font-family:var(--body-font);font-size:13.5px;font-weight:300;color:var(--text-2);line-height:1.75;margin:0;">Luật sư phụ trách trực tiếp soạn thảo văn bản, đại diện thương lượng, nộp hồ sơ và theo dõi tiến trình vụ việc.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6" data-reveal data-delay="1">
+          <div style="display:flex;gap:20px;align-items:flex-start;padding:24px 0;border-bottom:1px solid var(--border-light);">
+            <div style="font-family:var(--heading-font);font-size:40px;font-weight:300;color:var(--accent-mid);opacity:.5;line-height:1;flex-shrink:0;width:52px;text-align:center;">4</div>
+            <div>
+              <h3 style="font-family:var(--heading-font);font-size:20px;font-weight:400;color:var(--text);margin-bottom:8px;">Kết Quả &amp; Hậu Mãi</h3>
+              <p style="font-family:var(--body-font);font-size:13.5px;font-weight:300;color:var(--text-2);line-height:1.75;margin:0;">Báo cáo kết quả chi tiết, tư vấn bước tiếp theo và duy trì hỗ trợ pháp lý dài hạn cho thân chủ.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ WHY CHOOSE US — FEATURE-ICON-ROW ═══ -->
+  <section class="lv-features-section lv-sec-pad" aria-labelledby="why-heading">
+    <div class="wd-container">
+      <div class="text-center" style="margin-bottom:clamp(40px,5vw,64px);" data-reveal>
+        <span class="lv-section-label">Tại sao chọn chúng tôi</span>
+        <h2 class="lv-section-title" id="why-heading">Khác biệt tạo nên<br><em>sự tin tưởng.</em></h2>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-3 col-sm-6" data-reveal>
+          <div class="lv-feature-item">
+            <div class="lv-feature-num">01</div>
+            <h3 class="lv-feature-title">Chuyên Môn Sâu</h3>
+            <p class="lv-feature-desc">Mỗi lĩnh vực có luật sư chuyên sâu riêng, không làm đại trà — chất lượng tư vấn vượt trội.</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6" data-reveal data-delay="1">
+          <div class="lv-feature-item">
+            <div class="lv-feature-num">02</div>
+            <h3 class="lv-feature-title">Minh Bạch Chi Phí</h3>
+            <p class="lv-feature-desc">Báo giá rõ ràng trước khi ký hợp đồng — không phát sinh chi phí ẩn hay bất ngờ.</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6" data-reveal data-delay="2">
+          <div class="lv-feature-item">
+            <div class="lv-feature-num">03</div>
+            <h3 class="lv-feature-title">Cập Nhật Liên Tục</h3>
+            <p class="lv-feature-desc">Thân chủ được cập nhật tiến độ thường xuyên — luật sư phụ trách trả lời trong vòng 24 giờ.</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6" data-reveal data-delay="3">
+          <div class="lv-feature-item">
+            <div class="lv-feature-num">04</div>
+            <h3 class="lv-feature-title">Bảo Mật Tuyệt Đối</h3>
+            <p class="lv-feature-desc">Thông tin thân chủ được bảo vệ theo nghĩa vụ bảo mật nghề nghiệp và quy định pháp luật.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="lv-cta-section" aria-label="Liên hệ tư vấn">
+    <div class="wd-container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-7" data-reveal>
+          <h2 class="lv-cta-heading">Vụ việc của bạn<br><em>cần được xử lý ngay.</em></h2>
+          <p class="lv-cta-phone">[Hotline: 0900 000 000]</p>
+        </div>
+        <div class="col-lg-5" data-reveal data-delay="1">
+          <form class="lv-cta-form" novalidate>
+            <input type="text" class="lv-cta-input" placeholder="Họ và tên" aria-label="Họ và tên">
+            <input type="tel" class="lv-cta-input" placeholder="Số điện thoại" aria-label="Số điện thoại">
+            <button type="submit" class="lv-cta-submit" style="width:100%;margin-top:4px;">Yêu Cầu Tư Vấn</button>
+          </form>
+          <p style="font-family:var(--body-font);font-size:11px;font-weight:300;color:rgba(255,255,255,.55);margin-top:12px;">Miễn phí · Bảo mật · Phản hồi trong 24 giờ</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="lv-footer" aria-label="Footer">
+    <div class="wd-container">
+      <div class="lv-footer-grid">
+        <div>
+          <div class="lv-footer-logo">[Tên VP Luật] <em>&amp; Đồng Nghiệp</em></div>
+          <p class="lv-footer-tagline">Văn phòng luật sư uy tín tại [Thành phố] — cam kết bảo vệ quyền lợi tối đa cho thân chủ trong mọi lĩnh vực pháp lý.</p>
+          <p class="lv-footer-contact-line"><a href="tel:0900000000">[0900 000 000]</a></p>
+          <p class="lv-footer-contact-line"><a href="mailto:info@[tenvpls].vn">[info@tenvpls.vn]</a></p>
+          <p class="lv-footer-contact-line">[Địa chỉ văn phòng, Quận, Thành phố]</p>
+        </div>
+        <div>
+          <div class="lv-footer-col-title">Lĩnh vực</div>
+          <ul class="lv-footer-links">
+            <li><a href="dich-vu.html">Luật Doanh Nghiệp &amp; M&amp;A</a></li>
+            <li><a href="dich-vu.html">Luật Lao Động</a></li>
+            <li><a href="dich-vu.html">Luật Bất Động Sản</a></li>
+            <li><a href="dich-vu.html">Tranh Tụng</a></li>
+            <li><a href="dich-vu.html">Tư Vấn Hợp Đồng</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="lv-footer-col-title">Văn phòng</div>
+          <ul class="lv-footer-links">
+            <li><a href="luat-su.html">Đội Ngũ Luật Sư</a></li>
+            <li><a href="du-an.html">Vụ Việc Tiêu Biểu</a></li>
+            <li><a href="lien-he.html">Liên Hệ &amp; Tư Vấn</a></li>
+            <li><a href="lien-he.html">Chính Sách Bảo Mật</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="lv-footer-divider">
+      <div class="lv-footer-bottom">
+        <p class="lv-footer-copy">&copy; [NĂM] [Tên Văn Phòng Luật]. Bảo lưu mọi quyền.</p>
+        <div class="lv-footer-social">
+          <a href="#" rel="noopener noreferrer">Facebook</a>
+          <a href="#" rel="noopener noreferrer">LinkedIn</a>
+          <a href="#" rel="noopener noreferrer">Zalo</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Zalo float -->
+  <a href="https://zalo.me/[ZALO_NUMBER]" class="lv-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo với văn phòng luật">
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect width="48" height="48" rx="24" fill="#0068FF"/>
+      <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="#fff" font-size="15" font-family="Arial, sans-serif" font-weight="700">Zalo</text>
+    </svg>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const ro = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); }});
+    }, {threshold:.08, rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+    const burger = document.getElementById('navBurger');
+    const mob = document.getElementById('navMob');
+    if (burger && mob) {
+      burger.addEventListener('click', () => {
+        const o = mob.classList.toggle('open');
+        burger.classList.toggle('open', o);
+        burger.setAttribute('aria-expanded', o);
+        document.body.style.overflow = o ? 'hidden' : '';
+      });
+      document.addEventListener('keydown', e => {
+        if(e.key === 'Escape' && mob.classList.contains('open')) {
+          mob.classList.remove('open');
+          burger.classList.remove('open');
+          burger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thực Đơn — [TÊN NHÀ HÀNG] Ẩm Thực Việt Truyền Thống</title>
+<meta name="description" content="Thực đơn đầy đủ của [TÊN NHÀ HÀNG] — Khai vị, món chính, tráng miệng và đồ uống. Hơn 70 món ăn từ nguyên liệu tươi sạch, công thức gia truyền.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+.menu-category-title {
+  font-size: 22px; font-weight: 600; color: var(--text);
+  letter-spacing: -.5px; margin-bottom: 20px;
+  padding-bottom: 14px; border-bottom: 2px solid var(--accent-light);
+  display: flex; align-items: center; gap: 10px;
+}
+.menu-category-title span { font-size: 26px; }
+.menu-section { margin-bottom: 56px; }
+.menu-section:last-child { margin-bottom: 0; }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">🍲 [TÊN] <span>Ẩm Thực</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="thuc-don.html" class="active">Thực đơn</a>
+        <a href="dat-ban.html">Đặt bàn</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-ban.html" class="nav-cta">Đặt bàn ngay</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="thuc-don.html">Thực đơn</a>
+  <a href="dat-ban.html">Đặt bàn</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-ban.html" class="nm-cta">Đặt bàn ngay</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="wd-container">
+    <div class="ph-eyebrow">Thực đơn</div>
+    <h1 class="ph-title">Hơn 70 món ăn <em>gia truyền</em></h1>
+    <p class="ph-sub">Tất cả được chế biến mỗi ngày từ nguyên liệu tươi sạch, không bột ngọt, không chất bảo quản.</p>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div style="background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:64px;z-index:100">
+  <div class="wd-container">
+    <div class="d-flex gap-2 py-3 flex-wrap">
+      <a href="#khai-vi" class="mt-btn active" style="border-radius:8px;text-decoration:none">Khai Vị</a>
+      <a href="#mon-chinh" class="mt-btn" style="border-radius:8px;text-decoration:none">Món Chính</a>
+      <a href="#trang-miem" class="mt-btn" style="border-radius:8px;text-decoration:none">Tráng Miệng</a>
+      <a href="#do-uong" class="mt-btn" style="border-radius:8px;text-decoration:none">Đồ Uống</a>
+    </div>
+  </div>
+</div>
+
+<!-- MENU CONTENT -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+
+    <!-- Khai vị -->
+    <div id="khai-vi" class="menu-section">
+      <div class="menu-category-title reveal"><span>🥗</span> Khai Vị</div>
+      <div class="row g-3">
+        <div class="col-md-4 reveal">
+          <div class="food-card">
+            <img class="fc-img" src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600&q=80&auto=format&fit=crop" alt="Chả giò" loading="lazy">
+            <div class="fc-body">
+              <div class="fc-cat">Khai vị · Chiên giòn</div>
+              <div class="fc-name">Chả Giò Sài Gòn <span class="fc-badge">PHẢI THỬ</span></div>
+              <div class="fc-desc">Vỏ giòn rụm, nhân thịt heo, miến mộc nhĩ thơm ngậy. Chấm kèm tương ớt đặc biệt của nhà hàng.</div>
+              <div class="fc-price">68.000đ <small style="font-size:11px;color:var(--text-3);font-weight:300">/ 6 cái</small></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 reveal reveal-d1">
+          <div class="food-card">
+            <img class="fc-img" src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=600&q=80&auto=format&fit=crop" alt="Gỏi cuốn" loading="lazy">
+            <div class="fc-body">
+              <div class="fc-cat">Khai vị · Tươi mát</div>
+              <div class="fc-name">Gỏi Cuốn Tôm Thịt</div>
+              <div class="fc-desc">Bánh tráng mỏng cuộn tôm, thịt ba chỉ, rau thơm và bún. Chấm tương hoisin béo ngậy.</div>
+              <div class="fc-price">55.000đ <small style="font-size:11px;color:var(--text-3);font-weight:300">/ 4 cuốn</small></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 reveal reveal-d2">
+          <div class="food-card">
+            <img class="fc-img" src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&q=80&auto=format&fit=crop" alt="Gỏi bắp chuối" loading="lazy">
+            <div class="fc-body">
+              <div class="fc-cat">Khai vị · Gỏi trộn</div>
+              <div class="fc-name">Gỏi Bắp Chuối Tôm Thịt</div>
+              <div class="fc-desc">Bắp chuối thái mỏng, tôm luộc, thịt ba chỉ thái sợi. Rắc đậu phộng, nước trộn chua ngọt.</div>
+              <div class="fc-price">72.000đ</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 reveal">
+          <div class="food-card">
+            <img class="fc-img" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80&auto=format&fit=crop" alt="Bánh xèo" loading="lazy">
+            <div class="fc-body">
+              <div class="fc-cat">Khai vị · Đặc sản</div>
+              <div class="fc-name">Bánh Xèo Miền Trung</div>
+              <div class="fc-desc">Bánh giòn vàng nhân tôm thịt giá đỗ, ăn kèm rau sống và nước chấm pha chuẩn vị.</div>
+              <div class="fc-price">85.000đ <small style="font-size:11px;color:var(--text-3);font-weight:300">/ 2 cái</small></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 reveal reveal-d1">
+          <div class="food-card">
+            <img class="fc-img" src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=600&q=80&auto=format&fit=crop" alt="Súp" loading="lazy">
+            <div class="fc-body">
+              <div class="fc-cat">Khai vị · Canh súp</div>
+              <div class="fc-name">Súp Cua Bắp Non</div>
+              <div class="fc-desc">Thịt cua tươi, bắp non, trứng đánh tan. Nước dùng trong ngọt tự nhiên, thêm tiêu trắng thơm.</div>
+              <div class="fc-price">62.000đ</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 reveal reveal-d2">
+          <div class="food-card">
+            <img class="fc-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&auto=format&fit=crop" alt="Nem rán" loading="lazy">
+            <div class="fc-body">
+              <div class="fc-cat">Khai vị · Chiên giòn</div>
+              <div class="fc-name">Nem Rán Hà Nội</div>
+              <div class="fc-desc">Nem rán kiểu Hà Nội, nhỏ vừa miệng, vỏ giòn nhân thịt giò. Chấm nước mắm chua ngọt truyền thống.</div>
+              <div class="fc-price">58.000đ <small style="font-size:11px;color:var(--text-3);font-weight:300">/ 8 cái</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Món chính -->
+    <div id="mon-chinh" class="menu-section">
+      <div class="menu-category-title reveal"><span>🍜</span> Món Chính</div>
+      <div class="row g-3">
+        <div class="col-md-4 reveal">
+          <div class="food-card">
+            <img class="fc-img" src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=600&q=80&auto=format&fit=crop" alt="Phở bò" loading="lazy">
+            <div class="fc-body">
+              <div class="fc-cat">Món chính · Phở</div>
+              <div class="fc-name">Phở Bò Đặc Biệt <span class="fc-badge">BEST</span></div>
+              <div class="fc-desc">Nước dùng ninh 14 giờ từ xương ống, thịt bò Úc tươi. Bánh phở dai mềm. Hành thơm, tiêu đen.</div>
+              <div class="fc-price">89.000đ</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 reveal reveal-d1">
+          <div class="food-card">
+            <img class="fc-img" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80&auto=format&fit=crop" alt="Bún bò Huế" loading="lazy">
+            <div class="fc-body">
+              <div class="fc-cat">Món chính · Bún</div>
+              <div class="fc-name">Bún Bò Huế Chuẩn Vị</div>
+              <div class="fc-desc">Sả mắm ruốc thơm nồng, chả lụa tự làm, thịt bò bắp hầm mềm rục. Chuẩn hương vị xứ Huế thật sự.</div>
+              <div class="fc-price">78.000đ</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 reveal reveal-d2">
+          <div class="food-card">
+            <img class="fc-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&auto=format&fit=crop" alt="Cơm tấm" loading="lazy">
+            <div class="fc-body">
+              <div class="fc-cat">Món chính · Cơm</div>
+              <div class="fc-name">Cơm Tấm Sườn Bì Chả</div>
+              <div class="fc-desc">Sườn nướng mật ong, bì sợi dai, chả trứng hấp béo. Nước mắm chua ngọt đặc chế riêng.</div>
+              <div class="fc-price">79.000đ</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 reveal">
+          <div class="food-card">
+            <img class="fc-img" src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=600&q=80&auto=format&fit=crop" alt="Bún chả Hà Nội" loading="lazy">
+            <div class="fc-body">
+              <div class="fc-cat">Món chính · Bún</div>
+              <div class="fc-name">Bún Chả Hà Nội</div>
+              <div class="fc-desc">Chả viên và thịt ba chỉ nướng than hoa thơm lừng. Ăn kèm bún trắng, rau sống, nước chấm đặc biệt.</div>
+              <div class="fc-price">82.000đ</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 reveal reveal-d1">
+          <div class="food-card">
+            <img class="fc-img" src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&q=80&auto=format&fit=crop" alt="Cá kho tộ" loading="lazy">
+            <div class="fc-body">
+              <div class="fc-cat">Món chính · Cơm đĩa</div>
+              <div class="fc-name">Cá Kho Tộ Nam Bộ</div>
+              <div class="fc-desc">Cá thu kho tộ đất nung, nước màu caramel sánh, gừng sả thơm. Ăn kèm cơm trắng dẻo tơi.</div>
+              <div class="fc-price">95.000đ</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 reveal reveal-d2">
+          <div class="food-card">
+            <img class="fc-img" src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600&q=80&auto=format&fit=crop" alt="Phở gà" loading="lazy">
+            <div class="fc-body">
+              <div class="fc-cat">Món chính · Phở</div>
+              <div class="fc-name">Phở Gà Ta Truyền Thống</div>
+              <div class="fc-desc">Gà ta thả vườn ninh ngọt thanh tự nhiên. Hành hoa, gừng nướng thơm. Bánh phở mềm dai vừa phải.</div>
+              <div class="fc-price">75.000đ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tráng miệng -->
+    <div id="trang-miem" class="menu-section">
+      <div class="menu-category-title reveal"><span>🍮</span> Tráng Miệng</div>
+      <div class="row g-3">
+        <div class="col-md-4 reveal">
+          <div class="food-card">
+            <img class="fc-img" src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&q=80&auto=format&fit=crop" alt="Chè ba màu" loading="lazy">
+            <div class="fc-body">
+              <div class="fc-cat">Tráng miệng · Chè</div>
+              <div class="fc-name">Chè Ba Màu Sài Gòn <span class="fc-badge">YÊU THÍCH</span></div>
+              <div class="fc-desc">Đậu xanh bột khoai dẻo, thạch sương sáo mát, nước cốt dừa béo ngậy. Mát lạnh, ngọt thanh.</div>
+              <div class="fc-price">38.000đ</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 reveal reveal-d1">
+          <div class="food-card">
+            <img class="fc-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&auto=format&fit=crop" alt="Bánh flan" loading="lazy">
+            <div class="fc-body">
+              <div class="fc-cat">Tráng miệng · Bánh ngọt</div>
+              <div class="fc-name">Bánh Flan Cà Phê</div>
+              <div class="fc-desc">Flan mịn béo từ trứng gà tươi, thêm cà phê đắng nhẹ. Caramel vàng óng. Bảo đảm tự làm hằng ngày.</div>
+              <div class="fc-price">32.000đ</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 reveal reveal-d2">
+          <div class="food-card">
+            <img class="fc-img" src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=600&q=80&auto=format&fit=crop" alt="Xôi chè" loading="lazy">
+            <div class="fc-body">
+              <div class="fc-cat">Tráng miệng · Xôi</div>
+              <div class="fc-name">Xôi Xoài Nước Cốt Dừa</div>
+              <div class="fc-desc">Xôi nếp dẻo thơm, xoài chín thái mỏng ngọt chua, chan nước cốt dừa béo rắc mè rang vàng.</div>
+              <div class="fc-price">42.000đ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Đồ uống -->
+    <div id="do-uong" class="menu-section">
+      <div class="menu-category-title reveal"><span>🥤</span> Đồ Uống</div>
+      <div class="row g-3">
+        <div class="col-md-4 reveal">
+          <div class="food-card">
+            <img class="fc-img" src="https://images.unsplash.com/photo-1559181567-c3190ca9be43?w=600&q=80&auto=format&fit=crop" alt="Cà phê sữa đá" loading="lazy">
+            <div class="fc-body">
+              <div class="fc-cat">Đồ uống · Cà phê</div>
+              <div class="fc-name">Cà Phê Sữa Đá Truyền Thống</div>
+              <div class="fc-desc">Cà phê phin nhỏ giọt, pha với sữa đặc Ông Thọ, đá viên. Đậm đà, ngọt ngào theo kiểu Sài Gòn xưa.</div>
+              <div class="fc-price">28.000đ</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 reveal reveal-d1">
+          <div class="food-card">
+            <img class="fc-img" src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&q=80&auto=format&fit=crop" alt="Nước chanh" loading="lazy">
+            <div class="fc-body">
+              <div class="fc-cat">Đồ uống · Nước ép</div>
+              <div class="fc-name">Nước Chanh Sả Gừng</div>
+              <div class="fc-desc">Chanh vắt tươi, sả đập nhẹ, gừng non thái sợi. Đường phèn tan từ từ. Mát lạnh, giải nhiệt cực tốt.</div>
+              <div class="fc-price">32.000đ</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 reveal reveal-d2">
+          <div class="food-card">
+            <img class="fc-img" src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=600&q=80&auto=format&fit=crop" alt="Trà đào" loading="lazy">
+            <div class="fc-body">
+              <div class="fc-cat">Đồ uống · Trà</div>
+              <div class="fc-name">Trà Đào Cam Sả</div>
+              <div class="fc-desc">Trà đen ủ lạnh, đào tươi thái mỏng, cam vắt, sả đập. Thơm nhẹ tự nhiên, không hương nhân tạo.</div>
+              <div class="fc-price">35.000đ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="wd-container reveal">
+    <h2 class="cta-title">Sẵn sàng thưởng thức?</h2>
+    <p class="cta-sub">Đặt bàn trước để có chỗ ngồi tốt nhất — đặc biệt vào cuối tuần.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap position-relative">
+      <a href="dat-ban.html" class="btn-white">Đặt bàn ngay →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo">🍲 [TÊN] <span>Ẩm Thực</span></div>
+        <p class="ft-desc">Ẩm thực Việt Nam truyền thống, nấu từ tâm — thưởng thức bằng cảm xúc.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc" aria-label="Facebook" rel="noopener noreferrer">fb</a>
+          <a href="#" class="ft-soc" aria-label="Instagram" rel="noopener noreferrer">ig</a>
+          <a href="#" class="ft-soc" aria-label="Zalo" rel="noopener noreferrer">zl</a>
+          <a href="#" class="ft-soc" aria-label="YouTube" rel="noopener noreferrer">yt</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Thực đơn</div>
+        <div class="ft-links">
+          <a href="#khai-vi">Món khai vị</a>
+          <a href="#mon-chinh">Món chính</a>
+          <a href="#trang-miem">Tráng miệng</a>
+          <a href="#do-uong">Đồ uống</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Thông tin</div>
+        <div class="ft-links">
+          <a href="dat-ban.html">Đặt bàn</a>
+          <a href="lien-he.html">Liên hệ</a>
+          <a href="#">Khuyến mãi</a>
+          <a href="#">Phòng riêng</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links">
+          <a href="tel:[SỐ ĐIỆN THOẠI]">📱 [SỐ ĐIỆN THOẠI]</a>
+          <a href="#">📍 [ĐỊA CHỈ NHÀ HÀNG]</a>
+          <a href="#">🕐 10:00 – 22:00 hàng ngày</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="ft-copy">© 2026 [TÊN NHÀ HÀNG] · Made in Vietnam 🇻🇳</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="zf">
+  <div class="zf-tip">Đặt bàn qua Zalo</div>
+  <a href="https://zalo.me/[SỐ ZALO]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} });
+}, {threshold: .08, rootMargin: '0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+}
+</script>
+</body>
+</html>

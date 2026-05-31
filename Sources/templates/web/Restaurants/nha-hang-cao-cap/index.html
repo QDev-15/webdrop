@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trang Chủ — [TÊN NHÀ HÀNG] Fine Dining</title>
+<meta name="description" content="[TÊN NHÀ HÀNG] — Nhà hàng fine dining đẳng cấp. Trải nghiệm ẩm thực cao cấp với tasting menu độc quyền, không gian riêng tư và dịch vụ hoàn hảo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<nav id="nav" class="transparent">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">[TÊN] <span>Fine Dining</span></a>
+      <div class="nav-links">
+        <a href="index.html" class="active">Trang chủ</a>
+        <a href="menu.html">Thực đơn</a>
+        <a href="su-kien.html">Sự kiện</a>
+        <a href="dat-ban.html">Đặt bàn</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-ban.html" class="nav-cta">Đặt bàn</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="menu.html">Thực đơn</a>
+  <a href="su-kien.html">Sự kiện</a>
+  <a href="dat-ban.html">Đặt bàn</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-ban.html" class="nm-cta">Đặt bàn ngay</a>
+</div>
+
+<!-- HERO SPLIT SCREEN -->
+<section class="hero-split">
+  <div class="hero-panel">
+    <div class="hp-logo">[TÊN] <span>Fine Dining</span></div>
+    <div class="hp-content">
+      <div class="hp-eyebrow">Ẩm thực cao cấp · [NĂM THÀNH LẬP]</div>
+      <h1 class="hp-title">Nơi mỗi<br>bữa ăn là<br>một <em>kỷ niệm</em></h1>
+      <p class="hp-sub">Tasting menu được thiết kế riêng theo mùa, kết hợp kỹ thuật nấu ăn hiện đại với nguyên liệu địa phương thượng hạng.</p>
+      <a href="dat-ban.html" class="btn-outline-dark">Đặt bàn · Tối thiểu 24 giờ trước</a>
+    </div>
+    <div class="hp-bottom">
+      <div class="hp-meta">
+        <div class="hm-item">
+          <div class="hm-label">Giờ phục vụ</div>
+          <div class="hm-value">18:00 – 23:00</div>
+        </div>
+        <div class="hm-item">
+          <div class="hm-label">Đánh giá</div>
+          <div class="hm-value">4.9 ★ Tuyệt vời</div>
+        </div>
+        <div class="hm-item">
+          <div class="hm-label">Chỗ ngồi</div>
+          <div class="hm-value">48 khách / tối</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80&auto=format&fit=crop" alt="Fine dining table setting" loading="eager">
+  </div>
+</section>
+
+<!-- EXPERIENCE STRIPS -->
+<section style="background:var(--bg)">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="exp-strip reveal">
+      <div class="es-img">
+        <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80&auto=format&fit=crop" alt="Nghệ thuật ẩm thực" loading="lazy">
+      </div>
+      <div class="es-content">
+        <div class="es-num">01</div>
+        <h3 class="es-title">Nghệ thuật trên từng đĩa ăn</h3>
+        <p class="es-desc">Mỗi món ăn là tác phẩm được kiến trúc tỉ mỉ — từ màu sắc, hương thơm đến kết cấu. Đầu bếp của chúng tôi không nấu ăn, họ sáng tác.</p>
+        <div style="margin-top:20px">
+          <a href="menu.html" class="btn-ghost">Khám phá thực đơn</a>
+        </div>
+      </div>
+    </div>
+    <div class="exp-strip reverse reveal">
+      <div class="es-content">
+        <div class="es-num">02</div>
+        <h3 class="es-title">Nguyên liệu thượng hạng theo mùa</h3>
+        <p class="es-desc">Chúng tôi chỉ sử dụng những nguyên liệu tươi ngon nhất của mùa — rau trồng hữu cơ, hải sản đánh bắt ngày, thịt từ trang trại được kiểm định.</p>
+        <div style="margin-top:20px">
+          <a href="menu.html" class="btn-ghost">Xem menu theo mùa</a>
+        </div>
+      </div>
+      <div class="es-img">
+        <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=800&q=80&auto=format&fit=crop" alt="Nguyên liệu tươi" loading="lazy">
+      </div>
+    </div>
+    <div class="exp-strip reveal">
+      <div class="es-img">
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80&auto=format&fit=crop" alt="Không gian riêng tư" loading="lazy">
+      </div>
+      <div class="es-content">
+        <div class="es-num">03</div>
+        <h3 class="es-title">Không gian riêng tư, dịch vụ cá nhân hóa</h3>
+        <p class="es-desc">Mỗi bàn ăn được phục vụ bởi một sommelier riêng. Không gian được thiết kế để tạo ra sự thân mật hoàn hảo cho những dịp quan trọng nhất.</p>
+        <div style="margin-top:20px">
+          <a href="su-kien.html" class="btn-ghost">Đặt phòng riêng</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU TỐI NAY -->
+<section class="sec-pad" style="background:var(--dark2)">
+  <div class="wd-container">
+    <div class="row align-items-start">
+      <div class="col-lg-5 sec-dark reveal" style="position:sticky;top:90px">
+        <div class="eyebrow">Tasting Menu</div>
+        <h2 class="sec-title">Menu đêm nay<br>của <em>Bếp Trưởng</em></h2>
+        <p style="font-size:14px;font-weight:300;color:rgba(255,255,255,.38);line-height:1.8;margin-bottom:24px">
+          Menu được thay đổi theo từng mùa, phản ánh nguyên liệu tươi ngon nhất hiện có. Mỗi buổi tối là một trải nghiệm độc nhất vô nhị.
+        </p>
+        <a href="menu.html" class="btn-outline-dark">Xem menu đầy đủ</a>
+        <div style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06)">
+          <div style="font-size:11px;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px">Thông tin tasting menu</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.4);font-weight:300;line-height:1.8">7 món · Khoảng 2.5 giờ · Pair wine option có sẵn</div>
+        </div>
+      </div>
+      <div class="col-lg-7 reveal reveal-d1" style="padding-left:clamp(20px,5vw,60px)">
+        <div class="chef-menu-list">
+          <div class="chef-item">
+            <div class="ci-course">Khai vị</div>
+            <div class="ci-info">
+              <div class="ci-name">Amuse-Bouche</div>
+              <div class="ci-desc">Một miếng ăn chào mừng từ bếp trưởng — thay đổi mỗi ngày theo cảm hứng</div>
+            </div>
+            <div class="ci-price">—</div>
+          </div>
+          <div class="chef-item">
+            <div class="ci-course">Entrée</div>
+            <div class="ci-info">
+              <div class="ci-name">Sò Điệp Sốt Bơ Chanh Tây</div>
+              <div class="ci-desc">Sò điệp Cà Mau áp chảo, bơ nâu nori, gelée chanh tươi và caviar muối nhẹ</div>
+            </div>
+            <div class="ci-price">320.000đ</div>
+          </div>
+          <div class="chef-item">
+            <div class="ci-course">Poisson</div>
+            <div class="ci-info">
+              <div class="ci-name">Cá Chẽm Nướng Muối Hầm</div>
+              <div class="ci-desc">Cá chẽm tươi nướng trong muối đất sét, rau mùi vườn, nước sốt beurre blanc thanh mát</div>
+            </div>
+            <div class="ci-price">450.000đ</div>
+          </div>
+          <div class="chef-item">
+            <div class="ci-course">Viande</div>
+            <div class="ci-info">
+              <div class="ci-name">Bò Wagyu Nướng Charcoal</div>
+              <div class="ci-desc">Wagyu A5 nướng than hoa, jus thịt bò già ngày, củ cải hầm rượu đỏ, truffle đen bào</div>
+            </div>
+            <div class="ci-price">890.000đ</div>
+          </div>
+          <div class="chef-item">
+            <div class="ci-course">Dessert</div>
+            <div class="ci-info">
+              <div class="ci-name">Soufflé Socola Đắng & Kem Vani Bourbon</div>
+              <div class="ci-desc">Soufflé nóng hổi từ socola 72%, kem vani bourbon tự làm, mảnh vàng lá trang trí</div>
+            </div>
+            <div class="ci-price">195.000đ</div>
+          </div>
+          <div class="chef-item">
+            <div class="ci-course">Mignardise</div>
+            <div class="ci-info">
+              <div class="ci-name">Kết Thúc Ngọt Ngào</div>
+              <div class="ci-desc">Petit four tự làm: macarons, truffles socola, pâte de fruit theo mùa và nước trái cây ép</div>
+            </div>
+            <div class="ci-price">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TASTING MENU PRICING -->
+<section class="sec-pad" style="background:var(--dark)">
+  <div class="wd-container">
+    <div class="text-center sec-dark reveal mb-5">
+      <div class="eyebrow">Gói Tasting Menu</div>
+      <h2 class="sec-title">Chọn <em>trải nghiệm</em> của bạn</h2>
+      <p class="sec-sub">Tất cả gói đều bao gồm welcome drink, bánh mì nhà làm và petit four kết thúc bữa ăn.</p>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-4 reveal">
+        <div class="tier-card">
+          <div class="tc-badge">Classique</div>
+          <div class="tc-name">Trải nghiệm tinh tế</div>
+          <div class="tc-sub">5 món · Khoảng 2 giờ</div>
+          <div class="tc-price">980<small style="font-size:18px">.000đ</small></div>
+          <div class="tc-per">/ người · Không bao gồm đồ uống</div>
+          <hr class="tc-divider">
+          <ul class="tc-list">
+            <li>Amuse-bouche từ bếp trưởng</li>
+            <li>2 món chính theo mùa</li>
+            <li>Phô mai hoặc tráng miệng</li>
+            <li>Petit four & café</li>
+            <li>Nước lọc cao cấp không giới hạn</li>
+          </ul>
+          <div style="margin-top:28px">
+            <a href="dat-ban.html" class="btn-outline-dark" style="display:block;text-align:center">Đặt gói này</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 reveal reveal-d1">
+        <div class="tier-card featured">
+          <div class="tc-badge" style="color:#fbbf24">★ Prestige · Phổ biến nhất</div>
+          <div class="tc-name">Trải nghiệm đầy đủ</div>
+          <div class="tc-sub">7 món · Khoảng 2.5 giờ</div>
+          <div class="tc-price">1.580<small style="font-size:18px">.000đ</small></div>
+          <div class="tc-per">/ người · Không bao gồm rượu vang</div>
+          <hr class="tc-divider">
+          <ul class="tc-list">
+            <li>Amuse-bouche đặc biệt 2 loại</li>
+            <li>Cá và thịt cao cấp theo mùa</li>
+            <li>Cheese trolley hoặc sorbet</li>
+            <li>Tráng miệng chef's signature</li>
+            <li>Petit four & café / trà premium</li>
+            <li>Nước khoáng Perrier không giới hạn</li>
+          </ul>
+          <div style="margin-top:28px">
+            <a href="dat-ban.html" class="btn-accent" style="display:block;text-align:center">Đặt gói này</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 reveal reveal-d2">
+        <div class="tier-card">
+          <div class="tc-badge">Omakase</div>
+          <div class="tc-name">Trao trọn cho bếp trưởng</div>
+          <div class="tc-sub">9–11 món · Khoảng 3.5 giờ</div>
+          <div class="tc-price">2.800<small style="font-size:18px">.000đ</small></div>
+          <div class="tc-per">/ người · Wine pairing tuỳ chọn +990k</div>
+          <hr class="tc-divider">
+          <ul class="tc-list">
+            <li>Menu bí ẩn 100% do bếp trưởng quyết định</li>
+            <li>Nguyên liệu hiếm nhất trong ngày</li>
+            <li>Cheese cart đa dạng nhập khẩu</li>
+            <li>Pre-dessert + dessert principal</li>
+            <li>Chocolates thủ công & mignardises</li>
+            <li>Chef's table tùy chọn (bếp mở)</li>
+          </ul>
+          <div style="margin-top:28px">
+            <a href="dat-ban.html" class="btn-outline-dark" style="display:block;text-align:center">Đặt gói này</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHÒNG RIÊNG TƯ -->
+<section class="sec-pad" style="background:var(--accent-light)">
+  <div class="wd-container">
+    <div class="row g-5 align-items-center">
+      <div class="col-md-6 reveal">
+        <div class="eyebrow">Private Dining</div>
+        <h2 class="sec-title">Không gian <em>dành riêng</em><br>cho bạn</h2>
+        <p style="font-size:15px;font-weight:300;color:var(--text-2);line-height:1.85;margin-bottom:20px">
+          Hai phòng riêng với sức chứa 8 và 20 khách — lý tưởng cho tiệc doanh nghiệp, kỷ niệm đặc biệt, hội nghị nhỏ hoặc buổi tối riêng tư.
+        </p>
+        <p style="font-size:15px;font-weight:300;color:var(--text-2);line-height:1.85;margin-bottom:28px">
+          Mỗi phòng được cá nhân hóa theo yêu cầu — từ cách sắp xếp bàn ăn, menu riêng đến hoa và ánh sáng. Đội ngũ riêng phục vụ suốt buổi.
+        </p>
+        <a href="su-kien.html" class="btn-accent">Tìm hiểu thêm →</a>
+      </div>
+      <div class="col-md-6 reveal reveal-d1">
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80&auto=format&fit=crop" alt="Phòng riêng tư" style="border-radius:14px;width:100%;aspect-ratio:4/3;object-fit:cover" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GIẢI THƯỞNG & TRUYỀN THÔNG -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Giải thưởng</div>
+      <h2 class="sec-title">Được ghi nhận bởi <em>giới chuyên môn</em></h2>
+    </div>
+    <div class="row g-3 justify-content-center mb-5 reveal">
+      <div class="col-md-2 col-4">
+        <div class="award-badge">
+          <div class="ab-icon">🏆</div>
+          <div class="ab-name">Best Fine Dining</div>
+          <div class="ab-year">Việt Nam Food Awards 2024</div>
+        </div>
+      </div>
+      <div class="col-md-2 col-4">
+        <div class="award-badge">
+          <div class="ab-icon">⭐</div>
+          <div class="ab-name">Top 10 Restaurant</div>
+          <div class="ab-year">Zing Travel 2024</div>
+        </div>
+      </div>
+      <div class="col-md-2 col-4">
+        <div class="award-badge">
+          <div class="ab-icon">🍴</div>
+          <div class="ab-name">Michelin Recommended</div>
+          <div class="ab-year">Michelin Guide 2024</div>
+        </div>
+      </div>
+      <div class="col-md-2 col-4">
+        <div class="award-badge">
+          <div class="ab-icon">🥂</div>
+          <div class="ab-name">Best Wine List</div>
+          <div class="ab-year">Asia Wine Awards 2023</div>
+        </div>
+      </div>
+      <div class="col-md-2 col-4">
+        <div class="award-badge">
+          <div class="ab-icon">👨‍🍳</div>
+          <div class="ab-name">Chef of the Year</div>
+          <div class="ab-year">Vietnam Culinary 2023</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trích dẫn báo chí -->
+    <div class="row g-4 reveal">
+      <div class="col-md-6">
+        <div class="rv">
+          <div class="rv-quote">"</div>
+          <div class="rv-text">Một trong những bữa tối đáng nhớ nhất tôi từng trải qua tại Việt Nam. Bếp trưởng đã tái hiện ẩm thực Á Đông qua ngôn ngữ fine dining theo cách không ai làm được trước đây.</div>
+          <div class="rv-foot">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">📰</div>
+            <div><div class="rv-name">Minh Đức</div><div class="rv-role">Food Editor · Ngoisao.vn</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="rv">
+          <div class="rv-quote">"</div>
+          <div class="rv-text">Tôi đã đến hơn 200 nhà hàng fine dining trên thế giới. [TÊN NHÀ HÀNG] khiến tôi ngạc nhiên bởi sự tinh tế trong từng chi tiết — từ bộ đồ ăn đến cách trình bày và câu chuyện đằng sau mỗi món.</div>
+          <div class="rv-foot">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">📰</div>
+            <div><div class="rv-name">Linh Phương</div><div class="rv-role">Travel & Food Writer · Luxuo Vietnam</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA với inline booking form -->
+<section class="cta-sec">
+  <div class="wd-container reveal">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5 text-lg-start text-center">
+        <div style="font-size:11px;color:var(--accent-mid);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:16px">Đặt bàn ngay</div>
+        <h2 class="cta-title" style="text-align:inherit"><strong>Một tối khó quên</strong><br>chờ đợi bạn</h2>
+        <p class="cta-sub" style="text-align:inherit;margin-left:0">Không gian chỉ 48 chỗ mỗi tối. Hãy đặt trước để đảm bảo trải nghiệm hoàn hảo nhất.</p>
+        <div style="font-size:13px;color:rgba(255,255,255,.3);margin-top:8px">
+          Phục vụ: Thứ Ba – Chủ Nhật · 18:00 – 23:00<br>
+          Hotline: <a href="tel:[SỐ ĐIỆN THOẠI]" style="color:var(--accent-mid)">[SỐ ĐIỆN THOẠI]</a>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="inline-form">
+          <div style="font-size:13px;font-weight:500;color:rgba(255,255,255,.5);margin-bottom:20px;text-transform:uppercase;letter-spacing:1px">Đặt bàn nhanh</div>
+          <form id="quickBookForm">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="qbName">Tên khách</label>
+                <input type="text" id="qbName" class="form-control" placeholder="Họ và tên" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="qbDate">Ngày</label>
+                <input type="date" id="qbDate" class="form-control" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="qbGuests">Số khách</label>
+                <select id="qbGuests" class="form-select" required>
+                  <option value="">Chọn số người</option>
+                  <option>2 người</option><option>3 người</option><option>4 người</option>
+                  <option>5 người</option><option>6 người</option><option>7–10 người</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="qbPhone">Số điện thoại</label>
+                <input type="tel" id="qbPhone" class="form-control" placeholder="0901 234 567" required>
+              </div>
+              <div class="col-12">
+                <div id="qbSuccess" style="display:none;padding:10px;background:rgba(146,112,42,.2);border-radius:6px;font-size:13px;color:var(--accent-mid);margin-bottom:8px">✓ Đã gửi yêu cầu! Chúng tôi sẽ xác nhận trong 30 phút.</div>
+                <button type="submit" class="btn-accent" style="width:100%;padding:14px;font-size:13px;letter-spacing:.8px;text-transform:uppercase;text-align:center;border-radius:7px">Gửi yêu cầu đặt bàn</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-5 reveal">
+        <div class="ft-logo">[TÊN] <em>Fine Dining</em></div>
+        <p class="ft-desc">Ẩm thực fine dining — nơi mỗi bữa ăn là một trải nghiệm không thể quên.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc" aria-label="Facebook" rel="noopener noreferrer">fb</a>
+          <a href="#" class="ft-soc" aria-label="Instagram" rel="noopener noreferrer">ig</a>
+          <a href="#" class="ft-soc" aria-label="Zalo" rel="noopener noreferrer">zl</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Khám phá</div>
+        <div class="ft-links">
+          <a href="menu.html">Thực đơn</a>
+          <a href="su-kien.html">Sự kiện & Private Dining</a>
+          <a href="dat-ban.html">Đặt bàn</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links">
+          <a href="tel:[SỐ ĐIỆN THOẠI]">📱 [SỐ ĐIỆN THOẠI]</a>
+          <a href="#">📍 [ĐỊA CHỈ]</a>
+          <a href="#">🕐 Thứ Ba – CN · 18:00–23:00</a>
+          <a href="mailto:[EMAIL]">✉️ [EMAIL]</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="ft-copy">© 2026 [TÊN NHÀ HÀNG] · Fine Dining · Made in Vietnam 🇻🇳</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="zf">
+  <div class="zf-tip">Tư vấn & đặt bàn</div>
+  <a href="https://zalo.me/[SỐ ZALO]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const nav = document.getElementById('nav');
+if (nav && nav.classList.contains('transparent')) {
+  window.addEventListener('scroll', () => { nav.classList.toggle('transparent', window.scrollY < 80); }, {passive: true});
+}
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} });
+}, {threshold: .08, rootMargin: '0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+}
+// Set min date
+const qbDate = document.getElementById('qbDate');
+if (qbDate) {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth()+1).padStart(2,'0');
+  const dd = String(today.getDate()).padStart(2,'0');
+  qbDate.min = `${yyyy}-${mm}-${dd}`;
+}
+// Quick booking form
+const quickBookForm = document.getElementById('quickBookForm');
+const qbSuccess = document.getElementById('qbSuccess');
+if (quickBookForm && qbSuccess) {
+  quickBookForm.addEventListener('submit', e => {
+    e.preventDefault();
+    qbSuccess.style.display = 'block';
+    quickBookForm.querySelectorAll('input,select').forEach(el => el.disabled = true);
+    quickBookForm.querySelector('button[type="submit"]').style.display = 'none';
+  });
+}
+</script>
+</body>
+</html>

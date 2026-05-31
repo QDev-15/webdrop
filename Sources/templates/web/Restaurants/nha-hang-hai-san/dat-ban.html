@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đặt Bàn — [TÊN NHÀ HÀNG] Hải Sản Tươi Sống</title>
+<meta name="description" content="Đặt bàn tại [TÊN NHÀ HÀNG] để thưởng thức hải sản tươi sống nhất. Đặt trước 2 tiếng để có bàn đẹp nhất.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+.form-label { font-size:13px; font-weight:500; color:var(--text-2); margin-bottom:6px; }
+.form-control, .form-select { font-size:14px; font-family:var(--sans); border:1px solid var(--border); border-radius:8px; padding:10px 14px; background:var(--bg); color:var(--text); transition:border-color .15s; }
+.form-control:focus, .form-select:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(3,105,161,.1); outline:none; }
+.promo-card { background:var(--accent); border-radius:14px; padding:22px; color:#fff; }
+.table-type-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.table-type-item { border:1px solid var(--border); border-radius:10px; padding:14px; cursor:pointer; transition:all .15s; }
+.table-type-item:hover, .table-type-item.selected { border-color:var(--accent); background:var(--accent-light); }
+.tt-icon { font-size:22px; margin-bottom:6px; }
+.tt-name { font-size:13.5px; font-weight:600; color:var(--text); }
+.tt-desc { font-size:12px; color:var(--text-2); }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">🦞 [TÊN NHÀ HÀNG] <span>Hải Sản</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="thuc-don.html">Thực đơn</a>
+        <a href="cam-ket.html">Cam kết</a>
+        <a href="dat-ban.html" class="active">Đặt bàn</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-ban.html" class="nav-cta">Đặt bàn ngay</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a><a href="thuc-don.html">Thực đơn</a><a href="cam-ket.html">Cam kết</a><a href="dat-ban.html">Đặt bàn</a><a href="lien-he.html">Liên hệ</a>
+  <a href="dat-ban.html" class="nm-cta">Đặt bàn ngay</a>
+</div>
+
+<div class="page-hero">
+  <div class="wd-container">
+    <div class="ph-eyebrow">Đặt bàn</div>
+    <h1 class="ph-title">Giữ chỗ <em>hải sản tươi</em></h1>
+    <p class="ph-sub">Đặt trước để chúng tôi chuẩn bị những con hải sản tươi ngon nhất và bàn đẹp nhất cho bạn.</p>
+  </div>
+</div>
+
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="row g-5">
+      <div class="col-lg-7 reveal">
+        <h3 style="font-size:20px;font-weight:600;color:var(--text);margin-bottom:24px;letter-spacing:-.4px">Thông tin đặt bàn</h3>
+
+        <!-- Table type -->
+        <div class="mb-4">
+          <div class="form-label mb-3">Loại bàn</div>
+          <div class="table-type-grid">
+            <div class="table-type-item selected">
+              <div class="tt-icon">🪑</div>
+              <div class="tt-name">Bàn thường</div>
+              <div class="tt-desc">2–6 người · Không gian chung</div>
+            </div>
+            <div class="table-type-item">
+              <div class="tt-icon">🌊</div>
+              <div class="tt-name">Bàn view bể cá</div>
+              <div class="tt-desc">2–4 người · Gần bể hải sản sống</div>
+            </div>
+            <div class="table-type-item">
+              <div class="tt-icon">👨‍👩‍👧‍👦</div>
+              <div class="tt-name">Bàn gia đình</div>
+              <div class="tt-desc">6–10 người · Không gian rộng</div>
+            </div>
+            <div class="table-type-item">
+              <div class="tt-icon">🔒</div>
+              <div class="tt-name">Phòng riêng VIP</div>
+              <div class="tt-desc">8–20 người · Đặt trước 1 ngày</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label">Họ và tên *</label><input type="text" class="form-control" placeholder="[Tên của bạn]"></div>
+          <div class="col-md-6"><label class="form-label">Số điện thoại *</label><input type="tel" class="form-control" placeholder="0901 234 567"></div>
+          <div class="col-md-6"><label class="form-label">Ngày đến *</label><input type="date" class="form-control"></div>
+          <div class="col-md-6"><label class="form-label">Giờ đến *</label>
+            <select class="form-select">
+              <option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option>
+              <option>17:00</option><option>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option>
+            </select>
+          </div>
+          <div class="col-md-6"><label class="form-label">Số người lớn *</label>
+            <select class="form-select"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9+</option></select>
+          </div>
+          <div class="col-md-6"><label class="form-label">Số trẻ em</label>
+            <select class="form-select"><option>0</option><option>1</option><option>2</option><option>3</option><option>4+</option></select>
+          </div>
+          <div class="col-12"><label class="form-label">Yêu cầu đặc biệt</label>
+            <textarea class="form-control" rows="3" placeholder="Dị ứng hải sản, yêu cầu phòng riêng, dịp đặc biệt..."></textarea>
+          </div>
+          <div class="col-12"><button type="submit" class="btn-accent" style="width:100%;padding:13px;font-size:14px;font-weight:600">🦞 Đặt bàn ngay</button></div>
+        </div>
+      </div>
+
+      <div class="col-lg-5 reveal reveal-d1">
+        <!-- Promo -->
+        <div class="promo-card mb-4">
+          <div style="font-size:13px;font-weight:600;margin-bottom:8px;opacity:.8">ƯU ĐÃI ĐẶT TRƯỚC</div>
+          <div style="font-size:18px;font-weight:600;margin-bottom:6px">Đặt trước 2 tiếng<br>— Tặng đĩa Sashimi</div>
+          <div style="font-size:13px;opacity:.75">Áp dụng cho đặt bàn từ 4 người trở lên. Chỉ áp dụng trong tuần.</div>
+        </div>
+
+        <!-- Info -->
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:16px">Thông tin nhà hàng</div>
+          <div style="font-size:13.5px;color:var(--text-2);line-height:1.8;font-weight:300">
+            📍 [Địa chỉ nhà hàng]<br>
+            📱 <a href="tel:[SỐ ĐIỆN THOẠI]" style="color:var(--accent)">[SỐ ĐIỆN THOẠI]</a><br>
+            🕐 10:00 – 22:00 hàng ngày<br>
+            🅿️ Bãi đỗ xe miễn phí<br>
+            ♿ Hỗ trợ người khuyết tật
+          </div>
+        </div>
+
+        <div style="background:var(--accent-light);border:1px solid var(--border);border-radius:14px;padding:18px;margin-top:12px">
+          <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:8px">📋 Lưu ý</div>
+          <ul style="list-style:none;padding:0;margin:0;font-size:12.5px;color:var(--text-2);display:flex;flex-direction:column;gap:6px;font-weight:300">
+            <li>• Bàn được giữ trong 15 phút sau giờ đặt</li>
+            <li>• Phòng VIP đặt trước tối thiểu 1 ngày</li>
+            <li>• Hủy bàn: thông báo trước 2 giờ</li>
+            <li>• Đặt bàn trên 10 người: liên hệ trực tiếp</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo">🦞 [TÊN] <span>Hải Sản</span></div>
+        <p class="ft-desc">Hải sản tươi sống mỗi ngày.</p>
+        <div class="ft-socials"><a href="#" class="ft-soc" aria-label="Facebook">fb</a><a href="#" class="ft-soc" aria-label="Instagram">ig</a><a href="#" class="ft-soc" aria-label="Zalo">zl</a></div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Menu</div>
+        <div class="ft-links"><a href="thuc-don.html">Thực đơn</a><a href="cam-ket.html">Cam kết</a><a href="dat-ban.html">Đặt bàn</a></div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links"><a href="tel:[SỐ ĐIỆN THOẠI]">📱 [SỐ ĐIỆN THOẠI]</a><a href="#">📍 [ĐỊA CHỈ]</a><a href="#">🕐 10:00 – 22:00</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom"><div class="wd-container"><div class="d-flex justify-content-between py-3"><div class="ft-copy">© [NĂM] [TÊN NHÀ HÀNG] · Tươi sống mỗi ngày 🌊</div></div></div></div>
+</footer>
+<div class="zf">
+  <div class="zf-tip">Đặt bàn qua Zalo</div>
+  <a href="https://zalo.me/[SỐ ZALO]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} }); }, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger = document.getElementById('navHamburger'), mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) { hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; }); document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} }); }
+document.querySelectorAll('.table-type-item').forEach(item => {
+  item.addEventListener('click', () => { document.querySelectorAll('.table-type-item').forEach(i => i.classList.remove('selected')); item.classList.add('selected'); });
+});
+</script>
+</body>
+</html>

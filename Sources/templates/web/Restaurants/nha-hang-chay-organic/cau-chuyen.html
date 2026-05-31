@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Về Chúng Tôi — [TÊN NHÀ HÀNG] Chay Organic</title>
+<meta name="description" content="Câu chuyện của [TÊN NHÀ HÀNG] — triết lý ẩm thực thuần chay, nguồn nguyên liệu organic và đội ngũ tận tâm.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+.team-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:24px; text-align:center; }
+.tc-avatar { width:80px; height:80px; border-radius:50%; object-fit:cover; margin:0 auto 14px; }
+.tc-name { font-size:15px; font-weight:600; color:var(--text); margin-bottom:4px; }
+.tc-role { font-size:12.5px; color:var(--accent); font-weight:500; margin-bottom:10px; }
+.tc-bio { font-size:13px; color:var(--text-2); line-height:1.7; font-weight:300; }
+.cert-badge { display:inline-flex; align-items:center; gap:8px; background:var(--accent-light); border:1px solid var(--border); border-radius:10px; padding:10px 16px; }
+.cert-icon { font-size:20px; }
+.cert-name { font-size:13px; font-weight:600; color:var(--text); }
+.cert-body { font-size:11.5px; color:var(--text-2); }
+.timeline-item { display:flex; gap:20px; padding-bottom:28px; border-left:2px solid var(--border); margin-left:14px; padding-left:24px; position:relative; }
+.timeline-item:last-child { border-left-color:transparent; }
+.timeline-dot { width:12px; height:12px; border-radius:50%; background:var(--accent); border:2px solid var(--accent-light); position:absolute; left:-7px; top:4px; flex-shrink:0; }
+.tl-year { font-size:12px; font-weight:600; color:var(--accent); margin-bottom:4px; }
+.tl-title { font-size:15px; font-weight:600; color:var(--text); margin-bottom:6px; }
+.tl-desc { font-size:13px; color:var(--text-2); line-height:1.7; font-weight:300; }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">🌿 [TÊN NHÀ HÀNG] <span>Chay</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="thuc-don.html">Thực đơn</a>
+        <a href="cau-chuyen.html" class="active">Về chúng tôi</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="lien-he.html" class="nav-cta">Đặt bàn</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a><a href="thuc-don.html">Thực đơn</a><a href="cau-chuyen.html">Về chúng tôi</a><a href="lien-he.html">Liên hệ</a>
+  <a href="lien-he.html" class="nm-cta">Đặt bàn</a>
+</div>
+
+<div class="page-hero">
+  <div class="wd-container">
+    <div class="ph-eyebrow">Câu chuyện</div>
+    <h1 class="ph-title">Hành trình <em>thuần chay</em></h1>
+    <p class="ph-sub">Từ một niềm tin nhỏ bé về lối sống lành mạnh — chúng tôi đã xây dựng nên một không gian ẩm thực chay đầy yêu thương.</p>
+  </div>
+</div>
+
+<!-- Mission -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6 reveal">
+        <div class="eyebrow">Sứ mệnh</div>
+        <h2 class="sec-title">Ẩm thực chay — <em>không chỉ là thức ăn</em></h2>
+        <p style="font-size:15px;font-weight:300;color:var(--text-2);line-height:1.85;margin-bottom:16px">[TÊN NHÀ HÀNG] ra đời năm [NĂM] từ niềm tin rằng ăn chay không có nghĩa là từ bỏ hương vị. Ngược lại, ẩm thực thuần chay khi được làm đúng cách — sẽ phong phú, đa dạng và mãn nguyện hơn bất kỳ thứ gì.</p>
+        <p style="font-size:15px;font-weight:300;color:var(--text-2);line-height:1.85;margin-bottom:28px">Chúng tôi làm việc trực tiếp với các nông trại hữu cơ địa phương, đảm bảo mỗi nguyên liệu đều sạch, tươi và được trồng theo tiêu chuẩn organic.</p>
+        <div class="d-flex gap-3 flex-wrap">
+          <div style="text-align:center">
+            <div style="font-size:28px;font-weight:600;color:var(--accent);letter-spacing:-1px">[NĂM]+</div>
+            <div style="font-size:12px;color:var(--text-3)">Năm hoạt động</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:28px;font-weight:600;color:var(--accent);letter-spacing:-1px">15+</div>
+            <div style="font-size:12px;color:var(--text-3)">Nông trại đối tác</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:28px;font-weight:600;color:var(--accent);letter-spacing:-1px">100%</div>
+            <div style="font-size:12px;color:var(--text-3)">Thuần chay</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal reveal-d1">
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=700&q=80&auto=format&fit=crop" alt="Ẩm thực chay" style="width:100%;border-radius:20px;aspect-ratio:4/3;object-fit:cover" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Timeline -->
+<section class="sec-pad" style="background:var(--warm)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Hành trình</div>
+      <h2 class="sec-title">Từng bước <em>phát triển</em></h2>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-7 reveal">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div><div class="tl-year">[NĂM]</div><div class="tl-title">Mở cửa lần đầu</div><div class="tl-desc">Bắt đầu với menu 20 món chay đơn giản tại một căn nhà nhỏ — và ngay lập tức nhận được tình yêu của cộng đồng.</div></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div><div class="tl-year">[NĂM + 1]</div><div class="tl-title">Kết nối nông trại organic đầu tiên</div><div class="tl-desc">Bắt đầu hợp tác với các nông trại hữu cơ tại Đà Lạt và Lâm Đồng — cam kết 100% nguyên liệu sạch không thuốc trừ sâu.</div></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div><div class="tl-year">[NĂM + 2]</div><div class="tl-title">Nhận chứng nhận organic quốc tế</div><div class="tl-desc">Được cấp chứng nhận organic từ tổ chức [TÊN TỔ CHỨC] — xác nhận tiêu chuẩn nguyên liệu sạch từ farm đến bàn ăn.</div></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div><div class="tl-year">Hôm nay</div><div class="tl-title">Hơn [SỐ] thực khách mỗi tháng</div><div class="tl-desc">Chúng tôi phục vụ hàng nghìn thực khách mỗi tháng — cả người ăn chay lẫn những ai chỉ đơn giản yêu thích ẩm thực lành mạnh.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section class="sec-pad" style="background:var(--surface)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Đội ngũ</div>
+      <h2 class="sec-title">Những người <em>làm nên hương vị</em></h2>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4 col-sm-6 reveal reveal-d1">
+        <div class="team-card">
+          <img class="tc-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=160&q=80&auto=format&fit=crop&crop=face" alt="Bếp trưởng">
+          <div class="tc-name">[Tên bếp trưởng]</div>
+          <div class="tc-role">Bếp trưởng & Founder</div>
+          <div class="tc-bio">Hơn [N] năm kinh nghiệm ẩm thực chay. Học làm bếp tại [Nơi học]. Đam mê biến nguyên liệu thuần thực vật thành những tác phẩm đầy màu sắc và hương vị.</div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 reveal reveal-d2">
+        <div class="team-card">
+          <img class="tc-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&q=80&auto=format&fit=crop&crop=face" alt="Chuyên gia dinh dưỡng">
+          <div class="tc-name">[Tên chuyên gia]</div>
+          <div class="tc-role">Chuyên gia dinh dưỡng</div>
+          <div class="tc-bio">Cố vấn dinh dưỡng tại [Tổ chức]. Đảm bảo mỗi món ăn không chỉ ngon mà còn cân bằng dinh dưỡng đầy đủ cho sức khỏe toàn diện.</div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 reveal reveal-d3">
+        <div class="team-card">
+          <img class="tc-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=160&q=80&auto=format&fit=crop&crop=face" alt="Quản lý nông trại">
+          <div class="tc-name">[Tên quản lý]</div>
+          <div class="tc-role">Quản lý chuỗi cung ứng</div>
+          <div class="tc-bio">Kết nối và kiểm soát chất lượng nguyên liệu từ 15+ nông trại đối tác. Đảm bảo tiêu chuẩn organic từ farm đến nhà bếp mỗi ngày.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Certifications -->
+<section class="sec-pad" style="background:var(--dark2)">
+  <div class="wd-container">
+    <div class="text-center sec-dark reveal mb-5">
+      <div class="eyebrow">Chứng nhận</div>
+      <h2 class="sec-title">Cam kết <em>được chứng minh</em></h2>
+    </div>
+    <div class="row g-3 justify-content-center">
+      <div class="col-md-4 col-sm-6 reveal reveal-d1">
+        <div class="cert-badge w-100">
+          <div class="cert-icon">🌿</div>
+          <div>
+            <div class="cert-name" style="color:#fff">Organic Certified</div>
+            <div class="cert-body" style="color:rgba(255,255,255,.4)">[Tên tổ chức chứng nhận]</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 reveal reveal-d2">
+        <div class="cert-badge w-100">
+          <div class="cert-icon">🥗</div>
+          <div>
+            <div class="cert-name" style="color:#fff">100% Vegan</div>
+            <div class="cert-body" style="color:rgba(255,255,255,.4)">Không chứa bất kỳ sản phẩm động vật</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 reveal reveal-d3">
+        <div class="cert-badge w-100">
+          <div class="cert-icon">🏥</div>
+          <div>
+            <div class="cert-name" style="color:#fff">Chứng nhận ATTP</div>
+            <div class="cert-body" style="color:rgba(255,255,255,.4)">An toàn thực phẩm theo tiêu chuẩn Bộ Y tế</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-sec">
+  <div class="wd-container reveal">
+    <h2 class="cta-title">Hãy đến và trải nghiệm</h2>
+    <p class="cta-sub">Một bữa ăn chay ngon — có thể thay đổi cách bạn nhìn về ẩm thực mãi mãi.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap position-relative">
+      <a href="lien-he.html" class="btn-white">Đặt bàn ngay →</a>
+      <a href="thuc-don.html" style="font-size:14px;background:transparent;color:rgba(255,255,255,.75);padding:12px 26px;border-radius:9px;border:1px solid rgba(255,255,255,.3)">Xem thực đơn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo">🌿 [TÊN] <span>Chay</span></div>
+        <p class="ft-desc">Ẩm thực thuần chay 100% organic — thanh tịnh tâm hồn, nuôi dưỡng sức khỏe.</p>
+        <div class="ft-socials"><a href="#" class="ft-soc" aria-label="Facebook">fb</a><a href="#" class="ft-soc" aria-label="Instagram">ig</a><a href="#" class="ft-soc" aria-label="YouTube">yt</a><a href="#" class="ft-soc" aria-label="Zalo">zl</a></div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Khám phá</div>
+        <div class="ft-links"><a href="thuc-don.html">Thực đơn</a><a href="cau-chuyen.html">Câu chuyện</a><a href="lien-he.html">Liên hệ</a></div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links"><a href="tel:[SỐ ĐIỆN THOẠI]">📱 [SỐ ĐIỆN THOẠI]</a><a href="#">📍 [ĐỊA CHỈ]</a><a href="#">🕐 10:00 – 21:00</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom"><div class="wd-container"><div class="d-flex justify-content-between py-3"><div class="ft-copy">© [NĂM] [TÊN NHÀ HÀNG] · 100% Plant-based 🌱</div></div></div></div>
+</footer>
+<div class="zf">
+  <div class="zf-tip">Liên hệ Zalo</div>
+  <a href="https://zalo.me/[SỐ ZALO]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} });
+}, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+}
+</script>
+</body>
+</html>

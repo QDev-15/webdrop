@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sản phẩm — [Tên Startup] | Tính năng nền tảng [Lĩnh vực]</title>
+  <meta name="description" content="Khám phá toàn bộ tính năng của [Tên Startup]: tự động hóa quy trình, phân tích dữ liệu real-time, tích hợp 100+ ứng dụng và bảo mật doanh nghiệp cấp cao.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav" role="navigation" aria-label="Điều hướng chính">
+  <div class="st-nav-inner">
+    <a href="index.html" class="st-logo">
+      <span class="logo-dot" aria-hidden="true"></span>[Tên Startup]
+    </a>
+    <ul class="st-nav-links">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="san-pham.html" class="active">Sản phẩm</a></li>
+      <li><a href="bang-gia.html">Bảng giá</a></li>
+      <li><a href="lien-he.html">Liên hệ</a></li>
+    </ul>
+    <div class="st-nav-right">
+      <a href="lien-he.html" class="st-nav-login">Đăng nhập</a>
+      <a href="bang-gia.html" class="st-nav-cta">Dùng thử miễn phí</a>
+    </div>
+    <button class="st-burger" id="navBurger" aria-label="Mở menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="st-mob" id="navMob" role="dialog" aria-label="Menu di động">
+  <a href="index.html">Trang chủ</a>
+  <a href="san-pham.html">Sản phẩm</a>
+  <a href="bang-gia.html">Bảng giá</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="bang-gia.html" class="mob-cta">Dùng thử miễn phí</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="st-page-hero" aria-labelledby="sp-heading">
+  <div class="wd-container">
+    <div class="st-ph-inner">
+      <div class="st-ph-badge">
+        <span aria-hidden="true">⚙</span> Tính năng sản phẩm
+      </div>
+      <h1 class="st-ph-title" id="sp-heading">
+        Tất cả những gì bạn cần<br>để <em>tăng tốc</em> doanh nghiệp
+      </h1>
+      <p class="st-ph-sub">
+        [Tên Startup] cung cấp bộ công cụ toàn diện cho doanh nghiệp Việt Nam — từ tự động hóa, phân tích đến tích hợp liền mạch với hệ thống hiện có.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE 1: Automation — ALTERNATING -->
+<section class="sec-pad" style="background:var(--bg);" aria-labelledby="feat1-heading">
+  <div class="wd-container">
+    <div class="st-feature-detail" data-reveal>
+      <div>
+        <div class="st-feature-tag">
+          <span aria-hidden="true">⚡</span> Tự động hóa
+        </div>
+        <h2 class="st-feature-heading" id="feat1-heading">
+          Xây dựng quy trình tự động không cần code
+        </h2>
+        <p class="st-feature-para">
+          Giao diện kéo-thả trực quan giúp bạn thiết kế luồng công việc phức tạp trong vài phút. Từ gửi email tự động, cập nhật CRM đến tạo báo cáo — mọi thứ đều chạy tự động 24/7 không cần can thiệp thủ công.
+        </p>
+        <ul class="st-feat-list">
+          <li>Kéo thả để tạo quy trình — không cần kiến thức lập trình</li>
+          <li>Hơn [N] template quy trình sẵn có cho các ngành</li>
+          <li>Lên lịch tự động theo thời gian hoặc điều kiện kích hoạt</li>
+          <li>Theo dõi và debug quy trình theo thời gian thực</li>
+          <li>Rollback tức thì nếu phát hiện lỗi</li>
+        </ul>
+      </div>
+      <!-- Visual Box -->
+      <div class="st-feature-visual-box" aria-hidden="true">
+        <div style="font-size:11px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;">WORKFLOW BUILDER</div>
+        <!-- Mock flow diagram -->
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:10px;">
+            <span style="font-size:18px;">🔔</span>
+            <div>
+              <div style="font-size:12px;font-weight:700;color:#fff;">Kích hoạt: Đơn hàng mới</div>
+              <div style="font-size:11px;color:var(--text-3);">Khi có đơn hàng từ [Kênh bán hàng]</div>
+            </div>
+          </div>
+          <div style="width:2px;height:16px;background:rgba(124,58,237,.4);margin:0 auto;"></div>
+          <div style="background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.25);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:10px;">
+            <span style="font-size:18px;">📧</span>
+            <div>
+              <div style="font-size:12px;font-weight:700;color:#fff;">Gửi email xác nhận</div>
+              <div style="font-size:11px;color:var(--text-3);">Template email tùy chỉnh</div>
+            </div>
+          </div>
+          <div style="width:2px;height:16px;background:rgba(124,58,237,.4);margin:0 auto;"></div>
+          <div style="background:rgba(168,85,247,.12);border:1px solid rgba(168,85,247,.25);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:10px;">
+            <span style="font-size:18px;">📊</span>
+            <div>
+              <div style="font-size:12px;font-weight:700;color:#fff;">Cập nhật CRM</div>
+              <div style="font-size:11px;color:var(--text-3);">Đồng bộ trạng thái đơn hàng</div>
+            </div>
+          </div>
+          <div style="width:2px;height:16px;background:rgba(124,58,237,.4);margin:0 auto;"></div>
+          <div style="background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.25);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:10px;">
+            <span style="font-size:18px;">✅</span>
+            <div>
+              <div style="font-size:12px;font-weight:700;color:#fff;">Hoàn tất</div>
+              <div style="font-size:11px;color:#4ade80;">Xử lý trong &lt; 200ms</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE 2: Analytics — ALTERNATING REVERSE -->
+<section class="sec-pad" style="background:var(--dark2);" aria-labelledby="feat2-heading">
+  <div class="wd-container">
+    <div class="st-feature-detail reverse" data-reveal>
+      <div>
+        <div class="st-feature-tag">
+          <span aria-hidden="true">📊</span> Phân tích dữ liệu
+        </div>
+        <h2 class="st-feature-heading" id="feat2-heading">
+          Hiểu rõ doanh nghiệp với analytics AI-powered
+        </h2>
+        <p class="st-feature-para">
+          Dashboard thông minh tổng hợp dữ liệu từ mọi nguồn, phân tích xu hướng và đưa ra gợi ý hành động cụ thể. Không chỉ xem số liệu — bạn hiểu được "tại sao" đằng sau mỗi con số.
+        </p>
+        <ul class="st-feat-list">
+          <li>Cập nhật real-time không cần refresh trang</li>
+          <li>AI tự động phát hiện bất thường và cảnh báo</li>
+          <li>Tùy chỉnh dashboard theo vai trò từng nhóm</li>
+          <li>Xuất báo cáo PDF, Excel tự động hàng ngày/tuần/tháng</li>
+          <li>So sánh hiệu suất theo giai đoạn, kênh, sản phẩm</li>
+        </ul>
+      </div>
+      <!-- Visual Box Analytics -->
+      <div class="st-feature-visual-box" aria-hidden="true">
+        <div style="font-size:11px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;">ANALYTICS DASHBOARD</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+          <div style="background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.2);border-radius:8px;padding:12px;text-align:center;">
+            <div style="font-size:20px;font-weight:800;color:#fff;">[+X]%</div>
+            <div style="font-size:10px;color:var(--text-3);">Doanh thu</div>
+          </div>
+          <div style="background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);border-radius:8px;padding:12px;text-align:center;">
+            <div style="font-size:20px;font-weight:800;color:#fff;">[Y]K</div>
+            <div style="font-size:10px;color:var(--text-3);">Người dùng mới</div>
+          </div>
+        </div>
+        <!-- Mini line chart simulation -->
+        <div style="background:rgba(255,255,255,.03);border:1px solid var(--border-light);border-radius:8px;padding:14px;">
+          <div style="font-size:10px;color:var(--text-3);margin-bottom:10px;">Xu hướng 7 ngày qua</div>
+          <svg width="100%" height="60" viewBox="0 0 200 60" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="lineGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0 50 L28 40 L57 30 L85 35 L114 20 L142 15 L170 10 L200 5" stroke="#a855f7" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M0 50 L28 40 L57 30 L85 35 L114 20 L142 15 L170 10 L200 5 L200 60 L0 60Z" fill="url(#lineGrad)"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE 3: Integrations — ALTERNATING -->
+<section class="sec-pad" style="background:var(--bg);" aria-labelledby="feat3-heading">
+  <div class="wd-container">
+    <div class="st-feature-detail" data-reveal>
+      <div>
+        <div class="st-feature-tag">
+          <span aria-hidden="true">🔗</span> Tích hợp
+        </div>
+        <h2 class="st-feature-heading" id="feat3-heading">
+          Kết nối với [N]+ ứng dụng bạn đang dùng
+        </h2>
+        <p class="st-feature-para">
+          Không cần thay đổi hệ thống hiện có. [Tên Startup] kết nối liền mạch với CRM, ERP, phần mềm kế toán, kênh bán hàng và mạng xã hội — giúp dữ liệu luôn đồng bộ theo thời gian thực.
+        </p>
+        <ul class="st-feat-list">
+          <li>Kết nối [N]+ ứng dụng phổ biến trong [X] phút</li>
+          <li>Đồng bộ dữ liệu hai chiều real-time</li>
+          <li>API RESTful và Webhook sẵn sàng sử dụng</li>
+          <li>Hỗ trợ tích hợp tùy chỉnh qua Enterprise plan</li>
+          <li>Không cần kiến thức kỹ thuật để cài đặt</li>
+        </ul>
+      </div>
+      <!-- Integration Grid Visual -->
+      <div class="st-feature-visual-box" aria-hidden="true">
+        <div style="font-size:11px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;">INTEGRATIONS</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px;text-align:center;font-size:20px;" title="[Phần mềm A]">📦</div>
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px;text-align:center;font-size:20px;" title="[Phần mềm B]">💼</div>
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px;text-align:center;font-size:20px;" title="Zalo">💬</div>
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px;text-align:center;font-size:20px;" title="[Phần mềm C]">📊</div>
+          <div style="background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.35);border-radius:10px;padding:14px;text-align:center;font-size:20px;" title="[Tên Startup]">⚡</div>
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px;text-align:center;font-size:20px;" title="[Phần mềm D]">🛒</div>
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px;text-align:center;font-size:20px;" title="[Phần mềm E]">📧</div>
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px;text-align:center;font-size:20px;" title="[Phần mềm F]">🔐</div>
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px;text-align:center;font-size:20px;" title="[Phần mềm G]">📱</div>
+        </div>
+        <div style="margin-top:14px;font-size:12px;color:var(--text-3);text-align:center;">
+          +[N] tích hợp khác đang được phát triển
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE 4: Security — ALTERNATING REVERSE -->
+<section class="sec-pad" style="background:var(--dark2);" aria-labelledby="feat4-heading">
+  <div class="wd-container">
+    <div class="st-feature-detail reverse" data-reveal>
+      <div>
+        <div class="st-feature-tag">
+          <span aria-hidden="true">🔒</span> Bảo mật
+        </div>
+        <h2 class="st-feature-heading" id="feat4-heading">
+          Bảo mật cấp doanh nghiệp đáng tin cậy
+        </h2>
+        <p class="st-feature-para">
+          Dữ liệu doanh nghiệp của bạn được bảo vệ với tiêu chuẩn quốc tế. Từ mã hóa end-to-end đến kiểm soát truy cập chi tiết — [Tên Startup] đảm bảo an toàn tuyệt đối cho mọi thông tin quan trọng.
+        </p>
+        <ul class="st-feat-list">
+          <li>Mã hóa AES-256 cho dữ liệu lưu trữ và truyền tải</li>
+          <li>Xác thực 2 yếu tố (2FA) bắt buộc</li>
+          <li>Kiểm soát quyền truy cập theo vai trò (RBAC)</li>
+          <li>Nhật ký hoạt động đầy đủ, theo dõi mọi thay đổi</li>
+          <li>Tuân thủ tiêu chuẩn ISO 27001 và GDPR</li>
+          <li>Backup tự động mỗi 6 giờ, lưu trữ 90 ngày</li>
+        </ul>
+      </div>
+      <!-- Security Visual -->
+      <div class="st-feature-visual-box" aria-hidden="true">
+        <div style="font-size:11px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;">SECURITY STATUS</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);border-radius:8px;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#fff;">
+              <span>🛡</span> Mã hóa SSL/TLS
+            </div>
+            <span style="font-size:11px;font-weight:700;color:#4ade80;">ACTIVE</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);border-radius:8px;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#fff;">
+              <span>🔐</span> 2FA Authentication
+            </div>
+            <span style="font-size:11px;font-weight:700;color:#4ade80;">ENABLED</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);border-radius:8px;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#fff;">
+              <span>💾</span> Auto Backup
+            </div>
+            <span style="font-size:11px;font-weight:700;color:#4ade80;">EVERY 6H</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);border-radius:8px;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#fff;">
+              <span>📋</span> ISO 27001
+            </div>
+            <span style="font-size:11px;font-weight:700;color:#4ade80;">CERTIFIED</span>
+          </div>
+        </div>
+        <div style="margin-top:16px;text-align:center;font-size:12px;color:var(--text-3);">
+          Uptime SLA: <span style="color:#4ade80;font-weight:700;">99.9%</span> — Được đảm bảo hợp đồng
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE GRID — GRID-CARDS (remaining features) -->
+<section class="sec-pad" style="background:var(--bg);" aria-labelledby="morefeat-heading">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="st-section-badge">
+        <span aria-hidden="true">✨</span> Tính năng khác
+      </div>
+      <h2 class="st-section-title" id="morefeat-heading">
+        Và còn nhiều hơn thế nữa
+      </h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4" data-reveal>
+        <div class="st-glass" style="height:100%">
+          <div class="st-feat-icon" aria-hidden="true">🤖</div>
+          <div class="st-feat-title">AI Assistant tích hợp</div>
+          <div class="st-feat-desc">Gợi ý hành động thông minh dựa trên dữ liệu lịch sử. Trả lời câu hỏi bằng ngôn ngữ tự nhiên, không cần viết query phức tạp.</div>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal data-reveal-d1>
+        <div class="st-glass" style="height:100%">
+          <div class="st-feat-icon" aria-hidden="true">📱</div>
+          <div class="st-feat-title">Ứng dụng di động</div>
+          <div class="st-feat-desc">Quản lý và theo dõi kinh doanh mọi lúc mọi nơi với app iOS và Android. Thông báo real-time về các sự kiện quan trọng.</div>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal data-reveal-d2>
+        <div class="st-glass" style="height:100%">
+          <div class="st-feat-icon" aria-hidden="true">🌐</div>
+          <div class="st-feat-title">Đa ngôn ngữ & Đa tiền tệ</div>
+          <div class="st-feat-desc">Hỗ trợ tiếng Việt, tiếng Anh và [N] ngôn ngữ khác. Xử lý đa tiền tệ tự động theo tỷ giá thực tế.</div>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal>
+        <div class="st-glass" style="height:100%">
+          <div class="st-feat-icon" aria-hidden="true">📋</div>
+          <div class="st-feat-title">Quản lý tác vụ & Dự án</div>
+          <div class="st-feat-desc">Tích hợp kanban board, timeline và quản lý deadline ngay trong nền tảng. Không cần thêm phần mềm quản lý dự án riêng.</div>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal data-reveal-d1>
+        <div class="st-glass" style="height:100%">
+          <div class="st-feat-icon" aria-hidden="true">📬</div>
+          <div class="st-feat-title">Email & SMS Marketing</div>
+          <div class="st-feat-desc">Công cụ email marketing tích hợp với template chuyên nghiệp, A/B testing và theo dõi tỷ lệ mở email theo thời gian thực.</div>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal data-reveal-d2>
+        <div class="st-glass" style="height:100%">
+          <div class="st-feat-icon" aria-hidden="true">🔧</div>
+          <div class="st-feat-title">Tùy chỉnh không giới hạn</div>
+          <div class="st-feat-desc">Custom field, workflow, dashboard và báo cáo hoàn toàn theo nhu cầu. Mỗi doanh nghiệp có thể cấu hình nền tảng khác nhau.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="st-cta-section sec-pad" aria-labelledby="sp-cta-heading">
+  <div class="wd-container">
+    <div class="st-cta-inner" data-reveal>
+      <h2 class="st-cta-title" id="sp-cta-heading">
+        Sẵn sàng trải nghiệm<br><span class="st-grad-text">toàn bộ tính năng?</span>
+      </h2>
+      <p class="st-cta-sub">
+        Dùng thử miễn phí 14 ngày — không cần thẻ tín dụng, không ràng buộc hợp đồng.
+      </p>
+      <div class="st-hero-ctas" style="justify-content:center;">
+        <a href="bang-gia.html" class="st-btn-primary">Bắt đầu miễn phí</a>
+        <a href="lien-he.html" class="st-btn-ghost">Đặt lịch demo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="st-footer" role="contentinfo">
+  <div class="wd-container">
+    <div class="st-footer-grid">
+      <div class="st-footer-brand">
+        <a href="index.html" class="st-logo">
+          <span class="logo-dot" aria-hidden="true"></span>[Tên Startup]
+        </a>
+        <p class="st-footer-tagline">
+          Nền tảng [lĩnh vực] thông minh giúp doanh nghiệp Việt Nam vận hành hiệu quả hơn mỗi ngày.
+        </p>
+        <div class="st-social-row" aria-label="Mạng xã hội">
+          <a href="#" class="st-social-icon" aria-label="Facebook" rel="noopener noreferrer">f</a>
+          <a href="#" class="st-social-icon" aria-label="LinkedIn" rel="noopener noreferrer">in</a>
+          <a href="#" class="st-social-icon" aria-label="Twitter" rel="noopener noreferrer">𝕏</a>
+          <a href="#" class="st-social-icon" aria-label="YouTube" rel="noopener noreferrer">▶</a>
+        </div>
+      </div>
+      <div>
+        <div class="st-footer-col-title">Sản phẩm</div>
+        <ul class="st-footer-links">
+          <li><a href="san-pham.html">Tính năng</a></li>
+          <li><a href="bang-gia.html">Bảng giá</a></li>
+          <li><a href="#">Changelog</a></li>
+          <li><a href="#">API Docs</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="st-footer-col-title">Công ty</div>
+        <ul class="st-footer-links">
+          <li><a href="#">Về chúng tôi</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Tuyển dụng</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div class="st-footer-newsletter">
+        <div class="st-footer-col-title">Cập nhật mới nhất</div>
+        <p class="st-newsletter-desc">Nhận thông báo về tính năng mới hàng tuần.</p>
+        <form class="st-newsletter-form" onsubmit="return false;" aria-label="Đăng ký nhận tin">
+          <input type="email" class="st-newsletter-input" placeholder="Email của bạn" aria-label="Email nhận tin" required>
+          <button type="submit" class="st-newsletter-btn">Đăng ký</button>
+        </form>
+      </div>
+    </div>
+    <div class="st-footer-bottom">
+      <span class="st-footer-copy">&copy; [Năm] [Tên Startup]. Bản quyền được bảo lưu.</span>
+      <nav class="st-footer-legal" aria-label="Pháp lý">
+        <a href="#">Điều khoản sử dụng</a>
+        <a href="#">Chính sách bảo mật</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<!-- Zalo Float -->
+<a href="https://zalo.me/[SoDienThoai]" class="st-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo">
+  <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect width="40" height="40" rx="20" fill="#0068FF"/>
+    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#fff" font-size="13" font-weight="700" font-family="sans-serif">Zalo</text>
+  </svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function() {
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+    });
+  }, { threshold: .08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+  const burger = document.getElementById('navBurger');
+  const mob = document.getElementById('navMob');
+  if (burger && mob) {
+    burger.addEventListener('click', () => {
+      const o = mob.classList.toggle('open');
+      burger.classList.toggle('open', o);
+      burger.setAttribute('aria-expanded', o);
+      document.body.style.overflow = o ? 'hidden' : '';
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && mob.classList.contains('open')) {
+        mob.classList.remove('open'); burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+    });
+    mob.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mob.classList.remove('open'); burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

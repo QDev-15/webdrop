@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liên Hệ — [TÊN NHÀ HÀNG] Omakase & Sushi</title>
+<meta name="description" content="Liên hệ [TÊN NHÀ HÀNG] — Địa chỉ, giờ mở cửa, số điện thoại, email và hướng dẫn đường đến nhà hàng Nhật Bản tại [THÀNH PHỐ].">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+.contact-row {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 20px 0; border-bottom: 1px solid var(--border-light);
+}
+.contact-row:last-child { border-bottom: none; }
+.cr-icon {
+  width: 40px; height: 40px; border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
+}
+.cr-label { font-size: 11px; font-weight: 500; color: var(--text-3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.cr-value { font-size: 15px; font-weight: 400; color: var(--text); }
+.cr-value a { color: var(--text); transition: color .2s; }
+.cr-value a:hover { color: var(--accent); }
+
+/* Hours table */
+.hours-table { width: 100%; border-collapse: collapse; }
+.hours-table tr { border-bottom: 1px solid var(--border-light); }
+.hours-table tr:last-child { border-bottom: none; }
+.hours-table td { padding: 10px 0; font-size: 13.5px; font-weight: 300; }
+.hours-table td:first-child { color: var(--text-2); width: 60%; }
+.hours-table td:last-child { color: var(--text); text-align: right; font-weight: 400; }
+.closed-day { color: var(--accent) !important; font-weight: 500 !important; }
+
+/* Map placeholder */
+.map-placeholder {
+  width: 100%; height: 340px; background: var(--warm);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 8px;
+}
+
+/* Contact form */
+.contact-form { background: var(--surface); border: 1px solid var(--border); padding: 36px; }
+.cf-input {
+  font-family: var(--sans); font-size: 14px; font-weight: 300; color: var(--text);
+  border: 1px solid var(--border); border-radius: 0; padding: 11px 14px; width: 100%;
+  background: var(--surface); transition: border-color .2s;
+}
+.cf-input:focus { outline: none; border-color: var(--text); }
+.cf-label { font-size: 11px; font-weight: 500; color: var(--text-3); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 6px; display: block; }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">鮨 [TÊN NHÀ HÀNG] <span class="logo-jp">日本料理</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="thuc-don.html">Thực đơn</a>
+        <a href="sushi-bar.html">Sushi Bar</a>
+        <a href="dat-ban.html">Đặt bàn</a>
+        <a href="lien-he.html" class="active">Liên hệ</a>
+      </div>
+      <a href="dat-ban.html" class="nav-cta">Đặt bàn</a>
+      <button class="nav-hamburger" id="navHamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="thuc-don.html">Thực đơn</a>
+  <a href="sushi-bar.html">Sushi Bar</a>
+  <a href="dat-ban.html">Đặt bàn</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-ban.html" class="nm-cta">Đặt bàn ngay</a>
+</div>
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="wd-container">
+    <div class="ph-jp">お問い合わせ</div>
+    <div class="ph-eyebrow">Contact</div>
+    <h1 class="ph-title">Liên <em>hệ</em></h1>
+    <p class="ph-sub">Chúng tôi luôn sẵn sàng hỗ trợ — đặt bàn, hỏi về thực đơn, hoặc tổ chức sự kiện riêng tư.</p>
+  </div>
+</div>
+
+<!-- Contact Info + Form -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="row g-5">
+
+      <!-- Thông tin liên hệ -->
+      <div class="col-lg-5 reveal">
+        <div class="eyebrow">Thông tin</div>
+        <h2 class="sec-title" style="margin-bottom:32px">Tìm chúng tôi</h2>
+
+        <div class="contact-row">
+          <div class="cr-icon">📍</div>
+          <div>
+            <div class="cr-label">Địa chỉ</div>
+            <div class="cr-value">[Số nhà, Đường]<br>[Quận/Phường, Thành phố]</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="cr-icon">📞</div>
+          <div>
+            <div class="cr-label">Điện thoại / Hotline</div>
+            <div class="cr-value"><a href="tel:[0901234567]">[0901 234 567]</a></div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="cr-icon">✉️</div>
+          <div>
+            <div class="cr-label">Email</div>
+            <div class="cr-value"><a href="mailto:[email@nhahangnhat.vn]">[email@nhahangnhat.vn]</a></div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="cr-icon">💬</div>
+          <div>
+            <div class="cr-label">Zalo</div>
+            <div class="cr-value"><a href="https://zalo.me/[ZALO_NUMBER]" target="_blank" rel="noopener noreferrer">Chat trực tiếp trên Zalo</a></div>
+          </div>
+        </div>
+
+        <!-- Giờ mở cửa -->
+        <div style="margin-top:32px;padding:24px;background:var(--surface);border:1px solid var(--border)">
+          <div style="font-size:11px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border-light)">Giờ mở cửa</div>
+          <table class="hours-table">
+            <tr><td>Thứ Ba – Thứ Sáu</td><td>11:30 – 14:00<br>17:30 – 22:00</td></tr>
+            <tr><td>Thứ Bảy – Chủ Nhật</td><td>11:00 – 14:30<br>17:00 – 22:30</td></tr>
+            <tr><td>Thứ Hai</td><td class="closed-day">Nghỉ</td></tr>
+          </table>
+          <p style="font-size:12px;font-weight:300;color:var(--text-3);margin-top:14px;margin-bottom:0">Last order trước 30 phút giờ đóng cửa. Sushi Bar yêu cầu đặt trước.</p>
+        </div>
+
+        <!-- Social -->
+        <div style="margin-top:24px">
+          <div style="font-size:11px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px">Theo dõi chúng tôi</div>
+          <div style="display:flex;gap:10px">
+            <a href="#" class="ft-soc" aria-label="Facebook" style="border-color:var(--border);color:var(--text-2)">fb</a>
+            <a href="#" class="ft-soc" aria-label="Instagram" style="border-color:var(--border);color:var(--text-2)">ig</a>
+            <a href="#" class="ft-soc" aria-label="YouTube" style="border-color:var(--border);color:var(--text-2)">yt</a>
+            <a href="#" class="ft-soc" aria-label="TikTok" style="border-color:var(--border);color:var(--text-2)">tk</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form liên hệ -->
+      <div class="col-lg-7 reveal reveal-d1">
+        <div class="contact-form">
+          <div style="margin-bottom:28px">
+            <h3 style="font-size:20px;font-weight:300;color:var(--text);letter-spacing:-1px;margin-bottom:6px">Gửi tin nhắn</h3>
+            <p style="font-size:13px;font-weight:300;color:var(--text-3);margin:0">Chúng tôi sẽ phản hồi trong vòng 4 giờ làm việc.</p>
+          </div>
+          <form>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="cf-label">Họ và tên</label>
+                <input type="text" class="cf-input" placeholder="[Nguyễn Văn A]">
+              </div>
+              <div class="col-md-6">
+                <label class="cf-label">Số điện thoại</label>
+                <input type="tel" class="cf-input" placeholder="[0901 234 567]">
+              </div>
+              <div class="col-12">
+                <label class="cf-label">Email</label>
+                <input type="email" class="cf-input" placeholder="[email@example.com]">
+              </div>
+              <div class="col-12">
+                <label class="cf-label">Chủ đề</label>
+                <select class="cf-input" style="appearance:none;cursor:pointer">
+                  <option>Hỏi về đặt bàn</option>
+                  <option>Hỏi về Omakase</option>
+                  <option>Sự kiện riêng / Private dining</option>
+                  <option>Hỏi về thực đơn</option>
+                  <option>Khác</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="cf-label">Nội dung</label>
+                <textarea class="cf-input" rows="5" style="resize:vertical" placeholder="[Nội dung tin nhắn của bạn...]"></textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn-accent" style="padding:13px 32px;border-radius:2px">Gửi tin nhắn</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Map -->
+<section style="background:var(--bg);padding-bottom:clamp(72px,10vw,128px)">
+  <div class="wd-container">
+    <div class="reveal">
+      <div class="map-placeholder">
+        <div style="font-size:32px">🗺️</div>
+        <div style="font-size:14px;font-weight:300;color:var(--text-2)">Google Maps — [TÊN NHÀ HÀNG]</div>
+        <div style="font-size:12px;color:var(--text-3)">[Địa chỉ đầy đủ]</div>
+        <a href="https://maps.google.com/?q=[ĐỊA CHỈ]" target="_blank" rel="noopener noreferrer" class="btn-ghost" style="margin-top:8px;font-size:13px;border-radius:2px">Mở Google Maps →</a>
+      </div>
+      <div style="margin-top:12px;display:flex;gap:24px;flex-wrap:wrap">
+        <div style="font-size:13px;font-weight:300;color:var(--text-2)">🚗 Bãi đỗ xe miễn phí trong tòa nhà</div>
+        <div style="font-size:13px;font-weight:300;color:var(--text-2)">🚇 Gần ga metro [Tên ga]</div>
+        <div style="font-size:13px;font-weight:300;color:var(--text-2)">🚕 Taxi / Grab: nhập địa chỉ "[TÊN NHÀ HÀNG]"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo">鮨 [TÊN NHÀ HÀNG] <span>日本</span></div>
+        <p class="ft-desc">Nhà hàng Nhật Bản chính thống — nơi nghệ thuật ẩm thực và triết lý thiền định gặp nhau trên từng đĩa thức ăn.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc" aria-label="Facebook">fb</a>
+          <a href="#" class="ft-soc" aria-label="Instagram">ig</a>
+          <a href="#" class="ft-soc" aria-label="Zalo">zl</a>
+          <a href="#" class="ft-soc" aria-label="YouTube">yt</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Menu</div>
+        <div class="ft-links">
+          <a href="thuc-don.html">Thực đơn</a>
+          <a href="sushi-bar.html">Sushi Bar</a>
+          <a href="thuc-don.html">Omakase</a>
+          <a href="thuc-don.html">Sake & Rượu</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Nhà hàng</div>
+        <div class="ft-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="dat-ban.html">Đặt bàn</a>
+          <a href="lien-he.html">Liên hệ</a>
+          <a href="#">Sự kiện riêng</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links">
+          <a href="tel:[0901234567]">📱 [0901 234 567]</a>
+          <a href="#">📍 [Địa chỉ nhà hàng]</a>
+          <a href="mailto:[email@nhahangnhat.vn]">✉️ [email@nhahangnhat.vn]</a>
+          <a href="#">🕙 11:30–14:00 / 17:30–22:00</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="ft-copy">© [2024] [TÊN NHÀ HÀNG] · Made in Vietnam 🇻🇳</div>
+        <div class="ft-copy">お食事 寿司 日本料理</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="zf">
+  <div class="zf-tip">Liên hệ Zalo</div>
+  <a href="https://zalo.me/[ZALO_NUMBER]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} });
+}, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+}
+</script>
+</body>
+</html>

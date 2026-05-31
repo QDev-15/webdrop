@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đặt Bàn — [TÊN NHÀ HÀNG] Omakase & Sushi</title>
+<meta name="description" content="Đặt bàn tại [TÊN NHÀ HÀNG] — Nhà hàng Nhật Bản chính thống. Đặt Omakase, à la carte, sự kiện riêng. Xác nhận nhanh qua điện thoại hoặc online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+/* Booking form on light bg */
+.booking-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 40px;
+}
+.bf-label { font-size: 11.5px; font-weight: 500; color: var(--text-2); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 6px; display: block; }
+.bf-input {
+  font-family: var(--sans); font-size: 14px; font-weight: 300; color: var(--text);
+  border: 1px solid var(--border); border-radius: 0; padding: 12px 14px; width: 100%;
+  background: var(--surface); transition: border-color .2s; appearance: none;
+}
+.bf-input:focus { outline: none; border-color: var(--text); }
+.bf-select { appearance: none; cursor: pointer; }
+.bf-textarea { resize: vertical; min-height: 100px; }
+
+/* Type selector */
+.type-card {
+  border: 1px solid var(--border); padding: 18px 20px; cursor: pointer;
+  transition: all .2s; display: block; position: relative;
+}
+.type-card input[type="radio"] { position: absolute; opacity: 0; }
+.type-card:has(input:checked),
+.type-card.selected { border-color: var(--accent); background: var(--accent-light); }
+.type-card:has(input:checked) .tc-name,
+.type-card.selected .tc-name { color: var(--accent); }
+.tc-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.tc-desc { font-size: 12px; font-weight: 300; color: var(--text-2); }
+
+/* Info sidebar */
+.info-sidebar { position: sticky; top: 80px; }
+.info-card { background: var(--surface); border: 1px solid var(--border); padding: 28px; margin-bottom: 16px; }
+.ic-title { font-size: 12px; font-weight: 500; color: var(--text-3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border-light); }
+.ic-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border-light); font-size: 13px; }
+.ic-row:last-child { border-bottom: none; }
+.ic-key { color: var(--text-2); font-weight: 300; }
+.ic-val { color: var(--text); font-weight: 400; text-align: right; }
+
+@media(max-width:768px) { .booking-form { padding: 24px; } }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">鮨 [TÊN NHÀ HÀNG] <span class="logo-jp">日本料理</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="thuc-don.html">Thực đơn</a>
+        <a href="sushi-bar.html">Sushi Bar</a>
+        <a href="dat-ban.html" class="active">Đặt bàn</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-ban.html" class="nav-cta">Đặt bàn</a>
+      <button class="nav-hamburger" id="navHamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="thuc-don.html">Thực đơn</a>
+  <a href="sushi-bar.html">Sushi Bar</a>
+  <a href="dat-ban.html">Đặt bàn</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-ban.html" class="nm-cta">Đặt bàn ngay</a>
+</div>
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="wd-container">
+    <div class="ph-jp">ご予約</div>
+    <div class="ph-eyebrow">Reservation</div>
+    <h1 class="ph-title">Đặt bàn <em>trực tuyến</em></h1>
+    <p class="ph-sub">Điền thông tin bên dưới — chúng tôi sẽ xác nhận trong vòng 2 giờ qua điện thoại hoặc Zalo.</p>
+  </div>
+</div>
+
+<!-- Booking Form -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="row g-5">
+
+      <!-- Form -->
+      <div class="col-lg-8 reveal">
+        <form class="booking-form">
+
+          <!-- Loại đặt bàn -->
+          <div class="mb-4">
+            <div class="bf-label mb-3">Loại đặt bàn</div>
+            <div class="row g-2">
+              <div class="col-sm-4">
+                <label class="type-card selected">
+                  <input type="radio" name="type" value="omakase" checked>
+                  <div class="tc-name">Omakase</div>
+                  <div class="tc-desc">Thực đơn do bếp trưởng chọn</div>
+                </label>
+              </div>
+              <div class="col-sm-4">
+                <label class="type-card">
+                  <input type="radio" name="type" value="alacarte">
+                  <div class="tc-name">À la carte</div>
+                  <div class="tc-desc">Chọn món từ thực đơn</div>
+                </label>
+              </div>
+              <div class="col-sm-4">
+                <label class="type-card">
+                  <input type="radio" name="type" value="private">
+                  <div class="tc-name">Sự kiện riêng</div>
+                  <div class="tc-desc">Sinh nhật, kỷ niệm, tiếp khách</div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Thông tin cá nhân -->
+          <div class="row g-3 mb-4">
+            <div class="col-md-6">
+              <label class="bf-label">Họ và tên *</label>
+              <input type="text" class="bf-input" placeholder="[Nguyễn Văn A]" required>
+            </div>
+            <div class="col-md-6">
+              <label class="bf-label">Số điện thoại *</label>
+              <input type="tel" class="bf-input" placeholder="[0901 234 567]" required>
+            </div>
+            <div class="col-md-6">
+              <label class="bf-label">Email</label>
+              <input type="email" class="bf-input" placeholder="[email@example.com]">
+            </div>
+            <div class="col-md-6">
+              <label class="bf-label">Công ty / Tổ chức</label>
+              <input type="text" class="bf-input" placeholder="[Tên công ty — không bắt buộc]">
+            </div>
+          </div>
+
+          <!-- Thời gian và số người -->
+          <div class="row g-3 mb-4">
+            <div class="col-md-4">
+              <label class="bf-label">Ngày *</label>
+              <input type="date" class="bf-input" required>
+            </div>
+            <div class="col-md-4">
+              <label class="bf-label">Giờ *</label>
+              <select class="bf-input bf-select" required>
+                <option value="">Chọn giờ</option>
+                <optgroup label="Bữa trưa">
+                  <option>11:30</option>
+                  <option>12:00</option>
+                  <option>13:00</option>
+                </optgroup>
+                <optgroup label="Bữa tối">
+                  <option>17:30</option>
+                  <option>18:00</option>
+                  <option>18:30</option>
+                  <option>19:00</option>
+                  <option>19:30</option>
+                  <option>20:00</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="bf-label">Số người *</label>
+              <select class="bf-input bf-select" required>
+                <option>1 người</option>
+                <option>2 người</option>
+                <option>3 người</option>
+                <option>4 người</option>
+                <option>5–6 người</option>
+                <option>7–10 người</option>
+                <option>10+ người</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Gói omakase -->
+          <div class="mb-4">
+            <label class="bf-label">Gói Omakase (nếu chọn Omakase)</label>
+            <select class="bf-input bf-select">
+              <option value="">Chưa quyết định</option>
+              <option>Standard — 8 món ([Giá]/người)</option>
+              <option>Premium — 12 món ([Giá]/người)</option>
+              <option>Signature — 16 món ([Giá]/người)</option>
+            </select>
+          </div>
+
+          <!-- Dị ứng & yêu cầu -->
+          <div class="row g-3 mb-4">
+            <div class="col-md-6">
+              <label class="bf-label">Dị ứng thực phẩm</label>
+              <input type="text" class="bf-input" placeholder="[Hải sản, đậu phộng, sữa...]">
+            </div>
+            <div class="col-md-6">
+              <label class="bf-label">Chế độ ăn đặc biệt</label>
+              <select class="bf-input bf-select">
+                <option>Không có</option>
+                <option>Chay / Vegetarian</option>
+                <option>Không gluten</option>
+                <option>Halal</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="bf-label">Yêu cầu đặc biệt / Dịp kỷ niệm</label>
+            <textarea class="bf-input bf-textarea" placeholder="[Sinh nhật, kỷ niệm ngày cưới, cần phòng riêng, trang trí đặc biệt, ...]"></textarea>
+          </div>
+
+          <div style="padding:16px;background:var(--accent-light);border-left:3px solid var(--accent);margin-bottom:24px">
+            <p style="font-size:13px;font-weight:300;color:var(--text-2);margin:0;line-height:1.7">
+              <strong style="color:var(--accent)">Lưu ý:</strong> Gói Omakase yêu cầu đặt cọc [X]% giá trị để xác nhận chỗ. Chúng tôi sẽ liên hệ hướng dẫn thanh toán đặt cọc sau khi nhận form. Hủy trước 48 giờ: hoàn cọc 100%.
+            </p>
+          </div>
+
+          <button type="submit" class="btn-accent" style="padding:14px 36px;font-size:15px;border-radius:2px">Gửi yêu cầu đặt bàn</button>
+        </form>
+      </div>
+
+      <!-- Sidebar thông tin -->
+      <div class="col-lg-4 reveal reveal-d1">
+        <div class="info-sidebar">
+          <div class="info-card">
+            <div class="ic-title">Thông tin nhà hàng</div>
+            <div class="ic-row">
+              <span class="ic-key">Địa chỉ</span>
+              <span class="ic-val">[Số nhà, Đường, Quận, Thành phố]</span>
+            </div>
+            <div class="ic-row">
+              <span class="ic-key">Điện thoại</span>
+              <span class="ic-val">[0901 234 567]</span>
+            </div>
+            <div class="ic-row">
+              <span class="ic-key">Trưa</span>
+              <span class="ic-val">11:30 – 14:00</span>
+            </div>
+            <div class="ic-row">
+              <span class="ic-key">Tối</span>
+              <span class="ic-val">17:30 – 22:00</span>
+            </div>
+            <div class="ic-row">
+              <span class="ic-key">Nghỉ</span>
+              <span class="ic-val">[Thứ Hai]</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="ic-title">Chính sách đặt bàn</div>
+            <div class="ic-row">
+              <span class="ic-key">Xác nhận</span>
+              <span class="ic-val">Trong vòng 2 giờ</span>
+            </div>
+            <div class="ic-row">
+              <span class="ic-key">Đặt cọc Omakase</span>
+              <span class="ic-val">[X]% giá trị</span>
+            </div>
+            <div class="ic-row">
+              <span class="ic-key">Hủy miễn phí</span>
+              <span class="ic-val">Trước 48 giờ</span>
+            </div>
+            <div class="ic-row">
+              <span class="ic-key">Sushi Bar</span>
+              <span class="ic-val">Đặt trước 24h</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="ic-title">Liên hệ nhanh</div>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+              <a href="tel:[0901234567]" class="btn-accent w-100" style="text-align:center;border-radius:2px">📞 Gọi ngay</a>
+              <a href="https://zalo.me/[ZALO_NUMBER]" target="_blank" rel="noopener noreferrer" class="btn-ghost w-100" style="text-align:center;border-radius:2px">💬 Chat Zalo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo">鮨 [TÊN NHÀ HÀNG] <span>日本</span></div>
+        <p class="ft-desc">Nhà hàng Nhật Bản chính thống — nơi nghệ thuật ẩm thực và triết lý thiền định gặp nhau trên từng đĩa thức ăn.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc" aria-label="Facebook">fb</a>
+          <a href="#" class="ft-soc" aria-label="Instagram">ig</a>
+          <a href="#" class="ft-soc" aria-label="Zalo">zl</a>
+          <a href="#" class="ft-soc" aria-label="YouTube">yt</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Menu</div>
+        <div class="ft-links">
+          <a href="thuc-don.html">Thực đơn</a>
+          <a href="sushi-bar.html">Sushi Bar</a>
+          <a href="thuc-don.html">Omakase</a>
+          <a href="thuc-don.html">Sake & Rượu</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Nhà hàng</div>
+        <div class="ft-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="dat-ban.html">Đặt bàn</a>
+          <a href="lien-he.html">Liên hệ</a>
+          <a href="#">Sự kiện riêng</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links">
+          <a href="tel:[0901234567]">📱 [0901 234 567]</a>
+          <a href="#">📍 [Địa chỉ nhà hàng]</a>
+          <a href="mailto:[email@nhahangnhat.vn]">✉️ [email@nhahangnhat.vn]</a>
+          <a href="#">🕙 11:30–14:00 / 17:30–22:00</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="ft-copy">© [2024] [TÊN NHÀ HÀNG] · Made in Vietnam 🇻🇳</div>
+        <div class="ft-copy">お食事 寿司 日本料理</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="zf">
+  <div class="zf-tip">Liên hệ Zalo</div>
+  <a href="https://zalo.me/[ZALO_NUMBER]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} });
+}, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+}
+// Type card selection
+document.querySelectorAll('.type-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('.type-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+  });
+});
+</script>
+</body>
+</html>

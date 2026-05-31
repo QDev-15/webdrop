@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trang Chủ — [TÊN QUÁN] BBQ Lửa Hồng</title>
+<meta name="description" content="[TÊN QUÁN] BBQ Lửa Hồng — Thịt nướng than hoa, combo set hấp dẫn, không gian sôi động. Đặt bàn ngay để có trải nghiệm BBQ khó quên.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+/* Hero */
+.hero { min-height:100vh;display:flex;align-items:flex-end;padding-bottom:clamp(48px,7vw,96px);padding-top:64px;position:relative;overflow:hidden;background:var(--dark2); }
+.hero-bg { position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1544025162-d76538977abd?w=1600&q=60&auto=format&fit=crop');background-size:cover;background-position:center;opacity:.4; }
+.hero-overlay { position:absolute;inset:0;background:linear-gradient(to top,rgba(28,18,9,.98) 0%,rgba(28,18,9,.7) 50%,rgba(28,18,9,.25) 100%); }
+.hero-inner { position:relative;z-index:2;width:100%;text-align:center; }
+.hero-badge { display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:500;color:rgba(255,255,255,.5);border:1px solid rgba(251,146,60,.25);padding:7px 16px;border-radius:8px;margin-bottom:22px;background:rgba(251,146,60,.07); }
+.hero-title { font-size:clamp(44px,6.5vw,88px);font-weight:700;color:#fff;line-height:1.04;letter-spacing:-2.5px;margin-bottom:18px; }
+.hero-title em { color:#fb923c;font-style:italic;font-weight:300; }
+.hero-sub { font-size:clamp(14px,1.5vw,17px);font-weight:300;color:rgba(255,255,255,.45);line-height:1.8;max-width:520px;margin:0 auto 32px; }
+</style>
+</head>
+<body>
+
+<nav id="nav" class="transparent">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">🔥 [TÊN QUÁN] <span>BBQ</span></a>
+      <div class="nav-links">
+        <a href="index.html" class="active">Trang chủ</a>
+        <a href="thuc-don.html">Thực đơn</a>
+        <a href="khong-gian.html">Không gian</a>
+        <a href="dat-ban.html">Đặt bàn</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-ban.html" class="nav-cta">Đặt bàn ngay</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="thuc-don.html">Thực đơn</a>
+  <a href="khong-gian.html">Không gian</a>
+  <a href="dat-ban.html">Đặt bàn</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-ban.html" class="nm-cta">Đặt bàn ngay</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="wd-container hero-inner">
+    <div class="hero-badge">🔥 Than hoa thật — Hương vị thật</div>
+    <h1 class="hero-title">Nướng cùng<br><em>lửa hồng</em>,<br>no cùng bạn bè.</h1>
+    <p class="hero-sub">Thịt tươi chọn lọc mỗi sáng, than hoa âm ỉ, gia vị ướp bí truyền — mỗi bữa BBQ là một buổi tụ họp đáng nhớ.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap mb-0">
+      <a href="dat-ban.html" class="btn-accent">Đặt bàn ngay 🔥</a>
+      <a href="thuc-don.html" class="btn-white">Xem thực đơn</a>
+    </div>
+    <!-- Counter Stats -->
+    <div class="counter-bar reveal" style="max-width:780px;margin-left:auto;margin-right:auto">
+      <div class="counter-item">
+        <div><span class="counter-num" data-target="60" data-suffix="">60</span><span class="counter-suffix">+</span></div>
+        <div class="counter-label">Loại thịt & hải sản</div>
+      </div>
+      <div class="counter-item">
+        <div><span class="counter-num" data-target="200" data-suffix="">200</span><span class="counter-suffix">+</span></div>
+        <div class="counter-label">Chỗ ngồi thoải mái</div>
+      </div>
+      <div class="counter-item">
+        <div><span class="counter-num" data-target="8" data-suffix="">8</span><span class="counter-suffix">+</span></div>
+        <div class="counter-label">Năm kinh nghiệm</div>
+      </div>
+      <div class="counter-item">
+        <div><span class="counter-num" data-target="4" data-suffix=".9">4.9</span><span class="counter-suffix">★</span></div>
+        <div class="counter-label">Đánh giá trên Google</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMBO & SET MENU -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Combo & Set</div>
+      <h2 class="sec-title">Chọn <em>combo ngay</em> — ăn thả ga</h2>
+      <p class="sec-sub">Combo tiết kiệm, đa dạng khẩu vị. Phù hợp nhóm 2–8 người, có thể kết hợp tự do theo sở thích.</p>
+    </div>
+    <div class="d-flex flex-column gap-4">
+      <div class="combo-card reveal">
+        <div class="cc-thumb">
+          <img class="cc-img" src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=600&q=80&auto=format&fit=crop" alt="Combo Lửa Đỏ" loading="lazy">
+          <span class="cc-badge bestseller">BEST SELLER</span>
+        </div>
+        <div class="cc-body">
+          <div class="cc-cat">Combo 2 người</div>
+          <div class="cc-name">Combo Lửa Đỏ — Bò & Heo</div>
+          <div class="cc-desc">Thịt bò ribeye thái mỏng, ba chỉ heo ướp sả, cổ heo muối xả, kèm rau sống tươi, nước chấm đặc biệt và cơm cuộn tự làm. Lựa chọn số 1 của mọi buổi tụ họp.</div>
+          <div class="cc-includes">
+            <span class="cc-tag">Bò ribeye 200g</span>
+            <span class="cc-tag">Ba chỉ heo 200g</span>
+            <span class="cc-tag">Cổ heo 150g</span>
+            <span class="cc-tag">Rau sống</span>
+            <span class="cc-tag">Nước chấm</span>
+          </div>
+          <div class="cc-foot">
+            <div><span class="cc-price">249.000đ</span><span class="cc-old">299.000đ</span></div>
+            <a href="dat-ban.html" class="btn-accent" style="font-size:13px;padding:9px 18px">Đặt ngay</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="combo-card reveal">
+        <div class="cc-thumb">
+          <img class="cc-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop" alt="Combo Biển Lửa" loading="lazy">
+          <span class="cc-badge new">NEW</span>
+        </div>
+        <div class="cc-body">
+          <div class="cc-cat">Combo 2 người</div>
+          <div class="cc-name">Combo Biển Lửa — Hải Sản</div>
+          <div class="cc-desc">Tôm sú to, mực ống tươi, sò điệp bơ tỏi, cá hồi Na Uy. Nướng trên than hoa, giữ trọn vị ngọt tự nhiên của biển cả. Dành cho người yêu hải sản.</div>
+          <div class="cc-includes">
+            <span class="cc-tag">Tôm sú 4 con</span>
+            <span class="cc-tag">Mực ống 200g</span>
+            <span class="cc-tag">Sò điệp 6 con</span>
+            <span class="cc-tag">Cá hồi 150g</span>
+            <span class="cc-tag">Bơ tỏi</span>
+          </div>
+          <div class="cc-foot">
+            <div><span class="cc-price">319.000đ</span></div>
+            <a href="dat-ban.html" class="btn-accent" style="font-size:13px;padding:9px 18px">Đặt ngay</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="combo-card reveal">
+        <div class="cc-thumb">
+          <img class="cc-img" src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&q=80&auto=format&fit=crop" alt="Combo Hoàng Gia" loading="lazy">
+          <span class="cc-badge bestseller">VIP</span>
+        </div>
+        <div class="cc-body">
+          <div class="cc-cat">Combo 4 người</div>
+          <div class="cc-name">Combo Hoàng Gia — Premium Mixed</div>
+          <div class="cc-desc">Dành cho nhóm 4 người muốn thưởng thức đầy đủ nhất. Kết hợp bò Wagyu, tôm sú, sườn heo, cánh gà nướng sa tế, kèm đồ nướng phụ và 4 lon nước ngọt.</div>
+          <div class="cc-includes">
+            <span class="cc-tag">Bò Wagyu 200g</span>
+            <span class="cc-tag">Tôm sú 6 con</span>
+            <span class="cc-tag">Sườn heo 400g</span>
+            <span class="cc-tag">Cánh gà 8 cái</span>
+            <span class="cc-tag">Nấm & Rau</span>
+            <span class="cc-tag">4 lon nước</span>
+          </div>
+          <div class="cc-foot">
+            <div><span class="cc-price">599.000đ</span><span class="cc-old">699.000đ</span></div>
+            <a href="dat-ban.html" class="btn-accent" style="font-size:13px;padding:9px 18px">Đặt ngay</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5 reveal">
+      <a href="thuc-don.html" class="btn-ghost">Xem toàn bộ thực đơn →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CÁC LOẠI THỊT -->
+<section class="sec-pad" style="background:var(--warm)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Nguyên liệu</div>
+      <h2 class="sec-title">Thịt <em>tươi mỗi ngày</em> — chọn lọc từ nguồn</h2>
+      <p class="sec-sub">Chúng tôi nhập thịt sáng sớm mỗi ngày, không cấp đông, không tồn kho. Bạn nướng gì là thịt đó vừa về sáng hôm đó.</p>
+    </div>
+    <div class="meat-grid reveal">
+      <div class="meat-card">
+        <div class="meat-icon">🥩</div>
+        <div class="meat-name">Bò Ribeye</div>
+        <div class="meat-desc">Bò Mỹ nhập khẩu, mỡ xen đều, mềm tan khi nướng vừa lửa</div>
+        <div class="meat-price">từ 89.000đ/100g</div>
+      </div>
+      <div class="meat-card">
+        <div class="meat-icon">🐷</div>
+        <div class="meat-name">Ba Chỉ Heo</div>
+        <div class="meat-desc">Ba chỉ nội địa tươi, mỡ-nạc xen kẽ hoàn hảo, ướp sả gừng đặc trưng</div>
+        <div class="meat-price">từ 49.000đ/100g</div>
+      </div>
+      <div class="meat-card">
+        <div class="meat-icon">🐑</div>
+        <div class="meat-name">Thịt Cừu</div>
+        <div class="meat-desc">Cừu Úc nhập khẩu, thái lát mỏng, hương thơm đặc trưng không gây gắt</div>
+        <div class="meat-price">từ 79.000đ/100g</div>
+      </div>
+      <div class="meat-card">
+        <div class="meat-icon">🍗</div>
+        <div class="meat-name">Cánh Gà</div>
+        <div class="meat-desc">Cánh gà ta chắc thịt, ướp sa tế hoặc mật ong chanh theo sở thích</div>
+        <div class="meat-price">từ 35.000đ/100g</div>
+      </div>
+      <div class="meat-card">
+        <div class="meat-icon">🦐</div>
+        <div class="meat-name">Tôm Sú</div>
+        <div class="meat-desc">Tôm sú tươi sống, size lớn, nướng than hoa giữ trọn vị ngọt biển</div>
+        <div class="meat-price">từ 59.000đ/con</div>
+      </div>
+      <div class="meat-card">
+        <div class="meat-icon">🐄</div>
+        <div class="meat-name">Bò Wagyu</div>
+        <div class="meat-desc">Wagyu A5 Nhật Bản, vân mỡ đẹp, tan chảy ngay khi chạm lửa</div>
+        <div class="meat-price">từ 199.000đ/100g</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CÁCH THỨC TRẢI NGHIỆM -->
+<section class="sec-pad sec-dark" style="background:var(--dark2)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Trải nghiệm</div>
+      <h2 class="sec-title">3 bước đến <em>bữa BBQ hoàn hảo</em></h2>
+      <p class="sec-sub">Đơn giản, thoải mái, không phải lo nghĩ gì — chúng tôi lo hết, bạn chỉ cần tận hưởng.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4 reveal reveal-d1">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <div class="step-icon">🧾</div>
+          <div class="step-title">Chọn thịt & combo</div>
+          <div class="step-desc">Gọi theo thực đơn hoặc chọn combo set có sẵn. Nhân viên tư vấn nhiệt tình, giúp bạn chọn đúng khẩu vị và ngân sách.</div>
+        </div>
+      </div>
+      <div class="col-md-4 reveal reveal-d2">
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <div class="step-icon">🔥</div>
+          <div class="step-title">Tự tay nướng cùng bạn bè</div>
+          <div class="step-desc">Bếp than hoa riêng cho từng bàn. Nhân viên hướng dẫn cách nướng chuẩn. Không khí sôi động, cười nói rôm rả.</div>
+        </div>
+      </div>
+      <div class="col-md-4 reveal reveal-d3">
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <div class="step-icon">😋</div>
+          <div class="step-title">Thưởng thức & no căng</div>
+          <div class="step-desc">Chấm với sốt đặc biệt bí truyền, cuộn cùng rau sống và cơm lá sen. No bụng, vui lòng — đó là cam kết của chúng tôi.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KHÔNG GIAN & BÀN NƯỚNG -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Không gian</div>
+      <h2 class="sec-title">Rộng rãi, <em>hiện đại</em> — xứng tầm bữa tiệc</h2>
+      <p class="sec-sub">Hệ thống hút khói tiên tiến, không lo ám mùi. Phòng VIP riêng dành cho tiệc riêng tư và sinh nhật.</p>
+    </div>
+    <div class="gallery-wide reveal">
+      <div class="gw-item">
+        <img class="gw-img" src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=900&q=80&auto=format&fit=crop" alt="Không gian nhà hàng" loading="lazy">
+      </div>
+      <div class="gw-item">
+        <img class="gw-img" src="https://images.unsplash.com/photo-1544025162-d76538977abd?w=600&q=80&auto=format&fit=crop" alt="Bàn nướng BBQ" loading="lazy">
+      </div>
+      <div class="gw-item" style="grid-column:1;grid-row:2">
+        <img class="gw-img" src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=600&q=80&auto=format&fit=crop" alt="Phòng VIP" loading="lazy">
+      </div>
+    </div>
+    <div class="text-center mt-4 reveal">
+      <a href="khong-gian.html" class="btn-ghost">Xem thêm hình ảnh không gian →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ĐÁNH GIÁ -->
+<section class="sec-pad" style="background:var(--surface)">
+  <div class="wd-container">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Đánh giá</div>
+      <h2 class="sec-title">Khách hàng <em>nói gì</em> về chúng tôi</h2>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="rv reveal reveal-d1">
+          <div class="rv-stars">★★★★★</div>
+          <div class="rv-text">"Bò ribeye nướng than hoa ngon khỏi phải bàn. Thịt tươi, ướp đậm đà, nhân viên hướng dẫn nướng tận tình. Sẽ còn quay lại nhiều lần!"</div>
+          <div class="rv-foot">
+            <img class="rv-av" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80&auto=format&fit=crop&crop=face" alt="avatar khách hàng" loading="lazy">
+            <div><div class="rv-name">Nguyễn Đức Thắng</div><div class="rv-role">Food Blogger · TP.HCM</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="rv reveal reveal-d2">
+          <div class="rv-stars">★★★★★</div>
+          <div class="rv-text">"Đặt tiệc sinh nhật cho nhóm 12 người. Phòng VIP rộng rãi, nhân viên chuyên nghiệp. Combo Hoàng Gia rất xứng đáng giá tiền, ai cũng khen."</div>
+          <div class="rv-foot">
+            <img class="rv-av" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80&auto=format&fit=crop&crop=face" alt="avatar khách hàng" loading="lazy">
+            <div><div class="rv-name">Lê Thị Bích Ngọc</div><div class="rv-role">Khách hàng thường xuyên</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="rv reveal reveal-d3">
+          <div class="rv-stars">★★★★★</div>
+          <div class="rv-text">"Hệ thống hút khói tốt, không bị ám mùi áo. Bò Wagyu chảy tan trong miệng. Không gian rộng, âm nhạc vừa phải — hoàn hảo cho buổi tụ họp cuối tuần."</div>
+          <div class="rv-foot">
+            <img class="rv-av" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80&auto=format&fit=crop&crop=face" alt="avatar khách hàng" loading="lazy">
+            <div><div class="rv-name">Trần Quang Huy</div><div class="rv-role">Khách đặt tiệc doanh nghiệp</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="wd-container reveal">
+    <h2 class="cta-title">Sẵn sàng cho<br>bữa BBQ hoàn hảo?</h2>
+    <p class="cta-sub">Đặt bàn ngay hôm nay — đặc biệt cuối tuần và ngày lễ nên đặt sớm để có bàn đẹp nhất.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap position-relative">
+      <a href="dat-ban.html" class="btn-white">Đặt bàn ngay →</a>
+      <a href="thuc-don.html" style="font-size:14px;background:transparent;color:rgba(255,255,255,.7);padding:12px 26px;border-radius:9px;border:1px solid rgba(255,255,255,.3);text-decoration:none;display:inline-block">Xem thực đơn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo">🔥 [TÊN QUÁN] <span>BBQ</span></div>
+        <p class="ft-desc">Thịt nướng than hoa tươi ngon, không gian sôi động, ẩm thực BBQ đích thực.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc" aria-label="Facebook">fb</a>
+          <a href="#" class="ft-soc" aria-label="Instagram">ig</a>
+          <a href="#" class="ft-soc" aria-label="Zalo">zl</a>
+          <a href="#" class="ft-soc" aria-label="TikTok">tt</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Thực đơn</div>
+        <div class="ft-links">
+          <a href="thuc-don.html">Thịt bò & cừu</a>
+          <a href="thuc-don.html">Thịt heo & gà</a>
+          <a href="thuc-don.html">Hải sản tươi</a>
+          <a href="thuc-don.html">Combo set</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Thông tin</div>
+        <div class="ft-links">
+          <a href="khong-gian.html">Không gian & bàn</a>
+          <a href="dat-ban.html">Đặt bàn</a>
+          <a href="lien-he.html">Liên hệ</a>
+          <a href="#">Khuyến mãi</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links">
+          <a href="tel:0901234567">📱 [0901 234 567]</a>
+          <a href="#">📍 [Địa chỉ quán BBQ]</a>
+          <a href="#">🕐 17:00 – 23:00 hàng ngày</a>
+          <a href="#">🕐 11:00 – 14:00 Thứ 7, CN</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="ft-copy">© 2026 [TÊN QUÁN] BBQ Lửa Hồng · Made in Vietnam 🇻🇳</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="zf">
+  <div class="zf-tip">Đặt bàn qua Zalo</div>
+  <a href="https://zalo.me/[SỐ_ZALO]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const nav = document.getElementById('nav');
+if (nav && nav.classList.contains('transparent')) {
+  window.addEventListener('scroll', () => { nav.classList.toggle('transparent', window.scrollY < 80); }, {passive:true});
+}
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} });
+}, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+}
+// Counter animation
+const counters = document.querySelectorAll('.counter-num');
+const cro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      const raw = e.target.dataset.target;
+      const target = parseFloat(raw);
+      const suffix = e.target.dataset.suffix || '';
+      let current = 0;
+      const isDecimal = raw.includes('.');
+      const step = Math.max(target / 60, 0.1);
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        e.target.textContent = isDecimal ? current.toFixed(1) + suffix : Math.floor(current) + suffix;
+        if(current >= target) clearInterval(timer);
+      }, 25);
+      cro.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.5});
+counters.forEach(c => cro.observe(c));
+</script>
+</body>
+</html>

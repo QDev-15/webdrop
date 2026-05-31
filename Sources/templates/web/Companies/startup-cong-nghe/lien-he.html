@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liên hệ & Demo — [Tên Startup] | Tư vấn giải pháp miễn phí</title>
+  <meta name="description" content="Liên hệ đội ngũ [Tên Startup] để được tư vấn giải pháp phù hợp hoặc đặt lịch demo sản phẩm miễn phí. Phản hồi trong vòng [N] tiếng làm việc.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav" role="navigation" aria-label="Điều hướng chính">
+  <div class="st-nav-inner">
+    <a href="index.html" class="st-logo">
+      <span class="logo-dot" aria-hidden="true"></span>[Tên Startup]
+    </a>
+    <ul class="st-nav-links">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="san-pham.html">Sản phẩm</a></li>
+      <li><a href="bang-gia.html">Bảng giá</a></li>
+      <li><a href="lien-he.html" class="active">Liên hệ</a></li>
+    </ul>
+    <div class="st-nav-right">
+      <a href="lien-he.html" class="st-nav-login">Đăng nhập</a>
+      <a href="bang-gia.html" class="st-nav-cta">Dùng thử miễn phí</a>
+    </div>
+    <button class="st-burger" id="navBurger" aria-label="Mở menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="st-mob" id="navMob" role="dialog" aria-label="Menu di động">
+  <a href="index.html">Trang chủ</a>
+  <a href="san-pham.html">Sản phẩm</a>
+  <a href="bang-gia.html">Bảng giá</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="bang-gia.html" class="mob-cta">Dùng thử miễn phí</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="st-page-hero" aria-labelledby="lh-heading">
+  <div class="wd-container">
+    <div class="st-ph-inner">
+      <div class="st-ph-badge">
+        <span aria-hidden="true">💬</span> Liên hệ & Demo
+      </div>
+      <h1 class="st-ph-title" id="lh-heading">
+        Hãy cùng nhau<br>tìm <em>giải pháp</em> phù hợp
+      </h1>
+      <p class="st-ph-sub">
+        Đội ngũ tư vấn của [Tên Startup] sẵn sàng lắng nghe và đề xuất giải pháp tối ưu nhất cho doanh nghiệp của bạn.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT MAIN -->
+<section class="sec-pad" style="background:var(--bg);" aria-labelledby="contact-main-heading">
+  <div class="wd-container">
+    <div class="row g-5">
+      <!-- Form -->
+      <div class="col-lg-7" data-reveal>
+        <div class="st-section-badge">
+          <span aria-hidden="true">📝</span> Gửi tin nhắn
+        </div>
+        <h2 class="st-section-title" id="contact-main-heading">
+          Để lại thông tin,<br>chúng tôi liên hệ <span class="st-grad-text">ngay</span>
+        </h2>
+        <p class="st-section-sub mb-4">
+          Điền form bên dưới — đội sales sẽ liên hệ trong vòng [N] tiếng làm việc để tư vấn giải pháp phù hợp với doanh nghiệp của bạn.
+        </p>
+
+        <form class="st-contact-form" onsubmit="return false;" aria-label="Form liên hệ">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <div class="st-form-group">
+                <label class="st-form-label" for="fullname">Họ và tên <span style="color:var(--danger)">*</span></label>
+                <input type="text" id="fullname" class="st-form-control" placeholder="[Nguyễn Văn A]" required aria-required="true">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="st-form-group">
+                <label class="st-form-label" for="company">Công ty / Tổ chức</label>
+                <input type="text" id="company" class="st-form-control" placeholder="[Tên công ty của bạn]">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="st-form-group">
+                <label class="st-form-label" for="email">Email công ty <span style="color:var(--danger)">*</span></label>
+                <input type="email" id="email" class="st-form-control" placeholder="[ten@congty.com]" required aria-required="true">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="st-form-group">
+                <label class="st-form-label" for="phone">Số điện thoại</label>
+                <input type="tel" id="phone" class="st-form-control" placeholder="[0901 234 567]">
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="st-form-group">
+                <label class="st-form-label" for="size">Quy mô doanh nghiệp</label>
+                <select id="size" class="st-form-control" aria-label="Quy mô doanh nghiệp">
+                  <option value="" disabled selected>Chọn quy mô...</option>
+                  <option value="1-10">1–10 nhân viên (Startup)</option>
+                  <option value="11-50">11–50 nhân viên (SME nhỏ)</option>
+                  <option value="51-200">51–200 nhân viên (SME vừa)</option>
+                  <option value="201-500">201–500 nhân viên</option>
+                  <option value="500+">500+ nhân viên (Enterprise)</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="st-form-group">
+                <label class="st-form-label" for="interest">Bạn quan tâm đến</label>
+                <select id="interest" class="st-form-control" aria-label="Mục tiêu quan tâm">
+                  <option value="" disabled selected>Chọn mục tiêu...</option>
+                  <option value="trial">Dùng thử miễn phí</option>
+                  <option value="demo">Xem demo sản phẩm</option>
+                  <option value="pro">Tư vấn gói Professional</option>
+                  <option value="enterprise">Tư vấn gói Enterprise</option>
+                  <option value="integration">Tích hợp hệ thống riêng</option>
+                  <option value="other">Khác</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="st-form-group">
+                <label class="st-form-label" for="message">Mô tả nhu cầu / Câu hỏi</label>
+                <textarea id="message" class="st-form-control" rows="4" placeholder="[Mô tả thách thức bạn đang gặp phải hoặc câu hỏi cụ thể bạn muốn được giải đáp...]" aria-label="Nội dung tin nhắn"></textarea>
+              </div>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="st-btn-primary" style="width:100%;justify-content:center;padding:14px 28px;font-size:15px;">
+                Gửi yêu cầu tư vấn
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <p style="font-size:12px;color:var(--text-3);text-align:center;margin-top:12px;">
+                Bằng cách gửi form, bạn đồng ý với <a href="#" style="color:var(--accent-mid);text-decoration:underline;">Chính sách bảo mật</a> của chúng tôi.
+              </p>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Info column -->
+      <div class="col-lg-5" data-reveal data-reveal-d1>
+        <div class="st-section-badge">
+          <span aria-hidden="true">📍</span> Thông tin liên hệ
+        </div>
+        <h2 class="st-section-title" style="font-size:clamp(22px,2.5vw,32px);">
+          Nhiều cách để <span class="st-grad-text">kết nối</span>
+        </h2>
+
+        <div style="display:flex;flex-direction:column;gap:14px;margin-top:28px;">
+          <div class="st-info-card">
+            <div class="st-info-icon" aria-hidden="true">📧</div>
+            <div>
+              <div class="st-info-title">Email</div>
+              <div class="st-info-text">
+                <a href="mailto:[email@startup.vn]" style="color:var(--accent-mid);">[email@startup.vn]</a><br>
+                Phản hồi trong [N] tiếng làm việc
+              </div>
+            </div>
+          </div>
+          <div class="st-info-card">
+            <div class="st-info-icon" aria-hidden="true">📞</div>
+            <div>
+              <div class="st-info-title">Hotline hỗ trợ</div>
+              <div class="st-info-text">
+                <a href="tel:[19001234]" style="color:var(--accent-mid);">[1900 1234]</a><br>
+                Thứ 2 – Thứ 6, 8:00 – 18:00
+              </div>
+            </div>
+          </div>
+          <div class="st-info-card">
+            <div class="st-info-icon" aria-hidden="true">💬</div>
+            <div>
+              <div class="st-info-title">Zalo OA</div>
+              <div class="st-info-text">
+                Nhắn tin trực tiếp qua Zalo<br>
+                <a href="https://zalo.me/[SoDienThoai]" style="color:var(--accent-mid);" target="_blank" rel="noopener noreferrer">Mở Zalo ngay →</a>
+              </div>
+            </div>
+          </div>
+          <div class="st-info-card">
+            <div class="st-info-icon" aria-hidden="true">🏢</div>
+            <div>
+              <div class="st-info-title">Văn phòng</div>
+              <div class="st-info-text">
+                [Số nhà, đường phố]<br>
+                [Quận/Huyện, Thành phố]
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Response time badge -->
+        <div style="margin-top:28px;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);border-radius:14px;padding:20px;display:flex;align-items:center;gap:14px;">
+          <div style="font-size:32px;" aria-hidden="true">⚡</div>
+          <div>
+            <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;">Thời gian phản hồi nhanh</div>
+            <div style="font-size:13px;color:rgba(200,200,240,.6);line-height:1.5;">
+              [N]% yêu cầu được phản hồi trong <strong style="color:#4ade80">[X] tiếng</strong> trong ngày làm việc.
+            </div>
+          </div>
+        </div>
+
+        <!-- Social links -->
+        <div style="margin-top:24px;">
+          <div style="font-size:12px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;">Theo dõi chúng tôi</div>
+          <div class="st-social-row">
+            <a href="#" class="st-social-icon" aria-label="Facebook" rel="noopener noreferrer">f</a>
+            <a href="#" class="st-social-icon" aria-label="LinkedIn" rel="noopener noreferrer">in</a>
+            <a href="#" class="st-social-icon" aria-label="Twitter" rel="noopener noreferrer">𝕏</a>
+            <a href="#" class="st-social-icon" aria-label="YouTube" rel="noopener noreferrer">▶</a>
+            <a href="#" class="st-social-icon" aria-label="TikTok" rel="noopener noreferrer">♪</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO REQUEST HIGHLIGHT — FULL-BLEED -->
+<section style="background:var(--dark2);border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light);" aria-labelledby="demo-heading">
+  <div class="wd-container sec-pad">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6" data-reveal>
+        <div class="st-section-badge">
+          <span aria-hidden="true">🎯</span> Demo trực tiếp
+        </div>
+        <h2 class="st-section-title" id="demo-heading">
+          Xem [Tên Startup] hoạt động<br>với <em>dữ liệu thật</em> của bạn
+        </h2>
+        <p class="st-section-sub mb-4">
+          Đặt lịch demo 30 phút 1-1 với chuyên gia sản phẩm — chúng tôi sẽ demo đúng với quy trình và nhu cầu đặc thù của ngành bạn đang hoạt động.
+        </p>
+        <ul class="st-feat-list">
+          <li>Demo tùy chỉnh theo ngành và quy mô doanh nghiệp bạn</li>
+          <li>Giải đáp mọi câu hỏi kỹ thuật trực tiếp với chuyên gia</li>
+          <li>Đánh giá ROI cụ thể cho trường hợp của bạn</li>
+          <li>Nhận đề xuất lộ trình triển khai chi tiết</li>
+        </ul>
+      </div>
+      <div class="col-lg-6" data-reveal data-reveal-d1>
+        <!-- Demo booking form -->
+        <div class="st-contact-form">
+          <div class="st-section-badge" style="margin-bottom:20px;">
+            <span aria-hidden="true">📅</span> Đặt lịch demo miễn phí
+          </div>
+          <form onsubmit="return false;" aria-label="Form đặt lịch demo">
+            <div class="st-form-group">
+              <label class="st-form-label" for="demo-name">Họ và tên <span style="color:var(--danger)">*</span></label>
+              <input type="text" id="demo-name" class="st-form-control" placeholder="[Tên của bạn]" required aria-required="true">
+            </div>
+            <div class="st-form-group">
+              <label class="st-form-label" for="demo-email">Email <span style="color:var(--danger)">*</span></label>
+              <input type="email" id="demo-email" class="st-form-control" placeholder="[email@congty.com]" required aria-required="true">
+            </div>
+            <div class="st-form-group">
+              <label class="st-form-label" for="demo-phone">Số điện thoại</label>
+              <input type="tel" id="demo-phone" class="st-form-control" placeholder="[0901 234 567]">
+            </div>
+            <div class="st-form-group">
+              <label class="st-form-label" for="demo-time">Thời gian phù hợp</label>
+              <select id="demo-time" class="st-form-control" aria-label="Thời gian demo">
+                <option value="" disabled selected>Chọn khung giờ...</option>
+                <option value="morning">Buổi sáng (8:00 – 12:00)</option>
+                <option value="afternoon">Buổi chiều (13:00 – 17:00)</option>
+                <option value="flexible">Linh hoạt, team sales liên hệ sắp xếp</option>
+              </select>
+            </div>
+            <button type="submit" class="st-btn-primary" style="width:100%;justify-content:center;padding:13px 28px;">
+              Đặt lịch demo ngay
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US — FEATURE-ICON-ROW -->
+<section class="sec-pad" style="background:var(--bg);" aria-labelledby="why-heading">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="st-section-badge">
+        <span aria-hidden="true">🌟</span> Tại sao chọn chúng tôi
+      </div>
+      <h2 class="st-section-title" id="why-heading">
+        Không chỉ là phần mềm —<br>là <span class="st-grad-text">đối tác chiến lược</span>
+      </h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-3 text-center" data-reveal>
+        <div style="font-size:36px;margin-bottom:16px;" aria-hidden="true">🇻🇳</div>
+        <div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:8px;">Hiểu thị trường Việt Nam</div>
+        <div style="font-size:14px;color:var(--text-2);line-height:1.6;">Được xây dựng bởi người Việt cho doanh nghiệp Việt — hiểu văn hóa, quy trình và thách thức đặc thù.</div>
+      </div>
+      <div class="col-md-3 text-center" data-reveal data-reveal-d1>
+        <div style="font-size:36px;margin-bottom:16px;" aria-hidden="true">🔧</div>
+        <div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:8px;">Tùy chỉnh linh hoạt</div>
+        <div style="font-size:14px;color:var(--text-2);line-height:1.6;">Không phải template cứng nhắc — mọi quy trình, dashboard và báo cáo đều có thể cấu hình theo nhu cầu riêng.</div>
+      </div>
+      <div class="col-md-3 text-center" data-reveal data-reveal-d2>
+        <div style="font-size:36px;margin-bottom:16px;" aria-hidden="true">📈</div>
+        <div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:8px;">ROI rõ ràng, đo lường được</div>
+        <div style="font-size:14px;color:var(--text-2);line-height:1.6;">Khách hàng trung bình tiết kiệm [X] tiếng/tuần và tăng [Y]% doanh thu trong [Z] tháng đầu sử dụng.</div>
+      </div>
+      <div class="col-md-3 text-center" data-reveal data-reveal-d3>
+        <div style="font-size:36px;margin-bottom:16px;" aria-hidden="true">🤝</div>
+        <div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:8px;">Đồng hành dài hạn</div>
+        <div style="font-size:14px;color:var(--text-2);line-height:1.6;">Không phải bán xong rồi thôi — đội Customer Success chủ động theo dõi và tối ưu kết quả cho bạn.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="st-footer" role="contentinfo">
+  <div class="wd-container">
+    <div class="st-footer-grid">
+      <div class="st-footer-brand">
+        <a href="index.html" class="st-logo">
+          <span class="logo-dot" aria-hidden="true"></span>[Tên Startup]
+        </a>
+        <p class="st-footer-tagline">
+          Nền tảng [lĩnh vực] thông minh giúp doanh nghiệp Việt Nam vận hành hiệu quả hơn mỗi ngày.
+        </p>
+        <div class="st-social-row" aria-label="Mạng xã hội">
+          <a href="#" class="st-social-icon" aria-label="Facebook" rel="noopener noreferrer">f</a>
+          <a href="#" class="st-social-icon" aria-label="LinkedIn" rel="noopener noreferrer">in</a>
+          <a href="#" class="st-social-icon" aria-label="Twitter" rel="noopener noreferrer">𝕏</a>
+          <a href="#" class="st-social-icon" aria-label="YouTube" rel="noopener noreferrer">▶</a>
+        </div>
+      </div>
+      <div>
+        <div class="st-footer-col-title">Sản phẩm</div>
+        <ul class="st-footer-links">
+          <li><a href="san-pham.html">Tính năng</a></li>
+          <li><a href="bang-gia.html">Bảng giá</a></li>
+          <li><a href="#">Changelog</a></li>
+          <li><a href="#">API Docs</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="st-footer-col-title">Công ty</div>
+        <ul class="st-footer-links">
+          <li><a href="#">Về chúng tôi</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Tuyển dụng</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div class="st-footer-newsletter">
+        <div class="st-footer-col-title">Cập nhật mới nhất</div>
+        <p class="st-newsletter-desc">Nhận thông báo về tính năng mới hàng tuần.</p>
+        <form class="st-newsletter-form" onsubmit="return false;" aria-label="Đăng ký nhận tin">
+          <input type="email" class="st-newsletter-input" placeholder="Email của bạn" aria-label="Email nhận tin" required>
+          <button type="submit" class="st-newsletter-btn">Đăng ký</button>
+        </form>
+      </div>
+    </div>
+    <div class="st-footer-bottom">
+      <span class="st-footer-copy">&copy; [Năm] [Tên Startup]. Bản quyền được bảo lưu.</span>
+      <nav class="st-footer-legal" aria-label="Pháp lý">
+        <a href="#">Điều khoản sử dụng</a>
+        <a href="#">Chính sách bảo mật</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<!-- Zalo Float -->
+<a href="https://zalo.me/[SoDienThoai]" class="st-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo">
+  <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect width="40" height="40" rx="20" fill="#0068FF"/>
+    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#fff" font-size="13" font-weight="700" font-family="sans-serif">Zalo</text>
+  </svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function() {
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+    });
+  }, { threshold: .08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+  const burger = document.getElementById('navBurger');
+  const mob = document.getElementById('navMob');
+  if (burger && mob) {
+    burger.addEventListener('click', () => {
+      const o = mob.classList.toggle('open');
+      burger.classList.toggle('open', o);
+      burger.setAttribute('aria-expanded', o);
+      document.body.style.overflow = o ? 'hidden' : '';
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && mob.classList.contains('open')) {
+        mob.classList.remove('open'); burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+    });
+    mob.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mob.classList.remove('open'); burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

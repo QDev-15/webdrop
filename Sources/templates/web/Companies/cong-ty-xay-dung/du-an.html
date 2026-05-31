@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dự Án & Công Trình — [Tên Công Ty] Xây Dựng</title>
+  <meta name="description" content="Danh mục các công trình tiêu biểu đã thi công bởi [Tên Công Ty]: nhà ở dân dụng, nhà xưởng công nghiệp, văn phòng, biệt thự tại [Tỉnh/TP].">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ══ NAV ══ -->
+  <nav id="nav" aria-label="Điều hướng chính">
+    <div class="wd-container">
+      <div class="xd-nav-inner">
+        <a href="index.html" class="xd-logo">
+          <div class="xd-logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V9l9-6 9 6v12H3zM9 21V12h6v9"/></svg>
+          </div>
+          [CÔNG TY] <span>XÂY DỰNG</span>
+        </a>
+        <nav class="xd-nav-links" aria-label="Menu chính">
+          <a href="index.html">Trang chủ</a>
+          <a href="dich-vu.html">Dịch vụ</a>
+          <a href="du-an.html" class="active">Dự án</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </nav>
+        <a href="lien-he.html" class="xd-nav-cta">Báo giá miễn phí</a>
+        <button class="xd-burger" id="navBurger" aria-label="Mở menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile nav -->
+  <div class="xd-nav-mob" id="navMob" role="dialog" aria-label="Menu di động">
+    <a href="index.html">Trang chủ</a>
+    <a href="dich-vu.html">Dịch vụ</a>
+    <a href="du-an.html">Dự án</a>
+    <a href="lien-he.html">Liên hệ</a>
+    <a href="lien-he.html" class="xd-nav-cta">Báo giá miễn phí</a>
+  </div>
+
+  <!-- ══ PAGE HERO ══ -->
+  <section class="xd-page-hero" aria-label="Dự án & Công trình">
+    <div class="xd-page-hero-bg" aria-hidden="true">
+      <img
+        src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80&auto=format&fit=crop"
+        alt=""
+        loading="eager"
+      >
+    </div>
+    <div class="wd-container xd-page-hero-content">
+      <div class="xd-breadcrumb">
+        <a href="index.html">Trang chủ</a>
+        <span class="xd-breadcrumb-sep" aria-hidden="true">/</span>
+        <span class="xd-breadcrumb-current">Dự án</span>
+      </div>
+      <div class="xd-ph-eyebrow">Portfolio</div>
+      <h1 class="xd-ph-title">Dự án &<br><span style="color:var(--accent)">Công trình</span></h1>
+      <p class="xd-ph-sub">Hơn [N] công trình hoàn thành trên khắp [N] tỉnh thành, từ nhà ở dân dụng đến khu công nghiệp quy mô lớn.</p>
+    </div>
+  </section>
+
+  <!-- ══ STATS MINI BAR ══ -->
+  <section class="xd-stats-bar" aria-label="Thống kê dự án">
+    <div class="wd-container">
+      <div class="row g-0 align-items-center justify-content-around text-center">
+        <div class="col-6 col-md-3" data-reveal>
+          <span class="xd-stat-num" data-counter="150" data-suffix="+">150+</span>
+          <span class="xd-stat-label">Nhà ở dân dụng</span>
+        </div>
+        <div class="col-6 col-md-3" data-reveal data-delay="1">
+          <span class="xd-stat-num" data-counter="85" data-suffix="+">85+</span>
+          <span class="xd-stat-label">Công trình công nghiệp</span>
+        </div>
+        <div class="col-6 col-md-3" data-reveal data-delay="2">
+          <span class="xd-stat-num" data-counter="65" data-suffix="+">65+</span>
+          <span class="xd-stat-label">Văn phòng & Thương mại</span>
+        </div>
+        <div class="col-6 col-md-3" data-reveal data-delay="3">
+          <span class="xd-stat-num" data-counter="50" data-suffix="+">50+</span>
+          <span class="xd-stat-label">Biệt thự cao cấp</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ DANH MỤC DỰ ÁN ══ -->
+  <section class="sec-pad" aria-labelledby="project-list-title">
+    <div class="wd-container">
+      <div class="row align-items-center mb-5">
+        <div class="col-md-6" data-reveal>
+          <div class="xd-eyebrow">Danh mục công trình</div>
+          <h2 class="xd-sec-title" id="project-list-title">Tất cả <span class="xd-accent">dự án</span></h2>
+        </div>
+        <div class="col-md-6" data-reveal data-delay="1">
+          <!-- Filter buttons -->
+          <div class="xd-filter-bar justify-content-md-end">
+            <button class="xd-filter-btn active" data-filter="all">Tất cả</button>
+            <button class="xd-filter-btn" data-filter="dan-dung">Dân dụng</button>
+            <button class="xd-filter-btn" data-filter="cong-nghiep">Công nghiệp</button>
+            <button class="xd-filter-btn" data-filter="biet-thu">Biệt thự</button>
+            <button class="xd-filter-btn" data-filter="thuong-mai">Thương mại</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dự án grid -->
+      <div class="row g-4" id="projectGrid">
+
+        <!-- DA 1 -->
+        <div class="col-12 col-md-6 col-lg-4" data-reveal data-category="thuong-mai">
+          <div class="xd-project-card-full">
+            <img
+              src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80&auto=format&fit=crop"
+              alt="Tòa nhà văn phòng [Tên Dự Án 1]"
+              loading="lazy"
+            >
+            <div class="xd-project-card-overlay">
+              <div class="xd-proj-tag">Văn phòng thương mại</div>
+              <div class="xd-proj-title-card">[Tên Dự Án 1] Tower</div>
+              <div class="xd-proj-meta">[Quận, Tỉnh/TP] &bull; [Năm hoàn thành] &bull; [N] tầng</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DA 2 -->
+        <div class="col-12 col-md-6 col-lg-4" data-reveal data-delay="1" data-category="dan-dung">
+          <div class="xd-project-card-full">
+            <img
+              src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=80&auto=format&fit=crop"
+              alt="Khu nhà ở [Tên Dự Án 2]"
+              loading="lazy"
+            >
+            <div class="xd-project-card-overlay">
+              <div class="xd-proj-tag">Khu dân cư</div>
+              <div class="xd-proj-title-card">Khu Dân Cư [Tên Dự Án 2]</div>
+              <div class="xd-proj-meta">[Quận, Tỉnh/TP] &bull; [Năm hoàn thành] &bull; [N] căn</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DA 3 -->
+        <div class="col-12 col-md-6 col-lg-4" data-reveal data-delay="2" data-category="cong-nghiep">
+          <div class="xd-project-card-full">
+            <img
+              src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&q=80&auto=format&fit=crop"
+              alt="Nhà máy sản xuất [Tên Dự Án 3]"
+              loading="lazy"
+            >
+            <div class="xd-project-card-overlay">
+              <div class="xd-proj-tag">Nhà xưởng công nghiệp</div>
+              <div class="xd-proj-title-card">Nhà Máy [Tên Dự Án 3]</div>
+              <div class="xd-proj-meta">[Quận, Tỉnh/TP] &bull; [Năm hoàn thành] &bull; [N.000] m²</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DA 4 -->
+        <div class="col-12 col-md-6 col-lg-4" data-reveal data-category="biet-thu">
+          <div class="xd-project-card-full">
+            <img
+              src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&q=80&auto=format&fit=crop"
+              alt="Biệt thự cao cấp [Tên Dự Án 4]"
+              loading="lazy"
+            >
+            <div class="xd-project-card-overlay">
+              <div class="xd-proj-tag">Biệt thự cao cấp</div>
+              <div class="xd-proj-title-card">Biệt Thự [Tên Dự Án 4]</div>
+              <div class="xd-proj-meta">[Quận, Tỉnh/TP] &bull; [Năm hoàn thành] &bull; [N] tầng</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DA 5 -->
+        <div class="col-12 col-md-6 col-lg-4" data-reveal data-delay="1" data-category="thuong-mai">
+          <div class="xd-project-card-full">
+            <img
+              src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80&auto=format&fit=crop"
+              alt="Trung tâm thương mại [Tên Dự Án 5]"
+              loading="lazy"
+            >
+            <div class="xd-project-card-overlay">
+              <div class="xd-proj-tag">Trung tâm thương mại</div>
+              <div class="xd-proj-title-card">TTTM [Tên Dự Án 5]</div>
+              <div class="xd-proj-meta">[Quận, Tỉnh/TP] &bull; [Năm hoàn thành] &bull; [N.000] m²</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DA 6 -->
+        <div class="col-12 col-md-6 col-lg-4" data-reveal data-delay="2" data-category="dan-dung">
+          <div class="xd-project-card-full">
+            <img
+              src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80&auto=format&fit=crop"
+              alt="Nhà phố liên kế [Tên Dự Án 6]"
+              loading="lazy"
+            >
+            <div class="xd-project-card-overlay">
+              <div class="xd-proj-tag">Nhà phố dân dụng</div>
+              <div class="xd-proj-title-card">Nhà Phố [Tên Dự Án 6]</div>
+              <div class="xd-proj-meta">[Quận, Tỉnh/TP] &bull; [Năm hoàn thành] &bull; [N] tầng</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DA 7 -->
+        <div class="col-12 col-md-6 col-lg-4" data-reveal data-category="cong-nghiep">
+          <div class="xd-project-card-full">
+            <img
+              src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80&auto=format&fit=crop"
+              alt="Kho bãi logistics [Tên Dự Án 7]"
+              loading="lazy"
+            >
+            <div class="xd-project-card-overlay">
+              <div class="xd-proj-tag">Logistics & Kho bãi</div>
+              <div class="xd-proj-title-card">Kho Vận [Tên Dự Án 7]</div>
+              <div class="xd-proj-meta">[Quận, Tỉnh/TP] &bull; [Năm hoàn thành] &bull; [N.000] m²</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DA 8 -->
+        <div class="col-12 col-md-6 col-lg-4" data-reveal data-delay="1" data-category="biet-thu">
+          <div class="xd-project-card-full">
+            <img
+              src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=80&auto=format&fit=crop"
+              alt="Biệt thự nghỉ dưỡng [Tên Dự Án 8]"
+              loading="lazy"
+            >
+            <div class="xd-project-card-overlay">
+              <div class="xd-proj-tag">Biệt thự nghỉ dưỡng</div>
+              <div class="xd-proj-title-card">Resort Villa [Tên Dự Án 8]</div>
+              <div class="xd-proj-meta">[Quận, Tỉnh/TP] &bull; [Năm hoàn thành] &bull; [N] căn</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DA 9 -->
+        <div class="col-12 col-md-6 col-lg-4" data-reveal data-delay="2" data-category="dan-dung">
+          <div class="xd-project-card-full">
+            <img
+              src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&q=80&auto=format&fit=crop"
+              alt="Tòa chung cư [Tên Dự Án 9]"
+              loading="lazy"
+            >
+            <div class="xd-project-card-overlay">
+              <div class="xd-proj-tag">Chung cư cao tầng</div>
+              <div class="xd-proj-title-card">Chung Cư [Tên Dự Án 9]</div>
+              <div class="xd-proj-meta">[Quận, Tỉnh/TP] &bull; [Năm hoàn thành] &bull; [N] tầng / [N] căn</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Load more -->
+      <div class="text-center mt-5" data-reveal>
+        <button class="xd-btn-solid" id="loadMore" type="button">Xem thêm công trình</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FEATURED PROJECT DETAIL ══ -->
+  <section class="sec-pad" style="background:var(--warm);" aria-labelledby="feat-proj-title">
+    <div class="wd-container">
+      <div class="text-center mb-5">
+        <div class="xd-eyebrow" data-reveal>Công trình nổi bật</div>
+        <h2 class="xd-sec-title" id="feat-proj-title" data-reveal data-delay="1">
+          Điểm nhấn <span class="xd-accent">tiêu biểu</span>
+        </h2>
+      </div>
+
+      <div class="row g-5 align-items-center">
+        <div class="col-md-7" data-reveal>
+          <div style="position:relative;border-radius:2px;overflow:hidden;">
+            <img
+              src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=900&q=80&auto=format&fit=crop"
+              alt="[Tên Dự Án Nổi Bật] — [Mô tả ngắn]"
+              style="width:100%;height:460px;object-fit:cover;"
+              loading="lazy"
+            >
+            <div style="position:absolute;top:20px;left:20px;">
+              <span class="xd-tag-inline">Công trình tiêu biểu 2024</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5" data-reveal data-delay="1">
+          <div class="xd-eyebrow">Case Study</div>
+          <h3 class="xd-sec-title">[Tên Dự Án<br>Nổi Bật]</h3>
+          <p style="font-size:14px;color:var(--text-2);line-height:1.75;margin-bottom:24px;">
+            [Mô tả chi tiết về dự án nổi bật này: địa điểm, quy mô, giá trị hợp đồng, thách thức kỹ thuật đã vượt qua, kết quả đạt được. Đây là section để trình bày case study ấn tượng nhất của công ty.]
+          </p>
+
+          <div class="row g-3 mb-4">
+            <div class="col-6">
+              <div style="padding:16px;background:var(--surface);border-radius:2px;border-left:3px solid var(--accent);">
+                <div style="font-size:22px;font-weight:700;color:var(--accent);letter-spacing:-1px;">[N.000] m²</div>
+                <div style="font-size:12px;color:var(--text-3);text-transform:uppercase;letter-spacing:1px;">Diện tích sàn</div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div style="padding:16px;background:var(--surface);border-radius:2px;border-left:3px solid var(--accent);">
+                <div style="font-size:22px;font-weight:700;color:var(--accent);letter-spacing:-1px;">[N] tháng</div>
+                <div style="font-size:12px;color:var(--text-3);text-transform:uppercase;letter-spacing:1px;">Thời gian thi công</div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div style="padding:16px;background:var(--surface);border-radius:2px;border-left:3px solid var(--accent);">
+                <div style="font-size:22px;font-weight:700;color:var(--accent);letter-spacing:-1px;">[N] tầng</div>
+                <div style="font-size:12px;color:var(--text-3);text-transform:uppercase;letter-spacing:1px;">Số tầng</div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div style="padding:16px;background:var(--surface);border-radius:2px;border-left:3px solid var(--accent);">
+                <div style="font-size:22px;font-weight:700;color:var(--accent);letter-spacing:-1px;">[N] tỷ</div>
+                <div style="font-size:12px;color:var(--text-3);text-transform:uppercase;letter-spacing:1px;">Giá trị hợp đồng</div>
+              </div>
+            </div>
+          </div>
+
+          <a href="lien-he.html" class="xd-btn-solid">Yêu cầu tư vấn tương tự</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA BANNER ══ -->
+  <section style="background:var(--accent);padding:56px 0;" aria-label="Kêu gọi hành động">
+    <div class="wd-container">
+      <div class="row align-items-center gy-4">
+        <div class="col-md-8" data-reveal>
+          <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;">Sẵn sàng bắt đầu?</div>
+          <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:700;color:#fff;letter-spacing:-1.5px;margin:0;line-height:1.1;">
+            Hãy để chúng tôi xây dựng<br>công trình mơ ước của bạn.
+          </h2>
+        </div>
+        <div class="col-md-4 text-md-end" data-reveal data-delay="1">
+          <a href="lien-he.html" style="display:inline-block;background:#fff;color:var(--accent);padding:15px 36px;border-radius:2px;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;transition:all .2s;">
+            Nhận báo giá miễn phí
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="xd-footer" role="contentinfo">
+    <div class="wd-container">
+      <div class="row g-5">
+        <div class="col-12 col-md-4">
+          <a href="index.html" class="xd-logo" style="color:#fff;margin-bottom:16px;display:inline-flex;">
+            <div class="xd-logo-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V9l9-6 9 6v12H3zM9 21V12h6v9"/></svg>
+            </div>
+            [CÔNG TY] <span style="color:var(--accent)">XÂY DỰNG</span>
+          </a>
+          <p class="xd-footer-desc">Tổng thầu xây dựng uy tín hàng đầu [Tỉnh/Thành Phố] với hơn [N] năm kinh nghiệm.</p>
+          <div class="xd-footer-social" aria-label="Mạng xã hội">
+            <a href="#" aria-label="Facebook" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="#" aria-label="YouTube" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.47A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.53C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+          </div>
+        </div>
+        <div class="col-6 col-md-2">
+          <h3 class="xd-footer-heading">Dịch vụ</h3>
+          <ul class="xd-footer-links">
+            <li><a href="dich-vu.html">Thi công dân dụng</a></li>
+            <li><a href="dich-vu.html">Thi công công nghiệp</a></li>
+            <li><a href="dich-vu.html">Thiết kế kiến trúc</a></li>
+            <li><a href="dich-vu.html">Tư vấn dự án</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-2">
+          <h3 class="xd-footer-heading">Dự án</h3>
+          <ul class="xd-footer-links">
+            <li><a href="du-an.html">Dân dụng</a></li>
+            <li><a href="du-an.html">Công nghiệp</a></li>
+            <li><a href="du-an.html">Biệt thự</a></li>
+            <li><a href="du-an.html">Thương mại</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-3">
+          <h3 class="xd-footer-heading">Liên hệ</h3>
+          <ul class="xd-footer-links">
+            <li><a href="tel:[+84912345678]">[0912 345 678]</a></li>
+            <li><a href="mailto:[info@tencongtycuaban.vn]">[info@tencongtycuaban.vn]</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="xd-footer-divider">
+      <div class="xd-footer-bottom">
+        <p class="xd-footer-copy">&copy; 2024 [Tên Công Ty Xây Dựng]. Tất cả quyền được bảo lưu.</p>
+        <div class="xd-footer-legal">
+          <a href="#">Chính sách bảo mật</a>
+          <a href="#">Điều khoản</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Zalo float -->
+  <a href="https://zalo.me/[SỐ_ZALO]" class="zalo-float" aria-label="Liên hệ Zalo" rel="noopener noreferrer" target="_blank">
+    <div class="zalo-float-pulse" aria-hidden="true"></div>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo" width="30" height="30">
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const nav = document.getElementById('nav');
+    if (nav) window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60), {passive: true});
+
+    const ro = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+    }, {threshold: .08, rootMargin: '0px 0px -40px 0px'});
+    document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+    const burger = document.getElementById('navBurger');
+    const mob = document.getElementById('navMob');
+    if (burger && mob) {
+      burger.addEventListener('click', () => {
+        const o = mob.classList.toggle('open');
+        burger.classList.toggle('open', o);
+        burger.setAttribute('aria-expanded', o);
+        document.body.style.overflow = o ? 'hidden' : '';
+      });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') { mob.classList.remove('open'); burger.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; }
+      });
+    }
+
+    // Filter
+    const filterBtns = document.querySelectorAll('.xd-filter-btn');
+    const projectItems = document.querySelectorAll('#projectGrid > [data-category]');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        projectItems.forEach(item => {
+          item.style.display = (filter === 'all' || item.dataset.category === filter) ? '' : 'none';
+        });
+      });
+    });
+
+    // Counter
+    document.querySelectorAll('[data-counter]').forEach(el => {
+      const cro = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          const target = +el.dataset.counter;
+          const suffix = el.dataset.suffix || '';
+          let cur = 0; const step = Math.ceil(target / 60);
+          const t = setInterval(() => { cur = Math.min(cur + step, target); el.textContent = cur + suffix; if (cur >= target) clearInterval(t); }, 25);
+          cro.disconnect();
+        }
+      }, {threshold: .5});
+      cro.observe(el);
+    });
+  </script>
+</body>
+</html>

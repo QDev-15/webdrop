@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sản Phẩm — [TÊN TIỆM BÁNH] Patisserie</title>
+<meta name="description" content="Khám phá toàn bộ sản phẩm bánh ngọt của [TÊN TIỆM BÁNH]: bánh kem, macaron, croissant, tart trái cây và nhiều hơn nữa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+.prod-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden; transition:transform .28s cubic-bezier(.16,1,.3,1), box-shadow .28s, border-color .28s; }
+.prod-card:hover { transform:translateY(-6px); box-shadow:0 20px 48px rgba(219,39,119,.1); border-color:transparent; }
+.prod-card:hover .pc-img { transform:scale(1.06); }
+.pc-img { width:100%; aspect-ratio:1/1; object-fit:cover; transition:transform .5s ease; }
+.pc-body { padding:16px 18px; }
+.pc-tag { display:inline-block; font-size:10px; font-weight:600; padding:3px 9px; border-radius:6px; margin-bottom:8px; }
+.pc-tag.bestseller { background:#fce7f3; color:var(--accent); }
+.pc-tag.new { background:#dcfce7; color:#15803d; }
+.pc-tag.seasonal { background:#fff7ed; color:#c2410c; }
+.pc-name { font-size:15px; font-weight:600; color:var(--text); margin-bottom:5px; letter-spacing:-.3px; }
+.pc-desc { font-size:12.5px; font-weight:300; color:var(--text-2); line-height:1.6; margin-bottom:10px; }
+.pc-price { font-size:15px; font-weight:600; color:var(--accent); }
+.pc-foot { display:flex; align-items:center; justify-content:space-between; padding-top:10px; border-top:1px solid var(--border-light); }
+.filter-bar { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:40px; }
+.fb-btn { font-size:12.5px; padding:8px 18px; border-radius:20px; border:1px solid var(--border); background:var(--surface); color:var(--text-2); cursor:pointer; transition:all .15s; font-family:var(--sans); }
+.fb-btn.active, .fb-btn:hover { background:var(--accent); color:#fff; border-color:var(--accent); }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">🎂 [TÊN] <span>Patisserie</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="san-pham.html" class="active">Sản phẩm</a>
+        <a href="dat-hang.html">Đặt bánh</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-hang.html" class="nav-cta">Đặt bánh ngay</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="san-pham.html">Sản phẩm</a>
+  <a href="dat-hang.html">Đặt bánh</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-hang.html" class="nm-cta">Đặt bánh ngay</a>
+</div>
+
+<div class="page-hero">
+  <div class="wd-container">
+    <div class="ph-eyebrow">Bộ sưu tập</div>
+    <h1 class="ph-title">Tất cả <em>sản phẩm</em></h1>
+    <p class="ph-sub">Hơn 50 loại bánh thủ công — từ macaron Pháp đến bánh kem sinh nhật theo yêu cầu.</p>
+  </div>
+</div>
+
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <!-- Filter -->
+    <div class="filter-bar reveal">
+      <button class="fb-btn active" data-filter="all">Tất cả</button>
+      <button class="fb-btn" data-filter="banh-kem">🎂 Bánh kem</button>
+      <button class="fb-btn" data-filter="macaron">🌸 Macaron</button>
+      <button class="fb-btn" data-filter="croissant">🥐 Croissant & Pastry</button>
+      <button class="fb-btn" data-filter="tart">🍰 Tart & Muffin</button>
+      <button class="fb-btn" data-filter="dac-biet">✨ Đặc biệt theo mùa</button>
+    </div>
+
+    <!-- Bánh kem -->
+    <h3 class="mb-4 reveal" style="font-size:20px;font-weight:600;color:var(--text);letter-spacing:-.5px;padding-top:8px">🎂 Bánh Kem</h3>
+    <div class="row g-4 mb-5">
+      <div class="col-md-3 col-sm-6 reveal reveal-d1">
+        <div class="prod-card">
+          <img class="pc-img" src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&q=80&auto=format&fit=crop" alt="Bánh kem vani" loading="lazy">
+          <div class="pc-body">
+            <span class="pc-tag bestseller">★ Bestseller</span>
+            <div class="pc-name">Bánh Kem Vani Pháp</div>
+            <div class="pc-desc">Bông lan vani, kem bơ Swiss meringue, trang trí hoa kem nghệ thuật.</div>
+            <div class="pc-foot"><div class="pc-price">từ 350.000đ</div><a href="dat-hang.html" class="btn-accent" style="font-size:12px;padding:7px 14px">Đặt</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 reveal reveal-d2">
+        <div class="prod-card">
+          <img class="pc-img" src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&q=80&auto=format&fit=crop" alt="Bánh kem matcha" loading="lazy">
+          <div class="pc-body">
+            <span class="pc-tag new">✦ Mới</span>
+            <div class="pc-name">Bánh Kem Matcha Dâu</div>
+            <div class="pc-desc">Matcha Uji, mousse dâu tươi, mirror glaze gradient xanh-hồng.</div>
+            <div class="pc-foot"><div class="pc-price">từ 420.000đ</div><a href="dat-hang.html" class="btn-accent" style="font-size:12px;padding:7px 14px">Đặt</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 reveal reveal-d3">
+        <div class="prod-card">
+          <img class="pc-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80&auto=format&fit=crop" alt="Bánh kem chocolate" loading="lazy">
+          <div class="pc-body">
+            <span class="pc-tag bestseller">★ Yêu thích</span>
+            <div class="pc-name">Bánh Kem Chocolate Bỉ</div>
+            <div class="pc-desc">Sponge chocolate đậm, ganache 70% Valrhona, trang trí chocolate shard.</div>
+            <div class="pc-foot"><div class="pc-price">từ 380.000đ</div><a href="dat-hang.html" class="btn-accent" style="font-size:12px;padding:7px 14px">Đặt</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 reveal">
+        <div class="prod-card">
+          <img class="pc-img" src="https://images.unsplash.com/photo-1587314168485-3236d6710814?w=400&q=80&auto=format&fit=crop" alt="Bánh kem đặt theo yêu cầu" loading="lazy">
+          <div class="pc-body">
+            <span class="pc-tag seasonal">🎨 Custom</span>
+            <div class="pc-name">Bánh Kem Theo Yêu Cầu</div>
+            <div class="pc-desc">Thiết kế hoàn toàn theo ý bạn — hình dạng, màu sắc, hương vị tự chọn.</div>
+            <div class="pc-foot"><div class="pc-price">Liên hệ báo giá</div><a href="dat-hang.html" class="btn-accent" style="font-size:12px;padding:7px 14px">Đặt</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Macaron -->
+    <h3 class="mb-4 reveal" style="font-size:20px;font-weight:600;color:var(--text);letter-spacing:-.5px">🌸 Macaron Pháp</h3>
+    <div class="row g-4 mb-5">
+      <div class="col-md-3 col-sm-6 reveal reveal-d1">
+        <div class="prod-card">
+          <img class="pc-img" src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&q=80&auto=format&fit=crop" alt="Macaron hỗn hợp" loading="lazy">
+          <div class="pc-body">
+            <span class="pc-tag bestseller">★ Bestseller</span>
+            <div class="pc-name">Macaron Hộp Hỗn Hợp 12</div>
+            <div class="pc-desc">12 cái, 6 hương vị theo mùa: dâu, vani, caramel mặn, matcha, chocolate, chanh leo.</div>
+            <div class="pc-foot"><div class="pc-price">280.000đ/hộp</div><a href="dat-hang.html" class="btn-accent" style="font-size:12px;padding:7px 14px">Đặt</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 reveal reveal-d2">
+        <div class="prod-card">
+          <img class="pc-img" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80&auto=format&fit=crop" alt="Macaron đơn" loading="lazy">
+          <div class="pc-body">
+            <span class="pc-tag new">✦ Tự chọn</span>
+            <div class="pc-name">Macaron Đơn Lẻ</div>
+            <div class="pc-desc">Chọn hương vị yêu thích từ menu 12 hương vị. Tối thiểu 4 cái.</div>
+            <div class="pc-foot"><div class="pc-price">45.000đ/cái</div><a href="dat-hang.html" class="btn-accent" style="font-size:12px;padding:7px 14px">Đặt</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Croissant & Pastry -->
+    <h3 class="mb-4 reveal" style="font-size:20px;font-weight:600;color:var(--text);letter-spacing:-.5px">🥐 Croissant & Viennoiserie</h3>
+    <div class="row g-4 mb-5">
+      <div class="col-md-3 col-sm-6 reveal reveal-d1">
+        <div class="prod-card">
+          <img class="pc-img" src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&q=80&auto=format&fit=crop" alt="Croissant" loading="lazy">
+          <div class="pc-body">
+            <span class="pc-tag bestseller">★ Bestseller</span>
+            <div class="pc-name">Croissant Bơ AOP</div>
+            <div class="pc-desc">27 lớp bột mỏng, bơ Pháp AOP, nướng mỗi sáng — giòn xốp không thể chối từ.</div>
+            <div class="pc-foot"><div class="pc-price">38.000đ/cái</div><a href="dat-hang.html" class="btn-accent" style="font-size:12px;padding:7px 14px">Đặt</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 reveal reveal-d2">
+        <div class="prod-card">
+          <img class="pc-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80&auto=format&fit=crop" alt="Pain au chocolat" loading="lazy">
+          <div class="pc-body">
+            <span class="pc-tag new">✦ Mới</span>
+            <div class="pc-name">Pain au Chocolat</div>
+            <div class="pc-desc">Vỏ giòn, nhân 2 thanh chocolate Valrhona — ăn nóng với cà phê sáng.</div>
+            <div class="pc-foot"><div class="pc-price">42.000đ/cái</div><a href="dat-hang.html" class="btn-accent" style="font-size:12px;padding:7px 14px">Đặt</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-4 reveal" style="padding:40px;background:var(--accent-light);border-radius:20px;border:1px solid var(--border)">
+      <div class="eyebrow" style="justify-content:center">Đặt hàng</div>
+      <h3 style="font-size:24px;font-weight:600;color:var(--text);margin-bottom:12px;letter-spacing:-.5px">Không tìm thấy bánh bạn muốn?</h3>
+      <p style="font-size:14px;color:var(--text-2);margin-bottom:20px">Chúng tôi nhận đặt bánh hoàn toàn theo yêu cầu — hãy liên hệ để chúng tôi tư vấn!</p>
+      <a href="dat-hang.html" class="btn-accent">Đặt bánh theo yêu cầu →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo">🎂 [TÊN] <span>Patisserie</span></div>
+        <p class="ft-desc">Bánh thủ công cao cấp — làm từ tình yêu và nguyên liệu tốt nhất.</p>
+        <div class="ft-socials"><a href="#" class="ft-soc" aria-label="Facebook">fb</a><a href="#" class="ft-soc" aria-label="Instagram">ig</a><a href="#" class="ft-soc" aria-label="TikTok">tt</a><a href="#" class="ft-soc" aria-label="Zalo">zl</a></div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Sản phẩm</div>
+        <div class="ft-links"><a href="san-pham.html">Bánh kem</a><a href="san-pham.html">Macaron</a><a href="san-pham.html">Croissant</a></div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Dịch vụ</div>
+        <div class="ft-links"><a href="dat-hang.html">Đặt bánh custom</a><a href="dat-hang.html">Bánh cưới</a><a href="dat-hang.html">Bánh sự kiện</a></div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links"><a href="tel:[SỐ ĐIỆN THOẠI]">📱 [SỐ ĐIỆN THOẠI]</a><a href="#">📍 [ĐỊA CHỈ]</a><a href="#">🕐 8:00 – 21:00</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom"><div class="wd-container"><div class="d-flex justify-content-between align-items-center py-3"><div class="ft-copy">© [NĂM] [TÊN TIỆM BÁNH] · Handcrafted with love 💕</div></div></div></div>
+</footer>
+
+<div class="zf">
+  <div class="zf-tip">Chat Zalo đặt bánh</div>
+  <a href="https://zalo.me/[SỐ ZALO]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} });
+}, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+}
+const filterBtns = document.querySelectorAll('.fb-btn');
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

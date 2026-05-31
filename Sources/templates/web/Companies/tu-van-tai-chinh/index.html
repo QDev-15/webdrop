@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[TÊN CÔNG TY] — Tư Vấn Tài Chính Chuyên Nghiệp</title>
+  <meta name="description" content="[MÔ TẢ CÔNG TY] — Dịch vụ tư vấn quản lý đầu tư, lập kế hoạch tài chính và tư vấn thuế chuyên nghiệp cho cá nhân và doanh nghiệp.">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ══ NAV — Split Grid ══ -->
+<nav id="nav">
+  <div class="wd-container">
+    <div class="tc-nav-inner">
+      <!-- Logo -->
+      <a href="index.html" class="tc-logo">
+        <div class="tc-logo-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/>
+          </svg>
+        </div>
+        <span>[TÊN CÔNG TY] <span class="tc-logo-blue">Finance</span></span>
+      </a>
+
+      <!-- Links (center) -->
+      <ul class="tc-nav-links">
+        <li><a href="index.html" class="active">Trang chủ</a></li>
+        <li><a href="dich-vu.html">Dịch vụ</a></li>
+        <li><a href="doi-ngu.html">Đội ngũ</a></li>
+        <li><a href="lien-he.html">Liên hệ</a></li>
+      </ul>
+
+      <!-- CTA -->
+      <a href="lien-he.html" class="tc-nav-cta">Tư vấn miễn phí</a>
+
+      <!-- Burger (mobile) -->
+      <button class="tc-nav-burger" id="navBurger" aria-label="Mở menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="tc-nav-mob" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ</a>
+  <a href="doi-ngu.html">Đội ngũ</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="lien-he.html" class="tc-nav-cta">Tư vấn miễn phí</a>
+</div>
+
+<!-- ══ HERO — H4: Centered Minimal ══ -->
+<section class="tc-hero">
+  <div class="wd-container">
+    <div class="tc-hero-inner" data-reveal>
+      <div class="tc-hero-label">Tư Vấn Tài Chính Chuyên Nghiệp</div>
+      <h1 class="tc-hero-title">
+        Bảo vệ &amp; gia tăng<br>tài sản của <span class="ht-accent">bạn</span>
+      </h1>
+      <p class="tc-hero-sub">
+        Chúng tôi cung cấp giải pháp tài chính toàn diện — từ quản lý đầu tư, hoạch định tài chính đến tư vấn thuế — giúp bạn đạt mục tiêu tài chính bền vững và an toàn.
+      </p>
+      <div class="tc-hero-btns">
+        <a href="lien-he.html" class="tc-btn-primary">Đặt lịch tư vấn miễn phí</a>
+        <a href="dich-vu.html" class="tc-btn-ghost">Xem dịch vụ</a>
+      </div>
+
+      <!-- Trust bar -->
+      <div class="tc-hero-trust">
+        <div class="tc-trust-item">
+          <div class="tc-trust-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          </div>
+          <div>
+            <div class="tc-trust-num">20+</div>
+            <div class="tc-trust-txt">Năm kinh nghiệm</div>
+          </div>
+        </div>
+        <div class="tc-trust-item">
+          <div class="tc-trust-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+          </div>
+          <div>
+            <div class="tc-trust-num">500+</div>
+            <div class="tc-trust-txt">Khách hàng tin tưởng</div>
+          </div>
+        </div>
+        <div class="tc-trust-item">
+          <div class="tc-trust-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+          </div>
+          <div>
+            <div class="tc-trust-num">[X.XXX]</div>
+            <div class="tc-trust-txt">Tỷ AUM quản lý</div>
+          </div>
+        </div>
+        <div class="tc-trust-item">
+          <div class="tc-trust-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+          </div>
+          <div>
+            <div class="tc-trust-num">UBCKNN</div>
+            <div class="tc-trust-txt">Giấy phép hành nghề</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DỊCH VỤ — FEATURE-ICON-ROW ══ -->
+<section class="tc-services-bg tc-sec-pad">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="tc-label">Giải pháp tài chính</div>
+      <h2 class="tc-title">Dịch vụ tư vấn <span>toàn diện</span></h2>
+      <p class="tc-sub tc-sub-center">Chúng tôi cung cấp đầy đủ các dịch vụ tư vấn tài chính, giúp bạn xây dựng và bảo vệ tài sản một cách thông minh.</p>
+    </div>
+
+    <div class="row g-0">
+      <div class="col-lg-3 col-sm-6 tc-sf-row" data-reveal data-delay="1">
+        <div class="tc-service-feature">
+          <div class="tc-sf-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>
+          </div>
+          <div class="tc-sf-title">Quản lý Đầu tư</div>
+          <p class="tc-sf-desc">Xây dựng danh mục đầu tư tối ưu dựa trên khẩu vị rủi ro và mục tiêu tài chính của từng khách hàng.</p>
+          <a href="dich-vu.html#dau-tu" class="tc-sf-link">
+            Tìm hiểu thêm
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6 tc-sf-row" data-reveal data-delay="2">
+        <div class="tc-service-feature">
+          <div class="tc-sf-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.25C18 3.12 16.88 2 15.25 2c-1.3 0-2.18.68-2.83 1.73L12 4.97l-.42-.24C10.93 3.68 10.05 3 8.75 3 7.12 3 6 4.12 6 5.75 6 6.12 6.11 6.56 6.18 7H4C2.9 7 2.01 7.9 2.01 9L2 20c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-3-2-3z"/></svg>
+          </div>
+          <div class="tc-sf-title">Tư vấn Thuế</div>
+          <p class="tc-sf-desc">Tối ưu hóa nghĩa vụ thuế cho cá nhân và doanh nghiệp, đảm bảo tuân thủ pháp luật và tiết kiệm chi phí tối đa.</p>
+          <a href="dich-vu.html#thue" class="tc-sf-link">
+            Tìm hiểu thêm
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6 tc-sf-row" data-reveal data-delay="3">
+        <div class="tc-service-feature">
+          <div class="tc-sf-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+          </div>
+          <div class="tc-sf-title">Hoạch định Tài chính</div>
+          <p class="tc-sf-desc">Lập kế hoạch tài chính dài hạn cho hưu trí, giáo dục con cái, mua nhà và các mục tiêu cuộc sống quan trọng.</p>
+          <a href="dich-vu.html#hoach-dinh" class="tc-sf-link">
+            Tìm hiểu thêm
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6" data-reveal data-delay="4">
+        <div class="tc-service-feature">
+          <div class="tc-sf-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+          </div>
+          <div class="tc-sf-title">Quản lý Rủi ro</div>
+          <p class="tc-sf-desc">Phân tích và xây dựng chiến lược quản lý rủi ro toàn diện, bảo vệ tài sản trước các biến động thị trường bất ngờ.</p>
+          <a href="dich-vu.html#rui-ro" class="tc-sf-link">
+            Tìm hiểu thêm
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <hr class="tc-services-divider">
+  </div>
+</section>
+
+<!-- ══ STAT BAR ══ -->
+<section class="tc-stat-bar">
+  <div class="wd-container">
+    <div class="row g-0 py-4">
+      <div class="col-6 col-md-3 tc-stat-item tc-stat-divider" data-reveal>
+        <div class="tc-stat-num"><span data-counter="20" data-suffix="+">20+</span></div>
+        <div class="tc-stat-label">Năm kinh nghiệm<br>thực chiến</div>
+      </div>
+      <div class="col-6 col-md-3 tc-stat-item tc-stat-divider" data-reveal data-delay="1">
+        <div class="tc-stat-num"><span data-counter="500" data-suffix="+">500+</span></div>
+        <div class="tc-stat-label">Khách hàng<br>đang phục vụ</div>
+      </div>
+      <div class="col-6 col-md-3 tc-stat-item tc-stat-divider" data-reveal data-delay="2">
+        <div class="tc-stat-num"><span data-counter="98" data-suffix="%">98%</span></div>
+        <div class="tc-stat-label">Tỷ lệ khách hàng<br>hài lòng</div>
+      </div>
+      <div class="col-6 col-md-3 tc-stat-item" data-reveal data-delay="3">
+        <div class="tc-stat-num"><span data-counter="15" data-suffix="+">15+</span></div>
+        <div class="tc-stat-label">Chuyên gia tài chính<br>CFA &amp; ACCA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TẠI SAO CHỌN — ALTERNATING STRIPS ══ -->
+<!-- Strip 1: KN thực chiến -->
+<section class="tc-strip">
+  <div class="wd-container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 order-lg-1" data-reveal>
+        <div class="tc-strip-img" style="height:380px;">
+          <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&q=80&auto=format&fit=crop"
+               alt="Đội ngũ tư vấn tài chính chuyên nghiệp trong cuộc họp" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+      </div>
+      <div class="col-lg-6 order-lg-2 tc-strip-content" data-reveal data-delay="1">
+        <div class="tc-label">Kinh nghiệm & Chuyên môn</div>
+        <h2 class="tc-title">Kinh nghiệm thực chiến<br><span>20+ năm</span> trên thị trường</h2>
+        <p class="tc-sub">Đội ngũ chuyên gia của chúng tôi đã trải qua nhiều chu kỳ kinh tế, từ khủng hoảng đến tăng trưởng — mang đến sự am hiểu sâu sắc không thể có được từ sách vở.</p>
+        <ul class="tc-strip-list">
+          <li>Kinh nghiệm qua các cuộc khủng hoảng tài chính 2008, 2020</li>
+          <li>Đội ngũ có chứng chỉ CFA, ACCA, CFP quốc tế</li>
+          <li>Mạng lưới đối tác ngân hàng và quỹ đầu tư rộng lớn</li>
+          <li>Phân tích thị trường chuyên sâu với dữ liệu thời gian thực</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Strip 2: Quy trình minh bạch -->
+<section class="tc-strip tc-strip-alt">
+  <div class="wd-container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 order-lg-2" data-reveal>
+        <div class="tc-strip-img" style="height:380px;">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&auto=format&fit=crop"
+               alt="Biểu đồ phân tích tài chính và dữ liệu đầu tư" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+      </div>
+      <div class="col-lg-6 order-lg-1 tc-strip-content" data-reveal data-delay="1">
+        <div class="tc-label">Minh bạch & Báo cáo</div>
+        <h2 class="tc-title">Quy trình <span>minh bạch</span>,<br>báo cáo định kỳ đầy đủ</h2>
+        <p class="tc-sub">Chúng tôi cam kết cung cấp thông tin đầy đủ và kịp thời. Bạn luôn biết tài sản của mình đang ở đâu và hoạt động như thế nào.</p>
+        <ul class="tc-strip-list">
+          <li>Báo cáo hiệu suất danh mục hàng tháng và hàng quý</li>
+          <li>Cổng thông tin trực tuyến theo dõi tài sản 24/7</li>
+          <li>Cuộc họp đánh giá định kỳ với chuyên gia phụ trách</li>
+          <li>Phí dịch vụ minh bạch, không phát sinh chi phí ẩn</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ QUY TRÌNH — 4 BƯỚC ══ -->
+<section class="tc-sec-pad" style="background:var(--surface);">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="tc-label">Quy trình làm việc</div>
+      <h2 class="tc-title">4 bước đơn giản để <span>bắt đầu</span></h2>
+      <p class="tc-sub tc-sub-center">Quy trình tư vấn được thiết kế rõ ràng và chuyên nghiệp, giúp bạn nhanh chóng có được giải pháp tài chính phù hợp.</p>
+    </div>
+
+    <div class="row g-4 mt-2">
+      <div class="col-6 col-md-3" data-reveal>
+        <div class="tc-process-step">
+          <div class="tc-ps-num">01</div>
+          <div class="tc-ps-title">Tư vấn ban đầu</div>
+          <p class="tc-ps-desc">Cuộc gặp miễn phí để tìm hiểu tình hình tài chính và mục tiêu của bạn.</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal data-delay="1">
+        <div class="tc-process-step">
+          <div class="tc-ps-num">02</div>
+          <div class="tc-ps-title">Phân tích nhu cầu</div>
+          <p class="tc-ps-desc">Chuyên gia phân tích toàn diện hồ sơ tài chính và khẩu vị rủi ro.</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal data-delay="2">
+        <div class="tc-process-step">
+          <div class="tc-ps-num">03</div>
+          <div class="tc-ps-title">Đề xuất giải pháp</div>
+          <p class="tc-ps-desc">Trình bày kế hoạch tài chính chi tiết, rõ ràng và phù hợp với mục tiêu.</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal data-delay="3">
+        <div class="tc-process-step">
+          <div class="tc-ps-num">04</div>
+          <div class="tc-ps-title">Triển khai &amp; Theo dõi</div>
+          <p class="tc-ps-desc">Thực hiện và theo dõi danh mục liên tục, điều chỉnh kịp thời theo thị trường.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CASE STUDIES — GRID-CARDS ══ -->
+<section class="tc-sec-pad" style="background:var(--bg);">
+  <div class="wd-container">
+    <div class="row align-items-end g-4 mb-5">
+      <div class="col-lg-7" data-reveal>
+        <div class="tc-label">Kết quả thực tế</div>
+        <h2 class="tc-title">Câu chuyện thành công<br>từ <span>khách hàng</span></h2>
+      </div>
+      <div class="col-lg-5 text-lg-end" data-reveal data-delay="1">
+        <a href="lien-he.html" class="tc-btn-ghost">Xem tất cả case studies</a>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6" data-reveal>
+        <div class="tc-case-card">
+          <div class="tc-case-tag">Cá nhân cao thu nhập</div>
+          <div class="tc-case-title">Tối ưu danh mục đầu tư cho doanh nhân 45 tuổi</div>
+          <p class="tc-case-challenge">Khách hàng có tài sản phân tán nhiều kênh, không có chiến lược tổng thể. Rủi ro cao, lợi nhuận thấp hơn thị trường.</p>
+          <div class="tc-case-divider"></div>
+          <div class="tc-case-result">
+            <div>
+              <div class="tc-case-metric">+18.5%</div>
+              <div class="tc-case-metric-label">Tăng trưởng danh mục<br>sau 12 tháng</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6" data-reveal data-delay="1">
+        <div class="tc-case-card">
+          <div class="tc-case-tag">Doanh nghiệp vừa</div>
+          <div class="tc-case-title">Tái cơ cấu tài chính và tối ưu thuế doanh nghiệp</div>
+          <p class="tc-case-challenge">Doanh nghiệp đang chịu gánh nặng thuế cao, dòng tiền không hiệu quả, thiếu kế hoạch tài chính dài hạn.</p>
+          <div class="tc-case-divider"></div>
+          <div class="tc-case-result">
+            <div>
+              <div class="tc-case-metric">-32%</div>
+              <div class="tc-case-metric-label">Giảm chi phí thuế<br>hàng năm</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6" data-reveal data-delay="2">
+        <div class="tc-case-card">
+          <div class="tc-case-tag">Kế hoạch hưu trí</div>
+          <div class="tc-case-title">Lập kế hoạch hưu trí cho cặp vợ chồng 50 tuổi</div>
+          <p class="tc-case-challenge">Chưa có kế hoạch hưu trí cụ thể, lo ngại về việc duy trì chất lượng sống khi nghỉ hưu ở tuổi 60.</p>
+          <div class="tc-case-divider"></div>
+          <div class="tc-case-result">
+            <div>
+              <div class="tc-case-metric">2.8 tỷ</div>
+              <div class="tc-case-metric-label">Quỹ hưu trí dự kiến<br>đến tuổi 60</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ĐỘI NGŨ — 2x2 GRID ══ -->
+<section class="tc-sec-pad" style="background:var(--surface);">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="tc-label">Đội ngũ chuyên gia</div>
+      <h2 class="tc-title">Những người <span>dẫn đường</span><br>tài chính của bạn</h2>
+      <p class="tc-sub tc-sub-center">Mỗi chuyên gia đều có chứng chỉ quốc tế và nhiều năm kinh nghiệm thực chiến tại các tổ chức tài chính hàng đầu.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-3 col-sm-6" data-reveal>
+        <div class="tc-expert-card">
+          <img class="tc-expert-photo"
+               src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80&auto=format&fit=crop&crop=face"
+               alt="[TÊN CHUYÊN GIA 1] — Giám đốc Đầu tư">
+          <div class="tc-expert-info">
+            <div class="tc-expert-name">[Họ Tên 1]</div>
+            <div class="tc-expert-title">Giám đốc Đầu tư</div>
+            <p class="tc-expert-spec">20 năm kinh nghiệm quản lý quỹ tại SSI, Dragon Capital và VDSC.</p>
+            <span class="tc-expert-badge">CFA</span>
+            <span class="tc-expert-badge">CPA</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6" data-reveal data-delay="1">
+        <div class="tc-expert-card">
+          <img class="tc-expert-photo"
+               src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80&auto=format&fit=crop&crop=face"
+               alt="[TÊN CHUYÊN GIA 2] — Trưởng phòng Hoạch định Tài chính">
+          <div class="tc-expert-info">
+            <div class="tc-expert-name">[Họ Tên 2]</div>
+            <div class="tc-expert-title">Trưởng phòng Hoạch định</div>
+            <p class="tc-expert-spec">15 năm chuyên về lập kế hoạch tài chính cá nhân và gia đình thế hệ sau.</p>
+            <span class="tc-expert-badge">CFP</span>
+            <span class="tc-expert-badge">ACCA</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6" data-reveal data-delay="2">
+        <div class="tc-expert-card">
+          <img class="tc-expert-photo"
+               src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80&auto=format&fit=crop&crop=face"
+               alt="[TÊN CHUYÊN GIA 3] — Chuyên gia Tư vấn Thuế">
+          <div class="tc-expert-info">
+            <div class="tc-expert-name">[Họ Tên 3]</div>
+            <div class="tc-expert-title">Chuyên gia Thuế &amp; Pháp lý</div>
+            <p class="tc-expert-spec">18 năm kinh nghiệm tư vấn thuế doanh nghiệp và tối ưu hóa cơ cấu thuế.</p>
+            <span class="tc-expert-badge">ACCA</span>
+            <span class="tc-expert-badge">CTA</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6" data-reveal data-delay="3">
+        <div class="tc-expert-card">
+          <img class="tc-expert-photo"
+               src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80&auto=format&fit=crop&crop=face"
+               alt="[TÊN CHUYÊN GIA 4] — Chuyên gia Quản lý Rủi ro">
+          <div class="tc-expert-info">
+            <div class="tc-expert-name">[Họ Tên 4]</div>
+            <div class="tc-expert-title">Chuyên gia Quản lý Rủi ro</div>
+            <p class="tc-expert-spec">Chuyên phân tích rủi ro thị trường và xây dựng chiến lược bảo hiểm danh mục.</p>
+            <span class="tc-expert-badge">FRM</span>
+            <span class="tc-expert-badge">CFA</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5" data-reveal>
+      <a href="doi-ngu.html" class="tc-btn-ghost">Xem toàn bộ đội ngũ</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS — Dark blue section ══ -->
+<section class="tc-testimonials tc-sec-pad">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="tc-label tc-label-light">Phản hồi khách hàng</div>
+      <h2 class="tc-title tc-title-light">Khách hàng nói gì về<br><span style="color:var(--accent-mid);">dịch vụ của chúng tôi</span></h2>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4" data-reveal>
+        <div class="tc-quote-card">
+          <div class="tc-quote-mark">"</div>
+          <p class="tc-quote-text">Sau 3 năm hợp tác, danh mục đầu tư của tôi tăng trưởng vượt kỳ vọng. Đội ngũ luôn sẵn sàng giải thích và tư vấn kịp thời mỗi khi thị trường biến động.</p>
+          <div class="tc-quote-author">
+            <div class="tc-quote-avatar">N</div>
+            <div>
+              <div class="tc-quote-name">[Nguyễn Văn A]</div>
+              <div class="tc-quote-company">Giám đốc điều hành, [Tên Công ty]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4" data-reveal data-delay="1">
+        <div class="tc-quote-card">
+          <div class="tc-quote-mark">"</div>
+          <p class="tc-quote-text">Dịch vụ tư vấn thuế giúp công ty tiết kiệm được khoản chi phí đáng kể mỗi năm. Quy trình làm việc chuyên nghiệp, báo cáo minh bạch rõ ràng.</p>
+          <div class="tc-quote-author">
+            <div class="tc-quote-avatar" style="background:var(--teal);">T</div>
+            <div>
+              <div class="tc-quote-name">[Trần Thị B]</div>
+              <div class="tc-quote-company">CFO, [Tập đoàn XYZ]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4" data-reveal data-delay="2">
+        <div class="tc-quote-card">
+          <div class="tc-quote-mark">"</div>
+          <p class="tc-quote-text">Kế hoạch hưu trí được lập rất chi tiết và thực tế. Tôi cảm thấy an tâm hơn rất nhiều về tương lai tài chính của gia đình mình.</p>
+          <div class="tc-quote-author">
+            <div class="tc-quote-avatar" style="background:#7b1fa2;">P</div>
+            <div>
+              <div class="tc-quote-name">[Phạm Văn C]</div>
+              <div class="tc-quote-company">Bác sĩ chuyên khoa, [Bệnh viện ABC]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PARTNERS & CERTS ══ -->
+<section class="tc-partners tc-sec-pad">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="tc-label">Đối tác & Chứng nhận</div>
+      <h2 class="tc-title">Được tin tưởng bởi các<br>tổ chức <span>hàng đầu</span></h2>
+    </div>
+
+    <!-- Partner logos -->
+    <div class="row g-3 mb-5" data-reveal>
+      <div class="col-6 col-md-2">
+        <div class="tc-partner-logo">[Ngân hàng A]</div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="tc-partner-logo">[Ngân hàng B]</div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="tc-partner-logo">[Quỹ C]</div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="tc-partner-logo">[Công ty D]</div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="tc-partner-logo">[Tổ chức E]</div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="tc-partner-logo">[Đối tác F]</div>
+      </div>
+    </div>
+
+    <!-- Cert badges -->
+    <div class="row g-3" data-reveal>
+      <div class="col-md-3 col-sm-6">
+        <div class="tc-cert-badge">
+          <div class="tc-cert-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+          </div>
+          <div>
+            <div class="tc-cert-name">UBCKNN</div>
+            <div class="tc-cert-desc">Giấy phép tư vấn đầu tư</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="tc-cert-badge">
+          <div class="tc-cert-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          </div>
+          <div>
+            <div class="tc-cert-name">CFA Institute</div>
+            <div class="tc-cert-desc">Chartered Financial Analyst</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="tc-cert-badge">
+          <div class="tc-cert-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+          </div>
+          <div>
+            <div class="tc-cert-name">ACCA</div>
+            <div class="tc-cert-desc">Kế toán công chứng quốc tế</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="tc-cert-badge">
+          <div class="tc-cert-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+          </div>
+          <div>
+            <div class="tc-cert-name">ISO 9001:2015</div>
+            <div class="tc-cert-desc">Chứng nhận chất lượng dịch vụ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA FORM ══ -->
+<section class="tc-cta-section tc-sec-pad">
+  <div class="wd-container tc-cta-inner">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6" data-reveal>
+        <h2 class="tc-cta-title">Đặt lịch tư vấn<br>miễn phí ngay hôm nay</h2>
+        <p class="tc-cta-sub">Cuộc tư vấn đầu tiên hoàn toàn miễn phí. Chuyên gia của chúng tôi sẽ phân tích tình hình tài chính và đề xuất hướng đi phù hợp nhất cho bạn.</p>
+        <div class="mt-4 d-flex gap-3 flex-wrap">
+          <div style="color:rgba(255,255,255,.7);font-size:13px;display:flex;align-items:center;gap:8px;">
+            <svg width="16" height="16" fill="rgba(255,255,255,.5)" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            [Số điện thoại văn phòng]
+          </div>
+          <div style="color:rgba(255,255,255,.7);font-size:13px;display:flex;align-items:center;gap:8px;">
+            <svg width="16" height="16" fill="rgba(255,255,255,.5)" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            [Email liên hệ]
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6" data-reveal data-delay="1">
+        <div class="tc-form-card">
+          <div class="tc-form-title">Đăng ký tư vấn miễn phí</div>
+          <p class="tc-form-sub">Điền thông tin để chúng tôi liên hệ sắp xếp lịch hẹn phù hợp</p>
+          <form>
+            <div class="row g-3">
+              <div class="col-6">
+                <div class="tc-form-group">
+                  <label class="tc-form-label">Họ và tên</label>
+                  <input type="text" class="tc-form-input" placeholder="Nguyễn Văn A">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="tc-form-group">
+                  <label class="tc-form-label">Số điện thoại</label>
+                  <input type="tel" class="tc-form-input" placeholder="0912 345 678">
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="tc-form-group">
+                  <label class="tc-form-label">Email</label>
+                  <input type="email" class="tc-form-input" placeholder="email@congty.vn">
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="tc-form-group">
+                  <label class="tc-form-label">Tài sản / Nhu cầu tư vấn</label>
+                  <select class="tc-form-select">
+                    <option value="">Chọn lĩnh vực tư vấn</option>
+                    <option>Quản lý đầu tư (dưới 500 triệu)</option>
+                    <option>Quản lý đầu tư (500 triệu - 5 tỷ)</option>
+                    <option>Quản lý đầu tư (trên 5 tỷ)</option>
+                    <option>Tư vấn thuế cá nhân</option>
+                    <option>Tư vấn thuế doanh nghiệp</option>
+                    <option>Kế hoạch hưu trí</option>
+                    <option>Quản lý rủi ro</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="tc-form-btn">Đặt lịch tư vấn miễn phí</button>
+                <p class="tc-form-note">Thông tin của bạn được bảo mật tuyệt đối. Chúng tôi sẽ liên hệ trong vòng 24 giờ làm việc.</p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="tc-footer">
+  <div class="wd-container">
+    <div class="tc-footer-top">
+      <div class="row g-5">
+        <!-- Col 1: Brand -->
+        <div class="col-lg-4 col-md-6">
+          <div class="tc-footer-logo">
+            <div class="tc-footer-logo-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>
+            </div>
+            <span class="tc-footer-brand">[TÊN CÔNG TY] <span>Finance</span></span>
+          </div>
+          <p class="tc-footer-desc">Đồng hành cùng bạn trên hành trình xây dựng tự do tài chính — từ kế hoạch đến thực thi.</p>
+          <div class="tc-footer-license">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+            Giấy phép số [XXXX/UBCKNN]
+          </div>
+          <div class="tc-social-links mt-3">
+            <a href="#" class="tc-social-btn" aria-label="Facebook" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="#" class="tc-social-btn" aria-label="LinkedIn" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="#" class="tc-social-btn" aria-label="YouTube" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Dịch vụ -->
+        <div class="col-lg-2 col-md-6">
+          <div class="tc-footer-col-title">Dịch vụ</div>
+          <ul class="tc-footer-links">
+            <li><a href="dich-vu.html#dau-tu">Quản lý Đầu tư</a></li>
+            <li><a href="dich-vu.html#thue">Tư vấn Thuế</a></li>
+            <li><a href="dich-vu.html#hoach-dinh">Hoạch định Tài chính</a></li>
+            <li><a href="dich-vu.html#rui-ro">Quản lý Rủi ro</a></li>
+            <li><a href="dich-vu.html">Xem tất cả</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Công ty -->
+        <div class="col-lg-2 col-md-6">
+          <div class="tc-footer-col-title">Công ty</div>
+          <ul class="tc-footer-links">
+            <li><a href="doi-ngu.html">Đội ngũ chuyên gia</a></li>
+            <li><a href="#ve-chung-toi">Về chúng tôi</a></li>
+            <li><a href="#chinh-sach">Chính sách bảo mật</a></li>
+            <li><a href="#dieu-khoan">Điều khoản dịch vụ</a></li>
+            <li><a href="lien-he.html">Liên hệ</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Liên hệ -->
+        <div class="col-lg-4 col-md-6">
+          <div class="tc-footer-col-title">Liên hệ</div>
+          <div class="tc-footer-contact-item">
+            <svg class="tc-footer-contact-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <span class="tc-footer-contact-text">[Địa chỉ văn phòng]<br>[Quận, TP. Hồ Chí Minh]</span>
+          </div>
+          <div class="tc-footer-contact-item">
+            <svg class="tc-footer-contact-icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <span class="tc-footer-contact-text">[Số điện thoại]<br>Thứ 2–6 · 8:00–17:30</span>
+          </div>
+          <div class="tc-footer-contact-item">
+            <svg class="tc-footer-contact-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <span class="tc-footer-contact-text">[Email liên hệ]</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tc-footer-bottom">
+      <p class="tc-footer-copy">&copy; 2025 [TÊN CÔNG TY]. Bảo lưu mọi quyền.</p>
+      <p class="tc-footer-disclaimer">Các thông tin trên website chỉ mang tính tham khảo và không cấu thành lời khuyên đầu tư. Đầu tư có rủi ro. Hiệu suất trong quá khứ không đảm bảo cho kết quả tương lai.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Zalo float -->
+<a href="https://zalo.me/[SỐ_ZALO]" class="tc-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2C6.48 2 2 5.92 2 10.74c0 2.84 1.5 5.37 3.86 7.02L5.25 21l3.6-1.5C10.07 20.11 11.02 20.3 12 20.3c5.52 0 10-3.91 10-8.74C22 6.74 17.52 2 12 2z"/>
+  </svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  if(nav) window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 20), {passive:true});
+
+  // Reveal
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); }});
+  }, {threshold:.08, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+  // Hamburger
+  const burger = document.getElementById('navBurger');
+  const mob = document.getElementById('navMob');
+  if(burger && mob){
+    burger.addEventListener('click', () => { const o=mob.classList.toggle('open');burger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+    document.addEventListener('keydown', e => { if(e.key==='Escape'){mob.classList.remove('open');burger.classList.remove('open');document.body.style.overflow='';} });
+  }
+
+  // Counter
+  document.querySelectorAll('[data-counter]').forEach(el => {
+    const cro = new IntersectionObserver(([entry]) => {
+      if(entry.isIntersecting){
+        const target = +el.dataset.counter;
+        const suffix = el.dataset.suffix || '';
+        let cur = 0; const step = Math.ceil(target/60);
+        const t = setInterval(() => { cur = Math.min(cur+step, target); el.textContent = cur + suffix; if(cur >= target) clearInterval(t); }, 25);
+        cro.disconnect();
+      }
+    }, {threshold:.5});
+    cro.observe(el);
+  });
+</script>
+</body>
+</html>

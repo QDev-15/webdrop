@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thực Đơn — [TÊN NHÀ HÀNG] Omakase & Sushi</title>
+<meta name="description" content="Thực đơn Nhật Bản chính thống tại [TÊN NHÀ HÀNG] — Sashimi, Sushi, Maki Roll, Ramen, Udon, Teppanyaki, Set Cơm Nhật. Nguyên liệu nhập Nhật trực tiếp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+/* Menu filter tabs */
+.menu-filter { display:flex; gap:8px; flex-wrap:wrap; }
+.mf-btn {
+  font-size:12.5px; padding:7px 18px; border:1px solid var(--border);
+  background:var(--surface); color:var(--text-2); cursor:pointer;
+  transition:all .15s; font-family:var(--sans); border-radius:2px;
+}
+.mf-btn.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+.mf-btn:hover:not(.active) { border-color:var(--accent); color:var(--accent); }
+
+/* Menu list item */
+.menu-list-item {
+  display:grid; grid-template-columns:80px 1fr auto;
+  gap:16px; align-items:start;
+  padding:20px 0; border-bottom:1px solid var(--border-light);
+}
+.menu-list-item:last-child { border-bottom:none; }
+.mli-img { width:80px; height:80px; object-fit:cover; border-radius:4px; flex-shrink:0; }
+.mli-cat { font-size:10px; font-weight:500; color:var(--accent); text-transform:uppercase; letter-spacing:1.2px; margin-bottom:4px; }
+.mli-name-jp { font-size:16px; font-weight:300; color:var(--text); letter-spacing:-.5px; }
+.mli-name-vn { font-size:12px; color:var(--text-3); margin-bottom:7px; }
+.mli-desc { font-size:13px; font-weight:300; color:var(--text-2); line-height:1.65; }
+.mli-price { font-size:15px; font-weight:600; color:var(--accent); white-space:nowrap; padding-top:6px; }
+.mli-badge { font-size:9.5px; font-weight:500; background:var(--accent-light); color:var(--accent); padding:2px 8px; border-radius:2px; display:inline-block; margin-top:6px; }
+
+/* Category heading */
+.cat-heading {
+  display:flex; align-items:center; gap:12px;
+  padding:24px 0 16px; border-top:2px solid var(--text);
+  margin-top:40px;
+}
+.cat-heading:first-of-type { margin-top:0; border-top:none; padding-top:0; }
+.ch-num { font-size:11px; font-weight:500; color:var(--text-3); width:24px; }
+.ch-name { font-size:20px; font-weight:300; color:var(--text); letter-spacing:-1px; }
+.ch-jp { font-size:13px; color:var(--text-3); letter-spacing:2px; margin-left:8px; }
+
+@media(max-width:576px){
+  .menu-list-item { grid-template-columns:60px 1fr; }
+  .mli-price { grid-column:2; padding-top:0; }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">鮨 [TÊN NHÀ HÀNG] <span class="logo-jp">日本料理</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="thuc-don.html" class="active">Thực đơn</a>
+        <a href="sushi-bar.html">Sushi Bar</a>
+        <a href="dat-ban.html">Đặt bàn</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-ban.html" class="nav-cta">Đặt bàn</a>
+      <button class="nav-hamburger" id="navHamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="thuc-don.html">Thực đơn</a>
+  <a href="sushi-bar.html">Sushi Bar</a>
+  <a href="dat-ban.html">Đặt bàn</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-ban.html" class="nm-cta">Đặt bàn ngay</a>
+</div>
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="wd-container">
+    <div class="ph-jp">お品書き</div>
+    <div class="ph-eyebrow">Menu</div>
+    <h1 class="ph-title">Thực đơn <em>Nhật Bản</em></h1>
+    <p class="ph-sub">Hơn 60 món từ nguyên liệu nhập Nhật trực tiếp — tươi mới mỗi ngày, theo mùa.</p>
+  </div>
+</div>
+
+<!-- Menu Content -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+
+    <!-- Filter -->
+    <div class="reveal mb-5">
+      <div class="menu-filter">
+        <button class="mf-btn active" onclick="filterMenu('all')">Tất cả</button>
+        <button class="mf-btn" onclick="filterMenu('sashimi')">Sashimi</button>
+        <button class="mf-btn" onclick="filterMenu('sushi')">Sushi & Maki</button>
+        <button class="mf-btn" onclick="filterMenu('ramen')">Ramen & Udon</button>
+        <button class="mf-btn" onclick="filterMenu('teppan')">Teppanyaki</button>
+        <button class="mf-btn" onclick="filterMenu('set')">Set Cơm Nhật</button>
+        <button class="mf-btn" onclick="filterMenu('trang-miem')">Tráng miệng</button>
+      </div>
+    </div>
+
+    <!-- Sashimi -->
+    <div class="menu-section" data-cat="sashimi">
+      <div class="cat-heading reveal">
+        <span class="ch-num">01</span>
+        <span class="ch-name">Sashimi</span>
+        <span class="ch-jp">刺身</span>
+      </div>
+      <div class="menu-list-item reveal">
+        <img src="https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=160&q=70&auto=format&fit=crop" alt="Sashimi cá hồi" class="mli-img">
+        <div>
+          <div class="mli-cat">Cá hồi</div>
+          <div class="mli-name-jp">鮭の刺身</div>
+          <div class="mli-name-vn">Sake Sashimi — 5 lát cá hồi</div>
+          <p class="mli-desc">Cá hồi Nauy loại A1, thịt đỏ tươi, béo tự nhiên, tan trong miệng. Phục vụ kèm wasabi tươi và gừng ngâm.</p>
+        </div>
+        <div class="mli-price">[Giá]</div>
+      </div>
+      <div class="menu-list-item reveal reveal-d1">
+        <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=160&q=70&auto=format&fit=crop" alt="Sashimi đặc tuyển" class="mli-img">
+        <div>
+          <div class="mli-cat">Đặc tuyển</div>
+          <div class="mli-name-jp">特選刺身盛り合わせ</div>
+          <div class="mli-name-vn">Sashimi Đặc Tuyển — 9 loại cá</div>
+          <p class="mli-desc">Đĩa sashimi 9 loại theo mùa: cá hồi, cá ngừ, bạch tuộc, tôm ngọt, sò điệp, cua, cá tráp đỏ, nhím biển và cá kiếm.</p>
+          <span class="mli-badge">Bestseller</span>
+        </div>
+        <div class="mli-price">[Giá]</div>
+      </div>
+      <div class="menu-list-item reveal">
+        <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=160&q=70&auto=format&fit=crop" alt="Sashimi cá ngừ" class="mli-img">
+        <div>
+          <div class="mli-cat">Cá ngừ</div>
+          <div class="mli-name-jp">まぐろ刺身</div>
+          <div class="mli-name-vn">Maguro Sashimi — Cá ngừ đỏ</div>
+          <p class="mli-desc">Cá ngừ vây xanh (Bluefin Tuna) nhập Nhật, thịt đỏ thẫm, vị umami đậm, kết cấu mềm mịn khác biệt hoàn toàn cá ngừ thường.</p>
+        </div>
+        <div class="mli-price">[Giá]</div>
+      </div>
+    </div>
+
+    <!-- Sushi & Maki -->
+    <div class="menu-section" data-cat="sushi">
+      <div class="cat-heading reveal">
+        <span class="ch-num">02</span>
+        <span class="ch-name">Sushi & Maki Roll</span>
+        <span class="ch-jp">寿司・巻き</span>
+      </div>
+      <div class="menu-list-item reveal">
+        <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=160&q=70&auto=format&fit=crop" alt="Otoro Nigiri" class="mli-img">
+        <div>
+          <div class="mli-cat">Nigiri đặc biệt</div>
+          <div class="mli-name-jp">大トロ握り</div>
+          <div class="mli-name-vn">Otoro Nigiri — Cá ngừ bụng béo</div>
+          <p class="mli-desc">Miếng sushi tinh hoa — cá ngừ phần bụng béo nhất, marbling trắng, tan chảy ngay khi đặt vào miệng.</p>
+          <span class="mli-badge">Signature</span>
+        </div>
+        <div class="mli-price">[Giá]/2 miếng</div>
+      </div>
+      <div class="menu-list-item reveal reveal-d1">
+        <img src="https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=160&q=70&auto=format&fit=crop" alt="Uni Nigiri" class="mli-img">
+        <div>
+          <div class="mli-cat">Nigiri nhím biển</div>
+          <div class="mli-name-jp">うにの握り</div>
+          <div class="mli-name-vn">Uni Nigiri — Nhím Biển Hokkaido</div>
+          <p class="mli-desc">Nhím biển vàng Hokkaido tươi sống đặt trên cơm sushi ấm — vị ngọt biển tự nhiên, béo mịn, không tanh.</p>
+          <span class="mli-badge">Limited</span>
+        </div>
+        <div class="mli-price">[Giá]/2 miếng</div>
+      </div>
+      <div class="menu-list-item reveal">
+        <img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=160&q=70&auto=format&fit=crop" alt="Dragon Roll" class="mli-img">
+        <div>
+          <div class="mli-cat">Maki đặc biệt</div>
+          <div class="mli-name-jp">ドラゴンロール</div>
+          <div class="mli-name-vn">Dragon Roll — Cuộn Rồng</div>
+          <p class="mli-desc">Tôm tempura, phô mai kem, dưa leo cuộn trong cơm sushi, phủ lát bơ mỏng xếp như vảy rồng. Sốt teriyaki ngọt và spicy mayo.</p>
+        </div>
+        <div class="mli-price">[Giá]/8 miếng</div>
+      </div>
+    </div>
+
+    <!-- Ramen & Udon -->
+    <div class="menu-section" data-cat="ramen">
+      <div class="cat-heading reveal">
+        <span class="ch-num">03</span>
+        <span class="ch-name">Ramen & Udon</span>
+        <span class="ch-jp">ラーメン・うどん</span>
+      </div>
+      <div class="menu-list-item reveal">
+        <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=160&q=70&auto=format&fit=crop" alt="Hakata Ramen" class="mli-img">
+        <div>
+          <div class="mli-cat">Hakata</div>
+          <div class="mli-name-jp">博多ラーメン</div>
+          <div class="mli-name-vn">Hakata Ramen — Đặc Sản Fukuoka</div>
+          <p class="mli-desc">Nước dùng tonkotsu hầm 18 tiếng từ xương heo Nhật, mì sợi mỏng Hakata, chashu nướng, trứng luộc marinate và bơ tỏi đen.</p>
+          <span class="mli-badge">Bestseller</span>
+        </div>
+        <div class="mli-price">[Giá]</div>
+      </div>
+      <div class="menu-list-item reveal reveal-d1">
+        <img src="https://images.unsplash.com/photo-1540648639573-8c848de23f0a?w=160&q=70&auto=format&fit=crop" alt="Shoyu Ramen" class="mli-img">
+        <div>
+          <div class="mli-cat">Tokyo style</div>
+          <div class="mli-name-jp">醤油ラーメン</div>
+          <div class="mli-name-vn">Shoyu Ramen — Vị Tương Nhật</div>
+          <p class="mli-desc">Nước dùng gà trong vắt với tương shoyu Nhật, mì xoăn vàng, chashu lợn, bamboo, nori và hành lá. Vị thanh, đậm umami.</p>
+        </div>
+        <div class="mli-price">[Giá]</div>
+      </div>
+      <div class="menu-list-item reveal">
+        <img src="https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=160&q=70&auto=format&fit=crop" alt="Udon bò" class="mli-img">
+        <div>
+          <div class="mli-cat">Udon</div>
+          <div class="mli-name-jp">肉うどん</div>
+          <div class="mli-name-vn">Niku Udon — Udon Thịt Bò</div>
+          <p class="mli-desc">Sợi udon dày mềm dẻo trong nước dùng dashi-tsuyu trong, phủ thịt bò mỏng xào teriyaki nhẹ, hành tây caramel và tempura tôm.</p>
+        </div>
+        <div class="mli-price">[Giá]</div>
+      </div>
+    </div>
+
+    <!-- Teppanyaki -->
+    <div class="menu-section" data-cat="teppan">
+      <div class="cat-heading reveal">
+        <span class="ch-num">04</span>
+        <span class="ch-name">Teppanyaki</span>
+        <span class="ch-jp">鉄板焼き</span>
+      </div>
+      <div class="menu-list-item reveal">
+        <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=160&q=70&auto=format&fit=crop" alt="Wagyu Teppan" class="mli-img">
+        <div>
+          <div class="mli-cat">Wagyu đặc biệt</div>
+          <div class="mli-name-jp">A5和牛鉄板焼き</div>
+          <div class="mli-name-vn">Wagyu A5 Teppanyaki</div>
+          <p class="mli-desc">Thịt bò Wagyu A5 Miyazaki nướng trực tiếp trên bàn teppan trước mặt thực khách. Marbling hoàn hảo, không cần gia vị thêm.</p>
+          <span class="mli-badge">Signature</span>
+        </div>
+        <div class="mli-price">[Giá]/100g</div>
+      </div>
+      <div class="menu-list-item reveal reveal-d1">
+        <img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=160&q=70&auto=format&fit=crop" alt="Tôm hùm teppan" class="mli-img">
+        <div>
+          <div class="mli-cat">Hải sản</div>
+          <div class="mli-name-jp">伊勢海老鉄板焼き</div>
+          <div class="mli-name-vn">Tôm Hùm Teppanyaki</div>
+          <p class="mli-desc">Tôm hùm Canada tươi sống bổ đôi nướng teppan với bơ tỏi, sake và muối biển Okinawa. Kèm cơm trắng Nhật và súp miso.</p>
+        </div>
+        <div class="mli-price">[Giá]/nửa con</div>
+      </div>
+    </div>
+
+    <!-- Set cơm -->
+    <div class="menu-section" data-cat="set">
+      <div class="cat-heading reveal">
+        <span class="ch-num">05</span>
+        <span class="ch-name">Set Cơm Nhật</span>
+        <span class="ch-jp">定食</span>
+      </div>
+      <div class="menu-list-item reveal">
+        <img src="https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=160&q=70&auto=format&fit=crop" alt="Set cơm salmon" class="mli-img">
+        <div>
+          <div class="mli-cat">Set trưa</div>
+          <div class="mli-name-jp">鮭の塩焼き定食</div>
+          <div class="mli-name-vn">Set Cá Hồi Nướng Muối</div>
+          <p class="mli-desc">Cá hồi nướng muối giòn da, kèm cơm trắng Nhật, súp miso truyền thống, salad rau trộn, dưa tsukemono và tráng miệng nhỏ.</p>
+          <span class="mli-badge">Lunch Set</span>
+        </div>
+        <div class="mli-price">[Giá]</div>
+      </div>
+      <div class="menu-list-item reveal reveal-d1">
+        <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=160&q=70&auto=format&fit=crop" alt="Uni Don" class="mli-img">
+        <div>
+          <div class="mli-cat">Cơm đặc biệt</div>
+          <div class="mli-name-jp">うに丼</div>
+          <div class="mli-name-vn">Uni Don — Cơm Nhím Biển Hokkaido</div>
+          <p class="mli-desc">Nhím biển vàng Hokkaido phủ đầy trên cơm sushi, kèm trứng cá hồi, rong biển và shoyu Nhật. Số lượng giới hạn mỗi ngày.</p>
+          <span class="mli-badge">Limited / Ngày</span>
+        </div>
+        <div class="mli-price">[Giá]</div>
+      </div>
+    </div>
+
+    <!-- Tráng miệng -->
+    <div class="menu-section" data-cat="trang-miem">
+      <div class="cat-heading reveal">
+        <span class="ch-num">06</span>
+        <span class="ch-name">Tráng miệng & Đồ uống</span>
+        <span class="ch-jp">デザート</span>
+      </div>
+      <div class="menu-list-item reveal">
+        <img src="https://images.unsplash.com/photo-1540648639573-8c848de23f0a?w=160&q=70&auto=format&fit=crop" alt="Matcha Parfait" class="mli-img">
+        <div>
+          <div class="mli-cat">Parfait</div>
+          <div class="mli-name-jp">抹茶パフェ</div>
+          <div class="mli-name-vn">Matcha Parfait Kyoto</div>
+          <p class="mli-desc">Kem matcha Uji, mochi mềm, đậu đỏ azuki, crumble trà xanh, kem tươi Hokkaido đánh bông. Kết thúc hoàn hảo cho bữa ăn.</p>
+        </div>
+        <div class="mli-price">[Giá]</div>
+      </div>
+      <div class="menu-list-item reveal reveal-d1">
+        <img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=160&q=70&auto=format&fit=crop" alt="Sake Dassai" class="mli-img">
+        <div>
+          <div class="mli-cat">Sake thượng hạng</div>
+          <div class="mli-name-jp">獺祭二割三分</div>
+          <div class="mli-name-vn">Dassai 23 — Junmai Daiginjo</div>
+          <p class="mli-desc">Sake hàng đầu Nhật Bản từ Yamaguchi — gạo xay tới 23%, hương hoa đào tinh tế, vị ngọt thanh, finish dài và sạch.</p>
+        </div>
+        <div class="mli-price">[Giá]/180ml</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--dark2);padding:clamp(48px,7vw,80px) 0;text-align:center">
+  <div class="wd-container">
+    <div class="reveal">
+      <div class="ph-eyebrow mb-3">Đặt bàn</div>
+      <h2 style="font-size:clamp(24px,3.5vw,44px);font-weight:300;color:#fff;letter-spacing:-1.5px;margin-bottom:12px">Trải nghiệm thực đơn<br><em style="color:#ef4444">hôm nay</em></h2>
+      <p style="font-size:14px;font-weight:300;color:rgba(255,255,255,.4);margin-bottom:28px">Gọi điện hoặc đặt online — số chỗ Omakase có hạn mỗi ngày.</p>
+      <div class="d-flex gap-3 justify-content-center flex-wrap">
+        <a href="dat-ban.html" class="btn-accent">Đặt bàn ngay</a>
+        <a href="sushi-bar.html" class="btn-outline-white">Xem Sushi Bar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo">鮨 [TÊN NHÀ HÀNG] <span>日本</span></div>
+        <p class="ft-desc">Nhà hàng Nhật Bản chính thống — nơi nghệ thuật ẩm thực và triết lý thiền định gặp nhau trên từng đĩa thức ăn.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc" aria-label="Facebook">fb</a>
+          <a href="#" class="ft-soc" aria-label="Instagram">ig</a>
+          <a href="#" class="ft-soc" aria-label="Zalo">zl</a>
+          <a href="#" class="ft-soc" aria-label="YouTube">yt</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Menu</div>
+        <div class="ft-links">
+          <a href="thuc-don.html">Thực đơn</a>
+          <a href="sushi-bar.html">Sushi Bar</a>
+          <a href="thuc-don.html">Omakase</a>
+          <a href="thuc-don.html">Sake & Rượu</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Nhà hàng</div>
+        <div class="ft-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="dat-ban.html">Đặt bàn</a>
+          <a href="lien-he.html">Liên hệ</a>
+          <a href="#">Sự kiện riêng</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links">
+          <a href="tel:[0901234567]">📱 [0901 234 567]</a>
+          <a href="#">📍 [Địa chỉ nhà hàng]</a>
+          <a href="mailto:[email@nhahangnhat.vn]">✉️ [email@nhahangnhat.vn]</a>
+          <a href="#">🕙 11:30–14:00 / 17:30–22:00</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="wd-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="ft-copy">© [2024] [TÊN NHÀ HÀNG] · Made in Vietnam 🇻🇳</div>
+        <div class="ft-copy">お食事 寿司 日本料理</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="zf">
+  <div class="zf-tip">Liên hệ Zalo</div>
+  <a href="https://zalo.me/[ZALO_NUMBER]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} });
+}, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+}
+function filterMenu(cat) {
+  document.querySelectorAll('.mf-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.menu-section').forEach(s => {
+    s.style.display = (cat === 'all' || s.dataset.cat === cat) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

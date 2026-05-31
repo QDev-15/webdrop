@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liên hệ — [TÊN AGENCY]</title>
+  <meta name="description" content="Liên hệ với [TÊN AGENCY] để bắt đầu dự án của bạn. Chúng tôi sẵn sàng tư vấn miễn phí và lên kế hoạch sáng tạo phù hợp nhất trong 24 giờ.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <style>
+    /* Extra styles for contact page */
+    .ag-contact-map {
+      width: 100%; height: 320px;
+      background: var(--warm2);
+      position: relative;
+      overflow: hidden;
+    }
+    .ag-contact-map iframe {
+      width: 100%; height: 100%;
+      border: none;
+      filter: grayscale(40%) contrast(1.1);
+    }
+    .ag-faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 24px 0;
+    }
+    .ag-faq-q {
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: -0.3px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .ag-faq-q span { color: var(--accent); font-weight: 700; font-size: 20px; }
+    .ag-faq-a {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-2);
+      line-height: 1.75;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav" aria-label="Navigation chính">
+  <div class="wd-container">
+    <div class="ag-nav-inner">
+      <a href="index.html" class="ag-logo">[AGENCY]<span>.</span></a>
+      <ul class="ag-nav-links">
+        <li><a href="index.html">Trang chủ</a></li>
+        <li><a href="du-an.html">Dự án</a></li>
+        <li><a href="dich-vu.html">Dịch vụ</a></li>
+        <li><a href="ve-chung-toi.html">Về chúng tôi</a></li>
+        <li><a href="lien-he.html" class="active">Liên hệ</a></li>
+      </ul>
+      <a href="lien-he.html" class="ag-nav-cta">Bắt đầu dự án</a>
+      <button class="ag-burger" id="navBurger" aria-label="Mở menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="ag-nav-mob" id="navMob" role="dialog" aria-modal="true">
+  <a href="index.html">Trang chủ</a>
+  <a href="du-an.html">Dự án</a>
+  <a href="dich-vu.html">Dịch vụ</a>
+  <a href="ve-chung-toi.html">Về chúng tôi</a>
+  <a href="lien-he.html" class="active">Liên hệ</a>
+  <a href="lien-he.html" class="mob-cta">Bắt đầu dự án</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="ag-page-hero">
+  <div class="wd-container">
+    <div class="ag-ph-label" data-reveal>Liên hệ với chúng tôi</div>
+    <h1 class="ag-ph-title" data-reveal>
+      LET'S<br><span class="outline">TALK</span>
+    </h1>
+    <p class="ag-ph-sub" data-reveal>Chia sẻ về dự án của bạn — chúng tôi sẽ phản hồi trong vòng 24 giờ làm việc. Mọi cuộc tư vấn ban đầu đều miễn phí.</p>
+  </div>
+</section>
+
+<!-- QUICK CONTACT INFO BAR -->
+<div class="ag-stat-bar" style="background:var(--accent);">
+  <div class="wd-container">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;" data-reveal>
+      <div style="padding:24px 32px;border-right:1px solid rgba(0,0,0,.1);">
+        <div class="ag-stat-name">Email</div>
+        <a href="mailto:[email@agency.vn]" class="ag-stat-number" style="font-size:clamp(14px,2vw,20px);letter-spacing:-0.5px;color:var(--dark);text-decoration:none;">[email@agency.vn]</a>
+      </div>
+      <div style="padding:24px 32px;border-right:1px solid rgba(0,0,0,.1);">
+        <div class="ag-stat-name">Điện thoại / Zalo</div>
+        <a href="tel:[0909xxxxxx]" class="ag-stat-number" style="font-size:clamp(14px,2vw,20px);letter-spacing:-0.5px;color:var(--dark);text-decoration:none;">[0909 xxx xxx]</a>
+      </div>
+      <div style="padding:24px 32px;">
+        <div class="ag-stat-name">Giờ làm việc</div>
+        <span class="ag-stat-number" style="font-size:clamp(14px,2vw,20px);letter-spacing:-0.5px;">T2-T6 · [8:00 – 18:00]</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTACT SECTION -->
+<section class="ag-contact-section">
+  <div class="wd-container">
+    <div class="ag-contact-grid">
+      <!-- Left: info -->
+      <div>
+        <h2 class="ag-contact-big-title" data-reveal>LIÊN<br>HỆ<br><span>[TÊN AGENCY]</span></h2>
+
+        <div data-reveal>
+          <div class="ag-contact-detail-item">
+            <span class="ag-cd-label">Địa chỉ văn phòng</span>
+            <span class="ag-cd-value">[SỐ NHÀ, TÊN ĐƯỜNG]<br>[QUẬN/HUYỆN], [THÀNH PHỐ]</span>
+          </div>
+          <div class="ag-contact-detail-item">
+            <span class="ag-cd-label">Email</span>
+            <span class="ag-cd-value"><a href="mailto:[email@agency.vn]">[email@agency.vn]</a></span>
+          </div>
+          <div class="ag-contact-detail-item">
+            <span class="ag-cd-label">Điện thoại</span>
+            <span class="ag-cd-value"><a href="tel:[0909xxxxxx]">[0909 xxx xxx]</a></span>
+          </div>
+          <div class="ag-contact-detail-item">
+            <span class="ag-cd-label">Zalo</span>
+            <span class="ag-cd-value"><a href="https://zalo.me/[SỐ_ZALO]" target="_blank" rel="noopener noreferrer">[0909 xxx xxx]</a></span>
+          </div>
+        </div>
+
+        <!-- Social -->
+        <div style="margin-top: 32px;" data-reveal>
+          <div style="font-family:var(--sans);font-size:10px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;">Theo dõi chúng tôi</div>
+          <div style="display:flex;gap:16px;flex-wrap:wrap;">
+            <a href="#" class="ag-btn-outline" style="font-size:10px;padding:8px 16px;" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="#" class="ag-btn-outline" style="font-size:10px;padding:8px 16px;" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="#" class="ag-btn-outline" style="font-size:10px;padding:8px 16px;" target="_blank" rel="noopener noreferrer">Behance</a>
+            <a href="#" class="ag-btn-outline" style="font-size:10px;padding:8px 16px;" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <div data-reveal>
+        <div class="ag-contact-form-wrap">
+          <h3 class="ag-contact-form-title">Gửi brief cho chúng tôi</h3>
+          <form action="#" method="post" novalidate>
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <div class="ag-field">
+                  <label for="lh-name">Họ và tên *</label>
+                  <input type="text" id="lh-name" name="name" placeholder="[Nguyễn Văn A]" required autocomplete="name">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="ag-field">
+                  <label for="lh-company">Công ty / Thương hiệu</label>
+                  <input type="text" id="lh-company" name="company" placeholder="[Tên công ty]" autocomplete="organization">
+                </div>
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <div class="ag-field">
+                  <label for="lh-email">Email *</label>
+                  <input type="email" id="lh-email" name="email" placeholder="[email@company.vn]" required autocomplete="email">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="ag-field">
+                  <label for="lh-phone">Số điện thoại</label>
+                  <input type="tel" id="lh-phone" name="phone" placeholder="[0909 xxx xxx]" autocomplete="tel">
+                </div>
+              </div>
+            </div>
+            <div class="ag-field">
+              <label for="lh-service">Dịch vụ quan tâm *</label>
+              <select id="lh-service" name="service" required>
+                <option value="">Chọn dịch vụ bạn cần</option>
+                <option value="brand-identity">Brand Identity (Logo, Visual Identity)</option>
+                <option value="brand-strategy">Brand Strategy</option>
+                <option value="digital-design">Digital Design (Web, App, UI/UX)</option>
+                <option value="campaign">Campaign &amp; Content</option>
+                <option value="full-package">Full Package (Brand + Digital + Campaign)</option>
+                <option value="other">Khác / Cần tư vấn thêm</option>
+              </select>
+            </div>
+            <div class="ag-field">
+              <label for="lh-budget">Ngân sách dự kiến</label>
+              <select id="lh-budget" name="budget">
+                <option value="">Chọn mức ngân sách</option>
+                <option value="under-50">Dưới 50 triệu</option>
+                <option value="50-100">50 – 100 triệu</option>
+                <option value="100-300">100 – 300 triệu</option>
+                <option value="above-300">Trên 300 triệu</option>
+                <option value="unknown">Chưa xác định</option>
+              </select>
+            </div>
+            <div class="ag-field">
+              <label for="lh-brief">Mô tả dự án *</label>
+              <textarea id="lh-brief" name="brief"
+                        placeholder="[Kể cho chúng tôi nghe về thương hiệu của bạn, mục tiêu dự án, timeline mong muốn và bất kỳ yêu cầu đặc biệt nào...]"
+                        style="height:140px;" required></textarea>
+            </div>
+            <div style="font-family:var(--sans);font-size:11px;color:var(--text-3);margin-bottom:16px;text-transform:uppercase;letter-spacing:.5px;">
+              * Thông tin bắt buộc. Chúng tôi cam kết bảo mật thông tin của bạn.
+            </div>
+            <button type="submit" class="ag-form-submit">Gửi brief ngay &rarr;</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<div class="ag-contact-map">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4614484540587!2d106.69973!3d10.77600!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQ2JzMzLjYiTiAxMDbCsDQxJzU4LjciRQ!5e0!3m2!1svi!2svn!4v1000000000000!5m2!1svi!2svn"
+    title="Bản đồ vị trí [TÊN AGENCY]"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+<!-- FAQ -->
+<section class="ag-sec-pad" style="background: var(--bg);">
+  <div class="wd-container">
+    <div class="row g-5">
+      <div class="col-lg-4" data-reveal>
+        <div class="ag-section-label" style="margin-bottom:12px;">FAQ</div>
+        <h2 class="ag-section-title">Câu hỏi<br><em>thường gặp</em></h2>
+        <p style="font-family:var(--sans);font-size:13px;color:var(--text-2);line-height:1.8;margin-top:16px;">Không tìm thấy câu trả lời bạn cần? Liên hệ trực tiếp — chúng tôi luôn sẵn sàng giải đáp.</p>
+      </div>
+      <div class="col-lg-8" data-reveal>
+        <div class="ag-faq-item">
+          <div class="ag-faq-q">Thời gian thực hiện một dự án brand identity là bao lâu? <span>+</span></div>
+          <p class="ag-faq-a">Tùy thuộc vào scope của dự án. Một brand starter pack thường mất 2-3 tuần. Full brand identity mất 4-8 tuần. Chúng tôi luôn thống nhất timeline cụ thể trước khi bắt đầu.</p>
+        </div>
+        <div class="ag-faq-item">
+          <div class="ag-faq-q">Quy trình thanh toán như thế nào? <span>+</span></div>
+          <p class="ag-faq-a">Chúng tôi chia thanh toán thành 2-3 đợt: 50% khi ký hợp đồng, 50% còn lại khi bàn giao. Với dự án lớn có thể chia thêm đợt giữa theo milestone.</p>
+        </div>
+        <div class="ag-faq-item">
+          <div class="ag-faq-q">Tôi có thể yêu cầu sửa đổi bao nhiêu lần? <span>+</span></div>
+          <p class="ag-faq-a">Mỗi phase thiết kế bao gồm 2-3 vòng feedback/revision. Revision thêm ngoài phạm vi sẽ được tính phí theo giờ, đã thông báo rõ trong hợp đồng.</p>
+        </div>
+        <div class="ag-faq-item">
+          <div class="ag-faq-q">Tôi có được nhận file gốc (source file) không? <span>+</span></div>
+          <p class="ag-faq-a">Có — chúng tôi bàn giao đầy đủ file gốc (AI, PSD, Figma...) cùng file xuất (PDF, PNG, SVG) ở mọi kích thước cần thiết.</p>
+        </div>
+        <div class="ag-faq-item">
+          <div class="ag-faq-q">Agency có hỗ trợ sau khi bàn giao dự án không? <span>+</span></div>
+          <p class="ag-faq-a">Có — chúng tôi hỗ trợ miễn phí trong 30 ngày sau bàn giao cho các điều chỉnh nhỏ. Với nhu cầu dài hạn, chúng tôi có gói retainer hàng tháng.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ag-footer">
+  <div class="wd-container">
+    <div class="ag-footer-main">
+      <div class="ag-footer-brand">
+        <a href="index.html" class="ag-footer-logo">[AGENCY]<span>.</span></a>
+        <p class="ag-footer-tagline">Agency sáng tạo chuyên branding, thiết kế và digital marketing. Chúng tôi tạo ra những thương hiệu đáng nhớ.</p>
+        <div class="ag-footer-social">
+          <a href="#" class="ag-social-link" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="#" class="ag-social-link" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="#" class="ag-social-link" target="_blank" rel="noopener noreferrer">Behance</a>
+          <a href="#" class="ag-social-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </div>
+      <div class="ag-footer-col">
+        <div class="ag-footer-col-title">Dịch vụ</div>
+        <ul class="ag-footer-links">
+          <li><a href="dich-vu.html">Brand Identity</a></li>
+          <li><a href="dich-vu.html">Digital Design</a></li>
+          <li><a href="dich-vu.html">Campaign</a></li>
+          <li><a href="dich-vu.html">Content Strategy</a></li>
+        </ul>
+      </div>
+      <div class="ag-footer-col">
+        <div class="ag-footer-col-title">Công ty</div>
+        <ul class="ag-footer-links">
+          <li><a href="ve-chung-toi.html">Về chúng tôi</a></li>
+          <li><a href="du-an.html">Dự án</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div class="ag-footer-col">
+        <div class="ag-footer-col-title">Liên hệ</div>
+        <ul class="ag-footer-links">
+          <li><a href="mailto:[email@agency.vn]">[email@agency.vn]</a></li>
+          <li><a href="tel:[0909xxxxxx]">[0909 xxx xxx]</a></li>
+          <li><a href="#">[ĐỊA CHỈ VĂN PHÒNG]</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ag-footer-bottom">
+      <span class="ag-footer-copy">&copy; [NĂM] [TÊN AGENCY]. All rights reserved.</span>
+      <span class="ag-footer-made">Made with <span>&#9733;</span> in Vietnam</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Zalo Float -->
+<a href="https://zalo.me/[SỐ_ZALO]" class="ag-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+  <span class="ag-zalo-float-label">Chat Zalo</span>
+  <svg width="28" height="28" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+    <rect width="40" height="40" rx="0" fill="#0068FF"/>
+    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#fff" font-size="14" font-weight="700" font-family="sans-serif">Z</text>
+  </svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const nav = document.getElementById('nav');
+  if (nav) window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 20), {passive: true});
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+  }, {threshold: .08, rootMargin: '0px 0px -40px 0px'});
+  document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+  const burger = document.getElementById('navBurger');
+  const mob = document.getElementById('navMob');
+  if (burger && mob) {
+    burger.addEventListener('click', () => { const o = mob.classList.toggle('open'); burger.classList.toggle('open', o); document.body.style.overflow = o ? 'hidden' : ''; });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { mob.classList.remove('open'); burger.classList.remove('open'); document.body.style.overflow = ''; } });
+  }
+</script>
+</body>
+</html>
