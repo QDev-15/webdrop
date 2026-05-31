@@ -23,7 +23,7 @@ const SRC_DIR  = path.resolve(__dirname, '../web');
 const DIST_DIR = path.resolve(__dirname, '../../../dist/demo');
 const GUARD_JS = path.resolve(__dirname, 'demo-guard.js');
 const GUARD_COMMENT = '<!-- wd-guard -->';
-const GUARD_SCRIPT  = '<script src="/assets/js/demo-guard.js"></script>';
+const GUARD_SCRIPT  = '<script src="assets/js/demo-guard.js"></script>';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────
 
