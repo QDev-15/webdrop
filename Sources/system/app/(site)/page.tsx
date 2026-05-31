@@ -1,3 +1,5 @@
+export const revalidate = 60 // ISR: refresh cache sau mỗi 60 giây
+
 import HeroSlider from '@/components/site/HeroSlider'
 import HowItWorks from '@/components/site/HowItWorks'
 import TemplateGrid from '@/components/site/TemplateGrid'

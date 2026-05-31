@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 import { getSession } from '@/lib/auth'
 
@@ -16,6 +17,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
     data: body,
   })
 
+  revalidatePath('/')
   return NextResponse.json(template)
 }
 
@@ -27,5 +29,6 @@ export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ 
 
   const { id } = await params
   await prisma.template.delete({ where: { id: parseInt(id) } })
+  revalidatePath('/')
   return NextResponse.json({ ok: true })
 }

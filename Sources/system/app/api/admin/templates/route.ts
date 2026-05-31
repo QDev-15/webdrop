@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 import { getSession } from '@/lib/auth'
 
@@ -42,5 +43,6 @@ export async function POST(req: NextRequest) {
     data: { name, slug, description, thumbnail, demoUrl, price, category, industryId: industryId || null, status: 'draft' },
   })
 
+  revalidatePath('/')
   return NextResponse.json(template, { status: 201 })
 }
