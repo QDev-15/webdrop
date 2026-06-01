@@ -11,14 +11,20 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
 
   const { id } = await params
   const body = await req.json()
+  const { name, slug, description, thumbnail, demoUrl, price, category, industryId, status } = body
 
-  const template = await prisma.template.update({
-    where: { id: parseInt(id) },
-    data: body,
-  })
-
-  revalidatePath('/')
-  return NextResponse.json(template)
+  try {
+    const template = await prisma.template.update({
+      where: { id: parseInt(id) },
+      data: { name, slug, description, thumbnail, demoUrl, price, category, industryId: industryId || null, ...(status ? { status } : {}) },
+    })
+    revalidatePath('/')
+    return NextResponse.json(template)
+  } catch (e: unknown) {
+    const err = e as { code?: string }
+    if (err.code === 'P2025') return NextResponse.json({ error: 'Không tìm thấy template' }, { status: 404 })
+    return NextResponse.json({ error: 'Lỗi cập nhật' }, { status: 500 })
+  }
 }
 
 export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {

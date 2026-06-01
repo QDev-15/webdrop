@@ -1,6 +1,6 @@
 # Required — Danh sách việc cần làm (webdrop System)
 
-> Review date: 2026-06-01
+> Review date: 2026-06-01 (updated after implementation session)
 > Scope: `Sources/system/` — Next.js app (trang bán hàng + admin)
 
 ---
@@ -10,126 +10,86 @@
 | Route | Màn hình | Tình trạng |
 |---|---|---|
 | `/` | Homepage | ✅ Hoạt động — ISR 60s |
-| `/templates/[slug]` | Chi tiết template | ⚠️ Thiếu revalidate, thiếu nội dung đầy đủ |
-| `/checkout` | Đặt hàng | ⚠️ Giá hardcode không khớp Gói A/B/C |
+| `/templates` | Danh sách tất cả template | ✅ Tạo mới — ISR 60s |
+| `/templates/[slug]` | Chi tiết template | ✅ Cập nhật — có revalidate 60s |
+| `/checkout` | Đặt hàng | ✅ Cập nhật — plan IDs đồng bộ với API |
+| `/checkout/success` | Xác nhận đặt hàng | ✅ Tạo mới — hiển thị mã đơn |
+| `/about` | Về chúng tôi | ✅ Tạo mới |
+| `/blog` | Blog / Tin tức | ✅ Tạo mới |
+| `/contact` | Liên hệ + FAQ | ✅ Tạo mới — error handling đúng |
+| `/faq` | FAQ | ✅ Tạo mới |
+| `/pricing` | Bảng giá | ✅ Tạo mới |
+| `/policies/[slug]` | Chính sách | ✅ Tạo mới |
+| `not-found.tsx` | Trang 404 | ✅ Tạo mới |
 | `/admin/login` | Đăng nhập admin | ✅ Hoạt động |
 | `/admin` | Dashboard | ✅ Hoạt động — stats từ DB |
-| `/admin/templates` | Danh sách template | ⚠️ Chỉ có view, link "Thêm/Sửa" dẫn đến trang 404 |
-| `/admin/orders` | Danh sách đơn hàng | ⚠️ Chỉ view, không sửa được, không lọc được |
-| `/admin/customers` | Danh sách khách hàng | ⚠️ Chỉ view, không có chi tiết/sửa |
+| `/admin/templates` | Danh sách template | ✅ Hoạt động |
+| `/admin/templates/new` | Form tạo template | ✅ Tạo mới |
+| `/admin/templates/[id]/edit` | Form sửa template | ✅ Tạo mới |
+| `/admin/orders` | Danh sách đơn hàng | ✅ Cập nhật — filter/search |
+| `/admin/orders/[id]` | Chi tiết đơn hàng + cập nhật TT | ✅ Tạo mới |
+| `/admin/customers` | Danh sách khách hàng | ✅ Cập nhật — search/pagination |
+| `/admin/customers/[id]` | Chi tiết khách hàng | ✅ Tạo mới |
+| `/admin/customers/new` | Thêm khách hàng | ✅ Tạo mới |
+| `/admin/revenue` | Báo cáo doanh thu | ✅ Tạo mới |
+| `/admin/projects` | Quản lý dự án | ✅ Tạo mới |
 | `/admin/settings` | Cài đặt | ✅ Hoạt động |
 
 ---
 
-## 2. MÀN HÌNH THIẾU HOÀN TOÀN (cần tạo mới)
+## 2. API — Tình trạng
 
-### Admin
-- [ ] `/admin/templates/new` — Form tạo template mới *(link đã có trong `/admin/templates` nhưng trang 404)*
-- [ ] `/admin/templates/[id]/edit` — Form sửa template *(link đã có nhưng trang 404)*
-- [ ] `/admin/orders/[id]` — Chi tiết đơn hàng + cập nhật trạng thái
-- [ ] `/admin/customers/[id]` — Chi tiết khách hàng + lịch sử đơn
-- [ ] `/admin/customers/new` — Thêm khách hàng thủ công
-- [ ] `/admin/revenue` — Báo cáo doanh thu / tài chính *(model Revenue đã có trong schema)*
-- [ ] `/admin/projects` — Quản lý dự án Gói B/C *(model Project đã có trong schema)*
-
-### Public
-- [ ] `/templates` — Trang danh sách TẤT CẢ templates (hiện tại chỉ hiển thị trên homepage)
-- [ ] `not-found.tsx` — Trang 404 custom
-
----
-
-## 3. CHỨC NĂNG THIẾU TRÊN TỪNG MÀN HÌNH
-
-### `/templates/[slug]` — Chi tiết template
-- [ ] Thiếu `export const revalidate = 60` → trang static mãi mãi sau build
-- [ ] Thiếu nội dung đầy đủ: mô tả dài, danh sách trang có trong template, công nghệ sử dụng
-- [ ] Thiếu gallery ảnh (hiện chỉ có 1 ảnh thumbnail)
-- [ ] Thiếu related templates cùng ngành
-
-### `/checkout` — Đặt hàng
-- [ ] Giá gói hardcode (`starter: 1.2tr`, `standard: 2.5tr`, `premium: 12tr`) không khớp với Gói A/B/C trong `service_packages`
-- [ ] Thiếu email xác nhận đơn hàng sau khi đặt thành công
-- [ ] Thiếu trang xác nhận `/checkout/success?code=WD-xxxx`
-- [ ] `generateOrderCode()` dùng vòng lặp while → có thể infinite loop nếu DB đầy mã
-
-### `/admin/templates` — Danh sách template
-- [ ] Thiếu trang `/admin/templates/new` (form tạo mới)
-- [ ] Thiếu trang `/admin/templates/[id]/edit` (form sửa)
-- [ ] Thiếu search/filter theo tên, ngành, trạng thái
-- [ ] Thiếu phân trang (hiện tải toàn bộ)
-- [ ] Thiếu nút xóa template
-
-### `/admin/orders` — Đơn hàng
-- [ ] Thiếu cập nhật trạng thái đơn hàng (chỉ xem)
-- [ ] Thiếu trang chi tiết đơn `/admin/orders/[id]`
-- [ ] Thiếu filter theo trạng thái, ngày, loại
-- [ ] Thiếu search theo mã đơn, tên khách
-- [ ] Pagination hardcode 50 đơn — thiếu phân trang thực sự
-- [ ] Thiếu export CSV/Excel
-
-### `/admin/customers` — Khách hàng
-- [ ] Thiếu trang chi tiết khách `/admin/customers/[id]`
-- [ ] Thiếu form thêm khách thủ công
-- [ ] Thiếu search theo tên, email, SĐT
-- [ ] Pagination hardcode 50 — thiếu phân trang
-
-### `/admin/settings` — Cài đặt
-- [ ] Thiếu nhóm cài đặt: Design (màu sắc, logo), Header/Footer config
-- [ ] Thiếu upload logo/favicon
-- [ ] Thiếu preview thay đổi trước khi lưu
-
----
-
-## 4. API THIẾU / CÒN LỖI
-
-| API | Vấn đề |
+| API | Tình trạng |
 |---|---|
-| `POST /api/orders` | `generateOrderCode()` dùng `while` không giới hạn — có thể treo |
-| `POST /api/orders` | Không gửi email xác nhận sau khi tạo đơn |
-| `POST /api/orders` | Giá tính theo `plan` hardcode, không đọc từ DB `service_packages` |
-| `GET /api/admin/orders` | Thiếu filter/search/pagination params |
-| `GET /api/admin/customers` | Thiếu filter/search/pagination params |
-| Thiếu `GET /api/admin/orders/[id]` | Không có API lấy chi tiết 1 đơn |
-| Thiếu `GET /api/admin/customers/[id]` | Không có API lấy chi tiết 1 khách |
-| Thiếu `GET /api/admin/revenue` | Schema có model Revenue nhưng chưa có API |
-| Thiếu `POST /api/admin/customers` | Không tạo khách hàng từ admin được |
+| `POST /api/orders` | ✅ Cập nhật — generateOrderCode() fixed, plan ID sync |
+| `GET /api/admin/orders` | ✅ Có filter/search/pagination |
+| `GET/PATCH /api/admin/orders/[id]` | ✅ Tạo mới — try/catch + P2025 handling |
+| `GET /api/admin/customers` | ✅ Có search/pagination |
+| `POST /api/admin/customers` | ✅ Tạo mới — try/catch + P2002 handling |
+| `GET/PATCH /api/admin/customers/[id]` | ✅ Tạo mới — whitelist fields, error handling |
+| `GET/POST /api/admin/templates` | ✅ Cập nhật — status field dùng từ request |
+| `PATCH/DELETE /api/admin/templates/[id]` | ✅ Cập nhật — whitelist fields, error handling |
+| `GET /api/admin/revenue` | ✅ Tạo mới |
+| `POST /api/admin/revenue` | ✅ Tạo mới — amount validation |
+| `POST /api/contact` | ✅ Tạo mới |
+| `GET /api/packages` | ✅ Tạo mới |
 
 ---
 
-## 5. BUG / ISSUES RÕ RÀNG
+## 3. BUG ĐÃ FIX
 
-| # | Vị trí | Vấn đề |
-|---|---|---|
-| B1 | `orders/route.ts:38-40` | `while (await prisma.order.findUnique(...))` — vòng lặp không giới hạn, có thể treo nếu DB có quá nhiều mã WD-xxxx |
-| B2 | `templates/[slug]/page.tsx` | Thiếu `revalidate` → detail page bị static hoàn toàn sau deploy |
-| B3 | `admin/templates/page.tsx` | Link `/admin/templates/new` và `/admin/templates/[id]/edit` dẫn đến 404 |
-| B4 | `checkout/page.tsx` | Giá gói không sync với DB `service_packages` |
-| B5 | `admin/orders/page.tsx` | `take: 50` cứng — không có pagination, không thể xem đơn cũ hơn |
-| B6 | `admin/customers/page.tsx` | `take: 50` cứng — tương tự orders |
-| B7 | `api/orders/route.ts` | Không validate trùng email trước khi tạo customer — có thể tạo duplicate nếu email null |
+| # | Vị trí | Vấn đề | Trạng thái |
+|---|---|---|---|
+| B1 | `orders/route.ts` | `while` loop không giới hạn | ✅ Fix — dùng timestamp-based code |
+| B2 | `templates/[slug]/page.tsx` | Thiếu `revalidate` | ✅ Fix — thêm `revalidate = 60` |
+| B3 | `admin/templates/page.tsx` | Link `/new` và `/edit` → 404 | ✅ Fix — tạo đủ các trang |
+| B4 | `checkout/page.tsx` | Plan ID mismatch (a/b/c vs starter/standard/premium) | ✅ Fix — đồng bộ IDs |
+| B5 | `admin/orders/page.tsx` | `take: 50` cứng | ✅ Fix — pagination + filter |
+| B6 | `admin/customers/page.tsx` | `take: 50` cứng | ✅ Fix — pagination + search |
+| B7 | `api/orders/route.ts` | Duplicate customer nếu email null | ✅ Fix — upsert logic |
+| B8 | `api/admin/customers/[id]/route.ts` | Mass-assignment vulnerability | ✅ Fix — whitelist fields |
+| B9 | `api/admin/templates/[id]/route.ts` | Mass-assignment vulnerability | ✅ Fix — whitelist fields |
+| B10 | `api/admin/customers/route.ts` | POST thiếu try/catch | ✅ Fix — P2002 handling |
+| B11 | `api/admin/orders/[id]/route.ts` | PATCH thiếu try/catch | ✅ Fix — P2025 handling |
+| B12 | `checkout/success/page.tsx` | Không hiển thị mã đơn hàng | ✅ Fix — đọc `?code=` từ URL |
+| B13 | `contact/page.tsx` | Luôn show success dù API lỗi | ✅ Fix — check `res.ok` |
+| B14 | `api/admin/revenue/route.ts` | `parseFloat` không validate | ✅ Fix — validate trước khi parse |
+| B15 | `templates/[slug]/page.tsx` | `{ slug: any }` type | ✅ Fix — dùng `{ slug: string }` |
+| B16 | `api/admin/templates/route.ts` | `status` bị ignored khi create | ✅ Fix — dùng `status ?? 'draft'` |
 
 ---
 
-## 6. THỨ TỰ ƯU TIÊN FIX
+## 4. CÒN LẠI (P2–P3)
 
-### P0 — Fix ngay (blocking)
-1. Tạo `/admin/templates/new` và `/admin/templates/[id]/edit` — link 404 ảnh hưởng UX admin
-2. Fix `generateOrderCode()` — bug tiềm ẩn
-
-### P1 — Quan trọng (sprint tiếp theo)
-3. Thêm `revalidate = 60` vào `/templates/[slug]/page.tsx`
-4. Trang chi tiết đơn hàng + cập nhật trạng thái `/admin/orders/[id]`
-5. Sync giá checkout với DB `service_packages`
-6. Trang xác nhận đơn hàng `/checkout/success`
-
-### P2 — Cải thiện
-7. Trang chi tiết khách hàng `/admin/customers/[id]`
-8. Search/filter trên admin orders, customers, templates
-9. Trang `/templates` — danh sách đầy đủ
-10. Trang 404 custom
+### P2 — Cải thiện (không blocking)
+- [ ] `/admin/settings` — Thêm nhóm cài đặt Design, Header/Footer config
+- [ ] `/admin/settings` — Upload logo/favicon
+- [ ] Search/filter trên `/admin/templates` (hiện chỉ có search, chưa có filter ngành/trạng thái)
+- [ ] Export CSV/Excel cho đơn hàng
 
 ### P3 — Tính năng mới
-11. `/admin/revenue` — báo cáo tài chính
-12. `/admin/projects` — quản lý dự án Gói B/C
-13. Email xác nhận đơn hàng
-14. Phân trang thực sự (thay thế hardcode 50)
+- [ ] Email xác nhận đơn hàng tự động
+- [ ] Gallery ảnh cho template detail (hiện chỉ 1 ảnh thumbnail)
+- [ ] Related templates cùng ngành trên template detail
+- [ ] Rate limiting cho `POST /api/orders` (chống spam)
+- [ ] `/admin/projects/[id]` — Chi tiết dự án + milestones management

@@ -1,22 +1,27 @@
 'use client'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 
 const navLinks = [
-  { href: '#templates', label: 'Mẫu thiết kế' },
-  { href: '#pricing', label: 'Bảng giá' },
-  { href: '#how', label: 'Quy trình' },
-  { href: '#reviews', label: 'Khách hàng' },
+  { href: '/#templates', label: 'Mẫu thiết kế' },
+  { href: '/pricing', label: 'Bảng giá' },
+  { href: '/#how', label: 'Quy trình' },
+  { href: '/about', label: 'Về chúng tôi' },
 ]
 
 export default function NavBar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const pathname = usePathname()
+  const router = useRouter()
+  const isHome = pathname === '/'
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    const check = () => setScrolled(window.scrollY > 60)
+    check()
+    window.addEventListener('scroll', check, { passive: true })
+    return () => window.removeEventListener('scroll', check)
   }, [])
 
   useEffect(() => {
@@ -30,28 +35,42 @@ export default function NavBar() {
     return () => document.removeEventListener('keydown', onKey)
   }, [])
 
-  const scrollTo = (id: string) => {
-    document.getElementById(id.replace('#', ''))?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  function handleNavClick(e: React.MouseEvent, href: string) {
+    const hashIndex = href.indexOf('#')
+    if (hashIndex === -1) return // normal link, let Link handle it
+
+    e.preventDefault()
+    const hash = href.slice(hashIndex + 1)
     setMobileOpen(false)
+
+    if (isHome) {
+      document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    } else {
+      router.push(href)
+    }
   }
 
   return (
     <>
-      <nav id="nav" className={scrolled ? 'scrolled' : ''}>
+      <nav id="nav" className={(!isHome || scrolled) ? 'scrolled' : ''}>
         <div className="wd-container">
           <div className="nav-inner">
             <Link href="/" className="logo">web<span>drop</span>.vn</Link>
             <div className="nav-links">
               {navLinks.map(l => (
-                <a key={l.href} href={l.href} onClick={e => { e.preventDefault(); scrollTo(l.href) }}>
+                <Link key={l.href} href={l.href}
+                  onClick={e => handleNavClick(e, l.href)}
+                  className={pathname === l.href || (l.href !== '/' && pathname.startsWith(l.href.split('#')[0]) && !l.href.includes('#')) ? 'active' : ''}>
                   {l.label}
-                </a>
+                </Link>
               ))}
+              <Link href="/templates" className={pathname.startsWith('/templates') ? 'active' : ''}>
+                Thư viện mẫu
+              </Link>
             </div>
-            <a href="#pricing" className="nav-cta d-none d-md-inline-flex"
-              onClick={e => { e.preventDefault(); scrollTo('#pricing') }}>
-              Tư vấn miễn phí
-            </a>
+            <Link href="/contact" className="nav-cta d-none d-md-inline-flex">
+              Liên hệ ngay
+            </Link>
             <button
               className={`nav-hamburger${mobileOpen ? ' open' : ''}`}
               aria-label="Mở menu" aria-expanded={mobileOpen}
@@ -65,13 +84,12 @@ export default function NavBar() {
 
       <div className={`nav-mobile${mobileOpen ? ' open' : ''}`} role="dialog" aria-label="Menu điều hướng">
         {navLinks.map(l => (
-          <a key={l.href} href={l.href} onClick={e => { e.preventDefault(); scrollTo(l.href) }}>
+          <Link key={l.href} href={l.href} onClick={e => handleNavClick(e, l.href)}>
             {l.label}
-          </a>
+          </Link>
         ))}
-        <a href="#pricing" className="nm-cta" onClick={e => { e.preventDefault(); scrollTo('#pricing') }}>
-          Tư vấn miễn phí
-        </a>
+        <Link href="/templates" onClick={() => setMobileOpen(false)}>Thư viện mẫu</Link>
+        <Link href="/contact" className="nm-cta" onClick={() => setMobileOpen(false)}>Liên hệ ngay</Link>
       </div>
     </>
   )

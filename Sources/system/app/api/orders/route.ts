@@ -2,8 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
 function generateOrderCode(): string {
-  const num = Math.floor(Math.random() * 9000) + 1000
-  return `WD-${num}`
+  const ts = Date.now().toString(36).toUpperCase().slice(-5)
+  const rand = Math.random().toString(36).slice(2, 5).toUpperCase()
+  return `WD-${ts}${rand}`
 }
 
 export async function POST(req: NextRequest) {
@@ -34,12 +35,7 @@ export async function POST(req: NextRequest) {
     const addonTotal = (addons || []).reduce((sum: number, a: string) => sum + (addonPrices[a] || 0), 0)
     const total = basePrice + addonTotal
 
-    // Tạo order
-    let code = generateOrderCode()
-    // Đảm bảo code unique
-    while (await prisma.order.findUnique({ where: { code } })) {
-      code = generateOrderCode()
-    }
+    const code = generateOrderCode()
 
     const order = await prisma.order.create({
       data: {

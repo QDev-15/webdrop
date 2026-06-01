@@ -4,6 +4,20 @@ import Link from 'next/link'
 import { templates as mockTemplates, categories as mockCategories } from '../../data/templates'
 import type { Template } from '../../data/templates'
 
+function TemplateImage({ src, alt, name, category }: { src: string; alt: string; name: string; category: string }) {
+  const [failed, setFailed] = useState(false)
+  if (failed) {
+    return (
+      <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, var(--accent-light) 0%, var(--warm2) 100%)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8, padding: 16 }}>
+        <div style={{ fontSize: 32 }}>🎨</div>
+        <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--accent)', textAlign: 'center', lineHeight: 1.3 }}>{name}</div>
+        <div style={{ fontSize: 11, color: 'var(--text-3)' }}>{category}</div>
+      </div>
+    )
+  }
+  return <img src={src} alt={alt} loading="lazy" onError={() => setFailed(true)} />
+}
+
 export default function TemplateGrid({ templates: propTemplates }: { templates?: Template[] }) {
   const templates = propTemplates || mockTemplates
   const categories = ['Tất cả', ...Array.from(new Set(templates.map(t => t.category)))]
@@ -32,7 +46,7 @@ export default function TemplateGrid({ templates: propTemplates }: { templates?:
               <Link href={`/templates/${t.slug}`} style={{ textDecoration: 'none' }}>
                 <div className={`tc reveal reveal-d${(i % 3) + 1}`}>
                   <div className="tc-thumb">
-                    <img src={t.image} alt={t.name} loading="lazy" />
+                    <TemplateImage src={t.image} alt={t.name} name={t.name} category={t.category} />
                     <div className="tc-hover-layer">
                       <div className="tc-demo-btn">Xem demo →</div>
                     </div>

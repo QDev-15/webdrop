@@ -6,7 +6,11 @@ const navItems = [
   { href: '/admin', icon: '📊', label: 'Tổng quan' },
   { href: '/admin/orders', icon: '📋', label: 'Đơn hàng' },
   { href: '/admin/customers', icon: '👥', label: 'Khách hàng' },
+  { href: '/admin/projects', icon: '🗂️', label: 'Dự án' },
   { href: '/admin/templates', icon: '🎨', label: 'Templates' },
+  { href: '/admin/posts', icon: '📝', label: 'Blog' },
+  { href: '/admin/contacts', icon: '💬', label: 'Liên hệ' },
+  { href: '/admin/revenue', icon: '💰', label: 'Doanh thu' },
   { href: '/admin/settings', icon: '⚙️', label: 'Cài đặt' },
 ]
 

@@ -1,0 +1,156 @@
+'use client'
+import { useState, FormEvent } from 'react'
+import { useRouter } from 'next/navigation'
+
+interface Industry { id: number; name: string; slug: string }
+
+interface TemplateFormProps {
+  mode: 'new' | 'edit'
+  id?: number
+  industries: Industry[]
+  initial?: {
+    name: string; slug: string; description: string; thumbnail: string
+    demoUrl: string; price: string; category: string; industryId: string; status: string
+  }
+}
+
+export default function TemplateForm({ mode, id, industries, initial }: TemplateFormProps) {
+  const router = useRouter()
+  const [form, setForm] = useState({
+    name: initial?.name ?? '',
+    slug: initial?.slug ?? '',
+    description: initial?.description ?? '',
+    thumbnail: initial?.thumbnail ?? '',
+    demoUrl: initial?.demoUrl ?? '',
+    price: initial?.price ?? '',
+    category: initial?.category ?? 'web',
+    industryId: initial?.industryId ?? '',
+    status: initial?.status ?? 'draft',
+  })
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState('')
+
+  function slugify(str: string) {
+    return str.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .replace(/đ/g, 'd').replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-')
+  }
+
+  function set(key: string, value: string) {
+    setForm(f => {
+      const next = { ...f, [key]: value }
+      if (key === 'name' && mode === 'new') next.slug = slugify(value)
+      return next
+    })
+  }
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault()
+    setError('')
+    if (!form.name || !form.slug || !form.price) { setError('Vui lòng điền đầy đủ thông tin bắt buộc'); return }
+    setSaving(true)
+    try {
+      const payload = {
+        ...form,
+        price: parseFloat(form.price.replace(/[^0-9.]/g, '')),
+        industryId: form.industryId ? parseInt(form.industryId) : null,
+      }
+      const res = mode === 'new'
+        ? await fetch('/api/admin/templates', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+        : await fetch(`/api/admin/templates/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+
+      if (!res.ok) { const d = await res.json(); setError(d.error || 'Lỗi lưu template'); return }
+      router.push('/admin/templates')
+      router.refresh()
+    } catch { setError('Lỗi kết nối server') }
+    finally { setSaving(false) }
+  }
+
+  const label = (text: string, req?: boolean) => (
+    <label style={{ display: 'block', fontSize: 12, fontWeight: 500, color: 'var(--text-2)', marginBottom: 5 }}>
+      {text}{req && <span style={{ color: 'var(--danger)', marginLeft: 3 }}>*</span>}
+    </label>
+  )
+
+  const input = (key: keyof typeof form, props?: React.InputHTMLAttributes<HTMLInputElement>) => (
+    <input
+      {...props}
+      value={form[key]}
+      onChange={e => set(key, e.target.value)}
+      style={{ width: '100%', padding: '9px 12px', borderRadius: 8, border: '1px solid var(--border)', background: 'var(--bg)', fontSize: 13, fontFamily: 'var(--sans)', color: 'var(--text)', outline: 'none', boxSizing: 'border-box' }}
+    />
+  )
+
+  return (
+    <form onSubmit={handleSubmit}>
+      {error && <div style={{ background: '#fef2f2', border: '1px solid #fecaca', borderRadius: 8, padding: '10px 14px', marginBottom: 16, fontSize: 13, color: '#dc2626' }}>{error}</div>}
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+        <div style={{ gridColumn: '1/-1' }}>
+          {label('Tên template', true)}
+          {input('name', { placeholder: 'Công ty dịch vụ Pro' })}
+        </div>
+        <div>
+          {label('Slug (URL)', true)}
+          {input('slug', { placeholder: 'cong-ty-dich-vu-pro' })}
+        </div>
+        <div>
+          {label('Giá (VNĐ)', true)}
+          {input('price', { placeholder: '2500000', type: 'number', min: '0' })}
+        </div>
+        <div style={{ gridColumn: '1/-1' }}>
+          {label('Mô tả ngắn')}
+          <textarea
+            value={form.description}
+            onChange={e => set('description', e.target.value)}
+            rows={3} placeholder="Mô tả template, tính năng chính..."
+            style={{ width: '100%', padding: '9px 12px', borderRadius: 8, border: '1px solid var(--border)', background: 'var(--bg)', fontSize: 13, fontFamily: 'var(--sans)', color: 'var(--text)', outline: 'none', resize: 'vertical', boxSizing: 'border-box' }}
+          />
+        </div>
+        <div style={{ gridColumn: '1/-1' }}>
+          {label('URL thumbnail')}
+          {input('thumbnail', { placeholder: 'https://images.unsplash.com/...' })}
+          {form.thumbnail && <img src={form.thumbnail} alt="preview" style={{ marginTop: 8, height: 80, borderRadius: 6, objectFit: 'cover', border: '1px solid var(--border)' }} />}
+        </div>
+        <div style={{ gridColumn: '1/-1' }}>
+          {label('Demo URL')}
+          {input('demoUrl', { placeholder: 'https://demo.webdrop.vn/...' })}
+        </div>
+        <div>
+          {label('Loại template')}
+          <select value={form.category} onChange={e => set('category', e.target.value)}
+            style={{ width: '100%', padding: '9px 12px', borderRadius: 8, border: '1px solid var(--border)', background: 'var(--bg)', fontSize: 13, fontFamily: 'var(--sans)', color: 'var(--text)', outline: 'none' }}>
+            <option value="web">Web template</option>
+            <option value="admin">Admin template</option>
+          </select>
+        </div>
+        <div>
+          {label('Ngành')}
+          <select value={form.industryId} onChange={e => set('industryId', e.target.value)}
+            style={{ width: '100%', padding: '9px 12px', borderRadius: 8, border: '1px solid var(--border)', background: 'var(--bg)', fontSize: 13, fontFamily: 'var(--sans)', color: 'var(--text)', outline: 'none' }}>
+            <option value="">— Chọn ngành —</option>
+            {industries.map(i => <option key={i.id} value={i.id}>{i.name}</option>)}
+          </select>
+        </div>
+        <div>
+          {label('Trạng thái')}
+          <select value={form.status} onChange={e => set('status', e.target.value)}
+            style={{ width: '100%', padding: '9px 12px', borderRadius: 8, border: '1px solid var(--border)', background: 'var(--bg)', fontSize: 13, fontFamily: 'var(--sans)', color: 'var(--text)', outline: 'none' }}>
+            <option value="draft">Nháp</option>
+            <option value="published">Đang bán</option>
+          </select>
+        </div>
+      </div>
+
+      <div style={{ display: 'flex', gap: 12, marginTop: 24, justifyContent: 'flex-end' }}>
+        <button type="button" onClick={() => router.back()}
+          style={{ padding: '10px 22px', borderRadius: 8, border: '1px solid var(--border)', background: 'transparent', fontSize: 13, fontFamily: 'var(--sans)', color: 'var(--text-2)', cursor: 'pointer' }}>
+          Huỷ
+        </button>
+        <button type="submit" disabled={saving}
+          style={{ padding: '10px 28px', borderRadius: 8, background: 'var(--accent)', border: 'none', fontSize: 13, fontWeight: 500, fontFamily: 'var(--sans)', color: '#fff', cursor: saving ? 'not-allowed' : 'pointer', opacity: saving ? .7 : 1 }}>
+          {saving ? 'Đang lưu...' : mode === 'new' ? 'Tạo template' : 'Lưu thay đổi'}
+        </button>
+      </div>
+    </form>
+  )
+}

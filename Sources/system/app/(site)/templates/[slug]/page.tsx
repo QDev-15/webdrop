@@ -1,5 +1,7 @@
-import { notFound } from 'next/navigation'
+export const revalidate = 60
+
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import { templates as mockTemplates } from '@/data/templates'
 import type { Template } from '@/data/templates'
@@ -8,7 +10,7 @@ import TemplateDetailClient from './TemplateDetailClient'
 export async function generateStaticParams() {
   try {
     const rows = await prisma.template.findMany({ where: { status: 'published' }, select: { slug: true } })
-    return rows.map((t: { slug: any }) => ({ slug: t.slug }))
+    return rows.map((t: { slug: string }) => ({ slug: t.slug }))
   } catch {
     return mockTemplates.map(t => ({ slug: t.slug }))
   }
@@ -18,8 +20,11 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
   const { slug } = await params
 
   let template: Template | undefined
+  let dbError = false
+
   try {
-    const row = await prisma.template.findUnique({
+    // findFirst thay vì findUnique để filter theo nhiều cột an toàn hơn
+    const row = await prisma.template.findFirst({
       where: { slug, status: 'published' },
       include: { industry: { select: { name: true } } },
     })
@@ -36,27 +41,57 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
       }
     }
   } catch {
+    dbError = true
     template = mockTemplates.find(t => t.slug === slug)
   }
 
-  if (!template) notFound()
+  // DB lỗi và không có mock → hiện trang lỗi thân thiện thay vì blank
+  if (!template) {
+    if (dbError) {
+      return (
+        <div style={{ paddingTop: 62 }}>
+          <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px 20px', textAlign: 'center' }}>
+            <div style={{ maxWidth: 420 }}>
+              <div style={{ fontSize: 48, marginBottom: 16 }}>⏳</div>
+              <h1 style={{ fontSize: 22, fontWeight: 600, marginBottom: 10 }}>Đang kết nối cơ sở dữ liệu</h1>
+              <p style={{ fontSize: 14, color: 'var(--text-2)', fontWeight: 300, lineHeight: 1.7, marginBottom: 24 }}>
+                Hệ thống đang khởi động, vui lòng thử lại sau vài giây.
+              </p>
+              <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
+                <Link href="/templates" style={{ padding: '10px 22px', borderRadius: 9, border: '1px solid var(--border)', color: 'var(--text-2)', fontSize: 13, textDecoration: 'none' }}>
+                  ← Quay lại
+                </Link>
+                <a href={`/templates/${slug}`} style={{ padding: '10px 22px', borderRadius: 9, background: 'var(--accent)', color: '#fff', fontSize: 13, fontWeight: 500, textDecoration: 'none' }}>
+                  Thử lại
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+    notFound()
+  }
 
   return (
-    <>
-      <nav className="wd-nav">
-        <div className="wd-container nav-inner">
-          <Link href="/" className="logo">web<span>drop</span>.vn</Link>
-          <div className="breadcrumb-wd d-none d-md-flex">
-            <Link href="/">Trang chủ</Link>
-            <span className="bc-sep">›</span>
-            <Link href="/#templates">Mẫu thiết kế</Link>
-            <span className="bc-sep">›</span>
-            <span style={{ color: 'var(--text)' }}>{template.name}</span>
+    <div style={{ paddingTop: 62 }}>
+      {/* Breadcrumb — nằm trong page flow thay vì wd-nav bị NavBar che */}
+      <div style={{ borderBottom: '1px solid var(--border-light)', background: 'var(--surface)' }}>
+        <div className="wd-container" style={{ height: 44, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: 'var(--text-3)' }}>
+            <Link href="/" style={{ color: 'var(--text-3)', textDecoration: 'none' }}>Trang chủ</Link>
+            <span>›</span>
+            <Link href="/templates" style={{ color: 'var(--text-3)', textDecoration: 'none' }}>Thư viện mẫu</Link>
+            <span>›</span>
+            <span style={{ color: 'var(--text-2)' }}>{template.name}</span>
           </div>
-          <Link href={`/checkout?slug=${template.slug}`} className="btn-primary-wd">Đặt mua →</Link>
+          <Link href={`/checkout?slug=${template.slug}`} className="btn-primary-wd" style={{ fontSize: 12, padding: '7px 16px' }}>
+            Đặt mua →
+          </Link>
         </div>
-      </nav>
+      </div>
+
       <TemplateDetailClient template={template} />
-    </>
+    </div>
   )
 }
