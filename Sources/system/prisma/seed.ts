@@ -58,6 +58,11 @@ async function main() {
   console.log('✅ Packages:', packages.map(p => p.code).join(', '))
 
   // ── Templates ──────────────────────────────────────────────────────────
+  // Xóa các template cũ (fake/placeholder) không còn trong danh sách hiện tại
+  const OBSOLETE_SLUGS = ['cong-ty-dich-vu-pro', 'nha-hang-cafe', 'spa-lam-dep']
+  await prisma.template.deleteMany({ where: { slug: { in: OBSOLETE_SLUGS } } })
+  console.log('🗑️  Xóa obsolete templates:', OBSOLETE_SLUGS.length)
+
   // Demo URLs: https://webdrop-eol.pages.dev/{Category}/{slug}/
   const DEMO_BASE = 'https://webdrop-eol.pages.dev'
 
