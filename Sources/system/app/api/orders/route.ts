@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
 function generateOrderCode(): string {
-  const ts = Date.now().toString(36).toUpperCase().slice(-5)
+  const ts   = Date.now().toString(36).toUpperCase().slice(-5)
   const rand = Math.random().toString(36).slice(2, 5).toUpperCase()
   return `WD-${ts}${rand}`
 }
@@ -10,11 +10,16 @@ function generateOrderCode(): string {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
-    const { name, phone, email, company, industry, note, templateSlug, plan, addons, paymentMethod } = body
+    const { name, phone, email, company, note, templateSlug, purchaseType } = body
 
     if (!name || !phone) {
       return NextResponse.json({ error: 'Thiếu thông tin bắt buộc' }, { status: 400 })
     }
+
+    const type = purchaseType === 'website' ? 'website' : 'template'
+
+    // Giá theo loại sản phẩm
+    const price = type === 'website' ? 5000000 : 499000
 
     // Upsert customer
     let customer = email
@@ -27,41 +32,32 @@ export async function POST(req: NextRequest) {
       })
     }
 
-    // Tính giá
-    const planPrices: Record<string, number> = { starter: 1200000, standard: 2500000, premium: 12000000 }
-    const addonPrices: Record<string, number> = { maintenance: 990000, domain: 300000, seo: 1200000 }
-
-    const basePrice = planPrices[plan] || 2500000
-    const addonTotal = (addons || []).reduce((sum: number, a: string) => sum + (addonPrices[a] || 0), 0)
-    const total = basePrice + addonTotal
-
     const code = generateOrderCode()
 
     const order = await prisma.order.create({
       data: {
         code,
         customerId: customer.id,
-        type: 'template',
-        title: templateSlug ? `Template: ${templateSlug}` : 'Đặt hàng website',
-        price: basePrice,
-        total,
+        type,
+        title: type === 'website'
+          ? `Website Gói B${templateSlug ? ` (${templateSlug})` : ''}`
+          : `Template: ${templateSlug || 'unknown'}`,
+        price,
+        total: price,
         status: 'new',
-        note: [note, industry ? `Ngành: ${industry}` : '', addons?.length ? `Addon: ${addons.join(', ')}` : ''].filter(Boolean).join(' | ') || null,
+        note: note || null,
         items: {
-          create: [
-            { itemType: 'service', itemName: `Gói ${plan}`, qty: 1, unitPrice: basePrice, subtotal: basePrice },
-            ...(addons || []).map((a: string) => ({
-              itemType: 'addon',
-              itemName: a,
-              qty: 1,
-              unitPrice: addonPrices[a] || 0,
-              subtotal: addonPrices[a] || 0,
-            })),
-          ],
+          create: [{
+            itemType: 'service',
+            itemName: type === 'website' ? 'Website Gói B (web.zip + admin.zip)' : `Template ZIP: ${templateSlug}`,
+            qty: 1,
+            unitPrice: price,
+            subtotal: price,
+          }],
         },
-        payments: paymentMethod !== 'consult' ? {
-          create: { amount: total, method: paymentMethod === 'bank' ? 'bank' : paymentMethod === 'momo' ? 'momo' : 'bank', status: 'pending' },
-        } : undefined,
+        payments: {
+          create: { amount: price, method: 'bank', status: 'pending' },
+        },
       },
     })
 

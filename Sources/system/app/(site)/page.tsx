@@ -40,8 +40,7 @@ async function getTemplates(): Promise<Template[]> {
       badge: toBadge(t.salesCount, t.createdAt),
       demoUrl: t.demoUrl || undefined,
     }))
-  } catch (e) {
-    console.error('[getTemplates] DB error:', e)
+  } catch {
     return []
   }
 }
@@ -53,7 +52,7 @@ export default async function HomePage() {
       <RevealObserver />
       <HeroSlider />
       <HowItWorks />
-      <TemplateGrid templates={dbTemplates.length > 0 ? dbTemplates : undefined} />
+      <TemplateGrid templates={dbTemplates.length > 0 ? dbTemplates : undefined} homepage />
       <WhyUs />
       <PricingSection />
       <Reviews />

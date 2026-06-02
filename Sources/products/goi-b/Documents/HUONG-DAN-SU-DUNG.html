@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Hướng dẫn sử dụng Admin — Gói B Website</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --accent:#1a6b52;--accent-light:#e8f4ef;--accent-h:#155a44;
+    --text:#1a1917;--text-2:#6b6760;--text-3:#a09d97;
+    --bg:#faf9f7;--surface:#fff;--border:#e8e5df;--warm:#f5f0e8;--warm2:#ede8df;
+    --danger:#e24b4a;--warn-bg:#fffbeb;--warn-border:#fde68a;--warn-text:#92400e;
+    --tip-bg:#eff6ff;--tip-border:#bfdbfe;--tip-text:#1e40af;
+    --sidebar:#111009;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+  .page-wrap{max-width:900px;margin:0 auto;padding:0 24px 80px}
+
+  /* Cover */
+  .cover{background:var(--sidebar);color:#fff;padding:48px 40px;border-radius:0 0 20px 20px;margin-bottom:40px;position:relative;overflow:hidden}
+  .cover::before{content:'';position:absolute;right:-40px;top:-40px;width:220px;height:220px;background:rgba(26,107,82,.2);border-radius:50%}
+  .cover::after{content:'';position:absolute;right:60px;bottom:-30px;width:140px;height:140px;background:rgba(74,222,128,.08);border-radius:50%}
+  .cover-badge{font-size:11px;font-weight:600;color:#4ade80;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px}
+  .cover h1{font-size:clamp(24px,3.5vw,36px);font-weight:700;letter-spacing:-.8px;margin-bottom:10px;position:relative}
+  .cover-sub{font-size:15px;font-weight:300;color:rgba(255,255,255,.5);max-width:500px;position:relative}
+  .cover-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;position:relative}
+  .pill{background:rgba(255,255,255,.08);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:4px 12px;font-size:12px}
+
+  /* TOC */
+  .toc{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px 28px;margin-bottom:36px}
+  .toc h2{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--text-3);margin-bottom:14px}
+  .toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 24px}
+  .toc a{color:var(--accent);text-decoration:none;font-size:13.5px;display:flex;align-items:center;gap:6px;padding:3px 0}
+  .toc a:hover{text-decoration:underline}
+  .toc a span{font-size:11px;color:var(--text-3)}
+  @media(max-width:580px){.toc-grid{grid-template-columns:1fr}}
+
+  /* Section */
+  .section{margin-bottom:48px}
+  .section-header{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid var(--accent-light)}
+  .section-icon{width:38px;height:38px;background:var(--accent-light);color:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+  .section-header h2{font-size:20px;font-weight:600;letter-spacing:-.3px}
+
+  /* Steps */
+  .step{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start}
+  .step-num{width:26px;height:26px;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:3px}
+  .step-body{flex:1}
+  .step-body strong{display:block;font-size:14px;font-weight:600;margin-bottom:4px}
+  .step-body p,.step-body ul{font-size:13.5px;color:var(--text-2)}
+  .step-body ul{padding-left:18px;margin-top:4px}
+  .step-body li{margin-bottom:3px}
+
+  /* UI mockup */
+  .ui-mock{background:var(--sidebar);border-radius:12px;overflow:hidden;margin:14px 0;border:1px solid rgba(255,255,255,.06)}
+  .ui-mock-bar{background:#1a1917;padding:10px 14px;display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.3)}
+  .ui-mock-bar .dot{width:10px;height:10px;border-radius:50%}
+  .ui-mock-content{padding:18px 16px;font-size:13px;color:rgba(255,255,255,.6);font-family:'Courier New',monospace}
+  .ui-mock-field{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:8px 12px;margin-bottom:8px;font-size:12px;color:rgba(255,255,255,.5)}
+  .ui-mock-btn{background:#4ade80;color:#0c0b09;border:none;border-radius:6px;padding:8px 16px;font-size:12px;font-weight:600;cursor:pointer;margin-top:4px}
+
+  /* Admin layout preview */
+  .admin-preview{display:flex;border-radius:12px;overflow:hidden;border:1px solid var(--border);margin:14px 0;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+  .ap-sidebar{width:130px;background:var(--sidebar);flex-shrink:0;padding:14px 0}
+  .ap-sidebar-item{padding:7px 12px;font-size:11px;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:6px}
+  .ap-sidebar-item.active{color:#fff;background:rgba(74,222,128,.1);border-left:2px solid #4ade80}
+  .ap-main{flex:1;background:var(--surface)}
+  .ap-header{height:36px;border-bottom:1px solid var(--border-light);display:flex;align-items:center;padding:0 14px;font-size:12px;font-weight:600;color:var(--text)}
+  .ap-content{padding:14px}
+  .ap-card{background:var(--bg);border:1px solid var(--border-light);border-radius:8px;padding:12px;font-size:11.5px;color:var(--text-2)}
+
+  /* Feature card */
+  .feature-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:14px 0}
+  .feature-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px}
+  .feature-card .icon{font-size:22px;margin-bottom:8px}
+  .feature-card h3{font-size:13.5px;font-weight:600;margin-bottom:4px}
+  .feature-card p{font-size:12.5px;color:var(--text-2)}
+
+  /* Code */
+  code{background:var(--warm2);color:var(--accent);padding:2px 6px;border-radius:4px;font-family:'Courier New',monospace;font-size:12.5px}
+  .code-block{background:#1a1917;color:#e5e7eb;border-radius:10px;padding:14px 18px;font-family:'Courier New',monospace;font-size:13px;line-height:1.8;margin:10px 0}
+  .code-block .hl{color:#4ade80}
+
+  /* Callouts */
+  .warn{background:var(--warn-bg);border-left:4px solid #f59e0b;border-radius:0 10px 10px 0;padding:12px 16px;margin:12px 0;font-size:13.5px;color:var(--warn-text)}
+  .warn strong{display:block;margin-bottom:2px}
+  .tip{background:var(--tip-bg);border-left:4px solid #3b82f6;border-radius:0 10px 10px 0;padding:12px 16px;margin:12px 0;font-size:13.5px;color:var(--tip-text)}
+  .tip strong{display:block;margin-bottom:2px}
+
+  /* Badge */
+  .badge{display:inline-block;font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:4px;margin-left:6px;vertical-align:middle}
+  .badge-green{background:var(--accent-light);color:var(--accent)}
+  .badge-blue{background:#eff6ff;color:#1d4ed8}
+  .badge-gray{background:var(--warm2);color:var(--text-2)}
+
+  .divider{height:1px;background:var(--border);margin:36px 0}
+  @media(max-width:600px){.cover{padding:32px 20px}.page-wrap{padding:0 16px 60px}.admin-preview{flex-direction:column}.ap-sidebar{width:100%;display:flex;flex-wrap:wrap;padding:8px}}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="page-wrap" style="padding-bottom:0">
+    <div class="cover-badge">Gói B — Admin Panel</div>
+    <h1>Hướng dẫn sử dụng<br>trang quản trị</h1>
+    <p class="cover-sub">Cách quản lý nội dung, đăng bài, cài đặt website — từ A đến Z, không cần biết code.</p>
+    <div class="cover-pills">
+      <span class="pill">✏ Đăng bài viết</span>
+      <span class="pill">📄 Quản lý trang</span>
+      <span class="pill">⚙ Cài đặt website</span>
+      <span class="pill">📸 Upload ảnh</span>
+      <span class="pill">✉ Xem liên hệ</span>
+      <span class="pill">🖼 Banners</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- TOC -->
+  <div class="toc">
+    <h2>Danh mục</h2>
+    <div class="toc-grid">
+      <a href="#s1"><span>01</span> Đăng nhập & giao diện</a>
+      <a href="#s6"><span>06</span> Quản lý media (ảnh)</a>
+      <a href="#s2"><span>02</span> Dashboard tổng quan</a>
+      <a href="#s7"><span>07</span> Quản lý banners</a>
+      <a href="#s3"><span>03</span> Viết & đăng bài viết</a>
+      <a href="#s8"><span>08</span> Cài đặt website</a>
+      <a href="#s4"><span>04</span> Quản lý trang (pages)</a>
+      <a href="#s9"><span>09</span> Xem & xử lý liên hệ</a>
+      <a href="#s5"><span>05</span> Danh mục bài viết</a>
+      <a href="#s10"><span>10</span> Câu hỏi thường gặp</a>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section" id="s1">
+    <div class="section-header">
+      <div class="section-icon">🔐</div>
+      <h2>Đăng nhập & giao diện</h2>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>Truy cập trang đăng nhập</strong>
+          <p>Mở trình duyệt, gõ: <code>tenmien.com/admin</code></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>Điền thông tin đăng nhập</strong>
+          <ul>
+            <li>Email: <code>admin@example.com</code> (hoặc email bạn đã đổi)</li>
+            <li>Mật khẩu: theo thông tin được cung cấp</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:13.5px;color:var(--text-2);margin:16px 0 10px"><strong>Giao diện sau khi đăng nhập:</strong></p>
+
+    <div class="admin-preview">
+      <div class="ap-sidebar">
+        <div class="ap-sidebar-item active">⊞ Dashboard</div>
+        <div class="ap-sidebar-item" style="margin-top:8px;font-size:9px;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.5px;padding:4px 12px">Nội dung</div>
+        <div class="ap-sidebar-item">✏ Bài viết</div>
+        <div class="ap-sidebar-item">📄 Trang</div>
+        <div class="ap-sidebar-item">📂 Danh mục</div>
+        <div class="ap-sidebar-item">🖼 Banners</div>
+        <div class="ap-sidebar-item">📸 Media</div>
+        <div class="ap-sidebar-item" style="margin-top:8px;font-size:9px;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.5px;padding:4px 12px">Khách hàng</div>
+        <div class="ap-sidebar-item">✉ Liên hệ</div>
+        <div class="ap-sidebar-item" style="margin-top:8px;font-size:9px;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.5px;padding:4px 12px">Hệ thống</div>
+        <div class="ap-sidebar-item">⚙ Cài đặt</div>
+      </div>
+      <div class="ap-main">
+        <div class="ap-header">Dashboard</div>
+        <div class="ap-content">
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px">
+            <div class="ap-card" style="text-align:center"><div style="font-size:20px;font-weight:700">3</div><div>Bài viết</div></div>
+            <div class="ap-card" style="text-align:center"><div style="font-size:20px;font-weight:700">2</div><div>Trang</div></div>
+            <div class="ap-card" style="text-align:center"><div style="font-size:20px;font-weight:700;color:var(--accent)">5</div><div>Liên hệ mới</div></div>
+            <div class="ap-card" style="text-align:center"><div style="font-size:20px;font-weight:700">12</div><div>Media</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:13.5px;color:var(--text-2);margin-top:14px">
+      <strong>Sidebar trái</strong> — menu điều hướng đến từng chức năng.<br>
+      <strong>Khu vực chính</strong> — nơi bạn làm việc: xem danh sách, chỉnh sửa, tạo mới.
+    </p>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section" id="s2">
+    <div class="section-header">
+      <div class="section-icon">⊞</div>
+      <h2>Dashboard tổng quan</h2>
+    </div>
+    <p style="font-size:13.5px;color:var(--text-2);margin-bottom:14px">Trang đầu tiên khi đăng nhập. Hiển thị số liệu nhanh và thao tác thường dùng.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">📊</div>
+        <h3>Số liệu nhanh</h3>
+        <p>Tổng bài viết, trang, liên hệ mới, số ảnh đã upload</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">⚡</div>
+        <h3>Thao tác nhanh</h3>
+        <p>Nút tắt để tạo bài mới, tạo trang, upload ảnh ngay lập tức</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔴</div>
+        <h3>Liên hệ mới</h3>
+        <p>Badge đỏ trên menu khi có khách gửi form liên hệ chưa đọc</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section" id="s3">
+    <div class="section-header">
+      <div class="section-icon">✏</div>
+      <h2>Viết & đăng bài viết</h2>
+    </div>
+
+    <p style="font-size:13.5px;color:var(--text-2);margin-bottom:16px">Bài viết hiện trên trang <strong>/blog</strong> của website. Phù hợp để đăng tin tức, khuyến mãi, bài chia sẻ.</p>
+
+    <p style="font-size:14px;font-weight:600;margin-bottom:12px">Tạo bài viết mới:</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>Nhấn <em>Bài viết</em> ở sidebar → nhấn nút <em>+ Tạo mới</em></strong>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>Điền tiêu đề</strong>
+          <p>Tiêu đề rõ ràng, hấp dẫn. Ví dụ: "Khai trương chi nhánh mới tại Quận 7"</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <strong>Viết nội dung</strong>
+          <p>Ô nội dung hỗ trợ HTML cơ bản. Ví dụ để in đậm: <code>&lt;strong&gt;chữ đậm&lt;/strong&gt;</code></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <strong>Điền tóm tắt (Excerpt)</strong>
+          <p>1–2 câu ngắn mô tả bài. Hiển thị ở trang danh sách blog.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <strong>Thêm ảnh đại diện</strong>
+          <p>Dán URL ảnh vào ô <em>URL ảnh đại diện</em>. Ảnh phải đã upload qua Media trước.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <strong>Chọn danh mục (nếu có)</strong>
+          <p>Chọn danh mục phù hợp từ dropdown. Nếu chưa có, tạo danh mục trước ở mục Danh mục.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">7</div>
+        <div class="step-body">
+          <strong>Chọn trạng thái: <em>Đã đăng</em> hoặc <em>Nháp</em></strong>
+          <ul>
+            <li><strong>Đã đăng</strong> — hiện trên website ngay</li>
+            <li><strong>Nháp</strong> — chỉ lưu, chưa hiển thị</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">8</div>
+        <div class="step-body">
+          <strong>Nhấn <em>Tạo bài viết</em> để lưu</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip">
+      <strong>💡 Mẹo về SEO</strong>
+      Điền <em>Meta Title</em> và <em>Meta Description</em> ở cuối form. Đây là nội dung Google hiển thị trên kết quả tìm kiếm. Meta Title nên 50–60 ký tự. Meta Description nên 120–160 ký tự.
+    </div>
+
+    <p style="font-size:14px;font-weight:600;margin:20px 0 12px">Sửa bài viết:</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>Vào Bài viết → tìm bài cần sửa → nhấn icon ✎</strong>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>Chỉnh sửa nội dung → nhấn <em>Lưu thay đổi</em></strong>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:14px;font-weight:600;margin:20px 0 12px">Xóa bài viết:</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>Nhấn icon ✕ ở cuối dòng bài viết muốn xóa</strong>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>Xác nhận trong hộp thoại hiện ra</strong>
+          <p>Bài đã xóa không khôi phục được — cẩn thận trước khi xóa.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="warn">
+      <strong>⚠️ Chú ý</strong>
+      Bài đã xóa không thể khôi phục. Nếu chỉ muốn ẩn tạm thời, hãy đổi trạng thái sang <em>Nháp</em> thay vì xóa.
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section" id="s4">
+    <div class="section-header">
+      <div class="section-icon">📄</div>
+      <h2>Quản lý trang (Pages)</h2>
+    </div>
+    <p style="font-size:13.5px;color:var(--text-2);margin-bottom:14px">Trang là các trang tĩnh như: Giới thiệu, Dịch vụ, Về chúng tôi, Chính sách… Chúng xuất hiện trong menu điều hướng của website.</p>
+
+    <div class="tip">
+      <strong>💡 Khác gì bài viết?</strong>
+      Bài viết (Posts) thì theo thời gian, có danh mục, dành cho tin tức/blog. Trang (Pages) là thông tin cố định, xuất hiện trong menu.
+    </div>
+
+    <p style="font-size:14px;font-weight:600;margin:16px 0 12px">Tạo trang mới:</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>Nhấn <em>Trang</em> → <em>+ Tạo mới</em></strong>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>Điền tiêu đề trang</strong>
+          <p>Ví dụ: "Giới thiệu", "Dịch vụ của chúng tôi", "Chính sách hoàn trả"</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <strong>Viết nội dung và chọn trạng thái <em>Đã đăng</em></strong>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <strong>Lưu ý trường Slug</strong>
+          <p>Slug là đường dẫn URL của trang. Ví dụ slug <code>gioi-thieu</code> → URL sẽ là <code>tenmien.com/gioi-thieu</code></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="warn">
+      <strong>⚠️ Slug trang xuất hiện tự động trong menu điều hướng</strong>
+      Khi trang được đăng, nó sẽ tự động hiện trong thanh menu của website (tối đa 4 trang).
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section" id="s5">
+    <div class="section-header">
+      <div class="section-icon">📂</div>
+      <h2>Danh mục bài viết</h2>
+    </div>
+    <p style="font-size:13.5px;color:var(--text-2);margin-bottom:14px">Danh mục giúp phân loại bài viết. Khách có thể lọc bài theo danh mục trên trang /blog.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>Nhấn <em>Danh mục</em> ở sidebar</strong>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>Nhập tên danh mục vào form bên phải → nhấn <em>Thêm</em></strong>
+          <p>Ví dụ: "Tin tức", "Khuyến mãi", "Hướng dẫn", "Sự kiện"</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <strong>Để sửa: nhấn ✎ ở danh mục muốn sửa → chỉnh trong form → <em>Lưu</em></strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section" id="s6">
+    <div class="section-header">
+      <div class="section-icon">📸</div>
+      <h2>Quản lý Media (ảnh)</h2>
+    </div>
+    <p style="font-size:13.5px;color:var(--text-2);margin-bottom:14px">Tất cả ảnh dùng trong website cần upload qua đây trước. Sau khi upload, dùng URL ảnh để gắn vào bài viết, banner, cài đặt.</p>
+
+    <p style="font-size:14px;font-weight:600;margin-bottom:12px">Upload ảnh:</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>Nhấn <em>Media</em> ở sidebar → nhấn <em>+ Upload ảnh</em></strong>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>Chọn file ảnh từ máy tính</strong>
+          <p>Có thể chọn nhiều ảnh cùng lúc. Định dạng hỗ trợ: JPG, PNG, GIF, WebP. Tối đa 5MB/ảnh.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <strong>Đợi upload xong → ảnh xuất hiện trong danh sách</strong>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <strong>Lấy URL ảnh</strong>
+          <p>Nhấn icon <strong>⧉</strong> (copy) dưới ảnh → URL được sao chép vào clipboard</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <strong>Dán URL vào ô ảnh đại diện của bài viết, banner, hoặc cài đặt</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip">
+      <strong>💡 Nén ảnh trước khi upload</strong>
+      Ảnh nhỏ giúp website tải nhanh hơn. Dùng <strong>squoosh.app</strong> (miễn phí) để nén ảnh xuống dưới 500KB trước khi upload.
+    </div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="section" id="s7">
+    <div class="section-header">
+      <div class="section-icon">🖼</div>
+      <h2>Quản lý Banners</h2>
+    </div>
+    <p style="font-size:13.5px;color:var(--text-2);margin-bottom:14px">Banners là ảnh lớn hiển thị ở phần hero (đầu trang). Bạn có thể có nhiều banner — chúng sẽ tự động trượt qua lại.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>Upload ảnh banner qua Media trước</strong>
+          <p>Ảnh banner nên có tỉ lệ 16:9 hoặc 21:9, kích thước tối thiểu 1200x600px</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>Vào Banners → <em>+ Tạo mới</em></strong>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <strong>Điền thông tin banner:</strong>
+          <ul>
+            <li><strong>Tiêu đề</strong>: để quản lý dễ nhận biết</li>
+            <li><strong>URL ảnh</strong>: paste URL từ Media vào đây</li>
+            <li><strong>Link khi nhấn</strong>: để trống nếu không cần link</li>
+            <li><strong>Vị trí</strong>: chọn <code>homepage_hero</code> để hiện ở trang chủ</li>
+            <li><strong>Thứ tự</strong>: số nhỏ hiển thị trước (0, 1, 2...)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <strong>Nhấn <em>Tạo banner</em> → kiểm tra trên website</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 8 -->
+  <div class="section" id="s8">
+    <div class="section-header">
+      <div class="section-icon">⚙</div>
+      <h2>Cài đặt website</h2>
+    </div>
+    <p style="font-size:13.5px;color:var(--text-2);margin-bottom:14px">Đây là nơi bạn điền thông tin cơ bản của website. <strong>Làm ngay sau khi cài đặt xong.</strong></p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>Nhấn <em>Cài đặt</em> ở sidebar</strong>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>Điền thông tin chung</strong>
+          <ul>
+            <li><strong>Tên website</strong>: tên doanh nghiệp, xuất hiện ở header và footer</li>
+            <li><strong>Mô tả ngắn</strong>: 1–2 câu mô tả doanh nghiệp</li>
+            <li><strong>Email liên hệ</strong>: email hiển thị trên website</li>
+            <li><strong>Số điện thoại</strong>: số khách có thể gọi</li>
+            <li><strong>Địa chỉ</strong>: địa chỉ doanh nghiệp</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <strong>Điền SEO (tùy chọn nhưng khuyến nghị)</strong>
+          <ul>
+            <li><strong>Meta Title</strong>: tên xuất hiện trên tab trình duyệt và Google</li>
+            <li><strong>Meta Description</strong>: mô tả xuất hiện trên kết quả Google</li>
+            <li><strong>Google Analytics ID</strong>: dạng G-XXXXXXXXXX (nếu dùng GA)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <strong>Điền mạng xã hội (tùy chọn)</strong>
+          <p>Dán link Facebook, YouTube, Instagram, Zalo của doanh nghiệp. Để trống nếu không có.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <strong>Nhấn <em>Lưu cài đặt</em></strong>
+          <p>Thay đổi hiện trên website ngay sau khi lưu.</p>
+        </div>
+      </div>
+    </div>
+
+    <table style="margin-top:16px">
+      <tr><th>Trường</th><th>Hiển thị ở đâu trên website</th></tr>
+      <tr><td>Tên website</td><td>Header, Footer, tab trình duyệt</td></tr>
+      <tr><td>Mô tả ngắn</td><td>Hero section trang chủ, Footer</td></tr>
+      <tr><td>Email</td><td>Footer, trang Liên hệ</td></tr>
+      <tr><td>Điện thoại</td><td>Footer, trang Liên hệ</td></tr>
+      <tr><td>Địa chỉ</td><td>Footer, trang Liên hệ</td></tr>
+      <tr><td>Facebook/Zalo...</td><td>Footer — icon mạng xã hội</td></tr>
+    </table>
+  </div>
+
+  <!-- SECTION 9 -->
+  <div class="section" id="s9">
+    <div class="section-header">
+      <div class="section-icon">✉</div>
+      <h2>Xem & xử lý liên hệ từ khách</h2>
+    </div>
+    <p style="font-size:13.5px;color:var(--text-2);margin-bottom:14px">Khi khách điền form liên hệ trên website, thông tin sẽ vào đây.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>Nhấn <em>Liên hệ</em> ở sidebar</strong>
+          <p>Liên hệ chưa đọc hiển thị chữ đậm và badge số đỏ trên menu</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>Nhấn vào một liên hệ để xem nội dung đầy đủ</strong>
+          <p>Bảng bên phải hiện ra: tên, email, điện thoại, nội dung tin nhắn</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <strong>Cập nhật trạng thái</strong>
+          <ul>
+            <li><strong>Mới</strong> — chưa xem</li>
+            <li><strong>Đã đọc</strong> — đã xem (tự động khi mở)</li>
+            <li><strong>Đã trả lời</strong> — đã liên hệ lại với khách</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip">
+      <strong>💡 Nhận thông báo email khi có liên hệ mới</strong>
+      Tính năng này cần cấu hình SMTP trong <code>config.php</code>. Liên hệ webdrop.vn để được hỗ trợ thiết lập.
+    </div>
+  </div>
+
+  <!-- SECTION 10 -->
+  <div class="section" id="s10">
+    <div class="section-header">
+      <div class="section-icon">❓</div>
+      <h2>Câu hỏi thường gặp</h2>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px">
+
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px">
+        <p style="font-size:14px;font-weight:600;margin-bottom:6px">Tôi muốn đổi ảnh logo, làm thế nào?</p>
+        <p style="font-size:13.5px;color:var(--text-2)">Upload ảnh logo qua <strong>Media</strong>, copy URL ảnh, rồi vào <strong>Cài đặt</strong> → điền vào ô <em>Logo URL</em> (nếu có) hoặc liên hệ webdrop.vn để hỗ trợ thay logo.</p>
+      </div>
+
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px">
+        <p style="font-size:14px;font-weight:600;margin-bottom:6px">Website hiện tiếng Anh (Tên website, mô tả), sửa ở đâu?</p>
+        <p style="font-size:13.5px;color:var(--text-2)">Vào <strong>Cài đặt</strong> → điền lại <em>Tên website</em> và <em>Mô tả ngắn</em> bằng tiếng Việt → Lưu cài đặt.</p>
+      </div>
+
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px">
+        <p style="font-size:14px;font-weight:600;margin-bottom:6px">Tôi muốn thêm trang "Dịch vụ" vào menu, làm sao?</p>
+        <p style="font-size:13.5px;color:var(--text-2)">Vào <strong>Trang</strong> → <em>+ Tạo mới</em> → đặt tiêu đề "Dịch vụ" → viết nội dung → trạng thái <em>Đã đăng</em> → Lưu. Trang sẽ tự xuất hiện trong menu điều hướng.</p>
+      </div>
+
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px">
+        <p style="font-size:14px;font-weight:600;margin-bottom:6px">Bài viết tôi đã đăng nhưng không thấy trên website?</p>
+        <p style="font-size:13.5px;color:var(--text-2)">Kiểm tra trạng thái bài: vào <strong>Bài viết</strong> → tìm bài → xem cột <em>Trạng thái</em>. Nếu là "Nháp" → nhấn ✎ sửa → đổi sang "Đã đăng" → Lưu.</p>
+      </div>
+
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px">
+        <p style="font-size:14px;font-weight:600;margin-bottom:6px">Xóa rồi có khôi phục được không?</p>
+        <p style="font-size:13.5px;color:var(--text-2)">Không. Bài viết, trang, ảnh đã xóa không thể khôi phục. Nếu chỉ muốn ẩn, hãy đổi trạng thái sang <em>Nháp</em> thay vì xóa.</p>
+      </div>
+
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px">
+        <p style="font-size:14px;font-weight:600;margin-bottom:6px">Upload ảnh bị lỗi "Upload thất bại"?</p>
+        <p style="font-size:13.5px;color:var(--text-2)">Kiểm tra: (1) ảnh không quá 5MB; (2) định dạng phải là JPG/PNG/GIF/WebP; (3) thư mục <code>uploads/</code> trên hosting có quyền ghi (755). Nếu vẫn lỗi, liên hệ webdrop.vn.</p>
+      </div>
+
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px">
+        <p style="font-size:14px;font-weight:600;margin-bottom:6px">Tôi muốn thêm người dùng admin khác?</p>
+        <p style="font-size:13.5px;color:var(--text-2)">Tính năng quản lý người dùng hiện chưa có trong giao diện. Liên hệ webdrop.vn để được hỗ trợ thêm tài khoản.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Cheat sheet -->
+  <div style="background:var(--sidebar);border-radius:14px;padding:28px;color:rgba(255,255,255,.65)">
+    <h3 style="color:#fff;font-size:16px;font-weight:600;margin-bottom:20px">📋 Tóm tắt nhanh</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px">
+      <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:14px">
+        <div style="font-size:20px;margin-bottom:6px">✏</div>
+        <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:3px">Đăng bài mới</div>
+        <div style="font-size:12px">Bài viết → + Tạo mới → Điền nội dung → Đã đăng → Lưu</div>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:14px">
+        <div style="font-size:20px;margin-bottom:6px">📸</div>
+        <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:3px">Upload ảnh</div>
+        <div style="font-size:12px">Media → Upload ảnh → Chọn file → Copy URL ⧉</div>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:14px">
+        <div style="font-size:20px;margin-bottom:6px">⚙</div>
+        <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:3px">Cài đặt thông tin</div>
+        <div style="font-size:12px">Cài đặt → Điền tên/SĐT/email → Lưu cài đặt</div>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:14px">
+        <div style="font-size:20px;margin-bottom:6px">✉</div>
+        <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:3px">Xem liên hệ</div>
+        <div style="font-size:12px">Liên hệ → Nhấn vào tin nhắn → Xem & cập nhật trạng thái</div>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:14px">
+        <div style="font-size:20px;margin-bottom:6px">🖼</div>
+        <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:3px">Thêm banner trang chủ</div>
+        <div style="font-size:12px">Banners → + Tạo mới → URL ảnh → Vị trí: homepage_hero</div>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:14px">
+        <div style="font-size:20px;margin-bottom:6px">📄</div>
+        <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:3px">Thêm trang menu</div>
+        <div style="font-size:12px">Trang → + Tạo mới → Tiêu đề → Nội dung → Đã đăng → Lưu</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:40px">
+    <p style="font-size:13px;color:var(--text-3);margin-bottom:8px">Cần hỗ trợ thêm?</p>
+    <p style="font-size:14px;color:var(--text-2)">Liên hệ <strong style="color:var(--accent)">webdrop.vn</strong> qua Zalo hoặc email. Chúng tôi hỗ trợ trong vòng 24 giờ làm việc.</p>
+    <p style="margin-top:24px;font-size:12px;color:var(--text-3)">Tài liệu được cung cấp bởi <strong style="color:var(--accent)">webdrop.vn</strong> · Gói B Website v1.0</p>
+  </div>
+
+</div>
+</body>
+</html>

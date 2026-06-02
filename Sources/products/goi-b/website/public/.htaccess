@@ -1,0 +1,16 @@
+Options -Indexes
+RewriteEngine On
+
+# Bỏ qua file/thư mục tồn tại thực sự
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Bỏ qua /api/ — có .htaccess riêng trong thư mục api/
+RewriteRule ^api/ - [L]
+
+# Admin SPA — /admin/* → /admin/index.html
+RewriteRule ^admin(/.*)?$ /admin/index.html [L]
+
+# Website SPA — tất cả còn lại → /index.html
+RewriteRule ^ /index.html [L]

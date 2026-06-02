@@ -42,7 +42,9 @@
       "Bash(Remove-Item -Recurse -Force \"d:/Data/Projects/AIProject/webdrop/Sources/system/.next\" -ErrorAction SilentlyContinue)",
       "Bash(cat Sources/system/documents/required.md)",
       "Bash(ls Sources/system/documents/)",
-      "Bash(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\\\\\" -Recurse -Directory | Select-Object -ExpandProperty FullName | Sort-Object)"
+      "Bash(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\\\\\" -Recurse -Directory | Select-Object -ExpandProperty FullName | Sort-Object)",
+      "Bash(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\\\\\" -Recurse -Filter \"*.tsx\" -o ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName | head -20)",
+      "PowerShell(head -20)"
     ],
     "additionalDirectories": [
       "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"

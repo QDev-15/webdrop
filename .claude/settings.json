@@ -1,15 +1,21 @@
 {
-    "hooks": {
-        "Notification": [
-            {
-                "matcher": "",
-                "hooks": [
-                    {
-                        "type": "command",
-                        "command": "powershell.exe -c (New-Object Media.SoundPlayer 'C:\\Windows\\Media\\chimes.wav').PlaySync()"
-                    }
-                ]
-            }
+  "permissions": {
+    "allow": [
+      "Bash(xargs ls -ld)",
+      "Bash(npm install *)"
+    ]
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -c (New-Object Media.SoundPlayer 'C:\\Windows\\Media\\chimes.wav').PlaySync()"
+          }
         ]
-    }
+      }
+    ]
+  }
 }

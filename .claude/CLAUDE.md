@@ -204,7 +204,19 @@ website.vn          → Frontend
 website.vn/admin    → Trang quản trị
 ```
 
-**Bàn giao:** Bản build + hướng dẫn upload, hoặc cài đặt trọn gói
+**Bàn giao:** File `deploy.zip` — giải nén thẳng vào `public_html` là chạy
+
+**Build & package:**
+- Windows: `.\build.ps1` — build React + assemble + tạo `deploy.zip`
+- Linux/Mac: `bash build.sh` — tương tự
+- Output `deploy/` có cấu trúc khớp hosting:
+  ```
+  deploy/
+  ├── index.html, assets/   ← public site (website/dist/)
+  ├── web.config, .htaccess ← SPA routing root
+  ├── admin/                ← admin panel (frontend/dist/)
+  └── api/                  ← PHP backend (backend/)
+  ```
 
 **Giá bán:**
 
@@ -229,7 +241,10 @@ website.vn/admin    → Trang quản trị
 - Hỗ trợ SQLite (`pdo_sqlite`) — đây là **requirement bắt buộc** của hệ thống
 
 #### Bảo mật
-- Dùng `.htaccess` chặn truy cập trực tiếp vào file `.db`
+- Ship **cả hai file** bảo mật — tương đương nhau, chỉ khác web server:
+  - `.htaccess` — Apache / Linux hosting
+  - `web.config` — IIS / Windows hosting (PA Vietnam Plesk, shared hosting Windows...)
+- Khi cập nhật rule bảo mật → cập nhật **song song cả hai file**
 - File config không được expose ra ngoài public
 
 #### Schema
@@ -295,7 +310,7 @@ Template và website sẽ tập trung vào các ngành có nhu cầu cao tại V
 ### Giai đoạn 1 — 0 đến 6 tháng ✅ IN PROGRESS
 - [x] Xây 2–3 web template theo ngách — **3 templates xong** (agency, spa, restaurant)
 - [x] Xây 1 admin template cơ bản — **DONE** (`Sources/templates/admin/basic-admin/`)
-- [ ] Thiết lập kênh bán (webdrop.vn) — Next.js đang build
+- [x] Thiết lập kênh bán (webdrop.vn) — **Next.js gần hoàn chỉnh** (xem bảng trang bên dưới)
 - [ ] Nhận dự án Gói B để tạo dòng tiền
 
 ### Giai đoạn 2 — 6 đến 18 tháng
@@ -318,31 +333,71 @@ webdrop/                            ← GitHub repo
 ├── .claude/
 │   ├── CLAUDE.md                   ← File này
 │   ├── agents/                     ← Custom agents
-│   │   ├── qa-tester.md            ← QA design system + HTML
-│   │   ├── reviewer.md             ← Code review (bug, security, logic)
-│   │   └── research.md             ← Research & documentation
 │   ├── rules/                      ← Coding rules (design-system, db, tech-stack...)
 │   └── settings.json               ← Project settings (hooks, permissions)
-├── Sources/                        ← Toàn bộ source code sản phẩm
-│   ├── system/                     ← Next.js (System Admin + trang bán hàng webdrop.vn)
+├── Sources/
+│   ├── system/                     ← Next.js 16 (webdrop.vn — bán hàng + admin)
 │   │   ├── app/
-│   │   │   ├── (site)/             ← Trang bán hàng public (URL: /)
-│   │   │   ├── (checkout)/         ← Checkout flow (URL: /checkout)
-│   │   │   └── (admin)/            ← System Admin (URL: /admin)
-│   │   ├── prisma/schema.prisma    ← PostgreSQL schema (Agency extension)
-│   │   └── package.json
+│   │   │   ├── (site)/             ← Trang bán hàng public
+│   │   │   │   ├── page.tsx              → / (homepage)
+│   │   │   │   ├── templates/page.tsx    → /templates (danh sách)
+│   │   │   │   ├── templates/[slug]/     → /templates/:slug (detail + error + loading)
+│   │   │   │   ├── blog/page.tsx         → /blog
+│   │   │   │   ├── blog/[slug]/          → /blog/:slug
+│   │   │   │   ├── pricing/page.tsx      → /pricing
+│   │   │   │   ├── about/page.tsx        → /about
+│   │   │   │   ├── contact/page.tsx      → /contact
+│   │   │   │   ├── faq/page.tsx          → /faq
+│   │   │   │   └── policies/[slug]/      → /policies/:slug (privacy/terms/refund)
+│   │   │   ├── (checkout)/
+│   │   │   │   ├── checkout/page.tsx     → /checkout
+│   │   │   │   └── checkout/success/     → /checkout/success
+│   │   │   ├── (admin)/
+│   │   │   │   └── admin/
+│   │   │   │       ├── page.tsx          → /admin (dashboard)
+│   │   │   │       ├── orders/           → /admin/orders + /admin/orders/[id]
+│   │   │   │       ├── customers/        → list + [id] + new
+│   │   │   │       ├── templates/        → list + new + [id]/edit
+│   │   │   │       ├── posts/            → list + new + [id]/edit (blog)
+│   │   │   │       ├── contacts/         → /admin/contacts
+│   │   │   │       ├── projects/         → list + [id] (milestones, notes)
+│   │   │   │       ├── revenue/          → /admin/revenue
+│   │   │   │       └── settings/         → /admin/settings
+│   │   │   ├── api/
+│   │   │   │   ├── auth/login + logout
+│   │   │   │   ├── orders/              → POST tạo đơn (public)
+│   │   │   │   ├── contact/             → POST form liên hệ (public)
+│   │   │   │   ├── packages/            → GET gói dịch vụ (public)
+│   │   │   │   └── admin/
+│   │   │   │       ├── orders/[id]       → GET + PATCH
+│   │   │   │       ├── customers/        → GET + POST + [id] PATCH
+│   │   │   │       ├── templates/        → GET + POST + [id] PATCH/DELETE
+│   │   │   │       ├── posts/            → GET + POST + [id] PATCH/DELETE
+│   │   │   │       ├── contacts/         → GET + [id] PATCH status
+│   │   │   │       ├── projects/[id]/    → GET + PATCH + milestones + notes
+│   │   │   │       ├── revenue/          → GET + POST expense
+│   │   │   │       ├── stats/            → GET dashboard stats
+│   │   │   │       └── settings/         → GET + POST
+│   │   │   └── not-found.tsx            → 404 custom
+│   │   ├── src/
+│   │   │   ├── components/
+│   │   │   │   ├── site/     NavBar, Footer, HeroSlider, TemplateGrid, PricingSection...
+│   │   │   │   └── admin/    AdminLayout, AdminLoadingPage, TemplateForm, PostForm...
+│   │   │   ├── lib/prisma.ts            ← Prisma singleton (Neon-aware)
+│   │   │   └── styles/globals.css
+│   │   ├── prisma/schema.prisma         ← PostgreSQL schema synced với Neon
+│   │   ├── prisma/seed.ts               ← 31 templates + industries + packages + admin user
+│   │   └── .env                         ← Neon PostgreSQL URL
 │   ├── products/
 │   │   └── goi-b/                  ← Base code Gói B (React + PHP + SQLite)
-│   │       ├── frontend/           ← React SPA (Vite)
-│   │       └── backend/            ← PHP API (config.php, index.php, schema.sql, .htaccess)
 │   └── templates/
-│       ├── web/                    ← Web templates HTML/CSS/Bootstrap (Gói A)
-│       │   ├── agency-web/         ← ✅ Agency template (index, dich-vu, ve-chung-toi, du-an)
-│       │   ├── spa-beauty/         ← ✅ Spa template (index, dich-vu, dat-lich, lien-he)
-│       │   └── restaurant/         ← ✅ Nhà hàng template (index, thuc-don, dat-ban, lien-he)
+│       ├── web/
+│       │   ├── agency-web/         ← ✅ Agency
+│       │   ├── spa-beauty/         ← ✅ Spa
+│       │   └── restaurant/         ← ✅ Nhà hàng
 │       └── admin/
-│           └── basic-admin/        ← ✅ Admin template (login, dashboard, posts, users, settings)
-├── documents/                      ← Prototype UI (index, checkout, admin, template-detail)
+│           └── basic-admin/        ← ✅ Admin template
+├── documents/                      ← Prototype UI HTML (tham khảo)
 └── .gitignore
 ```
 
@@ -495,12 +550,20 @@ Lưu dạng key-value: `key | value | group`
 - **Datacenter**: Việt Nam (HCM/Bình Dương) — tốc độ tốt thị trường nội địa
 - **1 VPS duy nhất** chạy tất cả: System, demo website, trang bán hàng
 
+### Database
+- **Development**: **Neon PostgreSQL** (cloud, free tier) — `ep-mute-snow-apw724xb-pooler`
+- **Production**: PostgreSQL trên VPS (tự host)
+- **Connection**: Pooler URL với `sslmode=require&connect_timeout=30&pool_timeout=30`
+- **ORM**: Prisma 5.x — schema tại `Sources/system/prisma/schema.prisma`
+- **Seed**: `npm run db:seed` — tạo 31 templates, 6 industries, 3 packages, admin account
+- **Admin login (dev)**: `admin@webdrop.vn` / `webdrop@2025`
+
 ### Kiến trúc server
 ```
 VPS AZDIGI Linux
 ├── Nginx                → reverse proxy, serve static files
 ├── Next.js (PM2)        → System Admin + trang bán hàng
-├── PostgreSQL           → System DB (trang bán hàng của bạn)
+├── PostgreSQL           → System DB (production)
 └── PHP-FPM              → serve website khách (Gói B)
                               └── SQLite (.db file trong hosting dir)
 ```
@@ -542,12 +605,35 @@ VPS AZDIGI Linux
 
 ## 📝 GHI CHÚ & QUYẾT ĐỊNH KỸ THUẬT
 
+### Kỹ thuật chung
 - Template Bootstrap không dùng build system → giảm dependency, khách tự chỉnh dễ
 - Luôn có demo live cho mỗi template → tăng tỷ lệ chuyển đổi
 - Gói C bắt buộc ký checklist scope trước khi bắt đầu → tránh scope creep
 - Frontend web + admin chung 1 project React, tách route `/admin` — tái sử dụng component, dễ maintain
 - SQLite dùng `PRAGMA foreign_keys = ON` — bật FK để bảo vệ data integrity
 
+### Next.js System (Sources/system)
+- **NavBar**: `(!isHome || scrolled)` — transparent chỉ ở homepage khi chưa scroll; pages khác luôn solid
+- **NavBar scroll check**: `check()` chạy ngay khi mount để handle F5 ở vị trí đã scroll
+- **Loading skeleton**: Mọi route có DB query đều có `loading.tsx` — chuyển trang ngay lập tức
+- **Admin loading**: Dùng `AdminLoadingPage` shared component (5 loại: table/cards/detail/form/chart)
+- **Error boundary**: `error.tsx` ở template detail để catch client-side crash
+- **Template detail**: Không dùng `wd-nav` riêng (bị fixed NavBar z-index 500 che) — breadcrumb nằm inline trong page flow
+- **Prisma + Neon**: `lib/prisma.ts` detect URL thay đổi để tạo lại client, tránh dùng connection cũ
+- **DB cold start**: URL có `connect_timeout=30&pool_timeout=30` để chịu được Neon cold start
+- **Image fallback**: `TemplateGrid` dùng `TemplateImage` component với `onError` → placeholder khi Unsplash fail
+- **Checkout plan IDs**: Dùng `starter/standard/premium` (không phải `a/b/c`) để khớp với API price lookup
+- **`findFirst` vs `findUnique`**: Dùng `findFirst` khi filter theo nhiều cột (slug + status) để an toàn
+- **TemplateGrid `homepage` prop**: `homepage={true}` → ẩn filter, limit 9 cards (3 hàng × 3 col), responsive hiding (`d-none d-sm-block` / `d-none d-lg-block`), show "Xem tất cả" Link. `homepage={false}` (default) → /templates behavior: filter by category, không có "Tất cả"
+- **TemplateGrid IntersectionObserver**: `useEffect([active])` re-observe `.tc.reveal:not(.visible)` sau filter change, dùng `setTimeout(fn, 0)` để chờ DOM paint trước khi querySelector. Bỏ `loading="lazy"` trên ảnh template (ảnh đã visible trong viewport)
+- **TemplateGrid active reset**: `useEffect([propTemplates])` reset `active` về `categoryList[0]` khi prop thay đổi — tránh stale filter
+
+### API security patterns
+- Tất cả admin API routes check `getSession()` → 401 nếu chưa đăng nhập
+- PATCH/PUT endpoints whitelist fields (không dùng `data: body` trực tiếp) → tránh mass-assignment
+- Prisma errors: P2002 (unique constraint) → 409, P2025 (not found) → 404
+- `parseInt(id)` trong dynamic routes phải check `isNaN()` → 400 nếu ID không hợp lệ
+
 ---
 
-*Cập nhật lần cuối: chốt storage strategy — Cloudflare R2 cho ảnh/media, GitHub cho source code*
+*Cập nhật lần cuối: 2026-06-02 — Checkout: 2 option (template ZIP / website Gói B), success page với download buttons, api/download stream ZIP bằng archiver. Gói B đầy đủ: admin panel + public website + hướng dẫn cài đặt + sử dụng.*
