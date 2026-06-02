@@ -28,13 +28,13 @@ export default function Reviews() {
           <h2 className="sec-title">127 khách hàng <em>đã tin tưởng</em></h2>
           <p className="sec-sub">Không phải lời quảng cáo — đây là trải nghiệm thật từ khách hàng thật.</p>
         </div>
-        <div className="row g-3">
+        <div className="row g-3 align-items-stretch">
           {reviews.map((rv, i) => (
-            <div key={rv.name} className="col-md-4">
-              <div className={`rv reveal reveal-d${i + 1}`}>
+            <div key={rv.name} className="col-md-4 d-flex">
+              <div className={`rv reveal reveal-d${i + 1} d-flex flex-column w-100`}>
                 <div className="rv-stars">★★★★★</div>
-                <div className="rv-text"><span className="rv-quote">&ldquo;</span>{rv.text}</div>
-                <div className="rv-foot">
+                <div className="rv-text flex-grow-1"><span className="rv-quote">&ldquo;</span>{rv.text}</div>
+                <div className="rv-foot mt-auto">
                   <img src={rv.avatar} style={{ width: 34, height: 34, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} alt={rv.name} loading="lazy" />
                   <div>
                     <div className="rv-name">{rv.name}</div>

@@ -8,6 +8,7 @@ const navItems = [
   { href: '/admin/customers', icon: '👥', label: 'Khách hàng' },
   { href: '/admin/projects', icon: '🗂️', label: 'Dự án' },
   { href: '/admin/templates', icon: '🎨', label: 'Templates' },
+  { href: '/admin/slides', icon: '🖼️', label: 'Hero Slides' },
   { href: '/admin/posts', icon: '📝', label: 'Blog' },
   { href: '/admin/contacts', icon: '💬', label: 'Liên hệ' },
   { href: '/admin/revenue', icon: '💰', label: 'Doanh thu' },

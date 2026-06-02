@@ -216,6 +216,7 @@ model Template {
   price       Decimal
   category    TemplateCategory
   industryId  Int?         @map("industry_id")
+  hasWebsite  Boolean      @default(false) @map("has_website")
   salesCount  Int          @default(0) @map("sales_count")
   status      PostStatus   @default(draft)
   createdAt   DateTime     @default(now()) @map("created_at")
@@ -472,6 +473,30 @@ model Expense {
   createdAt DateTime @default(now()) @map("created_at")
 
   @@map("expenses")
+}
+
+model HeroSlide {
+  id        Int        @id @default(autoincrement())
+  type      SlideType
+  bg        String
+  badge     String
+  title     Json
+  data      Json
+  buttons   Json
+  sortOrder Int        @default(0) @map("sort_order")
+  status    PostStatus @default(published)
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
+
+  @@map("hero_slides")
+}
+
+enum SlideType {
+  intro
+  features
+  grid
+  pricing
+  testimonial
 }
 
 model ActivityLog {

@@ -19,7 +19,7 @@ const goiB = [
 const faqs = [
   { q: 'Cài đặt hosting tính riêng không?', a: 'Có, cài đặt hosting + domain tính phí dịch vụ riêng 500.000 – 1.000.000đ/lần.' },
   { q: 'Giá có bao gồm hosting hàng năm không?', a: 'Không. Giá trên chỉ là phí thiết kế/bàn giao. Hosting và domain là chi phí hàng năm bạn tự trả với nhà cung cấp.' },
-  { q: 'Có thể mua source code Gói C không?', a: 'Có. Source code Gói C tính thêm 20–30% giá trị dự án.' },
+  { q: 'Có thể mua source code Gói Theo Yêu cầu không?', a: 'Có. Source code tính thêm 20–30% giá trị dự án.' },
   { q: 'Bảo hành bao lâu?', a: 'Hỗ trợ sửa lỗi miễn phí trong 30 ngày sau bàn giao. Sau đó có gói bảo trì hàng tháng từ 1.000.000đ.' },
 ]
 
@@ -67,11 +67,11 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* Gói A */}
-        <section id="goi-a" className="sec-pad">
+        {/* Gói Template */}
+        <section id="goi-template" className="sec-pad">
           <div className="wd-container">
             <div className="text-center reveal mb-5">
-              <div className="eyebrow">Gói A</div>
+              <div className="eyebrow">Gói Template</div>
               <h2 className="sec-title">Template <em>thuần HTML/CSS</em></h2>
               <p className="sec-sub">Mở thẳng trên trình duyệt, không cần build, không cần server. Bàn giao file ZIP + demo live.</p>
             </div>
@@ -90,11 +90,11 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* Gói B */}
-        <section id="goi-b" className="sec-pad" style={{ background: 'var(--warm)' }}>
+        {/* Gói Web cơ bản */}
+        <section id="goi-web-co-ban" className="sec-pad" style={{ background: 'var(--warm)' }}>
           <div className="wd-container">
             <div className="text-center reveal mb-5">
-              <div className="eyebrow">Gói B</div>
+              <div className="eyebrow">Gói Web cơ bản</div>
               <h2 className="sec-title">Website <em>chuẩn, deploy nhanh</em></h2>
               <p className="sec-sub">React SPA + PHP + SQLite. Upload lên hosting là chạy. Không cần config gì thêm.</p>
             </div>
@@ -113,12 +113,12 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* Gói C */}
-        <section id="goi-c" className="sec-pad">
+        {/* Gói Theo Yêu cầu */}
+        <section id="goi-theo-yeu-cau" className="sec-pad">
           <div className="wd-container">
             <div className="reveal" style={{ background: 'var(--dark2)', borderRadius: 20, padding: 'clamp(32px,5vw,56px)', display: 'flex', gap: 40, flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
-                <div style={{ fontSize: 11, fontWeight: 500, color: 'var(--accent-mid)', textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: 12 }}>Gói C</div>
+                <div style={{ fontSize: 11, fontWeight: 500, color: 'var(--accent-mid)', textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: 12 }}>Gói Theo Yêu cầu</div>
                 <h2 style={{ fontSize: 'clamp(22px,3vw,34px)', fontWeight: 600, color: '#fff', letterSpacing: '-.5px', marginBottom: 12 }}>
                   Website + Admin <em style={{ color: '#4ade80', fontStyle: 'italic', fontWeight: 300 }}>full custom</em>
                 </h2>

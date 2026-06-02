@@ -4,9 +4,11 @@ import AdminLayout from '@/components/admin/AdminLayout'
 import { prisma } from '@/lib/prisma'
 import { Prisma } from '@prisma/client'
 import Link from 'next/link'
+import { Suspense } from 'react'
+import TemplateFilters from './TemplateFilters'
 
 type TemplateWithIndustry = Prisma.TemplateGetPayload<{
-  include: { industry: { select: { name: true } } }
+  include: { industry: { select: { name: true; slug: true } } }
 }>
 
 function formatPrice(amount: unknown): string {
@@ -14,47 +16,79 @@ function formatPrice(amount: unknown): string {
   return n.toLocaleString('vi-VN') + 'đ'
 }
 
-export default async function AdminTemplatesPage() {
+const statusLabel: Record<string, string> = { published: 'Đang bán', draft: 'Nháp' }
+const statusColor: Record<string, string> = { published: 'var(--accent)', draft: 'var(--text-3)' }
+
+export default async function AdminTemplatesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string; category?: string; status?: string; industry?: string }>
+}) {
+  const sp       = await searchParams
+  const q        = sp.q?.trim() ?? ''
+  const category = sp.category ?? ''
+  const status   = sp.status   ?? ''
+  const industry = sp.industry ?? ''
+
+  const where: Prisma.TemplateWhereInput = {
+    ...(q        && { name: { contains: q, mode: 'insensitive' } }),
+    ...(category && { category: category as 'web' | 'admin' }),
+    ...(status   && { status:   status   as 'published' | 'draft' }),
+    ...(industry && { industry: { slug: industry } }),
+  }
+
   let templates: TemplateWithIndustry[] = []
+  let industries: { slug: string; name: string }[] = []
+
   try {
-    templates = await prisma.template.findMany({
-      include: { industry: { select: { name: true } } },
-      orderBy: { createdAt: 'desc' },
-    })
-  } catch { /* DB chưa kết nối — dùng empty */ }
+    ;[templates, industries] = await Promise.all([
+      prisma.template.findMany({
+        where,
+        include: { industry: { select: { name: true, slug: true } } },
+        orderBy: { createdAt: 'desc' },
+      }),
+      prisma.industry.findMany({ orderBy: { sortOrder: 'asc' }, select: { slug: true, name: true } }),
+    ])
+  } catch { /* DB chưa kết nối */ }
 
+  const total     = templates.length
   const published = templates.filter(t => t.status === 'published').length
-  const draft = templates.filter(t => t.status === 'draft').length
-
-  const statusLabel: Record<string, string> = { published: 'Đang bán', draft: 'Nháp' }
-  const statusColor: Record<string, string> = { published: 'var(--accent)', draft: 'var(--text-3)' }
+  const draft     = templates.filter(t => t.status === 'draft').length
 
   return (
     <AdminLayout title="Quản lý Template">
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
+
+      {/* Header */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
         <div style={{ display: 'flex', gap: 16 }}>
-          <div style={{ fontSize: 13, color: 'var(--text-2)' }}>Tổng: <strong>{templates.length}</strong></div>
+          <div style={{ fontSize: 13, color: 'var(--text-2)' }}>Tổng: <strong>{total}</strong></div>
           <div style={{ fontSize: 13, color: 'var(--accent)' }}>Đang bán: <strong>{published}</strong></div>
           <div style={{ fontSize: 13, color: 'var(--text-3)' }}>Nháp: <strong>{draft}</strong></div>
         </div>
-        <Link
-          href="/admin/templates/new"
-          style={{ fontSize: 13, padding: '8px 18px', borderRadius: 8, background: 'var(--accent)', color: '#fff', textDecoration: 'none', fontWeight: 500 }}
-        >
+        <Link href="/admin/templates/new"
+          style={{ fontSize: 13, padding: '8px 18px', borderRadius: 8, background: 'var(--accent)', color: '#fff', textDecoration: 'none', fontWeight: 500 }}>
           + Thêm template
         </Link>
       </div>
 
+      {/* Filters */}
+      <Suspense>
+        <TemplateFilters industries={industries} total={total} />
+      </Suspense>
+
+      {/* Grid */}
       {templates.length === 0 ? (
         <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--text-3)', fontSize: 14 }}>
-          Chưa có template nào. <br />
-          <span style={{ fontSize: 12 }}>Chạy <code>npm run db:seed</code> để tạo dữ liệu mẫu.</span>
+          {q || category || status || industry
+            ? 'Không tìm thấy template phù hợp.'
+            : <>Chưa có template nào. <br /><span style={{ fontSize: 12 }}>Chạy <code>npm run db:seed</code> để tạo dữ liệu mẫu.</span></>
+          }
         </div>
       ) : (
         <div className="row g-3">
           {templates.map(t => (
             <div key={t.id} className="col-lg-4 col-md-6">
-              <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden', transition: 'box-shadow .15s' }}>
+              <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden' }}>
                 {t.thumbnail && (
                   <div style={{ height: 160, overflow: 'hidden', background: 'var(--warm)' }}>
                     <img src={t.thumbnail} alt={t.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />

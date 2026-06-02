@@ -24,6 +24,29 @@ function toBadge(salesCount: number, createdAt: Date): string | undefined {
   return undefined
 }
 
+async function getZaloPhone(): Promise<string> {
+  try {
+    const rows = await prisma.setting.findMany({
+      where: { key: { in: ['social_zalo', 'site_phone'] } },
+    })
+    const map = Object.fromEntries(rows.map(r => [r.key, r.value ?? '']))
+    return (map['social_zalo'] || map['site_phone'] || '').replace(/\s/g, '')
+  } catch {
+    return ''
+  }
+}
+
+async function getSlides() {
+  try {
+    return await prisma.heroSlide.findMany({
+      where: { status: 'published' },
+      orderBy: { sortOrder: 'asc' },
+    })
+  } catch {
+    return []
+  }
+}
+
 async function getTemplates(): Promise<Template[]> {
   try {
     const rows = await prisma.template.findMany({
@@ -46,11 +69,11 @@ async function getTemplates(): Promise<Template[]> {
 }
 
 export default async function HomePage() {
-  const dbTemplates = await getTemplates()
+  const [dbTemplates, dbSlides, zaloPhone] = await Promise.all([getTemplates(), getSlides(), getZaloPhone()])
   return (
     <>
       <RevealObserver />
-      <HeroSlider />
+      <HeroSlider slides={dbSlides} />
       <HowItWorks />
       <TemplateGrid templates={dbTemplates.length > 0 ? dbTemplates : undefined} homepage />
       <WhyUs />
@@ -63,14 +86,24 @@ export default async function HomePage() {
           <p className="text-center reveal mb-4" style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '1.2px' }}>
             Tin tưởng bởi các doanh nghiệp
           </p>
-          <div className="d-flex gap-4 justify-content-center align-items-center flex-wrap reveal" style={{ opacity: .45, filter: 'grayscale(100%)' }}>
+          <div className="d-flex gap-3 justify-content-center align-items-center flex-wrap reveal">
             {[
-              'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=120&h=40&q=80&auto=format&fit=crop',
-              'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=120&h=40&q=80&auto=format&fit=crop',
-              'https://images.unsplash.com/photo-1611532736579-6b16e2b50449?w=120&h=40&q=80&auto=format&fit=crop',
-              'https://images.unsplash.com/photo-1611532736573-418f2ab09c32?w=120&h=40&q=80&auto=format&fit=crop',
-            ].map((src, i) => (
-              <img key={i} src={src} alt="client" style={{ height: 28, objectFit: 'contain' }} loading="lazy" />
+              { name: 'Spa Lavender',      icon: '💆' },
+              { name: 'Nhà hàng Phú Quý', icon: '🍜' },
+              { name: 'Beauty Studio',     icon: '💄' },
+              { name: 'Coffee House',      icon: '☕' },
+              { name: 'Luật Minh Tâm',    icon: '⚖️' },
+              { name: 'Kiến trúc ARC',    icon: '🏛️' },
+            ].map(c => (
+              <div key={c.name} style={{
+                display: 'flex', alignItems: 'center', gap: 7,
+                padding: '8px 16px', borderRadius: 8,
+                border: '1px solid var(--border)', background: 'var(--warm)',
+                fontSize: 13, fontWeight: 500, color: 'var(--text-2)',
+              }}>
+                <span style={{ fontSize: 16 }}>{c.icon}</span>
+                {c.name}
+              </div>
             ))}
           </div>
         </div>
@@ -93,10 +126,12 @@ export default async function HomePage() {
       <Footer />
 
       {/* Zalo float */}
-      <div className="zf">
-        <div className="zf-tip">Chat Zalo ngay</div>
-        <button className="zf-btn" aria-label="Chat Zalo">💬</button>
-      </div>
+      {zaloPhone && (
+        <div className="zf">
+          <div className="zf-tip">Chat Zalo ngay</div>
+          <a href={`https://zalo.me/${zaloPhone}`} target="_blank" rel="noopener noreferrer" className="zf-btn" aria-label="Chat Zalo">💬</a>
+        </div>
+      )}
     </>
   )
 }

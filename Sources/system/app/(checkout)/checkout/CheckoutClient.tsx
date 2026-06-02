@@ -14,7 +14,7 @@ function fmtPrice(n: number) { return n.toLocaleString('vi-VN') + 'đ' }
 const TEMPLATE_PRICE = 499000
 const WEBSITE_PRICE  = 5000000
 
-export default function CheckoutClient() {
+export default function CheckoutClient({ hasWebsite }: { hasWebsite: boolean }) {
   const searchParams = useSearchParams()
   const router       = useRouter()
   const slug         = searchParams.get('slug') ?? ''
@@ -136,6 +136,11 @@ export default function CheckoutClient() {
                   <span className="panel-edit" onClick={() => setStep(1)}>← Sửa thông tin</span>
                 </div>
                 <div className="panel-body">
+                  {!hasWebsite && (
+                    <div style={{ background: 'var(--accent-light)', border: '1px solid var(--accent-mid)', borderRadius: 8, padding: '10px 14px', marginBottom: 16, fontSize: 13, color: 'var(--accent)' }}>
+                      Template này chỉ có bản HTML/CSS. Liên hệ nếu muốn phiên bản website đầy đủ.
+                    </div>
+                  )}
                   <div className="d-flex flex-column gap-3">
 
                     {/* Option A: Template */}
@@ -175,8 +180,8 @@ export default function CheckoutClient() {
                       </div>
                     </label>
 
-                    {/* Option B: Website Gói B */}
-                    <label style={{ cursor: 'pointer' }}>
+                    {/* Option B: Website Gói B — chỉ hiện nếu template hỗ trợ */}
+                    {hasWebsite && <label style={{ cursor: 'pointer' }}>
                       <input type="radio" name="purchaseType" value="website" checked={purchaseType === 'website'}
                         onChange={() => setPurchaseType('website')} className="d-none" />
                       <div style={{
@@ -214,7 +219,7 @@ export default function CheckoutClient() {
                           ))}
                         </div>
                       </div>
-                    </label>
+                    </label>}
 
                   </div>
                   <button className="btn-primary-wd mt-4" style={{ width: '100%', padding: 13, fontSize: 14 }} onClick={handleNext}>

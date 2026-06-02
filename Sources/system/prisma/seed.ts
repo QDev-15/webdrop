@@ -292,7 +292,7 @@ async function main() {
         slug: 'quan-an-pho-bien',
         name: 'Quán Ăn Phổ Biến',
         description: 'Template quán ăn bình dân, menu đơn giản, đặt đồ online, giờ mở cửa.',
-        thumbnail: 'https://images.unsplash.com/photo-1490427712608-c6ec4a90e3d9?w=800&q=80&auto=format&fit=crop',
+        thumbnail: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80&auto=format&fit=crop',
         demoUrl: `${DEMO_BASE}/Restaurants/quan-an-pho-bien/`,
         price: 499000,
         category: 'web',
@@ -503,6 +503,31 @@ async function main() {
     await prisma.setting.upsert({ where: { key: s.key }, update: {}, create: s })
   }
   console.log('✅ Settings:', settingsData.length)
+
+  // ── Hero Slides ────────────────────────────────────────────────────────
+  const { slides } = await import('../src/data/slides.config')
+  const existing = await prisma.heroSlide.count()
+  if (existing === 0) {
+    for (let i = 0; i < slides.length; i++) {
+      const s = slides[i] as Record<string, unknown>
+      const { type, bg, badge, buttons, title, ...data } = s
+      await prisma.heroSlide.create({
+        data: {
+          type:     type    as 'intro' | 'features' | 'grid' | 'pricing' | 'testimonial',
+          bg:       bg      as string,
+          badge:    badge   as string,
+          title:    (title  ?? []) as object,
+          data:     data    as object,
+          buttons:  buttons as object,
+          sortOrder: i,
+          status: 'published',
+        },
+      })
+    }
+    console.log('✅ Hero slides:', slides.length)
+  } else {
+    console.log('⏭  Hero slides: đã có dữ liệu, bỏ qua')
+  }
 
   console.log('\n🎉 Seed complete!')
   console.log(`   Templates  : ${templateData.length} (${templateData.filter(t => t.category === 'web').length} web + ${templateData.filter(t => t.category === 'admin').length} admin)`)

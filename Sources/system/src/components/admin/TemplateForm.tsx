@@ -11,6 +11,7 @@ interface TemplateFormProps {
   initial?: {
     name: string; slug: string; description: string; thumbnail: string
     demoUrl: string; price: string; category: string; industryId: string; status: string
+    hasWebsite: boolean
   }
 }
 
@@ -23,10 +24,11 @@ export default function TemplateForm({ mode, id, industries, initial }: Template
     thumbnail: initial?.thumbnail ?? '',
     demoUrl: initial?.demoUrl ?? '',
     price: initial?.price ?? '',
-    category: initial?.category ?? 'web',
+    category:   initial?.category   ?? 'web',
     industryId: initial?.industryId ?? '',
-    status: initial?.status ?? 'draft',
+    status:     initial?.status     ?? 'draft',
   })
+  const [hasWebsite, setHasWebsite] = useState(initial?.hasWebsite ?? false)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
 
@@ -51,8 +53,9 @@ export default function TemplateForm({ mode, id, industries, initial }: Template
     try {
       const payload = {
         ...form,
-        price: parseFloat(form.price.replace(/[^0-9.]/g, '')),
+        price:      parseFloat(form.price.replace(/[^0-9.]/g, '')),
         industryId: form.industryId ? parseInt(form.industryId) : null,
+        hasWebsite,
       }
       const res = mode === 'new'
         ? await fetch('/api/admin/templates', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
@@ -138,6 +141,18 @@ export default function TemplateForm({ mode, id, industries, initial }: Template
             <option value="draft">Nháp</option>
             <option value="published">Đang bán</option>
           </select>
+        </div>
+        <div style={{ gridColumn: '1/-1' }}>
+          <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', userSelect: 'none' }}>
+            <input type="checkbox" checked={hasWebsite} onChange={e => setHasWebsite(e.target.checked)}
+              style={{ width: 16, height: 16, cursor: 'pointer', accentColor: 'var(--accent)' }} />
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 500, color: 'var(--text)' }}>Có phiên bản Website đầy đủ (Gói B)</div>
+              <div style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 2 }}>
+                Khi bật — khách có thể chọn mua website React + PHP + Admin thay vì chỉ file template
+              </div>
+            </div>
+          </label>
         </div>
       </div>
 

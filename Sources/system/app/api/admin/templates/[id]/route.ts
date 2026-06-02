@@ -11,12 +11,17 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
 
   const { id } = await params
   const body = await req.json()
-  const { name, slug, description, thumbnail, demoUrl, price, category, industryId, status } = body
+  const { name, slug, description, thumbnail, demoUrl, price, category, industryId, status, hasWebsite } = body
 
   try {
     const template = await prisma.template.update({
       where: { id: parseInt(id) },
-      data: { name, slug, description, thumbnail, demoUrl, price, category, industryId: industryId || null, ...(status ? { status } : {}) },
+      data: {
+        name, slug, description, thumbnail, demoUrl, price, category,
+        industryId: industryId || null,
+        ...(status     !== undefined && { status }),
+        ...(hasWebsite !== undefined && { hasWebsite }),
+      },
     })
     revalidatePath('/')
     return NextResponse.json(template)

@@ -165,7 +165,7 @@ Xây dựng và bán 2 nhóm sản phẩm chính:
 
 ## 📦 SẢN PHẨM & DỊCH VỤ
 
-### GÓI A — Template thuần (CSS/HTML + Bootstrap)
+### GÓI TEMPLATE (tên cũ: Gói A) — Template thuần (CSS/HTML + Bootstrap)
 
 **Mô tả:**
 - File HTML/CSS/JS, mở thẳng trên trình duyệt, không cần build
@@ -189,7 +189,7 @@ Xây dựng và bán 2 nhóm sản phẩm chính:
 
 ---
 
-### GÓI B — Website chuẩn, triển khai nhanh (chức năng cố định)
+### GÓI WEB CƠ BẢN (tên cũ: Gói B) — Website chuẩn, triển khai nhanh (chức năng cố định)
 
 **Mô tả:**
 - Frontend: React SPA — gọi PHP API để lấy data, render động theo DB
@@ -262,7 +262,7 @@ website.vn/admin    → Trang quản trị
 
 ---
 
-### GÓI C — Website + Admin theo yêu cầu (Full custom)
+### GÓI THEO YÊU CẦU (tên cũ: Gói C) — Website + Admin theo yêu cầu (Full custom)
 
 **Mô tả:**
 - Giao diện & chức năng thiết kế theo yêu cầu khách hàng
@@ -585,6 +585,7 @@ VPS AZDIGI Linux
 
 | Loại dữ liệu | Lưu ở đâu | Ghi chú |
 |---|---|---|
+| **Demo template live** | **Cloudflare Pages** | Upload HTML/CSS/JS template → free, không giới hạn bandwidth |
 | Ảnh hệ thống (demo, trang bán hàng) | Cloudflare R2 | Nén ảnh trước khi upload, 10GB free là đủ |
 | Ảnh khách upload (Gói B) | Cloudflare R2 | Free bandwidth, chỉ tính phí storage nếu vượt 10GB |
 | Video | YouTube / Vimeo (embed link) | Không lưu trực tiếp, tiết kiệm storage |
@@ -608,6 +609,7 @@ VPS AZDIGI Linux
 ### Kỹ thuật chung
 - Template Bootstrap không dùng build system → giảm dependency, khách tự chỉnh dễ
 - Luôn có demo live cho mỗi template → tăng tỷ lệ chuyển đổi
+- **Demo template**: upload lên Cloudflare Pages (free, không giới hạn bandwidth) — mỗi template là 1 project riêng trên dash.cloudflare.com → Workers & Pages → Pages
 - Gói C bắt buộc ký checklist scope trước khi bắt đầu → tránh scope creep
 - Frontend web + admin chung 1 project React, tách route `/admin` — tái sử dụng component, dễ maintain
 - SQLite dùng `PRAGMA foreign_keys = ON` — bật FK để bảo vệ data integrity

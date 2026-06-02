@@ -44,7 +44,12 @@
       "Bash(ls Sources/system/documents/)",
       "Bash(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\\\\\" -Recurse -Directory | Select-Object -ExpandProperty FullName | Sort-Object)",
       "Bash(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\\\\\" -Recurse -Filter \"*.tsx\" -o ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName | head -20)",
-      "PowerShell(head -20)"
+      "PowerShell(head -20)",
+      "Bash(xargs grep -l \"slides\\\\|TOTAL\\\\|AUTO_MS\")",
+      "Bash(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\templates\\\\web\" -Directory -Recurse -Depth 1)",
+      "Bash(Sort-Object FullName)",
+      "PowerShell(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\templates\\\\web\" -Directory | ForEach-Object { $cat = $_.Name; Get-ChildItem $_.FullName -Directory | ForEach-Object { \"$cat/$\\($_.Name\\)\" } } | Sort-Object)",
+      "Bash(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\\\\\" -Recurse -Include \"*.tsx\", \"*.ts\" | Select-Object -ExpandProperty FullName | head -30)"
     ],
     "additionalDirectories": [
       "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"

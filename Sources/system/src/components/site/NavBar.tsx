@@ -4,9 +4,9 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 
 const navLinks = [
-  { href: '/#templates', label: 'Mẫu thiết kế' },
+  { href: '/templates', label: 'Thư viện mẫu' },
   { href: '/pricing', label: 'Bảng giá' },
-  { href: '/#how', label: 'Quy trình' },
+  { href: '/how-it-works', label: 'Quy trình' },
   { href: '/about', label: 'Về chúng tôi' },
 ]
 
@@ -64,9 +64,6 @@ export default function NavBar() {
                   {l.label}
                 </Link>
               ))}
-              <Link href="/templates" className={pathname.startsWith('/templates') ? 'active' : ''}>
-                Thư viện mẫu
-              </Link>
             </div>
             <Link href="/contact" className="nav-cta d-none d-md-inline-flex">
               Liên hệ ngay
@@ -88,7 +85,6 @@ export default function NavBar() {
             {l.label}
           </Link>
         ))}
-        <Link href="/templates" onClick={() => setMobileOpen(false)}>Thư viện mẫu</Link>
         <Link href="/contact" className="nm-cta" onClick={() => setMobileOpen(false)}>Liên hệ ngay</Link>
       </div>
     </>

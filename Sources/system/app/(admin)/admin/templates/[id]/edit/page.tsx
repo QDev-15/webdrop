@@ -26,7 +26,8 @@ export default async function EditTemplatePage({ params }: { params: Promise<{ i
           price: String(Number(template.price)),
           category: template.category,
           industryId: template.industryId ? String(template.industryId) : '',
-          status: template.status,
+          status:     template.status,
+          hasWebsite: template.hasWebsite,
         }}
       />
     </AdminLayout>

@@ -18,6 +18,7 @@ const SETTING_GROUPS: SettingGroup[] = [
       { key: 'site_email', label: 'Email liên hệ', type: 'email', placeholder: 'hello@webdrop.vn' },
       { key: 'site_phone', label: 'Số điện thoại', placeholder: '0900 000 000' },
       { key: 'site_address', label: 'Địa chỉ', placeholder: 'TP.HCM, Việt Nam' },
+      { key: 'working_hours', label: 'Giờ làm việc', placeholder: '8:00–18:00 · T2–T7' },
     ],
   },
   {

@@ -33,14 +33,19 @@ export async function POST(req: NextRequest) {
   }
 
   const body = await req.json()
-  const { name, slug, description, thumbnail, demoUrl, price, category, industryId, status } = body
+  const { name, slug, description, thumbnail, demoUrl, price, category, industryId, status, hasWebsite } = body
 
   if (!name || !slug || !price || !category) {
     return NextResponse.json({ error: 'Thiếu thông tin bắt buộc' }, { status: 400 })
   }
 
   const template = await prisma.template.create({
-    data: { name, slug, description, thumbnail, demoUrl, price, category, industryId: industryId || null, status: status ?? 'draft' },
+    data: {
+      name, slug, description, thumbnail, demoUrl, price, category,
+      industryId: industryId || null,
+      status: status ?? 'draft',
+      hasWebsite: hasWebsite ?? false,
+    },
   })
 
   revalidatePath('/')
