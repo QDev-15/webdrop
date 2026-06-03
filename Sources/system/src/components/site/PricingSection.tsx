@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { pricingPlans } from '../../data/pricing'
 
 export default function PricingSection() {
@@ -21,7 +22,14 @@ export default function PricingSection() {
                 <ul className="pc-list flex-grow-1">
                   {plan.features.map(f => <li key={f}>{f}</li>)}
                 </ul>
-                <button className="pc-btn mt-auto">{plan.cta}</button>
+                <div className="mt-auto">
+                  <Link href={plan.ctaHref} className="pc-btn d-block text-center text-decoration-none">
+                    {plan.cta}
+                  </Link>
+                  <div style={{ fontSize: 11.5, color: 'var(--text-3)', textAlign: 'center', marginTop: 8, lineHeight: 1.5 }}>
+                    {plan.flow}
+                  </div>
+                </div>
               </div>
             </div>
           ))}

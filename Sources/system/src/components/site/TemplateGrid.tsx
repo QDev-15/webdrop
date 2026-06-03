@@ -47,7 +47,11 @@ function PageBtn({ active, disabled, onClick, children }: { active?: boolean; di
   )
 }
 
-export default function TemplateGrid({ templates: propTemplates, homepage }: { templates?: Template[]; homepage?: boolean }) {
+export default function TemplateGrid({ templates: propTemplates, homepage, pageType }: {
+  templates?: Template[]
+  homepage?: boolean
+  pageType?: 'starter' | 'standard'
+}) {
   const templates = propTemplates || mockTemplates
   const categoryList = Array.from(new Set(templates.map(t => t.category)))
 
@@ -152,43 +156,49 @@ export default function TemplateGrid({ templates: propTemplates, homepage }: { t
   const rangeEnd   = Math.min(page * pageSize, total)
 
   return (
-    <section id="templates" className="sec-pad" style={{ background: 'var(--bg)' }}>
+    <section id="templates" className="sec-pad" style={{ background: 'var(--bg)', paddingTop: 30 }}>
       <div className="wd-container">
 
-        {/* Scroll anchor — topRef dùng để scroll về đây khi đổi trang */}
+        {/* Scroll anchor */}
         <div ref={topRef} style={{ scrollMarginTop: 110 }} />
 
-        {/* ── Filter pills ── */}
-        <div className="d-flex gap-2 justify-content-center flex-wrap mb-4 reveal">
-          {categoryList.map(cat => (
-            <div key={cat} className={`pill${active === cat ? ' active' : ''}`} onClick={() => handleCategory(cat)}>
-              {cat}
-            </div>
-          ))}
-        </div>
-
-        {/* ── Info bar + Page size selector ── */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
-          <span style={{ fontSize: 13, color: 'var(--text-3)' }}>
-            {total === 0 ? 'Không có mẫu nào' : `Hiển thị ${rangeStart}–${rangeEnd} trong ${total} mẫu`}
-          </span>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-            <span style={{ fontSize: 12, color: 'var(--text-3)' }}>Số mẫu/trang:</span>
-            {PAGE_SIZES.map(size => (
-              <button
-                key={size}
-                onClick={() => handlePageSize(size)}
-                style={{
-                  padding: '4px 11px', borderRadius: 6, fontSize: 12,
-                  cursor: 'pointer', fontFamily: 'var(--sans)', transition: 'all .15s',
-                  border: `1px solid ${pageSize === size ? 'var(--accent)' : 'var(--border)'}`,
-                  background: pageSize === size ? 'var(--accent)' : 'transparent',
-                  color: pageSize === size ? '#fff' : 'var(--text-2)',
-                }}
-              >
-                {size}
-              </button>
+        {/* ── Sticky filter bar ── */}
+        <div style={{
+          position: 'sticky', top: 62, zIndex: 100,
+          background: 'var(--bg)',
+          borderBottom: '1px solid var(--border-light)',
+          padding: '12px 0',
+          marginBottom: 24,
+        }}>
+          {/* Filter pills */}
+          <div className="d-flex gap-2 justify-content-center flex-wrap mb-2">
+            {categoryList.map(cat => (
+              <div key={cat} className={`pill${active === cat ? ' active' : ''}`} onClick={() => handleCategory(cat)}>
+                {cat}
+              </div>
             ))}
+          </div>
+
+          {/* Info bar + Page size */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
+            <span style={{ fontSize: 12, color: 'var(--text-3)' }}>
+              {total === 0 ? 'Không có mẫu nào' : `Hiển thị ${rangeStart}–${rangeEnd} trong ${total} mẫu`}
+            </span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <span style={{ fontSize: 12, color: 'var(--text-3)' }}>Số mẫu/trang:</span>
+              {PAGE_SIZES.map(size => (
+                <button key={size} onClick={() => handlePageSize(size)}
+                  style={{
+                    padding: '4px 11px', borderRadius: 6, fontSize: 12,
+                    cursor: 'pointer', fontFamily: 'var(--sans)', transition: 'all .15s',
+                    border: `1px solid ${pageSize === size ? 'var(--accent)' : 'var(--border)'}`,
+                    background: pageSize === size ? 'var(--accent)' : 'transparent',
+                    color: pageSize === size ? '#fff' : 'var(--text-2)',
+                  }}>
+                  {size}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -214,6 +224,14 @@ export default function TemplateGrid({ templates: propTemplates, homepage }: { t
                         <span className="tc-cat">{t.category}</span>
                         <span className="tc-price">{t.price}</span>
                       </div>
+                      {/* Chỉ hiện type badge khi đang xem tất cả (không filter type) */}
+                      {!pageType && (
+                        <div style={{ marginTop: 6 }}>
+                          <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 4, fontWeight: 500, background: t.hasWebsite ? '#eff6ff' : 'var(--accent-light)', color: t.hasWebsite ? '#1d4ed8' : 'var(--accent)' }}>
+                            {t.hasWebsite ? '🌐 Web + Admin' : '📦 Template'}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </Link>

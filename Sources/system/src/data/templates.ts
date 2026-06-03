@@ -1,11 +1,12 @@
 export interface Template {
-  slug: string
-  name: string
-  category: string
-  price: string
-  image: string
-  badge?: string
-  demoUrl?: string
+  slug:       string
+  name:       string
+  category:   string
+  price:      string
+  image:      string
+  badge?:     string
+  demoUrl?:   string
+  hasWebsite?: boolean
 }
 
 export const templates: Template[] = [

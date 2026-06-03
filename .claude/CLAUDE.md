@@ -296,27 +296,27 @@ website.vn/admin    → Trang quản trị
 
 Template và website sẽ tập trung vào các ngành có nhu cầu cao tại Việt Nam:
 
-- [x] Nhà hàng / Quán ăn / Cafe — **DONE** (`Sources/templates/web/restaurant/`)
-- [x] Spa / Thẩm mỹ / Làm đẹp — **DONE** (`Sources/templates/web/spa-beauty/`)
+- [x] Nhà hàng / Quán ăn / Cafe — **DONE** (10 templates: `Restaurants/`, `Cafes/`)
+- [x] Spa / Thẩm mỹ / Làm đẹp — **DONE** (10 templates: `Spa-Services/`)
 - [ ] Bất động sản
-- [x] Agency / Portfolio cá nhân — **DONE** (`Sources/templates/web/agency-web/`)
-- [x] Luật / Văn phòng luật sư — **DONE** (`Sources/templates/web/luat-van-phong/`)
+- [x] Agency / Portfolio / Công ty — **DONE** (6 templates: `Companies/`, `Portfolios/`)
+- [x] Blog / Forum — **DONE** (`Blogs/`, `Forums/`)
 - [ ] Landing page sản phẩm / Dịch vụ
 
 ---
 
 ## 🚀 ROADMAP PHÁT TRIỂN
 
-### Giai đoạn 1 — 0 đến 6 tháng ✅ IN PROGRESS
-- [x] Xây 2–3 web template theo ngách — **3 templates xong** (agency, spa, restaurant)
+### Giai đoạn 1 — 0 đến 6 tháng ✅ HOÀN THÀNH
+- [x] Xây web template theo ngành — **31 templates** (Restaurant, Spa, Agency, Company, Blog, Cafe, Forum, Portfolio)
 - [x] Xây 1 admin template cơ bản — **DONE** (`Sources/templates/admin/basic-admin/`)
-- [x] Thiết lập kênh bán (webdrop.vn) — **Next.js gần hoàn chỉnh** (xem bảng trang bên dưới)
-- [ ] Nhận dự án Gói B để tạo dòng tiền
+- [x] Thiết lập kênh bán (webdrop.vn) — **DONE, deploy Vercel**
+- [x] Đóng gói Gói Web cơ bản thành sản phẩm chuẩn (`Sources/products/goi-b/`)
+- [ ] Nhận đơn hàng đầu tiên để tạo dòng tiền
 
 ### Giai đoạn 2 — 6 đến 18 tháng
-- [ ] Mở rộng thư viện template (5–10 ngành) — còn BĐS, landing page
-- [ ] Đóng gói Gói B thành sản phẩm chuẩn bán nhanh
-- [ ] Nhận dự án Gói C giá trị cao
+- [ ] Mở rộng thư viện template — còn BĐS, landing page sản phẩm
+- [ ] Nhận dự án Gói Theo Yêu cầu giá trị cao
 - [ ] Xây trang showcase / portfolio
 
 ### Giai đoạn 3 — 18 tháng trở đi
@@ -340,15 +340,16 @@ webdrop/                            ← GitHub repo
 │   │   ├── app/
 │   │   │   ├── (site)/             ← Trang bán hàng public
 │   │   │   │   ├── page.tsx              → / (homepage)
-│   │   │   │   ├── templates/page.tsx    → /templates (danh sách)
+│   │   │   │   ├── templates/page.tsx    → /templates (danh sách, filter ?type=starter|standard)
 │   │   │   │   ├── templates/[slug]/     → /templates/:slug (detail + error + loading)
+│   │   │   │   ├── how-it-works/page.tsx → /how-it-works (quy trình 3 gói)
 │   │   │   │   ├── blog/page.tsx         → /blog
 │   │   │   │   ├── blog/[slug]/          → /blog/:slug
 │   │   │   │   ├── pricing/page.tsx      → /pricing
 │   │   │   │   ├── about/page.tsx        → /about
-│   │   │   │   ├── contact/page.tsx      → /contact
+│   │   │   │   ├── contact/page.tsx      → /contact (Server, fetch settings)
 │   │   │   │   ├── faq/page.tsx          → /faq
-│   │   │   │   └── policies/[slug]/      → /policies/:slug (privacy/terms/refund)
+│   │   │   │   └── policies/[slug]/      → /policies/:slug (privacy/terms/refund) — Server, fetch contact từ settings
 │   │   │   ├── (checkout)/
 │   │   │   │   ├── checkout/page.tsx     → /checkout
 │   │   │   │   └── checkout/success/     → /checkout/success
@@ -357,12 +358,13 @@ webdrop/                            ← GitHub repo
 │   │   │   │       ├── page.tsx          → /admin (dashboard)
 │   │   │   │       ├── orders/           → /admin/orders + /admin/orders/[id]
 │   │   │   │       ├── customers/        → list + [id] + new
-│   │   │   │       ├── templates/        → list + new + [id]/edit
+│   │   │   │       ├── templates/        → list (filter: category/industry/status) + new + [id]/edit
+│   │   │   │       ├── slides/           → list + new + [id]/edit (Hero Slides DB)
 │   │   │   │       ├── posts/            → list + new + [id]/edit (blog)
 │   │   │   │       ├── contacts/         → /admin/contacts
 │   │   │   │       ├── projects/         → list + [id] (milestones, notes)
 │   │   │   │       ├── revenue/          → /admin/revenue
-│   │   │   │       └── settings/         → /admin/settings
+│   │   │   │       └── settings/         → /admin/settings (general, social, seo, smtp)
 │   │   │   ├── api/
 │   │   │   │   ├── auth/login + logout
 │   │   │   │   ├── orders/              → POST tạo đơn (public)
@@ -372,6 +374,7 @@ webdrop/                            ← GitHub repo
 │   │   │   │       ├── orders/[id]       → GET + PATCH
 │   │   │   │       ├── customers/        → GET + POST + [id] PATCH
 │   │   │   │       ├── templates/        → GET + POST + [id] PATCH/DELETE
+│   │   │   │       ├── slides/           → GET + POST + [id] PATCH/DELETE + reorder PATCH
 │   │   │   │       ├── posts/            → GET + POST + [id] PATCH/DELETE
 │   │   │   │       ├── contacts/         → GET + [id] PATCH status
 │   │   │   │       ├── projects/[id]/    → GET + PATCH + milestones + notes
@@ -392,9 +395,13 @@ webdrop/                            ← GitHub repo
 │   │   └── goi-b/                  ← Base code Gói B (React + PHP + SQLite)
 │   └── templates/
 │       ├── web/
-│       │   ├── agency-web/         ← ✅ Agency
-│       │   ├── spa-beauty/         ← ✅ Spa
-│       │   └── restaurant/         ← ✅ Nhà hàng
+│       │   ├── Companies/          ← ✅ 6 templates (agency, luat, startup, xay-dung, tu-van...)
+│       │   ├── Restaurants/        ← ✅ 10 templates
+│       │   ├── Spa-Services/       ← ✅ 10 templates
+│       │   ├── Cafes/              ← ✅ cafe-thoi-gian
+│       │   ├── Blogs/              ← ✅ blog-ca-nhan
+│       │   ├── Forums/             ← ✅ forum-cong-dong
+│       │   └── Portfolios/         ← ✅ portfolio-toi
 │       └── admin/
 │           └── basic-admin/        ← ✅ Admin template
 ├── documents/                      ← Prototype UI HTML (tham khảo)
@@ -556,7 +563,12 @@ Lưu dạng key-value: `key | value | group`
 - **Connection**: Pooler URL với `sslmode=require&connect_timeout=30&pool_timeout=30`
 - **ORM**: Prisma 5.x — schema tại `Sources/system/prisma/schema.prisma`
 - **Seed**: `npm run db:seed` — tạo 31 templates, 6 industries, 3 packages, admin account
-- **Admin login (dev)**: `admin@webdrop.vn` / `webdrop@2025`
+- **Admin login (dev)**: xem [`.claude/Info/companyInfo.md`](.claude/Info/companyInfo.md)
+
+### Thông tin công ty & cá nhân
+> Tất cả thông tin liên hệ, tài khoản ngân hàng, credentials, social links lưu tại:
+> **[`.claude/Info/companyInfo.md`](.claude/Info/companyInfo.md)** — KHÔNG commit lên public repo.
+> File này là base data để seed DB và tạo content cho website mới.
 
 ### Kiến trúc server
 ```
@@ -610,7 +622,7 @@ VPS AZDIGI Linux
 - Template Bootstrap không dùng build system → giảm dependency, khách tự chỉnh dễ
 - Luôn có demo live cho mỗi template → tăng tỷ lệ chuyển đổi
 - **Demo template**: upload lên Cloudflare Pages (free, không giới hạn bandwidth) — mỗi template là 1 project riêng trên dash.cloudflare.com → Workers & Pages → Pages
-- Gói C bắt buộc ký checklist scope trước khi bắt đầu → tránh scope creep
+- **Gói Theo Yêu cầu** bắt buộc ký checklist scope trước khi bắt đầu → tránh scope creep
 - Frontend web + admin chung 1 project React, tách route `/admin` — tái sử dụng component, dễ maintain
 - SQLite dùng `PRAGMA foreign_keys = ON` — bật FK để bảo vệ data integrity
 
@@ -635,7 +647,33 @@ VPS AZDIGI Linux
 - PATCH/PUT endpoints whitelist fields (không dùng `data: body` trực tiếp) → tránh mass-assignment
 - Prisma errors: P2002 (unique constraint) → 409, P2025 (not found) → 404
 - `parseInt(id)` trong dynamic routes phải check `isNaN()` → 400 nếu ID không hợp lệ
+- Next.js 15: `params` và `searchParams` trong Server Components là **Promise** — phải `await params`
+
+### Settings & Dynamic Content
+- Auth dùng custom JWT, env var là `SESSION_SECRET` (không phải `NEXTAUTH_SECRET`)
+- **Footer**, **Contact page**: fetch `site_name`, `site_phone`, `site_email`, `site_address`, `working_hours`, social từ bảng `settings`
+- `working_hours` là setting key mới — quản lý qua `/admin/settings` → Thông tin chung
+- **Hero Slider**: data lưu trong bảng `hero_slides` (Prisma model `HeroSlide`), quản lý tại `/admin/slides`
+- Slides fallback về `src/data/slides.config.ts` nếu DB rỗng
+
+### Templates
+- Field `hasWebsite: Boolean` — phân biệt template-only vs template có website đầy đủ (Gói Web cơ bản)
+- `/templates?type=starter` → chỉ show `hasWebsite=false` | `?type=standard` → `hasWebsite=true`
+- Khi không có `?type` → show tất cả, badge 📦/🌐 trên mỗi card
+- Pricing section: Starter → `/templates?type=starter`, Standard → `/templates?type=standard`
+
+### Gói Web cơ bản (goi-b) deploy
+- Build: `double-click build.bat` (Windows) hoặc `npm run build` — output ra `deploy/` folder
+- Hỗ trợ cả Apache/Linux (`.htaccess`) và IIS/Windows (`.web.config`)
+- DB tự seed lần đầu khi request đầu tiên đến PHP — không cần setup thủ công
+- Đã test trên PA Vietnam Windows hosting (Plesk + IIS + PHP 8.3 FastCGI)
+
+### Client vs Server Component
+- Async Server Component **không được import** từ Client Component → gây lỗi "async Client Component"
+- Pattern đúng: tách interactive part ra `XxxClient.tsx` ('use client'), page.tsx là Server Component import Footer + XxxClient
+- Áp dụng cho: `faq/page.tsx` → `FaqClient.tsx`, `contact/page.tsx` → `ContactClient.tsx`
+- `policies/[slug]/page.tsx`: Server Component, fetch settings → build nội dung động (email, phone, Zalo, working_hours)
 
 ---
 
-*Cập nhật lần cuối: 2026-06-02 — Checkout: 2 option (template ZIP / website Gói B), success page với download buttons, api/download stream ZIP bằng archiver. Gói B đầy đủ: admin panel + public website + hướng dẫn cài đặt + sử dụng.*
+*Cập nhật lần cuối: 2026-06-03 — webdrop.vn deployed Vercel, 31 templates Cloudflare Pages, Gói Web cơ bản hoàn chỉnh, Hero Slides DB, settings-driven Footer/Contact/Zalo, tên gói mới (Template/Web cơ bản/Theo yêu cầu), page /how-it-works, templates filter by type.*
