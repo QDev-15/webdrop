@@ -117,32 +117,8 @@ function ContentSkeleton({ type = 'table', rows = 8 }: { type?: Props['type']; r
 export default function AdminLoadingPage({ type = 'table', rows = 8 }: Props) {
   return (
     <div className="admin-body">
-      {/* Sidebar — static shell */}
-      <div className="admin-sidebar">
-        <div className="sb-logo">
-          <span className="sb-logo-text">web<span>drop</span>.vn</span>
-          <div style={{ fontSize: 11, color: 'rgba(255,255,255,.2)', marginTop: 3, fontWeight: 300 }}>System Admin</div>
-        </div>
-        <nav className="sb-nav">
-          <div className="sb-section">Menu</div>
-          {NAV_ITEMS.map(item => (
-            <div key={item.label} className="sb-link">
-              <span className="sb-link-icon">{item.icon}</span>
-              <SkRow w={60} />
-            </div>
-          ))}
-          <div className="sb-section" style={{ marginTop: 20 }}>Hệ thống</div>
-          <div className="sb-link"><span className="sb-link-icon">🌐</span><SkRow w={55} /></div>
-          <div className="sb-link"><span className="sb-link-icon">🚪</span><SkRow w={45} /></div>
-        </nav>
-      </div>
-
       {/* Main */}
       <div className="admin-main">
-        <div className="admin-topbar">
-          <div style={{ width: 140, height: 14, borderRadius: 4, background: 'var(--warm2)' }} className="ld-sk" />
-          <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'var(--warm2)' }} className="ld-sk" />
-        </div>
         <div className="admin-content">
           {/* Toolbar stub */}
           <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>

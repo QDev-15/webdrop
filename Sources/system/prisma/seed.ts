@@ -529,6 +529,61 @@ async function main() {
     console.log('⏭  Hero slides: đã có dữ liệu, bỏ qua')
   }
 
+  // ── How It Works Packages ─────────────────────────────────────────────
+  const hiwExisting = await prisma.howItWorksPackage.count()
+  if (hiwExisting === 0) {
+    const hiwPackages = [
+      {
+        name: 'Gói Template', slug: 'goi-template', tagline: 'Mua file, tự cài đặt theo hướng dẫn',
+        icon: '📦', price: 'Từ 199.000đ', hot: false, sortOrder: 0,
+        ctaLabel: 'Xem thư viện mẫu', ctaHref: '/templates',
+        suitable: ['Có kinh nghiệm kỹ thuật cơ bản', 'Muốn tự kiểm soát hoàn toàn', 'Ngân sách tối ưu'],
+        steps: [
+          { title: 'Chọn mẫu',             desc: 'Duyệt thư viện 30+ mẫu, xem demo live, chọn mẫu phù hợp ngành nghề.' },
+          { title: 'Thanh toán',            desc: 'Chuyển khoản — xác nhận trong 2 giờ làm việc.' },
+          { title: 'Nhận file ZIP',         desc: 'Download file HTML/CSS/JS + hướng dẫn chỉnh nội dung chi tiết.' },
+          { title: 'Tự chỉnh & triển khai', desc: 'Thay text, ảnh theo hướng dẫn. Upload lên bất kỳ hosting nào là chạy.' },
+        ],
+      },
+      {
+        name: 'Gói Web cơ bản', slug: 'goi-web-co-ban', tagline: 'Website đầy đủ — deploy xong là chạy luôn',
+        icon: '🌐', price: 'Từ 3.000.000đ', hot: true, sortOrder: 1,
+        ctaLabel: 'Đặt hàng ngay', ctaHref: '/templates',
+        suitable: ['Không rành kỹ thuật', 'Muốn website nhanh — 3 đến 5 ngày', 'Cần cài đặt trọn gói'],
+        steps: [
+          { title: 'Chọn mẫu & đặt hàng', desc: 'Chọn template từ thư viện, điền form brief ngắn (ngành, màu sắc, nội dung chính).' },
+          { title: 'Chúng tôi cài đặt',   desc: 'Setup hosting, domain, SSL. Điền nội dung theo brief. Thường hoàn thành trong 3–5 ngày.' },
+          { title: 'Duyệt & bàn giao',    desc: 'Review website, yêu cầu chỉnh sửa (tối đa 2 lần). Bàn giao quyền truy cập đầy đủ.' },
+          { title: 'Hỗ trợ 30 ngày',      desc: 'Hỗ trợ kỹ thuật miễn phí 30 ngày đầu qua Zalo. Sau đó có gói bảo trì tháng.' },
+        ],
+      },
+      {
+        name: 'Gói Theo Yêu cầu', slug: 'goi-theo-yeu-cau', tagline: 'Thiết kế độc quyền từ đầu theo yêu cầu',
+        icon: '✏️', price: 'Từ 20.000.000đ', hot: false, sortOrder: 2,
+        ctaLabel: 'Liên hệ tư vấn', ctaHref: '/contact',
+        suitable: ['Cần thiết kế riêng biệt', 'Có tính năng đặc thù theo nghiệp vụ', 'Dự án lớn, dài hạn'],
+        steps: [
+          { title: 'Trao đổi & brief',     desc: 'Cuộc gọi / Zalo 30 phút để hiểu rõ yêu cầu, ngành nghề, đối tượng khách hàng, ngân sách.' },
+          { title: 'Wireframe & ký scope', desc: 'Phác thảo cấu trúc trang, danh sách tính năng. Ký checklist scope tránh phát sinh.' },
+          { title: 'Design UI',            desc: 'Thiết kế giao diện trên Figma. Khách duyệt, chỉnh sửa đến khi ưng ý.' },
+          { title: 'Phát triển',           desc: 'Code frontend + backend theo thiết kế đã duyệt. Báo cáo tiến độ hàng tuần.' },
+          { title: 'Test & Deploy',        desc: 'Kiểm thử kỹ trên nhiều thiết bị. Deploy lên hosting, cấu hình domain, SSL.' },
+          { title: 'Bàn giao & hỗ trợ',   desc: 'Bàn giao source code (nếu chọn) hoặc bản build. Hỗ trợ 90 ngày sau bàn giao.' },
+        ],
+      },
+    ]
+    for (const p of hiwPackages) {
+      const { steps, ...pkgData } = p
+      const pkg = await prisma.howItWorksPackage.create({ data: pkgData })
+      for (let i = 0; i < steps.length; i++) {
+        await prisma.howItWorksStep.create({ data: { packageId: pkg.id, ...steps[i], sortOrder: i } })
+      }
+    }
+    console.log('✅ How It Works packages:', hiwPackages.length)
+  } else {
+    console.log('⏭  How It Works packages: đã có dữ liệu, bỏ qua')
+  }
+
   console.log('\n🎉 Seed complete!')
   console.log(`   Templates  : ${templateData.length} (${templateData.filter(t => t.category === 'web').length} web + ${templateData.filter(t => t.category === 'admin').length} admin)`)
   console.log(`   Demo base  : ${DEMO_BASE}`)

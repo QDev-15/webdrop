@@ -1,4 +1,9 @@
 import AdminLoadingPage from '@/components/admin/AdminLoadingPage'
+import AdminLayout from '@/components/admin/AdminLayout'
 export default function Loading() {
-  return <AdminLoadingPage type="table" rows={10} />
+  return (
+    <AdminLayout title="Bài viết">
+      <AdminLoadingPage type="table" rows={7} />
+    </AdminLayout>
+  )
 }

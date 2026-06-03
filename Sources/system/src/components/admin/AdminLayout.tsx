@@ -9,6 +9,7 @@ const navItems = [
   { href: '/admin/projects', icon: '🗂️', label: 'Dự án' },
   { href: '/admin/templates', icon: '🎨', label: 'Templates' },
   { href: '/admin/slides', icon: '🖼️', label: 'Hero Slides' },
+  { href: '/admin/how-it-works', icon: '📋', label: 'Quy Trình' },
   { href: '/admin/posts', icon: '📝', label: 'Blog' },
   { href: '/admin/contacts', icon: '💬', label: 'Liên hệ' },
   { href: '/admin/revenue', icon: '💰', label: 'Doanh thu' },

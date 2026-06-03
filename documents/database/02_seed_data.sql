@@ -514,3 +514,34 @@ VALUES (
   ]'::jsonb,
   4, 'published'
 );
+
+-- ── How It Works Packages ────────────────────────────────────
+INSERT INTO how_it_works_packages (name, slug, tagline, icon, price, hot, cta_label, cta_href, suitable, sort_order, status)
+VALUES
+  ('Gói Template',      'goi-template',     'Mua file, tự cài đặt theo hướng dẫn',          '📦', 'Từ 199.000đ',     false, 'Xem thư viện mẫu', '/templates', ARRAY['Có kinh nghiệm kỹ thuật cơ bản','Muốn tự kiểm soát hoàn toàn','Ngân sách tối ưu'], 0, 'published'),
+  ('Gói Web cơ bản',   'goi-web-co-ban',   'Website đầy đủ — deploy xong là chạy luôn',    '🌐', 'Từ 3.000.000đ',   true,  'Đặt hàng ngay',    '/templates', ARRAY['Không rành kỹ thuật','Muốn website nhanh — 3 đến 5 ngày','Cần cài đặt trọn gói'], 1, 'published'),
+  ('Gói Theo Yêu cầu', 'goi-theo-yeu-cau', 'Thiết kế độc quyền từ đầu theo yêu cầu',       '✏️', 'Từ 20.000.000đ',  false, 'Liên hệ tư vấn',   '/contact',   ARRAY['Cần thiết kế riêng biệt','Có tính năng đặc thù theo nghiệp vụ','Dự án lớn, dài hạn'], 2, 'published')
+ON CONFLICT (slug) DO NOTHING;
+
+-- Steps for Gói Template
+INSERT INTO how_it_works_steps (package_id, title, desc, sort_order)
+SELECT id, 'Chọn mẫu',             'Duyệt thư viện 30+ mẫu, xem demo live, chọn mẫu phù hợp ngành nghề.', 0 FROM how_it_works_packages WHERE slug = 'goi-template'
+UNION ALL SELECT id, 'Thanh toán',            'Chuyển khoản — xác nhận trong 2 giờ làm việc.',                         1 FROM how_it_works_packages WHERE slug = 'goi-template'
+UNION ALL SELECT id, 'Nhận file ZIP',         'Download file HTML/CSS/JS + hướng dẫn chỉnh nội dung chi tiết.',        2 FROM how_it_works_packages WHERE slug = 'goi-template'
+UNION ALL SELECT id, 'Tự chỉnh & triển khai', 'Thay text, ảnh theo hướng dẫn. Upload lên bất kỳ hosting nào là chạy.', 3 FROM how_it_works_packages WHERE slug = 'goi-template';
+
+-- Steps for Gói Web cơ bản
+INSERT INTO how_it_works_steps (package_id, title, desc, sort_order)
+SELECT id, 'Chọn mẫu & đặt hàng', 'Chọn template từ thư viện, điền form brief ngắn (ngành, màu sắc, nội dung chính).', 0 FROM how_it_works_packages WHERE slug = 'goi-web-co-ban'
+UNION ALL SELECT id, 'Chúng tôi cài đặt',   'Setup hosting, domain, SSL. Điền nội dung theo brief. Thường hoàn thành trong 3–5 ngày.', 1 FROM how_it_works_packages WHERE slug = 'goi-web-co-ban'
+UNION ALL SELECT id, 'Duyệt & bàn giao',    'Review website, yêu cầu chỉnh sửa (tối đa 2 lần). Bàn giao quyền truy cập đầy đủ.', 2 FROM how_it_works_packages WHERE slug = 'goi-web-co-ban'
+UNION ALL SELECT id, 'Hỗ trợ 30 ngày',      'Hỗ trợ kỹ thuật miễn phí 30 ngày đầu qua Zalo. Sau đó có gói bảo trì tháng.', 3 FROM how_it_works_packages WHERE slug = 'goi-web-co-ban';
+
+-- Steps for Gói Theo Yêu cầu
+INSERT INTO how_it_works_steps (package_id, title, desc, sort_order)
+SELECT id, 'Trao đổi & brief',     'Cuộc gọi / Zalo 30 phút để hiểu rõ yêu cầu, ngành nghề, đối tượng khách hàng, ngân sách.', 0 FROM how_it_works_packages WHERE slug = 'goi-theo-yeu-cau'
+UNION ALL SELECT id, 'Wireframe & ký scope', 'Phác thảo cấu trúc trang, danh sách tính năng. Ký checklist scope tránh phát sinh.', 1 FROM how_it_works_packages WHERE slug = 'goi-theo-yeu-cau'
+UNION ALL SELECT id, 'Design UI',            'Thiết kế giao diện trên Figma. Khách duyệt, chỉnh sửa đến khi ưng ý.', 2 FROM how_it_works_packages WHERE slug = 'goi-theo-yeu-cau'
+UNION ALL SELECT id, 'Phát triển',           'Code frontend + backend theo thiết kế đã duyệt. Báo cáo tiến độ hàng tuần.', 3 FROM how_it_works_packages WHERE slug = 'goi-theo-yeu-cau'
+UNION ALL SELECT id, 'Test & Deploy',        'Kiểm thử kỹ trên nhiều thiết bị. Deploy lên hosting, cấu hình domain, SSL.', 4 FROM how_it_works_packages WHERE slug = 'goi-theo-yeu-cau'
+UNION ALL SELECT id, 'Bàn giao & hỗ trợ',   'Bàn giao source code (nếu chọn) hoặc bản build. Hỗ trợ 90 ngày sau bàn giao.', 5 FROM how_it_works_packages WHERE slug = 'goi-theo-yeu-cau';

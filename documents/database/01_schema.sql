@@ -337,6 +337,36 @@ CREATE TABLE hero_slides (
   updated_at TIMESTAMPTZ  NOT NULL DEFAULT NOW()
 );
 
+-- ── how_it_works_packages ────────────────────────────────────
+CREATE TABLE how_it_works_packages (
+  id         SERIAL PRIMARY KEY,
+  name       VARCHAR(255)  NOT NULL,
+  slug       VARCHAR(255)  NOT NULL UNIQUE,
+  tagline    TEXT,
+  icon       VARCHAR(20)   DEFAULT '📦',
+  price      VARCHAR(100),
+  hot        BOOLEAN       NOT NULL DEFAULT FALSE,
+  cta_label  VARCHAR(255),
+  cta_href   VARCHAR(500),
+  suitable   TEXT[]        NOT NULL DEFAULT '{}',
+  sort_order INT           NOT NULL DEFAULT 0,
+  status     "PostStatus"  NOT NULL DEFAULT 'published',
+  created_at TIMESTAMPTZ   NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ   NOT NULL DEFAULT NOW()
+);
+
+-- ── how_it_works_steps ───────────────────────────────────────
+CREATE TABLE how_it_works_steps (
+  id         SERIAL PRIMARY KEY,
+  package_id INT          NOT NULL REFERENCES how_it_works_packages(id) ON DELETE CASCADE,
+  title      VARCHAR(500) NOT NULL,
+  desc       TEXT,
+  sort_order INT          NOT NULL DEFAULT 0
+);
+
+CREATE INDEX idx_hiw_packages_sort ON how_it_works_packages(sort_order);
+CREATE INDEX idx_hiw_steps_package ON how_it_works_steps(package_id, sort_order);
+
 -- ── activity_logs ────────────────────────────────────────────
 CREATE TABLE activity_logs (
   id          SERIAL PRIMARY KEY,
