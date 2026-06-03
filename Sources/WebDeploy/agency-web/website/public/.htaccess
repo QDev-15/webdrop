@@ -1,0 +1,22 @@
+Options -Indexes
+
+# Bảo vệ file database SQLite
+<FilesMatch "\.db$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+RewriteEngine On
+
+# Admin SPA routing
+RewriteCond %{REQUEST_URI} ^/admin
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^admin/.*$ /admin/index.html [L]
+
+# Block truy cập trực tiếp api/database
+RewriteRule ^api/database/ - [F,L]
+
+# Main SPA routing
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !^/api/
+RewriteRule ^ /index.html [L]

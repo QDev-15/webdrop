@@ -499,6 +499,67 @@ enum SlideType {
   testimonial
 }
 
+// ── pricing ───────────────────────────────────────────────
+
+enum PricingGroupType {
+  cards
+  banner
+}
+
+enum PricingBg {
+  light
+  warm
+  dark
+}
+
+model PricingGroup {
+  id          Int              @id @default(autoincrement())
+  slug        String           @unique
+  eyebrow     String?
+  title       String
+  titleEm     String?          @map("title_em")
+  subtitle    String?
+  footnote    String?
+  bg          PricingBg        @default(light)
+  type        PricingGroupType @default(cards)
+  description String?
+  tags        String[]
+  ctaLabel    String?          @map("cta_label")
+  ctaHref     String?          @map("cta_href")
+  sortOrder   Int              @default(0) @map("sort_order")
+  status      PostStatus       @default(published)
+
+  plans PricingPlan[]
+
+  @@map("pricing_groups")
+}
+
+model PricingPlan {
+  id        Int          @id @default(autoincrement())
+  groupId   Int          @map("group_id")
+  name      String
+  price     String
+  features  String[]
+  hot       Boolean      @default(false)
+  ctaLabel  String?      @map("cta_label")
+  ctaHref   String?      @map("cta_href")
+  sortOrder Int          @default(0) @map("sort_order")
+
+  group PricingGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+
+  @@map("pricing_plans")
+}
+
+model PricingFaq {
+  id        Int        @id @default(autoincrement())
+  question  String
+  answer    String
+  sortOrder Int        @default(0) @map("sort_order")
+  status    PostStatus @default(published)
+
+  @@map("pricing_faqs")
+}
+
 // ── how_it_works_packages ──────────────────────────────────
 model HowItWorksPackage {
   id        Int        @id @default(autoincrement())

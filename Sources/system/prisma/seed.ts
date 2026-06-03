@@ -529,6 +529,46 @@ async function main() {
     console.log('⏭  Hero slides: đã có dữ liệu, bỏ qua')
   }
 
+  // ── Pricing Groups ────────────────────────────────────────────────────
+  const pricingExisting = await prisma.pricingGroup.count()
+  if (pricingExisting === 0) {
+    // Group 1: Gói Template (cards)
+    const g1 = await prisma.pricingGroup.create({
+      data: { slug: 'goi-template', eyebrow: 'Gói Template', title: 'Template', titleEm: 'thuần HTML/CSS', subtitle: 'Mở thẳng trên trình duyệt, không cần build, không cần server. Bàn giao file ZIP + demo live.', footnote: 'Bundle 5 template: Tiết kiệm 30–40% so với mua lẻ', bg: 'light', type: 'cards', tags: [], sortOrder: 0 },
+    })
+    await prisma.pricingPlan.createMany({ data: [
+      { groupId: g1.id, name: 'Template 1 trang',  price: '199.000 – 499.000đ',   features: ['File HTML/CSS/JS nguồn', 'Responsive mobile-first', 'Hướng dẫn chỉnh nội dung', 'Bootstrap 5.3'], hot: false, ctaLabel: 'Xem mẫu', ctaHref: '/templates', sortOrder: 0 },
+      { groupId: g1.id, name: 'Template multi-page', price: '499.000 – 999.000đ', features: ['4–6 trang HTML', 'Responsive hoàn toàn', 'Demo live link', 'Hướng dẫn chi tiết'], hot: true, ctaLabel: 'Xem mẫu', ctaHref: '/templates', sortOrder: 1 },
+      { groupId: g1.id, name: 'Admin Template',    price: '699.000 – 1.499.000đ', features: ['Dashboard + CRUD pages', 'Mobile responsive sidebar', 'Dark sidebar design', 'Bootstrap 5.3'], hot: false, ctaLabel: 'Xem mẫu', ctaHref: '/templates', sortOrder: 2 },
+    ]})
+
+    // Group 2: Gói Web cơ bản (cards, warm bg)
+    const g2 = await prisma.pricingGroup.create({
+      data: { slug: 'goi-web-co-ban', eyebrow: 'Gói Web cơ bản', title: 'Website', titleEm: 'chuẩn, deploy nhanh', subtitle: 'React SPA + PHP + SQLite. Upload lên hosting là chạy. Không cần config gì thêm.', footnote: 'Cài đặt hosting + domain: +500.000 – 1.000.000đ (tính riêng 1 lần)', bg: 'warm', type: 'cards', tags: [], sortOrder: 1 },
+    })
+    await prisma.pricingPlan.createMany({ data: [
+      { groupId: g2.id, name: 'Basic',    price: '3.000.000 – 5.000.000đ',   features: ['Landing 1 trang', 'Form liên hệ', 'Admin xem form', 'Hosting PHP + SQLite'], hot: false, ctaLabel: 'Đặt hàng ngay', ctaHref: '/checkout', sortOrder: 0 },
+      { groupId: g2.id, name: 'Standard', price: '7.000.000 – 12.000.000đ',  features: ['5–7 trang', 'Blog/tin tức', 'Admin quản lý nội dung', 'SEO cơ bản'], hot: true, ctaLabel: 'Đặt hàng ngay', ctaHref: '/checkout', sortOrder: 1 },
+      { groupId: g2.id, name: 'Pro',      price: '15.000.000 – 22.000.000đ', features: ['10+ trang', 'Đa ngôn ngữ', 'Admin đầy đủ', 'SEO nâng cao + Analytics'], hot: false, ctaLabel: 'Đặt hàng ngay', ctaHref: '/checkout', sortOrder: 2 },
+    ]})
+
+    // Group 3: Gói Theo Yêu cầu (banner)
+    await prisma.pricingGroup.create({
+      data: { slug: 'goi-theo-yeu-cau', eyebrow: 'Gói Theo Yêu cầu', title: 'Website + Admin', titleEm: 'full custom', bg: 'light', type: 'banner', description: 'Thiết kế theo yêu cầu, 2 phase rõ ràng. Từ 20.000.000đ tùy scope.', tags: ['Wireframe → Design', 'Duyệt rồi mới dev', 'Bàn giao source code', 'Bảo trì tháng'], ctaLabel: 'Liên hệ tư vấn →', ctaHref: '/contact', sortOrder: 2 },
+    })
+
+    // FAQs
+    await prisma.pricingFaq.createMany({ data: [
+      { question: 'Cài đặt hosting tính riêng không?', answer: 'Có, cài đặt hosting + domain tính phí dịch vụ riêng 500.000 – 1.000.000đ/lần.', sortOrder: 0 },
+      { question: 'Giá có bao gồm hosting hàng năm không?', answer: 'Không. Giá trên chỉ là phí thiết kế/bàn giao. Hosting và domain là chi phí hàng năm bạn tự trả với nhà cung cấp.', sortOrder: 1 },
+      { question: 'Có thể mua source code Gói Theo Yêu cầu không?', answer: 'Có. Source code tính thêm 20–30% giá trị dự án.', sortOrder: 2 },
+      { question: 'Bảo hành bao lâu?', answer: 'Hỗ trợ sửa lỗi miễn phí trong 30 ngày sau bàn giao. Sau đó có gói bảo trì hàng tháng từ 1.000.000đ.', sortOrder: 3 },
+    ]})
+    console.log('✅ Pricing groups: 3 nhóm + 4 FAQ')
+  } else {
+    console.log('⏭  Pricing groups: đã có dữ liệu, bỏ qua')
+  }
+
   // ── How It Works Packages ─────────────────────────────────────────────
   const hiwExisting = await prisma.howItWorksPackage.count()
   if (hiwExisting === 0) {
