@@ -156,19 +156,3 @@ footer { background:var(--dark); }
 .zf-btn { width:48px;height:48px;border-radius:50%;background:#0068FF;display:flex;align-items:center;justify-content:center;border:none;font-size:22px;box-shadow:0 4px 18px rgba(0,104,255,.38);transition:transform .2s;cursor:pointer; }
 .zf-btn:hover { transform:scale(1.09); }
 
-/* Grid helpers (no Bootstrap needed) */
-.row { display:flex;flex-wrap:wrap;margin:0 -8px; }
-.row.g-3 { gap:16px;margin:0; }
-.row.g-4 { gap:20px;margin:0; }
-.row.g-5 { gap:28px;margin:0; }
-.col { flex:1; min-width:120px; }
-.col-md-4 { flex:0 0 calc(33.333% - 11px); }
-.col-md-5 { flex:0 0 calc(41.666% - 14px); }
-.col-md-6 { flex:0 0 calc(50% - 10px); }
-.col-md-7 { flex:0 0 calc(58.333% - 14px); }
-.col-md-3 { flex:0 0 calc(25% - 12px); }
-.col-6 { flex:0 0 calc(50% - 10px); }
-@media(max-width:768px) {
-  .col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7 { flex:0 0 100%; }
-  .col-6 { flex:0 0 calc(50% - 10px); }
-}

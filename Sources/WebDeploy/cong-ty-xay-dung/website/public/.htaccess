@@ -1,0 +1,21 @@
+Options -Indexes
+RewriteEngine On
+
+# Chặn truy cập database
+<FilesMatch "\.db$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+RewriteRule ^api/database/ - [F,L]
+
+# API routing — route vào api/index.php, giữ nguyên REQUEST_URI
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^api/(.*)$ /api/index.php [L,QSA]
+
+# Admin SPA routing
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^admin(/.*)?$ /admin/index.html [L]
+
+# Main SPA routing
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ /index.html [L]

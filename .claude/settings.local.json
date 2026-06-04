@@ -49,7 +49,14 @@
       "Bash(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\templates\\\\web\" -Directory -Recurse -Depth 1)",
       "Bash(Sort-Object FullName)",
       "PowerShell(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\templates\\\\web\" -Directory | ForEach-Object { $cat = $_.Name; Get-ChildItem $_.FullName -Directory | ForEach-Object { \"$cat/$\\($_.Name\\)\" } } | Sort-Object)",
-      "Bash(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\\\\\" -Recurse -Include \"*.tsx\", \"*.ts\" | Select-Object -ExpandProperty FullName | head -30)"
+      "Bash(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\\\\\" -Recurse -Include \"*.tsx\", \"*.ts\" | Select-Object -ExpandProperty FullName | head -30)",
+      "Bash(php -l \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\WebDeploy\\\\agency-sang-tao\\\\api\\\\index.php\")",
+      "Bash(php -l \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\WebDeploy\\\\agency-sang-tao\\\\api\\\\config.php\")",
+      "Bash(php -l \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\WebDeploy\\\\agency-sang-tao\\\\api\\\\src\\\\Database.php\")",
+      "Bash(php -l \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\WebDeploy\\\\agency-sang-tao\\\\api\\\\src\\\\bootstrap.php\")",
+      "Bash(php -l \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\WebDeploy\\\\agency-sang-tao\\\\api\\\\src\\\\controllers\\\\AuthController.php\")",
+      "Bash(powershell -Command \"Select-String -Path 'Sources\\\\templates\\\\web\\\\Companies\\\\startup-cong-nghe\\\\index.html' -Pattern 'via\\\\.placeholder' | Select-Object -First 20\")",
+      "Bash(powershell -Command \"Select-String -Path 'Sources\\\\templates\\\\web\\\\Companies\\\\tu-van-tai-chinh\\\\index.html' -Pattern 'via\\\\.placeholder' | Select-Object -First 20\")"
     ],
     "additionalDirectories": [
       "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"

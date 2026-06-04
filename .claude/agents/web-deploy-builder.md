@@ -23,6 +23,8 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.vn** — chuyên chuy�
 4. **DB auto-seed từ nội dung thực có trong template** — không dùng placeholder Lorem ipsum.
 5. **PRAGMA foreign_keys = ON** bắt buộc cho SQLite.
 6. **Sau khi tạo xong → chạy kiểm tra cú pháp PHP và TypeScript.**
+7. **Sau khi xong toàn bộ thì tạo một file hướng dẫn cài đặt**
+8. **Review lại và fix hết issues rồi review fix cho đến khi hết issuse**
 
 ---
 

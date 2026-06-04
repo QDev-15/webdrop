@@ -1,0 +1,71 @@
+/* Site overrides for React dynamic content */
+
+/* Smooth page transitions */
+.page-enter { opacity: 0; transform: translateY(12px); }
+.page-enter-active { opacity: 1; transform: none; transition: opacity .4s, transform .4s; }
+
+/* Remove @import from template.css — loaded via index.html */
+
+/* Ensure reveal works on mount */
+[data-reveal].visible { opacity: 1; transform: none; }
+
+/* React Router active links */
+nav a.active { color: var(--accent-mid) !important; }
+
+/* Form success/error states */
+.form-success {
+  background: var(--accent-light);
+  border: 1px solid rgba(139,105,20,.3);
+  color: var(--accent);
+  padding: 14px 18px;
+  font-family: var(--body-font);
+  font-size: 14px;
+  font-weight: 300;
+  margin-top: 12px;
+}
+.form-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 14px 18px;
+  font-family: var(--body-font);
+  font-size: 14px;
+  font-weight: 300;
+  margin-top: 12px;
+}
+
+/* Loading state */
+.site-loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dark2);
+  font-family: var(--heading-font);
+  font-size: 28px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--accent-mid);
+}
+
+/* Case filter buttons */
+.case-filter-btn {
+  font-family: var(--body-font);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 7px 16px;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all .2s;
+  color: var(--text-2);
+}
+.case-filter-btn.active,
+.case-filter-btn:hover {
+  color: var(--dark);
+  background: var(--accent-mid);
+  border-color: var(--accent-mid);
+}
