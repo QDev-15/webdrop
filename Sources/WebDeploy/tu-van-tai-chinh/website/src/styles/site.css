@@ -1,0 +1,151 @@
+/* site.css — overrides nhỏ cho React dynamic content */
+
+/* Ensure smooth transitions for dynamically loaded content */
+.site-loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Hero slider override for React */
+.tc-hero-slides {
+  position: relative;
+  overflow: hidden;
+}
+
+.tc-slide {
+  display: none;
+  animation: slideIn 0.5s ease;
+}
+
+.tc-slide.active {
+  display: block;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Reveal animation for React */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .65s cubic-bezier(.25,.8,.25,1), transform .65s cubic-bezier(.25,.8,.25,1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Contact channel card */
+.tc-channel-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  text-align: center;
+  transition: box-shadow .25s, transform .25s;
+}
+
+.tc-channel-card:hover {
+  box-shadow: 0 8px 28px rgba(13,31,60,.08);
+  transform: translateY(-3px);
+}
+
+.tc-channel-icon {
+  width: 48px; height: 48px;
+  background: var(--accent-light);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 14px;
+}
+
+.tc-channel-icon svg {
+  width: 24px; height: 24px;
+  fill: var(--accent);
+}
+
+.tc-channel-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.tc-channel-info {
+  font-size: 13px;
+  color: var(--text-2);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* Form textarea */
+.tc-form-textarea {
+  width: 100%;
+  padding: 11px 14px;
+  font-size: 14px;
+  font-family: var(--sans);
+  font-weight: 400;
+  color: var(--text);
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  outline: none;
+  resize: vertical;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.tc-form-textarea:focus {
+  border-color: var(--accent-mid);
+  box-shadow: 0 0 0 3px rgba(33,150,243,.12);
+  background: #fff;
+}
+
+/* Alert success */
+.alert-success {
+  padding: 14px 18px;
+  background: var(--accent-light);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+/* Breadcrumb */
+.tc-breadcrumb {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+.tc-breadcrumb a {
+  color: var(--text-2);
+  text-decoration: none;
+}
+
+.tc-breadcrumb a:hover {
+  color: var(--accent);
+}
+
+.tc-breadcrumb .sep {
+  margin: 0 6px;
+}
+
+.tc-breadcrumb .current {
+  color: var(--accent);
+}
+
+/* Page hero padding top for fixed nav */
+.tc-page-hero {
+  padding-top: calc(68px + clamp(48px, 6vw, 72px)) !important;
+}
+
+/* Active nav link */
+.tc-nav-links a.active {
+  color: var(--accent) !important;
+}

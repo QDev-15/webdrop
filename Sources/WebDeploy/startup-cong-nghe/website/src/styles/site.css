@@ -1,0 +1,33 @@
+/* Site-specific overrides for dynamic React content */
+
+/* Ensure body uses the template background */
+body { background: var(--bg); }
+
+/* Loading state */
+.site-loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  color: var(--text-2);
+  font-family: var(--sans);
+}
+
+/* Contact form success */
+.contact-success {
+  background: rgba(74,222,128,.08);
+  border: 1px solid rgba(74,222,128,.2);
+  border-radius: 14px;
+  padding: 20px 24px;
+  color: #4ade80;
+  font-size: 15px;
+  text-align: center;
+  margin-top: 16px;
+}
+
+/* Zalo float btn z-index fix */
+.st-zalo-float { z-index: 600; }
+
+/* Active nav link */
+.st-nav-links a.router-active { color: #fff !important; }

@@ -56,7 +56,11 @@
       "Bash(php -l \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\WebDeploy\\\\agency-sang-tao\\\\api\\\\src\\\\bootstrap.php\")",
       "Bash(php -l \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\WebDeploy\\\\agency-sang-tao\\\\api\\\\src\\\\controllers\\\\AuthController.php\")",
       "Bash(powershell -Command \"Select-String -Path 'Sources\\\\templates\\\\web\\\\Companies\\\\startup-cong-nghe\\\\index.html' -Pattern 'via\\\\.placeholder' | Select-Object -First 20\")",
-      "Bash(powershell -Command \"Select-String -Path 'Sources\\\\templates\\\\web\\\\Companies\\\\tu-van-tai-chinh\\\\index.html' -Pattern 'via\\\\.placeholder' | Select-Object -First 20\")"
+      "Bash(powershell -Command \"Select-String -Path 'Sources\\\\templates\\\\web\\\\Companies\\\\tu-van-tai-chinh\\\\index.html' -Pattern 'via\\\\.placeholder' | Select-Object -First 20\")",
+      "Bash(node build.mjs)",
+      "Bash(npm run *)",
+      "Bash(xcopy /E /Y /I \"D:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\WebDeploy\\\\startup-cong-nghe\\\\admin\\\\dist\" \"D:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\WebDeploy\\\\startup-cong-nghe\\\\deploy\\\\admin\")",
+      "Bash(Get-ChildItem \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\templates\\\\web\\\\Companies\\\\tu-van-tai-chinh\\\\\" -Name)"
     ],
     "additionalDirectories": [
       "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"

@@ -28,6 +28,29 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.vn** — chuyên chuy�
 9. **`config.php` phải có trong `api/` (không phải chỉ placeholder)** — build script sẽ copy vào `deploy/api/`, khách chỉ cần sửa `APP_URL` và `APP_KEY`.
 10. **`migrate()` trong Database.php phải check `file_get_contents` trả về false** — nếu `schema.sql` bị thiếu mà không check, tables không được tạo nhưng không có lỗi rõ ràng → 500 im lặng.
 11. **Luôn có health endpoint `/api/health`** trong `index.php` để khách tự diagnose sau khi deploy.
+12. **`build.mjs` phải check `node_modules` trước khi build** — nếu không có, chạy `npm install` trước. Không check → `tsc` not found vì TypeScript chỉ có trong local `node_modules/.bin/`, không có trên global PATH.
+13. **TypeScript: không được mix `??` và `||` không có ngoặc** — lỗi TS5076. Luôn thêm ngoặc rõ ràng: `(a ?? b) || c` thay vì `a ?? b || c`.
+14. **Admin SPA routing phải dùng `^admin(/.*)?$`**, không phải `^admin/.*`** — áp dụng cho cả `web.config` (IIS) lẫn `.htaccess` (Apache). Pattern cũ không match `/admin` không có trailing slash → server rơi xuống rule `main-spa` → trả về `/index.html` (trang public) thay vì `/admin/index.html`.
+15. **`body` trong `admin.css` KHÔNG được có `display: flex; overflow: hidden; height: 100vh`**. Những thuộc tính này dành cho admin layout container, không phải body. Khi đặt lên body, login page bị ép vào flex item không có width → không căn giữa được. Đúng pattern: `html, body, #root { height: 100%; }` — body plain, `AdminLayout` tự quản lý flex layout qua `.admin-layout { display: flex; height: 100vh; overflow: hidden; }`.
+16. **Tài khoản admin mặc định luôn là `sysadmin` / `123456`** — seed cố định, không dùng tên miền template hay mật khẩu ngẫu nhiên. Email seed: `sysadmin@admin.com`, password hash của `123456`.
+17. **`APP_KEY` phải được auto-generate trong `build.mjs`** — không để khách tự điền. Dùng `randomBytes(32).toString('hex')` tạo 64 ký tự hex, inject vào `config.php` trước khi copy vào `deploy/`. Source `api/config.php` giữ nguyên placeholder. Bỏ `config.php` khỏi vòng copy `api/*` (thêm vào `skipApi`).
+18. **Dùng `POST /path/update` và `POST /path/delete` thay vì PUT/DELETE** — Shared hosting IIS (PA Vietnam) có WebDAV lock ở server level, web.config không override được, gây lỗi 405 vĩnh viễn. Fix dứt điểm: API chỉ dùng GET và POST, update/delete qua suffix URL. `client.ts`: `put(path, body)` → `POST ${path}/update`, `delete(path)` → `POST ${path}/delete`. `bootstrap.php`: đăng ký `POST /:id/update` và `POST /:id/delete` thay cho PUT/DELETE.
+19. **`Sidebar.tsx` phải khai báo interface `NavLinkItem` với optional fields**
+20. **Reveal animation với async data phải dùng `setTimeout(fn, 0)` + query `:not(.visible)`** — IntersectionObserver chạy đồng bộ tại thời điểm `useEffect` fire, trước khi React paint DOM từ async data. Không có `setTimeout(0)` → observe elements trống → mãi `opacity: 0`. Pattern chuẩn:
+    ```tsx
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        const els = document.querySelectorAll<Element>('[data-reveal]:not(.visible)')
+        const ro = new IntersectionObserver(entries => {
+          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target) } })
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' })
+        els.forEach(el => ro.observe(el))
+        return () => ro.disconnect()
+      }, 0)
+      return () => clearTimeout(timer)
+    }, [asyncData])  // ← dependency là async data, không phải []
+    ```
+    Trong `HomePage` nếu có nhiều async data: `useReveal([services, team, testimonials])` thay vì `useReveal([])`. — TypeScript infer union type từ array `menu` và báo lỗi TS2339 khi access `link.exact` hay `link.badge`. Fix bắt buộc: khai báo `interface NavLinkItem { to: string; icon: string; label: string; exact?: boolean; badge?: number }` và type array: `links: NavLinkItem[]`.
 
 ---
 
@@ -320,6 +343,7 @@ Sources/WebDeploy/[slug]/
 │           └── pages/
 │               ├── Login.tsx
 │               ├── Dashboard.tsx
+│               ├── profile/      ← ProfilePage.tsx (đổi mật khẩu) — BẮT BUỘC
 │               ├── slides/       ← HeroSlides CRUD
 │               ├── settings/     ← Settings tabs
 │               ├── contacts/     ← Contacts list
@@ -403,7 +427,19 @@ private function migrate(): void {
 }
 ```
 
-**2. seedTemplateData() với dữ liệu thực từ template:**
+**2. seedUsers() — tài khoản mặc định cố định:**
+```php
+private function seedUsers(): void {
+    if ($this->scalar("SELECT COUNT(*) FROM users") > 0) return;
+    // ⚠️  Tài khoản mặc định cố định — KHÔNG dùng tên miền template hay mật khẩu phức tạp
+    $this->execute(
+        "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)",
+        ['sysadmin', 'sysadmin@admin.com', password_hash('123456', PASSWORD_BCRYPT), 'superadmin']
+    );
+}
+```
+
+**3. seedTemplateData() với dữ liệu thực từ template:**
 ```php
 private function seedTemplateData(): void {
     // Seed hero slides (từ slider trong template)
@@ -440,6 +476,48 @@ about: about_title, about_content, about_image, about_tagline
 # spa: booking_enabled, consultation_note
 ```
 
+### api/web.config — Bắt buộc remove WebDAV + allow PUT/DELETE/PATCH
+
+> ⚠️ **WebDAV module** trên IIS chặn PUT/DELETE trước khi `requestFiltering` xử lý.
+> Chỉ allow verbs là chưa đủ — phải remove WebDAV cả `<modules>` lẫn `<handlers>`.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <system.webServer>
+    <modules>
+      <remove name="WebDAVModule"/>
+    </modules>
+    <handlers>
+      <remove name="WebDAV"/>
+    </handlers>
+    <security>
+      <requestFiltering>
+        <verbs>
+          <add verb="PUT" allowed="true"/>
+          <add verb="DELETE" allowed="true"/>
+          <add verb="PATCH" allowed="true"/>
+        </verbs>
+        <denyUrlSequences>
+          <add sequence="/database/" />
+        </denyUrlSequences>
+      </requestFiltering>
+    </security>
+    <rewrite>
+      <rules>
+        <rule name="api-router" stopProcessing="true">
+          <match url=".*" />
+          <conditions>
+            <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+          </conditions>
+          <action type="Rewrite" url="index.php" appendQueryString="true" />
+        </rule>
+      </rules>
+    </rewrite>
+  </system.webServer>
+</configuration>
+```
+
 ### index.php — Bắt buộc có health endpoint
 
 ```php
@@ -472,7 +550,16 @@ if ($rawPath === '/health') {
 
 try {
     $router = require_once __DIR__ . '/src/bootstrap.php';
-    $router->dispatch($_SERVER['REQUEST_METHOD'], $rawPath);
+    // ⚠️  X-HTTP-Method-Override: shared hosting IIS/WebDAV block PUT/DELETE ở server level
+    //     web.config không override được → frontend gửi POST + header override
+    $method = $_SERVER['REQUEST_METHOD'];
+    if ($method === 'POST') {
+        $override = strtoupper($_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'] ?? '');
+        if (in_array($override, ['PUT', 'PATCH', 'DELETE'], true)) {
+            $method = $override;
+        }
+    }
+    $router->dispatch($method, $rawPath);
 } catch (Throwable $e) {
     if (!headers_sent()) header('Content-Type: application/json; charset=utf-8');
     $isProd = defined('APP_ENV') && APP_ENV === 'production';
@@ -485,18 +572,39 @@ try {
 ```
 
 ### bootstrap.php — Đăng ký routes đủ cho template
-Ngoài core routes (auth, settings, contacts, media, stats), đăng ký thêm:
+
+> ⚠️ **KHÔNG dùng PUT/DELETE method** — IIS/WebDAV trên shared hosting block vĩnh viễn.
+> Chỉ dùng **GET và POST**. Update/delete qua suffix URL.
+
 ```php
-// HERO SLIDES
+// Pattern chuẩn cho mọi entity — chỉ GET + POST:
 $slide = new HeroSlideController($db);
-$router->add('GET',    '/hero-slides',       [$slide, 'index']);
-$router->add('POST',   '/hero-slides',       [$slide, 'store']);
-$router->add('PUT',    '/hero-slides/:id',   [$slide, 'update']);
-$router->add('DELETE', '/hero-slides/:id',   [$slide, 'destroy']);
-$router->add('POST',   '/hero-slides/reorder', [$slide, 'reorder']);
+$router->add('GET',  '/hero-slides',               [$slide, 'index']);
+$router->add('POST', '/hero-slides',               [$slide, 'store']);
+$router->add('POST', '/hero-slides/reorder',       [$slide, 'reorder']);  // trước :id/update
+$router->add('POST', '/hero-slides/:id/update',    [$slide, 'update']);
+$router->add('POST', '/hero-slides/:id/delete',    [$slide, 'destroy']);
+
+// Entity có GET detail:
+$item = new MenuItemController($db);
+$router->add('GET',  '/menu-items',              [$item, 'index']);
+$router->add('POST', '/menu-items',              [$item, 'store']);
+$router->add('GET',  '/menu-items/:id',          [$item, 'show']);   // nếu cần
+$router->add('POST', '/menu-items/:id/update',   [$item, 'update']);
+$router->add('POST', '/menu-items/:id/delete',   [$item, 'destroy']);
+
+// Media (upload + delete):
+$media = new MediaController($db);
+$router->add('GET',  '/media',              [$media, 'index']);
+$router->add('POST', '/media/upload',       [$media, 'upload']);
+$router->add('POST', '/media/:id/delete',   [$media, 'destroy']);
 
 // PUBLIC (không cần auth) — website gọi
-$pub->thêm endpoint cho: hero_slides, menu_items, services, gallery, testimonials, v.v.
+$pub = new PublicController($db);
+$router->add('GET',  '/public/settings',     [$pub, 'settings']);
+$router->add('GET',  '/public/hero-slides',  [$pub, 'heroSlides']);
+// thêm GET endpoint cho mọi entity public: features, services, menu, gallery, testimonials...
+$router->add('POST', '/public/contact',      [$pub, 'submitContact']);
 ```
 
 ### Controller pattern (áp dụng cho mọi controller)
@@ -556,10 +664,27 @@ class MenuItemController {
 
 ### Sidebar.tsx — Menu phải khớp template nav
 
+> ⚠️ **BẮT BUỘC**: Phải khai báo `interface NavLinkItem` với `exact?` và `badge?` là optional.
+> TypeScript infer union type từ array `menu` → báo lỗi TS2339 nếu không có interface.
+
 ```tsx
+// ⚠️  PHẢI có interface này — thiếu → TS2339 "Property 'exact' does not exist..."
+interface NavLinkItem {
+  to: string
+  icon: string
+  label: string
+  exact?: boolean
+  badge?: number
+}
+
+interface MenuSection {
+  section: string
+  links: NavLinkItem[]  // ← type rõ ràng, không để TypeScript tự infer union
+}
+
 // Ví dụ cho nhà hàng: nav có Trang chủ | Thực đơn | Đặt bàn | Liên hệ
-const menuStructure = [
-  { section: 'Tổng quan', links: [{ to: '/', icon: '⊞', label: 'Dashboard' }] },
+const menuStructure: MenuSection[] = [
+  { section: 'Tổng quan', links: [{ to: '/', icon: '⊞', label: 'Dashboard', exact: true }] },
   { section: 'Trang chủ', links: [
     { to: '/slides', icon: '🖼', label: 'Hero Slides' },
     // Nếu có about section: { to: '/about', icon: '📋', label: 'Giới thiệu' }
@@ -585,6 +710,124 @@ const menuStructure = [
 ]
 ```
 
+### ProfilePage.tsx — Bắt buộc có trong mọi admin
+
+> ⚠️ **BẮT BUỘC** — Mọi admin đều phải có trang đổi mật khẩu. Route: `/profile`.
+
+**API phía PHP** — thêm vào `bootstrap.php`:
+```php
+$user = new UserController($db);
+$router->add('GET',  '/users',                     [$user, 'index']);
+$router->add('POST', '/users',                     [$user, 'store']);
+$router->add('POST', '/users/:id/update',          [$user, 'update']);
+$router->add('POST', '/users/:id/delete',          [$user, 'destroy']);
+$router->add('POST', '/users/:id/change-password', [$user, 'changePassword']);
+```
+
+**`UserController.php`** — method `changePassword`:
+```php
+public function changePassword(array $p): void {
+    Auth::require();
+    $b = bodyJson();
+    $u = Auth::user();
+    $user = $this->db->queryOne("SELECT * FROM users WHERE id=?", [$p['id']]);
+    if (!$user) { Response::error('Không tìm thấy.', 404); return; }
+    if ((int)$p['id'] !== (int)$u['id'] && $u['role'] !== 'superadmin') {
+        Response::error('Không có quyền.', 403); return;
+    }
+    if (empty($b['password'])) { Response::error('Mật khẩu không được để trống.'); return; }
+    $this->db->execute(
+        "UPDATE users SET password=? WHERE id=?",
+        [password_hash($b['password'], PASSWORD_BCRYPT), $p['id']]
+    );
+    Response::json(['ok' => true]);
+}
+```
+
+**`ProfilePage.tsx`** — React component:
+```tsx
+import { useState } from 'react'
+import { useAuth } from '../../contexts/AuthContext'
+import { api } from '../../api/client'
+
+export default function ProfilePage() {
+  const { user } = useAuth()
+  const [password, setPassword] = useState('')
+  const [confirm, setConfirm] = useState('')
+  const [saving, setSaving] = useState(false)
+  const [msg, setMsg] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setMsg(null)
+    if (password.length < 6) { setMsg({ type: 'error', text: 'Mật khẩu phải có ít nhất 6 ký tự.' }); return }
+    if (password !== confirm) { setMsg({ type: 'error', text: 'Mật khẩu xác nhận không khớp.' }); return }
+    setSaving(true)
+    try {
+      await api.post(`/users/${user!.id}/change-password`, { password })
+      setMsg({ type: 'success', text: 'Đổi mật khẩu thành công!' })
+      setPassword(''); setConfirm('')
+    } catch (err: unknown) {
+      setMsg({ type: 'error', text: err instanceof Error ? err.message : 'Đổi mật khẩu thất bại.' })
+    } finally { setSaving(false) }
+  }
+
+  return (
+    <div style={{ maxWidth: '480px', margin: '0 auto', padding: '32px 0' }}>
+      <h1 style={{ fontSize: '22px', fontWeight: '600', marginBottom: '8px' }}>Tài khoản của tôi</h1>
+      <p style={{ color: 'var(--text-2)', fontSize: '14px', marginBottom: '32px' }}>Thông tin tài khoản và đổi mật khẩu</p>
+      {/* Thông tin */}
+      <div style={{ padding: '24px', borderRadius: '12px', border: '1px solid var(--border)', marginBottom: '16px' }}>
+        <div style={{ fontSize: '11px', fontWeight: '600', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '16px' }}>Thông tin tài khoản</div>
+        <div style={{ display: 'grid', gap: '12px' }}>
+          <div><div style={{ fontSize: '12px', color: 'var(--text-3)', marginBottom: '4px' }}>Họ tên</div><div style={{ fontWeight: '500' }}>{user?.name}</div></div>
+          <div><div style={{ fontSize: '12px', color: 'var(--text-3)', marginBottom: '4px' }}>Email</div><div style={{ fontWeight: '500' }}>{user?.email}</div></div>
+          <div>
+            <div style={{ fontSize: '12px', color: 'var(--text-3)', marginBottom: '4px' }}>Vai trò</div>
+            <span style={{ fontSize: '12px', padding: '3px 10px', borderRadius: '20px', background: 'var(--accent-light)', color: 'var(--accent)', fontWeight: '600' }}>
+              {user?.role === 'superadmin' ? 'Quản trị viên' : 'Người dùng'}
+            </span>
+          </div>
+        </div>
+      </div>
+      {/* Đổi mật khẩu */}
+      <div style={{ padding: '24px', borderRadius: '12px', border: '1px solid var(--border)' }}>
+        <div style={{ fontSize: '11px', fontWeight: '600', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '16px' }}>Đổi mật khẩu</div>
+        <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '16px' }}>
+          <div><label className="form-label">Mật khẩu mới</label><input type="password" className="form-control" value={password} onChange={e => setPassword(e.target.value)} placeholder="Tối thiểu 6 ký tự" required /></div>
+          <div><label className="form-label">Xác nhận mật khẩu</label><input type="password" className="form-control" value={confirm} onChange={e => setConfirm(e.target.value)} placeholder="Nhập lại mật khẩu mới" required /></div>
+          {msg && (
+            <div style={{ padding: '10px 14px', borderRadius: '8px', fontSize: '13px', background: msg.type === 'success' ? 'var(--accent-light)' : '#fff0f0', color: msg.type === 'success' ? 'var(--accent)' : 'var(--danger)', border: `1px solid ${msg.type === 'success' ? 'var(--accent-light)' : '#fdd'}` }}>
+              {msg.text}
+            </div>
+          )}
+          <button type="submit" className="btn-accent" disabled={saving}>{saving ? 'Đang lưu...' : 'Đổi mật khẩu'}</button>
+        </form>
+      </div>
+    </div>
+  )
+}
+```
+
+**Sidebar.tsx** — footer phải link đến `/profile`:
+```tsx
+// Thay div thông tin user bằng NavLink có thể click
+<NavLink to="/profile" className={({ isActive }) => `sidebar-link${isActive ? ' active' : ''}`}>
+  <span className="icon">👤</span>
+  <div style={{ flex: 1, minWidth: 0 }}>
+    <div style={{ fontSize: '12px', fontWeight: '500', color: 'rgba(255,255,255,.75)', lineHeight: 1.3 }}>{user?.name}</div>
+    <div style={{ fontSize: '10px', color: 'rgba(255,255,255,.35)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{user?.email}</div>
+  </div>
+</NavLink>
+```
+
+**App.tsx** — thêm route:
+```tsx
+import ProfilePage from './pages/profile/ProfilePage'
+// trong Routes:
+<Route path="/profile" element={<ProfilePage />} />
+```
+
 ### Settings.tsx — Tabs theo groups
 
 Settings page phải có đủ tabs:
@@ -602,6 +845,52 @@ Dùng nguyên design system webdrop:
 - Sidebar nền `#111009`, width 214px
 - Font DM Sans
 - CSS vars: --accent #1a6b52, --bg #faf9f7, v.v.
+
+> ⚠️ **BẮT BUỘC** — Reset base phải đúng pattern sau, **không được thêm `display: flex` hay `overflow: hidden` lên `body`**:
+> ```css
+> *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+> html, body, #root { height: 100%; }
+> body { font-family: var(--sans); background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+> ```
+> `body` phải plain — `AdminLayout` tự xử lý flex layout qua `.admin-layout { display: flex; height: 100vh; overflow: hidden; }`.
+> Nếu đặt flex/overflow lên body, login page không căn giữa được (flex item của body không có width).
+
+### admin/src/api/client.ts — Bắt buộc dùng X-HTTP-Method-Override
+
+> ⚠️ Shared hosting IIS (PA Vietnam) có WebDAV lock ở server level — PUT/DELETE luôn bị 405.
+> `put` và `delete` phải gửi **POST + header `X-HTTP-Method-Override`**, không gửi PUT/DELETE trực tiếp.
+
+```ts
+const BASE = (() => {
+  if (import.meta.env.DEV) return '/api'
+  return window.location.origin + '/api'
+})()
+
+async function request<T>(method: string, path: string, body?: unknown, override?: string): Promise<T> {
+  const headers: Record<string, string> = {}
+  if (body && !(body instanceof FormData)) headers['Content-Type'] = 'application/json'
+  if (override) headers['X-HTTP-Method-Override'] = override
+  const res = await fetch(BASE + path, {
+    method,
+    headers,
+    credentials: 'include',
+    body: body instanceof FormData ? body : (body ? JSON.stringify(body) : undefined),
+  })
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ error: 'Lỗi không xác định' }))
+    throw new Error(err.error || 'Request failed')
+  }
+  return res.json()
+}
+
+export const api = {
+  get:    <T>(path: string) => request<T>('GET', path),
+  post:   <T>(path: string, body: unknown) => request<T>('POST', path, body),
+  // POST + suffix URL — bypass IIS/WebDAV block PUT/DELETE trên shared hosting
+  put:    <T>(path: string, body: unknown) => request<T>('POST', `${path}/update`, body),
+  delete: <T>(path: string) => request<T>('POST', `${path}/delete`),
+}
+```
 
 ### CRUD Page pattern (áp dụng cho mọi module)
 
@@ -707,33 +996,58 @@ pause
 ```
 
 ### build.mjs — Node.js script (đáng tin cậy hơn xcopy)
+
+> ⚠️ **BẮT BUỘC**: Phải check và chạy `npm install` trước khi build. Nếu thiếu `node_modules`,
+> lệnh `tsc` sẽ báo lỗi **"'tsc' is not recognized"** dù TypeScript đã khai báo trong devDependencies
+> (vì `npm run build` tìm `tsc` trong `node_modules/.bin/`, không phải global PATH).
+
 ```js
 import { execSync } from 'child_process'
-import { cpSync, mkdirSync, rmSync, existsSync, readdirSync } from 'fs'
+import { cpSync, mkdirSync, rmSync, existsSync, readdirSync, readFileSync, writeFileSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
+import { randomBytes } from 'crypto'
 
 const root   = dirname(fileURLToPath(import.meta.url))
 const deploy = join(root, 'deploy')
 
 if (existsSync(deploy)) rmSync(deploy, { recursive: true, force: true })
 
-const run = (cmd, cwd) => execSync(cmd, { cwd, stdio: 'inherit', shell: true })
+const run = (cmd, cwd, label) => {
+  console.log(`  ${label}...`)
+  execSync(cmd, { cwd, stdio: 'inherit', shell: true })
+}
 
-run('npm run build', join(root, 'website'))
-run('npm run build', join(root, 'admin'))
+// ⚠️  PHẢI install trước — nếu không có node_modules, 'tsc' không tìm thấy → build lỗi
+if (!existsSync(join(root, 'website', 'node_modules'))) {
+  run('npm install', join(root, 'website'), 'Cài đặt dependencies website')
+}
+if (!existsSync(join(root, 'admin', 'node_modules'))) {
+  run('npm install', join(root, 'admin'), 'Cài đặt dependencies admin')
+}
 
-mkdirSync(join(deploy, 'admin'),              { recursive: true })
+run('npm run build', join(root, 'website'), 'Build website')
+run('npm run build', join(root, 'admin'),   'Build admin')
+
+mkdirSync(join(deploy, 'admin'),                     { recursive: true })
 mkdirSync(join(deploy, 'api', 'src', 'controllers'), { recursive: true })
-mkdirSync(join(deploy, 'api', 'uploads'),     { recursive: true })
-mkdirSync(join(deploy, 'api', 'database'),    { recursive: true })
+mkdirSync(join(deploy, 'api', 'uploads'),            { recursive: true })
+mkdirSync(join(deploy, 'api', 'database'),           { recursive: true })
+writeFileSync(join(deploy, 'api', 'uploads',  '.gitkeep'), '')
+writeFileSync(join(deploy, 'api', 'database', '.gitkeep'), '')
 
 // website/dist → deploy/ (bao gồm .htaccess + web.config từ website/public/)
 cpSync(join(root, 'website', 'dist'), deploy, { recursive: true })
 // admin/dist → deploy/admin/
 cpSync(join(root, 'admin', 'dist'), join(deploy, 'admin'), { recursive: true })
-// api/* → deploy/api/ (bỏ qua database/, uploads/, node_modules)
-const skipApi = new Set(['node_modules', '.git', 'database', 'uploads'])
+// Inject APP_KEY ngẫu nhiên vào config.php (source giữ nguyên placeholder)
+const appKey = randomBytes(32).toString('hex')
+const configContent = readFileSync(join(root, 'api', 'config.php'), 'utf8')
+  .replace("'change-this-to-random-32-chars-string'", `'${appKey}'`)
+writeFileSync(join(deploy, 'api', 'config.php'), configContent)
+
+// api/* → deploy/api/ (bỏ qua database/, uploads/, node_modules, config.php đã inject riêng)
+const skipApi = new Set(['node_modules', '.git', 'database', 'uploads', 'config.php'])
 for (const item of readdirSync(join(root, 'api'))) {
   if (skipApi.has(item)) continue
   cpSync(join(root, 'api', item), join(deploy, 'api', item), { recursive: true })
@@ -753,7 +1067,7 @@ Options -Indexes
 RewriteEngine On
 RewriteCond %{REQUEST_URI} ^/admin
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^admin/.*$ /admin/index.html [L]
+RewriteRule ^admin(/.*)?$ /admin/index.html [L]
 RewriteRule ^api/database/ - [F,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !^/api/
@@ -765,7 +1079,7 @@ RewriteRule ^ /index.html [L]
 <?xml version="1.0"?>
 <configuration><system.webServer><rewrite><rules>
   <rule name="block-db"><match url="^api/database/.*"/><action type="CustomResponse" statusCode="403"/></rule>
-  <rule name="admin-spa"><match url="^admin/.*"/><conditions><add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true"/></conditions><action type="Rewrite" url="/admin/index.html"/></rule>
+  <rule name="admin-spa"><match url="^admin(/.*)?$"/><conditions><add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true"/></conditions><action type="Rewrite" url="/admin/index.html"/></rule>
   <rule name="main-spa"><match url=".*"/><conditions><add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true"/><add input="{REQUEST_URI}" pattern="^/api/" negate="true"/></conditions><action type="Rewrite" url="/index.html"/></rule>
 </rules></rewrite></system.webServer></configuration>
 ```
@@ -777,7 +1091,7 @@ RewriteEngine On
 # Admin SPA
 RewriteCond %{REQUEST_URI} ^/admin
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^admin/.*$ /admin/index.html [L]
+RewriteRule ^admin(/.*)?$ /admin/index.html [L]
 # Main SPA
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !^/api/
@@ -790,7 +1104,7 @@ RewriteRule ^ /index.html [L]
 <configuration>
   <system.webServer>
     <rewrite><rules>
-      <rule name="admin-spa"><match url="^admin/.*"/><conditions><add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true"/></conditions><action type="Rewrite" url="/admin/index.html"/></rule>
+      <rule name="admin-spa"><match url="^admin(/.*)?$"/><conditions><add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true"/></conditions><action type="Rewrite" url="/admin/index.html"/></rule>
       <rule name="main-spa"><match url=".*"/><conditions><add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true"/><add input="{REQUEST_URI}" pattern="^/api/" negate="true"/></conditions><action type="Rewrite" url="/index.html"/></rule>
     </rules></rewrite>
   </system.webServer>
@@ -819,6 +1133,25 @@ Không có file này → `import.meta.env` báo lỗi TypeScript khi build.
 }
 ```
 
+### admin/vite.config.ts — base phải là `/admin/`
+
+> ⚠️ **BẮT BUỘC**: Admin phải dùng `base: '/admin/'`, **KHÔNG dùng `base: './'`**.
+> 
+> Lý do: Khi browser ở URL `/admin` (không có trailing slash) và `index.html` dùng relative path `./assets/foo.js`, browser resolve thành `/assets/foo.js` (sai) thay vì `/admin/assets/foo.js`. Server không tìm thấy file → routing rule bắt request → trả `index.html` (HTML) thay vì JS → lỗi MIME type `text/html`.
+>
+> Với `base: '/admin/'`, Vite output absolute path `/admin/assets/foo.js` → luôn đúng dù URL có hay không có trailing slash.
+
+```ts
+export default defineConfig({
+  plugins: [react()],
+  base: '/admin/',   // ← PHẢI là '/admin/', không được dùng './'
+  server: { port: 5174, proxy: { '/api': { target: 'http://localhost:8000', changeOrigin: true } } },
+  build: { outDir: 'dist', emptyOutDir: true },
+})
+```
+
+Website `vite.config.ts` dùng `base: './'` là đúng (deploy ở root `/`, `./assets/foo.js` → `/assets/foo.js`).
+
 ### admin/package.json — tương tự, thêm react-router-dom
 
 ---
@@ -841,7 +1174,11 @@ Fix mọi syntax error.
 □ api/src/Database.php — migrate() có check file_get_contents trả về false
 □ api/src/Database.php có seedTemplateData() với data thực từ template
 □ api/src/bootstrap.php đăng ký đủ routes cho mọi entity
-□ admin/src/components/layout/Sidebar.tsx menu khớp template nav
+□ admin/src/components/layout/Sidebar.tsx menu khớp template nav — footer có NavLink đến /profile
+□ admin/src/pages/profile/ProfilePage.tsx tồn tại với form đổi mật khẩu
+□ admin/src/App.tsx có route /profile → ProfilePage
+□ api/src/controllers/UserController.php có method changePassword
+□ api/src/bootstrap.php đăng ký POST /users/:id/change-password
 □ admin/src/pages/settings/Settings.tsx có đủ tabs
 □ website/src/styles/template.css là bản copy từ template
 □ website/src/components có đủ component cho mọi section của template
@@ -891,8 +1228,8 @@ chmod 755 api/uploads/
 
 ### Bước 5 — Đăng nhập admin
 Truy cập: https://tenweb.vn/admin
-Email: admin@[domain].vn
-Mật khẩu: Admin@123
+Email:    sysadmin@admin.com
+Mật khẩu: 123456
 ⚠️  Đổi mật khẩu ngay sau khi đăng nhập lần đầu!
 
 ### Yêu cầu hosting
