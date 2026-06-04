@@ -58,7 +58,6 @@ header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-W
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(204); exit; }
 
 // ── Init ─────────────────────────────────────────────────────────────────────
-Auth::start();
 $db     = Database::getInstance();
 $router = new Router();
 
@@ -147,3 +146,5 @@ $router->add('GET',  '/public/cases',         [$pub, 'cases']);
 $router->add('GET',  '/public/testimonials',  [$pub, 'testimonials']);
 $router->add('POST', '/public/contact',       [$pub, 'submitContact']);
 $router->add('POST', '/public/consultation',  [$pub, 'submitConsultation']);
+
+return $router;

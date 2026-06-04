@@ -1,7 +1,8 @@
 <?php
 
 class AuthController {
-    public function __construct(private Database $db) {}
+    private Database $db;
+    public function __construct(Database $db) { $this->db = $db; }
 
     public function login(array $p): void {
         $b = bodyJson();

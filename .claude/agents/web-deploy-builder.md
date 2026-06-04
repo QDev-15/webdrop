@@ -25,6 +25,9 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.vn** — chuyên chuy�
 6. **Sau khi tạo xong → chạy kiểm tra cú pháp PHP và TypeScript.**
 7. **Sau khi xong toàn bộ thì tạo một file hướng dẫn cài đặt**
 8. **Review lại và fix hết issues rồi review fix cho đến khi hết issuse**
+9. **`config.php` phải có trong `api/` (không phải chỉ placeholder)** — build script sẽ copy vào `deploy/api/`, khách chỉ cần sửa `APP_URL` và `APP_KEY`.
+10. **`migrate()` trong Database.php phải check `file_get_contents` trả về false** — nếu `schema.sql` bị thiếu mà không check, tables không được tạo nhưng không có lỗi rõ ràng → 500 im lặng.
+11. **Luôn có health endpoint `/api/health`** trong `index.php` để khách tự diagnose sau khi deploy.
 
 ---
 
@@ -335,41 +338,72 @@ Sources/WebDeploy/[slug]/
 <?php
 /**
  * [Tên website] — Cấu hình hệ thống
- * Chỉnh sửa thông tin bên dưới theo hosting của bạn.
+ * ⚠️  SAU KHI UPLOAD LÊN HOSTING, BẮT BUỘC SỬA:
+ *     1. APP_URL  → URL thực của website (ví dụ: https://tenweb.vn)
+ *     2. APP_KEY  → chuỗi ngẫu nhiên 32 ký tự (dùng https://randomkeygen.com)
  */
 
-// DATABASE — Mặc định SQLite, không cần cài thêm gì
+// ─── DATABASE — Mặc định SQLite, không cần cài thêm gì ────────────────────
 define('DB_TYPE', 'sqlite');
 define('DB_FILE', __DIR__ . '/database/app.db');
 
-// Chỉ điền nếu dùng MySQL / PostgreSQL
+// Chỉ điền nếu dùng MySQL / PostgreSQL (đổi DB_TYPE thành 'mysql' hoặc 'pgsql'):
 define('DB_HOST', 'localhost');
 define('DB_PORT', '3306');
 define('DB_NAME', 'ten_database');
 define('DB_USER', 'ten_user');
 define('DB_PASS', 'mat_khau');
 
-// APP
+// ─── APP ─────────────────────────────────────────────────────────────────────
+// ⚠️  Sửa APP_URL thành URL thực của hosting (không có dấu / cuối)
 define('APP_URL', 'https://example.com');
 define('APP_ENV', 'production');
+// ⚠️  Sửa APP_KEY thành chuỗi ngẫu nhiên 32 ký tự
 define('APP_KEY', 'change-this-to-random-32-chars-string');
 
-// UPLOAD
+// ─── CORS ────────────────────────────────────────────────────────────────────
+// Danh sách origin được phép gọi API (để trống = chỉ cho phép APP_URL)
+// Thêm vào nếu frontend và API chạy ở domain khác nhau
+define('CORS_ORIGINS', [
+    // 'https://www.tenweb.vn',
+    // 'https://tenweb.vn',
+]);
+
+// ─── UPLOAD ──────────────────────────────────────────────────────────────────
 define('UPLOAD_DRIVER', 'local');
 define('UPLOAD_DIR', __DIR__ . '/uploads/');
-define('UPLOAD_URL', APP_URL . '/uploads/');
+define('UPLOAD_URL', APP_URL . '/api/uploads/');
 define('R2_ACCOUNT_ID', ''); define('R2_ACCESS_KEY', ''); define('R2_SECRET_KEY', '');
 define('R2_BUCKET', ''); define('R2_PUBLIC_URL', '');
 
-// SMTP
+// ─── SMTP ────────────────────────────────────────────────────────────────────
 define('SMTP_HOST', 'smtp.gmail.com'); define('SMTP_PORT', 587);
 define('SMTP_USER', ''); define('SMTP_PASS', '');
 define('SMTP_FROM_NAME', 'Website'); define('SMTP_FROM_EMAIL', '');
 ```
 
-### Database.php — Quan trọng: seedTemplateData()
-File này là bản mở rộng từ goi-b, thêm method `seedTemplateData()` với dữ liệu thực từ template:
+### Database.php — Hai điểm quan trọng
 
+**1. migrate() phải check schema.sql tồn tại:**
+```php
+private function migrate(): void {
+    $schemaPath = __DIR__ . '/../schema.sql';
+    $schema = file_get_contents($schemaPath);
+    // ⚠️  PHẢI check false — nếu schema.sql thiếu, tables không được tạo
+    //     nhưng seedData() vẫn chạy → PDOException "no such table" → 500 im lặng
+    if ($schema === false) {
+        throw new \RuntimeException('schema.sql not found: ' . $schemaPath);
+    }
+    foreach (array_filter(array_map('trim', explode(';', $schema))) as $stmt) {
+        if ($stmt) {
+            try { $this->pdo->exec($stmt); } catch (\PDOException $e) { /* ignore IF NOT EXISTS */ }
+        }
+    }
+    $this->seedData();
+}
+```
+
+**2. seedTemplateData() với dữ liệu thực từ template:**
 ```php
 private function seedTemplateData(): void {
     // Seed hero slides (từ slider trong template)
@@ -404,6 +438,50 @@ system: maintenance_mode, maintenance_message
 about: about_title, about_content, about_image, about_tagline
 # restaurant: reservation_enabled, max_guests, open_hours_text
 # spa: booking_enabled, consultation_note
+```
+
+### index.php — Bắt buộc có health endpoint
+
+```php
+<?php
+declare(strict_types=1);
+ini_set('display_errors', '0');
+ini_set('log_errors', '1');
+
+require_once __DIR__ . '/config.php';
+
+// URI parsing — hỗ trợ cả Apache (REDIRECT_URL) và IIS (HTTP_X_ORIGINAL_URL)
+$uri     = $_SERVER['HTTP_X_ORIGINAL_URL'] ?? $_SERVER['REDIRECT_URL'] ?? $_SERVER['REQUEST_URI'] ?? '/';
+$rawPath = parse_url($uri, PHP_URL_PATH) ?? '/';
+$rawPath = preg_replace('#^/api#', '', $rawPath) ?: '/';
+
+// ⚠️  Health check — LUÔN phải có để khách tự diagnose sau deploy
+if ($rawPath === '/health') {
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode([
+        'status'      => 'ok',
+        'php'         => PHP_VERSION,
+        'pdo_sqlite'  => extension_loaded('pdo_sqlite'),
+        'db_dir'      => is_writable(dirname(DB_FILE)) ? 'writable' : 'not writable',
+        'db_exists'   => file_exists(DB_FILE),
+        'schema_sql'  => file_exists(__DIR__ . '/schema.sql') ? 'found' : 'MISSING',
+        'path'        => $rawPath,
+    ]);
+    exit;
+}
+
+try {
+    $router = require_once __DIR__ . '/src/bootstrap.php';
+    $router->dispatch($_SERVER['REQUEST_METHOD'], $rawPath);
+} catch (Throwable $e) {
+    if (!headers_sent()) header('Content-Type: application/json; charset=utf-8');
+    $isProd = defined('APP_ENV') && APP_ENV === 'production';
+    http_response_code(500);
+    echo json_encode([
+        'error' => $isProd ? 'Lỗi máy chủ.' : $e->getMessage(),
+        'file'  => $isProd ? null : $e->getFile() . ':' . $e->getLine(),
+    ], JSON_UNESCAPED_UNICODE);
+}
 ```
 
 ### bootstrap.php — Đăng ký routes đủ cho template
@@ -757,14 +835,17 @@ Fix mọi syntax error.
 
 ### Kiểm tra cấu trúc file
 ```
-□ api/config.php tồn tại
+□ api/config.php tồn tại với CORS_ORIGINS và comment hướng dẫn sửa APP_URL
+□ api/index.php có health endpoint tại /health
 □ api/schema.sql có PRAGMA foreign_keys = ON
+□ api/src/Database.php — migrate() có check file_get_contents trả về false
 □ api/src/Database.php có seedTemplateData() với data thực từ template
 □ api/src/bootstrap.php đăng ký đủ routes cho mọi entity
 □ admin/src/components/layout/Sidebar.tsx menu khớp template nav
 □ admin/src/pages/settings/Settings.tsx có đủ tabs
 □ website/src/styles/template.css là bản copy từ template
 □ website/src/components có đủ component cho mọi section của template
+□ build.mjs copy config.php vào deploy/api/ (KHÔNG nằm trong skipApi set)
 □ build.bat và build.sh tồn tại
 □ README.md tồn tại với hướng dẫn deploy
 ```
@@ -774,10 +855,50 @@ Fix mọi syntax error.
 □ seedTemplateData() chỉ chạy khi table rỗng (không override data đã có)
 □ Auth::require() có trong tất cả admin controller methods
 □ Public endpoints không cần auth
-□ .htaccess chặn truy cập trực tiếp vào .db file
-□ CORS chỉ allow origin whitelist
+□ .htaccess và web.config chặn truy cập trực tiếp vào .db file
+□ CORS_ORIGINS được khai báo trong config.php
 □ Mọi INPUT đều dùng prepared statement
 □ Settings page có đủ keys để thay đổi mọi nội dung trên trang chính
+```
+
+---
+
+## Bước 10 — README deploy checklist (phải có trong sản phẩm bàn giao)
+
+README.md phải hướng dẫn rõ các bước sau khi khách upload:
+
+```
+## Hướng dẫn Deploy
+
+### Bước 1 — Upload
+Upload toàn bộ nội dung trong thư mục deploy/ lên public_html/ của hosting.
+
+### Bước 2 — Cấu hình (BẮT BUỘC)
+Mở file api/config.php và sửa:
+- APP_URL → URL thực của website, ví dụ: https://tenweb.vn  (không có / cuối)
+- APP_KEY → chuỗi ngẫu nhiên 32 ký tự (tạo tại https://randomkeygen.com)
+
+### Bước 3 — Kiểm tra hosting
+Truy cập: https://tenweb.vn/api/health
+Kết quả JSON phải có:
+- "pdo_sqlite": true     ← nếu false, hosting không hỗ trợ SQLite → cần đổi sang MySQL
+- "db_dir": "writable"   ← nếu "not writable", chmod 755 cho thư mục api/database/
+- "schema_sql": "found"  ← nếu "MISSING", upload lại file api/schema.sql
+
+### Bước 4 — Phân quyền thư mục (nếu cần)
+chmod 755 api/database/
+chmod 755 api/uploads/
+
+### Bước 5 — Đăng nhập admin
+Truy cập: https://tenweb.vn/admin
+Email: admin@[domain].vn
+Mật khẩu: Admin@123
+⚠️  Đổi mật khẩu ngay sau khi đăng nhập lần đầu!
+
+### Yêu cầu hosting
+- PHP 7.4+ (khuyến nghị 8.x)
+- Extension: pdo_sqlite
+- mod_rewrite (Apache) hoặc URL Rewrite Module (IIS)
 ```
 
 ---

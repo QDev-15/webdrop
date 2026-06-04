@@ -43,14 +43,14 @@ class Database {
         return $row ?: null;
     }
 
-    public function scalar(string $sql, array $params = []): mixed {
+    public function scalar(string $sql, array $params = []) {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($params);
         $row = $stmt->fetch(PDO::FETCH_NUM);
         return $row ? $row[0] : null;
     }
 
-    public function execute(string $sql, array $params = []): int|string {
+    public function execute(string $sql, array $params = []) {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($params);
         if (stripos(trim($sql), 'INSERT') === 0) {
@@ -60,8 +60,11 @@ class Database {
     }
 
     private function migrate(): void {
-        $schema = file_get_contents(__DIR__ . '/../schema.sql');
-        // Execute each statement separately
+        $schemaPath = __DIR__ . '/../schema.sql';
+        $schema = file_get_contents($schemaPath);
+        if ($schema === false) {
+            throw new \RuntimeException('schema.sql not found at ' . $schemaPath);
+        }
         foreach (array_filter(array_map('trim', explode(';', $schema))) as $stmt) {
             if ($stmt) {
                 try { $this->pdo->exec($stmt); } catch (\PDOException $e) { /* ignore already-exists */ }
@@ -69,7 +72,6 @@ class Database {
         }
         $this->seedData();
     }
-
     private function seedData(): void {
         $this->seedUsers();
         $this->seedSettings();

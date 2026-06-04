@@ -1,7 +1,8 @@
 <?php
 
 class CaseController {
-    public function __construct(private Database $db) {}
+    private Database $db;
+    public function __construct(Database $db) { $this->db = $db; }
 
     public function index(array $p): void {
         Auth::require();

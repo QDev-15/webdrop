@@ -1,7 +1,8 @@
 <?php
 
 class PublicController {
-    public function __construct(private Database $db) {}
+    private Database $db;
+    public function __construct(Database $db) { $this->db = $db; }
 
     public function settings(array $p): void {
         $rows = $this->db->query("SELECT key, value FROM settings");

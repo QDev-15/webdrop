@@ -5,7 +5,7 @@
  */
 
 import { execSync } from 'child_process'
-import { cpSync, mkdirSync, rmSync, existsSync, readdirSync } from 'fs'
+import { cpSync, mkdirSync, rmSync, existsSync, readdirSync, writeFileSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
@@ -43,6 +43,8 @@ mkdirSync(join(deploy, 'admin'),                 { recursive: true })
 mkdirSync(join(deploy, 'api', 'src', 'controllers'), { recursive: true })
 mkdirSync(join(deploy, 'api', 'uploads'),        { recursive: true })
 mkdirSync(join(deploy, 'api', 'database'),       { recursive: true })
+writeFileSync(join(deploy, 'api', 'uploads',  '.gitkeep'), '')
+writeFileSync(join(deploy, 'api', 'database', '.gitkeep'), '')
 
 // Copy website/dist → deploy/ (includes .htaccess, web.config from public/)
 cpSync(join(root, 'website', 'dist'), deploy, { recursive: true })

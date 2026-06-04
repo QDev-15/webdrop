@@ -1,36 +1,47 @@
 <?php
 declare(strict_types=1);
-ini_set('display_errors', '0');
-error_reporting(E_ALL);
 
-function jsonError(string $msg, int $code = 500): void {
-    if (!headers_sent()) {
-        http_response_code($code);
-        header('Content-Type: application/json; charset=utf-8');
-    }
-    echo json_encode(['error' => 'Lỗi hệ thống', 'message' => $msg], JSON_UNESCAPED_UNICODE);
+ini_set('display_errors', '0');
+ini_set('log_errors', '1');
+
+require_once __DIR__ . '/config.php';
+
+// IIS dùng HTTP_X_ORIGINAL_URL, Apache rewrite dùng REDIRECT_URL, fallback REQUEST_URI
+$uri = $_SERVER['HTTP_X_ORIGINAL_URL']
+    ?? $_SERVER['REDIRECT_URL']
+    ?? $_SERVER['REQUEST_URI']
+    ?? '/';
+$rawPath = parse_url($uri, PHP_URL_PATH) ?? '/';
+$rawPath = preg_replace('#^/api#', '', $rawPath) ?: '/';
+
+// Health check — không cần DB, dùng để debug sau khi deploy
+if ($rawPath === '/health') {
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode([
+        'status'        => 'ok',
+        'php'           => PHP_VERSION,
+        'pdo_sqlite'    => extension_loaded('pdo_sqlite'),
+        'db_dir'        => is_writable(dirname(DB_FILE)) ? 'writable' : 'not writable',
+        'db_exists'     => file_exists(DB_FILE),
+        'request_uri'   => $_SERVER['REQUEST_URI']           ?? null,
+        'original_url'  => $_SERVER['HTTP_X_ORIGINAL_URL']   ?? null,
+        'redirect_url'  => $_SERVER['REDIRECT_URL']          ?? null,
+        'path_detected' => $rawPath,
+    ]);
     exit;
 }
 
 try {
-    require_once __DIR__ . '/src/bootstrap.php';
+    $router = require_once __DIR__ . '/src/bootstrap.php';
+    $router->dispatch($_SERVER['REQUEST_METHOD'], $rawPath);
 } catch (Throwable $e) {
-    // Bootstrap failed (DB connect, missing ext, etc.) — return readable JSON
-    $env = defined('APP_ENV') ? APP_ENV : 'production';
-    jsonError($env === 'development' ? $e->getMessage() : 'Khởi động hệ thống thất bại. Kiểm tra PHP extension pdo_sqlite và quyền thư mục.');
-}
-
-$method = $_SERVER['REQUEST_METHOD'];
-$uri    = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-
-// Strip /api prefix if accessed via subdirectory
-$uri = preg_replace('#^/api#', '', $uri) ?: '/';
-
-try {
-    $router->dispatch($method, $uri);
-} catch (Throwable $e) {
-    Response::json([
-        'error'   => 'Lỗi hệ thống',
-        'message' => APP_ENV === 'development' ? $e->getMessage() : 'Vui lòng thử lại sau',
-    ], 500);
+    if (!headers_sent()) {
+        header('Content-Type: application/json; charset=utf-8');
+        http_response_code(500);
+    }
+    $isProd = defined('APP_ENV') && APP_ENV === 'production';
+    echo json_encode([
+        'error' => $isProd ? 'Lỗi máy chủ.' : $e->getMessage(),
+        'file'  => $isProd ? null : $e->getFile() . ':' . $e->getLine(),
+    ]);
 }

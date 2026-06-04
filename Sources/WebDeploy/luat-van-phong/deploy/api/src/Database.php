@@ -43,14 +43,14 @@ class Database {
         return $row ?: null;
     }
 
-    public function scalar(string $sql, array $params = []): mixed {
+    public function scalar(string $sql, array $params = []) {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($params);
         $row = $stmt->fetch(PDO::FETCH_NUM);
         return $row ? $row[0] : null;
     }
 
-    public function execute(string $sql, array $params = []): int|string {
+    public function execute(string $sql, array $params = []) {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($params);
         if (stripos(trim($sql), 'INSERT') === 0) {

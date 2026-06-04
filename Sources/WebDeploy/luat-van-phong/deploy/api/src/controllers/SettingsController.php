@@ -1,7 +1,8 @@
 <?php
 
 class SettingsController {
-    public function __construct(private Database $db) {}
+    private Database $db;
+    public function __construct(Database $db) { $this->db = $db; }
 
     public function index(array $p): void {
         Auth::require();
@@ -44,7 +45,7 @@ class SettingsController {
             'stat_'     => 'about',
         ];
         foreach ($map as $prefix => $group) {
-            if (str_starts_with($key, $prefix)) return $group;
+            if (strpos($key, $prefix) === 0) return $group;
         }
         return 'general';
     }

@@ -23,9 +23,9 @@ define('DB_PASS', 'mat_khau');
 // Ví dụ: https://luatvanphong.vn
 // ─────────────────────────────────────────────────────────
 
-define('APP_URL', 'https://luatvanphong.vn');
+define('APP_URL', 'https://nhien.tkid.io.vn');
 define('APP_ENV', 'production');
-define('APP_KEY', 'change-this-to-random-32-chars-key');
+define('APP_KEY', 'VVDNIrgzFiiH9fZPgWD65qZ4QBhORzCF');
 
 // ─────────────────────────────────────────────────────────
 // UPLOAD — Lưu ảnh upload
