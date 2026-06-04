@@ -1,36 +1,66 @@
 <?php
 declare(strict_types=1);
+ini_set('display_errors', '0');
+ini_set('log_errors', '1');
 
-// Maintenance mode check (before loading anything else)
-if (file_exists(__DIR__ . '/config.php')) {
-    require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/config.php';
+
+// ─── CORS ─────────────────────────────────────────────────────────────────────
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+$allowedOrigins = array_filter(array_merge([APP_URL], CORS_ORIGINS));
+if ($origin && in_array($origin, $allowedOrigins, true)) {
+    header('Access-Control-Allow-Origin: ' . $origin);
+} elseif (APP_ENV !== 'production') {
+    header('Access-Control-Allow-Origin: *');
 } else {
-    http_response_code(503);
-    echo json_encode(['error' => 'config.php not found']);
+    header('Access-Control-Allow-Origin: ' . APP_URL);
+}
+header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, X-HTTP-Method-Override, Authorization');
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(204);
     exit;
 }
 
-// Check maintenance mode
-// (Settings not available before DB init, so we read a flag file)
-if (file_exists(__DIR__ . '/maintenance.flag')) {
-    http_response_code(503);
+// ─── URI PARSING ──────────────────────────────────────────────────────────────
+$uri     = $_SERVER['HTTP_X_ORIGINAL_URL'] ?? $_SERVER['REDIRECT_URL'] ?? $_SERVER['REQUEST_URI'] ?? '/';
+$rawPath = parse_url($uri, PHP_URL_PATH) ?? '/';
+$rawPath = preg_replace('#^/api#', '', $rawPath) ?: '/';
+
+// ─── HEALTH ENDPOINT ─────────────────────────────────────────────────────────
+if ($rawPath === '/health') {
     header('Content-Type: application/json; charset=utf-8');
-    echo json_encode(['error' => 'Website đang bảo trì. Vui lòng quay lại sau.']);
+    echo json_encode([
+        'status'      => 'ok',
+        'php'         => PHP_VERSION,
+        'pdo_sqlite'  => extension_loaded('pdo_sqlite'),
+        'db_dir'      => is_writable(dirname(DB_FILE)) ? 'writable' : 'not writable',
+        'db_exists'   => file_exists(DB_FILE),
+        'schema_sql'  => file_exists(__DIR__ . '/schema.sql') ? 'found' : 'MISSING',
+        'path'        => $rawPath,
+    ]);
     exit;
 }
 
-require_once __DIR__ . '/src/bootstrap.php';
-
-$method = $_SERVER['REQUEST_METHOD'];
-$uri    = $_SERVER['REQUEST_URI'];
-
-// Strip base path prefix — handles /api/... deployments
-$basePath = '/api';
-if (str_starts_with($uri, $basePath)) {
-    $uri = substr($uri, strlen($basePath));
+try {
+    $router = require_once __DIR__ . '/src/bootstrap.php';
+    // X-HTTP-Method-Override: bypass IIS/WebDAV block on PUT/DELETE
+    $method = $_SERVER['REQUEST_METHOD'];
+    if ($method === 'POST') {
+        $override = strtoupper($_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'] ?? '');
+        if (in_array($override, ['PUT', 'PATCH', 'DELETE'], true)) {
+            $method = $override;
+        }
+    }
+    $router->dispatch($method, $rawPath);
+} catch (Throwable $e) {
+    if (!headers_sent()) header('Content-Type: application/json; charset=utf-8');
+    $isProd = defined('APP_ENV') && APP_ENV === 'production';
+    http_response_code(500);
+    echo json_encode([
+        'error' => $isProd ? 'Lỗi máy chủ.' : $e->getMessage(),
+        'file'  => $isProd ? null : $e->getFile() . ':' . $e->getLine(),
+    ], JSON_UNESCAPED_UNICODE);
 }
-if ($uri === '' || $uri === false) {
-    $uri = '/';
-}
-
-$router->dispatch($method, $uri);

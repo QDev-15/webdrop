@@ -1,64 +1,40 @@
 <?php
 declare(strict_types=1);
 
-class SettingsController
-{
+class SettingsController {
     public function __construct(private Database $db) {}
 
-    public function index(array $p): void
-    {
+    public function index(array $p): void {
         Auth::require();
         $rows = $this->db->query("SELECT key, value, \"group\" FROM settings ORDER BY \"group\", key");
-        $grouped = [];
+        $out  = [];
         foreach ($rows as $row) {
-            $grouped[$row['group']][$row['key']] = $row['value'];
+            $out[$row['key']] = ['value' => $row['value'], 'group' => $row['group']];
         }
-        Response::json($grouped);
+        Response::json($out);
     }
 
-    public function group(array $p): void
-    {
-        Auth::require();
-        $group = $p['group'];
-        $rows = $this->db->query(
-            "SELECT key, value FROM settings WHERE \"group\"=? ORDER BY key",
-            [$group]
-        );
-        $result = [];
-        foreach ($rows as $row) {
-            $result[$row['key']] = $row['value'];
-        }
-        Response::json($result);
-    }
-
-    public function save(array $p): void
-    {
+    public function update(array $p): void {
         Auth::require();
         $b = bodyJson();
-
-        if (!isset($b['group']) || !isset($b['data']) || !is_array($b['data'])) {
-            Response::error('Thiếu group hoặc data.');
+        if (!is_array($b)) {
+            Response::error('Dữ liệu không hợp lệ.');
+            return;
+        }
+        $stmt = $this->db->query("SELECT key, \"group\" FROM settings");
+        $existing = [];
+        foreach ($stmt as $row) {
+            $existing[$row['key']] = $row['group'];
         }
 
-        $group = $b['group'];
-
-        foreach ($b['data'] as $key => $value) {
-            $existing = $this->db->scalar(
-                "SELECT COUNT(*) FROM settings WHERE key=?", [$key]
-            );
-            if ($existing > 0) {
+        foreach ($b as $key => $value) {
+            if (isset($existing[$key])) {
                 $this->db->execute(
                     "UPDATE settings SET value=? WHERE key=?",
                     [(string)$value, $key]
                 );
-            } else {
-                $this->db->execute(
-                    "INSERT INTO settings (key, value, \"group\") VALUES (?,?,?)",
-                    [$key, (string)$value, $group]
-                );
             }
         }
-
         Response::json(['ok' => true]);
     }
 }

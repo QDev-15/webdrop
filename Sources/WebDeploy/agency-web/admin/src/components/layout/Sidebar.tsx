@@ -1,62 +1,21 @@
+import { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
-import { useEffect, useState } from 'react'
 import { api } from '../../api/client'
 
-interface Stats { contacts_new: number }
+// ⚠️  PHẢI khai báo interface rõ ràng — tránh TS2339 "Property 'exact' does not exist"
+interface NavLinkItem {
+  to: string
+  icon: string
+  label: string
+  exact?: boolean
+  badge?: number
+}
 
-const menu = [
-  {
-    section: 'Tổng quan',
-    links: [
-      { to: '/', icon: '⊞', label: 'Dashboard', exact: true },
-    ],
-  },
-  {
-    section: 'Trang chủ',
-    links: [
-      { to: '/slides',  icon: '🖼', label: 'Hero Slides' },
-    ],
-  },
-  {
-    section: 'Dịch vụ',
-    links: [
-      { to: '/services', icon: '🛠', label: 'Dịch vụ' },
-    ],
-  },
-  {
-    section: 'Dự án',
-    links: [
-      { to: '/projects', icon: '📁', label: 'Dự án / Portfolio' },
-    ],
-  },
-  {
-    section: 'Về chúng tôi',
-    links: [
-      { to: '/team',         icon: '👥', label: 'Đội ngũ' },
-      { to: '/testimonials', icon: '⭐', label: 'Đánh giá' },
-    ],
-  },
-  {
-    section: 'Nội dung',
-    links: [
-      { to: '/posts', icon: '📝', label: 'Bài viết / Blog' },
-      { to: '/media', icon: '📸', label: 'Media Library' },
-    ],
-  },
-  {
-    section: 'Khách hàng',
-    links: [
-      { to: '/contacts', icon: '✉', label: 'Liên hệ', badgeKey: 'contacts_new' },
-    ],
-  },
-  {
-    section: 'Hệ thống',
-    links: [
-      { to: '/settings', icon: '⚙', label: 'Cài đặt' },
-    ],
-  },
-]
+interface MenuSection {
+  section: string
+  links: NavLinkItem[]
+}
 
 export default function Sidebar() {
   const { user, logout } = useAuth()
@@ -64,8 +23,58 @@ export default function Sidebar() {
   const [newContacts, setNewContacts] = useState(0)
 
   useEffect(() => {
-    api.get<Stats>('/stats').then(s => setNewContacts(s.contacts_new)).catch(() => {})
+    api.get<{ new_contacts: number }>('/stats')
+      .then(s => setNewContacts(s.new_contacts))
+      .catch(() => {})
   }, [])
+
+  const menuStructure: MenuSection[] = [
+    {
+      section: 'Tổng quan',
+      links: [
+        { to: '/', icon: '⊞', label: 'Dashboard', exact: true },
+      ],
+    },
+    {
+      section: 'Trang chủ',
+      links: [
+        { to: '/slides', icon: '🖼', label: 'Hero Slides' },
+      ],
+    },
+    {
+      section: 'Dịch vụ',
+      links: [
+        { to: '/services', icon: '⚡', label: 'Dịch vụ' },
+      ],
+    },
+    {
+      section: 'Dự án',
+      links: [
+        { to: '/projects', icon: '💼', label: 'Dự án / Portfolio' },
+      ],
+    },
+    {
+      section: 'Về chúng tôi',
+      links: [
+        { to: '/team', icon: '👥', label: 'Đội ngũ' },
+        { to: '/testimonials', icon: '⭐', label: 'Đánh giá' },
+      ],
+    },
+    {
+      section: 'Khách hàng',
+      links: [
+        { to: '/contacts', icon: '✉️', label: 'Liên hệ', badge: newContacts > 0 ? newContacts : undefined },
+      ],
+    },
+    {
+      section: 'Hệ thống',
+      links: [
+        { to: '/media',    icon: '📸', label: 'Media' },
+        { to: '/users',    icon: '👤', label: 'Tài khoản' },
+        { to: '/settings', icon: '⚙️', label: 'Cài đặt' },
+      ],
+    },
+  ]
 
   const handleLogout = async () => {
     await logout()
@@ -73,27 +82,29 @@ export default function Sidebar() {
   }
 
   return (
-    <aside className="sb">
-      <div className="sb-logo">
-        Agency<span>WEB</span>
-        <div className="sb-logo-sub">Admin Panel</div>
+    <aside className="sidebar">
+      <div className="sidebar-header">
+        <a href="/" target="_blank" rel="noopener noreferrer" className="sidebar-logo">
+          Agency<span>Web</span>
+        </a>
+        <div className="sidebar-logo-sub">Quản trị nội dung</div>
       </div>
 
-      <nav style={{ flex: 1 }}>
-        {menu.map(section => (
-          <div key={section.section} className="sb-section">
-            <div className="sb-section-title">{section.section}</div>
+      <nav className="sidebar-nav">
+        {menuStructure.map(section => (
+          <div key={section.section}>
+            <div className="sidebar-section-label">{section.section}</div>
             {section.links.map(link => (
               <NavLink
                 key={link.to}
                 to={link.to}
-                end={'exact' in link ? link.exact : false}
-                className={({ isActive }) => `sb-link${isActive ? ' active' : ''}`}
+                end={link.exact}
+                className={({ isActive }) => `sidebar-link${isActive ? ' active' : ''}`}
               >
-                <span className="sb-icon">{link.icon}</span>
-                {link.label}
-                {'badgeKey' in link && link.badgeKey === 'contacts_new' && newContacts > 0 && (
-                  <span className="sb-badge">{newContacts}</span>
+                <span className="icon">{link.icon}</span>
+                <span style={{ flex: 1 }}>{link.label}</span>
+                {link.badge !== undefined && link.badge > 0 && (
+                  <span className="sidebar-badge">{link.badge > 99 ? '99+' : link.badge}</span>
                 )}
               </NavLink>
             ))}
@@ -101,18 +112,17 @@ export default function Sidebar() {
         ))}
       </nav>
 
-      <div className="sb-footer">
-        {user && (
-          <div className="sb-user">
-            <div className="sb-avatar">{user.name[0]?.toUpperCase()}</div>
-            <div>
-              <div className="sb-user-name">{user.name}</div>
-              <div className="sb-user-role">{user.role}</div>
-            </div>
+      <div className="sidebar-footer">
+        <NavLink to="/profile" className={({ isActive }) => `sidebar-link${isActive ? ' active' : ''}`}>
+          <span className="icon">👤</span>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: '12px', fontWeight: 500, color: 'rgba(255,255,255,.75)', lineHeight: 1.3 }}>{user?.name}</div>
+            <div style={{ fontSize: '10px', color: 'rgba(255,255,255,.35)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{user?.email}</div>
           </div>
-        )}
-        <button className="sb-logout" onClick={handleLogout}>
-          ← Đăng xuất
+        </NavLink>
+        <button onClick={handleLogout} className="sidebar-link" style={{ width: '100%', marginTop: '4px', cursor: 'pointer', background: 'transparent', border: 'none', textAlign: 'left' }}>
+          <span className="icon">🚪</span>
+          <span>Đăng xuất</span>
         </button>
       </div>
     </aside>

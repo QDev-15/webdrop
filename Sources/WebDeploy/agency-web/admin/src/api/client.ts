@@ -1,38 +1,31 @@
-const BASE = import.meta.env.DEV
-  ? '/api'
-  : (window.location.origin + '/api')
+const BASE = import.meta.env.DEV ? '/api' : (window.location.origin + '/api')
 
-async function request<T>(path: string, options?: RequestInit): Promise<T> {
-  const res = await fetch(BASE + path, {
-    credentials: 'include',
-    headers: { 'Content-Type': 'application/json' },
-    ...options,
-  })
-  if (res.status === 401) {
-    window.location.href = '/admin/login'
-    throw new Error('Unauthorized')
+async function request<T>(method: string, path: string, body?: unknown, override?: string): Promise<T> {
+  const headers: Record<string, string> = {}
+  if (body && !(body instanceof FormData)) {
+    headers['Content-Type'] = 'application/json'
   }
+  if (override) {
+    headers['X-HTTP-Method-Override'] = override
+  }
+  const res = await fetch(BASE + path, {
+    method,
+    headers,
+    credentials: 'include',
+    body: body instanceof FormData ? body : (body ? JSON.stringify(body) : undefined),
+  })
   if (!res.ok) {
-    const err = await res.json().catch(() => ({ error: res.statusText }))
-    throw new Error(err.error || 'API error')
+    const err = await res.json().catch(() => ({ error: 'Lỗi không xác định' }))
+    throw new Error((err as { error?: string }).error || 'Request failed')
   }
   return res.json() as Promise<T>
 }
 
 export const api = {
-  get:    <T>(path: string) => request<T>(path),
-  post:   <T>(path: string, body?: unknown) => request<T>(path, { method: 'POST', body: JSON.stringify(body) }),
-  put:    <T>(path: string, body?: unknown) => request<T>(path, { method: 'PUT',  body: JSON.stringify(body) }),
-  delete: <T>(path: string) => request<T>(path, { method: 'DELETE' }),
-}
-
-export function uploadFile(path: string, formData: FormData): Promise<{ id: number; filepath: string }> {
-  return fetch(BASE + path, {
-    method: 'POST',
-    credentials: 'include',
-    body: formData,
-  }).then(r => {
-    if (!r.ok) throw new Error('Upload failed')
-    return r.json()
-  })
+  get:    <T>(path: string) => request<T>('GET', path),
+  post:   <T>(path: string, body: unknown) => request<T>('POST', path, body),
+  // POST + suffix URL — bypass IIS/WebDAV block on shared hosting
+  put:    <T>(path: string, body: unknown) => request<T>('POST', `${path}/update`, body),
+  delete: <T>(path: string) => request<T>('POST', `${path}/delete`),
+  upload: <T>(path: string, formData: FormData) => request<T>('POST', path, formData),
 }

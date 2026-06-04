@@ -1,63 +1,34 @@
 <?php
 declare(strict_types=1);
 
-// ── Helpers ───────────────────────────────────────────────
+require_once __DIR__ . '/Database.php';
+require_once __DIR__ . '/Router.php';
+require_once __DIR__ . '/Auth.php';
+require_once __DIR__ . '/Response.php';
 
-function bodyJson(): array
-{
-    $raw  = file_get_contents('php://input');
-    $data = json_decode($raw ?: '{}', true);
+// ─── HELPERS ──────────────────────────────────────────────────────────────────
+
+function bodyJson(): array {
+    $raw = file_get_contents('php://input');
+    if (!$raw) return $_POST;
+    $data = json_decode($raw, true);
     return is_array($data) ? $data : [];
 }
 
-function slugify(string $text): string
-{
-    $map = [
-        'à'=>'a','á'=>'a','ả'=>'a','ã'=>'a','ạ'=>'a',
-        'ă'=>'a','ắ'=>'a','ặ'=>'a','ằ'=>'a','ẳ'=>'a','ẵ'=>'a',
-        'â'=>'a','ấ'=>'a','ầ'=>'a','ẩ'=>'a','ẫ'=>'a','ậ'=>'a',
-        'đ'=>'d',
-        'è'=>'e','é'=>'e','ẻ'=>'e','ẽ'=>'e','ẹ'=>'e',
-        'ê'=>'e','ế'=>'e','ề'=>'e','ể'=>'e','ễ'=>'e','ệ'=>'e',
-        'ì'=>'i','í'=>'i','ỉ'=>'i','ĩ'=>'i','ị'=>'i',
-        'ò'=>'o','ó'=>'o','ỏ'=>'o','õ'=>'o','ọ'=>'o',
-        'ô'=>'o','ố'=>'o','ồ'=>'o','ổ'=>'o','ỗ'=>'o','ộ'=>'o',
-        'ơ'=>'o','ớ'=>'o','ờ'=>'o','ở'=>'o','ỡ'=>'o','ợ'=>'o',
-        'ù'=>'u','ú'=>'u','ủ'=>'u','ũ'=>'u','ụ'=>'u',
-        'ư'=>'u','ứ'=>'u','ừ'=>'u','ử'=>'u','ữ'=>'u','ự'=>'u',
-        'ỳ'=>'y','ý'=>'y','ỷ'=>'y','ỹ'=>'y','ỵ'=>'y',
-    ];
+function slugify(string $text): string {
     $text = mb_strtolower($text, 'UTF-8');
+    $map  = ['à'=>'a','á'=>'a','ả'=>'a','ã'=>'a','ạ'=>'a','ă'=>'a','ắ'=>'a','ặ'=>'a','ằ'=>'a','ẳ'=>'a','ẵ'=>'a','â'=>'a','ấ'=>'a','ầ'=>'a','ẩ'=>'a','ẫ'=>'a','ậ'=>'a','đ'=>'d','è'=>'e','é'=>'e','ẻ'=>'e','ẽ'=>'e','ẹ'=>'e','ê'=>'e','ế'=>'e','ề'=>'e','ể'=>'e','ễ'=>'e','ệ'=>'e','ì'=>'i','í'=>'i','ỉ'=>'i','ĩ'=>'i','ị'=>'i','ò'=>'o','ó'=>'o','ỏ'=>'o','õ'=>'o','ọ'=>'o','ô'=>'o','ố'=>'o','ồ'=>'o','ổ'=>'o','ỗ'=>'o','ộ'=>'o','ơ'=>'o','ớ'=>'o','ờ'=>'o','ở'=>'o','ỡ'=>'o','ợ'=>'o','ù'=>'u','ú'=>'u','ủ'=>'u','ũ'=>'u','ụ'=>'u','ư'=>'u','ứ'=>'u','ừ'=>'u','ử'=>'u','ữ'=>'u','ự'=>'u','ỳ'=>'y','ý'=>'y','ỷ'=>'y','ỹ'=>'y','ỵ'=>'y'];
     $text = strtr($text, $map);
     $text = preg_replace('/[^a-z0-9\s-]/', '', $text);
     $text = preg_replace('/[\s-]+/', '-', trim($text));
     return $text;
 }
 
-// ── CORS ─────────────────────────────────────────────────
+// ─── BOOT ─────────────────────────────────────────────────────────────────────
+Auth::start();
+$db = Database::getInstance();
 
-$allowedOrigins = [APP_URL, 'http://localhost:5173', 'http://localhost:5174', 'http://localhost:4173'];
-$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-if (in_array($origin, $allowedOrigins, true)) {
-    header('Access-Control-Allow-Origin: ' . $origin);
-    header('Access-Control-Allow-Credentials: true');
-}
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
-
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(204);
-    exit;
-}
-
-// ── Autoload & Bootstrap ──────────────────────────────────
-
-require_once __DIR__ . '/Response.php';
-require_once __DIR__ . '/Auth.php';
-require_once __DIR__ . '/Database.php';
-require_once __DIR__ . '/Router.php';
-
-// Controllers
+// ─── CONTROLLERS ──────────────────────────────────────────────────────────────
 require_once __DIR__ . '/controllers/AuthController.php';
 require_once __DIR__ . '/controllers/PublicController.php';
 require_once __DIR__ . '/controllers/StatsController.php';
@@ -67,104 +38,19 @@ require_once __DIR__ . '/controllers/HeroSlideController.php';
 require_once __DIR__ . '/controllers/MediaController.php';
 require_once __DIR__ . '/controllers/ServiceController.php';
 require_once __DIR__ . '/controllers/ProjectController.php';
-require_once __DIR__ . '/controllers/TeamMemberController.php';
+require_once __DIR__ . '/controllers/TeamController.php';
 require_once __DIR__ . '/controllers/TestimonialController.php';
-require_once __DIR__ . '/controllers/PostController.php';
+require_once __DIR__ . '/controllers/UserController.php';
 
-$db = Database::getInstance();
 $router = new Router();
 
-// ── AUTH ─────────────────────────────────────────────────
-
+// ─── AUTH ROUTES ──────────────────────────────────────────────────────────────
 $auth = new AuthController($db);
-$router->add('POST', '/auth/login',  [$auth, 'login']);
-$router->add('POST', '/auth/logout', [$auth, 'logout']);
-$router->add('GET',  '/auth/me',     [$auth, 'me']);
+$router->add('POST', '/auth/login',   [$auth, 'login']);
+$router->add('POST', '/auth/logout',  [$auth, 'logout']);
+$router->add('GET',  '/auth/me',      [$auth, 'me']);
 
-// ── HERO SLIDES ──────────────────────────────────────────
-
-$slide = new HeroSlideController($db);
-$router->add('GET',    '/hero-slides',           [$slide, 'index']);
-$router->add('POST',   '/hero-slides',           [$slide, 'store']);
-$router->add('GET',    '/hero-slides/:id',       [$slide, 'show']);
-$router->add('PUT',    '/hero-slides/:id',       [$slide, 'update']);
-$router->add('DELETE', '/hero-slides/:id',       [$slide, 'destroy']);
-$router->add('POST',   '/hero-slides/reorder',   [$slide, 'reorder']);
-
-// ── SERVICES ─────────────────────────────────────────────
-
-$service = new ServiceController($db);
-$router->add('GET',    '/services',       [$service, 'index']);
-$router->add('POST',   '/services',       [$service, 'store']);
-$router->add('GET',    '/services/:id',   [$service, 'show']);
-$router->add('PUT',    '/services/:id',   [$service, 'update']);
-$router->add('DELETE', '/services/:id',   [$service, 'destroy']);
-
-// ── PROJECTS ─────────────────────────────────────────────
-
-$project = new ProjectController($db);
-$router->add('GET',    '/projects',       [$project, 'index']);
-$router->add('POST',   '/projects',       [$project, 'store']);
-$router->add('GET',    '/projects/:id',   [$project, 'show']);
-$router->add('PUT',    '/projects/:id',   [$project, 'update']);
-$router->add('DELETE', '/projects/:id',   [$project, 'destroy']);
-
-// ── TEAM MEMBERS ─────────────────────────────────────────
-
-$team = new TeamMemberController($db);
-$router->add('GET',    '/team-members',       [$team, 'index']);
-$router->add('POST',   '/team-members',       [$team, 'store']);
-$router->add('GET',    '/team-members/:id',   [$team, 'show']);
-$router->add('PUT',    '/team-members/:id',   [$team, 'update']);
-$router->add('DELETE', '/team-members/:id',   [$team, 'destroy']);
-
-// ── TESTIMONIALS ─────────────────────────────────────────
-
-$testimonial = new TestimonialController($db);
-$router->add('GET',    '/testimonials',       [$testimonial, 'index']);
-$router->add('POST',   '/testimonials',       [$testimonial, 'store']);
-$router->add('GET',    '/testimonials/:id',   [$testimonial, 'show']);
-$router->add('PUT',    '/testimonials/:id',   [$testimonial, 'update']);
-$router->add('DELETE', '/testimonials/:id',   [$testimonial, 'destroy']);
-
-// ── POSTS ────────────────────────────────────────────────
-
-$post = new PostController($db);
-$router->add('GET',    '/posts',       [$post, 'index']);
-$router->add('POST',   '/posts',       [$post, 'store']);
-$router->add('GET',    '/posts/:id',   [$post, 'show']);
-$router->add('PUT',    '/posts/:id',   [$post, 'update']);
-$router->add('DELETE', '/posts/:id',   [$post, 'destroy']);
-
-// ── CONTACTS ─────────────────────────────────────────────
-
-$contact = new ContactController($db);
-$router->add('GET',    '/contacts',             [$contact, 'index']);
-$router->add('GET',    '/contacts/:id',         [$contact, 'show']);
-$router->add('PUT',    '/contacts/:id/status',  [$contact, 'updateStatus']);
-$router->add('DELETE', '/contacts/:id',         [$contact, 'destroy']);
-
-// ── SETTINGS ─────────────────────────────────────────────
-
-$settings = new SettingsController($db);
-$router->add('GET',  '/settings',       [$settings, 'index']);
-$router->add('POST', '/settings',       [$settings, 'save']);
-$router->add('GET',  '/settings/:group', [$settings, 'group']);
-
-// ── MEDIA ────────────────────────────────────────────────
-
-$media = new MediaController($db);
-$router->add('GET',    '/media',       [$media, 'index']);
-$router->add('POST',   '/media',       [$media, 'upload']);
-$router->add('DELETE', '/media/:id',   [$media, 'destroy']);
-
-// ── STATS ────────────────────────────────────────────────
-
-$stats = new StatsController($db);
-$router->add('GET', '/stats', [$stats, 'index']);
-
-// ── PUBLIC (no auth required) ────────────────────────────
-
+// ─── PUBLIC ROUTES (no auth required) ────────────────────────────────────────
 $pub = new PublicController($db);
 $router->add('GET',  '/public/settings',      [$pub, 'settings']);
 $router->add('GET',  '/public/hero-slides',   [$pub, 'heroSlides']);
@@ -172,7 +58,74 @@ $router->add('GET',  '/public/services',      [$pub, 'services']);
 $router->add('GET',  '/public/projects',      [$pub, 'projects']);
 $router->add('GET',  '/public/team',          [$pub, 'team']);
 $router->add('GET',  '/public/testimonials',  [$pub, 'testimonials']);
-$router->add('GET',  '/public/posts',         [$pub, 'posts']);
 $router->add('POST', '/public/contact',       [$pub, 'submitContact']);
+
+// ─── STATS ────────────────────────────────────────────────────────────────────
+$stats = new StatsController($db);
+$router->add('GET', '/stats', [$stats, 'index']);
+
+// ─── HERO SLIDES ──────────────────────────────────────────────────────────────
+$slide = new HeroSlideController($db);
+$router->add('GET',  '/hero-slides',            [$slide, 'index']);
+$router->add('POST', '/hero-slides',            [$slide, 'store']);
+$router->add('POST', '/hero-slides/reorder',    [$slide, 'reorder']);
+$router->add('POST', '/hero-slides/:id/update', [$slide, 'update']);
+$router->add('POST', '/hero-slides/:id/delete', [$slide, 'destroy']);
+
+// ─── SERVICES ─────────────────────────────────────────────────────────────────
+$service = new ServiceController($db);
+$router->add('GET',  '/services',            [$service, 'index']);
+$router->add('POST', '/services',            [$service, 'store']);
+$router->add('GET',  '/services/:id',        [$service, 'show']);
+$router->add('POST', '/services/:id/update', [$service, 'update']);
+$router->add('POST', '/services/:id/delete', [$service, 'destroy']);
+
+// ─── PROJECTS ─────────────────────────────────────────────────────────────────
+$project = new ProjectController($db);
+$router->add('GET',  '/projects',            [$project, 'index']);
+$router->add('POST', '/projects',            [$project, 'store']);
+$router->add('GET',  '/projects/:id',        [$project, 'show']);
+$router->add('POST', '/projects/:id/update', [$project, 'update']);
+$router->add('POST', '/projects/:id/delete', [$project, 'destroy']);
+
+// ─── TEAM ─────────────────────────────────────────────────────────────────────
+$team = new TeamController($db);
+$router->add('GET',  '/team',            [$team, 'index']);
+$router->add('POST', '/team',            [$team, 'store']);
+$router->add('POST', '/team/:id/update', [$team, 'update']);
+$router->add('POST', '/team/:id/delete', [$team, 'destroy']);
+
+// ─── TESTIMONIALS ─────────────────────────────────────────────────────────────
+$testimonial = new TestimonialController($db);
+$router->add('GET',  '/testimonials',            [$testimonial, 'index']);
+$router->add('POST', '/testimonials',            [$testimonial, 'store']);
+$router->add('POST', '/testimonials/:id/update', [$testimonial, 'update']);
+$router->add('POST', '/testimonials/:id/delete', [$testimonial, 'destroy']);
+
+// ─── CONTACTS ─────────────────────────────────────────────────────────────────
+$contact = new ContactController($db);
+$router->add('GET',  '/contacts',            [$contact, 'index']);
+$router->add('GET',  '/contacts/:id',        [$contact, 'show']);
+$router->add('POST', '/contacts/:id/update', [$contact, 'update']);
+$router->add('POST', '/contacts/:id/delete', [$contact, 'destroy']);
+
+// ─── SETTINGS ─────────────────────────────────────────────────────────────────
+$settings = new SettingsController($db);
+$router->add('GET',  '/settings',        [$settings, 'index']);
+$router->add('POST', '/settings/update', [$settings, 'update']);
+
+// ─── MEDIA ────────────────────────────────────────────────────────────────────
+$media = new MediaController($db);
+$router->add('GET',  '/media',            [$media, 'index']);
+$router->add('POST', '/media/upload',     [$media, 'upload']);
+$router->add('POST', '/media/:id/delete', [$media, 'destroy']);
+
+// ─── USERS ────────────────────────────────────────────────────────────────────
+$user = new UserController($db);
+$router->add('GET',  '/users',                      [$user, 'index']);
+$router->add('POST', '/users',                      [$user, 'store']);
+$router->add('POST', '/users/:id/update',           [$user, 'update']);
+$router->add('POST', '/users/:id/delete',           [$user, 'destroy']);
+$router->add('POST', '/users/:id/change-password',  [$user, 'changePassword']);
 
 return $router;

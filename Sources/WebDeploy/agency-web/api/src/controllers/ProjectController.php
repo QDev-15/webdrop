@@ -1,106 +1,68 @@
 <?php
 declare(strict_types=1);
 
-class ProjectController
-{
+class ProjectController {
     public function __construct(private Database $db) {}
 
-    public function index(array $p): void
-    {
+    public function index(array $p): void {
         Auth::require();
-        $cat = $_GET['category'] ?? '';
-        if ($cat) {
-            $projects = $this->db->query(
-                "SELECT * FROM projects WHERE category=? ORDER BY featured DESC, sort_order, id",
-                [$cat]
-            );
-        } else {
-            $projects = $this->db->query(
-                "SELECT * FROM projects ORDER BY featured DESC, sort_order, id"
-            );
-        }
-        Response::json($projects);
+        Response::json($this->db->query("SELECT * FROM projects ORDER BY sort_order, id"));
     }
 
-    public function show(array $p): void
-    {
+    public function show(array $p): void {
         Auth::require();
-        $id = (int)$p['id'];
-        $project = $this->db->row("SELECT * FROM projects WHERE id=?", [$id]);
-        if (!$project) Response::notFound('Dự án không tồn tại.');
-        Response::json($project);
+        $item = $this->db->queryOne("SELECT * FROM projects WHERE id=?", [$p['id']]);
+        if (!$item) { Response::error('Không tìm thấy.', 404); return; }
+        Response::json($item);
     }
 
-    public function store(array $p): void
-    {
+    public function store(array $p): void {
+        Auth::require();
+        $b  = bodyJson();
+        $id = $this->db->execute(
+            "INSERT INTO projects (title, slug, description, image, client, category, tags, link, featured, sort_order, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            [
+                $b['title']       ?? '',
+                slugify($b['title'] ?? ''),
+                $b['description'] ?? '',
+                $b['image']       ?? '',
+                $b['client']      ?? '',
+                $b['category']    ?? '',
+                $b['tags']        ?? '',
+                $b['link']        ?? '',
+                (int)($b['featured']   ?? 0),
+                (int)($b['sort_order'] ?? 0),
+                $b['status']      ?? 'published',
+            ]
+        );
+        Response::json(['id' => $id], 201);
+    }
+
+    public function update(array $p): void {
         Auth::require();
         $b = bodyJson();
-
-        if (empty($b['title'])) {
-            Response::error('Tiêu đề dự án không được để trống.');
-        }
-
-        $slug = $b['slug'] ?? slugify($b['title']);
-
-        $id = $this->db->execute(
-            "INSERT INTO projects (title, slug, category, industry, description, image, client, url, featured, sort_order, status)
-             VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-            [
-                $b['title'],
-                $slug,
-                $b['category']    ?? 'web',
-                $b['industry']    ?? '',
-                $b['description'] ?? '',
-                $b['image']       ?? '',
-                $b['client']      ?? '',
-                $b['url']         ?? '',
-                (int)($b['featured']   ?? 0),
-                (int)($b['sort_order'] ?? 0),
-                $b['status']      ?? 'published',
-            ]
-        );
-
-        Response::json(['id' => (int)$id], 201);
-    }
-
-    public function update(array $p): void
-    {
-        Auth::require();
-        $id = (int)$p['id'];
-        $b  = bodyJson();
-
-        if (empty($b['title'])) {
-            Response::error('Tiêu đề dự án không được để trống.');
-        }
-
         $this->db->execute(
-            "UPDATE projects SET
-                title=?, category=?, industry=?, description=?, image=?, client=?,
-                url=?, featured=?, sort_order=?, status=?
-             WHERE id=?",
+            "UPDATE projects SET title=?, description=?, image=?, client=?, category=?, tags=?, link=?, featured=?, sort_order=?, status=? WHERE id=?",
             [
-                $b['title'],
-                $b['category']    ?? 'web',
-                $b['industry']    ?? '',
+                $b['title']       ?? '',
                 $b['description'] ?? '',
                 $b['image']       ?? '',
                 $b['client']      ?? '',
-                $b['url']         ?? '',
+                $b['category']    ?? '',
+                $b['tags']        ?? '',
+                $b['link']        ?? '',
                 (int)($b['featured']   ?? 0),
                 (int)($b['sort_order'] ?? 0),
                 $b['status']      ?? 'published',
-                $id,
+                $p['id'],
             ]
         );
-
         Response::json(['ok' => true]);
     }
 
-    public function destroy(array $p): void
-    {
+    public function destroy(array $p): void {
         Auth::require();
-        $id = (int)$p['id'];
-        $this->db->execute("DELETE FROM projects WHERE id=?", [$id]);
+        $this->db->execute("DELETE FROM projects WHERE id=?", [$p['id']]);
         Response::json(['ok' => true]);
     }
 }

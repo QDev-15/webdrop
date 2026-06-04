@@ -1,72 +1,77 @@
-import { FormEvent, useEffect, useState } from 'react'
+import { useEffect, useState, type FormEvent } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '../../api/client'
 
-interface TmForm { name: string; position: string; bio: string; avatar: string; sort_order: number; status: string }
-const EMPTY: TmForm = { name: '', position: '', bio: '', avatar: '', sort_order: 0, status: 'published' }
+interface TeamData { name: string; position: string; bio: string; avatar: string; sort_order: number; status: string }
 
 export default function TeamForm() {
-  const { id } = useParams(); const navigate = useNavigate(); const isEdit = Boolean(id)
-  const [form, setForm] = useState<TmForm>(EMPTY)
-  const [error, setError] = useState(''); const [saving, setSaving] = useState(false)
+  const { id } = useParams()
+  const navigate = useNavigate()
+  const isEdit = !!id
+  const [form, setForm] = useState<TeamData>({ name: '', position: '', bio: '', avatar: '', sort_order: 0, status: 'published' })
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState('')
 
-  useEffect(() => { if (!isEdit) return; api.get<TmForm & { id: number }>(`/team-members/${id}`).then(m => setForm(m)).catch(() => {}) }, [id, isEdit])
+  useEffect(() => {
+    if (!isEdit) return
+    api.get<Array<TeamData & { id: number }>>('/team').then(arr => {
+      const found = arr.find(m => m.id === Number(id))
+      if (found) setForm(found)
+    }).catch(console.error)
+  }, [id, isEdit])
 
-  const set = (k: keyof TmForm, v: string | number) => setForm(f => ({ ...f, [k]: v }))
-
-  const save = async (e: FormEvent) => {
-    e.preventDefault(); setError(''); setSaving(true)
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    if (!form.name.trim()) { setError('Họ tên không được để trống.'); return }
+    setSaving(true); setError('')
     try {
-      if (isEdit) await api.put(`/team-members/${id}`, form)
-      else await api.post('/team-members', form)
+      isEdit ? await api.put(`/team/${id}`, form) : await api.post('/team', form)
       navigate('/team')
-    } catch (err: unknown) { setError(err instanceof Error ? err.message : 'Lỗi lưu dữ liệu.') }
-    finally { setSaving(false) }
+    } catch (err: unknown) { setError(err instanceof Error ? err.message : 'Lỗi.') } finally { setSaving(false) }
   }
 
   return (
     <>
-      <div className="page-hd">
-        <h1 className="page-hd-title">{isEdit ? 'Chỉnh sửa Thành viên' : 'Thêm Thành viên mới'}</h1>
-        <button onClick={() => navigate('/team')} className="btn btn-ghost">← Quay lại</button>
+      <div className="page-header">
+        <div><div className="page-title">{isEdit ? 'Sửa thành viên' : 'Thêm thành viên mới'}</div></div>
+        <button onClick={() => navigate('/team')} className="btn-ghost">← Quay lại</button>
       </div>
-      <div className="card">
-        {error && <div className="login-err">{error}</div>}
-        <form onSubmit={save}>
-          <div className="form-grid-2">
-            <div className="form-group">
-              <label className="form-label">Tên <span className="text-danger">*</span></label>
-              <input className="form-control" value={form.name} onChange={e => set('name', e.target.value)} required />
-            </div>
-            <div className="form-group">
-              <label className="form-label">Chức vụ</label>
-              <input className="form-control" value={form.position} onChange={e => set('position', e.target.value)} placeholder="CEO & Co-founder" />
-            </div>
+      <div className="card" style={{ maxWidth: '540px' }}>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label className="form-label">Họ tên *</label>
+            <input className="form-control" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} required />
           </div>
           <div className="form-group">
-            <label className="form-label">Bio</label>
-            <textarea className="form-control" value={form.bio} onChange={e => set('bio', e.target.value)} rows={3} />
+            <label className="form-label">Chức vụ</label>
+            <input className="form-control" value={form.position} onChange={e => setForm({ ...form, position: e.target.value })} placeholder="CEO, Designer, Developer..." />
           </div>
           <div className="form-group">
-            <label className="form-label">Avatar (URL)</label>
-            <input className="form-control" value={form.avatar} onChange={e => set('avatar', e.target.value)} placeholder="https://..." />
-            {form.avatar && <img src={form.avatar} alt="" className="img-preview mt-3" style={{ borderRadius: '50%' }} />}
+            <label className="form-label">Giới thiệu</label>
+            <textarea className="form-control" value={form.bio} onChange={e => setForm({ ...form, bio: e.target.value })} />
           </div>
-          <div className="form-grid-2">
+          <div className="form-group">
+            <label className="form-label">Ảnh avatar (URL)</label>
+            <input className="form-control" value={form.avatar} onChange={e => setForm({ ...form, avatar: e.target.value })} placeholder="https://..." />
+            {form.avatar && <img src={form.avatar} alt="avatar" style={{ width: '64px', height: '64px', borderRadius: '50%', objectFit: 'cover', marginTop: '8px', border: '2px solid var(--border)' }} />}
+          </div>
+          <div className="form-row">
             <div className="form-group">
               <label className="form-label">Thứ tự</label>
-              <input className="form-control" type="number" value={form.sort_order} onChange={e => set('sort_order', +e.target.value)} />
+              <input className="form-control" type="number" value={form.sort_order} onChange={e => setForm({ ...form, sort_order: Number(e.target.value) })} />
             </div>
             <div className="form-group">
               <label className="form-label">Trạng thái</label>
-              <select className="form-select" value={form.status} onChange={e => set('status', e.target.value)}>
-                <option value="published">Published</option><option value="draft">Draft</option>
+              <select className="form-select" value={form.status} onChange={e => setForm({ ...form, status: e.target.value })}>
+                <option value="published">Hiển thị</option>
+                <option value="draft">Ẩn</option>
               </select>
             </div>
           </div>
-          <div className="d-flex gap-2 mt-4">
-            <button type="submit" className="btn btn-primary" disabled={saving}>{saving ? 'Đang lưu...' : (isEdit ? 'Cập nhật' : 'Tạo mới')}</button>
-            <button type="button" className="btn btn-ghost" onClick={() => navigate('/team')}>Hủy</button>
+          {error && <div className="alert alert-error">{error}</div>}
+          <div style={{ display: 'flex', gap: '10px' }}>
+            <button type="submit" className="btn-accent" disabled={saving}>{saving ? 'Đang lưu...' : 'Lưu'}</button>
+            <button type="button" onClick={() => navigate('/team')} className="btn-ghost">Hủy</button>
           </div>
         </form>
       </div>

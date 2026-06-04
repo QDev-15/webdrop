@@ -1,87 +1,54 @@
 <?php
 declare(strict_types=1);
 
-class TestimonialController
-{
+class TestimonialController {
     public function __construct(private Database $db) {}
 
-    public function index(array $p): void
-    {
+    public function index(array $p): void {
         Auth::require();
-        $items = $this->db->query("SELECT * FROM testimonials ORDER BY sort_order, id");
-        Response::json($items);
+        Response::json($this->db->query("SELECT * FROM testimonials ORDER BY sort_order, id"));
     }
 
-    public function show(array $p): void
-    {
+    public function store(array $p): void {
         Auth::require();
-        $id = (int)$p['id'];
-        $item = $this->db->row("SELECT * FROM testimonials WHERE id=?", [$id]);
-        if (!$item) Response::notFound('Đánh giá không tồn tại.');
-        Response::json($item);
+        $b  = bodyJson();
+        $id = $this->db->execute(
+            "INSERT INTO testimonials (author_name, author_title, author_avatar, content, rating, sort_order, status) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            [
+                $b['author_name']   ?? '',
+                $b['author_title']  ?? '',
+                $b['author_avatar'] ?? '',
+                $b['content']       ?? '',
+                (int)($b['rating']      ?? 5),
+                (int)($b['sort_order']  ?? 0),
+                $b['status']        ?? 'published',
+            ]
+        );
+        Response::json(['id' => $id], 201);
     }
 
-    public function store(array $p): void
-    {
+    public function update(array $p): void {
         Auth::require();
         $b = bodyJson();
-
-        if (empty($b['author_name']) || empty($b['content'])) {
-            Response::error('Tên tác giả và nội dung không được để trống.');
-        }
-
-        $id = $this->db->execute(
-            "INSERT INTO testimonials (author_name, author_title, author_avatar, content, rating, sort_order, status)
-             VALUES (?,?,?,?,?,?,?)",
-            [
-                $b['author_name'],
-                $b['author_title']  ?? '',
-                $b['author_avatar'] ?? '',
-                $b['content'],
-                (int)($b['rating']     ?? 5),
-                (int)($b['sort_order'] ?? 0),
-                $b['status']        ?? 'published',
-            ]
-        );
-
-        Response::json(['id' => (int)$id], 201);
-    }
-
-    public function update(array $p): void
-    {
-        Auth::require();
-        $id = (int)$p['id'];
-        $b  = bodyJson();
-
-        if (empty($b['author_name']) || empty($b['content'])) {
-            Response::error('Tên tác giả và nội dung không được để trống.');
-        }
-
         $this->db->execute(
-            "UPDATE testimonials SET
-                author_name=?, author_title=?, author_avatar=?,
-                content=?, rating=?, sort_order=?, status=?
-             WHERE id=?",
+            "UPDATE testimonials SET author_name=?, author_title=?, author_avatar=?, content=?, rating=?, sort_order=?, status=? WHERE id=?",
             [
-                $b['author_name'],
+                $b['author_name']   ?? '',
                 $b['author_title']  ?? '',
                 $b['author_avatar'] ?? '',
-                $b['content'],
-                (int)($b['rating']     ?? 5),
-                (int)($b['sort_order'] ?? 0),
+                $b['content']       ?? '',
+                (int)($b['rating']      ?? 5),
+                (int)($b['sort_order']  ?? 0),
                 $b['status']        ?? 'published',
-                $id,
+                $p['id'],
             ]
         );
-
         Response::json(['ok' => true]);
     }
 
-    public function destroy(array $p): void
-    {
+    public function destroy(array $p): void {
         Auth::require();
-        $id = (int)$p['id'];
-        $this->db->execute("DELETE FROM testimonials WHERE id=?", [$id]);
+        $this->db->execute("DELETE FROM testimonials WHERE id=?", [$p['id']]);
         Response::json(['ok' => true]);
     }
 }

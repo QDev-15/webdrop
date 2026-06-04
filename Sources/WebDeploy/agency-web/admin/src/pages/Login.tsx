@@ -1,14 +1,14 @@
-import { FormEvent, useState } from 'react'
+import { useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 
 export default function Login() {
   const { login } = useAuth()
-  const navigate  = useNavigate()
-  const [email, setEmail]       = useState('')
+  const navigate = useNavigate()
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError]       = useState('')
-  const [loading, setLoading]   = useState(false)
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -25,21 +25,21 @@ export default function Login() {
   }
 
   return (
-    <div className="login-wrap">
+    <div className="login-page">
       <div className="login-card">
-        <div className="login-logo">Agency<span>WEB</span></div>
-        <div className="login-title">Đăng nhập</div>
-        <div className="login-sub">Quản trị nội dung website</div>
-        {error && <div className="login-err">{error}</div>}
+        <div className="login-logo">Agency<span>Web</span></div>
+        <div className="login-subtitle">Đăng nhập vào trang quản trị</div>
+
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label className="form-label">Email</label>
             <input
               className="form-control"
               type="email"
-              placeholder="admin@company.vn"
+              placeholder="admin@example.com"
               value={email}
               onChange={e => setEmail(e.target.value)}
+              autoFocus
               required
             />
           </div>
@@ -54,18 +54,15 @@ export default function Login() {
               required
             />
           </div>
-          <button
-            type="submit"
-            className="btn btn-primary"
-            style={{ width: '100%', justifyContent: 'center', marginTop: '8px', padding: '11px' }}
-            disabled={loading}
-          >
-            {loading ? 'Đang đăng nhập...' : 'Đăng nhập →'}
+          {error && <div className="alert alert-error">{error}</div>}
+          <button type="submit" className="btn-accent" style={{ width: '100%', justifyContent: 'center', padding: '11px' }} disabled={loading}>
+            {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
           </button>
         </form>
-        <p style={{ textAlign: 'center', fontSize: '11.5px', color: 'var(--text-3)', marginTop: '20px' }}>
-          Mặc định: admin@company.vn / Admin@2026
-        </p>
+
+        <div style={{ marginTop: '20px', padding: '12px', background: 'var(--warm)', borderRadius: '8px', fontSize: '12px', color: 'var(--text-3)' }}>
+          <strong style={{ color: 'var(--text-2)' }}>Mặc định:</strong> sysadmin@admin.com / 123456
+        </div>
       </div>
     </div>
   )

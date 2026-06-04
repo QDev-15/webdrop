@@ -1,96 +1,66 @@
 <?php
 declare(strict_types=1);
 
-class ServiceController
-{
+class ServiceController {
     public function __construct(private Database $db) {}
 
-    public function index(array $p): void
-    {
+    public function index(array $p): void {
         Auth::require();
-        $services = $this->db->query("SELECT * FROM services ORDER BY sort_order, id");
-        Response::json($services);
+        Response::json($this->db->query("SELECT * FROM services ORDER BY sort_order, id"));
     }
 
-    public function show(array $p): void
-    {
+    public function show(array $p): void {
         Auth::require();
-        $id = (int)$p['id'];
-        $service = $this->db->row("SELECT * FROM services WHERE id=?", [$id]);
-        if (!$service) Response::notFound('Dịch vụ không tồn tại.');
-        Response::json($service);
+        $item = $this->db->queryOne("SELECT * FROM services WHERE id=?", [$p['id']]);
+        if (!$item) { Response::error('Không tìm thấy.', 404); return; }
+        Response::json($item);
     }
 
-    public function store(array $p): void
-    {
+    public function store(array $p): void {
+        Auth::require();
+        $b  = bodyJson();
+        $id = $this->db->execute(
+            "INSERT INTO services (name, slug, description, content, icon, image, price, featured, sort_order, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            [
+                $b['name']        ?? '',
+                slugify($b['name'] ?? ''),
+                $b['description'] ?? '',
+                $b['content']     ?? '',
+                $b['icon']        ?? '',
+                $b['image']       ?? '',
+                $b['price']       ?? '',
+                (int)($b['featured']   ?? 0),
+                (int)($b['sort_order'] ?? 0),
+                $b['status']      ?? 'published',
+            ]
+        );
+        Response::json(['id' => $id], 201);
+    }
+
+    public function update(array $p): void {
         Auth::require();
         $b = bodyJson();
-
-        if (empty($b['name'])) {
-            Response::error('Tên dịch vụ không được để trống.');
-        }
-
-        $slug = $b['slug'] ?? slugify($b['name']);
-
-        $id = $this->db->execute(
-            "INSERT INTO services (name, slug, description, content, icon, image, price_text, features, featured, sort_order, status)
-             VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-            [
-                $b['name'],
-                $slug,
-                $b['description'] ?? '',
-                $b['content']     ?? '',
-                $b['icon']        ?? '',
-                $b['image']       ?? '',
-                $b['price_text']  ?? '',
-                $b['features']    ?? '[]',
-                (int)($b['featured']   ?? 0),
-                (int)($b['sort_order'] ?? 0),
-                $b['status']      ?? 'published',
-            ]
-        );
-
-        Response::json(['id' => (int)$id], 201);
-    }
-
-    public function update(array $p): void
-    {
-        Auth::require();
-        $id = (int)$p['id'];
-        $b  = bodyJson();
-
-        if (empty($b['name'])) {
-            Response::error('Tên dịch vụ không được để trống.');
-        }
-
         $this->db->execute(
-            "UPDATE services SET
-                name=?, description=?, content=?, icon=?, image=?, price_text=?,
-                features=?, featured=?, sort_order=?, status=?
-             WHERE id=?",
+            "UPDATE services SET name=?, description=?, content=?, icon=?, image=?, price=?, featured=?, sort_order=?, status=? WHERE id=?",
             [
-                $b['name'],
+                $b['name']        ?? '',
                 $b['description'] ?? '',
                 $b['content']     ?? '',
                 $b['icon']        ?? '',
                 $b['image']       ?? '',
-                $b['price_text']  ?? '',
-                $b['features']    ?? '[]',
+                $b['price']       ?? '',
                 (int)($b['featured']   ?? 0),
                 (int)($b['sort_order'] ?? 0),
                 $b['status']      ?? 'published',
-                $id,
+                $p['id'],
             ]
         );
-
         Response::json(['ok' => true]);
     }
 
-    public function destroy(array $p): void
-    {
+    public function destroy(array $p): void {
         Auth::require();
-        $id = (int)$p['id'];
-        $this->db->execute("DELETE FROM services WHERE id=?", [$id]);
+        $this->db->execute("DELETE FROM services WHERE id=?", [$p['id']]);
         Response::json(['ok' => true]);
     }
 }

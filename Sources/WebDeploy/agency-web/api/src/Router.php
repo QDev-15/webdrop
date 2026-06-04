@@ -1,12 +1,10 @@
 <?php
 declare(strict_types=1);
 
-class Router
-{
+class Router {
     private array $routes = [];
 
-    public function add(string $method, string $path, callable $handler): void
-    {
+    public function add(string $method, string $path, callable $handler): void {
         $this->routes[] = [
             'method'  => strtoupper($method),
             'path'    => $path,
@@ -14,40 +12,31 @@ class Router
         ];
     }
 
-    public function dispatch(string $method, string $uri): void
-    {
-        $uri = strtok($uri, '?');
-        $uri = '/' . trim($uri, '/');
+    public function dispatch(string $method, string $path): void {
+        $method = strtoupper($method);
+        $path   = '/' . ltrim(parse_url($path, PHP_URL_PATH) ?? $path, '/');
 
         foreach ($this->routes as $route) {
             if ($route['method'] !== $method) continue;
-
-            $params = $this->match($route['path'], $uri);
+            $params = $this->match($route['path'], $path);
             if ($params !== null) {
+                header('Content-Type: application/json; charset=utf-8');
                 ($route['handler'])($params);
                 return;
             }
         }
 
-        Response::notFound('Route not found: ' . $method . ' ' . $uri);
+        header('Content-Type: application/json; charset=utf-8');
+        http_response_code(404);
+        echo json_encode(['error' => 'Not found'], JSON_UNESCAPED_UNICODE);
     }
 
-    private function match(string $routePath, string $uri): ?array
-    {
-        $routePath = '/' . trim($routePath, '/');
-        $pattern   = preg_replace('/\/:([^\/]+)/', '/(?P<$1>[^/]+)', $routePath);
-        $pattern   = '#^' . $pattern . '$#';
-
-        if (preg_match($pattern, $uri, $matches)) {
-            $params = [];
-            foreach ($matches as $key => $val) {
-                if (is_string($key)) {
-                    $params[$key] = $val;
-                }
-            }
-            return $params;
+    private function match(string $routePath, string $requestPath): ?array {
+        $pattern = preg_replace('#/:([^/]+)#', '/(?P<$1>[^/]+)', $routePath);
+        $pattern = '#^' . $pattern . '$#';
+        if (preg_match($pattern, $requestPath, $matches)) {
+            return array_filter($matches, 'is_string', ARRAY_FILTER_USE_KEY);
         }
-
         return null;
     }
 }

@@ -1,20 +1,21 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 import { api } from '../api/client'
 
-interface User {
+export interface User {
   id: number
   name: string
+  email: string
   role: string
 }
 
-interface AuthContextType {
+interface AuthCtx {
   user: User | null
   loading: boolean
   login: (email: string, password: string) => Promise<void>
   logout: () => Promise<void>
 }
 
-const AuthContext = createContext<AuthContextType>({
+const AuthContext = createContext<AuthCtx>({
   user: null,
   loading: true,
   login: async () => {},
@@ -22,7 +23,7 @@ const AuthContext = createContext<AuthContextType>({
 })
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser]       = useState<User | null>(null)
+  const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -38,7 +39,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   const logout = async () => {
-    await api.post('/auth/logout')
+    await api.post('/auth/logout', {})
     setUser(null)
   }
 

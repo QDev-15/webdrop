@@ -1,53 +1,44 @@
 <?php
 /**
  * Agency Web — Cấu hình hệ thống
- * -------------------------------------------------------
- * Chỉnh sửa thông tin bên dưới theo hosting của bạn.
- * Không commit file này lên public repo.
+ * ⚠️  SAU KHI UPLOAD LÊN HOSTING, BẮT BUỘC SỬA:
+ *     1. APP_URL  → URL thực của website (ví dụ: https://tenweb.vn)
+ *     2. APP_KEY  → sẽ được tự động generate khi chạy build.mjs
  */
 
-// ── DATABASE ─────────────────────────────────────────────
-// Mặc định dùng SQLite — zero config, không cần cài gì thêm.
+// ─── DATABASE — Mặc định SQLite, không cần cài thêm gì ────────────────────
 define('DB_TYPE', 'sqlite');
 define('DB_FILE', __DIR__ . '/database/app.db');
 
-// Chỉ điền nếu bạn muốn dùng MySQL / PostgreSQL
+// Chỉ điền nếu dùng MySQL / PostgreSQL (đổi DB_TYPE thành 'mysql' hoặc 'pgsql'):
 define('DB_HOST', 'localhost');
 define('DB_PORT', '3306');
-define('DB_NAME', 'agency_web');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_NAME', 'ten_database');
+define('DB_USER', 'ten_user');
+define('DB_PASS', 'mat_khau');
 
-// ── APP ───────────────────────────────────────────────────
-// Đổi thành domain thực của bạn (không có dấu / cuối)
-define('APP_URL', 'https://example.com');
-define('APP_ENV', 'production'); // 'development' hoặc 'production'
+// ─── APP ─────────────────────────────────────────────────────────────────────
+// ⚠️  Sửa APP_URL thành URL thực của hosting (không có dấu / cuối)
+define('APP_URL', 'https://nhien.tkid.io.vn');
+define('APP_ENV', 'production');
+// ⚠️  APP_KEY sẽ được tự động tạo bởi build.mjs — không cần sửa thủ công
+define('APP_KEY', 'change-this-to-random-32-chars-string');
 
-// Thay bằng chuỗi ngẫu nhiên 32 ký tự (dùng password generator)
-define('APP_KEY', 'change-this-to-random-32-chars-secret');
+// ─── CORS ────────────────────────────────────────────────────────────────────
+// Danh sách origin được phép gọi API (để trống = chỉ cho phép APP_URL)
+define('CORS_ORIGINS', [
+    // 'https://www.tenweb.vn',
+    // 'https://tenweb.vn',
+]);
 
-// ── UPLOAD ────────────────────────────────────────────────
-// Mặc định lưu file lên hosting. Đổi sang 'r2' nếu dùng Cloudflare R2.
-define('UPLOAD_DRIVER', 'local'); // 'local' hoặc 'r2'
+// ─── UPLOAD ──────────────────────────────────────────────────────────────────
+define('UPLOAD_DRIVER', 'local');
 define('UPLOAD_DIR', __DIR__ . '/uploads/');
 define('UPLOAD_URL', APP_URL . '/api/uploads/');
+define('R2_ACCOUNT_ID', ''); define('R2_ACCESS_KEY', ''); define('R2_SECRET_KEY', '');
+define('R2_BUCKET', ''); define('R2_PUBLIC_URL', '');
 
-// Cloudflare R2 (chỉ điền khi UPLOAD_DRIVER = 'r2')
-define('R2_ACCOUNT_ID', '');
-define('R2_ACCESS_KEY', '');
-define('R2_SECRET_KEY', '');
-define('R2_BUCKET', '');
-define('R2_PUBLIC_URL', '');
-
-// ── SMTP ─────────────────────────────────────────────────
-// Cấu hình gửi email thông báo liên hệ
-define('SMTP_HOST', 'smtp.gmail.com');
-define('SMTP_PORT', 587);
-define('SMTP_USER', '');
-define('SMTP_PASS', '');
-define('SMTP_FROM_NAME', 'Agency Web');
-define('SMTP_FROM_EMAIL', '');
-
-// ── SESSION ──────────────────────────────────────────────
-define('SESSION_LIFETIME', 86400 * 7); // 7 ngày (giây)
-define('COOKIE_SECURE', false); // true khi dùng HTTPS
+// ─── SMTP ────────────────────────────────────────────────────────────────────
+define('SMTP_HOST', 'smtp.gmail.com'); define('SMTP_PORT', 587);
+define('SMTP_USER', ''); define('SMTP_PASS', '');
+define('SMTP_FROM_NAME', 'Agency Web'); define('SMTP_FROM_EMAIL', '');

@@ -13,44 +13,52 @@ import TeamList from './pages/team/TeamList'
 import TeamForm from './pages/team/TeamForm'
 import TestimonialList from './pages/testimonials/TestimonialList'
 import TestimonialForm from './pages/testimonials/TestimonialForm'
-import PostList from './pages/posts/PostList'
-import PostForm from './pages/posts/PostForm'
 import ContactList from './pages/contacts/ContactList'
 import ContactDetail from './pages/contacts/ContactDetail'
-import MediaPage from './pages/media/MediaPage'
 import SettingsPage from './pages/settings/SettingsPage'
+import MediaPage from './pages/media/MediaPage'
+import UserList from './pages/users/UserList'
+import UserForm from './pages/users/UserForm'
+import ProfilePage from './pages/profile/ProfilePage'
 
-function GuardedRoutes() {
+function ProtectedRoutes() {
   const { user, loading } = useAuth()
-  if (loading) return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', color: 'var(--text-3)' }}>Đang tải...</div>
+  if (loading) {
+    return (
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', background: 'var(--bg)' }}>
+        <div style={{ fontSize: '14px', color: 'var(--text-3)' }}>Đang tải...</div>
+      </div>
+    )
+  }
   if (!user) return <Navigate to="/login" replace />
   return (
     <AdminLayout>
       <Routes>
-        <Route path="/"                     element={<Dashboard />} />
-        <Route path="/slides"               element={<SlideList />} />
-        <Route path="/slides/new"           element={<SlideForm />} />
-        <Route path="/slides/:id/edit"      element={<SlideForm />} />
-        <Route path="/services"             element={<ServiceList />} />
-        <Route path="/services/new"         element={<ServiceForm />} />
-        <Route path="/services/:id/edit"    element={<ServiceForm />} />
-        <Route path="/projects"             element={<ProjectList />} />
-        <Route path="/projects/new"         element={<ProjectForm />} />
-        <Route path="/projects/:id/edit"    element={<ProjectForm />} />
-        <Route path="/team"                 element={<TeamList />} />
-        <Route path="/team/new"             element={<TeamForm />} />
-        <Route path="/team/:id/edit"        element={<TeamForm />} />
-        <Route path="/testimonials"         element={<TestimonialList />} />
-        <Route path="/testimonials/new"     element={<TestimonialForm />} />
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/slides" element={<SlideList />} />
+        <Route path="/slides/new" element={<SlideForm />} />
+        <Route path="/slides/:id/edit" element={<SlideForm />} />
+        <Route path="/services" element={<ServiceList />} />
+        <Route path="/services/new" element={<ServiceForm />} />
+        <Route path="/services/:id/edit" element={<ServiceForm />} />
+        <Route path="/projects" element={<ProjectList />} />
+        <Route path="/projects/new" element={<ProjectForm />} />
+        <Route path="/projects/:id/edit" element={<ProjectForm />} />
+        <Route path="/team" element={<TeamList />} />
+        <Route path="/team/new" element={<TeamForm />} />
+        <Route path="/team/:id/edit" element={<TeamForm />} />
+        <Route path="/testimonials" element={<TestimonialList />} />
+        <Route path="/testimonials/new" element={<TestimonialForm />} />
         <Route path="/testimonials/:id/edit" element={<TestimonialForm />} />
-        <Route path="/posts"                element={<PostList />} />
-        <Route path="/posts/new"            element={<PostForm />} />
-        <Route path="/posts/:id/edit"       element={<PostForm />} />
-        <Route path="/contacts"             element={<ContactList />} />
-        <Route path="/contacts/:id"         element={<ContactDetail />} />
-        <Route path="/media"                element={<MediaPage />} />
-        <Route path="/settings"             element={<SettingsPage />} />
-        <Route path="*"                     element={<Navigate to="/" replace />} />
+        <Route path="/contacts" element={<ContactList />} />
+        <Route path="/contacts/:id" element={<ContactDetail />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/media" element={<MediaPage />} />
+        <Route path="/users" element={<UserList />} />
+        <Route path="/users/new" element={<UserForm />} />
+        <Route path="/users/:id/edit" element={<UserForm />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AdminLayout>
   )
@@ -62,7 +70,7 @@ export default function App() {
       <BrowserRouter basename="/admin">
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/*"     element={<GuardedRoutes />} />
+          <Route path="/*" element={<ProtectedRoutes />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

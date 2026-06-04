@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Học lập trình từ đầu — lộ trình thực tế — [TÊN BLOG]</title>
+<meta name="description" content="Nhiều người nghĩ học code cần giỏi toán, cần học đại học IT. Thực tế không hẳn vậy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+.post-content h2 { font-size:clamp(18px,2.5vw,24px);font-weight:600;color:var(--text);letter-spacing:-.3px;margin:40px 0 14px; }
+.post-content h3 { font-size:clamp(16px,2vw,20px);font-weight:600;color:var(--text);letter-spacing:-.2px;margin:32px 0 12px; }
+.post-content p { font-size:16px;font-weight:300;color:var(--text-2);line-height:1.85;margin-bottom:20px; }
+.post-content ul,.post-content ol { font-size:15px;font-weight:300;color:var(--text-2);line-height:1.8;padding-left:22px;margin-bottom:20px; }
+.post-content li { margin-bottom:8px; }
+.post-content blockquote { border-left:3px solid var(--accent);padding:16px 20px;margin:28px 0;background:var(--accent-light);border-radius:0 8px 8px 0; }
+.post-content blockquote p { font-size:15px;color:var(--text-2);font-style:italic;margin:0; }
+.post-content code { font-size:13px;background:var(--warm2);padding:2px 7px;border-radius:4px;color:var(--accent);font-family:monospace; }
+.post-content pre { background:var(--dark2);padding:20px;border-radius:10px;overflow-x:auto;margin:24px 0; }
+.post-content pre code { color:#e2e8f0;background:none;padding:0;font-size:13px; }
+.post-content a { color:var(--accent);text-decoration:underline;text-decoration-color:var(--accent-light); }
+.post-content img { width:100%;border-radius:10px;margin:24px 0; }
+.post-content strong { font-weight:600;color:var(--text); }
+.author-box { background:var(--warm);border:1px solid var(--border);border-radius:14px;padding:24px 28px;margin-top:40px;display:flex;gap:18px;align-items:flex-start; }
+@media(max-width:576px){.author-box{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">[Blog]<span>.</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="danh-muc.html" class="active">Công nghệ</a>
+        <a href="danh-muc.html">Cuộc sống</a>
+        <a href="danh-muc.html">Tư duy</a>
+      </div>
+      <div class="nav-search">
+        <input type="search" placeholder="Tìm bài viết...">
+      </div>
+      <button class="nav-hamburger" id="navHamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="danh-muc.html">Công nghệ</a>
+  <a href="danh-muc.html">Cuộc sống</a>
+  <a href="danh-muc.html">Tư duy</a>
+</div>
+
+<main style="padding-top:80px;padding-bottom:80px">
+  <div class="wd-container">
+    <div class="row g-4">
+
+      <!-- ARTICLE COLUMN -->
+      <div class="col-lg-8">
+
+        <!-- Breadcrumb -->
+        <nav style="font-size:12px;color:var(--text-3);margin-bottom:20px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <a href="index.html" style="color:var(--text-3);text-decoration:none">Trang chủ</a>
+          <span>›</span>
+          <a href="danh-muc.html" style="color:var(--text-3);text-decoration:none">Công nghệ</a>
+          <span>›</span>
+          <span style="color:var(--text-2)">Học lập trình từ đầu</span>
+        </nav>
+
+        <!-- Post header -->
+        <div class="reveal">
+          <a href="danh-muc.html" class="cat-badge" style="margin-bottom:16px;display:inline-block">Công nghệ</a>
+          <h1 style="font-size:clamp(26px,4vw,40px);font-weight:600;color:var(--text);line-height:1.2;letter-spacing:-.6px;margin-bottom:20px">
+            Học lập trình từ đầu — lộ trình thực tế cho người không có background IT
+          </h1>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:28px;flex-wrap:wrap">
+            <div style="display:flex;align-items:center;gap:8px">
+              <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&q=80&auto=format&fit=crop&crop=face" style="width:36px;height:36px;border-radius:50%;object-fit:cover" alt="">
+              <span style="font-size:13px;font-weight:500;color:var(--text-2)">Nguyễn Văn A</span>
+            </div>
+            <span style="color:var(--border)">·</span>
+            <span style="font-size:13px;color:var(--text-3)">20 tháng 5, 2025</span>
+            <span style="color:var(--border)">·</span>
+            <span style="font-size:13px;color:var(--text-3)">6 phút đọc</span>
+            <span style="color:var(--border)">·</span>
+            <span style="font-size:13px;color:var(--text-3)">4.2k lượt xem</span>
+          </div>
+        </div>
+
+        <!-- Featured image -->
+        <div class="reveal" style="margin-bottom:32px">
+          <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&q=80&auto=format&fit=crop" style="width:100%;border-radius:14px;aspect-ratio:16/9;object-fit:cover" alt="Học lập trình">
+        </div>
+
+        <!-- Content -->
+        <div class="post-content reveal">
+          <p>Nhiều người nghĩ học code cần giỏi toán, cần học đại học IT. Thực tế không hẳn vậy. Sau 2 năm tự học và làm việc thực tế, tôi tổng hợp lộ trình hiệu quả nhất để bắt đầu từ con số 0 — không cần bằng cấp, không cần bộ não thiên tài.</p>
+
+          <blockquote>
+            <p>"Lập trình không khó hơn học ngoại ngữ. Bạn chỉ cần kiên nhẫn và biết cách luyện tập đúng cách."</p>
+          </blockquote>
+
+          <h2>Tại sao nhiều người bỏ cuộc sớm?</h2>
+          <p>Vấn đề không phải là bạn thiếu năng khiếu. Vấn đề là <strong>bạn học theo thứ tự sai</strong>. Hầu hết người mới bắt đầu từ C++ hay Java — những ngôn ngữ quá phức tạp cho người không có nền tảng. Họ gặp lỗi, không hiểu, rồi kết luận "mình không có năng khiếu IT".</p>
+          <p>Thực ra, có một con đường dễ hơn nhiều. Bắt đầu với Python — cú pháp đơn giản, cộng đồng lớn, ứng dụng rộng. Sau 3 tháng với Python, bạn sẽ có đủ tư duy lập trình để học bất kỳ ngôn ngữ nào.</p>
+
+          <h2>Lộ trình 12 tháng thực tế</h2>
+
+          <h3>Tháng 1–3: Nền tảng tư duy lập trình</h3>
+          <ul>
+            <li><strong>Python cơ bản</strong> — biến, vòng lặp, hàm, file. Mục tiêu: viết được script nhỏ</li>
+            <li><strong>HTML/CSS</strong> — hiểu cách web hoạt động, tự làm được trang cá nhân</li>
+            <li><strong>Git cơ bản</strong> — commit, push, pull. Dùng GitHub ngay từ đầu</li>
+          </ul>
+          <p>Resource tôi dùng: <code>freeCodeCamp.org</code>, <code>The Odin Project</code>. Cả hai đều miễn phí và có cộng đồng hỗ trợ.</p>
+
+          <h3>Tháng 4–6: Chọn một chuyên hướng</h3>
+          <p>Đây là thời điểm quan trọng nhất. Đừng cố học cả web lẫn mobile lẫn data science cùng lúc. Chọn một và đào sâu:</p>
+          <ul>
+            <li><strong>Frontend</strong> — nếu bạn thích thiết kế, thích thấy kết quả ngay trên màn hình</li>
+            <li><strong>Backend / API</strong> — nếu bạn thích logic, thích xử lý dữ liệu</li>
+            <li><strong>Data / Python</strong> — nếu bạn thích phân tích, thích số liệu</li>
+          </ul>
+
+          <h3>Tháng 7–9: Làm project thực tế</h3>
+          <p>Không có gì học nhanh bằng làm một project thật. Không cần hoành tráng — chỉ cần một app giải quyết vấn đề của chính bạn. Tôi đã làm một tool nhỏ để track thói quen hằng ngày. Xấu và đơn giản, nhưng nó đã dạy tôi nhiều hơn 3 tháng xem tutorial.</p>
+
+          <pre><code># Ví dụ: tracker thói quen đơn giản
+import json
+from datetime import date
+
+def log_habit(habit_name):
+    today = date.today().isoformat()
+    data = load_data()
+    if today not in data:
+        data[today] = []
+    data[today].append(habit_name)
+    save_data(data)
+    print(f"✓ Đã ghi: {habit_name} — {today}")</code></pre>
+
+          <h3>Tháng 10–12: Chuẩn bị đi làm</h3>
+          <p>Khi bạn có ít nhất 2–3 project trên GitHub, đây là lúc chuẩn bị CV và apply. Đừng chờ "giỏi hơn" mới apply — không bao giờ có thời điểm đó. Apply với những gì bạn đang có, và học thêm trong quá trình phỏng vấn.</p>
+
+          <blockquote>
+            <p>"Đừng cố hoàn hảo trước khi bắt đầu. Bắt đầu đi rồi hoàn hảo dần trên đường."</p>
+          </blockquote>
+
+          <h2>Những sai lầm tôi đã mắc</h2>
+          <ol>
+            <li><strong>Tutorial hell</strong> — xem quá nhiều tutorial mà không tự code. Fix: cứ sau mỗi tutorial, tự làm lại một lần không xem.</li>
+            <li><strong>Học quá rộng</strong> — muốn học cả React, Vue, Angular cùng lúc. Fix: chọn một framework và đào sâu.</li>
+            <li><strong>Bỏ bê cộng đồng</strong> — tự học một mình quá lâu. Fix: tham gia Discord, tham gia meetup, tìm người học cùng.</li>
+          </ol>
+
+          <h2>Kết</h2>
+          <p>Lập trình là kỹ năng học được, không phải năng khiếu bẩm sinh. Với lộ trình đúng và sự kiên trì, 12 tháng là đủ để bạn có công việc đầu tiên trong ngành. Bắt đầu từ hôm nay, không phải "tuần sau khi rảnh hơn".</p>
+        </div>
+
+        <!-- Tags -->
+        <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--border)">
+          <div class="tag-cloud">
+            <a href="danh-muc.html" class="tag">lập trình</a>
+            <a href="danh-muc.html" class="tag">career</a>
+            <a href="danh-muc.html" class="tag">productivity</a>
+            <a href="danh-muc.html" class="tag">học tập</a>
+          </div>
+        </div>
+
+        <!-- Author box -->
+        <div class="author-box reveal">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=160&q=80&auto=format&fit=crop&crop=face" style="width:72px;height:72px;border-radius:50%;object-fit:cover;flex-shrink:0" alt="">
+          <div>
+            <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px">Nguyễn Văn A</div>
+            <div style="font-size:12px;color:var(--text-3);margin-bottom:10px">Developer & Writer</div>
+            <p style="font-size:13px;font-weight:300;color:var(--text-2);line-height:1.7;margin:0">Tôi viết về công nghệ, tư duy và cuộc sống. Mỗi tuần một bài, đúng giờ. Theo dõi tôi để nhận thêm nội dung hữu ích.</p>
+            <a href="ve-toi.html" style="display:inline-block;margin-top:12px;font-size:12.5px;color:var(--accent);text-decoration:none;font-weight:500">Xem thêm về tác giả →</a>
+          </div>
+        </div>
+
+        <!-- Related posts -->
+        <div style="margin-top:48px">
+          <h3 style="font-size:13px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:20px">Bài viết liên quan</h3>
+          <div class="row g-3">
+            <div class="col-sm-6 col-lg-4 reveal">
+              <div class="post-card">
+                <div style="overflow:hidden">
+                  <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=80&auto=format&fit=crop" class="post-thumb" alt="">
+                </div>
+                <div class="post-body">
+                  <div class="post-meta">
+                    <a href="danh-muc.html" class="cat-badge">Công nghệ</a>
+                    <span class="post-date">5 tháng 5</span>
+                  </div>
+                  <a href="bai-viet.html" class="post-title" style="font-size:14px">AI và tương lai của công việc sáng tạo</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 reveal reveal-d1">
+              <div class="post-card">
+                <div style="overflow:hidden">
+                  <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80&auto=format&fit=crop" class="post-thumb" alt="">
+                </div>
+                <div class="post-body">
+                  <div class="post-meta">
+                    <a href="danh-muc.html" class="cat-badge">Tư duy</a>
+                    <span class="post-date">15 tháng 5</span>
+                  </div>
+                  <a href="bai-viet.html" class="post-title" style="font-size:14px">Deep work — cách tôi tập trung làm việc 4 tiếng</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 reveal reveal-d2">
+              <div class="post-card">
+                <div style="overflow:hidden">
+                  <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=600&q=80&auto=format&fit=crop" class="post-thumb" alt="">
+                </div>
+                <div class="post-body">
+                  <div class="post-meta">
+                    <a href="danh-muc.html" class="cat-badge">Cuộc sống</a>
+                    <span class="post-date">10 tháng 5</span>
+                  </div>
+                  <a href="bai-viet.html" class="post-title" style="font-size:14px">Sáng tác khi không có cảm hứng</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="col-lg-4">
+        <!-- About -->
+        <div class="sidebar-widget reveal">
+          <div class="sw-title">Về tác giả</div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&q=80&auto=format&fit=crop&crop=face" style="width:52px;height:52px;border-radius:50%;object-fit:cover" alt="">
+            <div>
+              <div style="font-size:14px;font-weight:600;color:var(--text)">Nguyễn Văn A</div>
+              <div style="font-size:12px;color:var(--text-3);margin-top:2px">Developer & Writer</div>
+            </div>
+          </div>
+          <p style="font-size:13px;font-weight:300;color:var(--text-2);line-height:1.7;margin:0 0 12px">Tôi viết về công nghệ, tư duy và cuộc sống. Mỗi tuần một bài, đúng giờ.</p>
+          <a href="ve-toi.html" class="btn-accent d-block text-center" style="font-size:13px;padding:9px">Xem trang cá nhân</a>
+        </div>
+
+        <!-- Categories -->
+        <div class="sidebar-widget reveal reveal-d1">
+          <div class="sw-title">Danh mục</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <a href="danh-muc.html" style="display:flex;justify-content:space-between;align-items:center;font-size:13.5px;color:var(--text-2);text-decoration:none;padding:6px 0;border-bottom:1px solid var(--border-light);transition:color .15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-2)'">
+              Công nghệ <span style="font-size:12px;color:var(--text-3)">24</span>
+            </a>
+            <a href="danh-muc.html" style="display:flex;justify-content:space-between;align-items:center;font-size:13.5px;color:var(--text-2);text-decoration:none;padding:6px 0;border-bottom:1px solid var(--border-light);transition:color .15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-2)'">
+              Tư duy <span style="font-size:12px;color:var(--text-3)">18</span>
+            </a>
+            <a href="danh-muc.html" style="display:flex;justify-content:space-between;align-items:center;font-size:13.5px;color:var(--text-2);text-decoration:none;padding:6px 0;border-bottom:1px solid var(--border-light);transition:color .15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-2)'">
+              Cuộc sống <span style="font-size:12px;color:var(--text-3)">15</span>
+            </a>
+            <a href="danh-muc.html" style="display:flex;justify-content:space-between;align-items:center;font-size:13.5px;color:var(--text-2);text-decoration:none;padding:6px 0;transition:color .15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-2)'">
+              Review sách <span style="font-size:12px;color:var(--text-3)">9</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Popular posts -->
+        <div class="sidebar-widget reveal reveal-d2">
+          <div class="sw-title">Bài đọc nhiều</div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <a href="bai-viet.html" style="display:flex;gap:12px;text-decoration:none">
+              <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=100&q=80&auto=format&fit=crop" style="width:60px;height:60px;border-radius:8px;object-fit:cover;flex-shrink:0" alt="">
+              <div>
+                <div style="font-size:13px;font-weight:500;color:var(--text);line-height:1.4;margin-bottom:4px;transition:color .15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Học lập trình từ đầu — lộ trình thực tế</div>
+                <div style="font-size:11.5px;color:var(--text-3)">4.2k lượt đọc</div>
+              </div>
+            </a>
+            <a href="bai-viet.html" style="display:flex;gap:12px;text-decoration:none">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=100&q=80&auto=format&fit=crop" style="width:60px;height:60px;border-radius:8px;object-fit:cover;flex-shrink:0" alt="">
+              <div>
+                <div style="font-size:13px;font-weight:500;color:var(--text);line-height:1.4;margin-bottom:4px;transition:color .15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">AI và tương lai của công việc sáng tạo</div>
+                <div style="font-size:11.5px;color:var(--text-3)">3.8k lượt đọc</div>
+              </div>
+            </a>
+            <a href="bai-viet.html" style="display:flex;gap:12px;text-decoration:none">
+              <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=100&q=80&auto=format&fit=crop" style="width:60px;height:60px;border-radius:8px;object-fit:cover;flex-shrink:0" alt="">
+              <div>
+                <div style="font-size:13px;font-weight:500;color:var(--text);line-height:1.4;margin-bottom:4px;transition:color .15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Review 1 năm sống tối giản</div>
+                <div style="font-size:11.5px;color:var(--text-3)">2.9k lượt đọc</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tags -->
+        <div class="sidebar-widget reveal">
+          <div class="sw-title">Tags</div>
+          <div class="tag-cloud">
+            <a href="danh-muc.html" class="tag">lập trình</a><a href="danh-muc.html" class="tag">productivity</a><a href="danh-muc.html" class="tag">AI</a>
+            <a href="danh-muc.html" class="tag">tư duy</a><a href="danh-muc.html" class="tag">review sách</a><a href="danh-muc.html" class="tag">startup</a>
+            <a href="danh-muc.html" class="tag">career</a><a href="danh-muc.html" class="tag">minimalism</a><a href="danh-muc.html" class="tag">writing</a>
+          </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="reveal" style="background:var(--accent);border-radius:12px;padding:22px 20px">
+          <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:6px">Nhận bài viết qua email</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.6);margin-bottom:14px;font-weight:300">Mỗi tuần một bài. Không spam.</div>
+          <input type="email" placeholder="Email của bạn" style="width:100%;font-family:var(--sans);font-size:13px;border:1px solid rgba(255,255,255,.2);border-radius:7px;padding:8px 12px;background:rgba(255,255,255,.1);color:#fff;outline:none;margin-bottom:8px;box-sizing:border-box">
+          <button style="width:100%;font-family:var(--sans);font-size:13px;font-weight:500;background:#fff;color:var(--accent);border:none;border-radius:7px;padding:9px;cursor:pointer;transition:all .15s">Đăng ký →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer style="padding:clamp(40px,6vw,64px) 0 0">
+  <div class="wd-container">
+    <div class="row g-4 pb-4" style="border-bottom:1px solid rgba(255,255,255,.06)">
+      <div class="col-lg-4">
+        <div class="ft-logo">[Blog]<span>.</span></div>
+        <p class="ft-desc">Blog chia sẻ về công nghệ, tư duy và cuộc sống. Viết để hiểu — không phải để nổi tiếng.</p>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="ft-col-title">Chủ đề</div>
+        <div class="ft-links">
+          <a href="danh-muc.html">Công nghệ</a>
+          <a href="danh-muc.html">Tư duy</a>
+          <a href="danh-muc.html">Cuộc sống</a>
+          <a href="danh-muc.html">Review sách</a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="ft-col-title">Trang</div>
+        <div class="ft-links">
+          <a href="ve-toi.html">Về tôi</a>
+          <a href="danh-muc.html">Tất cả bài viết</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="ft-col-title">Đăng ký nhận bài</div>
+        <div style="display:flex;gap:8px">
+          <input type="email" placeholder="Email của bạn" style="flex:1;font-family:var(--sans);font-size:13px;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:8px 12px;background:rgba(255,255,255,.05);color:#fff;outline:none">
+          <button style="font-family:var(--sans);font-size:13px;font-weight:500;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:8px 16px;cursor:pointer;white-space:nowrap">Đăng ký</button>
+        </div>
+        <div style="font-size:11.5px;color:rgba(255,255,255,.2);margin-top:8px">Mỗi tuần 1 bài. Unsubscribe bất cứ lúc nào.</div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom py-3">
+    <div class="wd-container">
+      <div class="ft-copy">© 2025 [TÊN BẠN]. Xây dựng với ♥ và nhiều cà phê.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+});
+mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  mobileNav.classList.remove('open');
+}));
+const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

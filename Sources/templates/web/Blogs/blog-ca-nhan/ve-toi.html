@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Về tôi — [TÊN BLOG]</title>
+<meta name="description" content="Tôi là [TÊN BẠN] — developer và writer. Tôi viết về công nghệ, tư duy và cuộc sống.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+.about-hero { padding:clamp(60px,8vw,100px) 0 clamp(48px,6vw,80px); }
+.topic-card { background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px 22px;height:100%;transition:transform .25s,box-shadow .25s; }
+.topic-card:hover { transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.07); }
+.topic-icon { font-size:28px;margin-bottom:14px;display:block; }
+.timeline-item { position:relative;padding-left:36px;padding-bottom:32px; }
+.timeline-item::before { content:'';position:absolute;left:10px;top:26px;bottom:0;width:1px;background:var(--border); }
+.timeline-item:last-child::before { display:none; }
+.timeline-dot { position:absolute;left:0;top:6px;width:22px;height:22px;border-radius:50%;background:var(--accent-light);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--accent);font-weight:700; }
+.social-link { display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text-2);font-size:14px;transition:all .2s; }
+.social-link:hover { border-color:var(--accent);color:var(--accent);transform:translateX(3px); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">[Blog]<span>.</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="danh-muc.html">Công nghệ</a>
+        <a href="danh-muc.html">Cuộc sống</a>
+        <a href="danh-muc.html">Tư duy</a>
+      </div>
+      <div class="nav-search">
+        <input type="search" placeholder="Tìm bài viết...">
+      </div>
+      <button class="nav-hamburger" id="navHamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="danh-muc.html">Công nghệ</a>
+  <a href="danh-muc.html">Cuộc sống</a>
+  <a href="danh-muc.html">Tư duy</a>
+</div>
+
+<main style="padding-top:60px">
+
+  <!-- ABOUT HERO -->
+  <section class="about-hero">
+    <div class="wd-container" style="max-width:900px">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-4 text-center text-lg-start">
+          <div class="reveal" style="display:inline-block;position:relative">
+            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&q=80&auto=format&fit=crop&crop=face"
+              style="width:220px;height:220px;border-radius:50%;object-fit:cover;border:4px solid var(--accent-light)" alt="Nguyễn Văn A">
+            <div style="position:absolute;bottom:12px;right:12px;width:28px;height:28px;border-radius:50%;background:var(--accent);border:3px solid var(--bg)"></div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="reveal">
+            <div style="display:inline-block;font-size:11px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:1.2px;background:var(--accent-light);padding:5px 12px;border-radius:5px;margin-bottom:14px">Developer & Writer</div>
+            <h1 style="font-size:clamp(28px,4vw,44px);font-weight:600;color:var(--text);letter-spacing:-.8px;line-height:1.1;margin-bottom:16px">
+              Xin chào, tôi là<br><em style="color:var(--accent);font-style:normal">Nguyễn Văn A</em>
+            </h1>
+            <p style="font-size:16px;font-weight:300;color:var(--text-2);line-height:1.8;margin-bottom:20px">
+              Tôi là developer ban ngày và writer ban đêm. Tôi viết về những gì tôi học được — từ lập trình, cách làm việc hiệu quả, đến những suy nghĩ về cuộc sống. Mỗi bài viết là một ghi chú tôi muốn chia sẻ với người khác.
+            </p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <a href="lien-he.html" class="btn-accent">Nhắn tin cho tôi</a>
+              <a href="danh-muc.html" style="display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--text-2);text-decoration:none;padding:11px 20px;border:1px solid var(--border);border-radius:9px;background:var(--surface);transition:all .2s" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+                Đọc bài viết →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <section style="padding:24px 0;background:var(--warm);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div class="wd-container" style="max-width:900px">
+      <div class="row g-3 text-center">
+        <div class="col-4 reveal">
+          <div style="font-size:clamp(22px,3vw,32px);font-weight:600;color:var(--text);letter-spacing:-.5px">66+</div>
+          <div style="font-size:12px;color:var(--text-3);margin-top:2px;font-weight:300">Bài viết</div>
+        </div>
+        <div class="col-4 reveal reveal-d1">
+          <div style="font-size:clamp(22px,3vw,32px);font-weight:600;color:var(--text);letter-spacing:-.5px">2.4k</div>
+          <div style="font-size:12px;color:var(--text-3);margin-top:2px;font-weight:300">Người đọc/tuần</div>
+        </div>
+        <div class="col-4 reveal reveal-d2">
+          <div style="font-size:clamp(22px,3vw,32px);font-weight:600;color:var(--text);letter-spacing:-.5px">3 năm</div>
+          <div style="font-size:12px;color:var(--text-3);margin-top:2px;font-weight:300">Viết đều đặn</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOPICS I WRITE ABOUT -->
+  <section style="padding:clamp(56px,8vw,96px) 0">
+    <div class="wd-container" style="max-width:900px">
+      <div class="text-center mb-5 reveal">
+        <div style="font-size:11px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:10px">Nội dung</div>
+        <h2 style="font-size:clamp(22px,3vw,32px);font-weight:600;letter-spacing:-.4px;margin-bottom:0">Tôi viết về những chủ đề này</h2>
+      </div>
+      <div class="row g-3">
+        <div class="col-md-4 reveal">
+          <div class="topic-card">
+            <span class="topic-icon">💻</span>
+            <h3 style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px">Công nghệ</h3>
+            <p style="font-size:13px;font-weight:300;color:var(--text-2);line-height:1.7;margin:0">Lập trình, công cụ, AI và cách tôi ứng dụng công nghệ vào công việc thực tế.</p>
+          </div>
+        </div>
+        <div class="col-md-4 reveal reveal-d1">
+          <div class="topic-card">
+            <span class="topic-icon">🧠</span>
+            <h3 style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px">Tư duy</h3>
+            <p style="font-size:13px;font-weight:300;color:var(--text-2);line-height:1.7;margin:0">Cách học, cách làm việc tập trung, mental models và những bài học từ sách.</p>
+          </div>
+        </div>
+        <div class="col-md-4 reveal reveal-d2">
+          <div class="topic-card">
+            <span class="topic-icon">🌱</span>
+            <h3 style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px">Cuộc sống</h3>
+            <p style="font-size:13px;font-weight:300;color:var(--text-2);line-height:1.7;margin:0">Tối giản, thói quen tốt, sức khỏe tâm lý và những ghi chép về cuộc sống hằng ngày.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY / TIMELINE -->
+  <section style="padding:clamp(48px,7vw,88px) 0;background:var(--warm)">
+    <div class="wd-container" style="max-width:720px">
+      <div class="text-center mb-5 reveal">
+        <div style="font-size:11px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:10px">Hành trình</div>
+        <h2 style="font-size:clamp(22px,3vw,32px);font-weight:600;letter-spacing:-.4px;margin-bottom:0">Từ không biết gì đến đây</h2>
+      </div>
+      <div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot">✓</div>
+          <div style="font-size:12px;color:var(--text-3);margin-bottom:4px;font-weight:500">2020</div>
+          <div style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px">Bắt đầu tự học lập trình</div>
+          <p style="font-size:14px;font-weight:300;color:var(--text-2);line-height:1.7;margin:0">Sau nhiều năm làm công việc khác, tôi quyết định chuyển ngành. Python là ngôn ngữ đầu tiên — viết script, làm project nhỏ, rồi từ từ hiểu ra cách tư duy của lập trình viên.</p>
+        </div>
+        <div class="timeline-item reveal reveal-d1">
+          <div class="timeline-dot">✓</div>
+          <div style="font-size:12px;color:var(--text-3);margin-bottom:4px;font-weight:500">2021</div>
+          <div style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px">Công việc đầu tiên trong ngành IT</div>
+          <p style="font-size:14px;font-weight:300;color:var(--text-2);line-height:1.7;margin:0">Sau 14 tháng tự học và làm project, tôi được nhận vào một startup nhỏ. Đây là giai đoạn học nhanh nhất trong đời — vừa code vừa học, thất bại rất nhiều nhưng cũng tiến bộ rất nhanh.</p>
+        </div>
+        <div class="timeline-item reveal reveal-d2">
+          <div class="timeline-dot">✓</div>
+          <div style="font-size:12px;color:var(--text-3);margin-bottom:4px;font-weight:500">2022</div>
+          <div style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px">Bắt đầu viết blog</div>
+          <p style="font-size:14px;font-weight:300;color:var(--text-2);line-height:1.7;margin:0">Tôi bắt đầu ghi lại những gì mình học — không phải để nổi tiếng, mà để hiểu rõ hơn. Viết để dạy là cách học nhanh nhất tôi từng thử.</p>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot" style="background:var(--accent);color:#fff;border-color:var(--accent)">→</div>
+          <div style="font-size:12px;color:var(--text-3);margin-bottom:4px;font-weight:500">Hiện tại</div>
+          <div style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px">Vẫn đang học, vẫn đang viết</div>
+          <p style="font-size:14px;font-weight:300;color:var(--text-2);line-height:1.7;margin:0">Mỗi tuần một bài. Tôi tin rằng dù ở level nào, vẫn có điều gì đó đáng viết — một câu hỏi mới, một góc nhìn mới, một cách làm tốt hơn.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONNECT -->
+  <section style="padding:clamp(48px,7vw,88px) 0">
+    <div class="wd-container" style="max-width:720px">
+      <div class="text-center mb-5 reveal">
+        <div style="font-size:11px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:10px">Kết nối</div>
+        <h2 style="font-size:clamp(22px,3vw,32px);font-weight:600;letter-spacing:-.4px;margin-bottom:8px">Tìm thấy tôi ở đây</h2>
+        <p style="font-size:14px;font-weight:300;color:var(--text-2)">Tôi hoạt động chủ yếu trên 3 nền tảng này</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="#" class="social-link reveal">
+          <span style="font-size:22px">📧</span>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--text)">Email</div>
+            <div style="font-size:12px;color:var(--text-3)">hello@[tenban].com</div>
+          </div>
+          <span style="margin-left:auto;font-size:12px;color:var(--text-3)">→</span>
+        </a>
+        <a href="#" class="social-link reveal reveal-d1">
+          <span style="font-size:22px">🐦</span>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--text)">Twitter / X</div>
+            <div style="font-size:12px;color:var(--text-3)">@[tenban]</div>
+          </div>
+          <span style="margin-left:auto;font-size:12px;color:var(--text-3)">→</span>
+        </a>
+        <a href="#" class="social-link reveal reveal-d2">
+          <span style="font-size:22px">💼</span>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--text)">LinkedIn</div>
+            <div style="font-size:12px;color:var(--text-3)">linkedin.com/in/[tenban]</div>
+          </div>
+          <span style="margin-left:auto;font-size:12px;color:var(--text-3)">→</span>
+        </a>
+        <a href="#" class="social-link reveal">
+          <span style="font-size:22px">💻</span>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--text)">GitHub</div>
+            <div style="font-size:12px;color:var(--text-3)">github.com/[tenban]</div>
+          </div>
+          <span style="margin-left:auto;font-size:12px;color:var(--text-3)">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER CTA -->
+  <section style="padding:clamp(48px,7vw,80px) 0;background:var(--dark2)">
+    <div class="wd-container" style="max-width:600px;text-align:center">
+      <div class="reveal">
+        <div style="font-size:11px;font-weight:600;color:#4ade80;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:12px">Newsletter</div>
+        <h2 style="font-size:clamp(22px,3.5vw,34px);font-weight:600;color:#fff;letter-spacing:-.5px;margin-bottom:12px">
+          Mỗi tuần một bài.<br>Đúng giờ, không spam.
+        </h2>
+        <p style="font-size:14px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:28px">Đăng ký để nhận bài viết mới nhất qua email. Tôi viết về lập trình, tư duy và cách làm việc hiệu quả hơn.</p>
+        <div style="display:flex;gap:10px;max-width:420px;margin:0 auto">
+          <input type="email" placeholder="Nhập email của bạn..." style="flex:1;font-family:var(--sans);font-size:14px;border:1px solid rgba(255,255,255,.15);border-radius:9px;padding:11px 16px;background:rgba(255,255,255,.07);color:#fff;outline:none">
+          <button style="font-family:var(--sans);font-size:14px;font-weight:500;background:var(--accent);color:#fff;border:none;border-radius:9px;padding:11px 20px;cursor:pointer;white-space:nowrap;transition:background .2s" onmouseover="this.style.background='var(--accent-h)'" onmouseout="this.style.background='var(--accent)'">Đăng ký</button>
+        </div>
+        <div style="font-size:11.5px;color:rgba(255,255,255,.2);margin-top:12px">Unsubscribe bất cứ lúc nào. Không chia sẻ email.</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer style="padding:clamp(40px,6vw,64px) 0 0">
+  <div class="wd-container">
+    <div class="row g-4 pb-4" style="border-bottom:1px solid rgba(255,255,255,.06)">
+      <div class="col-lg-4">
+        <div class="ft-logo">[Blog]<span>.</span></div>
+        <p class="ft-desc">Blog chia sẻ về công nghệ, tư duy và cuộc sống. Viết để hiểu — không phải để nổi tiếng.</p>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="ft-col-title">Chủ đề</div>
+        <div class="ft-links">
+          <a href="danh-muc.html">Công nghệ</a>
+          <a href="danh-muc.html">Tư duy</a>
+          <a href="danh-muc.html">Cuộc sống</a>
+          <a href="danh-muc.html">Review sách</a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="ft-col-title">Trang</div>
+        <div class="ft-links">
+          <a href="ve-toi.html">Về tôi</a>
+          <a href="danh-muc.html">Tất cả bài viết</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="ft-col-title">Đăng ký nhận bài</div>
+        <div style="display:flex;gap:8px">
+          <input type="email" placeholder="Email của bạn" style="flex:1;font-family:var(--sans);font-size:13px;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:8px 12px;background:rgba(255,255,255,.05);color:#fff;outline:none">
+          <button style="font-family:var(--sans);font-size:13px;font-weight:500;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:8px 16px;cursor:pointer;white-space:nowrap">Đăng ký</button>
+        </div>
+        <div style="font-size:11.5px;color:rgba(255,255,255,.2);margin-top:8px">Mỗi tuần 1 bài. Unsubscribe bất cứ lúc nào.</div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom py-3">
+    <div class="wd-container">
+      <div class="ft-copy">© 2025 [TÊN BẠN]. Xây dựng với ♥ và nhiều cà phê.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+});
+mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  mobileNav.classList.remove('open');
+}));
+const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

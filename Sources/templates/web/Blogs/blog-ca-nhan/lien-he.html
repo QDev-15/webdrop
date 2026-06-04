@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liên hệ — [TÊN BLOG]</title>
+<meta name="description" content="Liên hệ với tôi — gửi câu hỏi, góp ý, hoặc chỉ đơn giản là chào hỏi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+.form-field { width:100%;font-family:var(--sans);font-size:14px;border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;background:var(--surface);color:var(--text);outline:none;transition:border-color .2s; }
+.form-field:focus { border-color:var(--accent); }
+.form-label { display:block;font-size:13px;font-weight:500;color:var(--text-2);margin-bottom:6px; }
+.info-card { display:flex;align-items:flex-start;gap:14px;padding:20px 22px;background:var(--surface);border:1px solid var(--border);border-radius:12px;transition:border-color .2s; }
+.info-card:hover { border-color:var(--accent-mid); }
+.info-icon { width:40px;height:40px;border-radius:10px;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0; }
+.success-box { background:var(--accent-light);border:1px solid var(--accent);border-radius:12px;padding:32px;text-align:center; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">[Blog]<span>.</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="danh-muc.html">Công nghệ</a>
+        <a href="danh-muc.html">Cuộc sống</a>
+        <a href="danh-muc.html">Tư duy</a>
+      </div>
+      <div class="nav-search">
+        <input type="search" placeholder="Tìm bài viết...">
+      </div>
+      <button class="nav-hamburger" id="navHamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="danh-muc.html">Công nghệ</a>
+  <a href="danh-muc.html">Cuộc sống</a>
+  <a href="danh-muc.html">Tư duy</a>
+</div>
+
+<main style="padding-top:80px;padding-bottom:80px">
+  <div class="wd-container" style="max-width:860px">
+
+    <!-- Page header -->
+    <div class="row g-4 mb-5">
+      <div class="col-lg-5 reveal">
+        <nav style="font-size:12px;color:var(--text-3);margin-bottom:12px">
+          <a href="index.html" style="color:var(--text-3);text-decoration:none">Trang chủ</a>
+          <span> › </span>
+          <span>Liên hệ</span>
+        </nav>
+        <h1 style="font-size:clamp(26px,4vw,38px);font-weight:600;color:var(--text);letter-spacing:-.6px;line-height:1.2;margin-bottom:14px">
+          Nhắn tin<br>cho tôi
+        </h1>
+        <p style="font-size:15px;font-weight:300;color:var(--text-2);line-height:1.8;margin-bottom:32px">
+          Bạn có câu hỏi về bài viết? Muốn cộng tác? Hay đơn giản chỉ muốn chào hỏi? Tôi sẽ cố gắng phản hồi trong 48 giờ.
+        </p>
+
+        <!-- Contact info cards -->
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="info-card">
+            <div class="info-icon">✉️</div>
+            <div>
+              <div style="font-size:12px;color:var(--text-3);margin-bottom:3px">Email</div>
+              <a href="mailto:hello@[tenban].com" style="font-size:14px;font-weight:500;color:var(--accent);text-decoration:none">hello@[tenban].com</a>
+              <div style="font-size:12px;color:var(--text-3);margin-top:2px">Phản hồi trong 24–48 giờ</div>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">📱</div>
+            <div>
+              <div style="font-size:12px;color:var(--text-3);margin-bottom:3px">Zalo / Facebook</div>
+              <div style="font-size:14px;font-weight:500;color:var(--text)">[SĐT hoặc link]</div>
+              <div style="font-size:12px;color:var(--text-3);margin-top:2px">Tin nhắn trực tiếp</div>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">🕐</div>
+            <div>
+              <div style="font-size:12px;color:var(--text-3);margin-bottom:3px">Giờ phản hồi</div>
+              <div style="font-size:14px;font-weight:500;color:var(--text)">Thứ 2 – Thứ 6</div>
+              <div style="font-size:12px;color:var(--text-3);margin-top:2px">9:00 – 18:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div class="col-lg-7 reveal reveal-d1">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:clamp(24px,4vw,36px)">
+
+          <!-- Success state (hidden by default) -->
+          <div id="successBox" class="success-box" style="display:none">
+            <div style="font-size:40px;margin-bottom:12px">✅</div>
+            <h3 style="font-size:18px;font-weight:600;color:var(--accent);margin-bottom:8px">Gửi thành công!</h3>
+            <p style="font-size:14px;font-weight:300;color:var(--text-2);margin-bottom:20px">Cảm ơn bạn đã liên hệ. Tôi sẽ phản hồi sớm nhất có thể.</p>
+            <button onclick="document.getElementById('successBox').style.display='none';document.getElementById('contactForm').style.display='grid'" style="font-family:var(--sans);font-size:13px;font-weight:500;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:10px 20px;cursor:pointer">Gửi tin nhắn khác</button>
+          </div>
+
+          <!-- Form -->
+          <form id="contactForm" style="display:grid;gap:18px" onsubmit="handleSubmit(event)">
+            <div style="display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+              <div>
+                <label class="form-label">Họ tên <span style="color:var(--danger)">*</span></label>
+                <input type="text" name="name" class="form-field" placeholder="Nguyễn Văn A" required>
+              </div>
+              <div>
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-field" placeholder="email@example.com">
+              </div>
+            </div>
+            <div>
+              <label class="form-label">Chủ đề</label>
+              <input type="text" name="subject" class="form-field" placeholder="Câu hỏi về bài viết / Hợp tác / ...">
+            </div>
+            <div>
+              <label class="form-label">Nội dung <span style="color:var(--danger)">*</span></label>
+              <textarea name="message" class="form-field" rows="5" placeholder="Nội dung tin nhắn của bạn..." required style="resize:vertical;min-height:120px"></textarea>
+            </div>
+
+            <!-- Error message -->
+            <div id="errorMsg" style="display:none;padding:10px 14px;border-radius:8px;background:#fff0f0;color:var(--danger);font-size:13px;border:1px solid #fdd"></div>
+
+            <button type="submit" id="submitBtn" class="btn-accent" style="align-self:flex-start">
+              Gửi tin nhắn →
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ quick -->
+    <div class="reveal">
+      <h3 style="font-size:14px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:20px">Câu hỏi thường gặp</h3>
+      <div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+        <div style="background:var(--warm);border-radius:12px;padding:18px 20px">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px">Tôi có thể dùng lại bài viết không?</div>
+          <p style="font-size:13px;font-weight:300;color:var(--text-2);line-height:1.6;margin:0">Bạn có thể trích dẫn một phần với link nguồn. Vui lòng liên hệ nếu muốn republish toàn bài.</p>
+        </div>
+        <div style="background:var(--warm);border-radius:12px;padding:18px 20px">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px">Có nhận guest post không?</div>
+          <p style="font-size:13px;font-weight:300;color:var(--text-2);line-height:1.6;margin:0">Tôi chưa nhận guest post lúc này. Nếu có ý tưởng hay, bạn có thể gửi đề xuất để tôi cân nhắc.</p>
+        </div>
+        <div style="background:var(--warm);border-radius:12px;padding:18px 20px">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px">Có nhận tư vấn hay mentoring?</div>
+          <p style="font-size:13px;font-weight:300;color:var(--text-2);line-height:1.6;margin:0">Tôi thỉnh thoảng có các buổi 1:1 miễn phí. Gửi email với chủ đề "[MENTORING]" để được ưu tiên.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer style="padding:clamp(40px,6vw,64px) 0 0">
+  <div class="wd-container">
+    <div class="row g-4 pb-4" style="border-bottom:1px solid rgba(255,255,255,.06)">
+      <div class="col-lg-4">
+        <div class="ft-logo">[Blog]<span>.</span></div>
+        <p class="ft-desc">Blog chia sẻ về công nghệ, tư duy và cuộc sống. Viết để hiểu — không phải để nổi tiếng.</p>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="ft-col-title">Chủ đề</div>
+        <div class="ft-links">
+          <a href="danh-muc.html">Công nghệ</a>
+          <a href="danh-muc.html">Tư duy</a>
+          <a href="danh-muc.html">Cuộc sống</a>
+          <a href="danh-muc.html">Review sách</a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="ft-col-title">Trang</div>
+        <div class="ft-links">
+          <a href="ve-toi.html">Về tôi</a>
+          <a href="danh-muc.html">Tất cả bài viết</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="ft-col-title">Đăng ký nhận bài</div>
+        <div style="display:flex;gap:8px">
+          <input type="email" placeholder="Email của bạn" style="flex:1;font-family:var(--sans);font-size:13px;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:8px 12px;background:rgba(255,255,255,.05);color:#fff;outline:none">
+          <button style="font-family:var(--sans);font-size:13px;font-weight:500;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:8px 16px;cursor:pointer;white-space:nowrap">Đăng ký</button>
+        </div>
+        <div style="font-size:11.5px;color:rgba(255,255,255,.2);margin-top:8px">Mỗi tuần 1 bài. Unsubscribe bất cứ lúc nào.</div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom py-3">
+    <div class="wd-container">
+      <div class="ft-copy">© 2025 [TÊN BẠN]. Xây dựng với ♥ và nhiều cà phê.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+});
+mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  mobileNav.classList.remove('open');
+}));
+const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  const errDiv = document.getElementById('errorMsg');
+  btn.textContent = 'Đang gửi...';
+  btn.disabled = true;
+  errDiv.style.display = 'none';
+  setTimeout(() => {
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('successBox').style.display = 'block';
+  }, 800);
+}
+</script>
+</body>
+</html>
