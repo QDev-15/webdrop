@@ -31,44 +31,44 @@ export default function PricingGroupForm({ mode, initialData }: PricingGroupForm
   const router = useRouter()
   const gid = initialData?.id
 
-  const [slug,        setSlug]        = useState(initialData?.slug        ?? '')
-  const [eyebrow,     setEyebrow]     = useState(initialData?.eyebrow     ?? '')
-  const [title,       setTitle]       = useState(initialData?.title       ?? '')
-  const [titleEm,     setTitleEm]     = useState(initialData?.titleEm     ?? '')
-  const [subtitle,    setSubtitle]    = useState(initialData?.subtitle    ?? '')
-  const [footnote,    setFootnote]    = useState(initialData?.footnote    ?? '')
-  const [bg,          setBg]          = useState(initialData?.bg          ?? 'light')
-  const [type,        setType]        = useState(initialData?.type        ?? 'cards')
+  const [slug, setSlug] = useState(initialData?.slug ?? '')
+  const [eyebrow, setEyebrow] = useState(initialData?.eyebrow ?? '')
+  const [title, setTitle] = useState(initialData?.title ?? '')
+  const [titleEm, setTitleEm] = useState(initialData?.titleEm ?? '')
+  const [subtitle, setSubtitle] = useState(initialData?.subtitle ?? '')
+  const [footnote, setFootnote] = useState(initialData?.footnote ?? '')
+  const [bg, setBg] = useState(initialData?.bg ?? 'light')
+  const [type, setType] = useState(initialData?.type ?? 'cards')
   const [description, setDescription] = useState(initialData?.description ?? '')
-  const [tags,        setTags]        = useState<string[]>(initialData?.tags ?? [])
-  const [tagInput,    setTagInput]    = useState('')
-  const [ctaLabel,    setCtaLabel]    = useState(initialData?.ctaLabel    ?? '')
-  const [ctaHref,     setCtaHref]     = useState(initialData?.ctaHref     ?? '')
-  const [status,      setStatus]      = useState(initialData?.status      ?? 'published')
+  const [tags, setTags] = useState<string[]>(initialData?.tags ?? [])
+  const [tagInput, setTagInput] = useState('')
+  const [ctaLabel, setCtaLabel] = useState(initialData?.ctaLabel ?? '')
+  const [ctaHref, setCtaHref] = useState(initialData?.ctaHref ?? '')
+  const [status, setStatus] = useState(initialData?.status ?? 'published')
 
   // Plans state
-  const [plans,       setPlans]       = useState<Plan[]>(initialData?.plans ?? [])
-  const [addingPlan,  setAddingPlan]  = useState(false)
+  const [plans, setPlans] = useState<Plan[]>(initialData?.plans ?? [])
+  const [addingPlan, setAddingPlan] = useState(false)
   const [editingPlan, setEditingPlan] = useState<number | null>(null)
 
   // New plan form
-  const [newName,     setNewName]     = useState('')
-  const [newPrice,    setNewPrice]    = useState('')
+  const [newName, setNewName] = useState('')
+  const [newPrice, setNewPrice] = useState('')
   const [newFeatures, setNewFeatures] = useState('')
-  const [newHot,      setNewHot]      = useState(false)
+  const [newHot, setNewHot] = useState(false)
   const [newCtaLabel, setNewCtaLabel] = useState('')
-  const [newCtaHref,  setNewCtaHref]  = useState('')
+  const [newCtaHref, setNewCtaHref] = useState('')
 
   // Edit plan form
-  const [editName,     setEditName]     = useState('')
-  const [editPrice,    setEditPrice]    = useState('')
+  const [editName, setEditName] = useState('')
+  const [editPrice, setEditPrice] = useState('')
   const [editFeatures, setEditFeatures] = useState('')
-  const [editHot,      setEditHot]      = useState(false)
+  const [editHot, setEditHot] = useState(false)
   const [editCtaLabel, setEditCtaLabel] = useState('')
-  const [editCtaHref,  setEditCtaHref]  = useState('')
+  const [editCtaHref, setEditCtaHref] = useState('')
 
   const [saving, setSaving] = useState(false)
-  const [error,  setError]  = useState('')
+  const [error, setError] = useState('')
   const slugEdited = useRef(mode === 'edit')
 
   function autoSlug(v: string) {
@@ -143,7 +143,7 @@ export default function PricingGroupForm({ mode, initialData }: PricingGroupForm
     const newPlans = [...plans]
     const swapIdx = idx + dir
     if (swapIdx < 0 || swapIdx >= newPlans.length) return
-    ;[newPlans[idx], newPlans[swapIdx]] = [newPlans[swapIdx], newPlans[idx]]
+      ;[newPlans[idx], newPlans[swapIdx]] = [newPlans[swapIdx], newPlans[idx]]
     const reordered = newPlans.map((p, i) => ({ ...p, sortOrder: i }))
     setPlans(reordered)
     await fetch(`/api/admin/pricing/groups/${gid}/plans/reorder`, {
@@ -309,7 +309,7 @@ export default function PricingGroupForm({ mode, initialData }: PricingGroupForm
                   <label style={labelCls}>Tags (badge nhỏ trong banner)</label>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7, marginBottom: 8 }}>
                     {tags.map(t => (
-                      <span key={t} style={{ display: 'flex', alignItems: 'center', gap: 5, padding: '4px 10px', background: 'rgba(255,255,255,.08)', border: '1px solid rgba(255,255,255,.15)', borderRadius: 20, fontSize: 11.5, color: 'rgba(255,255,255,.7)', background: 'var(--warm)', color: 'var(--text)' }}>
+                      <span key={t} style={{ display: 'flex', alignItems: 'center', gap: 5, padding: '4px 10px', border: '1px solid rgba(255,255,255,.15)', borderRadius: 20, fontSize: 11.5, background: 'var(--warm)', color: 'var(--text)' }}>
                         {t}
                         <button onClick={() => setTags(prev => prev.filter(x => x !== t))} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-3)', fontSize: 12, padding: 0 }}>×</button>
                       </span>
