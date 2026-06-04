@@ -12,9 +12,9 @@ function toSlide(row: DBSlide): Slide {
     type:    row.type as Slide['type'],
     bg:      row.bg,
     badge:   row.badge,
-    title:   row.title   as TitlePart[],
-    buttons: row.buttons as SlideButton[],
-    ...row.data as object,
+    title:   row.title   as unknown as TitlePart[],
+    buttons: row.buttons as unknown as SlideButton[],
+    ...row.data as unknown as object,
   } as Slide
 }
 

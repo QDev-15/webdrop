@@ -17,7 +17,7 @@ async function getContactInfo() {
       workingHours: map['working_hours'] || '8:00–18:00 · T2–T7',
     }
   } catch {
-    return { address: '', phone: '', email: '', zalo: '' }
+    return { address: '', phone: '', email: '', zalo: '', workingHours: '8:00–18:00 · T2–T7' }
   }
 }
 

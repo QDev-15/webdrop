@@ -101,8 +101,8 @@ export default async function PricingPage() {
         orderBy: { sortOrder: 'asc' },
       }),
     ])
-    if (dbGroups.length > 0) groups = dbGroups as typeof FALLBACK_GROUPS
-    if (dbFaqs.length > 0) faqs = dbFaqs as typeof FALLBACK_FAQS
+    if (dbGroups.length > 0) groups = dbGroups as unknown as typeof FALLBACK_GROUPS
+    if (dbFaqs.length > 0) faqs = dbFaqs as unknown as typeof FALLBACK_FAQS
   } catch {
     // DB unavailable — use fallback
   }

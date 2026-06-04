@@ -54,7 +54,7 @@ export default function SlideForm({ slide }: { slide?: HeroSlide }) {
   const router = useRouter()
   const isEdit = !!slide
 
-  const [type,    setType]    = useState(slide?.type    ?? 'intro')
+  const [type,    setType]    = useState<string>(slide?.type    ?? 'intro')
   const [bg,      setBg]      = useState(slide?.bg      ?? '')
   const [badge,   setBadge]   = useState(slide?.badge   ?? '')
   const [status,  setStatus]  = useState(slide?.status  ?? 'published')

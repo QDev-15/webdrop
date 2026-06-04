@@ -509,7 +509,7 @@ async function main() {
   const existing = await prisma.heroSlide.count()
   if (existing === 0) {
     for (let i = 0; i < slides.length; i++) {
-      const s = slides[i] as Record<string, unknown>
+      const s = slides[i] as unknown as Record<string, unknown>
       const { type, bg, badge, buttons, title, ...data } = s
       await prisma.heroSlide.create({
         data: {
