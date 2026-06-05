@@ -22,7 +22,7 @@ define('DB_PASS', 'mat_khau');
 define('APP_URL', 'https://nhienadmin.tkid.io.vn');
 define('APP_ENV', 'production');
 // ⚠️  Sửa APP_KEY thành chuỗi ngẫu nhiên 32 ký tự
-define('APP_KEY', '3e4438a1e4cd19adda1fbe3a67091045dde6a767b2462e21dd396c5c803ae3db');
+define('APP_KEY', '38c56f0009bf2eec7de938455604af559c5e83abd359736d5bdd84a9632faaa3');
 
 // ─── CORS ────────────────────────────────────────────────────────────────────
 // Danh sách origin được phép gọi API (để trống = chỉ cho phép APP_URL)

@@ -32,7 +32,7 @@ export default function SearchPage() {
   const [loading, setLoading] = useState(false)
   const [searched, setSearched] = useState(false)
 
-  const authorName = settings.author_name ?? 'Nguyen Van A'
+  const authorName = settings.author_name ?? 'Nguyễn Văn A'
   const authorAvatar = settings.author_avatar ?? 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&q=80&auto=format&fit=crop&crop=face'
 
   useEffect(() => {
@@ -47,7 +47,9 @@ export default function SearchPage() {
   }, [q])
 
   useEffect(() => {
-    document.title = q ? `Tim kiem: ${q} — ${settings.site_name ?? 'Blog'}` : `Tim kiem — ${settings.site_name ?? 'Blog'}`
+    document.title = q
+      ? `Tìm kiếm: ${q} — ${settings.site_name ?? 'Blog'}`
+      : `Tìm kiếm — ${settings.site_name ?? 'Blog'}`
   }, [q, settings.site_name])
 
   function handleSearch(e: FormEvent) {
@@ -60,14 +62,14 @@ export default function SearchPage() {
       <div className="wd-container">
         <div style={{ maxWidth: '600px', margin: '0 auto 40px' }}>
           <h1 style={{ fontSize: 'clamp(22px,3vw,32px)', fontWeight: '600', marginBottom: '20px', letterSpacing: '-.4px' }}>
-            Tim kiem bai viet
+            Tìm kiếm bài viết
           </h1>
           <form onSubmit={handleSearch} style={{ display: 'flex', gap: '8px' }}>
             <input
               type="search"
               value={input}
               onChange={e => setInput(e.target.value)}
-              placeholder="Nhap tu khoa tim kiem..."
+              placeholder="Nhập từ khóa tìm kiếm..."
               style={{
                 flex: 1,
                 fontFamily: 'var(--sans)',
@@ -83,7 +85,7 @@ export default function SearchPage() {
               onFocus={e => (e.target.style.borderColor = 'var(--accent)')}
               onBlur={e => (e.target.style.borderColor = 'var(--border)')}
             />
-            <button type="submit" className="btn-accent">Tim kiem</button>
+            <button type="submit" className="btn-accent">Tìm kiếm</button>
           </form>
         </div>
 
@@ -96,12 +98,12 @@ export default function SearchPage() {
         {!loading && searched && (
           <>
             <p style={{ fontSize: '13px', color: 'var(--text-3)', marginBottom: '24px' }}>
-              Tim thay <strong style={{ color: 'var(--text)' }}>{total}</strong> ket qua cho &ldquo;{q}&rdquo;
+              Tìm thấy <strong style={{ color: 'var(--text)' }}>{total}</strong> kết quả cho &ldquo;{q}&rdquo;
             </p>
             {posts.length === 0 ? (
               <div style={{ textAlign: 'center', padding: '40px 0', color: 'var(--text-3)' }}>
-                <p>Khong tim thay ket qua nao.</p>
-                <Link to="/" className="btn-accent" style={{ marginTop: '16px', display: 'inline-block' }}>Ve trang chu</Link>
+                <p>Không tìm thấy kết quả nào.</p>
+                <Link to="/" className="btn-accent" style={{ marginTop: '16px', display: 'inline-block' }}>Về trang chủ</Link>
               </div>
             ) : (
               <div style={{ display: 'grid', gap: '16px', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
@@ -118,7 +120,7 @@ export default function SearchPage() {
                           <Link to={`/danh-muc/${post.category_slug}`} className="cat-badge">{post.category_name}</Link>
                         )}
                         <span className="post-date">{new Date(post.created_at).toLocaleDateString('vi-VN')}</span>
-                        {post.read_time && <span className="post-read">{post.read_time} phut</span>}
+                        {post.read_time && <span className="post-read">{post.read_time} phút</span>}
                       </div>
                       <Link to={`/bai-viet/${post.slug}`} className="post-title">{post.title}</Link>
                       {post.excerpt && <p className="post-excerpt">{post.excerpt}</p>}
@@ -127,7 +129,7 @@ export default function SearchPage() {
                           <img src={authorAvatar} className="post-av" alt={post.author_name ?? authorName} />
                           <span className="post-author-name">{post.author_name ?? authorName}</span>
                         </div>
-                        <Link to={`/bai-viet/${post.slug}`} className="post-more">Doc tiep →</Link>
+                        <Link to={`/bai-viet/${post.slug}`} className="post-more">Đọc tiếp →</Link>
                       </div>
                     </div>
                   </div>

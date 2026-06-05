@@ -15,7 +15,7 @@ export default function Login() {
     try {
       await login(email, password)
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Dang nhap that bai.')
+      setError(err instanceof Error ? err.message : 'Đăng nhập thất bại.')
     } finally {
       setLoading(false)
     }
@@ -25,7 +25,7 @@ export default function Login() {
     <div className="login-page">
       <div className="login-card">
         <div className="login-logo">Blog<span>.</span></div>
-        <div className="login-sub">Trang quan tri noi dung</div>
+        <div className="login-sub">Trang quản trị nội dung</div>
 
         {error && <div className="alert alert-error">{error}</div>}
 
@@ -43,7 +43,7 @@ export default function Login() {
             />
           </div>
           <div className="form-group" style={{ marginBottom: 0 }}>
-            <label className="form-label">Mat khau</label>
+            <label className="form-label">Mật khẩu</label>
             <input
               type="password"
               className="form-control"
@@ -59,17 +59,17 @@ export default function Login() {
             disabled={loading}
             style={{ marginTop: '4px', justifyContent: 'center', padding: '10px' }}
           >
-            {loading ? 'Dang dang nhap...' : 'Dang nhap'}
+            {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
           </button>
         </form>
 
         <div style={{ marginTop: '20px', padding: '14px', background: 'var(--bg)', borderRadius: '8px', border: '1px solid var(--border)' }}>
           <div style={{ fontSize: '11px', color: 'var(--text-3)', marginBottom: '6px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '.5px' }}>
-            Tai khoan mac dinh
+            Tài khoản mặc định
           </div>
           <div style={{ fontSize: '12px', color: 'var(--text-2)' }}>
             Email: <strong>sysadmin@admin.com</strong><br />
-            Mat khau: <strong>123456</strong>
+            Mật khẩu: <strong>123456</strong>
           </div>
         </div>
       </div>

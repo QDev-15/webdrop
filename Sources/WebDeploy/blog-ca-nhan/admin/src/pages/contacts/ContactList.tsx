@@ -27,7 +27,7 @@ export default function ContactList() {
   }
 
   async function handleDelete(id: number) {
-    if (!confirm('Xoa tin nhan nay?')) return
+    if (!confirm('Xóa tin nhắn này?')) return
     await api.delete(`/contacts/${id}`)
     load()
   }
@@ -39,19 +39,19 @@ export default function ContactList() {
     <div>
       <div className="page-header">
         <div>
-          <div className="page-title">Lien he</div>
-          <div className="page-sub">{messages.length} tin nhan · {newsletters.length} dang ky newsletter</div>
+          <div className="page-title">Liên hệ</div>
+          <div className="page-sub">{messages.length} tin nhắn · {newsletters.length} đăng ký newsletter</div>
         </div>
       </div>
 
       <div className="table-wrap">
         <div className="table-header">
-          <div className="table-title">Tin nhan lien he</div>
+          <div className="table-title">Tin nhắn liên hệ</div>
           <select className="form-control" style={{ width: 'auto' }} value={filterStatus} onChange={e => setFilterStatus(e.target.value)}>
-            <option value="">Tat ca</option>
-            <option value="new">Moi</option>
-            <option value="read">Da doc</option>
-            <option value="replied">Da tra loi</option>
+            <option value="">Tất cả</option>
+            <option value="new">Mới</option>
+            <option value="read">Đã đọc</option>
+            <option value="replied">Đã trả lời</option>
           </select>
         </div>
 
@@ -62,17 +62,17 @@ export default function ContactList() {
         ) : messages.length === 0 ? (
           <div className="empty-state">
             <div className="empty-state-icon">✉</div>
-            <p>Chua co tin nhan nao</p>
+            <p>Chưa có tin nhắn nào</p>
           </div>
         ) : (
           <table>
             <thead>
               <tr>
-                <th>Ho ten</th>
-                <th>Email / SDT</th>
-                <th>Chu de</th>
-                <th>Trang thai</th>
-                <th>Thoi gian</th>
+                <th>Họ tên</th>
+                <th>Email / SĐT</th>
+                <th>Chủ đề</th>
+                <th>Trạng thái</th>
+                <th>Thời gian</th>
                 <th style={{ width: '100px' }}></th>
               </tr>
             </thead>
@@ -85,14 +85,18 @@ export default function ContactList() {
                     {c.phone && <div>{c.phone}</div>}
                   </td>
                   <td style={{ maxWidth: '180px' }}>
-                    <div className="text-truncate">{c.subject ?? '(Khong co chu de)'}</div>
+                    <div className="text-truncate">{c.subject ?? '(Không có chủ đề)'}</div>
                   </td>
-                  <td><span className={`badge badge-${c.status}`}>{c.status === 'new' ? 'Moi' : c.status === 'read' ? 'Da doc' : 'Da tra loi'}</span></td>
+                  <td>
+                    <span className={`badge badge-${c.status}`}>
+                      {c.status === 'new' ? 'Mới' : c.status === 'read' ? 'Đã đọc' : 'Đã trả lời'}
+                    </span>
+                  </td>
                   <td style={{ fontSize: '12px', color: 'var(--text-3)' }}>{new Date(c.created_at).toLocaleDateString('vi-VN')}</td>
                   <td>
                     <div style={{ display: 'flex', gap: '6px' }}>
                       <Link to={`/contacts/${c.id}`} className="btn btn-ghost btn-sm">Xem</Link>
-                      <button onClick={() => handleDelete(c.id)} className="btn btn-sm" style={{ background: '#fff0f0', color: 'var(--danger)', border: '1px solid #fdd' }}>Xoa</button>
+                      <button onClick={() => handleDelete(c.id)} className="btn btn-sm" style={{ background: '#fff0f0', color: 'var(--danger)', border: '1px solid #fdd' }}>Xóa</button>
                     </div>
                   </td>
                 </tr>
@@ -102,17 +106,16 @@ export default function ContactList() {
         )}
       </div>
 
-      {/* Newsletter subscribers */}
       {newsletters.length > 0 && (
         <div className="table-wrap" style={{ marginTop: '20px' }}>
           <div className="table-header">
-            <div className="table-title">Dang ky Newsletter ({newsletters.length})</div>
+            <div className="table-title">Đăng ký Newsletter ({newsletters.length})</div>
           </div>
           <table>
             <thead>
               <tr>
                 <th>Email</th>
-                <th>Ngay dang ky</th>
+                <th>Ngày đăng ký</th>
                 <th style={{ width: '80px' }}></th>
               </tr>
             </thead>
@@ -122,7 +125,7 @@ export default function ContactList() {
                   <td>{n.email}</td>
                   <td style={{ fontSize: '12px', color: 'var(--text-3)' }}>{new Date(n.created_at).toLocaleDateString('vi-VN')}</td>
                   <td>
-                    <button onClick={() => handleDelete(n.id)} className="btn btn-sm" style={{ background: '#fff0f0', color: 'var(--danger)', border: '1px solid #fdd' }}>Xoa</button>
+                    <button onClick={() => handleDelete(n.id)} className="btn btn-sm" style={{ background: '#fff0f0', color: 'var(--danger)', border: '1px solid #fdd' }}>Xóa</button>
                   </td>
                 </tr>
               ))}

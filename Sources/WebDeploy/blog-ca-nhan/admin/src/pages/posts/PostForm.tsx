@@ -76,7 +76,7 @@ export default function PostForm() {
           })
           setSelectedTags(post.tags?.map(t => t.id) ?? [])
         })
-        .catch(() => setError('Khong the tai bai viet.'))
+        .catch(() => setError('Không thể tải bài viết.'))
         .finally(() => setLoading(false))
     }
   }, [id, isEdit])
@@ -127,14 +127,14 @@ export default function PostForm() {
       }
       if (isEdit && id) {
         await api.put(`/posts/${id}`, payload)
-        setSuccess('Da luu thanh cong!')
+        setSuccess('Đã lưu thành công!')
         setTimeout(() => setSuccess(''), 3000)
       } else {
         const res = await api.post<{ id: number }>('/posts', payload)
         navigate(`/posts/${res.id}/edit`)
       }
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Luu that bai.')
+      setError(err instanceof Error ? err.message : 'Lưu thất bại.')
     } finally {
       setSaving(false)
     }
@@ -144,7 +144,7 @@ export default function PostForm() {
     return (
       <div>
         <div className="page-header">
-          <div className="page-title">Dang tai...</div>
+          <div className="page-title">Đang tải...</div>
         </div>
         <div className="skeleton" style={{ height: '400px' }} />
       </div>
@@ -155,12 +155,12 @@ export default function PostForm() {
     <div>
       <div className="page-header">
         <div>
-          <div className="page-title">{isEdit ? 'Sua bai viet' : 'Tao bai viet moi'}</div>
+          <div className="page-title">{isEdit ? 'Sửa bài viết' : 'Tạo bài viết mới'}</div>
         </div>
         <div style={{ display: 'flex', gap: '8px' }}>
-          <button type="button" onClick={() => navigate('/posts')} className="btn btn-ghost">Huy</button>
+          <button type="button" onClick={() => navigate('/posts')} className="btn btn-ghost">Hủy</button>
           <button form="post-form" type="submit" className="btn btn-accent" disabled={saving}>
-            {saving ? 'Dang luu...' : (isEdit ? 'Luu thay doi' : 'Tao bai viet')}
+            {saving ? 'Đang lưu...' : (isEdit ? 'Lưu thay đổi' : 'Tạo bài viết')}
           </button>
         </div>
       </div>
@@ -170,12 +170,12 @@ export default function PostForm() {
 
       <form id="post-form" onSubmit={handleSubmit}>
         <div style={{ display: 'grid', gap: '20px', gridTemplateColumns: '1fr 300px', alignItems: 'start' }}>
-          {/* Main content */}
+          {/* Nội dung chính */}
           <div style={{ display: 'grid', gap: '16px' }}>
             <div className="form-card">
               <div className="form-group">
-                <label className="form-label">Tieu de <span className="req">*</span></label>
-                <input name="title" className="form-control" value={form.title} onChange={handleChange} required placeholder="Nhap tieu de bai viet" style={{ fontSize: '16px' }} />
+                <label className="form-label">Tiêu đề <span className="req">*</span></label>
+                <input name="title" className="form-control" value={form.title} onChange={handleChange} required placeholder="Nhập tiêu đề bài viết" style={{ fontSize: '16px' }} />
               </div>
               <div className="form-group">
                 <label className="form-label">Slug URL</label>
@@ -183,13 +183,13 @@ export default function PostForm() {
                 <div className="form-hint">URL: /bai-viet/{form.slug || 'slug-url'}</div>
               </div>
               <div className="form-group">
-                <label className="form-label">Tom tat</label>
-                <textarea name="excerpt" className="form-control" value={form.excerpt} onChange={handleChange} rows={3} placeholder="Mo ta ngan ve bai viet (hien thi o trang chu)" />
+                <label className="form-label">Tóm tắt</label>
+                <textarea name="excerpt" className="form-control" value={form.excerpt} onChange={handleChange} rows={3} placeholder="Mô tả ngắn về bài viết (hiển thị ở trang chủ)" />
               </div>
               <div className="form-group" style={{ marginBottom: 0 }}>
-                <label className="form-label">Noi dung bai viet <span className="req">*</span></label>
-                <textarea name="content" className="form-control" value={form.content} onChange={handleChange} rows={16} placeholder="Noi dung bai viet (ho tro HTML)" style={{ fontFamily: 'monospace', fontSize: '13px' }} />
-                <div className="form-hint">Ho tro HTML. Nhap the &lt;p&gt;, &lt;h2&gt;, &lt;ul&gt;, &lt;blockquote&gt; v.v.</div>
+                <label className="form-label">Nội dung bài viết <span className="req">*</span></label>
+                <textarea name="content" className="form-control" value={form.content} onChange={handleChange} rows={16} placeholder="Nội dung bài viết (hỗ trợ HTML)" style={{ fontFamily: 'monospace', fontSize: '13px' }} />
+                <div className="form-hint">Hỗ trợ HTML. Nhập thẻ &lt;p&gt;, &lt;h2&gt;, &lt;ul&gt;, &lt;blockquote&gt; v.v.</div>
               </div>
             </div>
 
@@ -198,25 +198,25 @@ export default function PostForm() {
               <div className="form-section-title">SEO</div>
               <div className="form-group">
                 <label className="form-label">Meta title</label>
-                <input name="meta_title" className="form-control" value={form.meta_title} onChange={handleChange} placeholder="Tieu de SEO (de trong = dung tieu de bai)" />
+                <input name="meta_title" className="form-control" value={form.meta_title} onChange={handleChange} placeholder="Tiêu đề SEO (để trống = dùng tiêu đề bài)" />
               </div>
               <div className="form-group" style={{ marginBottom: 0 }}>
                 <label className="form-label">Meta description</label>
-                <textarea name="meta_description" className="form-control" value={form.meta_description} onChange={handleChange} rows={2} placeholder="Mo ta SEO (de trong = dung tom tat)" />
+                <textarea name="meta_description" className="form-control" value={form.meta_description} onChange={handleChange} rows={2} placeholder="Mô tả SEO (để trống = dùng tóm tắt)" />
               </div>
             </div>
           </div>
 
           {/* Sidebar */}
           <div style={{ display: 'grid', gap: '16px' }}>
-            {/* Publish */}
+            {/* Xuất bản */}
             <div className="form-card">
-              <div className="form-section-title">Xuat ban</div>
+              <div className="form-section-title">Xuất bản</div>
               <div className="form-group">
-                <label className="form-label">Trang thai</label>
+                <label className="form-label">Trạng thái</label>
                 <select name="status" className="form-control" value={form.status} onChange={handleChange}>
-                  <option value="draft">Ban nhap</option>
-                  <option value="published">Xuat ban</option>
+                  <option value="draft">Bản nháp</option>
+                  <option value="published">Xuất bản</option>
                 </select>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
@@ -229,29 +229,29 @@ export default function PostForm() {
                   style={{ width: '16px', height: '16px', cursor: 'pointer' }}
                 />
                 <label htmlFor="featured" style={{ fontSize: '13px', color: 'var(--text-2)', cursor: 'pointer' }}>
-                  Danh dau la bai noi bat
+                  Đánh dấu là bài nổi bật
                 </label>
               </div>
               <div className="form-group" style={{ marginBottom: 0 }}>
-                <label className="form-label">Thoi gian doc (phut)</label>
+                <label className="form-label">Thời gian đọc (phút)</label>
                 <input name="read_time" type="number" min="1" max="60" className="form-control" value={form.read_time} onChange={handleChange} />
               </div>
             </div>
 
-            {/* Category */}
+            {/* Danh mục */}
             <div className="form-card">
-              <div className="form-section-title">Danh muc</div>
+              <div className="form-section-title">Danh mục</div>
               <select name="category_id" className="form-control" value={form.category_id} onChange={handleChange}>
-                <option value="">-- Chon danh muc --</option>
+                <option value="">-- Chọn danh mục --</option>
                 {categories.map(c => (
                   <option key={c.id} value={c.id}>{c.name}</option>
                 ))}
               </select>
             </div>
 
-            {/* Thumbnail */}
+            {/* Ảnh đại diện */}
             <div className="form-card">
-              <div className="form-section-title">Anh dai dien</div>
+              <div className="form-section-title">Ảnh đại diện</div>
               <input name="thumbnail" className="form-control" value={form.thumbnail} onChange={handleChange} placeholder="https://..." />
               {form.thumbnail && (
                 <img src={form.thumbnail} alt="Preview" style={{ width: '100%', borderRadius: '8px', marginTop: '10px', aspectRatio: '16/9', objectFit: 'cover' }} />

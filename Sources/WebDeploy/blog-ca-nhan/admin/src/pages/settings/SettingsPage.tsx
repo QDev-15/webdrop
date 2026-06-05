@@ -6,15 +6,15 @@ type SettingsMap = Record<string, Record<string, string>>
 type TabKey = 'general' | 'author' | 'seo' | 'social' | 'footer' | 'contact' | 'smtp' | 'newsletter' | 'system'
 
 const TABS: { key: TabKey; label: string }[] = [
-  { key: 'general', label: 'Thong tin chung' },
-  { key: 'author', label: 'Tac gia' },
+  { key: 'general', label: 'Thông tin chung' },
+  { key: 'author', label: 'Tác giả' },
   { key: 'seo', label: 'SEO' },
-  { key: 'social', label: 'Mang xa hoi' },
+  { key: 'social', label: 'Mạng xã hội' },
   { key: 'footer', label: 'Footer' },
-  { key: 'contact', label: 'Lien he' },
+  { key: 'contact', label: 'Liên hệ' },
   { key: 'smtp', label: 'SMTP' },
   { key: 'newsletter', label: 'Newsletter' },
-  { key: 'system', label: 'He thong' },
+  { key: 'system', label: 'Hệ thống' },
 ]
 
 export default function SettingsPage() {
@@ -26,9 +26,7 @@ export default function SettingsPage() {
 
   useEffect(() => {
     api.get<SettingsMap>('/settings')
-      .then(data => {
-        setForm(flattenSettings(data))
-      })
+      .then(data => setForm(flattenSettings(data)))
       .catch(() => null)
       .finally(() => setLoading(false))
   }, [])
@@ -52,10 +50,10 @@ export default function SettingsPage() {
     setSaving(true)
     try {
       await api.post('/settings/update', form)
-      setSuccess('Da luu cai dat thanh cong!')
+      setSuccess('Đã lưu cài đặt thành công!')
       setTimeout(() => setSuccess(''), 3000)
     } catch {
-      alert('Luu that bai')
+      alert('Lưu thất bại')
     } finally {
       setSaving(false)
     }
@@ -105,9 +103,9 @@ export default function SettingsPage() {
   return (
     <div>
       <div className="page-header">
-        <div className="page-title">Cai dat</div>
+        <div className="page-title">Cài đặt</div>
         <button form="settings-form" type="submit" className="btn btn-accent" disabled={saving}>
-          {saving ? 'Dang luu...' : 'Luu cai dat'}
+          {saving ? 'Đang lưu...' : 'Lưu cài đặt'}
         </button>
       </div>
 
@@ -143,29 +141,29 @@ export default function SettingsPage() {
         <div className="form-card">
           {activeTab === 'general' && (
             <>
-              <div className="form-section-title">Thong tin website</div>
+              <div className="form-section-title">Thông tin website</div>
               <div className="form-row">
-                {field('site_name', 'Ten website')}
+                {field('site_name', 'Tên website')}
                 {field('site_email', 'Email', 'email')}
               </div>
-              {field('site_description', 'Mo ta website', 'textarea')}
+              {field('site_description', 'Mô tả website', 'textarea')}
               <div className="form-row">
                 {field('site_logo', 'URL Logo')}
-                {field('site_phone', 'So dien thoai')}
+                {field('site_phone', 'Số điện thoại')}
               </div>
-              {field('site_address', 'Dia chi')}
+              {field('site_address', 'Địa chỉ')}
             </>
           )}
 
           {activeTab === 'author' && (
             <>
-              <div className="form-section-title">Thong tin tac gia</div>
+              <div className="form-section-title">Thông tin tác giả</div>
               <div className="form-row">
-                {field('author_name', 'Ten tac gia')}
-                {field('author_title', 'Chuc danh / Mo ta ngan')}
+                {field('author_name', 'Tên tác giả')}
+                {field('author_title', 'Chức danh / Mô tả ngắn')}
               </div>
-              {field('author_bio', 'Gioi thieu ban than', 'textarea')}
-              {field('author_avatar', 'URL anh dai dien', 'url', 'Link anh avatar hien thi o sidebar')}
+              {field('author_bio', 'Giới thiệu bản thân', 'textarea')}
+              {field('author_avatar', 'URL ảnh đại diện', 'url', 'Link ảnh avatar hiển thị ở sidebar và trang Về tôi')}
               {form.author_avatar && (
                 <div style={{ marginTop: '8px' }}>
                   <img src={form.author_avatar} alt="Avatar" style={{ width: '60px', height: '60px', borderRadius: '50%', objectFit: 'cover', border: '1px solid var(--border)' }} />
@@ -179,44 +177,44 @@ export default function SettingsPage() {
               <div className="form-section-title">SEO & Meta</div>
               {field('meta_title', 'Meta title')}
               {field('meta_description', 'Meta description', 'textarea')}
-              {field('meta_keywords', 'Meta keywords', 'text', 'Cac tu khoa cach nhau bang dau phay')}
+              {field('meta_keywords', 'Meta keywords', 'text', 'Các từ khóa cách nhau bằng dấu phẩy')}
               {field('og_image', 'OG Image URL', 'url')}
-              {field('google_analytics_id', 'Google Analytics ID', 'text', 'Vi du: G-XXXXXXXXXX')}
+              {field('google_analytics_id', 'Google Analytics ID', 'text', 'Ví dụ: G-XXXXXXXXXX')}
             </>
           )}
 
           {activeTab === 'social' && (
             <>
-              <div className="form-section-title">Mang xa hoi</div>
+              <div className="form-section-title">Mạng xã hội</div>
               {field('social_facebook', 'Facebook URL', 'url')}
               {field('social_youtube', 'YouTube URL', 'url')}
               {field('social_instagram', 'Instagram URL', 'url')}
               {field('social_tiktok', 'TikTok URL', 'url')}
-              {field('social_zalo', 'Zalo (so dien thoai)', 'text', 'So dien thoai Zalo (khong co +84)')}
+              {field('social_zalo', 'Zalo (số điện thoại)', 'text', 'Số điện thoại Zalo (không có +84)')}
             </>
           )}
 
           {activeTab === 'footer' && (
             <>
               <div className="form-section-title">Footer</div>
-              {field('footer_copyright', 'Ban quyen')}
-              {field('footer_description', 'Mo ta footer', 'textarea')}
-              {toggleField('footer_show_social', 'Hien thi icon mang xa hoi')}
+              {field('footer_copyright', 'Bản quyền')}
+              {field('footer_description', 'Mô tả footer', 'textarea')}
+              {toggleField('footer_show_social', 'Hiển thị icon mạng xã hội')}
             </>
           )}
 
           {activeTab === 'contact' && (
             <>
-              <div className="form-section-title">Lien he</div>
-              {toggleField('contact_form_enabled', 'Bat form lien he')}
-              {field('contact_email_receiver', 'Email nhan lien he', 'email')}
-              {field('google_map_embed', 'Google Map Embed code', 'textarea', 'Dan iframe Google Maps vao day')}
+              <div className="form-section-title">Liên hệ</div>
+              {toggleField('contact_form_enabled', 'Bật form liên hệ')}
+              {field('contact_email_receiver', 'Email nhận liên hệ', 'email')}
+              {field('google_map_embed', 'Google Map Embed code', 'textarea', 'Dán iframe Google Maps vào đây')}
             </>
           )}
 
           {activeTab === 'smtp' && (
             <>
-              <div className="form-section-title">Cai dat SMTP Email</div>
+              <div className="form-section-title">Cài đặt SMTP Email</div>
               <div className="form-row">
                 {field('smtp_host', 'SMTP Host', 'text', 'smtp.gmail.com')}
                 {field('smtp_port', 'SMTP Port', 'text', '587')}
@@ -226,8 +224,8 @@ export default function SettingsPage() {
                 {field('smtp_password', 'SMTP Password', 'password')}
               </div>
               <div className="form-row">
-                {field('smtp_from_name', 'Ten nguoi gui')}
-                {field('smtp_from_email', 'Email nguoi gui', 'email')}
+                {field('smtp_from_name', 'Tên người gửi')}
+                {field('smtp_from_email', 'Email người gửi', 'email')}
               </div>
             </>
           )}
@@ -235,16 +233,16 @@ export default function SettingsPage() {
           {activeTab === 'newsletter' && (
             <>
               <div className="form-section-title">Newsletter</div>
-              {toggleField('newsletter_enabled', 'Bat chuc nang dang ky newsletter')}
-              {field('newsletter_thank_you', 'Thong bao cam on sau khi dang ky', 'textarea')}
+              {toggleField('newsletter_enabled', 'Bật chức năng đăng ký newsletter')}
+              {field('newsletter_thank_you', 'Thông báo cảm ơn sau khi đăng ký', 'textarea')}
             </>
           )}
 
           {activeTab === 'system' && (
             <>
-              <div className="form-section-title">He thong</div>
-              {toggleField('maintenance_mode', 'Che do bao tri (website hien thong bao bao tri)')}
-              {field('maintenance_message', 'Thong bao bao tri', 'textarea')}
+              <div className="form-section-title">Hệ thống</div>
+              {toggleField('maintenance_mode', 'Chế độ bảo trì (website hiện thông báo bảo trì)')}
+              {field('maintenance_message', 'Thông báo bảo trì', 'textarea')}
             </>
           )}
         </div>

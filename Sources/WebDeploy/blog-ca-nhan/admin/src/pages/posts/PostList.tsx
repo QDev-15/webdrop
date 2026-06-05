@@ -51,12 +51,12 @@ export default function PostList() {
   }
 
   async function handleDelete(id: number, title: string) {
-    if (!confirm(`Xoa bai viet: "${title}"?`)) return
+    if (!confirm(`Xóa bài viết: "${title}"?`)) return
     try {
       await api.delete(`/posts/${id}`)
       load()
     } catch (err: unknown) {
-      alert(err instanceof Error ? err.message : 'Xoa that bai')
+      alert(err instanceof Error ? err.message : 'Xóa thất bại')
     }
   }
 
@@ -64,10 +64,10 @@ export default function PostList() {
     <div>
       <div className="page-header">
         <div>
-          <div className="page-title">Bai viet</div>
-          <div className="page-sub">{total} bai viet</div>
+          <div className="page-title">Bài viết</div>
+          <div className="page-sub">{total} bài viết</div>
         </div>
-        <Link to="/posts/new" className="btn btn-accent">+ Tao bai moi</Link>
+        <Link to="/posts/new" className="btn btn-accent">+ Tạo bài mới</Link>
       </div>
 
       <div className="table-wrap">
@@ -79,20 +79,20 @@ export default function PostList() {
               value={filterStatus}
               onChange={e => { setFilterStatus(e.target.value); setPage(1) }}
             >
-              <option value="">Tat ca trang thai</option>
-              <option value="published">Da xuat ban</option>
-              <option value="draft">Ban nhap</option>
+              <option value="">Tất cả trạng thái</option>
+              <option value="published">Đã xuất bản</option>
+              <option value="draft">Bản nháp</option>
             </select>
           </div>
           <form onSubmit={e => { e.preventDefault(); setPage(1); load() }} style={{ display: 'flex', gap: '8px' }}>
             <input
               type="search"
               className="search-input"
-              placeholder="Tim bai viet..."
+              placeholder="Tìm bài viết..."
               value={search}
               onChange={e => setSearch(e.target.value)}
             />
-            <button type="submit" className="btn btn-ghost btn-sm">Tim</button>
+            <button type="submit" className="btn btn-ghost btn-sm">Tìm</button>
           </form>
         </div>
 
@@ -103,18 +103,18 @@ export default function PostList() {
         ) : posts.length === 0 ? (
           <div className="empty-state">
             <div className="empty-state-icon">✍</div>
-            <p>Chua co bai viet nao</p>
+            <p>Chưa có bài viết nào</p>
           </div>
         ) : (
           <table>
             <thead>
               <tr>
-                <th style={{ width: '60px' }}>Anh</th>
-                <th>Tieu de</th>
-                <th>Danh muc</th>
-                <th>Luot xem</th>
-                <th>Trang thai</th>
-                <th>Ngay tao</th>
+                <th style={{ width: '60px' }}>Ảnh</th>
+                <th>Tiêu đề</th>
+                <th>Danh mục</th>
+                <th>Lượt xem</th>
+                <th>Trạng thái</th>
+                <th>Ngày tạo</th>
                 <th style={{ width: '100px' }}></th>
               </tr>
             </thead>
@@ -134,25 +134,25 @@ export default function PostList() {
                     <div className="text-truncate" style={{ fontWeight: '500', color: 'var(--text)' }}>
                       {p.featured ? '⭐ ' : ''}{p.title}
                     </div>
-                    <div style={{ fontSize: '11px', color: 'var(--text-3)', marginTop: '2px' }}>{p.read_time} phut doc</div>
+                    <div style={{ fontSize: '11px', color: 'var(--text-3)', marginTop: '2px' }}>{p.read_time} phút đọc</div>
                   </td>
                   <td>{p.category_name ?? '—'}</td>
                   <td>{(p.views ?? 0).toLocaleString()}</td>
                   <td>
                     <span className={`badge badge-${p.status}`}>
-                      {p.status === 'published' ? 'Da xuat ban' : 'Ban nhap'}
+                      {p.status === 'published' ? 'Đã xuất bản' : 'Bản nháp'}
                     </span>
                   </td>
                   <td>{new Date(p.created_at).toLocaleDateString('vi-VN')}</td>
                   <td>
                     <div style={{ display: 'flex', gap: '6px' }}>
-                      <Link to={`/posts/${p.id}/edit`} className="btn btn-ghost btn-sm">Sua</Link>
+                      <Link to={`/posts/${p.id}/edit`} className="btn btn-ghost btn-sm">Sửa</Link>
                       <button
                         onClick={() => handleDelete(p.id, p.title)}
                         className="btn btn-sm"
                         style={{ background: '#fff0f0', color: 'var(--danger)', border: '1px solid #fdd' }}
                       >
-                        Xoa
+                        Xóa
                       </button>
                     </div>
                   </td>

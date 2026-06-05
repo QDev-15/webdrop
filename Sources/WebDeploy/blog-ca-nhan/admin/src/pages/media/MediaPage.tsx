@@ -47,7 +47,7 @@ export default function MediaPage() {
       }
       load()
     } catch (err: unknown) {
-      alert(err instanceof Error ? err.message : 'Upload that bai')
+      alert(err instanceof Error ? err.message : 'Upload thất bại')
     } finally {
       setUploading(false)
       if (fileRef.current) fileRef.current.value = ''
@@ -55,7 +55,7 @@ export default function MediaPage() {
   }
 
   async function handleDelete(item: MediaItem) {
-    if (!confirm(`Xoa file "${item.filename}"?`)) return
+    if (!confirm(`Xóa file "${item.filename}"?`)) return
     await api.delete(`/media/${item.id}`)
     setSelected(null)
     load()
@@ -79,13 +79,13 @@ export default function MediaPage() {
     <div>
       <div className="page-header">
         <div>
-          <div className="page-title">Thu vien anh</div>
+          <div className="page-title">Thư viện ảnh</div>
           <div className="page-sub">{total} files</div>
         </div>
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-          {uploading && <span style={{ fontSize: '13px', color: 'var(--text-3)' }}>Dang upload...</span>}
+          {uploading && <span style={{ fontSize: '13px', color: 'var(--text-3)' }}>Đang upload...</span>}
           <label className="btn btn-accent" style={{ cursor: 'pointer' }}>
-            + Upload anh
+            + Upload ảnh
             <input
               ref={fileRef}
               type="file"
@@ -108,7 +108,7 @@ export default function MediaPage() {
           ) : items.length === 0 ? (
             <div className="empty-state">
               <div className="empty-state-icon">🖼</div>
-              <p>Chua co anh nao. Upload anh de bat dau.</p>
+              <p>Chưa có ảnh nào. Upload ảnh để bắt đầu.</p>
             </div>
           ) : (
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px,1fr))', gap: '10px' }}>
@@ -137,7 +137,7 @@ export default function MediaPage() {
           )}
         </div>
 
-        {/* Detail panel */}
+        {/* Panel chi tiết */}
         {selected && (
           <div style={{ width: '240px', flexShrink: 0 }}>
             <div className="form-card">
@@ -171,7 +171,7 @@ export default function MediaPage() {
                   className="btn btn-ghost btn-sm"
                   style={{ width: '100%', justifyContent: 'center' }}
                 >
-                  {copied ? 'Da sao chep!' : 'Sao chep URL'}
+                  {copied ? 'Đã sao chép!' : 'Sao chép URL'}
                 </button>
               </div>
               <button
@@ -179,7 +179,7 @@ export default function MediaPage() {
                 className="btn btn-sm"
                 style={{ width: '100%', justifyContent: 'center', background: '#fff0f0', color: 'var(--danger)', border: '1px solid #fdd' }}
               >
-                Xoa file
+                Xóa file
               </button>
             </div>
           </div>

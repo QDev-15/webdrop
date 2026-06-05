@@ -39,10 +39,10 @@ export default function ContactDetail() {
   if (!contact) return (
     <div>
       <div className="page-header">
-        <Link to="/contacts" className="btn btn-ghost">← Quay lai</Link>
+        <Link to="/contacts" className="btn btn-ghost">← Quay lại</Link>
       </div>
       <div className="empty-state">
-        <p>Khong tim thay tin nhan.</p>
+        <p>Không tìm thấy tin nhắn.</p>
       </div>
     </div>
   )
@@ -51,20 +51,20 @@ export default function ContactDetail() {
     <div>
       <div className="page-header">
         <div>
-          <div className="page-title">Chi tiet tin nhan</div>
+          <div className="page-title">Chi tiết tin nhắn</div>
         </div>
         <div style={{ display: 'flex', gap: '8px' }}>
           {status !== 'replied' && (
-            <button onClick={() => updateStatus('replied')} className="btn btn-accent btn-sm">Danh dau da tra loi</button>
+            <button onClick={() => updateStatus('replied')} className="btn btn-accent btn-sm">Đánh dấu đã trả lời</button>
           )}
-          <Link to="/contacts" className="btn btn-ghost">← Quay lai</Link>
+          <Link to="/contacts" className="btn btn-ghost">← Quay lại</Link>
         </div>
       </div>
 
       <div className="form-card">
         <div style={{ display: 'grid', gap: '16px', gridTemplateColumns: 'repeat(auto-fit, minmax(200px,1fr))', marginBottom: '20px' }}>
           <div>
-            <div style={{ fontSize: '11px', color: 'var(--text-3)', marginBottom: '4px', textTransform: 'uppercase', fontWeight: '600', letterSpacing: '.5px' }}>Ho ten</div>
+            <div style={{ fontSize: '11px', color: 'var(--text-3)', marginBottom: '4px', textTransform: 'uppercase', fontWeight: '600', letterSpacing: '.5px' }}>Họ tên</div>
             <div style={{ fontWeight: '500' }}>{contact.name}</div>
           </div>
           {contact.email && (
@@ -75,41 +75,43 @@ export default function ContactDetail() {
           )}
           {contact.phone && (
             <div>
-              <div style={{ fontSize: '11px', color: 'var(--text-3)', marginBottom: '4px', textTransform: 'uppercase', fontWeight: '600', letterSpacing: '.5px' }}>SDT</div>
+              <div style={{ fontSize: '11px', color: 'var(--text-3)', marginBottom: '4px', textTransform: 'uppercase', fontWeight: '600', letterSpacing: '.5px' }}>SĐT</div>
               <a href={`tel:${contact.phone}`} style={{ color: 'var(--accent)' }}>{contact.phone}</a>
             </div>
           )}
           <div>
-            <div style={{ fontSize: '11px', color: 'var(--text-3)', marginBottom: '4px', textTransform: 'uppercase', fontWeight: '600', letterSpacing: '.5px' }}>Trang thai</div>
+            <div style={{ fontSize: '11px', color: 'var(--text-3)', marginBottom: '4px', textTransform: 'uppercase', fontWeight: '600', letterSpacing: '.5px' }}>Trạng thái</div>
             <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-              <span className={`badge badge-${status}`}>{status === 'new' ? 'Moi' : status === 'read' ? 'Da doc' : 'Da tra loi'}</span>
+              <span className={`badge badge-${status}`}>
+                {status === 'new' ? 'Mới' : status === 'read' ? 'Đã đọc' : 'Đã trả lời'}
+              </span>
               <select
                 value={status}
                 onChange={e => updateStatus(e.target.value)}
                 className="form-control"
                 style={{ width: 'auto', fontSize: '12px', padding: '3px 8px' }}
               >
-                <option value="new">Moi</option>
-                <option value="read">Da doc</option>
-                <option value="replied">Da tra loi</option>
+                <option value="new">Mới</option>
+                <option value="read">Đã đọc</option>
+                <option value="replied">Đã trả lời</option>
               </select>
             </div>
           </div>
           <div>
-            <div style={{ fontSize: '11px', color: 'var(--text-3)', marginBottom: '4px', textTransform: 'uppercase', fontWeight: '600', letterSpacing: '.5px' }}>Thoi gian gui</div>
+            <div style={{ fontSize: '11px', color: 'var(--text-3)', marginBottom: '4px', textTransform: 'uppercase', fontWeight: '600', letterSpacing: '.5px' }}>Thời gian gửi</div>
             <div>{new Date(contact.created_at).toLocaleString('vi-VN')}</div>
           </div>
         </div>
 
         {contact.subject && (
           <div style={{ marginBottom: '16px' }}>
-            <div style={{ fontSize: '11px', color: 'var(--text-3)', marginBottom: '4px', textTransform: 'uppercase', fontWeight: '600', letterSpacing: '.5px' }}>Chu de</div>
+            <div style={{ fontSize: '11px', color: 'var(--text-3)', marginBottom: '4px', textTransform: 'uppercase', fontWeight: '600', letterSpacing: '.5px' }}>Chủ đề</div>
             <div style={{ fontWeight: '500' }}>{contact.subject}</div>
           </div>
         )}
 
         <div>
-          <div style={{ fontSize: '11px', color: 'var(--text-3)', marginBottom: '8px', textTransform: 'uppercase', fontWeight: '600', letterSpacing: '.5px' }}>Noi dung</div>
+          <div style={{ fontSize: '11px', color: 'var(--text-3)', marginBottom: '8px', textTransform: 'uppercase', fontWeight: '600', letterSpacing: '.5px' }}>Nội dung</div>
           <div style={{
             background: 'var(--bg)',
             border: '1px solid var(--border)',
@@ -127,10 +129,10 @@ export default function ContactDetail() {
         {contact.email && (
           <div style={{ marginTop: '16px' }}>
             <a
-              href={`mailto:${contact.email}?subject=Re: ${contact.subject ?? 'Lien he'}`}
+              href={`mailto:${contact.email}?subject=Re: ${contact.subject ?? 'Liên hệ'}`}
               className="btn btn-accent"
             >
-              Tra loi qua Email
+              Trả lời qua Email
             </a>
           </div>
         )}

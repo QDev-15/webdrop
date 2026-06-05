@@ -38,7 +38,7 @@ export default function PostPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  const authorName = settings.author_name ?? 'Nguyen Van A'
+  const authorName = settings.author_name ?? 'Nguyễn Văn A'
   const authorAvatar = settings.author_avatar ?? 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&q=80&auto=format&fit=crop&crop=face'
 
   useEffect(() => {
@@ -49,7 +49,7 @@ export default function PostPage() {
         setPost(data)
         document.title = `${data.title} — ${settings.site_name ?? 'Blog'}`
       })
-      .catch(() => setError('Bai viet khong ton tai hoac da bi xoa.'))
+      .catch(() => setError('Bài viết không tồn tại hoặc đã bị xóa.'))
       .finally(() => setLoading(false))
   }, [slug, settings.site_name])
 
@@ -85,9 +85,11 @@ export default function PostPage() {
       <main style={{ paddingTop: '100px', minHeight: '60vh', textAlign: 'center', paddingBottom: '60px' }}>
         <div className="wd-container">
           <div style={{ fontSize: '48px', marginBottom: '16px' }}>404</div>
-          <h1 style={{ fontSize: '22px', fontWeight: '600', marginBottom: '12px' }}>Bai viet khong ton tai</h1>
-          <p style={{ color: 'var(--text-2)', marginBottom: '24px' }}>{error || 'Bai viet ban dang tim kiem khong duoc tim thay.'}</p>
-          <Link to="/" className="btn-accent">Ve trang chu</Link>
+          <h1 style={{ fontSize: '22px', fontWeight: '600', marginBottom: '12px' }}>Bài viết không tồn tại</h1>
+          <p style={{ color: 'var(--text-2)', marginBottom: '24px' }}>
+            {error || 'Bài viết bạn đang tìm kiếm không được tìm thấy.'}
+          </p>
+          <Link to="/" className="btn-accent">Về trang chủ</Link>
         </div>
       </main>
     )
@@ -98,7 +100,7 @@ export default function PostPage() {
       <article style={{ maxWidth: '720px', margin: '0 auto', padding: '0 clamp(20px,5vw,40px)', paddingBottom: '80px' }}>
         {/* Breadcrumb */}
         <nav style={{ display: 'flex', gap: '8px', alignItems: 'center', fontSize: '12px', color: 'var(--text-3)', marginBottom: '24px', flexWrap: 'wrap' }}>
-          <Link to="/" style={{ color: 'var(--text-3)', textDecoration: 'none' }}>Trang chu</Link>
+          <Link to="/" style={{ color: 'var(--text-3)', textDecoration: 'none' }}>Trang chủ</Link>
           <span>›</span>
           {post.category_slug && (
             <>
@@ -133,19 +135,19 @@ export default function PostPage() {
             {post.read_time && (
               <>
                 <span style={{ color: 'var(--border)' }}>·</span>
-                <span style={{ fontSize: '13px', color: 'var(--text-3)' }}>{post.read_time} phut doc</span>
+                <span style={{ fontSize: '13px', color: 'var(--text-3)' }}>{post.read_time} phút đọc</span>
               </>
             )}
             {post.views && (
               <>
                 <span style={{ color: 'var(--border)' }}>·</span>
-                <span style={{ fontSize: '13px', color: 'var(--text-3)' }}>{post.views.toLocaleString()} luot xem</span>
+                <span style={{ fontSize: '13px', color: 'var(--text-3)' }}>{post.views.toLocaleString()} lượt xem</span>
               </>
             )}
           </div>
         </div>
 
-        {/* Thumbnail */}
+        {/* Ảnh đại diện */}
         {post.thumbnail && (
           <div data-reveal className="reveal" style={{ marginBottom: '32px' }}>
             <img
@@ -156,11 +158,11 @@ export default function PostPage() {
           </div>
         )}
 
-        {/* Content */}
+        {/* Nội dung */}
         <div
           className="post-content reveal"
           data-reveal
-          dangerouslySetInnerHTML={{ __html: post.content ?? '<p>Noi dung dang duoc cap nhat...</p>' }}
+          dangerouslySetInnerHTML={{ __html: post.content ?? '<p>Nội dung đang được cập nhật...</p>' }}
         />
 
         {/* Tags */}
@@ -176,11 +178,11 @@ export default function PostPage() {
           </div>
         )}
 
-        {/* Related posts */}
+        {/* Bài viết liên quan */}
         {post.related && post.related.length > 0 && (
           <div style={{ marginTop: '48px' }}>
             <h3 style={{ fontSize: '13px', fontWeight: '600', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '.8px', marginBottom: '20px' }}>
-              Bai viet lien quan
+              Bài viết liên quan
             </h3>
             <div style={{ display: 'grid', gap: '16px', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))' }}>
               {post.related.map(rel => (

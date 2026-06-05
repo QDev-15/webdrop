@@ -1,0 +1,15 @@
+Options -Indexes
+
+# Chặn truy cập trực tiếp vào file database
+<FilesMatch "\.db$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Chặn truy cập vào thư mục database/
+RewriteEngine On
+RewriteRule ^database/ - [F,L]
+
+# Redirect tất cả request đến index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [L,QSA]

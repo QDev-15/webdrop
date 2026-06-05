@@ -34,7 +34,7 @@ export default function CategoryPage() {
   const [totalPages, setTotalPages] = useState(1)
   const [loading, setLoading] = useState(true)
 
-  const authorName = settings.author_name ?? 'Nguyen Van A'
+  const authorName = settings.author_name ?? 'Nguyễn Văn A'
   const authorAvatar = settings.author_avatar ?? 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&q=80&auto=format&fit=crop&crop=face'
 
   useEffect(() => {
@@ -74,15 +74,15 @@ export default function CategoryPage() {
       <div className="wd-container">
         <div style={{ marginBottom: '32px' }}>
           <nav style={{ fontSize: '12px', color: 'var(--text-3)', marginBottom: '12px' }}>
-            <Link to="/" style={{ color: 'var(--text-3)', textDecoration: 'none' }}>Trang chu</Link>
+            <Link to="/" style={{ color: 'var(--text-3)', textDecoration: 'none' }}>Trang chủ</Link>
             <span> › </span>
-            <span>{isTag ? 'Tag' : 'Danh muc'}: {slug}</span>
+            <span>{isTag ? 'Tag' : 'Danh mục'}: {slug}</span>
           </nav>
           <h1 style={{ fontSize: 'clamp(22px,3vw,32px)', fontWeight: '600', letterSpacing: '-.4px', marginBottom: '8px' }}>
             {isTag ? '#' : ''}{slug?.replace(/-/g, ' ')}
           </h1>
           {!loading && (
-            <p style={{ fontSize: '13px', color: 'var(--text-3)' }}>{total} bai viet</p>
+            <p style={{ fontSize: '13px', color: 'var(--text-3)' }}>{total} bài viết</p>
           )}
         </div>
 
@@ -92,8 +92,8 @@ export default function CategoryPage() {
           </div>
         ) : posts.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '60px 0', color: 'var(--text-3)' }}>
-            <p style={{ fontSize: '15px', marginBottom: '16px' }}>Chua co bai viet nao.</p>
-            <button className="btn-accent" onClick={() => navigate('/')}>Ve trang chu</button>
+            <p style={{ fontSize: '15px', marginBottom: '16px' }}>Chưa có bài viết nào.</p>
+            <button className="btn-accent" onClick={() => navigate('/')}>Về trang chủ</button>
           </div>
         ) : (
           <div style={{ display: 'grid', gap: '16px', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
@@ -111,7 +111,7 @@ export default function CategoryPage() {
                         <Link to={`/danh-muc/${post.category_slug}`} className="cat-badge">{post.category_name}</Link>
                       )}
                       <span className="post-date">{new Date(post.created_at).toLocaleDateString('vi-VN')}</span>
-                      {post.read_time && <span className="post-read">{post.read_time} phut</span>}
+                      {post.read_time && <span className="post-read">{post.read_time} phút</span>}
                     </div>
                     <Link to={`/bai-viet/${post.slug}`} className="post-title">{post.title}</Link>
                     {post.excerpt && <p className="post-excerpt">{post.excerpt}</p>}
@@ -120,7 +120,7 @@ export default function CategoryPage() {
                         <img src={authorAvatar} className="post-av" alt={post.author_name ?? authorName} />
                         <span className="post-author-name">{post.author_name ?? authorName}</span>
                       </div>
-                      <Link to={`/bai-viet/${post.slug}`} className="post-more">Doc tiep →</Link>
+                      <Link to={`/bai-viet/${post.slug}`} className="post-more">Đọc tiếp →</Link>
                     </div>
                   </div>
                 </div>

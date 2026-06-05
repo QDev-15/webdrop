@@ -53,14 +53,14 @@ export default function CategoryList() {
       setShowForm(false)
       load()
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Luu that bai.')
+      setError(err instanceof Error ? err.message : 'Lưu thất bại.')
     } finally {
       setSaving(false)
     }
   }
 
   async function handleDelete(id: number, name: string) {
-    if (!confirm(`Xoa danh muc "${name}"? Cac bai viet thuoc danh muc nay se khong co danh muc.`)) return
+    if (!confirm(`Xóa danh mục "${name}"? Các bài viết thuộc danh mục này sẽ không có danh mục.`)) return
     await api.delete(`/post-categories/${id}`).catch(() => null)
     load()
   }
@@ -82,20 +82,20 @@ export default function CategoryList() {
     <div>
       <div className="page-header">
         <div>
-          <div className="page-title">Danh muc</div>
-          <div className="page-sub">{categories.length} danh muc</div>
+          <div className="page-title">Danh mục</div>
+          <div className="page-sub">{categories.length} danh mục</div>
         </div>
-        <button onClick={openCreate} className="btn btn-accent">+ Them danh muc</button>
+        <button onClick={openCreate} className="btn btn-accent">+ Thêm danh mục</button>
       </div>
 
       {showForm && (
         <div className="form-card" style={{ marginBottom: '20px' }}>
-          <div className="form-section-title">{editItem ? 'Sua danh muc' : 'Them danh muc moi'}</div>
+          <div className="form-section-title">{editItem ? 'Sửa danh mục' : 'Thêm danh mục mới'}</div>
           {error && <div className="alert alert-error">{error}</div>}
           <form onSubmit={handleSubmit}>
             <div className="form-row">
               <div className="form-group">
-                <label className="form-label">Ten danh muc <span className="req">*</span></label>
+                <label className="form-label">Tên danh mục <span className="req">*</span></label>
                 <input
                   className="form-control"
                   value={form.name}
@@ -104,7 +104,7 @@ export default function CategoryList() {
                     setForm(f => ({ ...f, name: v, slug: f.slug || slugify(v) }))
                   }}
                   required
-                  placeholder="Cong nghe"
+                  placeholder="Công nghệ"
                 />
               </div>
               <div className="form-group">
@@ -117,7 +117,7 @@ export default function CategoryList() {
                 />
               </div>
               <div className="form-group">
-                <label className="form-label">Thu tu</label>
+                <label className="form-label">Thứ tự</label>
                 <input
                   type="number"
                   className="form-control"
@@ -127,12 +127,12 @@ export default function CategoryList() {
               </div>
             </div>
             <div className="form-group">
-              <label className="form-label">Mo ta</label>
-              <textarea className="form-control" value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} rows={2} placeholder="Mo ta ngan ve danh muc" />
+              <label className="form-label">Mô tả</label>
+              <textarea className="form-control" value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} rows={2} placeholder="Mô tả ngắn về danh mục" />
             </div>
             <div style={{ display: 'flex', gap: '8px' }}>
-              <button type="submit" className="btn btn-accent" disabled={saving}>{saving ? 'Dang luu...' : 'Luu'}</button>
-              <button type="button" className="btn btn-ghost" onClick={() => setShowForm(false)}>Huy</button>
+              <button type="submit" className="btn btn-accent" disabled={saving}>{saving ? 'Đang lưu...' : 'Lưu'}</button>
+              <button type="button" className="btn btn-ghost" onClick={() => setShowForm(false)}>Hủy</button>
             </div>
           </form>
         </div>
@@ -146,16 +146,16 @@ export default function CategoryList() {
         ) : categories.length === 0 ? (
           <div className="empty-state">
             <div className="empty-state-icon">📂</div>
-            <p>Chua co danh muc nao</p>
+            <p>Chưa có danh mục nào</p>
           </div>
         ) : (
           <table>
             <thead>
               <tr>
-                <th>Ten danh muc</th>
+                <th>Tên danh mục</th>
                 <th>Slug</th>
-                <th>So bai viet</th>
-                <th>Thu tu</th>
+                <th>Số bài viết</th>
+                <th>Thứ tự</th>
                 <th style={{ width: '100px' }}></th>
               </tr>
             </thead>
@@ -168,8 +168,8 @@ export default function CategoryList() {
                   <td>{cat.sort_order}</td>
                   <td>
                     <div style={{ display: 'flex', gap: '6px' }}>
-                      <button onClick={() => openEdit(cat)} className="btn btn-ghost btn-sm">Sua</button>
-                      <button onClick={() => handleDelete(cat.id, cat.name)} className="btn btn-sm" style={{ background: '#fff0f0', color: 'var(--danger)', border: '1px solid #fdd' }}>Xoa</button>
+                      <button onClick={() => openEdit(cat)} className="btn btn-ghost btn-sm">Sửa</button>
+                      <button onClick={() => handleDelete(cat.id, cat.name)} className="btn btn-sm" style={{ background: '#fff0f0', color: 'var(--danger)', border: '1px solid #fdd' }}>Xóa</button>
                     </div>
                   </td>
                 </tr>

@@ -69,16 +69,12 @@ export default function HomePage() {
       .finally(() => setLoading(false))
   }, [page, activeCategory])
 
-  // Reveal animation
   useEffect(() => {
     const timer = setTimeout(() => {
       const els = document.querySelectorAll<Element>('[data-reveal]:not(.visible)')
       const ro = new IntersectionObserver(entries => {
         entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible')
-            ro.unobserve(e.target)
-          }
+          if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target) }
         })
       }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' })
       els.forEach(el => ro.observe(el))
@@ -100,18 +96,18 @@ export default function HomePage() {
       setNewsletterMsg(res.message)
       setNewsletter('')
     } catch {
-      setNewsletterMsg('Co loi xay ra, vui long thu lai.')
+      setNewsletterMsg('Có lỗi xảy ra, vui lòng thử lại.')
     }
   }
 
-  const authorName = settings.author_name ?? 'Nguyen Van A'
+  const authorName = settings.author_name ?? 'Nguyễn Văn A'
   const authorTitle = settings.author_title ?? 'Developer & Writer'
-  const authorBio = settings.author_bio ?? 'Toi viet ve cong nghe, tu duy va cuoc song. Moi tuan mot bai, dung gio.'
+  const authorBio = settings.author_bio ?? 'Tôi viết về công nghệ, tư duy và cuộc sống. Mỗi tuần một bài, đúng giờ.'
   const authorAvatar = settings.author_avatar ?? 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&q=80&auto=format&fit=crop&crop=face'
 
   return (
     <main style={{ paddingTop: '60px' }}>
-      {/* FEATURED */}
+      {/* BÀI NỔI BẬT */}
       {featured && (
         <section style={{ padding: 'clamp(32px,5vw,56px) 0 0' }}>
           <div className="wd-container">
@@ -123,7 +119,7 @@ export default function HomePage() {
               />
               <div className="feat-overlay" />
               <div className="feat-body">
-                <span className="feat-cat">✦ Bai noi bat</span>
+                <span className="feat-cat">✦ Bài nổi bật</span>
                 <h2 className="feat-title">
                   <Link to={`/bai-viet/${featured.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
                     {featured.title}
@@ -136,7 +132,7 @@ export default function HomePage() {
                   {featured.read_time && (
                     <>
                       <span>·</span>
-                      <span>{featured.read_time} phut doc</span>
+                      <span>{featured.read_time} phút đọc</span>
                     </>
                   )}
                 </div>
@@ -146,23 +142,15 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* MAIN CONTENT */}
+      {/* NỘI DUNG CHÍNH */}
       <section style={{ padding: 'clamp(40px,6vw,70px) 0 clamp(60px,8vw,100px)' }}>
         <div className="wd-container">
           <div className="row">
-            {/* Posts */}
-            <div style={{ padding: '8px', width: '100%', flex: '0 0 100%' }}
-              className="col-lg-8">
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                marginBottom: '24px',
-                flexWrap: 'wrap',
-                gap: '12px',
-              }}>
+            {/* Bài viết */}
+            <div style={{ padding: '8px', width: '100%', flex: '0 0 100%' }} className="col-lg-8">
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px', flexWrap: 'wrap', gap: '12px' }}>
                 <h3 style={{ fontSize: '13px', fontWeight: '600', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '.8px', margin: 0 }}>
-                  Bai viet moi nhat
+                  Bài viết mới nhất
                 </h3>
                 <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                   <button
@@ -170,7 +158,7 @@ export default function HomePage() {
                     onClick={() => handleCategoryClick('')}
                     style={{ cursor: 'pointer', border: 'none' }}
                   >
-                    Tat ca
+                    Tất cả
                   </button>
                   {categories.map(cat => (
                     <button
@@ -195,7 +183,7 @@ export default function HomePage() {
                 <div className="row" style={{ gap: '0' }}>
                   {posts.length === 0 && (
                     <div style={{ padding: '32px', color: 'var(--text-3)', textAlign: 'center', width: '100%' }}>
-                      Chua co bai viet nao trong danh muc nay.
+                      Chưa có bài viết nào trong danh mục này.
                     </div>
                   )}
                   {posts.map((post, idx) => (
@@ -211,7 +199,7 @@ export default function HomePage() {
                 </div>
               )}
 
-              {/* Pagination */}
+              {/* Phân trang */}
               {totalPages > 1 && (
                 <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '40px' }} data-reveal>
                   {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
@@ -225,7 +213,7 @@ export default function HomePage() {
                   ))}
                   {page < totalPages && (
                     <button className="pagination-next" onClick={() => setPage(p => p + 1)}>
-                      Tiep →
+                      Tiếp →
                     </button>
                   )}
                 </div>
@@ -233,11 +221,10 @@ export default function HomePage() {
             </div>
 
             {/* Sidebar */}
-            <div style={{ padding: '8px', width: '100%', flex: '0 0 100%' }}
-              className="col-lg-4">
-              {/* About Author */}
+            <div style={{ padding: '8px', width: '100%', flex: '0 0 100%' }} className="col-lg-4">
+              {/* Về tác giả */}
               <div className="sidebar-widget reveal" data-reveal>
-                <div className="sw-title">Ve tac gia</div>
+                <div className="sw-title">Về tác giả</div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
                   <img
                     src={authorAvatar}
@@ -260,29 +247,19 @@ export default function HomePage() {
                   className="btn-accent"
                   style={{ display: 'block', textAlign: 'center', marginTop: '12px', fontSize: '13px', padding: '9px', width: '100%' }}
                 >
-                  Dang ky nhan bai moi
+                  Đăng ký nhận bài mới
                 </button>
               </div>
 
-              {/* Categories */}
+              {/* Danh mục */}
               <div className="sidebar-widget reveal reveal-d1" data-reveal>
-                <div className="sw-title">Danh muc</div>
+                <div className="sw-title">Danh mục</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {categories.map(cat => (
                     <Link
                       key={cat.id}
                       to={`/danh-muc/${cat.slug}`}
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        fontSize: '13.5px',
-                        color: 'var(--text-2)',
-                        textDecoration: 'none',
-                        padding: '6px 0',
-                        borderBottom: '1px solid var(--border-light)',
-                        transition: 'color .15s',
-                      }}
+                      style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '13.5px', color: 'var(--text-2)', textDecoration: 'none', padding: '6px 0', borderBottom: '1px solid var(--border-light)', transition: 'color .15s' }}
                       onMouseOver={e => (e.currentTarget.style.color = 'var(--accent)')}
                       onMouseOut={e => (e.currentTarget.style.color = 'var(--text-2)')}
                     >
@@ -293,10 +270,10 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Popular */}
+              {/* Bài đọc nhiều */}
               {popularPosts.length > 0 && (
                 <div className="sidebar-widget reveal reveal-d2" data-reveal>
-                  <div className="sw-title">Bai doc nhieu</div>
+                  <div className="sw-title">Bài đọc nhiều</div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                     {popularPosts.map(post => (
                       <Link
@@ -318,7 +295,7 @@ export default function HomePage() {
                             {post.title}
                           </div>
                           <div style={{ fontSize: '11.5px', color: 'var(--text-3)' }}>
-                            {((post.views ?? 0) / 1000).toFixed(1)}k luot doc
+                            {((post.views ?? 0) / 1000).toFixed(1)}k lượt đọc
                           </div>
                         </div>
                       </Link>
@@ -345,10 +322,10 @@ export default function HomePage() {
               <div id="newsletter-sidebar" className="reveal" data-reveal
                 style={{ background: 'var(--accent)', borderRadius: '12px', padding: '22px 20px' }}>
                 <div style={{ fontSize: '13px', fontWeight: '600', color: '#fff', marginBottom: '6px' }}>
-                  Nhan bai viet qua email
+                  Nhận bài viết qua email
                 </div>
                 <div style={{ fontSize: '12px', color: 'rgba(255,255,255,.6)', marginBottom: '14px', fontWeight: '300' }}>
-                  Moi tuan mot bai. Khong spam.
+                  Mỗi tuần một bài. Không spam.
                 </div>
                 {newsletterMsg ? (
                   <div style={{ fontSize: '12px', color: 'rgba(255,255,255,.8)', padding: '8px 0' }}>{newsletterMsg}</div>
@@ -356,7 +333,7 @@ export default function HomePage() {
                   <form onSubmit={handleNewsletter}>
                     <input
                       type="email"
-                      placeholder="Email cua ban"
+                      placeholder="Email của bạn"
                       value={newsletter}
                       onChange={e => setNewsletter(e.target.value)}
                       required
@@ -364,21 +341,9 @@ export default function HomePage() {
                     />
                     <button
                       type="submit"
-                      style={{
-                        width: '100%',
-                        fontFamily: 'var(--sans)',
-                        fontSize: '13px',
-                        fontWeight: '500',
-                        background: '#fff',
-                        color: 'var(--accent)',
-                        border: 'none',
-                        borderRadius: '7px',
-                        padding: '9px',
-                        cursor: 'pointer',
-                        transition: 'all .15s',
-                      }}
+                      style={{ width: '100%', fontFamily: 'var(--sans)', fontSize: '13px', fontWeight: '500', background: '#fff', color: 'var(--accent)', border: 'none', borderRadius: '7px', padding: '9px', cursor: 'pointer', transition: 'all .15s' }}
                     >
-                      Dang ky →
+                      Đăng ký →
                     </button>
                   </form>
                 )}
@@ -420,7 +385,7 @@ function PostCard({ post, wide, authorName, authorAvatar }: {
             </Link>
           )}
           <span className="post-date">{new Date(post.created_at).toLocaleDateString('vi-VN')}</span>
-          {post.read_time && <span className="post-read">{post.read_time} phut</span>}
+          {post.read_time && <span className="post-read">{post.read_time} phút</span>}
         </div>
         <Link to={`/bai-viet/${post.slug}`} className="post-title">
           {post.title}
@@ -431,7 +396,7 @@ function PostCard({ post, wide, authorName, authorAvatar }: {
             <img src={authorAvatar} className="post-av" alt={post.author_name ?? authorName} />
             <span className="post-author-name">{post.author_name ?? authorName}</span>
           </div>
-          <Link to={`/bai-viet/${post.slug}`} className="post-more">Doc tiep →</Link>
+          <Link to={`/bai-viet/${post.slug}`} className="post-more">Đọc tiếp →</Link>
         </div>
       </div>
     </div>

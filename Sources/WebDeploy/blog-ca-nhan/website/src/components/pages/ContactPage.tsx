@@ -23,7 +23,7 @@ export default function ContactPage() {
       setSuccess(res.message)
       setForm({ name: '', email: '', phone: '', subject: '', message: '' })
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Co loi xay ra.')
+      setError(err instanceof Error ? err.message : 'Có lỗi xảy ra.')
     } finally {
       setSubmitting(false)
     }
@@ -33,10 +33,10 @@ export default function ContactPage() {
     <main style={{ paddingTop: '80px', paddingBottom: '80px', minHeight: '60vh' }}>
       <div className="wd-container" style={{ maxWidth: '720px' }}>
         <h1 style={{ fontSize: 'clamp(24px,4vw,36px)', fontWeight: '600', letterSpacing: '-.5px', marginBottom: '8px' }}>
-          Lien he
+          Liên hệ
         </h1>
         <p style={{ color: 'var(--text-2)', fontSize: '15px', fontWeight: '300', marginBottom: '40px' }}>
-          Co cau hoi hay y kien gi? Gui tin nhan cho toi.
+          Có câu hỏi hay ý kiến gì? Gửi tin nhắn cho tôi.
         </p>
 
         {settings.site_email && (
@@ -74,7 +74,7 @@ export default function ContactPage() {
               onClick={() => setSuccess('')}
               style={{ marginTop: '16px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: '8px', padding: '9px 20px', cursor: 'pointer', fontFamily: 'var(--sans)', fontWeight: '500' }}
             >
-              Gui tin nhan khac
+              Gửi tin nhắn khác
             </button>
           </div>
         ) : (
@@ -82,14 +82,14 @@ export default function ContactPage() {
             <div style={{ display: 'grid', gap: '16px', gridTemplateColumns: 'repeat(auto-fit, minmax(200px,1fr))' }}>
               <div>
                 <label style={{ display: 'block', fontSize: '13px', fontWeight: '500', color: 'var(--text-2)', marginBottom: '6px' }}>
-                  Ho ten <span style={{ color: 'var(--danger)' }}>*</span>
+                  Họ tên <span style={{ color: 'var(--danger)' }}>*</span>
                 </label>
                 <input
                   name="name"
                   value={form.name}
                   onChange={handleChange}
                   required
-                  placeholder="Nguyen Van A"
+                  placeholder="Nguyễn Văn A"
                   style={inputStyle}
                 />
               </div>
@@ -107,7 +107,7 @@ export default function ContactPage() {
             </div>
             <div style={{ display: 'grid', gap: '16px', gridTemplateColumns: 'repeat(auto-fit, minmax(200px,1fr))' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '13px', fontWeight: '500', color: 'var(--text-2)', marginBottom: '6px' }}>So dien thoai</label>
+                <label style={{ display: 'block', fontSize: '13px', fontWeight: '500', color: 'var(--text-2)', marginBottom: '6px' }}>Số điện thoại</label>
                 <input
                   name="phone"
                   type="tel"
@@ -118,19 +118,19 @@ export default function ContactPage() {
                 />
               </div>
               <div>
-                <label style={{ display: 'block', fontSize: '13px', fontWeight: '500', color: 'var(--text-2)', marginBottom: '6px' }}>Chu de</label>
+                <label style={{ display: 'block', fontSize: '13px', fontWeight: '500', color: 'var(--text-2)', marginBottom: '6px' }}>Chủ đề</label>
                 <input
                   name="subject"
                   value={form.subject}
                   onChange={handleChange}
-                  placeholder="Chu de tin nhan"
+                  placeholder="Chủ đề tin nhắn"
                   style={inputStyle}
                 />
               </div>
             </div>
             <div>
               <label style={{ display: 'block', fontSize: '13px', fontWeight: '500', color: 'var(--text-2)', marginBottom: '6px' }}>
-                Noi dung <span style={{ color: 'var(--danger)' }}>*</span>
+                Nội dung <span style={{ color: 'var(--danger)' }}>*</span>
               </label>
               <textarea
                 name="message"
@@ -138,7 +138,7 @@ export default function ContactPage() {
                 onChange={handleChange}
                 required
                 rows={5}
-                placeholder="Noi dung tin nhan..."
+                placeholder="Nội dung tin nhắn..."
                 style={{ ...inputStyle, resize: 'vertical', minHeight: '120px' }}
               />
             </div>
@@ -148,7 +148,7 @@ export default function ContactPage() {
               </div>
             )}
             <button type="submit" className="btn-accent" disabled={submitting} style={{ alignSelf: 'flex-start' }}>
-              {submitting ? 'Dang gui...' : 'Gui tin nhan →'}
+              {submitting ? 'Đang gửi...' : 'Gửi tin nhắn →'}
             </button>
           </form>
         )}

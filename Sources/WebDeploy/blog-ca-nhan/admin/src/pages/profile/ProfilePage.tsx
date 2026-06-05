@@ -13,21 +13,21 @@ export default function ProfilePage() {
     e.preventDefault()
     setMsg(null)
     if (password.length < 6) {
-      setMsg({ type: 'error', text: 'Mat khau phai co it nhat 6 ky tu.' })
+      setMsg({ type: 'error', text: 'Mật khẩu phải có ít nhất 6 ký tự.' })
       return
     }
     if (password !== confirm) {
-      setMsg({ type: 'error', text: 'Mat khau xac nhan khong khop.' })
+      setMsg({ type: 'error', text: 'Mật khẩu xác nhận không khớp.' })
       return
     }
     setSaving(true)
     try {
       await api.post(`/users/${user!.id}/change-password`, { password })
-      setMsg({ type: 'success', text: 'Doi mat khau thanh cong!' })
+      setMsg({ type: 'success', text: 'Đổi mật khẩu thành công!' })
       setPassword('')
       setConfirm('')
     } catch (err: unknown) {
-      setMsg({ type: 'error', text: err instanceof Error ? err.message : 'Doi mat khau that bai.' })
+      setMsg({ type: 'error', text: err instanceof Error ? err.message : 'Đổi mật khẩu thất bại.' })
     } finally {
       setSaving(false)
     }
@@ -37,17 +37,17 @@ export default function ProfilePage() {
     <div style={{ maxWidth: '480px', margin: '0 auto', padding: '32px 0' }}>
       <div className="page-header">
         <div>
-          <div className="page-title">Tai khoan cua toi</div>
-          <div className="page-sub">Thong tin tai khoan va doi mat khau</div>
+          <div className="page-title">Tài khoản của tôi</div>
+          <div className="page-sub">Thông tin tài khoản và đổi mật khẩu</div>
         </div>
       </div>
 
-      {/* Account info */}
+      {/* Thông tin tài khoản */}
       <div className="form-card" style={{ marginBottom: '16px' }}>
-        <div className="form-section-title">Thong tin tai khoan</div>
+        <div className="form-section-title">Thông tin tài khoản</div>
         <div style={{ display: 'grid', gap: '12px' }}>
           <div>
-            <div className="form-label" style={{ marginBottom: '4px' }}>Ho ten</div>
+            <div className="form-label" style={{ marginBottom: '4px' }}>Họ tên</div>
             <div style={{ fontWeight: '500', color: 'var(--text)' }}>{user?.name}</div>
           </div>
           <div>
@@ -55,37 +55,37 @@ export default function ProfilePage() {
             <div style={{ fontWeight: '500', color: 'var(--text)' }}>{user?.email}</div>
           </div>
           <div>
-            <div className="form-label" style={{ marginBottom: '4px' }}>Vai tro</div>
+            <div className="form-label" style={{ marginBottom: '4px' }}>Vai trò</div>
             <span className="badge badge-published">
-              {user?.role === 'superadmin' ? 'Quan tri vien' : 'Nguoi dung'}
+              {user?.role === 'superadmin' ? 'Quản trị viên' : 'Người dùng'}
             </span>
           </div>
         </div>
       </div>
 
-      {/* Change password */}
+      {/* Đổi mật khẩu */}
       <div className="form-card">
-        <div className="form-section-title">Doi mat khau</div>
+        <div className="form-section-title">Đổi mật khẩu</div>
         <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '16px' }}>
           <div className="form-group" style={{ marginBottom: 0 }}>
-            <label className="form-label">Mat khau moi <span className="req">*</span></label>
+            <label className="form-label">Mật khẩu mới <span className="req">*</span></label>
             <input
               type="password"
               className="form-control"
               value={password}
               onChange={e => setPassword(e.target.value)}
-              placeholder="Toi thieu 6 ky tu"
+              placeholder="Tối thiểu 6 ký tự"
               required
             />
           </div>
           <div className="form-group" style={{ marginBottom: 0 }}>
-            <label className="form-label">Xac nhan mat khau <span className="req">*</span></label>
+            <label className="form-label">Xác nhận mật khẩu <span className="req">*</span></label>
             <input
               type="password"
               className="form-control"
               value={confirm}
               onChange={e => setConfirm(e.target.value)}
-              placeholder="Nhap lai mat khau moi"
+              placeholder="Nhập lại mật khẩu mới"
               required
             />
           </div>
@@ -93,7 +93,7 @@ export default function ProfilePage() {
             <div className={`alert alert-${msg.type}`}>{msg.text}</div>
           )}
           <button type="submit" className="btn btn-accent" disabled={saving}>
-            {saving ? 'Dang luu...' : 'Doi mat khau'}
+            {saving ? 'Đang lưu...' : 'Đổi mật khẩu'}
           </button>
         </form>
       </div>

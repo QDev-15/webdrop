@@ -55,66 +55,65 @@ export default function Dashboard() {
       <div className="page-header">
         <div>
           <div className="page-title">Dashboard</div>
-          <div className="page-sub">Tong quan blog ca nhan</div>
+          <div className="page-sub">Tổng quan blog cá nhân</div>
         </div>
-        <Link to="/posts/new" className="btn btn-accent">+ Bai viet moi</Link>
+        <Link to="/posts/new" className="btn btn-accent">+ Bài viết mới</Link>
       </div>
 
       <div className="stats-grid">
         <div className="stat-card">
           <div className="stat-icon">✍</div>
-          <div className="stat-label">Tong bai viet</div>
+          <div className="stat-label">Tổng bài viết</div>
           <div className="stat-value">{s?.totalPosts ?? 0}</div>
-          <div className="stat-sub">{s?.publishedPosts ?? 0} da xuat ban · {s?.draftPosts ?? 0} ban nhap</div>
+          <div className="stat-sub">{s?.publishedPosts ?? 0} đã xuất bản · {s?.draftPosts ?? 0} bản nháp</div>
         </div>
         <div className="stat-card">
           <div className="stat-icon">👁</div>
-          <div className="stat-label">Luot xem</div>
+          <div className="stat-label">Lượt xem</div>
           <div className="stat-value">{((s?.totalViews ?? 0) / 1000).toFixed(1)}k</div>
-          <div className="stat-sub">Tong luot doc tat ca bai</div>
+          <div className="stat-sub">Tổng lượt đọc tất cả bài</div>
         </div>
         <div className="stat-card">
           <div className="stat-icon">📂</div>
-          <div className="stat-label">Danh muc</div>
+          <div className="stat-label">Danh mục</div>
           <div className="stat-value">{s?.totalCategories ?? 0}</div>
           <div className="stat-sub">{s?.totalTags ?? 0} tags</div>
         </div>
         <div className="stat-card">
           <div className="stat-icon">✉</div>
-          <div className="stat-label">Lien he</div>
+          <div className="stat-label">Liên hệ</div>
           <div className="stat-value">{s?.totalContacts ?? 0}</div>
           {(s?.newContacts ?? 0) > 0 && (
-            <div className="stat-sub" style={{ color: 'var(--danger)' }}>{s?.newContacts} moi chua doc</div>
+            <div className="stat-sub" style={{ color: 'var(--danger)' }}>{s?.newContacts} mới chưa đọc</div>
           )}
         </div>
         <div className="stat-card">
           <div className="stat-icon">📧</div>
           <div className="stat-label">Newsletter</div>
           <div className="stat-value">{s?.newsletters ?? 0}</div>
-          <div className="stat-sub">Nguoi dang ky nhan bai</div>
+          <div className="stat-sub">Người đăng ký nhận bài</div>
         </div>
       </div>
 
-      {/* Recent Posts */}
       <div className="table-wrap">
         <div className="table-header">
-          <div className="table-title">Bai viet gan day</div>
-          <Link to="/posts" className="btn btn-ghost btn-sm">Xem tat ca</Link>
+          <div className="table-title">Bài viết gần đây</div>
+          <Link to="/posts" className="btn btn-ghost btn-sm">Xem tất cả</Link>
         </div>
         {!s?.recentPosts.length ? (
           <div className="empty-state">
             <div className="empty-state-icon">✍</div>
-            <p>Chua co bai viet nao</p>
+            <p>Chưa có bài viết nào</p>
           </div>
         ) : (
           <table>
             <thead>
               <tr>
-                <th>Tieu de</th>
-                <th>Danh muc</th>
-                <th>Luot xem</th>
-                <th>Trang thai</th>
-                <th>Ngay tao</th>
+                <th>Tiêu đề</th>
+                <th>Danh mục</th>
+                <th>Lượt xem</th>
+                <th>Trạng thái</th>
+                <th>Ngày tạo</th>
                 <th></th>
               </tr>
             </thead>
@@ -129,11 +128,13 @@ export default function Dashboard() {
                   <td>{p.category_name ?? '—'}</td>
                   <td>{(p.views ?? 0).toLocaleString()}</td>
                   <td>
-                    <span className={`badge badge-${p.status}`}>{p.status === 'published' ? 'Da xuat ban' : 'Ban nhap'}</span>
+                    <span className={`badge badge-${p.status}`}>
+                      {p.status === 'published' ? 'Đã xuất bản' : 'Bản nháp'}
+                    </span>
                   </td>
                   <td>{new Date(p.created_at).toLocaleDateString('vi-VN')}</td>
                   <td>
-                    <Link to={`/posts/${p.id}/edit`} className="btn btn-ghost btn-sm">Sua</Link>
+                    <Link to={`/posts/${p.id}/edit`} className="btn btn-ghost btn-sm">Sửa</Link>
                   </td>
                 </tr>
               ))}

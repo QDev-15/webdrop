@@ -1,0 +1,164 @@
+'use client'
+import { Suspense, useEffect, useRef, useState } from 'react'
+import { useSearchParams, useRouter } from 'next/navigation'
+
+const BANK_NAME    = 'MB Bank'
+const BANK_CODE    = 'MB'
+const ACCOUNT_NO   = '0988632841'
+const ACCOUNT_NAME = 'NGUYEN HUU QUYNH'
+
+function fmtPrice(n: number) { return n.toLocaleString('vi-VN') + 'đ' }
+
+function CopyButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false)
+  function copy() {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
+  }
+  return (
+    <button onClick={copy} style={{
+      background: copied ? 'var(--accent)' : 'var(--warm2)',
+      color: copied ? '#fff' : 'var(--text-2)',
+      border: 'none', borderRadius: 6, padding: '3px 10px',
+      fontSize: 11, fontWeight: 600, cursor: 'pointer', transition: 'all .15s', flexShrink: 0,
+    }}>
+      {copied ? '✓ Đã copy' : 'Copy'}
+    </button>
+  )
+}
+
+function BankRow({ label, value, copy }: { label: string; value: string; copy?: boolean }) {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '9px 0', borderBottom: '1px solid var(--border-light)', gap: 12 }}>
+      <span style={{ fontSize: 13, color: 'var(--text-3)', flexShrink: 0 }}>{label}</span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <span style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--text)', textAlign: 'right' }}>{value}</span>
+        {copy && <CopyButton text={value} />}
+      </div>
+    </div>
+  )
+}
+
+function PendingContent() {
+  const searchParams = useSearchParams()
+  const router       = useRouter()
+
+  const code   = searchParams.get('code')   ?? ''
+  const type   = searchParams.get('type')   ?? 'template'
+  const slug   = searchParams.get('slug')   ?? ''
+  const amount = parseInt(searchParams.get('amount') ?? '499000')
+
+  const [dots, setDots] = useState('.')
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  const content = `WEBDROP ${code}`
+  const qrUrl   = `https://img.vietqr.io/image/${BANK_CODE}-${ACCOUNT_NO}-compact2.jpg?amount=${amount}&addInfo=${encodeURIComponent(content)}&accountName=${encodeURIComponent(ACCOUNT_NAME)}`
+
+  // Animate dots
+  useEffect(() => {
+    const id = setInterval(() => setDots(d => d.length >= 3 ? '.' : d + '.'), 600)
+    return () => clearInterval(id)
+  }, [])
+
+  // Poll status every 5s
+  useEffect(() => {
+    if (!code) return
+
+    async function check() {
+      try {
+        const res  = await fetch(`/api/orders/${code}/status`)
+        const data = await res.json()
+        if (data.paid && data.token) {
+          if (intervalRef.current) clearInterval(intervalRef.current)
+          router.push(`/checkout/success?token=${encodeURIComponent(data.token)}&type=${data.type}&slug=${encodeURIComponent(data.slug ?? slug)}`)
+        }
+      } catch { /* ignore */ }
+    }
+
+    check()
+    intervalRef.current = setInterval(check, 5000)
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current) }
+  }, [code, router, slug])
+
+  return (
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px 20px', fontFamily: 'var(--sans)' }}>
+      <div style={{ maxWidth: 520, width: '100%' }}>
+
+        {/* Header */}
+        <div style={{ textAlign: 'center', marginBottom: 28 }}>
+          <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'var(--warm)', border: '2px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', fontSize: 28 }}>
+            💳
+          </div>
+          <h1 style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-.4px', marginBottom: 6 }}>Chờ xác nhận thanh toán</h1>
+          {code && (
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'var(--accent-light)', border: '1px solid var(--accent-mid)', borderRadius: 8, padding: '5px 14px', marginBottom: 8 }}>
+              <span style={{ fontSize: 12, color: 'var(--text-3)' }}>Mã đơn:</span>
+              <strong style={{ fontSize: 13.5, color: 'var(--accent)', letterSpacing: '.5px' }}>{code}</strong>
+            </div>
+          )}
+          <p style={{ fontSize: 13.5, color: 'var(--text-2)', fontWeight: 300, lineHeight: 1.7, margin: '8px auto 0', maxWidth: 400 }}>
+            Chuyển khoản theo thông tin bên dưới. Hệ thống tự động xác nhận và gửi link download trong <strong>vài giây</strong>.
+          </p>
+        </div>
+
+        {/* QR + Bank info */}
+        <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 16, overflow: 'hidden', marginBottom: 16 }}>
+
+          {/* QR code */}
+          <div style={{ background: 'var(--warm)', padding: '24px', display: 'flex', justifyContent: 'center', borderBottom: '1px solid var(--border-light)' }}>
+            <img
+              src={qrUrl}
+              alt="QR chuyển khoản"
+              width={200}
+              height={200}
+              style={{ borderRadius: 12, border: '3px solid #fff', boxShadow: '0 4px 16px rgba(0,0,0,.08)' }}
+              onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+            />
+          </div>
+
+          {/* Bank info rows */}
+          <div style={{ padding: '4px 20px 16px' }}>
+            <BankRow label="Ngân hàng"     value={BANK_NAME} />
+            <BankRow label="Số tài khoản"  value={ACCOUNT_NO}   copy />
+            <BankRow label="Chủ tài khoản" value={ACCOUNT_NAME} />
+            <BankRow label="Số tiền"        value={fmtPrice(amount)} copy />
+            <div style={{ padding: '9px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12 }}>
+              <span style={{ fontSize: 13, color: 'var(--text-3)', flexShrink: 0 }}>Nội dung CK</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <span style={{ fontSize: 13.5, fontWeight: 700, color: 'var(--accent)', textAlign: 'right' }}>{content}</span>
+                <CopyButton text={content} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Polling status */}
+        <div style={{ background: 'var(--accent-light)', border: '1px solid var(--accent-mid)', borderRadius: 10, padding: '14px 18px', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ width: 10, height: 10, borderRadius: '50%', background: 'var(--accent)', flexShrink: 0, animation: 'pulse 1.2s infinite' }} />
+          <span style={{ fontSize: 13, color: 'var(--accent)', fontWeight: 500 }}>
+            Đang chờ thanh toán{dots} trang tự động cập nhật
+          </span>
+        </div>
+
+        {/* Note */}
+        <div style={{ background: 'var(--warm)', border: '1px solid var(--border)', borderRadius: 10, padding: '14px 16px', fontSize: 12.5, color: 'var(--text-2)', lineHeight: 1.75 }}>
+          <strong style={{ color: 'var(--text)', display: 'block', marginBottom: 4 }}>⚠️ Lưu ý quan trọng</strong>
+          Điền đúng nội dung chuyển khoản <strong style={{ color: 'var(--accent)' }}>{content}</strong> để hệ thống tự động xác nhận.
+          Nếu quên điền nội dung, liên hệ Zalo để hỗ trợ thủ công.
+        </div>
+
+        <style>{`@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }`}</style>
+      </div>
+    </div>
+  )
+}
+
+export default function CheckoutPendingPage() {
+  return (
+    <Suspense fallback={null}>
+      <PendingContent />
+    </Suspense>
+  )
+}

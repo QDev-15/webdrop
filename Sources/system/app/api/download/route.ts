@@ -56,27 +56,38 @@ function extractSlug(title: string): string {
   return m?.[1]?.trim() ?? ''
 }
 
+const TOKEN_MAX_USES = 5
+
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
-  const code = searchParams.get('code')
-  const file = searchParams.get('file') // 'template' | 'web' | 'admin'
+  const tokenParam = searchParams.get('token')
+  const file       = searchParams.get('file') // 'template' | 'web' | 'admin'
 
-  if (!code || !file) {
-    return NextResponse.json({ error: 'Thiếu tham số code hoặc file' }, { status: 400 })
+  if (!tokenParam || !file) {
+    return NextResponse.json({ error: 'Thiếu tham số token hoặc file' }, { status: 400 })
   }
   if (!['template', 'web', 'admin'].includes(file)) {
     return NextResponse.json({ error: 'file phải là template | web | admin' }, { status: 400 })
   }
 
-  // Xác minh đơn hàng tồn tại
+  // Xác minh token
   let order
   try {
-    order = await prisma.order.findUnique({ where: { code } })
+    order = await prisma.order.findUnique({ where: { downloadToken: tokenParam } })
   } catch {
     return NextResponse.json({ error: 'Lỗi DB' }, { status: 500 })
   }
   if (!order) {
-    return NextResponse.json({ error: 'Đơn hàng không tồn tại' }, { status: 404 })
+    return NextResponse.json({ error: 'Link không hợp lệ hoặc đã hết hạn' }, { status: 404 })
+  }
+  if (!order.paidAt) {
+    return NextResponse.json({ error: 'Đơn hàng chưa được thanh toán' }, { status: 403 })
+  }
+  if (order.tokenExpiresAt && order.tokenExpiresAt < new Date()) {
+    return NextResponse.json({ error: 'Link đã hết hạn (72 giờ). Liên hệ hỗ trợ để được cấp lại.' }, { status: 410 })
+  }
+  if (order.tokenUsedCount >= TOKEN_MAX_USES) {
+    return NextResponse.json({ error: `Link đã dùng tối đa ${TOKEN_MAX_USES} lần. Liên hệ hỗ trợ để được cấp lại.` }, { status: 429 })
   }
 
   // Kiểm tra loại đơn khớp với file yêu cầu
@@ -87,11 +98,11 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Đơn hàng này không bao gồm gói website' }, { status: 403 })
   }
 
-  // Hướng dẫn để đính kèm
-  const guideFiles = [
-    { src: join(SOURCES_DIR, 'products', 'goi-b', 'HUONG-DAN-CAI-DAT.html'), name: 'HUONG-DAN-CAI-DAT.html' },
-    { src: join(SOURCES_DIR, 'products', 'goi-b', 'HUONG-DAN-SU-DUNG.html'), name: 'HUONG-DAN-SU-DUNG.html' },
-  ]
+  // Tăng số lần dùng
+  await prisma.order.update({
+    where: { id: order.id },
+    data:  { tokenUsedCount: { increment: 1 } },
+  })
 
   let stream: ReadableStream<Uint8Array>
   let filename: string
@@ -110,38 +121,18 @@ export async function GET(request: NextRequest) {
     filename = `${slug}.zip`
   }
 
-  // ── Website (web.zip) ──
-  else if (file === 'web') {
-    const websiteDir = join(SOURCES_DIR, 'products', 'goi-b', 'website')
-    const backendDir = join(SOURCES_DIR, 'products', 'goi-b', 'backend')
-
-    if (!existsSync(websiteDir)) return NextResponse.json({ error: 'Nguồn website chưa sẵn sàng' }, { status: 503 })
-
-    stream = zipDirectories(
-      [
-        { src: websiteDir, dest: 'website' },         // React SPA source
-        { src: backendDir, dest: 'api' },              // PHP API
-      ],
-      guideFiles
-    )
-    filename = 'web.zip'
-  }
-
-  // ── Admin (admin.zip) ──
+  // ── Website standard — deploy-ready package theo slug ──
   else {
-    const adminDir   = join(SOURCES_DIR, 'products', 'goi-b', 'frontend')
-    const backendDir = join(SOURCES_DIR, 'products', 'goi-b', 'backend')
+    const slug = extractSlug(order.title)
+    if (!slug) return NextResponse.json({ error: 'Không xác định được template slug' }, { status: 400 })
 
-    if (!existsSync(adminDir)) return NextResponse.json({ error: 'Nguồn admin chưa sẵn sàng' }, { status: 503 })
+    const deployDir = join(SOURCES_DIR, 'products', 'basic', slug)
+    if (!existsSync(deployDir)) {
+      return NextResponse.json({ error: `Gói website "${slug}" chưa sẵn sàng` }, { status: 503 })
+    }
 
-    stream = zipDirectories(
-      [
-        { src: adminDir,   dest: 'admin-panel' },     // React SPA admin source
-        { src: backendDir, dest: 'api' },              // PHP API
-      ],
-      guideFiles
-    )
-    filename = 'admin.zip'
+    stream   = zipDirectories([{ src: deployDir, dest: slug }])
+    filename = `${slug}.zip`
   }
 
   return new Response(stream, {

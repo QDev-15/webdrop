@@ -38,11 +38,12 @@ function DownloadButton({ href, label, icon, sub }: { href: string; label: strin
 
 function SuccessContent() {
   const searchParams = useSearchParams()
-  const code = searchParams.get('code') ?? ''
-  const type = searchParams.get('type') ?? 'template'   // 'template' | 'website'
-  const slug = searchParams.get('slug') ?? ''
+  const token = searchParams.get('token') ?? ''
+  const type  = searchParams.get('type')  ?? 'template'
+  const slug  = searchParams.get('slug')  ?? ''
 
   const isWebsite = type === 'website'
+  const t = encodeURIComponent(token)
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px 20px', fontFamily: 'var(--sans)' }}>
@@ -53,17 +54,11 @@ function SuccessContent() {
           <div style={{ width: 72, height: 72, borderRadius: '50%', background: 'var(--accent-light)', border: '2px solid var(--accent-mid)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', fontSize: 32 }}>
             ✅
           </div>
-          <h1 style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-.5px', marginBottom: 8 }}>Đặt hàng thành công!</h1>
-          {code && (
-            <div style={{ display: 'inline-block', background: 'var(--accent-light)', border: '1px solid var(--accent-mid)', borderRadius: 8, padding: '5px 14px', marginBottom: 12 }}>
-              <span style={{ fontSize: 12, color: 'var(--text-3)', marginRight: 6 }}>Mã đơn:</span>
-              <strong style={{ fontSize: 13.5, color: 'var(--accent)', letterSpacing: '.5px' }}>{code}</strong>
-            </div>
-          )}
+          <h1 style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-.5px', marginBottom: 8 }}>Thanh toán thành công!</h1>
           <p style={{ fontSize: 14, color: 'var(--text-2)', fontWeight: 300, lineHeight: 1.7, maxWidth: 400, margin: '0 auto' }}>
             {isWebsite
-              ? 'Tải xuống 2 file dưới đây, sau đó làm theo hướng dẫn để cài đặt lên hosting của bạn.'
-              : 'Tải xuống file template dưới đây và mở thẳng bằng trình duyệt.'}
+              ? 'Tải xuống 2 file bên dưới, sau đó làm theo hướng dẫn để cài lên hosting.'
+              : 'Tải xuống file template bên dưới và mở thẳng bằng trình duyệt.'}
           </p>
         </div>
 
@@ -77,13 +72,13 @@ function SuccessContent() {
             {isWebsite ? (
               <>
                 <DownloadButton
-                  href={`/api/download?code=${code}&file=web`}
+                  href={`/api/download?token=${t}&file=web`}
                   icon="🌐"
                   label="web.zip — Website public"
                   sub="React SPA + PHP API + SQLite · Upload lên public_html"
                 />
                 <DownloadButton
-                  href={`/api/download?code=${code}&file=admin`}
+                  href={`/api/download?token=${t}&file=admin`}
                   icon="⚙"
                   label="admin.zip — Trang quản trị"
                   sub="React SPA + PHP API · Upload lên public_html/admin"
@@ -91,7 +86,7 @@ function SuccessContent() {
               </>
             ) : (
               <DownloadButton
-                href={`/api/download?code=${code}&file=template`}
+                href={`/api/download?token=${t}&file=template`}
                 icon="📦"
                 label={`${slug || 'template'}.zip — File template`}
                 sub="HTML + CSS + JS · Mở thẳng bằng trình duyệt"
@@ -104,13 +99,10 @@ function SuccessContent() {
               📖 Đọc file <strong>HUONG-DAN-CAI-DAT.html</strong> trong admin.zip trước khi cài đặt
             </div>
           )}
-        </div>
 
-        {/* Payment note */}
-        <div style={{ background: 'var(--warm)', border: '1px solid var(--border)', borderRadius: 12, padding: '16px 18px', marginBottom: 24, fontSize: 13, color: 'var(--text-2)', lineHeight: 1.75 }}>
-          <div style={{ fontWeight: 500, marginBottom: 4, color: 'var(--text)' }}>💳 Về thanh toán</div>
-          Sau khi chuyển khoản, chúng tôi xác nhận qua Zalo trong <strong>2 giờ làm việc</strong> (8:00–18:00, T2–T7).
-          Link download sẽ vẫn hoạt động — bạn có thể tải xuống ngay bây giờ.
+          <div style={{ marginTop: 12, fontSize: 12, color: 'var(--text-3)', lineHeight: 1.6 }}>
+            ⏱ Link tải có hiệu lực <strong>72 giờ</strong> · Dùng được tối đa <strong>5 lần</strong> · Link đã gửi qua email
+          </div>
         </div>
 
         {/* Actions */}
@@ -118,7 +110,7 @@ function SuccessContent() {
           <Link href="/" style={{ padding: '10px 22px', borderRadius: 9, border: '1px solid var(--border)', background: 'transparent', fontSize: 13, color: 'var(--text-2)', textDecoration: 'none' }}>
             Về trang chủ
           </Link>
-          <a href="https://zalo.me/0900000000" target="_blank" rel="noopener noreferrer"
+          <a href="https://zalo.me/0988632841" target="_blank" rel="noopener noreferrer"
             style={{ padding: '10px 22px', borderRadius: 9, background: '#0068FF', color: '#fff', fontSize: 13, fontWeight: 500, textDecoration: 'none' }}>
             💬 Chat Zalo hỗ trợ
           </a>

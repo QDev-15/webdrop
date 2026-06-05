@@ -53,7 +53,7 @@ export default function CheckoutClient({ hasWebsite }: { hasWebsite: boolean }) 
       })
       const data = await res.json()
       if (!res.ok) { setSubmitError(data.error || 'Lỗi đặt hàng, vui lòng thử lại'); return }
-      router.push(`/checkout/success?code=${data.code}&type=${purchaseType}&slug=${encodeURIComponent(slug)}`)
+      router.push(`/checkout/pending?code=${data.code}&type=${purchaseType}&slug=${encodeURIComponent(slug)}&amount=${price}`)
     } catch { setSubmitError('Lỗi kết nối, vui lòng thử lại') }
     finally { setSubmitting(false) }
   }
@@ -240,10 +240,10 @@ export default function CheckoutClient({ hasWebsite }: { hasWebsite: boolean }) 
                   <div style={{ background: 'var(--accent-light)', border: '1px solid var(--accent-mid)', borderRadius: 10, padding: '16px 18px', marginBottom: 20 }}>
                     <div style={{ fontSize: 13, fontWeight: 500, color: 'var(--accent)', marginBottom: 8 }}>Chuyển khoản ngân hàng</div>
                     <div style={{ fontSize: 13, color: 'var(--text-2)', lineHeight: 1.8, fontWeight: 300 }}>
-                      <div><strong style={{ color: 'var(--text)' }}>Ngân hàng:</strong> Vietcombank</div>
-                      <div><strong style={{ color: 'var(--text)' }}>Số tài khoản:</strong> 1234 5678 9012</div>
+                      <div><strong style={{ color: 'var(--text)' }}>Ngân hàng:</strong> MB Bank</div>
+                      <div><strong style={{ color: 'var(--text)' }}>Số tài khoản:</strong> 0988 632 841</div>
                       <div><strong style={{ color: 'var(--text)' }}>Chủ tài khoản:</strong> NGUYEN HUU QUYNH</div>
-                      <div><strong style={{ color: 'var(--text)' }}>Nội dung:</strong> WEBDROP {form.phone}</div>
+                      <div><strong style={{ color: 'var(--text)' }}>Nội dung:</strong> <em>Hiển thị sau khi đặt hàng</em></div>
                       <div style={{ marginTop: 8, paddingTop: 8, borderTop: '1px solid var(--accent-light)' }}>
                         <strong style={{ color: 'var(--text)' }}>Số tiền:</strong>{' '}
                         <strong style={{ color: 'var(--accent)', fontSize: 15 }}>{fmtPrice(price)}</strong>
@@ -252,9 +252,8 @@ export default function CheckoutClient({ hasWebsite }: { hasWebsite: boolean }) 
                   </div>
 
                   <div style={{ background: 'var(--warm)', border: '1px solid var(--border)', borderRadius: 10, padding: '14px 16px', marginBottom: 18, fontSize: 13, color: 'var(--text-2)', lineHeight: 1.75 }}>
-                    <div style={{ fontWeight: 500, marginBottom: 4, color: 'var(--text)' }}>⚡ Download tự động sau thanh toán</div>
-                    Sau khi nhấn <em>"Xác nhận đặt hàng"</em>, bạn sẽ được chuyển đến trang tải xuống với link download file {purchaseType === 'template' ? 'ZIP template' : 'web.zip và admin.zip'}.
-                    Chúng tôi sẽ xác nhận thanh toán qua Zalo <strong>{form.phone}</strong> trong vòng 2 giờ.
+                    <div style={{ fontWeight: 500, marginBottom: 4, color: 'var(--text)' }}>⚡ Tự động xác nhận qua Sepay</div>
+                    Sau khi chuyển khoản đúng nội dung, hệ thống tự xác nhận trong <strong>vài giây</strong> và gửi link download đến email <strong>{form.email}</strong>.
                   </div>
 
                   {submitError && (

@@ -277,11 +277,15 @@ model Order {
   discount    Decimal     @default(0)
   total       Decimal
   status      OrderStatus @default(new)
-  note        String?
-  startedAt   DateTime?   @map("started_at")
-  deadlineAt  DateTime?   @map("deadline_at")
-  completedAt DateTime?   @map("completed_at")
-  createdAt   DateTime    @default(now()) @map("created_at")
+  note           String?
+  startedAt      DateTime? @map("started_at")
+  deadlineAt     DateTime? @map("deadline_at")
+  completedAt    DateTime? @map("completed_at")
+  paidAt         DateTime? @map("paid_at")
+  downloadToken  String?   @unique @map("download_token")
+  tokenExpiresAt DateTime? @map("token_expires_at")
+  tokenUsedCount Int       @default(0) @map("token_used_count")
+  createdAt      DateTime  @default(now()) @map("created_at")
 
   customer  Customer        @relation(fields: [customerId], references: [id])
   package   ServicePackage? @relation(fields: [packageId], references: [id])

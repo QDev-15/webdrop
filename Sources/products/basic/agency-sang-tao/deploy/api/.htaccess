@@ -1,0 +1,17 @@
+Options -Indexes
+
+# Block direct access to database
+<FilesMatch "\.db$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block config file
+<Files "config.php">
+    Order allow,deny
+    Deny from all
+</Files>
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [L]
