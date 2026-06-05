@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useSite } from '../../contexts/SiteContext'
 import Reveal from '../Reveal'
 import { api } from '../../api/client'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 const FIELDS = [
   'Luật Doanh Nghiệp & M&A',
@@ -29,6 +30,7 @@ const FAQS = [
 ]
 
 export default function ContactPage() {
+  usePageTitle('Liên hệ & Tư vấn')
   const { settings } = useSite()
   const phone    = settings.site_phone    || '0900 000 000'
   const phone2   = settings.site_phone_2  || '0800 000 000'

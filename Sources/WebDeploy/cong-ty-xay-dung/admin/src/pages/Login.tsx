@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 
@@ -18,7 +18,7 @@ export default function Login() {
       await login(email, password)
       navigate('/', { replace: true })
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Đăng nhập thất bại')
+      setError(err instanceof Error ? err.message : 'ÄÄƒng nháº­p tháº¥t báº¡i')
     } finally {
       setLoading(false)
     }
@@ -34,8 +34,8 @@ export default function Login() {
             </svg>
           </div>
           <div>
-            <div className="login-title">Quản trị viên</div>
-            <div style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 2 }}>Công Ty Xây Dựng</div>
+            <div className="login-title">Quáº£n trá»‹ viÃªn</div>
+            <div style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 2 }}>CÃ´ng Ty XÃ¢y Dá»±ng</div>
           </div>
         </div>
 
@@ -46,27 +46,28 @@ export default function Login() {
             <label className="form-label" htmlFor="email">Email</label>
             <input
               id="email" type="email" className="form-input"
-              placeholder="admin@congtyxaydung.vn"
+              placeholder="sysadmin@admin.com"
               value={email} onChange={e => setEmail(e.target.value)} required
             />
           </div>
           <div className="form-group">
-            <label className="form-label" htmlFor="password">Mật khẩu</label>
+            <label className="form-label" htmlFor="password">Máº­t kháº©u</label>
             <input
               id="password" type="password" className="form-input"
-              placeholder="••••••••"
+              placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
               value={password} onChange={e => setPassword(e.target.value)} required
             />
           </div>
           <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: 8 }} disabled={loading}>
-            {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
+            {loading ? 'Äang Ä‘Äƒng nháº­p...' : 'ÄÄƒng nháº­p'}
           </button>
         </form>
 
         <p style={{ marginTop: 20, fontSize: 12, color: 'var(--text-3)', textAlign: 'center' }}>
-          Mặc định: admin@congtyxaydung.vn / Admin@2026
+          Máº·c Ä‘á»‹nh: admin@congtyxaydung.vn / Admin@2026
         </p>
       </div>
     </div>
   )
 }
+

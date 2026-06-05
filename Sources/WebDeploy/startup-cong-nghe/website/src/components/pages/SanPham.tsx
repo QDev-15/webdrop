@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 interface Feature { id: number; name: string; tag: string; icon: string; description: string; content: string }
 
 export default function SanPham() {
+  usePageTitle('Sản phẩm')
   const { settings } = useSite()
   const [features, setFeatures] = useState<Feature[]>([])
 

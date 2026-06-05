@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../../api/client'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 interface MenuItem {
   id: number
@@ -20,6 +21,7 @@ interface MenuCategory {
 }
 
 export default function MenuPage() {
+  usePageTitle('Thực đơn')
   const [categories, setCategories] = useState<MenuCategory[]>([])
   const [loading, setLoading] = useState(true)
 

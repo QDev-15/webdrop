@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '../../api/client'
+import ImageField from '../../components/ImageField'
 
 interface ProjectData {
   title: string
@@ -99,11 +100,11 @@ export default function ProjectForm() {
             <textarea className="form-control" value={form.description} onChange={e => set('description', e.target.value)} rows={3} />
           </div>
 
-          <div className="form-group">
-            <label className="form-label">Ảnh thumbnail (URL)</label>
-            <input type="url" className="form-control" value={form.image} onChange={e => set('image', e.target.value)} placeholder="https://..." />
-            {form.image && <img src={form.image} alt="" className="img-preview" style={{ marginTop: '8px' }} />}
-          </div>
+          <ImageField
+            label="Ảnh thumbnail"
+            value={form.image}
+            onChange={v => set('image', v)}
+          />
 
           <div className="form-group">
             <label className="form-label">Tags (phân cách bằng dấu phẩy)</label>

@@ -15,6 +15,7 @@ const TITLES: Record<string, string> = {
   '/contacts': 'Liên hệ',
   '/media': 'Media',
   '/settings': 'Cài đặt',
+  '/profile': 'Tài khoản của tôi',
 }
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -28,7 +29,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   }
 
   return (
-    <>
+    <div className="admin-layout">
       <Sidebar />
       <div className="main">
         <div className="main-header">
@@ -39,6 +40,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           {children}
         </div>
       </div>
-    </>
+    </div>
   )
 }

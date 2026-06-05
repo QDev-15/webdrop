@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, type ReactNode } from 'react'
+﻿import { createContext, useContext, useState, useEffect, type ReactNode } from 'react'
 import { api } from '../api/client'
 
 export interface SiteSettings {
@@ -48,24 +48,24 @@ interface SiteContextType {
 
 const defaults: SiteSettings = {
   site_name: 'TechFlow',
-  site_tagline: 'Nền tảng tự động hóa thông minh',
+  site_tagline: 'Ná»n táº£ng tá»± Ä‘á»™ng hÃ³a thÃ´ng minh',
   site_description: '',
   site_email: 'hello@techflow.vn',
   site_phone: '1900 1234',
   site_phone_2: '',
-  site_address: 'TP. Hồ Chí Minh',
-  working_hours: 'Thứ Hai – Thứ Sáu: 8:00 – 18:00',
+  site_address: 'TP. Há»“ ChÃ­ Minh',
+  working_hours: 'Thá»© Hai â€“ Thá»© SÃ¡u: 8:00 â€“ 18:00',
   social_facebook: '',
   social_linkedin: '',
   social_youtube: '',
   social_twitter: '',
   social_zalo: '',
-  footer_copyright: '© 2024 TechFlow.',
+  footer_copyright: 'Â© 2024 TechFlow.',
   footer_description: '',
   footer_show_social: '1',
-  hero_badge: 'Ra mắt v2.0 — Thử nghiệm miễn phí 14 ngày',
-  hero_heading: 'Giải pháp tự động hóa cho doanh nghiệp Việt Nam.',
-  hero_sub: 'TechFlow giúp đội ngũ tự động hóa quy trình và phân tích dữ liệu real-time.',
+  hero_badge: 'Ra máº¯t v2.0 â€” Thá»­ nghiá»‡m miá»…n phÃ­ 14 ngÃ y',
+  hero_heading: 'Giáº£i phÃ¡p tá»± Ä‘á»™ng hÃ³a cho doanh nghiá»‡p Viá»‡t Nam.',
+  hero_sub: 'TechFlow giÃºp Ä‘á»™i ngÅ© tá»± Ä‘á»™ng hÃ³a quy trÃ¬nh vÃ  phÃ¢n tÃ­ch dá»¯ liá»‡u real-time.',
   stat_customers: '500+',
   stat_uptime: '99.9%',
   stat_integrations: '100+',
@@ -92,6 +92,18 @@ export function SiteProvider({ children }: { children: ReactNode }) {
     }).catch(console.error)
     .finally(() => setLoading(false))
   }, [])
+  // Cập nhật favicon từ settings
+  useEffect(() => {
+    if (!settings.site_favicon) return
+    let link = document.querySelector<HTMLLinkElement>('link[rel="icon"]')
+    if (!link) {
+      link = document.createElement('link')
+      link.rel = 'icon'
+      document.head.appendChild(link)
+    }
+    link.href = settings.site_favicon
+  }, [settings.site_favicon])
+
 
   return (
     <SiteContext.Provider value={{ settings, slides, loading }}>
@@ -101,3 +113,4 @@ export function SiteProvider({ children }: { children: ReactNode }) {
 }
 
 export function useSite() { return useContext(SiteContext) }
+

@@ -3,9 +3,20 @@ import { useAuth } from '../../contexts/AuthContext'
 import { useEffect, useState } from 'react'
 import { api } from '../../api/client'
 
-interface Stats {
-  contacts_new: number
+interface NavLinkItem {
+  to: string
+  icon: string
+  label: string
+  exact?: boolean
+  badge?: number
 }
+
+interface MenuSection {
+  section: string
+  links: NavLinkItem[]
+}
+
+interface Stats { contacts_new: number }
 
 export default function Sidebar() {
   const { user, logout } = useAuth()
@@ -23,7 +34,39 @@ export default function Sidebar() {
     navigate('/login')
   }
 
-  const initials = user?.name?.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase() || 'AD'
+  const menu: MenuSection[] = [
+    {
+      section: 'Tổng quan',
+      links: [{ to: '/', icon: '⊞', label: 'Dashboard', exact: true }],
+    },
+    {
+      section: 'Trang chủ',
+      links: [{ to: '/services', icon: '◆', label: 'Dịch vụ' }],
+    },
+    {
+      section: 'Dự án',
+      links: [{ to: '/projects', icon: '▣', label: 'Portfolio / Dự án' }],
+    },
+    {
+      section: 'Về chúng tôi',
+      links: [
+        { to: '/team',         icon: '👥', label: 'Đội ngũ' },
+        { to: '/testimonials', icon: '⭐', label: 'Nhận xét KH' },
+      ],
+    },
+    {
+      section: 'Nội dung',
+      links: [{ to: '/media', icon: '🖼', label: 'Media' }],
+    },
+    {
+      section: 'Liên hệ',
+      links: [{ to: '/contacts', icon: '✉', label: 'Brief / Liên hệ', badge: newContacts || undefined }],
+    },
+    {
+      section: 'Hệ thống',
+      links: [{ to: '/settings', icon: '⚙', label: 'Cài đặt' }],
+    },
+  ]
 
   return (
     <div className="sb">
@@ -32,76 +75,35 @@ export default function Sidebar() {
         <div className="sb-logo-sub">Admin Panel</div>
       </div>
 
-      <div className="sb-section">
-        <div className="sb-section-title">Tổng quan</div>
-        <NavLink to="/" end className={({ isActive }) => `sb-link${isActive ? ' active' : ''}`}>
-          <span className="sb-icon">⊞</span> Dashboard
-        </NavLink>
-      </div>
-
-      {/* Trang chủ — menu nav item */}
-      <div className="sb-section">
-        <div className="sb-section-title">Trang chủ</div>
-        <NavLink to="/services" className={({ isActive }) => `sb-link${isActive ? ' active' : ''}`}>
-          <span className="sb-icon">◆</span> Dịch vụ
-        </NavLink>
-      </div>
-
-      {/* Dự án — menu nav item */}
-      <div className="sb-section">
-        <div className="sb-section-title">Dự án</div>
-        <NavLink to="/projects" className={({ isActive }) => `sb-link${isActive ? ' active' : ''}`}>
-          <span className="sb-icon">▣</span> Portfolio / Dự án
-        </NavLink>
-      </div>
-
-      {/* Về chúng tôi — menu nav item */}
-      <div className="sb-section">
-        <div className="sb-section-title">Về chúng tôi</div>
-        <NavLink to="/team" className={({ isActive }) => `sb-link${isActive ? ' active' : ''}`}>
-          <span className="sb-icon">👥</span> Đội ngũ
-        </NavLink>
-        <NavLink to="/testimonials" className={({ isActive }) => `sb-link${isActive ? ' active' : ''}`}>
-          <span className="sb-icon">⭐</span> Nhận xét KH
-        </NavLink>
-      </div>
-
-      {/* Media */}
-      <div className="sb-section">
-        <div className="sb-section-title">Nội dung</div>
-        <NavLink to="/media" className={({ isActive }) => `sb-link${isActive ? ' active' : ''}`}>
-          <span className="sb-icon">🖼</span> Media
-        </NavLink>
-      </div>
-
-      {/* Liên hệ — menu nav item */}
-      <div className="sb-section">
-        <div className="sb-section-title">Liên hệ</div>
-        <NavLink to="/contacts" className={({ isActive }) => `sb-link${isActive ? ' active' : ''}`}>
-          <span className="sb-icon">✉</span> Brief / Liên hệ
-          {newContacts > 0 && <span className="sb-badge">{newContacts}</span>}
-        </NavLink>
-      </div>
-
-      {/* Hệ thống */}
-      <div className="sb-section">
-        <div className="sb-section-title">Hệ thống</div>
-        <NavLink to="/settings" className={({ isActive }) => `sb-link${isActive ? ' active' : ''}`}>
-          <span className="sb-icon">⚙</span> Cài đặt
-        </NavLink>
-      </div>
+      {menu.map(section => (
+        <div className="sb-section" key={section.section}>
+          <div className="sb-section-title">{section.section}</div>
+          {section.links.map(link => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              end={link.exact}
+              className={({ isActive }) => `sb-link${isActive ? ' active' : ''}`}
+            >
+              <span className="sb-icon">{link.icon}</span>
+              <span style={{ flex: 1 }}>{link.label}</span>
+              {link.badge !== undefined && link.badge > 0 && (
+                <span className="sb-badge">{link.badge}</span>
+              )}
+            </NavLink>
+          ))}
+        </div>
+      ))}
 
       <div className="sb-footer">
-        <div className="sb-user">
-          <div className="sb-avatar">{initials}</div>
-          <div>
-            <div className="sb-user-name">{user?.name || 'Admin'}</div>
-            <div className="sb-user-role">{user?.role || 'superadmin'}</div>
+        <NavLink to="/profile" className={({ isActive }) => `sb-link${isActive ? ' active' : ''}`} style={{ marginBottom: '4px' }}>
+          <span className="sb-icon">👤</span>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: '12px', fontWeight: '500', color: 'rgba(255,255,255,.75)', lineHeight: 1.3 }}>{user?.name || 'Admin'}</div>
+            <div style={{ fontSize: '10px', color: 'rgba(255,255,255,.35)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{user?.email}</div>
           </div>
-        </div>
-        <button className="sb-logout" onClick={handleLogout}>
-          Đăng xuất
-        </button>
+        </NavLink>
+        <button className="sb-logout" onClick={handleLogout}>Đăng xuất</button>
       </div>
     </div>
   )

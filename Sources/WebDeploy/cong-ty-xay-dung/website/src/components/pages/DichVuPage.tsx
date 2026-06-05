@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 interface Service {
   id: number
@@ -26,6 +27,7 @@ function useReveal() {
 }
 
 export default function DichVuPage() {
+  usePageTitle('Dịch vụ')
   const { settings } = useSite()
   const [services, setServices] = useState<Service[]>([])
   useReveal()

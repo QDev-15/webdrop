@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 declare(strict_types=1);
 
 require_once __DIR__ . '/Database.php';
@@ -19,6 +19,9 @@ require_once __DIR__ . '/controllers/TestimonialController.php';
 require_once __DIR__ . '/controllers/ReservationController.php';
 require_once __DIR__ . '/controllers/UserController.php';
 
+
+require_once __DIR__ . '/controllers/UploadController.php';
+require_once __DIR__ . '/controllers/UnsplashController.php';
 Auth::start();
 
 function bodyJson(): array {
@@ -33,7 +36,7 @@ function bodyJson(): array {
 
 function slugify(string $text): string {
     $text = mb_strtolower($text, 'UTF-8');
-    $map = ['à'=>'a','á'=>'a','ả'=>'a','ã'=>'a','ạ'=>'a','ă'=>'a','ắ'=>'a','ằ'=>'a','ẳ'=>'a','ẵ'=>'a','ặ'=>'a','â'=>'a','ấ'=>'a','ầ'=>'a','ẩ'=>'a','ẫ'=>'a','ậ'=>'a','đ'=>'d','è'=>'e','é'=>'e','ẻ'=>'e','ẽ'=>'e','ẹ'=>'e','ê'=>'e','ế'=>'e','ề'=>'e','ể'=>'e','ễ'=>'e','ệ'=>'e','ì'=>'i','í'=>'i','ỉ'=>'i','ĩ'=>'i','ị'=>'i','ò'=>'o','ó'=>'o','ỏ'=>'o','õ'=>'o','ọ'=>'o','ô'=>'o','ố'=>'o','ồ'=>'o','ổ'=>'o','ỗ'=>'o','ộ'=>'o','ơ'=>'o','ớ'=>'o','ờ'=>'o','ở'=>'o','ỡ'=>'o','ợ'=>'o','ù'=>'u','ú'=>'u','ủ'=>'u','ũ'=>'u','ụ'=>'u','ư'=>'u','ứ'=>'u','ừ'=>'u','ử'=>'u','ữ'=>'u','ự'=>'u','ỳ'=>'y','ý'=>'y','ỷ'=>'y','ỹ'=>'y','ỵ'=>'y'];
+    $map = ['Ã '=>'a','Ã¡'=>'a','áº£'=>'a','Ã£'=>'a','áº¡'=>'a','Äƒ'=>'a','áº¯'=>'a','áº±'=>'a','áº³'=>'a','áºµ'=>'a','áº·'=>'a','Ã¢'=>'a','áº¥'=>'a','áº§'=>'a','áº©'=>'a','áº«'=>'a','áº­'=>'a','Ä‘'=>'d','Ã¨'=>'e','Ã©'=>'e','áº»'=>'e','áº½'=>'e','áº¹'=>'e','Ãª'=>'e','áº¿'=>'e','á»'=>'e','á»ƒ'=>'e','á»…'=>'e','á»‡'=>'e','Ã¬'=>'i','Ã­'=>'i','á»‰'=>'i','Ä©'=>'i','á»‹'=>'i','Ã²'=>'o','Ã³'=>'o','á»'=>'o','Ãµ'=>'o','á»'=>'o','Ã´'=>'o','á»‘'=>'o','á»“'=>'o','á»•'=>'o','á»—'=>'o','á»™'=>'o','Æ¡'=>'o','á»›'=>'o','á»'=>'o','á»Ÿ'=>'o','á»¡'=>'o','á»£'=>'o','Ã¹'=>'u','Ãº'=>'u','á»§'=>'u','Å©'=>'u','á»¥'=>'u','Æ°'=>'u','á»©'=>'u','á»«'=>'u','á»­'=>'u','á»¯'=>'u','á»±'=>'u','á»³'=>'y','Ã½'=>'y','á»·'=>'y','á»¹'=>'y','á»µ'=>'y'];
     $text = strtr($text, $map);
     $text = preg_replace('/[^a-z0-9\s-]/', '', $text);
     $text = preg_replace('/[\s-]+/', '-', trim($text));
@@ -43,22 +46,22 @@ function slugify(string $text): string {
 $db = Database::getInstance();
 $router = new Router();
 
-// ── AUTH ──────────────────────────────────────────────────────────────────────
+// â”€â”€ AUTH â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 $auth = new AuthController($db);
 $router->add('POST', '/auth/login',   [$auth, 'login']);
 $router->add('POST', '/auth/logout',  [$auth, 'logout']);
 $router->add('GET',  '/auth/me',      [$auth, 'me']);
 
-// ── STATS ────────────────────────────────────────────────────────────────────
+// â”€â”€ STATS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 $stats = new StatsController($db);
 $router->add('GET', '/stats', [$stats, 'index']);
 
-// ── SETTINGS ─────────────────────────────────────────────────────────────────
+// â”€â”€ SETTINGS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 $settings = new SettingsController($db);
 $router->add('GET',  '/settings',       [$settings, 'index']);
 $router->add('POST', '/settings/update',[$settings, 'update']);
 
-// ── HERO SLIDES ───────────────────────────────────────────────────────────────
+// â”€â”€ HERO SLIDES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 $slide = new HeroSlideController($db);
 $router->add('GET',  '/hero-slides',              [$slide, 'index']);
 $router->add('POST', '/hero-slides',              [$slide, 'store']);
@@ -67,7 +70,7 @@ $router->add('GET',  '/hero-slides/:id',          [$slide, 'show']);
 $router->add('POST', '/hero-slides/:id/update',   [$slide, 'update']);
 $router->add('POST', '/hero-slides/:id/delete',   [$slide, 'destroy']);
 
-// ── MENU CATEGORIES ───────────────────────────────────────────────────────────
+// â”€â”€ MENU CATEGORIES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 $menuCat = new MenuCategoryController($db);
 $router->add('GET',  '/menu-categories',             [$menuCat, 'index']);
 $router->add('POST', '/menu-categories',             [$menuCat, 'store']);
@@ -75,7 +78,7 @@ $router->add('GET',  '/menu-categories/:id',         [$menuCat, 'show']);
 $router->add('POST', '/menu-categories/:id/update',  [$menuCat, 'update']);
 $router->add('POST', '/menu-categories/:id/delete',  [$menuCat, 'destroy']);
 
-// ── MENU ITEMS ────────────────────────────────────────────────────────────────
+// â”€â”€ MENU ITEMS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 $menuItem = new MenuItemController($db);
 $router->add('GET',  '/menu-items',              [$menuItem, 'index']);
 $router->add('POST', '/menu-items',              [$menuItem, 'store']);
@@ -83,7 +86,7 @@ $router->add('GET',  '/menu-items/:id',          [$menuItem, 'show']);
 $router->add('POST', '/menu-items/:id/update',   [$menuItem, 'update']);
 $router->add('POST', '/menu-items/:id/delete',   [$menuItem, 'destroy']);
 
-// ── GALLERY ───────────────────────────────────────────────────────────────────
+// â”€â”€ GALLERY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 $gallery = new GalleryController($db);
 $router->add('GET',  '/gallery',              [$gallery, 'index']);
 $router->add('POST', '/gallery',              [$gallery, 'store']);
@@ -92,7 +95,7 @@ $router->add('GET',  '/gallery/:id',          [$gallery, 'show']);
 $router->add('POST', '/gallery/:id/update',   [$gallery, 'update']);
 $router->add('POST', '/gallery/:id/delete',   [$gallery, 'destroy']);
 
-// ── TESTIMONIALS ──────────────────────────────────────────────────────────────
+// â”€â”€ TESTIMONIALS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 $testi = new TestimonialController($db);
 $router->add('GET',  '/testimonials',              [$testi, 'index']);
 $router->add('POST', '/testimonials',              [$testi, 'store']);
@@ -100,7 +103,7 @@ $router->add('GET',  '/testimonials/:id',          [$testi, 'show']);
 $router->add('POST', '/testimonials/:id/update',   [$testi, 'update']);
 $router->add('POST', '/testimonials/:id/delete',   [$testi, 'destroy']);
 
-// ── RESERVATIONS ──────────────────────────────────────────────────────────────
+// â”€â”€ RESERVATIONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 $reservation = new ReservationController($db);
 $router->add('GET',  '/reservations',              [$reservation, 'index']);
 $router->add('POST', '/reservations',              [$reservation, 'store']);
@@ -108,20 +111,20 @@ $router->add('GET',  '/reservations/:id',          [$reservation, 'show']);
 $router->add('POST', '/reservations/:id/update',   [$reservation, 'update']);
 $router->add('POST', '/reservations/:id/delete',   [$reservation, 'destroy']);
 
-// ── CONTACTS ──────────────────────────────────────────────────────────────────
+// â”€â”€ CONTACTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 $contact = new ContactController($db);
 $router->add('GET',  '/contacts',              [$contact, 'index']);
 $router->add('GET',  '/contacts/:id',          [$contact, 'show']);
 $router->add('POST', '/contacts/:id/update',   [$contact, 'update']);
 $router->add('POST', '/contacts/:id/delete',   [$contact, 'destroy']);
 
-// ── MEDIA ─────────────────────────────────────────────────────────────────────
+// â”€â”€ MEDIA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 $media = new MediaController($db);
 $router->add('GET',  '/media',              [$media, 'index']);
 $router->add('POST', '/media/upload',       [$media, 'upload']);
 $router->add('POST', '/media/:id/delete',   [$media, 'destroy']);
 
-// ── USERS ────────────────────────────────────────────────────────────────────
+// â”€â”€ USERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 $user = new UserController($db);
 $router->add('GET',  '/users',                         [$user, 'index']);
 $router->add('POST', '/users',                         [$user, 'store']);
@@ -129,7 +132,7 @@ $router->add('POST', '/users/:id/update',              [$user, 'update']);
 $router->add('POST', '/users/:id/delete',              [$user, 'destroy']);
 $router->add('POST', '/users/:id/change-password',     [$user, 'changePassword']);
 
-// ── PUBLIC (no auth) ──────────────────────────────────────────────────────────
+// â”€â”€ PUBLIC (no auth) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 $pub = new PublicController($db);
 $router->add('GET',  '/public/settings',        [$pub, 'settings']);
 $router->add('GET',  '/public/hero-slides',     [$pub, 'heroSlides']);
@@ -140,4 +143,15 @@ $router->add('GET',  '/public/testimonials',    [$pub, 'testimonials']);
 $router->add('POST', '/public/contact',         [$pub, 'submitContact']);
 $router->add('POST', '/public/reservation',     [$pub, 'submitReservation']);
 
+
+// ── UPLOAD & UNSPLASH ─────────────────────────────────────────────────────────
+$upload   = new UploadController($db);
+$router->add('POST', '/upload',   [$upload,   'upload']);
+
+$unsplash = new UnsplashController($db);
+$router->add('GET',  '/unsplash', [$unsplash, 'search']);
+$router->add('POST', '/unsplash', [$unsplash, 'trackDownload']);
+
 return $router;
+
+

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function ContactPage() {
+  usePageTitle('Liên hệ')
   const { settings } = useSite()
 
   useEffect(() => {

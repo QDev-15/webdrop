@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+﻿import React, { createContext, useContext, useEffect, useState } from 'react'
 import { api } from '../api/client'
 
 interface SiteSettings {
@@ -94,6 +94,18 @@ export function SiteProvider({ children }: { children: React.ReactNode }) {
     }).catch(console.error)
       .finally(() => setLoading(false))
   }, [])
+  // Cập nhật favicon từ settings
+  useEffect(() => {
+    if (!settings.site_favicon) return
+    let link = document.querySelector<HTMLLinkElement>('link[rel="icon"]')
+    if (!link) {
+      link = document.createElement('link')
+      link.rel = 'icon'
+      document.head.appendChild(link)
+    }
+    link.href = settings.site_favicon
+  }, [settings.site_favicon])
+
 
   return (
     <SiteContext.Provider value={{ settings, slides, services, team, testimonials, loading }}>
@@ -107,3 +119,4 @@ export function useSite() {
 }
 
 export type { SiteSettings, HeroSlide, Service, TeamMember, Testimonial }
+

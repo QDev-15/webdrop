@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../../api/client'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 interface Project {
   id: number; title: string; description: string; image: string; category: string; client: string; featured: number; tags: string; link: string
 }
 
 export default function ProjectsPage() {
+  usePageTitle('Dự án')
   const [projects, setProjects] = useState<Project[]>([])
   const [active, setActive] = useState('all')
 

@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 interface TeamMember {
   id: number; name: string; position: string; bio: string; avatar: string
 }
 
 export default function AboutPage() {
+  usePageTitle('Về chúng tôi')
   const { settings } = useSite()
   const [team, setTeam] = useState<TeamMember[]>([])
 

@@ -16,9 +16,9 @@ define('DB_USER', 'ten_user');
 define('DB_PASS', 'mat_khau');
 
 // APP — Thay đổi APP_URL thành domain thật của bạn
-define('APP_URL', 'https://example.com');
+define('APP_URL', 'https://nhienadmin.tkid.io.vn');
 define('APP_ENV', 'production');
-define('APP_KEY', 'change-this-to-random-32-chars-string');
+define('APP_KEY', 'c3e890ef34067f72080c59fe70db6335');
 
 // UPLOAD — Nơi lưu ảnh và file
 define('UPLOAD_DRIVER', 'local');

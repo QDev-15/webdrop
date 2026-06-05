@@ -1,6 +1,6 @@
-/**
- * Build script — cong-ty-xay-dung
- * Chạy: node build.mjs
+﻿/**
+ * Build script â€” cong-ty-xay-dung
+ * Cháº¡y: node build.mjs
  * Output: deploy/
  */
 
@@ -14,9 +14,9 @@ const deploy = join(root, 'deploy')
 
 console.log('=== Build: cong-ty-xay-dung ===\n')
 
-// 1. Xóa deploy/ cũ
+// 1. XÃ³a deploy/ cÅ©
 if (existsSync(deploy)) {
-  console.log('[1/5] Xóa thư mục deploy/ cũ...')
+  console.log('[1/5] XÃ³a thÆ° má»¥c deploy/ cÅ©...')
   rmSync(deploy, { recursive: true, force: true })
 }
 
@@ -27,14 +27,14 @@ const run = (cmd, cwd, label) => {
 
 // 2. Build website (public site)
 console.log('\n[2/5] Build website (React public site)...')
-run('npm run build', join(root, 'website'), 'website → dist/')
+run('npm run build', join(root, 'website'), 'website â†’ dist/')
 
 // 3. Build admin
 console.log('\n[3/5] Build admin panel...')
-run('npm run build', join(root, 'admin'), 'admin → dist/')
+run('npm run build', join(root, 'admin'), 'admin â†’ dist/')
 
-// 4. Tạo cấu trúc deploy/
-console.log('\n[4/5] Tổ chức thư mục deploy/...')
+// 4. Táº¡o cáº¥u trÃºc deploy/
+console.log('\n[4/5] Tá»• chá»©c thÆ° má»¥c deploy/...')
 
 mkdirSync(join(deploy, 'admin'),                     { recursive: true })
 mkdirSync(join(deploy, 'api', 'src', 'controllers'), { recursive: true })
@@ -43,13 +43,13 @@ mkdirSync(join(deploy, 'api', 'database'),           { recursive: true })
 writeFileSync(join(deploy, 'api', 'uploads',  '.gitkeep'), '')
 writeFileSync(join(deploy, 'api', 'database', '.gitkeep'), '')
 
-// website/dist/ → deploy/ (bao gồm .htaccess và web.config)
+// website/dist/ â†’ deploy/ (bao gá»“m .htaccess vÃ  web.config)
 cpSync(join(root, 'website', 'dist'), deploy, { recursive: true })
 
-// admin/dist/ → deploy/admin/
+// admin/dist/ â†’ deploy/admin/
 cpSync(join(root, 'admin', 'dist'), join(deploy, 'admin'), { recursive: true })
 
-// api/ → deploy/api/ (bỏ qua database/, uploads/, .git)
+// api/ â†’ deploy/api/ (bá» qua database/, uploads/, .git)
 const skipApi = new Set(['node_modules', '.git', 'database', 'uploads'])
 for (const item of readdirSync(join(root, 'api'))) {
   if (skipApi.has(item)) continue
@@ -59,18 +59,19 @@ for (const item of readdirSync(join(root, 'api'))) {
 }
 
 
-// 5. Thông báo
-console.log('\n[5/5] Hoàn thành!')
-console.log('─'.repeat(50))
+// 5. ThÃ´ng bÃ¡o
+console.log('\n[5/5] HoÃ n thÃ nh!')
+console.log('â”€'.repeat(50))
 console.log('Deploy folder: ' + deploy)
-console.log('\nCấu trúc deploy/:')
-console.log('  index.html, assets/   ← Website public')
-console.log('  .htaccess, web.config ← SPA routing (Apache + IIS)')
-console.log('  admin/                ← Admin panel')
-console.log('  api/                  ← PHP backend + SQLite')
-console.log('\nHướng dẫn deploy:')
-console.log('  1. Upload toàn bộ nội dung trong deploy/ lên public_html/')
-console.log('  2. Chỉnh sửa api/config.php theo thông tin hosting')
-console.log('  3. Truy cập website.vn/admin để đăng nhập')
-console.log('  4. Tài khoản mặc định: admin@congtyxaydung.vn / Admin@2026')
-console.log('─'.repeat(50))
+console.log('\nCáº¥u trÃºc deploy/:')
+console.log('  index.html, assets/   â† Website public')
+console.log('  .htaccess, web.config â† SPA routing (Apache + IIS)')
+console.log('  admin/                â† Admin panel')
+console.log('  api/                  â† PHP backend + SQLite')
+console.log('\nHÆ°á»›ng dáº«n deploy:')
+console.log('  1. Upload toÃ n bá»™ ná»™i dung trong deploy/ lÃªn public_html/')
+console.log('  2. Chá»‰nh sá»­a api/config.php theo thÃ´ng tin hosting')
+console.log('  3. Truy cáº­p website.vn/admin Ä‘á»ƒ Ä‘Äƒng nháº­p')
+console.log('  4. TÃ i khoáº£n máº·c Ä‘á»‹nh: sysadmin@admin.com / 123456')
+console.log('â”€'.repeat(50))
+

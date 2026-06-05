@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 function useReveal() {
   useEffect(() => {
@@ -15,6 +16,7 @@ function useReveal() {
 }
 
 export default function LienHePage() {
+  usePageTitle('Liên hệ')
   const { settings } = useSite()
   const [formData, setFormData] = useState({
     name: '', phone: '', email: '', construction_type: '',

@@ -2,10 +2,12 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import RevealObserver from '../RevealObserver'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 const CATEGORIES = ['Tất cả', 'Brand Identity', 'Digital Design', 'Campaign', 'Social Media', 'Event Branding', 'Digital Marketing']
 
 export default function ProjectsPage() {
+  usePageTitle('Dự án')
   const { projects, settings } = useSite()
   const [activeFilter, setActiveFilter] = useState('Tất cả')
 

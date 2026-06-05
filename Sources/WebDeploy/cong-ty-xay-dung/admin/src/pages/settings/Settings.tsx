@@ -3,7 +3,7 @@ import { api } from '../../api/client'
 
 interface SettingsMap { [key: string]: string }
 
-type Tab = 'general' | 'hero' | 'stats' | 'about' | 'seo' | 'social' | 'footer' | 'contact' | 'smtp' | 'system'
+type Tab = 'general' | 'hero' | 'stats' | 'about' | 'seo' | 'social' | 'footer' | 'contact' | 'smtp' | 'system' | 'cloudinary' | 'integrations'
 
 export default function Settings() {
   const [settings, setSettings] = useState<SettingsMap>({})
@@ -50,6 +50,8 @@ export default function Settings() {
     { id: 'contact', label: 'Liên hệ' },
     { id: 'smtp', label: 'SMTP Email' },
     { id: 'system', label: 'Hệ thống' },
+    { id: 'cloudinary', label: '☁️ Cloudinary' },
+    { id: 'integrations', label: '🔌 Tích hợp' },
   ]
 
   if (loading) return <div className="card"><p style={{ color: 'var(--text-3)' }}>Đang tải cài đặt...</p></div>
@@ -272,6 +274,46 @@ export default function Settings() {
               <label className="form-label">Custom CSS (nâng cao)</label>
               <textarea className="form-textarea" rows={6} value={s('custom_css')} onChange={e => set('custom_css', e.target.value)} style={{ fontFamily: 'monospace', fontSize: 12 }} />
               <p className="form-hint">CSS tùy chỉnh thêm vào website. Cẩn thận khi chỉnh sửa.</p>
+            </div>
+          </div>
+        )}
+
+        {/* CLOUDINARY */}
+        {tab === 'cloudinary' && (
+          <div>
+            <h2 style={{ fontSize: 15, fontWeight: 600, marginBottom: 20 }}>☁️ Cloudinary — Lưu trữ ảnh</h2>
+            <div className="grid grid-2" style={{ gap: 16 }}>
+              <div className="form-group">
+                <label className="form-label">Cloud Name</label>
+                <input className="form-input" value={s('cloudinary_cloud_name')} onChange={e => set('cloudinary_cloud_name', e.target.value)} placeholder="your-cloud-name" />
+                <p className="form-hint">Lấy tại cloudinary.com → Dashboard → Cloud Name</p>
+              </div>
+              <div className="form-group">
+                <label className="form-label">API Key</label>
+                <input className="form-input" value={s('cloudinary_api_key')} onChange={e => set('cloudinary_api_key', e.target.value)} placeholder="123456789012345" />
+              </div>
+              <div className="form-group">
+                <label className="form-label">API Secret</label>
+                <input className="form-input" value={s('cloudinary_api_secret')} onChange={e => set('cloudinary_api_secret', e.target.value)} placeholder="••••••••••••••••••••••••" />
+                <p className="form-hint">Dashboard → Settings → Access Keys → API Secret</p>
+              </div>
+              <div className="form-group">
+                <label className="form-label">Upload Folder (tuỳ chọn)</label>
+                <input className="form-input" value={s('cloudinary_folder')} onChange={e => set('cloudinary_folder', e.target.value)} placeholder="webdrop" />
+                <p className="form-hint">Thư mục lưu ảnh trên Cloudinary. Mặc định: webdrop</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* INTEGRATIONS */}
+        {tab === 'integrations' && (
+          <div>
+            <h2 style={{ fontSize: 15, fontWeight: 600, marginBottom: 20 }}>🔌 Tích hợp bên ngoài</h2>
+            <div className="form-group">
+              <label className="form-label">Unsplash Access Key</label>
+              <input className="form-input" value={s('unsplash_access_key')} onChange={e => set('unsplash_access_key', e.target.value)} placeholder="Dán Access Key từ unsplash.com/developers" />
+              <p className="form-hint">Đăng ký miễn phí tại unsplash.com/developers → New Application → copy Access Key. Dùng để tìm kiếm ảnh trong admin.</p>
             </div>
           </div>
         )}

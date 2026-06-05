@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../../api/client'
 import { useSite } from '../../contexts/SiteContext'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 interface GalleryItem {
   id: number
@@ -12,6 +13,7 @@ interface GalleryItem {
 }
 
 export default function SpacePage() {
+  usePageTitle('Không gian')
   const { settings } = useSite()
   const [gallery, setGallery] = useState<GalleryItem[]>([])
 

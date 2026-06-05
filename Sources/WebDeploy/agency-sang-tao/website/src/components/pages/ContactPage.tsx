@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
 import RevealObserver from '../RevealObserver'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 interface ContactForm {
   name: string
@@ -37,6 +38,7 @@ const FAQS = [
 ]
 
 export default function ContactPage() {
+  usePageTitle('Liên hệ')
   const { settings } = useSite()
   const [form, setForm] = useState<ContactForm>({
     name: '', company: '', email: '', phone: '', service: '', budget: '', message: '',

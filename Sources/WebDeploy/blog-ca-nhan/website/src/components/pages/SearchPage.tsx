@@ -2,6 +2,7 @@ import { useEffect, useState, type FormEvent } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { api } from '../../api/client'
 import { useSite } from '../../contexts/SiteContext'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 interface Post {
   id: number
@@ -23,6 +24,7 @@ interface PostsResponse {
 }
 
 export default function SearchPage() {
+  usePageTitle('Tìm kiếm')
   const [searchParams, setSearchParams] = useSearchParams()
   const { settings } = useSite()
   const q = searchParams.get('q') ?? ''

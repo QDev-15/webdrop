@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 interface MenuItem {
   id: number
@@ -47,6 +48,7 @@ function useReveal(deps: unknown[]) {
 }
 
 export default function HomePage() {
+  usePageTitle()
   const { settings, slides } = useSite()
   const [menuCategories, setMenuCategories] = useState<MenuCategory[]>([])
   const [activeTab, setActiveTab] = useState('cf')

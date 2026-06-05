@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+﻿import { createContext, useContext, useEffect, useState } from 'react'
 import { api } from '../api/client'
 
 export interface Settings {
@@ -95,3 +95,4 @@ export function SiteProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function useSite() { return useContext(SiteContext) }
+

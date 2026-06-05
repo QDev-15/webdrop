@@ -37,7 +37,7 @@ class Database
         return self::$instance;
     }
 
-    // ── Query helpers ──────────────────────────────────────
+    // â”€â”€ Query helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     public function query(string $sql, array $params = []): array
     {
@@ -73,7 +73,7 @@ class Database
     public function commit(): void { $this->pdo->commit(); }
     public function rollback(): void { $this->pdo->rollBack(); }
 
-    // ── Schema migration ───────────────────────────────────
+    // â”€â”€ Schema migration â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private function migrate(): void
     {
@@ -95,7 +95,7 @@ class Database
         $this->seedDefaultData();
     }
 
-    // ── Seed default data from template content ────────────
+    // â”€â”€ Seed default data from template content â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private function seedDefaultData(): void
     {
@@ -126,56 +126,56 @@ class Database
         if ($count > 0) return;
 
         $defaults = [
-            // general — thông tin cơ bản của agency
+            // general â€” thÃ´ng tin cÆ¡ báº£n cá»§a agency
             ['site_name', 'NOVA.', 'general'],
-            ['site_tagline', 'Agency Sáng Tạo · Hồ Chí Minh · Est. 2016', 'general'],
-            ['site_description', 'Agency sáng tạo chuyên branding, thiết kế và digital marketing. Chúng tôi tạo ra những thương hiệu đáng nhớ.', 'general'],
+            ['site_tagline', 'Agency SÃ¡ng Táº¡o Â· Há»“ ChÃ­ Minh Â· Est. 2016', 'general'],
+            ['site_description', 'Agency sÃ¡ng táº¡o chuyÃªn branding, thiáº¿t káº¿ vÃ  digital marketing. ChÃºng tÃ´i táº¡o ra nhá»¯ng thÆ°Æ¡ng hiá»‡u Ä‘Ã¡ng nhá»›.', 'general'],
             ['site_logo', '', 'general'],
             ['site_favicon', '', 'general'],
             ['site_email', 'hello@nova.vn', 'general'],
             ['site_phone', '0909 123 456', 'general'],
             ['site_phone_2', '', 'general'],
-            ['site_address', '123 Nguyễn Huệ, Quận 1, TP. Hồ Chí Minh', 'general'],
-            ['working_hours', 'Thứ 2 – Thứ 6, 8:00 – 18:00', 'general'],
+            ['site_address', '123 Nguyá»…n Huá»‡, Quáº­n 1, TP. Há»“ ChÃ­ Minh', 'general'],
+            ['working_hours', 'Thá»© 2 â€“ Thá»© 6, 8:00 â€“ 18:00', 'general'],
             ['site_established', '2016', 'general'],
-            ['site_city', 'Hồ Chí Minh', 'general'],
-            // hero — thông tin trang chủ hero section
+            ['site_city', 'Há»“ ChÃ­ Minh', 'general'],
+            // hero â€” thÃ´ng tin trang chá»§ hero section
             ['hero_line1', 'WE BUILD', 'hero'],
             ['hero_line2', 'BRANDS', 'hero'],
             ['hero_line3', '& STORIES', 'hero'],
-            ['hero_tagline', 'Agency Sáng Tạo · Hồ Chí Minh · Est. 2016', 'hero'],
-            ['hero_tagline_right', 'Branding · Design · Digital', 'hero'],
+            ['hero_tagline', 'Agency SÃ¡ng Táº¡o Â· Há»“ ChÃ­ Minh Â· Est. 2016', 'hero'],
+            ['hero_tagline_right', 'Branding Â· Design Â· Digital', 'hero'],
             ['hero_stat1_num', '120', 'hero'],
             ['hero_stat1_suffix', '+', 'hero'],
-            ['hero_stat1_label', 'Dự án hoàn thành', 'hero'],
+            ['hero_stat1_label', 'Dá»± Ã¡n hoÃ n thÃ nh', 'hero'],
             ['hero_stat2_num', '80', 'hero'],
             ['hero_stat2_suffix', '+', 'hero'],
-            ['hero_stat2_label', 'Khách hàng tin tưởng', 'hero'],
+            ['hero_stat2_label', 'KhÃ¡ch hÃ ng tin tÆ°á»Ÿng', 'hero'],
             ['hero_stat3_num', '8', 'hero'],
             ['hero_stat3_suffix', '', 'hero'],
-            ['hero_stat3_label', 'Năm kinh nghiệm', 'hero'],
-            // about — trang về chúng tôi
-            ['about_manifesto', 'Chúng tôi tin rằng mọi thương hiệu đều có một câu chuyện đáng được kể — và thiết kế chính là ngôn ngữ mạnh mẽ nhất để kể câu chuyện đó.', 'about'],
-            ['about_story_title', 'Bắt đầu từ một studio nhỏ', 'about'],
-            ['about_story_content', 'NOVA. được thành lập năm 2016 bởi Nguyễn Minh Quân — một designer với niềm tin rằng thiết kế không chỉ là nghề mà là sứ mệnh.\n\nTừ một studio nhỏ với 3 người, chúng tôi đã phát triển thành agency 15 thành viên với hơn 120 dự án thành công. Nhưng điều không thay đổi là cam kết tạo ra công việc xuất sắc cho mỗi khách hàng.', 'about'],
-            ['about_approach_title', 'Sáng tạo có mục đích', 'about'],
+            ['hero_stat3_label', 'NÄƒm kinh nghiá»‡m', 'hero'],
+            // about â€” trang vá» chÃºng tÃ´i
+            ['about_manifesto', 'ChÃºng tÃ´i tin ráº±ng má»i thÆ°Æ¡ng hiá»‡u Ä‘á»u cÃ³ má»™t cÃ¢u chuyá»‡n Ä‘Ã¡ng Ä‘Æ°á»£c ká»ƒ â€” vÃ  thiáº¿t káº¿ chÃ­nh lÃ  ngÃ´n ngá»¯ máº¡nh máº½ nháº¥t Ä‘á»ƒ ká»ƒ cÃ¢u chuyá»‡n Ä‘Ã³.', 'about'],
+            ['about_story_title', 'Báº¯t Ä‘áº§u tá»« má»™t studio nhá»', 'about'],
+            ['about_story_content', 'NOVA. Ä‘Æ°á»£c thÃ nh láº­p nÄƒm 2016 bá»Ÿi Nguyá»…n Minh QuÃ¢n â€” má»™t designer vá»›i niá»m tin ráº±ng thiáº¿t káº¿ khÃ´ng chá»‰ lÃ  nghá» mÃ  lÃ  sá»© má»‡nh.\n\nTá»« má»™t studio nhá» vá»›i 3 ngÆ°á»i, chÃºng tÃ´i Ä‘Ã£ phÃ¡t triá»ƒn thÃ nh agency 15 thÃ nh viÃªn vá»›i hÆ¡n 120 dá»± Ã¡n thÃ nh cÃ´ng. NhÆ°ng Ä‘iá»u khÃ´ng thay Ä‘á»•i lÃ  cam káº¿t táº¡o ra cÃ´ng viá»‡c xuáº¥t sáº¯c cho má»—i khÃ¡ch hÃ ng.', 'about'],
+            ['about_approach_title', 'SÃ¡ng táº¡o cÃ³ má»¥c Ä‘Ã­ch', 'about'],
             ['about_image', 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80&auto=format&fit=crop', 'about'],
             ['about_team_photo', 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80&auto=format&fit=crop', 'about'],
             ['about_team_count', '15', 'about'],
-            ['about_team_caption', 'Đội ngũ đa dạng chuyên môn — designer, strategist, copywriter, developer', 'about'],
+            ['about_team_caption', 'Äá»™i ngÅ© Ä‘a dáº¡ng chuyÃªn mÃ´n â€” designer, strategist, copywriter, developer', 'about'],
             // stats
             ['stats_projects', '120+', 'stats'],
             ['stats_clients', '80+', 'stats'],
             ['stats_years', '8', 'stats'],
             ['stats_awards', '15', 'stats'],
             // cta
-            ['cta_label', 'Sẵn sàng chưa?', 'cta'],
+            ['cta_label', 'Sáºµn sÃ ng chÆ°a?', 'cta'],
             ['cta_title', "LET'S START YOUR\nNEXT PROJECT", 'cta'],
-            ['cta_desc', 'Kể cho chúng tôi nghe về thương hiệu và mục tiêu của bạn. Chúng tôi sẽ lên kế hoạch sáng tạo phù hợp nhất trong vòng 24 giờ.', 'cta'],
+            ['cta_desc', 'Ká»ƒ cho chÃºng tÃ´i nghe vá» thÆ°Æ¡ng hiá»‡u vÃ  má»¥c tiÃªu cá»§a báº¡n. ChÃºng tÃ´i sáº½ lÃªn káº¿ hoáº¡ch sÃ¡ng táº¡o phÃ¹ há»£p nháº¥t trong vÃ²ng 24 giá».', 'cta'],
             // seo
-            ['meta_title', 'NOVA. — Agency Sáng Tạo & Branding tại TP. Hồ Chí Minh', 'seo'],
-            ['meta_description', 'Agency sáng tạo chuyên branding, thiết kế và digital marketing. Chúng tôi tạo ra những thương hiệu đáng nhớ.', 'seo'],
-            ['meta_keywords', 'agency sáng tạo, branding, thiết kế thương hiệu, digital design, campaign', 'seo'],
+            ['meta_title', 'NOVA. â€” Agency SÃ¡ng Táº¡o & Branding táº¡i TP. Há»“ ChÃ­ Minh', 'seo'],
+            ['meta_description', 'Agency sÃ¡ng táº¡o chuyÃªn branding, thiáº¿t káº¿ vÃ  digital marketing. ChÃºng tÃ´i táº¡o ra nhá»¯ng thÆ°Æ¡ng hiá»‡u Ä‘Ã¡ng nhá»›.', 'seo'],
+            ['meta_keywords', 'agency sÃ¡ng táº¡o, branding, thiáº¿t káº¿ thÆ°Æ¡ng hiá»‡u, digital design, campaign', 'seo'],
             ['og_image', '', 'seo'],
             ['google_analytics_id', '', 'seo'],
             // social
@@ -186,8 +186,8 @@ class Database
             ['social_youtube', '', 'social'],
             ['social_zalo', '', 'social'],
             // footer
-            ['footer_copyright', '© 2026 NOVA. Agency. All rights reserved.', 'footer'],
-            ['footer_description', 'Agency sáng tạo chuyên branding, thiết kế và digital marketing. Chúng tôi tạo ra những thương hiệu đáng nhớ.', 'footer'],
+            ['footer_copyright', 'Â© 2026 NOVA. Agency. All rights reserved.', 'footer'],
+            ['footer_description', 'Agency sÃ¡ng táº¡o chuyÃªn branding, thiáº¿t káº¿ vÃ  digital marketing. ChÃºng tÃ´i táº¡o ra nhá»¯ng thÆ°Æ¡ng hiá»‡u Ä‘Ã¡ng nhá»›.', 'footer'],
             ['footer_show_social', '1', 'footer'],
             // contact
             ['contact_form_enabled', '1', 'contact'],
@@ -202,7 +202,7 @@ class Database
             ['smtp_from_email', '', 'smtp'],
             // system
             ['maintenance_mode', '0', 'system'],
-            ['maintenance_message', 'Website đang bảo trì, vui lòng quay lại sau.', 'system'],
+            ['maintenance_message', 'Website Ä‘ang báº£o trÃ¬, vui lÃ²ng quay láº¡i sau.', 'system'],
             ['custom_css', '', 'system'],
             // design
             ['primary_color', '#f59e0b', 'design'],
@@ -222,13 +222,13 @@ class Database
         $count = $this->scalar("SELECT COUNT(*) FROM services");
         if ($count > 0) return;
 
-        // Dịch vụ từ template: Brand Identity, Digital Design, Campaign & Content
+        // Dá»‹ch vá»¥ tá»« template: Brand Identity, Digital Design, Campaign & Content
         $services = [
             [
                 'name'        => 'Brand Identity',
                 'slug'        => 'brand-identity',
                 'number'      => '01',
-                'description' => 'Xây dựng bộ nhận diện thương hiệu toàn diện — từ logo, bộ màu sắc, typography đến toàn bộ brand guidelines. Chúng tôi tạo ra thương hiệu có cá tính riêng và đáng nhớ lâu dài.',
+                'description' => 'XÃ¢y dá»±ng bá»™ nháº­n diá»‡n thÆ°Æ¡ng hiá»‡u toÃ n diá»‡n â€” tá»« logo, bá»™ mÃ u sáº¯c, typography Ä‘áº¿n toÃ n bá»™ brand guidelines. ChÃºng tÃ´i táº¡o ra thÆ°Æ¡ng hiá»‡u cÃ³ cÃ¡ tÃ­nh riÃªng vÃ  Ä‘Ã¡ng nhá»› lÃ¢u dÃ i.',
                 'tags'        => 'Logo Design,Brand Guidelines,Visual Identity,Brand Strategy',
                 'featured'    => 1,
                 'sort_order'  => 1,
@@ -237,7 +237,7 @@ class Database
                 'name'        => 'Digital Design',
                 'slug'        => 'digital-design',
                 'number'      => '02',
-                'description' => 'Thiết kế giao diện website, ứng dụng và các tài sản kỹ thuật số. Từ UI/UX research đến prototype hoàn chỉnh — mỗi pixel đều có mục đích rõ ràng và hướng đến trải nghiệm người dùng tối ưu.',
+                'description' => 'Thiáº¿t káº¿ giao diá»‡n website, á»©ng dá»¥ng vÃ  cÃ¡c tÃ i sáº£n ká»¹ thuáº­t sá»‘. Tá»« UI/UX research Ä‘áº¿n prototype hoÃ n chá»‰nh â€” má»—i pixel Ä‘á»u cÃ³ má»¥c Ä‘Ã­ch rÃµ rÃ ng vÃ  hÆ°á»›ng Ä‘áº¿n tráº£i nghiá»‡m ngÆ°á»i dÃ¹ng tá»‘i Æ°u.',
                 'tags'        => 'UI/UX Design,Web Design,App Design,Prototype',
                 'featured'    => 1,
                 'sort_order'  => 2,
@@ -246,17 +246,17 @@ class Database
                 'name'        => 'Campaign & Content',
                 'slug'        => 'campaign-content',
                 'number'      => '03',
-                'description' => 'Lên ý tưởng và triển khai chiến dịch truyền thông sáng tạo. Content strategy, social media, video concept — chúng tôi tạo ra nội dung chạm đến cảm xúc và thúc đẩy hành động thực tế.',
+                'description' => 'LÃªn Ã½ tÆ°á»Ÿng vÃ  triá»ƒn khai chiáº¿n dá»‹ch truyá»n thÃ´ng sÃ¡ng táº¡o. Content strategy, social media, video concept â€” chÃºng tÃ´i táº¡o ra ná»™i dung cháº¡m Ä‘áº¿n cáº£m xÃºc vÃ  thÃºc Ä‘áº©y hÃ nh Ä‘á»™ng thá»±c táº¿.',
                 'tags'        => 'Campaign Strategy,Content Creation,Social Media,Video Concept',
                 'featured'    => 1,
                 'sort_order'  => 3,
             ],
-            // Sub-services từ trang dich-vu.html
+            // Sub-services tá»« trang dich-vu.html
             [
                 'name'        => 'Logo & Visual Identity',
                 'slug'        => 'logo-visual-identity',
                 'number'      => '',
-                'description' => 'Thiết kế logo độc đáo và hệ thống nhận diện hình ảnh nhất quán phản ánh đúng giá trị và cá tính thương hiệu.',
+                'description' => 'Thiáº¿t káº¿ logo Ä‘á»™c Ä‘Ã¡o vÃ  há»‡ thá»‘ng nháº­n diá»‡n hÃ¬nh áº£nh nháº¥t quÃ¡n pháº£n Ã¡nh Ä‘Ãºng giÃ¡ trá»‹ vÃ  cÃ¡ tÃ­nh thÆ°Æ¡ng hiá»‡u.',
                 'tags'        => 'Logo Design,Color Palette,Typography,Brand Usage',
                 'featured'    => 0,
                 'sort_order'  => 4,
@@ -265,7 +265,7 @@ class Database
                 'name'        => 'Brand Strategy',
                 'slug'        => 'brand-strategy',
                 'number'      => '',
-                'description' => 'Xây dựng nền tảng chiến lược thương hiệu vững chắc — định vị, giá trị cốt lõi, brand voice và messaging framework.',
+                'description' => 'XÃ¢y dá»±ng ná»n táº£ng chiáº¿n lÆ°á»£c thÆ°Æ¡ng hiá»‡u vá»¯ng cháº¯c â€” Ä‘á»‹nh vá»‹, giÃ¡ trá»‹ cá»‘t lÃµi, brand voice vÃ  messaging framework.',
                 'tags'        => 'Brand Positioning,Target Audience,Brand Personality,Competitive Analysis',
                 'featured'    => 0,
                 'sort_order'  => 5,
@@ -274,7 +274,7 @@ class Database
                 'name'        => 'Campaign Creative',
                 'slug'        => 'campaign-creative',
                 'number'      => '',
-                'description' => 'Lên ý tưởng và triển khai chiến dịch truyền thông sáng tạo. Từ concept đến execution trên mọi kênh truyền thông.',
+                'description' => 'LÃªn Ã½ tÆ°á»Ÿng vÃ  triá»ƒn khai chiáº¿n dá»‹ch truyá»n thÃ´ng sÃ¡ng táº¡o. Tá»« concept Ä‘áº¿n execution trÃªn má»i kÃªnh truyá»n thÃ´ng.',
                 'tags'        => 'Campaign Concept,Key Visual,Multi-channel,Performance Tracking',
                 'featured'    => 0,
                 'sort_order'  => 6,
@@ -295,26 +295,26 @@ class Database
         $count = $this->scalar("SELECT COUNT(*) FROM projects");
         if ($count > 0) return;
 
-        // Các dự án mẫu phù hợp với agency branding/design
+        // CÃ¡c dá»± Ã¡n máº«u phÃ¹ há»£p vá»›i agency branding/design
         $projects = [
             [
-                'title'       => 'Rebranding Thương Hiệu F&B',
+                'title'       => 'Rebranding ThÆ°Æ¡ng Hiá»‡u F&B',
                 'slug'        => 'rebranding-thuong-hieu-fb',
                 'category'    => 'Brand Identity',
                 'industry'    => 'F&B',
-                'description' => 'Xây dựng bộ nhận diện thương hiệu toàn diện cho chuỗi nhà hàng — logo, brand guideline, bộ ấn phẩm và tài liệu truyền thông.',
+                'description' => 'XÃ¢y dá»±ng bá»™ nháº­n diá»‡n thÆ°Æ¡ng hiá»‡u toÃ n diá»‡n cho chuá»—i nhÃ  hÃ ng â€” logo, brand guideline, bá»™ áº¥n pháº©m vÃ  tÃ i liá»‡u truyá»n thÃ´ng.',
                 'image'       => 'https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&q=80&auto=format&fit=crop',
-                'client'      => 'Nhà hàng Phương Nam',
+                'client'      => 'NhÃ  hÃ ng PhÆ°Æ¡ng Nam',
                 'tags'        => 'Logo,Brand Guide,Stationery',
                 'featured'    => 1,
                 'sort_order'  => 1,
             ],
             [
-                'title'       => 'Website & App UI — FinTech Startup',
+                'title'       => 'Website & App UI â€” FinTech Startup',
                 'slug'        => 'website-app-ui-fintech',
                 'category'    => 'Digital Design',
                 'industry'    => 'FinTech',
-                'description' => 'Thiết kế website và ứng dụng cho startup tài chính — UI/UX research, wireframe, prototype và design system hoàn chỉnh.',
+                'description' => 'Thiáº¿t káº¿ website vÃ  á»©ng dá»¥ng cho startup tÃ i chÃ­nh â€” UI/UX research, wireframe, prototype vÃ  design system hoÃ n chá»‰nh.',
                 'image'       => 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80&auto=format&fit=crop',
                 'client'      => 'PayViet',
                 'tags'        => 'UI/UX,Web Design,App',
@@ -322,11 +322,11 @@ class Database
                 'sort_order'  => 2,
             ],
             [
-                'title'       => 'Campaign Tết 2025',
+                'title'       => 'Campaign Táº¿t 2025',
                 'slug'        => 'campaign-tet-2025',
                 'category'    => 'Campaign',
                 'industry'    => 'FMCG',
-                'description' => 'Chiến dịch truyền thông tích hợp mùa Tết 2025 — concept sáng tạo, key visual, bộ ấn phẩm và social media assets.',
+                'description' => 'Chiáº¿n dá»‹ch truyá»n thÃ´ng tÃ­ch há»£p mÃ¹a Táº¿t 2025 â€” concept sÃ¡ng táº¡o, key visual, bá»™ áº¥n pháº©m vÃ  social media assets.',
                 'image'       => 'https://images.unsplash.com/photo-1542744094-24638eff58bb?w=800&q=80&auto=format&fit=crop',
                 'client'      => 'Vinamilk',
                 'tags'        => 'Campaign,Creative,Print',
@@ -334,23 +334,23 @@ class Database
                 'sort_order'  => 3,
             ],
             [
-                'title'       => 'Social Media — Beauty Brand',
+                'title'       => 'Social Media â€” Beauty Brand',
                 'slug'        => 'social-media-beauty-brand',
                 'category'    => 'Social Media',
                 'industry'    => 'Beauty',
-                'description' => 'Xây dựng content strategy và visual identity cho social media trên các nền tảng Facebook, Instagram, TikTok.',
+                'description' => 'XÃ¢y dá»±ng content strategy vÃ  visual identity cho social media trÃªn cÃ¡c ná»n táº£ng Facebook, Instagram, TikTok.',
                 'image'       => 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&q=80&auto=format&fit=crop',
-                'client'      => 'Beauté Studio',
+                'client'      => 'BeautÃ© Studio',
                 'tags'        => 'Social,Content,TikTok',
                 'featured'    => 0,
                 'sort_order'  => 4,
             ],
             [
-                'title'       => 'Event Branding — Tech Summit',
+                'title'       => 'Event Branding â€” Tech Summit',
                 'slug'        => 'event-branding-tech-summit',
                 'category'    => 'Event Branding',
                 'industry'    => 'Technology',
-                'description' => 'Thiết kế toàn bộ branding cho sự kiện Tech Summit — backdrop, standee, name card, stage design và materials.',
+                'description' => 'Thiáº¿t káº¿ toÃ n bá»™ branding cho sá»± kiá»‡n Tech Summit â€” backdrop, standee, name card, stage design vÃ  materials.',
                 'image'       => 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80&auto=format&fit=crop',
                 'client'      => 'VietTech',
                 'tags'        => 'Event,Print,Stage',
@@ -358,11 +358,11 @@ class Database
                 'sort_order'  => 5,
             ],
             [
-                'title'       => 'Full Brand Identity — Startup SaaS',
+                'title'       => 'Full Brand Identity â€” Startup SaaS',
                 'slug'        => 'full-brand-identity-saas',
                 'category'    => 'Brand Identity',
                 'industry'    => 'SaaS',
-                'description' => 'Tái định vị và rebrand toàn diện cho startup SaaS — từ chiến lược thương hiệu đến toàn bộ hệ thống visual identity mới.',
+                'description' => 'TÃ¡i Ä‘á»‹nh vá»‹ vÃ  rebrand toÃ n diá»‡n cho startup SaaS â€” tá»« chiáº¿n lÆ°á»£c thÆ°Æ¡ng hiá»‡u Ä‘áº¿n toÃ n bá»™ há»‡ thá»‘ng visual identity má»›i.',
                 'image'       => 'https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&q=80&auto=format&fit=crop',
                 'client'      => 'CloudStack VN',
                 'tags'        => 'Rebranding,Strategy,Identity',
@@ -370,11 +370,11 @@ class Database
                 'sort_order'  => 6,
             ],
             [
-                'title'       => 'Digital Marketing — E-commerce',
+                'title'       => 'Digital Marketing â€” E-commerce',
                 'slug'        => 'digital-marketing-ecommerce',
                 'category'    => 'Digital Marketing',
                 'industry'    => 'E-commerce',
-                'description' => 'Triển khai chiến lược marketing tổng thể — SEO, paid ads, content marketing và email automation.',
+                'description' => 'Triá»ƒn khai chiáº¿n lÆ°á»£c marketing tá»•ng thá»ƒ â€” SEO, paid ads, content marketing vÃ  email automation.',
                 'image'       => 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80&auto=format&fit=crop',
                 'client'      => 'ShopNow.vn',
                 'tags'        => 'SEO,Ads,Analytics',
@@ -397,47 +397,47 @@ class Database
         $count = $this->scalar("SELECT COUNT(*) FROM team_members");
         if ($count > 0) return;
 
-        // Đội ngũ từ template (3 thành viên chính + 3 thành viên phụ)
+        // Äá»™i ngÅ© tá»« template (3 thÃ nh viÃªn chÃ­nh + 3 thÃ nh viÃªn phá»¥)
         $members = [
             [
-                'name'       => 'Nguyễn Minh Quân',
+                'name'       => 'Nguyá»…n Minh QuÃ¢n',
                 'position'   => 'Founder & Creative Director',
-                'experience' => '10 năm kinh nghiệm · Brand Strategy',
+                'experience' => '10 nÄƒm kinh nghiá»‡m Â· Brand Strategy',
                 'avatar'     => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80&auto=format&fit=crop&crop=face',
                 'order'      => 1,
             ],
             [
-                'name'       => 'Trần Thị Bảo Châu',
+                'name'       => 'Tráº§n Thá»‹ Báº£o ChÃ¢u',
                 'position'   => 'Lead Visual Designer',
-                'experience' => '7 năm kinh nghiệm · Visual & UI',
+                'experience' => '7 nÄƒm kinh nghiá»‡m Â· Visual & UI',
                 'avatar'     => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80&auto=format&fit=crop&crop=face',
                 'order'      => 2,
             ],
             [
-                'name'       => 'Lê Hoàng Phúc',
+                'name'       => 'LÃª HoÃ ng PhÃºc',
                 'position'   => 'Digital & Campaign Lead',
-                'experience' => '6 năm kinh nghiệm · Marketing & Content',
+                'experience' => '6 nÄƒm kinh nghiá»‡m Â· Marketing & Content',
                 'avatar'     => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80&auto=format&fit=crop&crop=face',
                 'order'      => 3,
             ],
             [
-                'name'       => 'Phạm Như Quỳnh',
+                'name'       => 'Pháº¡m NhÆ° Quá»³nh',
                 'position'   => 'Brand Designer',
-                'experience' => '4 năm kinh nghiệm',
+                'experience' => '4 nÄƒm kinh nghiá»‡m',
                 'avatar'     => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80&auto=format&fit=crop&crop=face',
                 'order'      => 4,
             ],
             [
-                'name'       => 'Hồ Văn Khang',
+                'name'       => 'Há»“ VÄƒn Khang',
                 'position'   => 'UI/UX Designer',
-                'experience' => '3 năm kinh nghiệm',
+                'experience' => '3 nÄƒm kinh nghiá»‡m',
                 'avatar'     => 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80&auto=format&fit=crop&crop=face',
                 'order'      => 5,
             ],
             [
-                'name'       => 'Vũ Thanh Hà',
+                'name'       => 'VÅ© Thanh HÃ ',
                 'position'   => 'Content Strategist',
-                'experience' => '5 năm kinh nghiệm',
+                'experience' => '5 nÄƒm kinh nghiá»‡m',
                 'avatar'     => 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80&auto=format&fit=crop&crop=face',
                 'order'      => 6,
             ],
@@ -457,29 +457,29 @@ class Database
         $count = $this->scalar("SELECT COUNT(*) FROM testimonials");
         if ($count > 0) return;
 
-        // Testimonials từ template (2 blockquotes lớn)
+        // Testimonials tá»« template (2 blockquotes lá»›n)
         $testimonials = [
             [
-                'author_name'   => 'Trần Quốc Bảo',
-                'author_title'  => 'CEO · Công ty Minh Phát Group',
+                'author_name'   => 'Tráº§n Quá»‘c Báº£o',
+                'author_title'  => 'CEO Â· CÃ´ng ty Minh PhÃ¡t Group',
                 'author_avatar' => 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&q=80&auto=format&fit=crop&crop=face',
-                'content'       => 'NOVA. đã hoàn toàn thay đổi cách thương hiệu chúng tôi được nhìn nhận trên thị trường. Từ một brand mờ nhạt, chúng tôi trở thành cái tên mọi người nhớ đến đầu tiên trong ngành.',
+                'content'       => 'NOVA. Ä‘Ã£ hoÃ n toÃ n thay Ä‘á»•i cÃ¡ch thÆ°Æ¡ng hiá»‡u chÃºng tÃ´i Ä‘Æ°á»£c nhÃ¬n nháº­n trÃªn thá»‹ trÆ°á»ng. Tá»« má»™t brand má» nháº¡t, chÃºng tÃ´i trá»Ÿ thÃ nh cÃ¡i tÃªn má»i ngÆ°á»i nhá»› Ä‘áº¿n Ä‘áº§u tiÃªn trong ngÃ nh.',
                 'rating'        => 5,
                 'order'         => 1,
             ],
             [
-                'author_name'   => 'Nguyễn Thị Lan Phương',
-                'author_title'  => 'CMO · TechViet Corporation',
+                'author_name'   => 'Nguyá»…n Thá»‹ Lan PhÆ°Æ¡ng',
+                'author_title'  => 'CMO Â· TechViet Corporation',
                 'author_avatar' => 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80&auto=format&fit=crop&crop=face',
-                'content'       => 'Đội ngũ NOVA. không chỉ thiết kế đẹp — họ thực sự hiểu business của chúng tôi và tạo ra chiến lược thương hiệu dài hạn mang lại kết quả đo lường được.',
+                'content'       => 'Äá»™i ngÅ© NOVA. khÃ´ng chá»‰ thiáº¿t káº¿ Ä‘áº¹p â€” há» thá»±c sá»± hiá»ƒu business cá»§a chÃºng tÃ´i vÃ  táº¡o ra chiáº¿n lÆ°á»£c thÆ°Æ¡ng hiá»‡u dÃ i háº¡n mang láº¡i káº¿t quáº£ Ä‘o lÆ°á»ng Ä‘Æ°á»£c.',
                 'rating'        => 5,
                 'order'         => 2,
             ],
             [
-                'author_name'   => 'Phạm Đức Toàn',
-                'author_title'  => 'Founder · StartupX Vietnam',
+                'author_name'   => 'Pháº¡m Äá»©c ToÃ n',
+                'author_title'  => 'Founder Â· StartupX Vietnam',
                 'author_avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80&auto=format&fit=crop&crop=face',
-                'content'       => 'Quy trình làm việc rất chuyên nghiệp và minh bạch. Mỗi milestone đều được cập nhật kịp thời. Brand identity mới đã giúp chúng tôi gọi vốn thành công Series A.',
+                'content'       => 'Quy trÃ¬nh lÃ m viá»‡c ráº¥t chuyÃªn nghiá»‡p vÃ  minh báº¡ch. Má»—i milestone Ä‘á»u Ä‘Æ°á»£c cáº­p nháº­t ká»‹p thá»i. Brand identity má»›i Ä‘Ã£ giÃºp chÃºng tÃ´i gá»i vá»‘n thÃ nh cÃ´ng Series A.',
                 'rating'        => 5,
                 'order'         => 3,
             ],
@@ -499,12 +499,12 @@ class Database
         $count = $this->scalar("SELECT COUNT(*) FROM process_steps");
         if ($count > 0) return;
 
-        // Quy trình làm việc từ template
+        // Quy trÃ¬nh lÃ m viá»‡c tá»« template
         $steps = [
-            ['01', 'Discovery', 'Lắng nghe và phân tích sâu về thương hiệu, thị trường, đối thủ và mục tiêu kinh doanh. Giai đoạn nền tảng quyết định thành công của toàn bộ dự án.', 1],
-            ['02', 'Strategy', 'Xây dựng chiến lược thương hiệu và định vị rõ ràng. Xác định tone of voice, personality và hướng thiết kế phù hợp với mục tiêu và đối tượng mục tiêu.', 2],
-            ['03', 'Design', 'Hiện thực hóa chiến lược thành hình ảnh trực quan sống động. Từ sketching đến polished design — luôn song hành cùng khách hàng trong mọi bước thiết kế.', 3],
-            ['04', 'Launch & Scale', 'Triển khai và hỗ trợ đưa thương hiệu ra thị trường. Theo dõi hiệu quả và tối ưu liên tục để thương hiệu ngày càng mạnh hơn theo thời gian.', 4],
+            ['01', 'Discovery', 'Láº¯ng nghe vÃ  phÃ¢n tÃ­ch sÃ¢u vá» thÆ°Æ¡ng hiá»‡u, thá»‹ trÆ°á»ng, Ä‘á»‘i thá»§ vÃ  má»¥c tiÃªu kinh doanh. Giai Ä‘oáº¡n ná»n táº£ng quyáº¿t Ä‘á»‹nh thÃ nh cÃ´ng cá»§a toÃ n bá»™ dá»± Ã¡n.', 1],
+            ['02', 'Strategy', 'XÃ¢y dá»±ng chiáº¿n lÆ°á»£c thÆ°Æ¡ng hiá»‡u vÃ  Ä‘á»‹nh vá»‹ rÃµ rÃ ng. XÃ¡c Ä‘á»‹nh tone of voice, personality vÃ  hÆ°á»›ng thiáº¿t káº¿ phÃ¹ há»£p vá»›i má»¥c tiÃªu vÃ  Ä‘á»‘i tÆ°á»£ng má»¥c tiÃªu.', 2],
+            ['03', 'Design', 'Hiá»‡n thá»±c hÃ³a chiáº¿n lÆ°á»£c thÃ nh hÃ¬nh áº£nh trá»±c quan sá»‘ng Ä‘á»™ng. Tá»« sketching Ä‘áº¿n polished design â€” luÃ´n song hÃ nh cÃ¹ng khÃ¡ch hÃ ng trong má»i bÆ°á»›c thiáº¿t káº¿.', 3],
+            ['04', 'Launch & Scale', 'Triá»ƒn khai vÃ  há»— trá»£ Ä‘Æ°a thÆ°Æ¡ng hiá»‡u ra thá»‹ trÆ°á»ng. Theo dÃµi hiá»‡u quáº£ vÃ  tá»‘i Æ°u liÃªn tá»¥c Ä‘á»ƒ thÆ°Æ¡ng hiá»‡u ngÃ y cÃ ng máº¡nh hÆ¡n theo thá»i gian.', 4],
         ];
 
         foreach ($steps as [$num, $name, $desc, $order]) {
@@ -521,8 +521,8 @@ class Database
         if ($count > 0) return;
 
         $awards = [
-            ['2024', 'Best Branding Agency — Vietnam Creative Awards', 'Vietnam Creative Association', 1],
-            ['2023', 'Gold Award — Brand Identity Campaign', 'ASEAN Design Awards', 2],
+            ['2024', 'Best Branding Agency â€” Vietnam Creative Awards', 'Vietnam Creative Association', 1],
+            ['2023', 'Gold Award â€” Brand Identity Campaign', 'ASEAN Design Awards', 2],
             ['2022', 'Top 10 Creative Agencies Vietnam', 'Forbes Vietnam', 3],
         ];
 
@@ -534,3 +534,4 @@ class Database
         }
     }
 }
+

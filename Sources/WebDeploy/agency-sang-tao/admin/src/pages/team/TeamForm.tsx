@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '../../api/client'
+import ImageField from '../../components/ImageField'
 
 interface MemberData {
   name: string
@@ -86,11 +87,11 @@ export default function TeamForm() {
             <textarea className="form-control" value={form.bio} onChange={e => set('bio', e.target.value)} rows={3} />
           </div>
 
-          <div className="form-group">
-            <label className="form-label">URL Ảnh đại diện</label>
-            <input type="url" className="form-control" value={form.avatar} onChange={e => set('avatar', e.target.value)} placeholder="https://..." />
-            {form.avatar && <img src={form.avatar} alt="" className="img-preview" style={{ marginTop: '8px', borderRadius: '50%' }} />}
-          </div>
+          <ImageField
+            label="Ảnh đại diện"
+            value={form.avatar}
+            onChange={v => set('avatar', v)}
+          />
 
           <div className="form-grid-2">
             <div className="form-group">

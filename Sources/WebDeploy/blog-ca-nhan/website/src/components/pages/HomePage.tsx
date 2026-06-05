@@ -2,6 +2,7 @@ import { useEffect, useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../../api/client'
 import { useSite } from '../../contexts/SiteContext'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 interface Post {
   id: number
@@ -39,6 +40,7 @@ function formatDate(dateStr: string) {
 }
 
 export default function HomePage() {
+  usePageTitle()
   const { settings, categories } = useSite()
   const [featured, setFeatured] = useState<FeaturedPost | null>(null)
   const [posts, setPosts] = useState<Post[]>([])

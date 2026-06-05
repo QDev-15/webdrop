@@ -2,8 +2,10 @@ import { useState, useEffect, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function LienHe() {
+  usePageTitle('Liên hệ')
   const { settings } = useSite()
 
   const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', size: '', interest: '', message: '' })

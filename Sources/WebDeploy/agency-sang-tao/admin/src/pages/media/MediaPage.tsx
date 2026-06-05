@@ -34,7 +34,7 @@ export default function MediaPage() {
     try {
       const form = new FormData()
       form.append('file', file)
-      await fetch(`${BASE}/media`, { method: 'POST', credentials: 'include', body: form })
+      await fetch(`${BASE}/media/upload`, { method: 'POST', credentials: 'include', body: form })
       load()
     } finally {
       setUploading(false)

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../../api/client'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 interface Project {
   id: number
@@ -34,6 +35,7 @@ function useReveal() {
 }
 
 export default function DuAnPage() {
+  usePageTitle('Dự án')
   const [projects, setProjects] = useState<Project[]>([])
   const [categories, setCategories] = useState<Category[]>([])
   const [active, setActive] = useState('all')

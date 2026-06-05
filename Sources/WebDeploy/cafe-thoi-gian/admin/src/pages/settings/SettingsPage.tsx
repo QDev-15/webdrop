@@ -13,6 +13,8 @@ const TABS = [
   { id: 'reservation', label: 'Đặt chỗ' },
   { id: 'smtp', label: 'SMTP Email' },
   { id: 'system', label: 'Hệ thống' },
+  { id: 'cloudinary', label: '☁️ Cloudinary' },
+  { id: 'integrations', label: '🔌 Tích hợp' },
 ]
 
 export default function SettingsPage() {
@@ -182,6 +184,41 @@ export default function SettingsPage() {
               <h3 style={{ fontSize: '15px', fontWeight: 600, marginBottom: '4px' }}>Hệ thống</h3>
               <div>{toggle('maintenance_mode', 'Bật chế độ bảo trì (website sẽ không truy cập được)')}</div>
               <div className="form-group"><label className="form-label">Thông báo bảo trì</label>{textarea('maintenance_message', 2, 'Website đang bảo trì...')}</div>
+            </div>
+          )}
+
+          {activeTab === 'cloudinary' && (
+            <div className="row g-3">
+              <div className="col-12"><h6 className="fw-semibold mb-3">☁️ Cloudinary — Lưu trữ ảnh</h6></div>
+              <div className="col-md-6">
+                <label className="form-label small fw-semibold">Cloud Name</label>
+                {input('cloudinary_cloud_name', 'your-cloud-name')}
+                <div className="form-text">Lấy tại cloudinary.com → Dashboard → Cloud Name</div>
+              </div>
+              <div className="col-md-6">
+                <label className="form-label small fw-semibold">API Key</label>
+                {input('cloudinary_api_key', '123456789012345')}
+              </div>
+              <div className="col-md-6">
+                <label className="form-label small fw-semibold">API Secret</label>
+                {input('cloudinary_api_secret', '••••••••••••••••••••••••')}
+                <div className="form-text">Dashboard → Settings → Access Keys → API Secret</div>
+              </div>
+              <div className="col-md-6">
+                <label className="form-label small fw-semibold">Upload Folder (tuỳ chọn)</label>
+                {input('cloudinary_folder', 'webdrop')}
+                <div className="form-text">Thư mục lưu ảnh trên Cloudinary. Mặc định: webdrop</div>
+              </div>
+            </div>
+          )}
+          {activeTab === 'integrations' && (
+            <div className="row g-3">
+              <div className="col-12"><h6 className="fw-semibold mb-3">🔌 Tích hợp bên ngoài</h6></div>
+              <div className="col-12">
+                <label className="form-label small fw-semibold">Unsplash Access Key</label>
+                {input('unsplash_access_key', 'Dán Access Key từ unsplash.com/developers')}
+                <div className="form-text">Đăng ký miễn phí tại unsplash.com/developers → New Application → copy Access Key. Dùng để tìm kiếm ảnh trong admin.</div>
+              </div>
             </div>
           )}
         </div>

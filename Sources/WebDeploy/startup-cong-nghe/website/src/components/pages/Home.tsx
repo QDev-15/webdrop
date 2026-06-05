@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 interface Feature { id: number; name: string; icon: string; description: string; featured: number }
 interface Testimonial { id: number; author_name: string; author_title: string; author_avatar: string; content: string; rating: number }
@@ -13,6 +14,7 @@ function formatPrice(p: number) {
 }
 
 export default function Home() {
+  usePageTitle()
   const { settings } = useSite()
   const [features, setFeatures]   = useState<Feature[]>([])
   const [testimonials, setTestimonials] = useState<Testimonial[]>([])

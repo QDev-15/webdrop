@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 interface Service {
   id: number
@@ -79,6 +80,7 @@ function StatCounter({ num, suffix, label }: { num: string; suffix: string; labe
 }
 
 export default function HomePage() {
+  usePageTitle()
   const { settings } = useSite()
   const [services, setServices] = useState<Service[]>([])
   const [projects, setProjects] = useState<Project[]>([])

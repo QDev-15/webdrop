@@ -38,10 +38,10 @@ try {
     $router->dispatch($method, $rawPath);
 } catch (Throwable $e) {
     if (!headers_sent()) header('Content-Type: application/json; charset=utf-8');
-    $isProd = defined('APP_ENV') && APP_ENV === 'production';
     http_response_code(500);
-    echo json_encode([
-        'error' => $isProd ? 'Lỗi máy chủ.' : $e->getMessage(),
-        'file'  => $isProd ? null : $e->getFile() . ':' . $e->getLine(),
-    ], JSON_UNESCAPED_UNICODE);
+    // Luôn hiển thị message để dễ debug — không lộ source code
+    $msg = $e->getMessage();
+    // Ẩn đường dẫn tuyệt đối khỏi message
+    $msg = preg_replace('#[A-Za-z]?:?[/\\\\][^\s:]+#', '[path]', $msg);
+    echo json_encode(['error' => $msg], JSON_UNESCAPED_UNICODE);
 }

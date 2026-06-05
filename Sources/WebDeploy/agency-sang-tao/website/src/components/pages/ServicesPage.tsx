@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import RevealObserver from '../RevealObserver'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function ServicesPage() {
+  usePageTitle('Dịch vụ')
   const { services, processSteps } = useSite()
 
   const detailServices = services.length > 0 ? services : [

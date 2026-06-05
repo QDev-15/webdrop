@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '../../api/client'
+import ImageField from '../../components/ImageField'
 
 interface TestimonialData {
   author_name: string
@@ -76,11 +77,11 @@ export default function TestimonialForm() {
             </div>
           </div>
 
-          <div className="form-group">
-            <label className="form-label">URL Ảnh đại diện</label>
-            <input type="url" className="form-control" value={form.author_avatar} onChange={e => set('author_avatar', e.target.value)} placeholder="https://..." />
-            {form.author_avatar && <img src={form.author_avatar} alt="" className="img-preview" style={{ marginTop: '8px', borderRadius: '50%' }} />}
-          </div>
+          <ImageField
+            label="Ảnh đại diện khách hàng"
+            value={form.author_avatar}
+            onChange={v => set('author_avatar', v)}
+          />
 
           <div className="form-group">
             <label className="form-label">Nội dung nhận xét *</label>

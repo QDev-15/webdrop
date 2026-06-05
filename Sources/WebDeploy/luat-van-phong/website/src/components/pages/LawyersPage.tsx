@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import Reveal from '../Reveal'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function LawyersPage() {
+  usePageTitle('Đội ngũ luật sư')
   const { lawyers } = useSite()
 
   const partners   = lawyers.filter(l => Number(l.is_partner))

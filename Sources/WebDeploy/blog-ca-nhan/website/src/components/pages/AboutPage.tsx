@@ -1,8 +1,10 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function AboutPage() {
+  usePageTitle('Về tôi')
   const { settings } = useSite()
 
   const authorName = settings.author_name ?? 'Nguyễn Văn A'

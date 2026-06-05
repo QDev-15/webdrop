@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { api } from '../../api/client'
 import { useSite } from '../../contexts/SiteContext'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 interface PostDetail {
   id: number
@@ -38,6 +39,8 @@ export default function PostPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
+  usePageTitle(post?.title)
+
   const authorName = settings.author_name ?? 'Nguyễn Văn A'
   const authorAvatar = settings.author_avatar ?? 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&q=80&auto=format&fit=crop&crop=face'
 
@@ -47,11 +50,10 @@ export default function PostPage() {
     api.get<PostDetail>(`/public/posts/${slug}`)
       .then(data => {
         setPost(data)
-        document.title = `${data.title} — ${settings.site_name ?? 'Blog'}`
       })
       .catch(() => setError('Bài viết không tồn tại hoặc đã bị xóa.'))
       .finally(() => setLoading(false))
-  }, [slug, settings.site_name])
+  }, [slug])
 
   useEffect(() => {
     const timer = setTimeout(() => {

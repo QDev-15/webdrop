@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 function useReveal(deps: unknown[] = []) {
   useEffect(() => {
@@ -21,6 +22,7 @@ function useReveal(deps: unknown[] = []) {
 }
 
 export default function HomePage() {
+  usePageTitle()
   const { settings, slides, services, team, testimonials } = useSite()
   const [activeSlide, setActiveSlide] = useState(0)
   useReveal([services, team, testimonials])

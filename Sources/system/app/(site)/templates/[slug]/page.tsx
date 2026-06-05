@@ -1,11 +1,22 @@
 export const revalidate = 60
 
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import { templates as mockTemplates } from '@/data/templates'
 import type { Template } from '@/data/templates'
 import TemplateDetailClient from './TemplateDetailClient'
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  try {
+    const t = await prisma.template.findFirst({ where: { slug, status: 'published' }, select: { name: true } })
+    if (t) return { title: `${t.name} — webdrop.vn` }
+  } catch { /* fallback */ }
+  const mock = mockTemplates.find(t => t.slug === slug)
+  return { title: mock ? `${mock.name} — webdrop.vn` : 'Chi tiết template — webdrop.vn' }
+}
 
 export async function generateStaticParams() {
   try {

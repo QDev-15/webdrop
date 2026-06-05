@@ -2,10 +2,12 @@ import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import Reveal from '../Reveal'
 import CtaForm from '../CtaForm'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 const romanNumerals = ['I.', 'II.', 'III.', 'IV.', 'V.', 'VI.']
 
 export default function ServicesPage() {
+  usePageTitle('Lĩnh vực tư vấn')
   const { settings, services } = useSite()
   const phone = settings.site_phone || '0900 000 000'
 

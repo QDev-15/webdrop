@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+﻿import React, { createContext, useContext, useEffect, useState } from 'react'
 import { api } from '../api/client'
 
 export interface SiteSettings {
@@ -104,37 +104,37 @@ interface SiteData {
 
 const defaultSettings: SiteSettings = {
   site_name: 'NOVA.',
-  site_tagline: 'Agency Sáng Tạo · Hồ Chí Minh · Est. 2016',
-  site_description: 'Agency sáng tạo chuyên branding, thiết kế và digital marketing.',
+  site_tagline: 'Agency SÃ¡ng Táº¡o Â· Há»“ ChÃ­ Minh Â· Est. 2016',
+  site_description: 'Agency sÃ¡ng táº¡o chuyÃªn branding, thiáº¿t káº¿ vÃ  digital marketing.',
   site_email: 'hello@nova.vn',
   site_phone: '0909 123 456',
-  site_address: '123 Nguyễn Huệ, Quận 1, TP. Hồ Chí Minh',
-  working_hours: 'Thứ 2 – Thứ 6, 8:00 – 18:00',
+  site_address: '123 Nguyá»…n Huá»‡, Quáº­n 1, TP. Há»“ ChÃ­ Minh',
+  working_hours: 'Thá»© 2 â€“ Thá»© 6, 8:00 â€“ 18:00',
   site_established: '2016',
-  site_city: 'Hồ Chí Minh',
+  site_city: 'Há»“ ChÃ­ Minh',
   hero_line1: 'WE BUILD',
   hero_line2: 'BRANDS',
   hero_line3: '& STORIES',
-  hero_tagline: 'Agency Sáng Tạo · Hồ Chí Minh · Est. 2016',
-  hero_tagline_right: 'Branding · Design · Digital',
+  hero_tagline: 'Agency SÃ¡ng Táº¡o Â· Há»“ ChÃ­ Minh Â· Est. 2016',
+  hero_tagline_right: 'Branding Â· Design Â· Digital',
   hero_stat1_num: '120',
   hero_stat1_suffix: '+',
-  hero_stat1_label: 'Dự án hoàn thành',
+  hero_stat1_label: 'Dá»± Ã¡n hoÃ n thÃ nh',
   hero_stat2_num: '80',
   hero_stat2_suffix: '+',
-  hero_stat2_label: 'Khách hàng tin tưởng',
+  hero_stat2_label: 'KhÃ¡ch hÃ ng tin tÆ°á»Ÿng',
   hero_stat3_num: '8',
   hero_stat3_suffix: '',
-  hero_stat3_label: 'Năm kinh nghiệm',
+  hero_stat3_label: 'NÄƒm kinh nghiá»‡m',
   stats_projects: '120+',
   stats_clients: '80+',
   stats_years: '8',
   stats_awards: '15',
-  cta_label: 'Sẵn sàng chưa?',
+  cta_label: 'Sáºµn sÃ ng chÆ°a?',
   cta_title: "LET'S START YOUR\nNEXT PROJECT",
-  cta_desc: 'Kể cho chúng tôi nghe về thương hiệu và mục tiêu của bạn. Chúng tôi sẽ lên kế hoạch sáng tạo phù hợp nhất trong vòng 24 giờ.',
-  footer_copyright: '© 2026 NOVA. Agency. All rights reserved.',
-  footer_description: 'Agency sáng tạo chuyên branding, thiết kế và digital marketing.',
+  cta_desc: 'Ká»ƒ cho chÃºng tÃ´i nghe vá» thÆ°Æ¡ng hiá»‡u vÃ  má»¥c tiÃªu cá»§a báº¡n. ChÃºng tÃ´i sáº½ lÃªn káº¿ hoáº¡ch sÃ¡ng táº¡o phÃ¹ há»£p nháº¥t trong vÃ²ng 24 giá».',
+  footer_copyright: 'Â© 2026 NOVA. Agency. All rights reserved.',
+  footer_description: 'Agency sÃ¡ng táº¡o chuyÃªn branding, thiáº¿t káº¿ vÃ  digital marketing.',
   social_facebook: '',
   social_instagram: '',
   social_behance: '',
@@ -179,6 +179,18 @@ export function SiteProvider({ children }: { children: React.ReactNode }) {
       if (ps.status === 'fulfilled') setProcessSteps(ps.value as ProcessStep[])
     }).finally(() => setLoading(false))
   }, [])
+  // Cập nhật favicon từ settings
+  useEffect(() => {
+    if (!settings.site_favicon) return
+    let link = document.querySelector<HTMLLinkElement>('link[rel="icon"]')
+    if (!link) {
+      link = document.createElement('link')
+      link.rel = 'icon'
+      document.head.appendChild(link)
+    }
+    link.href = settings.site_favicon
+  }, [settings.site_favicon])
+
 
   return (
     <SiteContext.Provider value={{ settings, services, projects, team, testimonials, processSteps, loading }}>
@@ -190,3 +202,4 @@ export function SiteProvider({ children }: { children: React.ReactNode }) {
 export function useSite() {
   return useContext(SiteContext)
 }
+

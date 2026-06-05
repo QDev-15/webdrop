@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function NotFoundPage() {
+  usePageTitle('Trang không tồn tại')
   return (
     <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '80px 20px' }}>
       <div>

@@ -1,8 +1,10 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function ServicesPage() {
+  usePageTitle('Dịch vụ')
   const { services } = useSite()
 
   useEffect(() => {

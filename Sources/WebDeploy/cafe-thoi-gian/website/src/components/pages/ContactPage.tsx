@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function ContactPage() {
+  usePageTitle('Liên hệ & Đặt chỗ')
   const { settings } = useSite()
   const [form, setForm] = useState({
     name: '', phone: '', email: '', purpose: '',

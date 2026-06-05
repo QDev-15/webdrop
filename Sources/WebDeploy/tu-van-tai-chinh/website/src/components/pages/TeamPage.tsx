@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 const DEFAULT_LEADERS = [
   { id: 1, name: 'Nguyễn Minh Đức', position: 'Tổng Giám đốc (CEO)', bio: 'Với hơn 20 năm kinh nghiệm trong lĩnh vực quản lý đầu tư và tư vấn tài chính, ông Đức đã dẫn dắt nhiều danh mục đầu tư giá trị hàng nghìn tỷ đồng. Từng là Giám đốc đầu tư tại Dragon Capital và SSI Asset Management.', experience: '20 năm kinh nghiệm · Cựu quản lý quỹ tại Dragon Capital', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&auto=format&fit=crop&crop=face', certificates: 'CFA Level III, MBA Harvard, CPA', is_leader: 1, sort_order: 1, status: 'published' },
@@ -15,6 +16,7 @@ const DEFAULT_EXPERTS = [
 ]
 
 export default function TeamPage() {
+  usePageTitle('Đội ngũ')
   const { team } = useSite()
 
   useEffect(() => {

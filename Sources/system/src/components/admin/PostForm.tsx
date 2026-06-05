@@ -1,7 +1,10 @@
 'use client'
 import { useState, FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
+import dynamic from 'next/dynamic'
 import ImageField from './ImageField'
+
+const RichEditor = dynamic(() => import('./RichEditor'), { ssr: false })
 
 interface Category { id: number; name: string }
 
@@ -134,9 +137,11 @@ export default function PostForm({ mode, id, categories, initial }: PostFormProp
           </div>
           <div>
             {label('Nội dung bài viết')}
-            <textarea value={form.content} onChange={e => set('content', e.target.value)} rows={16}
+            <RichEditor
+              value={form.content}
+              onChange={v => set('content', v)}
               placeholder="Viết nội dung bài viết ở đây..."
-              style={{ ...inputStyle, resize: 'vertical', fontFamily: 'monospace', fontSize: 13, lineHeight: 1.7 }} />
+            />
           </div>
           <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', userSelect: 'none' }}>
             <input type="checkbox" checked={form.featured} onChange={e => set('featured', e.target.checked)} style={{ width: 16, height: 16, accentColor: 'var(--accent)' }} />

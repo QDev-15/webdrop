@@ -1,13 +1,21 @@
-Options -Indexes
-<FilesMatch "\.db$">
-    Order allow,deny
-    Deny from all
+AddDefaultCharset UTF-8
+
+# Block direct access to SQLite database
+<FilesMatch "\.(db|sqlite|sqlite3)$">
+    Require all denied
 </FilesMatch>
+
 RewriteEngine On
+
+# Admin SPA routing
 RewriteCond %{REQUEST_URI} ^/admin
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^admin(/.*)?$ /admin/index.html [L]
+
+# Block database directory
 RewriteRule ^api/database/ - [F,L]
+
+# Public site SPA routing
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !^/api/
 RewriteRule ^ /index.html [L]

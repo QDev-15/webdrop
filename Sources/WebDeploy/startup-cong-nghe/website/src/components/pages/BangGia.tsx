@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 interface PricingPlan { id: number; name: string; description: string; price_monthly: number; price_yearly: number; is_featured: number; is_free: number; cta_text: string; cta_link: string; items: Array<{ item: string; available: number }> }
 interface Faq { id: number; question: string; answer: string }
@@ -12,6 +13,7 @@ function formatPrice(p: number) {
 }
 
 export default function BangGia() {
+  usePageTitle('Bảng giá')
   const { settings } = useSite()
   const [plans, setPlans]   = useState<PricingPlan[]>([])
   const [faqs, setFaqs]     = useState<Faq[]>([])

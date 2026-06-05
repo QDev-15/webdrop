@@ -15,6 +15,7 @@ import ContactList from './pages/contacts/ContactList'
 import ContactDetail from './pages/contacts/ContactDetail'
 import MediaPage from './pages/media/MediaPage'
 import SettingsPage from './pages/settings/SettingsPage'
+import ProfilePage from './pages/profile/ProfilePage'
 
 function ProtectedRoutes() {
   const { user, loading } = useAuth()
@@ -40,6 +41,7 @@ function ProtectedRoutes() {
         <Route path="/contacts/:id" element={<ContactDetail />} />
         <Route path="/media" element={<MediaPage />} />
         <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </AdminLayout>
   )

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
 import RevealObserver from '../RevealObserver'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 interface ContactForm {
   name: string
@@ -12,6 +13,7 @@ interface ContactForm {
 }
 
 export default function HomePage() {
+  usePageTitle()
   const { settings, services, projects, team, testimonials, processSteps } = useSite()
   const mainServices = services.filter(s => s.number !== '').slice(0, 3)
   const featuredProjects = projects.filter(p => p.featured === 1).slice(0, 5)

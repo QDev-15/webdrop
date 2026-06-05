@@ -1,7 +1,8 @@
-import { execSync } from 'child_process'
-import { cpSync, mkdirSync, rmSync, existsSync, readdirSync } from 'fs'
+﻿import { execSync } from 'child_process'
+import { cpSync, mkdirSync, rmSync, existsSync, readdirSync, readFileSync, writeFileSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
+import { randomBytes } from 'crypto'
 
 const root   = dirname(fileURLToPath(import.meta.url))
 const deploy = join(root, 'deploy')
@@ -42,19 +43,26 @@ mkdirSync(join(deploy, 'api', 'src', 'controllers'), { recursive: true })
 mkdirSync(join(deploy, 'api', 'uploads'),            { recursive: true })
 mkdirSync(join(deploy, 'api', 'database'),           { recursive: true })
 
-// website/dist → deploy/ (includes .htaccess, web.config from public/)
+// website/dist â†' deploy/ (includes .htaccess, web.config from public/)
 cpSync(join(root, 'website', 'dist'), deploy, { recursive: true })
 
-// admin/dist → deploy/admin/
+// admin/dist â†' deploy/admin/
 cpSync(join(root, 'admin', 'dist'), join(deploy, 'admin'), { recursive: true })
 
-// api/* → deploy/api/ (skip database/, uploads/, node_modules)
-const skipApi = new Set(['node_modules', '.git', 'database', 'uploads'])
+// Inject APP_KEY ngẫu nhiên vào config.php (source giữ nguyên key hiện tại)
+const appKey = randomBytes(32).toString('hex')
+const configSrc = readFileSync(join(root, 'api', 'config.php'), 'utf8')
+const configOut = configSrc.replace(/define\('APP_KEY',\s*'[^']*'\)/, `define('APP_KEY', '${appKey}')`)
+writeFileSync(join(deploy, 'api', 'config.php'), configOut)
+
+// api/* → deploy/api/ (skip database/, uploads/, node_modules, config.php đã inject riêng)
+const skipApi = new Set(['node_modules', '.git', 'database', 'uploads', 'config.php'])
 for (const item of readdirSync(join(root, 'api'))) {
   if (skipApi.has(item)) continue
   cpSync(join(root, 'api', item), join(deploy, 'api', item), { recursive: true })
 }
 
-console.log('\n✓ Build complete! Deploy folder ready at: ' + deploy)
+console.log('\nâœ" Build complete! Deploy folder ready at: ' + deploy)
 console.log('\nTo deploy: upload the "deploy" folder contents to your hosting public_html/')
-console.log('Default admin login: admin@agency.vn / Admin@2026')
+console.log('Default admin login: sysadmin@admin.com / 123456')
+

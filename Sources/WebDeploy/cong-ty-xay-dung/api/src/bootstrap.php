@@ -1,7 +1,7 @@
-<?php
+﻿<?php
 declare(strict_types=1);
 
-// ── Helpers ───────────────────────────────────────────────
+// â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function bodyJson(): array
 {
@@ -13,19 +13,19 @@ function bodyJson(): array
 function slugify(string $text): string
 {
     $map = [
-        'à'=>'a','á'=>'a','ả'=>'a','ã'=>'a','ạ'=>'a',
-        'ă'=>'a','ắ'=>'a','ặ'=>'a','ằ'=>'a','ẳ'=>'a','ẵ'=>'a',
-        'â'=>'a','ấ'=>'a','ầ'=>'a','ẩ'=>'a','ẫ'=>'a','ậ'=>'a',
-        'đ'=>'d',
-        'è'=>'e','é'=>'e','ẻ'=>'e','ẽ'=>'e','ẹ'=>'e',
-        'ê'=>'e','ế'=>'e','ề'=>'e','ể'=>'e','ễ'=>'e','ệ'=>'e',
-        'ì'=>'i','í'=>'i','ỉ'=>'i','ĩ'=>'i','ị'=>'i',
-        'ò'=>'o','ó'=>'o','ỏ'=>'o','õ'=>'o','ọ'=>'o',
-        'ô'=>'o','ố'=>'o','ồ'=>'o','ổ'=>'o','ỗ'=>'o','ộ'=>'o',
-        'ơ'=>'o','ớ'=>'o','ờ'=>'o','ở'=>'o','ỡ'=>'o','ợ'=>'o',
-        'ù'=>'u','ú'=>'u','ủ'=>'u','ũ'=>'u','ụ'=>'u',
-        'ư'=>'u','ứ'=>'u','ừ'=>'u','ử'=>'u','ữ'=>'u','ự'=>'u',
-        'ỳ'=>'y','ý'=>'y','ỷ'=>'y','ỹ'=>'y','ỵ'=>'y',
+        'Ã '=>'a','Ã¡'=>'a','áº£'=>'a','Ã£'=>'a','áº¡'=>'a',
+        'Äƒ'=>'a','áº¯'=>'a','áº·'=>'a','áº±'=>'a','áº³'=>'a','áºµ'=>'a',
+        'Ã¢'=>'a','áº¥'=>'a','áº§'=>'a','áº©'=>'a','áº«'=>'a','áº­'=>'a',
+        'Ä‘'=>'d',
+        'Ã¨'=>'e','Ã©'=>'e','áº»'=>'e','áº½'=>'e','áº¹'=>'e',
+        'Ãª'=>'e','áº¿'=>'e','á»'=>'e','á»ƒ'=>'e','á»…'=>'e','á»‡'=>'e',
+        'Ã¬'=>'i','Ã­'=>'i','á»‰'=>'i','Ä©'=>'i','á»‹'=>'i',
+        'Ã²'=>'o','Ã³'=>'o','á»'=>'o','Ãµ'=>'o','á»'=>'o',
+        'Ã´'=>'o','á»‘'=>'o','á»“'=>'o','á»•'=>'o','á»—'=>'o','á»™'=>'o',
+        'Æ¡'=>'o','á»›'=>'o','á»'=>'o','á»Ÿ'=>'o','á»¡'=>'o','á»£'=>'o',
+        'Ã¹'=>'u','Ãº'=>'u','á»§'=>'u','Å©'=>'u','á»¥'=>'u',
+        'Æ°'=>'u','á»©'=>'u','á»«'=>'u','á»­'=>'u','á»¯'=>'u','á»±'=>'u',
+        'á»³'=>'y','Ã½'=>'y','á»·'=>'y','á»¹'=>'y','á»µ'=>'y',
     ];
     $text = mb_strtolower($text, 'UTF-8');
     $text = strtr($text, $map);
@@ -34,7 +34,7 @@ function slugify(string $text): string
     return $text;
 }
 
-// ── CORS ─────────────────────────────────────────────────
+// â”€â”€ CORS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 $allowedOrigins = [APP_URL, 'http://localhost:5173', 'http://localhost:5174', 'http://localhost:4173'];
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-// ── Autoload ──────────────────────────────────────────────
+// â”€â”€ Autoload â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 require_once __DIR__ . '/Response.php';
 require_once __DIR__ . '/Auth.php';
@@ -70,14 +70,14 @@ require_once __DIR__ . '/controllers/TestimonialController.php';
 $db     = Database::getInstance();
 $router = new Router();
 
-// ── AUTH ─────────────────────────────────────────────────
+// â”€â”€ AUTH â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 $auth = new AuthController($db);
 $router->add('POST', '/auth/login',  [$auth, 'login']);
 $router->add('POST', '/auth/logout', [$auth, 'logout']);
 $router->add('GET',  '/auth/me',     [$auth, 'me']);
 
-// ── SERVICES (Dịch vụ) ───────────────────────────────────
+// â”€â”€ SERVICES (Dá»‹ch vá»¥) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 $service = new ServiceController($db);
 $router->add('GET',    '/services',     [$service, 'index']);
@@ -86,7 +86,7 @@ $router->add('GET',    '/services/:id', [$service, 'show']);
 $router->add('PUT',    '/services/:id', [$service, 'update']);
 $router->add('DELETE', '/services/:id', [$service, 'destroy']);
 
-// ── PROJECTS (Dự án / Công trình) ───────────────────────
+// â”€â”€ PROJECTS (Dá»± Ã¡n / CÃ´ng trÃ¬nh) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 $project = new ProjectController($db);
 $router->add('GET',    '/projects',               [$project, 'index']);
@@ -99,7 +99,7 @@ $router->add('POST',   '/project-categories',     [$project, 'storeCategory']);
 $router->add('PUT',    '/project-categories/:id', [$project, 'updateCategory']);
 $router->add('DELETE', '/project-categories/:id', [$project, 'destroyCategory']);
 
-// ── TESTIMONIALS (Đánh giá) ──────────────────────────────
+// â”€â”€ TESTIMONIALS (ÄÃ¡nh giÃ¡) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 $testimonial = new TestimonialController($db);
 $router->add('GET',    '/testimonials',     [$testimonial, 'index']);
@@ -108,7 +108,7 @@ $router->add('GET',    '/testimonials/:id', [$testimonial, 'show']);
 $router->add('PUT',    '/testimonials/:id', [$testimonial, 'update']);
 $router->add('DELETE', '/testimonials/:id', [$testimonial, 'destroy']);
 
-// ── CONTACTS (Yêu cầu báo giá) ──────────────────────────
+// â”€â”€ CONTACTS (YÃªu cáº§u bÃ¡o giÃ¡) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 $contact = new ContactController($db);
 $router->add('GET',    '/contacts',            [$contact, 'index']);
@@ -116,26 +116,26 @@ $router->add('GET',    '/contacts/:id',        [$contact, 'show']);
 $router->add('PUT',    '/contacts/:id/status', [$contact, 'updateStatus']);
 $router->add('DELETE', '/contacts/:id',        [$contact, 'destroy']);
 
-// ── SETTINGS ─────────────────────────────────────────────
+// â”€â”€ SETTINGS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 $settings = new SettingsController($db);
 $router->add('GET',  '/settings',        [$settings, 'index']);
 $router->add('POST', '/settings',        [$settings, 'save']);
 $router->add('GET',  '/settings/:group', [$settings, 'group']);
 
-// ── MEDIA ────────────────────────────────────────────────
+// â”€â”€ MEDIA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 $media = new MediaController($db);
 $router->add('GET',    '/media',     [$media, 'index']);
 $router->add('POST',   '/media',     [$media, 'upload']);
 $router->add('DELETE', '/media/:id', [$media, 'destroy']);
 
-// ── STATS ────────────────────────────────────────────────
+// â”€â”€ STATS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 $stats = new StatsController($db);
 $router->add('GET', '/stats', [$stats, 'index']);
 
-// ── PUBLIC (không cần auth — website public gọi) ─────────
+// â”€â”€ PUBLIC (khÃ´ng cáº§n auth â€” website public gá»i) â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 $pub = new PublicController($db);
 $router->add('GET',  '/public/settings',          [$pub, 'settings']);
@@ -145,4 +145,15 @@ $router->add('GET',  '/public/project-categories', [$pub, 'projectCategories']);
 $router->add('GET',  '/public/testimonials',      [$pub, 'testimonials']);
 $router->add('POST', '/public/contact',           [$pub, 'submitContact']);
 
+
+// ── UPLOAD & UNSPLASH ─────────────────────────────────────────────────────────
+$upload   = new UploadController($db);
+$router->add('POST', '/upload',   [$upload,   'upload']);
+
+$unsplash = new UnsplashController($db);
+$router->add('GET',  '/unsplash', [$unsplash, 'search']);
+$router->add('POST', '/unsplash', [$unsplash, 'trackDownload']);
+
 return $router;
+
+

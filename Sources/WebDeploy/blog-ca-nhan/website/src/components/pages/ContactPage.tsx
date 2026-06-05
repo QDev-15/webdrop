@@ -1,8 +1,10 @@
 import { useState, type ChangeEvent, type FormEvent, type CSSProperties } from 'react'
 import { api } from '../../api/client'
 import { useSite } from '../../contexts/SiteContext'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function ContactPage() {
+  usePageTitle('Liên hệ')
   const { settings } = useSite()
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
   const [submitting, setSubmitting] = useState(false)

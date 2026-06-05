@@ -54,6 +54,14 @@ class Auth
         }
     }
 
+    public static function requireRole(string $role): void
+    {
+        self::require();
+        if (($_SESSION['user_role'] ?? '') !== $role) {
+            Response::forbidden();
+        }
+    }
+
     public static function user(): ?array
     {
         if (!self::check()) return null;

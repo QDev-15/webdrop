@@ -12,6 +12,8 @@ const tabs = [
   { key: 'contact',  label: 'Liên hệ' },
   { key: 'smtp',     label: 'SMTP Email' },
   { key: 'system',   label: 'Hệ thống' },
+  { key: 'cloudinary', label: '☁️ Cloudinary' },
+  { key: 'integrations', label: '🔌 Tích hợp' },
 ]
 
 export default function Settings() {
@@ -144,6 +146,41 @@ export default function Settings() {
             <div>
               <Field label="Chế độ bảo trì (1/0)" value={g('system').maintenance_mode} onChange={v => set('system','maintenance_mode',v)} />
               <Field label="Thông báo bảo trì" value={g('system').maintenance_message} onChange={v => set('system','maintenance_message',v)} textarea />
+            </div>
+          )}
+
+          {active === 'cloudinary' && (
+            <div className="row g-3">
+              <div className="col-12"><h6 className="fw-semibold mb-3">☁️ Cloudinary — Lưu trữ ảnh</h6></div>
+              <div className="col-md-6">
+                <label className="form-label small fw-semibold">Cloud Name</label>
+                <Field label="Cloud Name" value={g('cloudinary').cloudinary_cloud_name ?? ''} onChange={v => set('cloudinary','cloudinary_cloud_name',v)} placeholder="your-cloud-name" />
+                <div className="form-text">Lấy tại cloudinary.com → Dashboard → Cloud Name</div>
+              </div>
+              <div className="col-md-6">
+                <label className="form-label small fw-semibold">API Key</label>
+                <Field label="API Key" value={g('cloudinary').cloudinary_api_key ?? ''} onChange={v => set('cloudinary','cloudinary_api_key',v)} placeholder="123456789012345" />
+              </div>
+              <div className="col-md-6">
+                <label className="form-label small fw-semibold">API Secret</label>
+                <Field label="API Secret" value={g('cloudinary').cloudinary_api_secret ?? ''} onChange={v => set('cloudinary','cloudinary_api_secret',v)} placeholder="••••••••••••••••••••••••" />
+                <div className="form-text">Dashboard → Settings → Access Keys → API Secret</div>
+              </div>
+              <div className="col-md-6">
+                <label className="form-label small fw-semibold">Upload Folder (tuỳ chọn)</label>
+                <Field label="Upload Folder" value={g('cloudinary').cloudinary_folder ?? ''} onChange={v => set('cloudinary','cloudinary_folder',v)} placeholder="webdrop" />
+                <div className="form-text">Thư mục lưu ảnh trên Cloudinary. Mặc định: webdrop</div>
+              </div>
+            </div>
+          )}
+          {active === 'integrations' && (
+            <div className="row g-3">
+              <div className="col-12"><h6 className="fw-semibold mb-3">🔌 Tích hợp bên ngoài</h6></div>
+              <div className="col-12">
+                <label className="form-label small fw-semibold">Unsplash Access Key</label>
+                <Field label="Unsplash Access Key" value={g('integrations').unsplash_access_key ?? ''} onChange={v => set('integrations','unsplash_access_key',v)} placeholder="Dán Access Key từ unsplash.com/developers" />
+                <div className="form-text">Đăng ký miễn phí tại unsplash.com/developers → New Application → copy Access Key. Dùng để tìm kiếm ảnh trong admin.</div>
+              </div>
             </div>
           )}
         </div>

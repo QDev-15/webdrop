@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { api } from '../../api/client'
 import { useSite } from '../../contexts/SiteContext'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 interface Post {
   id: number
@@ -23,6 +24,7 @@ interface PostsResponse {
 }
 
 export default function ArchivePage() {
+  usePageTitle('Tất cả bài viết')
   const { settings } = useSite()
   const navigate = useNavigate()
   const [posts, setPosts] = useState<Post[]>([])

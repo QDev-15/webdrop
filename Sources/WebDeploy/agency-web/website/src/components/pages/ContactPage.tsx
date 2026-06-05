@@ -1,8 +1,10 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function ContactPage() {
+  usePageTitle('Liên hệ')
   const { settings } = useSite()
   const [form, setForm] = useState({ name: '', phone: '', email: '', subject: '', message: '' })
   const [errors, setErrors] = useState<Record<string, string>>({})

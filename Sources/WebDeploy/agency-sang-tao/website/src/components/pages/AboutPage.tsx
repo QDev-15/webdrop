@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import RevealObserver from '../RevealObserver'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function AboutPage() {
+  usePageTitle('Về chúng tôi')
   const { settings, team } = useSite()
 
   const displayTeam = team.length > 0 ? team : [

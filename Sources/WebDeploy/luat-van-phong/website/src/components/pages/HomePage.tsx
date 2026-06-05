@@ -2,8 +2,10 @@ import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import Reveal from '../Reveal'
 import CtaForm from '../CtaForm'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function HomePage() {
+  usePageTitle()
   const { settings, slides, lawyers, cases, testimonials } = useSite()
 
   const heroImage    = (slides[0]?.image) || settings.hero_image || 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80&auto=format&fit=crop'

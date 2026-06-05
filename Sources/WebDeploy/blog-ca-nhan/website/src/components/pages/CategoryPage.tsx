@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { api } from '../../api/client'
 import { useSite } from '../../contexts/SiteContext'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 interface Post {
   id: number
@@ -28,6 +29,7 @@ export default function CategoryPage() {
   const { settings } = useSite()
   const navigate = useNavigate()
   const isTag = window.location.pathname.startsWith('/tag/')
+  usePageTitle(isTag ? 'Bài viết theo thẻ' : (slug?.replace(/-/g, ' ') || 'Danh mục'))
   const [posts, setPosts] = useState<Post[]>([])
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(1)
@@ -50,10 +52,6 @@ export default function CategoryPage() {
       .catch(() => null)
       .finally(() => setLoading(false))
   }, [slug, page, isTag])
-
-  useEffect(() => {
-    document.title = `${slug} — ${settings.site_name ?? 'Blog'}`
-  }, [slug, settings.site_name])
 
   useEffect(() => {
     const timer = setTimeout(() => {

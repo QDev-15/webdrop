@@ -1,5 +1,8 @@
 export const revalidate = 60
 
+import type { Metadata } from 'next'
+export const metadata: Metadata = { title: 'Thư viện mẫu website — webdrop.vn' }
+
 import { prisma } from '@/lib/prisma'
 import { templates as mockTemplates } from '@/data/templates'
 import type { Template } from '@/data/templates'

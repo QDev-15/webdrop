@@ -1,11 +1,14 @@
 'use client'
 import AdminLayout from '@/components/admin/AdminLayout'
 import { useState, useEffect, FormEvent } from 'react'
+import dynamic from 'next/dynamic'
+
+const ImageField = dynamic(() => import('@/components/admin/ImageField'), { ssr: false })
 
 interface SettingField {
   key: string
   label: string
-  type?: 'text' | 'email' | 'password' | 'textarea'
+  type?: 'text' | 'email' | 'password' | 'textarea' | 'image'
   placeholder?: string
   hint?: string
   rows?: number
@@ -26,6 +29,8 @@ const SETTING_GROUPS: SettingGroup[] = [
     fields: [
       { key: 'site_name',        label: 'Tên công ty / Website', placeholder: 'webdrop.vn' },
       { key: 'site_description', label: 'Mô tả ngắn (hiện footer)', placeholder: 'Nền tảng mẫu website chuyên nghiệp...', type: 'textarea', rows: 2 },
+      { key: 'site_logo',    label: 'Logo', type: 'image', hint: 'Hiển thị trên nav và footer' },
+      { key: 'site_favicon', label: 'Favicon (icon tab trình duyệt)', type: 'image', hint: 'Ảnh vuông PNG 32×32 hoặc 64×64. Có hiệu lực sau khi reload trang.' },
       { key: 'site_email',       label: 'Email liên hệ',  type: 'email',    placeholder: 'hello@webdrop.vn' },
       { key: 'site_phone',       label: 'Zalo / Điện thoại',               placeholder: '0988 632 841' },
       { key: 'site_address',     label: 'Địa chỉ',                          placeholder: 'Cầu Giấy, Hà Nội, Việt Nam' },
@@ -95,6 +100,35 @@ const SETTING_GROUPS: SettingGroup[] = [
       { key: 'smtp_password',   label: 'SMTP Password',    type: 'password', placeholder: '••••••••' },
       { key: 'smtp_from_name',  label: 'Tên người gửi',   placeholder: 'webdrop.vn' },
       { key: 'smtp_from_email', label: 'Email người gửi', type: 'email', placeholder: 'noreply@webdrop.vn' },
+    ],
+  },
+  {
+    label: 'Cloudinary', key: 'cloudinary', icon: '☁️',
+    fields: [
+      {
+        key: 'cloudinary_cloud_name',
+        label: 'Cloud Name',
+        placeholder: 'your-cloud-name',
+        hint: 'Lấy tại cloudinary.com → Dashboard → Cloud Name',
+      },
+      {
+        key: 'cloudinary_api_key',
+        label: 'API Key',
+        placeholder: '123456789012345',
+      },
+      {
+        key: 'cloudinary_api_secret',
+        label: 'API Secret',
+        type: 'password',
+        placeholder: '••••••••••••••••••••••••',
+        hint: 'Dashboard → Settings → Access Keys → API Secret',
+      },
+      {
+        key: 'cloudinary_folder',
+        label: 'Upload Folder (tuỳ chọn)',
+        placeholder: 'webdrop',
+        hint: 'Thư mục lưu ảnh trên Cloudinary. Mặc định: webdrop',
+      },
     ],
   },
   {
@@ -196,9 +230,18 @@ export default function AdminSettingsPage() {
               /* Other groups: 2-column grid */
               <div className="row g-3" style={{ marginTop: 6 }}>
                 {currentGroup.fields.map(f => (
-                  <div key={f.key} className={f.type === 'textarea' ? 'col-12' : 'col-md-6'}>
-                    <label style={{ display: 'block', fontSize: 12, fontWeight: 500, color: 'var(--text-2)', marginBottom: 5 }}>{f.label}</label>
-                    {f.type === 'textarea' ? (
+                  <div key={f.key} className={f.type === 'textarea' || f.type === 'image' ? 'col-12' : 'col-md-6'}>
+                    {f.type !== 'image' && (
+                      <label style={{ display: 'block', fontSize: 12, fontWeight: 500, color: 'var(--text-2)', marginBottom: 5 }}>{f.label}</label>
+                    )}
+                    {f.type === 'image' ? (
+                      <ImageField
+                        label={f.label}
+                        hint={f.hint}
+                        value={values[f.key] || ''}
+                        onChange={v => set(f.key, v)}
+                      />
+                    ) : f.type === 'textarea' ? (
                       <textarea
                         rows={f.rows || 3}
                         value={values[f.key] || ''}

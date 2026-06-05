@@ -2,10 +2,12 @@ import { useState } from 'react'
 import { useSite } from '../../contexts/SiteContext'
 import Reveal from '../Reveal'
 import CtaForm from '../CtaForm'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 const CATEGORIES = ['Tất Cả', 'Luật Doanh Nghiệp', 'Tranh Tụng', 'Bất Động Sản', 'Luật Lao Động', 'Hình Sự Kinh Tế', 'Sở Hữu Trí Tuệ']
 
 export default function CasesPage() {
+  usePageTitle('Vụ án tiêu biểu')
   const { settings, cases, testimonials } = useSite()
   const phone = settings.site_phone || '0900 000 000'
   const [active, setActive] = useState('Tất Cả')

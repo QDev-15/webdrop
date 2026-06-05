@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 interface Service {
   id: number; name: string; description: string; icon: string; featured: number; status: string
@@ -31,6 +32,7 @@ function useReveal(deps: unknown[]) {
 }
 
 export default function HomePage() {
+  usePageTitle()
   const { settings, slides } = useSite()
   const [services, setServices] = useState<Service[]>([])
   const [projects, setProjects] = useState<Project[]>([])

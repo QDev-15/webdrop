@@ -36,6 +36,10 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.vn** — chuyên chuy�
 17. **`APP_KEY` phải được auto-generate trong `build.mjs`** — không để khách tự điền. Dùng `randomBytes(32).toString('hex')` tạo 64 ký tự hex, inject vào `config.php` trước khi copy vào `deploy/`. Source `api/config.php` giữ nguyên placeholder. Bỏ `config.php` khỏi vòng copy `api/*` (thêm vào `skipApi`).
 18. **Dùng `POST /path/update` và `POST /path/delete` thay vì PUT/DELETE** — Shared hosting IIS (PA Vietnam) có WebDAV lock ở server level, web.config không override được, gây lỗi 405 vĩnh viễn. Fix dứt điểm: API chỉ dùng GET và POST, update/delete qua suffix URL. `client.ts`: `put(path, body)` → `POST ${path}/update`, `delete(path)` → `POST ${path}/delete`. `bootstrap.php`: đăng ký `POST /:id/update` và `POST /:id/delete` thay cho PUT/DELETE.
 19. **`Sidebar.tsx` phải khai báo interface `NavLinkItem` với optional fields**
+20. **Mọi form admin có trường ảnh BẮT BUỘC dùng `ImageField` component** — copy từ `Sources/WebDeploy/cafe-thoi-gian/admin/src/components/`. Không được dùng `<input type="text">` thông thường cho URL ảnh.
+21. **Mọi site BẮT BUỘC có `UploadController.php` + `UnsplashController.php`** — copy từ `Sources/WebDeploy/cafe-thoi-gian/api/src/controllers/`. Thêm routes `/upload`, `/unsplash` (GET + POST) vào `bootstrap.php`.
+22. **Settings page BẮT BUỘC có 2 tabs cuối: ☁️ Cloudinary và 🔌 Tích hợp** — để admin cấu hình API keys mà không cần chỉnh code.
+23. **`api/client.ts` BẮT BUỘC có method `upload`** trong object `api`: `upload: <T>(path: string, formData: FormData) => request<T>('POST', path, formData)`. Thiếu method này → `ImageField` bị lỗi TS2339 khi build.
 20. **Reveal animation với async data phải dùng `setTimeout(fn, 0)` + query `:not(.visible)`** — IntersectionObserver chạy đồng bộ tại thời điểm `useEffect` fire, trước khi React paint DOM từ async data. Không có `setTimeout(0)` → observe elements trống → mãi `opacity: 0`. Pattern chuẩn:
     ```tsx
     useEffect(() => {
@@ -921,6 +925,48 @@ export default function MenuItemList() {
 // - useNavigate để quay lại sau save
 // - Form có đủ fields từ DB schema
 ```
+
+### ⚠️ BẮT BUỘC — ImageField + UnsplashPicker trong mọi admin form có ảnh
+
+**Mọi form trong admin có trường image/thumbnail/avatar BẮT BUỘC dùng `ImageField` thay vì `<input type="text">` thông thường.**
+
+```tsx
+// ✅ ĐÚNG — dùng ImageField
+import ImageField from '../../components/ImageField'
+
+<ImageField
+  label="Ảnh đại diện"
+  value={form.image}
+  onChange={v => set('image', v)}
+/>
+
+// ❌ SAI — không dùng input text cho URL ảnh
+<input type="text" value={form.image} onChange={...} placeholder="https://..." />
+```
+
+**Cách tạo files:** Copy từ `Sources/WebDeploy/cafe-thoi-gian/admin/src/components/`:
+- `ImageField.tsx` — drop zone + upload + Unsplash picker
+- `UnsplashPicker.tsx` — modal tìm ảnh Unsplash
+
+**PHP backend:** `UploadController.php` và `UnsplashController.php` đã có sẵn tại `Sources/WebDeploy/cafe-thoi-gian/api/src/controllers/`. Copy vào `api/src/controllers/` của site mới.
+
+**bootstrap.php** — thêm vào cuối (trước `return $router;`):
+```php
+require_once __DIR__ . '/controllers/UploadController.php';
+require_once __DIR__ . '/controllers/UnsplashController.php';
+
+// ── UPLOAD & UNSPLASH ─────────────────────────────────────────────────────────
+$upload   = new UploadController($db);
+$router->add('POST', '/upload',   [$upload,   'upload']);
+
+$unsplash = new UnsplashController($db);
+$router->add('GET',  '/unsplash', [$unsplash, 'search']);
+$router->add('POST', '/unsplash', [$unsplash, 'trackDownload']);
+```
+
+**Settings page** — bắt buộc thêm 2 tabs cuối:
+- `{ id: 'cloudinary', label: '☁️ Cloudinary' }` — Cloud Name, API Key, API Secret, Upload Folder
+- `{ id: 'integrations', label: '🔌 Tích hợp' }` — Unsplash Access Key
 
 ---
 

@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../../api/client'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 interface Service {
   id: number; name: string; description: string; content: string; icon: string; image: string; price: string; status: string
 }
 
 export default function ServicesPage() {
+  usePageTitle('Dịch vụ')
   const [services, setServices] = useState<Service[]>([])
 
   useEffect(() => {

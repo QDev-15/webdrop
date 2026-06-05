@@ -1,3 +1,6 @@
+import type { Metadata } from 'next'
+export const metadata: Metadata = { title: 'Liên hệ — webdrop.vn' }
+
 import Footer from '@/components/site/Footer'
 import RevealObserver from '@/components/site/RevealObserver'
 import ContactClient from './ContactClient'

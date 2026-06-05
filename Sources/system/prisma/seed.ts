@@ -493,6 +493,8 @@ async function main() {
   const settingsData = [
     { key: 'site_name', value: 'webdrop.vn', group: 'general' },
     { key: 'site_description', value: 'Mẫu web đẹp, triển khai trọn gói', group: 'general' },
+    { key: 'site_logo', value: '', group: 'general' },
+    { key: 'site_favicon', value: '', group: 'general' },
     { key: 'site_email', value: 'hello@webdrop.vn', group: 'general' },
     { key: 'site_phone', value: '0900 000 000', group: 'general' },
     { key: 'social_facebook', value: 'https://facebook.com/webdrop.vn', group: 'social' },
