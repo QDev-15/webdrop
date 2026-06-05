@@ -97,6 +97,18 @@ const SETTING_GROUPS: SettingGroup[] = [
       { key: 'smtp_from_email', label: 'Email người gửi', type: 'email', placeholder: 'noreply@webdrop.vn' },
     ],
   },
+  {
+    label: 'Tích hợp', key: 'integrations', icon: '🔌',
+    fields: [
+      {
+        key: 'unsplash_access_key',
+        label: 'Unsplash Access Key',
+        type: 'password',
+        placeholder: 'Dán Access Key từ unsplash.com/developers',
+        hint: 'Đăng ký miễn phí tại unsplash.com/developers → New Application → copy Access Key. Dùng để tìm kiếm ảnh trong admin.',
+      },
+    ],
+  },
 ]
 
 const inputStyle: React.CSSProperties = {

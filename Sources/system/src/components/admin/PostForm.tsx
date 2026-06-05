@@ -1,6 +1,7 @@
 'use client'
 import { useState, FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
+import ImageField from './ImageField'
 
 interface Category { id: number; name: string }
 
@@ -110,9 +111,12 @@ export default function PostForm({ mode, id, categories, initial }: PostFormProp
           </div>
           <div className="row g-3">
             <div className="col-md-8">
-              {label('URL ảnh thumbnail')}
-              <input value={form.thumbnail} onChange={e => set('thumbnail', e.target.value)} placeholder="https://images.unsplash.com/..." style={inputStyle} />
-              {form.thumbnail && <img src={form.thumbnail} alt="preview" style={{ marginTop: 8, height: 70, borderRadius: 6, objectFit: 'cover', border: '1px solid var(--border)' }} />}
+              <ImageField
+                label="Thumbnail"
+                value={form.thumbnail}
+                onChange={v => set('thumbnail', v)}
+                placeholder="https://images.unsplash.com/..."
+              />
             </div>
             <div className="col-md-4">
               {label('Danh mục')}

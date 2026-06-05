@@ -1,6 +1,7 @@
 'use client'
 import { useState, FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
+import ImageField from './ImageField'
 
 interface Industry { id: number; name: string; slug: string }
 
@@ -110,9 +111,12 @@ export default function TemplateForm({ mode, id, industries, initial }: Template
           />
         </div>
         <div style={{ gridColumn: '1/-1' }}>
-          {label('URL thumbnail')}
-          {input('thumbnail', { placeholder: 'https://images.unsplash.com/...' })}
-          {form.thumbnail && <img src={form.thumbnail} alt="preview" style={{ marginTop: 8, height: 80, borderRadius: 6, objectFit: 'cover', border: '1px solid var(--border)' }} />}
+          <ImageField
+            label="Thumbnail"
+            value={form.thumbnail}
+            onChange={v => set('thumbnail', v)}
+            placeholder="https://images.unsplash.com/..."
+          />
         </div>
         <div style={{ gridColumn: '1/-1' }}>
           {label('Demo URL')}

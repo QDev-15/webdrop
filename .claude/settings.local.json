@@ -60,7 +60,8 @@
       "Bash(node build.mjs)",
       "Bash(npm run *)",
       "Bash(xcopy /E /Y /I \"D:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\WebDeploy\\\\startup-cong-nghe\\\\admin\\\\dist\" \"D:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\WebDeploy\\\\startup-cong-nghe\\\\deploy\\\\admin\")",
-      "Bash(Get-ChildItem \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\templates\\\\web\\\\Companies\\\\tu-van-tai-chinh\\\\\" -Name)"
+      "Bash(Get-ChildItem \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\templates\\\\web\\\\Companies\\\\tu-van-tai-chinh\\\\\" -Name)",
+      "Bash(npx next *)"
     ],
     "additionalDirectories": [
       "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"

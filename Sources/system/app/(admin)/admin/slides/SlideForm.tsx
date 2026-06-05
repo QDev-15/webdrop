@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import type { HeroSlide } from '@prisma/client'
 import type { Slide, TitlePart, SlideButton } from '@/data/slides.config'
+import ImageField from '@/components/admin/ImageField'
 
 const TYPES = [
   { value: 'intro',       label: 'Giới thiệu — Tiêu đề + stats + buttons' },
@@ -94,9 +95,16 @@ export default function SlideForm({ slide }: { slide?: HeroSlide }) {
   async function handleDelete() {
     if (!slide || !confirm('Xóa slide này?')) return
     setDeleting(true)
-    await fetch(`/api/admin/slides/${slide.id}`, { method: 'DELETE' })
-    router.push('/admin/slides')
-    router.refresh()
+    try {
+      const res = await fetch(`/api/admin/slides/${slide.id}`, { method: 'DELETE' })
+      if (!res.ok) { setError('Xóa thất bại. Thử lại.'); return }
+      router.push('/admin/slides')
+      router.refresh()
+    } catch {
+      setError('Lỗi kết nối. Thử lại.')
+    } finally {
+      setDeleting(false)
+    }
   }
 
   return (
@@ -127,10 +135,12 @@ export default function SlideForm({ slide }: { slide?: HeroSlide }) {
 
         {/* Background */}
         <div className="col-12">
-          <label className="form-label fw-500 small">Background image URL</label>
-          <input className="form-control form-control-sm" value={bg} onChange={e => setBg(e.target.value)}
-            placeholder="https://images.unsplash.com/..." />
-          {bg && <img src={bg} alt="" className="mt-2 rounded" style={{ height: 80, objectFit: 'cover', opacity: .7 }} />}
+          <ImageField
+            label="Background image"
+            value={bg}
+            onChange={setBg}
+            placeholder="https://images.unsplash.com/..."
+          />
         </div>
 
         {/* Title JSON */}

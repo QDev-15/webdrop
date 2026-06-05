@@ -311,8 +311,11 @@ Template và website sẽ tập trung vào các ngành có nhu cầu cao tại V
 ### Giai đoạn 1 — 0 đến 6 tháng ✅ HOÀN THÀNH
 - [x] Xây web template theo ngành — **31 templates** (Restaurant, Spa, Agency, Company, Blog, Cafe, Forum, Portfolio)
 - [x] Xây 1 admin template cơ bản — **DONE** (`Sources/templates/admin/basic-admin/`)
-- [x] Thiết lập kênh bán (webdrop.vn) — **DONE, deploy Vercel**
+- [x] Thiết lập kênh bán (webdrop.vn) — **DONE, deploy Vercel, custom domain webdrop.vn**
 - [x] Đóng gói Gói Web cơ bản thành sản phẩm chuẩn (`Sources/products/goi-b/`)
+- [x] Tích hợp Sepay webhook auto-confirm đơn hàng + tạo download token
+- [x] Deploy website demo đầu tiên — **`cafe-thoi-gian`** (`Sources/WebDeploy/cafe-thoi-gian/`) ✅ build thành công, fallback data cho menu section
+- [ ] Upload ảnh thực tế cho website demo (cafe-thoi-gian)
 - [ ] Nhận đơn hàng đầu tiên để tạo dòng tiền
 
 ### Giai đoạn 2 — 6 đến 18 tháng
@@ -684,4 +687,4 @@ VPS AZDIGI Linux
 
 ---
 
-*Cập nhật lần cuối: 2026-06-03 — webdrop.vn deployed Vercel, 31 templates Cloudflare Pages, Gói Web cơ bản hoàn chỉnh, Hero Slides DB, settings-driven Footer/Contact/Zalo, tên gói mới (Template/Web cơ bản/Theo yêu cầu), page /how-it-works, templates filter by type. Thêm agent web-deploy-builder + thư mục Sources/WebDeploy/ cho deploy per-template.*
+*Cập nhật lần cuối: 2026-06-05 — webdrop.vn deployed Vercel với custom domain, Sepay webhook tích hợp (auto-confirm + download token), deploy website demo cafe-thoi-gian hoàn chỉnh (React SPA + PHP + SQLite, fallback static data cho menu section). Pending: upload ảnh thực tế cho cafe-thoi-gian.*

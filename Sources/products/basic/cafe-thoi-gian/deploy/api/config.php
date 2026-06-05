@@ -19,7 +19,7 @@ define('DB_PASS', 'mat_khau');
 
 // ─── APP ─────────────────────────────────────────────────────────────────────
 // ⚠️  Sửa APP_URL thành URL thực của hosting (không có dấu / cuối)
-define('APP_URL', 'https://nhienadmin.tkid.io.vn');
+define('APP_URL', 'https://example.com');
 define('APP_ENV', 'production');
 // ⚠️  APP_KEY được inject tự động bởi build.mjs — không sửa tay
 define('APP_KEY', '451d4863ccdea1aa32dc1655dd2bae8a47d4152b9e909228f51a0edd5e0f515e');
