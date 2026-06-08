@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 declare(strict_types=1);
 
 class Auth {
@@ -6,15 +6,23 @@ class Auth {
 
     public static function start(): void {
         if (session_status() === PHP_SESSION_NONE) {
-            $secure   = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
-            $sameSite = $secure ? 'None' : 'Lax';
+            // Store sessions next to DB — directory already blocked from web access
+            $sessDir = dirname(DB_FILE) . DIRECTORY_SEPARATOR . 'sessions';
+            if (!is_dir($sessDir)) { @mkdir($sessDir, 0755, true); }
+            if (is_dir($sessDir) && is_writable($sessDir)) session_save_path($sessDir);
+            // HTTPS detection — includes IIS reverse proxy (X-Forwarded-Proto)
+            $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+                     || ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https'
+                     || ($_SERVER['HTTP_X_FORWARDED_SSL']   ?? '') === 'on'
+                     || ($_SERVER['SERVER_PORT'] ?? '') === '443';
             session_set_cookie_params([
-                'lifetime' => 86400 * 30,
+                'lifetime' => 86400,
                 'path'     => '/',
-                'secure'   => $secure,
+                'secure'   => $isHttps,
                 'httponly' => true,
-                'samesite' => $sameSite,
+                'samesite' => 'Lax',
             ]);
+            session_name('agw_sess');
             session_start();
         }
     }
@@ -22,35 +30,47 @@ class Auth {
     public static function login(array $user): void {
         self::start();
         session_regenerate_id(true);
-        $_SESSION['user_id']   = $user['id'];
-        $_SESSION['user_role'] = $user['role'];
+        $_SESSION['user_id']    = $user['id'];
+        $_SESSION['user_name']  = $user['name'];
+        $_SESSION['user_email'] = $user['email'] ?? '';
+        $_SESSION['user_role']  = $user['role'];
+        self::$currentUser = $user;
     }
 
     public static function logout(): void {
         self::start();
         session_destroy();
+        self::$currentUser = null;
     }
 
     public static function user(): ?array {
-        if (self::$currentUser !== null) {
-            return self::$currentUser;
-        }
         self::start();
-        if (!isset($_SESSION['user_id'])) return null;
-        $db   = Database::getInstance();
-        $user = $db->queryOne("SELECT id, name, email, role FROM users WHERE id=?", [$_SESSION['user_id']]);
-        self::$currentUser = $user ?: null;
-        return self::$currentUser;
-    }
-
-    public static function check(): bool {
-        return self::user() !== null;
+        if (empty($_SESSION['user_id'])) return null;
+        return [
+            'id'    => $_SESSION['user_id'],
+            'name'  => $_SESSION['user_name'],
+            'email' => $_SESSION['user_email'] ?? '',
+            'role'  => $_SESSION['user_role'],
+        ];
     }
 
     public static function require(): void {
-        if (!self::check()) {
+        $user = self::user();
+        if (!$user) {
+            header('Content-Type: application/json; charset=utf-8');
             http_response_code(401);
             echo json_encode(['error' => 'Chưa đăng nhập.'], JSON_UNESCAPED_UNICODE);
+            exit;
+        }
+    }
+
+    public static function requireRole(string $role): void {
+        self::require();
+        $user = self::user();
+        if ($user['role'] !== $role) {
+            header('Content-Type: application/json; charset=utf-8');
+            http_response_code(403);
+            echo json_encode(['error' => 'Không có quyền.'], JSON_UNESCAPED_UNICODE);
             exit;
         }
     }

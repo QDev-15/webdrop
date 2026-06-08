@@ -19,7 +19,8 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.vn** — chuyên chuy�
 
 1. **Đọc template trước khi viết bất kỳ code nào** — không được bịa nội dung.
 2. **Admin menu phải khớp với template nav** — mỗi mục nav tương ứng một module admin.
-3. **Mọi text/image/content trên trang chính đều phải quản lý được qua admin settings hoặc CRUD module.**
+3. **Toàn bộ UI admin (label, placeholder, button, thông báo, tiêu đề trang, section header) phải dùng tiếng Việt CÓ DẤU** — tuyệt đối không dùng tiếng Việt không dấu (vd: "Đăng nhập" chứ không phải "Dang nhap", "Danh mục" chứ không phải "Danh muc"). Áp dụng cho mọi file: Sidebar.tsx, LoginPage.tsx, Dashboard.tsx, mọi List/Form page, Settings.tsx, ProfilePage.tsx, MediaPage.tsx, ContactList.tsx.
+4. **Mọi text/image/content trên trang chính đều phải quản lý được qua admin settings hoặc CRUD module.**
 4. **DB auto-seed từ nội dung thực có trong template** — không dùng placeholder Lorem ipsum.
 5. **PRAGMA foreign_keys = ON** bắt buộc cho SQLite.
 6. **Sau khi tạo xong → chạy kiểm tra cú pháp PHP và TypeScript.**
@@ -40,7 +41,37 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.vn** — chuyên chuy�
 21. **Mọi site BẮT BUỘC có `UploadController.php` + `UnsplashController.php`** — copy từ `Sources/WebDeploy/cafe-thoi-gian/api/src/controllers/`. Thêm routes `/upload`, `/unsplash` (GET + POST) vào `bootstrap.php`.
 22. **Settings page BẮT BUỘC có 2 tabs cuối: ☁️ Cloudinary và 🔌 Tích hợp** — để admin cấu hình API keys mà không cần chỉnh code.
 23. **`api/client.ts` BẮT BUỘC có method `upload`** trong object `api`: `upload: <T>(path: string, formData: FormData) => request<T>('POST', path, formData)`. Thiếu method này → `ImageField` bị lỗi TS2339 khi build.
-20. **Reveal animation với async data phải dùng `setTimeout(fn, 0)` + query `:not(.visible)`** — IntersectionObserver chạy đồng bộ tại thời điểm `useEffect` fire, trước khi React paint DOM từ async data. Không có `setTimeout(0)` → observe elements trống → mãi `opacity: 0`. Pattern chuẩn:
+24. **`admin/index.html` BẮT BUỘC dùng Bunny Fonts thay vì Google Fonts** — Google Fonts CDN bị block/chậm trên nhiều hosting VN. Dùng drop-in replacement: xóa 2 dòng `preconnect googleapis/gstatic` và thay link font bằng: `<link rel="preconnect" href="https://fonts.bunny.net">` + `<link href="https://fonts.bunny.net/css?family=dm-sans:300,300i,400,400i,500,500i,600,600i&display=swap" rel="stylesheet">`.
+25. **`Auth.php` start() BẮT BUỘC dùng đúng pattern sau** — thiếu HTTPS detection hoặc session path dẫn đến 401 trên hosting:
+    ```php
+    public static function start(): void {
+        if (session_status() === PHP_SESSION_NONE) {
+            // Sessions stored next to DB — already protected from web access
+            $sessDir = dirname(DB_FILE) . DIRECTORY_SEPARATOR . 'sessions';
+            if (!is_dir($sessDir)) { @mkdir($sessDir, 0755, true); }
+            if (is_dir($sessDir) && is_writable($sessDir)) session_save_path($sessDir);
+            // HTTPS detection — includes IIS reverse proxy (X-Forwarded-Proto)
+            $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+                     || ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https'
+                     || ($_SERVER['HTTP_X_FORWARDED_SSL']   ?? '') === 'on'
+                     || ($_SERVER['SERVER_PORT'] ?? '') === '443';
+            session_set_cookie_params([
+                'lifetime' => 86400,
+                'path'     => '/',
+                'secure'   => $isHttps,
+                'httponly' => true,
+                'samesite' => 'Lax',
+            ]);
+            session_name('[slug]_sess');  // unique per site — tránh collision trên shared hosting
+            session_start();
+        }
+    }
+    ```
+    - `'secure' => false` hardcoded → session cookie bị drop trên HTTPS
+    - Thiếu `session_name()` → dùng `PHPSESSID` default → collision giữa nhiều site trên cùng shared hosting
+    - Thiếu `session_save_path()` → dùng PHP temp dir system (`C:\Windows\Temp`) có thể không writable
+    - `login()` phải lưu `$_SESSION['user_email']`, `user()` phải trả về `'email'` field
+26. **Reveal animation với async data phải dùng `setTimeout(fn, 0)` + query `:not(.visible)`** — IntersectionObserver chạy đồng bộ tại thời điểm `useEffect` fire, trước khi React paint DOM từ async data. Không có `setTimeout(0)` → observe elements trống → mãi `opacity: 0`. Pattern chuẩn:
     ```tsx
     useEffect(() => {
       const timer = setTimeout(() => {

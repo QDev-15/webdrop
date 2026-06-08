@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 declare(strict_types=1);
 
 class Database
@@ -114,7 +114,7 @@ class Database
 
         $this->execute(
             "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)",
-            ['sysadmin', 'sysadmin@admin.com', password_hash('123456', PASSWORD_BCRYPT), 'superadmin']
+            ['Administrator', 'admin@congtyxaydung.vn', password_hash('Admin@2026', PASSWORD_DEFAULT), 'superadmin']
         );
     }
 

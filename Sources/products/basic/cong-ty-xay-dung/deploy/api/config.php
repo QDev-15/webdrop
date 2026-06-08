@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Cong Ty Xay Dung — Cấu hình hệ thống
  * Chỉnh sửa thông tin bên dưới theo hosting của bạn.
@@ -23,7 +23,7 @@ define('DB_PASS', 'mat_khau');
 // Ví dụ: https://congtyxaydung.vn
 // ─────────────────────────────────────────────────────────
 
-define('APP_URL', 'https://example.com');
+define('APP_URL', 'https://congtyxaydung.vn');
 define('APP_ENV', 'production');
 define('APP_KEY', 'change-this-to-random-32-chars-key');
 

@@ -24,6 +24,7 @@
 | `design-scout` | Thu thập & phân tích design website theo từng ngành → xuất Design Brief làm đầu vào tạo template | WebSearch, WebFetch, Read |
 | `template-builder` | Nhận chủ đề + Design Brief → tạo bộ template HTML/CSS/Bootstrap hoàn chỉnh lưu vào Sources/templates/ | Read, Write, Edit, WebFetch, WebSearch |
 | `web-deploy-builder` | Nhận tên template (slug) → đọc HTML template → tạo bộ website deploy hoàn chỉnh (React website + React admin + PHP/SQLite) lưu vào Sources/WebDeploy/[slug]/ | Read, Write, Edit, Glob, Grep, Bash |
+| `web-deploy-fixer` | Nhận slug đã build bởi web-deploy-builder → chạy TypeScript build + PHP syntax check → tự fix mọi lỗi → lặp đến khi 0 error → kiểm tra structural checklist | Read, Write, Edit, Glob, Grep, Bash |
 
 ### Project Settings (`.claude/settings.json`)
 
