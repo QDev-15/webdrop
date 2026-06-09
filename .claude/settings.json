@@ -1,1 +1,26 @@
-{}
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -STA -NonInteractive -WindowStyle Normal -File \".claude/hooks/stop-notify.ps1\"",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NonInteractive -WindowStyle Hidden -File \".claude/hooks/notification-alert.ps1\"",
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
+}
