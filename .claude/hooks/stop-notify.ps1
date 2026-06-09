@@ -1,4 +1,11 @@
 Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase
+Add-Type -TypeDefinition @"
+using System.Runtime.InteropServices;
+public class WinAudio {
+    [DllImport("winmm.dll")] public static extern int waveOutSetVolume(System.IntPtr h, uint v);
+    [DllImport("winmm.dll")] public static extern int waveOutGetVolume(System.IntPtr h, out uint v);
+}
+"@
 
 function Play-Tone {
     param([double]$Hz, [int]$Ms, [double]$Vol = 0.88)
@@ -35,10 +42,17 @@ function Play-Tone {
     }
 }
 
+# Save volume, boost to max, play, restore
+$savedVol = 0
+[WinAudio]::waveOutGetVolume([System.IntPtr]::Zero, [ref]$savedVol) | Out-Null
+[WinAudio]::waveOutSetVolume([System.IntPtr]::Zero, [uint32]::MaxValue) | Out-Null
+
 # Ting ting: E6 -> C6
 Play-Tone 1318 220 1.0
 Start-Sleep -Milliseconds 140
 Play-Tone 1047 300 1.0
+
+[WinAudio]::waveOutSetVolume([System.IntPtr]::Zero, $savedVol) | Out-Null
 
 # WPF popup tu tat sau 3 giay
 $xaml = @'
