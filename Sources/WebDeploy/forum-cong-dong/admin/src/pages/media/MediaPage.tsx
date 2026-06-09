@@ -124,7 +124,7 @@ export default function MediaPage() {
                     style={{ flex: 1, fontSize: 10 }}
                     onClick={() => copyUrl(item)}
                   >
-                    {copied === item.id ? 'Da copy!' : 'Copy URL'}
+                    {copied === item.id ? 'Đã copy!' : 'Copy URL'}
                   </button>
                   <button
                     className="btn-danger btn-sm btn-icon"

@@ -31,14 +31,17 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
   const { slug } = await params
 
   let template: Template | undefined
+  let websitePrice: number | undefined
   let dbError = false
 
   try {
-    // findFirst thay vì findUnique để filter theo nhiều cột an toàn hơn
-    const row = await prisma.template.findFirst({
-      where: { slug, status: 'published' },
-      include: { industry: { select: { name: true } } },
-    })
+    const [row, goiB] = await Promise.all([
+      prisma.template.findFirst({
+        where: { slug, status: 'published' },
+        include: { industry: { select: { name: true } } },
+      }),
+      prisma.servicePackage.findFirst({ where: { code: 'GOI_B' }, select: { priceFrom: true } }),
+    ])
     if (row) {
       const n = typeof row.price === 'number' ? row.price : (row.price as { toNumber(): number }).toNumber()
       template = {
@@ -49,6 +52,10 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
         image: row.thumbnail || 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80&auto=format&fit=crop',
         badge: row.salesCount >= 30 ? 'Bán chạy' : undefined,
         demoUrl: row.demoUrl || undefined,
+        hasWebsite: row.hasWebsite,
+      }
+      if (row.hasWebsite && goiB?.priceFrom) {
+        websitePrice = Number(goiB.priceFrom)
       }
     }
   } catch {
@@ -102,7 +109,7 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
         </div>
       </div>
 
-      <TemplateDetailClient template={template} />
+      <TemplateDetailClient template={template} websitePrice={websitePrice} />
     </div>
   )
 }

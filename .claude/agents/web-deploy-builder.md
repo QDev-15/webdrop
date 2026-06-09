@@ -21,8 +21,8 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.vn** — chuyên chuy�
 2. **Admin menu phải khớp với template nav** — mỗi mục nav tương ứng một module admin.
 3. **Toàn bộ UI admin (label, placeholder, button, thông báo, tiêu đề trang, section header) phải dùng tiếng Việt CÓ DẤU** — tuyệt đối không dùng tiếng Việt không dấu (vd: "Đăng nhập" chứ không phải "Dang nhap", "Danh mục" chứ không phải "Danh muc"). Áp dụng cho mọi file: Sidebar.tsx, LoginPage.tsx, Dashboard.tsx, mọi List/Form page, Settings.tsx, ProfilePage.tsx, MediaPage.tsx, ContactList.tsx.
 4. **Mọi text/image/content trên trang chính đều phải quản lý được qua admin settings hoặc CRUD module.**
-4. **DB auto-seed từ nội dung thực có trong template** — không dùng placeholder Lorem ipsum.
-5. **PRAGMA foreign_keys = ON** bắt buộc cho SQLite.
+5. **DB auto-seed từ nội dung thực có trong template** — không dùng placeholder Lorem ipsum.
+6. **PRAGMA foreign_keys = ON** bắt buộc cho SQLite.
 6. **Sau khi tạo xong → chạy kiểm tra cú pháp PHP và TypeScript.**
 7. **Sau khi xong toàn bộ thì tạo một file hướng dẫn cài đặt**
 8. **Review lại và fix hết issues rồi review fix cho đến khi hết issuse**

@@ -19,10 +19,10 @@ define('DB_PASS', 'mat_khau');
 
 // ─── APP ─────────────────────────────────────────────────────────────────────
 // ⚠️  Sửa APP_URL thành URL thực của hosting (không có dấu / cuối)
-define('APP_URL', 'https://example.com');
+define('APP_URL', 'https://forum-cong-dong.infinityfree.io');
 define('APP_ENV', 'production');
 // ⚠️  Sửa APP_KEY thành chuỗi ngẫu nhiên 64 ký tự hex (được build.mjs inject tự động)
-define('APP_KEY', '09821205b62166da893872046efb0ab6bb3004e1d7702032fe2708596404c7f4');
+define('APP_KEY', 'f7ef7d169e639288bc0558081dfc840c721fd0545d1cb6b327fe7d3a37949f92');
 
 // ─── CORS ────────────────────────────────────────────────────────────────────
 // Danh sách origin được phép gọi API (để trống = chỉ cho phép APP_URL)

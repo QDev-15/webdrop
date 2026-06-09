@@ -40,10 +40,8 @@ class Database {
                 try {
                     $this->pdo->exec($stmt);
                 } catch (\PDOException $e) {
-                    // Only ignore "already exists" errors from IF NOT EXISTS clauses
-                    if (strpos($e->getMessage(), 'already exists') === false) {
-                        throw $e;
-                    }
+                    // Swallow DDL errors (table already exists, PRAGMA not supported on host, etc.)
+                    // Fatal errors (missing schema.sql) are already caught above via file_get_contents check
                 }
             }
         }

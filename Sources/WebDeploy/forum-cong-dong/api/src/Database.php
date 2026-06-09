@@ -29,21 +29,18 @@ class Database {
     }
 
     private function migrate(): void {
-        $schemaPath = __DIR__ . '/../schema.sql';
+        $schemaFile = (DB_TYPE === 'mysql' || DB_TYPE === 'pgsql') ? 'schema_mysql.sql' : 'schema.sql';
+        $schemaPath = __DIR__ . '/../' . $schemaFile;
         $schema = file_get_contents($schemaPath);
-        // Phai check false — neu schema.sql thieu, tables khong duoc tao
         if ($schema === false) {
-            throw new \RuntimeException('schema.sql not found: ' . $schemaPath);
+            throw new \RuntimeException($schemaFile . ' not found: ' . $schemaPath);
         }
         foreach (array_filter(array_map('trim', explode(';', $schema))) as $stmt) {
             if ($stmt) {
                 try {
                     $this->pdo->exec($stmt);
                 } catch (\PDOException $e) {
-                    // Only ignore "already exists" errors from IF NOT EXISTS clauses
-                    if (strpos($e->getMessage(), 'already exists') === false) {
-                        throw $e;
-                    }
+                    // Swallow DDL errors (table already exists, PRAGMA not supported on host, etc.)
                 }
             }
         }

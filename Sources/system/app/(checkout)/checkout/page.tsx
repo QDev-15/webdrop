@@ -3,13 +3,20 @@ import Link from 'next/link'
 import CheckoutClient from './CheckoutClient'
 import { prisma } from '@/lib/prisma'
 
-async function getTemplateWebsiteFlag(slug: string): Promise<boolean> {
-  if (!slug) return false
+async function getCheckoutData(slug: string) {
+  if (!slug) return { hasWebsite: false, templatePrice: 499000, websitePrice: 5000000 }
   try {
-    const t = await prisma.template.findFirst({ where: { slug }, select: { hasWebsite: true } })
-    return t?.hasWebsite ?? false
+    const [tmpl, goiB] = await Promise.all([
+      prisma.template.findFirst({ where: { slug }, select: { hasWebsite: true, price: true } }),
+      prisma.servicePackage.findFirst({ where: { code: 'GOI_B' }, select: { priceFrom: true } }),
+    ])
+    return {
+      hasWebsite: tmpl?.hasWebsite ?? false,
+      templatePrice: tmpl?.price ? Number(tmpl.price) : 499000,
+      websitePrice: goiB?.priceFrom ? Number(goiB.priceFrom) : 5000000,
+    }
   } catch {
-    return false
+    return { hasWebsite: false, templatePrice: 499000, websitePrice: 5000000 }
   }
 }
 
@@ -19,7 +26,7 @@ export default async function CheckoutPage({
   searchParams: Promise<{ slug?: string }>
 }) {
   const { slug = '' } = await searchParams
-  const hasWebsite = await getTemplateWebsiteFlag(slug)
+  const { hasWebsite, templatePrice, websitePrice } = await getCheckoutData(slug)
 
   return (
     <>
@@ -32,7 +39,7 @@ export default async function CheckoutPage({
         </div>
       </nav>
       <Suspense fallback={<div className="checkout-body" style={{ paddingTop: 40, textAlign: 'center', color: 'var(--text-3)' }}>Đang tải...</div>}>
-        <CheckoutClient hasWebsite={hasWebsite} />
+        <CheckoutClient hasWebsite={hasWebsite} templatePrice={templatePrice} websitePrice={websitePrice} />
       </Suspense>
     </>
   )

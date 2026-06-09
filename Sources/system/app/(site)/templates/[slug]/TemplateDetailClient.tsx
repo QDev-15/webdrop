@@ -36,7 +36,9 @@ const techGroups = [
 
 const tabs = ['Tính năng', 'Các trang', 'Kỹ thuật', 'Đánh giá']
 
-export default function TemplateDetailClient({ template }: { template: Template }) {
+function fmtPrice(n: number) { return n.toLocaleString('vi-VN') + 'đ' }
+
+export default function TemplateDetailClient({ template, websitePrice }: { template: Template; websitePrice?: number }) {
   const [activeImg, setActiveImg] = useState(0)
   const [activeTab, setActiveTab] = useState(0)
 
@@ -156,8 +158,37 @@ export default function TemplateDetailClient({ template }: { template: Template 
         {/* Buy Sidebar */}
         <div className="col-lg-4">
           <div className="buy-card">
-            <div className="buy-price">{template.price}</div>
-            <div className="buy-price-sub">Thanh toán một lần · Dùng mãi mãi</div>
+            {/* Giá template từ DB */}
+            <div style={{ marginBottom: template.hasWebsite ? 12 : 0 }}>
+              {template.hasWebsite && (
+                <div style={{ fontSize: 11, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '.5px', marginBottom: 2 }}>
+                  📦 File template
+                </div>
+              )}
+              <div className="buy-price">{template.price}</div>
+              <div className="buy-price-sub" style={{ marginBottom: template.hasWebsite ? 10 : 18 }}>
+                Thanh toán một lần · Dùng mãi mãi
+              </div>
+            </div>
+
+            {/* Giá website từ DB — chỉ hiện khi hasWebsite */}
+            {template.hasWebsite && websitePrice && (
+              <div style={{
+                background: 'var(--accent-light)', border: '1px solid var(--accent-mid)',
+                borderRadius: 10, padding: '12px 14px', marginBottom: 18,
+              }}>
+                <div style={{ fontSize: 11, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.5px', marginBottom: 2 }}>
+                  🌐 Website đầy đủ (Gói B)
+                </div>
+                <div style={{ fontSize: 22, fontWeight: 700, color: 'var(--accent)', lineHeight: 1, letterSpacing: '-.5px' }}>
+                  {fmtPrice(websitePrice)}
+                </div>
+                <div style={{ fontSize: 11, color: 'var(--accent)', opacity: .7, marginTop: 2 }}>
+                  React + PHP + Admin panel
+                </div>
+              </div>
+            )}
+
             <Link href={`/checkout?slug=${template.slug}`} className="buy-btn-p d-block text-center text-decoration-none">
               Đặt mua ngay →
             </Link>

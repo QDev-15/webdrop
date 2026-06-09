@@ -18,6 +18,20 @@ function TemplateImage({ src, alt, name, category }: { src: string; alt: string;
   return <img src={src} alt={alt} onError={() => setFailed(true)} />
 }
 
+function WebsiteBadge() {
+  return (
+    <div style={{
+      position: 'absolute', top: 10, left: 10, zIndex: 3,
+      background: 'var(--accent)', color: '#fff',
+      fontSize: 10, fontWeight: 600, padding: '3px 9px', borderRadius: 4,
+      letterSpacing: '.4px', textTransform: 'uppercase',
+      boxShadow: '0 2px 8px rgba(26,107,82,.4)',
+    }}>
+      Có Website
+    </div>
+  )
+}
+
 const PAGE_SIZES = [20, 50, 100]
 
 function getPageNums(current: number, total: number): (number | '…')[] {
@@ -121,6 +135,7 @@ export default function TemplateGrid({ templates: propTemplates, homepage, pageT
                     <div className={`tc reveal reveal-d${(i % 3) + 1}`}>
                       <div className="tc-thumb">
                         <TemplateImage src={t.image} alt={t.name} name={t.name} category={t.category} />
+                        {t.hasWebsite && <WebsiteBadge />}
                         <div className="tc-hover-layer"><div className="tc-demo-btn">Xem demo →</div></div>
                       </div>
                       <div className="tc-body">
@@ -212,10 +227,10 @@ export default function TemplateGrid({ templates: propTemplates, homepage, pageT
             {paginated.map(t => (
               <div key={t.slug} className="col-md-4">
                 <Link href={`/templates/${t.slug}`} style={{ textDecoration: 'none' }}>
-                  {/* Không dùng reveal — card luôn visible, không ẩn khi phân trang */}
                   <div className="tc">
                     <div className="tc-thumb">
                       <TemplateImage src={t.image} alt={t.name} name={t.name} category={t.category} />
+                      {t.hasWebsite && <WebsiteBadge />}
                       <div className="tc-hover-layer"><div className="tc-demo-btn">Xem demo →</div></div>
                     </div>
                     <div className="tc-body">
@@ -224,11 +239,10 @@ export default function TemplateGrid({ templates: propTemplates, homepage, pageT
                         <span className="tc-cat">{t.category}</span>
                         <span className="tc-price">{t.price}</span>
                       </div>
-                      {/* Chỉ hiện type badge khi đang xem tất cả (không filter type) */}
                       {!pageType && (
                         <div style={{ marginTop: 6 }}>
-                          <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 4, fontWeight: 500, background: t.hasWebsite ? '#eff6ff' : 'var(--accent-light)', color: t.hasWebsite ? '#1d4ed8' : 'var(--accent)' }}>
-                            {t.hasWebsite ? '🌐 Web + Admin' : '📦 Template'}
+                          <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 4, fontWeight: 500, background: t.hasWebsite ? 'var(--accent-light)' : 'var(--warm2)', color: t.hasWebsite ? 'var(--accent)' : 'var(--text-2)' }}>
+                            {t.hasWebsite ? 'Web + Admin' : 'Chỉ template'}
                           </span>
                         </div>
                       )}
