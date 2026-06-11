@@ -9,7 +9,13 @@
       "Bash(npx tsc *)",
       "Bash(npx prisma *)",
       "Bash(npx next *)",
-      "Bash(node build.mjs)"
+      "Bash(node build.mjs)",
+      "Bash(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\" -Directory)",
+      "PowerShell(head -50)",
+      "Bash(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\\\\app\" -Recurse -Directory)",
+      "Bash(Select-Object -First 20)",
+      "Bash(xargs grep -l \"TemplateGrid\")",
+      "Bash(xargs grep -l \"useState\")"
     ],
     "additionalDirectories": [
       "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"

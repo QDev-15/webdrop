@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import { templates as mockTemplates } from '../../data/templates'
 import type { Template } from '../../data/templates'
 
@@ -66,22 +67,52 @@ export default function TemplateGrid({ templates: propTemplates, homepage, pageT
   homepage?: boolean
   pageType?: 'starter' | 'standard'
 }) {
-  const templates = propTemplates || mockTemplates
+  const searchParams = useSearchParams()
+  const router       = useRouter()
+  const pathname     = usePathname()
+
+  const templates    = propTemplates || mockTemplates
   const categoryList = Array.from(new Set(templates.map(t => t.category)))
 
-  const [active, setActive]       = useState(() => categoryList[0] || '')
-  const [page, setPage]           = useState(1)
-  const [pageSize, setPageSize]   = useState(20)
+  // Initialize state from URL (only on /templates, not homepage)
+  const urlCat      = !homepage ? (searchParams.get('cat') || '') : ''
+  const urlPage     = !homepage ? Math.max(1, parseInt(searchParams.get('page') || '1') || 1) : 1
+  const urlSizeRaw  = !homepage ? parseInt(searchParams.get('size') || '') : NaN
+  const urlSize     = PAGE_SIZES.includes(urlSizeRaw) ? urlSizeRaw : 20
+
+  const [active, setActive]     = useState(() => {
+    if (homepage) return categoryList[0] || ''
+    return (urlCat && categoryList.includes(urlCat)) ? urlCat : categoryList[0] || ''
+  })
+  const [page, setPage]         = useState(() => homepage ? 1 : urlPage)
+  const [pageSize, setPageSize] = useState(() => homepage ? 20 : urlSize)
   const topRef = useRef<HTMLDivElement>(null)
 
-  // Reset active category khi templates prop thay đổi
+  // Skip the first render for URL sync and propTemplates reset
+  const syncReady   = useRef(false)
+  const propsReady  = useRef(false)
+
+  // Sync state → URL on change (skip initial mount)
   useEffect(() => {
-    const firstCat = Array.from(new Set((propTemplates || mockTemplates).map(t => t.category)))[0] || ''
-    setActive(firstCat)
+    if (homepage) return
+    if (!syncReady.current) { syncReady.current = true; return }
+    const params = new URLSearchParams(searchParams.toString())
+    active    ? params.set('cat',  active)         : params.delete('cat')
+    page > 1  ? params.set('page', String(page))   : params.delete('page')
+    pageSize !== 20 ? params.set('size', String(pageSize)) : params.delete('size')
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active, page, pageSize])
+
+  // Reset category/page when propTemplates changes (e.g. user switches type=starter/standard)
+  useEffect(() => {
+    if (!propsReady.current) { propsReady.current = true; return }
+    const cats = Array.from(new Set((propTemplates || mockTemplates).map(t => t.category)))
+    setActive(cats[0] || '')
     setPage(1)
   }, [propTemplates])
 
-  // Re-observe reveal elements sau filter change (homepage)
+  // Re-observe reveal elements after filter change (homepage only)
   useEffect(() => {
     if (!homepage) return
     const observer = new IntersectionObserver(

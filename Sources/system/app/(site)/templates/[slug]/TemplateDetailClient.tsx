@@ -38,7 +38,7 @@ const tabs = ['Tính năng', 'Các trang', 'Kỹ thuật', 'Đánh giá']
 
 function fmtPrice(n: number) { return n.toLocaleString('vi-VN') + 'đ' }
 
-export default function TemplateDetailClient({ template, websitePrice }: { template: Template; websitePrice?: number }) {
+export default function TemplateDetailClient({ template, websitePrice, customPrice }: { template: Template; websitePrice?: number; customPrice?: number }) {
   const [activeImg, setActiveImg] = useState(0)
   const [activeTab, setActiveTab] = useState(0)
 
@@ -189,9 +189,35 @@ export default function TemplateDetailClient({ template, websitePrice }: { templ
               </div>
             )}
 
+            {/* Gói C — hiển thị nếu có customPrice */}
+            {customPrice && (
+              <div style={{
+                background: 'var(--warm)', border: '1px solid var(--border)',
+                borderRadius: 10, padding: '12px 14px', marginBottom: 14,
+              }}>
+                <div style={{ fontSize: 11, color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '.5px', marginBottom: 2 }}>
+                  ✏️ Website theo yêu cầu (Gói C)
+                </div>
+                <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--text)', lineHeight: 1, letterSpacing: '-.5px' }}>
+                  Từ {fmtPrice(customPrice)}
+                </div>
+                <div style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 2 }}>
+                  Tùy chỉnh theo yêu cầu riêng
+                </div>
+              </div>
+            )}
+
             <Link href={`/checkout?slug=${template.slug}`} className="buy-btn-p d-block text-center text-decoration-none">
               Đặt mua ngay →
             </Link>
+            {customPrice && (
+              <a
+                href={`/contact?subject=Goi-C&template=${encodeURIComponent(template.slug)}&tname=${encodeURIComponent(template.name)}&price=${customPrice}`}
+                className="buy-btn-g d-block text-center text-decoration-none mt-2"
+              >
+                Liên hệ Gói theo yêu cầu
+              </a>
+            )}
             {template.demoUrl && (
               <a href={template.demoUrl} target="_blank" rel="noopener noreferrer" className="buy-btn-g d-block text-center text-decoration-none mt-2">
                 Xem demo live

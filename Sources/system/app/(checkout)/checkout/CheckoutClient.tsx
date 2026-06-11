@@ -18,7 +18,7 @@ export default function CheckoutClient({
 }: {
   hasWebsite: boolean
   templatePrice: number
-  websitePrice: number
+  websitePrice?: number
 }) {
   const searchParams = useSearchParams()
   const router       = useRouter()
@@ -32,7 +32,7 @@ export default function CheckoutClient({
   const [submitting, setSubmitting]     = useState(false)
   const [submitError, setSubmitError]   = useState('')
 
-  const price = purchaseType === 'website' && hasWebsite ? websitePrice : templatePrice
+  const price = purchaseType === 'website' && hasWebsite && websitePrice ? websitePrice : templatePrice
 
   const validate = () => {
     const e: Partial<FormData> = {}
@@ -145,8 +145,8 @@ export default function CheckoutClient({
                       </div>
                     </label>
 
-                    {/* Option B: Website Gói B — chỉ hiện nếu template hỗ trợ */}
-                    {hasWebsite && (
+                    {/* Option B: Website Gói B — chỉ hiện nếu template có websitePrice */}
+                    {hasWebsite && websitePrice && (
                       <label style={{ cursor: 'pointer' }}>
                         <input type="radio" name="purchaseType" value="website" checked={purchaseType === 'website'}
                           onChange={() => setPurchaseType('website')} className="d-none" />
@@ -173,7 +173,7 @@ export default function CheckoutClient({
                               </div>
                             </div>
                             <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                              <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--text)' }}>{fmtPrice(websitePrice)}</div>
+                              <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--text)' }}>{websitePrice ? fmtPrice(websitePrice) : ''}</div>
                               <div style={{ fontSize: 11, color: 'var(--text-3)' }}>1 lần duy nhất</div>
                             </div>
                           </div>

@@ -32,16 +32,14 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
 
   let template: Template | undefined
   let websitePrice: number | undefined
+  let customPrice: number | undefined
   let dbError = false
 
   try {
-    const [row, goiB] = await Promise.all([
-      prisma.template.findFirst({
-        where: { slug, status: 'published' },
-        include: { industry: { select: { name: true } } },
-      }),
-      prisma.servicePackage.findFirst({ where: { code: 'GOI_B' }, select: { priceFrom: true } }),
-    ])
+    const row = await prisma.template.findFirst({
+      where: { slug, status: 'published' },
+      include: { industry: { select: { name: true } } },
+    })
     if (row) {
       const n = typeof row.price === 'number' ? row.price : (row.price as { toNumber(): number }).toNumber()
       template = {
@@ -54,8 +52,11 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
         demoUrl: row.demoUrl || undefined,
         hasWebsite: row.hasWebsite,
       }
-      if (row.hasWebsite && goiB?.priceFrom) {
-        websitePrice = Number(goiB.priceFrom)
+      if (row.hasWebsite && row.websitePrice) {
+        websitePrice = Number(row.websitePrice)
+      }
+      if (row.customPrice) {
+        customPrice = Number(row.customPrice)
       }
     }
   } catch {
@@ -109,7 +110,7 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
         </div>
       </div>
 
-      <TemplateDetailClient template={template} websitePrice={websitePrice} />
+      <TemplateDetailClient template={template} websitePrice={websitePrice} customPrice={customPrice} />
     </div>
   )
 }

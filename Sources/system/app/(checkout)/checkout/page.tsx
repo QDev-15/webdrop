@@ -4,19 +4,19 @@ import CheckoutClient from './CheckoutClient'
 import { prisma } from '@/lib/prisma'
 
 async function getCheckoutData(slug: string) {
-  if (!slug) return { hasWebsite: false, templatePrice: 499000, websitePrice: 5000000 }
+  if (!slug) return { hasWebsite: false, templatePrice: 499000, websitePrice: undefined }
   try {
-    const [tmpl, goiB] = await Promise.all([
-      prisma.template.findFirst({ where: { slug }, select: { hasWebsite: true, price: true } }),
-      prisma.servicePackage.findFirst({ where: { code: 'GOI_B' }, select: { priceFrom: true } }),
-    ])
+    const tmpl = await prisma.template.findFirst({
+      where: { slug },
+      select: { hasWebsite: true, price: true, websitePrice: true },
+    })
     return {
       hasWebsite: tmpl?.hasWebsite ?? false,
       templatePrice: tmpl?.price ? Number(tmpl.price) : 499000,
-      websitePrice: goiB?.priceFrom ? Number(goiB.priceFrom) : 5000000,
+      websitePrice: tmpl?.hasWebsite && tmpl.websitePrice ? Number(tmpl.websitePrice) : undefined,
     }
   } catch {
-    return { hasWebsite: false, templatePrice: 499000, websitePrice: 5000000 }
+    return { hasWebsite: false, templatePrice: 499000, websitePrice: undefined }
   }
 }
 

@@ -213,7 +213,9 @@ model Template {
   thumbnail   String?
   demoUrl     String?      @map("demo_url")
   downloadUrl String?      @map("download_url")
-  price       Decimal
+  price        Decimal
+  websitePrice Decimal?     @map("website_price")
+  customPrice  Decimal?     @map("custom_price")
   category    TemplateCategory
   industryId  Int?         @map("industry_id")
   hasWebsite  Boolean      @default(false) @map("has_website")

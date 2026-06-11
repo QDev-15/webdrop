@@ -19,14 +19,14 @@ export async function POST(req: NextRequest) {
     const type = purchaseType === 'website' ? 'website' : 'template'
 
     // Fetch giá từ DB — không tin giá từ client
+    const tmpl = templateSlug
+      ? await prisma.template.findFirst({ where: { slug: templateSlug }, select: { price: true, websitePrice: true } })
+      : null
+
     let price: number
     if (type === 'website') {
-      const goiB = await prisma.servicePackage.findFirst({ where: { code: 'GOI_B' }, select: { priceFrom: true } })
-      price = goiB?.priceFrom ? Number(goiB.priceFrom) : 5000000
+      price = tmpl?.websitePrice ? Number(tmpl.websitePrice) : 5000000
     } else {
-      const tmpl = templateSlug
-        ? await prisma.template.findFirst({ where: { slug: templateSlug }, select: { price: true } })
-        : null
       price = tmpl?.price ? Number(tmpl.price) : 499000
     }
 

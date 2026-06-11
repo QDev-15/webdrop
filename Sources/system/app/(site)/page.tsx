@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description: 'Hơn 30 mẫu thiết kế hiện đại cho mọi ngành nghề. Thanh toán xong — website hoàn chỉnh trong 3–5 ngày làm việc.',
 }
 
+import { Suspense } from 'react'
 import HeroSlider from '@/components/site/HeroSlider'
 import HowItWorks from '@/components/site/HowItWorks'
 import TemplateGrid from '@/components/site/TemplateGrid'
@@ -148,7 +149,7 @@ export default async function HomePage() {
       <HeroSlider slides={dbSlides} />
 
       {showHiw      && <HowItWorks {...hiwData} />}
-      {showTemplates && <TemplateGrid templates={dbTemplates.length > 0 ? dbTemplates : undefined} homepage />}
+      {showTemplates && <Suspense><TemplateGrid templates={dbTemplates.length > 0 ? dbTemplates : undefined} homepage /></Suspense>}
       {showWhyUs    && <WhyUs {...whyData} />}
       {showPricing  && <PricingSection />}
       {showReviews  && <Reviews {...reviewData} />}

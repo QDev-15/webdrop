@@ -206,11 +206,11 @@ Browser
 │  app/(site)/templates/page.tsx              │
 │  async Server Component                     │
 │                                             │
-│  export const revalidate = 60              │
-│  ← ISR: cache 60s, sau đó rebuild nền      │
+│  export const revalidate = 60               │
+│  ← ISR: cache 60s, sau đó rebuild nền       │
 │                                             │
 │  1. getTemplates()                          │
-│     └─ import prisma từ src/lib/prisma.ts  │
+│     └─ import prisma từ src/lib/prisma.ts   │
 │        └─ PrismaClient singleton           │
 │           (check globalThis, URL change)   │
 │        └─ prisma.template.findMany({       │

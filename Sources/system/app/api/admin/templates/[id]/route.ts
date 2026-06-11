@@ -11,13 +11,15 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
 
   const { id } = await params
   const body = await req.json()
-  const { name, slug, description, thumbnail, demoUrl, price, category, industryId, status, hasWebsite } = body
+  const { name, slug, description, thumbnail, demoUrl, price, websitePrice, customPrice, category, industryId, status, hasWebsite } = body
 
   try {
     const template = await prisma.template.update({
       where: { id: parseInt(id) },
       data: {
         name, slug, description, thumbnail, demoUrl, price, category,
+        websitePrice: websitePrice ?? null,
+        customPrice:  customPrice  ?? null,
         industryId: industryId || null,
         ...(status     !== undefined && { status }),
         ...(hasWebsite !== undefined && { hasWebsite }),

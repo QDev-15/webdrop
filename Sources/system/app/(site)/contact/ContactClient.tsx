@@ -1,5 +1,6 @@
 'use client'
-import { useState, FormEvent } from 'react'
+import { useState, FormEvent, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 const faqs = [
   { q: 'Thời gian hoàn thành bao lâu?', a: 'Landing page 1 trang: 2–3 ngày. Website nhiều trang: 5–7 ngày. Gói Theo Yêu cầu: thỏa thuận theo scope.' },
@@ -17,11 +18,27 @@ interface ContactInfo {
 }
 
 export default function ContactClient({ info }: { info: ContactInfo }) {
+  const searchParams = useSearchParams()
   const [form, setForm]           = useState({ name: '', phone: '', email: '', service: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState('')
   const [openFaq, setOpenFaq]     = useState<number | null>(null)
+
+  useEffect(() => {
+    const subject = searchParams.get('subject')
+    if (subject !== 'Goi-C') return
+    const tname = searchParams.get('tname') || searchParams.get('template') || ''
+    const price  = searchParams.get('price')
+    const priceStr = price ? Number(price).toLocaleString('vi-VN') + 'đ' : ''
+    const preMessage = [
+      `Tôi muốn tư vấn về dịch vụ Website theo yêu cầu (Gói C).`,
+      tname  ? `Template tham khảo: ${tname}` : '',
+      priceStr ? `Ngân sách tham khảo: từ ${priceStr}` : '',
+      `\nYêu cầu cụ thể: `,
+    ].filter(Boolean).join('\n')
+    setForm(f => ({ ...f, service: 'Gói Theo Yêu cầu', message: preMessage }))
+  }, [searchParams])
 
   const zaloPhone = info.zalo || info.phone
   const zaloUrl   = `https://zalo.me/${zaloPhone.replace(/\s/g, '')}`

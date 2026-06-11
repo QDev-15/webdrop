@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { useState, useTransition } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 interface GroupItem {
   id: number; slug: string; title: string; titleEm: string
@@ -13,7 +13,10 @@ interface FaqItem { id: number; question: string; answer: string; status: string
 export default function PricingTabs({
   initialGroups, initialFaqs,
 }: { initialGroups: GroupItem[]; initialFaqs: FaqItem[] }) {
-  const [tab, setTab] = useState<'groups' | 'faqs'>('groups')
+  const searchParams = useSearchParams()
+  const [tab, setTab] = useState<'groups' | 'faqs'>(() =>
+    searchParams.get('tab') === 'faqs' ? 'faqs' : 'groups'
+  )
   const [groups, setGroups] = useState(initialGroups)
   const [faqs, setFaqs] = useState(initialFaqs)
 
@@ -28,6 +31,11 @@ export default function PricingTabs({
 
   const [, startTransition] = useTransition()
   const router = useRouter()
+
+  function handleTab(t: 'groups' | 'faqs') {
+    setTab(t)
+    router.replace(`/admin/pricing?tab=${t}`, { scroll: false })
+  }
 
   const inputCls: React.CSSProperties = {
     width: '100%', padding: '8px 11px', borderRadius: 7,
@@ -122,8 +130,8 @@ export default function PricingTabs({
 
       {/* Tabs */}
       <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
-        <button style={tabBtnStyle(tab === 'groups')} onClick={() => setTab('groups')}>📦 Nhóm giá ({groups.length})</button>
-        <button style={tabBtnStyle(tab === 'faqs')} onClick={() => setTab('faqs')}>❓ FAQ ({faqs.length})</button>
+        <button style={tabBtnStyle(tab === 'groups')} onClick={() => handleTab('groups')}>📦 Nhóm giá ({groups.length})</button>
+        <button style={tabBtnStyle(tab === 'faqs')} onClick={() => handleTab('faqs')}>❓ FAQ ({faqs.length})</button>
       </div>
 
       {/* ── Groups tab ── */}

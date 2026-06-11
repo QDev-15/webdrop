@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 export const metadata: Metadata = { title: 'Liên hệ — webdrop.vn' }
 
+import { Suspense } from 'react'
 import Footer from '@/components/site/Footer'
 import RevealObserver from '@/components/site/RevealObserver'
 import ContactClient from './ContactClient'
@@ -44,7 +45,9 @@ export default async function ContactPage() {
           </div>
         </section>
 
-        <ContactClient info={info} />
+        <Suspense>
+          <ContactClient info={info} />
+        </Suspense>
       </div>
       <Footer />
     </>

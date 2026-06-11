@@ -11,7 +11,8 @@ interface TemplateFormProps {
   industries: Industry[]
   initial?: {
     name: string; slug: string; description: string; thumbnail: string
-    demoUrl: string; price: string; category: string; industryId: string; status: string
+    demoUrl: string; price: string; websitePrice: string; customPrice: string
+    category: string; industryId: string; status: string
     hasWebsite: boolean
   }
 }
@@ -25,6 +26,8 @@ export default function TemplateForm({ mode, id, industries, initial }: Template
     thumbnail: initial?.thumbnail ?? '',
     demoUrl: initial?.demoUrl ?? '',
     price: initial?.price ?? '',
+    websitePrice: initial?.websitePrice ?? '',
+    customPrice: initial?.customPrice ?? '',
     category:   initial?.category   ?? 'web',
     industryId: initial?.industryId ?? '',
     status:     initial?.status     ?? 'draft',
@@ -54,8 +57,10 @@ export default function TemplateForm({ mode, id, industries, initial }: Template
     try {
       const payload = {
         ...form,
-        price:      parseFloat(form.price.replace(/[^0-9.]/g, '')),
-        industryId: form.industryId ? parseInt(form.industryId) : null,
+        price:        parseFloat(form.price.replace(/[^0-9.]/g, '')),
+        websitePrice: form.websitePrice ? parseFloat(form.websitePrice.replace(/[^0-9.]/g, '')) : null,
+        customPrice:  form.customPrice  ? parseFloat(form.customPrice.replace(/[^0-9.]/g, ''))  : null,
+        industryId:   form.industryId ? parseInt(form.industryId) : null,
         hasWebsite,
       }
       const res = mode === 'new'
@@ -98,7 +103,7 @@ export default function TemplateForm({ mode, id, industries, initial }: Template
           {input('slug', { placeholder: 'cong-ty-dich-vu-pro' })}
         </div>
         <div>
-          {label('Giá (VNĐ)', true)}
+          {label('Giá file template HTML/CSS (VNĐ)', true)}
           {input('price', { placeholder: '2500000', type: 'number', min: '0' })}
         </div>
         <div style={{ gridColumn: '1/-1' }}>
@@ -146,6 +151,8 @@ export default function TemplateForm({ mode, id, industries, initial }: Template
             <option value="published">Đang bán</option>
           </select>
         </div>
+
+        {/* Phiên bản Website */}
         <div style={{ gridColumn: '1/-1' }}>
           <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', userSelect: 'none' }}>
             <input type="checkbox" checked={hasWebsite} onChange={e => setHasWebsite(e.target.checked)}
@@ -158,6 +165,30 @@ export default function TemplateForm({ mode, id, industries, initial }: Template
             </div>
           </label>
         </div>
+
+        {/* Giá website và custom — chỉ hiện khi hasWebsite = true */}
+        {hasWebsite && (
+          <>
+            <div>
+              {label('Giá website chuẩn - Gói B (VNĐ)')}
+              <div style={{ position: 'relative' }}>
+                {input('websitePrice', { placeholder: '5000000', type: 'number', min: '0' })}
+              </div>
+              <div style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 4 }}>
+                Giá mua website React + PHP + Admin theo template này. Để trống nếu chưa xác định.
+              </div>
+            </div>
+            <div>
+              {label('Giá khởi điểm custom - Gói C (VNĐ)')}
+              <div style={{ position: 'relative' }}>
+                {input('customPrice', { placeholder: '15000000', type: 'number', min: '0' })}
+              </div>
+              <div style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 4 }}>
+                Giá tham khảo cho website làm theo yêu cầu dựa trên template này. Để trống nếu không áp dụng.
+              </div>
+            </div>
+          </>
+        )}
       </div>
 
       <div style={{ display: 'flex', gap: 12, marginTop: 24, justifyContent: 'flex-end' }}>

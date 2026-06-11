@@ -3,6 +3,7 @@ export const revalidate = 60
 import type { Metadata } from 'next'
 export const metadata: Metadata = { title: 'Thư viện mẫu website — webdrop.vn' }
 
+import { Suspense } from 'react'
 import { prisma } from '@/lib/prisma'
 import { templates as mockTemplates } from '@/data/templates'
 import type { Template } from '@/data/templates'
@@ -99,7 +100,9 @@ export default async function TemplatesPage({
           </div>
         </div>
 
-        <TemplateGrid templates={templates.length > 0 ? templates : undefined} pageType={type} />
+        <Suspense>
+          <TemplateGrid templates={templates.length > 0 ? templates : undefined} pageType={type} />
+        </Suspense>
       </div>
       <Footer />
     </>
