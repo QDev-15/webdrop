@@ -40,9 +40,9 @@ const GROUP: Record<string, string> = {
   GROUP_I: 'Bảng I', GROUP_J: 'Bảng J', GROUP_K: 'Bảng K', GROUP_L: 'Bảng L',
 }
 const CHANNELS = [
-  { name: 'VTV3',     url: 'https://vtvgo.vn/xem-truc-tuyen.html' },
+  { name: 'VTV3', url: 'https://vtvgo.vn/xem-truc-tuyen.html' },
   { name: 'FPT Play', url: 'https://fptplay.vn' },
-  { name: 'K+',       url: 'https://kpluscdn.net' },
+  { name: 'K+', url: 'https://kpluscdn.net' },
 ]
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
@@ -76,11 +76,11 @@ function buildDateTabs() {
 }
 function dateLabel(key: string) {
   const today = todayVN()
-  const yest  = new Date(Date.now() + 7 * 3600000); yest.setUTCDate(yest.getUTCDate() - 1)
-  const tom   = new Date(Date.now() + 7 * 3600000); tom.setUTCDate(tom.getUTCDate() + 1)
+  const yest = new Date(Date.now() + 7 * 3600000); yest.setUTCDate(yest.getUTCDate() - 1)
+  const tom = new Date(Date.now() + 7 * 3600000); tom.setUTCDate(tom.getUTCDate() + 1)
   if (key === today) return 'Hôm nay'
   if (key === yest.toISOString().slice(0, 10)) return 'Hôm qua'
-  if (key === tom.toISOString().slice(0, 10))  return 'Ngày mai'
+  if (key === tom.toISOString().slice(0, 10)) return 'Ngày mai'
   const d = new Date(key + 'T00:00:00Z')
   return `${d.getUTCDate()}/${d.getUTCMonth() + 1}`
 }
@@ -135,9 +135,9 @@ function StatusBadge({ match }: { match: Match }) {
 }
 
 function MatchCard({ match }: { match: Match }) {
-  const isLive  = match.status === 'IN_PLAY'
+  const isLive = match.status === 'IN_PLAY'
   const isPause = match.status === 'PAUSED'
-  const isDone  = match.status === 'FINISHED'
+  const isDone = match.status === 'FINISHED'
   const showScore = (isLive || isPause || isDone) && match.score.fullTime.home !== null
 
   const stageLabel = STAGE[match.stage] || match.stage
@@ -182,7 +182,7 @@ function MatchCard({ match }: { match: Match }) {
                 </div>
               )}
               <div style={{ marginTop: 6, lineHeight: 1.6 }}>
-                <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-2)' }}>{toVNTime(match.utcDate)} <span style={{ fontWeight: 400, color: 'var(--text-3)' }}>ICT</span></div>
+                <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-2)' }}>{toVNTime(match.utcDate)} <span style={{ fontWeight: 400, color: 'var(--text-3)' }}>VNTime (GMT+7)</span></div>
                 <div style={{ fontSize: 10, color: 'var(--text-3)' }}>{toUTCTime(match.utcDate)} UTC</div>
               </div>
             </>
@@ -191,7 +191,7 @@ function MatchCard({ match }: { match: Match }) {
               <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-2)', lineHeight: 1.2 }}>
                 {toVNTime(match.utcDate)}
               </div>
-              <div style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 2 }}>ICT (GMT+7)</div>
+              <div style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 2 }}>VNTime (GMT+7)</div>
               <div style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 1 }}>{toUTCTime(match.utcDate)} UTC</div>
             </>
           )}
@@ -243,7 +243,7 @@ function StandingTable({ group }: { group: StandingGroup }) {
                   </div>
                 </td>
                 {[row.playedGames, row.won, row.draw, row.lost, row.goalsFor, row.goalsAgainst,
-                  row.goalDifference > 0 ? `+${row.goalDifference}` : row.goalDifference].map((v, j) => (
+                row.goalDifference > 0 ? `+${row.goalDifference}` : row.goalDifference].map((v, j) => (
                   <td key={j} style={{ padding: '8px', textAlign: 'center', color: 'var(--text-2)' }}>{v}</td>
                 ))}
                 <td style={{ padding: '8px', textAlign: 'center', fontWeight: 700, color: 'var(--accent)' }}>{row.points}</td>
@@ -283,32 +283,32 @@ function NoKeyBanner() {
 
 // ── Main component ────────────────────────────────────────────────────────────
 export default function FootballClient({ youtubeEmbed }: { youtubeEmbed?: string }) {
-  const [tab, setTab]                       = useState<'schedule' | 'standings'>('schedule')
-  const [matches, setMatches]               = useState<Match[]>([])
-  const [loading, setLoading]               = useState(true)
-  const [noKey, setNoKey]                   = useState(false)
-  const [standings, setStandings]           = useState<StandingGroup[]>([])
+  const [tab, setTab] = useState<'schedule' | 'standings'>('schedule')
+  const [matches, setMatches] = useState<Match[]>([])
+  const [loading, setLoading] = useState(true)
+  const [noKey, setNoKey] = useState(false)
+  const [standings, setStandings] = useState<StandingGroup[]>([])
   const [standingsLoaded, setStandingsLoaded] = useState(false)
   const [standingsLoading, setStandingsLoading] = useState(false)
-  const [selectedDate, setSelectedDate]     = useState(todayVN())
+  const [selectedDate, setSelectedDate] = useState(todayVN())
   const initialized = useRef(false)
-  const pollingRef  = useRef<ReturnType<typeof setInterval> | null>(null)
+  const pollingRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  const ytId     = extractYTId(youtubeEmbed || '')
+  const ytId = extractYTId(youtubeEmbed || '')
   const dateTabs = buildDateTabs()
 
   const fetchMatches = useCallback(async () => {
     const from = dateTabs[0]
-    const to   = dateTabs[dateTabs.length - 1]
+    const to = dateTabs[dateTabs.length - 1]
     try {
-      const res  = await fetch(`/api/football/matches?dateFrom=${from}&dateTo=${to}`)
+      const res = await fetch(`/api/football/matches?dateFrom=${from}&dateTo=${to}`)
       const data = await res.json()
       setNoKey(!!data.noKey)
       if (Array.isArray(data.matches)) setMatches(data.matches)
     } catch { /* ignore */ } finally {
       setLoading(false)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Initial fetch
@@ -343,7 +343,7 @@ export default function FootballClient({ youtubeEmbed }: { youtubeEmbed?: string
     if (standingsLoaded) return
     setStandingsLoading(true)
     try {
-      const res  = await fetch('/api/football/standings')
+      const res = await fetch('/api/football/standings')
       const data = await res.json()
       if (Array.isArray(data.standings)) {
         setStandings(data.standings.filter((g: StandingGroup) => g.table?.length > 0))
@@ -357,7 +357,7 @@ export default function FootballClient({ youtubeEmbed }: { youtubeEmbed?: string
     if (t === 'standings') loadStandings()
   }
 
-  const liveCount    = matches.filter(m => m.status === 'IN_PLAY' || m.status === 'PAUSED').length
+  const liveCount = matches.filter(m => m.status === 'IN_PLAY' || m.status === 'PAUSED').length
   const todayMatches = matches
     .filter(m => toVNDateKey(m.utcDate) === selectedDate)
     .sort((a, b) => {
@@ -437,7 +437,7 @@ export default function FootballClient({ youtubeEmbed }: { youtubeEmbed?: string
               {/* Date selector */}
               <div style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 10, marginBottom: 20, msOverflowStyle: 'none', scrollbarWidth: 'none' }}>
                 {dateTabs.map(dk => {
-                  const count   = matches.filter(m => toVNDateKey(m.utcDate) === dk).length
+                  const count = matches.filter(m => toVNDateKey(m.utcDate) === dk).length
                   const hasLive = matches.filter(m => toVNDateKey(m.utcDate) === dk).some(m => m.status === 'IN_PLAY' || m.status === 'PAUSED')
                   if (count === 0 && dk !== todayVN()) return null
                   const active = selectedDate === dk
@@ -476,17 +476,17 @@ export default function FootballClient({ youtubeEmbed }: { youtubeEmbed?: string
           {/* ── Standings tab ── */}
           {tab === 'standings' && (
             standingsLoading ? <Skeleton /> :
-            !standingsLoaded ? null :
-            noKey ? <NoKeyBanner /> :
-            standings.length === 0 ? (
-              <div style={{ textAlign: 'center', padding: '48px 20px', color: 'var(--text-3)' }}>
-                Chưa có dữ liệu bảng xếp hạng.
-              </div>
-            ) : (
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(440px, 1fr))', gap: 16 }}>
-                {standings.map(g => <StandingTable key={g.group} group={g} />)}
-              </div>
-            )
+              !standingsLoaded ? null :
+                noKey ? <NoKeyBanner /> :
+                  standings.length === 0 ? (
+                    <div style={{ textAlign: 'center', padding: '48px 20px', color: 'var(--text-3)' }}>
+                      Chưa có dữ liệu bảng xếp hạng.
+                    </div>
+                  ) : (
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(440px, 1fr))', gap: 16 }}>
+                      {standings.map(g => <StandingTable key={g.group} group={g} />)}
+                    </div>
+                  )
           )}
         </div>
       </div>
