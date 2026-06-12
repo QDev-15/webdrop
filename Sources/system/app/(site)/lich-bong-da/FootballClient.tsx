@@ -1,5 +1,7 @@
 'use client'
 import { useState, useEffect, useRef, useCallback } from 'react'
+import Link from 'next/link'
+import { ARTICLES, type Article } from './articles'
 
 // ── Types ────────────────────────────────────────────────────────────────────
 interface Team { id: number; name: string; shortName?: string; tla?: string; crest?: string }
@@ -280,9 +282,71 @@ function NoKeyBanner() {
   )
 }
 
+// ── News components ───────────────────────────────────────────────────────────
+function formatDate(iso: string) {
+  const d = new Date(iso + 'T00:00:00Z')
+  return `${d.getUTCDate()}/${d.getUTCMonth() + 1}/${d.getUTCFullYear()}`
+}
+
+function NewsCard({ article }: { article: Article }) {
+  return (
+    <Link href={`/lich-bong-da/${article.slug}`} style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 14, overflow: 'hidden', transition: 'transform .18s, box-shadow .18s, border-color .18s' }}
+      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 36px rgba(0,0,0,.09)'; (e.currentTarget as HTMLElement).style.borderColor = 'var(--accent-mid)' }}
+      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; (e.currentTarget as HTMLElement).style.borderColor = 'var(--border)' }}
+    >
+      <img src={article.thumbnail} alt={article.title} style={{ width: '100%', height: 180, objectFit: 'cover', display: 'block' }} loading="lazy" />
+      <div style={{ padding: '16px 18px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+          <span style={{ fontSize: 10, fontWeight: 700, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.5px', background: 'var(--accent-light)', padding: '2px 8px', borderRadius: 4 }}>{article.category}</span>
+          <span style={{ fontSize: 11, color: 'var(--text-3)' }}>⏱ {article.readTime} phút</span>
+        </div>
+        <h3 style={{ fontSize: 14, fontWeight: 600, color: 'var(--text)', lineHeight: 1.5, flex: 1, margin: '0 0 10px', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' } as React.CSSProperties}>
+          {article.title}
+        </h3>
+        <p style={{ fontSize: 12.5, color: 'var(--text-2)', fontWeight: 300, lineHeight: 1.6, margin: '0 0 12px', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' } as React.CSSProperties}>
+          {article.excerpt}
+        </p>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 10, borderTop: '1px solid var(--border-light)' }}>
+          <span style={{ fontSize: 11, color: 'var(--text-3)' }}>{formatDate(article.publishedAt)}</span>
+          <span style={{ fontSize: 11, color: 'var(--text-3)' }}>👁 {article.views >= 1000 ? `${(article.views / 1000).toFixed(1)}K` : article.views}</span>
+        </div>
+      </div>
+    </Link>
+  )
+}
+
+function NewsTicker({ articles }: { articles: Article[] }) {
+  const doubled = [...articles, ...articles]
+  return (
+    <div style={{ background: 'var(--dark2)', borderTop: '1px solid rgba(255,255,255,.07)', padding: '28px 0' }}>
+      <div className="wd-container" style={{ marginBottom: 16 }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--accent-mid)', textTransform: 'uppercase', letterSpacing: '1.2px' }}>
+          📰 Tin tức & Phân tích WC 2026
+        </div>
+      </div>
+      <div style={{ overflow: 'hidden' }} className="news-ticker-wrap">
+        <div className="news-ticker-track" style={{ display: 'flex', gap: 14, width: 'max-content', padding: '0 clamp(16px,4vw,40px)' }}>
+          {doubled.map((a, i) => (
+            <Link key={i} href={`/lich-bong-da/${a.slug}`}
+              style={{ width: 220, flexShrink: 0, display: 'block', textDecoration: 'none', background: 'rgba(255,255,255,.05)', borderRadius: 10, overflow: 'hidden', border: '1px solid rgba(255,255,255,.08)' }}>
+              <img src={a.thumbnail} alt={a.title} style={{ width: '100%', height: 118, objectFit: 'cover', display: 'block' }} loading="lazy" />
+              <div style={{ padding: '10px 12px' }}>
+                <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--accent-mid)', textTransform: 'uppercase', letterSpacing: '.4px', marginBottom: 5 }}>{a.category}</div>
+                <div style={{ fontSize: 12.5, fontWeight: 600, color: '#fff', lineHeight: 1.4, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' } as React.CSSProperties}>
+                  {a.title}
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ── Main component ────────────────────────────────────────────────────────────
 export default function FootballClient({ youtubeEmbed }: { youtubeEmbed?: string }) {
-  const [tab, setTab] = useState<'schedule' | 'standings'>('schedule')
+  const [tab, setTab] = useState<'schedule' | 'standings' | 'news'>('schedule')
   const [matches, setMatches] = useState<Match[]>([])
   const [loading, setLoading] = useState(true)
   const [noKey, setNoKey] = useState(false)
@@ -351,7 +415,7 @@ export default function FootballClient({ youtubeEmbed }: { youtubeEmbed?: string
     } catch { /* ignore */ } finally { setStandingsLoading(false) }
   }
 
-  function handleTab(t: 'schedule' | 'standings') {
+  function handleTab(t: 'schedule' | 'standings' | 'news') {
     setTab(t)
     if (t === 'standings') loadStandings()
   }
@@ -416,16 +480,20 @@ export default function FootballClient({ youtubeEmbed }: { youtubeEmbed?: string
         <div className="wd-container" style={{ paddingTop: 28, paddingBottom: 64 }}>
 
           {/* Tabs */}
-          <div style={{ display: 'flex', gap: 2, borderBottom: '2px solid var(--border-light)', marginBottom: 24 }}>
-            {(['schedule', 'standings'] as const).map(t => (
-              <button key={t} onClick={() => handleTab(t)} style={{
-                padding: '9px 20px', fontSize: 13.5, fontWeight: 500, border: 'none',
+          <div style={{ display: 'flex', gap: 2, borderBottom: '2px solid var(--border-light)', marginBottom: 24, overflowX: 'auto', scrollbarWidth: 'none' }}>
+            {([
+              { key: 'schedule',  label: '📅 Lịch thi đấu' },
+              { key: 'standings', label: '📊 Bảng xếp hạng' },
+              { key: 'news',      label: '📰 Tin tức & Phân tích' },
+            ] as const).map(({ key, label }) => (
+              <button key={key} onClick={() => handleTab(key)} style={{
+                flexShrink: 0, padding: '9px 20px', fontSize: 13.5, fontWeight: 500, border: 'none',
                 background: 'transparent', cursor: 'pointer', fontFamily: 'var(--sans)',
-                color: tab === t ? 'var(--accent)' : 'var(--text-2)',
-                borderBottom: `2px solid ${tab === t ? 'var(--accent)' : 'transparent'}`,
-                marginBottom: -2, transition: 'all .15s',
+                color: tab === key ? 'var(--accent)' : 'var(--text-2)',
+                borderBottom: `2px solid ${tab === key ? 'var(--accent)' : 'transparent'}`,
+                marginBottom: -2, transition: 'all .15s', whiteSpace: 'nowrap',
               }}>
-                {t === 'schedule' ? '📅 Lịch thi đấu' : '📊 Bảng xếp hạng'}
+                {label}
               </button>
             ))}
           </div>
@@ -487,11 +555,30 @@ export default function FootballClient({ youtubeEmbed }: { youtubeEmbed?: string
                     </div>
                   )
           )}
+
+          {/* ── News tab ── */}
+          {tab === 'news' && (
+            <>
+              <div style={{ marginBottom: 20 }}>
+                <h2 style={{ fontSize: 'clamp(16px,2.5vw,22px)', fontWeight: 700, color: 'var(--text)', margin: '0 0 4px' }}>Tin tức & Phân tích</h2>
+                <p style={{ fontSize: 13, color: 'var(--text-3)', margin: 0 }}>Cập nhật đội hình, nhận định và dự đoán World Cup 2026</p>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 18 }}>
+                {ARTICLES.map(a => <NewsCard key={a.slug} article={a} />)}
+              </div>
+            </>
+          )}
         </div>
       </div>
 
+      {/* News ticker */}
+      <NewsTicker articles={ARTICLES} />
+
       <style>{`
         @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+        @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+        .news-ticker-track { animation: ticker 48s linear infinite; }
+        .news-ticker-wrap:hover .news-ticker-track { animation-play-state: paused; }
       `}</style>
     </>
   )
