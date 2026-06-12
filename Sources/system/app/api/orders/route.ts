@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma'
 function generateOrderCode(): string {
   const ts   = Date.now().toString(36).toUpperCase().slice(-5)
   const rand = Math.random().toString(36).slice(2, 5).toUpperCase()
-  return `WD-${ts}${rand}`
+  return `WD${ts}${rand}`
 }
 
 export async function POST(req: NextRequest) {

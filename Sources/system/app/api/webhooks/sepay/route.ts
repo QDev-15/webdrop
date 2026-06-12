@@ -9,9 +9,9 @@ const TOKEN_MAX_USES  = 5
 function ok()  { return NextResponse.json({ success: true }) }
 function skip() { return NextResponse.json({ success: true, skipped: true }) }
 
-// Parse mã đơn hàng từ nội dung chuyển khoản — dạng WD-XXXXXXXX
+// Parse mã đơn hàng từ nội dung chuyển khoản — dạng WDXXXXXXXX (mới) hoặc WD-XXXXXXXX (cũ)
 function extractOrderCode(content: string): string | null {
-  const m = content.match(/WD-[A-Z0-9]{5,12}/i)
+  const m = content.match(/WD-?[A-Z0-9]{5,12}/i)
   return m ? m[0].toUpperCase() : null
 }
 
