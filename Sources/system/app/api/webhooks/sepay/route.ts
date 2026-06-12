@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { randomUUID } from 'crypto'
+import { sendDownloadEmail } from '@/lib/email'
 
 const SEPAY_API_KEY = process.env.SEPAY_API_KEY ?? ''
 const TOKEN_TTL_HOURS = 72
@@ -100,6 +101,24 @@ export async function POST(req: NextRequest) {
   })
 
   console.log(`[sepay] Đơn ${orderCode} đã thanh toán — token sinh OK`)
+
+  // Gửi email download nếu tính năng được bật và khách có email
+  if (order.customer.email) {
+    const emailToggle = await prisma.setting.findFirst({ where: { key: 'email_send_download' } })
+    if (emailToggle?.value === 'true') {
+      const slug = extractSlug(order.title)
+      sendDownloadEmail({
+        to:            order.customer.email,
+        customerName:  order.customer.name,
+        orderCode:     order.code,
+        downloadToken,
+        type:          order.type === 'website' ? 'website' : 'template',
+        slug,
+        amount:        Number(order.total),
+      }).catch(e => console.error('[email] sendDownloadEmail failed:', e))
+    }
+  }
+
   return ok()
 }
 

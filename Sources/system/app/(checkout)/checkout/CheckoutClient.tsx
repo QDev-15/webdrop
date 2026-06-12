@@ -260,7 +260,7 @@ export default function CheckoutClient({
 
                   <div style={{ background: 'var(--warm)', border: '1px solid var(--border)', borderRadius: 10, padding: '14px 16px', marginBottom: 18, fontSize: 13, color: 'var(--text-2)', lineHeight: 1.75 }}>
                     <div style={{ fontWeight: 500, marginBottom: 4, color: 'var(--text)' }}>⚡ Tự động xác nhận qua Sepay</div>
-                    Sau khi chuyển khoản đúng nội dung, hệ thống tự xác nhận trong <strong>vài giây</strong> và gửi link download đến email <strong>{form.email}</strong>.
+                    Sau khi chuyển khoản đúng nội dung, hệ thống tự xác nhận trong <strong>vài giây</strong> và chuyển bạn đến trang tải về ngay lập tức.
                   </div>
 
                   {submitError && (

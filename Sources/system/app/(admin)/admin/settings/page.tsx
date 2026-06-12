@@ -8,7 +8,7 @@ const ImageField = dynamic(() => import('@/components/admin/ImageField'), { ssr:
 interface SettingField {
   key: string
   label: string
-  type?: 'text' | 'email' | 'password' | 'textarea' | 'image'
+  type?: 'text' | 'email' | 'password' | 'textarea' | 'image' | 'toggle'
   placeholder?: string
   hint?: string
   rows?: number
@@ -100,6 +100,12 @@ const SETTING_GROUPS: SettingGroup[] = [
       { key: 'smtp_password',   label: 'SMTP Password',    type: 'password', placeholder: '••••••••' },
       { key: 'smtp_from_name',  label: 'Tên người gửi',   placeholder: 'webdrop.vn' },
       { key: 'smtp_from_email', label: 'Email người gửi', type: 'email', placeholder: 'noreply@webdrop.vn' },
+      {
+        key: 'email_send_download',
+        label: 'Tự động gửi link download qua email',
+        type: 'toggle',
+        hint: 'Khi bật: sau khi khách thanh toán, hệ thống gửi link download về email khách hàng. Yêu cầu SMTP đã cấu hình đầy đủ.',
+      },
     ],
   },
   {
@@ -249,6 +255,27 @@ export default function AdminSettingsPage() {
                         placeholder={f.placeholder}
                         style={{ ...inputStyle, resize: 'vertical' }}
                       />
+                    ) : f.type === 'toggle' ? (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 4 }}>
+                        <button
+                          type="button"
+                          onClick={() => set(f.key, values[f.key] === 'true' ? 'false' : 'true')}
+                          style={{
+                            width: 44, height: 24, borderRadius: 12, border: 'none', cursor: 'pointer',
+                            background: values[f.key] === 'true' ? 'var(--accent)' : 'var(--border)',
+                            position: 'relative', transition: 'background .2s', flexShrink: 0,
+                          }}
+                        >
+                          <span style={{
+                            position: 'absolute', top: 3, left: values[f.key] === 'true' ? 23 : 3,
+                            width: 18, height: 18, borderRadius: '50%', background: '#fff',
+                            transition: 'left .2s', boxShadow: '0 1px 4px rgba(0,0,0,.2)',
+                          }} />
+                        </button>
+                        <span style={{ fontSize: 13, color: values[f.key] === 'true' ? 'var(--accent)' : 'var(--text-3)', fontWeight: values[f.key] === 'true' ? 500 : 400 }}>
+                          {values[f.key] === 'true' ? 'Đang bật' : 'Đang tắt'}
+                        </span>
+                      </div>
                     ) : (
                       <input
                         type={f.type || 'text'}

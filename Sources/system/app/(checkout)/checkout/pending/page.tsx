@@ -46,7 +46,6 @@ function PendingContent() {
   const router       = useRouter()
 
   const code   = searchParams.get('code')   ?? ''
-  const type   = searchParams.get('type')   ?? 'template'
   const slug   = searchParams.get('slug')   ?? ''
   const amount = parseInt(searchParams.get('amount') ?? '499000')
 
@@ -99,7 +98,7 @@ function PendingContent() {
             </div>
           )}
           <p style={{ fontSize: 13.5, color: 'var(--text-2)', fontWeight: 300, lineHeight: 1.7, margin: '8px auto 0', maxWidth: 400 }}>
-            Chuyển khoản theo thông tin bên dưới. Hệ thống tự động xác nhận và gửi link download trong <strong>vài giây</strong>.
+            Chuyển khoản theo thông tin bên dưới. Hệ thống tự động xác nhận và chuyển bạn đến trang tải về trong <strong>vài giây</strong>.
           </p>
         </div>
 

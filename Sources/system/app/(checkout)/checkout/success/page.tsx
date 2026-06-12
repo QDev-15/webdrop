@@ -101,7 +101,7 @@ function SuccessContent() {
           )}
 
           <div style={{ marginTop: 12, fontSize: 12, color: 'var(--text-3)', lineHeight: 1.6 }}>
-            ⏱ Link tải có hiệu lực <strong>72 giờ</strong> · Dùng được tối đa <strong>5 lần</strong> · Link đã gửi qua email
+            ⏱ Link tải có hiệu lực <strong>72 giờ</strong> · Dùng được tối đa <strong>5 lần</strong>
           </div>
         </div>
 
