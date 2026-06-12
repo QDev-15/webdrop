@@ -4,10 +4,11 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 
 const navLinks = [
-  { href: '/templates', label: 'Thư viện mẫu' },
-  { href: '/pricing', label: 'Bảng giá' },
+  { href: '/templates',   label: 'Thư viện mẫu' },
+  { href: '/pricing',     label: 'Bảng giá' },
   { href: '/how-it-works', label: 'Quy trình' },
-  { href: '/about', label: 'Về chúng tôi' },
+  { href: '/lich-bong-da', label: '⚽ WC 2026', highlight: true },
+  { href: '/about',       label: 'Về chúng tôi' },
 ]
 
 export default function NavBar() {
@@ -60,7 +61,8 @@ export default function NavBar() {
               {navLinks.map(l => (
                 <Link key={l.href} href={l.href}
                   onClick={e => handleNavClick(e, l.href)}
-                  className={pathname === l.href || (l.href !== '/' && pathname.startsWith(l.href.split('#')[0]) && !l.href.includes('#')) ? 'active' : ''}>
+                  className={pathname === l.href || (l.href !== '/' && pathname.startsWith(l.href.split('#')[0]) && !l.href.includes('#')) ? 'active' : ''}
+                  style={l.highlight ? { color: 'var(--accent)', fontWeight: 500 } : undefined}>
                   {l.label}
                 </Link>
               ))}
@@ -81,7 +83,8 @@ export default function NavBar() {
 
       <div className={`nav-mobile${mobileOpen ? ' open' : ''}`} role="dialog" aria-label="Menu điều hướng">
         {navLinks.map(l => (
-          <Link key={l.href} href={l.href} onClick={e => handleNavClick(e, l.href)}>
+          <Link key={l.href} href={l.href} onClick={e => handleNavClick(e, l.href)}
+            style={l.highlight ? { color: 'var(--accent)', fontWeight: 600 } : undefined}>
             {l.label}
           </Link>
         ))}

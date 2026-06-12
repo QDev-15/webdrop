@@ -147,6 +147,19 @@ const SETTING_GROUPS: SettingGroup[] = [
         placeholder: 'Dán Access Key từ unsplash.com/developers',
         hint: 'Đăng ký miễn phí tại unsplash.com/developers → New Application → copy Access Key. Dùng để tìm kiếm ảnh trong admin.',
       },
+      {
+        key: 'football_api_key',
+        label: 'Football API Key (football-data.org)',
+        type: 'password',
+        placeholder: 'Dán API key từ football-data.org/account',
+        hint: 'Đăng ký miễn phí tại football-data.org → My Account → API Key. Dùng để hiển thị lịch & tỉ số World Cup 2026 tự động.',
+      },
+      {
+        key: 'football_youtube_embed',
+        label: 'YouTube Live — ID hoặc URL video',
+        placeholder: 'VD: dQw4w9WgXcQ hoặc https://youtu.be/dQw4w9WgXcQ',
+        hint: 'Dán ID / URL video YouTube chính thức đang livestream. Hiển thị tự động trên trang Lịch WC 2026. Xóa trắng khi không có stream.',
+      },
     ],
   },
 ]
