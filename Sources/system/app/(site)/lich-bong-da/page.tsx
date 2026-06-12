@@ -24,8 +24,8 @@ export const metadata: Metadata = {
 }
 
 import { prisma } from '@/lib/prisma'
-import NavBar from '@/components/site/NavBar'
 import Footer from '@/components/site/Footer'
+import RevealObserver from '@/components/site/RevealObserver'
 import FootballClient from './FootballClient'
 
 async function getYoutubeEmbed(): Promise<string> {
@@ -56,7 +56,7 @@ export default async function FootballPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SPORTS_EVENT_SCHEMA) }} />
-      <NavBar />
+      <RevealObserver />
       <FootballClient youtubeEmbed={youtubeEmbed} />
       <Footer />
     </>
