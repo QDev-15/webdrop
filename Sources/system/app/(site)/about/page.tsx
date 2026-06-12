@@ -2,7 +2,11 @@ import Footer from '@/components/site/Footer'
 import RevealObserver from '@/components/site/RevealObserver'
 import Link from 'next/link'
 
-export const metadata = { title: 'Về chúng tôi — webdrop.vn' }
+export const metadata = {
+  title:      'Về chúng tôi — webdrop.vn',
+  description: 'Tìm hiểu về webdrop.vn — đội ngũ chuyên cung cấp mẫu website đẹp và dịch vụ triển khai website trọn gói cho doanh nghiệp Việt Nam.',
+  alternates: { canonical: `${process.env.NEXT_PUBLIC_URL || 'https://webdrop.vn'}/about` },
+}
 
 const team = [
   { name: 'Nguyễn Hữu Quỳnh', role: 'Founder & Developer', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80&fit=crop&crop=face' },

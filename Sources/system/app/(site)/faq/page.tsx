@@ -3,7 +3,11 @@ import Footer from '@/components/site/Footer'
 import RevealObserver from '@/components/site/RevealObserver'
 import FaqClient from './FaqClient'
 
-export const metadata = { title: 'FAQ — Câu hỏi thường gặp | webdrop.vn' }
+export const metadata = {
+  title:      'Câu hỏi thường gặp về dịch vụ website',
+  description: 'Giải đáp mọi thắc mắc về mẫu website Bootstrap, quy trình bàn giao, chính sách hoàn tiền và hỗ trợ kỹ thuật tại webdrop.vn.',
+  alternates: { canonical: `${process.env.NEXT_PUBLIC_URL || 'https://webdrop.vn'}/faq` },
+}
 
 export default function FAQPage() {
   return (

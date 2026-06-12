@@ -8,14 +8,35 @@ import { templates as mockTemplates } from '@/data/templates'
 import type { Template } from '@/data/templates'
 import TemplateDetailClient from './TemplateDetailClient'
 
+const BASE = process.env.NEXT_PUBLIC_URL || 'https://webdrop.vn'
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   try {
-    const t = await prisma.template.findFirst({ where: { slug, status: 'published' }, select: { name: true } })
-    if (t) return { title: `${t.name} — webdrop.vn` }
+    const t = await prisma.template.findFirst({
+      where: { slug, status: 'published' },
+      select: { name: true, thumbnail: true, category: true, industry: { select: { name: true } } },
+    })
+    if (t) {
+      const category = t.industry?.name || t.category
+      const title    = `${t.name} — Mẫu website ${category}`
+      const desc     = `Tải về hoặc triển khai website ${t.name} — mẫu ${category} Bootstrap 5, responsive 100%, không cần build. Bàn giao trong 3–5 ngày.`
+      const img      = t.thumbnail || '/og-default.jpg'
+      return {
+        title,
+        description: desc,
+        alternates: { canonical: `${BASE}/templates/${slug}` },
+        openGraph: { title, description: desc, images: [{ url: img, width: 1200, height: 630 }], type: 'website' },
+        twitter:   { card: 'summary_large_image', title, description: desc, images: [img] },
+      }
+    }
   } catch { /* fallback */ }
   const mock = mockTemplates.find(t => t.slug === slug)
-  return { title: mock ? `${mock.name} — webdrop.vn` : 'Chi tiết template — webdrop.vn' }
+  const name = mock?.name || 'Template website'
+  return {
+    title: `${name} — webdrop.vn`,
+    alternates: { canonical: `${BASE}/templates/${slug}` },
+  }
 }
 
 export async function generateStaticParams() {
@@ -92,7 +113,27 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
     notFound()
   }
 
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type':    'Product',
+    name:       template.name,
+    image:      template.image,
+    url:        `${BASE}/templates/${template.slug}`,
+    description: `Mẫu website ${template.category} Bootstrap 5, responsive 100%, không cần build, mở file là chạy.`,
+    brand:      { '@type': 'Brand', name: 'webdrop.vn' },
+    offers: {
+      '@type':       'Offer',
+      priceCurrency: 'VND',
+      price:         template.price.replace(/[^\d]/g, ''),
+      availability:  'https://schema.org/InStock',
+      url:           `${BASE}/checkout?slug=${template.slug}`,
+      seller:        { '@type': 'Organization', name: 'webdrop.vn' },
+    },
+  }
+
   return (
+    <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
     <div style={{ paddingTop: 62 }}>
       {/* Breadcrumb — nằm trong page flow thay vì wd-nav bị NavBar che */}
       <div style={{ borderBottom: '1px solid var(--border-light)', background: 'var(--surface)' }}>
@@ -112,5 +153,6 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
 
       <TemplateDetailClient template={template} websitePrice={websitePrice} customPrice={customPrice} />
     </div>
+    </>
   )
 }

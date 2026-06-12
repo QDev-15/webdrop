@@ -1,5 +1,9 @@
 import type { Metadata } from 'next'
-export const metadata: Metadata = { title: 'Quy trình làm việc — webdrop.vn' }
+export const metadata: Metadata = {
+  title:      'Quy trình làm website tại webdrop.vn',
+  description: 'Chỉ 4 bước đơn giản: Chọn mẫu → Thanh toán → Cung cấp nội dung → Nhận website hoàn chỉnh. Bàn giao trong 3–5 ngày làm việc.',
+  alternates: { canonical: `${process.env.NEXT_PUBLIC_URL || 'https://webdrop.vn'}/how-it-works` },
+}
 
 import Link from 'next/link'
 import Footer from '@/components/site/Footer'

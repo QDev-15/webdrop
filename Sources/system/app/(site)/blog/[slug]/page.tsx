@@ -1,10 +1,42 @@
 export const revalidate = 60
 
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Footer from '@/components/site/Footer'
 import NavBar from '@/components/site/NavBar'
 import { prisma } from '@/lib/prisma'
+
+const BASE = process.env.NEXT_PUBLIC_URL || 'https://webdrop.vn'
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+
+  let title = '', desc = '', img = ''
+
+  try {
+    const row = await prisma.post.findUnique({
+      where: { slug, status: 'published' },
+      select: { title: true, excerpt: true, thumbnail: true },
+    })
+    if (row) { title = row.title; desc = row.excerpt || ''; img = row.thumbnail || '' }
+  } catch { /* fallback */ }
+
+  if (!title) {
+    const mock = MOCK_POSTS[slug]
+    if (mock) { title = mock.title; desc = mock.excerpt }
+  }
+  if (!title) return { title: 'Bài viết — webdrop.vn' }
+
+  const ogImg = img || '/og-default.jpg'
+  return {
+    title,
+    description: desc || undefined,
+    alternates:  { canonical: `${BASE}/blog/${slug}` },
+    openGraph:   { title, description: desc || undefined, images: [{ url: ogImg, width: 1200, height: 630 }], type: 'article' },
+    twitter:     { card: 'summary_large_image', title, description: desc || undefined, images: [ogImg] },
+  }
+}
 
 export async function generateStaticParams() {
   try {
@@ -189,8 +221,22 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     return result
   }
 
+  const articleSchema = {
+    '@context':       'https://schema.org',
+    '@type':          'Article',
+    headline:         post.title,
+    description:      post.excerpt || undefined,
+    image:            post.thumbnail || undefined,
+    datePublished:    post.createdAt instanceof Date ? post.createdAt.toISOString() : undefined,
+    dateModified:     post.createdAt instanceof Date ? post.createdAt.toISOString() : undefined,
+    author:           { '@type': 'Organization', name: 'webdrop.vn', url: BASE },
+    publisher:        { '@type': 'Organization', name: 'webdrop.vn', logo: { '@type': 'ImageObject', url: `${BASE}/logo.png` } },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${BASE}/blog/${slug}` },
+  }
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <NavBar />
       <div style={{ paddingTop: 62 }}>
         {/* Hero */}
