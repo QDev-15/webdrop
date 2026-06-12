@@ -18,7 +18,7 @@
 - Dynamic: `/templates/[slug]` — tự cập nhật khi thêm template mới
 - Dynamic: `/blog/[slug]` — tự cập nhật khi publish bài mới
 
-**Việc cần làm:** Vào Google Search Console → Sitemaps → Submit `https://webdrop.vn/sitemap.xml`
+**Việc cần làm:** Vào Google Search Console → Sitemaps → Submit `https://webdrop-henna.vercel.app/sitemap.xml`
 
 ---
 
