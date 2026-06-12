@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Footer from '@/components/site/Footer'
 import { ARTICLES } from '../articles'
+import RevealObserver from '@/components/site/RevealObserver'
 
 const BASE = process.env.NEXT_PUBLIC_URL || 'https://webdrop.vn'
 
@@ -55,6 +56,7 @@ export default async function ArticleDetailPage(
 
   return (
     <>
+      <RevealObserver />
       <div style={{ paddingTop: 62, minHeight: '100vh', background: 'var(--bg)', fontFamily: 'var(--sans)' }}>
 
         {/* Hero image */}
