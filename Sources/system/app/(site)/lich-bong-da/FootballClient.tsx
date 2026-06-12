@@ -183,14 +183,14 @@ function MatchCard({ match }: { match: Match }) {
               )}
               <div style={{ marginTop: 6, lineHeight: 1.6 }}>
                 <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-2)' }}>{toVNTime(match.utcDate)} <span style={{ fontWeight: 400, color: 'var(--text-3)' }}>VNTime (GMT+7)</span></div>
-                <div style={{ fontSize: 10, color: 'var(--text-3)' }}>{toUTCTime(match.utcDate)} UTC</div>
+                <div style={{ fontSize: 10, color: 'var(--text-3)' }}>{toUTCTime(match.utcDate)} UTC (GMT+0)</div>
               </div>
             </>
           ) : (
             <>
               <div style={{ marginTop: 6, lineHeight: 1.6 }}>
                 <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-2)', lineHeight: 1.2 }}>{toVNTime(match.utcDate)} <span style={{ fontWeight: 400, color: 'var(--text-3)' }}>VNTime (GMT+7)</span></div>
-                <div style={{ fontSize: 14, color: 'var(--text-3)' }}>{toUTCTime(match.utcDate)} UTC</div>
+                <div style={{ fontSize: 14, color: 'var(--text-3)' }}>{toUTCTime(match.utcDate)} UTC (GMT+0)</div>
               </div>
             </>
           )}
