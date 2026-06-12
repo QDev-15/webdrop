@@ -25,6 +25,10 @@ interface StandingRow {
 interface StandingGroup { group: string; table: StandingRow[] }
 
 // ── Constants ────────────────────────────────────────────────────────────────
+const STATUS_ORDER: Record<MatchStatus, number> = {
+  IN_PLAY: 0, PAUSED: 1, SCHEDULED: 2, FINISHED: 3, POSTPONED: 4, CANCELLED: 5,
+}
+
 const STAGE: Record<string, string> = {
   GROUP_STAGE: 'Vòng bảng', ROUND_OF_16: 'Vòng 1/8',
   QUARTER_FINALS: 'Tứ kết', SEMI_FINALS: 'Bán kết',
@@ -44,6 +48,10 @@ const CHANNELS = [
 // ── Helpers ──────────────────────────────────────────────────────────────────
 function toVNTime(utcDate: string) {
   const d = new Date(new Date(utcDate).getTime() + 7 * 3600000)
+  return `${String(d.getUTCHours()).padStart(2, '0')}:${String(d.getUTCMinutes()).padStart(2, '0')}`
+}
+function toUTCTime(utcDate: string) {
+  const d = new Date(utcDate)
   return `${String(d.getUTCHours()).padStart(2, '0')}:${String(d.getUTCMinutes()).padStart(2, '0')}`
 }
 function toVNDateKey(utcDate: string) {
@@ -106,9 +114,9 @@ function TeamBlock({ team, side }: { team: Team; side: 'home' | 'away' }) {
 
 function StatusBadge({ match }: { match: Match }) {
   if (match.status === 'IN_PLAY') return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 5, background: 'var(--accent-light)', border: '1px solid var(--accent-mid)', borderRadius: 5, padding: '3px 9px' }}>
-      <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent)', animation: 'pulse 1s infinite', display: 'inline-block' }} />
-      <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--accent)', letterSpacing: '.4px' }}>TRỰC TIẾP</span>
+    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: '#fef2f2', border: '1.5px solid #f87171', borderRadius: 7, padding: '6px 16px' }}>
+      <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#ef4444', animation: 'pulse 1s infinite', display: 'inline-block', flexShrink: 0 }} />
+      <span style={{ fontSize: 16, fontWeight: 800, color: '#dc2626', letterSpacing: '.5px' }}>TRỰC TIẾP</span>
     </div>
   )
   if (match.status === 'PAUSED') return (
@@ -145,18 +153,24 @@ function MatchCard({ match }: { match: Match }) {
       {isLive && <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: 'var(--accent)', animation: 'pulse 1.5s infinite' }} />}
 
       {/* Stage + status row */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14, flexWrap: 'wrap', gap: 6 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: isLive ? 10 : 14, flexWrap: 'wrap', gap: 6 }}>
         <span style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '.5px' }}>
           {groupLabel ? `${stageLabel} · ${groupLabel}` : stageLabel}
         </span>
-        <StatusBadge match={match} />
+        {!isLive && <StatusBadge match={match} />}
       </div>
+      {/* Centered live badge */}
+      {isLive && (
+        <div style={{ textAlign: 'center', marginBottom: 14 }}>
+          <StatusBadge match={match} />
+        </div>
+      )}
 
       {/* Teams + score */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
         <TeamBlock team={match.homeTeam} side="home" />
 
-        <div style={{ textAlign: 'center', flexShrink: 0, minWidth: 76 }}>
+        <div style={{ textAlign: 'center', flexShrink: 0, minWidth: 88 }}>
           {showScore ? (
             <>
               <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-1px', lineHeight: 1, color: (isLive || isPause) ? 'var(--accent)' : 'var(--text)' }}>
@@ -167,15 +181,18 @@ function MatchCard({ match }: { match: Match }) {
                   {isPause ? 'HT' : `${match.minute}'`}
                 </div>
               )}
+              <div style={{ marginTop: 6, lineHeight: 1.6 }}>
+                <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-2)' }}>{toVNTime(match.utcDate)} <span style={{ fontWeight: 400, color: 'var(--text-3)' }}>ICT</span></div>
+                <div style={{ fontSize: 10, color: 'var(--text-3)' }}>{toUTCTime(match.utcDate)} UTC</div>
+              </div>
             </>
           ) : (
             <>
-              <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--text-2)' }}>
-                {match.status === 'SCHEDULED' ? toVNTime(match.utcDate) : 'VS'}
+              <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-2)', lineHeight: 1.2 }}>
+                {toVNTime(match.utcDate)}
               </div>
-              {match.status === 'SCHEDULED' && (
-                <div style={{ fontSize: 10, color: 'var(--text-3)', marginTop: 1 }}>ICT</div>
-              )}
+              <div style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 2 }}>ICT (GMT+7)</div>
+              <div style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 1 }}>{toUTCTime(match.utcDate)} UTC</div>
             </>
           )}
         </div>
@@ -343,7 +360,11 @@ export default function FootballClient({ youtubeEmbed }: { youtubeEmbed?: string
   const liveCount    = matches.filter(m => m.status === 'IN_PLAY' || m.status === 'PAUSED').length
   const todayMatches = matches
     .filter(m => toVNDateKey(m.utcDate) === selectedDate)
-    .sort((a, b) => a.utcDate.localeCompare(b.utcDate))
+    .sort((a, b) => {
+      const so = STATUS_ORDER[a.status] - STATUS_ORDER[b.status]
+      if (so !== 0) return so
+      return a.utcDate.localeCompare(b.utcDate)
+    })
 
   return (
     <>
