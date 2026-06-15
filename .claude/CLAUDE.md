@@ -111,6 +111,7 @@ Generate bởi `web-deploy-builder`, lưu tại `Sources/WebDeploy/[slug]/`.
 | Slug | Template nguồn | Status | Ghi chú |
 |---|---|---|---|
 | `cafe-thoi-gian` | Cafes/cafe-thoi-gian | ✅ Built | Fallback static data cho menu section |
+| `portfolio-toi` | Portfolios/portfolio-toi | ✅ Built | Projects, skills, testimonials; reviewed + fixed security issues |
 | `forum-cong-dong` | Forums/forum-cong-dong | 🔧 In progress | |
 | `cong-ty-xay-dung` | Companies/cong-ty-xay-dung | 🔧 In progress | |
 
@@ -247,4 +248,4 @@ VPS AZDIGI Linux
 
 ---
 
-*Cập nhật lần cuối: 2026-06-09*
+*Cập nhật lần cuối: 2026-06-15*

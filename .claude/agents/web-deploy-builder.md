@@ -1137,18 +1137,18 @@ Vite tự copy `public/` vào `dist/` → chúng tự vào `deploy/` root:
 **website/public/.htaccess** (Apache/Linux hosting):
 ```apache
 Options -Indexes
-<FilesMatch "\.db$">
+<FilesMatch "\.(db|sql)$">
     Order allow,deny
     Deny from all
 </FilesMatch>
 RewriteEngine On
 RewriteCond %{REQUEST_URI} ^/admin
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^admin(/.*)?$ /admin/index.html [L]
+RewriteRule ^admin(/.*)?$ admin/index.html [L]
 RewriteRule ^api/database/ - [F,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !^/api/
-RewriteRule ^ /index.html [L]
+RewriteRule ^ index.html [L]
 ```
 
 **website/public/web.config** (IIS/Windows hosting):
@@ -1164,15 +1164,19 @@ RewriteRule ^ /index.html [L]
 ### deploy/.htaccess
 ```apache
 Options -Indexes
+<FilesMatch "\.(db|sql)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
 RewriteEngine On
 # Admin SPA
 RewriteCond %{REQUEST_URI} ^/admin
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^admin(/.*)?$ /admin/index.html [L]
+RewriteRule ^admin(/.*)?$ admin/index.html [L]
 # Main SPA
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !^/api/
-RewriteRule ^ /index.html [L]
+RewriteRule ^ index.html [L]
 ```
 
 ### deploy/web.config

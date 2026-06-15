@@ -1,0 +1,13 @@
+Options -Indexes
+<FilesMatch "\.(db|sql)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/admin
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^admin(/.*)?$ admin/index.html [L]
+RewriteRule ^api/database/ - [F,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !^/api/
+RewriteRule ^ index.html [L]
