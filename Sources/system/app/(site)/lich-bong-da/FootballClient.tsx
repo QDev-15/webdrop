@@ -6,7 +6,7 @@ import { ARTICLES, type Article } from './articles'
 // ── Types ────────────────────────────────────────────────────────────────────
 interface Team { id: number; name: string; shortName?: string; tla?: string; crest?: string }
 interface Score { home: number | null; away: number | null }
-type MatchStatus = 'SCHEDULED' | 'IN_PLAY' | 'PAUSED' | 'FINISHED' | 'POSTPONED' | 'CANCELLED'
+type MatchStatus = 'SCHEDULED' | 'TIMED' | 'IN_PLAY' | 'LIVE' | 'PAUSED' | 'FINISHED' | 'POSTPONED' | 'SUSPENDED' | 'CANCELLED'
 interface Match {
   id: number
   utcDate: string
@@ -28,8 +28,10 @@ interface StandingGroup { group: string; table: StandingRow[] }
 
 // ── Constants ────────────────────────────────────────────────────────────────
 const STATUS_ORDER: Record<MatchStatus, number> = {
-  IN_PLAY: 0, PAUSED: 1, SCHEDULED: 2, FINISHED: 3, POSTPONED: 4, CANCELLED: 5,
+  IN_PLAY: 0, LIVE: 0, PAUSED: 1, SCHEDULED: 2, TIMED: 2, FINISHED: 3, POSTPONED: 4, SUSPENDED: 4, CANCELLED: 5,
 }
+const UPCOMING_STATUSES: MatchStatus[] = ['SCHEDULED', 'TIMED']
+const LIVE_STATUSES: MatchStatus[] = ['IN_PLAY', 'LIVE', 'PAUSED']
 
 const STAGE: Record<string, string> = {
   GROUP_STAGE: 'Vòng bảng', ROUND_OF_16: 'Vòng 1/8',
@@ -137,7 +139,7 @@ function StatusBadge({ match }: { match: Match }) {
 }
 
 function MatchCard({ match }: { match: Match }) {
-  const isLive = match.status === 'IN_PLAY'
+  const isLive = match.status === 'IN_PLAY' || match.status === 'LIVE'
   const isPause = match.status === 'PAUSED'
   const isDone = match.status === 'FINISHED'
   const showScore = (isLive || isPause || isDone) && match.score.fullTime.home !== null
@@ -389,7 +391,7 @@ export default function FootballClient({ youtubeEmbed }: { youtubeEmbed?: string
     if (live) { setSelectedDate(toVNDateKey(live.utcDate)); return }
 
     const upcoming = matches
-      .filter(m => m.status === 'SCHEDULED')
+      .filter(m => UPCOMING_STATUSES.includes(m.status))
       .sort((a, b) => a.utcDate.localeCompare(b.utcDate))[0]
     if (upcoming) setSelectedDate(toVNDateKey(upcoming.utcDate))
   }, [matches])
@@ -420,12 +422,18 @@ export default function FootballClient({ youtubeEmbed }: { youtubeEmbed?: string
     if (t === 'standings') loadStandings()
   }
 
-  const liveCount = matches.filter(m => m.status === 'IN_PLAY' || m.status === 'PAUSED').length
+  const liveCount = matches.filter(m => LIVE_STATUSES.includes(m.status)).length
+  const now = Date.now()
   const todayMatches = matches
     .filter(m => toVNDateKey(m.utcDate) === selectedDate)
     .sort((a, b) => {
-      const so = STATUS_ORDER[a.status] - STATUS_ORDER[b.status]
-      if (so !== 0) return so
+      const sa = STATUS_ORDER[a.status] ?? 99
+      const sb = STATUS_ORDER[b.status] ?? 99
+      if (sa !== sb) return sa - sb
+      // upcoming: sắp diễn ra gần hiện tại nhất lên trước
+      if (UPCOMING_STATUSES.includes(a.status)) {
+        return Math.abs(new Date(a.utcDate).getTime() - now) - Math.abs(new Date(b.utcDate).getTime() - now)
+      }
       return a.utcDate.localeCompare(b.utcDate)
     })
 
