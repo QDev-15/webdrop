@@ -16,7 +16,7 @@ const FALLBACK_PACKAGES = [
     name: 'Gói Template',
     tagline: 'Mua file, tự cài đặt theo hướng dẫn',
     icon: '📦',
-    price: 'Từ 199.000đ',
+    price: 'Từ 299.000đ',
     hot: false,
     steps: [
       { sortOrder: 0, title: 'Chọn mẫu',             desc: 'Duyệt thư viện 30+ mẫu, xem demo live, chọn mẫu phù hợp ngành nghề.' },
@@ -33,7 +33,7 @@ const FALLBACK_PACKAGES = [
     name: 'Gói Web cơ bản',
     tagline: 'Website đầy đủ — deploy xong là chạy luôn',
     icon: '🌐',
-    price: 'Từ 3.000.000đ',
+    price: 'Từ 1.500.000đ',
     hot: true,
     steps: [
       { sortOrder: 0, title: 'Chọn mẫu & đặt hàng', desc: 'Chọn template từ thư viện, điền form brief ngắn (ngành, màu sắc, nội dung chính).' },

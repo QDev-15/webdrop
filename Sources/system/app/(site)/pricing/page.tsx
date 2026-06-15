@@ -5,7 +5,7 @@ import { prisma } from '@/lib/prisma'
 
 export const metadata = {
   title:      'Bảng giá dịch vụ website',
-  description: 'Xem bảng giá các gói website tại webdrop.vn: Template HTML từ 199k, Website chuẩn từ 3 triệu, Website theo yêu cầu. Bàn giao trong 3–5 ngày.',
+  description: 'Xem bảng giá các gói website tại webdrop.vn: Template HTML 299k, Website chuẩn từ 1.5 triệu, Website theo yêu cầu từ 7 triệu. Bàn giao trong 3–5 ngày.',
   alternates: { canonical: `${process.env.NEXT_PUBLIC_URL || 'https://webdrop.vn'}/pricing` },
 }
 
@@ -19,9 +19,9 @@ const FALLBACK_GROUPS = [
     bg: 'light' as const, type: 'cards' as const,
     description: '', tags: [], ctaLabel: '', ctaHref: '', status: 'published',
     plans: [
-      { id: 1, name: 'Template 1 trang', price: '199.000 – 499.000đ', features: ['File HTML/CSS/JS nguồn', 'Responsive mobile-first', 'Hướng dẫn chỉnh nội dung', 'Bootstrap 5.3'], hot: false, ctaLabel: 'Xem mẫu', ctaHref: '/templates', sortOrder: 0 },
-      { id: 2, name: 'Template multi-page', price: '499.000 – 999.000đ', features: ['4–6 trang HTML', 'Responsive hoàn toàn', 'Demo live link', 'Hướng dẫn chi tiết'], hot: true, ctaLabel: 'Xem mẫu', ctaHref: '/templates', sortOrder: 1 },
-      { id: 3, name: 'Admin Template', price: '699.000 – 1.499.000đ', features: ['Dashboard + CRUD pages', 'Mobile responsive sidebar', 'Dark sidebar design', 'Bootstrap 5.3'], hot: false, ctaLabel: 'Xem mẫu', ctaHref: '/templates', sortOrder: 2 },
+      { id: 1, name: 'Template 1 trang', price: '299.000đ', features: ['File HTML/CSS/JS nguồn', 'Responsive mobile-first', 'Hướng dẫn chỉnh nội dung', 'Bootstrap 5.3'], hot: false, ctaLabel: 'Xem mẫu', ctaHref: '/templates', sortOrder: 0 },
+      { id: 2, name: 'Template multi-page', price: '299.000đ', features: ['4–6 trang HTML', 'Responsive hoàn toàn', 'Demo live link', 'Hướng dẫn chi tiết'], hot: true, ctaLabel: 'Xem mẫu', ctaHref: '/templates', sortOrder: 1 },
+      { id: 3, name: 'Admin Template', price: '299.000đ', features: ['Dashboard + CRUD pages', 'Mobile responsive sidebar', 'Dark sidebar design', 'Bootstrap 5.3'], hot: false, ctaLabel: 'Xem mẫu', ctaHref: '/templates', sortOrder: 2 },
     ],
   },
   {
@@ -32,9 +32,9 @@ const FALLBACK_GROUPS = [
     bg: 'warm' as const, type: 'cards' as const,
     description: '', tags: [], ctaLabel: '', ctaHref: '', status: 'published',
     plans: [
-      { id: 4, name: 'Basic', price: '3.000.000 – 5.000.000đ', features: ['Landing 1 trang', 'Form liên hệ', 'Admin xem form', 'Hosting PHP + SQLite'], hot: false, ctaLabel: 'Đặt hàng ngay', ctaHref: '/checkout', sortOrder: 0 },
-      { id: 5, name: 'Standard', price: '7.000.000 – 12.000.000đ', features: ['5–7 trang', 'Blog/tin tức', 'Admin quản lý nội dung', 'SEO cơ bản'], hot: true, ctaLabel: 'Đặt hàng ngay', ctaHref: '/checkout', sortOrder: 1 },
-      { id: 6, name: 'Pro', price: '15.000.000 – 22.000.000đ', features: ['10+ trang', 'Đa ngôn ngữ', 'Admin đầy đủ', 'SEO nâng cao + Analytics'], hot: false, ctaLabel: 'Đặt hàng ngay', ctaHref: '/checkout', sortOrder: 2 },
+      { id: 4, name: 'Basic', price: '1.500.000đ', features: ['Landing 1 trang', 'Form liên hệ', 'Admin xem form', 'Hosting PHP + SQLite'], hot: false, ctaLabel: 'Đặt hàng ngay', ctaHref: '/checkout', sortOrder: 0 },
+      { id: 5, name: 'Standard', price: '3.000.000đ', features: ['5–7 trang', 'Blog/tin tức', 'Admin quản lý nội dung', 'SEO cơ bản'], hot: true, ctaLabel: 'Đặt hàng ngay', ctaHref: '/checkout', sortOrder: 1 },
+      { id: 6, name: 'Pro', price: '5.000.000đ', features: ['10+ trang', 'Đa ngôn ngữ', 'Admin đầy đủ', 'SEO nâng cao + Analytics'], hot: false, ctaLabel: 'Đặt hàng ngay', ctaHref: '/checkout', sortOrder: 2 },
     ],
   },
   {
@@ -42,7 +42,7 @@ const FALLBACK_GROUPS = [
     title: 'Website + Admin', titleEm: 'full custom',
     subtitle: '', footnote: '',
     bg: 'light' as const, type: 'banner' as const,
-    description: 'Thiết kế theo yêu cầu, 2 phase rõ ràng. Từ 20.000.000đ tùy scope.',
+    description: 'Thiết kế theo yêu cầu, 2 phase rõ ràng. Từ 7.000.000đ tùy scope.',
     tags: ['Wireframe → Design', 'Duyệt rồi mới dev', 'Bàn giao source code', 'Bảo trì tháng'],
     ctaLabel: 'Liên hệ tư vấn →', ctaHref: '/contact', status: 'published',
     plans: [],
