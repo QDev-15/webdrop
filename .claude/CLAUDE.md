@@ -24,7 +24,7 @@
 | `teacher` | Học Next.js/React qua code thực tế | Read, Glob, Grep, WebFetch |
 | `design-scout` | Thu thập & phân tích design website theo ngành → Design Brief | WebSearch, WebFetch, Read |
 | `template-builder` | Nhận chủ đề + Brief → tạo template HTML/CSS/Bootstrap vào `Sources/templates/` | Read, Write, Edit, WebFetch, WebSearch |
-| `web-deploy-builder` | Nhận slug → đọc template HTML → tạo React + PHP + SQLite vào `Sources/WebDeploy/[slug]/` | Read, Write, Edit, Glob, Grep, Bash |
+| `web-deploy-builder` | Nhận slug → **chạy scaffolder** → đọc template HTML → fill ~45% AI files → tạo React + PHP + SQLite vào `Sources/WebDeploy/[slug]/` | Read, Write, Edit, Glob, Grep, Bash |
 | `web-deploy-fixer` | Nhận slug → chạy TS build + PHP check → tự fix lỗi → lặp đến 0 error | Read, Write, Edit, Glob, Grep, Bash |
 
 ### Project Settings
@@ -114,6 +114,13 @@ Generate bởi `web-deploy-builder`, lưu tại `Sources/WebDeploy/[slug]/`.
 | `portfolio-toi` | Portfolios/portfolio-toi | ✅ Built | Projects, skills, testimonials; reviewed + fixed security issues |
 | `forum-cong-dong` | Forums/forum-cong-dong | 🔧 In progress | |
 | `cong-ty-xay-dung` | Companies/cong-ty-xay-dung | 🔧 In progress | |
+
+**Scaffold (tạo project mới nhanh):**
+```
+cd Sources/WebDeploy
+node scaffolder.mjs [slug] [type: cafe|restaurant|spa|spa-service|portfolio|company|blog]
+```
+Copy ~40 core files từ `_scaffold/` → tiết kiệm ~55% thời gian AI. AI chỉ fill phần còn lại.
 
 **Build:**
 - Windows: `build.bat` — build React + assemble → `deploy/`
@@ -248,4 +255,4 @@ VPS AZDIGI Linux
 
 ---
 
-*Cập nhật lần cuối: 2026-06-15*
+*Cập nhật lần cuối: 2026-06-15 — thêm scaffold system cho WebDeploy*

@@ -23,9 +23,10 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.vn** — chuyên chuy�
 4. **Mọi text/image/content trên trang chính đều phải quản lý được qua admin settings hoặc CRUD module.**
 5. **DB auto-seed từ nội dung thực có trong template** — không dùng placeholder Lorem ipsum.
 6. **PRAGMA foreign_keys = ON** bắt buộc cho SQLite.
-6. **Sau khi tạo xong → chạy kiểm tra cú pháp PHP và TypeScript.**
-7. **Sau khi xong toàn bộ thì tạo một file hướng dẫn cài đặt**
-8. **Review lại và fix hết issues rồi review fix cho đến khi hết issuse**
+6. **PRAGMA foreign_keys = ON** bắt buộc cho SQLite.
+7. **Sau khi tạo xong → chạy kiểm tra cú pháp PHP và TypeScript build. Fix lỗi → chạy lại → lặp cho đến khi 0 error.**
+8. **Sau khi xong toàn bộ thì tạo một file hướng dẫn cài đặt (README.md).**
+9. **Test loop bắt buộc** — sau khi viết xong toàn bộ code: chạy PHP syntax check (`php -l`) cho tất cả `.php` files, chạy TypeScript build (`npm run build`) cho cả `website/` và `admin/`. Nếu có lỗi → fix → chạy lại. Lặp cho đến khi **cả PHP lẫn TypeScript đều 0 error**. Không được dừng khi còn lỗi.
 9. **`config.php` phải có trong `api/` (không phải chỉ placeholder)** — build script sẽ copy vào `deploy/api/`, khách chỉ cần sửa `APP_URL` và `APP_KEY`.
 10. **`migrate()` trong Database.php phải check `file_get_contents` trả về false** — nếu `schema.sql` bị thiếu mà không check, tables không được tạo nhưng không có lỗi rõ ràng → 500 im lặng.
 11. **Luôn có health endpoint `/api/health`** trong `index.php` để khách tự diagnose sau khi deploy.
@@ -37,8 +38,8 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.vn** — chuyên chuy�
 17. **`APP_KEY` phải được auto-generate trong `build.mjs`** — không để khách tự điền. Dùng `randomBytes(32).toString('hex')` tạo 64 ký tự hex, inject vào `config.php` trước khi copy vào `deploy/`. Source `api/config.php` giữ nguyên placeholder. Bỏ `config.php` khỏi vòng copy `api/*` (thêm vào `skipApi`).
 18. **Dùng `POST /path/update` và `POST /path/delete` thay vì PUT/DELETE** — Shared hosting IIS (PA Vietnam) có WebDAV lock ở server level, web.config không override được, gây lỗi 405 vĩnh viễn. Fix dứt điểm: API chỉ dùng GET và POST, update/delete qua suffix URL. `client.ts`: `put(path, body)` → `POST ${path}/update`, `delete(path)` → `POST ${path}/delete`. `bootstrap.php`: đăng ký `POST /:id/update` và `POST /:id/delete` thay cho PUT/DELETE.
 19. **`Sidebar.tsx` phải khai báo interface `NavLinkItem` với optional fields**
-20. **Mọi form admin có trường ảnh BẮT BUỘC dùng `ImageField` component** — copy từ `Sources/WebDeploy/cafe-thoi-gian/admin/src/components/`. Không được dùng `<input type="text">` thông thường cho URL ảnh.
-21. **Mọi site BẮT BUỘC có `UploadController.php` + `UnsplashController.php`** — copy từ `Sources/WebDeploy/cafe-thoi-gian/api/src/controllers/`. Thêm routes `/upload`, `/unsplash` (GET + POST) vào `bootstrap.php`.
+20. **Mọi form admin có trường ảnh BẮT BUỘC dùng `ImageField` component** — file có sẵn trong `_scaffold/` (đã được copy bởi scaffolder). Không được dùng `<input type="text">` thông thường cho URL ảnh.
+21. **Mọi site BẮT BUỘC có `UploadController.php` + `UnsplashController.php`** — file có sẵn trong `_scaffold/` (đã được copy bởi scaffolder). Thêm routes `/upload`, `/unsplash` (GET + POST) vào `bootstrap.php`.
 22. **Settings page BẮT BUỘC có 2 tabs cuối: ☁️ Cloudinary và 🔌 Tích hợp** — để admin cấu hình API keys mà không cần chỉnh code.
 23. **`api/client.ts` BẮT BUỘC có method `upload`** trong object `api`: `upload: <T>(path: string, formData: FormData) => request<T>('POST', path, formData)`. Thiếu method này → `ImageField` bị lỗi TS2339 khi build.
 24. **`admin/index.html` BẮT BUỘC dùng Bunny Fonts thay vì Google Fonts** — Google Fonts CDN bị block/chậm trên nhiều hosting VN. Dùng drop-in replacement: xóa 2 dòng `preconnect googleapis/gstatic` và thay link font bằng: `<link rel="preconnect" href="https://fonts.bunny.net">` + `<link href="https://fonts.bunny.net/css?family=dm-sans:300,300i,400,400i,500,500i,600,600i&display=swap" rel="stylesheet">`.
@@ -99,6 +100,34 @@ Khi nhận lệnh như `@web-deploy-builder tạo website cho nha-hang-truyen-th
 3. Ghi nhớ BASE_PATH = Sources/templates/web/[category]/[slug]/
 4. OUTPUT_PATH = Sources/WebDeploy/[slug]/
 ```
+
+---
+
+## Bước 0.5 — Chạy scaffolder để tạo core files
+
+**Trước khi viết bất kỳ code nào**, chạy scaffolder để copy ~40 core files (55% tổng code):
+
+```bash
+# Xác định type từ category của template:
+#   Cafes/       → cafe
+#   Restaurants/ → restaurant
+#   Spa-Services/→ spa-service
+#   Portfolios/  → portfolio
+#   Companies/   → company
+#   Blogs/       → blog
+
+cd Sources/WebDeploy
+node scaffolder.mjs [slug] [type]
+```
+
+Scaffolder sẽ:
+- Copy 40 core files từ `_scaffold/` → `[slug]/` (Router, Auth, Response, 8 controllers, admin.css, client.ts, AuthContext, AdminLayout, ImageField, UnsplashPicker, LoginPage, ProfilePage, MediaPage, build scripts, .htaccess, web.config...)
+- Replace `{{SLUG}}` trong Auth.php, package.json, index.html, build.mjs
+- Tạo placeholder `// TODO: AI-generated` cho tất cả files AI cần viết
+
+**Sau khi scaffolder chạy xong**, danh sách TODO files sẽ được in ra — AI chỉ cần fill đúng những file đó. **Không được viết lại các core files đã được scaffold** (chúng đã đúng).
+
+Nếu `node` không có trong PATH hoặc scaffolder báo lỗi, dừng lại và báo user.
 
 ---
 
@@ -1239,13 +1268,23 @@ Website `vite.config.ts` dùng `base: './'` là đúng (deploy ở root `/`, `./
 
 ## Bước 9 — Kiểm tra sau khi tạo
 
-Sau khi viết xong tất cả files:
+Sau khi viết xong tất cả files, thực hiện test loop — **lặp cho đến khi 0 error**:
 
-### Kiểm tra PHP syntax
+### Test Loop — PHP Syntax
 ```bash
+# Chạy php -l cho tất cả .php files
 find Sources/WebDeploy/[slug]/api -name "*.php" -exec php -l {} \;
+# Nếu có lỗi → fix → chạy lại → lặp cho đến khi tất cả "No syntax errors"
 ```
-Fix mọi syntax error.
+
+### Test Loop — TypeScript Build
+```bash
+cd Sources/WebDeploy/[slug]/website && npm install && npm run build
+cd Sources/WebDeploy/[slug]/admin  && npm install && npm run build
+# Nếu có lỗi → fix → chạy lại từng project → lặp cho đến khi cả 2 build thành công
+```
+
+**Không được dừng khi còn lỗi.** Mỗi lần fix → chạy lại check ngay.
 
 ### Kiểm tra cấu trúc file
 ```
