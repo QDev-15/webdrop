@@ -27,7 +27,7 @@ export default function MenuItemList() {
   }
 
   async function handleDelete(id: number) {
-    if (!confirm('Xoa mon an nay?')) return
+    if (!confirm('Xóa món ăn này?')) return
     await api.delete(`/menu-items/${id}`)
     load()
   }
@@ -39,26 +39,26 @@ export default function MenuItemList() {
 
   function formatPrice(price: number | null): string {
     if (price == null) return '—'
-    return price.toLocaleString('vi-VN') + 'd'
+    return price.toLocaleString('vi-VN') + 'đ'
   }
 
-  if (loading) return <div className="admin-loading">Dang tai...</div>
+  if (loading) return <div className="admin-loading">Đang tải...</div>
 
   return (
     <div>
       <div className="page-header">
         <div>
-          <div className="page-title">Mon an</div>
-          <div className="page-sub">{items.length} mon an</div>
+          <div className="page-title">Món ăn</div>
+          <div className="page-sub">{items.length} món ăn</div>
         </div>
-        <Link to="/menu-items/new" className="btn-accent">+ Them mon an</Link>
+        <Link to="/menu-items/new" className="btn-accent">+ Thêm món ăn</Link>
       </div>
 
       <div style={{ marginBottom: 16 }}>
         <input
           type="text"
           className="form-control"
-          placeholder="Tim kiem ten mon, danh muc..."
+          placeholder="Tìm kiếm tên món, danh mục..."
           value={filter}
           onChange={e => setFilter(e.target.value)}
           style={{ maxWidth: 320 }}
@@ -69,12 +69,12 @@ export default function MenuItemList() {
         <table>
           <thead>
             <tr>
-              <th>Anh</th>
-              <th>Ten mon</th>
-              <th>Danh muc</th>
-              <th>Gia</th>
-              <th>Trang thai</th>
-              <th>Thao tac</th>
+              <th>Ảnh</th>
+              <th>Tên món</th>
+              <th>Danh mục</th>
+              <th>Giá</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
             </tr>
           </thead>
           <tbody>
@@ -89,22 +89,22 @@ export default function MenuItemList() {
                 <td>
                   <div style={{ fontWeight: 500 }}>{item.name}</div>
                   {item.badge && <span style={{ fontSize: 11, background: 'var(--accent-light)', color: 'var(--accent)', padding: '2px 8px', borderRadius: 4 }}>{item.badge}</span>}
-                  {item.featured === 1 && <span style={{ fontSize: 11, background: '#fffbeb', color: '#92400e', padding: '2px 8px', borderRadius: 4, marginLeft: 4 }}>Noi bat</span>}
+                  {item.featured === 1 && <span style={{ fontSize: 11, background: '#fffbeb', color: '#92400e', padding: '2px 8px', borderRadius: 4, marginLeft: 4 }}>Nổi bật</span>}
                 </td>
                 <td style={{ color: 'var(--text-2)', fontSize: 13 }}>{item.category_name ?? '—'}</td>
                 <td style={{ fontWeight: 500 }}>{formatPrice(item.price)}</td>
-                <td><span className={`badge badge-${item.status}`}>{item.status === 'published' ? 'Hien' : 'An'}</span></td>
+                <td><span className={`badge badge-${item.status}`}>{item.status === 'published' ? 'Hiển thị' : 'Ẩn'}</span></td>
                 <td>
                   <div style={{ display: 'flex', gap: 8 }}>
-                    <Link to={`/menu-items/${item.id}/edit`} className="btn-ghost btn-sm">Sua</Link>
-                    <button onClick={() => handleDelete(item.id)} className="btn-danger btn-sm">Xoa</button>
+                    <Link to={`/menu-items/${item.id}/edit`} className="btn-ghost btn-sm">Sửa</Link>
+                    <button onClick={() => handleDelete(item.id)} className="btn-danger btn-sm">Xóa</button>
                   </div>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-        {filtered.length === 0 && <div className="empty-state"><div className="empty-state-icon">🍽</div><div className="empty-state-text">Khong tim thay mon an.</div></div>}
+        {filtered.length === 0 && <div className="empty-state"><div className="empty-state-icon">🍽</div><div className="empty-state-text">Không tìm thấy món ăn.</div></div>}
       </div>
     </div>
   )

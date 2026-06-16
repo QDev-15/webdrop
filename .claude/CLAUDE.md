@@ -112,6 +112,7 @@ Generate bởi `web-deploy-builder`, lưu tại `Sources/WebDeploy/[slug]/`.
 |---|---|---|---|
 | `cafe-thoi-gian` | Cafes/cafe-thoi-gian | ✅ Built | Fallback static data cho menu section |
 | `portfolio-toi` | Portfolios/portfolio-toi | ✅ Built | Projects, skills, testimonials; reviewed + fixed security issues |
+| `nha-hang-chay-organic` | Restaurants/nha-hang-chay-organic | ✅ Built | Restaurant chay; menu categories+items, reservations, gallery, testimonials; 0 TS errors |
 | `forum-cong-dong` | Forums/forum-cong-dong | 🔧 In progress | |
 | `cong-ty-xay-dung` | Companies/cong-ty-xay-dung | 🔧 In progress | |
 

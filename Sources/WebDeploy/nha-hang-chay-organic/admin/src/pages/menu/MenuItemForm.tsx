@@ -59,7 +59,7 @@ export default function MenuItemForm() {
           })
         }
       })
-      .catch(() => setError('Khong tai duoc du lieu.'))
+      .catch(() => setError('Không tải được dữ liệu.'))
       .finally(() => setLoading(false))
   }, [id])
 
@@ -69,7 +69,7 @@ export default function MenuItemForm() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (!form.name.trim()) { setError('Ten mon an la bat buoc.'); return }
+    if (!form.name.trim()) { setError('Tên món ăn là bắt buộc.'); return }
     setError(''); setSaving(true)
     const payload = {
       ...form,
@@ -82,19 +82,19 @@ export default function MenuItemForm() {
       else { await api.post('/menu-items', payload) }
       navigate('/menu-items')
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Luu that bai.')
+      setError(err instanceof Error ? err.message : 'Lưu thất bại.')
     } finally { setSaving(false) }
   }
 
-  if (loading) return <div className="admin-loading">Dang tai...</div>
+  if (loading) return <div className="admin-loading">Đang tải...</div>
 
   return (
     <div style={{ maxWidth: 720 }}>
       <div className="page-header">
         <div>
-          <div className="page-title">{isEdit ? 'Chinh sua mon an' : 'Them mon an moi'}</div>
+          <div className="page-title">{isEdit ? 'Chỉnh sửa món ăn' : 'Thêm món ăn mới'}</div>
         </div>
-        <button onClick={() => navigate('/menu-items')} className="btn-ghost">Quay lai</button>
+        <button onClick={() => navigate('/menu-items')} className="btn-ghost">Quay lại</button>
       </div>
 
       {error && <div className="alert alert-error">{error}</div>}
@@ -102,58 +102,58 @@ export default function MenuItemForm() {
       <form onSubmit={handleSubmit} className="card">
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           <div className="form-group" style={{ gridColumn: '1 / -1' }}>
-            <label className="form-label">Ten mon an *</label>
-            <input type="text" className="form-control" value={form.name} onChange={e => set('name', e.target.value)} placeholder="Ten mon an" required />
+            <label className="form-label">Tên món ăn *</label>
+            <input type="text" className="form-control" value={form.name} onChange={e => set('name', e.target.value)} placeholder="Tên món ăn" required />
           </div>
           <div className="form-group">
-            <label className="form-label">Danh muc</label>
+            <label className="form-label">Danh mục</label>
             <select className="form-control" value={String(form.category_id)} onChange={e => set('category_id', e.target.value === '' ? '' : parseInt(e.target.value))}>
-              <option value="">-- Chon danh muc --</option>
+              <option value="">-- Chọn danh mục --</option>
               {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
             </select>
           </div>
           <div className="form-group">
-            <label className="form-label">Trang thai</label>
+            <label className="form-label">Trạng thái</label>
             <select className="form-control" value={form.status} onChange={e => set('status', e.target.value)}>
-              <option value="published">Hien thi</option>
-              <option value="draft">An</option>
+              <option value="published">Hiển thị</option>
+              <option value="draft">Ẩn</option>
             </select>
           </div>
           <div className="form-group">
-            <label className="form-label">Gia (VND)</label>
-            <input type="number" className="form-control" value={form.price} onChange={e => set('price', e.target.value)} placeholder="0 = mien phi, bo trong = --" min={0} />
+            <label className="form-label">Giá (VND)</label>
+            <input type="number" className="form-control" value={form.price} onChange={e => set('price', e.target.value)} placeholder="0 = miễn phí, bỏ trống = --" min={0} />
           </div>
           <div className="form-group">
-            <label className="form-label">Gia khuyen mai (VND)</label>
-            <input type="number" className="form-control" value={form.price_sale} onChange={e => set('price_sale', e.target.value)} placeholder="De trong neu khong co" min={0} />
+            <label className="form-label">Giá khuyến mãi (VND)</label>
+            <input type="number" className="form-control" value={form.price_sale} onChange={e => set('price_sale', e.target.value)} placeholder="Để trống nếu không có" min={0} />
           </div>
           <div className="form-group" style={{ gridColumn: '1 / -1' }}>
-            <label className="form-label">Mo ta mon an</label>
-            <textarea className="form-control" value={form.description} onChange={e => set('description', e.target.value)} placeholder="Mo ta nguyen lieu, cach che bien..." rows={3} />
+            <label className="form-label">Mô tả món ăn</label>
+            <textarea className="form-control" value={form.description} onChange={e => set('description', e.target.value)} placeholder="Mô tả nguyên liệu, cách chế biến..." rows={3} />
           </div>
           <div className="form-group">
             <label className="form-label">Badge (vd: Chef Signature, Premium)</label>
-            <input type="text" className="form-control" value={form.badge} onChange={e => set('badge', e.target.value)} placeholder="De trong neu khong can" />
+            <input type="text" className="form-control" value={form.badge} onChange={e => set('badge', e.target.value)} placeholder="Để trống nếu không cần" />
           </div>
           <div className="form-group">
-            <label className="form-label">Di ung thuc pham</label>
-            <input type="text" className="form-control" value={form.allergens} onChange={e => set('allergens', e.target.value)} placeholder="Vd: Di ung: hai san, sua" />
+            <label className="form-label">Dị ứng thực phẩm</label>
+            <input type="text" className="form-control" value={form.allergens} onChange={e => set('allergens', e.target.value)} placeholder="Vd: Dị ứng: hải sản, sữa" />
           </div>
           <div className="form-group">
-            <label className="form-label">Thu tu hien thi</label>
+            <label className="form-label">Thứ tự hiển thị</label>
             <input type="number" className="form-control" value={form.sort_order} onChange={e => set('sort_order', parseInt(e.target.value) || 0)} min={0} />
           </div>
           <div className="form-group" style={{ display: 'flex', alignItems: 'center', gap: 10, paddingTop: 24 }}>
             <input type="checkbox" id="featured" checked={form.featured === 1} onChange={e => set('featured', e.target.checked ? 1 : 0)} style={{ width: 16, height: 16 }} />
-            <label htmlFor="featured" className="form-label" style={{ margin: 0, cursor: 'pointer' }}>Hien thi noi bat</label>
+            <label htmlFor="featured" className="form-label" style={{ margin: 0, cursor: 'pointer' }}>Hiển thị nổi bật</label>
           </div>
         </div>
         <div className="form-group">
-          <ImageField label="Anh mon an" value={form.image} onChange={v => set('image', v)} />
+          <ImageField label="Ảnh món ăn" value={form.image} onChange={v => set('image', v)} />
         </div>
         <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end', paddingTop: 16, borderTop: '1px solid var(--border-light)' }}>
-          <button type="button" onClick={() => navigate('/menu-items')} className="btn-ghost">Huy</button>
-          <button type="submit" className="btn-accent" disabled={saving}>{saving ? 'Dang luu...' : (isEdit ? 'Cap nhat' : 'Them moi')}</button>
+          <button type="button" onClick={() => navigate('/menu-items')} className="btn-ghost">Hủy</button>
+          <button type="submit" className="btn-accent" disabled={saving}>{saving ? 'Đang lưu...' : (isEdit ? 'Cập nhật' : 'Thêm mới')}</button>
         </div>
       </form>
     </div>

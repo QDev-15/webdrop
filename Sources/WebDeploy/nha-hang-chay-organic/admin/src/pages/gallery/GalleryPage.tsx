@@ -51,78 +51,78 @@ export default function GalleryPage() {
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault()
-    if (!form.image) { setError('Anh la bat buoc.'); return }
+    if (!form.image) { setError('Ảnh là bắt buộc.'); return }
     setSaving(true); setError('')
     try {
       if (editing) { await api.put(`/gallery/${editing.id}`, form) }
       else { await api.post('/gallery', form) }
       setShowForm(false); load()
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Luu that bai.')
+      setError(err instanceof Error ? err.message : 'Lưu thất bại.')
     } finally { setSaving(false) }
   }
 
   async function handleDelete(id: number) {
-    if (!confirm('Xoa anh nay?')) return
+    if (!confirm('Xóa ảnh này?')) return
     await api.delete(`/gallery/${id}`)
     load()
   }
 
-  if (loading) return <div className="admin-loading">Dang tai...</div>
+  if (loading) return <div className="admin-loading">Đang tải...</div>
 
   return (
     <div>
       <div className="page-header">
         <div>
-          <div className="page-title">Thu vien anh</div>
-          <div className="page-sub">{items.length} anh</div>
+          <div className="page-title">Thư viện ảnh</div>
+          <div className="page-sub">{items.length} ảnh</div>
         </div>
-        <button onClick={openNew} className="btn-accent">+ Them anh</button>
+        <button onClick={openNew} className="btn-accent">+ Thêm ảnh</button>
       </div>
 
       {showForm && (
         <div className="card" style={{ marginBottom: 24 }}>
-          <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 16 }}>{editing ? 'Chinh sua anh' : 'Them anh moi'}</div>
+          <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 16 }}>{editing ? 'Chỉnh sửa ảnh' : 'Thêm ảnh mới'}</div>
           {error && <div className="alert alert-error">{error}</div>}
           <form onSubmit={handleSave}>
             <div className="form-group">
-              <ImageField label="Anh *" value={form.image} onChange={v => set('image', v)} />
+              <ImageField label="Ảnh *" value={form.image} onChange={v => set('image', v)} />
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
               <div className="form-group">
-                <label className="form-label">Tieu de</label>
-                <input type="text" className="form-control" value={form.title} onChange={e => set('title', e.target.value)} placeholder="Tieu de anh" />
+                <label className="form-label">Tiêu đề</label>
+                <input type="text" className="form-control" value={form.title} onChange={e => set('title', e.target.value)} placeholder="Tiêu đề ảnh" />
               </div>
               <div className="form-group">
-                <label className="form-label">Danh muc</label>
+                <label className="form-label">Danh mục</label>
                 <select className="form-control" value={form.category} onChange={e => set('category', e.target.value)}>
-                  <option value="">-- Chon danh muc --</option>
-                  <option value="interior">Noi that</option>
-                  <option value="food">Mon an</option>
-                  <option value="kitchen">Bep</option>
-                  <option value="wine">Ruou vang</option>
-                  <option value="event">Su kien</option>
+                  <option value="">-- Chọn danh mục --</option>
+                  <option value="Món ăn">Món ăn</option>
+                  <option value="Không gian">Không gian</option>
+                  <option value="Nông trại">Nông trại</option>
+                  <option value="Sự kiện">Sự kiện</option>
+                  <option value="Đội ngũ">Đội ngũ</option>
                 </select>
               </div>
               <div className="form-group">
-                <label className="form-label">Thu tu</label>
+                <label className="form-label">Thứ tự</label>
                 <input type="number" className="form-control" value={form.sort_order} onChange={e => set('sort_order', parseInt(e.target.value) || 0)} min={0} />
               </div>
               <div className="form-group">
-                <label className="form-label">Trang thai</label>
+                <label className="form-label">Trạng thái</label>
                 <select className="form-control" value={form.status} onChange={e => set('status', e.target.value)}>
-                  <option value="published">Hien thi</option>
-                  <option value="draft">An</option>
+                  <option value="published">Hiển thị</option>
+                  <option value="draft">Ẩn</option>
                 </select>
               </div>
             </div>
             <div className="form-group">
-              <label className="form-label">Mo ta</label>
-              <input type="text" className="form-control" value={form.description} onChange={e => set('description', e.target.value)} placeholder="Mo ta anh" />
+              <label className="form-label">Mô tả</label>
+              <input type="text" className="form-control" value={form.description} onChange={e => set('description', e.target.value)} placeholder="Mô tả ảnh" />
             </div>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end' }}>
-              <button type="button" onClick={() => setShowForm(false)} className="btn-ghost">Huy</button>
-              <button type="submit" className="btn-accent" disabled={saving}>{saving ? 'Dang luu...' : (editing ? 'Cap nhat' : 'Them moi')}</button>
+              <button type="button" onClick={() => setShowForm(false)} className="btn-ghost">Hủy</button>
+              <button type="submit" className="btn-accent" disabled={saving}>{saving ? 'Đang lưu...' : (editing ? 'Cập nhật' : 'Thêm mới')}</button>
             </div>
           </form>
         </div>
@@ -136,18 +136,18 @@ export default function GalleryPage() {
               <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,.4)', opacity: 0, transition: 'opacity .2s', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}
                 onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
                 onMouseLeave={e => (e.currentTarget.style.opacity = '0')}>
-                <button onClick={() => openEdit(item)} className="btn-ghost btn-sm">Sua</button>
-                <button onClick={() => handleDelete(item.id)} className="btn-danger btn-sm">Xoa</button>
+                <button onClick={() => openEdit(item)} className="btn-ghost btn-sm">Sửa</button>
+                <button onClick={() => handleDelete(item.id)} className="btn-danger btn-sm">Xóa</button>
               </div>
             </div>
             <div style={{ padding: '10px 12px' }}>
-              <div style={{ fontSize: 13, fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.title || 'Khong co tieu de'}</div>
+              <div style={{ fontSize: 13, fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.title || 'Không có tiêu đề'}</div>
               {item.category && <div style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 2 }}>{item.category}</div>}
             </div>
           </div>
         ))}
       </div>
-      {items.length === 0 && <div className="empty-state"><div className="empty-state-icon">📸</div><div className="empty-state-text">Chua co anh nao. Them anh dau tien!</div></div>}
+      {items.length === 0 && <div className="empty-state"><div className="empty-state-icon">📸</div><div className="empty-state-text">Chưa có ảnh nào. Thêm ảnh đầu tiên!</div></div>}
     </div>
   )
 }

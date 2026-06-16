@@ -87,6 +87,24 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.vn** — chuyên chuy�
     }, [asyncData])  // ← dependency là async data, không phải []
     ```
     Trong `HomePage` nếu có nhiều async data: `useReveal([services, team, testimonials])` thay vì `useReveal([])`. — TypeScript infer union type từ array `menu` và báo lỗi TS2339 khi access `link.exact` hay `link.badge`. Fix bắt buộc: khai báo `interface NavLinkItem { to: string; icon: string; label: string; exact?: boolean; badge?: number }` và type array: `links: NavLinkItem[]`.
+27. **`admin/src/main.tsx` BẮT BUỘC phải có `BrowserRouter basename="/admin"` và `AuthProvider`** — thiếu → `useAuth()` ném Error "useAuth must be used within AuthProvider" ngay khi mount → admin crash hoàn toàn, không render được gì. Pattern chuẩn:
+    ```tsx
+    import { BrowserRouter } from 'react-router-dom'
+    import { AuthProvider } from './contexts/AuthContext'
+    
+    createRoot(document.getElementById('root')!).render(
+      <StrictMode>
+        <BrowserRouter basename="/admin">
+          <AuthProvider>
+            <App />
+          </AuthProvider>
+        </BrowserRouter>
+      </StrictMode>,
+    )
+    ```
+    - `basename="/admin"` bắt buộc vì admin deploy tại `/admin/` URL path
+    - Thiếu `BrowserRouter` → `Routes`/`Route` crash với "You rendered a Route outside a Router"
+    - Thiếu `AuthProvider` → `useAuth()` trong `RequireAuth` ném Error → toàn bộ app crash
 
 ---
 
@@ -1357,6 +1375,7 @@ cd Sources/WebDeploy/[slug]/admin  && npm install && npm run build
 □ api/src/Database.php có seedTemplateData() với data thực từ template
 □ api/src/bootstrap.php đăng ký đủ routes cho mọi entity
 □ admin/src/components/layout/Sidebar.tsx menu khớp template nav — footer có NavLink đến /profile — outer div PHẢI là `className="admin-sidebar"`, section title PHẢI là `className="sidebar-section"`
+□ admin/src/main.tsx — PHẢI có `BrowserRouter basename="/admin"` và `AuthProvider` bọc ngoài `App`. Thiếu → admin crash ngay khi load (useAuth throws, Routes crash)
 □ admin/src/pages/login/LoginPage.tsx — PHẢI có `useNavigate` + `navigate('/', { replace: true })` sau khi login thành công (thiếu → user login xong bị kẹt ở /login)
 □ website/index.html — PHẢI có Bootstrap CSS CDN (`cdn.jsdelivr.net/npm/bootstrap@5.3.3/...`). Thiếu → mọi `row`, `col-*`, `g-*` không có style → layout vỡ hoàn toàn từ section dùng grid trở xuống
 □ admin/src/pages/profile/ProfilePage.tsx tồn tại với form đổi mật khẩu

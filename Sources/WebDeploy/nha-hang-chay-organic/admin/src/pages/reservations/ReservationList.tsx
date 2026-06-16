@@ -9,16 +9,16 @@ interface Reservation {
   date: string
   time: string
   guests: number
-  menu_pkg: string
+  occasion: string
   note: string
   status: string
   created_at: string
 }
 
 const STATUS_LABELS: Record<string, string> = {
-  pending: 'Cho xu ly',
-  confirmed: 'Da xac nhan',
-  cancelled: 'Da huy',
+  pending: 'Chờ xử lý',
+  confirmed: 'Đã xác nhận',
+  cancelled: 'Đã hủy',
 }
 
 export default function ReservationList() {
@@ -45,40 +45,42 @@ export default function ReservationList() {
   }
 
   async function handleDelete(id: number) {
-    if (!confirm('Xoa don dat ban nay?')) return
+    if (!confirm('Xóa đơn đặt bàn này?')) return
     await api.delete(`/reservations/${id}`)
     setDetail(null); load()
   }
 
   const filtered = items.filter(i =>
     !filter ||
-    i.name.toLowerCase().includes(filter.toLowerCase()) ||
-    i.phone.includes(filter) ||
-    i.date.includes(filter)
+    ['pending','confirmed','cancelled'].includes(filter) ? i.status === filter || filter === '' :
+    (
+      i.name.toLowerCase().includes(filter.toLowerCase()) ||
+      i.phone.includes(filter) ||
+      i.date.includes(filter)
+    )
   )
 
-  if (loading) return <div className="admin-loading">Dang tai...</div>
+  if (loading) return <div className="admin-loading">Đang tải...</div>
 
   return (
     <div>
       <div className="page-header">
         <div>
-          <div className="page-title">Quan ly dat ban</div>
-          <div className="page-sub">{items.length} don dat ban</div>
+          <div className="page-title">Quản lý đặt bàn</div>
+          <div className="page-sub">{items.length} đơn đặt bàn</div>
         </div>
       </div>
 
       {/* Filter tabs */}
-      <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' }}>
-        {['', 'pending', 'confirmed', 'cancelled'].map(s => (
+      <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap', alignItems: 'center' }}>
+        {(['', 'pending', 'confirmed', 'cancelled'] as const).map(s => (
           <button key={s} onClick={() => setFilter(s)}
             className={filter === s ? 'btn-accent btn-sm' : 'btn-ghost btn-sm'}>
-            {s === '' ? 'Tat ca' : STATUS_LABELS[s]}
+            {s === '' ? 'Tất cả' : STATUS_LABELS[s]}
             <span style={{ marginLeft: 4, opacity: .7 }}>({items.filter(i => s === '' || i.status === s).length})</span>
           </button>
         ))}
-        <input type="text" className="form-control" placeholder="Tim kiem ten, sdt, ngay..."
-          value={typeof filter === 'string' && !['pending','confirmed','cancelled',''].includes(filter) ? filter : ''}
+        <input type="text" className="form-control" placeholder="Tìm kiếm tên, SĐT, ngày..."
           onChange={e => setFilter(e.target.value)}
           style={{ maxWidth: 220, marginLeft: 8 }} />
       </div>
@@ -88,12 +90,12 @@ export default function ReservationList() {
           <table>
             <thead>
               <tr>
-                <th>Khach hang</th>
-                <th>Ngay & Gio</th>
-                <th>So khach</th>
-                <th>Goi menu</th>
-                <th>Trang thai</th>
-                <th>Thao tac</th>
+                <th>Khách hàng</th>
+                <th>Ngày & Giờ</th>
+                <th>Số khách</th>
+                <th>Dịp đặc biệt</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
               </tr>
             </thead>
             <tbody>
@@ -108,50 +110,50 @@ export default function ReservationList() {
                     <div style={{ fontWeight: 500 }}>{r.date}</div>
                     <div style={{ fontSize: 13, color: 'var(--text-2)' }}>{r.time}</div>
                   </td>
-                  <td>{r.guests} nguoi</td>
-                  <td style={{ fontSize: 12, color: 'var(--text-2)', maxWidth: 140 }}>{r.menu_pkg || '—'}</td>
+                  <td>{r.guests} người</td>
+                  <td style={{ fontSize: 12, color: 'var(--text-2)', maxWidth: 140 }}>{r.occasion || '—'}</td>
                   <td><span className={`badge badge-${r.status}`}>{STATUS_LABELS[r.status] ?? r.status}</span></td>
                   <td onClick={e => e.stopPropagation()}>
                     <div style={{ display: 'flex', gap: 6 }}>
-                      {r.status === 'pending' && <button onClick={() => updateStatus(r.id, 'confirmed')} className="btn-accent btn-sm" disabled={updating}>Xac nhan</button>}
-                      {r.status !== 'cancelled' && <button onClick={() => updateStatus(r.id, 'cancelled')} className="btn-danger btn-sm" disabled={updating}>Huy</button>}
-                      <button onClick={() => handleDelete(r.id)} className="btn-ghost btn-sm">Xoa</button>
+                      {r.status === 'pending' && <button onClick={() => updateStatus(r.id, 'confirmed')} className="btn-accent btn-sm" disabled={updating}>Xác nhận</button>}
+                      {r.status !== 'cancelled' && <button onClick={() => updateStatus(r.id, 'cancelled')} className="btn-danger btn-sm" disabled={updating}>Hủy</button>}
+                      <button onClick={() => handleDelete(r.id)} className="btn-ghost btn-sm">Xóa</button>
                     </div>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          {filtered.length === 0 && <div className="empty-state"><div className="empty-state-icon">📅</div><div className="empty-state-text">Khong co don dat ban nao.</div></div>}
+          {filtered.length === 0 && <div className="empty-state"><div className="empty-state-icon">📅</div><div className="empty-state-text">Không có đơn đặt bàn nào.</div></div>}
         </div>
 
         {detail && (
           <div className="card" style={{ alignSelf: 'start', position: 'sticky', top: 20 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
-              <div style={{ fontWeight: 600 }}>Chi tiet dat ban #{detail.id}</div>
+              <div style={{ fontWeight: 600 }}>Chi tiết đặt bàn #{detail.id}</div>
               <button onClick={() => setDetail(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 18 }}>×</button>
             </div>
-            {[
-              ['Ten khach', detail.name],
-              ['Dien thoai', detail.phone],
+            {([
+              ['Tên khách', detail.name],
+              ['Điện thoại', detail.phone],
               ['Email', detail.email || '—'],
-              ['Ngay', detail.date],
-              ['Gio', detail.time],
-              ['So khach', String(detail.guests) + ' nguoi'],
-              ['Goi menu', detail.menu_pkg || '—'],
-              ['Ghi chu', detail.note || '—'],
-              ['Trang thai', STATUS_LABELS[detail.status] ?? detail.status],
-              ['Ngay gui', new Date(detail.created_at).toLocaleDateString('vi-VN')],
-            ].map(([label, value]) => (
+              ['Ngày', detail.date],
+              ['Giờ', detail.time],
+              ['Số khách', String(detail.guests) + ' người'],
+              ['Dịp đặc biệt', detail.occasion || '—'],
+              ['Ghi chú', detail.note || '—'],
+              ['Trạng thái', STATUS_LABELS[detail.status] ?? detail.status],
+              ['Ngày gửi', new Date(detail.created_at).toLocaleDateString('vi-VN')],
+            ] as [string, string][]).map(([label, value]) => (
               <div key={label} style={{ display: 'flex', gap: 8, padding: '8px 0', borderBottom: '1px solid var(--border-light)' }}>
                 <div style={{ fontSize: 12, color: 'var(--text-3)', width: 100, flexShrink: 0 }}>{label}</div>
                 <div style={{ fontSize: 13, flex: 1 }}>{value}</div>
               </div>
             ))}
             <div style={{ display: 'flex', gap: 8, marginTop: 16, flexWrap: 'wrap' }}>
-              {detail.status === 'pending' && <button onClick={() => updateStatus(detail.id, 'confirmed')} className="btn-accent btn-sm" disabled={updating}>Xac nhan</button>}
-              {detail.status !== 'cancelled' && <button onClick={() => updateStatus(detail.id, 'cancelled')} className="btn-danger btn-sm" disabled={updating}>Huy don</button>}
-              <button onClick={() => handleDelete(detail.id)} className="btn-ghost btn-sm">Xoa</button>
+              {detail.status === 'pending' && <button onClick={() => updateStatus(detail.id, 'confirmed')} className="btn-accent btn-sm" disabled={updating}>Xác nhận</button>}
+              {detail.status !== 'cancelled' && <button onClick={() => updateStatus(detail.id, 'cancelled')} className="btn-danger btn-sm" disabled={updating}>Hủy đơn</button>}
+              <button onClick={() => handleDelete(detail.id)} className="btn-ghost btn-sm">Xóa</button>
             </div>
           </div>
         )}

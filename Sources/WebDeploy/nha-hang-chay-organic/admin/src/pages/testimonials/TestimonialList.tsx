@@ -25,21 +25,21 @@ export default function TestimonialList() {
   }
 
   async function handleDelete(id: number) {
-    if (!confirm('Xoa danh gia nay?')) return
+    if (!confirm('Xóa đánh giá này?')) return
     await api.delete(`/testimonials/${id}`)
     load()
   }
 
-  if (loading) return <div className="admin-loading">Dang tai...</div>
+  if (loading) return <div className="admin-loading">Đang tải...</div>
 
   return (
     <div>
       <div className="page-header">
         <div>
-          <div className="page-title">Danh gia khach hang</div>
-          <div className="page-sub">{items.length} danh gia</div>
+          <div className="page-title">Đánh giá khách hàng</div>
+          <div className="page-sub">{items.length} đánh giá</div>
         </div>
-        <Link to="/testimonials/new" className="btn-accent">+ Them danh gia</Link>
+        <Link to="/testimonials/new" className="btn-accent">+ Thêm đánh giá</Link>
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -59,14 +59,14 @@ export default function TestimonialList() {
               <div style={{ fontSize: 13, color: 'var(--text-2)', fontStyle: 'italic', lineHeight: 1.6 }}>"{item.content}"</div>
             </div>
             <div style={{ display: 'flex', gap: 8, flexShrink: 0, alignItems: 'center' }}>
-              <span className={`badge badge-${item.status}`}>{item.status === 'published' ? 'Hien' : 'An'}</span>
-              <Link to={`/testimonials/${item.id}/edit`} className="btn-ghost btn-sm">Sua</Link>
-              <button onClick={() => handleDelete(item.id)} className="btn-danger btn-sm">Xoa</button>
+              <span className={`badge badge-${item.status}`}>{item.status === 'published' ? 'Hiển thị' : 'Ẩn'}</span>
+              <Link to={`/testimonials/${item.id}/edit`} className="btn-ghost btn-sm">Sửa</Link>
+              <button onClick={() => handleDelete(item.id)} className="btn-danger btn-sm">Xóa</button>
             </div>
           </div>
         ))}
       </div>
-      {items.length === 0 && <div className="empty-state"><div className="empty-state-icon">⭐</div><div className="empty-state-text">Chua co danh gia nao.</div></div>}
+      {items.length === 0 && <div className="empty-state"><div className="empty-state-icon">⭐</div><div className="empty-state-text">Chưa có đánh giá nào.</div></div>}
     </div>
   )
 }

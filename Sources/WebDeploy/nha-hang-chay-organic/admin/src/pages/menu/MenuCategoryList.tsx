@@ -56,7 +56,7 @@ export default function MenuCategoryList() {
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault()
-    if (!form.name.trim()) { setError('Ten danh muc la bat buoc.'); return }
+    if (!form.name.trim()) { setError('Tên danh mục là bắt buộc.'); return }
     setSaving(true); setError('')
     try {
       if (editing) {
@@ -66,60 +66,60 @@ export default function MenuCategoryList() {
       }
       setShowForm(false); load()
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Luu that bai.')
+      setError(err instanceof Error ? err.message : 'Lưu thất bại.')
     } finally { setSaving(false) }
   }
 
   async function handleDelete(id: number) {
-    if (!confirm('Xoa danh muc nay? Cac mon an trong danh muc se khong bi xoa nhung se mat danh muc.')) return
+    if (!confirm('Xóa danh mục này? Các món ăn trong danh mục sẽ không bị xóa nhưng sẽ mất danh mục.')) return
     await api.delete(`/menu-categories/${id}`)
     load()
   }
 
-  if (loading) return <div className="admin-loading">Dang tai...</div>
+  if (loading) return <div className="admin-loading">Đang tải...</div>
 
   return (
     <div>
       <div className="page-header">
         <div>
-          <div className="page-title">Danh muc thuc don</div>
-          <div className="page-sub">{cats.length} danh muc</div>
+          <div className="page-title">Danh mục thực đơn</div>
+          <div className="page-sub">{cats.length} danh mục</div>
         </div>
-        <button onClick={openNew} className="btn-accent">+ Them danh muc</button>
+        <button onClick={openNew} className="btn-accent">+ Thêm danh mục</button>
       </div>
 
       {showForm && (
         <div className="card" style={{ marginBottom: 24 }}>
-          <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 16 }}>{editing ? 'Chinh sua danh muc' : 'Them danh muc moi'}</div>
+          <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 16 }}>{editing ? 'Chỉnh sửa danh mục' : 'Thêm danh mục mới'}</div>
           {error && <div className="alert alert-error">{error}</div>}
           <form onSubmit={handleSave}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
               <div className="form-group">
-                <label className="form-label">Ten danh muc *</label>
-                <input type="text" className="form-control" value={form.name} onChange={e => set('name', e.target.value)} placeholder="Vd: Entree" required />
+                <label className="form-label">Tên danh mục *</label>
+                <input type="text" className="form-control" value={form.name} onChange={e => set('name', e.target.value)} placeholder="Vd: Khai Vị" required />
               </div>
               <div className="form-group">
-                <label className="form-label">Trang thai</label>
+                <label className="form-label">Trạng thái</label>
                 <select className="form-control" value={form.status} onChange={e => set('status', e.target.value)}>
-                  <option value="published">Hien thi</option>
-                  <option value="draft">An</option>
+                  <option value="published">Hiển thị</option>
+                  <option value="draft">Ẩn</option>
                 </select>
               </div>
             </div>
             <div className="form-group">
-              <label className="form-label">Mo ta</label>
-              <input type="text" className="form-control" value={form.description} onChange={e => set('description', e.target.value)} placeholder="Mo ta ngan ve danh muc" />
+              <label className="form-label">Mô tả</label>
+              <input type="text" className="form-control" value={form.description} onChange={e => set('description', e.target.value)} placeholder="Mô tả ngắn về danh mục" />
             </div>
             <div className="form-group">
-              <label className="form-label">Thu tu</label>
+              <label className="form-label">Thứ tự</label>
               <input type="number" className="form-control" value={form.sort_order} onChange={e => set('sort_order', parseInt(e.target.value) || 0)} min={0} style={{ maxWidth: 120 }} />
             </div>
             <div className="form-group">
-              <ImageField label="Anh dai dien" value={form.image} onChange={v => set('image', v)} />
+              <ImageField label="Ảnh đại diện" value={form.image} onChange={v => set('image', v)} />
             </div>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end' }}>
-              <button type="button" onClick={() => setShowForm(false)} className="btn-ghost">Huy</button>
-              <button type="submit" className="btn-accent" disabled={saving}>{saving ? 'Dang luu...' : (editing ? 'Cap nhat' : 'Them moi')}</button>
+              <button type="button" onClick={() => setShowForm(false)} className="btn-ghost">Hủy</button>
+              <button type="submit" className="btn-accent" disabled={saving}>{saving ? 'Đang lưu...' : (editing ? 'Cập nhật' : 'Thêm mới')}</button>
             </div>
           </form>
         </div>
@@ -129,11 +129,11 @@ export default function MenuCategoryList() {
         <table>
           <thead>
             <tr>
-              <th>Ten danh muc</th>
-              <th>So luong mon</th>
-              <th>Thu tu</th>
-              <th>Trang thai</th>
-              <th>Thao tac</th>
+              <th>Tên danh mục</th>
+              <th>Số lượng món</th>
+              <th>Thứ tự</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
             </tr>
           </thead>
           <tbody>
@@ -143,20 +143,20 @@ export default function MenuCategoryList() {
                   <div style={{ fontWeight: 500 }}>{cat.name}</div>
                   {cat.description && <div style={{ fontSize: 12, color: 'var(--text-3)' }}>{cat.description}</div>}
                 </td>
-                <td>{cat.item_count} mon</td>
+                <td>{cat.item_count} món</td>
                 <td>{cat.sort_order}</td>
-                <td><span className={`badge badge-${cat.status}`}>{cat.status === 'published' ? 'Hien' : 'An'}</span></td>
+                <td><span className={`badge badge-${cat.status}`}>{cat.status === 'published' ? 'Hiển thị' : 'Ẩn'}</span></td>
                 <td>
                   <div style={{ display: 'flex', gap: 8 }}>
-                    <button onClick={() => openEdit(cat)} className="btn-ghost btn-sm">Sua</button>
-                    <button onClick={() => handleDelete(cat.id)} className="btn-danger btn-sm">Xoa</button>
+                    <button onClick={() => openEdit(cat)} className="btn-ghost btn-sm">Sửa</button>
+                    <button onClick={() => handleDelete(cat.id)} className="btn-danger btn-sm">Xóa</button>
                   </div>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-        {cats.length === 0 && <div className="empty-state"><div className="empty-state-icon">📂</div><div className="empty-state-text">Chua co danh muc nao.</div></div>}
+        {cats.length === 0 && <div className="empty-state"><div className="empty-state-icon">📂</div><div className="empty-state-text">Chưa có danh mục nào.</div></div>}
       </div>
     </div>
   )
