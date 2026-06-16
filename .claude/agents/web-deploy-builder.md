@@ -731,6 +731,14 @@ class MenuItemController {
 > ⚠️ **BẮT BUỘC**: Phải khai báo `interface NavLinkItem` với `exact?` và `badge?` là optional.
 > TypeScript infer union type từ array `menu` → báo lỗi TS2339 nếu không có interface.
 
+> ⚠️ **CSS CLASS BẮT BUỘC** — phải dùng đúng các class sau (sai class → sidebar mất nền tối, layout vỡ):
+> - Outer wrapper: `className="admin-sidebar"` — **KHÔNG phải `"sidebar"`**
+> - Section title: `className="sidebar-section"` — **KHÔNG phải `"nav-section-title"`**
+> - Badge trong sidebar: `className="sidebar-badge"` — **KHÔNG phải `"badge"`**
+> - Logo wrapper: `className="sidebar-logo"` (trực tiếp con của `admin-sidebar`, không cần header wrapper)
+> - Nav links: `className="sidebar-link"` (+ `active`) ✓
+> - Footer: `className="sidebar-footer"` ✓
+
 ```tsx
 // ⚠️  PHẢI có interface này — thiếu → TS2339 "Property 'exact' does not exist..."
 interface NavLinkItem {
@@ -745,6 +753,36 @@ interface MenuSection {
   section: string
   links: NavLinkItem[]  // ← type rõ ràng, không để TypeScript tự infer union
 }
+
+// ⚠️  JSX structure BẮT BUỘC — sai class → sidebar trắng, layout vỡ
+return (
+  <div className="admin-sidebar">           {/* ← PHẢI là admin-sidebar, không phải sidebar */}
+    <div className="sidebar-logo">
+      <span>🍜</span>
+      <div>...</div>
+    </div>
+    <nav style={{ flex: 1, overflowY: 'auto', padding: '8px 0' }}>
+      {menuStructure.map(section => (
+        <div key={section.section}>
+          <div className="sidebar-section">{section.section}</div>   {/* ← sidebar-section, không phải nav-section-title */}
+          {section.links.map(link => (
+            <NavLink key={link.to} to={link.to} end={link.exact}
+              className={({ isActive }) => `sidebar-link${isActive ? ' active' : ''}`}>
+              <span className="icon">{link.icon}</span>
+              <span style={{ flex: 1 }}>{link.label}</span>
+              {link.badge != null && link.badge > 0 && (
+                <span className="sidebar-badge">{link.badge}</span>  {/* ← sidebar-badge, không phải badge */}
+              )}
+            </NavLink>
+          ))}
+        </div>
+      ))}
+    </nav>
+    <div className="sidebar-footer">
+      {/* profile + logout */}
+    </div>
+  </div>
+)
 
 // Ví dụ cho nhà hàng: nav có Trang chủ | Thực đơn | Đặt bàn | Liên hệ
 const menuStructure: MenuSection[] = [
@@ -1225,6 +1263,30 @@ RewriteRule ^ index.html [L]
 
 ## Bước 8 — package.json cho cả website và admin
 
+### website/index.html — BẮT BUỘC có Bootstrap CSS CDN
+
+> ⚠️ **BẮT BUỘC**: `website/index.html` PHẢI có Bootstrap 5.3.3 CSS CDN. Mọi component website dùng `row`, `col-md-*`, `col-lg-*`, `g-*` — thiếu Bootstrap → layout vỡ hoàn toàn từ section đầu tiên dùng grid.
+> Dùng Bunny Fonts thay Google Fonts (đã áp dụng cho font), nhưng Bootstrap CSS vẫn dùng jsDelivr (không bị block).
+
+```html
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[Tên website]</title>
+  <meta name="description" content="[mô tả]" />
+  <link rel="preconnect" href="https://fonts.bunny.net" />
+  <link href="https://fonts.bunny.net/css?family=dm-sans:300,300i,400,400i,500,500i,600,600i&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>
+```
+
 ### vite-env.d.ts — bắt buộc cho cả website và admin
 Tạo file `src/vite-env.d.ts` trong cả hai project:
 ```ts
@@ -1294,7 +1356,9 @@ cd Sources/WebDeploy/[slug]/admin  && npm install && npm run build
 □ api/src/Database.php — migrate() có check file_get_contents trả về false
 □ api/src/Database.php có seedTemplateData() với data thực từ template
 □ api/src/bootstrap.php đăng ký đủ routes cho mọi entity
-□ admin/src/components/layout/Sidebar.tsx menu khớp template nav — footer có NavLink đến /profile
+□ admin/src/components/layout/Sidebar.tsx menu khớp template nav — footer có NavLink đến /profile — outer div PHẢI là `className="admin-sidebar"`, section title PHẢI là `className="sidebar-section"`
+□ admin/src/pages/login/LoginPage.tsx — PHẢI có `useNavigate` + `navigate('/', { replace: true })` sau khi login thành công (thiếu → user login xong bị kẹt ở /login)
+□ website/index.html — PHẢI có Bootstrap CSS CDN (`cdn.jsdelivr.net/npm/bootstrap@5.3.3/...`). Thiếu → mọi `row`, `col-*`, `g-*` không có style → layout vỡ hoàn toàn từ section dùng grid trở xuống
 □ admin/src/pages/profile/ProfilePage.tsx tồn tại với form đổi mật khẩu
 □ admin/src/App.tsx có route /profile → ProfilePage
 □ api/src/controllers/UserController.php có method changePassword

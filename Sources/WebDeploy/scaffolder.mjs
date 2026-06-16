@@ -45,11 +45,14 @@ console.log(`    Type : ${type}`)
 console.log(`    Output: ${outputDir}\n`)
 
 // ── Step 1: Copy scaffold files ──────────────────────────────────────────────
-console.log('[1/4] Copying core files from _scaffold/...')
-cpSync(scaffoldDir, outputDir, { recursive: true })
+console.log('[1/5] Copying core files from _scaffold/...')
+cpSync(scaffoldDir, outputDir, {
+  recursive: true,
+  filter: (src) => !src.includes('_scaffold' + (process.platform === 'win32' ? '\\' : '/') + 'types'),
+})
 
 // ── Step 2: Replace {{SLUG}} placeholders ────────────────────────────────────
-console.log('[2/4] Replacing {{SLUG}} placeholders...')
+console.log('[2/5] Replacing {{SLUG}} placeholders...')
 const PLACEHOLDER_FILES = [
   'api/src/Auth.php',
   'admin/package.json',
@@ -70,10 +73,40 @@ for (const rel of PLACEHOLDER_FILES) {
   }
 }
 
-// ── Step 3: Create AI placeholder files ──────────────────────────────────────
-console.log('[3/4] Creating placeholder files for AI to fill...')
+// ── Step 3: Copy common type files (HeroSlide pages, ContactList) ────────────
+console.log('[3/5] Copying common type files...')
+const commonTypesDir = join(root, '_scaffold', 'types', '_common')
+if (existsSync(commonTypesDir)) {
+  cpSync(commonTypesDir, outputDir, { recursive: true })
+  console.log('    ✓ HeroSlideList.tsx, HeroSlideForm.tsx, ContactList.tsx')
+}
+
+// ── Step 4: Copy type-specific scaffold files ─────────────────────────────────
+console.log('[4/5] Copying type-specific scaffold files...')
+
+const TYPE_GROUP_MAP = {
+  restaurant: 'restaurant',
+  cafe: 'cafe',
+  'spa-service': 'spa',
+  spa: 'spa',
+  portfolio: 'portfolio',
+  company: 'company',
+  blog: 'blog',
+}
+const typeGroup = TYPE_GROUP_MAP[type]
+const typeDir = join(root, '_scaffold', 'types', typeGroup)
+if (existsSync(typeDir)) {
+  cpSync(typeDir, outputDir, { recursive: true })
+  console.log(`    ✓ Type-specific files for "${typeGroup}"`)
+} else {
+  console.log(`    ℹ No pre-built scaffold for type "${typeGroup}" — AI will generate all entity files`)
+}
+
+// ── Step 5: Create AI placeholder files ──────────────────────────────────────
+console.log('[5/5] Creating placeholder files for AI to fill...')
 
 // Files AI must generate (common to all types)
+// Note: HeroSlideList, HeroSlideForm, ContactList are now scaffolded — removed from AI list
 const AI_COMMON = [
   'api/schema.sql',
   'api/src/Database.php',
@@ -84,9 +117,6 @@ const AI_COMMON = [
   'admin/src/components/layout/Sidebar.tsx',
   'admin/src/pages/dashboard/Dashboard.tsx',
   'admin/src/pages/settings/Settings.tsx',
-  'admin/src/pages/contacts/ContactList.tsx',
-  'admin/src/pages/slides/HeroSlideList.tsx',
-  'admin/src/pages/slides/HeroSlideForm.tsx',
   'website/index.html',
   'website/src/App.tsx',
   'website/src/styles/template.css',
@@ -97,18 +127,13 @@ const AI_COMMON = [
   'README.md',
 ]
 
-// Entity files per type
+// Entity files per type — only files NOT already scaffolded from _scaffold/types/
 const TYPE_ENTITIES = {
   cafe: {
-    controllers: ['MenuCategoryController', 'MenuItemController', 'GalleryController', 'TestimonialController'],
-    admin: [
-      'admin/src/pages/menu/MenuCategoryList.tsx',
-      'admin/src/pages/menu/MenuItemList.tsx',
-      'admin/src/pages/menu/MenuItemForm.tsx',
-      'admin/src/pages/gallery/GalleryPage.tsx',
-      'admin/src/pages/testimonials/TestimonialList.tsx',
-      'admin/src/pages/testimonials/TestimonialForm.tsx',
-    ],
+    // All controllers scaffolded from _scaffold/types/cafe/
+    controllers: [],
+    // All admin pages scaffolded from _scaffold/types/cafe/
+    admin: [],
     website: [
       'website/src/components/Menu.tsx',
       'website/src/components/Gallery.tsx',
@@ -117,16 +142,10 @@ const TYPE_ENTITIES = {
     ],
   },
   restaurant: {
-    controllers: ['MenuCategoryController', 'MenuItemController', 'ReservationController', 'GalleryController', 'TestimonialController'],
-    admin: [
-      'admin/src/pages/menu/MenuCategoryList.tsx',
-      'admin/src/pages/menu/MenuItemList.tsx',
-      'admin/src/pages/menu/MenuItemForm.tsx',
-      'admin/src/pages/reservations/ReservationList.tsx',
-      'admin/src/pages/gallery/GalleryPage.tsx',
-      'admin/src/pages/testimonials/TestimonialList.tsx',
-      'admin/src/pages/testimonials/TestimonialForm.tsx',
-    ],
+    // All controllers scaffolded from _scaffold/types/restaurant/
+    controllers: [],
+    // All admin pages scaffolded from _scaffold/types/restaurant/
+    admin: [],
     website: [
       'website/src/components/Menu.tsx',
       'website/src/components/Reservation.tsx',
@@ -247,8 +266,8 @@ for (const rel of allAiFiles) {
   }
 }
 
-// ── Step 4: Summary ──────────────────────────────────────────────────────────
-console.log('\n[4/4] Done!\n')
+// ── Summary ──────────────────────────────────────────────────────────────────
+console.log('\n[Done!]\n')
 console.log('─'.repeat(60))
 console.log(`✅  Scaffold created: Sources/WebDeploy/${slug}/`)
 console.log(`    Core files copied  : ${PLACEHOLDER_FILES.length + 20}+ files (ready to use)`)
@@ -257,5 +276,5 @@ console.log('─'.repeat(60))
 console.log('\n📋  Files AI (web-deploy-builder) must fill:')
 allAiFiles.forEach(f => console.log(`    • ${f}`))
 console.log('\n🤖  Run web-deploy-builder agent with:')
-console.log(`    "Tạo website cho ${slug} (type: ${type}). Scaffold đã được tạo tại Sources/WebDeploy/${slug}/. Chỉ cần fill các TODO files."`)
+console.log(`    "Tao website cho ${slug} (type: ${type}). Scaffold da duoc tao tai Sources/WebDeploy/${slug}/. Chi can fill cac TODO files."`)
 console.log('')
