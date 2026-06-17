@@ -22,7 +22,7 @@ class Auth {
                 'httponly' => true,
                 'samesite' => 'Lax',
             ]);
-            session_name('am-thuc_sess');  // unique per site — tránh collision trên shared hosting
+            session_name('AmThuc');  // unique per site — tránh collision trên shared hosting
             session_start();
         }
     }

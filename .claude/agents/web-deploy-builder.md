@@ -87,7 +87,28 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.vn** — chuyên chuy�
     }, [asyncData])  // ← dependency là async data, không phải []
     ```
     Trong `HomePage` nếu có nhiều async data: `useReveal([services, team, testimonials])` thay vì `useReveal([])`. — TypeScript infer union type từ array `menu` và báo lỗi TS2339 khi access `link.exact` hay `link.badge`. Fix bắt buộc: khai báo `interface NavLinkItem { to: string; icon: string; label: string; exact?: boolean; badge?: number }` và type array: `links: NavLinkItem[]`.
-27. **`admin/src/main.tsx` BẮT BUỘC phải có `BrowserRouter basename="/admin"` và `AuthProvider`** — thiếu → `useAuth()` ném Error "useAuth must be used within AuthProvider" ngay khi mount → admin crash hoàn toàn, không render được gì. Pattern chuẩn:
+27. **`build.mjs` BẮT BUỘC strip UTF-8 BOM khỏi toàn bộ PHP files sau khi copy vào `deploy/api/`** — PHP 8 gặp BOM (`\xEF\xBB\xBF`) trước `<?php` → fatal error "strict_types declaration must be the very first statement" dù code hoàn toàn đúng. Nguyên nhân: một số editor (Notepad, VSCode với setting sai) lưu file UTF-8 có BOM. Pattern chuẩn phải có trong mọi `build.mjs`:
+    ```js
+    import { statSync } from 'fs'
+    const BOM = Buffer.from([0xEF, 0xBB, 0xBF])
+    function stripBomDir(dir) {
+      let count = 0
+      function walk(d) {
+        for (const name of readdirSync(d)) {
+          const full = join(d, name)
+          if (statSync(full).isDirectory()) { walk(full); continue }
+          if (!name.endsWith('.php')) continue
+          const buf = readFileSync(full)
+          if (buf.slice(0, 3).equals(BOM)) { writeFileSync(full, buf.slice(3)); count++ }
+        }
+      }
+      walk(dir)
+      if (count) console.log(`  Strip BOM: ${count} file(s) fixed`)
+    }
+    // Gọi sau khi copy API files:
+    stripBomDir(join(deploy, 'api'))
+    ```
+28. **`admin/src/main.tsx` BẮT BUỘC phải có `BrowserRouter basename="/admin"` và `AuthProvider`** — thiếu → `useAuth()` ném Error "useAuth must be used within AuthProvider" ngay khi mount → admin crash hoàn toàn, không render được gì. Pattern chuẩn:
     ```tsx
     import { BrowserRouter } from 'react-router-dom'
     import { AuthProvider } from './contexts/AuthContext'
@@ -462,9 +483,9 @@ define('DB_PASS', 'mat_khau');
 
 // ─── APP ─────────────────────────────────────────────────────────────────────
 // ⚠️  Sửa APP_URL thành URL thực của hosting (không có dấu / cuối)
-define('APP_URL', 'https://example.com');
-define('APP_ENV', 'production');
-// ⚠️  Sửa APP_KEY thành chuỗi ngẫu nhiên 32 ký tự
+define('APP_URL', 'http://localhost:8081');
+define('APP_ENV', 'development');
+// ⚠️  APP_KEY được auto-generate bởi build.mjs — không cần sửa thủ công
 define('APP_KEY', 'change-this-to-random-32-chars-string');
 
 // ─── CORS ────────────────────────────────────────────────────────────────────
@@ -1386,6 +1407,7 @@ cd Sources/WebDeploy/[slug]/admin  && npm install && npm run build
 □ website/src/styles/template.css là bản copy từ template
 □ website/src/components có đủ component cho mọi section của template
 □ build.mjs copy config.php vào deploy/api/ (KHÔNG nằm trong skipApi set)
+□ build.mjs có hàm `stripBomDir` và gọi sau khi copy API files — BOM trước `<?php` gây PHP fatal error
 □ build.bat và build.sh tồn tại
 □ README.md tồn tại với hướng dẫn deploy
 ```

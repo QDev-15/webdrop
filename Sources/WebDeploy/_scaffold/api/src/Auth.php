@@ -22,7 +22,7 @@ class Auth {
                 'httponly' => true,
                 'samesite' => 'Lax',
             ]);
-            session_name('{{SLUG}}_sess');  // unique per site — tránh collision trên shared hosting
+            session_name('{{SLUG_SESSION}}');  // unique per site — must be alphanumeric only (PHP 8 rejects hyphens)
             session_start();
         }
     }

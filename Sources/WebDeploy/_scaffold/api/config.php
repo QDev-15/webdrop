@@ -19,8 +19,8 @@ define('DB_PASS', 'mat_khau');
 
 // ─── APP ─────────────────────────────────────────────────────────────────────
 // ⚠️  Sửa APP_URL thành URL thực của hosting (không có dấu / cuối)
-define('APP_URL', 'https://example.com');
-define('APP_ENV', 'production');
+define('APP_URL', 'http://localhost:8081');
+define('APP_ENV', 'development');
 // ⚠️  APP_KEY được auto-generate bởi build.mjs — không cần sửa thủ công
 define('APP_KEY', 'change-this-to-random-32-chars-string');
 

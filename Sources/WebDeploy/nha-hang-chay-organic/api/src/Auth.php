@@ -22,7 +22,7 @@ class Auth {
                 'httponly' => true,
                 'samesite' => 'Lax',
             ]);
-            session_name('nha-hang-chay-organic_sess');  // unique per site — tránh collision trên shared hosting
+            session_name('NhaHangChayOrganic');  // unique per site — tránh collision trên shared hosting
             session_start();
         }
     }

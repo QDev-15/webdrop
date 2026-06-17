@@ -53,6 +53,10 @@ cpSync(scaffoldDir, outputDir, {
 
 // ── Step 2: Replace {{SLUG}} placeholders ────────────────────────────────────
 console.log('[2/5] Replacing {{SLUG}} placeholders...')
+
+// PHP session_name() requires alphanumeric only — no hyphens or underscores
+const slugSession = slug.split(/[-_]/).map(p => p.charAt(0).toUpperCase() + p.slice(1)).join('')
+
 const PLACEHOLDER_FILES = [
   'api/src/Auth.php',
   'admin/package.json',
@@ -67,7 +71,7 @@ for (const rel of PLACEHOLDER_FILES) {
   const fp = join(outputDir, rel)
   if (existsSync(fp)) {
     const original = readFileSync(fp, 'utf8')
-    const replaced  = original.replaceAll('{{SLUG}}', slug)
+    const replaced  = original.replaceAll('{{SLUG}}', slug).replaceAll('{{SLUG_SESSION}}', slugSession)
     writeFileSync(fp, replaced)
     console.log(`    ✓ ${rel}`)
   }

@@ -1,10 +1,10 @@
-<?php
+﻿<?php
 declare(strict_types=1);
 
 class Router {
     private array $routes = [];
 
-    public function add(string $method, string $path, callable $handler): void {
+    public function add(string $method, string $path, mixed $handler): void {
         $this->routes[] = [
             'method'  => strtoupper($method),
             'path'    => $path,

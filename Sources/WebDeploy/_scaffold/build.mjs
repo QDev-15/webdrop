@@ -1,8 +1,24 @@
 import { execSync } from 'child_process'
-import { cpSync, mkdirSync, rmSync, existsSync, readdirSync, readFileSync, writeFileSync } from 'fs'
+import { cpSync, mkdirSync, rmSync, existsSync, readdirSync, readFileSync, writeFileSync, statSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { randomBytes } from 'crypto'
+
+const BOM = Buffer.from([0xEF, 0xBB, 0xBF])
+function stripBomDir(dir) {
+  let count = 0
+  function walk(d) {
+    for (const name of readdirSync(d)) {
+      const full = join(d, name)
+      if (statSync(full).isDirectory()) { walk(full); continue }
+      if (!name.endsWith('.php')) continue
+      const buf = readFileSync(full)
+      if (buf.slice(0, 3).equals(BOM)) { writeFileSync(full, buf.slice(3)); count++ }
+    }
+  }
+  walk(dir)
+  if (count) console.log(`  Strip BOM: ${count} file(s) fixed`)
+}
 
 const root   = dirname(fileURLToPath(import.meta.url))
 const deploy = join(root, 'deploy')
@@ -75,6 +91,7 @@ for (const item of readdirSync(join(root, 'api'))) {
   if (skipApi.has(item)) continue
   cpSync(join(root, 'api', item), join(deploy, 'api', item), { recursive: true })
 }
+stripBomDir(join(deploy, 'api'))
 
 // ── Hoàn thành ────────────────────────────────────────────────────────────────
 console.log('')
