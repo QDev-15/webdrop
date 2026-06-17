@@ -1,18 +1,17 @@
 import { ReactNode } from 'react'
-import { Outlet } from 'react-router-dom'
 import Sidebar from './Sidebar'
 
 interface Props {
   children?: ReactNode
 }
 
-export default function AdminLayout(_props: Props) {
+export default function AdminLayout({ children }: Props) {
   return (
     <div className="admin-layout">
       <Sidebar />
       <div className="admin-main">
         <div className="admin-content">
-          <Outlet />
+          {children}
         </div>
       </div>
     </div>
