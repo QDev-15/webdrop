@@ -1,8 +1,0 @@
-Options -Indexes
-<FilesMatch "\.(db|sqlite|sql)$">
-    Order allow,deny
-    Deny from all
-</FilesMatch>
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ index.php [L,QSA]

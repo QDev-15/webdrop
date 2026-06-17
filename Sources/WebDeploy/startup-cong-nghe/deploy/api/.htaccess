@@ -1,9 +1,0 @@
-Options -Indexes
-<FilesMatch "\.db$">
-    Order allow,deny
-    Deny from all
-</FilesMatch>
-RewriteEngine On
-RewriteRule ^database/ - [F,L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ index.php [L]

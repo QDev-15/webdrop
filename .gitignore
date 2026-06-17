@@ -23,6 +23,9 @@ Sources/products/goi-b/frontend/dist/
 # Demo build (generated — không commit)
 dist/
 
+# WebDeploy — thư mục deploy/ được generate bởi build script, không commit
+Sources/WebDeploy/*/deploy/
+
 # OS
 .DS_Store
 Thumbs.db
