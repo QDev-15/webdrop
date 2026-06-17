@@ -15,7 +15,9 @@
       "Bash(Get-ChildItem -Path \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\\\\Sources\\\\system\\\\app\" -Recurse -Directory)",
       "Bash(Select-Object -First 20)",
       "Bash(xargs grep -l \"TemplateGrid\")",
-      "Bash(xargs grep -l \"useState\")"
+      "Bash(xargs grep -l \"useState\")",
+      "Bash(node scaffolder.mjs nha-hang-nhat-ban restaurant)",
+      "Bash(node build.mjs --local)"
     ],
     "additionalDirectories": [
       "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"

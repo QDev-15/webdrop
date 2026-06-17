@@ -676,6 +676,35 @@ try {
 
 ### bootstrap.php — Đăng ký routes đủ cho template
 
+> ⚠️ **BẮT BUỘC**: `bootstrap.php` PHẢI có 2 helper functions `bodyJson()` + `slugify()` và gọi `Auth::start()` TRƯỚC khi khởi tạo DB. Thiếu → "Call to undefined function bodyJson()" khi login/submit form — toàn bộ POST endpoint bị 500.
+
+```php
+// ── helpers ───────────────────────────────────────────────────────────────────
+function bodyJson(): array {
+    static $body = null;
+    if ($body === null) {
+        $raw = file_get_contents('php://input');
+        $body = $raw ? (json_decode($raw, true) ?? []) : [];
+        if (empty($body) && !empty($_POST)) { $body = $_POST; }
+    }
+    return $body;
+}
+
+function slugify(string $text): string {
+    $text = mb_strtolower($text, 'UTF-8');
+    $map = ['à'=>'a','á'=>'a','ả'=>'a','ã'=>'a','ạ'=>'a','ă'=>'a','ắ'=>'a','ặ'=>'a','ằ'=>'a','ẳ'=>'a','ẵ'=>'a','â'=>'a','ấ'=>'a','ầ'=>'a','ẩ'=>'a','ẫ'=>'a','ậ'=>'a','è'=>'e','é'=>'e','ẻ'=>'e','ẽ'=>'e','ẹ'=>'e','ê'=>'e','ế'=>'e','ề'=>'e','ể'=>'e','ễ'=>'e','ệ'=>'e','ì'=>'i','í'=>'i','ỉ'=>'i','ĩ'=>'i','ị'=>'i','ò'=>'o','ó'=>'o','ỏ'=>'o','õ'=>'o','ọ'=>'o','ô'=>'o','ố'=>'o','ồ'=>'o','ổ'=>'o','ỗ'=>'o','ộ'=>'o','ơ'=>'o','ớ'=>'o','ờ'=>'o','ở'=>'o','ỡ'=>'o','ợ'=>'o','ù'=>'u','ú'=>'u','ủ'=>'u','ũ'=>'u','ụ'=>'u','ư'=>'u','ứ'=>'u','ừ'=>'u','ử'=>'u','ữ'=>'u','ự'=>'u','ỳ'=>'y','ý'=>'y','ỷ'=>'y','ỹ'=>'y','ỵ'=>'y','đ'=>'d'];
+    $text = strtr($text, $map);
+    $text = preg_replace('/[^a-z0-9\s-]/', '', $text);
+    $text = preg_replace('/[\s-]+/', '-', trim($text));
+    return trim($text, '-');
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+Auth::start();          // ← PHẢI gọi trước Database::getInstance()
+$db     = Database::getInstance();
+$router = new Router();
+```
+
 > ⚠️ **KHÔNG dùng PUT/DELETE method** — IIS/WebDAV trên shared hosting block vĩnh viễn.
 > Chỉ dùng **GET và POST**. Update/delete qua suffix URL.
 
@@ -1394,6 +1423,7 @@ cd Sources/WebDeploy/[slug]/admin  && npm install && npm run build
 □ api/schema.sql có PRAGMA foreign_keys = ON
 □ api/src/Database.php — migrate() có check file_get_contents trả về false
 □ api/src/Database.php có seedTemplateData() với data thực từ template
+□ api/src/bootstrap.php có helpers `bodyJson()` + `slugify()` + gọi `Auth::start()` trước `Database::getInstance()`
 □ api/src/bootstrap.php đăng ký đủ routes cho mọi entity
 □ admin/src/components/layout/Sidebar.tsx menu khớp template nav — footer có NavLink đến /profile — outer div PHẢI là `className="admin-sidebar"`, section title PHẢI là `className="sidebar-section"`
 □ admin/src/main.tsx — PHẢI có `BrowserRouter basename="/admin"` và `AuthProvider` bọc ngoài `App`. Thiếu → admin crash ngay khi load (useAuth throws, Routes crash)
