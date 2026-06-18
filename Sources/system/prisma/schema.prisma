@@ -160,6 +160,19 @@ model Setting {
   @@map("settings")
 }
 
+model PageView {
+  id        Int      @id @default(autoincrement())
+  path      String
+  referrer  String?
+  ipHash    String?  @map("ip_hash")
+  userAgent String?  @map("user_agent")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([createdAt])
+  @@index([path])
+  @@map("page_views")
+}
+
 // ============================================================
 // EXTENSION: AGENCY (System DB — webdrop.vn)
 // ============================================================

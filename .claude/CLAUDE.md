@@ -89,6 +89,7 @@ Xây dựng và bán 2 nhóm sản phẩm chính:
 - [x] Deploy website demo — xem bảng **WebDeploy Projects**
 - [x] Tạo Admin Profile page (`/admin/profile`) — đổi tên, đổi password
 - [x] Tạo Admin Users page (`/admin/users`) — quản lý tài khoản, nâng/hạ cấp, xóa (superadmin only)
+- [x] Tạo hệ thống thống kê truy cập (`/admin/analytics`) — track page views, top pages, nguồn truy cập, recent visits
 - [ ] Upload ảnh thực tế cho website demo (cafe-thoi-gian)
 - [ ] Nhận đơn hàng đầu tiên
 

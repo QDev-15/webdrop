@@ -16,6 +16,7 @@ const navItems = [
   { href: '/admin/posts', icon: '📝', label: 'Blog' },
   { href: '/admin/contacts', icon: '💬', label: 'Liên hệ' },
   { href: '/admin/revenue', icon: '📈', label: 'Doanh thu' },
+  { href: '/admin/analytics', icon: '📊', label: 'Thống kê web' },
   { href: '/admin/settings', icon: '⚙️', label: 'Cài đặt' },
 ]
 
