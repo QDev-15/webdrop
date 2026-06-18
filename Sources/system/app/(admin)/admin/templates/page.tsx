@@ -22,19 +22,22 @@ const statusColor: Record<string, string> = { published: 'var(--accent)', draft:
 export default async function AdminTemplatesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; category?: string; status?: string; industry?: string }>
+  searchParams: Promise<{ q?: string; category?: string; status?: string; industry?: string; website?: string }>
 }) {
   const sp       = await searchParams
   const q        = sp.q?.trim() ?? ''
   const category = sp.category ?? ''
   const status   = sp.status   ?? ''
   const industry = sp.industry ?? ''
+  const website  = sp.website  ?? ''
 
   const where: Prisma.TemplateWhereInput = {
     ...(q        && { name: { contains: q, mode: 'insensitive' } }),
     ...(category && { category: category as 'web' | 'admin' }),
     ...(status   && { status:   status   as 'published' | 'draft' }),
     ...(industry && { industry: { slug: industry } }),
+    ...(website === 'yes' && { hasWebsite: true }),
+    ...(website === 'no'  && { hasWebsite: false }),
   }
 
   let templates: TemplateWithIndustry[] = []
@@ -73,7 +76,7 @@ export default async function AdminTemplatesPage({
 
       {/* Filters */}
       <Suspense>
-        <TemplateFilters industries={industries} total={total} />
+        <TemplateFilters industries={industries} total={total} withWebsite={templates.filter(t => t.hasWebsite).length} />
       </Suspense>
 
       {/* Grid */}
@@ -101,8 +104,12 @@ export default async function AdminTemplatesPage({
                       {statusLabel[t.status]}
                     </span>
                   </div>
-                  <div style={{ fontSize: 12, color: 'var(--text-3)', marginBottom: 10 }}>
-                    {t.industry?.name || t.category} · {t.salesCount} lượt mua
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
+                    <span style={{ fontSize: 12, color: 'var(--text-3)' }}>{t.industry?.name || t.category} · {t.salesCount} lượt mua</span>
+                    {t.hasWebsite
+                      ? <span style={{ fontSize: 10, fontWeight: 600, padding: '2px 6px', borderRadius: 4, background: '#e8f4ef', color: 'var(--accent)', flexShrink: 0 }}>🌐 Gói B</span>
+                      : <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 4, background: 'var(--warm)', color: 'var(--text-3)', flexShrink: 0 }}>Template only</span>
+                    }
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--accent)' }}>{formatPrice(t.price)}</div>
