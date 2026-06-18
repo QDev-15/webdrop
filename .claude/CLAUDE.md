@@ -87,6 +87,8 @@ Xây dựng và bán 2 nhóm sản phẩm chính:
 - [x] Đóng gói Gói Web cơ bản thành sản phẩm chuẩn (`Sources/products/goi-b/`)
 - [x] Tích hợp Sepay webhook auto-confirm đơn hàng + tạo download token
 - [x] Deploy website demo — xem bảng **WebDeploy Projects**
+- [x] Tạo Admin Profile page (`/admin/profile`) — đổi tên, đổi password
+- [x] Tạo Admin Users page (`/admin/users`) — quản lý tài khoản, nâng/hạ cấp, xóa (superadmin only)
 - [ ] Upload ảnh thực tế cho website demo (cafe-thoi-gian)
 - [ ] Nhận đơn hàng đầu tiên
 
