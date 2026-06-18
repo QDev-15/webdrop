@@ -93,6 +93,12 @@ for (const item of readdirSync(join(root, 'api'))) {
 }
 stripBomDir(join(deploy, 'api'))
 
+// README.md → deploy/
+if (existsSync(join(root, 'README.md'))) {
+  cpSync(join(root, 'README.md'), join(deploy, 'README.md'))
+  console.log('  Copy README.md...')
+}
+
 // ── Hoàn thành ────────────────────────────────────────────────────────────────
 console.log('')
 console.log('[4/4] Hoàn thành!')
