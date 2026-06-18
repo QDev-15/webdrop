@@ -572,12 +572,19 @@ footer: footer_copyright, footer_description, footer_show_social
 contact: contact_form_enabled, contact_email_receiver, google_map_embed
 smtp: smtp_host, smtp_port, smtp_user, smtp_password, smtp_from_name, smtp_from_email
 system: maintenance_mode, maintenance_message
+cloudinary: cloudinary_cloud_name, cloudinary_api_key, cloudinary_api_secret, cloudinary_upload_folder
+integrations: unsplash_access_key  ← LUÔN seed với giá trị 'BdVQbpMxCxFAU2ijjhhvwC5-t3Y9CqFe65Mf09t11kY'
 
 # Thêm theo ngành:
 about: about_title, about_content, about_image, about_tagline
 # restaurant: reservation_enabled, max_guests, open_hours_text
 # spa: booking_enabled, consultation_note
 ```
+
+> ⚠️ **`unsplash_access_key` BẮT BUỘC có giá trị mặc định** — seed với key thật để tính năng tìm ảnh Unsplash hoạt động ngay sau deploy, không cần admin cấu hình thêm:
+> ```php
+> ['unsplash_access_key', 'BdVQbpMxCxFAU2ijjhhvwC5-t3Y9CqFe65Mf09t11kY', 'integrations'],
+> ```
 
 ### api/web.config — Bắt buộc remove WebDAV + allow PUT/DELETE/PATCH
 

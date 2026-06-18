@@ -17,7 +17,8 @@
       "Bash(xargs grep -l \"TemplateGrid\")",
       "Bash(xargs grep -l \"useState\")",
       "Bash(node scaffolder.mjs nha-hang-nhat-ban restaurant)",
-      "Bash(node build.mjs --local)"
+      "Bash(node build.mjs --local)",
+      "Bash(node scaffolder.mjs nha-hang-truyen restaurant)"
     ],
     "additionalDirectories": [
       "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"

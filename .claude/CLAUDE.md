@@ -114,6 +114,8 @@ Generate bởi `web-deploy-builder`, lưu tại `Sources/WebDeploy/[slug]/`.
 | `portfolio-toi` | Portfolios/portfolio-toi | ✅ Built | Projects, skills, testimonials; reviewed + fixed security issues |
 | `nha-hang-chay-organic` | Restaurants/nha-hang-chay-organic | ✅ Built | Restaurant chay; menu categories+items, reservations, gallery, testimonials; 0 TS errors |
 | `nha-hang-hai-san` | Restaurants/nha-hang-hai-san | ✅ Built | Nhà hàng hải sản; menu, gallery+lightbox, dat-ban, lien-he; admin BrowserRouter+AuthProvider fixed; 0 TS errors |
+| `nha-hang-nhat-ban` | Restaurants/nha-hang-nhat-ban | ✅ Built | Nhà hàng Nhật; menu, gallery, dat-ban, lien-he; 0 TS errors |
+| `nha-hang-truyen-thong` | Restaurants/nha-hang-truyen-thong | ✅ Built | Nhà hàng truyền thống; menu 4 danh mục 18 món, gallery, dat-ban, testimonials; dashboard error state fixed; 0 TS errors |
 | `forum-cong-dong` | Forums/forum-cong-dong | 🔧 In progress | |
 | `cong-ty-xay-dung` | Companies/cong-ty-xay-dung | 🔧 In progress | |
 
