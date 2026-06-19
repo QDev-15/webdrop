@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 
-interface NavItem { to: string; icon: string; label: string; badge?: number }
+interface NavItem { to: string; icon: string; label: string; exact?: boolean; badge?: number }
 interface Section { section: string; links: NavItem[] }
 
 interface Props { stats?: { new_contacts: number; new_consults: number } }
@@ -91,9 +91,14 @@ export default function Sidebar({ stats }: Props) {
       </nav>
 
       <div className="sb-bottom">
-        <div style={{ fontSize: '11px', color: 'rgba(255,255,255,.3)', padding: '4px 6px 10px', fontWeight: 300 }}>
-          {user?.name}
-        </div>
+        <NavLink
+          to="/profile"
+          className={({ isActive }) => `sb-link${isActive ? ' active' : ''}`}
+          style={{ fontSize: '12px', padding: '7px 12px 10px', color: 'rgba(255,255,255,.35)' }}
+        >
+          <span className="sb-icon">👤</span>
+          {user?.name || 'Tài khoản'}
+        </NavLink>
         <button className="sb-logout-btn" onClick={logout}>
           <span>↩</span> Đăng xuất
         </button>

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/Database.php';
@@ -17,6 +17,8 @@ require_once __DIR__ . '/controllers/LawyerController.php';
 require_once __DIR__ . '/controllers/CaseController.php';
 require_once __DIR__ . '/controllers/TestimonialController.php';
 require_once __DIR__ . '/controllers/ConsultationController.php';
+require_once __DIR__ . '/controllers/UploadController.php';
+require_once __DIR__ . '/controllers/UnsplashController.php';
 
 // â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function bodyJson(): array {
@@ -58,6 +60,7 @@ header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-W
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(204); exit; }
 
 // â”€â”€ Init â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+Auth::start();
 $db     = Database::getInstance();
 $router = new Router();
 
@@ -66,6 +69,7 @@ $auth = new AuthController($db);
 $router->add('POST', '/auth/login',   [$auth, 'login']);
 $router->add('POST', '/auth/logout',  [$auth, 'logout']);
 $router->add('GET',  '/auth/me',      [$auth, 'me']);
+$router->add('POST', '/auth/profile', [$auth, 'updateProfile']);
 
 // â”€â”€ Stats â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 $stats = new StatsController($db);

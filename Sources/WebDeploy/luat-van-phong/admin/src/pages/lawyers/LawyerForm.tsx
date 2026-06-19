@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '../../api/client'
+import ImageField from '../../components/ImageField'
 
 interface LawyerData { name: string; role: string; bio: string; speciality: string; avatar: string; tags: string; is_partner: number; sort_order: number; status: string }
 
@@ -60,9 +61,7 @@ export default function LawyerForm() {
             <textarea className="form-textarea" value={form.bio} onChange={e => set('bio', e.target.value)} rows={5} />
           </div>
           <div className="form-group">
-            <label className="form-label">URL Ảnh đại diện</label>
-            <input className="form-input" value={form.avatar} onChange={e => set('avatar', e.target.value)} />
-            {form.avatar && <img src={form.avatar} alt="" style={{ marginTop: '8px', width: '80px', height: '80px', objectFit: 'cover', borderRadius: '50%' }} />}
+            <ImageField label="Ảnh đại diện" value={form.avatar} onChange={v => set('avatar', v)} placeholder="URL ảnh hoặc upload từ máy tính" />
           </div>
           <div className="form-group">
             <label className="form-label">Tags (phân cách bằng dấu phẩy)</label>

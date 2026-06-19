@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Luat Van Phong — Cấu hình hệ thống
  * Chỉnh sửa thông tin bên dưới theo hosting của bạn.
@@ -23,9 +23,9 @@ define('DB_PASS', 'mat_khau');
 // Ví dụ: https://luatvanphong.vn
 // ─────────────────────────────────────────────────────────
 
-define('APP_URL', 'https://example.com');
+define('APP_URL', 'http://localhost:8081');
 define('APP_ENV', 'production');
-define('APP_KEY', 'VVDNIrgzFiiH9fZPgWD65qZ4QBhORzCF');
+define('APP_KEY', '1371b6c353d808cd4df7f7c550ffbb81f59f420d6b9497ef82ab5824cfd267a6');
 
 // ─────────────────────────────────────────────────────────
 // UPLOAD — Lưu ảnh upload

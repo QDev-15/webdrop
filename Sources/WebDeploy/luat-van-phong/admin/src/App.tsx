@@ -16,6 +16,7 @@ import ContactList from './pages/contacts/ContactList'
 import ConsultationList from './pages/consultations/ConsultationList'
 import MediaPage from './pages/media/MediaPage'
 import Settings from './pages/settings/Settings'
+import Profile from './pages/Profile'
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
@@ -54,6 +55,7 @@ export default function App() {
               <Route path="/consultations"     element={<ConsultationList />} />
               <Route path="/media"             element={<MediaPage />} />
               <Route path="/settings"          element={<Settings />} />
+              <Route path="/profile"           element={<Profile />} />
               <Route path="*"                  element={<Navigate to="/" replace />} />
             </Routes>
           </AdminLayout>

@@ -34,4 +34,25 @@ class AuthController {
         if (!$user) Response::unauthorized();
         Response::json($user);
     }
+
+    public function updateProfile(array $p): void {
+        Auth::require();
+        $current = Auth::user();
+        $b = bodyJson();
+        $name = trim($b['name'] ?? '');
+        if ($name === '') Response::error('Họ tên không được để trống');
+        if (!empty($b['old_password']) && !empty($b['new_password'])) {
+            $row = $this->db->queryOne("SELECT password FROM users WHERE id=?", [$current['id']]);
+            if (!$row || !password_verify($b['old_password'], $row['password'])) {
+                Response::error('Mật khẩu hiện tại không đúng', 400);
+            }
+            $this->db->execute(
+                "UPDATE users SET name=?, password=? WHERE id=?",
+                [$name, password_hash($b['new_password'], PASSWORD_BCRYPT), $current['id']]
+            );
+        } else {
+            $this->db->execute("UPDATE users SET name=? WHERE id=?", [$name, $current['id']]);
+        }
+        Response::json(['ok' => true]);
+    }
 }

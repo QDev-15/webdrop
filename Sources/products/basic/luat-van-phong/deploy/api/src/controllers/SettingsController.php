@@ -29,20 +29,22 @@ class SettingsController {
 
     private function detectGroup(string $key): string {
         $map = [
-            'site_'     => 'general',
-            'working_'  => 'general',
-            'established_' => 'general',
-            'meta_'     => 'seo',
-            'og_'       => 'seo',
+            'site_'          => 'general',
+            'working_'       => 'general',
+            'established_'   => 'general',
+            'meta_'          => 'seo',
+            'og_'            => 'seo',
             'google_analytics' => 'seo',
-            'social_'   => 'social',
-            'footer_'   => 'footer',
-            'contact_'  => 'contact',
-            'google_map' => 'contact',
-            'smtp_'     => 'smtp',
-            'maintenance' => 'system',
-            'hero_'     => 'about',
-            'stat_'     => 'about',
+            'social_'        => 'social',
+            'footer_'        => 'footer',
+            'contact_'       => 'contact',
+            'google_map'     => 'contact',
+            'smtp_'          => 'smtp',
+            'maintenance'    => 'system',
+            'hero_'          => 'about',
+            'stat_'          => 'about',
+            'cloudinary_'    => 'cloudinary',
+            'unsplash_'      => 'integrations',
         ];
         foreach ($map as $prefix => $group) {
             if (strpos($key, $prefix) === 0) return $group;

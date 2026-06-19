@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '../../api/client'
+import ImageField from '../../components/ImageField'
 
 export default function SlideForm() {
   const { id } = useParams()
@@ -61,9 +62,7 @@ export default function SlideForm() {
             </div>
           </div>
           <div className="form-group">
-            <label className="form-label">URL Hình ảnh</label>
-            <input className="form-input" value={form.image} onChange={e => set('image', e.target.value)} />
-            {form.image && <img src={form.image} alt="" style={{ marginTop: '8px', maxHeight: '120px', borderRadius: '6px' }} />}
+            <ImageField label="Hình ảnh slide" value={form.image} onChange={v => set('image', v)} placeholder="URL hình ảnh hoặc upload từ máy tính" />
           </div>
           <div className="form-row">
             <div className="form-group">

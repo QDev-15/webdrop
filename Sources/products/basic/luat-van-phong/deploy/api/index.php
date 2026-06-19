@@ -40,6 +40,7 @@ try {
         http_response_code(500);
     }
     $isProd = defined('APP_ENV') && APP_ENV === 'production';
+    http_response_code(500);
     echo json_encode([
         'error' => $isProd ? 'Lỗi máy chủ.' : $e->getMessage(),
         'file'  => $isProd ? null : $e->getFile() . ':' . $e->getLine(),
