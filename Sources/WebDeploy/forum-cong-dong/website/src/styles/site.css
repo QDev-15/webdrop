@@ -1,44 +1,6 @@
-/* site.css — Override/extension cho dynamic React content */
-
-/* Grid layout utilities */
-.row { display: flex; flex-wrap: wrap; margin: 0 -8px; }
-.col-lg-2 { width: 100%; padding: 0 8px; }
-.col-lg-3 { width: 100%; padding: 0 8px; }
-.col-lg-4 { width: 100%; padding: 0 8px; }
-.col-lg-5 { width: 100%; padding: 0 8px; }
-.col-lg-7 { width: 100%; padding: 0 8px; }
-.col-lg-8 { width: 100%; padding: 0 8px; }
-.col-md-6 { width: 100%; padding: 0 8px; }
-.col-6 { width: 50%; padding: 0 8px; }
-.g-4 { gap: 16px 0; }
-.g-2 { gap: 8px 0; }
-
-@media(min-width:576px) {
-  .col-md-6 { width: 50%; }
-}
-@media(min-width:992px) {
-  .col-lg-2 { width: 16.6666%; }
-  .col-lg-3 { width: 25%; }
-  .col-lg-4 { width: 33.3333%; }
-  .col-lg-5 { width: 41.6666%; }
-  .col-lg-7 { width: 58.3333%; }
-  .col-lg-8 { width: 66.6666%; }
-}
-
-/* Utility */
-.d-flex { display: flex; }
-.gap-3 { gap: 12px; }
-.flex-wrap { flex-wrap: wrap; }
-.align-items-center { align-items: center; }
-.text-center { text-align: center; }
-.mt-4 { margin-top: 24px; }
-.mb-0 { margin-bottom: 0; }
-.pb-4 { padding-bottom: 24px; }
-.py-3 { padding-top: 12px; padding-bottom: 12px; }
-.justify-content-between { justify-content: space-between; }
-.col-2 { width: 16.6666%; padding: 0 8px; }
-.col-3 { width: 25%; padding: 0 8px; }
-.col-4 { width: 33.3333%; padding: 0 8px; }
+/* site.css — Override/extension for dynamic React content */
+/* Note: Bootstrap 5.3.3 CDN provides .row, .col-*, .g-*, .d-flex, etc. */
+/* Only define custom classes not in Bootstrap here */
 
 /* Loading state */
 .loading-state { display: flex; align-items: center; justify-content: center; padding: 60px 20px; color: var(--text-3); font-size: 14px; }

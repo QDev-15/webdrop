@@ -123,7 +123,7 @@ class Database {
             ['cloudinary_api_secret', '',                                                    'cloudinary'],
             ['cloudinary_folder',     'forum-cong-dong',                                    'cloudinary'],
             // integrations
-            ['unsplash_access_key',   '',                                                    'integrations'],
+            ['unsplash_access_key',   'BdVQbpMxCxFAU2ijjhhvwC5-t3Y9CqFe65Mf09t11kY',       'integrations'],
         ];
         $stmt = $this->pdo->prepare("INSERT OR IGNORE INTO settings (key, value, \"group\") VALUES (?, ?, ?)");
         foreach ($rows as $r) {
