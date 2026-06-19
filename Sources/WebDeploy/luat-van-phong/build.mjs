@@ -5,9 +5,10 @@
  */
 
 import { execSync } from 'child_process'
-import { cpSync, mkdirSync, rmSync, existsSync, readdirSync, writeFileSync } from 'fs'
+import { cpSync, mkdirSync, rmSync, existsSync, readdirSync, readFileSync, writeFileSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
+import { randomBytes } from 'crypto'
 
 const root   = dirname(fileURLToPath(import.meta.url))
 const deploy = join(root, 'deploy')
@@ -52,8 +53,19 @@ cpSync(join(root, 'website', 'dist'), deploy, { recursive: true })
 // Copy admin/dist â†’ deploy/admin/
 cpSync(join(root, 'admin', 'dist'), join(deploy, 'admin'), { recursive: true })
 
-// Copy api â†’ deploy/api/ (skip database, uploads, node_modules)
-const skipApi = new Set(['node_modules', '.git', 'database', 'uploads'])
+// Inject APP_KEY và APP_URL vào config.php
+const appKey = randomBytes(32).toString(‘hex’)
+const appUrl = process.env.APP_URL || ‘http://localhost:8081’
+const configSrc = readFileSync(join(root, ‘api’, ‘config.php’), ‘utf8’)
+const configOut = configSrc
+  .replace(/define\(‘APP_KEY’,\s*’[^’]*’\)/, `define(‘APP_KEY’, ‘${appKey}’)`)
+  .replace(/define\(‘APP_URL’,\s*’[^’]*’\)/, `define(‘APP_URL’, ‘${appUrl}’)`)
+writeFileSync(join(deploy, ‘api’, ‘config.php’), configOut)
+console.log(`  APP_KEY: ${appKey.substring(0, 8)}...`)
+console.log(`  APP_URL: ${appUrl}`)
+
+// Copy api → deploy/api/ (skip database, uploads, node_modules, config.php đã inject riêng)
+const skipApi = new Set([‘node_modules’, ‘.git’, ‘database’, ‘uploads’, ‘config.php’])
 for (const item of readdirSync(join(root, 'api'))) {
   if (skipApi.has(item)) continue
   cpSync(join(root, 'api', item), join(deploy, 'api', item), { recursive: true })

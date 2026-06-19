@@ -1,5 +1,6 @@
-@echo off
+﻿@echo off
 cd /d "%~dp0"
+set APP_URL=http://localhost:8081
 echo === Build Ca Phe Thoi Gian ===
 node build.mjs
 if %ERRORLEVEL% neq 0 (

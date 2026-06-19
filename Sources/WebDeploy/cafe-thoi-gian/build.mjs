@@ -55,10 +55,13 @@ console.log('  admin/dist → deploy/admin/')
 
 // Inject APP_KEY ngẫu nhiên vào config.php
 const appKey = randomBytes(32).toString('hex')
+const appUrl = process.env.APP_URL || 'http://localhost:8081'
 const configContent = readFileSync(join(root, 'api', 'config.php'), 'utf8')
   .replace("'change-this-to-random-32-chars-string'", `'${appKey}'`)
+  .replace(/define\('APP_URL',\s*'[^']*'\)/, `define('APP_URL', '${appUrl}')`)
 writeFileSync(join(deploy, 'api', 'config.php'), configContent)
 console.log(`  api/config.php → deploy/api/ (APP_KEY injected: ${appKey.slice(0, 16)}...)`)
+console.log(`  APP_URL: ${appUrl}`)
 
 // api/* → deploy/api/ (bỏ qua database/, uploads/, node_modules, config.php)
 const skipApi = new Set(['node_modules', '.git', 'database', 'uploads', 'config.php'])

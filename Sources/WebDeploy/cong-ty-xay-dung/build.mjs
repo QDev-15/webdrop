@@ -55,9 +55,12 @@ cpSync(join(root, 'admin', 'dist'), join(deploy, 'admin'), { recursive: true })
 // Inject APP_KEY ngẫu nhiên vào config.php
 console.log('Inject APP_KEY vào config.php...')
 const appKey = randomBytes(32).toString('hex')
+const appUrl = process.env.APP_URL || 'http://localhost:8081'
 const configContent = readFileSync(join(root, 'api', 'config.php'), 'utf8')
   .replace("'change-this-to-random-32-chars-string'", `'${appKey}'`)
+  .replace(/define\('APP_URL',\s*'[^']*'\)/, `define('APP_URL', '${appUrl}')`)
 writeFileSync(join(deploy, 'api', 'config.php'), configContent)
+console.log(`  APP_URL: ${appUrl}`)
 
 // api/* → deploy/api/ (bỏ qua database/, uploads/, node_modules, config.php đã inject riêng)
 console.log('Copy API files...')

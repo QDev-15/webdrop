@@ -28,9 +28,9 @@ const deploy = join(root, 'deploy')
 const args    = process.argv.slice(2)
 const isLocal = args.includes('--local')
 const urlFlag = args.find(a => a.startsWith('--url='))
-const appUrl  = isLocal ? 'http://localhost:8081'
-              : urlFlag  ? urlFlag.split('=').slice(1).join('=')
-              : null  // giữ nguyên giá trị trong config.php
+const appUrl  = process.env.APP_URL
+              || (isLocal ? 'http://localhost:8081' : null)
+              || (urlFlag ? urlFlag.split('=').slice(1).join('=') : null)
 
 console.log('=== nha-hang-hai-san — Build Script ===')
 console.log('')

@@ -1,5 +1,6 @@
-@echo off
+﻿@echo off
 cd /d "%~dp0"
+set APP_URL=http://localhost:8081
 echo === Agency Web Build Script ===
 node build.mjs
 if errorlevel 1 (

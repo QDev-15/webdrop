@@ -1,4 +1,4 @@
-import { execSync } from 'child_process'
+﻿import { execSync } from 'child_process'
 import { cpSync, mkdirSync, rmSync, existsSync, readdirSync, readFileSync, writeFileSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
@@ -57,16 +57,17 @@ cpSync(join(root, 'website', 'dist'), deploy, { recursive: true })
 console.log('  Copy admin dist...')
 cpSync(join(root, 'admin', 'dist'), join(deploy, 'admin'), { recursive: true })
 
-// Inject APP_KEY ngẫu nhiên vào config.php
-console.log('  Inject APP_KEY vào config.php...')
+// Inject APP_KEY và APP_URL vào config.php
+console.log('  Inject APP_KEY + APP_URL vào config.php...')
 const appKey = randomBytes(32).toString('hex')
+const appUrl = process.env.APP_URL || 'http://localhost:8081'
 const configSrc = readFileSync(join(root, 'api', 'config.php'), 'utf8')
-const configOut = configSrc.replace(
-  /define\('APP_KEY',\s*'[^']*'\)/,
-  `define('APP_KEY', '${appKey}')`
-)
+const configOut = configSrc
+  .replace(/define\('APP_KEY',\s*'[^']*'\)/, `define('APP_KEY', '${appKey}')`)
+  .replace(/define\('APP_URL',\s*'[^']*'\)/, `define('APP_URL', '${appUrl}')`)
 writeFileSync(join(deploy, 'api', 'config.php'), configOut)
 console.log(`  APP_KEY đã được tạo: ${appKey.substring(0, 8)}...`)
+console.log(`  APP_URL: ${appUrl}`)
 
 // api/* → deploy/api/ (bỏ qua database, uploads, node_modules, config.php đã inject riêng)
 console.log('  Copy API backend...')
