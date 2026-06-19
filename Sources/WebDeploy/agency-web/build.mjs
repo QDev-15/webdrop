@@ -1,12 +1,29 @@
 import { execSync } from 'child_process'
 import { cpSync, mkdirSync, rmSync, existsSync, readdirSync, readFileSync, writeFileSync } from 'fs'
-import { join, dirname, basename } from 'path'
+import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { randomBytes } from 'crypto'
 
 const root = dirname(fileURLToPath(import.meta.url))
 const slug = "_output" // basename(root)
 const deploy = join(dirname(root), `${slug}-deploy`)
+
+// Strip BOM from PHP files to prevent "strict_types must be first statement" fatal error
+function stripBomFromPhpFiles(dir) {
+  const entries = readdirSync(dir, { withFileTypes: true })
+  for (const entry of entries) {
+    const full = join(dir, entry.name)
+    if (entry.isDirectory()) {
+      stripBomFromPhpFiles(full)
+    } else if (entry.name.endsWith('.php')) {
+      const data = readFileSync(full)
+      if (data[0] === 0xEF && data[1] === 0xBB && data[2] === 0xBF) {
+        writeFileSync(full, data.subarray(3))
+        console.log(`  Stripped BOM: api/${entry.name}`)
+      }
+    }
+  }
+}
 
 console.log('=== Agency Web Build ===\n')
 
@@ -44,11 +61,7 @@ run('npm run build', join(root, 'admin'), 'Build admin SPA')
 // ─── TAO THU MUC ────────────────────────────────────────────────────────────
 console.log('\nTao cau truc thu muc deploy...')
 mkdirSync(join(deploy, 'admin'), { recursive: true })
-mkdirSync(join(deploy, 'admin'), { recursive: true })
 mkdirSync(join(deploy, 'api', 'src', 'controllers'), { recursive: true })
-mkdirSync(join(deploy, 'api', 'uploads'), { recursive: true })
-mkdirSync(join(deploy, 'api', 'database'), { recursive: true })
-writeFileSync(join(deploy, 'api', 'uploads', '.gitkeep'), '')
 mkdirSync(join(deploy, 'api', 'uploads'), { recursive: true })
 mkdirSync(join(deploy, 'api', 'database'), { recursive: true })
 writeFileSync(join(deploy, 'api', 'uploads', '.gitkeep'), '')
@@ -80,6 +93,10 @@ for (const item of readdirSync(join(root, 'api'))) {
   if (skipApi.has(item)) continue
   cpSync(join(root, 'api', item), join(deploy, 'api', item), { recursive: true })
 }
+
+// ─── STRIP BOM FROM PHP IN DEPLOY ────────────────────────────────────────────
+console.log('Kiem tra va xoa BOM khoi PHP files...')
+stripBomFromPhpFiles(join(deploy, 'api'))
 
 // favicon.ico → deploy/
 if (existsSync(join(root, 'favicon.ico'))) {

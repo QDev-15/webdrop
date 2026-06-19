@@ -1,0 +1,20 @@
+Options -Indexes
+
+# Block direct DB access
+<FilesMatch "\.db$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+# Serve existing files and directories as-is
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Route all non-file requests to index.html (SPA)
+RewriteRule ^ index.html [L]
+</IfModule>

@@ -23,7 +23,6 @@ export default function Header() {
   }, [])
 
   const siteName = settings.site_name || 'Agency'
-  const sitePhone = settings.site_phone || ''
 
   const toggleMobile = () => {
     setMobileOpen(o => {
@@ -43,7 +42,7 @@ export default function Header() {
         <div className="wd-container">
           <div className="ag-nav-inner">
             <Link to="/" className="ag-logo">
-              {siteName}<span>.</span>
+              {siteName}
             </Link>
             <ul className="ag-nav-links">
               <li><NavLink to="/" end className={({ isActive }) => isActive ? 'active' : ''}>Trang chủ</NavLink></li>
@@ -52,14 +51,7 @@ export default function Header() {
               <li><NavLink to="/ve-chung-toi" className={({ isActive }) => isActive ? 'active' : ''}>Về chúng tôi</NavLink></li>
               <li><NavLink to="/lien-he" className={({ isActive }) => isActive ? 'active' : ''}>Liên hệ</NavLink></li>
             </ul>
-            {sitePhone && (
-              <a href={`tel:${sitePhone.replace(/\s/g, '')}`} className="ag-nav-cta">
-                {sitePhone}
-              </a>
-            )}
-            {!sitePhone && (
-              <Link to="/lien-he" className="ag-nav-cta">Bắt đầu dự án</Link>
-            )}
+            <Link to="/lien-he" className="ag-nav-cta">Bắt đầu dự án</Link>
             <button
               className={`ag-burger ${mobileOpen ? 'open' : ''}`}
               id="navBurger"

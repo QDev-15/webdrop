@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Agency Web — Cấu hình hệ thống
  * ⚠️  SAU KHI UPLOAD LÊN HOSTING, BẮT BUỘC SỬA:
@@ -19,10 +19,10 @@ define('DB_PASS', 'mat_khau');
 
 // ─── APP ─────────────────────────────────────────────────────────────────────
 // ⚠️  Sửa APP_URL thành URL thực của hosting (không có dấu / cuối)
-define('APP_URL', 'https://example.com');
+define('APP_URL', 'http://localhost:8081');
 define('APP_ENV', 'production');
 // ⚠️  APP_KEY sẽ được tự động tạo bởi build.mjs — không cần sửa thủ công
-define('APP_KEY', '70fb050568a348cb2c6e54b12b6a9609fbd67e454bff8ecc193f58af5a240adb');
+define('APP_KEY', '1a3931ac08aaa97d8d51eb8b38484853c0f2e8a71479ff0ad8211847f54d913c');
 
 // ─── CORS ────────────────────────────────────────────────────────────────────
 // Danh sách origin được phép gọi API (để trống = chỉ cho phép APP_URL)

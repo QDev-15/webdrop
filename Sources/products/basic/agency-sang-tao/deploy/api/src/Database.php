@@ -8,7 +8,14 @@ class Database {
     private function __construct() {
         if (DB_TYPE === 'sqlite') {
             $dir = dirname(DB_FILE);
-            if (!is_dir($dir)) mkdir($dir, 0755, true);
+            if (!is_dir($dir)) {
+                if (!mkdir($dir, 0755, true) && !is_dir($dir)) {
+                    throw new \RuntimeException('Cannot create database directory: ' . $dir);
+                }
+            }
+            if (!is_writable($dir)) {
+                throw new \RuntimeException('Database directory is not writable: ' . $dir);
+            }
             $this->pdo = new \PDO('sqlite:' . DB_FILE);
             $this->pdo->exec('PRAGMA foreign_keys = ON');
             $this->pdo->exec('PRAGMA journal_mode = WAL');
@@ -66,7 +73,7 @@ class Database {
         if ($this->scalar("SELECT COUNT(*) FROM settings") > 0) return;
         $rows = [
             // general
-            ['site_name',        'Agency Sáng Tạo',                                   'general'],
+            ['site_name',        'Agency ST',                                   'general'],
             ['site_description', 'Agency sáng tạo chuyên branding, thiết kế, marketing và digital creative. Chúng tôi tạo ra những thương hiệu đáng nhớ.', 'general'],
             ['site_logo',        '',                                                     'general'],
             ['site_favicon',     '',                                                     'general'],
@@ -132,7 +139,7 @@ class Database {
             ['cloudinary_api_secret', '',                                                  'cloudinary'],
             ['cloudinary_folder',     'agency-sang-tao',                                  'cloudinary'],
             // integrations
-            ['unsplash_access_key',   '',                                                  'integrations'],
+            ['unsplash_access_key',   'BdVQbpMxCxFAU2ijjhhvwC5-t3Y9CqFe65Mf09t11kY',    'integrations'],
         ];
         $stmt = $this->pdo->prepare("INSERT OR IGNORE INTO settings (key, value, \"group\") VALUES (?, ?, ?)");
         foreach ($rows as $r) {

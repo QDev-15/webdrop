@@ -82,7 +82,7 @@ export default function Sidebar() {
   }
 
   return (
-    <aside className="sidebar">
+    <aside className="admin-sidebar">
       <div className="sidebar-header">
         <a href="/" target="_blank" rel="noopener noreferrer" className="sidebar-logo">
           Agency<span>Web</span>
@@ -93,7 +93,7 @@ export default function Sidebar() {
       <nav className="sidebar-nav">
         {menuStructure.map(section => (
           <div key={section.section}>
-            <div className="sidebar-section-label">{section.section}</div>
+            <div className="sidebar-section">{section.section}</div>
             {section.links.map(link => (
               <NavLink
                 key={link.to}
