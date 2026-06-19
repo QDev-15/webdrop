@@ -1,56 +1,43 @@
 <?php
 /**
- * Cong Ty Xay Dung — Cấu hình hệ thống
- * Chỉnh sửa thông tin bên dưới theo hosting của bạn.
+ * Công Ty Xây Dựng — Cấu hình hệ thống
+ * ⚠️  SAU KHI UPLOAD LÊN HOSTING, BẮT BUỘC SỬA:
+ *     1. APP_URL  → URL thực của website (ví dụ: https://tenweb.vn)
+ *     2. APP_KEY  → chuỗi ngẫu nhiên 32 ký tự (tự động sinh khi build)
  */
 
-// ─────────────────────────────────────────────────────────
-// DATABASE — Mặc định SQLite, không cần cài thêm gì
-// ─────────────────────────────────────────────────────────
-
+// ─── DATABASE — Mặc định SQLite, không cần cài thêm gì ────────────────────
 define('DB_TYPE', 'sqlite');
 define('DB_FILE', __DIR__ . '/database/app.db');
 
-// Chỉ điền nếu dùng MySQL:
+// Chỉ điền nếu dùng MySQL / PostgreSQL (đổi DB_TYPE thành 'mysql' hoặc 'pgsql'):
 define('DB_HOST', 'localhost');
 define('DB_PORT', '3306');
 define('DB_NAME', 'ten_database');
 define('DB_USER', 'ten_user');
 define('DB_PASS', 'mat_khau');
 
-// ─────────────────────────────────────────────────────────
-// APP — URL của website sau khi deploy
-// Ví dụ: https://congtyxaydung.vn
-// ─────────────────────────────────────────────────────────
-
-define('APP_URL', 'https://congtyxaydung.vn');
+// ─── APP ─────────────────────────────────────────────────────────────────────
+// ⚠️  Sửa APP_URL thành URL thực của hosting (không có dấu / cuối)
+define('APP_URL', 'http://localhost:8081');
 define('APP_ENV', 'production');
-define('APP_KEY', 'change-this-to-random-32-chars-key');
+// ⚠️  Sửa APP_KEY thành chuỗi ngẫu nhiên 32 ký tự
+define('APP_KEY', '1eb1e2620232a1e5a8878b655e83cd1f06159e3554ca14f1dd7926338b5128a6');
 
-// ─────────────────────────────────────────────────────────
-// UPLOAD — Lưu ảnh upload
-// Mặc định: lưu vào folder uploads/ trong hosting
-// ─────────────────────────────────────────────────────────
+// ─── CORS ────────────────────────────────────────────────────────────────────
+define('CORS_ORIGINS', [
+    // 'https://www.tenweb.vn',
+    // 'https://tenweb.vn',
+]);
 
+// ─── UPLOAD ──────────────────────────────────────────────────────────────────
 define('UPLOAD_DRIVER', 'local');
-define('UPLOAD_DIR',    __DIR__ . '/uploads/');
-define('UPLOAD_URL',    APP_URL . '/api/uploads/');
+define('UPLOAD_DIR', __DIR__ . '/uploads/');
+define('UPLOAD_URL', APP_URL . '/api/uploads/');
+define('R2_ACCOUNT_ID', ''); define('R2_ACCESS_KEY', ''); define('R2_SECRET_KEY', '');
+define('R2_BUCKET', ''); define('R2_PUBLIC_URL', '');
 
-// Cloudflare R2 (để trống nếu không dùng):
-define('R2_ACCOUNT_ID',  '');
-define('R2_ACCESS_KEY',  '');
-define('R2_SECRET_KEY',  '');
-define('R2_BUCKET',      '');
-define('R2_PUBLIC_URL',  '');
-
-// ─────────────────────────────────────────────────────────
-// SMTP — Gửi email thông báo
-// Điền thông tin email để nhận thông báo khi có báo giá mới
-// ─────────────────────────────────────────────────────────
-
-define('SMTP_HOST',       'smtp.gmail.com');
-define('SMTP_PORT',       587);
-define('SMTP_USER',       '');
-define('SMTP_PASS',       '');
-define('SMTP_FROM_NAME',  'Công Ty Xây Dựng');
-define('SMTP_FROM_EMAIL', '');
+// ─── SMTP ────────────────────────────────────────────────────────────────────
+define('SMTP_HOST', 'smtp.gmail.com'); define('SMTP_PORT', 587);
+define('SMTP_USER', ''); define('SMTP_PASS', '');
+define('SMTP_FROM_NAME', 'Công Ty Xây Dựng'); define('SMTP_FROM_EMAIL', '');

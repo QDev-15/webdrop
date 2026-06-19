@@ -19,6 +19,9 @@ async function request<T>(method: string, path: string, body?: unknown): Promise
 }
 
 export const api = {
-  get:  <T>(path: string) => request<T>('GET', path),
-  post: <T>(path: string, body: unknown) => request<T>('POST', path, body),
+  get:    <T>(path: string) => request<T>('GET', path),
+  post:   <T>(path: string, body: unknown) => request<T>('POST', path, body),
+  put:    <T>(path: string, body: unknown) => request<T>('POST', `${path}/update`, body),
+  delete: <T>(path: string) => request<T>('POST', `${path}/delete`),
+  upload: <T>(path: string, formData: FormData) => request<T>('POST', path, formData),
 }

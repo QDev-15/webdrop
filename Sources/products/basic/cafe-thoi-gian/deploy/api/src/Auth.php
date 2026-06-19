@@ -6,8 +6,22 @@ class Auth {
 
     public static function start(): void {
         if (session_status() === PHP_SESSION_NONE) {
-            ini_set('session.cookie_httponly', '1');
-            ini_set('session.cookie_samesite', 'Lax');
+            // Store sessions next to DB — directory already blocked from web access
+            $sessDir = dirname(DB_FILE) . DIRECTORY_SEPARATOR . 'sessions';
+            if (!is_dir($sessDir)) { @mkdir($sessDir, 0755, true); }
+            if (is_dir($sessDir) && is_writable($sessDir)) session_save_path($sessDir);
+            // HTTPS detection — includes IIS reverse proxy (X-Forwarded-Proto)
+            $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+                     || ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https'
+                     || ($_SERVER['HTTP_X_FORWARDED_SSL']   ?? '') === 'on'
+                     || ($_SERVER['SERVER_PORT'] ?? '') === '443';
+            session_set_cookie_params([
+                'lifetime' => 86400,
+                'path'     => '/',
+                'secure'   => $isHttps,
+                'httponly' => true,
+                'samesite' => 'Lax',
+            ]);
             session_name('ctg_sess');
             session_start();
         }
@@ -18,7 +32,7 @@ class Auth {
         session_regenerate_id(true);
         $_SESSION['user_id']    = $user['id'];
         $_SESSION['user_name']  = $user['name'];
-        $_SESSION['user_email'] = $user['email'];
+        $_SESSION['user_email'] = $user['email'] ?? '';
         $_SESSION['user_role']  = $user['role'];
         self::$currentUser = $user;
     }
@@ -35,7 +49,7 @@ class Auth {
         return [
             'id'    => $_SESSION['user_id'],
             'name'  => $_SESSION['user_name'],
-            'email' => $_SESSION['user_email'],
+            'email' => $_SESSION['user_email'] ?? '',
             'role'  => $_SESSION['user_role'],
         ];
     }

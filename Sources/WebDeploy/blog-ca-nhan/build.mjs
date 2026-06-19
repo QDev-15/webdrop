@@ -1,6 +1,6 @@
 import { execSync } from 'child_process'
 import { cpSync, mkdirSync, rmSync, existsSync, readdirSync, readFileSync, writeFileSync } from 'fs'
-import { join, dirname, basename } from 'path'
+import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { randomBytes } from 'crypto'
 
@@ -30,15 +30,10 @@ if (!existsSync(join(root, 'admin', 'node_modules'))) {
 
 run('npm run build', join(root, 'website'), 'Build website')
 run('npm run build', join(root, 'admin'), 'Build admin')
-run('npm run build', join(root, 'admin'), 'Build admin')
 
 // Tao cau truc deploy
 mkdirSync(join(deploy, 'admin'), { recursive: true })
-mkdirSync(join(deploy, 'admin'), { recursive: true })
 mkdirSync(join(deploy, 'api', 'src', 'controllers'), { recursive: true })
-mkdirSync(join(deploy, 'api', 'uploads'), { recursive: true })
-mkdirSync(join(deploy, 'api', 'database'), { recursive: true })
-writeFileSync(join(deploy, 'api', 'uploads', '.gitkeep'), '')
 mkdirSync(join(deploy, 'api', 'uploads'), { recursive: true })
 mkdirSync(join(deploy, 'api', 'database'), { recursive: true })
 writeFileSync(join(deploy, 'api', 'uploads', '.gitkeep'), '')
@@ -69,10 +64,33 @@ for (const item of readdirSync(join(root, 'api'))) {
   cpSync(join(root, 'api', item), join(deploy, 'api', item), { recursive: true })
 }
 
+// Strip BOM khoi PHP files trong deploy/api/ (BOM lam hong JSON response)
+function stripBomFromPhpFiles(dir) {
+  for (const item of readdirSync(dir, { withFileTypes: true })) {
+    const fullPath = join(dir, item.name)
+    if (item.isDirectory()) {
+      stripBomFromPhpFiles(fullPath)
+    } else if (item.name.endsWith('.php')) {
+      const buf = readFileSync(fullPath)
+      if (buf.length >= 3 && buf[0] === 0xEF && buf[1] === 0xBB && buf[2] === 0xBF) {
+        writeFileSync(fullPath, buf.subarray(3))
+        console.log(`  BOM stripped: ${item.name}`)
+      }
+    }
+  }
+}
+stripBomFromPhpFiles(join(deploy, 'api'))
+console.log('  BOM check PHP files: done')
+
 // favicon.ico → deploy/
 if (existsSync(join(root, 'favicon.ico'))) {
   cpSync(join(root, 'favicon.ico'), join(deploy, 'favicon.ico'))
   console.log('  Copy favicon.ico...')
+}
+// README.md → deploy/
+if (existsSync(join(root, 'README.md'))) {
+  cpSync(join(root, 'README.md'), join(deploy, 'README.md'))
+  console.log('  Copy README.md...')
 }
 console.log('  Da copy API PHP → deploy/api/')
 

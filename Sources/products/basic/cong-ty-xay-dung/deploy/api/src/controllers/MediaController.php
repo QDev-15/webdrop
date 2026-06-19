@@ -1,90 +1,47 @@
 <?php
 declare(strict_types=1);
 
-class MediaController
-{
-    private array $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml'];
-    private int   $maxSize      = 5 * 1024 * 1024; // 5 MB
-
+class MediaController {
     public function __construct(private Database $db) {}
 
-    public function index(array $p): void
-    {
+    public function index(array $p): void {
         Auth::require();
-        $media = $this->db->query("SELECT * FROM media ORDER BY created_at DESC");
-        Response::json($media);
+        Response::json($this->db->query("SELECT * FROM media ORDER BY created_at DESC"));
     }
 
-    public function upload(array $p): void
-    {
+    public function upload(array $p): void {
         Auth::require();
-
-        if (empty($_FILES['file'])) {
-            Response::error('Không tìm thấy file.');
-        }
-
+        if (empty($_FILES['file'])) { Response::error('Không có file.', 400); return; }
         $file = $_FILES['file'];
-
-        if ($file['error'] !== UPLOAD_ERR_OK) {
-            Response::error('Lỗi upload: ' . $file['error']);
+        if ($file['error'] !== UPLOAD_ERR_OK) { Response::error('Upload lỗi: ' . $file['error'], 400); return; }
+        $allowed = ['image/jpeg','image/png','image/webp','image/gif','image/svg+xml'];
+        $mime = mime_content_type($file['tmp_name']);
+        if (!in_array($mime, $allowed, true)) { Response::error('Chỉ hỗ trợ ảnh.', 400); return; }
+        if ($file['size'] > 10 * 1024 * 1024) { Response::error('File quá lớn. Tối đa 10MB.', 400); return; }
+        $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION) ?: 'jpg');
+        $filename = uniqid('img_', true) . '.' . $ext;
+        $dir = defined('UPLOAD_DIR') ? UPLOAD_DIR : __DIR__ . '/../../../uploads/';
+        if (!is_dir($dir)) mkdir($dir, 0755, true);
+        if (!move_uploaded_file($file['tmp_name'], $dir . $filename)) {
+            Response::error('Không thể lưu file.', 500); return;
         }
-
-        if ($file['size'] > $this->maxSize) {
-            Response::error('File quá lớn. Tối đa 5MB.');
-        }
-
-        $finfo    = new finfo(FILEINFO_MIME_TYPE);
-        $mimeType = $finfo->file($file['tmp_name']);
-
-        if (!in_array($mimeType, $this->allowedTypes, true)) {
-            Response::error('Loại file không được phép. Chỉ chấp nhận JPG, PNG, GIF, WebP, SVG.');
-        }
-
-        $ext      = pathinfo($file['name'], PATHINFO_EXTENSION);
-        $filename = uniqid('media_', true) . '.' . strtolower($ext);
-        $destDir  = UPLOAD_DIR;
-
-        if (!is_dir($destDir)) {
-            mkdir($destDir, 0755, true);
-        }
-
-        $destPath = $destDir . $filename;
-
-        if (!move_uploaded_file($file['tmp_name'], $destPath)) {
-            Response::error('Không thể lưu file.', 500);
-        }
-
-        $altText = trim($_POST['alt_text'] ?? '');
-        $user    = Auth::user();
-
+        $url = rtrim(APP_URL, '/') . '/api/uploads/' . $filename;
+        $user = Auth::user();
         $id = $this->db->execute(
-            "INSERT INTO media (filename, filepath, filesize, filetype, alt_text, uploaded_by)
-             VALUES (?,?,?,?,?,?)",
-            [$filename, UPLOAD_URL . $filename, $file['size'], $mimeType, $altText, $user['id']]
+            "INSERT INTO media (filename, filepath, filesize, filetype, uploaded_by) VALUES (?, ?, ?, ?, ?)",
+            [$filename, $url, $file['size'], $mime, $user['id'] ?? null]
         );
-
-        Response::json([
-            'id'       => (int)$id,
-            'filename' => $filename,
-            'filepath' => UPLOAD_URL . $filename,
-            'filetype' => $mimeType,
-        ], 201);
+        Response::json(['id' => $id, 'url' => $url, 'filename' => $filename], 201);
     }
 
-    public function destroy(array $p): void
-    {
+    public function destroy(array $p): void {
         Auth::require();
-        $id    = (int)$p['id'];
-        $media = $this->db->row("SELECT * FROM media WHERE id=?", [$id]);
-
-        if (!$media) Response::notFound('File không tồn tại.');
-
-        $localPath = UPLOAD_DIR . $media['filename'];
-        if (file_exists($localPath)) {
-            unlink($localPath);
-        }
-
-        $this->db->execute("DELETE FROM media WHERE id=?", [$id]);
+        $media = $this->db->queryOne("SELECT * FROM media WHERE id = ?", [$p['id']]);
+        if (!$media) { Response::error('Không tìm thấy.', 404); return; }
+        $dir = defined('UPLOAD_DIR') ? UPLOAD_DIR : __DIR__ . '/../../../uploads/';
+        $filePath = $dir . $media['filename'];
+        if (file_exists($filePath)) @unlink($filePath);
+        $this->db->execute("DELETE FROM media WHERE id = ?", [$p['id']]);
         Response::json(['ok' => true]);
     }
 }

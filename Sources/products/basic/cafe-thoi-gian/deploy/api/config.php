@@ -19,10 +19,10 @@ define('DB_PASS', 'mat_khau');
 
 // ─── APP ─────────────────────────────────────────────────────────────────────
 // ⚠️  Sửa APP_URL thành URL thực của hosting (không có dấu / cuối)
-define('APP_URL', 'https://example.com');
+define('APP_URL', 'http://localhost:8081');
 define('APP_ENV', 'production');
 // ⚠️  APP_KEY được inject tự động bởi build.mjs — không sửa tay
-define('APP_KEY', '451d4863ccdea1aa32dc1655dd2bae8a47d4152b9e909228f51a0edd5e0f515e');
+define('APP_KEY', '4e20d812377ac899cae4601b3c0ac65b78b24ae6333b882c85529bb2d2b7cc48');
 
 // ─── CORS ────────────────────────────────────────────────────────────────────
 define('CORS_ORIGINS', [

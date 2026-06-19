@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import { api } from '../../api/client'
 
-type SettingsMap = Record<string, Record<string, string>>
-
 const TABS = [
   { id: 'general', label: 'Thông tin chung' },
   { id: 'about', label: 'Giới thiệu' },
@@ -24,12 +22,8 @@ export default function SettingsPage() {
   const [flat, setFlat] = useState<Record<string, string>>({})
 
   useEffect(() => {
-    api.get<SettingsMap>('/settings').then(data => {
-      const f: Record<string, string> = {}
-      Object.values(data).forEach(group => {
-        Object.entries(group).forEach(([k, v]) => { f[k] = v })
-      })
-      setFlat(f)
+    api.get<Record<string, string>>('/settings').then(data => {
+      setFlat(data)
     }).catch(console.error)
   }, [])
 

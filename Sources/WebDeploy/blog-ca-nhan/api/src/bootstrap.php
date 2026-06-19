@@ -1,9 +1,9 @@
-﻿<?php
+<?php
 declare(strict_types=1);
 
+require_once __DIR__ . '/Auth.php';
 require_once __DIR__ . '/Database.php';
 require_once __DIR__ . '/Router.php';
-require_once __DIR__ . '/Auth.php';
 require_once __DIR__ . '/Response.php';
 
 // Load controllers
@@ -17,6 +17,8 @@ require_once __DIR__ . '/controllers/PostCategoryController.php';
 require_once __DIR__ . '/controllers/PostController.php';
 require_once __DIR__ . '/controllers/TagController.php';
 require_once __DIR__ . '/controllers/UserController.php';
+require_once __DIR__ . '/controllers/UploadController.php';
+require_once __DIR__ . '/controllers/UnsplashController.php';
 
 // Helpers
 function bodyJson(): array {
@@ -69,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
+Auth::start();
 $db = Database::getInstance();
 $router = new Router();
 

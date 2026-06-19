@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Blog Cá Nhân — Cấu hình hệ thống
  * ⚠️  SAU KHI UPLOAD LÊN HOSTING, BẮT BUỘC SỬA:
@@ -19,10 +19,10 @@ define('DB_PASS', 'mat_khau');
 
 // ─── APP ─────────────────────────────────────────────────────────────────────
 // ⚠️  Sửa APP_URL thành URL thực của hosting (không có dấu / cuối)
-define('APP_URL', 'https://example.com');
+define('APP_URL', 'http://localhost:8081');
 define('APP_ENV', 'production');
 // ⚠️  Sửa APP_KEY thành chuỗi ngẫu nhiên 32 ký tự
-define('APP_KEY', '38c56f0009bf2eec7de938455604af559c5e83abd359736d5bdd84a9632faaa3');
+define('APP_KEY', '3c0371660a5d3261c6c9fd7504461ba2d1a448dbf92aae937c5b76dd16dcac7c');
 
 // ─── CORS ────────────────────────────────────────────────────────────────────
 // Danh sách origin được phép gọi API (để trống = chỉ cho phép APP_URL)

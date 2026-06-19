@@ -4,11 +4,12 @@ const BASE = import.meta.env.DEV
 
 async function request<T>(method: string, path: string, body?: unknown): Promise<T> {
   const headers: Record<string, string> = {}
-  if (body) headers['Content-Type'] = 'application/json'
+  if (body && !(body instanceof FormData)) headers['Content-Type'] = 'application/json'
   const res = await fetch(BASE + path, {
     method,
     headers,
-    body: body ? JSON.stringify(body) : undefined,
+    credentials: 'include',
+    body: body instanceof FormData ? body : (body ? JSON.stringify(body) : undefined),
   })
   if (!res.ok) {
     const err = await res.json().catch(() => ({ error: 'Lỗi không xác định' }))
@@ -18,6 +19,7 @@ async function request<T>(method: string, path: string, body?: unknown): Promise
 }
 
 export const api = {
-  get:  <T>(path: string) => request<T>('GET', path),
-  post: <T>(path: string, body: unknown) => request<T>('POST', path, body),
+  get:    <T>(path: string) => request<T>('GET', path),
+  post:   <T>(path: string, body: unknown) => request<T>('POST', path, body),
+  upload: <T>(path: string, formData: FormData) => request<T>('POST', path, formData),
 }

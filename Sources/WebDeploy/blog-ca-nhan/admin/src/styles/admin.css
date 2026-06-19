@@ -40,7 +40,7 @@ body {
 }
 
 /* ── Sidebar ── */
-.sidebar {
+.admin-sidebar {
   width: 214px;
   flex-shrink: 0;
   background: var(--sidebar);
@@ -49,8 +49,8 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
 }
-.sidebar::-webkit-scrollbar { width: 3px; }
-.sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,.08); border-radius: 3px; }
+.admin-sidebar::-webkit-scrollbar { width: 3px; }
+.admin-sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,.08); border-radius: 3px; }
 
 .sidebar-logo {
   padding: 20px 18px 16px;

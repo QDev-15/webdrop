@@ -6,9 +6,9 @@ class SettingsController {
 
     public function index(array $p): void {
         Auth::require();
-        $rows = $this->db->query("SELECT key, value, \"group\" FROM settings ORDER BY \"group\", key");
+        $rows = $this->db->query("SELECT key, value FROM settings ORDER BY key");
         $result = [];
-        foreach ($rows as $row) $result[$row['key']] = ['value' => $row['value'], 'group' => $row['group']];
+        foreach ($rows as $row) $result[$row['key']] = $row['value'];
         Response::json($result);
     }
 

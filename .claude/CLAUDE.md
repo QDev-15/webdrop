@@ -123,7 +123,7 @@ Generate bởi `web-deploy-builder`, lưu tại `Sources/WebDeploy/[slug]/`.
 | `quan-an-pho-bien` | Restaurants/quan-an-pho-bien | ✅ Built | Quán ăn bình dân; menu 4 danh mục 22 món (price_note field), gallery, testimonials, contact; 0 TS errors |
 | `tiem-banh-ngot` | Restaurants/tiem-banh-ngot | ✅ Built | Tiệm bánh ngọt; product_categories+products, custom orders (6 status workflow), gallery, flavors, testimonials; MutationObserver reveal animation; 0 TS errors, 22 PHP OK |
 | `forum-cong-dong` | Forums/forum-cong-dong | 🔧 In progress | |
-| `cong-ty-xay-dung` | Companies/cong-ty-xay-dung | 🔧 In progress | |
+| `cong-ty-xay-dung` | Companies/cong-ty-xay-dung | ✅ Built | Công ty xây dựng; services, projects (9 công trình), testimonials, team; BOM fix Router.php; SettingsController flat output; Auth::start before DB; Bunny Fonts; 0 TS/PHP errors |
 
 **Scaffold (tạo project mới nhanh):**
 ```

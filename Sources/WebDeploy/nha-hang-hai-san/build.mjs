@@ -27,12 +27,8 @@ const deploy = join(dirname(root), `${slug}-deploy`)
 // Flags: node build.mjs --local  → APP_URL = http://localhost:8081
 //        node build.mjs --url https://yourdomain.com
 const args = process.argv.slice(2)
-const args = process.argv.slice(2)
 const isLocal = args.includes('--local')
 const urlFlag = args.find(a => a.startsWith('--url='))
-const appUrl = process.env.APP_URL
-  || (isLocal ? 'http://localhost:8081' : null)
-  || (urlFlag ? urlFlag.split('=').slice(1).join('=') : null)
 const appUrl = process.env.APP_URL
   || (isLocal ? 'http://localhost:8081' : null)
   || (urlFlag ? urlFlag.split('=').slice(1).join('=') : null)
@@ -122,6 +118,11 @@ stripBomDir(join(deploy, 'api'))
 if (existsSync(join(root, 'favicon.ico'))) {
   cpSync(join(root, 'favicon.ico'), join(deploy, 'favicon.ico'))
   console.log('  Copy favicon.ico...')
+}
+// README.md → deploy/
+if (existsSync(join(root, 'README.md'))) {
+  cpSync(join(root, 'README.md'), join(deploy, 'README.md'))
+  console.log('  Copy README.md...')
 }
 
 // ── Hoàn thành ────────────────────────────────────────────────────────────────

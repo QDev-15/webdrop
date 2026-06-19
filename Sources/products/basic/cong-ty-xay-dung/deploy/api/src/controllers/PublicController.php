@@ -1,108 +1,70 @@
 <?php
 declare(strict_types=1);
 
-class PublicController
-{
+class PublicController {
     public function __construct(private Database $db) {}
 
-    public function settings(array $p): void
-    {
-        $rows   = $this->db->query("SELECT key, value FROM settings");
+    public function settings(array $p): void {
+        $rows = $this->db->query("SELECT key, value FROM settings");
         $result = [];
-        foreach ($rows as $row) {
-            $result[$row['key']] = $row['value'];
-        }
+        foreach ($rows as $row) $result[$row['key']] = $row['value'];
         Response::json($result);
     }
 
-    public function services(array $p): void
-    {
-        $featured = $_GET['featured'] ?? '';
-        if ($featured === '1') {
-            $rows = $this->db->query(
-                "SELECT * FROM services WHERE status='published' AND featured=1 ORDER BY sort_order, id"
-            );
-        } else {
-            $rows = $this->db->query(
-                "SELECT * FROM services WHERE status='published' ORDER BY sort_order, id"
-            );
-        }
-        Response::json($rows);
+    public function heroSlides(array $p): void {
+        $slides = $this->db->query(
+            "SELECT id, title, subtitle, button_text, button_link, image FROM hero_slides
+             WHERE status = 'published' ORDER BY sort_order, id"
+        );
+        Response::json($slides);
     }
 
-    public function projects(array $p): void
-    {
-        $cat      = $_GET['category'] ?? '';
-        $limit    = min((int)($_GET['limit'] ?? 50), 100);
-        $featured = $_GET['featured'] ?? '';
+    public function services(array $p): void {
+        $services = $this->db->query(
+            "SELECT id, name, slug, description, icon, image, sort_order FROM services
+             WHERE status = 'published' ORDER BY sort_order, id"
+        );
+        Response::json($services);
+    }
 
-        $where  = "WHERE p.status='published'";
+    public function projects(array $p): void {
+        $category = $_GET['category'] ?? '';
+        $featured = $_GET['featured'] ?? '';
+        $sql = "SELECT id, name, slug, category, description, location, year_completed, area, floors, duration, value, image, featured
+                FROM projects WHERE status = 'published'";
         $params = [];
-
-        if ($cat && $cat !== 'all') {
-            $where   .= " AND p.category=?";
-            $params[] = $cat;
-        }
-        if ($featured === '1') {
-            $where .= " AND p.featured=1";
-        }
-
-        $projects = $this->db->query(
-            "SELECT p.*, c.name as category_name, c.slug as category_slug
-             FROM projects p
-             LEFT JOIN project_categories c ON c.id = p.category_id
-             $where ORDER BY p.featured DESC, p.sort_order, p.id LIMIT ?",
-            array_merge($params, [$limit])
-        );
-        Response::json($projects);
+        if ($category) { $sql .= " AND category = ?"; $params[] = $category; }
+        if ($featured) { $sql .= " AND featured = 1"; }
+        $sql .= " ORDER BY sort_order, id";
+        Response::json($this->db->query($sql, $params));
     }
 
-    public function projectCategories(array $p): void
-    {
-        $cats = $this->db->query("SELECT * FROM project_categories ORDER BY sort_order, id");
-        Response::json($cats);
+    public function testimonials(array $p): void {
+        $testimonials = $this->db->query(
+            "SELECT id, author_name, author_title, author_avatar, content, rating FROM testimonials
+             WHERE status = 'published' ORDER BY sort_order, id"
+        );
+        Response::json($testimonials);
     }
 
-    public function testimonials(array $p): void
-    {
-        $rows = $this->db->query(
-            "SELECT * FROM testimonials WHERE status='published' ORDER BY sort_order, id"
-        );
-        Response::json($rows);
-    }
-
-    public function submitContact(array $p): void
-    {
-        $formEnabled = $this->db->scalar(
-            "SELECT value FROM settings WHERE key='contact_form_enabled'"
-        );
-        if ($formEnabled === '0') {
-            Response::error('Form liên hệ hiện đang tắt.', 403);
-        }
-
+    public function submitContact(array $p): void {
         $b = bodyJson();
-        $name              = trim($b['name'] ?? '');
-        $phone             = trim($b['phone'] ?? '');
-        $email             = trim($b['email'] ?? '');
-        $constructionType  = trim($b['construction_type'] ?? '');
-        $area              = trim($b['area'] ?? '');
-        $budget            = trim($b['budget'] ?? '');
-        $location          = trim($b['location'] ?? '');
-        $message           = trim($b['message'] ?? '');
-
-        if (!$name || !$phone) {
-            Response::error('Họ tên và số điện thoại không được để trống.');
+        $name = trim($b['name'] ?? '');
+        $message = trim($b['message'] ?? '');
+        if (!$name || !$message) {
+            Response::error('Vui lòng điền họ tên và nội dung.'); return;
         }
-
         $this->db->execute(
-            "INSERT INTO contacts (name, phone, email, construction_type, area, budget, location, message, status)
-             VALUES (?,?,?,?,?,?,?,?,'new')",
-            [$name, $phone, $email, $constructionType, $area, $budget, $location, $message]
+            "INSERT INTO contacts (name, email, phone, subject, message, project_type) VALUES (?, ?, ?, ?, ?, ?)",
+            [
+                $name,
+                trim($b['email'] ?? ''),
+                trim($b['phone'] ?? ''),
+                trim($b['subject'] ?? 'Yêu cầu báo giá'),
+                $message,
+                trim($b['project_type'] ?? ''),
+            ]
         );
-
-        Response::json([
-            'ok'      => true,
-            'message' => 'Yêu cầu báo giá đã được ghi nhận. Chúng tôi sẽ liên hệ trong vòng 24 giờ.',
-        ], 201);
+        Response::json(['ok' => true, 'message' => 'Yêu cầu của bạn đã được ghi nhận!']);
     }
 }

@@ -4,6 +4,25 @@ import { join, dirname, basename } from 'path'
 import { fileURLToPath } from 'url'
 import { randomBytes } from 'crypto'
 
+function stripBomPhp(dir) {
+  let count = 0
+  const walk = (d) => {
+    for (const item of readdirSync(d, { withFileTypes: true })) {
+      const full = join(d, item.name)
+      if (item.isDirectory()) { walk(full); continue }
+      if (!item.name.endsWith('.php')) continue
+      const buf = readFileSync(full)
+      if (buf.length >= 3 && buf[0] === 0xEF && buf[1] === 0xBB && buf[2] === 0xBF) {
+        writeFileSync(full, buf.subarray(3))
+        console.log(`  BOM stripped: ${item.name}`)
+        count++
+      }
+    }
+  }
+  walk(dir)
+  return count
+}
+
 const root = dirname(fileURLToPath(import.meta.url))
 const slug = "_output" // basename(root)
 const deploy = join(dirname(root), `${slug}-deploy`)
@@ -76,10 +95,19 @@ for (const item of readdirSync(join(root, 'api'))) {
 }
 console.log('  api/ → deploy/api/')
 
+// Strip BOM from all PHP files in deploy/api/ to prevent 500 errors on every endpoint
+const bomCount = stripBomPhp(join(deploy, 'api'))
+console.log(`  BOM stripped from ${bomCount} PHP file(s)`)
+
 // favicon.ico → deploy/
 if (existsSync(join(root, 'favicon.ico'))) {
   cpSync(join(root, 'favicon.ico'), join(deploy, 'favicon.ico'))
   console.log('  Copy favicon.ico...')
+}
+// README.md → deploy/
+if (existsSync(join(root, 'README.md'))) {
+  cpSync(join(root, 'README.md'), join(deploy, 'README.md'))
+  console.log('  Copy README.md...')
 }
 
 console.log('\n=== Build hoàn thành! ===')

@@ -63,19 +63,14 @@ cpSync(join(root, 'admin', 'dist'), join(deploy, 'admin'), { recursive: true })
 const appKey = randomBytes(32).toString('hex')
 const appUrl = process.env.APP_URL || 'http://localhost:8081'
 const configSrc = readFileSync(join(root, 'api', 'config.php'), 'utf8')
-const appKey = randomBytes(32).toString('hex')
-const appUrl = process.env.APP_URL || 'http://localhost:8081'
-const configSrc = readFileSync(join(root, 'api', 'config.php'), 'utf8')
 const configOut = configSrc
   .replace(/define\(‘APP_KEY’,\s*’[^’]*’\)/, `define(‘APP_KEY’, ‘${appKey}’)`)
   .replace(/define\(‘APP_URL’,\s*’[^’]*’\)/, `define(‘APP_URL’, ‘${appUrl}’)`)
-writeFileSync(join(deploy, 'api', 'config.php'), configOut)
 writeFileSync(join(deploy, 'api', 'config.php'), configOut)
 console.log(`  APP_KEY: ${appKey.substring(0, 8)}...`)
 console.log(`  APP_URL: ${appUrl}`)
 
 // Copy api → deploy/api/ (skip database, uploads, node_modules, config.php đã inject riêng)
-const skipApi = new Set(['node_modules', '.git', 'database', 'uploads', 'config.php'])
 const skipApi = new Set(['node_modules', '.git', 'database', 'uploads', 'config.php'])
 for (const item of readdirSync(join(root, 'api'))) {
   if (skipApi.has(item)) continue
@@ -86,6 +81,11 @@ for (const item of readdirSync(join(root, 'api'))) {
 if (existsSync(join(root, 'favicon.ico'))) {
   cpSync(join(root, 'favicon.ico'), join(deploy, 'favicon.ico'))
   console.log('  Copy favicon.ico...')
+}
+// README.md → deploy/
+if (existsSync(join(root, 'README.md'))) {
+  cpSync(join(root, 'README.md'), join(deploy, 'README.md'))
+  console.log('  Copy README.md...')
 }
 
 console.log('\nâœ… Build hoÃ n táº¥t!')

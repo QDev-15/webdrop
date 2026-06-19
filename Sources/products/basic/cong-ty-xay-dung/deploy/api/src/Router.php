@@ -1,53 +1,27 @@
 <?php
 declare(strict_types=1);
 
-class Router
-{
+class Router {
     private array $routes = [];
 
-    public function add(string $method, string $path, callable $handler): void
-    {
-        $this->routes[] = [
-            'method'  => strtoupper($method),
-            'path'    => $path,
-            'handler' => $handler,
-        ];
+    public function add(string $method, string $path, mixed $handler): void {
+        $this->routes[] = compact('method', 'path', 'handler');
     }
 
-    public function dispatch(string $method, string $uri): void
-    {
-        $uri = strtok($uri, '?');
-        $uri = '/' . trim($uri, '/');
-
+    public function dispatch(string $method, string $path): void {
+        $path = rtrim($path, '/') ?: '/';
         foreach ($this->routes as $route) {
-            if ($route['method'] !== $method) continue;
-
-            $params = $this->match($route['path'], $uri);
-            if ($params !== null) {
+            if (strtoupper($route['method']) !== strtoupper($method)) continue;
+            $pattern = preg_replace('#:([^/]+)#', '(?P<$1>[^/]+)', $route['path']);
+            $pattern = '#^' . $pattern . '$#';
+            if (preg_match($pattern, $path, $matches)) {
+                $params = array_filter($matches, 'is_string', ARRAY_FILTER_USE_KEY);
                 ($route['handler'])($params);
                 return;
             }
         }
-
-        Response::notFound('Route not found: ' . $method . ' ' . $uri);
-    }
-
-    private function match(string $routePath, string $uri): ?array
-    {
-        $routePath = '/' . trim($routePath, '/');
-        $pattern   = preg_replace('/\/:([^\/]+)/', '/(?P<$1>[^/]+)', $routePath);
-        $pattern   = '#^' . $pattern . '$#';
-
-        if (preg_match($pattern, $uri, $matches)) {
-            $params = [];
-            foreach ($matches as $key => $val) {
-                if (is_string($key)) {
-                    $params[$key] = $val;
-                }
-            }
-            return $params;
-        }
-
-        return null;
+        http_response_code(404);
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode(['error' => 'Không tìm thấy.'], JSON_UNESCAPED_UNICODE);
     }
 }

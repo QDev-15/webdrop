@@ -123,6 +123,13 @@ class Database {
             // newsletter
             ['newsletter_enabled', '1', 'newsletter'],
             ['newsletter_thank_you', 'Cảm ơn bạn đã đăng ký! Mỗi tuần một bài mới nhất sẽ được gửi đến email của bạn.', 'newsletter'],
+            // cloudinary
+            ['cloudinary_cloud_name', '', 'cloudinary'],
+            ['cloudinary_api_key', '', 'cloudinary'],
+            ['cloudinary_api_secret', '', 'cloudinary'],
+            ['cloudinary_folder', 'webdrop', 'cloudinary'],
+            // integrations
+            ['unsplash_access_key', 'BdVQbpMxCxFAU2ijjhhvwC5-t3Y9CqFe65Mf09t11kY', 'integrations'],
         ];
         foreach ($settings as [$key, $value, $group]) {
             $this->execute(

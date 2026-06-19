@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 declare(strict_types=1);
 
 class Auth {
@@ -22,7 +22,7 @@ class Auth {
                 'httponly' => true,
                 'samesite' => 'Lax',
             ]);
-            session_name('blog_session');
+            session_name('blog_ca_nhan_sess');
             session_start();
         }
     }

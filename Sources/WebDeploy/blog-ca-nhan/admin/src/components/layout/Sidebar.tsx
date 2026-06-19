@@ -70,7 +70,7 @@ export default function Sidebar() {
   ]
 
   return (
-    <aside className="sidebar">
+    <aside className="admin-sidebar">
       <div className="sidebar-logo">
         <a href="/" target="_blank" rel="noopener noreferrer">
           <div className="logo-dot" />

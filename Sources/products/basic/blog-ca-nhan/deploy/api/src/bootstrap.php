@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
+require_once __DIR__ . '/Auth.php';
 require_once __DIR__ . '/Database.php';
 require_once __DIR__ . '/Router.php';
-require_once __DIR__ . '/Auth.php';
 require_once __DIR__ . '/Response.php';
 
 // Load controllers
@@ -17,6 +17,8 @@ require_once __DIR__ . '/controllers/PostCategoryController.php';
 require_once __DIR__ . '/controllers/PostController.php';
 require_once __DIR__ . '/controllers/TagController.php';
 require_once __DIR__ . '/controllers/UserController.php';
+require_once __DIR__ . '/controllers/UploadController.php';
+require_once __DIR__ . '/controllers/UnsplashController.php';
 
 // Helpers
 function bodyJson(): array {
@@ -29,19 +31,19 @@ function bodyJson(): array {
 function slugify(string $text): string {
     $text = mb_strtolower($text, 'UTF-8');
     $map = [
-        'à'=>'a','á'=>'a','ả'=>'a','ã'=>'a','ạ'=>'a',
-        'ă'=>'a','ằ'=>'a','ắ'=>'a','ẳ'=>'a','ẵ'=>'a','ặ'=>'a',
-        'â'=>'a','ầ'=>'a','ấ'=>'a','ẩ'=>'a','ẫ'=>'a','ậ'=>'a',
-        'è'=>'e','é'=>'e','ẻ'=>'e','ẽ'=>'e','ẹ'=>'e',
-        'ê'=>'e','ề'=>'e','ế'=>'e','ể'=>'e','ễ'=>'e','ệ'=>'e',
-        'ì'=>'i','í'=>'i','ỉ'=>'i','ĩ'=>'i','ị'=>'i',
-        'ò'=>'o','ó'=>'o','ỏ'=>'o','õ'=>'o','ọ'=>'o',
-        'ô'=>'o','ồ'=>'o','ố'=>'o','ổ'=>'o','ỗ'=>'o','ộ'=>'o',
-        'ơ'=>'o','ờ'=>'o','ớ'=>'o','ở'=>'o','ỡ'=>'o','ợ'=>'o',
-        'ù'=>'u','ú'=>'u','ủ'=>'u','ũ'=>'u','ụ'=>'u',
-        'ư'=>'u','ừ'=>'u','ứ'=>'u','ử'=>'u','ữ'=>'u','ự'=>'u',
-        'ỳ'=>'y','ý'=>'y','ỷ'=>'y','ỹ'=>'y','ỵ'=>'y',
-        'đ'=>'d',
+        'Ã '=>'a','Ã¡'=>'a','áº£'=>'a','Ã£'=>'a','áº¡'=>'a',
+        'Äƒ'=>'a','áº±'=>'a','áº¯'=>'a','áº³'=>'a','áºµ'=>'a','áº·'=>'a',
+        'Ã¢'=>'a','áº§'=>'a','áº¥'=>'a','áº©'=>'a','áº«'=>'a','áº­'=>'a',
+        'Ã¨'=>'e','Ã©'=>'e','áº»'=>'e','áº½'=>'e','áº¹'=>'e',
+        'Ãª'=>'e','á»'=>'e','áº¿'=>'e','á»ƒ'=>'e','á»…'=>'e','á»‡'=>'e',
+        'Ã¬'=>'i','Ã­'=>'i','á»‰'=>'i','Ä©'=>'i','á»‹'=>'i',
+        'Ã²'=>'o','Ã³'=>'o','á»'=>'o','Ãµ'=>'o','á»'=>'o',
+        'Ã´'=>'o','á»“'=>'o','á»‘'=>'o','á»•'=>'o','á»—'=>'o','á»™'=>'o',
+        'Æ¡'=>'o','á»'=>'o','á»›'=>'o','á»Ÿ'=>'o','á»¡'=>'o','á»£'=>'o',
+        'Ã¹'=>'u','Ãº'=>'u','á»§'=>'u','Å©'=>'u','á»¥'=>'u',
+        'Æ°'=>'u','á»«'=>'u','á»©'=>'u','á»­'=>'u','á»¯'=>'u','á»±'=>'u',
+        'á»³'=>'y','Ã½'=>'y','á»·'=>'y','á»¹'=>'y','á»µ'=>'y',
+        'Ä‘'=>'d',
     ];
     $text = strtr($text, $map);
     $text = preg_replace('/[^a-z0-9\s-]/', '', $text);
@@ -69,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
+Auth::start();
 $db = Database::getInstance();
 $router = new Router();
 
@@ -143,4 +146,15 @@ $router->add('GET',  '/public/popular-posts',   [$pub, 'popularPosts']);
 $router->add('POST', '/public/contact',         [$pub, 'submitContact']);
 $router->add('POST', '/public/newsletter',      [$pub, 'newsletter']);
 
+
+// ── UPLOAD & UNSPLASH ─────────────────────────────────────────────────────────
+$upload   = new UploadController($db);
+$router->add('POST', '/upload',   [$upload,   'upload']);
+
+$unsplash = new UnsplashController($db);
+$router->add('GET',  '/unsplash', [$unsplash, 'search']);
+$router->add('POST', '/unsplash', [$unsplash, 'trackDownload']);
+
 return $router;
+
+
