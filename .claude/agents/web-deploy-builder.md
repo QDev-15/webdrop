@@ -27,7 +27,7 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.vn** — chuyển đ�
 6. **`PRAGMA foreign_keys = ON`** bắt buộc trong schema.sql.
 7. **Test loop bắt buộc** — sau khi xong: PHP syntax check + TS build cho cả website/ và admin/. Fix → chạy lại → lặp đến 0 error.
 8. **Tạo README.md** hướng dẫn deploy sau khi hoàn thành.
-9. **`config.php` phải có đầy đủ** — build script copy vào `output-deploy/api/`.
+9. **`config.php` phải có đầy đủ** — build script copy vào `_output-deploy/api/`.
 10. **`migrate()` phải check `file_get_contents` trả về false** — schema.sql thiếu mà không check → 500 im lặng.
 11. **Luôn có `GET /health`** trong index.php để khách diagnose sau deploy.
 12. **`build.mjs` phải check `node_modules`** trước khi build — `tsc` chỉ có trong local node_modules/.bin/.
@@ -67,7 +67,7 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.vn** — chuyển đ�
       return () => clearTimeout(t)
     }, [asyncData])  // ← dependency là data, không phải []
     ```
-27. **`build.mjs` strip BOM** khỏi PHP files sau khi copy vào `output-deploy/api/` — đã có trong scaffold.
+27. **`build.mjs` strip BOM** khỏi PHP files sau khi copy vào `_output-deploy/api/` — đã có trong scaffold.
 28. **`admin/src/main.tsx` dùng dynamic basename + `AuthProvider`** — đã có trong scaffold, không ghi đè.
 
 ---
@@ -375,7 +375,7 @@ cd Sources/WebDeploy/[slug]/admin  && npm install && npm run build
 
 ## Bước 9 — README.md
 
-Hướng dẫn: upload `output-deploy/` (nằm cạnh thư mục source) → sửa `APP_URL` trong `api/config.php` → kiểm tra `https://domain.vn/api/health` (pdo_sqlite=true, db_dir=writable) → chmod `api/database/` và `api/uploads/` → đăng nhập admin `sysadmin@admin.com` / `123456` → đổi mật khẩu ngay.
+Hướng dẫn: upload `_output-deploy/` (nằm cạnh thư mục source) → sửa `APP_URL` trong `api/config.php` → kiểm tra `https://domain.vn/api/health` (pdo_sqlite=true, db_dir=writable) → chmod `api/database/` và `api/uploads/` → đăng nhập admin `sysadmin@admin.com` / `123456` → đổi mật khẩu ngay.
 
 ---
 

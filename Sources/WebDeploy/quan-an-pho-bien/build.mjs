@@ -21,7 +21,7 @@ function stripBomDir(dir) {
 }
 
 const root = dirname(fileURLToPath(import.meta.url))
-const slug = "output" // basename(root)
+const slug = "_output" // basename(root)
 const deploy = join(dirname(root), `${slug}-deploy`)
 
 console.log('=== quan-an-pho-bien — Build Script ===')

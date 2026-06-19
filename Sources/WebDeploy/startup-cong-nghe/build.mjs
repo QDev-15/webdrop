@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url'
 import { randomBytes } from 'crypto'
 
 const root = dirname(fileURLToPath(import.meta.url))
-const slug = "output" // basename(root)
+const slug = "_output" // basename(root)
 const deploy = join(dirname(root), `${slug}-deploy`)
 
 console.log('TechFlow Startup — Build bắt đầu...\n')
