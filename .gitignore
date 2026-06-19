@@ -25,7 +25,7 @@ dist/
 
 # WebDeploy — thư mục deploy/ được generate bởi build script, không commit
 Sources/WebDeploy/*/deploy/
-Sources/WebDeploy/_TestDeploy/
+Sources/WebDeploy/_output-deploy/
 
 # OS
 .DS_Store
