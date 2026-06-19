@@ -1,7 +1,6 @@
 ﻿import { execSync } from 'child_process'
 import { cpSync, mkdirSync, rmSync, existsSync, readdirSync, readFileSync, writeFileSync, statSync } from 'fs'
 import { join, dirname, basename } from 'path'
-import { join, dirname, basename } from 'path'
 import { fileURLToPath } from 'url'
 import { randomBytes } from 'crypto'
 
