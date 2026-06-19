@@ -1,11 +1,12 @@
-import { execSync } from 'child_process'
+﻿import { execSync } from 'child_process'
 import { cpSync, mkdirSync, rmSync, existsSync, readdirSync, readFileSync, writeFileSync } from 'fs'
-import { join, dirname } from 'path'
+import { join, dirname, basename } from 'path'
 import { fileURLToPath } from 'url'
 import { randomBytes } from 'crypto'
 
-const root   = dirname(fileURLToPath(import.meta.url))
-const deploy = join(root, 'deploy')
+const root = dirname(fileURLToPath(import.meta.url))
+const slug = "output" // basename(root)
+const deploy = join(dirname(root), `${slug}-deploy`)
 
 console.log('TechFlow Startup — Build bắt đầu...\n')
 
@@ -30,15 +31,15 @@ if (!existsSync(join(root, 'admin', 'node_modules'))) {
 
 // Build React apps
 run('npm run build', join(root, 'website'), 'Build website')
-run('npm run build', join(root, 'admin'),   'Build admin')
+run('npm run build', join(root, 'admin'), 'Build admin')
 
 // Create directory structure
 console.log('  Tạo cấu trúc deploy...')
-mkdirSync(join(deploy, 'admin'),                     { recursive: true })
+mkdirSync(join(deploy, 'admin'), { recursive: true })
 mkdirSync(join(deploy, 'api', 'src', 'controllers'), { recursive: true })
-mkdirSync(join(deploy, 'api', 'uploads'),            { recursive: true })
-mkdirSync(join(deploy, 'api', 'database'),           { recursive: true })
-writeFileSync(join(deploy, 'api', 'uploads',  '.gitkeep'), '')
+mkdirSync(join(deploy, 'api', 'uploads'), { recursive: true })
+mkdirSync(join(deploy, 'api', 'database'), { recursive: true })
+writeFileSync(join(deploy, 'api', 'uploads', '.gitkeep'), '')
 writeFileSync(join(deploy, 'api', 'database', '.gitkeep'), '')
 
 // website/dist → deploy/ root (includes .htaccess + web.config from public/)
@@ -66,7 +67,7 @@ for (const item of readdirSync(join(root, 'api'))) {
 console.log('\nBuild hoàn tất!')
 console.log('Output: ' + deploy)
 console.log('\nHướng dẫn deploy:')
-console.log('  1. Upload toàn bộ nội dung trong deploy/ lên public_html/')
-console.log('  2. Chỉnh sửa deploy/api/config.php theo thông tin hosting')
+console.log(`  1. Upload toàn bộ nội dung trong ../${slug}-deploy/ lên public_html/`)
+console.log(`  2. Mở ../${slug}-deploy/api/config.php và sửa APP_URL thành URL thực của website`)
 console.log('  3. Truy cập website.vn/admin để đăng nhập')
 console.log('  4. Tài khoản mặc định: sysadmin@admin.com / 123456')

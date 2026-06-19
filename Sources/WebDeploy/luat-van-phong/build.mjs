@@ -10,8 +10,9 @@ import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { randomBytes } from 'crypto'
 
-const root   = dirname(fileURLToPath(import.meta.url))
-const deploy = join(root, 'deploy')
+const root = dirname(fileURLToPath(import.meta.url))
+const slug = "output" // basename(root)
+const deploy = join(dirname(root), `${slug}-deploy`)
 
 console.log('ðŸ”¨ Luáº­t VÄƒn PhÃ²ng â€” Build báº¯t Ä‘áº§u...\n')
 
@@ -36,15 +37,15 @@ if (!existsSync(join(root, 'admin', 'node_modules'))) {
 
 // Build
 run('npm run build', join(root, 'website'), 'Build website')
-run('npm run build', join(root, 'admin'),   'Build admin')
+run('npm run build', join(root, 'admin'), 'Build admin')
 
 // Create directories
 console.log('  Táº¡o cáº¥u trÃºc deploy...')
-mkdirSync(join(deploy, 'admin'),                 { recursive: true })
+mkdirSync(join(deploy, 'admin'), { recursive: true })
 mkdirSync(join(deploy, 'api', 'src', 'controllers'), { recursive: true })
-mkdirSync(join(deploy, 'api', 'uploads'),        { recursive: true })
-mkdirSync(join(deploy, 'api', 'database'),       { recursive: true })
-writeFileSync(join(deploy, 'api', 'uploads',  '.gitkeep'), '')
+mkdirSync(join(deploy, 'api', 'uploads'), { recursive: true })
+mkdirSync(join(deploy, 'api', 'database'), { recursive: true })
+writeFileSync(join(deploy, 'api', 'uploads', '.gitkeep'), '')
 writeFileSync(join(deploy, 'api', 'database', '.gitkeep'), '')
 
 // Copy website/dist â†’ deploy/ (includes .htaccess, web.config from public/)
@@ -54,18 +55,18 @@ cpSync(join(root, 'website', 'dist'), deploy, { recursive: true })
 cpSync(join(root, 'admin', 'dist'), join(deploy, 'admin'), { recursive: true })
 
 // Inject APP_KEY và APP_URL vào config.php
-const appKey = randomBytes(32).toString(‘hex’)
-const appUrl = process.env.APP_URL || ‘http://localhost:8081’
-const configSrc = readFileSync(join(root, ‘api’, ‘config.php’), ‘utf8’)
+const appKey = randomBytes(32).toString('hex')
+const appUrl = process.env.APP_URL || 'http://localhost:8081'
+const configSrc = readFileSync(join(root, 'api', 'config.php'), 'utf8')
 const configOut = configSrc
   .replace(/define\(‘APP_KEY’,\s*’[^’]*’\)/, `define(‘APP_KEY’, ‘${appKey}’)`)
   .replace(/define\(‘APP_URL’,\s*’[^’]*’\)/, `define(‘APP_URL’, ‘${appUrl}’)`)
-writeFileSync(join(deploy, ‘api’, ‘config.php’), configOut)
+writeFileSync(join(deploy, 'api', 'config.php'), configOut)
 console.log(`  APP_KEY: ${appKey.substring(0, 8)}...`)
 console.log(`  APP_URL: ${appUrl}`)
 
 // Copy api → deploy/api/ (skip database, uploads, node_modules, config.php đã inject riêng)
-const skipApi = new Set([‘node_modules’, ‘.git’, ‘database’, ‘uploads’, ‘config.php’])
+const skipApi = new Set(['node_modules', '.git', 'database', 'uploads', 'config.php'])
 for (const item of readdirSync(join(root, 'api'))) {
   if (skipApi.has(item)) continue
   cpSync(join(root, 'api', item), join(deploy, 'api', item), { recursive: true })
