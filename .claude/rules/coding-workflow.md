@@ -50,3 +50,12 @@ Commit
 - Dùng jQuery hoặc thư viện JS nặng thêm vào
 - Thêm font ngoài DM Sans
 - Bỏ qua review bug sau khi thay đổi
+
+## ⛔ Rule quan trọng — WebDeploy: Phạm vi chỉnh sửa
+
+**Khi được yêu cầu sửa một website cụ thể trong `Sources/WebDeploy/[slug]/`, CHỈ được chỉnh sửa files trong thư mục đó. TUYỆT ĐỐI không tự ý sửa sang các website khác, kể cả khi phát hiện bug tương tự ở những site đó.**
+
+- Người dùng yêu cầu fix `tiem-banh-ngot` → chỉ đụng vào `Sources/WebDeploy/tiem-banh-ngot/`
+- Phát hiện bug giống nhau ở `nha-hang-hai-san` → KHÔNG tự sửa — báo cáo để người dùng quyết định
+- Fix `_scaffold/` chỉ khi người dùng chủ động yêu cầu cập nhật scaffold
+- Bulk update nhiều sites cùng lúc → phải hỏi xác nhận trước khi thực hiện

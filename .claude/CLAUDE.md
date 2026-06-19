@@ -9,6 +9,7 @@
 2. Update file [CLAUDE.md](./CLAUDE.md) mỗi khi có thay đổi code.
 3. Mỗi khi thêm một chức năng hay thay đổi flow thì review fix bug rồi review fix lại cho đến khi hết bug.
 4. **Sau mỗi lần thay đổi code, bắt buộc gọi agent `reviewer` để review code, sau đó gọi agent `qa-tester` để test UI/design system — fix hết issue trước khi commit.**
+5. **⛔ WebDeploy scope: khi sửa một website `Sources/WebDeploy/[slug]/` thì CHỈ sửa trong thư mục đó — không tự ý sửa sang site khác. Phát hiện bug tương tự ở site khác → báo cáo, không tự fix.**
 
 ---
 
@@ -119,6 +120,8 @@ Generate bởi `web-deploy-builder`, lưu tại `Sources/WebDeploy/[slug]/`.
 | `nha-hang-hai-san` | Restaurants/nha-hang-hai-san | ✅ Built | Nhà hàng hải sản; menu, gallery+lightbox, dat-ban, lien-he; admin BrowserRouter+AuthProvider fixed; 0 TS errors |
 | `nha-hang-nhat-ban` | Restaurants/nha-hang-nhat-ban | ✅ Built | Nhà hàng Nhật; menu, gallery, dat-ban, lien-he; 0 TS errors |
 | `nha-hang-truyen-thong` | Restaurants/nha-hang-truyen-thong | ✅ Built | Nhà hàng truyền thống; menu 4 danh mục 18 món, gallery, dat-ban, testimonials; dashboard error state fixed; 0 TS errors |
+| `quan-an-pho-bien` | Restaurants/quan-an-pho-bien | ✅ Built | Quán ăn bình dân; menu 4 danh mục 22 món (price_note field), gallery, testimonials, contact; 0 TS errors |
+| `tiem-banh-ngot` | Restaurants/tiem-banh-ngot | ✅ Built | Tiệm bánh ngọt; product_categories+products, custom orders (6 status workflow), gallery, flavors, testimonials; MutationObserver reveal animation; 0 TS errors, 22 PHP OK |
 | `forum-cong-dong` | Forums/forum-cong-dong | 🔧 In progress | |
 | `cong-ty-xay-dung` | Companies/cong-ty-xay-dung | 🔧 In progress | |
 

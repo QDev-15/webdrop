@@ -108,14 +108,19 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.vn** — chuyên chuy�
     // Gọi sau khi copy API files:
     stripBomDir(join(deploy, 'api'))
     ```
-28. **`admin/src/main.tsx` BẮT BUỘC phải có `BrowserRouter basename="/admin"` và `AuthProvider`** — thiếu → `useAuth()` ném Error "useAuth must be used within AuthProvider" ngay khi mount → admin crash hoàn toàn, không render được gì. Pattern chuẩn:
+28. **`admin/src/main.tsx` BẮT BUỘC dùng dynamic basename và `AuthProvider`** — thiếu `AuthProvider` → `useAuth()` ném Error "useAuth must be used within AuthProvider" ngay khi mount → admin crash hoàn toàn. Dynamic basename giúp admin chạy đúng ở cả root (`/admin/`) lẫn sub-path (`/slug/admin/`) khi test local. Pattern chuẩn:
     ```tsx
     import { BrowserRouter } from 'react-router-dom'
     import { AuthProvider } from './contexts/AuthContext'
     
+    // Detect basename dynamically — works at /admin/ (root deploy) and /slug/admin/ (sub-path test)
+    const _p = window.location.pathname
+    const _i = _p.lastIndexOf('/admin')
+    const adminBasename = _i >= 0 ? _p.slice(0, _i + '/admin'.length) : '/admin'
+
     createRoot(document.getElementById('root')!).render(
       <StrictMode>
-        <BrowserRouter basename="/admin">
+        <BrowserRouter basename={adminBasename}>
           <AuthProvider>
             <App />
           </AuthProvider>
@@ -123,7 +128,7 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.vn** — chuyên chuy�
       </StrictMode>,
     )
     ```
-    - `basename="/admin"` bắt buộc vì admin deploy tại `/admin/` URL path
+    - Dynamic basename: detect từ URL thực tế thay vì hardcode `/admin`
     - Thiếu `BrowserRouter` → `Routes`/`Route` crash với "You rendered a Route outside a Router"
     - Thiếu `AuthProvider` → `useAuth()` trong `RequireAuth` ném Error → toàn bộ app crash
 
@@ -744,6 +749,16 @@ $router->add('GET',  '/public/settings',     [$pub, 'settings']);
 $router->add('GET',  '/public/hero-slides',  [$pub, 'heroSlides']);
 // thêm GET endpoint cho mọi entity public: features, services, menu, gallery, testimonials...
 $router->add('POST', '/public/contact',      [$pub, 'submitContact']);
+
+// ⚠️ PUBLIC endpoint PHẢI trả về ARRAY, không trả object bọc:
+// ✅ ĐÚNG: Response::json($items)          → JS nhận array → .filter() / .map() hoạt động
+// ❌ SAI:  Response::json(['items' => $items, 'categories' => $cats])
+//           → JS nhận object → setProducts(data) → products.filter() lỗi "is not a function"
+//
+// Nếu website cần cả categories + items, tạo 2 endpoint riêng:
+//   GET /public/products           → trả array products
+//   GET /public/product-categories → trả array categories
+// Website gọi Promise.all([...]) để fetch song song.
 ```
 
 ### Controller pattern (áp dụng cho mọi controller)
@@ -795,6 +810,28 @@ class MenuItemController {
         Response::json(['ok' => true]);
     }
 }
+```
+
+### SettingsController — BẮT BUỘC trả flat data
+
+> ⚠️ **`SettingsController::index()` PHẢI trả flat `{ key: value }`, KHÔNG trả grouped `{ group: { key: value } }`**
+> Settings.tsx dùng `Record<string, string>` và truy cập `s.site_name`, `s.unsplash_access_key` trực tiếp.
+> Nếu trả grouped → toàn bộ Settings page load ra rỗng (tất cả field trắng tinh).
+
+```php
+// ✅ ĐÚNG — flat
+public function index(array $p): void {
+    Auth::require();
+    $rows = $this->db->query("SELECT key, value FROM settings");
+    $result = [];
+    foreach ($rows as $r) {
+        $result[$r['key']] = $r['value'];
+    }
+    Response::json($result);
+}
+
+// ❌ SAI — grouped → Settings.tsx không đọc được
+// $result[$r['group']][$r['key']] = $r['value'];
 ```
 
 ---
@@ -1032,21 +1069,29 @@ Dùng nguyên design system webdrop:
 > `body` phải plain — `AdminLayout` tự xử lý flex layout qua `.admin-layout { display: flex; height: 100vh; overflow: hidden; }`.
 > Nếu đặt flex/overflow lên body, login page không căn giữa được (flex item của body không có width).
 
-### admin/src/api/client.ts — Bắt buộc dùng X-HTTP-Method-Override
+### admin/src/api/client.ts — Dùng import.meta.url để detect API base
 
-> ⚠️ Shared hosting IIS (PA Vietnam) có WebDAV lock ở server level — PUT/DELETE luôn bị 405.
-> `put` và `delete` phải gửi **POST + header `X-HTTP-Method-Override`**, không gửi PUT/DELETE trực tiếp.
+> ⚠️ **KHÔNG dùng `window.location.origin + '/api'`** — sai khi deploy ở sub-path (local test).
+> Dùng `import.meta.url` để tự tính đường dẫn API từ vị trí module file trong build output.
+>
+> Admin assets nằm ở `<site-root>/admin/assets/*` → cần đi lên **3 cấp** để ra site root.
+>
+> Shared hosting IIS (PA Vietnam) có WebDAV lock — PUT/DELETE luôn bị 405.
+> `put` và `delete` phải gửi **POST + suffix `/update` `/delete`**, không gửi PUT/DELETE trực tiếp.
 
 ```ts
 const BASE = (() => {
   if (import.meta.env.DEV) return '/api'
-  return window.location.origin + '/api'
+  // Admin assets live at <site-root>/admin/assets/* → go 3 levels up to reach site root
+  // Works at both root deploy (/admin/assets/...) and sub-path (/slug/admin/assets/...)
+  const parts = new URL(import.meta.url).pathname.split('/')
+  const sitePath = parts.slice(0, -3).join('/')
+  return window.location.origin + sitePath + '/api'
 })()
 
-async function request<T>(method: string, path: string, body?: unknown, override?: string): Promise<T> {
+async function request<T>(method: string, path: string, body?: unknown): Promise<T> {
   const headers: Record<string, string> = {}
   if (body && !(body instanceof FormData)) headers['Content-Type'] = 'application/json'
-  if (override) headers['X-HTTP-Method-Override'] = override
   const res = await fetch(BASE + path, {
     method,
     headers,
@@ -1066,6 +1111,7 @@ export const api = {
   // POST + suffix URL — bypass IIS/WebDAV block PUT/DELETE trên shared hosting
   put:    <T>(path: string, body: unknown) => request<T>('POST', `${path}/update`, body),
   delete: <T>(path: string) => request<T>('POST', `${path}/delete`),
+  upload: <T>(path: string, formData: FormData) => request<T>('POST', path, formData),
 }
 ```
 
@@ -1141,6 +1187,22 @@ $router->add('POST', '/unsplash', [$unsplash, 'trackDownload']);
 - `{ id: 'cloudinary', label: '☁️ Cloudinary' }` — Cloud Name, API Key, API Secret, Upload Folder
 - `{ id: 'integrations', label: '🔌 Tích hợp' }` — Unsplash Access Key
 
+> ⚠️ **Tab Tích hợp BẮT BUỘC**: input `unsplash_access_key` phải dùng default value là key thật — không để trống:
+> ```tsx
+> // Trong Settings.tsx, tab integrations:
+> <div>
+>   <label className="form-label">Unsplash Access Key</label>
+>   <input
+>     className="form-control"
+>     value={form.unsplash_access_key ?? 'BdVQbpMxCxFAU2ijjhhvwC5-t3Y9CqFe65Mf09t11kY'}
+>     onChange={e => setForm({ ...form, unsplash_access_key: e.target.value })}
+>     placeholder="BdVQbpMxCxFAU2ijjhhvwC5-t3Y9CqFe65Mf09t11kY"
+>   />
+>   <div className="form-hint">Dùng để tìm ảnh miễn phí từ Unsplash trong ImageField</div>
+> </div>
+> ```
+> Key mặc định đã được seed trong DB — field này sẽ hiển thị giá trị thật khi load settings từ API.
+
 ---
 
 ## Bước 6 — Tạo React Website
@@ -1150,7 +1212,7 @@ $router->add('POST', '/unsplash', [$unsplash, 'trackDownload']);
 1. **Copy nguyên CSS** từ `assets/css/style.css` vào `website/src/styles/template.css`
 2. **Giữ nguyên HTML structure** — chỉ thay static content bằng state/props
 3. **Mỗi section = 1 component** — tên component = tên section trong template
-4. **API base URL** tự động detect: `window.location.origin + '/api'`
+4. **API base URL** detect từ `import.meta.url` (xem `website/src/api/client.ts` — assets ở `<site-root>/assets/*`, đi lên 2 cấp)
 
 ```tsx
 // SiteContext.tsx — load global settings
@@ -1284,10 +1346,12 @@ Options -Indexes
     Deny from all
 </FilesMatch>
 RewriteEngine On
-RewriteCond %{REQUEST_URI} ^/admin
+# Force trailing slash on /admin — required for base:'./' relative assets to resolve correctly
+RewriteRule ^admin$ /admin/ [R=301,L]
+RewriteRule ^api/database/ - [F,L]
+RewriteCond %{REQUEST_URI} ^/admin/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^admin(/.*)?$ admin/index.html [L]
-RewriteRule ^api/database/ - [F,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !^/api/
 RewriteRule ^ index.html [L]
@@ -1380,24 +1444,27 @@ Không có file này → `import.meta.env` báo lỗi TypeScript khi build.
 }
 ```
 
-### admin/vite.config.ts — base phải là `/admin/`
+### admin/vite.config.ts — base phải là `'./'`
 
-> ⚠️ **BẮT BUỘC**: Admin phải dùng `base: '/admin/'`, **KHÔNG dùng `base: './'`**.
-> 
-> Lý do: Khi browser ở URL `/admin` (không có trailing slash) và `index.html` dùng relative path `./assets/foo.js`, browser resolve thành `/assets/foo.js` (sai) thay vì `/admin/assets/foo.js`. Server không tìm thấy file → routing rule bắt request → trả `index.html` (HTML) thay vì JS → lỗi MIME type `text/html`.
+> ⚠️ **BẮT BUỘC**: Admin phải dùng `base: './'` (relative), **KHÔNG dùng `base: '/admin/'`** (absolute).
 >
-> Với `base: '/admin/'`, Vite output absolute path `/admin/assets/foo.js` → luôn đúng dù URL có hay không có trailing slash.
+> Lý do: `base: '/admin/'` hardcode assets tại `/admin/assets/...` — khi test local ở sub-path `/slug/admin/`, browser request `/admin/assets/foo.js` nhưng file thực nằm ở `/slug/admin/assets/foo.js` → 404.
+>
+> `base: './'` sinh relative path `./assets/foo.js` → luôn resolve đúng dù deploy ở root hay sub-path.
+>
+> ⚠️ **Lưu ý trailing slash**: relative path chỉ hoạt động khi browser URL có trailing slash (`/admin/`).
+> `.htaccess` BẮT BUỘC có redirect `^admin$ → /admin/` để đảm bảo điều này.
 
 ```ts
 export default defineConfig({
   plugins: [react()],
-  base: '/admin/',   // ← PHẢI là '/admin/', không được dùng './'
+  base: './',   // ← relative path — works at /admin/ and /slug/admin/
   server: { port: 5174, proxy: { '/api': { target: 'http://localhost:8000', changeOrigin: true } } },
   build: { outDir: 'dist', emptyOutDir: true },
 })
 ```
 
-Website `vite.config.ts` dùng `base: './'` là đúng (deploy ở root `/`, `./assets/foo.js` → `/assets/foo.js`).
+Website `vite.config.ts` cũng dùng `base: './'` (assets ở `<site-root>/assets/`, đi lên 2 cấp để ra site root).
 
 ### admin/package.json — tương tự, thêm react-router-dom
 
@@ -1433,7 +1500,7 @@ cd Sources/WebDeploy/[slug]/admin  && npm install && npm run build
 □ api/src/bootstrap.php có helpers `bodyJson()` + `slugify()` + gọi `Auth::start()` trước `Database::getInstance()`
 □ api/src/bootstrap.php đăng ký đủ routes cho mọi entity
 □ admin/src/components/layout/Sidebar.tsx menu khớp template nav — footer có NavLink đến /profile — outer div PHẢI là `className="admin-sidebar"`, section title PHẢI là `className="sidebar-section"`
-□ admin/src/main.tsx — PHẢI có `BrowserRouter basename="/admin"` và `AuthProvider` bọc ngoài `App`. Thiếu → admin crash ngay khi load (useAuth throws, Routes crash)
+□ admin/src/main.tsx — PHẢI có dynamic basename (`lastIndexOf('/admin')`) và `AuthProvider` bọc ngoài `App`. Thiếu → admin crash ngay khi load (useAuth throws, Routes crash)
 □ admin/src/pages/login/LoginPage.tsx — PHẢI có `useNavigate` + `navigate('/', { replace: true })` sau khi login thành công (thiếu → user login xong bị kẹt ở /login)
 □ website/index.html — PHẢI có Bootstrap CSS CDN (`cdn.jsdelivr.net/npm/bootstrap@5.3.3/...`). Thiếu → mọi `row`, `col-*`, `g-*` không có style → layout vỡ hoàn toàn từ section dùng grid trở xuống
 □ admin/src/pages/profile/ProfilePage.tsx tồn tại với form đổi mật khẩu

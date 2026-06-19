@@ -1,0 +1,3 @@
+/* site.css — small overrides for dynamic content */
+.meal-panel { display: none; }
+.meal-panel.active { display: block; }
