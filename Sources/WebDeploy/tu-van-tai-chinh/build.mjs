@@ -1,11 +1,12 @@
-import { execSync } from 'child_process'
+﻿import { execSync } from 'child_process'
 import { cpSync, mkdirSync, rmSync, existsSync, readdirSync, readFileSync, writeFileSync } from 'fs'
-import { join, dirname } from 'path'
+import { join, dirname, basename } from 'path'
 import { fileURLToPath } from 'url'
 import { randomBytes } from 'crypto'
 
-const root   = dirname(fileURLToPath(import.meta.url))
-const deploy = join(root, 'deploy')
+const root = dirname(fileURLToPath(import.meta.url))
+const slug = "output" // basename(root)
+const deploy = join(dirname(root), `${slug}-deploy`)
 
 console.log('=== Build VietFinance Website ===')
 
@@ -29,15 +30,15 @@ if (!existsSync(join(root, 'admin', 'node_modules'))) {
 
 // Build
 run('npm run build', join(root, 'website'), 'Build website')
-run('npm run build', join(root, 'admin'),   'Build admin')
+run('npm run build', join(root, 'admin'), 'Build admin')
 
 // Tao cau truc thu muc deploy
 console.log('  Tao cau truc deploy...')
-mkdirSync(join(deploy, 'admin'),                     { recursive: true })
+mkdirSync(join(deploy, 'admin'), { recursive: true })
 mkdirSync(join(deploy, 'api', 'src', 'controllers'), { recursive: true })
-mkdirSync(join(deploy, 'api', 'uploads'),            { recursive: true })
-mkdirSync(join(deploy, 'api', 'database'),           { recursive: true })
-writeFileSync(join(deploy, 'api', 'uploads',  '.gitkeep'), '')
+mkdirSync(join(deploy, 'api', 'uploads'), { recursive: true })
+mkdirSync(join(deploy, 'api', 'database'), { recursive: true })
+writeFileSync(join(deploy, 'api', 'uploads', '.gitkeep'), '')
 writeFileSync(join(deploy, 'api', 'database', '.gitkeep'), '')
 
 // Copy website dist → deploy root

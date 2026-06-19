@@ -133,15 +133,21 @@ node scaffolder.mjs [slug] [type: cafe|restaurant|spa|spa-service|portfolio|comp
 Copy ~40 core files từ `_scaffold/` → tiết kiệm ~55% thời gian AI. AI chỉ fill phần còn lại.
 
 **Build:**
-- Windows: `build.bat` — build React + assemble → `deploy/`
+- Windows: `build.bat` — build React + assemble → `output-deploy/` (cùng cấp với thư mục source)
 - Linux/Mac: `bash build.sh`
 
 ```
-deploy/
-├── index.html, assets/   ← public site (website/dist/)
-├── web.config, .htaccess ← SPA routing
-├── admin/                ← admin panel (admin/dist/)
-└── api/                  ← PHP backend + SQLite
+WebDeploy/
+├── [slug]/               ← source code
+│   ├── website/
+│   ├── admin/
+│   ├── api/
+│   └── build.bat
+└── output-deploy/        ← build output (cùng cấp với source)
+    ├── index.html, assets/   ← public site (website/dist/)
+    ├── web.config, .htaccess ← SPA routing
+    ├── admin/                ← admin panel (admin/dist/)
+    └── api/                  ← PHP backend + SQLite
 ```
 
 ---
