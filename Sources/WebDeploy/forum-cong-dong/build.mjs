@@ -1,6 +1,7 @@
 ﻿import { execSync } from 'child_process'
 import { cpSync, mkdirSync, rmSync, existsSync, readdirSync, readFileSync, writeFileSync } from 'fs'
 import { join, dirname, basename } from 'path'
+import { join, dirname, basename } from 'path'
 import { fileURLToPath } from 'url'
 import { randomBytes } from 'crypto'
 
@@ -38,7 +39,11 @@ run('npm run build', join(root, 'admin'), 'Build admin')
 
 console.log('\nTao cau truc deploy...')
 mkdirSync(join(deploy, 'admin'), { recursive: true })
+mkdirSync(join(deploy, 'admin'), { recursive: true })
 mkdirSync(join(deploy, 'api', 'src', 'controllers'), { recursive: true })
+mkdirSync(join(deploy, 'api', 'uploads'), { recursive: true })
+mkdirSync(join(deploy, 'api', 'database'), { recursive: true })
+writeFileSync(join(deploy, 'api', 'uploads', '.gitkeep'), '')
 mkdirSync(join(deploy, 'api', 'uploads'), { recursive: true })
 mkdirSync(join(deploy, 'api', 'database'), { recursive: true })
 writeFileSync(join(deploy, 'api', 'uploads', '.gitkeep'), '')

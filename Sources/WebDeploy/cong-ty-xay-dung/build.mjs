@@ -1,6 +1,7 @@
 ﻿import { execSync } from 'child_process'
 import { cpSync, mkdirSync, rmSync, existsSync, readdirSync, readFileSync, writeFileSync } from 'fs'
 import { join, dirname, basename } from 'path'
+import { join, dirname, basename } from 'path'
 import { fileURLToPath } from 'url'
 import { randomBytes } from 'crypto'
 
@@ -43,6 +44,7 @@ mkdirSync(join(deploy, 'api', 'src', 'controllers'), { recursive: true })
 mkdirSync(join(deploy, 'api', 'uploads'), { recursive: true })
 mkdirSync(join(deploy, 'api', 'database'), { recursive: true })
 writeFileSync(join(deploy, 'api', 'uploads', '.gitkeep'), '')
+writeFileSync(join(deploy, 'api', 'uploads', '.gitkeep'), '')
 writeFileSync(join(deploy, 'api', 'database', '.gitkeep'), '')
 
 // website/dist → deploy/ (bao gồm .htaccess + web.config từ website/public/)
@@ -76,6 +78,8 @@ console.log('=== BUILD THÀNH CÔNG! ===')
 console.log(`Thư mục deploy: ${deploy}`)
 console.log('')
 console.log('Các bước tiếp theo:')
+console.log(`1. Upload toàn bộ nội dung trong ../${slug}-deploy/ lên public_html/`)
+console.log(`2. Mở ../${slug}-deploy/api/config.php và sửa APP_URL thành URL thực của website`)
 console.log(`1. Upload toàn bộ nội dung trong ../${slug}-deploy/ lên public_html/`)
 console.log(`2. Mở ../${slug}-deploy/api/config.php và sửa APP_URL thành URL thực của website`)
 console.log('3. Truy cập https://yoursite.com/api/health để kiểm tra')
