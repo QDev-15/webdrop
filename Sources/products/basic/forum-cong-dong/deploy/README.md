@@ -1,4 +1,4 @@
-# Forum Cong Dong — Huong dan Deploy
+﻿# Forum Cong Dong — Huong dan Deploy
 
 Website dien dan cong dong voi React SPA + PHP API + SQLite.
 
@@ -181,7 +181,7 @@ Vao: Admin → Tai khoan cua toi → Doi mat khau
 ### Backend PHP
 ```bash
 cd api
-php -S localhost:8000
+php -S localhost:8081
 ```
 
 ### Website React

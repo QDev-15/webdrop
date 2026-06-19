@@ -6,7 +6,7 @@ class SettingsController {
 
     public function index(array $p): void {
         Auth::require();
-        $rows = $this->db->query("SELECT key, value, \"group\" FROM settings ORDER BY \"group\", key");
+        $rows = $this->db->query("SELECT key, value, \"group\" FROM settings");
         $result = [];
         foreach ($rows as $r) {
             $result[$r['group']][$r['key']] = $r['value'];
