@@ -122,7 +122,7 @@ export default function TemplateGrid({ templates: propTemplates, homepage, pageT
       { threshold: 0.1 }
     )
     const id = setTimeout(() => {
-      document.querySelectorAll('.tc.reveal:not(.visible)').forEach(el => observer.observe(el))
+      document.querySelectorAll('#templates .reveal:not(.visible)').forEach(el => observer.observe(el))
     }, 0)
     return () => { clearTimeout(id); observer.disconnect() }
   }, [active, homepage])
