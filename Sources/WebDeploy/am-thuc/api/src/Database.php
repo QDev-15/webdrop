@@ -119,7 +119,7 @@ class Database {
             ['maintenance_mode', '0', 'system'],
             ['maintenance_message', 'Website đang bảo trì. Vui lòng quay lại sau.', 'system'],
             // integrations
-            ['unsplash_access_key', '', 'integrations'],
+            ['unsplash_access_key', 'BdVQbpMxCxFAU2ijjhhvwC5-t3Y9CqFe65Mf09t11kY', 'integrations'],
             ['cloudinary_cloud_name', '', 'cloudinary'],
             ['cloudinary_api_key', '', 'cloudinary'],
             ['cloudinary_api_secret', '', 'cloudinary'],

@@ -69,6 +69,18 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.vn** — chuyển đ�
     ```
 27. **`build.mjs` strip BOM** khỏi PHP files sau khi copy vào `_output-deploy/api/` — đã có trong scaffold.
 28. **`admin/src/main.tsx` dùng dynamic basename + `AuthProvider`** — đã có trong scaffold, không ghi đè.
+29. **⚡ BOM trong PHP file SOURCE = 500 im lặng trên MỌI endpoint** — LLM hay editor Windows thường lưu UTF-8 with BOM. Sau khi viết xong toàn bộ PHP, chạy ngay lệnh strip BOM dưới đây. Đây là lỗi tái phát nhiều lần, không được bỏ qua:
+    ```powershell
+    # Strip BOM khỏi toàn bộ PHP source (chạy sau khi viết xong PHP)
+    Get-ChildItem -Path "Sources/WebDeploy/[slug]/api" -Filter "*.php" -Recurse | ForEach-Object {
+        $b = [System.IO.File]::ReadAllBytes($_.FullName)
+        if ($b.Length -ge 3 -and $b[0] -eq 0xEF -and $b[1] -eq 0xBB -and $b[2] -eq 0xBF) {
+            [System.IO.File]::WriteAllBytes($_.FullName, $b[3..($b.Length-1)])
+            Write-Host "BOM stripped: $($_.Name)"
+        }
+    }
+    ```
+30. **`template.css` không được định nghĩa lại Bootstrap grid utilities** — khi copy `style.css` từ template sang `template.css`, xóa toàn bộ block custom grid (`/* Responsive utils */` hay tương tự) vì Bootstrap 5.3.3 đã load sẵn. Giữ nguyên các class **không có trong Bootstrap**: custom nav, section styles, card styles, button variants, animations. Các class **phải xóa** vì Bootstrap đã có và sẽ conflict: `.row`, `.col`, `.col-md-*`, `.col-lg-*`, `.g-3/.g-4/.g-5`, `.d-flex`, `.d-grid`, `.align-items-*`, `.justify-content-*`, `.flex-wrap`, `.gap-*`, `.text-center`, `.mb-*`, `.mt-*`, `.pb-*`, `.py-*`, `.w-100`, `.h-100`, `.position-relative` và responsive `@media` block cho col-*. Nếu để lại `.g-5 { gap: 20px }` sẽ override Bootstrap gutter → col-7 + col-5 + gap = 100% + 20px → 2 cột bị đẩy xuống 1 cột.
 
 ---
 
@@ -334,10 +346,29 @@ Tab Tích hợp phải có input `unsplash_access_key` với default value là k
 
 ## Bước 7 — Test Loop
 
+### 7a. Strip BOM — BẮT BUỘC TRƯỚC KHI BUILD (chạy PowerShell)
+
+```powershell
+# BOM trong PHP source = 500 trên MỌI endpoint — chạy bước này TRƯỚC php -l
+Get-ChildItem -Path "Sources/WebDeploy/[slug]/api" -Filter "*.php" -Recurse | ForEach-Object {
+    $b = [System.IO.File]::ReadAllBytes($_.FullName)
+    if ($b.Length -ge 3 -and $b[0] -eq 0xEF -and $b[1] -eq 0xBB -and $b[2] -eq 0xBF) {
+        [System.IO.File]::WriteAllBytes($_.FullName, $b[3..($b.Length-1)])
+        Write-Host "BOM stripped: $($_.Name)"
+    }
+}
+```
+
+### 7b. PHP syntax check
+
 ```bash
 # PHP syntax check — fix lỗi → chạy lại
 find Sources/WebDeploy/[slug]/api -name "*.php" -exec php -l {} \;
+```
 
+### 7c. TypeScript build
+
+```bash
 # TypeScript build — fix lỗi → chạy lại
 cd Sources/WebDeploy/[slug]/website && npm install && npm run build
 cd Sources/WebDeploy/[slug]/admin  && npm install && npm run build

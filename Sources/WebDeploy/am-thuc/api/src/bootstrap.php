@@ -23,6 +23,7 @@ require_once __DIR__ . '/controllers/TestimonialController.php';
 require_once __DIR__ . '/controllers/UploadController.php';
 require_once __DIR__ . '/controllers/UnsplashController.php';
 
+Auth::start();
 $db = Database::getInstance();
 $router = new Router();
 

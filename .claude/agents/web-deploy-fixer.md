@@ -45,6 +45,28 @@ Kiểm tra thư mục tồn tại. Nếu không có → báo lỗi và dừng.
 
 ---
 
+## Bước 0.5 — BOM Check (LUÔN CHẠY TRƯỚC PHP SYNTAX CHECK)
+
+> **BOM (`EF BB BF`) trong bất kỳ PHP file nào = 500 trên MỌI API endpoint**, kể cả `/public/settings`, `/health`. PHP xuất ký tự thừa trước `<?php` → header đã gửi → mọi JSON response lỗi. Lỗi này tái phát vì LLM + Windows editor thường lưu UTF-8 with BOM. `php -l` đôi khi không báo lỗi này — phải check bytes thực.
+
+```powershell
+# Detect và strip BOM — chạy PowerShell (không dùng bash cho bước này)
+$base = "d:\Data\Projects\AIProject\webdrop\Sources\WebDeploy\[SLUG]\api"
+$fixed = 0
+Get-ChildItem -Path $base -Filter "*.php" -Recurse | ForEach-Object {
+    $b = [System.IO.File]::ReadAllBytes($_.FullName)
+    if ($b.Length -ge 3 -and $b[0] -eq 0xEF -and $b[1] -eq 0xBB -and $b[2] -eq 0xBF) {
+        [System.IO.File]::WriteAllBytes($_.FullName, $b[3..($b.Length-1)])
+        Write-Host "BOM stripped: $($_.Name)"; $fixed++
+    }
+}
+Write-Host "Total BOM fixed: $fixed files"
+```
+
+**File hay có BOM nhất** (thường bị AI viết với BOM): `Router.php`, `Auth.php`, `bootstrap.php`, `SettingsController.php`, `PublicController.php`.
+
+---
+
 ## Bước 1 — PHP Syntax Check
 
 ```bash
@@ -211,6 +233,16 @@ Sau khi build pass (0 errors), kiểm tra các rules dưới đây. **Đọc fil
   ```html
   <link href="https://fonts.bunny.net/css?family=dm-sans:300,300i,400,400i,500,500i,600,600i&display=swap" rel="stylesheet">
   ```
+
+**website/src/styles/template.css — Bootstrap grid conflict:**
+- [ ] KHÔNG có `.row { ... }` custom (conflict với Bootstrap `.row` dùng `--bs-gutter-x`)
+- [ ] KHÔNG có `.col-md-*`, `.col-lg-*` custom (conflict → `col-7 + col-5 + gap = 100% + gap → wrap xuống 1 cột`)
+- [ ] KHÔNG có `.g-3/.g-4/.g-5 { gap: Npx }` custom (Bootstrap `.g-5` dùng CSS var `--bs-gutter-x`, không phải `gap`)
+- [ ] KHÔNG có `.d-flex`, `.align-items-*`, `.justify-content-*`, `.mb-*`, `.mt-*`, `.w-100`, `.text-center` custom
+
+  **Cách fix:** Xóa toàn bộ section custom grid/utils trong template.css (thường có comment `/* Responsive utils */`). Chỉ giữ lại các class không có trong Bootstrap: custom nav, card styles, animation, button variants, page-specific components.
+
+  **Triệu chứng của lỗi này:** Trang Đặt bàn / Liên hệ / bất kỳ trang nào dùng `row g-5` với 2 col: 2 cột song song bị đẩy xuống 1 cột trên desktop.
 
 **Reveal animation (nếu template dùng):**
 - [ ] `setTimeout(fn, 0)` + re-observe `:not(.visible)`:

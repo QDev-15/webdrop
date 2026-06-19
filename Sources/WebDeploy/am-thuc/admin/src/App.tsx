@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { AuthProvider, useAuth } from './contexts/AuthContext'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { useAuth } from './contexts/AuthContext'
 import AdminLayout from './components/layout/AdminLayout'
 import LoginPage from './pages/login/LoginPage'
 import Dashboard from './pages/dashboard/Dashboard'
@@ -32,32 +32,28 @@ function ProtectedRoutes() {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter basename="/admin">
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route element={<ProtectedRoutes />}>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/slides" element={<HeroSlideList />} />
-            <Route path="/slides/new" element={<HeroSlideForm />} />
-            <Route path="/slides/:id/edit" element={<HeroSlideForm />} />
-            <Route path="/menu-categories" element={<MenuCategoryList />} />
-            <Route path="/menu-items" element={<MenuItemList />} />
-            <Route path="/menu-items/new" element={<MenuItemForm />} />
-            <Route path="/menu-items/:id/edit" element={<MenuItemForm />} />
-            <Route path="/reservations" element={<ReservationList />} />
-            <Route path="/gallery" element={<GalleryPage />} />
-            <Route path="/testimonials" element={<TestimonialList />} />
-            <Route path="/testimonials/new" element={<TestimonialForm />} />
-            <Route path="/testimonials/:id/edit" element={<TestimonialForm />} />
-            <Route path="/contacts" element={<ContactList />} />
-            <Route path="/media" element={<MediaPage />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </AuthProvider>
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route element={<ProtectedRoutes />}>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/slides" element={<HeroSlideList />} />
+        <Route path="/slides/new" element={<HeroSlideForm />} />
+        <Route path="/slides/:id/edit" element={<HeroSlideForm />} />
+        <Route path="/menu-categories" element={<MenuCategoryList />} />
+        <Route path="/menu-items" element={<MenuItemList />} />
+        <Route path="/menu-items/new" element={<MenuItemForm />} />
+        <Route path="/menu-items/:id/edit" element={<MenuItemForm />} />
+        <Route path="/reservations" element={<ReservationList />} />
+        <Route path="/gallery" element={<GalleryPage />} />
+        <Route path="/testimonials" element={<TestimonialList />} />
+        <Route path="/testimonials/new" element={<TestimonialForm />} />
+        <Route path="/testimonials/:id/edit" element={<TestimonialForm />} />
+        <Route path="/contacts" element={<ContactList />} />
+        <Route path="/media" element={<MediaPage />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Route>
+    </Routes>
   )
 }
