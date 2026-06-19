@@ -146,6 +146,7 @@ WebDeploy/
 └── _output-deploy/        ← build output (cùng cấp với source)
     ├── index.html, assets/   ← public site (website/dist/)
     ├── web.config, .htaccess ← SPA routing
+    ├── favicon.ico ← Icon
     ├── admin/                ← admin panel (admin/dist/)
     └── api/                  ← PHP backend + SQLite
 ```

@@ -1,0 +1,9 @@
+<VirtualHost *:8081>
+    ServerName http://localhost:8081
+    DocumentRoot "D:/Data/Projects/AIProject/webdrop/Sources/WebDeploy/_output-deploy"
+    <Directory "D:/Data/Projects/AIProject/webdrop/Sources/WebDeploy/_output-deploy">
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>

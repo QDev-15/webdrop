@@ -118,6 +118,12 @@ for (const item of readdirSync(join(root, 'api'))) {
 }
 stripBomDir(join(deploy, 'api'))
 
+// favicon.ico → deploy/
+if (existsSync(join(root, 'favicon.ico'))) {
+  cpSync(join(root, 'favicon.ico'), join(deploy, 'favicon.ico'))
+  console.log('  Copy favicon.ico...')
+}
+
 // ── Hoàn thành ────────────────────────────────────────────────────────────────
 console.log('')
 console.log('[4/4] Hoàn thành!')

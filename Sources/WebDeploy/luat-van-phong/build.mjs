@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Build script â€” VÄƒn PhÃ²ng Luáº­t SÆ°
  * Cháº¡y: node build.mjs
  * Output: deploy/
@@ -80,6 +80,12 @@ const skipApi = new Set(['node_modules', '.git', 'database', 'uploads', 'config.
 for (const item of readdirSync(join(root, 'api'))) {
   if (skipApi.has(item)) continue
   cpSync(join(root, 'api', item), join(deploy, 'api', item), { recursive: true })
+}
+
+// favicon.ico → deploy/
+if (existsSync(join(root, 'favicon.ico'))) {
+  cpSync(join(root, 'favicon.ico'), join(deploy, 'favicon.ico'))
+  console.log('  Copy favicon.ico...')
 }
 
 console.log('\nâœ… Build hoÃ n táº¥t!')

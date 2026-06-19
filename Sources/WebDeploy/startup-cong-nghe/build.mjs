@@ -1,4 +1,4 @@
-﻿import { execSync } from 'child_process'
+import { execSync } from 'child_process'
 import { cpSync, mkdirSync, rmSync, existsSync, readdirSync, readFileSync, writeFileSync } from 'fs'
 import { join, dirname, basename } from 'path'
 import { fileURLToPath } from 'url'
@@ -67,6 +67,12 @@ const skipApi = new Set(['node_modules', '.git', 'database', 'uploads', 'config.
 for (const item of readdirSync(join(root, 'api'))) {
   if (skipApi.has(item)) continue
   cpSync(join(root, 'api', item), join(deploy, 'api', item), { recursive: true })
+}
+
+// favicon.ico → deploy/
+if (existsSync(join(root, 'favicon.ico'))) {
+  cpSync(join(root, 'favicon.ico'), join(deploy, 'favicon.ico'))
+  console.log('  Copy favicon.ico...')
 }
 
 console.log('\nBuild hoàn tất!')
