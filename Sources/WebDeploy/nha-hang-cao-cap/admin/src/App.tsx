@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { AuthProvider, useAuth } from './contexts/AuthContext'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { useAuth } from './contexts/AuthContext'
 import AdminLayout from './components/layout/AdminLayout'
 import LoginPage from './pages/login/LoginPage'
 import Dashboard from './pages/dashboard/Dashboard'
@@ -49,13 +49,9 @@ function ProtectedRoutes() {
 
 export default function App() {
   return (
-    <BrowserRouter basename="/admin">
-      <AuthProvider>
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/*" element={<ProtectedRoutes />} />
-        </Routes>
-      </AuthProvider>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/*" element={<ProtectedRoutes />} />
+    </Routes>
   )
 }

@@ -122,7 +122,7 @@ class Database {
             ['cloudinary_api_secret', '',                                          'cloudinary'],
             ['cloudinary_folder',     'nha-hang-hai-san',                         'cloudinary'],
             // integrations
-            ['unsplash_access_key',   '',                                          'integrations'],
+            ['unsplash_access_key',   'BdVQbpMxCxFAU2ijjhhvwC5-t3Y9CqFe65Mf09t11kY', 'integrations'],
         ];
         foreach ($settings as [$key, $value, $group]) {
             $this->execute(

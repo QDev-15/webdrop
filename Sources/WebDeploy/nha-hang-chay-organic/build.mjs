@@ -1,11 +1,11 @@
-﻿import { execSync } from 'child_process'
+import { execSync } from 'child_process'
 import { cpSync, mkdirSync, rmSync, existsSync, readdirSync, readFileSync, writeFileSync } from 'fs'
 import { join, dirname, basename } from 'path'
 import { fileURLToPath } from 'url'
 import { randomBytes } from 'crypto'
 
 const root = dirname(fileURLToPath(import.meta.url))
-const slug = "_output" // basename(root)
+const slug = "_output" //basename(root)
 const deploy = join(dirname(root), `${slug}-deploy`)
 
 console.log('=== nha-hang-chay-organic — Build Script ===')
@@ -39,16 +39,10 @@ console.log('')
 console.log('[2/4] Build React apps...')
 run('npm run build', join(root, 'website'), 'Build website')
 run('npm run build', join(root, 'admin'), 'Build admin')
-run('npm run build', join(root, 'admin'), 'Build admin')
 
 // ── Tạo cấu trúc thư mục deploy ──────────────────────────────────────────────
 console.log('')
 console.log('[3/4] Tạo cấu trúc deploy...')
-mkdirSync(join(deploy, 'admin'), { recursive: true })
-mkdirSync(join(deploy, 'api', 'src', 'controllers'), { recursive: true })
-mkdirSync(join(deploy, 'api', 'uploads'), { recursive: true })
-mkdirSync(join(deploy, 'api', 'database'), { recursive: true })
-writeFileSync(join(deploy, 'api', 'uploads', '.gitkeep'), '')
 mkdirSync(join(deploy, 'admin'), { recursive: true })
 mkdirSync(join(deploy, 'api', 'src', 'controllers'), { recursive: true })
 mkdirSync(join(deploy, 'api', 'uploads'), { recursive: true })
@@ -84,6 +78,24 @@ for (const item of readdirSync(join(root, 'api'))) {
   cpSync(join(root, 'api', item), join(deploy, 'api', item), { recursive: true })
 }
 
+// Strip BOM (EF BB BF) từ tất cả PHP files trong deploy/api/
+console.log('  Strip BOM khỏi PHP files...')
+function stripBom(dir) {
+  for (const item of readdirSync(dir, { withFileTypes: true })) {
+    const full = join(dir, item.name)
+    if (item.isDirectory()) {
+      stripBom(full)
+    } else if (item.name.endsWith('.php')) {
+      const buf = readFileSync(full)
+      if (buf.length >= 3 && buf[0] === 0xEF && buf[1] === 0xBB && buf[2] === 0xBF) {
+        writeFileSync(full, buf.subarray(3))
+        console.log(`    BOM stripped: ${item.name}`)
+      }
+    }
+  }
+}
+stripBom(join(deploy, 'api'))
+
 // favicon.ico → deploy/
 if (existsSync(join(root, 'favicon.ico'))) {
   cpSync(join(root, 'favicon.ico'), join(deploy, 'favicon.ico'))
@@ -100,11 +112,8 @@ console.log('')
 console.log('[4/4] Hoàn thành!')
 console.log('')
 console.log(`Thư mục deploy đã sẵn sàng: ../${slug}-deploy/`)
-console.log(`Thư mục deploy đã sẵn sàng: ../${slug}-deploy/`)
 console.log('')
 console.log('Các bước tiếp theo:')
-console.log(`  1. Upload toàn bộ nội dung trong ../${slug}-deploy/ lên public_html/ của hosting`)
-console.log(`  2. Mở ../${slug}-deploy/api/config.php và sửa APP_URL thành URL thực của website`)
 console.log(`  1. Upload toàn bộ nội dung trong ../${slug}-deploy/ lên public_html/ của hosting`)
 console.log(`  2. Mở ../${slug}-deploy/api/config.php và sửa APP_URL thành URL thực của website`)
 console.log('  3. Kiểm tra: https://yourdomain.com/api/health')

@@ -57,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
+Auth::start();
 $db     = Database::getInstance();
 $router = new Router();
 

@@ -32,48 +32,48 @@ export default function Sidebar() {
 
   const menuStructure: MenuSection[] = [
     {
-      section: 'Tong quan',
+      section: 'Tổng quan',
       links: [
         { to: '/', icon: '⊞', label: 'Dashboard', exact: true },
       ],
     },
     {
-      section: 'Trang chu',
+      section: 'Trang chủ',
       links: [
         { to: '/slides', icon: '🖼', label: 'Hero Slides' },
-        { to: '/gallery', icon: '📸', label: 'Thu vien anh' },
+        { to: '/gallery', icon: '📸', label: 'Thư viện ảnh' },
       ],
     },
     {
-      section: 'Thuc don',
+      section: 'Thực đơn',
       links: [
-        { to: '/menu-categories', icon: '📂', label: 'Danh muc' },
-        { to: '/menu-items', icon: '🍽', label: 'Mon an' },
+        { to: '/menu-categories', icon: '📂', label: 'Danh mục' },
+        { to: '/menu-items', icon: '🍽', label: 'Món ăn' },
       ],
     },
     {
-      section: 'Dat ban',
+      section: 'Đặt bàn',
       links: [
-        { to: '/reservations', icon: '📅', label: 'Dat ban', badge: pendingReservations },
+        { to: '/reservations', icon: '📅', label: 'Đặt bàn', badge: pendingReservations },
       ],
     },
     {
-      section: 'Noi dung',
+      section: 'Nội dung',
       links: [
-        { to: '/testimonials', icon: '⭐', label: 'Danh gia' },
+        { to: '/testimonials', icon: '⭐', label: 'Đánh giá' },
         { to: '/media', icon: '🗂', label: 'Media' },
       ],
     },
     {
-      section: 'Khach hang',
+      section: 'Khách hàng',
       links: [
-        { to: '/contacts', icon: '✉', label: 'Lien he', badge: newContacts },
+        { to: '/contacts', icon: '✉', label: 'Liên hệ', badge: newContacts },
       ],
     },
     {
-      section: 'He thong',
+      section: 'Hệ thống',
       links: [
-        { to: '/settings', icon: '⚙', label: 'Cai dat' },
+        { to: '/settings', icon: '⚙', label: 'Cài đặt' },
       ],
     },
   ]
@@ -127,7 +127,7 @@ export default function Sidebar() {
           style={{ width: '100%', background: 'none', border: 'none', cursor: 'pointer', marginTop: 2 }}
         >
           <span className="icon">↩</span>
-          <span>Dang xuat</span>
+          <span>Đăng xuất</span>
         </button>
       </div>
     </div>

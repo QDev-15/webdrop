@@ -26,12 +26,8 @@ export default function Settings() {
   const [msg, setMsg] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
 
   useEffect(() => {
-    api.get<Record<string, Record<string, string>>>('/settings')
-      .then(data => {
-        const flat: Settings = {}
-        Object.values(data).forEach(group => Object.assign(flat, group))
-        setSettings(flat)
-      })
+    api.get<Settings>('/settings')
+      .then(data => setSettings(data))
       .catch(() => setMsg({ type: 'error', text: 'Khong tai duoc cai dat.' }))
       .finally(() => setLoading(false))
   }, [])
