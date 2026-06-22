@@ -151,6 +151,13 @@ class Database {
             // system
             ['maintenance_mode',    '0',                                                'system'],
             ['maintenance_message', 'Website đang bảo trì. Vui lòng quay lại sau.',   'system'],
+            // cloudinary
+            ['cloudinary_cloud_name',  '',                                              'cloudinary'],
+            ['cloudinary_api_key',     '',                                              'cloudinary'],
+            ['cloudinary_api_secret',  '',                                              'cloudinary'],
+            ['cloudinary_folder',      'webdrop',                                       'cloudinary'],
+            // integrations
+            ['unsplash_access_key',    'BdVQbpMxCxFAU2ijjhhvwC5-t3Y9CqFe65Mf09t11kY', 'integrations'],
         ];
 
         foreach ($settings as [$key, $value, $group]) {

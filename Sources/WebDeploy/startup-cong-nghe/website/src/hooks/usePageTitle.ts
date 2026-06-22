@@ -1,4 +1,4 @@
-﻿import { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useSite } from '../contexts/SiteContext'
 
 export function usePageTitle(pageTitle?: string) {

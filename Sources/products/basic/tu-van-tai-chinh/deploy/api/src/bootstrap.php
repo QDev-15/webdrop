@@ -28,19 +28,22 @@ function bodyJson(): array {
 
 function slugify(string $text): string {
     $text = mb_strtolower($text, 'UTF-8');
-    $map = ['à'=>'a','á'=>'a','ả'=>'a','ã'=>'a','ạ'=>'a','â'=>'a','ầ'=>'a','ấ'=>'a','ẩ'=>'a','ẫ'=>'a','ậ'=>'a',
-             'ă'=>'a','ằ'=>'a','ắ'=>'a','ẳ'=>'a','ẵ'=>'a','ặ'=>'a','è'=>'e','é'=>'e','ẻ'=>'e','ẽ'=>'e','ẹ'=>'e',
-             'ê'=>'e','ề'=>'e','ế'=>'e','ể'=>'e','ễ'=>'e','ệ'=>'e','ì'=>'i','í'=>'i','ỉ'=>'i','ĩ'=>'i','ị'=>'i',
-             'ò'=>'o','ó'=>'o','ỏ'=>'o','õ'=>'o','ọ'=>'o','ô'=>'o','ồ'=>'o','ố'=>'o','ổ'=>'o','ỗ'=>'o','ộ'=>'o',
-             'ơ'=>'o','ờ'=>'o','ớ'=>'o','ở'=>'o','ỡ'=>'o','ợ'=>'o','ù'=>'u','ú'=>'u','ủ'=>'u','ũ'=>'u','ụ'=>'u',
-             'ư'=>'u','ừ'=>'u','ứ'=>'u','ử'=>'u','ữ'=>'u','ự'=>'u','ỳ'=>'y','ý'=>'y','ỷ'=>'y','ỹ'=>'y','ỵ'=>'y',
-             'đ'=>'d'];
+    $map = ['Ã '=>'a','Ã¡'=>'a','áº£'=>'a','Ã£'=>'a','áº¡'=>'a','Ã¢'=>'a','áº§'=>'a','áº¥'=>'a','áº©'=>'a','áº«'=>'a','áº­'=>'a',
+             'Äƒ'=>'a','áº±'=>'a','áº¯'=>'a','áº³'=>'a','áºµ'=>'a','áº·'=>'a','Ã¨'=>'e','Ã©'=>'e','áº»'=>'e','áº½'=>'e','áº¹'=>'e',
+             'Ãª'=>'e','á»'=>'e','áº¿'=>'e','á»ƒ'=>'e','á»…'=>'e','á»‡'=>'e','Ã¬'=>'i','Ã­'=>'i','á»‰'=>'i','Ä©'=>'i','á»‹'=>'i',
+             'Ã²'=>'o','Ã³'=>'o','á»'=>'o','Ãµ'=>'o','á»'=>'o','Ã´'=>'o','á»“'=>'o','á»‘'=>'o','á»•'=>'o','á»—'=>'o','á»™'=>'o',
+             'Æ¡'=>'o','á»'=>'o','á»›'=>'o','á»Ÿ'=>'o','á»¡'=>'o','á»£'=>'o','Ã¹'=>'u','Ãº'=>'u','á»§'=>'u','Å©'=>'u','á»¥'=>'u',
+             'Æ°'=>'u','á»«'=>'u','á»©'=>'u','á»­'=>'u','á»¯'=>'u','á»±'=>'u','á»³'=>'y','Ã½'=>'y','á»·'=>'y','á»¹'=>'y','á»µ'=>'y',
+             'Ä‘'=>'d'];
     $text = strtr($text, $map);
     $text = preg_replace('/[^a-z0-9\s-]/', '', $text);
     $text = preg_replace('/[\s-]+/', '-', trim($text));
     return $text;
 }
 
+
+require_once __DIR__ . '/controllers/UploadController.php';
+require_once __DIR__ . '/controllers/UnsplashController.php';
 Auth::start();
 
 $db     = Database::getInstance();
@@ -124,4 +127,15 @@ $router->add('GET',  '/public/team',         [$pub, 'team']);
 $router->add('GET',  '/public/testimonials', [$pub, 'testimonials']);
 $router->add('POST', '/public/contact',      [$pub, 'submitContact']);
 
+
+// ── UPLOAD & UNSPLASH ─────────────────────────────────────────────────────────
+$upload   = new UploadController($db);
+$router->add('POST', '/upload',   [$upload,   'upload']);
+
+$unsplash = new UnsplashController($db);
+$router->add('GET',  '/unsplash', [$unsplash, 'search']);
+$router->add('POST', '/unsplash', [$unsplash, 'trackDownload']);
+
 return $router;
+
+

@@ -28,14 +28,18 @@ export default function Home() {
     api.get<PricingPlan[]>('/public/pricing').then(setPlans).catch(() => {})
   }, [])
 
-  // Reveal animation
+  // Reveal animation — re-observe after data loads
   useEffect(() => {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target) } })
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' })
-    document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el))
-    return () => obs.disconnect()
-  })
+    const t = setTimeout(() => {
+      const els = document.querySelectorAll('[data-reveal]:not(.visible)')
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target) } })
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' })
+      els.forEach(el => obs.observe(el))
+      return () => obs.disconnect()
+    }, 0)
+    return () => clearTimeout(t)
+  }, [features, testimonials, plans])
 
   const trustedBy = (settings.trusted_by || 'Shopee,Grab,Tiki,MoMo,VNG Corp,Zalo').split(',').filter(Boolean)
 

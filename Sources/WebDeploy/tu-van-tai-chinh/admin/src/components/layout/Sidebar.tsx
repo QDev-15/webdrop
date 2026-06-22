@@ -74,7 +74,7 @@ export default function Sidebar() {
   ]
 
   return (
-    <div className="sidebar">
+    <div className="admin-sidebar">
       <div className="sidebar-logo">
         <div className="sidebar-logo-icon">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -97,7 +97,7 @@ export default function Sidebar() {
               >
                 <span className="icon">{link.icon}</span>
                 <span>{link.label}</span>
-                {link.badge ? <span className="badge">{link.badge}</span> : null}
+                {link.badge ? <span className="sidebar-badge">{link.badge}</span> : null}
               </NavLink>
             ))}
           </div>

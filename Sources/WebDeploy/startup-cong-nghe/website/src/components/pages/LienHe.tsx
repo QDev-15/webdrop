@@ -19,12 +19,16 @@ export default function LienHe() {
   const [demoError, setDemoError]           = useState('')
 
   useEffect(() => {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target) } })
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' })
-    document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el))
-    return () => obs.disconnect()
-  })
+    const t = setTimeout(() => {
+      const els = document.querySelectorAll('[data-reveal]:not(.visible)')
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target) } })
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' })
+      els.forEach(el => obs.observe(el))
+      return () => obs.disconnect()
+    }, 0)
+    return () => clearTimeout(t)
+  }, [])
 
   const setF = (k: keyof typeof form, v: string) => setForm(f => ({ ...f, [k]: v }))
   const setD = (k: keyof typeof demo, v: string) => setDemo(d => ({ ...d, [k]: v }))

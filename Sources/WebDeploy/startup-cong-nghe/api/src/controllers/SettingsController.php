@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 class SettingsController {
     private Database $db;
@@ -6,10 +6,12 @@ class SettingsController {
 
     public function index(array $p): void {
         Auth::require();
-        $rows = $this->db->query("SELECT key, value FROM settings");
+        $rows = $this->db->query("SELECT key, value, \"group\" FROM settings");
         $result = [];
         foreach ($rows as $r) {
-            $result[$r['key']] = $r['value'];
+            $group = $r['group'] ?? 'general';
+            if (!isset($result[$group])) $result[$group] = [];
+            $result[$group][$r['key']] = $r['value'];
         }
         Response::json($result);
     }

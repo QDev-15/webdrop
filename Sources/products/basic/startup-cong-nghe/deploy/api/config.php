@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * TechFlow — Cấu hình hệ thống
  * ⚠️  SAU KHI UPLOAD LÊN HOSTING, BẮT BUỘC SỬA:
@@ -19,15 +19,14 @@ define('DB_PASS', 'mat_khau');
 
 // ─── APP ─────────────────────────────────────────────────────────────────────
 // ⚠️  Sửa APP_URL thành URL thực của hosting (không có dấu / cuối)
-define('APP_URL', 'https://example.com');
+define('APP_URL', 'http://localhost:8081');
 define('APP_ENV', 'production');
 // ⚠️  Sửa APP_KEY thành chuỗi ngẫu nhiên 32 ký tự
-define('APP_KEY', 'c491f3e38706c5502eff1ff56de65d575f3732257296520017a830285e9847f0');
+define('APP_KEY', '8d265da1f224b7d9518f233c51ce2b00bcd5361ceeb4829be9f194bc8bdfb80a');
 
 // ─── CORS ────────────────────────────────────────────────────────────────────
 // Danh sách origin được phép gọi API (để trống = chỉ cho phép APP_URL)
 define('CORS_ORIGINS', [
-    'https://nhienadmin.tkid.io.vn'
     // 'https://www.techflow.vn',
     // 'https://techflow.vn',
 ]);

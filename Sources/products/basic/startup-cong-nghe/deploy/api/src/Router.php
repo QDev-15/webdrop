@@ -3,7 +3,7 @@
 class Router {
     private array $routes = [];
 
-    public function add(string $method, string $path, callable $handler): void {
+    public function add(string $method, string $path, mixed $handler): void {
         $this->routes[] = compact('method', 'path', 'handler');
     }
 

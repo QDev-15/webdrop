@@ -1,4 +1,4 @@
-﻿const BASE = (() => {
+const BASE = (() => {
   if (import.meta.env.DEV) return '/api'
   return window.location.origin + '/api'
 })()

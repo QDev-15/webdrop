@@ -87,6 +87,13 @@ export default function Sidebar() {
           })}
         </div>
       ))}
+
+      <div style={{ marginTop: 'auto', padding: '12px' }}>
+        <NavLink to="/profile" className={'sb-link' + (location.pathname === '/profile' ? ' active' : '')}>
+          <span className="sb-icon">👤</span>
+          <span>Tài khoản</span>
+        </NavLink>
+      </div>
     </aside>
   )
 }

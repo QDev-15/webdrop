@@ -123,7 +123,8 @@ img { display: block; max-width: 100%; }
 
 .sidebar-link .icon { font-size: 15px; width: 18px; text-align: center; flex-shrink: 0; }
 
-.sidebar-link .badge {
+.sidebar-link .badge,
+.sidebar-link .sidebar-badge {
   margin-left: auto;
   background: var(--danger);
   color: #fff;
@@ -133,6 +134,17 @@ img { display: block; max-width: 100%; }
   border-radius: 10px;
   min-width: 18px;
   text-align: center;
+}
+
+/* .admin-sidebar is an alias for .sidebar — structural rule compliance */
+.admin-sidebar {
+  width: 214px;
+  flex-shrink: 0;
+  background: var(--sidebar);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .sidebar-footer {

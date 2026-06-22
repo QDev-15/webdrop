@@ -1,8 +1,22 @@
 import { execSync } from 'child_process'
-import { cpSync, mkdirSync, rmSync, existsSync, readdirSync, readFileSync, writeFileSync } from 'fs'
-import { join, dirname, basename } from 'path'
+import { cpSync, mkdirSync, rmSync, existsSync, readdirSync, readFileSync, writeFileSync, statSync } from 'fs'
+import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { randomBytes } from 'crypto'
+
+function stripBomPhpFiles(dir) {
+  if (!existsSync(dir)) return
+  for (const name of readdirSync(dir)) {
+    const full = join(dir, name)
+    if (statSync(full).isDirectory()) { stripBomPhpFiles(full); continue }
+    if (!name.endsWith('.php')) continue
+    const buf = readFileSync(full)
+    if (buf[0] === 0xEF && buf[1] === 0xBB && buf[2] === 0xBF) {
+      writeFileSync(full, buf.subarray(3))
+      console.log('  BOM stripped:', name)
+    }
+  }
+}
 
 const root = dirname(fileURLToPath(import.meta.url))
 const slug = "_output" // basename(root)
@@ -31,16 +45,11 @@ if (!existsSync(join(root, 'admin', 'node_modules'))) {
 // Build
 run('npm run build', join(root, 'website'), 'Build website')
 run('npm run build', join(root, 'admin'), 'Build admin')
-run('npm run build', join(root, 'admin'), 'Build admin')
 
 // Tao cau truc thu muc deploy
 console.log('  Tao cau truc deploy...')
 mkdirSync(join(deploy, 'admin'), { recursive: true })
-mkdirSync(join(deploy, 'admin'), { recursive: true })
 mkdirSync(join(deploy, 'api', 'src', 'controllers'), { recursive: true })
-mkdirSync(join(deploy, 'api', 'uploads'), { recursive: true })
-mkdirSync(join(deploy, 'api', 'database'), { recursive: true })
-writeFileSync(join(deploy, 'api', 'uploads', '.gitkeep'), '')
 mkdirSync(join(deploy, 'api', 'uploads'), { recursive: true })
 mkdirSync(join(deploy, 'api', 'database'), { recursive: true })
 writeFileSync(join(deploy, 'api', 'uploads', '.gitkeep'), '')
@@ -49,6 +58,12 @@ writeFileSync(join(deploy, 'api', 'database', '.gitkeep'), '')
 // Copy website dist → deploy root
 console.log('  Copy website dist...')
 cpSync(join(root, 'website', 'dist'), deploy, { recursive: true })
+// Force-write .htaccess — Apache có thể lock file này khi đang serve, cpSync sẽ skip
+const htaccessSrc = join(root, 'website', 'dist', '.htaccess')
+if (existsSync(htaccessSrc)) {
+  writeFileSync(join(deploy, '.htaccess'), readFileSync(htaccessSrc))
+  console.log('  Force-write .htaccess...')
+}
 
 // Copy admin dist → deploy/admin
 console.log('  Copy admin dist...')
@@ -71,6 +86,10 @@ for (const item of readdirSync(join(root, 'api'))) {
   if (skipApi.has(item)) continue
   cpSync(join(root, 'api', item), join(deploy, 'api', item), { recursive: true })
 }
+
+// Strip BOM khoi tat ca PHP files trong deploy/api (tranh 500 error)
+console.log('  Strip BOM khoi PHP files...')
+stripBomPhpFiles(join(deploy, 'api'))
 
 // favicon.ico → deploy/
 if (existsSync(join(root, 'favicon.ico'))) {

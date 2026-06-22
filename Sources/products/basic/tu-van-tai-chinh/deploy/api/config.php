@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * VietFinance — Tư Vấn Tài Chính Chuyên Nghiệp
  * Cấu hình hệ thống
@@ -21,14 +21,13 @@ define('DB_PASS', 'mat_khau');
 
 // APP
 // Sửa APP_URL thành URL thực của hosting (không có dấu / cuối)
-define('APP_URL', 'https://example.com');
+define('APP_URL', 'http://localhost:8081');
 define('APP_ENV', 'production');
 // Sửa APP_KEY thành chuỗi ngẫu nhiên 32 ký tự
-define('APP_KEY', '4dfba3cce7f1218fdb64827467deec44213213dfdb25b831680f8fa416b4cc21');
+define('APP_KEY', '47b41788ab5bfc38b1027d448be36f9d0933166361c4095095f4ed705c844bd7');
 
 // CORS — Danh sách origin được phép gọi API
 define('CORS_ORIGINS', [
-    'https://nhien.tkid.io.vn'
     // 'https://www.vietfinance.vn',
     // 'https://vietfinance.vn',
 ]);
