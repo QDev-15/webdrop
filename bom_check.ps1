@@ -1,4 +1,4 @@
-$base = "d:\Data\Projects\AIProject\webdrop\Sources\WebDeploy\nha-hang-nhat-ban\api"
+$base = "d:\Data\Projects\AIProject\webdrop\Sources\WebDeploy\portfolio-toi\api"
 $fixed = 0
 Get-ChildItem -Path $base -Filter "*.php" -Recurse | ForEach-Object {
     $b = [System.IO.File]::ReadAllBytes($_.FullName)

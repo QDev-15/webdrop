@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { api } from '../../api/client'
 import ImageField from '../../components/ImageField'
 
-type SettingsData = Record<string, Record<string, string>>
 type FlatData = Record<string, string>
 
 const tabs = [
@@ -26,14 +25,12 @@ export default function Settings() {
   const [saved, setSaved] = useState(false)
 
   useEffect(() => {
-    api.get<SettingsData>('/settings').then(raw => {
-      const flat: FlatData = {}
-      for (const group of Object.values(raw)) {
-        for (const [k, v] of Object.entries(group)) {
-          flat[k] = v ?? ''
-        }
+    api.get<FlatData>('/settings').then(flat => {
+      const normalized: FlatData = {}
+      for (const [k, v] of Object.entries(flat)) {
+        normalized[k] = v ?? ''
       }
-      setData(flat)
+      setData(normalized)
     }).finally(() => setLoading(false))
   }, [])
 

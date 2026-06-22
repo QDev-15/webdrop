@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { AuthProvider, useAuth } from './contexts/AuthContext'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { useAuth } from './contexts/AuthContext'
 import AdminLayout from './components/layout/AdminLayout'
 import LoginPage from './pages/login/LoginPage'
 import Dashboard from './pages/dashboard/Dashboard'
@@ -24,7 +24,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
   return <>{children}</>
 }
 
-function AppRoutes() {
+export default function App() {
   const { user, loading } = useAuth()
   if (loading) return <div className="admin-loading">Đang tải...</div>
 
@@ -55,15 +55,5 @@ function AppRoutes() {
         <Route path="users" element={<UserList />} />
       </Route>
     </Routes>
-  )
-}
-
-export default function App() {
-  return (
-    <BrowserRouter basename="/admin">
-      <AuthProvider>
-        <AppRoutes />
-      </AuthProvider>
-    </BrowserRouter>
   )
 }
