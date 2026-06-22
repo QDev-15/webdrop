@@ -108,7 +108,7 @@ export default function TemplateGrid({ templates: propTemplates, homepage, pageT
   useEffect(() => {
     if (!propsReady.current) { propsReady.current = true; return }
     const cats = Array.from(new Set((propTemplates || mockTemplates).map(t => t.category)))
-    setActive(cats[0] || '')
+    setActive(prev => cats.includes(prev) ? prev : (cats[0] || ''))
     setPage(1)
   }, [propTemplates])
 
