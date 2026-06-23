@@ -127,6 +127,7 @@ Generate bởi `web-deploy-builder`, lưu tại `Sources/WebDeploy/[slug]/`.
 | `tiem-banh-ngot` | Restaurants/tiem-banh-ngot | ✅ Built | Tiệm bánh ngọt; product_categories+products, custom orders (6 status workflow), gallery, flavors, testimonials; MutationObserver reveal animation; 0 TS errors, 22 PHP OK |
 | `forum-cong-dong` | Forums/forum-cong-dong | 🔧 In progress | |
 | `cong-ty-xay-dung` | Companies/cong-ty-xay-dung | ✅ Built | Công ty xây dựng; services, projects (9 công trình), testimonials, team; BOM fix Router.php; SettingsController flat output; Auth::start before DB; Bunny Fonts; 0 TS/PHP errors |
+| `quan-bbq-lua` | Restaurants/quan-bbq-lua | ✅ Built | Quán BBQ nướng; menu 5 danh mục 23 món (price_unit field), gallery+lightbox, dat-ban (table_type + deposit), testimonials, contact; counter animation hero stats; orange fire accent theme; 0 TS errors |
 
 **Scaffold (tạo project mới nhanh):**
 ```

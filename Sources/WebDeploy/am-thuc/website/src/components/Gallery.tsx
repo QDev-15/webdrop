@@ -15,18 +15,31 @@ export default function Gallery() {
     api.get<GalleryItem[]>('/public/gallery').then(setItems).catch(() => {})
   }, [])
 
+  useEffect(() => {
+    if (items.length === 0) return
+    const t = setTimeout(() => {
+      const els = document.querySelectorAll<Element>('[data-reveal]:not(.visible)')
+      const ro = new IntersectionObserver(entries =>
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target) } })
+      , { threshold: 0.08, rootMargin: '0px 0px -40px 0px' })
+      els.forEach(el => ro.observe(el))
+      return () => ro.disconnect()
+    }, 0)
+    return () => clearTimeout(t)
+  }, [items])
+
   if (items.length === 0) return null
 
   return (
     <section className="sec-pad" style={{ background: 'var(--warm)' }}>
       <div className="wd-container">
-        <div className="text-center reveal mb-5">
+        <div className="text-center reveal mb-5" data-reveal>
           <div className="eyebrow">Hình ảnh</div>
           <h2 className="sec-title">Không gian <em>nhà hàng</em></h2>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 12 }}>
           {items.map((item, i) => (
-            <div key={item.id} className={`reveal reveal-d${(i % 3) + 1}`} style={{ borderRadius: 14, overflow: 'hidden', position: 'relative', aspectRatio: '4/3' }}>
+            <div key={item.id} className={`reveal reveal-d${(i % 3) + 1}`} data-reveal style={{ borderRadius: 14, overflow: 'hidden', position: 'relative', aspectRatio: '4/3' }}>
               <img
                 src={item.image}
                 alt={item.title || ''}
