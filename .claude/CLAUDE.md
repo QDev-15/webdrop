@@ -111,24 +111,6 @@ Xây dựng và bán 2 nhóm sản phẩm chính:
 
 ---
 
-## 🌐 WEBDEPLOY PROJECTS
-
-Generate bởi `web-deploy-builder`, lưu tại `Sources/WebDeploy/[slug]/`.
-
-| Slug | Template nguồn | Status | Ghi chú |
-|---|---|---|---|
-| `cafe-thoi-gian` | Cafes/cafe-thoi-gian | ✅ Built | Fallback static data cho menu section |
-| `portfolio-toi` | Portfolios/portfolio-toi | ✅ Built | Projects, skills, testimonials; reviewed + fixed security issues |
-| `nha-hang-chay-organic` | Restaurants/nha-hang-chay-organic | ✅ Built | Restaurant chay; menu categories+items, reservations, gallery, testimonials; 0 TS errors |
-| `nha-hang-hai-san` | Restaurants/nha-hang-hai-san | ✅ Built | Nhà hàng hải sản; menu, gallery+lightbox, dat-ban, lien-he; admin BrowserRouter+AuthProvider fixed; 0 TS errors |
-| `nha-hang-nhat-ban` | Restaurants/nha-hang-nhat-ban | ✅ Built | Nhà hàng Nhật; menu, gallery, dat-ban, lien-he; 0 TS errors |
-| `nha-hang-truyen-thong` | Restaurants/nha-hang-truyen-thong | ✅ Built | Nhà hàng truyền thống; menu 4 danh mục 18 món, gallery, dat-ban, testimonials; dashboard error state fixed; 0 TS errors |
-| `quan-an-pho-bien` | Restaurants/quan-an-pho-bien | ✅ Built | Quán ăn bình dân; menu 4 danh mục 22 món (price_note field), gallery, testimonials, contact; 0 TS errors |
-| `tiem-banh-ngot` | Restaurants/tiem-banh-ngot | ✅ Built | Tiệm bánh ngọt; product_categories+products, custom orders (6 status workflow), gallery, flavors, testimonials; MutationObserver reveal animation; 0 TS errors, 22 PHP OK |
-| `forum-cong-dong` | Forums/forum-cong-dong | 🔧 In progress | |
-| `cong-ty-xay-dung` | Companies/cong-ty-xay-dung | ✅ Built | Công ty xây dựng; services, projects (9 công trình), testimonials, team; BOM fix Router.php; SettingsController flat output; Auth::start before DB; Bunny Fonts; 0 TS/PHP errors |
-| `quan-bbq-lua` | Restaurants/quan-bbq-lua | ✅ Built | Quán BBQ nướng; menu 5 danh mục 23 món (price_unit field), gallery+lightbox, dat-ban (table_type + deposit), testimonials, contact; counter animation hero stats; orange fire accent theme; 0 TS errors |
-
 **Scaffold (tạo project mới nhanh):**
 ```
 cd Sources/WebDeploy

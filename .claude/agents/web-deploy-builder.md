@@ -80,6 +80,48 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.vn** — chuyển đ�
         }
     }
     ```
+31. **`App.tsx` website dùng pattern `AppShell` để đặt global reveal observer** — KHÔNG đặt observer trong từng component riêng lẻ. Observer chỉ ở một chỗ duy nhất trong `AppShell`, dependency `[location.pathname, settings]`. Pattern bắt buộc:
+    ```tsx
+    // Sau SiteContext + SiteProvider, trước các Pages
+    function AppShell() {
+      const { settings } = useSite()
+      const location = useLocation()
+
+      useEffect(() => {
+        const t = setTimeout(() => {
+          const els = document.querySelectorAll('.reveal:not(.visible)')
+          const ro = new IntersectionObserver(
+            entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target) } }),
+            { threshold: 0.08, rootMargin: '0px 0px -36px 0px' }
+          )
+          els.forEach(el => ro.observe(el))
+          return () => ro.disconnect()
+        }, 0)
+        return () => clearTimeout(t)
+      }, [location.pathname, settings])
+
+      return (
+        <>
+          <Header />
+          <Routes>...</Routes>
+          <Footer />
+        </>
+      )
+    }
+
+    export default function App() {
+      return (
+        <BrowserRouter>
+          <SiteProvider>
+            <AppShell />   {/* ← AppShell phải trong SiteProvider để dùng useSite() */}
+          </SiteProvider>
+        </BrowserRouter>
+      )
+    }
+    ```
+    **Lý do:** `.reveal` được dùng ở Footer (render trên MỌI route) và nhiều section component. Nếu observer chỉ trong một page function (như `HomePage`), khi navigate sang route khác, Footer + sections của page đó bị opacity: 0 mãi mãi → trắng màn hình. `AppShell` với `[location.pathname, settings]` bao phủ tất cả route và Footer tự động.
+    **Import thêm:** `useLocation` từ `'react-router-dom'`. Không import `useEffect` riêng trong các component chỉ có `.reveal` tĩnh.
+
 30. **`template.css` không được định nghĩa lại Bootstrap grid utilities** — khi copy `style.css` từ template sang `template.css`, xóa toàn bộ block custom grid (`/* Responsive utils */` hay tương tự) vì Bootstrap 5.3.3 đã load sẵn. Giữ nguyên các class **không có trong Bootstrap**: custom nav, section styles, card styles, button variants, animations. Các class **phải xóa** vì Bootstrap đã có và sẽ conflict: `.row`, `.col`, `.col-md-*`, `.col-lg-*`, `.g-3/.g-4/.g-5`, `.d-flex`, `.d-grid`, `.align-items-*`, `.justify-content-*`, `.flex-wrap`, `.gap-*`, `.text-center`, `.mb-*`, `.mt-*`, `.pb-*`, `.py-*`, `.w-100`, `.h-100`, `.position-relative` và responsive `@media` block cho col-*. Nếu để lại `.g-5 { gap: 20px }` sẽ override Bootstrap gutter → col-7 + col-5 + gap = 100% + 20px → 2 cột bị đẩy xuống 1 cột.
 
 ---
