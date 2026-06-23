@@ -139,6 +139,15 @@ Sau khi build pass (0 errors), kiểm tra các rules dưới đây. **Đọc fil
 - [ ] Default user: `sysadmin@admin.com` / `123456` (bcrypt hashed)
 
 **bootstrap.php:**
+- [ ] **4 core classes được `require_once` TRƯỚC `Auth::start()`** — `index.php` không load chúng, thiếu → `Class "Auth" not found` trên mọi endpoint:
+  ```php
+  require_once __DIR__ . '/Response.php';
+  require_once __DIR__ . '/Router.php';
+  require_once __DIR__ . '/Auth.php';
+  require_once __DIR__ . '/Database.php';
+  // ── sau đó mới gọi:
+  Auth::start();
+  ```
 - [ ] `Auth::start()` gọi **TRƯỚC** `Database::getInstance()`
 - [ ] Helpers `bodyJson()` và `slugify()` có ở đầu file
 - [ ] Routes cho entity của site (menu, reservations, gallery, testimonials, v.v.)
@@ -245,20 +254,27 @@ Sau khi build pass (0 errors), kiểm tra các rules dưới đây. **Đọc fil
   **Triệu chứng của lỗi này:** Trang Đặt bàn / Liên hệ / bất kỳ trang nào dùng `row g-5` với 2 col: 2 cột song song bị đẩy xuống 1 cột trên desktop.
 
 **Reveal animation (nếu template dùng):**
-- [ ] `setTimeout(fn, 0)` + re-observe `:not(.visible)`:
+- [ ] **AppShell** có global observer với dependency `[location.pathname, settings]`
+- [ ] **Mọi component fetch API + có `data-reveal`** phải có thêm `useEffect([data])` riêng — AppShell chạy trước khi data load nên không đủ. Triệu chứng: section không hiện khi navigate bằng Link, nhưng hiện khi F5.
   ```tsx
+  // Thêm SAU useEffect fetch data, trong component có async data + data-reveal:
   useEffect(() => {
+    if (data.length === 0) return
     const t = setTimeout(() => {
       const els = document.querySelectorAll('[data-reveal]:not(.visible)')
-      const ro = new IntersectionObserver(entries =>
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target) } })
-      , { threshold: 0.08, rootMargin: '0px 0px -40px 0px' })
+      const ro = new IntersectionObserver(
+        entries => entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target) }
+        }),
+        { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+      )
       els.forEach(el => ro.observe(el))
       return () => ro.disconnect()
     }, 0)
     return () => clearTimeout(t)
-  }, [asyncData])  // ← dependency là data, không phải []
+  }, [data])  // ← data array, không phải []
   ```
+  **Cách kiểm tra:** `grep -r "data-reveal" website/src/components/` và `grep -r "useState\(\[\]\)" website/src/components/` — component nào có cả 2 → cần thêm useEffect này. Components KHÔNG cần: render ngay với fallback từ `settings` context (About, Booking, Contact).
 
 **api/client.ts:**
 - [ ] Có `api.upload` method:

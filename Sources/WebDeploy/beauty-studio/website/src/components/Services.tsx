@@ -36,6 +36,23 @@ export default function Services() {
       .finally(() => setLoading(false))
   }, [])
 
+  // Re-observe after async data renders (AppShell fires before data loads on SPA navigation)
+  useEffect(() => {
+    if (cats.length === 0) return
+    const t = setTimeout(() => {
+      const els = document.querySelectorAll('[data-reveal]:not(.visible)')
+      const ro = new IntersectionObserver(
+        entries => entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target) }
+        }),
+        { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+      )
+      els.forEach(el => ro.observe(el))
+      return () => ro.disconnect()
+    }, 0)
+    return () => clearTimeout(t)
+  }, [cats])
+
   if (loading) return null
 
   return (

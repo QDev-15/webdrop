@@ -53,20 +53,26 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.vn** — chuyển đ�
     session_start();
     ```
     Auth.php đã có trong scaffold — kiểm tra `{{SLUG}}` đã được replace đúng chưa.
-26. **Reveal animation với async data dùng `setTimeout(fn, 0)` + re-observe `:not(.visible)`**:
+26. **Reveal animation với async data: MỌI component fetch API + dùng `data-reveal` đều phải có `useEffect([data])` riêng để re-observe sau khi data load** — AppShell observer chạy trước khi data có trong DOM nên không đủ. Rule này áp dụng cho cả component (`Services.tsx`, `Team.tsx`, `Testimonials.tsx`) lẫn page (`ServicesPage.tsx`). Pattern bắt buộc thêm vào SAU useEffect fetch data:
     ```tsx
+    // Re-observe after async data renders (AppShell fires before data loads on SPA navigation)
     useEffect(() => {
+      if (data.length === 0) return  // ← guard: chờ data có giá trị
       const t = setTimeout(() => {
         const els = document.querySelectorAll('[data-reveal]:not(.visible)')
-        const ro = new IntersectionObserver(entries =>
-          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target) } })
-        , { threshold: 0.08, rootMargin: '0px 0px -40px 0px' })
+        const ro = new IntersectionObserver(
+          entries => entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target) }
+          }),
+          { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+        )
         els.forEach(el => ro.observe(el))
         return () => ro.disconnect()
       }, 0)
       return () => clearTimeout(t)
-    }, [asyncData])  // ← dependency là data, không phải []
+    }, [data])  // ← dependency là data array, không phải []
     ```
+    **Lý do:** Khi navigate bằng Link (SPA), `AppShell`'s `useEffect([location.pathname, settings])` chạy ngay — lúc này component đang `loading=true` nên `[data-reveal]` chưa có trong DOM. Data load xong → DOM render → nhưng không có gì trigger observer lại → elements bị kẹt `opacity:0`. F5 work vì timing khác. Components KHÔNG bị ảnh hưởng: những component render ngay với fallback value từ `settings` context (`About`, `Booking`, `Contact`).
 27. **`build.mjs` strip BOM** khỏi PHP files sau khi copy vào `_output-deploy/api/` — đã có trong scaffold.
 28. **`admin/src/main.tsx` dùng dynamic basename + `AuthProvider`** — đã có trong scaffold, không ghi đè.
 29. **⚡ BOM trong PHP file SOURCE = 500 im lặng trên MỌI endpoint** — LLM hay editor Windows thường lưu UTF-8 with BOM. Sau khi viết xong toàn bộ PHP, chạy ngay lệnh strip BOM dưới đây. Đây là lỗi tái phát nhiều lần, không được bỏ qua:
@@ -121,6 +127,18 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.vn** — chuyển đ�
     ```
     **Lý do:** `.reveal` được dùng ở Footer (render trên MỌI route) và nhiều section component. Nếu observer chỉ trong một page function (như `HomePage`), khi navigate sang route khác, Footer + sections của page đó bị opacity: 0 mãi mãi → trắng màn hình. `AppShell` với `[location.pathname, settings]` bao phủ tất cả route và Footer tự động.
     **Import thêm:** `useLocation` từ `'react-router-dom'`. Không import `useEffect` riêng trong các component chỉ có `.reveal` tĩnh.
+
+32. **`bootstrap.php` phải `require_once` 4 core classes TRƯỚC `Auth::start()`** — `index.php` chỉ load `config.php`, không load core classes. Nếu thiếu → `Class "Auth" not found` trên MỌI endpoint. Thêm ngay đầu phần Boot:
+    ```php
+    // ─── Core classes ─────────────────────────────────────────────────────────────
+    require_once __DIR__ . '/Response.php';
+    require_once __DIR__ . '/Router.php';
+    require_once __DIR__ . '/Auth.php';
+    require_once __DIR__ . '/Database.php';
+
+    // ─── Boot ─────────────────────────────────────────────────────────────────────
+    Auth::start();
+    ```
 
 30. **`template.css` không được định nghĩa lại Bootstrap grid utilities** — khi copy `style.css` từ template sang `template.css`, xóa toàn bộ block custom grid (`/* Responsive utils */` hay tương tự) vì Bootstrap 5.3.3 đã load sẵn. Giữ nguyên các class **không có trong Bootstrap**: custom nav, section styles, card styles, button variants, animations. Các class **phải xóa** vì Bootstrap đã có và sẽ conflict: `.row`, `.col`, `.col-md-*`, `.col-lg-*`, `.g-3/.g-4/.g-5`, `.d-flex`, `.d-grid`, `.align-items-*`, `.justify-content-*`, `.flex-wrap`, `.gap-*`, `.text-center`, `.mb-*`, `.mt-*`, `.pb-*`, `.py-*`, `.w-100`, `.h-100`, `.position-relative` và responsive `@media` block cho col-*. Nếu để lại `.g-5 { gap: 20px }` sẽ override Bootstrap gutter → col-7 + col-5 + gap = 100% + 20px → 2 cột bị đẩy xuống 1 cột.
 

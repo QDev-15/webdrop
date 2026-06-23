@@ -16,6 +16,23 @@ export default function Team() {
     api.get<Member[]>('/public/team').then(setMembers).catch(() => {})
   }, [])
 
+  // Re-observe after async data renders (AppShell fires before data loads on SPA navigation)
+  useEffect(() => {
+    if (members.length === 0) return
+    const t = setTimeout(() => {
+      const els = document.querySelectorAll('[data-reveal]:not(.visible)')
+      const ro = new IntersectionObserver(
+        entries => entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target) }
+        }),
+        { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+      )
+      els.forEach(el => ro.observe(el))
+      return () => ro.disconnect()
+    }, 0)
+    return () => clearTimeout(t)
+  }, [members])
+
   if (members.length === 0) return null
 
   return (
