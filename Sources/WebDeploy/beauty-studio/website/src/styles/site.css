@@ -1,0 +1,15 @@
+/* site.css — global overrides and global body styles for beauty-studio */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  background: #0d0d0d;
+  color: #f5f5f5;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root { min-height: 100vh; display: flex; flex-direction: column; }
+#root > * { flex-shrink: 0; }
+#root main { flex: 1; }
