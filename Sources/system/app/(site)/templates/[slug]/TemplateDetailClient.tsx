@@ -3,44 +3,129 @@ import { useState } from 'react'
 import Link from 'next/link'
 import type { Template } from '@/data/templates'
 
-const galleryImages = [
-  'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&q=80&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1558655146-d09347e92766?w=1200&q=80&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1553484771-371a605b060b?w=1200&q=80&auto=format&fit=crop',
-]
+// Generate gallery images: Unsplash supports crop params for visual variety
+function getGalleryImages(baseImage: string): string[] {
+  if (baseImage.includes('images.unsplash.com')) {
+    const photoUrl = baseImage.split('?')[0]
+    return [
+      `${photoUrl}?w=1200&h=680&fit=crop&crop=entropy&q=85&auto=format`,
+      `${photoUrl}?w=1200&h=680&fit=crop&crop=top&q=80&auto=format`,
+      `${photoUrl}?w=1200&h=680&fit=crop&crop=center&q=80&auto=format`,
+      `${photoUrl}?w=1200&h=680&fit=crop&crop=bottom&q=80&auto=format`,
+    ]
+  }
+  return [baseImage]
+}
+
+interface PageItem { icon: string; name: string; detail: string }
+
+function getPagesByIndustry(category: string): PageItem[] {
+  const cat = category.toLowerCase()
+
+  if (cat.includes('nhà hàng') || cat.includes('cafe') || cat.includes('ẩm thực') || cat.includes('restaurant')) {
+    return [
+      { icon: '🏠', name: 'Trang chủ',  detail: 'Hero slider, món đặc biệt, đặt bàn nhanh, testimonials' },
+      { icon: '🍽', name: 'Thực đơn',   detail: 'Danh mục món, filter theo loại, giá, ảnh' },
+      { icon: '📅', name: 'Đặt bàn',    detail: 'Form chọn ngày giờ, số người, ghi chú' },
+      { icon: '🖼', name: 'Gallery',     detail: 'Ảnh không gian, món ăn, sự kiện theo tab' },
+      { icon: '📞', name: 'Liên hệ',    detail: 'Form liên hệ, bản đồ, giờ mở cửa' },
+    ]
+  }
+
+  if (cat.includes('spa') || cat.includes('làm đẹp') || cat.includes('beauty') || cat.includes('massage')) {
+    return [
+      { icon: '🏠', name: 'Trang chủ',       detail: 'Hero, dịch vụ nổi bật, thống kê, đặt lịch nhanh' },
+      { icon: '💆', name: 'Dịch vụ & Giá',   detail: 'Danh sách dịch vụ theo danh mục, bảng giá' },
+      { icon: '📅', name: 'Đặt lịch',         detail: 'Form chọn dịch vụ, ngày giờ, chuyên viên' },
+      { icon: '👥', name: 'Đội ngũ',          detail: 'Chuyên viên, chứng chỉ, kinh nghiệm' },
+      { icon: '📞', name: 'Liên hệ',          detail: 'Form liên hệ, bản đồ, giờ làm việc' },
+    ]
+  }
+
+  if (cat.includes('agency') || cat.includes('công ty dịch vụ') || cat.includes('web agency')) {
+    return [
+      { icon: '🏠', name: 'Trang chủ',  detail: 'Hero slider, dịch vụ, thống kê, testimonials' },
+      { icon: '💼', name: 'Dịch vụ',    detail: 'Danh sách dịch vụ, pricing plans, FAQ' },
+      { icon: '🗂️', name: 'Dự án',      detail: 'Portfolio, filter theo ngành, case study' },
+      { icon: '👥', name: 'Đội ngũ',    detail: 'Thành viên, vai trò, mạng xã hội' },
+      { icon: '📞', name: 'Liên hệ',    detail: 'Form liên hệ, bản đồ, thông tin' },
+    ]
+  }
+
+  if (cat.includes('cá nhân') || cat.includes('portfolio') || cat.includes('personal')) {
+    return [
+      { icon: '🏠', name: 'Trang chủ',        detail: 'Hero cá nhân, kỹ năng, thống kê' },
+      { icon: '🗂️', name: 'Dự án / Portfolio', detail: 'Grid dự án, filter theo loại' },
+      { icon: '👤', name: 'Về tôi',            detail: 'Story, kỹ năng, kinh nghiệm, chứng chỉ' },
+      { icon: '📞', name: 'Liên hệ',           detail: 'Form liên hệ, mạng xã hội' },
+    ]
+  }
+
+  if (cat.includes('blog')) {
+    return [
+      { icon: '🏠', name: 'Trang chủ',  detail: 'Hero, bài viết mới nhất, featured posts' },
+      { icon: '📝', name: 'Blog',        detail: 'Danh sách bài viết, filter theo danh mục, sidebar' },
+      { icon: '🏷️', name: 'Tags',        detail: 'Tag cloud, bài viết theo tag' },
+      { icon: '👤', name: 'Về tác giả',  detail: 'Profile, mạng xã hội, bài viết gần đây' },
+      { icon: '📞', name: 'Liên hệ',    detail: 'Form liên hệ' },
+    ]
+  }
+
+  if (cat.includes('cộng đồng') || cat.includes('forum') || cat.includes('community')) {
+    return [
+      { icon: '🏠', name: 'Trang chủ',    detail: 'Trending topics, danh mục, thành viên mới' },
+      { icon: '💬', name: 'Diễn đàn',     detail: 'Threads, bài đăng, votes, trả lời' },
+      { icon: '🗂️', name: 'Danh mục',     detail: 'Categories, sub-forums, bài ghim' },
+      { icon: '👥', name: 'Thành viên',   detail: 'Members list, profile, thống kê' },
+    ]
+  }
+
+  // Generic fallback
+  return [
+    { icon: '🏠', name: 'Trang chủ',   detail: 'Hero, dịch vụ, về chúng tôi, testimonials' },
+    { icon: '💼', name: 'Dịch vụ',     detail: 'Danh sách dịch vụ, pricing, FAQ' },
+    { icon: '👥', name: 'Về chúng tôi',detail: 'Story, team, giá trị cốt lõi' },
+    { icon: '🗂️', name: 'Dự án',       detail: 'Portfolio dự án, filter theo loại' },
+    { icon: '📞', name: 'Liên hệ',     detail: 'Form liên hệ, bản đồ, thông tin' },
+  ]
+}
 
 const features = [
-  { icon: '📱', title: 'Responsive hoàn toàn', desc: 'Hiển thị đẹp trên mọi thiết bị từ mobile 320px đến màn hình 4K' },
-  { icon: '⚡', title: 'PageSpeed 90+', desc: 'Tối ưu tốc độ tải, lazy loading ảnh, minified CSS/JS' },
-  { icon: '🔍', title: 'SEO chuẩn', desc: 'Semantic HTML, meta tags đầy đủ, structured data sẵn sàng' },
-  { icon: '🎨', title: 'Dễ tùy chỉnh', desc: 'CSS variables cho màu sắc, font chữ chỉnh trong 1 chỗ' },
-  { icon: '🌐', title: 'Bootstrap 5.3', desc: 'Grid system linh hoạt, components sẵn có, không jQuery' },
-  { icon: '📦', title: 'Source code sạch', desc: 'Code có comment, cấu trúc rõ ràng, dễ đọc và maintain' },
-]
-
-const pages = [
-  { icon: '🏠', name: 'Trang chủ', detail: 'Hero, dịch vụ, về chúng tôi, testimonials' },
-  { icon: '💼', name: 'Dịch vụ', detail: 'Danh sách dịch vụ, pricing, FAQ' },
-  { icon: '👥', name: 'Về chúng tôi', detail: 'Story, team, giá trị cốt lõi' },
-  { icon: '🗂️', name: 'Dự án / Portfolio', detail: 'Grid dự án, filter theo loại' },
-  { icon: '📞', name: 'Liên hệ', detail: 'Form liên hệ, bản đồ, thông tin' },
+  { icon: '📱', title: 'Responsive hoàn toàn',  desc: 'Hiển thị đẹp trên mọi thiết bị từ mobile 320px đến màn hình 4K' },
+  { icon: '⚡', title: 'PageSpeed 90+',          desc: 'Tối ưu tốc độ tải, lazy loading ảnh, minified CSS/JS' },
+  { icon: '🔍', title: 'SEO chuẩn',              desc: 'Semantic HTML, meta tags đầy đủ, structured data sẵn sàng' },
+  { icon: '🎨', title: 'Dễ tùy chỉnh',           desc: 'CSS variables cho màu sắc và font chữ, chỉnh trong 1 chỗ' },
+  { icon: '🌐', title: 'Bootstrap 5.3',           desc: 'Grid system linh hoạt, components sẵn có, không jQuery' },
+  { icon: '📦', title: 'Source code sạch',        desc: 'Code có comment, cấu trúc rõ ràng, dễ đọc và maintain' },
 ]
 
 const techGroups = [
-  { title: 'Frontend', tags: ['HTML5', 'CSS3', 'Bootstrap 5.3.3', 'Vanilla JS'] },
-  { title: 'Font', tags: ['DM Sans (Google Fonts)'] },
-  { title: 'Icons', tags: ['Bootstrap Icons', 'Emoji'] },
-  { title: 'Yêu cầu', tags: ['Không cần server', 'Mở thẳng trên browser'] },
+  { title: 'Frontend',   tags: ['HTML5', 'CSS3', 'Bootstrap 5.3.3', 'Vanilla JS'] },
+  { title: 'Font',       tags: ['DM Sans (Google Fonts)'] },
+  { title: 'Icons',      tags: ['Bootstrap Icons', 'Emoji'] },
+  { title: 'Yêu cầu',   tags: ['Không cần server', 'Mở thẳng trên browser'] },
 ]
 
 const tabs = ['Tính năng', 'Các trang', 'Kỹ thuật', 'Đánh giá']
 
 function fmtPrice(n: number) { return n.toLocaleString('vi-VN') + 'đ' }
 
-export default function TemplateDetailClient({ template, websitePrice, customPrice }: { template: Template; websitePrice?: number; customPrice?: number }) {
+export default function TemplateDetailClient({
+  template,
+  websitePrice,
+  customPrice,
+}: {
+  template: Template
+  websitePrice?: number
+  customPrice?: number
+}) {
+  const galleryImages = getGalleryImages(template.image)
+  const pages         = getPagesByIndustry(template.category)
+
   const [activeImg, setActiveImg] = useState(0)
   const [activeTab, setActiveTab] = useState(0)
+
+  const salesCount = template.salesCount ?? 0
 
   return (
     <div className="page-wrap">
@@ -56,12 +141,16 @@ export default function TemplateDetailClient({ template, websitePrice, customPri
               <span className="ttag">Bootstrap 5.3</span>
             </div>
             <h1 className="page-title">{template.name} — <em>webdrop.vn</em></h1>
-            <p className="page-sub">Template HTML/CSS thuần, responsive hoàn toàn. Mở thẳng trên trình duyệt, không cần server, không cần build.</p>
+            <p className="page-sub">
+              {template.description ||
+                'Template HTML/CSS thuần, responsive hoàn toàn. Mở thẳng trên trình duyệt, không cần server, không cần build.'}
+            </p>
             <div className="rating-row">
               <span className="rv-stars" style={{ color: '#f59e0b', fontSize: 13, letterSpacing: 1 }}>★★★★★</span>
-              <span className="rv-score">4.9</span>
-              <span className="rv-count">(18 đánh giá)</span>
-              <span className="sales-ct">Đã bán 47 lần</span>
+              <span className="rv-score">5.0</span>
+              {salesCount > 0 && (
+                <span className="sales-ct">Đã bán {salesCount} lần</span>
+              )}
             </div>
           </div>
 
@@ -69,15 +158,30 @@ export default function TemplateDetailClient({ template, websitePrice, customPri
           <div className="gallery-hero">
             <img src={galleryImages[activeImg]} alt={template.name} />
             <div className="gallery-overlay" />
-            <div className="preview-label">Xem live demo →</div>
+            {template.demoUrl && (
+              <a
+                href={template.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="preview-label"
+                style={{ cursor: 'pointer', textDecoration: 'none' }}
+              >
+                Xem live demo →
+              </a>
+            )}
+            {!template.demoUrl && (
+              <div className="preview-label">Preview</div>
+            )}
           </div>
-          <div className="thumbs">
-            {galleryImages.map((img, i) => (
-              <div key={i} className={`thumb${activeImg === i ? ' active' : ''}`} onClick={() => setActiveImg(i)}>
-                <img src={img} alt={`Preview ${i + 1}`} loading="lazy" />
-              </div>
-            ))}
-          </div>
+          {galleryImages.length > 1 && (
+            <div className="thumbs">
+              {galleryImages.map((img, i) => (
+                <div key={i} className={`thumb${activeImg === i ? ' active' : ''}`} onClick={() => setActiveImg(i)}>
+                  <img src={img} alt={`Preview ${i + 1}`} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          )}
 
           {/* Tabs */}
           <div className="wd-tabs">
@@ -136,29 +240,35 @@ export default function TemplateDetailClient({ template, websitePrice, customPri
           <div className={`tab-panel${activeTab === 3 ? ' active' : ''}`}>
             <div className="d-flex gap-3 align-items-center mb-4">
               <div>
-                <div style={{ fontSize: 48, fontWeight: 600, color: 'var(--text)', lineHeight: 1, letterSpacing: -1 }}>4.9</div>
+                <div style={{ fontSize: 48, fontWeight: 600, color: 'var(--text)', lineHeight: 1, letterSpacing: -1 }}>5.0</div>
                 <div style={{ color: '#f59e0b', fontSize: 16, letterSpacing: 2 }}>★★★★★</div>
-                <div style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 4 }}>18 đánh giá</div>
+                {salesCount > 0 && (
+                  <div style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 4 }}>
+                    {salesCount} lượt mua
+                  </div>
+                )}
               </div>
               <div className="flex-1" style={{ flex: 1 }}>
-                {[5,4,3,2,1].map(star => (
+                {[5, 4, 3, 2, 1].map(star => (
                   <div key={star} className="d-flex align-items-center gap-2 mb-1">
                     <span style={{ fontSize: 12, color: 'var(--text-3)', width: 8 }}>{star}</span>
                     <div style={{ flex: 1, height: 5, background: 'var(--warm)', borderRadius: 3, overflow: 'hidden' }}>
-                      <div style={{ height: '100%', background: '#f59e0b', borderRadius: 3, width: star === 5 ? '88%' : star === 4 ? '10%' : '2%' }} />
+                      <div style={{ height: '100%', background: '#f59e0b', borderRadius: 3, width: star === 5 ? '100%' : '0%' }} />
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <div style={{ fontSize: 13, color: 'var(--text-2)', fontWeight: 300 }}>Chưa có đánh giá bằng văn bản. Mua và để lại đánh giá đầu tiên!</div>
+            <div style={{ fontSize: 13, color: 'var(--text-2)', fontWeight: 300 }}>
+              Chưa có đánh giá bằng văn bản. Mua và để lại đánh giá đầu tiên!
+            </div>
           </div>
         </div>
 
         {/* Buy Sidebar */}
         <div className="col-lg-4">
           <div className="buy-card">
-            {/* Giá template từ DB */}
+            {/* Giá template */}
             <div style={{ marginBottom: template.hasWebsite ? 12 : 0 }}>
               {template.hasWebsite && (
                 <div style={{ fontSize: 11, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '.5px', marginBottom: 2 }}>
@@ -171,7 +281,7 @@ export default function TemplateDetailClient({ template, websitePrice, customPri
               </div>
             </div>
 
-            {/* Giá website từ DB — chỉ hiện khi hasWebsite */}
+            {/* Giá website — chỉ hiện khi hasWebsite */}
             {template.hasWebsite && websitePrice && (
               <div style={{
                 background: 'var(--accent-light)', border: '1px solid var(--accent-mid)',
@@ -189,7 +299,7 @@ export default function TemplateDetailClient({ template, websitePrice, customPri
               </div>
             )}
 
-            {/* Gói C — hiển thị nếu có customPrice */}
+            {/* Gói C */}
             {customPrice && (
               <div style={{
                 background: 'var(--warm)', border: '1px solid var(--border)',

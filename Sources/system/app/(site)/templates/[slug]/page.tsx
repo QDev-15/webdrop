@@ -72,6 +72,8 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
         badge: row.salesCount >= 30 ? 'Bán chạy' : undefined,
         demoUrl: row.demoUrl || undefined,
         hasWebsite: row.hasWebsite,
+        description: row.description || undefined,
+        salesCount: row.salesCount,
       }
       if (row.hasWebsite && row.websitePrice) {
         websitePrice = Number(row.websitePrice)
