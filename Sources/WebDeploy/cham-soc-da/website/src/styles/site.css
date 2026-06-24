@@ -1,0 +1,13 @@
+/* site.css — additional styles for React SPA */
+
+/* Import template CSS first */
+
+/* Minimal padding-top for pages below fixed nav */
+.page-content-start { padding-top: 68px; }
+
+/* Ensure Bootstrap row gap works with template */
+.row { --bs-gutter-x: 1.5rem; }
+
+/* Loading skeleton */
+.loading-pulse { animation: pulse 1.6s infinite; background: var(--border); border-radius: 8px; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }

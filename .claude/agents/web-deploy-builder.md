@@ -270,7 +270,16 @@ Ngoài ra, seed thêm settings theo từng ngành (ví dụ group `about`, `rese
 
 `Database.php` là file AI viết hoàn toàn. Hai phần quan trọng:
 
-**`migrate()`** — đọc `schema.sql`, thực thi từng statement, sau đó gọi `seedData()`. Bắt buộc check `file_get_contents` trả về false.
+**`migrate()`** — đọc `schema.sql`, thực thi từng statement, sau đó gọi `seedData()`. Bắt buộc check `file_get_contents` trả về false. **Pattern bắt buộc — strip comment TRƯỚC khi split** (nếu filter sau split sẽ lọc luôn `CREATE TABLE` nằm sau comment block):
+```php
+$sql = file_get_contents($sqlFile);
+if ($sql === false) { throw new \RuntimeException('Cannot read schema.sql'); }
+// Strip comments TRƯỚC khi split — tránh filter loại bỏ CREATE TABLE sau comment block
+$sql = preg_replace('/^\s*--.*$/m', '', $sql);
+$statements = array_filter(array_map('trim', explode(';', $sql)), fn($s) => $s !== '');
+foreach ($statements as $stmt) { $this->pdo->exec($stmt . ';'); }
+$this->seedData();
+```
 
 **`seedData()`** — gọi tuần tự: `seedUsers()`, `seedSettings()`, `seedHeroSlides()`, rồi các method seed cho từng entity của template. Mỗi method check `COUNT(*) > 0` trước khi insert — **không chạy lại nếu đã có data**.
 

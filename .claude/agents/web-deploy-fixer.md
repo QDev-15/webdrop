@@ -128,10 +128,13 @@ Sau khi build pass (0 errors), kiểm tra các rules dưới đây. **Đọc fil
 - [ ] Extension table columns khớp với UI của template (không generic, không thừa cột)
 
 **Database.php:**
-- [ ] `migrate()` check `file_get_contents` trả về false:
+- [ ] `migrate()` check `file_get_contents` trả về false, **và strip comment TRƯỚC khi split** — nếu dùng filter `/^\s*--/` SAU split sẽ lọc mất `CREATE TABLE` nằm sau comment block → "no such table" trên mọi request:
   ```php
   $sql = file_get_contents(__DIR__ . '/../../schema.sql');
-  if ($sql === false) { throw new \Exception('Cannot read schema.sql'); }
+  if ($sql === false) { throw new \RuntimeException('Cannot read schema.sql'); }
+  $sql = preg_replace('/^\s*--.*$/m', '', $sql);  // strip comments TRƯỚC split
+  $statements = array_filter(array_map('trim', explode(';', $sql)), fn($s) => $s !== '');
+  foreach ($statements as $stmt) { $this->pdo->exec($stmt . ';'); }
   ```
 - [ ] `seedData()` gọi đủ seed method cho các entity của site
 - [ ] Mỗi seed method check `COUNT(*) > 0` trước khi insert
