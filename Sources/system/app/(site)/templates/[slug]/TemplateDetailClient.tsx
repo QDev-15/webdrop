@@ -3,17 +3,8 @@ import { useState } from 'react'
 import Link from 'next/link'
 import type { Template } from '@/data/templates'
 
-// Generate gallery images: Unsplash supports crop params for visual variety
-function getGalleryImages(baseImage: string): string[] {
-  if (baseImage.includes('images.unsplash.com')) {
-    const photoUrl = baseImage.split('?')[0]
-    return [
-      `${photoUrl}?w=1200&h=680&fit=crop&crop=entropy&q=85&auto=format`,
-      `${photoUrl}?w=1200&h=680&fit=crop&crop=top&q=80&auto=format`,
-      `${photoUrl}?w=1200&h=680&fit=crop&crop=center&q=80&auto=format`,
-      `${photoUrl}?w=1200&h=680&fit=crop&crop=bottom&q=80&auto=format`,
-    ]
-  }
+function getGalleryImages(baseImage: string, screenshots?: string[]): string[] {
+  if (screenshots && screenshots.length > 0) return screenshots
   return [baseImage]
 }
 
@@ -119,7 +110,7 @@ export default function TemplateDetailClient({
   websitePrice?: number
   customPrice?: number
 }) {
-  const galleryImages = getGalleryImages(template.image)
+  const galleryImages = getGalleryImages(template.image, template.screenshots)
   const pages         = getPagesByIndustry(template.category)
 
   const [activeImg, setActiveImg] = useState(0)

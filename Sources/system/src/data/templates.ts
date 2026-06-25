@@ -7,8 +7,9 @@ export interface Template {
   badge?:      string
   demoUrl?:    string
   hasWebsite?: boolean
-  description?: string
-  salesCount?:  number
+  description?:  string
+  salesCount?:   number
+  screenshots?:  string[]   // populated at runtime from demoUrl, not stored in DB
 }
 
 export const templates: Template[] = [
