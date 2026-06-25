@@ -10,78 +10,6 @@ import TemplateDetailClient from './TemplateDetailClient'
 
 const BASE = process.env.NEXT_PUBLIC_URL || 'https://webdrop.vn'
 
-// Read first 1024 bytes of an image URL and return its pixel width.
-// For Unsplash, reads the ?w= param directly — no network call needed.
-async function measureImageWidth(url: string): Promise<number> {
-  if (url.includes('unsplash.com')) {
-    const m = url.match(/[?&]w=(\d+)/)
-    return m ? parseInt(m[1]) : 1200
-  }
-  try {
-    const res = await fetch(url, {
-      headers: { Range: 'bytes=0-1023' },
-      next: { revalidate: 86400 },
-      signal: AbortSignal.timeout(3000),
-    })
-    const b = new Uint8Array(await res.arrayBuffer())
-    // PNG: width at bytes 16-19
-    if (b[0] === 0x89 && b[1] === 0x50 && b[2] === 0x4E && b[3] === 0x47 && b.length >= 24) {
-      return (b[16] << 24 | b[17] << 16 | b[18] << 8 | b[19]) >>> 0
-    }
-    // JPEG: scan for SOF0–SOF3 marker → width at offset +7/+8 from marker
-    for (let i = 2; i + 9 < b.length; i++) {
-      if (b[i] === 0xFF && b[i + 1] >= 0xC0 && b[i + 1] <= 0xC3) {
-        return (b[i + 7] << 8) | b[i + 8]
-      }
-    }
-  } catch { /* ignore */ }
-  return 0
-}
-
-// Fetch HTML from demoUrl, extract all <img src/data-src>, filter w >= 400, return 5.
-// Results cached 24h by Next.js fetch cache.
-async function extractDemoImages(demoUrl: string): Promise<string[]> {
-  try {
-    const res = await fetch(demoUrl, {
-      next: { revalidate: 86400 },
-      signal: AbortSignal.timeout(6000),
-    })
-    if (!res.ok) return []
-    const html = await res.text()
-    const base = new URL(demoUrl)
-    const seen = new Set<string>()
-    const candidates: string[] = []
-
-    const re = /(?:src|data-src)=["']([^"'\s]+)["']/gi
-    let m: RegExpExecArray | null
-    while ((m = re.exec(html)) !== null) {
-      const raw = m[1]
-      if (!raw || raw.startsWith('data:') || raw.startsWith('#')) continue
-      try {
-        const abs = new URL(raw, base).href
-        if (
-          /\.(jpe?g|png|webp)(\?|$)/i.test(abs) ||
-          abs.includes('unsplash.com') ||
-          abs.includes('images.pexels.com')
-        ) {
-          if (/favicon|logo-sm|icon-\d{2}\./.test(abs)) continue
-          if (!seen.has(abs)) { seen.add(abs); candidates.push(abs) }
-        }
-      } catch { /* skip invalid URLs */ }
-    }
-
-    // Check widths in parallel, filter w >= 400, return first 5
-    const results = await Promise.all(
-      candidates.map(async url => ({ url, w: await measureImageWidth(url) }))
-    )
-    return results
-      .filter(({ w }) => w >= 400)
-      .map(({ url }) => url)
-      .slice(0, 5)
-  } catch {
-    return []
-  }
-}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
@@ -137,13 +65,6 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
     if (row) {
       const n = typeof row.price === 'number' ? row.price : (row.price as { toNumber(): number }).toNumber()
 
-      // Extract gallery images from the live demo URL at render time (cached 24h).
-      let screenshots: string[] | undefined
-      if (row.demoUrl) {
-        const extracted = await extractDemoImages(row.demoUrl)
-        if (extracted.length > 0) screenshots = extracted
-      }
-
       template = {
         slug:        row.slug,
         name:        row.name,
@@ -155,7 +76,6 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
         hasWebsite:  row.hasWebsite,
         description: row.description || undefined,
         salesCount:  row.salesCount,
-        screenshots,
       }
       if (row.hasWebsite && row.websitePrice) {
         websitePrice = Number(row.websitePrice)

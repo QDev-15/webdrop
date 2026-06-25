@@ -1,11 +1,10 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import type { Template } from '@/data/templates'
 
-function getGalleryImages(baseImage: string, screenshots?: string[]): string[] {
-  if (screenshots && screenshots.length > 0) return screenshots
-  return [baseImage]
+function getGalleryImages(baseImage: string, screenshots: string[]): string[] {
+  return screenshots.length > 0 ? screenshots : [baseImage]
 }
 
 interface PageItem { icon: string; name: string; detail: string }
@@ -110,11 +109,20 @@ export default function TemplateDetailClient({
   websitePrice?: number
   customPrice?: number
 }) {
-  const galleryImages = getGalleryImages(template.image, template.screenshots)
-  const pages         = getPagesByIndustry(template.category)
+  const [screenshots, setScreenshots] = useState<string[]>([])
+  const [activeImg, setActiveImg]     = useState(0)
+  const [activeTab, setActiveTab]     = useState(0)
 
-  const [activeImg, setActiveImg] = useState(0)
-  const [activeTab, setActiveTab] = useState(0)
+  useEffect(() => {
+    if (!template.demoUrl) return
+    fetch(`/api/demo-images?url=${encodeURIComponent(template.demoUrl)}`)
+      .then(r => r.json())
+      .then((imgs: string[]) => { if (imgs.length > 0) setScreenshots(imgs) })
+      .catch(() => {})
+  }, [template.demoUrl])
+
+  const galleryImages = getGalleryImages(template.image, screenshots)
+  const pages         = getPagesByIndustry(template.category)
 
   const salesCount = template.salesCount ?? 0
 
