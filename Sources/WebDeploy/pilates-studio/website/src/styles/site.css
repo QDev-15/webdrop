@@ -1,0 +1,22 @@
+/* =========================================================
+   SITE.CSS — React-specific overrides & additions
+   Extends template.css; do not duplicate variables here.
+   ========================================================= */
+
+/* Ensure BrowserRouter SPA doesn't show scroll jumps */
+#root { min-height: 100vh; display: flex; flex-direction: column; }
+#root > .ps-hero ~ footer,
+main + footer { margin-top: auto; }
+
+/* Active nav links via react-router NavLink */
+nav .ps-nav-links a.active {
+  color: var(--green-accent) !important;
+}
+
+/* Admin loading state */
+.admin-loading {
+  padding: 40px; text-align: center; color: var(--text-3); font-size: 14px;
+}
+
+/* Fix Bootstrap row negative margin inside .wd-container */
+.wd-container .row { --bs-gutter-x: 1.5rem; }
