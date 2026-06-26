@@ -74,20 +74,44 @@ const ORG_SCHEMA = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   let gaId: string | null = null
+  let gtmId: string | null = null
   try {
-    const row = await prisma.setting.findUnique({ where: { key: 'google_analytics_id' } })
-    gaId = row?.value?.trim() || null
+    const rows = await prisma.setting.findMany({
+      where: { key: { in: ['google_analytics_id', 'gtm_id'] } },
+    })
+    const map = Object.fromEntries(rows.map(r => [r.key, r.value?.trim() || '']))
+    gaId  = map['google_analytics_id'] || null
+    gtmId = map['gtm_id'] || null
   } catch { /* skip if DB unavailable */ }
 
   return (
     <html lang="vi">
+      <head>
+        {/* Google Tag Manager — head snippet */}
+        {gtmId && (
+          <Script id="gtm-head" strategy="afterInteractive">
+            {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');`}
+          </Script>
+        )}
+      </head>
       <body className={dmSans.variable} suppressHydrationWarning>
+        {/* Google Tag Manager — noscript fallback */}
+        {gtmId && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+              height="0" width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
+        )}
         {children}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_SCHEMA) }}
         />
-        {gaId && (
+        {/* GA4 trực tiếp — chỉ dùng khi không có GTM */}
+        {!gtmId && gaId && (
           <>
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}

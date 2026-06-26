@@ -88,7 +88,8 @@ const SETTING_GROUPS: SettingGroup[] = [
     fields: [
       { key: 'meta_title',            label: 'Meta Title',            placeholder: 'webdrop.store — Mẫu web đẹp, triển khai trọn gói' },
       { key: 'meta_description',      label: 'Meta Description',      placeholder: 'Hơn 30 mẫu website Bootstrap 5...', type: 'textarea', rows: 2 },
-      { key: 'google_analytics_id',   label: 'Google Analytics ID',   placeholder: 'G-XXXXXXXXXX' },
+      { key: 'google_analytics_id',   label: 'Google Analytics ID (GA4)',   placeholder: 'G-XXXXXXXXXX', hint: 'Dùng khi KHÔNG dùng GTM. Nếu đã có GTM thì cấu hình GA4 bên trong GTM.' },
+      { key: 'gtm_id',               label: 'Google Tag Manager ID',  placeholder: 'GTM-XXXXXXX',  hint: 'Khuyên dùng — quản lý GA4, Pixel, v.v. mà không cần sửa code.' },
     ],
   },
   {
