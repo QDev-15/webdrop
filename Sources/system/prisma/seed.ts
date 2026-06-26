@@ -13,11 +13,11 @@ async function main() {
 
   // ── Users ──────────────────────────────────────────────────────────────
   const admin = await prisma.user.upsert({
-    where: { email: 'admin@webdrop.vn' },
+    where: { email: 'admin@webdrop.store' },
     update: {},
     create: {
       name: 'Admin',
-      email: 'admin@webdrop.vn',
+      email: 'admin@webdrop.store',
       password: hashPassword('webdrop@2025'),
       role: 'superadmin',
     },
@@ -491,13 +491,13 @@ async function main() {
 
   // ── Settings ───────────────────────────────────────────────────────────
   const settingsData = [
-    { key: 'site_name', value: 'webdrop.vn', group: 'general' },
+    { key: 'site_name', value: 'webdrop.store', group: 'general' },
     { key: 'site_description', value: 'Mẫu web đẹp, triển khai trọn gói', group: 'general' },
     { key: 'site_logo', value: '', group: 'general' },
     { key: 'site_favicon', value: '', group: 'general' },
-    { key: 'site_email', value: 'hello@webdrop.vn', group: 'general' },
+    { key: 'site_email', value: 'hello@webdrop.store', group: 'general' },
     { key: 'site_phone', value: '0900 000 000', group: 'general' },
-    { key: 'social_facebook', value: 'https://facebook.com/webdrop.vn', group: 'social' },
+    { key: 'social_facebook', value: 'https://facebook.com/webdrop.store', group: 'social' },
     { key: 'social_zalo', value: '0900000000', group: 'social' },
   ]
 
@@ -630,7 +630,7 @@ async function main() {
   console.log(`   Templates  : ${templateData.length} (${templateData.filter(t => t.category === 'web').length} web + ${templateData.filter(t => t.category === 'admin').length} admin)`)
   console.log(`   Demo base  : ${DEMO_BASE}`)
   if (process.env.NODE_ENV !== 'production') {
-    console.log('   Admin login: admin@webdrop.vn / webdrop@2025')
+    console.log('   Admin login: admin@webdrop.store / webdrop@2025')
   }
 }
 

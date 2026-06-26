@@ -1,4 +1,4 @@
-# Agency Sang Tao — Website Deploy
+﻿# Agency Sang Tao — Website Deploy
 
 Website deploy hoan chinh cho Agency Sang Tao.
 React SPA (frontend + admin) + PHP API + SQLite.
@@ -130,4 +130,4 @@ chmod 755 api/uploads/
 
 ## Ho tro
 
-Lien he: webdrop.vn
+Lien he: webdrop.store

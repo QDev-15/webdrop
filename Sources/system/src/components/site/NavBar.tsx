@@ -56,7 +56,7 @@ export default function NavBar() {
       <nav id="nav" className={(!isHome || scrolled) ? 'scrolled' : ''}>
         <div className="wd-container">
           <div className="nav-inner">
-            <Link href="/" className="logo">web<span>drop</span>.vn</Link>
+            <Link href="/" className="logo">web<span>drop</span>.store</Link>
             <div className="nav-links">
               {navLinks.map(l => (
                 <Link key={l.href} href={l.href}

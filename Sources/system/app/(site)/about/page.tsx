@@ -1,11 +1,11 @@
-import Footer from '@/components/site/Footer'
+﻿import Footer from '@/components/site/Footer'
 import RevealObserver from '@/components/site/RevealObserver'
 import Link from 'next/link'
 
 export const metadata = {
-  title:      'Về chúng tôi — webdrop.vn',
-  description: 'Tìm hiểu về webdrop.vn — đội ngũ chuyên cung cấp mẫu website đẹp và dịch vụ triển khai website trọn gói cho doanh nghiệp Việt Nam.',
-  alternates: { canonical: `${process.env.NEXT_PUBLIC_URL || 'https://webdrop.vn'}/about` },
+  title:      'Về chúng tôi — webdrop.store',
+  description: 'Tìm hiểu về webdrop.store — đội ngũ chuyên cung cấp mẫu website đẹp và dịch vụ triển khai website trọn gói cho doanh nghiệp Việt Nam.',
+  alternates: { canonical: `${process.env.NEXT_PUBLIC_URL || 'https://webdrop.store'}/about` },
 }
 
 const team = [
@@ -41,7 +41,7 @@ export default function AboutPage() {
               Chúng tôi xây website <em style={{ color: '#4ade80', fontStyle: 'italic', fontWeight: 300 }}>đẹp</em>,<br />bạn tập trung vào kinh doanh
             </h1>
             <p className="reveal reveal-d1" style={{ fontSize: 'clamp(14px,1.5vw,18px)', fontWeight: 300, color: 'rgba(255,255,255,.45)', maxWidth: 560, margin: '0 auto 36px' }}>
-              webdrop.vn ra đời từ 2024 với sứ mệnh giúp doanh nghiệp Việt Nam có website chuyên nghiệp với chi phí và thời gian tối thiểu.
+              webdrop.store ra đời từ 2024 với sứ mệnh giúp doanh nghiệp Việt Nam có website chuyên nghiệp với chi phí và thời gian tối thiểu.
             </p>
           </div>
         </section>
@@ -72,7 +72,7 @@ export default function AboutPage() {
                 <h2 className="sec-title reveal reveal-d1">Từ <em>frustration</em> đến giải pháp</h2>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                   {[
-                    'webdrop.vn được thành lập khi chúng tôi nhận ra rằng hầu hết doanh nghiệp Việt Nam phải chờ đợi 2–3 tháng và trả hàng chục triệu cho một website cơ bản.',
+                    'webdrop.store được thành lập khi chúng tôi nhận ra rằng hầu hết doanh nghiệp Việt Nam phải chờ đợi 2–3 tháng và trả hàng chục triệu cho một website cơ bản.',
                     'Chúng tôi quyết định thay đổi điều đó: xây dựng thư viện template chất lượng cao, có thể deploy ngay trong vài ngày với chi phí hợp lý.',
                     'Đến nay, chúng tôi đã giúp hơn 127 doanh nghiệp từ nhà hàng, spa, agency đến công ty luật có được website đẹp và chuyên nghiệp.',
                   ].map((text, i) => (

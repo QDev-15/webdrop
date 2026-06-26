@@ -1,4 +1,4 @@
-# 📋 PROJECT OVERVIEW — Template & Website Business
+﻿# 📋 PROJECT OVERVIEW — Template & Website Business
 
 > File này lưu toàn bộ ý tưởng, yêu cầu và tiến độ xây dựng dự án.
 > Cập nhật liên tục theo từng giai đoạn phát triển.
@@ -87,7 +87,7 @@ Xây dựng và bán 2 nhóm sản phẩm chính:
 
 - [x] Xây web template theo ngành — **31 templates** (Restaurant, Spa, Agency, Company, Blog, Cafe, Forum, Portfolio)
 - [x] Xây 1 admin template cơ bản — `Sources/templates/admin/basic-admin/`
-- [x] Thiết lập kênh bán (webdrop.vn) — deploy Vercel, custom domain
+- [x] Thiết lập kênh bán (webdrop.store) — deploy Vercel, custom domain
 - [x] Đóng gói Gói Web cơ bản thành sản phẩm chuẩn (`Sources/products/goi-b/`)
 - [x] Tích hợp Sepay webhook auto-confirm đơn hàng + tạo download token
 - [x] Deploy website demo — xem bảng **WebDeploy Projects**
@@ -150,7 +150,7 @@ webdrop/
 │   ├── settings.json               ← commit — không hardcode path
 │   └── settings.local.json         ← local only — path máy cụ thể
 ├── Sources/
-│   ├── system/                     ← Next.js 15 (webdrop.vn)
+│   ├── system/                     ← Next.js 15 (webdrop.store)
 │   │   ├── app/
 │   │   │   ├── (site)/             ← / · /templates · /blog · /pricing · /about · /contact · /faq · /policies
 │   │   │   ├── (checkout)/         ← /checkout · /checkout/success
@@ -198,7 +198,7 @@ webdrop/
 ```
 VPS AZDIGI Linux
 ├── Nginx          → reverse proxy
-├── Next.js (PM2)  → webdrop.vn + admin
+├── Next.js (PM2)  → webdrop.store + admin
 ├── PostgreSQL     → System DB
 └── PHP-FPM        → website khách (Gói B) + SQLite
 ```
@@ -236,7 +236,7 @@ VPS AZDIGI Linux
 - **Footer**, **Contact**: fetch `site_name`, `site_phone`, `site_email`, `site_address`, `working_hours`, social từ bảng `settings`
 - **Hero Slider**: bảng `hero_slides`, quản lý `/admin/slides`, fallback `src/data/slides.config.ts`
 
-### Templates (webdrop.vn)
+### Templates (webdrop.store)
 
 - `hasWebsite: Boolean` — phân biệt template-only vs có website đầy đủ
 - `/templates?type=starter` → `hasWebsite=false` | `?type=standard` → `hasWebsite=true`

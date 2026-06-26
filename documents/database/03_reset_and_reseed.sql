@@ -1,5 +1,5 @@
--- ============================================================
--- WEBDROP.VN — RESET + RESEED (FULL FRESH)
+﻿-- ============================================================
+-- webdrop.store — RESET + RESEED (FULL FRESH)
 -- PostgreSQL (Neon)
 -- ============================================================
 -- WARNING: Xóa TOÀN BỘ data và schema, tạo lại từ đầu.

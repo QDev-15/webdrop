@@ -1,8 +1,8 @@
-export const revalidate = 60 // ISR
+﻿export const revalidate = 60 // ISR
 
 import type { Metadata } from 'next'
 export const metadata: Metadata = {
-  title: 'webdrop.vn — Mẫu web đẹp, triển khai trọn gói',
+  title: 'webdrop.store — Mẫu web đẹp, triển khai trọn gói',
   description: 'Hơn 30 mẫu thiết kế hiện đại cho mọi ngành nghề. Thanh toán xong — website hoàn chỉnh trong 3–5 ngày làm việc.',
 }
 

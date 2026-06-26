@@ -1,8 +1,8 @@
-export const revalidate = 60
+﻿export const revalidate = 60
 
 import type { Metadata } from 'next'
 
-const BASE = process.env.NEXT_PUBLIC_URL || 'https://webdrop.vn'
+const BASE = process.env.NEXT_PUBLIC_URL || 'https://webdrop.store'
 
 export const metadata: Metadata = {
   title: 'Lịch thi đấu World Cup 2026 | Tỉ số trực tiếp',

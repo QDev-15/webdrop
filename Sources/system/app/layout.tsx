@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from 'next'
+﻿import type { Metadata, Viewport } from 'next'
 import { DM_Sans } from 'next/font/google'
 import { prisma } from '@/lib/prisma'
 import '../src/styles/globals.css'
@@ -10,7 +10,7 @@ const dmSans = DM_Sans({
   variable: '--sans',
 })
 
-const BASE = process.env.NEXT_PUBLIC_URL || 'https://webdrop.vn'
+const BASE = process.env.NEXT_PUBLIC_URL || 'https://webdrop.store'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -25,22 +25,22 @@ export async function generateMetadata(): Promise<Metadata> {
     faviconUrl = row?.value?.trim() || undefined
   } catch { /* use default */ }
 
-  const title = 'webdrop.vn — Mẫu web đẹp, triển khai trọn gói'
+  const title = 'webdrop.store — Mẫu web đẹp, triển khai trọn gói'
   const desc  = 'Hơn 30 mẫu website Bootstrap 5 đẹp cho mọi ngành. Bàn giao website hoàn chỉnh React + Admin trong 3–5 ngày làm việc.'
 
   return {
     metadataBase: new URL(BASE),
-    title:        { default: title, template: '%s — webdrop.vn' },
+    title:        { default: title, template: '%s — webdrop.store' },
     description:  desc,
     robots:       { index: true, follow: true, googleBot: { index: true, follow: true, 'max-snippet': -1, 'max-image-preview': 'large' } },
     openGraph: {
       type:        'website',
       locale:      'vi_VN',
       url:         BASE,
-      siteName:    'webdrop.vn',
+      siteName:    'webdrop.store',
       title,
       description: desc,
-      images:      [{ url: '/og-default.jpg', width: 1200, height: 630, alt: 'webdrop.vn' }],
+      images:      [{ url: '/og-default.jpg', width: 1200, height: 630, alt: 'webdrop.store' }],
     },
     twitter: {
       card:        'summary_large_image',
@@ -55,7 +55,7 @@ export async function generateMetadata(): Promise<Metadata> {
 const ORG_SCHEMA = {
   '@context': 'https://schema.org',
   '@type':    'Organization',
-  name:       'webdrop.vn',
+  name:       'webdrop.store',
   url:        BASE,
   logo:       `${BASE}/logo.png`,
   description: 'Cung cấp mẫu website đẹp và dịch vụ triển khai website trọn gói cho doanh nghiệp Việt Nam.',

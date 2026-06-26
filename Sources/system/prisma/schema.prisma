@@ -174,7 +174,7 @@ model PageView {
 }
 
 // ============================================================
-// EXTENSION: AGENCY (System DB — webdrop.vn)
+// EXTENSION: AGENCY (System DB — webdrop.store)
 // ============================================================
 
 model Industry {

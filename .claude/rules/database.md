@@ -1,10 +1,10 @@
-# Database Rules
+﻿# Database Rules
 
 ## Kiến trúc tổng quan
 ```
 System DB (PostgreSQL — trung tâm)
 ├── Core Schema       → dùng chung
-├── Extension: Agency → nghiệp vụ webdrop.vn
+├── Extension: Agency → nghiệp vụ webdrop.store
 └── → sinh ra Website DB (SQLite — độc lập trên hosting khách)
         ├── Core Schema (copy)
         └── Extension theo ngách

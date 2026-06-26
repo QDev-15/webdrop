@@ -1,4 +1,4 @@
-# Step 4 — Gói B: Website Framework
+﻿# Step 4 — Gói B: Website Framework
 > Thời gian: 5 tháng | Deliverable: Sản phẩm Gói B đóng gói ZIP, bán được
 
 ## Kiến trúc deploy
@@ -67,7 +67,7 @@ public_html/         ← upload lên hosting PHP
 - [ ] Build ZIP: `goi-b-spa-v1.0.zip` — public_html + README + CHANGELOG
 - [ ] `README.md`: hướng dẫn deploy 4 bước (tiếng Việt)
 - [ ] Test trên shared hosting fresh từ đầu
-- [ ] Upload Gumroad + đăng lên webdrop.vn
+- [ ] Upload Gumroad + đăng lên webdrop.store
 
 ---
 

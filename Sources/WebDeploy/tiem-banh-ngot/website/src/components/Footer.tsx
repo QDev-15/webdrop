@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+﻿import { NavLink } from 'react-router-dom'
 import { useSite } from '../App'
 
 export default function Footer() {
@@ -72,7 +72,7 @@ export default function Footer() {
           <span className="ft-copy">
             {settings.footer_copyright ?? `© ${year} ${name}. All rights reserved.`}
           </span>
-          <span className="ft-copy">Powered by webdrop.vn</span>
+          <span className="ft-copy">Powered by webdrop.store</span>
         </div>
       </div>
     </footer>

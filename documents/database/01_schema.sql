@@ -1,5 +1,5 @@
--- ============================================================
--- WEBDROP.VN — DATABASE SCHEMA
+﻿-- ============================================================
+-- webdrop.store — DATABASE SCHEMA
 -- PostgreSQL (Neon)
 -- Generated: 2026-06-03
 -- ORM: Prisma 5.x (Sources/system/prisma/schema.prisma)
@@ -129,7 +129,7 @@ CREATE TABLE settings (
 );
 
 -- ============================================================
--- EXTENSION: AGENCY (webdrop.vn — System DB)
+-- EXTENSION: AGENCY (webdrop.store — System DB)
 -- ============================================================
 
 -- ── industries ───────────────────────────────────────────────

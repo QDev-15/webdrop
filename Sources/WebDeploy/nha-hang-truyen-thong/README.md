@@ -1,4 +1,4 @@
-# Nhà Hàng Ẩm Thực Truyền Thống — Website Deploy
+﻿# Nhà Hàng Ẩm Thực Truyền Thống — Website Deploy
 
 Website nhà hàng ẩm thực Việt Nam truyền thống — React SPA + PHP Backend + SQLite.
 
@@ -136,4 +136,4 @@ Nếu gặp vấn đề:
 
 ---
 
-Phát triển bởi **webdrop.vn** — Made in Vietnam
+Phát triển bởi **webdrop.store** — Made in Vietnam

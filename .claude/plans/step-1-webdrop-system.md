@@ -1,4 +1,4 @@
-# Step 1 — webdrop.vn Sales Site
+﻿# Step 1 — webdrop.store Sales Site
 > Thời gian: 3 tuần | Status: ✅ HOÀN THÀNH
 
 ## Mockup tham chiếu
@@ -82,7 +82,7 @@
 - [x] Templates API: 6 templates từ DB
 
 ## Thông tin kỹ thuật
-- **Admin login**: admin@webdrop.vn / webdrop@2025
+- **Admin login**: admin@webdrop.store / webdrop@2025
 - **DB**: PostgreSQL 18 local, database `webdrop_system`
 - **Auth**: Custom JWT-like tokens, HMAC-SHA256, httpOnly cookie `wd_session`, 7 ngày
 - **Next.js**: 16.2.6 (Turbopack)

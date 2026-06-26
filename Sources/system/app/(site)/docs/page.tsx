@@ -1,9 +1,9 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import { SwaggerUI } from './SwaggerUI'
 
 export const metadata: Metadata = {
-  title: 'API Docs — webdrop.vn',
-  description: 'Interactive API documentation for webdrop.vn',
+  title: 'API Docs — webdrop.store',
+  description: 'Interactive API documentation for webdrop.store',
   robots: { index: false, follow: false },
 }
 

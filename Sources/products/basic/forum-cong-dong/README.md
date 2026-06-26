@@ -1,4 +1,4 @@
-# Forum Cong Dong — Huong dan Deploy
+﻿# Forum Cong Dong — Huong dan Deploy
 
 Website dien dan cong dong voi React SPA + PHP API + SQLite.
 
@@ -202,4 +202,4 @@ npm run dev
 
 ---
 
-*Tao boi web-deploy-builder — webdrop.vn*
+*Tao boi web-deploy-builder — webdrop.store*

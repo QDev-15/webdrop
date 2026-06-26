@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+﻿import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
 
 export default function Footer() {
@@ -60,7 +60,7 @@ export default function Footer() {
         <div className="wd-container">
           <div className="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
             <div className="ft-copy">{copyright}</div>
-            <div className="ft-copy">Thiết kế bởi webdrop.vn</div>
+            <div className="ft-copy">Thiết kế bởi webdrop.store</div>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-# SEO Guide — webdrop.vn
+﻿# SEO Guide — webdrop.store
 
 > Cập nhật lần cuối: 2026-06-12
 
@@ -27,10 +27,10 @@
 **Đã thêm:**
 - `metadataBase: new URL(BASE)` — Next.js resolve relative URL trong OG/twitter đúng
 - `viewport` export: `width=device-width`, `initialScale=1`, `themeColor=#1a6b52`
-- Default `openGraph` cho mọi trang: `type: website`, `locale: vi_VN`, `siteName: webdrop.vn`
+- Default `openGraph` cho mọi trang: `type: website`, `locale: vi_VN`, `siteName: webdrop.store`
 - Default `twitter: summary_large_image` cho mọi trang
 - `robots: { googleBot: { max-snippet: -1, max-image-preview: large } }` — Google hiện ảnh lớn
-- **Organization JSON-LD** (schema.org) — Google hiểu webdrop.vn là doanh nghiệp hợp lệ
+- **Organization JSON-LD** (schema.org) — Google hiểu webdrop.store là doanh nghiệp hợp lệ
 
 ---
 
@@ -95,7 +95,7 @@ Trang này được tạo chủ yếu để thu hút traffic tự nhiên từ Go
 
 Tạo file `Sources/system/public/og-default.jpg` (1200×630px):
 - Background: màu `#0c0b09` (dark)
-- Logo webdrop.vn trắng ở giữa
+- Logo webdrop.store trắng ở giữa
 - Tagline: "Mẫu web đẹp, triển khai trọn gói"
 - Dùng Canva/Figma tạo rồi export JPEG chất lượng cao
 
@@ -104,9 +104,9 @@ Tương tự tạo `public/og-wc2026.jpg` cho trang lịch bóng đá.
 ### 2.2 Google Search Console
 
 1. Vào [search.google.com/search-console](https://search.google.com/search-console)
-2. Add property → `https://webdrop.vn`
+2. Add property → `https://webdrop.store`
 3. Verify qua DNS TXT record (cách dễ nhất)
-4. Sitemaps → Add sitemap → `https://webdrop.vn/sitemap.xml`
+4. Sitemaps → Add sitemap → `https://webdrop.store/sitemap.xml`
 5. Theo dõi: Impressions, Clicks, Average Position theo tuần
 
 ### 2.3 Google Analytics
@@ -182,7 +182,7 @@ Viết bài blog nhắm vào intent tìm kiếm của khách hàng mục tiêu:
 
 **Trung bình:**
 - Viết guest post cho các blog tech VN (toidicodedao, viblo.asia)
-- Tạo video YouTube demo template → link về webdrop.vn
+- Tạo video YouTube demo template → link về webdrop.store
 - TikTok/Reels: quay màn hình demo template đẹp
 
 **Dài hạn:**
@@ -200,7 +200,7 @@ Vào trang /lich-bong-da
     ↓
 Xem lịch thi đấu, quay lại nhiều lần trong mùa giải
     ↓
-Thấy navbar webdrop.vn → tò mò → vào /templates
+Thấy navbar webdrop.store → tò mò → vào /templates
     ↓
 Thấy mẫu web phù hợp → checkout hoặc liên hệ
 ```

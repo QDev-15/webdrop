@@ -1,4 +1,4 @@
-# Beauty Studio — Huong dan Deploy
+﻿# Beauty Studio — Huong dan Deploy
 
 Website hoan chinh cho Beauty Studio (Toc, Nail, Makeup, Skincare).
 Stack: React SPA frontend + React SPA admin + PHP backend + SQLite.
@@ -179,4 +179,4 @@ Sau khi dang nhap admin:
 
 ---
 
-Ho tro: https://webdrop.vn
+Ho tro: https://webdrop.store

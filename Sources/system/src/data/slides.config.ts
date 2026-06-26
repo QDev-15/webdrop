@@ -120,7 +120,7 @@ export const slides: Slide[] = [
   {
     type:  'features',
     bg:    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=60&auto=format&fit=crop',
-    badge: 'Tại sao chọn webdrop.vn',
+    badge: 'Tại sao chọn webdrop.store',
     title: [
       { text: 'Không chỉ là' },
       { br: true },

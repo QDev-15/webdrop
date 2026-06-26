@@ -1,11 +1,11 @@
-# Step 3 — Infrastructure & Deploy
-> Thời gian: 1 tuần | Deliverable: webdrop.vn live, demo templates online
+﻿# Step 3 — Infrastructure & Deploy
+> Thời gian: 1 tuần | Deliverable: webdrop.store live, demo templates online
 
 ## Stack VPS
 ```
 AZDIGI VPS — Ubuntu 22.04 — 2vCPU / 2GB RAM / NVMe (~250k/tháng)
 ├── Nginx          reverse proxy + static files + SSL
-├── Node.js 24 + PM2   Next.js webdrop.vn
+├── Node.js 24 + PM2   Next.js webdrop.store
 ├── PHP-FPM 8.2    demo templates + website khách Gói B
 └── PostgreSQL 16  System DB
 ```
@@ -13,7 +13,7 @@ AZDIGI VPS — Ubuntu 22.04 — 2vCPU / 2GB RAM / NVMe (~250k/tháng)
 ## Thư mục VPS
 ```
 /var/www/
-├── webdrop.vn/     ← git clone repo (Sources/system/)
+├── webdrop.store/     ← git clone repo (Sources/system/)
 ├── demo/           ← static templates (agency-web, spa-beauty, restaurant)
 └── clients/        ← website khách Gói B
 ```
@@ -29,16 +29,16 @@ AZDIGI VPS — Ubuntu 22.04 — 2vCPU / 2GB RAM / NVMe (~250k/tháng)
 - [ ] Security: đổi SSH port, tắt root login, không expose PostgreSQL
 
 ### 3.2 Nginx
-- [ ] `webdrop.vn` → proxy `localhost:3000` (Next.js)
-- [ ] `demo.webdrop.vn` → `/var/www/demo` (static files)
-- [ ] Wildcard SSL: `certbot` cho `*.webdrop.vn`
+- [ ] `webdrop.store` → proxy `localhost:3000` (Next.js)
+- [ ] `demo.webdrop.store` → `/var/www/demo` (static files)
+- [ ] Wildcard SSL: `certbot` cho `*.webdrop.store`
 - [ ] Bật gzip, cache static files 30 ngày
 
 ### 3.3 PostgreSQL
 - [ ] Tạo database `webdrop_system` + user riêng
 - [ ] Cron backup hàng ngày 2AM → Google Drive (rclone)
 
-### 3.4 Deploy webdrop.vn
+### 3.4 Deploy webdrop.store
 - [ ] `git clone` repo, `cd Sources/system`
 - [ ] Tạo `.env` production (DATABASE_URL, NEXTAUTH_SECRET, R2_*)
 - [ ] `npm ci && npx prisma migrate deploy && npm run build`
@@ -50,15 +50,15 @@ AZDIGI VPS — Ubuntu 22.04 — 2vCPU / 2GB RAM / NVMe (~250k/tháng)
 
 ### 3.6 Cloudflare R2
 - [ ] Tạo 2 buckets: `webdrop-system`, `webdrop-clients`
-- [ ] Cấu hình custom domain: `assets.webdrop.vn`
+- [ ] Cấu hình custom domain: `assets.webdrop.store`
 - [ ] Điền R2_* vars vào `.env` production
 
 ---
 
 ## Done khi
-- [ ] `https://webdrop.vn` → 200, SSL xanh
-- [ ] `https://webdrop.vn/admin` → redirect login
-- [ ] `https://demo.webdrop.vn/agency-web/` → 200
-- [ ] `https://demo.webdrop.vn/spa-beauty/` → 200
+- [ ] `https://webdrop.store` → 200, SSL xanh
+- [ ] `https://webdrop.store/admin` → redirect login
+- [ ] `https://demo.webdrop.store/agency-web/` → 200
+- [ ] `https://demo.webdrop.store/spa-beauty/` → 200
 - [ ] PM2 tự restart sau reboot
 - [ ] Backup chạy được (test thủ công)

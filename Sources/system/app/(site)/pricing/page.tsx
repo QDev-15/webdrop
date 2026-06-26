@@ -1,12 +1,12 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import Footer from '@/components/site/Footer'
 import RevealObserver from '@/components/site/RevealObserver'
 import { prisma } from '@/lib/prisma'
 
 export const metadata = {
   title:      'Bảng giá dịch vụ website',
-  description: 'Xem bảng giá các gói website tại webdrop.vn: Template HTML 299k, Website chuẩn từ 1.5 triệu, Website theo yêu cầu từ 7 triệu. Bàn giao trong 3–5 ngày.',
-  alternates: { canonical: `${process.env.NEXT_PUBLIC_URL || 'https://webdrop.vn'}/pricing` },
+  description: 'Xem bảng giá các gói website tại webdrop.store: Template HTML 299k, Website chuẩn từ 1.5 triệu, Website theo yêu cầu từ 7 triệu. Bàn giao trong 3–5 ngày.',
+  alternates: { canonical: `${process.env.NEXT_PUBLIC_URL || 'https://webdrop.store'}/pricing` },
 }
 
 // ── Fallback data ─────────────────────────────────────────────

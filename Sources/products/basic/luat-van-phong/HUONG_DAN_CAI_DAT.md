@@ -1,4 +1,4 @@
-# Hướng dẫn cài đặt — Văn Phòng Luật Sư
+﻿# Hướng dẫn cài đặt — Văn Phòng Luật Sư
 
 ## Yêu cầu hệ thống
 
@@ -183,4 +183,4 @@ Mọi nội dung trên website đều có thể cập nhật qua Admin:
 ---
 
 *Văn Phòng Luật Sư — Deploy Package v1.0*
-*Được tạo bởi webdrop.vn*
+*Được tạo bởi webdrop.store*

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+﻿import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
 
 export default function Footer() {
@@ -79,7 +79,7 @@ export default function Footer() {
 
         <div className="bst-footer-bottom">
           <div className="bst-footer-copy">
-            &copy; {year} {settings.site_name}. Thiết kế bởi <a href="https://webdrop.vn" target="_blank" rel="noopener">Webdrop.vn</a>
+            &copy; {year} {settings.site_name}. Thiết kế bởi <a href="https://webdrop.store" target="_blank" rel="noopener">webdrop.store</a>
           </div>
           <Link to="/dat-lich" className="bst-nav-cta" style={{ fontSize: 12, padding: '8px 18px' }}>Đặt lịch ngay</Link>
         </div>

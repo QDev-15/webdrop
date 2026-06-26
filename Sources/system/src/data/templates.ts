@@ -20,7 +20,7 @@ export const templates: Template[] = [
     price: '2.500.000đ',
     image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80&auto=format&fit=crop',
     badge: 'Bán chạy',
-    demoUrl: 'https://demo.webdrop.vn/agency-web/',
+    demoUrl: 'https://demo.webdrop.store/agency-web/',
   },
   {
     slug: 'portfolio-toi',
@@ -36,7 +36,7 @@ export const templates: Template[] = [
     category: 'F&B',
     price: '3.000.000đ',
     image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&auto=format&fit=crop',
-    demoUrl: 'https://demo.webdrop.vn/restaurant/',
+    demoUrl: 'https://demo.webdrop.store/restaurant/',
   },
   {
     slug: 'blog-ca-nhan',
@@ -52,7 +52,7 @@ export const templates: Template[] = [
     price: '2.800.000đ',
     image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80&auto=format&fit=crop',
     badge: 'Mới',
-    demoUrl: 'https://demo.webdrop.vn/spa-beauty/',
+    demoUrl: 'https://demo.webdrop.store/spa-beauty/',
   },
   {
     slug: 'forum-cong-dong',

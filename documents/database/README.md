@@ -1,4 +1,4 @@
-# Database Documents — webdrop.vn
+﻿# Database Documents — webdrop.store
 
 **Provider:** Neon PostgreSQL (cloud)  
 **ORM:** Prisma 5.x  
@@ -67,7 +67,7 @@ Connection string đầy đủ trong `Sources/system/.env` — file này KHÔNG 
 | `contacts` | Form liên hệ |
 | `settings` | Key-value config (general/seo/social/smtp...) |
 
-### Extension: Agency (webdrop.vn)
+### Extension: Agency (webdrop.store)
 
 | Table | Mô tả |
 |-------|-------|
@@ -96,7 +96,7 @@ Connection string đầy đủ trong `Sources/system/.env` — file này KHÔNG 
 
 | Table | Số record |
 |-------|-----------|
-| users | 1 (admin@webdrop.vn) |
+| users | 1 (admin@webdrop.store) |
 | industries | 6 |
 | service_packages | 3 (GOI_A / GOI_B / GOI_C) |
 | templates | 31 (30 web + 1 admin) |
@@ -104,7 +104,7 @@ Connection string đầy đủ trong `Sources/system/.env` — file này KHÔNG 
 | hero_slides | 5 (intro / features / grid / pricing / testimonial) |
 
 ### Admin login (development)
-- Email: `admin@webdrop.vn`
+- Email: `admin@webdrop.store`
 - Password: `webdrop@2025`
 
 > **Thay password ngay sau khi deploy production!**

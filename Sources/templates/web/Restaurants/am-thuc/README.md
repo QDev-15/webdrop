@@ -1,4 +1,4 @@
-# Template Nhà hàng & Cafe — Hướng dẫn chỉnh nội dung
+﻿# Template Nhà hàng & Cafe — Hướng dẫn chỉnh nội dung
 
 Template website đẹp mắt cho nhà hàng, quán cafe, quán ăn.
 
@@ -109,4 +109,4 @@ Tìm nút Zalo float, thay số:
 - Nếu menu thay đổi thường xuyên, xem xét Gói B (có trang admin quản lý menu)
 
 ## Hỗ trợ
-Liên hệ webdrop.vn để được hỗ trợ chỉnh sửa nội dung.
+Liên hệ webdrop.store để được hỗ trợ chỉnh sửa nội dung.

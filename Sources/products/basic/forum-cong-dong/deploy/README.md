@@ -202,4 +202,4 @@ npm run dev
 
 ---
 
-*Tao boi web-deploy-builder — webdrop.vn*
+*Tao boi web-deploy-builder — webdrop.store*

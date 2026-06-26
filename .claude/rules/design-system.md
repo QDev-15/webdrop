@@ -1,4 +1,4 @@
-# Design System Rules — webdrop.vn
+﻿# Design System Rules — webdrop.store
 
 ## Bootstrap Version
 **5.3.3** — CDN bắt buộc:

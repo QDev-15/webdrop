@@ -167,7 +167,7 @@ export default function PostForm({ mode, id, categories, initial }: PostFormProp
           <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 10, padding: '14px 16px' }}>
             <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '.5px', marginBottom: 10 }}>Xem trước Google</div>
             <div style={{ fontSize: 18, color: '#1a0dab', fontWeight: 400, marginBottom: 2 }}>{form.metaTitle || form.title || 'Tiêu đề bài viết'}</div>
-            <div style={{ fontSize: 13, color: '#006621', marginBottom: 4 }}>webdrop.vn/blog/{form.slug || 'slug-bai-viet'}</div>
+            <div style={{ fontSize: 13, color: '#006621', marginBottom: 4 }}>webdrop.store/blog/{form.slug || 'slug-bai-viet'}</div>
             <div style={{ fontSize: 13, color: '#545454' }}>{form.metaDescription || form.excerpt || 'Mô tả bài viết sẽ hiển thị ở đây...'}</div>
           </div>
         </div>

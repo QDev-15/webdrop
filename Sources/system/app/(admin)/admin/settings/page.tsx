@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import AdminLayout from '@/components/admin/AdminLayout'
 import { useState, useEffect, FormEvent } from 'react'
 import dynamic from 'next/dynamic'
@@ -27,11 +27,11 @@ const SETTING_GROUPS: SettingGroup[] = [
   {
     label: 'Thông tin chung', key: 'general', icon: '🏢',
     fields: [
-      { key: 'site_name',        label: 'Tên công ty / Website', placeholder: 'webdrop.vn' },
+      { key: 'site_name',        label: 'Tên công ty / Website', placeholder: 'webdrop.store' },
       { key: 'site_description', label: 'Mô tả ngắn (hiện footer)', placeholder: 'Nền tảng mẫu website chuyên nghiệp...', type: 'textarea', rows: 2 },
       { key: 'site_logo',    label: 'Logo', type: 'image', hint: 'Hiển thị trên nav và footer' },
       { key: 'site_favicon', label: 'Favicon (icon tab trình duyệt)', type: 'image', hint: 'Ảnh vuông PNG 32×32 hoặc 64×64. Có hiệu lực sau khi reload trang.' },
-      { key: 'site_email',       label: 'Email liên hệ',  type: 'email',    placeholder: 'hello@webdrop.vn' },
+      { key: 'site_email',       label: 'Email liên hệ',  type: 'email',    placeholder: 'hello@webdrop.store' },
       { key: 'site_phone',       label: 'Zalo / Điện thoại',               placeholder: '0988 632 841' },
       { key: 'site_address',     label: 'Địa chỉ',                          placeholder: 'Cầu Giấy, Hà Nội, Việt Nam' },
       { key: 'working_hours',    label: 'Giờ hỗ trợ',                       placeholder: '8:30–18:00 · T2–T7' },
@@ -40,11 +40,11 @@ const SETTING_GROUPS: SettingGroup[] = [
   {
     label: 'Mạng xã hội', key: 'social', icon: '📡',
     fields: [
-      { key: 'social_facebook',  label: 'Facebook URL',  placeholder: 'https://facebook.com/webdrop.vn' },
+      { key: 'social_facebook',  label: 'Facebook URL',  placeholder: 'https://facebook.com/webdrop.store' },
       { key: 'social_zalo',      label: 'Số Zalo',       placeholder: '0988632841' },
       { key: 'social_youtube',   label: 'YouTube URL',   placeholder: 'https://youtube.com/@webdrop' },
       { key: 'social_tiktok',    label: 'TikTok URL',    placeholder: 'https://tiktok.com/@webdrop' },
-      { key: 'social_instagram', label: 'Instagram URL', placeholder: 'https://instagram.com/webdrop.vn' },
+      { key: 'social_instagram', label: 'Instagram URL', placeholder: 'https://instagram.com/webdrop.store' },
     ],
   },
   {
@@ -86,7 +86,7 @@ const SETTING_GROUPS: SettingGroup[] = [
   {
     label: 'SEO', key: 'seo', icon: '🔍',
     fields: [
-      { key: 'meta_title',            label: 'Meta Title',            placeholder: 'webdrop.vn — Mẫu web đẹp, triển khai trọn gói' },
+      { key: 'meta_title',            label: 'Meta Title',            placeholder: 'webdrop.store — Mẫu web đẹp, triển khai trọn gói' },
       { key: 'meta_description',      label: 'Meta Description',      placeholder: 'Hơn 30 mẫu website Bootstrap 5...', type: 'textarea', rows: 2 },
       { key: 'google_analytics_id',   label: 'Google Analytics ID',   placeholder: 'G-XXXXXXXXXX' },
     ],
@@ -98,8 +98,8 @@ const SETTING_GROUPS: SettingGroup[] = [
       { key: 'smtp_port',       label: 'SMTP Port',        placeholder: '587' },
       { key: 'smtp_user',       label: 'SMTP User',        placeholder: 'your@gmail.com' },
       { key: 'smtp_password',   label: 'SMTP Password',    type: 'password', placeholder: '••••••••' },
-      { key: 'smtp_from_name',  label: 'Tên người gửi',   placeholder: 'webdrop.vn' },
-      { key: 'smtp_from_email', label: 'Email người gửi', type: 'email', placeholder: 'noreply@webdrop.vn' },
+      { key: 'smtp_from_name',  label: 'Tên người gửi',   placeholder: 'webdrop.store' },
+      { key: 'smtp_from_email', label: 'Email người gửi', type: 'email', placeholder: 'noreply@webdrop.store' },
       {
         key: 'email_send_download',
         label: 'Tự động gửi link download qua email',

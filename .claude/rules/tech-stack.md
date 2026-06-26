@@ -1,4 +1,4 @@
-# Tech Stack Rules
+﻿# Tech Stack Rules
 
 ## Template (Gói A) — HTML/CSS/Bootstrap
 - **Không có build system** — file HTML mở thẳng trên trình duyệt
@@ -17,7 +17,7 @@
 
 **Deploy flow**: Upload lên hosting PHP → seed data mặc định → React gọi API PHP → render động
 
-## System / Trang bán hàng (webdrop.vn)
+## System / Trang bán hàng (webdrop.store)
 | Layer | Tech |
 |---|---|
 | Frontend + Admin | Next.js (React, full-stack) |

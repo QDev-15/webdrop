@@ -1,8 +1,8 @@
-export const revalidate = 60
+﻿export const revalidate = 60
 export const metadata = {
   title:      'Blog & Tips về website, SEO và thiết kế',
-  description: 'Hướng dẫn chọn mẫu website, tối ưu SEO, tăng tốc trang, so sánh công nghệ — kiến thức thực tế từ webdrop.vn.',
-  alternates: { canonical: `${process.env.NEXT_PUBLIC_URL || 'https://webdrop.vn'}/blog` },
+  description: 'Hướng dẫn chọn mẫu website, tối ưu SEO, tăng tốc trang, so sánh công nghệ — kiến thức thực tế từ webdrop.store.',
+  alternates: { canonical: `${process.env.NEXT_PUBLIC_URL || 'https://webdrop.store'}/blog` },
 }
 
 import Footer from '@/components/site/Footer'

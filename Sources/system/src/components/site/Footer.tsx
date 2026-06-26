@@ -59,7 +59,7 @@ async function getSettings() {
 export default async function Footer() {
   const s = await getSettings()
 
-  const siteName = s['site_name']        || 'webdrop.vn'
+  const siteName = s['site_name']        || 'webdrop.store'
   const siteDesc = s['site_description'] || 'Nền tảng mẫu website chuyên nghiệp và dịch vụ triển khai trọn gói dành cho doanh nghiệp Việt Nam.'
   const phone    = s['site_phone']       || ''
   const email    = s['site_email']       || ''

@@ -1,5 +1,5 @@
-import type { Metadata } from 'next'
-export const metadata: Metadata = { title: 'Liên hệ — webdrop.vn' }
+﻿import type { Metadata } from 'next'
+export const metadata: Metadata = { title: 'Liên hệ — webdrop.store' }
 
 import { Suspense } from 'react'
 import Footer from '@/components/site/Footer'

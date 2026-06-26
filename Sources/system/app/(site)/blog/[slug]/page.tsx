@@ -1,4 +1,4 @@
-export const revalidate = 60
+﻿export const revalidate = 60
 
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
@@ -7,7 +7,7 @@ import Footer from '@/components/site/Footer'
 import NavBar from '@/components/site/NavBar'
 import { prisma } from '@/lib/prisma'
 
-const BASE = process.env.NEXT_PUBLIC_URL || 'https://webdrop.vn'
+const BASE = process.env.NEXT_PUBLIC_URL || 'https://webdrop.store'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const mock = MOCK_POSTS[slug]
     if (mock) { title = mock.title; desc = mock.excerpt }
   }
-  if (!title) return { title: 'Bài viết — webdrop.vn' }
+  if (!title) return { title: 'Bài viết — webdrop.store' }
 
   const ogImg = img || '/og-default.jpg'
   return {
@@ -69,7 +69,7 @@ Khách hàng ngày nay muốn đặt bàn ngay trên website. Tìm template có 
 **4. Thông tin liên hệ và địa chỉ rõ ràng**
 Số điện thoại, địa chỉ, giờ mở cửa phải hiển thị nổi bật. Tích hợp Google Maps là điểm cộng lớn.
 
-webdrop.vn cung cấp template nhà hàng/cafe tối ưu cho tất cả 4 yếu tố này với giá từ 499.000đ.`,
+webdrop.store cung cấp template nhà hàng/cafe tối ưu cho tất cả 4 yếu tố này với giá từ 499.000đ.`,
   },
   'website-load-cham': {
     title: '5 lý do website của bạn load chậm và cách fix',
@@ -90,7 +90,7 @@ Server ở nước ngoài hoặc shared hosting rẻ tiền thường có tốc 
 CDN (Content Delivery Network) phân phối file tĩnh (ảnh, CSS, JS) từ server gần người dùng nhất. Cloudflare CDN miễn phí và dễ cấu hình.
 
 **5. Code không được minify**
-CSS và JavaScript chưa được nén/minify tốn nhiều băng thông hơn cần thiết. Các template của webdrop.vn sử dụng Bootstrap qua CDN đã được tối ưu sẵn.`,
+CSS và JavaScript chưa được nén/minify tốn nhiều băng thông hơn cần thiết. Các template của webdrop.store sử dụng Bootstrap qua CDN đã được tối ưu sẵn.`,
   },
   'bootstrap-vs-tailwind': {
     title: 'Bootstrap 5.3 vs Tailwind CSS — nên chọn gì?',
@@ -110,7 +110,7 @@ CSS và JavaScript chưa được nén/minify tốn nhiều băng thông hơn c�
 - Cần build system (Node.js, npm) — không mở thẳng trên trình duyệt được
 - Tối ưu bundle size tốt hơn khi dùng đúng cách
 
-**webdrop.vn chọn Bootstrap vì:**
+**webdrop.store chọn Bootstrap vì:**
 Template của chúng tôi được thiết kế để khách hàng tự chỉnh sửa mà không cần developer. Bootstrap cho phép mở file HTML thẳng trên trình duyệt, không cần build system, dễ chỉnh nội dung hơn cho người không biết code.
 
 Nếu bạn là developer xây dựng ứng dụng React/Next.js phức tạp, Tailwind là lựa chọn tốt hơn.`,
@@ -140,7 +140,7 @@ Mô tả ảnh giúp Google hiểu nội dung và cải thiện accessibility.
 Trang load nhanh được Google ưu tiên. Xem bài viết về tối ưu tốc độ của chúng tôi.
 
 **7. Mobile-friendly**
-Tất cả template webdrop.vn đều responsive 100% — điểm cộng lớn với Google Mobile-First Index.
+Tất cả template webdrop.store đều responsive 100% — điểm cộng lớn với Google Mobile-First Index.
 
 **8. Google Search Console**
 Đăng ký miễn phí, submit sitemap để Google crawl website của bạn nhanh hơn.
@@ -229,8 +229,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     image:            post.thumbnail || undefined,
     datePublished:    post.createdAt instanceof Date ? post.createdAt.toISOString() : undefined,
     dateModified:     post.createdAt instanceof Date ? post.createdAt.toISOString() : undefined,
-    author:           { '@type': 'Organization', name: 'webdrop.vn', url: BASE },
-    publisher:        { '@type': 'Organization', name: 'webdrop.vn', logo: { '@type': 'ImageObject', url: `${BASE}/logo.png` } },
+    author:           { '@type': 'Organization', name: 'webdrop.store', url: BASE },
+    publisher:        { '@type': 'Organization', name: 'webdrop.store', logo: { '@type': 'ImageObject', url: `${BASE}/logo.png` } },
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${BASE}/blog/${slug}` },
   }
 

@@ -1,4 +1,4 @@
-# Step 2 — Gói A: HTML Templates
+﻿# Step 2 — Gói A: HTML Templates
 > Status: ✅ Code + README hoàn thành | Còn lại: ZIP + Demo URL (sau khi có hosting)
 
 ## Templates đã xây
@@ -20,7 +20,7 @@
 ## Còn lại trước khi bán
 
 - [ ] Đóng gói ZIP: `[tên]-v1.0.zip` — mỗi template 1 file
-- [ ] Demo URL sau khi có hosting: `demo.webdrop.vn/[tên]/`
+- [ ] Demo URL sau khi có hosting: `demo.webdrop.store/[tên]/`
   - Option A: VPS AZDIGI (Step 3)
   - Option B: Netlify free static hosting (không cần VPS)
 - [ ] Đăng Gumroad ngay khi có demo URL

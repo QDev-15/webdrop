@@ -1,4 +1,4 @@
-# DermaCare Clinic — Website Deploy
+﻿# DermaCare Clinic — Website Deploy
 
 Website phong kham da lieu va skincare. React SPA + PHP backend + SQLite.
 
@@ -185,4 +185,4 @@ Admin > Cai dat > Thong tin chung.
 
 ---
 
-*Build voi web-deploy-builder — webdrop.vn*
+*Build voi web-deploy-builder — webdrop.store*

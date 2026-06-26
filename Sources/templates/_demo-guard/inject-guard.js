@@ -1,4 +1,4 @@
-/**
+﻿/**
  * inject-guard.js
  * Chạy: node inject-guard.js
  * Tự động thêm demo-guard.js vào tất cả HTML file trong Sources/templates/web/
@@ -47,7 +47,7 @@ function injectGuard(filePath) {
 }
 
 // ─── Main ───
-console.log('\n🔒 webdrop.vn — Demo Guard Injector\n');
+console.log('\n🔒 webdrop.store — Demo Guard Injector\n');
 
 const files = getAllHtmlFiles(TEMPLATES_DIR);
 console.log(`Tìm thấy ${files.length} HTML files:\n`);

@@ -1,5 +1,5 @@
--- ============================================================
--- WEBDROP.VN — SEED DATA
+﻿-- ============================================================
+-- webdrop.store — SEED DATA
 -- PostgreSQL (Neon)
 -- Generated: 2026-06-03
 -- Source: Sources/system/prisma/seed.ts
@@ -13,7 +13,7 @@
 
 -- ── Users ────────────────────────────────────────────────────
 INSERT INTO users (name, email, password, role) VALUES
-  ('Admin', 'admin@webdrop.vn', '$2b$10$N7mNXzbJMdz9buc4s5prPO9eLLtG6Al.2ctAB6f.E1/3kV9X0nbeC', 'superadmin')
+  ('Admin', 'admin@webdrop.store', '$2b$10$N7mNXzbJMdz9buc4s5prPO9eLLtG6Al.2ctAB6f.E1/3kV9X0nbeC', 'superadmin')
 ON CONFLICT (email) DO NOTHING;
 
 -- ── Industries ───────────────────────────────────────────────
@@ -372,11 +372,11 @@ ON CONFLICT (slug) DO NOTHING;
 
 -- ── Settings ─────────────────────────────────────────────────
 INSERT INTO settings (key, value, "group") VALUES
-  ('site_name',        'webdrop.vn',                          'general'),
+  ('site_name',        'webdrop.store',                          'general'),
   ('site_description', 'Mẫu web đẹp, triển khai trọn gói',   'general'),
-  ('site_email',       'hello@webdrop.vn',                    'general'),
+  ('site_email',       'hello@webdrop.store',                    'general'),
   ('site_phone',       '0900 000 000',                        'general'),
-  ('social_facebook',  'https://facebook.com/webdrop.vn',     'social'),
+  ('social_facebook',  'https://facebook.com/webdrop.store',     'social'),
   ('social_zalo',      '0900000000',                          'social')
 ON CONFLICT (key) DO NOTHING;
 
@@ -415,7 +415,7 @@ INSERT INTO hero_slides (type, bg, badge, title, data, buttons, sort_order, stat
 VALUES (
   'features',
   'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=60&auto=format&fit=crop',
-  'Tại sao chọn webdrop.vn',
+  'Tại sao chọn webdrop.store',
   '[
     {"text":"Không chỉ là"},
     {"br":true},

@@ -1,4 +1,4 @@
-# Hướng Dẫn Dự Án webdrop.vn — Dành cho Developer Mới
+﻿# Hướng Dẫn Dự Án webdrop.store — Dành cho Developer Mới
 
 > Tài liệu này giải thích toàn bộ codebase tại `Sources/system/` — từ cấu trúc thư mục, routing, data fetching, auth, đến workflow tạo feature mới. Mọi giải thích đều gắn với file và dòng code thực tế.
 
@@ -8,7 +8,7 @@
 
 ### Mục đích
 
-webdrop.vn là hệ thống bán template website và dịch vụ thiết kế web. Hệ thống gồm hai phần chính chạy trên cùng Next.js app:
+webdrop.store là hệ thống bán template website và dịch vụ thiết kế web. Hệ thống gồm hai phần chính chạy trên cùng Next.js app:
 
 - **Trang public** (`/`, `/templates`, `/pricing`, v.v.) — nơi khách hàng xem và đặt mua
 - **Trang admin** (`/admin/*`) — nơi quản lý đơn hàng, khách hàng, template, blog, cài đặt

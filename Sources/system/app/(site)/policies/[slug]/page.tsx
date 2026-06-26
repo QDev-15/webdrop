@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation'
+﻿import { notFound } from 'next/navigation'
 import Footer from '@/components/site/Footer'
 import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
@@ -13,14 +13,14 @@ async function getContact() {
     const m = Object.fromEntries(rows.map(r => [r.key, r.value ?? '']))
     const zalo = m['social_zalo'] || m['site_phone'] || ''
     return {
-      email:   m['site_email']    || 'hello@webdrop.vn',
+      email:   m['site_email']    || 'hello@webdrop.store',
       phone:   m['site_phone']    || '',
       zalo,
-      name:    m['site_name']     || 'webdrop.vn',
+      name:    m['site_name']     || 'webdrop.store',
       hours:   m['working_hours'] || '8:00–18:00 · Thứ 2–Thứ 7',
     }
   } catch {
-    return { email: 'hello@webdrop.vn', phone: '', zalo: '', name: 'webdrop.vn', hours: '8:00–18:00 · Thứ 2–Thứ 7' }
+    return { email: 'hello@webdrop.store', phone: '', zalo: '', name: 'webdrop.store', hours: '8:00–18:00 · Thứ 2–Thứ 7' }
   }
 }
 
@@ -45,7 +45,7 @@ function buildPolicies(c: Awaited<ReturnType<typeof getContact>>): Record<string
         {
           heading: '1. Thông tin chúng tôi thu thập',
           items: [
-            { type: 'p', text: 'Khi bạn sử dụng dịch vụ của webdrop.vn, chúng tôi có thể thu thập các thông tin sau:' },
+            { type: 'p', text: 'Khi bạn sử dụng dịch vụ của webdrop.store, chúng tôi có thể thu thập các thông tin sau:' },
             { type: 'bullet', bold: 'Thông tin liên hệ', text: 'Họ tên, email, số điện thoại (khi bạn điền form đặt hàng hoặc liên hệ).' },
             { type: 'bullet', bold: 'Thông tin đơn hàng', text: 'Chi tiết giao dịch, sản phẩm/gói dịch vụ đặt mua.' },
             { type: 'bullet', bold: 'Thông tin kỹ thuật', text: 'Địa chỉ IP, loại trình duyệt, trang đã truy cập (thông qua Google Analytics nếu đã bật).' },
@@ -90,7 +90,7 @@ function buildPolicies(c: Awaited<ReturnType<typeof getContact>>): Record<string
         {
           heading: '1. Chấp thuận điều khoản',
           items: [
-            { type: 'p', text: 'Khi sử dụng dịch vụ của webdrop.vn, bạn xác nhận đã đọc, hiểu và đồng ý tuân thủ các điều khoản này.' },
+            { type: 'p', text: 'Khi sử dụng dịch vụ của webdrop.store, bạn xác nhận đã đọc, hiểu và đồng ý tuân thủ các điều khoản này.' },
           ],
         },
         {
@@ -112,7 +112,7 @@ function buildPolicies(c: Awaited<ReturnType<typeof getContact>>): Record<string
         {
           heading: '4. Quyền sở hữu trí tuệ',
           items: [
-            { type: 'bullet', text: 'Template và source code do webdrop.vn tạo ra — bản quyền thuộc về webdrop.vn.' },
+            { type: 'bullet', text: 'Template và source code do webdrop.store tạo ra — bản quyền thuộc về webdrop.store.' },
             { type: 'bullet', text: 'Sau khi mua, bạn được cấp quyền sử dụng (license) cho 1 dự án — không phải chuyển nhượng bản quyền.' },
             { type: 'bullet', text: 'Source code Gói Theo Yêu cầu: bàn giao quyền sở hữu đầy đủ nếu hợp đồng ghi rõ.' },
           ],

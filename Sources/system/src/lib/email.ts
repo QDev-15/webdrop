@@ -78,7 +78,7 @@ export async function sendDownloadEmail(opts: {
       </p>
 
       <div style="border-top:1px solid #e8e5df;padding-top:16px;font-size:12px;color:#a09d97">
-        webdrop.vn · ${cfg.smtp_from_email || 'hello@webdrop.vn'}
+        webdrop.store · ${cfg.smtp_from_email || 'hello@webdrop.store'}
       </div>
     </div>
   </div>
@@ -87,9 +87,9 @@ export async function sendDownloadEmail(opts: {
 
   try {
     await transporter.sendMail({
-      from: `"${cfg.smtp_from_name || 'webdrop.vn'}" <${cfg.smtp_from_email || cfg.smtp_user}>`,
+      from: `"${cfg.smtp_from_name || 'webdrop.store'}" <${cfg.smtp_from_email || cfg.smtp_user}>`,
       to: opts.to,
-      subject: `[webdrop.vn] Link tải file — Đơn hàng ${opts.orderCode}`,
+      subject: `[webdrop.store] Link tải file — Đơn hàng ${opts.orderCode}`,
       html,
     })
     console.log('[email] Đã gửi download email tới', opts.to)

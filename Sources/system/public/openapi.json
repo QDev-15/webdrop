@@ -1,9 +1,9 @@
-{
+﻿{
   "openapi": "3.0.3",
   "info": {
-    "title": "webdrop.vn API",
+    "title": "webdrop.store API",
     "version": "1.0.0",
-    "description": "API cho he thong quan ly template va don hang webdrop.vn"
+    "description": "API cho he thong quan ly template va don hang webdrop.store"
   },
   "servers": [
     {

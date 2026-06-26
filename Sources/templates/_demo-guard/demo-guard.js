@@ -1,5 +1,5 @@
-/**
- * demo-guard.js — webdrop.vn
+﻿/**
+ * demo-guard.js — webdrop.store
  * Ngăn casual users copy source code từ trang demo.
  * Thêm vào trước </body> của mọi trang demo.
  */
@@ -84,9 +84,9 @@
       '<div style="font-size:48px">🔒</div>',
       '<div style="font-size:20px;font-weight:600">Nội dung được bảo vệ</div>',
       '<div style="font-size:14px;color:rgba(255,255,255,.6);max-width:360px;line-height:1.6">',
-      'Đây là bản demo của webdrop.vn.<br>',
+      'Đây là bản demo của webdrop.store.<br>',
       'Để sở hữu source code, vui lòng mua template tại<br>',
-      '<a href="https://webdrop.vn" style="color:#4ade80;text-decoration:none">webdrop.vn</a>',
+      '<a href="https://webdrop.store" style="color:#4ade80;text-decoration:none">webdrop.store</a>',
       '</div>'
     ].join('');
     document.body.appendChild(el);
@@ -105,7 +105,7 @@
   // Giúp nhận diện nếu code bị copy
   var wm = document.createElement('meta');
   wm.setAttribute('name', 'generator');
-  wm.setAttribute('content', 'webdrop.vn — demo protected');
+  wm.setAttribute('content', 'webdrop.store — demo protected');
   document.head.appendChild(wm);
 
 })();

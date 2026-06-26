@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+﻿import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 interface Props {
@@ -68,7 +68,7 @@ export default function Footer({ settings }: Props) {
         <div className="wd-container">
           <div className="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
             <div className="ft-copy">{settings.footer_copyright || `© ${year} ${siteName} · Made in Vietnam 🇻🇳`}</div>
-            <div className="ft-copy">Thiết kế bởi webdrop.vn</div>
+            <div className="ft-copy">Thiết kế bởi webdrop.store</div>
           </div>
         </div>
       </div>

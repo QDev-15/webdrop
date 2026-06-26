@@ -1,4 +1,4 @@
-# Template Basic Admin — Hướng dẫn sử dụng
+﻿# Template Basic Admin — Hướng dẫn sử dụng
 
 Template dashboard quản trị nội dung website.
 
@@ -23,7 +23,7 @@ Template dashboard quản trị nội dung website.
 - Dùng làm design reference khi xây backend
 - Bán kèm Gói A như một bộ giao diện hoàn chỉnh
 
-Để có chức năng thật (login, CRUD database), cần kết hợp với backend (Gói B của webdrop.vn).
+Để có chức năng thật (login, CRUD database), cần kết hợp với backend (Gói B của webdrop.store).
 
 ## Cách chỉnh nội dung
 
@@ -86,4 +86,4 @@ Khi kết nối backend (PHP/Node.js):
 3. Form login cần gửi POST request đến `/api/auth/login`
 
 ## Hỗ trợ
-Liên hệ webdrop.vn để được tư vấn tích hợp backend cho template này.
+Liên hệ webdrop.store để được tư vấn tích hợp backend cho template này.

@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import type { Template } from '@/data/templates'
@@ -139,7 +139,7 @@ export default function TemplateDetailClient({
               <span className="ttag">Multi-page</span>
               <span className="ttag">Bootstrap 5.3</span>
             </div>
-            <h1 className="page-title">{template.name} — <em>webdrop.vn</em></h1>
+            <h1 className="page-title">{template.name} — <em>webdrop.store</em></h1>
             <p className="page-sub">
               {template.description ||
                 'Template HTML/CSS thuần, responsive hoàn toàn. Mở thẳng trên trình duyệt, không cần server, không cần build.'}

@@ -1,4 +1,4 @@
-# Template Agency Web — Hướng dẫn chỉnh nội dung
+﻿# Template Agency Web — Hướng dẫn chỉnh nội dung
 
 Template website cho agency, công ty dịch vụ, freelancer.
 
@@ -105,4 +105,4 @@ Trong `lien-he.html`, form mặc định không gửi email. Để nhận email 
 - Không xóa class CSS vì sẽ ảnh hưởng layout
 
 ## Hỗ trợ
-Liên hệ webdrop.vn để được hỗ trợ chỉnh sửa nội dung.
+Liên hệ webdrop.store để được hỗ trợ chỉnh sửa nội dung.

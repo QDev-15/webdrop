@@ -1,4 +1,4 @@
-# La Douceur Patisserie — Tài liệu deploy
+﻿# La Douceur Patisserie — Tài liệu deploy
 
 Website tiệm bánh ngọt thủ công cao cấp. React SPA + PHP API + SQLite.
 
@@ -146,6 +146,6 @@ tiem-banh-ngot/
 
 ## Hỗ trợ
 
-Gói website này được build bởi **webdrop.vn**.
+Gói website này được build bởi **webdrop.store**.
 
-Liên hệ support: support@webdrop.vn
+Liên hệ support: support@webdrop.store

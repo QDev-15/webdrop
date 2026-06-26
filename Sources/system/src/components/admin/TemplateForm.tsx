@@ -125,7 +125,7 @@ export default function TemplateForm({ mode, id, industries, initial }: Template
         </div>
         <div style={{ gridColumn: '1/-1' }}>
           {label('Demo URL')}
-          {input('demoUrl', { placeholder: 'https://demo.webdrop.vn/...' })}
+          {input('demoUrl', { placeholder: 'https://demo.webdrop.store/...' })}
         </div>
         <div>
           {label('Loại template')}

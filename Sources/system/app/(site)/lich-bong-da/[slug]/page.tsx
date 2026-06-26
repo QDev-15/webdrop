@@ -1,11 +1,11 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Footer from '@/components/site/Footer'
 import { ARTICLES } from '../articles'
 import RevealObserver from '@/components/site/RevealObserver'
 
-const BASE = process.env.NEXT_PUBLIC_URL || 'https://webdrop.vn'
+const BASE = process.env.NEXT_PUBLIC_URL || 'https://webdrop.store'
 
 export function generateStaticParams() {
   return ARTICLES.map(a => ({ slug: a.slug }))
@@ -18,7 +18,7 @@ export async function generateMetadata(
   const article = ARTICLES.find(a => a.slug === slug)
   if (!article) return {}
   return {
-    title: `${article.title} | WC 2026 — webdrop.vn`,
+    title: `${article.title} | WC 2026 — webdrop.store`,
     description: article.excerpt,
     alternates: { canonical: `${BASE}/lich-bong-da/${article.slug}` },
     openGraph: {

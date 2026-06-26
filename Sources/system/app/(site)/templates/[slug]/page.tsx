@@ -1,4 +1,4 @@
-export const revalidate = 60
+﻿export const revalidate = 60
 
 import type { Metadata } from 'next'
 import Link from 'next/link'
@@ -8,7 +8,7 @@ import { templates as mockTemplates } from '@/data/templates'
 import type { Template } from '@/data/templates'
 import TemplateDetailClient from './TemplateDetailClient'
 
-const BASE = process.env.NEXT_PUBLIC_URL || 'https://webdrop.vn'
+const BASE = process.env.NEXT_PUBLIC_URL || 'https://webdrop.store'
 
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const mock = mockTemplates.find(t => t.slug === slug)
   const name = mock?.name || 'Template website'
   return {
-    title: `${name} — webdrop.vn`,
+    title: `${name} — webdrop.store`,
     alternates: { canonical: `${BASE}/templates/${slug}` },
   }
 }
@@ -123,14 +123,14 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
     image:      template.image,
     url:        `${BASE}/templates/${template.slug}`,
     description: `Mẫu website ${template.category} Bootstrap 5, responsive 100%, không cần build, mở file là chạy.`,
-    brand:      { '@type': 'Brand', name: 'webdrop.vn' },
+    brand:      { '@type': 'Brand', name: 'webdrop.store' },
     offers: {
       '@type':       'Offer',
       priceCurrency: 'VND',
       price:         template.price.replace(/[^\d]/g, ''),
       availability:  'https://schema.org/InStock',
       url:           `${BASE}/checkout?slug=${template.slug}`,
-      seller:        { '@type': 'Organization', name: 'webdrop.vn' },
+      seller:        { '@type': 'Organization', name: 'webdrop.store' },
     },
   }
 

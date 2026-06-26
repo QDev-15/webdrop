@@ -1,5 +1,5 @@
-/**
- * build-demo.js — webdrop.vn
+﻿/**
+ * build-demo.js — webdrop.store
  *
  * Tạo bản DEMO (có guard) từ bản GỐC (clean).
  * Bản gốc Sources/templates/web/ KHÔNG bị thay đổi.
@@ -100,7 +100,7 @@ function buildTemplate({ src, rel }) {
 
 const arg = process.argv[2]; // optional: filter
 
-console.log('\n🔨  webdrop.vn — Demo Build\n');
+console.log('\n🔨  webdrop.store — Demo Build\n');
 console.log(`    Source : Sources/templates/web/`);
 console.log(`    Output : dist/demo/\n`);
 

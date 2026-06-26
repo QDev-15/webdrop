@@ -1,7 +1,7 @@
-export const revalidate = 60
+﻿export const revalidate = 60
 
 import type { Metadata } from 'next'
-export const metadata: Metadata = { title: 'Thư viện mẫu website — webdrop.vn' }
+export const metadata: Metadata = { title: 'Thư viện mẫu website — webdrop.store' }
 
 import { Suspense } from 'react'
 import { prisma } from '@/lib/prisma'

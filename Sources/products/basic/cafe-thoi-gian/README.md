@@ -1,4 +1,4 @@
-# Cà Phê Thời Gian — Website Deploy Package
+﻿# Cà Phê Thời Gian — Website Deploy Package
 
 Website hoàn chỉnh cho quán cà phê: React SPA + PHP API + SQLite.
 
@@ -104,4 +104,4 @@ Mật khẩu: 123456
 | CSS | Template gốc (cafe brown theme) |
 
 ---
-Được tạo bởi **webdrop.vn**
+Được tạo bởi **webdrop.store**

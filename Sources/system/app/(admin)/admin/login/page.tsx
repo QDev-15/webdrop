@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useState, FormEvent } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
@@ -52,7 +52,7 @@ function LoginForm() {
                 type="email" value={email} onChange={e => setEmail(e.target.value)}
                 required autoFocus
                 style={{ width: '100%', padding: '10px 13px', borderRadius: 8, border: '1px solid var(--border)', background: 'var(--bg)', fontSize: 14, fontFamily: 'var(--sans)', outline: 'none', color: 'var(--text)', boxSizing: 'border-box' }}
-                placeholder="admin@webdrop.vn"
+                placeholder="admin@webdrop.store"
               />
             </div>
             <div style={{ marginBottom: 20 }}>

@@ -1,4 +1,4 @@
-# Template Spa & Làm đẹp — Hướng dẫn chỉnh nội dung
+﻿# Template Spa & Làm đẹp — Hướng dẫn chỉnh nội dung
 
 Template website sang trọng cho spa, thẩm mỹ viện, salon tóc, làm đẹp.
 
@@ -101,7 +101,7 @@ Thay `0900000000` bằng số Zalo của spa.
 
 ## Lưu ý
 - Test responsive trên mobile — quan trọng vì hầu hết khách đặt lịch qua điện thoại
-- Form đặt lịch cần kết nối backend để hoạt động thật (xem Gói B của webdrop.vn)
+- Form đặt lịch cần kết nối backend để hoạt động thật (xem Gói B của webdrop.store)
 
 ## Hỗ trợ
-Liên hệ webdrop.vn để được hỗ trợ chỉnh sửa nội dung.
+Liên hệ webdrop.store để được hỗ trợ chỉnh sửa nội dung.
