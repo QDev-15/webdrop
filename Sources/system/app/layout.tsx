@@ -19,15 +19,22 @@ export const viewport: Viewport = {
   themeColor: '#1a6b52',
 }
 
+const DEFAULT_TITLE = 'webdrop.store — Mẫu web đẹp, triển khai trọn gói'
+const DEFAULT_DESC  = 'Hơn 30 mẫu website Bootstrap 5 đẹp cho mọi ngành. Bàn giao website hoàn chỉnh React + Admin trong 3–5 ngày làm việc.'
+
 export async function generateMetadata(): Promise<Metadata> {
   let faviconUrl: string | undefined
+  let title = DEFAULT_TITLE
+  let desc  = DEFAULT_DESC
   try {
-    const row = await prisma.setting.findUnique({ where: { key: 'site_favicon' } })
-    faviconUrl = row?.value?.trim() || undefined
-  } catch { /* use default */ }
-
-  const title = 'webdrop.store — Mẫu web đẹp, triển khai trọn gói'
-  const desc  = 'Hơn 30 mẫu website Bootstrap 5 đẹp cho mọi ngành. Bàn giao website hoàn chỉnh React + Admin trong 3–5 ngày làm việc.'
+    const rows = await prisma.setting.findMany({
+      where: { key: { in: ['site_favicon', 'meta_title', 'meta_description'] } },
+    })
+    const map = Object.fromEntries(rows.map(r => [r.key, r.value?.trim() || '']))
+    faviconUrl = map['site_favicon'] || undefined
+    if (map['meta_title'])       title = map['meta_title']
+    if (map['meta_description']) desc  = map['meta_description']
+  } catch { /* use defaults */ }
 
   return {
     metadataBase: new URL(BASE),
