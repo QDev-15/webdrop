@@ -39,7 +39,7 @@ function LoginForm() {
       <div style={{ width: '100%', maxWidth: 380 }}>
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
           <div style={{ fontSize: 22, fontWeight: 600, color: '#fff', marginBottom: 6 }}>
-            web<span style={{ color: '#4ade80' }}>drop</span>.vn
+            web<span style={{ color: '#4ade80' }}>drop</span>.store
           </div>
           <div style={{ fontSize: 14, color: 'rgba(255,255,255,.4)', fontWeight: 300 }}>Đăng nhập quản trị</div>
         </div>

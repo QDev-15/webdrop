@@ -47,7 +47,7 @@ export default function AdminLayout({ children, title }: { children: React.React
           sessionStorage.setItem(PROFILE_CACHE_KEY, JSON.stringify(data.user))
         }
       })
-      .catch(() => {})
+      .catch(() => { })
   }, [])
 
   async function handleLogout() {
@@ -61,7 +61,7 @@ export default function AdminLayout({ children, title }: { children: React.React
       {/* Sidebar */}
       <div className="admin-sidebar">
         <div className="sb-logo">
-          <Link href="/" className="sb-logo-text text-decoration-none">web<span>drop</span>.vn</Link>
+          <Link href="/" className="sb-logo-text text-decoration-none">web<span>drop</span>.store</Link>
           <div style={{ fontSize: 11, color: 'rgba(255,255,255,.2)', marginTop: 3, fontWeight: 300 }}>System Admin</div>
         </div>
         <nav className="sb-nav">

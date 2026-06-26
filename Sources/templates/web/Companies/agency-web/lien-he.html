@@ -1,412 +1,998 @@
 ﻿<!DOCTYPE html>
 <html lang="vi">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Liên hệ — [TÊN CÔNG TY]</title>
-<meta name="description" content="Liên hệ với [TÊN CÔNG TY] để được tư vấn miễn phí về thiết kế web và triển khai website.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<style>
-:root {
-  --bg:#faf9f7; --surface:#fff; --dark:#0c0b09; --dark2:#141210;
-  --border:#e8e5df; --border-light:#f0ede8;
-  --text:#1a1917; --text-2:#6b6760; --text-3:#a09d97;
-  --accent:#1a6b52; --accent-h:#155a44; --accent-light:#e8f4ef; --accent-mid:#2d9b73;
-  --warm:#f5f0e8; --warm2:#ede8df; --danger:#e24b4a;
-  --sans:'DM Sans',sans-serif;
-  --bs-body-font-family:var(--sans); --bs-body-bg:var(--bg); --bs-body-color:var(--text); --bs-border-color:var(--border);
-}
-html { scroll-behavior: smooth; }
-body { font-family: var(--sans); background: var(--bg); color: var(--text); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-thumb { background: var(--warm2); border-radius: 4px; }
-.wd-container { max-width: 1100px; margin: 0 auto; padding: 0 clamp(20px,5vw,80px); }
-.sec-pad { padding: clamp(72px,10vw,128px) 0; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liên hệ — [TÊN CÔNG TY]</title>
+  <meta name="description"
+    content="Liên hệ với [TÊN CÔNG TY] để được tư vấn miễn phí về thiết kế web và triển khai website.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf9f7;
+      --surface: #fff;
+      --dark: #0c0b09;
+      --dark2: #141210;
+      --border: #e8e5df;
+      --border-light: #f0ede8;
+      --text: #1a1917;
+      --text-2: #6b6760;
+      --text-3: #a09d97;
+      --accent: #1a6b52;
+      --accent-h: #155a44;
+      --accent-light: #e8f4ef;
+      --accent-mid: #2d9b73;
+      --warm: #f5f0e8;
+      --warm2: #ede8df;
+      --danger: #e24b4a;
+      --sans: 'DM Sans', sans-serif;
+      --bs-body-font-family: var(--sans);
+      --bs-body-bg: var(--bg);
+      --bs-body-color: var(--text);
+      --bs-border-color: var(--border);
+    }
 
-/* NAV */
-#nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; background: rgba(250,249,247,.95); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); transition: all .3s; }
-.nav-inner { height: 62px; display: flex; align-items: center; justify-content: space-between; }
-.logo { font-size: 17px; font-weight: 600; color: var(--text); text-decoration: none; letter-spacing: -.5px; }
-.logo span { color: var(--accent); }
-.nav-links { display: flex; gap: 28px; }
-.nav-links a { font-size: 13.5px; color: var(--text-2); text-decoration: none; transition: color .2s; }
-.nav-links a:hover, .nav-links a.active { color: var(--text); }
-.nav-cta { font-size: 13px; font-weight: 500; background: var(--text); color: #fff; padding: 9px 22px; border-radius: 8px; border: none; cursor: pointer; text-decoration: none; transition: all .2s; }
-.nav-cta:hover { background: var(--accent); color: #fff; }
-.nav-hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:8px; border:none; background:transparent; }
-.nav-hamburger span { display:block; width:22px; height:2px; background:var(--text-2); border-radius:2px; transition:all .3s; }
-.nav-hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
-.nav-hamburger.open span:nth-child(2) { opacity:0; }
-.nav-hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
-.nav-mobile { position:fixed;inset:0;background:rgba(250,249,247,.98);backdrop-filter:blur(12px);z-index:490;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:opacity .3s; }
-.nav-mobile.open { opacity:1;pointer-events:auto; }
-.nav-mobile a { font-size:22px;font-weight:500;color:var(--text-2);text-decoration:none;transition:color .2s; }
-.nav-mobile a:hover { color:var(--text); }
-.nav-mobile .nm-cta { font-size:15px;background:var(--accent);color:#fff;padding:13px 36px;border-radius:9px;margin-top:8px; }
-@media(max-width:768px) { .nav-links,.nav-cta { display:none; } .nav-hamburger { display:flex; } }
+    html {
+      scroll-behavior: smooth;
+    }
 
-/* HERO */
-.contact-hero { padding: calc(62px + clamp(48px,6vw,80px)) 0 clamp(48px,6vw,72px); background: var(--dark2); text-align: center; }
-.ch-eyebrow { font-size: 11px; font-weight: 500; color: var(--accent-mid); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; }
-.ch-title { font-size: clamp(32px,4.5vw,58px); font-weight: 600; color: #fff; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
-.ch-title em { color: #4ade80; font-style: italic; font-weight: 300; }
-.ch-sub { font-size: clamp(14px,1.4vw,17px); font-weight: 300; color: rgba(255,255,255,.45); max-width: 500px; margin: 0 auto; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
 
-/* CONTACT GRID */
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-@media(max-width:768px) { .contact-grid { grid-template-columns: 1fr; } }
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
 
-/* INFO PANEL */
-.info-panel { }
-.info-title { font-size: 22px; font-weight: 600; letter-spacing: -.4px; margin-bottom: 8px; }
-.info-desc { font-size: 14px; font-weight: 300; color: var(--text-2); line-height: 1.75; margin-bottom: 32px; }
-.info-item { display: flex; gap: 14px; margin-bottom: 20px; }
-.info-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--accent-light); border: 1px solid rgba(26,107,82,.15); display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; color: var(--accent); }
-.info-label { font-size: 11px; font-weight: 500; color: var(--text-3); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 3px; }
-.info-val { font-size: 14px; color: var(--text); }
-.info-val a { color: var(--text); text-decoration: none; }
-.info-val a:hover { color: var(--accent); }
-.social-row { display: flex; gap: 10px; margin-top: 28px; }
-.soc-btn { width: 38px; height: 38px; border-radius: 9px; border: 1px solid var(--border); background: var(--surface); display: flex; align-items: center; justify-content: center; font-size: 15px; color: var(--text-2); cursor: pointer; transition: all .15s; text-decoration: none; }
-.soc-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+    ::-webkit-scrollbar-thumb {
+      background: var(--warm2);
+      border-radius: 4px;
+    }
 
-/* FORM PANEL */
-.form-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: clamp(20px,4vw,36px); }
-.fp-title { font-size: 16px; font-weight: 600; letter-spacing: -.3px; margin-bottom: 20px; }
-.form-group { margin-bottom: 16px; }
-.form-group label { font-size: 12px; font-weight: 500; color: var(--text-2); display: block; margin-bottom: 6px; letter-spacing: .1px; }
-.form-control, .form-select { font-family: var(--sans); font-size: 13.5px; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 13px; width: 100%; outline: none; transition: border-color .2s; }
-.form-control:focus, .form-select:focus { border-color: var(--accent); background: #fff; box-shadow: 0 0 0 3px rgba(26,107,82,.08); }
-.form-control.is-invalid { border-color: var(--danger); }
-.invalid-feedback { font-size: 11.5px; color: var(--danger); margin-top: 4px; }
-textarea.form-control { resize: vertical; min-height: 110px; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-@media(max-width:480px) { .form-row { grid-template-columns: 1fr; } }
-.btn-submit { width: 100%; background: var(--accent); color: #fff; border: none; border-radius: 9px; padding: 13px; font-size: 14px; font-weight: 500; font-family: var(--sans); cursor: pointer; transition: all .2s; margin-top: 4px; }
-.btn-submit:hover { background: var(--accent-h); transform: translateY(-1px); }
-.form-note { font-size: 11.5px; color: var(--text-3); text-align: center; margin-top: 10px; line-height: 1.6; }
-.success-msg { display:none; text-align:center; padding: 24px 0 8px; }
-.success-icon { font-size: 40px; margin-bottom: 12px; }
-.success-title { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
-.success-sub { font-size: 13px; color: var(--text-2); font-weight: 300; }
+    .wd-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 80px);
+    }
 
-/* MAP */
-.map-wrap { border-radius: 14px; overflow: hidden; border: 1px solid var(--border); margin-top: 48px; }
-.map-wrap iframe { width: 100%; height: 300px; display: block; border: none; filter: grayscale(.15) contrast(1.05); }
+    .sec-pad {
+      padding: clamp(72px, 10vw, 128px) 0;
+    }
 
-/* FAQ */
-.faq-item { border-bottom: 1px solid var(--border-light); }
-.faq-q { padding: 16px 0; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-.faq-q:hover { color: var(--accent); }
-.faq-arrow { font-size: 12px; color: var(--text-3); transition: transform .25s; flex-shrink: 0; }
-.faq-a { font-size: 13.5px; font-weight: 300; color: var(--text-2); line-height: 1.75; padding-bottom: 16px; display: none; }
-.faq-item.open .faq-arrow { transform: rotate(180deg); }
-.faq-item.open .faq-a { display: block; }
+    /* NAV */
+    #nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 500;
+      background: rgba(250, 249, 247, .95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: all .3s;
+    }
 
-/* SECTION HEADER */
-.sec-eyebrow { font-size: 11px; font-weight: 500; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
-.sec-eyebrow::before,.sec-eyebrow::after { content:''; flex: 1; height: 1px; background: var(--border); max-width: 40px; }
-.sec-title { font-size: clamp(26px,3.8vw,42px); font-weight: 600; letter-spacing: -.8px; margin-bottom: 12px; }
-.sec-title em { color: var(--accent); font-style: italic; font-weight: 300; }
-.sec-sub { font-size: 15px; font-weight: 300; color: var(--text-2); max-width: 520px; line-height: 1.75; }
+    .nav-inner {
+      height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-/* FOOTER */
-footer { background: var(--dark); padding: 48px 0 24px; }
-.ft-logo { font-size: 17px; font-weight: 600; color: #fff; margin-bottom: 10px; }
-.ft-logo span { color: #4ade80; }
-.ft-desc { font-size: 13px; font-weight: 300; color: rgba(255,255,255,.35); line-height: 1.75; max-width: 240px; }
-.ft-heading { font-size: 11px; font-weight: 600; color: rgba(255,255,255,.3); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 12px; }
-.ft-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
-.ft-links a { font-size: 13px; color: rgba(255,255,255,.45); text-decoration: none; transition: color .2s; }
-.ft-links a:hover { color: #fff; }
-.ft-bottom { border-top: 1px solid rgba(255,255,255,.06); margin-top: 36px; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-.ft-copy { font-size: 12px; color: rgba(255,255,255,.25); }
+    .logo {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -.5px;
+    }
 
-/* REVEAL */
-.reveal { opacity:0;transform:translateY(28px);transition:opacity .72s cubic-bezier(.16,1,.3,1),transform .72s cubic-bezier(.16,1,.3,1); }
-.reveal.visible { opacity:1;transform:none; }
-.reveal-d1 { transition-delay:.08s; } .reveal-d2 { transition-delay:.16s; }
+    .logo span {
+      color: var(--accent);
+    }
 
-/* ZALO FLOAT */
-.zf { position:fixed;bottom:24px;right:24px;z-index:400; }
-.zf-btn { width:50px;height:50px;border-radius:50%;background:#0068FF;border:none;cursor:pointer;font-size:22px;box-shadow:0 4px 20px rgba(0,104,255,.4);transition:transform .2s; }
-.zf-btn:hover { transform:scale(1.1); }
-</style>
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      font-size: 13.5px;
+      color: var(--text-2);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 500;
+      background: var(--text);
+      color: #fff;
+      padding: 9px 22px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .2s;
+    }
+
+    .nav-cta:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      border: none;
+      background: transparent;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text-2);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+
+    .nav-hamburger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .nav-mobile {
+      position: fixed;
+      inset: 0;
+      background: rgba(250, 249, 247, .98);
+      backdrop-filter: blur(12px);
+      z-index: 490;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s;
+    }
+
+    .nav-mobile.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .nav-mobile a {
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--text-2);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .nav-mobile a:hover {
+      color: var(--text);
+    }
+
+    .nav-mobile .nm-cta {
+      font-size: 15px;
+      background: var(--accent);
+      color: #fff;
+      padding: 13px 36px;
+      border-radius: 9px;
+      margin-top: 8px;
+    }
+
+    @media(max-width:768px) {
+
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
+    }
+
+    /* HERO */
+    .contact-hero {
+      padding: calc(62px + clamp(48px, 6vw, 80px)) 0 clamp(48px, 6vw, 72px);
+      background: var(--dark2);
+      text-align: center;
+    }
+
+    .ch-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent-mid);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 16px;
+    }
+
+    .ch-title {
+      font-size: clamp(32px, 4.5vw, 58px);
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 14px;
+    }
+
+    .ch-title em {
+      color: #4ade80;
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .ch-sub {
+      font-size: clamp(14px, 1.4vw, 17px);
+      font-weight: 300;
+      color: rgba(255, 255, 255, .45);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* CONTACT GRID */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    @media(max-width:768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* INFO PANEL */
+    .info-panel {}
+
+    .info-title {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -.4px;
+      margin-bottom: 8px;
+    }
+
+    .info-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-2);
+      line-height: 1.75;
+      margin-bottom: 32px;
+    }
+
+    .info-item {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .info-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--accent-light);
+      border: 1px solid rgba(26, 107, 82, .15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      flex-shrink: 0;
+      color: var(--accent);
+    }
+
+    .info-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 3px;
+    }
+
+    .info-val {
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .info-val a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .info-val a:hover {
+      color: var(--accent);
+    }
+
+    .social-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .soc-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      color: var(--text-2);
+      cursor: pointer;
+      transition: all .15s;
+      text-decoration: none;
+    }
+
+    .soc-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    /* FORM PANEL */
+    .form-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: clamp(20px, 4vw, 36px);
+    }
+
+    .fp-title {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -.3px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-2);
+      display: block;
+      margin-bottom: 6px;
+      letter-spacing: .1px;
+    }
+
+    .form-control,
+    .form-select {
+      font-family: var(--sans);
+      font-size: 13.5px;
+      color: var(--text);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 13px;
+      width: 100%;
+      outline: none;
+      transition: border-color .2s;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      border-color: var(--accent);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(26, 107, 82, .08);
+    }
+
+    .form-control.is-invalid {
+      border-color: var(--danger);
+    }
+
+    .invalid-feedback {
+      font-size: 11.5px;
+      color: var(--danger);
+      margin-top: 4px;
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media(max-width:480px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 9px;
+      padding: 13px;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: var(--sans);
+      cursor: pointer;
+      transition: all .2s;
+      margin-top: 4px;
+    }
+
+    .btn-submit:hover {
+      background: var(--accent-h);
+      transform: translateY(-1px);
+    }
+
+    .form-note {
+      font-size: 11.5px;
+      color: var(--text-3);
+      text-align: center;
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 24px 0 8px;
+    }
+
+    .success-icon {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    .success-title {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .success-sub {
+      font-size: 13px;
+      color: var(--text-2);
+      font-weight: 300;
+    }
+
+    /* MAP */
+    .map-wrap {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-top: 48px;
+    }
+
+    .map-wrap iframe {
+      width: 100%;
+      height: 300px;
+      display: block;
+      border: none;
+      filter: grayscale(.15) contrast(1.05);
+    }
+
+    /* FAQ */
+    .faq-item {
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .faq-q {
+      padding: 16px 0;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .faq-q:hover {
+      color: var(--accent);
+    }
+
+    .faq-arrow {
+      font-size: 12px;
+      color: var(--text-3);
+      transition: transform .25s;
+      flex-shrink: 0;
+    }
+
+    .faq-a {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--text-2);
+      line-height: 1.75;
+      padding-bottom: 16px;
+      display: none;
+    }
+
+    .faq-item.open .faq-arrow {
+      transform: rotate(180deg);
+    }
+
+    .faq-item.open .faq-a {
+      display: block;
+    }
+
+    /* SECTION HEADER */
+    .sec-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sec-eyebrow::before,
+    .sec-eyebrow::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      max-width: 40px;
+    }
+
+    .sec-title {
+      font-size: clamp(26px, 3.8vw, 42px);
+      font-weight: 600;
+      letter-spacing: -.8px;
+      margin-bottom: 12px;
+    }
+
+    .sec-title em {
+      color: var(--accent);
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .sec-sub {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-2);
+      max-width: 520px;
+      line-height: 1.75;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      padding: 48px 0 24px;
+    }
+
+    .ft-logo {
+      font-size: 17px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .ft-logo span {
+      color: #4ade80;
+    }
+
+    .ft-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .35);
+      line-height: 1.75;
+      max-width: 240px;
+    }
+
+    .ft-heading {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .3);
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin-bottom: 12px;
+    }
+
+    .ft-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ft-links a {
+      font-size: 13px;
+      color: rgba(255, 255, 255, .45);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .ft-links a:hover {
+      color: #fff;
+    }
+
+    .ft-bottom {
+      border-top: 1px solid rgba(255, 255, 255, .06);
+      margin-top: 36px;
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .ft-copy {
+      font-size: 12px;
+      color: rgba(255, 255, 255, .25);
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .72s cubic-bezier(.16, 1, .3, 1), transform .72s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal-d1 {
+      transition-delay: .08s;
+    }
+
+    .reveal-d2 {
+      transition-delay: .16s;
+    }
+
+    /* ZALO FLOAT */
+    .zf {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 400;
+    }
+
+    .zf-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #0068FF;
+      border: none;
+      cursor: pointer;
+      font-size: 22px;
+      box-shadow: 0 4px 20px rgba(0, 104, 255, .4);
+      transition: transform .2s;
+    }
+
+    .zf-btn:hover {
+      transform: scale(1.1);
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav id="nav">
-  <div class="wd-container">
-    <div class="nav-inner">
-      <a class="logo" href="index.html">web<span>drop</span>.vn</a><!-- SỬA: thay tên công ty -->
-      <div class="nav-links">
-        <a href="index.html">Trang chủ</a>
-        <a href="index.html#dich-vu">Dịch vụ</a>
-        <a href="index.html#portfolio">Portfolio</a>
-        <a href="index.html#bang-gia">Bảng giá</a>
-        <a href="lien-he.html" class="active">Liên hệ</a>
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="wd-container">
+      <div class="nav-inner">
+        <a class="logo" href="index.html">web<span>drop</span>.store</a><!-- SỬA: thay tên công ty -->
+        <div class="nav-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="index.html#dich-vu">Dịch vụ</a>
+          <a href="index.html#portfolio">Portfolio</a>
+          <a href="index.html#bang-gia">Bảng giá</a>
+          <a href="lien-he.html" class="active">Liên hệ</a>
+        </div>
+        <a class="nav-cta" href="#form">Gửi yêu cầu</a>
+        <button class="nav-hamburger" id="navHamburger" aria-label="Mở menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-      <a class="nav-cta" href="#form">Gửi yêu cầu</a>
-      <button class="nav-hamburger" id="navHamburger" aria-label="Mở menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+    </div>
+  </nav>
+
+  <div class="nav-mobile" id="navMobile">
+    <a href="index.html" onclick="closeMobileNav()">Trang chủ</a>
+    <a href="index.html#dich-vu" onclick="closeMobileNav()">Dịch vụ</a>
+    <a href="index.html#portfolio" onclick="closeMobileNav()">Portfolio</a>
+    <a href="index.html#bang-gia" onclick="closeMobileNav()">Bảng giá</a>
+    <a href="lien-he.html" onclick="closeMobileNav()">Liên hệ</a>
+    <a href="#form" class="nm-cta" onclick="closeMobileNav()">Gửi yêu cầu</a>
+  </div>
+
+  <!-- HERO -->
+  <div class="contact-hero">
+    <div class="wd-container">
+      <div class="ch-eyebrow">Liên hệ với chúng tôi</div>
+      <h1 class="ch-title">Hãy cùng nhau <em>trao đổi</em></h1>
+      <p class="ch-sub">Chúng tôi luôn sẵn sàng lắng nghe và tư vấn giải pháp phù hợp nhất cho bạn.</p>
     </div>
   </div>
-</nav>
 
-<div class="nav-mobile" id="navMobile">
-  <a href="index.html" onclick="closeMobileNav()">Trang chủ</a>
-  <a href="index.html#dich-vu" onclick="closeMobileNav()">Dịch vụ</a>
-  <a href="index.html#portfolio" onclick="closeMobileNav()">Portfolio</a>
-  <a href="index.html#bang-gia" onclick="closeMobileNav()">Bảng giá</a>
-  <a href="lien-he.html" onclick="closeMobileNav()">Liên hệ</a>
-  <a href="#form" class="nm-cta" onclick="closeMobileNav()">Gửi yêu cầu</a>
-</div>
+  <!-- CONTACT SECTION -->
+  <section class="sec-pad">
+    <div class="wd-container">
+      <div class="contact-grid">
 
-<!-- HERO -->
-<div class="contact-hero">
-  <div class="wd-container">
-    <div class="ch-eyebrow">Liên hệ với chúng tôi</div>
-    <h1 class="ch-title">Hãy cùng nhau <em>trao đổi</em></h1>
-    <p class="ch-sub">Chúng tôi luôn sẵn sàng lắng nghe và tư vấn giải pháp phù hợp nhất cho bạn.</p>
-  </div>
-</div>
+        <!-- INFO -->
+        <div class="info-panel reveal">
+          <h2 class="info-title">Thông tin liên hệ</h2>
+          <p class="info-desc">Bạn có thể liên hệ trực tiếp qua các kênh dưới đây hoặc điền form để chúng tôi chủ động
+            liên lạc lại trong vòng 2 giờ làm việc.</p>
 
-<!-- CONTACT SECTION -->
-<section class="sec-pad">
-  <div class="wd-container">
-    <div class="contact-grid">
-
-      <!-- INFO -->
-      <div class="info-panel reveal">
-        <h2 class="info-title">Thông tin liên hệ</h2>
-        <p class="info-desc">Bạn có thể liên hệ trực tiếp qua các kênh dưới đây hoặc điền form để chúng tôi chủ động liên lạc lại trong vòng 2 giờ làm việc.</p>
-
-        <div class="info-item">
-          <div class="info-icon">📍</div>
-          <div>
-            <div class="info-label">Địa chỉ</div>
-            <div class="info-val">[Địa chỉ văn phòng của bạn]</div><!-- SỬA -->
-          </div>
-        </div>
-        <div class="info-item">
-          <div class="info-icon">📞</div>
-          <div>
-            <div class="info-label">Điện thoại / Zalo</div>
-            <div class="info-val"><a href="tel:0900000000">090 000 0000</a></div><!-- SỬA -->
-          </div>
-        </div>
-        <div class="info-item">
-          <div class="info-icon">✉️</div>
-          <div>
-            <div class="info-label">Email</div>
-            <div class="info-val"><a href="mailto:hello@example.com">hello@example.com</a></div><!-- SỬA -->
-          </div>
-        </div>
-        <div class="info-item">
-          <div class="info-icon">🕐</div>
-          <div>
-            <div class="info-label">Giờ làm việc</div>
-            <div class="info-val">Thứ 2 – Thứ 7, 8:00 – 18:00</div><!-- SỬA -->
-          </div>
-        </div>
-
-        <div class="social-row">
-          <a class="soc-btn" href="#" aria-label="Facebook">f</a>
-          <a class="soc-btn" href="#" aria-label="Zalo" style="font-size:11px;font-weight:600;">Za</a>
-          <a class="soc-btn" href="#" aria-label="YouTube">▶</a>
-          <a class="soc-btn" href="#" aria-label="LinkedIn">in</a>
-        </div>
-      </div>
-
-      <!-- FORM -->
-      <div id="form" class="form-panel reveal reveal-d1">
-        <div class="fp-title">Gửi yêu cầu tư vấn</div>
-        <form id="contactForm" novalidate>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="fname">Họ và tên <span style="color:var(--danger)">*</span></label>
-              <input class="form-control" id="fname" type="text" placeholder="Nguyễn Văn A">
-              <div class="invalid-feedback">Vui lòng nhập họ tên</div>
-            </div>
-            <div class="form-group">
-              <label for="fphone">Số điện thoại <span style="color:var(--danger)">*</span></label>
-              <input class="form-control" id="fphone" type="tel" placeholder="090 000 0000">
-              <div class="invalid-feedback">Số điện thoại không hợp lệ</div>
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div>
+              <div class="info-label">Địa chỉ</div>
+              <div class="info-val">[Địa chỉ văn phòng của bạn]</div><!-- SỬA -->
             </div>
           </div>
-          <div class="form-group">
-            <label for="femail">Email</label>
-            <input class="form-control" id="femail" type="email" placeholder="email@example.com">
-            <div class="invalid-feedback">Email không đúng định dạng</div>
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div>
+              <div class="info-label">Điện thoại / Zalo</div>
+              <div class="info-val"><a href="tel:0900000000">090 000 0000</a></div><!-- SỬA -->
+            </div>
           </div>
-          <div class="form-group">
-            <label for="fservice">Dịch vụ quan tâm</label>
-            <select class="form-select" id="fservice">
-              <option value="">— Chọn dịch vụ —</option>
-              <option>Thiết kế website</option>
-              <option>Triển khai website</option>
-              <option>Bảo trì & hỗ trợ</option>
-              <option>Tư vấn giải pháp</option>
-              <option>Khác</option>
-            </select>
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div>
+              <div class="info-label">Email</div>
+              <div class="info-val"><a href="mailto:hello@example.com">hello@example.com</a></div><!-- SỬA -->
+            </div>
           </div>
-          <div class="form-group">
-            <label for="fmsg">Nội dung</label>
-            <textarea class="form-control" id="fmsg" placeholder="Mô tả ngắn về dự án, yêu cầu hoặc câu hỏi của bạn..."></textarea>
+          <div class="info-item">
+            <div class="info-icon">🕐</div>
+            <div>
+              <div class="info-label">Giờ làm việc</div>
+              <div class="info-val">Thứ 2 – Thứ 7, 8:00 – 18:00</div><!-- SỬA -->
+            </div>
           </div>
-          <button type="submit" class="btn-submit">Gửi yêu cầu tư vấn →</button>
-          <p class="form-note">Chúng tôi sẽ phản hồi trong vòng <strong>2 giờ làm việc</strong>. Thông tin của bạn được bảo mật tuyệt đối.</p>
-        </form>
-        <div class="success-msg" id="successMsg">
-          <div class="success-icon">✅</div>
-          <div class="success-title">Đã nhận yêu cầu!</div>
-          <p class="success-sub">Chúng tôi sẽ liên hệ lại với bạn trong vòng 2 giờ làm việc.</p>
+
+          <div class="social-row">
+            <a class="soc-btn" href="#" aria-label="Facebook">f</a>
+            <a class="soc-btn" href="#" aria-label="Zalo" style="font-size:11px;font-weight:600;">Za</a>
+            <a class="soc-btn" href="#" aria-label="YouTube">▶</a>
+            <a class="soc-btn" href="#" aria-label="LinkedIn">in</a>
+          </div>
+        </div>
+
+        <!-- FORM -->
+        <div id="form" class="form-panel reveal reveal-d1">
+          <div class="fp-title">Gửi yêu cầu tư vấn</div>
+          <form id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">Họ và tên <span style="color:var(--danger)">*</span></label>
+                <input class="form-control" id="fname" type="text" placeholder="Nguyễn Văn A">
+                <div class="invalid-feedback">Vui lòng nhập họ tên</div>
+              </div>
+              <div class="form-group">
+                <label for="fphone">Số điện thoại <span style="color:var(--danger)">*</span></label>
+                <input class="form-control" id="fphone" type="tel" placeholder="090 000 0000">
+                <div class="invalid-feedback">Số điện thoại không hợp lệ</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="femail">Email</label>
+              <input class="form-control" id="femail" type="email" placeholder="email@example.com">
+              <div class="invalid-feedback">Email không đúng định dạng</div>
+            </div>
+            <div class="form-group">
+              <label for="fservice">Dịch vụ quan tâm</label>
+              <select class="form-select" id="fservice">
+                <option value="">— Chọn dịch vụ —</option>
+                <option>Thiết kế website</option>
+                <option>Triển khai website</option>
+                <option>Bảo trì & hỗ trợ</option>
+                <option>Tư vấn giải pháp</option>
+                <option>Khác</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="fmsg">Nội dung</label>
+              <textarea class="form-control" id="fmsg"
+                placeholder="Mô tả ngắn về dự án, yêu cầu hoặc câu hỏi của bạn..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Gửi yêu cầu tư vấn →</button>
+            <p class="form-note">Chúng tôi sẽ phản hồi trong vòng <strong>2 giờ làm việc</strong>. Thông tin của bạn
+              được bảo mật tuyệt đối.</p>
+          </form>
+          <div class="success-msg" id="successMsg">
+            <div class="success-icon">✅</div>
+            <div class="success-title">Đã nhận yêu cầu!</div>
+            <p class="success-sub">Chúng tôi sẽ liên hệ lại với bạn trong vòng 2 giờ làm việc.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAP -->
+      <!-- SỬA: thay embed URL Google Maps của bạn bên dưới -->
+      <div class="map-wrap reveal" style="margin-top:48px">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4!2d106.6!3d10.77!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQ2JzEyLjAiTiAxMDbCsDM2JzAwLjAiRQ!5e0!3m2!1svi!2svn!4v1234567890"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="padding:0 0 clamp(72px,10vw,128px)">
+    <div class="wd-container" style="max-width:720px">
+      <div class="text-center reveal" style="margin-bottom:40px">
+        <div class="sec-eyebrow" style="justify-content:center">Câu hỏi thường gặp</div>
+        <h2 class="sec-title">Giải đáp <em>thắc mắc</em></h2>
+      </div>
+      <div class="reveal">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Thời gian hoàn thành một dự án là bao lâu? <span
+              class="faq-arrow">▾</span></div>
+          <div class="faq-a">Tùy theo quy mô, thông thường từ 3–7 ngày làm việc với landing page đơn giản, và 2–4 tuần
+            với website nhiều trang. Chúng tôi sẽ cung cấp timeline cụ thể sau khi trao đổi yêu cầu.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Chi phí thiết kế website bao nhiêu? <span
+              class="faq-arrow">▾</span></div>
+          <div class="faq-a">Chi phí phụ thuộc vào số trang, tính năng và mức độ tùy chỉnh. Liên hệ để nhận báo giá miễn
+            phí — chúng tôi có nhiều gói phù hợp với mọi ngân sách.</div><!-- SỬA theo bảng giá của bạn -->
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Tôi có thể tự chỉnh nội dung sau khi bàn giao không? <span
+              class="faq-arrow">▾</span></div>
+          <div class="faq-a">Có. Mọi dự án đều đi kèm hướng dẫn chỉnh nội dung cơ bản. Nếu cần, chúng tôi cũng hỗ trợ
+            gói bảo trì hàng tháng.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Có hỗ trợ sau khi bàn giao không? <span
+              class="faq-arrow">▾</span></div>
+          <div class="faq-a">Có. Tất cả dự án đều được hỗ trợ miễn phí trong 30 ngày đầu. Sau đó có thể đăng ký gói bảo
+            trì tháng nếu cần.</div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- MAP -->
-    <!-- SỬA: thay embed URL Google Maps của bạn bên dưới -->
-    <div class="map-wrap reveal" style="margin-top:48px">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4!2d106.6!3d10.77!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQ2JzEyLjAiTiAxMDbCsDM2JzAwLjAiRQ!5e0!3m2!1svi!2svn!4v1234567890"
-        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+  <!-- FOOTER -->
+  <footer>
+    <div class="wd-container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="ft-logo">web<span>drop</span>.store</div><!-- SỬA -->
+          <p class="ft-desc">Thiết kế & triển khai website chuyên nghiệp cho doanh nghiệp Việt Nam.</p><!-- SỬA -->
+        </div>
+        <div class="col-6 col-lg-2 offset-lg-2">
+          <div class="ft-heading">Dịch vụ</div>
+          <ul class="ft-links">
+            <li><a href="#">Thiết kế web</a></li>
+            <li><a href="#">Landing page</a></li>
+            <li><a href="#">Bảo trì web</a></li>
+            <li><a href="#">SEO cơ bản</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-2">
+          <div class="ft-heading">Công ty</div>
+          <ul class="ft-links">
+            <li><a href="#">Về chúng tôi</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="lien-he.html">Liên hệ</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-lg-2">
+          <div class="ft-heading">Liên hệ</div>
+          <ul class="ft-links">
+            <li><a href="tel:0900000000">090 000 0000</a></li><!-- SỬA -->
+            <li><a href="mailto:hello@example.com">hello@example.com</a></li><!-- SỬA -->
+          </ul>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <div class="ft-copy">© 2025 [Tên công ty]. All rights reserved.</div><!-- SỬA -->
+        <div class="ft-copy">Thiết kế bởi webdrop.store</div>
+      </div>
     </div>
+  </footer>
+
+  <!-- Zalo float -->
+  <div class="zf">
+    <button class="zf-btn" onclick="window.open('https://zalo.me/0900000000','_blank')"
+      aria-label="Chat Zalo">💬</button><!-- SỬA số Zalo -->
   </div>
-</section>
 
-<!-- FAQ -->
-<section style="padding:0 0 clamp(72px,10vw,128px)">
-  <div class="wd-container" style="max-width:720px">
-    <div class="text-center reveal" style="margin-bottom:40px">
-      <div class="sec-eyebrow" style="justify-content:center">Câu hỏi thường gặp</div>
-      <h2 class="sec-title">Giải đáp <em>thắc mắc</em></h2>
-    </div>
-    <div class="reveal">
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">Thời gian hoàn thành một dự án là bao lâu? <span class="faq-arrow">▾</span></div>
-        <div class="faq-a">Tùy theo quy mô, thông thường từ 3–7 ngày làm việc với landing page đơn giản, và 2–4 tuần với website nhiều trang. Chúng tôi sẽ cung cấp timeline cụ thể sau khi trao đổi yêu cầu.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">Chi phí thiết kế website bao nhiêu? <span class="faq-arrow">▾</span></div>
-        <div class="faq-a">Chi phí phụ thuộc vào số trang, tính năng và mức độ tùy chỉnh. Liên hệ để nhận báo giá miễn phí — chúng tôi có nhiều gói phù hợp với mọi ngân sách.</div><!-- SỬA theo bảng giá của bạn -->
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">Tôi có thể tự chỉnh nội dung sau khi bàn giao không? <span class="faq-arrow">▾</span></div>
-        <div class="faq-a">Có. Mọi dự án đều đi kèm hướng dẫn chỉnh nội dung cơ bản. Nếu cần, chúng tôi cũng hỗ trợ gói bảo trì hàng tháng.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">Có hỗ trợ sau khi bàn giao không? <span class="faq-arrow">▾</span></div>
-        <div class="faq-a">Có. Tất cả dự án đều được hỗ trợ miễn phí trong 30 ngày đầu. Sau đó có thể đăng ký gói bảo trì tháng nếu cần.</div>
-      </div>
-    </div>
-  </div>
-</section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    /* MOBILE NAV */
+    const navHamburger = document.getElementById('navHamburger');
+    const navMobile = document.getElementById('navMobile');
+    function closeMobileNav() {
+      navHamburger.classList.remove('open');
+      navHamburger.setAttribute('aria-expanded', 'false');
+      navMobile.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    navHamburger.addEventListener('click', () => {
+      const isOpen = navMobile.classList.toggle('open');
+      navHamburger.classList.toggle('open', isOpen);
+      navHamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileNav(); });
 
-<!-- FOOTER -->
-<footer>
-  <div class="wd-container">
-    <div class="row g-4">
-      <div class="col-lg-4">
-        <div class="ft-logo">web<span>drop</span>.vn</div><!-- SỬA -->
-        <p class="ft-desc">Thiết kế & triển khai website chuyên nghiệp cho doanh nghiệp Việt Nam.</p><!-- SỬA -->
-      </div>
-      <div class="col-6 col-lg-2 offset-lg-2">
-        <div class="ft-heading">Dịch vụ</div>
-        <ul class="ft-links">
-          <li><a href="#">Thiết kế web</a></li>
-          <li><a href="#">Landing page</a></li>
-          <li><a href="#">Bảo trì web</a></li>
-          <li><a href="#">SEO cơ bản</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-lg-2">
-        <div class="ft-heading">Công ty</div>
-        <ul class="ft-links">
-          <li><a href="#">Về chúng tôi</a></li>
-          <li><a href="#">Portfolio</a></li>
-          <li><a href="lien-he.html">Liên hệ</a></li>
-        </ul>
-      </div>
-      <div class="col-12 col-lg-2">
-        <div class="ft-heading">Liên hệ</div>
-        <ul class="ft-links">
-          <li><a href="tel:0900000000">090 000 0000</a></li><!-- SỬA -->
-          <li><a href="mailto:hello@example.com">hello@example.com</a></li><!-- SỬA -->
-        </ul>
-      </div>
-    </div>
-    <div class="ft-bottom">
-      <div class="ft-copy">© 2025 [Tên công ty]. All rights reserved.</div><!-- SỬA -->
-      <div class="ft-copy">Thiết kế bởi webdrop.store</div>
-    </div>
-  </div>
-</footer>
+    /* REVEAL */
+    const ro = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+    }, { threshold: .1 });
+    document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
-<!-- Zalo float -->
-<div class="zf">
-  <button class="zf-btn" onclick="window.open('https://zalo.me/0900000000','_blank')" aria-label="Chat Zalo">💬</button><!-- SỬA số Zalo -->
-</div>
+    /* FAQ */
+    function toggleFaq(el) {
+      const item = el.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    }
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-/* MOBILE NAV */
-const navHamburger = document.getElementById('navHamburger');
-const navMobile = document.getElementById('navMobile');
-function closeMobileNav() {
-  navHamburger.classList.remove('open');
-  navHamburger.setAttribute('aria-expanded','false');
-  navMobile.classList.remove('open');
-  document.body.style.overflow = '';
-}
-navHamburger.addEventListener('click', () => {
-  const isOpen = navMobile.classList.toggle('open');
-  navHamburger.classList.toggle('open', isOpen);
-  navHamburger.setAttribute('aria-expanded', isOpen);
-  document.body.style.overflow = isOpen ? 'hidden' : '';
-});
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileNav(); });
+    /* FORM */
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      let valid = true;
+      const fname = document.getElementById('fname');
+      const fphone = document.getElementById('fphone');
+      const femail = document.getElementById('femail');
 
-/* REVEAL */
-const ro = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
-}, {threshold:.1});
-document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+      [fname, fphone, femail].forEach(f => f.classList.remove('is-invalid'));
 
-/* FAQ */
-function toggleFaq(el) {
-  const item = el.parentElement;
-  const wasOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-  if (!wasOpen) item.classList.add('open');
-}
+      if (!fname.value.trim() || fname.value.trim().length < 2) { fname.classList.add('is-invalid'); valid = false; }
+      if (!/^[0-9]{9,11}$/.test(fphone.value.replace(/\s/g, ''))) { fphone.classList.add('is-invalid'); valid = false; }
+      if (femail.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(femail.value)) { femail.classList.add('is-invalid'); valid = false; }
 
-/* FORM */
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  let valid = true;
-  const fname = document.getElementById('fname');
-  const fphone = document.getElementById('fphone');
-  const femail = document.getElementById('femail');
+      if (!valid) return;
 
-  [fname, fphone, femail].forEach(f => f.classList.remove('is-invalid'));
-
-  if (!fname.value.trim() || fname.value.trim().length < 2) { fname.classList.add('is-invalid'); valid = false; }
-  if (!/^[0-9]{9,11}$/.test(fphone.value.replace(/\s/g,''))) { fphone.classList.add('is-invalid'); valid = false; }
-  if (femail.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(femail.value)) { femail.classList.add('is-invalid'); valid = false; }
-
-  if (!valid) return;
-
-  /* SỬA: gửi form về server hoặc tích hợp email service tại đây */
-  this.style.display = 'none';
-  document.getElementById('successMsg').style.display = 'block';
-});
-</script>
+      /* SỬA: gửi form về server hoặc tích hợp email service tại đây */
+      this.style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+    });
+  </script>
 </body>
+
 </html>

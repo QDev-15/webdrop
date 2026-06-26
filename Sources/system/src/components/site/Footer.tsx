@@ -9,29 +9,29 @@ function parseLinks(raw: string): { label: string; href: string }[] {
       const sep = line.indexOf('|')
       if (sep === -1) return null
       const label = line.slice(0, sep).trim()
-      const href  = line.slice(sep + 1).trim()
+      const href = line.slice(sep + 1).trim()
       return label && href ? { label, href } : null
     })
     .filter(Boolean) as { label: string; href: string }[]
 }
 
 const DEFAULT_SERVICES = [
-  { label: 'Thư viện mẫu',      href: '/templates' },
-  { label: 'Gói Template',       href: '/pricing#goi-template' },
-  { label: 'Gói Web cơ bản',     href: '/pricing#goi-web-co-ban' },
-  { label: 'Gói Theo Yêu cầu',   href: '/pricing#goi-theo-yeu-cau' },
+  { label: 'Thư viện mẫu', href: '/templates' },
+  { label: 'Gói Template', href: '/pricing#goi-template' },
+  { label: 'Gói Web cơ bản', href: '/pricing#goi-web-co-ban' },
+  { label: 'Gói Theo Yêu cầu', href: '/pricing#goi-theo-yeu-cau' },
   { label: 'Quy trình làm việc', href: '/how-it-works' },
 ]
 const DEFAULT_RESOURCES = [
   { label: 'Hướng dẫn chọn mẫu', href: '/faq' },
-  { label: 'Blog & Tips',         href: '/blog' },
-  { label: 'FAQ',                 href: '/faq' },
+  { label: 'Blog & Tips', href: '/blog' },
+  { label: 'FAQ', href: '/faq' },
 ]
 const DEFAULT_COMPANY = [
-  { label: 'Về chúng tôi',       href: '/about' },
-  { label: 'Liên hệ',            href: '/contact' },
+  { label: 'Về chúng tôi', href: '/about' },
+  { label: 'Liên hệ', href: '/contact' },
   { label: 'Chính sách bảo mật', href: '/policies/privacy' },
-  { label: 'Điều khoản',         href: '/policies/terms' },
+  { label: 'Điều khoản', href: '/policies/terms' },
 ]
 
 async function getSettings() {
@@ -59,17 +59,17 @@ async function getSettings() {
 export default async function Footer() {
   const s = await getSettings()
 
-  const siteName = s['site_name']        || 'webdrop.store'
+  const siteName = s['site_name'] || 'webdrop.store'
   const siteDesc = s['site_description'] || 'Nền tảng mẫu website chuyên nghiệp và dịch vụ triển khai trọn gói dành cho doanh nghiệp Việt Nam.'
-  const phone    = s['site_phone']       || ''
-  const email    = s['site_email']       || ''
-  const address  = s['site_address']     || 'Hà Nội, Việt Nam'
-  const hours    = s['working_hours']    || '8:00–18:00 · Thứ 2–Thứ 7'
+  const phone = s['site_phone'] || ''
+  const email = s['site_email'] || ''
+  const address = s['site_address'] || 'Hà Nội, Việt Nam'
+  const hours = s['working_hours'] || '8:00–18:00 · Thứ 2–Thứ 7'
 
   // Danh sách link footer: đọc từ DB, fallback về default nếu chưa cấu hình
-  const services  = s['footer_services']  ? parseLinks(s['footer_services'])  : DEFAULT_SERVICES
+  const services = s['footer_services'] ? parseLinks(s['footer_services']) : DEFAULT_SERVICES
   const resources = s['footer_resources'] ? parseLinks(s['footer_resources']) : DEFAULT_RESOURCES
-  const company   = s['footer_company']   ? parseLinks(s['footer_company'])   : DEFAULT_COMPANY
+  const company = s['footer_company'] ? parseLinks(s['footer_company']) : DEFAULT_COMPANY
 
   // Google Maps embed URL: ưu tiên URL từ DB, fallback tự sinh từ địa chỉ
   const mapSrc = s['footer_map_url']?.trim()
@@ -79,25 +79,25 @@ export default async function Footer() {
   const legalLinks = s['footer_legal']
     ? parseLinks(s['footer_legal'])
     : [
-        { label: 'Chính sách bảo mật',  href: '/policies/privacy' },
-        { label: 'Điều khoản sử dụng',  href: '/policies/terms' },
-        { label: 'Chính sách hoàn tiền', href: '/policies/refund' },
-      ]
+      { label: 'Chính sách bảo mật', href: '/policies/privacy' },
+      { label: 'Điều khoản sử dụng', href: '/policies/terms' },
+      { label: 'Chính sách hoàn tiền', href: '/policies/refund' },
+    ]
   const copyrightSuffix = s['footer_copyright'] || 'Made in Vietnam 🇻🇳'
 
   const socials = [
-    s['social_facebook']  && { key: 'fb', label: 'Facebook',  href: s['social_facebook'] },
-    s['social_zalo']      && { key: 'zl', label: 'Zalo',      href: `https://zalo.me/${s['social_zalo'].replace(/\s/g, '')}` },
-    s['social_youtube']   && { key: 'yt', label: 'YouTube',   href: s['social_youtube'] },
-    s['social_tiktok']    && { key: 'tt', label: 'TikTok',    href: s['social_tiktok'] },
+    s['social_facebook'] && { key: 'fb', label: 'Facebook', href: s['social_facebook'] },
+    s['social_zalo'] && { key: 'zl', label: 'Zalo', href: `https://zalo.me/${s['social_zalo'].replace(/\s/g, '')}` },
+    s['social_youtube'] && { key: 'yt', label: 'YouTube', href: s['social_youtube'] },
+    s['social_tiktok'] && { key: 'tt', label: 'TikTok', href: s['social_tiktok'] },
     s['social_instagram'] && { key: 'in', label: 'Instagram', href: s['social_instagram'] },
   ].filter(Boolean) as { key: string; label: string; href: string }[]
 
   const contactItems = [
-    address  && { icon: '📍', label: 'Địa chỉ',           val: address },
-    phone    && { icon: '📱', label: 'Zalo / Điện thoại', val: phone },
-    email    && { icon: '✉️', label: 'Email',              val: email },
-    hours    && { icon: '🕐', label: 'Giờ hỗ trợ',        val: hours },
+    address && { icon: '📍', label: 'Địa chỉ', val: address },
+    phone && { icon: '📱', label: 'Zalo / Điện thoại', val: phone },
+    email && { icon: '✉️', label: 'Email', val: email },
+    hours && { icon: '🕐', label: 'Giờ hỗ trợ', val: hours },
   ].filter(Boolean) as { icon: string; label: string; val: string }[]
 
   const year = new Date().getFullYear()
@@ -108,7 +108,7 @@ export default async function Footer() {
         <div className="row g-4 py-5">
           {/* Brand */}
           <div className="col-md-4 reveal">
-            <div className="ft-logo">web<span>drop</span>.vn</div>
+            <div className="ft-logo">web<span>drop</span>.store</div>
             <p className="ft-desc">{siteDesc}</p>
             {socials.length > 0 && (
               <div className="ft-socials">
