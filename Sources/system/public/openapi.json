@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://webdrop-henna.vercel.app",
+      "url": "https://webdrop.store",
       "description": "Production"
     },
     {

@@ -38,7 +38,7 @@ export async function sendDownloadEmail(opts: {
     auth: { user: cfg.smtp_user, pass: cfg.smtp_password },
   })
 
-  const baseUrl = process.env.NEXT_PUBLIC_URL || 'https://webdrop-henna.vercel.app'
+  const baseUrl = process.env.NEXT_PUBLIC_URL || 'https://webdrop.store'
   const tokenParam = encodeURIComponent(opts.downloadToken)
 
   const downloadLinks = opts.type === 'website'
