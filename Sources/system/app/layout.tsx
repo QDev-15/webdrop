@@ -1,5 +1,6 @@
 ﻿import type { Metadata, Viewport } from 'next'
 import { DM_Sans } from 'next/font/google'
+import Script from 'next/script'
 import { prisma } from '@/lib/prisma'
 import '../src/styles/globals.css'
 
@@ -71,7 +72,13 @@ const ORG_SCHEMA = {
   },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  let gaId: string | null = null
+  try {
+    const row = await prisma.setting.findUnique({ where: { key: 'google_analytics_id' } })
+    gaId = row?.value?.trim() || null
+  } catch { /* skip if DB unavailable */ }
+
   return (
     <html lang="vi">
       <body className={dmSans.variable} suppressHydrationWarning>
@@ -80,6 +87,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_SCHEMA) }}
         />
+        {gaId && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga-init" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${gaId}');`}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   )
