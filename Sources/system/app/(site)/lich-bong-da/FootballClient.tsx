@@ -104,8 +104,8 @@ function TeamCrest({ team, size }: { team: Team; size: number }) {
 
 function TeamBlock({ team, side }: { team: Team; side: 'home' | 'away' }) {
   return (
-    <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 10, flexDirection: side === 'away' ? 'row-reverse' : 'row' }}>
-      <TeamCrest team={team} size={42} />
+    <div style={{ flex: 1, minWidth: 0, display: 'flex', alignItems: 'center', gap: 8, flexDirection: side === 'away' ? 'row-reverse' : 'row' }}>
+      <div className="match-crest"><TeamCrest team={team} size={42} /></div>
       <div style={{ textAlign: side === 'away' ? 'right' : 'left', minWidth: 0 }}>
         <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--text)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           {team.shortName || team.name}
@@ -171,10 +171,10 @@ function MatchCard({ match }: { match: Match }) {
       )}
 
       {/* Teams + score */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+      <div className="match-teams" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
         <TeamBlock team={match.homeTeam} side="home" />
 
-        <div style={{ textAlign: 'center', flexShrink: 0, minWidth: 88 }}>
+        <div className="match-score" style={{ textAlign: 'center', flexShrink: 0, minWidth: 88 }}>
           {showScore ? (
             <>
               <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-1px', lineHeight: 1, color: (isLive || isPause) ? 'var(--accent)' : 'var(--text)' }}>

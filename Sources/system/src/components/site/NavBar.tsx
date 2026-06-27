@@ -37,12 +37,13 @@ export default function NavBar() {
   }, [])
 
   function handleNavClick(e: React.MouseEvent, href: string) {
+    setMobileOpen(false)
+
     const hashIndex = href.indexOf('#')
     if (hashIndex === -1) return // normal link, let Link handle it
 
     e.preventDefault()
     const hash = href.slice(hashIndex + 1)
-    setMobileOpen(false)
 
     if (isHome) {
       document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
