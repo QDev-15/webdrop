@@ -171,10 +171,10 @@ function MatchCard({ match }: { match: Match }) {
       )}
 
       {/* Teams + score */}
-      <div className="match-teams" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+      <div className="match-body" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
         <TeamBlock team={match.homeTeam} side="home" />
 
-        <div className="match-score" style={{ textAlign: 'center', flexShrink: 0, minWidth: 88 }}>
+        <div className="match-score-center" style={{ textAlign: 'center', flexShrink: 0, minWidth: 88 }}>
           {showScore ? (
             <>
               <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-1px', lineHeight: 1, color: (isLive || isPause) ? 'var(--accent)' : 'var(--text)' }}>
@@ -191,12 +191,10 @@ function MatchCard({ match }: { match: Match }) {
               </div>
             </>
           ) : (
-            <>
-              <div style={{ marginTop: 6, lineHeight: 1.6 }}>
-                <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-2)', lineHeight: 1.2 }}>{toVNTime(match.utcDate)} <span style={{ fontWeight: 400, color: 'var(--text-3)' }}>VNTime (GMT+7)</span></div>
-                <div style={{ fontSize: 14, color: 'var(--text-3)' }}>{toUTCTime(match.utcDate)} UTC (GMT+0)</div>
-              </div>
-            </>
+            <div style={{ lineHeight: 1.6 }}>
+              <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-2)', lineHeight: 1.2 }}>{toVNTime(match.utcDate)} <span style={{ fontWeight: 400, color: 'var(--text-3)', fontSize: 13 }}>VNTime</span></div>
+              <div style={{ fontSize: 13, color: 'var(--text-3)' }}>{toUTCTime(match.utcDate)} UTC</div>
+            </div>
           )}
         </div>
 
@@ -587,12 +585,15 @@ export default function FootballClient({ youtubeEmbed }: { youtubeEmbed?: string
         @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
         .news-ticker-track { animation: ticker 48s linear infinite; }
         .news-ticker-wrap:hover .news-ticker-track { animation-play-state: paused; }
-        @media (max-width: 420px) {
-          .match-teams { gap: 6px !important; }
-          .match-score { min-width: 64px !important; }
-          .match-crest > div { width: 32px !important; height: 32px !important; }
-          .match-crest img { width: 26px !important; height: 26px !important; }
-          .match-crest span { font-size: 9px !important; }
+        @media (max-width: 540px) {
+          .match-body { flex-wrap: wrap; gap: 8px !important; }
+          .match-score-center {
+            order: 3;
+            width: 100%;
+            min-width: unset !important;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-light);
+          }
         }
       `}</style>
     </>
