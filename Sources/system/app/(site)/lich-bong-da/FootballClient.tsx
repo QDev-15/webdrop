@@ -587,6 +587,13 @@ export default function FootballClient({ youtubeEmbed }: { youtubeEmbed?: string
         @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
         .news-ticker-track { animation: ticker 48s linear infinite; }
         .news-ticker-wrap:hover .news-ticker-track { animation-play-state: paused; }
+        @media (max-width: 420px) {
+          .match-teams { gap: 6px !important; }
+          .match-score { min-width: 64px !important; }
+          .match-crest > div { width: 32px !important; height: 32px !important; }
+          .match-crest img { width: 26px !important; height: 26px !important; }
+          .match-crest span { font-size: 9px !important; }
+        }
       `}</style>
     </>
   )
