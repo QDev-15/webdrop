@@ -140,6 +140,22 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển �
     Auth::start();
     ```
 
+33. **`schema.sql` KHÔNG được hardcode bcrypt hash** — bcrypt hash là non-deterministic (salt ngẫu nhiên mỗi lần), hardcode hash trong SQL dẫn đến login thất bại nếu hash không khớp PHP version trên server. Seed user **bắt buộc** thực hiện trong PHP `Database::seedUsers()` bằng `password_hash()`:
+    ```php
+    private function seedUsers(): void {
+        $count = $this->pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
+        if ($count > 0) return;
+        $hash = password_hash('123456', PASSWORD_DEFAULT);
+        $stmt = $this->pdo->prepare(
+            "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)"
+        );
+        $stmt->execute(['Admin', 'sysadmin@admin.com', $hash, 'superadmin']);
+    }
+    ```
+    **schema.sql chỉ chứa CREATE TABLE** — không INSERT INTO users. Seed hoàn toàn qua PHP.
+
+34. **Scaffold có sẵn `api/check-hash.php`** — file debug đã có trong `_scaffold/`, scaffolder copy tự động. File này cho phép verify hash trong DB trực tiếp trên server. Không xóa khỏi source, nhưng phải thêm vào hướng dẫn README: "Xóa `api/check-hash.php` khỏi server sau khi deploy xong."
+
 30. **`template.css` không được định nghĩa lại Bootstrap grid utilities** — khi copy `style.css` từ template sang `template.css`, xóa toàn bộ block custom grid (`/* Responsive utils */` hay tương tự) vì Bootstrap 5.3.3 đã load sẵn. Giữ nguyên các class **không có trong Bootstrap**: custom nav, section styles, card styles, button variants, animations. Các class **phải xóa** vì Bootstrap đã có và sẽ conflict: `.row`, `.col`, `.col-md-*`, `.col-lg-*`, `.g-3/.g-4/.g-5`, `.d-flex`, `.d-grid`, `.align-items-*`, `.justify-content-*`, `.flex-wrap`, `.gap-*`, `.text-center`, `.mb-*`, `.mt-*`, `.pb-*`, `.py-*`, `.w-100`, `.h-100`, `.position-relative` và responsive `@media` block cho col-*. Nếu để lại `.g-5 { gap: 20px }` sẽ override Bootstrap gutter → col-7 + col-5 + gap = 100% + 20px → 2 cột bị đẩy xuống 1 cột.
 
 ---
