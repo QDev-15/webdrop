@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { randomUUID } from 'crypto'
 import { sendDownloadEmail } from '@/lib/email'
+import { hashPassword } from '@/lib/auth'
 
 const SEPAY_API_KEY = process.env.SEPAY_API_KEY ?? ''
 const TOKEN_TTL_HOURS = 72
@@ -62,7 +63,73 @@ export async function POST(req: NextRequest) {
     return skip()
   }
 
-  // 7. Sinh download token
+  // 7a. Xử lý đơn CV — tạo tài khoản user, không cần download token
+  if (order.type === 'cv') {
+    const customerEmail = order.customer.email
+    if (!customerEmail) {
+      console.warn(`[sepay] Đơn CV ${orderCode}: không có email — bỏ qua tạo tài khoản`)
+      return skip()
+    }
+
+    const tempPassword = 'WD' + randomUUID().replace(/-/g, '').slice(0, 6).toUpperCase()
+
+    await prisma.$transaction(async (tx) => {
+      // Tạo user nếu chưa tồn tại
+      const existingUser = await tx.user.findUnique({ where: { email: customerEmail } })
+      let credentialToken: string
+
+      if (!existingUser) {
+        const newUser = await tx.user.create({
+          data: { name: order.customer.name, email: customerEmail, password: hashPassword(tempPassword), role: 'user' },
+        })
+        const slug = generateCvSlug(order.customer.name)
+        await tx.cvProfile.create({
+          data: { userId: newUser.id, slug, templateType: 'classic', data: { create: {} } },
+        })
+        // Lưu mật khẩu tạm vào downloadToken để client lấy và hiển thị
+        credentialToken = tempPassword
+      } else {
+        // User đã tồn tại, tạo cv profile nếu chưa có
+        const existingProfile = await tx.cvProfile.findUnique({ where: { userId: existingUser.id } })
+        if (!existingProfile) {
+          const slug = generateCvSlug(order.customer.name)
+          await tx.cvProfile.create({
+            data: { userId: existingUser.id, slug, templateType: 'classic', data: { create: {} } },
+          })
+        }
+        credentialToken = 'EXISTING_USER'
+      }
+
+      await tx.order.update({
+        where: { id: order.id },
+        data: { status: 'confirmed', paidAt: new Date(), downloadToken: credentialToken },
+      })
+
+      if (order.payments.length > 0) {
+        await tx.payment.update({
+          where: { id: order.payments[0].id },
+          data: { status: 'paid', paidAt: new Date() },
+        })
+      }
+
+      const now = new Date()
+      await tx.revenue.create({
+        data: {
+          orderId: order.id,
+          paymentId: order.payments[0]?.id ?? null,
+          amount: order.total,
+          month: now.getMonth() + 1,
+          year: now.getFullYear(),
+          note: `CV Builder — Sepay ${body.referenceCode ?? ''}`,
+        },
+      })
+    })
+
+    console.log(`[sepay] Đơn CV ${orderCode} đã thanh toán — tài khoản CV tạo OK`)
+    return ok()
+  }
+
+  // 7b. Đơn template/website — sinh download token
   const downloadToken  = randomUUID()
   const tokenExpiresAt = new Date(Date.now() + TOKEN_TTL_HOURS * 60 * 60 * 1000)
 
@@ -125,4 +192,17 @@ export async function POST(req: NextRequest) {
 function extractSlug(title: string): string {
   const m = title.match(/Template:\s*(.+)/) ?? title.match(/Website Gói B \((.+)\)/)
   return m?.[1]?.trim() ?? ''
+}
+
+function generateCvSlug(name: string): string {
+  const base = name.toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/đ/g, 'd')
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .slice(0, 30)
+    .replace(/-$/, '')
+  const suffix = Math.random().toString(36).slice(2, 6)
+  return `${base}-${suffix}`
 }

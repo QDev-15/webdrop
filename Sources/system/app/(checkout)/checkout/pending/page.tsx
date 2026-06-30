@@ -1,6 +1,7 @@
 'use client'
 import { Suspense, useEffect, useRef, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 const BANK_NAME    = 'MB Bank'
 const BANK_CODE    = 'MB'
@@ -41,15 +42,84 @@ function BankRow({ label, value, copy }: { label: string; value: string; copy?: 
   )
 }
 
+interface CvCredentials {
+  email: string
+  password: string | null
+  existingUser: boolean
+}
+
+function CvSuccessPanel({ creds }: { creds: CvCredentials }) {
+  return (
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px 20px', fontFamily: 'var(--sans)' }}>
+      <div style={{ maxWidth: 480, width: '100%' }}>
+        {/* Success header */}
+        <div style={{ textAlign: 'center', marginBottom: 28 }}>
+          <div style={{ width: 72, height: 72, borderRadius: '50%', background: 'var(--accent-light)', border: '2px solid var(--accent-mid)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', fontSize: 32 }}>
+            🎉
+          </div>
+          <h1 style={{ fontSize: 24, fontWeight: 700, color: 'var(--text)', marginBottom: 8 }}>
+            {creds.existingUser ? 'CV đã được kích hoạt!' : 'Tài khoản CV đã sẵn sàng!'}
+          </h1>
+          <p style={{ fontSize: 14, color: 'var(--text-2)', lineHeight: 1.65, margin: 0 }}>
+            {creds.existingUser
+              ? 'CV Builder đã được thêm vào tài khoản hiện có của bạn. Đăng nhập bằng thông tin cũ.'
+              : 'Thanh toán xác nhận thành công. Dưới đây là thông tin đăng nhập CV Manager của bạn.'}
+          </p>
+        </div>
+
+        {/* Credentials box */}
+        <div style={{ background: '#fff', border: '2px solid var(--accent-mid)', borderRadius: 14, padding: '24px', marginBottom: 16 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 16 }}>
+            Thông tin đăng nhập
+          </div>
+
+          {/* Email */}
+          <div style={{ marginBottom: 14 }}>
+            <div style={{ fontSize: 11, color: 'var(--text-3)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: .5, marginBottom: 6 }}>Email</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, background: 'var(--warm)', borderRadius: 8, padding: '10px 14px' }}>
+              <span style={{ flex: 1, fontSize: 14, color: 'var(--text)', fontWeight: 500, wordBreak: 'break-all' }}>{creds.email}</span>
+              <CopyButton text={creds.email} />
+            </div>
+          </div>
+
+          {/* Password — chỉ hiện khi là user mới */}
+          {!creds.existingUser && creds.password && (
+            <div style={{ marginBottom: 20 }}>
+              <div style={{ fontSize: 11, color: 'var(--text-3)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: .5, marginBottom: 6 }}>Mật khẩu tạm</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, background: 'var(--accent-light)', borderRadius: 8, padding: '10px 14px', border: '1px solid var(--accent-mid)' }}>
+                <span style={{ flex: 1, fontSize: 16, color: 'var(--accent)', fontWeight: 700, letterSpacing: 2, fontFamily: 'monospace' }}>{creds.password}</span>
+                <CopyButton text={creds.password} />
+              </div>
+            </div>
+          )}
+
+          <Link href="/cv-manager/login" style={{ display: 'block', padding: '13px', background: 'var(--accent)', color: '#fff', borderRadius: 9, fontSize: 14, fontWeight: 700, textDecoration: 'none', textAlign: 'center' }}>
+            Đăng nhập CV Manager →
+          </Link>
+        </div>
+
+        {/* Security note */}
+        {!creds.existingUser && (
+          <div style={{ background: '#fffbeb', border: '1px solid #fcd34d', borderRadius: 10, padding: '13px 16px', fontSize: 13, color: '#92400e', lineHeight: 1.65 }}>
+            <strong>⚠️ Ghi lại mật khẩu ngay bây giờ</strong> — Trang này không hiển thị lại mật khẩu sau khi bạn rời đi. Đổi mật khẩu trong phần "Tài khoản" sau khi đăng nhập.
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
 function PendingContent() {
   const searchParams = useSearchParams()
   const router       = useRouter()
 
-  const code   = searchParams.get('code')   ?? ''
-  const slug   = searchParams.get('slug')   ?? ''
-  const amount = parseInt(searchParams.get('amount') ?? '499000')
+  const code    = searchParams.get('code')   ?? ''
+  const slug    = searchParams.get('slug')   ?? ''
+  const amount  = parseInt(searchParams.get('amount') ?? '499000')
+  const isCv    = searchParams.get('type') === 'cv'
 
   const [dots, setDots] = useState('.')
+  const [cvCreds, setCvCreds] = useState<CvCredentials | null>(null)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   const content = `WEBDROP ${code}`
@@ -69,9 +139,14 @@ function PendingContent() {
       try {
         const res  = await fetch(`/api/orders/${code}/status`)
         const data = await res.json()
-        if (data.paid && data.token) {
+        if (data.paid) {
           if (intervalRef.current) clearInterval(intervalRef.current)
-          router.push(`/checkout/success?token=${encodeURIComponent(data.token)}&type=${data.type}&slug=${encodeURIComponent(data.slug ?? slug)}`)
+          if (data.type === 'cv') {
+            // Hiển thị credentials ngay trên trang — không redirect
+            setCvCreds({ email: data.email, password: data.password, existingUser: data.existingUser })
+          } else if (data.token) {
+            router.push(`/checkout/success?token=${encodeURIComponent(data.token)}&type=${data.type}&slug=${encodeURIComponent(data.slug ?? slug)}`)
+          }
         }
       } catch { /* ignore */ }
     }
@@ -80,6 +155,26 @@ function PendingContent() {
     intervalRef.current = setInterval(check, 5000)
     return () => { if (intervalRef.current) clearInterval(intervalRef.current) }
   }, [code, router, slug])
+
+  // Khi CV đã thanh toán — show credentials panel thay thế toàn bộ trang
+  if (cvCreds) {
+    return <CvSuccessPanel creds={cvCreds} />
+  }
+
+  // Đơn miễn phí (discount 100%) — hiện thông báo xử lý thay vì bank info
+  if (amount === 0) {
+    return (
+      <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px 20px', fontFamily: 'var(--sans)' }}>
+        <div style={{ textAlign: 'center', maxWidth: 360 }}>
+          <div style={{ fontSize: 48, marginBottom: 16 }}>🎁</div>
+          <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--text)', marginBottom: 8 }}>Đang kích hoạt miễn phí{dots}</h2>
+          <p style={{ fontSize: 14, color: 'var(--text-2)', lineHeight: 1.7, margin: 0 }}>
+            Mã khuyến mại của bạn đang được xử lý. Trang tự động cập nhật trong vài giây.
+          </p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px 20px', fontFamily: 'var(--sans)' }}>
@@ -98,7 +193,9 @@ function PendingContent() {
             </div>
           )}
           <p style={{ fontSize: 13.5, color: 'var(--text-2)', fontWeight: 300, lineHeight: 1.7, margin: '8px auto 0', maxWidth: 400 }}>
-            Chuyển khoản theo thông tin bên dưới. Hệ thống tự động xác nhận và chuyển bạn đến trang tải về trong <strong>vài giây</strong>.
+            Chuyển khoản theo thông tin bên dưới. Hệ thống tự động xác nhận {isCv
+              ? 'và hiển thị thông tin đăng nhập CV Manager ngay trên trang này trong'
+              : 'và chuyển bạn đến trang tải về trong'} <strong>vài giây</strong>.
           </p>
         </div>
 

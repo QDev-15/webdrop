@@ -5,13 +5,26 @@ import { UserRole } from '@prisma/client'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
+function generateSlug(name: string): string {
+  const base = name.toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/đ/g, 'd')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim().replace(/\s+/g, '-')
+  const suffix = Math.random().toString(36).slice(2, 6)
+  return `${base || 'cv'}-${suffix}`
+}
+
 export async function GET() {
   const session = await getSession()
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   if (session.role !== 'superadmin') return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
   const users = await prisma.user.findMany({
-    select: { id: true, name: true, email: true, role: true, createdAt: true },
+    select: {
+      id: true, name: true, email: true, role: true, createdAt: true,
+      cvProfile: { select: { id: true, slug: true, templateType: true } },
+    },
     orderBy: { createdAt: 'asc' },
   })
   return NextResponse.json({ users })
@@ -22,7 +35,7 @@ export async function POST(req: NextRequest) {
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   if (session.role !== 'superadmin') return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
-  const { name, email, password, role } = await req.json()
+  const { name, email, password, role, createCvProfile, cvTemplateType } = await req.json()
 
   if (!name?.trim() || !email?.trim() || !password) {
     return NextResponse.json({ error: 'Thiếu thông tin bắt buộc' }, { status: 400 })
@@ -37,6 +50,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Mật khẩu phải ít nhất 6 ký tự' }, { status: 400 })
   }
 
+  const VALID_TEMPLATES = ['classic', 'minimal', 'creative', 'dark', 'executive']
+  const templateType = VALID_TEMPLATES.includes(cvTemplateType) ? cvTemplateType : 'classic'
+
   try {
     const user = await prisma.user.create({
       data: {
@@ -44,8 +60,20 @@ export async function POST(req: NextRequest) {
         email: email.trim().toLowerCase(),
         password: hashPassword(password),
         role: role === 'superadmin' ? UserRole.superadmin : UserRole.user,
+        ...(createCvProfile && {
+          cvProfile: {
+            create: {
+              templateType,
+              slug: generateSlug(name.trim()),
+              data: { create: {} },
+            },
+          },
+        }),
       },
-      select: { id: true, name: true, email: true, role: true, createdAt: true },
+      select: {
+        id: true, name: true, email: true, role: true, createdAt: true,
+        cvProfile: { select: { id: true, slug: true, templateType: true } },
+      },
     })
     return NextResponse.json(user, { status: 201 })
   } catch (e: unknown) {
