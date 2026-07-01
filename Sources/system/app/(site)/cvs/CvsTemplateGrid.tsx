@@ -206,22 +206,26 @@ export default function CvsTemplateGrid() {
             style={{ width: '100%', maxWidth: 840, maxHeight: '90vh', background: '#fff', borderRadius: 16, overflow: 'hidden', display: 'flex', flexDirection: 'column', boxShadow: '0 40px 80px rgba(0,0,0,.4)' }}
           >
             {/* Modal header */}
-            <div style={{ padding: '14px 20px', borderBottom: '1px solid #e8e5df', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <span style={{ fontWeight: 700, fontSize: 15, color: '#1a1917' }}>Demo — {previewTpl?.name}</span>
-                <span style={{ fontSize: 12, color: '#a09d97' }}>Dữ liệu mẫu minh hoạ</span>
+            <div style={{ borderBottom: '1px solid #e8e5df', flexShrink: 0 }}>
+              {/* Row 1: title + close */}
+              <div style={{ padding: '12px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <span style={{ fontWeight: 700, fontSize: 15, color: '#1a1917' }}>Demo — {previewTpl?.name}</span>
+                  <span style={{ fontSize: 12, color: '#a09d97' }}>Dữ liệu mẫu minh hoạ</span>
+                </div>
+                <button onClick={() => setPreview(null)}
+                  style={{ width: 32, height: 32, borderRadius: '50%', background: '#f5f0e8', border: 'none', fontSize: 16, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  ✕
+                </button>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              {/* Row 2: template tabs */}
+              <div style={{ padding: '0 20px 12px', display: 'flex', gap: 6, flexWrap: 'wrap' }}>
                 {ALL_TEMPLATES.map(t => (
                   <button key={t.type} onClick={() => setPreview(t.type)}
-                    style={{ padding: '4px 10px', background: preview === t.type ? '#1a6b52' : '#f5f0e8', color: preview === t.type ? '#fff' : '#6b6760', border: 'none', borderRadius: 6, fontSize: 11, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>
+                    style={{ padding: '5px 12px', background: preview === t.type ? '#1a6b52' : '#f5f0e8', color: preview === t.type ? '#fff' : '#6b6760', border: 'none', borderRadius: 6, fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', transition: 'background .15s' }}>
                     {t.name}
                   </button>
                 ))}
-                <button onClick={() => setPreview(null)}
-                  style={{ width: 32, height: 32, borderRadius: '50%', background: '#f5f0e8', border: 'none', fontSize: 16, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft: 4 }}>
-                  ✕
-                </button>
               </div>
             </div>
             {/* Preview area */}
