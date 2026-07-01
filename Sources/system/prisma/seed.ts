@@ -47,7 +47,7 @@ async function main() {
     prisma.servicePackage.upsert({
       where: { code: 'GOI_B' },
       update: {},
-      create: { name: 'Gói B — Website chuẩn', code: 'GOI_B', description: 'React + PHP + SQLite, deploy lên hosting là chạy', priceFrom: 1500000, priceTo: 5000000, sortOrder: 2 },
+      create: { name: 'Gói B — Website chuẩn', code: 'GOI_B', description: 'React + PHP + SQLite, deploy lên hosting là chạy', priceFrom: 500000, priceTo: 500000, sortOrder: 2 },
     }),
     prisma.servicePackage.upsert({
       where: { code: 'GOI_C' },
@@ -471,6 +471,7 @@ async function main() {
         thumbnail: t.thumbnail,
         demoUrl: t.demoUrl,
         price: t.price,
+        websitePrice: 500000,
         salesCount: t.salesCount,
       },
       create: {
@@ -480,6 +481,7 @@ async function main() {
         thumbnail: t.thumbnail,
         demoUrl: t.demoUrl,
         price: t.price,
+        websitePrice: 500000,
         category: t.category,
         industryId: t.industrySlug ? industryMap[t.industrySlug] : null,
         salesCount: t.salesCount,
@@ -549,9 +551,9 @@ async function main() {
       data: { slug: 'goi-web-co-ban', eyebrow: 'Gói Web cơ bản', title: 'Website', titleEm: 'chuẩn, deploy nhanh', subtitle: 'React SPA + PHP + SQLite. Upload lên hosting là chạy. Không cần config gì thêm.', footnote: 'Cài đặt hosting + domain: +500.000 – 1.000.000đ (tính riêng 1 lần)', bg: 'warm', type: 'cards', tags: [], sortOrder: 1 },
     })
     await prisma.pricingPlan.createMany({ data: [
-      { groupId: g2.id, name: 'Basic',    price: '1.500.000đ', features: ['Landing 1 trang', 'Form liên hệ', 'Admin xem form', 'Hosting PHP + SQLite'], hot: false, ctaLabel: 'Đặt hàng ngay', ctaHref: '/checkout', sortOrder: 0 },
-      { groupId: g2.id, name: 'Standard', price: '3.000.000đ', features: ['5–7 trang', 'Blog/tin tức', 'Admin quản lý nội dung', 'SEO cơ bản'], hot: true, ctaLabel: 'Đặt hàng ngay', ctaHref: '/checkout', sortOrder: 1 },
-      { groupId: g2.id, name: 'Pro',      price: '5.000.000đ', features: ['10+ trang', 'Đa ngôn ngữ', 'Admin đầy đủ', 'SEO nâng cao + Analytics'], hot: false, ctaLabel: 'Đặt hàng ngay', ctaHref: '/checkout', sortOrder: 2 },
+      { groupId: g2.id, name: 'Basic',    price: '500.000đ', features: ['Landing 1 trang', 'Form liên hệ', 'Admin xem form', 'Hosting PHP + SQLite'], hot: false, ctaLabel: 'Đặt hàng ngay', ctaHref: '/checkout', sortOrder: 0 },
+      { groupId: g2.id, name: 'Standard', price: '500.000đ', features: ['5–7 trang', 'Blog/tin tức', 'Admin quản lý nội dung', 'SEO cơ bản'], hot: true, ctaLabel: 'Đặt hàng ngay', ctaHref: '/checkout', sortOrder: 1 },
+      { groupId: g2.id, name: 'Pro',      price: '500.000đ', features: ['10+ trang', 'Đa ngôn ngữ', 'Admin đầy đủ', 'SEO nâng cao + Analytics'], hot: false, ctaLabel: 'Đặt hàng ngay', ctaHref: '/checkout', sortOrder: 2 },
     ]})
 
     // Group 3: Gói Theo Yêu cầu (banner)
@@ -589,7 +591,7 @@ async function main() {
       },
       {
         name: 'Gói Web cơ bản', slug: 'goi-web-co-ban', tagline: 'Website đầy đủ — deploy xong là chạy luôn',
-        icon: '🌐', price: 'Từ 1.500.000đ', hot: true, sortOrder: 1,
+        icon: '🌐', price: 'Từ 500.000đ', hot: true, sortOrder: 1,
         ctaLabel: 'Đặt hàng ngay', ctaHref: '/templates',
         suitable: ['Không rành kỹ thuật', 'Muốn website nhanh — 3 đến 5 ngày', 'Cần cài đặt trọn gói'],
         steps: [
