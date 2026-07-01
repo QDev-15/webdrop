@@ -19,7 +19,9 @@
       "Bash(node scaffolder.mjs nha-hang-nhat-ban restaurant)",
       "Bash(node build.mjs --local)",
       "Bash(node scaffolder.mjs nha-hang-truyen restaurant)",
-      "Bash(node scaffolder.mjs massage-tri-lieu spa-service)"
+      "Bash(node scaffolder.mjs massage-tri-lieu spa-service)",
+      "PowerShell(& \"C:\\\\xampp\\\\apache\\\\bin\\\\httpd.exe\" -t 2>&1)",
+      "Bash(node scaffolder.mjs tham-my-vien spa-service)"
     ],
     "additionalDirectories": [
       "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"

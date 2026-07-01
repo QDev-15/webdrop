@@ -53,9 +53,9 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển �
     session_start();
     ```
     Auth.php đã có trong scaffold — kiểm tra `{{SLUG}}` đã được replace đúng chưa.
-26. **Reveal animation với async data: MỌI component fetch API + dùng `data-reveal` đều phải có `useEffect([data])` riêng để re-observe sau khi data load** — AppShell observer chạy trước khi data có trong DOM nên không đủ. Rule này áp dụng cho cả component (`Services.tsx`, `Team.tsx`, `Testimonials.tsx`) lẫn page (`ServicesPage.tsx`). Pattern bắt buộc thêm vào SAU useEffect fetch data:
+26. **Reveal animation với async data: Mọi component fetch API + dùng `data-reveal` có thể thêm `useEffect([data])` riêng như defense in depth** — tuy nhiên fix đúng gốc rễ là AppShell PHẢI dùng cả `IntersectionObserver` + `MutationObserver` (xem Rule 31). Với MutationObserver trong AppShell, các individual component KHÔNG cần useEffect([data]) riêng nữa — nhưng có thêm cũng không sao (defense in depth). Pattern useEffect([data]) (vẫn hữu ích như defense in depth):
     ```tsx
-    // Re-observe after async data renders (AppShell fires before data loads on SPA navigation)
+    // Defense in depth — MutationObserver trong AppShell mới là fix đúng gốc rễ
     useEffect(() => {
       if (data.length === 0) return  // ← guard: chờ data có giá trị
       const t = setTimeout(() => {
@@ -72,7 +72,7 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển �
       return () => clearTimeout(t)
     }, [data])  // ← dependency là data array, không phải []
     ```
-    **Lý do:** Khi navigate bằng Link (SPA), `AppShell`'s `useEffect([location.pathname, settings])` chạy ngay — lúc này component đang `loading=true` nên `[data-reveal]` chưa có trong DOM. Data load xong → DOM render → nhưng không có gì trigger observer lại → elements bị kẹt `opacity:0`. F5 work vì timing khác. Components KHÔNG bị ảnh hưởng: những component render ngay với fallback value từ `settings` context (`About`, `Booking`, `Contact`).
+    **Lý do:** Khi navigate bằng Link (SPA), `AppShell`'s `useEffect([location.pathname, settings])` chạy ngay — lúc này component đang `loading=true` nên `[data-reveal]` chưa có trong DOM. Data load xong → DOM render → MutationObserver trong AppShell tự động detect và observe elements mới. Components KHÔNG bị ảnh hưởng: những component render ngay với fallback value từ `settings` context (`About`, `Booking`, `Contact`).
 27. **`build.mjs` strip BOM** khỏi PHP files sau khi copy vào `_output-deploy/api/` — đã có trong scaffold.
 28. **`admin/src/main.tsx` dùng dynamic basename + `AuthProvider`** — đã có trong scaffold, không ghi đè.
 29. **⚡ BOM trong PHP file SOURCE = 500 im lặng trên MỌI endpoint** — LLM hay editor Windows thường lưu UTF-8 with BOM. Sau khi viết xong toàn bộ PHP, chạy ngay lệnh strip BOM dưới đây. Đây là lỗi tái phát nhiều lần, không được bỏ qua:
@@ -86,7 +86,7 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển �
         }
     }
     ```
-31. **`App.tsx` website dùng pattern `AppShell` để đặt global reveal observer** — KHÔNG đặt observer trong từng component riêng lẻ. Observer chỉ ở một chỗ duy nhất trong `AppShell`, dependency `[location.pathname, settings]`. Pattern bắt buộc:
+31. **`App.tsx` website dùng pattern `AppShell` để đặt global reveal observer** — KHÔNG đặt observer trong từng component riêng lẻ. AppShell PHẢI dùng cả `IntersectionObserver` + `MutationObserver` kết hợp — IO alone không đủ cho F5/direct URL vì async data render thêm elements SAU khi IO được setup. Triệu chứng khi thiếu MO: sections ẩn khi F5 nhưng hiện sau khi navigate trong SPA. Pattern bắt buộc:
     ```tsx
     // Sau SiteContext + SiteProvider, trước các Pages
     function AppShell() {
@@ -94,16 +94,36 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển �
       const location = useLocation()
 
       useEffect(() => {
-        const t = setTimeout(() => {
-          const els = document.querySelectorAll('.reveal:not(.visible)')
-          const ro = new IntersectionObserver(
-            entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target) } }),
-            { threshold: 0.08, rootMargin: '0px 0px -36px 0px' }
-          )
-          els.forEach(el => ro.observe(el))
-          return () => ro.disconnect()
-        }, 0)
-        return () => clearTimeout(t)
+        const io = new IntersectionObserver(
+          entries => entries.forEach(e => {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible')
+              io.unobserve(e.target)
+            }
+          }),
+          { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+        )
+
+        const observeNew = (root: ParentNode = document) => {
+          root.querySelectorAll<Element>('[data-reveal]:not(.visible)').forEach(el => io.observe(el))
+        }
+
+        const t = setTimeout(() => observeNew(), 0)
+
+        const mo = new MutationObserver(mutations => {
+          mutations.forEach(m => {
+            m.addedNodes.forEach(node => {
+              if (!(node instanceof Element)) return
+              if (node.hasAttribute('data-reveal') && !node.classList.contains('visible')) {
+                io.observe(node)
+              }
+              node.querySelectorAll<Element>('[data-reveal]:not(.visible)').forEach(el => io.observe(el))
+            })
+          })
+        })
+        mo.observe(document.body, { childList: true, subtree: true })
+
+        return () => { clearTimeout(t); io.disconnect(); mo.disconnect() }
       }, [location.pathname, settings])
 
       return (
@@ -125,7 +145,8 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển �
       )
     }
     ```
-    **Lý do:** `.reveal` được dùng ở Footer (render trên MỌI route) và nhiều section component. Nếu observer chỉ trong một page function (như `HomePage`), khi navigate sang route khác, Footer + sections của page đó bị opacity: 0 mãi mãi → trắng màn hình. `AppShell` với `[location.pathname, settings]` bao phủ tất cả route và Footer tự động.
+    **Lý do:** Pattern này đảm bảo hoạt động cả khi F5, load URL trực tiếp, và navigate bằng Link — vì MutationObserver tự động observe elements mới được add vào DOM bởi async data renders. `.reveal`/`[data-reveal]` được dùng ở Footer (render trên MỌI route) và nhiều section component. Nếu observer chỉ trong một page function (như `HomePage`), khi navigate sang route khác, Footer + sections của page đó bị opacity: 0 mãi mãi → trắng màn hình. `AppShell` với `[location.pathname, settings]` bao phủ tất cả route và Footer tự động.
+    **Với pattern này trong AppShell, các individual component KHÔNG cần `useEffect([data])` riêng nữa — nhưng có thêm cũng không sao (defense in depth).**
     **Import thêm:** `useLocation` từ `'react-router-dom'`. Không import `useEffect` riêng trong các component chỉ có `.reveal` tĩnh.
 
 32. **`bootstrap.php` phải `require_once` 4 core classes TRƯỚC `Auth::start()`** — `index.php` chỉ load `config.php`, không load core classes. Nếu thiếu → `Class "Auth" not found` trên MỌI endpoint. Thêm ngay đầu phần Boot:
@@ -140,7 +161,9 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển �
     Auth::start();
     ```
 
-30. **`template.css` không được định nghĩa lại Bootstrap grid utilities** — khi copy `style.css` từ template sang `template.css`, xóa toàn bộ block custom grid (`/* Responsive utils */` hay tương tự) vì Bootstrap 5.3.3 đã load sẵn. Giữ nguyên các class **không có trong Bootstrap**: custom nav, section styles, card styles, button variants, animations. Các class **phải xóa** vì Bootstrap đã có và sẽ conflict: `.row`, `.col`, `.col-md-*`, `.col-lg-*`, `.g-3/.g-4/.g-5`, `.d-flex`, `.d-grid`, `.align-items-*`, `.justify-content-*`, `.flex-wrap`, `.gap-*`, `.text-center`, `.mb-*`, `.mt-*`, `.pb-*`, `.py-*`, `.w-100`, `.h-100`, `.position-relative` và responsive `@media` block cho col-*. Nếu để lại `.g-5 { gap: 20px }` sẽ override Bootstrap gutter → col-7 + col-5 + gap = 100% + 20px → 2 cột bị đẩy xuống 1 cột.
+33. **`template.css` không được định nghĩa lại Bootstrap grid utilities** — khi copy `style.css` từ template sang `template.css`, xóa toàn bộ block custom grid (`/* Responsive utils */` hay tương tự) vì Bootstrap 5.3.3 đã load sẵn. Giữ nguyên các class **không có trong Bootstrap**: custom nav, section styles, card styles, button variants, animations. Các class **phải xóa** vì Bootstrap đã có và sẽ conflict: `.row`, `.col`, `.col-md-*`, `.col-lg-*`, `.g-3/.g-4/.g-5`, `.d-flex`, `.d-grid`, `.align-items-*`, `.justify-content-*`, `.flex-wrap`, `.gap-*`, `.text-center`, `.mb-*`, `.mt-*`, `.pb-*`, `.py-*`, `.w-100`, `.h-100`, `.position-relative` và responsive `@media` block cho col-*. Nếu để lại `.g-5 { gap: 20px }` sẽ override Bootstrap gutter → col-7 + col-5 + gap = 100% + 20px → 2 cột bị đẩy xuống 1 cột.
+
+34. **Khi tạo website phải bám sát template** - Khi viết code tạo UI phải kiểm tra lại template để làm cho đúng với thiết kế template.
 
 ---
 
