@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { templates } from '@/data/templates'
 
@@ -8,6 +8,10 @@ interface FormData {
 }
 
 type PurchaseType = 'template' | 'website'
+
+interface DiscountResult {
+  type: string; value: number; discountAmount: number; finalPrice: number; isFree: boolean
+}
 
 function fmtPrice(n: number) { return n.toLocaleString('vi-VN') + 'đ' }
 
@@ -32,7 +36,42 @@ export default function CheckoutClient({
   const [submitting, setSubmitting]     = useState(false)
   const [submitError, setSubmitError]   = useState('')
 
-  const price = purchaseType === 'website' && hasWebsite && websitePrice ? websitePrice : templatePrice
+  // Discount state
+  const [discountInput, setDiscountInput]   = useState('')
+  const [appliedCode, setAppliedCode]       = useState<string | null>(null)
+  const [discountInfo, setDiscountInfo]     = useState<DiscountResult | null>(null)
+  const [discountError, setDiscountError]   = useState('')
+  const [discountChecking, setDiscountChecking] = useState(false)
+
+  const basePrice = purchaseType === 'website' && hasWebsite && websitePrice ? websitePrice : templatePrice
+  const price = discountInfo?.finalPrice ?? basePrice
+  const isFree = discountInfo?.isFree ?? false
+
+  // Khi purchaseType thay đổi → giá thay đổi → clear discount
+  useEffect(() => {
+    setAppliedCode(null); setDiscountInfo(null); setDiscountInput(''); setDiscountError('')
+  }, [purchaseType])
+
+  async function applyDiscount() {
+    if (!discountInput.trim()) return
+    setDiscountChecking(true); setDiscountError('')
+    try {
+      const res = await fetch('/api/discounts/validate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: discountInput.trim().toUpperCase(), price: basePrice }),
+      })
+      const data = await res.json()
+      if (!res.ok) { setDiscountError(data.error || 'Mã không hợp lệ'); return }
+      setAppliedCode(discountInput.trim().toUpperCase())
+      setDiscountInfo(data)
+    } catch { setDiscountError('Lỗi kết nối, vui lòng thử lại') }
+    finally { setDiscountChecking(false) }
+  }
+
+  function clearDiscount() {
+    setDiscountInput(''); setAppliedCode(null); setDiscountInfo(null); setDiscountError('')
+  }
 
   const validate = () => {
     const e: Partial<FormData> = {}
@@ -54,7 +93,7 @@ export default function CheckoutClient({
       const res = await fetch('/api/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, templateSlug: slug, purchaseType }),
+        body: JSON.stringify({ ...form, templateSlug: slug, purchaseType, discountCode: appliedCode }),
       })
       const data = await res.json()
       if (!res.ok) { setSubmitError(data.error || 'Lỗi đặt hàng, vui lòng thử lại'); return }
@@ -240,28 +279,75 @@ export default function CheckoutClient({
             {step === 3 && (
               <div className="panel">
                 <div className="panel-head">
-                  <div className="panel-title"><span className="panel-badge active">3</span>Thông tin thanh toán</div>
+                  <div className="panel-title"><span className="panel-badge active">3</span>Thanh toán</div>
                   <span className="panel-edit" onClick={() => setStep(2)}>← Sửa thông tin</span>
                 </div>
                 <div className="panel-body">
-                  <div style={{ background: 'var(--accent-light)', border: '1px solid var(--accent-mid)', borderRadius: 10, padding: '16px 18px', marginBottom: 20 }}>
-                    <div style={{ fontSize: 13, fontWeight: 500, color: 'var(--accent)', marginBottom: 8 }}>Chuyển khoản ngân hàng</div>
-                    <div style={{ fontSize: 13, color: 'var(--text-2)', lineHeight: 1.8, fontWeight: 300 }}>
-                      <div><strong style={{ color: 'var(--text)' }}>Ngân hàng:</strong> MB Bank</div>
-                      <div><strong style={{ color: 'var(--text)' }}>Số tài khoản:</strong> 0988 632 841</div>
-                      <div><strong style={{ color: 'var(--text)' }}>Chủ tài khoản:</strong> NGUYEN HUU QUYNH</div>
-                      <div><strong style={{ color: 'var(--text)' }}>Nội dung:</strong> <em>Hiển thị sau khi đặt hàng</em></div>
-                      <div style={{ marginTop: 8, paddingTop: 8, borderTop: '1px solid var(--accent-light)' }}>
-                        <strong style={{ color: 'var(--text)' }}>Số tiền:</strong>{' '}
-                        <strong style={{ color: 'var(--accent)', fontSize: 15 }}>{fmtPrice(price)}</strong>
+
+                  {/* ── Mã khuyến mại ── */}
+                  <div style={{ marginBottom: 20 }}>
+                    <div style={{ fontSize: 13, fontWeight: 500, color: 'var(--text)', marginBottom: 8 }}>🏷️ Mã khuyến mại (nếu có)</div>
+                    {!appliedCode ? (
+                      <div style={{ display: 'flex', gap: 8 }}>
+                        <input
+                          value={discountInput}
+                          onChange={e => setDiscountInput(e.target.value.toUpperCase())}
+                          onKeyDown={e => e.key === 'Enter' && applyDiscount()}
+                          placeholder="Nhập mã giảm giá"
+                          style={{ flex: 1, padding: '10px 13px', border: '1px solid var(--border)', borderRadius: 8, fontSize: 13, fontFamily: 'inherit', outline: 'none', letterSpacing: 1 }}
+                        />
+                        <button
+                          onClick={applyDiscount}
+                          disabled={discountChecking || !discountInput.trim()}
+                          style={{ padding: '10px 16px', background: 'var(--text)', color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', opacity: discountChecking ? .6 : 1, whiteSpace: 'nowrap' }}
+                        >
+                          {discountChecking ? '...' : 'Áp dụng'}
+                        </button>
                       </div>
-                    </div>
+                    ) : (
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'var(--accent-light)', border: '1px solid var(--accent-mid)', borderRadius: 8, padding: '10px 14px' }}>
+                        <div>
+                          <span style={{ fontWeight: 700, color: 'var(--accent)', letterSpacing: 1 }}>{appliedCode}</span>
+                          <span style={{ fontSize: 12, color: 'var(--accent)', marginLeft: 10 }}>
+                            −{fmtPrice(discountInfo!.discountAmount)}
+                            {discountInfo!.isFree && <strong style={{ marginLeft: 6 }}>🎁 MIỄN PHÍ</strong>}
+                          </span>
+                        </div>
+                        <button onClick={clearDiscount} style={{ background: 'none', border: 'none', color: 'var(--text-3)', cursor: 'pointer', fontSize: 13, fontFamily: 'inherit' }}>✕ Xóa</button>
+                      </div>
+                    )}
+                    {discountError && <div style={{ fontSize: 12, color: 'var(--danger)', marginTop: 6 }}>{discountError}</div>}
                   </div>
 
-                  <div style={{ background: 'var(--warm)', border: '1px solid var(--border)', borderRadius: 10, padding: '14px 16px', marginBottom: 18, fontSize: 13, color: 'var(--text-2)', lineHeight: 1.75 }}>
-                    <div style={{ fontWeight: 500, marginBottom: 4, color: 'var(--text)' }}>⚡ Tự động xác nhận qua Sepay</div>
-                    Sau khi chuyển khoản đúng nội dung, hệ thống tự xác nhận trong <strong>vài giây</strong> và chuyển bạn đến trang tải về ngay lập tức.
-                  </div>
+                  {/* ── Bank info — ẩn khi miễn phí ── */}
+                  {!isFree && (
+                    <>
+                      <div style={{ background: 'var(--accent-light)', border: '1px solid var(--accent-mid)', borderRadius: 10, padding: '16px 18px', marginBottom: 16 }}>
+                        <div style={{ fontSize: 13, fontWeight: 500, color: 'var(--accent)', marginBottom: 8 }}>Chuyển khoản ngân hàng</div>
+                        <div style={{ fontSize: 13, color: 'var(--text-2)', lineHeight: 1.8, fontWeight: 300 }}>
+                          <div><strong style={{ color: 'var(--text)' }}>Ngân hàng:</strong> MB Bank</div>
+                          <div><strong style={{ color: 'var(--text)' }}>Số tài khoản:</strong> 0988 632 841</div>
+                          <div><strong style={{ color: 'var(--text)' }}>Chủ tài khoản:</strong> NGUYEN HUU QUYNH</div>
+                          <div><strong style={{ color: 'var(--text)' }}>Nội dung:</strong> <em>Hiển thị sau khi đặt hàng</em></div>
+                          <div style={{ marginTop: 8, paddingTop: 8, borderTop: '1px solid rgba(26,107,82,.15)' }}>
+                            <strong style={{ color: 'var(--text)' }}>Số tiền:</strong>{' '}
+                            <strong style={{ color: 'var(--accent)', fontSize: 15 }}>{fmtPrice(price)}</strong>
+                          </div>
+                        </div>
+                      </div>
+                      <div style={{ background: 'var(--warm)', border: '1px solid var(--border)', borderRadius: 10, padding: '14px 16px', marginBottom: 18, fontSize: 13, color: 'var(--text-2)', lineHeight: 1.75 }}>
+                        <div style={{ fontWeight: 500, marginBottom: 4, color: 'var(--text)' }}>⚡ Tự động xác nhận qua Sepay</div>
+                        Sau khi chuyển khoản đúng nội dung, hệ thống tự xác nhận trong <strong>vài giây</strong> và chuyển bạn đến trang tải về ngay lập tức.
+                      </div>
+                    </>
+                  )}
+
+                  {isFree && (
+                    <div style={{ background: '#e8f4ef', border: '1px solid #2d9b73', borderRadius: 10, padding: '14px 18px', marginBottom: 18, fontSize: 13, color: '#1a6b52', lineHeight: 1.75 }}>
+                      <div style={{ fontWeight: 700, marginBottom: 4, fontSize: 14 }}>🎁 Đơn hàng miễn phí 100%</div>
+                      Mã khuyến mại áp dụng thành công. Nhấn nút bên dưới để nhận sản phẩm ngay — không cần chuyển khoản.
+                    </div>
+                  )}
 
                   {submitError && (
                     <div style={{ background: '#fef2f2', border: '1px solid #fecaca', borderRadius: 8, padding: '10px 13px', marginBottom: 12, fontSize: 13, color: '#dc2626' }}>
@@ -270,7 +356,7 @@ export default function CheckoutClient({
                   )}
                   <button className="btn-primary-wd" style={{ width: '100%', padding: 13, fontSize: 14, opacity: submitting ? .7 : 1 }}
                     onClick={handleSubmitOrder} disabled={submitting}>
-                    {submitting ? 'Đang gửi...' : '✓ Xác nhận đặt hàng'}
+                    {submitting ? 'Đang xử lý...' : isFree ? '🎁 Nhận miễn phí →' : '✓ Xác nhận đặt hàng'}
                   </button>
                 </div>
               </div>
@@ -287,9 +373,18 @@ export default function CheckoutClient({
 
               <div className="sum-row">
                 <span>{purchaseType === 'template' ? 'File template ZIP' : 'Website Gói B (web + admin)'}</span>
-                <span>{fmtPrice(price)}</span>
+                <span style={{ textDecoration: discountInfo ? 'line-through' : 'none', color: discountInfo ? 'var(--text-3)' : undefined }}>{fmtPrice(basePrice)}</span>
               </div>
-              <div className="sum-row total"><span>Tổng cộng</span><span>{fmtPrice(price)}</span></div>
+              {discountInfo && (
+                <div className="sum-row" style={{ color: 'var(--accent)' }}>
+                  <span>🏷️ Giảm giá ({appliedCode})</span>
+                  <span>−{fmtPrice(discountInfo.discountAmount)}</span>
+                </div>
+              )}
+              <div className="sum-row total">
+                <span>Tổng cộng</span>
+                <span style={{ color: isFree ? 'var(--accent)' : undefined }}>{isFree ? 'Miễn phí 🎁' : fmtPrice(price)}</span>
+              </div>
 
               <div style={{ marginTop: 14, padding: '12px 14px', background: 'var(--warm)', borderRadius: 8, fontSize: 12.5, color: 'var(--text-2)', lineHeight: 1.7 }}>
                 {purchaseType === 'template' ? (

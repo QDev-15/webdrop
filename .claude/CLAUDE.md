@@ -30,6 +30,7 @@
 | `template-builder` | Nhận chủ đề + Brief → tạo template HTML/CSS/Bootstrap vào `Sources/templates/` | Read, Write, Edit, WebFetch, WebSearch |
 | `web-deploy-builder` | Nhận slug → **chạy scaffolder** → đọc template HTML → fill ~45% AI files → tạo React + PHP + SQLite vào `Sources/WebDeploy/[slug]/` | Read, Write, Edit, Glob, Grep, Bash |
 | `web-deploy-fixer` | Nhận slug → chạy TS build + PHP check → tự fix lỗi → lặp đến 0 error | Read, Write, Edit, Glob, Grep, Bash |
+| `cv-template-builder` | Nhận tên template (minimal/creative/dark/executive) → tạo React CV component vào `Sources/system/src/components/cv/templates/` → cập nhật CvPreview.tsx → TypeScript check 0 lỗi | Read, Write, Edit, Glob, Grep, Bash |
 
 ### Project Settings
 
@@ -64,9 +65,10 @@
 
 ## 🎯 MỤC TIÊU DỰ ÁN
 
-Xây dựng và bán 2 nhóm sản phẩm chính:
+Xây dựng và bán 3 nhóm sản phẩm chính:
 1. **Template** — HTML/CSS thuần dùng Bootstrap, không build system
 2. **Website hoàn chỉnh** — React SPA + PHP API + SQLite, deploy lên hosting là chạy luôn
+3. **CV Builder SaaS** — Nền tảng lưu trữ CV cá nhân online: user chỉnh sửa → có link CV để gửi đi phỏng vấn / xin việc → export file khi cần. CV thiết kế dạng 1 trang, cuộn dọc (single-page scrollable)
 
 ---
 
@@ -78,6 +80,7 @@ Xây dựng và bán 2 nhóm sản phẩm chính:
 - [x] Agency / Portfolio / Công ty — **DONE** (6 templates: `Companies/`, `Portfolios/`)
 - [x] Blog / Forum — **DONE** (`Blogs/`, `Forums/`)
 - [ ] Landing page sản phẩm / Dịch vụ
+- [ ] CV cá nhân — **PLANNING** (CV Builder SaaS — xem `.claude/plans/cv-template-saas.md`)
 
 ---
 
@@ -94,6 +97,7 @@ Xây dựng và bán 2 nhóm sản phẩm chính:
 - [x] Tạo Admin Profile page (`/admin/profile`) — đổi tên, đổi password
 - [x] Tạo Admin Users page (`/admin/users`) — quản lý tài khoản, nâng/hạ cấp, xóa (superadmin only)
 - [x] Tạo hệ thống thống kê truy cập (`/admin/analytics`) — track page views, top pages, nguồn truy cập, recent visits
+- [x] Hệ thống mã khuyến mại (`/admin/discounts`) — percent/fixed, maxUses, expiresAt; đơn 100% off bypass chuyển khoản ngay
 - [ ] Upload ảnh thực tế cho website demo (cafe-thoi-gian)
 - [ ] Nhận đơn hàng đầu tiên
 
@@ -102,6 +106,12 @@ Xây dựng và bán 2 nhóm sản phẩm chính:
 - [ ] Mở rộng thư viện template — BĐS, landing page sản phẩm
 - [ ] Nhận dự án Gói Theo Yêu cầu giá trị cao
 - [ ] Xây trang showcase / portfolio
+- [ ] **CV Builder SaaS** — implement theo plan `.claude/plans/cv-template-saas.md`
+  - [ ] Phase 1: Schema + API + Editor (Prisma migrate, API routes, /cv-manager)
+  - [ ] Phase 2: Templates + Browse (/cvs, /cv-[slug], 2 mẫu đầu)
+  - [ ] Phase 3: Export (.html, .pdf)
+  - [ ] Phase 4: 3 mẫu còn lại + export .docx
+  - [ ] Phase 5: Checkout integration + Admin quản lý
 
 ### Giai đoạn 3 — 18 tháng trở đi
 
@@ -153,10 +163,13 @@ webdrop/
 │   ├── system/                     ← Next.js 15 (webdrop.store)
 │   │   ├── app/
 │   │   │   ├── (site)/             ← / · /templates · /blog · /pricing · /about · /contact · /faq · /policies
+│   │   │   │                          /cvs (browse CV templates)
 │   │   │   ├── (checkout)/         ← /checkout · /checkout/success
 │   │   │   ├── (admin)/admin/      ← dashboard · orders · customers · templates · slides
 │   │   │   │                          posts · contacts · projects · revenue · settings
-│   │   │   └── api/                ← auth · orders · contact · packages · admin/*
+│   │   │   ├── cv-manager/         ← CV Editor (protected, NO sitemap) — /cv-manager/edit
+│   │   │   ├── cv-[slug]/          ← Public CV page (NO sitemap, NO Google index)
+│   │   │   └── api/                ← auth · orders · contact · packages · admin/* · cv/*
 │   │   ├── src/components/
 │   │   │   ├── site/               ← NavBar, Footer, HeroSlider, TemplateGrid, PricingSection...
 │   │   │   └── admin/              ← AdminLayout, AdminLoadingPage, TemplateForm, PostForm...
@@ -179,7 +192,8 @@ webdrop/
 │       ├── Cafes/                  ← ✅ cafe-thoi-gian
 │       ├── Blogs/                  ← ✅ blog-ca-nhan
 │       ├── Forums/                 ← ✅ forum-cong-dong
-│       └── Portfolios/             ← ✅ portfolio-toi
+│       ├── Portfolios/             ← ✅ portfolio-toi
+│       └── CVs/                   ← 🔲 PLANNING (5 mẫu: classic, minimal, creative, dark, executive)
 ├── documents/                      ← Prototype UI HTML (tham khảo)
 └── .gitignore
 ```
@@ -256,6 +270,21 @@ VPS AZDIGI Linux
 - Pattern: tách interactive part ra `XxxClient.tsx` (`'use client'`), `page.tsx` là Server Component
 - Áp dụng: `faq/`, `contact/`, `policies/[slug]/`
 
+### CV Builder SaaS
+
+> Plan chi tiết: `.claude/plans/cv-template-saas.md`
+
+- **DB**: `CvProfile` (1-1 với `User`) + `CvData` (1-1 với `CvProfile`) — dùng chung `users` table
+- **Access control**: kiểm tra `cvProfile` record, không dùng role riêng
+- **Template types**: `classic | minimal | creative | dark | executive` — cùng `CvData` prop, render khác nhau
+- **Routing**: `/cvs` (public) · `/cv-manager/edit` (protected) · `/cv-[slug]` (public, NO sitemap)
+- **robots.txt**: `Disallow: /cv-manager` và `Disallow: /cv-` — không cho Google index
+- **Export**: `.html` (SSR renderToStaticMarkup) · `.pdf` (Puppeteer) · `.docx` (npm `docx`)
+- **Auto-save editor**: debounce 1.5s → `PUT /api/cv/data`; preview realtime từ local state
+- **Checkout**: Sepay webhook tạo `cvProfile` + `cvData` (empty) + gửi email credentials
+- **Slug**: auto-gen `slugify(name) + nanoid(4)`, user có thể đổi sau (validate unique)
+- **isPrint prop**: mỗi CV template nhận `isPrint?: boolean` — dùng khi export PDF/HTML
+
 ---
 
-*Cập nhật lần cuối: 2026-06-15 — thêm scaffold system cho WebDeploy*
+*Cập nhật lần cuối: 2026-06-30 — thêm CV Builder SaaS plan*

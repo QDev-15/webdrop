@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS gallery_items (
 
 -- ─── ADMIN USER ──────────────────────────────────────────────────────────────
 INSERT OR IGNORE INTO users (name, email, password, role)
-VALUES ('Admin', 'sysadmin@admin.com', '$2y$10$TKh8H1.PfbuNIyAUkiTji.HKkKMFGgWFN8k6z3DKS/0H1aDH2pxzq', 'superadmin');
+VALUES ('Admin', 'sysadmin@admin.com', '$2y$10$B2immhTk8e.ewEy6xvafzuOBrrcFGLRnv2zfwdOLRWTie3ue39eGK', 'superadmin');
 
 -- ─── SETTINGS ────────────────────────────────────────────────────────────────
 INSERT OR IGNORE INTO settings (key, value, "group") VALUES

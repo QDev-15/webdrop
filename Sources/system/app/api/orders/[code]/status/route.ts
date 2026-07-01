@@ -14,6 +14,7 @@ export async function GET(
       downloadToken: true,
       type:          true,
       title:         true,
+      customer:      { select: { email: true } },
     },
   })
 
@@ -23,6 +24,17 @@ export async function GET(
 
   if (!order.paidAt) {
     return NextResponse.json({ paid: false })
+  }
+
+  if (order.type === 'cv') {
+    const isExisting = order.downloadToken === 'EXISTING_USER'
+    return NextResponse.json({
+      paid:         true,
+      type:         'cv',
+      email:        order.customer.email ?? '',
+      password:     isExisting ? null : order.downloadToken,
+      existingUser: isExisting,
+    })
   }
 
   const slug = extractSlug(order.title)

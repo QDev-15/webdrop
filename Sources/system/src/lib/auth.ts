@@ -2,6 +2,7 @@ import { scryptSync, randomBytes, createHmac, timingSafeEqual } from 'crypto'
 import { cookies } from 'next/headers'
 
 const COOKIE_NAME = 'wd_session'
+const CV_COOKIE_NAME = 'wd_cv_session'
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 7 // 7 days
 
 function getSecret(): string {
@@ -70,4 +71,23 @@ export async function getSession() {
   return verifySessionToken(token)
 }
 
+export function getCvSessionCookieOptions() {
+  return {
+    name: CV_COOKIE_NAME,
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax' as const,
+    maxAge: COOKIE_MAX_AGE,
+    path: '/',
+  }
+}
+
+export async function getCvSession() {
+  const cookieStore = await cookies()
+  const token = cookieStore.get(CV_COOKIE_NAME)?.value
+  if (!token) return null
+  return verifySessionToken(token)
+}
+
 export const COOKIE_NAME_EXPORT = COOKIE_NAME
+export const CV_COOKIE_NAME_EXPORT = CV_COOKIE_NAME

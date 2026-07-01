@@ -29,6 +29,7 @@ model User {
   projectNotes    ProjectNote[]
   projectFiles    ProjectFile[]
   activityLogs    ActivityLog[]
+  cvProfile       CvProfile?
 
   @@map("users")
 }
@@ -292,6 +293,7 @@ model Order {
   discount    Decimal     @default(0)
   total       Decimal
   status      OrderStatus @default(new)
+  discountCode   String?   @map("discount_code")
   note           String?
   startedAt      DateTime? @map("started_at")
   deadlineAt     DateTime? @map("deadline_at")
@@ -316,6 +318,7 @@ model Order {
 enum OrderType {
   template
   website
+  cv
 }
 
 enum OrderStatus {
@@ -625,4 +628,76 @@ model ActivityLog {
   admin User? @relation(fields: [adminId], references: [id])
 
   @@map("activity_logs")
+}
+
+// ============================================================
+// DISCOUNT CODES
+// ============================================================
+
+model DiscountCode {
+  id        Int          @id @default(autoincrement())
+  code      String       @unique
+  type      DiscountType
+  value     Decimal
+  maxUses   Int?         @map("max_uses")
+  usedCount Int          @default(0) @map("used_count")
+  expiresAt DateTime?    @map("expires_at")
+  isActive  Boolean      @default(true) @map("is_active")
+  note      String?
+  createdAt DateTime     @default(now()) @map("created_at")
+
+  @@map("discount_codes")
+}
+
+enum DiscountType {
+  percent
+  fixed
+}
+
+// ============================================================
+// EXTENSION: CV BUILDER SAAS
+// ============================================================
+
+model CvProfile {
+  id           Int      @id @default(autoincrement())
+  userId       Int      @unique @map("user_id")
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  templateType String   @default("classic") @map("template_type")
+  slug         String   @unique
+  isPublic     Boolean  @default(true) @map("is_public")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  data CvData?
+
+  @@map("cv_profiles")
+}
+
+model CvData {
+  id    Int       @id @default(autoincrement())
+  cvId  Int       @unique @map("cv_id")
+  cv    CvProfile @relation(fields: [cvId], references: [id], onDelete: Cascade)
+
+  fullName  String? @map("full_name")
+  jobTitle  String? @map("job_title")
+  avatarUrl String? @map("avatar_url")
+  summary   String? @db.Text
+  email     String?
+  phone     String?
+  location  String?
+  website   String?
+  linkedin  String?
+  github    String?
+  twitter   String?
+
+  experience     Json?
+  education      Json?
+  skills         Json?
+  projects       Json?
+  certifications Json?
+  languages      Json?
+
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("cv_data")
 }

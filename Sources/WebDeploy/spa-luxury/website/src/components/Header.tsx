@@ -19,14 +19,12 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
-  // Fetch settings for site name
   useEffect(() => {
     api.get<Settings>('/public/settings')
       .then(setSettings)
       .catch(() => {})
   }, [])
 
-  // Scroll handler
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 60)
     handler()
@@ -34,7 +32,6 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
-  // Lock body scroll when mobile menu open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
@@ -45,47 +42,42 @@ export default function Header() {
   return (
     <>
       <nav className={`sl-nav${scrolled ? ' sl-nav-scrolled' : ''}`}>
-        <div className="sl-container">
-          <div className="sl-nav-inner">
-            {/* Logo */}
-            <Link to="/" className="sl-nav-logo" onClick={() => setMenuOpen(false)}>
-              <span className="sl-nav-logo-dot" />
-              {siteName}
-            </Link>
+        <div className="sl-nav-inner">
+          {/* Logo */}
+          <Link to="/" className="sl-logo" onClick={() => setMenuOpen(false)}>
+            <span className="sl-logo-mark">✦</span>
+            <span>{siteName}</span>
+          </Link>
 
-            {/* Desktop nav pill */}
-            <div className="sl-nav-pill">
-              <ul className="sl-nav-links">
-                {NAV_LINKS.map(({ to, label }) => (
-                  <li key={to}>
-                    <NavLink
-                      to={to}
-                      end={to === '/'}
-                      className={({ isActive }) => isActive ? 'active' : ''}
-                    >
-                      {label}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-              <div className="sl-nav-actions">
-                <Link to="/dat-lich" className="sl-btn sl-btn-gold sl-btn-sm">
-                  Đặt lịch ngay
-                </Link>
-              </div>
-            </div>
-
-            {/* Hamburger */}
-            <button
-              className={`sl-hamburger${menuOpen ? ' open' : ''}`}
-              onClick={() => setMenuOpen(v => !v)}
-              aria-label={menuOpen ? 'Đóng menu' : 'Mở menu'}
-            >
-              <span />
-              <span />
-              <span />
-            </button>
+          {/* Desktop nav links */}
+          <div className="sl-nav-links">
+            {NAV_LINKS.map(({ to, label }) => (
+              <NavLink
+                key={to}
+                to={to}
+                end={to === '/'}
+                className={({ isActive }) => isActive ? 'active' : ''}
+              >
+                {label}
+              </NavLink>
+            ))}
           </div>
+
+          {/* CTA */}
+          <Link to="/dat-lich" className="sl-nav-cta">
+            Đặt gói ngay
+          </Link>
+
+          {/* Hamburger */}
+          <button
+            className={`sl-burger${menuOpen ? ' open' : ''}`}
+            onClick={() => setMenuOpen(v => !v)}
+            aria-label={menuOpen ? 'Đóng menu' : 'Mở menu'}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
         </div>
       </nav>
 
@@ -111,11 +103,11 @@ export default function Header() {
         ))}
         <Link
           to="/dat-lich"
-          className="sl-btn sl-btn-gold"
-          style={{ marginTop: 12 }}
+          className="sl-nav-cta"
+          style={{ marginTop: 16 }}
           onClick={() => setMenuOpen(false)}
         >
-          Đặt lịch ngay
+          Đặt gói ngay
         </Link>
       </div>
     </>
