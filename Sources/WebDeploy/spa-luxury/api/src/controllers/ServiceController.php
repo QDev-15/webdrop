@@ -16,6 +16,14 @@ class ServiceController {
         Response::json($rows);
     }
 
+    /** GET /services/:id */
+    public function show(array $p): void {
+        Auth::require();
+        $row = $this->db->queryOne("SELECT * FROM services WHERE id = ?", [$p['id']]);
+        if (!$row) { Response::error('Không tìm thấy.', 404); return; }
+        Response::json($row);
+    }
+
     /** POST /services */
     public function store(array $p): void {
         Auth::require();

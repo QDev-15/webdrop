@@ -6,7 +6,7 @@ export default function ContactPage() {
   const mapSrc = s.google_maps_embed || ''
 
   return (
-    <main style={{ paddingTop: 80 }}>
+    <main>
       {/* Page hero */}
       <section style={{ background: 'var(--dark2)', padding: 'clamp(40px,6vw,80px) 0', textAlign: 'center' }}>
         <div className="wd-container">

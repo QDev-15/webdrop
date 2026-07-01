@@ -10,6 +10,9 @@ const TABS = [
   { id: 'seo', label: '🌐 SEO' },
   { id: 'social', label: '📢 Mạng xã hội' },
   { id: 'design', label: '🖼️ Giao diện' },
+  { id: 'footer', label: '📄 Footer' },
+  { id: 'smtp', label: '📧 SMTP' },
+  { id: 'advanced', label: '⚙️ Nâng cao' },
   { id: 'cloudinary', label: '☁️ Cloudinary' },
   { id: 'integrations', label: '🔌 Tích hợp' },
 ] as const
@@ -228,6 +231,66 @@ export default function Settings() {
               </FormField>
               <FormField label="Ảnh nền CTA">
                 <ImageField value={val('cta_bg_image')} onChange={v => set('cta_bg_image', v)} placeholder="URL ảnh nền CTA section" />
+              </FormField>
+            </div>
+          )}
+
+          {/* Tab: Footer */}
+          {activeTab === 'footer' && (
+            <div style={{ display: 'grid', gap: 20 }}>
+              <SectionTitle>Nội dung Footer</SectionTitle>
+              <FormField label="Mô tả footer">
+                <textarea className="form-control" rows={3} value={val('footer_desc')} onChange={e => set('footer_desc', e.target.value)} placeholder="Giới thiệu ngắn về spa trong footer..." />
+              </FormField>
+              <FormField label="Copyright">
+                <input className="form-control" value={val('footer_copyright')} onChange={e => set('footer_copyright', e.target.value)} placeholder={`© ${new Date().getFullYear()} Luxury Spa Resort. All rights reserved.`} />
+              </FormField>
+            </div>
+          )}
+
+          {/* Tab: SMTP */}
+          {activeTab === 'smtp' && (
+            <div style={{ display: 'grid', gap: 20 }}>
+              <SectionTitle>Cấu hình gửi email (SMTP)</SectionTitle>
+              <div style={{ padding: '12px 16px', background: 'var(--warm)', borderRadius: 8, fontSize: 13, color: 'var(--text-2)', border: '1px solid var(--border)' }}>
+                Dùng để gửi email xác nhận đặt lịch và thông báo. Để trống nếu không cần gửi email.
+              </div>
+              <FieldGroup>
+                <FormField label="SMTP Host">
+                  <input className="form-control" value={val('smtp_host')} onChange={e => set('smtp_host', e.target.value)} placeholder="smtp.gmail.com" />
+                </FormField>
+                <FormField label="SMTP Port">
+                  <input className="form-control" value={val('smtp_port')} onChange={e => set('smtp_port', e.target.value)} placeholder="587" />
+                </FormField>
+              </FieldGroup>
+              <FormField label="SMTP Username">
+                <input className="form-control" value={val('smtp_user')} onChange={e => set('smtp_user', e.target.value)} placeholder="your@gmail.com" />
+              </FormField>
+              <FormField label="SMTP Password">
+                <input className="form-control" type="password" value={val('smtp_pass')} onChange={e => set('smtp_pass', e.target.value)} placeholder="••••••••••••" />
+              </FormField>
+              <FormField label="Email gửi đi (From)">
+                <input className="form-control" value={val('smtp_from')} onChange={e => set('smtp_from', e.target.value)} placeholder="no-reply@luxuryspa.vn" />
+              </FormField>
+            </div>
+          )}
+
+          {/* Tab: Nâng cao */}
+          {activeTab === 'advanced' && (
+            <div style={{ display: 'grid', gap: 20 }}>
+              <SectionTitle>Cài đặt nâng cao</SectionTitle>
+              <FormField label="Google Analytics ID">
+                <input className="form-control" value={val('ga_id')} onChange={e => set('ga_id', e.target.value)} placeholder="G-XXXXXXXXXX" />
+                <div style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 4 }}>Google Analytics 4 Measurement ID</div>
+              </FormField>
+              <FormField label="Google Tag Manager ID">
+                <input className="form-control" value={val('gtm_id')} onChange={e => set('gtm_id', e.target.value)} placeholder="GTM-XXXXXXX" />
+              </FormField>
+              <FormField label="Facebook Pixel ID">
+                <input className="form-control" value={val('fb_pixel_id')} onChange={e => set('fb_pixel_id', e.target.value)} placeholder="1234567890123456" />
+              </FormField>
+              <FormField label="Custom Head Scripts">
+                <textarea className="form-control" rows={5} value={val('custom_head_scripts')} onChange={e => set('custom_head_scripts', e.target.value)} placeholder="<!-- Script tùy chỉnh thêm vào <head> -->" style={{ fontFamily: 'monospace', fontSize: 12 }} />
               </FormField>
             </div>
           )}

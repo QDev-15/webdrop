@@ -2,7 +2,7 @@ import Booking from '../components/Booking'
 
 export default function BookingPage() {
   return (
-    <main style={{ paddingTop: 80 }}>
+    <main>
       {/* Page hero */}
       <section style={{ background: 'var(--dark2)', padding: 'clamp(40px,6vw,80px) 0', textAlign: 'center' }}>
         <div className="wd-container">

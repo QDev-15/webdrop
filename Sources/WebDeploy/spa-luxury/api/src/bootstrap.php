@@ -2,10 +2,10 @@
 declare(strict_types=1);
 
 // ─── Core classes ─────────────────────────────────────────────────────────────
-require_once __DIR__ . '/Router.php';
-require_once __DIR__ . '/Database.php';
-require_once __DIR__ . '/Auth.php';
 require_once __DIR__ . '/Response.php';
+require_once __DIR__ . '/Router.php';
+require_once __DIR__ . '/Auth.php';
+require_once __DIR__ . '/Database.php';
 
 // ─── Controllers ──────────────────────────────────────────────────────────────
 require_once __DIR__ . '/controllers/AuthController.php';
@@ -91,6 +91,7 @@ $router->add('POST', '/contacts',              fn($p) => $contact->store($p));
 
 // Hero Slides (admin)
 $router->add('GET',  '/hero-slides',                 fn($p) => $heroSlide->index($p));
+$router->add('GET',  '/hero-slides/:id',             fn($p) => $heroSlide->show($p));
 $router->add('POST', '/hero-slides',                 fn($p) => $heroSlide->store($p));
 $router->add('POST', '/hero-slides/reorder',         fn($p) => $heroSlide->reorder($p));
 $router->add('POST', '/hero-slides/:id/update',      fn($p) => $heroSlide->update($p));
@@ -121,6 +122,7 @@ $router->add('POST', '/service-categories/:id/delete',   fn($p) => $serviceCateg
 
 // Services (admin)
 $router->add('GET',  '/services',              fn($p) => $service->index($p));
+$router->add('GET',  '/services/:id',          fn($p) => $service->show($p));
 $router->add('POST', '/services',              fn($p) => $service->store($p));
 $router->add('POST', '/services/:id/update',   fn($p) => $service->update($p));
 $router->add('POST', '/services/:id/delete',   fn($p) => $service->destroy($p));
@@ -133,12 +135,14 @@ $router->add('POST', '/bookings/:id/delete',   fn($p) => $booking->destroy($p));
 
 // Testimonials (admin)
 $router->add('GET',  '/testimonials',              fn($p) => $testimonial->index($p));
+$router->add('GET',  '/testimonials/:id',          fn($p) => $testimonial->show($p));
 $router->add('POST', '/testimonials',              fn($p) => $testimonial->store($p));
 $router->add('POST', '/testimonials/:id/update',   fn($p) => $testimonial->update($p));
 $router->add('POST', '/testimonials/:id/delete',   fn($p) => $testimonial->destroy($p));
 
 // Team (admin)
 $router->add('GET',  '/team',              fn($p) => $team->index($p));
+$router->add('GET',  '/team/:id',          fn($p) => $team->show($p));
 $router->add('POST', '/team',              fn($p) => $team->store($p));
 $router->add('POST', '/team/:id/update',   fn($p) => $team->update($p));
 $router->add('POST', '/team/:id/delete',   fn($p) => $team->destroy($p));

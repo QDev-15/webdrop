@@ -167,7 +167,20 @@ INSERT OR IGNORE INTO settings (key, value, "group") VALUES
     ('footer_desc',      'Resort Spa 5 sao — nơi thư giãn đỉnh cao giữa thiên nhiên tĩnh lặng.',     'footer'),
     ('cta_title',        'Dành thời gian cho bản thân',                                               'design'),
     ('cta_subtitle',     'Liên hệ ngay để nhận tư vấn gói phù hợp và ưu đãi đặt sớm dành riêng cho bạn.', 'design'),
-    ('unsplash_access_key', 'BdVQbpMxCxFAU2ijjhhvwC5-t3Y9CqFe65Mf09t11kY',                          'system');
+    ('unsplash_access_key', 'BdVQbpMxCxFAU2ijjhhvwC5-t3Y9CqFe65Mf09t11kY',                          'system'),
+    -- Footer
+    ('footer_copyright',   '',                                                                          'footer'),
+    -- SMTP
+    ('smtp_host',          '',                                                                          'smtp'),
+    ('smtp_port',          '587',                                                                       'smtp'),
+    ('smtp_user',          '',                                                                          'smtp'),
+    ('smtp_pass',          '',                                                                          'smtp'),
+    ('smtp_from',          '',                                                                          'smtp'),
+    -- Advanced
+    ('ga_id',              '',                                                                          'system'),
+    ('gtm_id',             '',                                                                          'system'),
+    ('fb_pixel_id',        '',                                                                          'system'),
+    ('custom_head_scripts','',                                                                          'system');
 
 -- ─── HERO SLIDES ─────────────────────────────────────────────────────────────
 INSERT OR IGNORE INTO hero_slides (title, subtitle, button_text, button_link, image, sort_order, status)

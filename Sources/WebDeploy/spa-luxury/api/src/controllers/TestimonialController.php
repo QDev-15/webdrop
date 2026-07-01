@@ -13,6 +13,14 @@ class TestimonialController {
         Response::json($rows);
     }
 
+    /** GET /testimonials/:id */
+    public function show(array $p): void {
+        Auth::require();
+        $row = $this->db->queryOne("SELECT * FROM testimonials WHERE id = ?", [$p['id']]);
+        if (!$row) { Response::error('Không tìm thấy.', 404); return; }
+        Response::json($row);
+    }
+
     /** POST /testimonials */
     public function store(array $p): void {
         Auth::require();

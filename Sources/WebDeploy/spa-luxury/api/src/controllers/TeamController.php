@@ -13,6 +13,14 @@ class TeamController {
         Response::json($rows);
     }
 
+    /** GET /team/:id */
+    public function show(array $p): void {
+        Auth::require();
+        $row = $this->db->queryOne("SELECT * FROM team WHERE id = ?", [$p['id']]);
+        if (!$row) { Response::error('Không tìm thấy.', 404); return; }
+        Response::json($row);
+    }
+
     /** POST /team */
     public function store(array $p): void {
         Auth::require();
