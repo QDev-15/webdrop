@@ -11,24 +11,32 @@ import ContactPage from './pages/ContactPage'
 function AppShell() {
   const location = useLocation()
 
-  // Global IntersectionObserver for [data-reveal] — Rule 31
+  // Global IntersectionObserver + MutationObserver for [data-reveal]
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
+    const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible')
-          observer.unobserve(entry.target)
+          io.unobserve(entry.target)
         }
       })
     }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' })
 
-    const els = document.querySelectorAll('[data-reveal]')
-    els.forEach(el => {
+    function observeAll() {
+      document.querySelectorAll('[data-reveal]:not(.visible)').forEach(el => io.observe(el))
+    }
+
+    // Initial observe — remove 'visible' then re-observe on route change
+    document.querySelectorAll('[data-reveal]').forEach(el => {
       el.classList.remove('visible')
-      observer.observe(el)
+      io.observe(el)
     })
 
-    return () => observer.disconnect()
+    // MutationObserver — pick up elements added dynamically (after API fetch)
+    const mo = new MutationObserver(() => observeAll())
+    mo.observe(document.body, { childList: true, subtree: true })
+
+    return () => { io.disconnect(); mo.disconnect() }
   }, [location.pathname])
 
   return (

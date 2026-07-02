@@ -9,6 +9,16 @@ import CvElegant from './templates/CvElegant'
 import CvTech from './templates/CvTech'
 import CvBold from './templates/CvBold'
 import CvTimeline from './templates/CvTimeline'
+import CvModern from './templates/CvModern'
+import CvAcademic from './templates/CvAcademic'
+import CvCompact from './templates/CvCompact'
+import CvRetro from './templates/CvRetro'
+import CvGradient from './templates/CvGradient'
+import CvMinimalist from './templates/CvMinimalist'
+import CvSplit from './templates/CvSplit'
+import CvNeon from './templates/CvNeon'
+import CvPastel from './templates/CvPastel'
+import CvMagazine from './templates/CvMagazine'
 
 interface Props {
   data: CvDataType
@@ -27,6 +37,16 @@ const TEMPLATES: Record<string, React.ComponentType<{ data: CvDataType; isPrint?
   tech:         CvTech,
   bold:         CvBold,
   timeline:     CvTimeline,
+  modern:       CvModern,
+  academic:     CvAcademic,
+  compact:      CvCompact,
+  retro:        CvRetro,
+  gradient:     CvGradient,
+  minimalist:   CvMinimalist,
+  split:        CvSplit,
+  neon:         CvNeon,
+  pastel:       CvPastel,
+  magazine:     CvMagazine,
 }
 
 export default function CvPreview({ data, templateType, isPrint }: Props) {

@@ -257,10 +257,47 @@ Sau khi build pass (0 errors), kiểm tra các rules dưới đây. **Đọc fil
   **Triệu chứng của lỗi này:** Trang Đặt bàn / Liên hệ / bất kỳ trang nào dùng `row g-5` với 2 col: 2 cột song song bị đẩy xuống 1 cột trên desktop.
 
 **Reveal animation (nếu template dùng):**
-- [ ] **AppShell** có global observer với dependency `[location.pathname, settings]`
-- [ ] **Mọi component fetch API + có `data-reveal`** phải có thêm `useEffect([data])` riêng — AppShell chạy trước khi data load nên không đủ. Triệu chứng: section không hiện khi navigate bằng Link, nhưng hiện khi F5.
+- [ ] **AppShell phải dùng cả `IntersectionObserver` + `MutationObserver`** — IO alone không đủ cho F5/direct URL vì async data render thêm elements SAU khi IO được setup. Triệu chứng: sections ẩn khi F5 nhưng hiện sau khi navigate trong SPA.
   ```tsx
-  // Thêm SAU useEffect fetch data, trong component có async data + data-reveal:
+  // Trong AppShell useEffect([pathname]):
+  const io = new IntersectionObserver(
+    entries => entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible')
+        io.unobserve(e.target)
+      }
+    }),
+    { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+  )
+
+  const observeNew = (root: ParentNode = document) => {
+    root.querySelectorAll<Element>('[data-reveal]:not(.visible)').forEach(el => io.observe(el))
+  }
+
+  const t = setTimeout(() => observeNew(), 0)
+
+  const mo = new MutationObserver(mutations => {
+    mutations.forEach(m => {
+      m.addedNodes.forEach(node => {
+        if (!(node instanceof Element)) return
+        if (node.hasAttribute('data-reveal') && !node.classList.contains('visible')) {
+          io.observe(node)
+        }
+        node.querySelectorAll<Element>('[data-reveal]:not(.visible)').forEach(el => io.observe(el))
+      })
+    })
+  })
+  mo.observe(document.body, { childList: true, subtree: true })
+
+  return () => { clearTimeout(t); io.disconnect(); mo.disconnect() }
+  ```
+  ```bash
+  # Check AppShell có MutationObserver chưa:
+  grep -n "MutationObserver" website/src/App.tsx
+  ```
+- [ ] **Mọi component fetch API + có `data-reveal`** có thể thêm `useEffect([data])` riêng như defense in depth — vẫn hữu ích, nhưng MutationObserver trong AppShell mới là fix đúng gốc rễ. Triệu chứng thiếu IO+MO: section ẩn khi F5 nhưng hiện khi navigate trong SPA.
+  ```tsx
+  // Defense in depth — thêm SAU useEffect fetch data (nếu muốn):
   useEffect(() => {
     if (data.length === 0) return
     const t = setTimeout(() => {
@@ -277,7 +314,7 @@ Sau khi build pass (0 errors), kiểm tra các rules dưới đây. **Đọc fil
     return () => clearTimeout(t)
   }, [data])  // ← data array, không phải []
   ```
-  **Cách kiểm tra:** `grep -r "data-reveal" website/src/components/` và `grep -r "useState\(\[\]\)" website/src/components/` — component nào có cả 2 → cần thêm useEffect này. Components KHÔNG cần: render ngay với fallback từ `settings` context (About, Booking, Contact).
+  **Cách kiểm tra:** `grep -r "data-reveal" website/src/components/` và `grep -r "useState\(\[\]\)" website/src/components/` — component nào có cả 2 → cần MutationObserver trong AppShell (ưu tiên) hoặc useEffect([data]) riêng (defense in depth). Components KHÔNG cần: render ngay với fallback từ `settings` context (About, Booking, Contact).
 
 **api/client.ts:**
 - [ ] Có `api.upload` method:

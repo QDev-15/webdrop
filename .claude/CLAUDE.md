@@ -95,7 +95,7 @@ Xây dựng và bán 3 nhóm sản phẩm chính:
 - [x] Thiết lập kênh bán (webdrop.store) — deploy Vercel, custom domain
 - [x] Đóng gói Gói Web cơ bản thành sản phẩm chuẩn (`Sources/products/goi-b/`)
 - [x] Tích hợp Sepay webhook auto-confirm đơn hàng + tạo download token
-- [x] Deploy website demo — xem bảng **WebDeploy Projects** (bao gồm `nail-salon` 2026-06-26, `pilates-studio` 2026-06-26, `spa-beauty` 2026-06-27)
+- [x] Deploy website demo — xem bảng **WebDeploy Projects** (bao gồm `nail-salon` 2026-06-26, `pilates-studio` 2026-06-26, `spa-beauty` 2026-06-27, `tham-my-vien` 2026-07-01)
 - [x] Tạo Admin Profile page (`/admin/profile`) — đổi tên, đổi password
 - [x] Tạo Admin Users page (`/admin/users`) — quản lý tài khoản, nâng/hạ cấp, xóa (superadmin only)
 - [x] Tạo hệ thống thống kê truy cập (`/admin/analytics`) — track page views, top pages, nguồn truy cập, recent visits

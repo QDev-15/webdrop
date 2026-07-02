@@ -3,7 +3,7 @@ import { ServicesTable } from '../components/Services'
 
 export default function ServicesPage() {
   return (
-    <main style={{ paddingTop: 80 }}>
+    <main>
       {/* Page hero */}
       <section style={{ background: 'var(--dark2)', padding: 'clamp(56px,8vw,96px) 0', textAlign: 'center' }}>
         <div className="wd-container">

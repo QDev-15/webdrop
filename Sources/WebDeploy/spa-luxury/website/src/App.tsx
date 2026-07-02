@@ -24,15 +24,28 @@ function useRevealObserver(dep: unknown) {
       },
       { threshold: 0.08, rootMargin: '0px 0px -36px 0px' }
     )
-    // Observe after a tick so newly rendered DOM is ready
-    const tid = setTimeout(() => {
+
+    function observeAll() {
       document.querySelectorAll('[data-reveal]:not(.visible)').forEach((el) => {
         observer.observe(el)
       })
-    }, 50)
+    }
+
+    // Observe after a tick so newly rendered DOM is ready
+    const tid = setTimeout(observeAll, 50)
+
+    // MutationObserver: pick up elements added after initial render (lazy-loaded sections)
+    const mutationObserver = new MutationObserver(() => {
+      document.querySelectorAll('[data-reveal]:not(.visible)').forEach((el) => {
+        observer.observe(el)
+      })
+    })
+    mutationObserver.observe(document.body, { childList: true, subtree: true })
+
     return () => {
       clearTimeout(tid)
       observer.disconnect()
+      mutationObserver.disconnect()
     }
   }, [dep])
 }

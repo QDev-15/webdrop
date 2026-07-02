@@ -1,0 +1,401 @@
+/* ── PAGE HERO ────────────────────────────────────────────────────────────── */
+.tmv-page-hero {
+  padding: calc(68px + clamp(48px, 6vw, 72px)) 0 clamp(48px, 5vw, 64px);
+  background: var(--dark2);
+  text-align: center;
+  border-bottom: 1px solid rgba(201, 169, 110, .15);
+}
+.tmv-ph-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 10px; font-weight: 500; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 2px;
+  border: 1px solid var(--gold-border); padding: 5px 14px;
+  border-radius: 20px; margin-bottom: 20px;
+  background: rgba(201, 169, 110, .06);
+}
+.tmv-ph-title {
+  font-size: clamp(32px, 4.5vw, 60px); font-weight: 600; color: #fff;
+  letter-spacing: -1px; margin-bottom: 16px; line-height: 1.08;
+}
+.tmv-ph-title em { color: var(--accent); font-style: italic; font-weight: 300; }
+.tmv-ph-sub {
+  font-size: clamp(14px, 1.4vw, 16px); font-weight: 300;
+  color: rgba(255, 255, 255, .45); max-width: 540px;
+  margin: 0 auto; line-height: 1.75;
+}
+
+/* ── FILTER TABS (Dịch vụ page) ───────────────────────────────────────── */
+.tmv-filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
+.tmv-filter-btn {
+  font-size: 13px; font-weight: 500; font-family: var(--sans);
+  padding: 8px 18px; border-radius: 20px; border: 1px solid var(--border);
+  background: var(--clinical-white); color: var(--text-2);
+  cursor: pointer; transition: all .2s;
+}
+.tmv-filter-btn:hover { background: var(--dark2); color: #fff; border-color: var(--dark2); }
+.tmv-filter-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* ── SERVICE GROUP ─────────────────────────────────────────────────────── */
+.tmv-sg { margin-bottom: 64px; }
+.tmv-sg:last-child { margin-bottom: 0; }
+.tmv-sg-header {
+  display: flex; align-items: center; gap: 16px;
+  padding-bottom: 16px; border-bottom: 1px solid var(--border);
+  margin-bottom: 28px;
+}
+.tmv-sg-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: var(--accent-light); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.tmv-sg-title-text { font-size: 20px; font-weight: 600; color: var(--text); letter-spacing: -.4px; }
+.tmv-sg-count { font-size: 12px; font-weight: 400; color: var(--text-3); margin-top: 2px; }
+
+/* ── SERVICE ROW CARD ──────────────────────────────────────────────────── */
+.tmv-svc-row {
+  display: flex; align-items: flex-start; gap: 20px;
+  padding: 20px; border-radius: 12px;
+  border: 1px solid var(--border); background: var(--clinical-white);
+  transition: transform .22s, box-shadow .22s, border-color .22s;
+  margin-bottom: 12px;
+}
+.tmv-svc-row:last-child { margin-bottom: 0; }
+.tmv-svc-row:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, .07);
+  border-color: var(--gold-border-strong);
+}
+.tmv-svc-row-img { width: 80px; height: 80px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
+.tmv-svc-row-body { flex: 1; min-width: 0; }
+.tmv-svc-row-tag { font-size: 10px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 4px; }
+.tmv-svc-row-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+.tmv-svc-row-desc { font-size: 13px; font-weight: 300; color: var(--text-2); line-height: 1.6; margin-bottom: 10px; }
+.tmv-svc-row-meta { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+.tmv-svc-meta-item { font-size: 12px; color: var(--text-3); display: flex; align-items: center; gap: 5px; }
+.tmv-svc-meta-item strong { color: var(--accent); font-size: 13px; font-weight: 600; }
+.tmv-svc-row-cta { flex-shrink: 0; align-self: center; }
+
+/* ── HIGHLIGHT CARD (Dịch vụ sidebar) ─────────────────────────────────── */
+.tmv-highlight-card {
+  background: linear-gradient(135deg, var(--dark2) 0%, #1c1a16 100%);
+  border-radius: 14px; padding: 32px;
+  border: 1px solid var(--gold-border);
+  position: relative; overflow: hidden;
+}
+.tmv-highlight-card::before {
+  content: ''; position: absolute; top: -60px; right: -60px;
+  width: 160px; height: 160px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 169, 110, .12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── CREDENTIALS STRIP (Bác sĩ page) ──────────────────────────────────── */
+.tmv-cred-strip {
+  background: var(--dark2); border-radius: 14px; padding: 28px 32px;
+  display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
+  border: 1px solid var(--gold-border);
+  position: relative; overflow: hidden;
+}
+.tmv-cred-strip::before {
+  content: ''; position: absolute; top: -50px; right: -50px;
+  width: 180px; height: 180px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 169, 110, .08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.tmv-cred-item { text-align: center; flex: 1; min-width: 120px; }
+.tmv-cred-num {
+  font-size: clamp(28px, 4vw, 42px); font-weight: 700;
+  color: var(--accent); line-height: 1; margin-bottom: 6px; letter-spacing: -.5px;
+}
+.tmv-cred-label { font-size: 12px; font-weight: 300; color: rgba(255, 255, 255, .4); line-height: 1.4; }
+.tmv-cred-divider { width: 1px; height: 48px; background: rgba(255, 255, 255, .1); flex-shrink: 0; }
+@media (max-width: 576px) { .tmv-cred-divider { display: none; } .tmv-cred-item { min-width: 80px; } }
+
+/* ── DOCTOR FULL CARD (Bác sĩ page) ───────────────────────────────────── */
+.tmv-doc-full {
+  background: var(--clinical-white); border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden;
+  transition: transform .28s cubic-bezier(.16, 1, .3, 1), box-shadow .28s;
+  height: 100%;
+}
+.tmv-doc-full:hover { transform: translateY(-6px); box-shadow: 0 20px 56px rgba(0, 0, 0, .09); }
+.tmv-doc-full-img-wrap { position: relative; overflow: hidden; aspect-ratio: 3/4; }
+.tmv-doc-full-img {
+  width: 100%; height: 100%; object-fit: cover; object-position: top;
+  transition: transform .55s ease; display: block;
+}
+.tmv-doc-full:hover .tmv-doc-full-img { transform: scale(1.05); }
+.tmv-doc-full-badge {
+  position: absolute; top: 14px; left: 14px;
+  background: rgba(201, 169, 110, .92); backdrop-filter: blur(8px);
+  color: #fff; font-size: 10px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1.2px;
+  padding: 4px 12px; border-radius: 20px;
+}
+.tmv-doc-full-exp {
+  position: absolute; bottom: 14px; right: 14px;
+  background: rgba(24, 22, 20, .85); backdrop-filter: blur(8px);
+  border: 1px solid var(--gold-border); border-radius: 10px;
+  padding: 8px 14px; text-align: right;
+}
+.tmv-doc-full-exp-num { font-size: 20px; font-weight: 700; color: var(--accent); line-height: 1; }
+.tmv-doc-full-exp-label { font-size: 10px; font-weight: 300; color: rgba(255, 255, 255, .5); margin-top: 2px; }
+.tmv-doc-full-body { padding: 24px 26px 28px; }
+.tmv-doc-full-name { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 4px; letter-spacing: -.3px; }
+.tmv-doc-full-role { font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+.tmv-doc-full-desc { font-size: 13px; font-weight: 300; color: var(--text-2); line-height: 1.7; margin-bottom: 18px; }
+.tmv-doc-full-meta { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+.tmv-doc-meta-row { display: flex; align-items: flex-start; gap: 10px; }
+.tmv-doc-meta-icon {
+  width: 28px; height: 28px; border-radius: 7px;
+  background: var(--accent-light); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; margin-top: 1px;
+}
+.tmv-doc-meta-text { font-size: 12.5px; font-weight: 300; color: var(--text-2); line-height: 1.55; }
+.tmv-doc-meta-text strong { color: var(--text); font-weight: 500; display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 1px; }
+.tmv-doc-certs { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 16px; border-top: 1px solid var(--border-light); }
+.tmv-doc-cert-tag {
+  font-size: 10px; font-weight: 500; color: var(--accent);
+  background: var(--accent-light); padding: 4px 10px; border-radius: 5px;
+  border: 1px solid rgba(201, 169, 110, .2);
+}
+
+/* ── STRENGTH CARDS (Bác sĩ page) ─────────────────────────────────────── */
+.tmv-str-card {
+  background: var(--clinical-white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 28px 24px; height: 100%;
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+  position: relative; overflow: hidden;
+}
+.tmv-str-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0, 0, 0, .07); border-color: var(--gold-border-strong); }
+.tmv-str-card::after {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 100%; height: 3px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .3s cubic-bezier(.16, 1, .3, 1);
+}
+.tmv-str-card:hover::after { transform: scaleX(1); }
+.tmv-str-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: var(--accent-light);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+}
+.tmv-str-title { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px; letter-spacing: -.3px; }
+.tmv-str-desc { font-size: 13px; font-weight: 300; color: var(--text-2); line-height: 1.7; }
+
+/* ── STEPS INDICATOR (Tư vấn page) ────────────────────────────────────── */
+.tmv-steps { display: flex; gap: 0; margin-bottom: 32px; }
+.tmv-step { flex: 1; display: flex; align-items: center; gap: 0; }
+.tmv-step-dot {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--border); display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600; color: var(--text-3); flex-shrink: 0;
+  transition: all .3s;
+}
+.tmv-step.active .tmv-step-dot { background: var(--dark2); color: var(--accent); border: 1px solid var(--gold-border); }
+.tmv-step-line { flex: 1; height: 1px; background: var(--border); }
+.tmv-step-label { font-size: 10px; font-weight: 500; color: var(--text-3); white-space: nowrap; margin-left: 8px; }
+@media (max-width: 576px) { .tmv-step-label { display: none; } }
+
+/* ── INFO CARD (Tư vấn page sidebar) ──────────────────────────────────── */
+.tmv-info-card {
+  background: var(--dark2); border-radius: 16px;
+  padding: 32px; border: 1px solid var(--gold-border);
+  position: sticky; top: 88px;
+}
+.tmv-info-card-title { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 4px; letter-spacing: -.3px; }
+.tmv-info-card-sub { font-size: 13px; font-weight: 300; color: rgba(255, 255, 255, .4); margin-bottom: 28px; line-height: 1.6; }
+.tmv-info-item {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 14px 0; border-bottom: 1px solid rgba(255, 255, 255, .06);
+}
+.tmv-info-item:last-of-type { border-bottom: none; }
+.tmv-info-item-icon {
+  width: 36px; height: 36px; border-radius: 9px;
+  background: rgba(201, 169, 110, .12); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.tmv-info-item-label { font-size: 10px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+.tmv-info-item-val { font-size: 13px; font-weight: 300; color: rgba(255, 255, 255, .55); line-height: 1.6; }
+
+/* Schedule */
+.tmv-schedule { margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, .06); }
+.tmv-schedule-title { font-size: 10px; font-weight: 600; color: rgba(255, 255, 255, .3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+.tmv-schedule-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, .04); font-size: 13px;
+}
+.tmv-schedule-row:last-child { border-bottom: none; }
+.tmv-schedule-day { font-weight: 300; color: rgba(255, 255, 255, .4); }
+.tmv-schedule-time { font-weight: 400; color: rgba(255, 255, 255, .65); }
+.tmv-schedule-row.closed .tmv-schedule-time { color: rgba(255, 255, 255, .2); }
+
+/* Trust items */
+.tmv-info-trust { margin-top: 24px; display: flex; flex-direction: column; gap: 8px; }
+.tmv-info-trust-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 300; color: rgba(255, 255, 255, .35);
+}
+.tmv-info-trust-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+/* ── MAP PLACEHOLDER (Liên hệ page) ───────────────────────────────────── */
+.tmv-map-wrap { background: var(--clinical-white); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 32px; }
+.tmv-map-placeholder {
+  width: 100%; height: 320px;
+  background: linear-gradient(135deg, #f0ede8 0%, #e8e5df 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 12px; position: relative;
+}
+.tmv-map-pin {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--accent-light); border: 2px solid var(--gold-border);
+  display: flex; align-items: center; justify-content: center;
+}
+.tmv-map-pin svg { width: 22px; height: 22px; }
+.tmv-map-placeholder-label { font-size: 13px; font-weight: 300; color: var(--text-3); }
+.tmv-map-placeholder-addr { font-size: 14px; font-weight: 500; color: var(--text-2); text-align: center; padding: 0 24px; }
+.tmv-map-grid-lines {
+  position: absolute; inset: 0; opacity: .35;
+  background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.tmv-map-cta { padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); gap: 12px; flex-wrap: wrap; }
+.tmv-map-cta-addr { font-size: 13px; font-weight: 400; color: var(--text-2); }
+.tmv-map-cta-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 500; color: var(--accent);
+  text-decoration: none; white-space: nowrap;
+  padding: 7px 14px; border: 1px solid var(--gold-border);
+  border-radius: 7px; background: var(--accent-light); transition: all .2s;
+}
+.tmv-map-cta-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* ── HOURS TABLE (Liên hệ page) ───────────────────────────────────────── */
+.tmv-hours-card { background: var(--clinical-white); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+.tmv-hours-header {
+  padding: 16px 22px; background: var(--dark2);
+  display: flex; align-items: center; gap: 10px;
+}
+.tmv-hours-header-icon { width: 28px; height: 28px; opacity: .7; }
+.tmv-hours-header-icon svg { width: 100%; height: 100%; }
+.tmv-hours-header-title { font-size: 13px; font-weight: 500; color: #fff; }
+.tmv-hours-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 13px 22px; border-bottom: 1px solid var(--border-light); transition: background .15s;
+}
+.tmv-hours-row:last-child { border-bottom: none; }
+.tmv-hours-row:hover { background: var(--accent-light); }
+.tmv-hours-day { font-size: 13px; font-weight: 400; color: var(--text); }
+.tmv-hours-time { font-size: 13px; font-weight: 500; color: var(--accent); }
+.tmv-hours-row.today { background: var(--accent-light); }
+.tmv-hours-row.today .tmv-hours-day::after {
+  content: ' (Hôm nay)'; font-size: 10px; font-weight: 600; color: var(--accent);
+  text-transform: uppercase; letter-spacing: .8px;
+}
+.tmv-hours-row.closed .tmv-hours-time { color: var(--text-3); font-weight: 300; }
+
+/* ── SHORT CONTACT FORM (Liên hệ page) ────────────────────────────────── */
+.tmv-short-form {
+  background: var(--dark2); border: 1px solid var(--gold-border);
+  border-radius: 16px; padding: 32px; position: sticky; top: 88px;
+}
+.tmv-short-form-title { font-size: 18px; font-weight: 600; color: #fff; margin-bottom: 6px; letter-spacing: -.3px; }
+.tmv-short-form-sub { font-size: 13px; font-weight: 300; color: rgba(255, 255, 255, .4); margin-bottom: 28px; line-height: 1.65; }
+
+/* Dark inputs */
+.tmv-input-dark {
+  width: 100%; padding: 12px 16px;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 8px; font-family: var(--sans); font-size: 14px;
+  color: #fff; background: rgba(255, 255, 255, .06);
+  transition: border-color .2s, box-shadow .2s; outline: none;
+  box-sizing: border-box;
+}
+.tmv-input-dark:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(201, 169, 110, .15); }
+.tmv-input-dark::placeholder { color: rgba(255, 255, 255, .25); }
+textarea.tmv-input-dark { resize: vertical; min-height: 100px; }
+.tmv-label-dark {
+  display: block; font-size: 11px; font-weight: 500;
+  color: rgba(255, 255, 255, .4); margin-bottom: 6px;
+  text-transform: uppercase; letter-spacing: .6px;
+}
+.tmv-form-group-dark { margin-bottom: 16px; }
+.tmv-submit-dark {
+  width: 100%; padding: 13px 20px;
+  background: var(--accent); color: #fff;
+  border: none; border-radius: 8px; font-family: var(--sans);
+  font-size: 14px; font-weight: 500; cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+.tmv-submit-dark:hover { background: var(--accent-h); transform: translateY(-1px); }
+.tmv-submit-dark:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+.tmv-form-success-dark { display: none; text-align: center; padding: 16px 0; }
+.tmv-form-success-dark.show { display: block; }
+.tmv-form-success-dark-icon {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(201, 169, 110, .2); border: 2px solid var(--gold-border);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px;
+}
+.tmv-form-success-dark-title { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+.tmv-form-success-dark-sub { font-size: 13px; font-weight: 300; color: rgba(255, 255, 255, .4); }
+
+/* ── SOCIAL BUTTONS (Liên hệ page) ────────────────────────────────────── */
+.tmv-socials-row { display: flex; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
+.tmv-soc-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 9px 16px; border-radius: 9px;
+  font-size: 12px; font-weight: 500; text-decoration: none; transition: all .2s;
+  border: 1px solid var(--border); color: var(--text-2); background: var(--bg);
+}
+.tmv-soc-btn:hover { border-color: var(--gold-border); color: var(--accent); background: var(--accent-light); }
+.tmv-soc-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* ── HERO ENHANCEMENTS (multi-page SPA) ───────────────────────────────── */
+.tmv-hero-content { position: relative; z-index: 1; }
+.tmv-hero-left-bg-dot {
+  position: absolute; top: -100px; right: -100px;
+  width: 300px; height: 300px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 169, 110, .06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.tmv-hero-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+.tmv-hero-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+.tmv-hero-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 400; color: rgba(255, 255, 255, .55);
+  padding: 6px 12px; border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, .1); background: rgba(255, 255, 255, .04);
+}
+.tmv-hero-chip-dot { width: 5px; height: 5px; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
+.tmv-hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+.tmv-hero-trust {
+  display: flex; gap: 32px; flex-wrap: wrap;
+  padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, .08);
+}
+.tmv-ht { display: flex; flex-direction: column; gap: 3px; }
+.tmv-ht-num { font-size: 22px; font-weight: 700; color: var(--accent); line-height: 1; letter-spacing: -.5px; }
+.tmv-ht-label { font-size: 11px; font-weight: 300; color: rgba(255, 255, 255, .35); }
+
+/* ── TECH CARDS (About) ───────────────────────────────────────────────── */
+.tmv-tech-card {
+  background: var(--clinical-white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 24px 22px;
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+.tmv-tech-card:hover { transform: translateY(-4px); box-shadow: 0 14px 44px rgba(0, 0, 0, .07); border-color: var(--gold-border-strong); }
+.tmv-tech-icon { font-size: 22px; margin-bottom: 14px; color: var(--accent); }
+.tmv-tech-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; letter-spacing: -.2px; }
+.tmv-tech-desc { font-size: 13px; font-weight: 300; color: var(--text-2); line-height: 1.7; }
+
+/* ── BUTTON: OUTLINE GOLD ─────────────────────────────────────────────── */
+.tmv-btn-outline-gold {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 18px; border-radius: 9px;
+  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  text-decoration: none; cursor: pointer; transition: all .2s;
+  background: var(--accent-light); color: var(--accent);
+  border: 1px solid var(--gold-border);
+}
+.tmv-btn-outline-gold:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
