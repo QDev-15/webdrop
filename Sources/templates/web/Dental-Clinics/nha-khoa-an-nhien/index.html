@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[TÊN PHÒNG KHÁM] — Nha Khoa Uy Tín, Tận Tâm</title>
+<meta name="description" content="[TÊN PHÒNG KHÁM] — Nha khoa uy tín với đội ngũ bác sĩ chuyên môn cao. Răng sứ thẩm mỹ, chỉnh nha, tẩy trắng răng, nhổ răng khôn — công nghệ hiện đại, an toàn, tận tâm.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- ══ TOPBAR ══ -->
+<div class="nk-topbar">
+  <div class="wd-container">
+    <a href="tel:0987711689" class="nk-topbar-phone">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.5c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      0987 711 689
+    </a>
+    <div class="nk-topbar-links">
+      <span>Hotline hỗ trợ 24/7</span>
+      <span>·</span>
+      <a href="#">Đăng ký</a>
+      <span>·</span>
+      <a href="#">Đăng nhập</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NAV ══ -->
+<nav id="nk-nav">
+  <div class="wd-container nk-nav-inner">
+    <a class="nk-logo" href="index.html">
+      <span class="nk-logo-mark">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3c-2.2 0-3.5 1.2-4.6 1.2-1.3 0-2.4-.9-3.4-.5-1.2.5-1.5 2-1.4 3.4.3 3.6 1.4 6.9 2.4 9.8.5 1.5 1 2.9 2.1 2.9 1.2 0 1.3-2.4 1.7-4 .3-1.2.6-2.3 1.2-2.3s.9 1.1 1.2 2.3c.4 1.6.5 4 1.7 4 1.1 0 1.6-1.4 2.1-2.9 1-2.9 2.1-6.2 2.4-9.8.1-1.4-.2-2.9-1.4-3.4-1-.4-2.1.5-3.4.5C15.5 4.2 14.2 3 12 3Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="nk-logo-text">
+        <span class="nk-logo-name">[Tên Phòng Khám]</span>
+        <span class="nk-logo-sub">Dental Clinic</span>
+      </span>
+    </a>
+    <div class="nk-nav-links">
+      <a href="dich-vu.html">Dịch vụ</a>
+      <a href="san-pham.html">Sản phẩm</a>
+      <a href="kien-thuc.html">Kiến thức</a>
+      <a href="tu-van.html">Tư vấn</a>
+      <a href="ve-chung-toi.html">Về chúng tôi</a>
+      <a href="tin-tuc.html">Tin tức</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <div class="nk-nav-actions">
+      <button class="nk-nav-search" aria-label="Tìm kiếm">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <button class="nk-burger" id="nkBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="nk-nav-mob" id="nkNavMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ</a>
+  <a href="san-pham.html">Sản phẩm</a>
+  <a href="kien-thuc.html">Kiến thức</a>
+  <a href="tu-van.html">Tư vấn</a>
+  <a href="ve-chung-toi.html">Về chúng tôi</a>
+  <a href="tin-tuc.html">Tin tức</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="lien-he.html" class="nk-nm-cta">Đặt lịch ngay</a>
+</div>
+
+<!-- ══ HERO — Bootstrap Carousel ══ -->
+<section class="nk-hero">
+  <div id="nkHeroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5500">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1600&q=75&auto=format&fit=crop" alt="Bác sĩ nha khoa đang điều trị cho bệnh nhân tại phòng khám" loading="eager">
+      </div>
+      <div class="carousel-item">
+        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1600&q=75&auto=format&fit=crop" alt="Phòng khám nha khoa hiện đại với trang thiết bị tiên tiến">
+      </div>
+      <div class="carousel-item">
+        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1600&q=75&auto=format&fit=crop" alt="Đội ngũ bác sĩ nha khoa chuyên nghiệp thăm khám răng miệng">
+      </div>
+    </div>
+    <h1 class="visually-hidden">[Tên Phòng Khám] — Nha khoa uy tín, tận tâm</h1>
+    <button class="carousel-control-prev" type="button" data-bs-target="#nkHeroCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#nkHeroCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#nkHeroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#nkHeroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#nkHeroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <a href="tel:0987711689" class="nk-hero-float-call" aria-label="Gọi hotline">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.5c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z" fill="currentColor"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ══ DỊCH VỤ — Circle carousel ══ -->
+<section class="nk-sec-pad" id="services">
+  <div class="wd-container">
+    <div class="text-center mb-4" data-reveal>
+      <h2 class="nk-sec-title">Dịch Vụ</h2>
+    </div>
+
+    <div class="nk-circ-wrap" data-reveal>
+      <button class="nk-circ-nav nk-circ-prev" data-scroll-target="svcTrack" data-dir="-1" aria-label="Trước">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="nk-circ-track" id="svcTrack">
+        <div class="nk-circ-item">
+          <div class="nk-circ-photo"><img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=320&q=75&auto=format&fit=crop" alt="Răng sứ thẩm mỹ" loading="lazy"></div>
+          <div class="nk-circ-name">Răng sứ<br>thẩm mỹ</div>
+        </div>
+        <div class="nk-circ-item">
+          <div class="nk-circ-photo"><img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=320&q=75&auto=format&fit=crop" alt="Răng sứ Katana Nhật Bản" loading="lazy"></div>
+          <div class="nk-circ-name">Răng sứ Katana<br>- Nhật</div>
+        </div>
+        <div class="nk-circ-item">
+          <div class="nk-circ-photo"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=320&q=75&auto=format&fit=crop" alt="Chỉnh nha niềng răng" loading="lazy"></div>
+          <div class="nk-circ-name">Chỉnh Nha</div>
+        </div>
+        <div class="nk-circ-item">
+          <div class="nk-circ-photo"><img src="https://images.unsplash.com/photo-1606265752439-1f18756aa5fc?w=320&q=75&auto=format&fit=crop" alt="Nhổ răng khôn tẩy trắng răng" loading="lazy"></div>
+          <div class="nk-circ-name">Nhổ Răng -<br>Tẩy Trắng</div>
+        </div>
+      </div>
+      <button class="nk-circ-nav nk-circ-next" data-scroll-target="svcTrack" data-dir="1" aria-label="Sau">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SẢN PHẨM — Circle carousel ══ -->
+<section class="nk-sec-pad nk-doc-bg" id="products">
+  <div class="wd-container">
+    <div class="text-center mb-4" data-reveal>
+      <h2 class="nk-sec-title">Sản Phẩm</h2>
+    </div>
+
+    <div class="nk-circ-wrap" data-reveal>
+      <button class="nk-circ-nav nk-circ-prev" data-scroll-target="prodTrack" data-dir="-1" aria-label="Trước">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="nk-circ-track" id="prodTrack">
+        <div class="nk-circ-item">
+          <div class="nk-circ-photo"><img src="https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=320&q=75&auto=format&fit=crop" alt="Kem đánh răng LASARA" loading="lazy"></div>
+          <div class="nk-circ-name">Kem Đánh Răng<br>LASARA</div>
+        </div>
+        <div class="nk-circ-item">
+          <div class="nk-circ-photo"><img src="https://images.unsplash.com/photo-1631730359585-38a4935cbec4?w=320&q=75&auto=format&fit=crop" alt="Máy tăm nước" loading="lazy"></div>
+          <div class="nk-circ-name">Máy Tăm Nước</div>
+        </div>
+        <div class="nk-circ-item">
+          <div class="nk-circ-photo"><img src="https://images.unsplash.com/photo-1592372554345-22ced975691d?w=320&q=75&auto=format&fit=crop" alt="Bàn chải máy" loading="lazy"></div>
+          <div class="nk-circ-name">Bàn Chải Máy</div>
+        </div>
+        <div class="nk-circ-item">
+          <div class="nk-circ-photo"><img src="https://images.unsplash.com/photo-1585232351009-aa87416fca90?w=320&q=75&auto=format&fit=crop" alt="Nước súc miệng Hải Phát" loading="lazy"></div>
+          <div class="nk-circ-name">Nước Súc Miệng<br>Hải Phát</div>
+        </div>
+      </div>
+      <button class="nk-circ-nav nk-circ-next" data-scroll-target="prodTrack" data-dir="1" aria-label="Sau">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ĐỘI NGŨ CHUYÊN GIA & BÁC SĨ ══ -->
+<section class="nk-sec-pad" id="doctor">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <h2 class="nk-sec-title nk-sec-title-gold">Đội Ngũ Chuyên Gia &amp; Bác Sĩ</h2>
+    </div>
+
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5" data-reveal>
+        <div class="nk-doc-photo-wrap">
+          <div class="nk-doc-deco nk-doc-deco-1">
+            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=200&q=70&auto=format&fit=crop" alt="Bác sĩ tại phòng khám" loading="lazy">
+          </div>
+          <div class="nk-doc-photo">
+            <img src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=700&q=80&auto=format&fit=crop" alt="BS Nguyễn Thanh Huyền — Trưởng khoa Răng Hàm Mặt" loading="lazy">
+          </div>
+          <div class="nk-doc-deco nk-doc-deco-2">
+            <img src="https://images.unsplash.com/photo-1666214280391-8ff5bd3c0bf0?w=200&q=70&auto=format&fit=crop" alt="Hoạt động khám chữa tại phòng khám" loading="lazy">
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7" data-reveal data-delay="1">
+        <div class="nk-doc-name">BS Nguyễn Thanh Huyền</div>
+        <div class="nk-doc-title">Trưởng khoa Răng Hàm Mặt — 15 năm kinh nghiệm</div>
+        <p class="nk-doc-bio">
+          Bác sĩ Nguyễn Thanh Huyền tốt nghiệp Đại học Y Dược, chuyên sâu về răng sứ thẩm mỹ và chỉnh nha thẩm mỹ. Với hơn 15 năm kinh nghiệm và hàng nghìn ca điều trị thành công, bác sĩ Huyền luôn tận tâm mang đến nụ cười tự tin cho từng khách hàng bằng công nghệ hiện đại và quy trình an toàn tuyệt đối.
+        </p>
+        <a href="ve-chung-toi.html" class="nk-btn-gold">Xem Thêm →</a>
+      </div>
+    </div>
+
+    <div class="nk-doc-badge" data-reveal>
+      <div class="nk-doc-badge-photo">
+        <img src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=200&q=75&auto=format&fit=crop" alt="BS Nguyễn Thanh Huyền" loading="lazy">
+      </div>
+      <div class="nk-doc-badge-name">BS Nguyễn Thanh Huyền</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIAL — Gold band ══ -->
+<section class="nk-rv-bg nk-rv-band">
+  <div class="wd-container text-center" data-reveal>
+    <h2 class="nk-sec-title" style="color:#fff">Hãy Nghe Mọi Người<br>Nói Về Chúng Tôi</h2>
+  </div>
+</section>
+
+<!-- ══ ĐẶT LỊCH KHÁM ══ -->
+<section class="nk-sec-pad" id="booking">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <h2 class="nk-sec-title">Đặt Lịch Khám Tại Nhà</h2>
+      <p class="nk-sec-sub mx-auto">Điền thông tin bên dưới, lễ tân sẽ liên hệ xác nhận lịch hẹn trong vòng 30 phút.</p>
+    </div>
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6" data-reveal>
+        <div class="nk-book-media">
+          <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=900&q=78&auto=format&fit=crop" alt="Bác sĩ nha khoa tư vấn thăm khám cho bệnh nhân" loading="lazy">
+        </div>
+      </div>
+      <div class="col-lg-6" data-reveal data-delay="1">
+        <div class="nk-book-card">
+          <form id="nkBookForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="nk-form-label" for="nkName">Họ và tên <span class="req">*</span></label>
+                <input type="text" id="nkName" class="nk-form-control" placeholder="Nguyễn Văn A" required>
+              </div>
+              <div class="col-md-6">
+                <label class="nk-form-label" for="nkPhone">Số điện thoại <span class="req">*</span></label>
+                <input type="tel" id="nkPhone" class="nk-form-control" placeholder="09xx xxx xxx" pattern="[0-9]{9,11}" required>
+              </div>
+              <div class="col-md-6">
+                <label class="nk-form-label" for="nkDate">Ngày khám <span class="req">*</span></label>
+                <input type="date" id="nkDate" class="nk-form-control" required>
+              </div>
+              <div class="col-md-6">
+                <label class="nk-form-label" for="nkBranch">Chọn cơ sở khám <span class="req">*</span></label>
+                <select id="nkBranch" class="nk-form-control" required>
+                  <option value="" selected disabled>-- Chọn cơ sở --</option>
+                  <option>Cơ sở 1 — [Địa chỉ 1]</option>
+                  <option>Cơ sở 2 — [Địa chỉ 2]</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="nk-form-check">
+                  <input type="checkbox" id="nkAgree" required>
+                  <span>Tôi đồng ý cung cấp thông tin để phòng khám liên hệ tư vấn và xác nhận lịch hẹn.</span>
+                </label>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="nk-btn-gold w-100">Đặt Lịch →</button>
+              </div>
+            </div>
+          </form>
+          <div class="nk-form-msg" id="nkFormMsg"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="nk-footer">
+  <div class="wd-container">
+    <div class="row g-4 py-5">
+      <div class="col-lg-4 col-md-6">
+        <div class="nk-ft-logo">
+          <span class="nk-logo-mark">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3c-2.2 0-3.5 1.2-4.6 1.2-1.3 0-2.4-.9-3.4-.5-1.2.5-1.5 2-1.4 3.4.3 3.6 1.4 6.9 2.4 9.8.5 1.5 1 2.9 2.1 2.9 1.2 0 1.3-2.4 1.7-4 .3-1.2.6-2.3 1.2-2.3s.9 1.1 1.2 2.3c.4 1.6.5 4 1.7 4 1.1 0 1.6-1.4 2.1-2.9 1-2.9 2.1-6.2 2.4-9.8.1-1.4-.2-2.9-1.4-3.4-1-.4-2.1.5-3.4.5C15.5 4.2 14.2 3 12 3Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="nk-ft-logo-name">[Tên Phòng Khám]</span>
+        </div>
+        <div class="nk-ft-col-title">Địa Chỉ Phòng Khám</div>
+        <div class="nk-ft-links">
+          <div class="nk-ft-branch">
+            <div class="nk-ft-branch-name">Phòng khám Răng Hàm Mặt [Tên Phòng Khám]</div>
+            <div class="nk-ft-branch-addr">[Số nhà, đường], [Phường/Xã], [Quận/Huyện], [Tỉnh/Thành phố]</div>
+          </div>
+          <a href="tel:0987711689">0987 711 689 (Hotline)</a>
+          <a href="mailto:contact@[tenphongkham].vn">contact@[tenphongkham].vn</a>
+          <span>Giờ làm việc: 8:00 — 20:00 (Tất cả các ngày)</span>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="nk-ft-col-title">Cơ Sở Liên Kết</div>
+        <div class="nk-ft-links">
+          <div class="nk-ft-branch">
+            <div class="nk-ft-branch-name">Nha khoa Hoàng Nha</div>
+            <div class="nk-ft-branch-addr">[Địa chỉ cơ sở liên kết 1]</div>
+          </div>
+          <div class="nk-ft-branch">
+            <div class="nk-ft-branch-name">Nha khoa Việt Á Châu</div>
+            <div class="nk-ft-branch-addr">[Địa chỉ cơ sở liên kết 2]</div>
+          </div>
+        </div>
+        <a href="lien-he.html" class="nk-btn-gold mt-3" style="font-size:12px;padding:10px 22px">Đặt lịch ngay →</a>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="nk-ft-col-title">Follow Us</div>
+        <div class="nk-ft-socials">
+          <a href="#" class="nk-ft-soc" rel="noopener noreferrer" aria-label="Facebook">f</a>
+          <a href="#" class="nk-ft-soc" rel="noopener noreferrer" aria-label="Instagram">in</a>
+          <a href="#" class="nk-ft-soc" rel="noopener noreferrer" aria-label="YouTube">▶</a>
+          <a href="https://zalo.me/[SỐ_ZALO]" class="nk-ft-soc" target="_blank" rel="noopener noreferrer" aria-label="Zalo">Z</a>
+        </div>
+        <p class="nk-ft-desc mt-3">Phòng khám Răng Hàm Mặt — nha khoa uy tín với đội ngũ bác sĩ giàu kinh nghiệm, công nghệ hiện đại, đồng hành cùng nụ cười khỏe đẹp của bạn và gia đình.</p>
+      </div>
+    </div>
+    <div class="nk-ft-bottom">
+      © 2026 [Tên Phòng Khám] Dental Clinic. Mọi quyền được bảo lưu.
+    </div>
+  </div>
+</footer>
+
+<!-- ══ FLOAT BUTTONS ══ -->
+<div class="nk-float">
+  <a href="https://zalo.me/[SỐ_ZALO]" class="nk-float-btn nk-float-zalo" target="_blank" rel="noopener noreferrer" aria-label="Nhắn tin Zalo">
+    <svg width="24" height="24" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+      <path d="M13 2C7.477 2 3 6.477 3 12c0 2.136.67 4.116 1.808 5.74L3 23l5.418-1.764A9.953 9.953 0 0013 22c5.523 0 10-4.477 10-10S18.523 2 13 2z" fill="#0068FF"/>
+      <path d="M8.5 10h3m-3 3h2m2-3v3m2-3v3" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </a>
+  <a href="tel:0987711689" class="nk-float-btn nk-float-phone" aria-label="Gọi hotline">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.5c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z" fill="#fff"/></svg>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ── Nav shadow on scroll ──
+const nkNav = document.getElementById('nk-nav');
+if (nkNav) {
+  window.addEventListener('scroll', () => {
+    nkNav.classList.toggle('nk-nav-scrolled', window.scrollY > 20);
+  }, { passive: true });
+}
+
+// ── Mobile hamburger ──
+const nkBurger = document.getElementById('nkBurger');
+const nkMob = document.getElementById('nkNavMob');
+if (nkBurger && nkMob) {
+  nkBurger.addEventListener('click', () => {
+    const isOpen = nkMob.classList.toggle('open');
+    nkBurger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && nkMob.classList.contains('open')) {
+      nkMob.classList.remove('open');
+      nkBurger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+  nkMob.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      nkMob.classList.remove('open');
+      nkBurger.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+}
+
+// ── Reveal animation ──
+const nkObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      nkObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => nkObserver.observe(el));
+
+// ── Circle carousel nav buttons ──
+document.querySelectorAll('[data-scroll-target]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const track = document.getElementById(btn.dataset.scrollTarget);
+    if (!track) return;
+    const dir = Number(btn.dataset.dir);
+    const item = track.querySelector('.nk-circ-item');
+    const step = item ? item.offsetWidth + 40 : 200;
+    track.scrollBy({ left: dir * step, behavior: 'smooth' });
+  });
+});
+
+// ── Booking form ──
+const nkBookForm = document.getElementById('nkBookForm');
+const nkFormMsg = document.getElementById('nkFormMsg');
+if (nkBookForm) {
+  const nkDateInput = document.getElementById('nkDate');
+  if (nkDateInput) nkDateInput.min = new Date().toISOString().split('T')[0];
+
+  nkBookForm.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!nkBookForm.checkValidity()) {
+      nkBookForm.reportValidity();
+      return;
+    }
+    nkFormMsg.textContent = 'Đặt lịch thành công! Lễ tân sẽ liên hệ xác nhận với bạn trong ít phút.';
+    nkFormMsg.className = 'nk-form-msg show ok';
+    nkBookForm.reset();
+  });
+}
+</script>
+</body>
+</html>

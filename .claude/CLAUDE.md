@@ -31,6 +31,7 @@
 | `web-deploy-builder` | Nhận slug → **chạy scaffolder** → đọc template HTML → fill ~45% AI files → tạo React + PHP + SQLite vào `Sources/WebDeploy/[slug]/` | Read, Write, Edit, Glob, Grep, Bash |
 | `web-deploy-fixer` | Nhận slug → chạy TS build + PHP check → tự fix lỗi → lặp đến 0 error | Read, Write, Edit, Glob, Grep, Bash |
 | `cv-template-builder` | Nhận tên template (minimal/creative/dark/executive) → tạo React CV component vào `Sources/system/src/components/cv/templates/` → cập nhật CvPreview.tsx → TypeScript check 0 lỗi | Read, Write, Edit, Glob, Grep, Bash |
+| `design-match` | Dựng/fix HTML+CSS khớp 100% với ảnh thiết kế tham chiếu — vòng lặp screenshot (Playwright) → đối chiếu ảnh gốc → fix → lặp lại đến khi khớp | Read, Write, Edit, Glob, Grep, Bash |
 
 ### Project Settings
 
@@ -79,6 +80,7 @@ Xây dựng và bán 3 nhóm sản phẩm chính:
 - [ ] Bất động sản
 - [x] Agency / Portfolio / Công ty — **DONE** (6 templates: `Companies/`, `Portfolios/`)
 - [x] Blog / Forum — **DONE** (`Blogs/`, `Forums/`)
+- [x] Nha khoa — **STARTED** (1 template: `Dental-Clinics/nha-khoa-an-nhien` — tông cream + gold/amber, prefix `nk-`)
 - [ ] Landing page sản phẩm / Dịch vụ
 - [ ] CV cá nhân — **PLANNING** (CV Builder SaaS — xem `.claude/plans/cv-template-saas.md`)
 
@@ -193,6 +195,7 @@ webdrop/
 │       ├── Blogs/                  ← ✅ blog-ca-nhan
 │       ├── Forums/                 ← ✅ forum-cong-dong
 │       ├── Portfolios/             ← ✅ portfolio-toi
+│       ├── Dental-Clinics/         ← ✅ nha-khoa-an-nhien
 │       └── CVs/                   ← 🔲 PLANNING (5 mẫu: classic, minimal, creative, dark, executive)
 ├── documents/                      ← Prototype UI HTML (tham khảo)
 └── .gitignore
@@ -287,4 +290,4 @@ VPS AZDIGI Linux
 
 ---
 
-*Cập nhật lần cuối: 2026-06-30 — thêm CV Builder SaaS plan*
+*Cập nhật lần cuối: 2026-07-01 — thêm template nha khoa (Dental-Clinics/nha-khoa-an-nhien)*
