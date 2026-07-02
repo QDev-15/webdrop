@@ -272,7 +272,7 @@ class Database {
         $items = [
             ['https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=80&auto=format&fit=crop', 'Cắt tóc fade', 1],
             ['https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=400&q=80&auto=format&fit=crop', 'Kiểu tóc nam đẹp', 2],
-            ['https://images.unsplash.com/photo-1562572159-4efd90232432?w=400&q=80&auto=format&fit=crop', 'Barber shop không gian', 3],
+            ['https://images.unsplash.com/photo-1609675194742-63fd5c7aafbc?w=400&q=80&auto=format&fit=crop', 'Barber shop không gian', 3],
             ['https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=400&q=80&auto=format&fit=crop', 'Tóc nữ đẹp', 4],
             ['https://images.unsplash.com/photo-1500840216050-6ffa99d75160?w=400&q=80&auto=format&fit=crop', 'Nhuộm tóc màu đẹp', 5],
         ];
