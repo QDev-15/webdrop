@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đặt lịch khám — Nha Khoa An Tâm</title>
+<meta name="description" content="Đặt lịch khám tại Nha Khoa An Tâm chỉ trong một phút. Chọn dịch vụ, thời gian phù hợp — chúng tôi sẽ liên hệ xác nhận sớm nhất.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="nav" data-scroll-nav>
+  <div class="wd-container at-nav-inner">
+    <a class="at-logo" href="index.html">
+      <span class="at-logo-dot"></span>
+      Nha Khoa <em>An Tâm</em>
+    </a>
+    <div class="at-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="dich-vu.html">Dịch vụ</a>
+      <a href="bac-si.html">Bác sĩ</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <a href="dat-lich.html" class="at-nav-cta">Đặt lịch khám</a>
+    <button class="at-burger" id="navBurger" aria-label="Mở menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="at-nav-mob" id="navMob" role="dialog" aria-modal="true" aria-label="Menu di động">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ</a>
+  <a href="bac-si.html">Bác sĩ</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="at-nm-cta">Đặt lịch khám</a>
+</div>
+
+<!-- ══ PAGE HERO ══ -->
+<section class="at-page-hero">
+  <div class="wd-container" data-reveal>
+    <div class="at-ph-eyebrow"><span class="at-ph-line"></span>Đặt lịch hẹn</div>
+    <h1 class="at-ph-title">Chỉ mất một phút <em>để an tâm</em></h1>
+    <p class="at-ph-sub">Điền thông tin bên dưới — chúng tôi sẽ liên hệ xác nhận lịch hẹn trong vòng 2 giờ làm việc.</p>
+  </div>
+</section>
+
+<!-- ══ FORM ĐẶT LỊCH ══ -->
+<section class="at-sec-pad">
+  <div class="wd-container">
+    <div class="row g-5">
+      <div class="col-lg-7" data-reveal>
+        <div class="at-booking-card">
+          <h2 class="at-booking-title">Thông tin đặt lịch</h2>
+          <p class="at-booking-sub">Vui lòng điền đầy đủ để chúng tôi hỗ trợ bạn nhanh nhất.</p>
+
+          <form id="bookingForm" novalidate>
+            <div class="row">
+              <div class="col-md-6 at-form-row">
+                <label class="at-form-label" for="fullName">Họ và tên</label>
+                <input type="text" class="at-form-control" id="fullName" name="fullName" placeholder="Nguyễn Văn A" required>
+              </div>
+              <div class="col-md-6 at-form-row">
+                <label class="at-form-label" for="phone">Số điện thoại</label>
+                <input type="tel" class="at-form-control" id="phone" name="phone" placeholder="09xx xxx xxx" required>
+              </div>
+            </div>
+
+            <div class="at-form-row">
+              <label class="at-form-label" for="email">Email (không bắt buộc)</label>
+              <input type="email" class="at-form-control" id="email" name="email" placeholder="ban@email.com">
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 at-form-row">
+                <label class="at-form-label" for="service">Dịch vụ quan tâm</label>
+                <select class="at-form-select" id="service" name="service" required>
+                  <option value="" selected disabled>Chọn dịch vụ</option>
+                  <option value="kham-tong-quat">Khám tổng quát &amp; tư vấn</option>
+                  <option value="cao-voi">Cạo vôi răng</option>
+                  <option value="tram-rang">Trám răng thẩm mỹ</option>
+                  <option value="nho-rang">Nhổ răng</option>
+                  <option value="nha-chu">Điều trị nha chu</option>
+                  <option value="tay-trang">Tẩy trắng răng</option>
+                  <option value="khac">Khác / Chưa rõ</option>
+                </select>
+              </div>
+              <div class="col-md-6 at-form-row">
+                <label class="at-form-label" for="doctor">Bác sĩ mong muốn (không bắt buộc)</label>
+                <select class="at-form-select" id="doctor" name="doctor">
+                  <option value="" selected>Không yêu cầu cụ thể</option>
+                  <option value="minh-anh">BS. Nguyễn Thị Minh Anh</option>
+                  <option value="quoc-bao">BS. Trần Quốc Bảo</option>
+                  <option value="hoang-yen">BS. Lê Hoàng Yến</option>
+                  <option value="anh-duy">BS. Phạm Anh Duy</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 at-form-row">
+                <label class="at-form-label" for="date">Ngày mong muốn</label>
+                <input type="date" class="at-form-control" id="date" name="date" required>
+              </div>
+              <div class="col-md-6 at-form-row">
+                <label class="at-form-label" for="time">Khung giờ</label>
+                <select class="at-form-select" id="time" name="time" required>
+                  <option value="" selected disabled>Chọn khung giờ</option>
+                  <option value="sang">Buổi sáng (8:00 – 11:30)</option>
+                  <option value="chieu">Buổi chiều (13:30 – 17:00)</option>
+                  <option value="toi">Buổi tối (17:00 – 20:00)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="at-form-row">
+              <label class="at-form-label" for="note">Ghi chú thêm (không bắt buộc)</label>
+              <textarea class="at-form-control" id="note" name="note" rows="3" placeholder="Bạn có điều gì muốn chúng tôi lưu ý trước không?"></textarea>
+            </div>
+
+            <div class="at-form-divider"></div>
+
+            <button type="submit" class="at-btn at-btn-accent at-btn-lg">Gửi yêu cầu đặt lịch</button>
+            <p class="at-form-note">Bằng việc gửi form, bạn đồng ý để Nha Khoa An Tâm liên hệ xác nhận lịch hẹn qua số điện thoại đã cung cấp.</p>
+          </form>
+
+          <div id="bookingSuccess" class="d-none" role="status" aria-live="polite">
+            <div class="at-divider"></div>
+            <h3 class="at-booking-title" style="font-size:22px">Cảm ơn bạn!</h3>
+            <p class="at-sub">Yêu cầu đặt lịch đã được ghi nhận. Chúng tôi sẽ liên hệ xác nhận trong vòng 2 giờ làm việc.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-5" data-reveal data-delay="1">
+        <span class="at-eyebrow"><span class="at-eyebrow-line"></span>Vì sao chọn chúng tôi</span>
+        <h2 class="at-title" style="font-size:clamp(24px,3vw,34px)">An tâm từ <em>lần hẹn đầu tiên</em></h2>
+        <p class="at-sub mb-4">Chúng tôi hiểu rằng đặt lịch khám răng đôi khi cũng khiến bạn lo lắng — vì vậy quy trình được giữ đơn giản nhất có thể.</p>
+
+        <div class="at-contact-item">
+          <div class="at-contact-label">Xác nhận nhanh</div>
+          <div class="at-contact-value">Trong 2 giờ</div>
+          <div class="at-contact-note">Chúng tôi gọi điện xác nhận ngay khi nhận được yêu cầu.</div>
+        </div>
+        <div class="at-contact-item">
+          <div class="at-contact-label">Giờ làm việc</div>
+          <div class="at-contact-value">8:00 – 20:00</div>
+          <div class="at-contact-note">Thứ 2 – Chủ nhật, kể cả ngày lễ.</div>
+        </div>
+        <div class="at-contact-item">
+          <div class="at-contact-label">Cần hỗ trợ ngay?</div>
+          <div class="at-contact-value">[SỐ ĐIỆN THOẠI]</div>
+          <div class="at-contact-note">Gọi trực tiếp hoặc nhắn Zalo với chúng tôi.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="at-footer">
+  <div class="wd-container">
+    <div class="at-ft-top">
+      <div>
+        <div class="at-ft-logo"><span class="at-logo-dot"></span>Nha Khoa <em>An Tâm</em></div>
+        <p class="at-ft-desc">Phòng khám nha khoa tổng quát với không gian tối giản, yên tĩnh — nơi mọi lo âu được lắng nghe trước khi điều trị.</p>
+        <a href="dat-lich.html" class="at-btn at-btn-inv">Đặt lịch khám</a>
+      </div>
+      <div class="at-ft-links-grid">
+        <div>
+          <div class="at-ft-col-title">Dịch vụ</div>
+          <div class="at-ft-links">
+            <a href="dich-vu.html">Khám tổng quát</a>
+            <a href="dich-vu.html">Trám răng thẩm mỹ</a>
+            <a href="dich-vu.html">Điều trị nha chu</a>
+            <a href="dich-vu.html">Tẩy trắng răng</a>
+          </div>
+        </div>
+        <div>
+          <div class="at-ft-col-title">Liên hệ</div>
+          <div class="at-ft-links">
+            <a href="tel:[SỐ ĐIỆN THOẠI]">[SỐ ĐIỆN THOẠI]</a>
+            <a href="mailto:[EMAIL]">[EMAIL]</a>
+            <span>[ĐỊA CHỈ PHÒNG KHÁM]</span>
+            <span>Thứ 2 – Chủ nhật · 8:00 – 20:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="at-ft-bottom">
+      <span class="at-ft-copy">© 2026 Nha Khoa An Tâm. Mọi quyền được bảo lưu.</span>
+      <div class="at-ft-line"></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ ZALO FLOAT ══ -->
+<div class="at-zf">
+  <span class="at-zf-tip">Nhắn tin Zalo</span>
+  <a href="https://zalo.me/[SỐ_ZALO]" class="at-zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo">
+    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M13 2C7.477 2 3 6.477 3 12c0 2.136.67 4.116 1.808 5.74L3 23l5.418-1.764A9.953 9.953 0 0013 22c5.523 0 10-4.477 10-10S18.523 2 13 2z" fill="white"/>
+      <path d="M8.5 10h3m-3 3h2m2-3v3m2-3v3" stroke="#0068FF" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const nav = document.getElementById('nav');
+if (nav) {
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('at-nav-scrolled', window.scrollY > 60);
+  }, { passive: true });
+}
+
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const isOpen = mob.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+  mob.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+}
+
+// ── Booking form: validate + hiện trạng thái thành công (demo, không gửi server) ──
+const bookingForm = document.getElementById('bookingForm');
+const bookingSuccess = document.getElementById('bookingSuccess');
+if (bookingForm) {
+  bookingForm.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!bookingForm.checkValidity()) {
+      bookingForm.reportValidity();
+      return;
+    }
+    bookingForm.classList.add('d-none');
+    bookingSuccess.classList.remove('d-none');
+  });
+}
+
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+</script>
+</body>
+</html>

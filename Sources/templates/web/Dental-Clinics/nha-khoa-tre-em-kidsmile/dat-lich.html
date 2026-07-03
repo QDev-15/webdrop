@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đặt Lịch Khám Cho Bé | KidSmile</title>
+<meta name="description" content="Đặt lịch khám răng cho bé tại KidSmile chỉ trong 1 phút — chọn dịch vụ, ngày giờ phù hợp, đội ngũ sẽ liên hệ xác nhận trong thời gian sớm nhất.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- ══ NAV-5 ══ -->
+<nav id="nav">
+  <div class="ks-nav-inner">
+    <a class="ks-logo" href="index.html">
+      <span class="ks-logo-mark">🦷</span>
+      <span>Kid<em>Smile</em></span>
+    </a>
+    <button class="ks-burger" id="navBurger" aria-label="Mở menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="ks-nav-row">
+      <div class="ks-nav-row-inner">
+        <div class="ks-nav-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="dich-vu.html">Dịch vụ</a>
+          <a href="cam-nang-cha-me.html">Cẩm nang cha mẹ</a>
+          <a href="bac-si.html">Đội ngũ bác sĩ</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+        <a href="dat-lich.html" class="ks-btn ks-btn-primary ks-nav-cta active">Đặt lịch khám</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="ks-nav-mob" id="navMob" role="dialog" aria-modal="true" aria-label="Menu di động">
+  <button class="ks-nm-close" id="navMobClose" aria-label="Đóng menu">✕</button>
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ</a>
+  <a href="cam-nang-cha-me.html">Cẩm nang cha mẹ</a>
+  <a href="bac-si.html">Đội ngũ bác sĩ</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="ks-btn ks-btn-primary mt-2">Đặt lịch khám</a>
+</div>
+
+<!-- ══ PAGE HEADER ══ -->
+<section class="ks-page-head">
+  <div class="ks-hero-blob ks-hero-blob-1"></div>
+  <div class="ks-hero-blob ks-hero-blob-3"></div>
+  <div class="wd-container" style="position:relative;z-index:1">
+    <div class="ks-crumb" data-reveal><a href="index.html">Trang chủ</a><span>/</span>Đặt lịch khám</div>
+    <span class="ks-eyebrow" data-reveal>Chỉ mất 1 phút</span>
+    <h1 class="ks-title ks-mx-auto" style="max-width:640px" data-reveal data-delay="1">Đặt lịch khám cho bé — <strong>dễ dàng &amp; nhanh chóng</strong></h1>
+    <p class="ks-sub ks-mx-auto" data-reveal data-delay="2">Điền thông tin bên dưới, đội ngũ KidSmile sẽ gọi điện xác nhận lịch hẹn trong vòng 2 giờ làm việc.</p>
+  </div>
+</section>
+
+<!-- ══ FORM ĐẶT LỊCH ══ -->
+<section class="ks-sec-pad">
+  <div class="wd-container">
+    <div class="row g-5">
+      <div class="col-lg-7" data-reveal>
+        <div class="ks-form-wrap">
+          <div class="ks-form-success" id="formSuccess">🎉 <span>Đặt lịch thành công! Chúng tôi sẽ liên hệ xác nhận sớm nhất.</span></div>
+          <form id="bookingForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="ks-form-group">
+                  <label class="ks-form-label" for="parentName">Họ tên phụ huynh <span class="req">*</span></label>
+                  <input type="text" id="parentName" name="parentName" class="ks-form-control" placeholder="Nguyễn Thị A" required>
+                  <div class="ks-form-error">Vui lòng nhập họ tên phụ huynh</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ks-form-group">
+                  <label class="ks-form-label" for="phone">Số điện thoại <span class="req">*</span></label>
+                  <input type="tel" id="phone" name="phone" class="ks-form-control" placeholder="09xxxxxxxx" required pattern="[0-9]{9,11}">
+                  <div class="ks-form-error">Vui lòng nhập số điện thoại hợp lệ (9-11 số)</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ks-form-group">
+                  <label class="ks-form-label" for="childName">Tên bé <span class="req">*</span></label>
+                  <input type="text" id="childName" name="childName" class="ks-form-control" placeholder="Bé Bảo An" required>
+                  <div class="ks-form-error">Vui lòng nhập tên bé</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ks-form-group">
+                  <label class="ks-form-label" for="childAge">Tuổi của bé <span class="req">*</span></label>
+                  <input type="number" id="childAge" name="childAge" class="ks-form-control" placeholder="5" min="0" max="16" required>
+                  <div class="ks-form-error">Vui lòng nhập tuổi hợp lệ (0-16)</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ks-form-group">
+                  <label class="ks-form-label" for="bookDate">Ngày mong muốn <span class="req">*</span></label>
+                  <input type="date" id="bookDate" name="bookDate" class="ks-form-control" required>
+                  <div class="ks-form-error">Vui lòng chọn ngày khám</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ks-form-group">
+                  <label class="ks-form-label" for="bookTime">Giờ mong muốn <span class="req">*</span></label>
+                  <select id="bookTime" name="bookTime" class="ks-form-control" required>
+                    <option value="">-- Chọn khung giờ --</option>
+                    <option value="08:00-09:00">08:00 — 09:00</option>
+                    <option value="09:00-10:00">09:00 — 10:00</option>
+                    <option value="10:00-11:00">10:00 — 11:00</option>
+                    <option value="14:00-15:00">14:00 — 15:00</option>
+                    <option value="15:00-16:00">15:00 — 16:00</option>
+                    <option value="16:00-17:00">16:00 — 17:00</option>
+                    <option value="17:00-18:00">17:00 — 18:00</option>
+                  </select>
+                  <div class="ks-form-error">Vui lòng chọn khung giờ</div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="ks-form-group">
+                  <label class="ks-form-label" for="service">Dịch vụ quan tâm</label>
+                  <select id="service" name="service" class="ks-form-control">
+                    <option value="">-- Chọn dịch vụ (không bắt buộc) --</option>
+                    <option value="kham-dinh-ky">Khám định kỳ</option>
+                    <option value="tram-rang-sua">Trám răng sữa</option>
+                    <option value="nho-rang-sua">Nhổ răng sữa</option>
+                    <option value="sealant">Trám bít hố rãnh (Sealant)</option>
+                    <option value="dieu-tri-tuy">Điều trị tủy răng sữa</option>
+                    <option value="chinh-nha-som">Tư vấn chỉnh nha sớm</option>
+                    <option value="khac">Khác / chưa rõ, cần tư vấn</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="ks-form-group">
+                  <label class="ks-form-label" for="note">Ghi chú thêm</label>
+                  <textarea id="note" name="note" class="ks-form-control" placeholder="Ví dụ: bé hơi sợ nha sĩ, mong bác sĩ nhẹ nhàng hướng dẫn trước..."></textarea>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="ks-btn ks-btn-primary ks-btn-lg ks-btn-block mt-2">Xác nhận đặt lịch →</button>
+            <p class="ks-form-hint ks-text-center mt-3">Bằng việc đặt lịch, bạn đồng ý để KidSmile liên hệ xác nhận qua điện thoại.</p>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-5" data-reveal data-delay="1">
+        <div class="ks-info-card">
+          <div class="ks-info-row">
+            <div class="ks-info-icon">📞</div>
+            <div>
+              <div class="ks-info-title">Hotline đặt lịch nhanh</div>
+              <div class="ks-info-text"><a href="tel:[SỐ ĐIỆN THOẠI]">[SỐ ĐIỆN THOẠI]</a></div>
+            </div>
+          </div>
+          <div class="ks-info-row">
+            <div class="ks-info-icon">🕐</div>
+            <div>
+              <div class="ks-info-title">Giờ làm việc</div>
+              <div class="ks-info-text">Thứ 2 — Chủ nhật: 8:00 — 20:00</div>
+            </div>
+          </div>
+          <div class="ks-info-row">
+            <div class="ks-info-icon">⚡</div>
+            <div>
+              <div class="ks-info-title">Xác nhận nhanh</div>
+              <div class="ks-info-text">Đội ngũ gọi lại xác nhận trong vòng 2 giờ làm việc</div>
+            </div>
+          </div>
+        </div>
+        <div class="ks-info-card is-lilac">
+          <div class="ks-info-row">
+            <div class="ks-info-icon">🎒</div>
+            <div>
+              <div class="ks-info-title">Chuẩn bị gì cho bé?</div>
+              <div class="ks-info-text">Cho bé ăn nhẹ trước khi đến, mang theo đồ chơi/thú bông yêu thích nếu bé cần an tâm.</div>
+            </div>
+          </div>
+          <div class="ks-info-row">
+            <div class="ks-info-icon">📋</div>
+            <div>
+              <div class="ks-info-title">Hồ sơ cần mang theo</div>
+              <div class="ks-info-text">Sổ khám bệnh cũ (nếu có) và thẻ bảo hiểm y tế của bé.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="ks-footer">
+  <div class="wd-container">
+    <div class="row g-4 pb-4">
+      <div class="col-lg-4 col-md-12">
+        <div class="ks-ft-logo"><span class="ks-logo-mark">🦷</span> Kid<em style="color:var(--accent)">Smile</em></div>
+        <p class="ks-ft-desc">Nha khoa chuyên biệt cho trẻ em — nơi mỗi buổi khám răng là một trải nghiệm vui vẻ, an toàn và không đáng sợ.</p>
+        <div class="ks-ft-socials">
+          <a href="https://facebook.com/[TRANG_FACEBOOK]" target="_blank" class="ks-ft-soc fb" rel="noopener noreferrer" aria-label="Facebook">f</a>
+          <a href="https://instagram.com/[TRANG_INSTAGRAM]" target="_blank" class="ks-ft-soc ig" rel="noopener noreferrer" aria-label="Instagram">ig</a>
+          <a href="https://youtube.com/[KENH_YOUTUBE]" target="_blank" class="ks-ft-soc yt" rel="noopener noreferrer" aria-label="YouTube">▶</a>
+          <a href="https://zalo.me/[SỐ_ZALO]" class="ks-ft-soc zl" target="_blank" rel="noopener noreferrer" aria-label="Zalo">Za</a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="ks-ft-col-title">Dịch vụ</div>
+        <div class="ks-ft-links">
+          <a href="dich-vu.html">Khám định kỳ</a>
+          <a href="dich-vu.html">Trám răng sữa</a>
+          <a href="dich-vu.html">Nhổ răng sữa</a>
+          <a href="dich-vu.html">Sealant</a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6">
+        <div class="ks-ft-col-title">Liên kết</div>
+        <div class="ks-ft-links">
+          <a href="cam-nang-cha-me.html">Cẩm nang cha mẹ</a>
+          <a href="bac-si.html">Đội ngũ bác sĩ</a>
+          <a href="dat-lich.html">Đặt lịch khám</a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-12">
+        <div class="ks-ft-col-title">Liên hệ</div>
+        <div class="ks-ft-links">
+          <a href="tel:[SỐ ĐIỆN THOẠI]">[SỐ ĐIỆN THOẠI]</a>
+          <a href="mailto:[EMAIL]">[EMAIL]</a>
+          <span>[ĐỊA CHỈ PHÒNG KHÁM]</span>
+          <span>Mở cửa: 8:00 — 20:00 (T2 — CN)</span>
+        </div>
+      </div>
+    </div>
+    <div class="ks-ft-bottom">
+      <span class="ks-ft-copy">© 2026 KidSmile — Nha Khoa Trẻ Em. Mọi quyền được bảo lưu.</span>
+      <span class="ks-ft-made">Made with 💜 for happy smiles</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ ZALO FLOAT ══ -->
+<div class="ks-zf">
+  <span class="ks-zf-tip">Nhắn tin Zalo</span>
+  <a href="https://zalo.me/[SỐ_ZALO]" class="ks-zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo">
+    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M13 2C7.477 2 3 6.477 3 12c0 2.136.67 4.116 1.808 5.74L3 23l5.418-1.764A9.953 9.953 0 0013 22c5.523 0 10-4.477 10-10S18.523 2 13 2z" fill="white"/>
+      <path d="M8.5 10h3m-3 3h2m2-3v3m2-3v3" stroke="#0068FF" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+const mobClose = document.getElementById('navMobClose');
+function closeMob() {
+  mob.classList.remove('open');
+  burger.classList.remove('open');
+  document.body.style.overflow = '';
+}
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const isOpen = mob.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  mobClose.addEventListener('click', closeMob);
+  mob.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMob));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) closeMob();
+  });
+}
+
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+// === Booking form validation ===
+const bookingForm = document.getElementById('bookingForm');
+const formSuccess = document.getElementById('formSuccess');
+const dateInput = document.getElementById('bookDate');
+if (dateInput) {
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.setAttribute('min', today);
+}
+if (bookingForm) {
+  bookingForm.addEventListener('submit', e => {
+    e.preventDefault();
+    let valid = true;
+    bookingForm.querySelectorAll('[required]').forEach(field => {
+      if (!field.value.trim()) {
+        field.classList.add('is-invalid');
+        valid = false;
+      } else {
+        field.classList.remove('is-invalid');
+      }
+    });
+    const phoneField = document.getElementById('phone');
+    if (phoneField.value && !/^[0-9]{9,11}$/.test(phoneField.value.trim())) {
+      phoneField.classList.add('is-invalid');
+      valid = false;
+    }
+    if (!valid) return;
+    formSuccess.classList.add('show');
+    bookingForm.reset();
+    formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+  bookingForm.querySelectorAll('.ks-form-control').forEach(field => {
+    field.addEventListener('input', () => field.classList.remove('is-invalid'));
+  });
+}
+</script>
+</body>
+</html>

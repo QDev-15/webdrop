@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nha Khoa Quốc Tế Việt Đức — Hệ Thống Nha Khoa Chuẩn Quốc Tế</title>
+  <meta name="description" content="Nha Khoa Quốc Tế Việt Đức — hệ thống nha khoa đa chi nhánh, đội ngũ bác sĩ trong nước và quốc tế, trang thiết bị hiện đại chuẩn Châu Âu.">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ══ NAV — Nav-4: Minimal Top Line ══ -->
+<nav id="nav">
+  <div class="wd-container">
+    <div class="vd-nav-inner">
+      <a href="index.html" class="vd-logo">
+        <div class="vd-logo-mark">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.5 2 6 4.2 6 7.5c0 2.1.8 3.4 1.6 4.7.7 1.1 1.4 2.2 1.6 3.9.2 1.7.5 4.4 1.5 5.4.4.4.9.5 1.3.5s.9-.1 1.3-.5c1-1 1.3-3.7 1.5-5.4.2-1.7.9-2.8 1.6-3.9.8-1.3 1.6-2.6 1.6-4.7C18 4.2 15.5 2 12 2z"/></svg>
+        </div>
+        <div class="vd-logo-text">
+          <span class="vd-logo-name">Việt Đức</span>
+          <span class="vd-logo-sub">International Dental</span>
+        </div>
+      </a>
+
+      <ul class="vd-nav-links">
+        <li><a href="index.html" class="active">Trang chủ</a></li>
+        <li><a href="dich-vu.html">Dịch vụ</a></li>
+        <li><a href="co-so-vat-chat.html">Cơ sở vật chất</a></li>
+        <li><a href="bac-si.html">Bác sĩ</a></li>
+        <li><a href="lien-he.html">Liên hệ</a></li>
+      </ul>
+
+      <div class="vd-nav-right">
+        <a href="tel:19002024" class="vd-nav-phone">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          1900 2024
+        </a>
+        <a href="dat-lich.html" class="vd-nav-cta">Đặt lịch khám</a>
+      </div>
+
+      <button class="vd-burger" id="navBurger" aria-label="Mở menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="vd-mobile-menu" id="navMob">
+  <a href="index.html" class="active">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ</a>
+  <a href="co-so-vat-chat.html">Cơ sở vật chất</a>
+  <a href="bac-si.html">Bác sĩ</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="vd-nav-cta">Đặt lịch khám</a>
+</div>
+
+<!-- ══ HERO — H3: Magazine Grid ══ -->
+<section class="vd-hero">
+  <div class="wd-container">
+    <div class="vd-hero-row">
+      <div data-reveal>
+        <div class="vd-hero-badge">Hệ thống nha khoa chuẩn quốc tế</div>
+        <h1 class="vd-hero-title">Nụ cười khỏe đẹp<br>theo <em>chuẩn Việt Đức</em></h1>
+        <p class="vd-hero-sub">
+          Hệ thống nha khoa đa chi nhánh với đội ngũ bác sĩ trong nước và quốc tế, quy trình điều trị chuẩn hóa theo tiêu chuẩn Châu Âu — an toàn, minh bạch, tận tâm.
+        </p>
+        <div class="vd-hero-btns">
+          <a href="dat-lich.html" class="vd-btn vd-btn-primary vd-btn-lg">Đặt lịch khám ngay</a>
+          <a href="dich-vu.html" class="vd-btn vd-btn-outline vd-btn-lg">Xem dịch vụ</a>
+        </div>
+        <div class="vd-hero-trust">
+          <div class="vd-hero-trust-item">
+            <div class="vd-hero-trust-num"><span data-counter="12" data-suffix="">12</span></div>
+            <div class="vd-hero-trust-label">Chi nhánh<br>toàn quốc</div>
+          </div>
+          <div class="vd-hero-trust-item">
+            <div class="vd-hero-trust-num"><span data-counter="85" data-suffix="+">85+</span></div>
+            <div class="vd-hero-trust-label">Bác sĩ<br>chuyên khoa</div>
+          </div>
+          <div class="vd-hero-trust-item">
+            <div class="vd-hero-trust-num"><span data-counter="15" data-suffix="">15</span></div>
+            <div class="vd-hero-trust-label">Năm<br>hoạt động</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vd-hero-grid" data-reveal data-delay="1">
+        <img class="vd-hg-1" src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=700&q=80&auto=format&fit=crop" alt="Phòng khám nha khoa Việt Đức hiện đại chuẩn quốc tế">
+        <img class="vd-hg-2" src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=500&q=80&auto=format&fit=crop" alt="Bác sĩ nha khoa Việt Đức thăm khám bệnh nhân">
+        <img class="vd-hg-3" src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=500&q=80&auto=format&fit=crop" alt="Trang thiết bị nha khoa hiện đại nhập khẩu Châu Âu">
+        <img class="vd-hg-4" src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=900&q=80&auto=format&fit=crop" alt="Không gian phòng khám nha khoa Việt Đức sạch sẽ, chuyên nghiệp">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ USP — FEATURE-ICON-ROW ══ -->
+<section class="vd-usp">
+  <div class="wd-container">
+    <div class="row g-0">
+      <div class="col-lg-3 col-sm-6 vd-usp-col" data-reveal>
+        <div class="vd-usp-item">
+          <div class="vd-usp-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+          </div>
+          <div>
+            <div class="vd-usp-title">Chuẩn quốc tế</div>
+            <p class="vd-usp-desc">Quy trình điều trị vô khuẩn 1 chiều theo tiêu chuẩn Châu Âu, kiểm định định kỳ.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6 vd-usp-col" data-reveal data-delay="1">
+        <div class="vd-usp-item">
+          <div class="vd-usp-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          </div>
+          <div>
+            <div class="vd-usp-title">Đội ngũ đa quốc gia</div>
+            <p class="vd-usp-desc">Bác sĩ trong nước và chuyên gia quốc tế phối hợp điều trị các ca phức tạp.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6 vd-usp-col" data-reveal data-delay="2">
+        <div class="vd-usp-item">
+          <div class="vd-usp-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.25C18 3.12 16.88 2 15.25 2c-1.3 0-2.18.68-2.83 1.73L12 4.97l-.42-.24C10.93 3.68 10.05 3 8.75 3 7.12 3 6 4.12 6 5.75c0 .37.11.81.18 1.25H4c-1.11 0-1.99.9-1.99 2L2 20c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z"/></svg>
+          </div>
+          <div>
+            <div class="vd-usp-title">Trang thiết bị hiện đại</div>
+            <p class="vd-usp-desc">Máy CT Cone Beam, scan 3D, laser nha khoa nhập khẩu từ Đức, Mỹ, Hàn Quốc.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6" data-reveal data-delay="3">
+        <div class="vd-usp-item">
+          <div class="vd-usp-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z"/></svg>
+          </div>
+          <div>
+            <div class="vd-usp-title">Bảo hành minh bạch</div>
+            <p class="vd-usp-desc">Chính sách bảo hành rõ ràng theo từng dịch vụ, hợp đồng điều trị chi tiết.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DỊCH VỤ NỔI BẬT — GRID-CARDS ══ -->
+<section class="vd-sec-pad">
+  <div class="wd-container">
+    <div class="row align-items-end g-4 mb-5">
+      <div class="col-lg-7" data-reveal>
+        <div class="vd-eyebrow">Dịch vụ nổi bật</div>
+        <h2 class="vd-h2">Giải pháp nha khoa <em>toàn diện</em><br>cho mọi nhu cầu</h2>
+        <p class="vd-lead">Từ nha khoa tổng quát đến các ca chỉnh nha, implant phức tạp — đội ngũ chuyên khoa Việt Đức đồng hành cùng bạn ở mọi giai đoạn.</p>
+      </div>
+      <div class="col-lg-5 text-lg-end" data-reveal data-delay="1">
+        <a href="dich-vu.html" class="vd-btn vd-btn-outline">Xem tất cả dịch vụ</a>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6" data-reveal>
+        <div class="vd-svc-card">
+          <div class="vd-svc-thumb-wrap">
+            <img class="vd-svc-thumb" src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=600&q=80&auto=format&fit=crop" alt="Trồng răng Implant chuẩn quốc tế tại Nha Khoa Việt Đức">
+            <span class="vd-svc-tag">Phổ biến</span>
+          </div>
+          <div class="vd-svc-body">
+            <div class="vd-svc-name">Trồng răng Implant</div>
+            <p class="vd-svc-desc">Implant nhập khẩu Đức, Thụy Sĩ — phục hình răng mất chắc chắn, thẩm mỹ tự nhiên như răng thật.</p>
+            <a href="dich-vu.html#implant" class="vd-svc-link">Tìm hiểu thêm
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6" data-reveal data-delay="1">
+        <div class="vd-svc-card">
+          <div class="vd-svc-thumb-wrap">
+            <img class="vd-svc-thumb" src="https://images.unsplash.com/photo-1601585582168-1a75e9f4b1cf?w=600&q=80&auto=format&fit=crop" alt="Niềng răng chỉnh nha tại Nha Khoa Việt Đức">
+          </div>
+          <div class="vd-svc-body">
+            <div class="vd-svc-name">Niềng răng &amp; Chỉnh nha</div>
+            <p class="vd-svc-desc">Niềng mắc cài kim loại, sứ, và khay trong suốt Invisalign — lộ trình cá nhân hóa từng ca.</p>
+            <a href="dich-vu.html#chinh-nha" class="vd-svc-link">Tìm hiểu thêm
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6" data-reveal data-delay="2">
+        <div class="vd-svc-card">
+          <div class="vd-svc-thumb-wrap">
+            <img class="vd-svc-thumb" src="https://images.unsplash.com/photo-1571772805064-207c8435df79?w=600&q=80&auto=format&fit=crop" alt="Bọc răng sứ thẩm mỹ tại Nha Khoa Việt Đức">
+          </div>
+          <div class="vd-svc-body">
+            <div class="vd-svc-name">Bọc răng sứ thẩm mỹ</div>
+            <p class="vd-svc-desc">Răng sứ Zirconia, Emax cao cấp — phục hình thẩm mỹ, bền chắc, bảo hành đến 10 năm.</p>
+            <a href="dich-vu.html#rang-su" class="vd-svc-link">Tìm hiểu thêm
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6" data-reveal>
+        <div class="vd-svc-card">
+          <div class="vd-svc-thumb-wrap">
+            <img class="vd-svc-thumb" src="https://images.unsplash.com/photo-1609207825181-52d3214556dd?w=600&q=80&auto=format&fit=crop" alt="Tẩy trắng răng công nghệ Laser tại Nha Khoa Việt Đức">
+          </div>
+          <div class="vd-svc-body">
+            <div class="vd-svc-name">Tẩy trắng răng Laser</div>
+            <p class="vd-svc-desc">Công nghệ Laser Whitening an toàn cho men răng, hiệu quả rõ rệt chỉ sau 1 lần điều trị.</p>
+            <a href="dich-vu.html#tay-trang" class="vd-svc-link">Tìm hiểu thêm
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6" data-reveal data-delay="1">
+        <div class="vd-svc-card">
+          <div class="vd-svc-thumb-wrap">
+            <img class="vd-svc-thumb" src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=600&q=80&auto=format&fit=crop" alt="Nha khoa tổng quát và khám định kỳ tại Nha Khoa Việt Đức">
+          </div>
+          <div class="vd-svc-body">
+            <div class="vd-svc-name">Nha khoa tổng quát</div>
+            <p class="vd-svc-desc">Khám, cạo vôi, trám răng, nhổ răng khôn — chăm sóc răng miệng định kỳ cho cả gia đình.</p>
+            <a href="dich-vu.html#tong-quat" class="vd-svc-link">Tìm hiểu thêm
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6" data-reveal data-delay="2">
+        <div class="vd-svc-card">
+          <div class="vd-svc-thumb-wrap">
+            <img class="vd-svc-thumb" src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80&auto=format&fit=crop" alt="Nha khoa trẻ em tại Nha Khoa Việt Đức">
+          </div>
+          <div class="vd-svc-body">
+            <div class="vd-svc-name">Nha khoa trẻ em</div>
+            <p class="vd-svc-desc">Không gian thân thiện, bác sĩ chuyên khoa nhi — giúp bé yêu thích việc khám răng.</p>
+            <a href="dich-vu.html#tre-em" class="vd-svc-link">Tìm hiểu thêm
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STAT BAR ══ -->
+<section class="vd-stat-bar">
+  <div class="wd-container">
+    <div class="row g-0 py-4">
+      <div class="col-6 col-md-3 vd-stat-item vd-stat-divider" data-reveal>
+        <div class="vd-stat-num"><span data-counter="12">12</span></div>
+        <div class="vd-stat-label">Chi nhánh trên<br>toàn quốc</div>
+      </div>
+      <div class="col-6 col-md-3 vd-stat-item vd-stat-divider" data-reveal data-delay="1">
+        <div class="vd-stat-num"><span data-counter="85" data-suffix="+">85+</span></div>
+        <div class="vd-stat-label">Bác sĩ trong nước<br>&amp; quốc tế</div>
+      </div>
+      <div class="col-6 col-md-3 vd-stat-item vd-stat-divider" data-reveal data-delay="2">
+        <div class="vd-stat-num"><span data-counter="120" data-suffix="K+">120K+</span></div>
+        <div class="vd-stat-label">Bệnh nhân<br>đã điều trị</div>
+      </div>
+      <div class="col-6 col-md-3 vd-stat-item" data-reveal data-delay="3">
+        <div class="vd-stat-num"><span data-counter="98" data-suffix="%">98%</span></div>
+        <div class="vd-stat-label">Tỷ lệ khách hàng<br>hài lòng</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CƠ SỞ VẬT CHẤT PREVIEW — ALTERNATING STRIPS ══ -->
+<section class="vd-strip">
+  <div class="wd-container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 order-lg-1" data-reveal>
+        <div class="vd-strip-img-wrap">
+          <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80&auto=format&fit=crop" alt="Không gian phòng khám hiện đại tại Nha Khoa Quốc Tế Việt Đức">
+        </div>
+      </div>
+      <div class="col-lg-6 order-lg-2 vd-strip-content" data-reveal data-delay="1">
+        <div class="vd-eyebrow">Cơ sở vật chất</div>
+        <h2 class="vd-h2">Hệ thống <em>12 chi nhánh</em><br>trang bị chuẩn Châu Âu</h2>
+        <p class="vd-lead">Mỗi chi nhánh Việt Đức đều được đầu tư đồng bộ về không gian, trang thiết bị và quy trình vô khuẩn — mang lại trải nghiệm nhất quán tại bất kỳ đâu.</p>
+        <ul class="vd-strip-list">
+          <li>Phòng điều trị riêng biệt, cách âm, ánh sáng chuẩn y khoa</li>
+          <li>Hệ thống tiệt trùng dụng cụ tự động Autoclave Class B</li>
+          <li>Máy chụp CT Cone Beam 3D độ phân giải cao</li>
+          <li>Khu chờ tiện nghi, wifi miễn phí, khu vui chơi trẻ em</li>
+        </ul>
+        <a href="co-so-vat-chat.html" class="vd-btn vd-btn-primary mt-4">Xem toàn bộ cơ sở vật chất</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ĐÁNH GIÁ KHÁCH HÀNG — GRID-CARDS ══ -->
+<section class="vd-sec-pad" style="background:var(--surface);">
+  <div class="wd-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="vd-eyebrow center">Đánh giá khách hàng</div>
+      <h2 class="vd-h2">Khách hàng nói gì về <em>Việt Đức</em></h2>
+      <p class="vd-lead center">Sự hài lòng của khách hàng là thước đo quan trọng nhất cho chất lượng dịch vụ của chúng tôi.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4" data-reveal>
+        <div class="vd-review-card">
+          <div class="vd-review-stars">★★★★★</div>
+          <p class="vd-review-text">Mình trồng Implant tại chi nhánh Quận 1, bác sĩ tư vấn rất kỹ và chi phí minh bạch ngay từ đầu. Sau 6 tháng răng ổn định, ăn nhai thoải mái.</p>
+          <div class="vd-review-foot">
+            <img class="vd-review-av" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80&auto=format&fit=crop&crop=face" alt="Khách hàng Nguyễn Thị H đánh giá dịch vụ Implant">
+            <div>
+              <div class="vd-review-name">Nguyễn Thị H.</div>
+              <div class="vd-review-role">Khách hàng — Trồng Implant</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4" data-reveal data-delay="1">
+        <div class="vd-review-card">
+          <div class="vd-review-stars">★★★★★</div>
+          <p class="vd-review-text">Con gái mình niềng răng tại đây gần 2 năm, bác sĩ theo sát tiến độ từng tháng, phòng khám sạch sẽ chuyên nghiệp. Kết quả vượt mong đợi.</p>
+          <div class="vd-review-foot">
+            <img class="vd-review-av" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&q=80&auto=format&fit=crop&crop=face" alt="Khách hàng Trần Văn K đánh giá dịch vụ niềng răng">
+            <div>
+              <div class="vd-review-name">Trần Văn K.</div>
+              <div class="vd-review-role">Phụ huynh — Niềng răng</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4" data-reveal data-delay="2">
+        <div class="vd-review-card">
+          <div class="vd-review-stars">★★★★★</div>
+          <p class="vd-review-text">Đi công tác nhiều nơi nhưng vẫn tái khám được vì hệ thống có chi nhánh khắp cả nước, hồ sơ điều trị liên thông rất tiện lợi.</p>
+          <div class="vd-review-foot">
+            <img class="vd-review-av" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&q=80&auto=format&fit=crop&crop=face" alt="Khách hàng Lê Minh T đánh giá hệ thống đa chi nhánh">
+            <div>
+              <div class="vd-review-name">Lê Minh T.</div>
+              <div class="vd-review-role">Khách hàng — Nha khoa tổng quát</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ĐẶT LỊCH ══ -->
+<section class="vd-cta-section vd-sec-pad">
+  <div class="wd-container vd-cta-inner">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6" data-reveal>
+        <h2 class="vd-cta-title">Đặt lịch khám ngay<br>hôm nay</h2>
+        <p class="vd-cta-sub">Đội ngũ tư vấn Việt Đức sẽ liên hệ xác nhận lịch hẹn trong vòng 30 phút — chọn chi nhánh gần bạn nhất.</p>
+        <div class="vd-cta-contact">
+          <div class="vd-cta-contact-item">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            1900 2024
+          </div>
+          <div class="vd-cta-contact-item">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            dangky@vietduc-dental.vn
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6" data-reveal data-delay="1">
+        <div class="vd-form-card">
+          <div class="vd-form-title">Đăng ký đặt lịch khám</div>
+          <p class="vd-form-sub">Điền thông tin — bộ phận CSKH sẽ liên hệ ngay</p>
+          <form>
+            <div class="row g-3">
+              <div class="col-6">
+                <div class="vd-form-group">
+                  <label class="vd-form-label" for="idx-cta-name">Họ và tên</label>
+                  <input type="text" id="idx-cta-name" class="vd-form-input" placeholder="Nguyễn Văn A">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="vd-form-group">
+                  <label class="vd-form-label" for="idx-cta-phone">Số điện thoại</label>
+                  <input type="tel" id="idx-cta-phone" class="vd-form-input" placeholder="0912 345 678">
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="vd-form-group">
+                  <label class="vd-form-label" for="idx-cta-branch">Chi nhánh gần bạn</label>
+                  <select id="idx-cta-branch" class="vd-form-select">
+                    <option value="">Chọn chi nhánh</option>
+                    <option>Chi nhánh Quận 1, TP. HCM</option>
+                    <option>Chi nhánh Quận 3, TP. HCM</option>
+                    <option>Chi nhánh Cầu Giấy, Hà Nội</option>
+                    <option>Chi nhánh Hải Châu, Đà Nẵng</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="vd-btn vd-btn-primary vd-btn-block">Gửi yêu cầu đặt lịch</button>
+                <p class="vd-form-note">Thông tin của bạn được bảo mật tuyệt đối theo chính sách của Việt Đức.</p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="vd-footer">
+  <div class="wd-container">
+    <div class="vd-footer-top">
+      <div class="row g-5">
+        <div class="col-lg-4 col-md-6">
+          <div class="vd-footer-logo">
+            <div class="vd-footer-logo-mark">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.5 2 6 4.2 6 7.5c0 2.1.8 3.4 1.6 4.7.7 1.1 1.4 2.2 1.6 3.9.2 1.7.5 4.4 1.5 5.4.4.4.9.5 1.3.5s.9-.1 1.3-.5c1-1 1.3-3.7 1.5-5.4.2-1.7.9-2.8 1.6-3.9.8-1.3 1.6-2.6 1.6-4.7C18 4.2 15.5 2 12 2z"/></svg>
+            </div>
+            <span class="vd-footer-brand">Việt Đức <span>Dental</span></span>
+          </div>
+          <p class="vd-footer-desc">Hệ thống nha khoa chuẩn quốc tế — 12 chi nhánh toàn quốc, đồng hành cùng nụ cười của bạn.</p>
+          <div class="vd-footer-license">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+            Giấy phép hoạt động số [XXXX/SYT-GPHĐ]
+          </div>
+          <div class="vd-social-links">
+            <a href="https://facebook.com/[TRANG_FACEBOOK]" class="vd-social-btn" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://youtube.com/[KENH_YOUTUBE]" class="vd-social-btn" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+            </a>
+            <a href="https://zalo.me/[SO_ZALO]" class="vd-social-btn" aria-label="Zalo" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 5.92 2 10.74c0 2.84 1.5 5.37 3.86 7.02L5.25 21l3.6-1.5C10.07 20.11 11.02 20.3 12 20.3c5.52 0 10-3.91 10-8.74C22 6.74 17.52 2 12 2z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6">
+          <div class="vd-footer-col-title">Dịch vụ</div>
+          <ul class="vd-footer-links">
+            <li><a href="dich-vu.html#implant">Trồng răng Implant</a></li>
+            <li><a href="dich-vu.html#chinh-nha">Niềng răng &amp; Chỉnh nha</a></li>
+            <li><a href="dich-vu.html#rang-su">Bọc răng sứ thẩm mỹ</a></li>
+            <li><a href="dich-vu.html">Xem tất cả</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-6">
+          <div class="vd-footer-col-title">Hệ thống</div>
+          <ul class="vd-footer-links">
+            <li><a href="co-so-vat-chat.html">Cơ sở vật chất</a></li>
+            <li><a href="bac-si.html">Đội ngũ bác sĩ</a></li>
+            <li><a href="dat-lich.html">Đặt lịch khám</a></li>
+            <li><a href="lien-he.html">Liên hệ</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="vd-footer-col-title">Liên hệ</div>
+          <div class="vd-footer-contact-item">
+            <svg class="vd-footer-contact-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <span class="vd-footer-contact-text">Trụ sở: [Số nhà, đường], Quận 1, TP. Hồ Chí Minh</span>
+          </div>
+          <div class="vd-footer-contact-item">
+            <svg class="vd-footer-contact-icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <span class="vd-footer-contact-text">Hotline: 1900 2024 · 7:30–20:00 (tất cả các ngày)</span>
+          </div>
+          <div class="vd-footer-contact-item">
+            <svg class="vd-footer-contact-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <span class="vd-footer-contact-text">dangky@vietduc-dental.vn</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vd-footer-bottom">
+      <p class="vd-footer-copy">&copy; 2026 Nha Khoa Quốc Tế Việt Đức. Bảo lưu mọi quyền.</p>
+      <p class="vd-footer-copy">Sở Y Tế cấp phép hoạt động khám chữa bệnh</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[SỐ_ZALO]" class="vd-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2C6.48 2 2 5.92 2 10.74c0 2.84 1.5 5.37 3.86 7.02L5.25 21l3.6-1.5C10.07 20.11 11.02 20.3 12 20.3c5.52 0 10-3.91 10-8.74C22 6.74 17.52 2 12 2z"/>
+  </svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const nav = document.getElementById('nav');
+  if (nav) window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 20), {passive:true});
+
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+  }, {threshold:.08, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+  const burger = document.getElementById('navBurger');
+  const mob = document.getElementById('navMob');
+  if (burger && mob) {
+    burger.addEventListener('click', () => {
+      const o = mob.classList.toggle('open');
+      burger.classList.toggle('open', o);
+      document.body.style.overflow = o ? 'hidden' : '';
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && mob.classList.contains('open')) {
+        mob.classList.remove('open'); burger.classList.remove('open'); document.body.style.overflow = '';
+      }
+    });
+  }
+
+  document.querySelectorAll('[data-counter]').forEach(el => {
+    const cro = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        const target = +el.dataset.counter;
+        const suffix = el.dataset.suffix || '';
+        let cur = 0; const step = Math.ceil(target / 60);
+        const t = setInterval(() => { cur = Math.min(cur + step, target); el.textContent = cur + suffix; if (cur >= target) clearInterval(t); }, 25);
+        cro.disconnect();
+      }
+    }, {threshold:.5});
+    cro.observe(el);
+  });
+</script>
+</body>
+</html>

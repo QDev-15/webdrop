@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunrise — Nha Khoa Gia Đình | Chăm sóc răng miệng cho cả nhà</title>
+<meta name="description" content="Sunrise — Nha Khoa Gia Đình: phòng khám nha khoa thân thiện, ấm áp, phù hợp mọi lứa tuổi. Khám tổng quát, nha khoa trẻ em, nha chu, thẩm mỹ răng miệng.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav" data-scroll-nav="1">
+  <div class="wd-container">
+    <div class="sr-nav-inner">
+      <a class="sr-logo" href="index.html">
+        <div class="sr-logo-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8">
+            <path d="M12 3c-2.4 0-4 1.7-4 4 0 1.4.5 2.2 1 3 .6.9 1 1.6 1 3.2V19a2 2 0 0 0 4 0v-3.6c0-.8.2-1.2.6-1.8"/>
+            <path d="M12 3c2.4 0 4 1.7 4 4 0 1.4-.5 2.2-1 3-.4.6-.7 1.1-.9 1.9"/>
+          </svg>
+        </div>
+        <div class="sr-logo-text">
+          <span class="sr-logo-name">Sunrise</span>
+          <span class="sr-logo-sub">Nha Khoa Gia Đình</span>
+        </div>
+      </a>
+      <div class="sr-nav-links">
+        <a href="index.html" class="active">Trang chủ</a>
+        <a href="dich-vu.html">Dịch vụ</a>
+        <a href="bac-si.html">Bác sĩ</a>
+        <a href="dat-lich.html">Đặt lịch</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="dat-lich.html" class="sr-nav-cta">Đặt lịch khám</a>
+      <button class="sr-burger" id="navBurger" aria-label="Mở menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="sr-mobile-menu" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ</a>
+  <a href="bac-si.html">Bác sĩ</a>
+  <a href="dat-lich.html">Đặt lịch</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="sr-mob-cta">Đặt lịch khám</a>
+</div>
+
+<!-- HERO: Centered Minimal (H4) -->
+<section class="sr-hero">
+  <div class="sr-hero-blob"></div>
+  <div class="wd-container">
+    <div class="sr-hero-inner">
+      <div class="sr-hero-badge"><span class="sr-hero-badge-dot"></span>Nha khoa gia đình thân thiện</div>
+      <h1 class="sr-hero-title">Nụ cười khỏe mạnh<br>cho <em>cả gia đình</em> bạn</h1>
+      <p class="sr-hero-sub">Sunrise đồng hành cùng mọi thành viên trong gia đình — từ bé nhỏ đến ông bà — với dịch vụ nha khoa tận tâm, nhẹ nhàng và an toàn.</p>
+      <div class="sr-hero-actions">
+        <a href="dat-lich.html" class="sr-btn sr-btn-primary">Đặt lịch khám ngay</a>
+        <a href="dich-vu.html" class="sr-btn sr-btn-ghost">Xem dịch vụ</a>
+      </div>
+      <div class="sr-hero-meta">
+        <div class="sr-hero-meta-item">
+          <div class="sr-hero-meta-avatars">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=70&auto=format&fit=crop" alt="Khách hàng Sunrise">
+            <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&q=70&auto=format&fit=crop" alt="Khách hàng Sunrise">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=70&auto=format&fit=crop" alt="Khách hàng Sunrise">
+          </div>
+          <span>1.200+ gia đình tin tưởng</span>
+        </div>
+        <div class="sr-hero-meta-item"><span class="sr-hero-meta-stars">★★★★★</span><span>4.9/5 từ khách hàng</span></div>
+      </div>
+    </div>
+    <div class="sr-hero-image-wrap" data-reveal data-delay="2">
+      <div class="sr-hero-image">
+        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=900&q=80&auto=format&fit=crop" alt="Nụ cười khỏe mạnh tại Nha Khoa Sunrise">
+      </div>
+      <div class="sr-hero-float-card">
+        <div class="sr-hero-float-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div>
+          <div class="sr-hero-float-num">10 năm</div>
+          <div class="sr-hero-float-label">Đồng hành cùng gia đình Việt</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE-ICON-ROW: USP -->
+<section class="sec-pad" style="padding-top:56px">
+  <div class="wd-container">
+    <div class="sr-feat-row">
+      <div class="sr-feat-item" data-reveal>
+        <div class="sr-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 2l3 6 6 1-4.5 4.5L17.5 20 12 17l-5.5 3 1-6.5L3 9l6-1 3-6z"/></svg></div>
+        <div class="sr-feat-title">Gia đình là ưu tiên</div>
+        <div class="sr-feat-text">Dịch vụ thiết kế riêng cho từng độ tuổi — từ bé 3 tuổi đến ông bà lớn tuổi.</div>
+      </div>
+      <div class="sr-feat-item" data-reveal data-delay="1">
+        <div class="sr-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 22s8-4.5 8-11.5V5l-8-3-8 3v5.5C4 17.5 12 22 12 22z"/></svg></div>
+        <div class="sr-feat-title">An toàn, vô trùng</div>
+        <div class="sr-feat-text">Quy trình khử khuẩn đạt chuẩn quốc tế, dụng cụ vô trùng cho mỗi lượt khám.</div>
+      </div>
+      <div class="sr-feat-item" data-reveal data-delay="2">
+        <div class="sr-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 4h16v10H8l-4 4V4z"/><path d="M8 9h8M8 12h5"/></svg></div>
+        <div class="sr-feat-title">Công nghệ hiện đại</div>
+        <div class="sr-feat-text">Máy chụp X-quang kỹ thuật số, laser nha khoa hạn chế đau và thời gian hồi phục.</div>
+      </div>
+      <div class="sr-feat-item" data-reveal data-delay="3">
+        <div class="sr-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 10-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg></div>
+        <div class="sr-feat-title">Tận tâm, nhẹ nhàng</div>
+        <div class="sr-feat-text">Đội ngũ luôn kiên nhẫn, giải thích rõ ràng để bạn và bé an tâm mỗi lần đến khám.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALTERNATING-STRIPS: Về Sunrise -->
+<section class="sec-pad" style="background:var(--warm)">
+  <div class="wd-container">
+    <div class="sr-strip">
+      <div class="sr-strip-row">
+        <div class="sr-strip-media" data-reveal>
+          <div class="sr-strip-img">
+            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80&auto=format&fit=crop" alt="Không gian phòng khám Nha Khoa Sunrise">
+          </div>
+          <div class="sr-strip-badge">
+            <div class="sr-strip-badge-num">15.000+</div>
+            <div class="sr-strip-badge-label">Lượt khám mỗi năm</div>
+          </div>
+        </div>
+        <div class="sr-strip-content" data-reveal data-delay="1">
+          <div class="sr-eyebrow">Về Sunrise</div>
+          <h2 class="sr-sec-title">Không gian <em>ấm áp</em>, thân thiện như ở nhà</h2>
+          <p class="sr-sec-sub">Sunrise được xây dựng với mong muốn xóa bỏ nỗi lo "sợ đi nha sĩ" — không gian sáng, thoáng, thân thiện với trẻ nhỏ và người lớn tuổi.</p>
+          <ul class="sr-strip-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Khu vui chơi riêng cho trẻ em trong lúc chờ khám</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Ghế khám êm ái, phù hợp người lớn tuổi</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Đặt lịch linh hoạt theo giờ của cả gia đình</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="sr-strip">
+      <div class="sr-strip-row sr-strip-rev">
+        <div class="sr-strip-media" data-reveal>
+          <div class="sr-strip-img">
+            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80&auto=format&fit=crop" alt="Bác sĩ Sunrise thăm khám cho bệnh nhân">
+          </div>
+          <div class="sr-strip-badge">
+            <div class="sr-strip-badge-num">98%</div>
+            <div class="sr-strip-badge-label">Khách hàng hài lòng</div>
+          </div>
+        </div>
+        <div class="sr-strip-content" data-reveal data-delay="1">
+          <div class="sr-eyebrow">Cam kết của chúng tôi</div>
+          <h2 class="sr-sec-title">Chăm sóc <em>tận tâm</em>, minh bạch chi phí</h2>
+          <p class="sr-sec-sub">Mỗi phác đồ điều trị đều được tư vấn kỹ, giải thích rõ chi phí trước khi thực hiện — không phát sinh bất ngờ.</p>
+          <ul class="sr-strip-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Bảng giá công khai, tư vấn minh bạch</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Bảo hành dịch vụ theo từng hạng mục</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Hỗ trợ trả góp cho các ca điều trị lớn</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE: Quy trình khám -->
+<section class="sec-pad">
+  <div class="wd-container">
+    <div class="sr-center sr-eyebrow" style="display:block">Quy trình</div>
+    <h2 class="sr-sec-title sr-center" data-reveal>Đến Sunrise dễ dàng như thế nào?</h2>
+    <p class="sr-sec-sub sr-center" data-reveal data-delay="1">Chỉ 4 bước đơn giản để cả gia đình có một hàm răng khỏe mạnh.</p>
+    <div class="sr-timeline" style="margin-top:56px">
+      <div class="sr-timeline-item is-active" data-reveal>
+        <div class="sr-timeline-dot">01</div>
+        <div class="sr-timeline-content">
+          <div class="sr-timeline-title">Đặt lịch hẹn</div>
+          <div class="sr-timeline-text">Gọi hotline, nhắn Zalo hoặc điền form đặt lịch online — chọn khung giờ phù hợp cho cả nhà.</div>
+        </div>
+      </div>
+      <div class="sr-timeline-item" data-reveal data-delay="1">
+        <div class="sr-timeline-dot">02</div>
+        <div class="sr-timeline-content">
+          <div class="sr-timeline-title">Khám &amp; tư vấn</div>
+          <div class="sr-timeline-text">Bác sĩ khám tổng quát, chụp X-quang nếu cần và tư vấn phác đồ điều trị phù hợp.</div>
+        </div>
+      </div>
+      <div class="sr-timeline-item" data-reveal data-delay="2">
+        <div class="sr-timeline-dot">03</div>
+        <div class="sr-timeline-content">
+          <div class="sr-timeline-title">Điều trị nhẹ nhàng</div>
+          <div class="sr-timeline-text">Thực hiện điều trị với công nghệ giảm đau, luôn theo dõi cảm giác của bệnh nhân.</div>
+        </div>
+      </div>
+      <div class="sr-timeline-item" data-reveal data-delay="3">
+        <div class="sr-timeline-dot">04</div>
+        <div class="sr-timeline-content">
+          <div class="sr-timeline-title">Theo dõi tái khám</div>
+          <div class="sr-timeline-text">Nhắc lịch tái khám định kỳ, chăm sóc lâu dài cho sức khỏe răng miệng cả nhà.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAT-BAR -->
+<div class="sr-stat-bar">
+  <div class="wd-container">
+    <div class="row g-4 text-center">
+      <div class="col-6 col-md-3" data-reveal>
+        <div class="sr-stat"><div class="sr-stat-num" data-counter="10" data-suffix=" năm">10 năm</div><div class="sr-stat-label">Kinh nghiệm hoạt động</div></div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal data-delay="1">
+        <div class="sr-stat"><div class="sr-stat-num" data-counter="1200" data-suffix="+">1200+</div><div class="sr-stat-label">Gia đình tin tưởng</div></div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal data-delay="2">
+        <div class="sr-stat"><div class="sr-stat-num" data-counter="12" data-suffix="+">12+</div><div class="sr-stat-label">Bác sĩ &amp; nhân viên</div></div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal data-delay="3">
+        <div class="sr-stat"><div class="sr-stat-num" data-counter="98" data-suffix="%">98%</div><div class="sr-stat-label">Khách hàng hài lòng</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GRID-CARDS: Dịch vụ nổi bật -->
+<section class="sec-pad">
+  <div class="wd-container">
+    <div class="row align-items-end g-3" style="margin-bottom:48px">
+      <div class="col-lg-7" data-reveal>
+        <div class="sr-eyebrow">Dịch vụ nổi bật</div>
+        <h2 class="sr-sec-title">Chăm sóc răng miệng <em>toàn diện</em> cho mọi lứa tuổi</h2>
+      </div>
+      <div class="col-lg-5 text-lg-end" data-reveal data-delay="1">
+        <a href="dich-vu.html" class="sr-btn sr-btn-ghost">Xem tất cả dịch vụ →</a>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4" data-reveal>
+        <div class="sr-card">
+          <div class="sr-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+          <div class="sr-card-title">Khám tổng quát &amp; phòng ngừa</div>
+          <div class="sr-card-text">Kiểm tra định kỳ, cạo vôi răng, phát hiện sớm các vấn đề răng miệng cho cả nhà.</div>
+          <div class="sr-card-foot"><div class="sr-card-price">Từ 150.000đ <span>/ lượt</span></div><a href="dich-vu.html" class="sr-card-link">Chi tiết <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-reveal data-delay="1">
+        <div class="sr-card">
+          <div class="sr-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8"><path d="M12 22s8-4.5 8-11.5V5l-8-3-8 3v5.5C4 17.5 12 22 12 22z"/></svg></div>
+          <div class="sr-card-title">Nha khoa trẻ em</div>
+          <div class="sr-card-text">Khám răng nhẹ nhàng, trám răng sữa, bôi fluor phòng sâu răng cho bé yêu.</div>
+          <div class="sr-card-foot"><div class="sr-card-price">Từ 200.000đ <span>/ lượt</span></div><a href="dich-vu.html" class="sr-card-link">Chi tiết <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-reveal data-delay="2">
+        <div class="sr-card">
+          <div class="sr-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8"><path d="M4 4h16v10H8l-4 4V4z"/></svg></div>
+          <div class="sr-card-title">Nha chu &amp; phục hồi</div>
+          <div class="sr-card-text">Điều trị viêm nướu, trồng răng implant, phục hình sứ thẩm mỹ bền chắc.</div>
+          <div class="sr-card-foot"><div class="sr-card-price">Từ 1.200.000đ <span>/ ca</span></div><a href="dich-vu.html" class="sr-card-link">Chi tiết <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-reveal>
+        <div class="sr-card">
+          <div class="sr-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 10-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg></div>
+          <div class="sr-card-title">Niềng răng chỉnh nha</div>
+          <div class="sr-card-text">Niềng răng mắc cài, khay trong suốt cho thanh thiếu niên và người lớn.</div>
+          <div class="sr-card-foot"><div class="sr-card-price">Từ 25.000.000đ <span>/ liệu trình</span></div><a href="dich-vu.html" class="sr-card-link">Chi tiết <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-reveal data-delay="1">
+        <div class="sr-card">
+          <div class="sr-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8"><path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"/></svg></div>
+          <div class="sr-card-title">Tẩy trắng răng</div>
+          <div class="sr-card-text">Công nghệ Laser Whitening an toàn, cho nụ cười sáng khỏe tự nhiên.</div>
+          <div class="sr-card-foot"><div class="sr-card-price">Từ 1.800.000đ <span>/ liệu trình</span></div><a href="dich-vu.html" class="sr-card-link">Chi tiết <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-reveal data-delay="2">
+        <div class="sr-card">
+          <div class="sr-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <div class="sr-card-title">Cấp cứu răng miệng</div>
+          <div class="sr-card-text">Xử lý nhanh các trường hợp đau răng cấp, gãy vỡ răng ngoài giờ hành chính.</div>
+          <div class="sr-card-foot"><div class="sr-card-price">Hotline 24/7</div><a href="dich-vu.html" class="sr-card-link">Chi tiết <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GRID-CARDS: Đội ngũ bác sĩ preview -->
+<section class="sec-pad" style="background:var(--warm)">
+  <div class="wd-container">
+    <div class="row align-items-end g-3" style="margin-bottom:48px">
+      <div class="col-lg-7" data-reveal>
+        <div class="sr-eyebrow">Đội ngũ bác sĩ</div>
+        <h2 class="sr-sec-title">Bác sĩ giàu <em>kinh nghiệm</em>, tận tâm với từng bệnh nhân</h2>
+      </div>
+      <div class="col-lg-5 text-lg-end" data-reveal data-delay="1">
+        <a href="bac-si.html" class="sr-btn sr-btn-ghost">Xem toàn bộ đội ngũ →</a>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4" data-reveal>
+        <div class="sr-doc-card">
+          <div class="sr-doc-photo"><img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=500&q=80&auto=format&fit=crop" alt="Bác sĩ Nguyễn Thị Lan Anh"></div>
+          <div class="sr-doc-body">
+            <div class="sr-doc-name">BS. Nguyễn Thị Lan Anh</div>
+            <div class="sr-doc-role">Trưởng phòng khám</div>
+            <div class="sr-doc-tags"><span>Nha khoa tổng quát</span><span>Implant</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal data-delay="1">
+        <div class="sr-doc-card">
+          <div class="sr-doc-photo"><img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=500&q=80&auto=format&fit=crop" alt="Bác sĩ Trần Minh Khôi"></div>
+          <div class="sr-doc-body">
+            <div class="sr-doc-name">BS. Trần Minh Khôi</div>
+            <div class="sr-doc-role">Chuyên khoa nha nhi</div>
+            <div class="sr-doc-tags"><span>Trẻ em</span><span>Phòng ngừa</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal data-delay="2">
+        <div class="sr-doc-card">
+          <div class="sr-doc-photo"><img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=500&q=80&auto=format&fit=crop" alt="Bác sĩ Phạm Thu Hà"></div>
+          <div class="sr-doc-body">
+            <div class="sr-doc-name">BS. Phạm Thu Hà</div>
+            <div class="sr-doc-role">Chuyên khoa chỉnh nha</div>
+            <div class="sr-doc-tags"><span>Niềng răng</span><span>Thẩm mỹ</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="sec-pad">
+  <div class="wd-container">
+    <div class="sr-center" style="margin-bottom:48px;max-width:600px">
+      <div class="sr-eyebrow" style="display:inline-flex">Đánh giá khách hàng</div>
+      <h2 class="sr-sec-title" data-reveal>Cả gia đình đều <em>yên tâm</em> khi đến Sunrise</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4" data-reveal>
+        <div class="sr-test-card">
+          <div class="sr-test-stars">★★★★★</div>
+          <p class="sr-test-quote">"Bé nhà mình rất sợ nha sĩ nhưng đến Sunrise thì hết sợ luôn, bác sĩ nói chuyện với bé rất nhẹ nhàng."</p>
+          <div class="sr-test-author">
+            <img class="sr-test-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=70&auto=format&fit=crop" alt="Khách hàng chị Thu Hằng">
+            <div><div class="sr-test-name">Chị Thu Hằng</div><div class="sr-test-meta">Phụ huynh bé Bống</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal data-delay="1">
+        <div class="sr-test-card">
+          <div class="sr-test-stars">★★★★★</div>
+          <p class="sr-test-quote">"Bố mẹ tôi lớn tuổi nhưng vẫn thoải mái khi khám ở đây, ghế ngồi êm, bác sĩ giải thích rất kỹ."</p>
+          <div class="sr-test-author">
+            <img class="sr-test-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=70&auto=format&fit=crop" alt="Khách hàng anh Quốc Bảo">
+            <div><div class="sr-test-name">Anh Quốc Bảo</div><div class="sr-test-meta">Khách hàng thân thiết</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal data-delay="2">
+        <div class="sr-test-card">
+          <div class="sr-test-stars">★★★★★</div>
+          <p class="sr-test-quote">"Đặt lịch online rất tiện, không phải chờ lâu. Chi phí được tư vấn rõ ràng ngay từ đầu."</p>
+          <div class="sr-test-author">
+            <img class="sr-test-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=70&auto=format&fit=crop" alt="Khách hàng chị Minh Ngọc">
+            <div><div class="sr-test-name">Chị Minh Ngọc</div><div class="sr-test-meta">Khách hàng mới</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sec-pad" style="padding-top:0">
+  <div class="wd-container">
+    <div class="sr-cta" data-reveal>
+      <div class="sr-cta-title">Đặt lịch khám cho <em>cả gia đình</em> ngay hôm nay</div>
+      <p class="sr-cta-sub">Chỉ mất 1 phút để đặt lịch — đội ngũ Sunrise sẽ liên hệ xác nhận trong vòng 30 phút.</p>
+      <div class="sr-cta-actions">
+        <a href="dat-lich.html" class="sr-btn sr-btn-white">Đặt lịch khám ngay</a>
+        <a href="tel:0900000000" class="sr-btn sr-btn-outline-dark">Gọi hotline [0900 000 000]</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wd-container">
+    <div class="sr-ft-top">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <div class="sr-ft-logo">
+            <div class="sr-ft-logo-mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M12 3c-2.4 0-4 1.7-4 4 0 1.4.5 2.2 1 3 .6.9 1 1.6 1 3.2V19a2 2 0 0 0 4 0v-3.6c0-.8.2-1.2.6-1.8"/><path d="M12 3c2.4 0 4 1.7 4 4 0 1.4-.5 2.2-1 3-.4.6-.7 1.1-.9 1.9"/></svg>
+            </div>
+            <div><div class="sr-ft-logo-name">Sunrise</div><div class="sr-ft-logo-sub">Nha Khoa Gia Đình</div></div>
+          </div>
+          <p class="sr-ft-desc">Phòng khám nha khoa gia đình thân thiện, ấm áp — đồng hành cùng sức khỏe răng miệng của mọi thành viên trong nhà bạn.</p>
+          <div class="sr-ft-socials">
+            <a href="https://facebook.com/[TRANG_FACEBOOK]" target="_blank" class="sr-ft-soc" aria-label="Facebook" rel="noopener noreferrer">f</a>
+            <a href="https://instagram.com/[TRANG_INSTAGRAM]" target="_blank" class="sr-ft-soc" aria-label="Instagram" rel="noopener noreferrer">in</a>
+            <a href="https://youtube.com/[KENH_YOUTUBE]" target="_blank" class="sr-ft-soc" aria-label="YouTube" rel="noopener noreferrer">▶</a>
+            <a href="https://tiktok.com/[TAIKHOAN_TIKTOK]" target="_blank" class="sr-ft-soc" aria-label="TikTok" rel="noopener noreferrer">♪</a>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-2 offset-lg-1">
+          <div class="sr-ft-col-title">Dịch vụ</div>
+          <div class="sr-ft-links">
+            <a href="dich-vu.html">Khám tổng quát</a>
+            <a href="dich-vu.html">Nha khoa trẻ em</a>
+            <a href="dich-vu.html">Nha chu &amp; phục hồi</a>
+            <a href="dich-vu.html">Niềng răng</a>
+            <a href="dich-vu.html">Tẩy trắng răng</a>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-2">
+          <div class="sr-ft-col-title">Liên kết</div>
+          <div class="sr-ft-links">
+            <a href="index.html">Trang chủ</a>
+            <a href="dich-vu.html">Dịch vụ</a>
+            <a href="bac-si.html">Đội ngũ bác sĩ</a>
+            <a href="dat-lich.html">Đặt lịch</a>
+            <a href="lien-he.html">Liên hệ</a>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-3">
+          <div class="sr-ft-col-title">Liên hệ</div>
+          <div class="sr-ft-contact-item">
+            <div class="sr-ft-contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+            <div class="sr-ft-contact-text"><strong>Địa chỉ</strong>[Số nhà, Tên đường], [Quận/Huyện], [Thành phố]</div>
+          </div>
+          <div class="sr-ft-contact-item">
+            <div class="sr-ft-contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div>
+            <div class="sr-ft-contact-text"><strong>Điện thoại</strong>[0900 000 000]</div>
+          </div>
+          <div class="sr-ft-contact-item">
+            <div class="sr-ft-contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+            <div class="sr-ft-contact-text"><strong>Giờ làm việc</strong>Thứ 2 – Chủ nhật: 8:00 – 20:00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sr-ft-bottom">
+      <div class="sr-ft-copy">&copy; 2026 Sunrise — Nha Khoa Gia Đình. Bảo lưu mọi quyền.</div>
+      <div class="sr-ft-cert"><span>Giấy phép hoạt động số [XXX]</span><span>Sở Y Tế cấp phép</span></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ZALO FLOAT -->
+<a href="https://zalo.me/[ZALO_NUMBER]" class="sr-zalo" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ Zalo Sunrise">
+  <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="sans-serif">Z</text>
+  </svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  // Nav scroll (Nav-1 Transparent -> Scrolled)
+  const nav = document.getElementById('nav');
+  if (nav && nav.dataset.scrollNav) {
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', scrollY > 80);
+    }, { passive: true });
+  }
+
+  // Mobile hamburger
+  const burger = document.getElementById('navBurger');
+  const mob = document.getElementById('navMob');
+  if (burger && mob) {
+    burger.addEventListener('click', () => {
+      const o = mob.classList.toggle('open');
+      burger.classList.toggle('open', o);
+      document.body.style.overflow = o ? 'hidden' : '';
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && mob.classList.contains('open')) {
+        mob.classList.remove('open');
+        burger.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  // Reveal animation
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        ro.unobserve(e.target);
+      }
+    });
+  }, { threshold: .08, rootMargin: '0px 0px -36px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+  // Counter animation
+  document.querySelectorAll('[data-counter]').forEach(el => {
+    const cro = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        const target = +el.dataset.counter;
+        const suffix = el.dataset.suffix || '';
+        let cur = 0;
+        const step = Math.ceil(target / 60);
+        const t = setInterval(() => {
+          cur = Math.min(cur + step, target);
+          el.textContent = cur + suffix;
+          if (cur >= target) clearInterval(t);
+        }, 25);
+        cro.disconnect();
+      }
+    }, { threshold: .5 });
+    cro.observe(el);
+  });
+})();
+</script>
+</body>
+</html>

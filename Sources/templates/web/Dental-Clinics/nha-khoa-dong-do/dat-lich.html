@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đặt Lịch Hẹn — Nha Khoa Đông Đô</title>
+<meta name="description" content="Đặt lịch hẹn thăm khám tại Nha Khoa Đông Đô — nhận tư vấn miễn phí cùng bác sĩ chuyên khoa, lộ trình điều trị cá nhân hoá dành riêng cho bạn.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="dd-nav-inner">
+    <a class="dd-logo" href="index.html">
+      <span class="dd-logo-main">Đông <em>Đô</em></span>
+      <span class="dd-logo-sub">Dental Clinic</span>
+    </a>
+    <div class="dd-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="dich-vu.html">Dịch vụ</a>
+      <a href="doi-ngu-bac-si.html">Đội ngũ bác sĩ</a>
+      <a href="cong-nghe.html">Công nghệ</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <div class="dd-nav-right">
+      <a href="dat-lich.html" class="dd-btn dd-btn-sm dd-btn-fill">Đặt lịch</a>
+      <button class="dd-burger" id="navBurger" aria-label="Mở menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="dd-nav-mob" id="navMob" role="dialog" aria-modal="true" aria-label="Menu di động">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ</a>
+  <a href="doi-ngu-bac-si.html">Đội ngũ bác sĩ</a>
+  <a href="cong-nghe.html">Công nghệ</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html">Đặt lịch</a>
+</div>
+
+<header class="dd-page-header">
+  <div class="wd-container">
+    <div class="dd-breadcrumb" data-reveal><a href="index.html">Trang chủ</a> / <span>Đặt lịch</span></div>
+    <h1 class="dd-page-title" data-reveal>Đặt lịch <em>tư vấn</em></h1>
+    <p class="dd-page-sub" data-reveal="d1">Điền thông tin bên dưới — đội ngũ lễ tân sẽ liên hệ xác nhận lịch hẹn cùng bác sĩ chuyên khoa trong vòng 2 giờ làm việc.</p>
+  </div>
+</header>
+
+<!-- ══ BOOKING FORM ══ -->
+<section class="dd-section">
+  <div class="wd-container">
+    <div class="dd-booking-wrap">
+      <div data-reveal>
+        <form id="bookingForm" novalidate>
+          <div class="dd-form-grid">
+            <div class="dd-field">
+              <label for="fullName">Họ và tên *</label>
+              <input type="text" id="fullName" name="fullName" placeholder="Nguyễn Văn An" required autocomplete="name">
+            </div>
+            <div class="dd-field">
+              <label for="phone">Số điện thoại *</label>
+              <input type="tel" id="phone" name="phone" placeholder="0901 234 567" required autocomplete="tel">
+            </div>
+            <div class="dd-field full">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="email@example.com" autocomplete="email">
+            </div>
+            <div class="dd-field">
+              <label for="service">Dịch vụ quan tâm *</label>
+              <select id="service" name="service" required>
+                <option value="" selected disabled>Chọn dịch vụ</option>
+                <option value="implant">Trồng răng Implant</option>
+                <option value="veneer">Bọc sứ thẩm mỹ</option>
+                <option value="whitening">Tẩy trắng răng Laser</option>
+                <option value="periodontal">Điều trị nha chu</option>
+                <option value="invisalign">Chỉnh nha Invisalign</option>
+                <option value="wisdom">Nhổ răng khôn</option>
+                <option value="other">Khác / Tư vấn tổng quát</option>
+              </select>
+            </div>
+            <div class="dd-field">
+              <label for="doctor">Bác sĩ mong muốn</label>
+              <select id="doctor" name="doctor">
+                <option value="" selected>Không yêu cầu cụ thể</option>
+                <option value="minh-duc">BS. Nguyễn Minh Đức</option>
+                <option value="bao-ngoc">BS. Trần Thị Bảo Ngọc</option>
+                <option value="hoang-phuc">BS. Lê Hoàng Phúc</option>
+              </select>
+            </div>
+            <div class="dd-field">
+              <label for="prefDate">Ngày hẹn mong muốn *</label>
+              <input type="date" id="prefDate" name="prefDate" required>
+            </div>
+            <div class="dd-field">
+              <label for="prefTime">Khung giờ *</label>
+              <select id="prefTime" name="prefTime" required>
+                <option value="" selected disabled>Chọn khung giờ</option>
+                <option value="morning">Sáng (08:00 – 11:30)</option>
+                <option value="afternoon">Chiều (13:30 – 17:30)</option>
+                <option value="evening">Tối (18:00 – 20:00)</option>
+              </select>
+            </div>
+            <div class="dd-field full">
+              <label for="note">Ghi chú thêm</label>
+              <textarea id="note" name="note" rows="4" placeholder="Ví dụ: tiền sử bệnh lý, tình trạng răng miệng hiện tại..."></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="dd-btn dd-btn-fill" style="margin-top:32px;">Gửi yêu cầu đặt lịch
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <p class="dd-form-note">Bằng việc gửi form, bạn đồng ý để Nha Khoa Đông Đô liên hệ tư vấn. Hotline hỗ trợ: <a href="tel:[SỐ ĐIỆN THOẠI]" style="color:var(--accent-bright);">[SỐ ĐIỆN THOẠI]</a></p>
+        </form>
+
+        <div class="dd-form-success" id="formSuccess">
+          Cảm ơn bạn đã đặt lịch! Đội ngũ Nha Khoa Đông Đô sẽ liên hệ xác nhận trong vòng 2 giờ làm việc.
+        </div>
+      </div>
+
+      <aside class="dd-booking-info" data-reveal="d1">
+        <div class="dd-booking-info-item">
+          <h4>Hotline đặt lịch</h4>
+          <a href="tel:[SỐ ĐIỆN THOẠI]">[SỐ ĐIỆN THOẠI]</a>
+        </div>
+        <div class="dd-booking-info-item">
+          <h4>Email</h4>
+          <a href="mailto:[EMAIL]">[EMAIL]</a>
+        </div>
+        <div class="dd-booking-info-item">
+          <h4>Giờ làm việc</h4>
+          <p>Thứ 2 – Chủ nhật: 08:00 – 20:00</p>
+        </div>
+        <div class="dd-booking-info-item">
+          <h4>Địa chỉ</h4>
+          <p>[Địa chỉ phòng khám]</p>
+        </div>
+        <div class="dd-booking-info-item" style="border-bottom:none;">
+          <h4>Cam kết</h4>
+          <p>Phản hồi xác nhận trong 2 giờ làm việc — tư vấn hoàn toàn miễn phí.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<footer class="dd-footer">
+  <div class="wd-container">
+    <div class="dd-footer-grid">
+      <div class="dd-footer-brand">
+        <span class="dd-logo-main">Đông <em>Đô</em></span>
+        <p class="dd-footer-desc">Nha khoa cao cấp — dịch vụ trọn gói dành cho khách hàng thành đạt. Chuẩn mực điều trị quốc tế, kín đáo và tận tâm trong từng chi tiết.</p>
+      </div>
+      <div class="dd-footer-cols">
+        <div class="dd-footer-col">
+          <h5>Điều hướng</h5>
+          <a href="dich-vu.html">Dịch vụ</a>
+          <a href="doi-ngu-bac-si.html">Đội ngũ bác sĩ</a>
+          <a href="cong-nghe.html">Công nghệ</a>
+          <a href="dat-lich.html">Đặt lịch</a>
+        </div>
+        <div class="dd-footer-col">
+          <h5>Liên hệ</h5>
+          <a href="tel:[SỐ ĐIỆN THOẠI]">[SỐ ĐIỆN THOẠI]</a>
+          <a href="mailto:[EMAIL]">[EMAIL]</a>
+          <p>[Địa chỉ phòng khám]</p>
+        </div>
+        <div class="dd-footer-col">
+          <h5>Kết nối</h5>
+          <a href="https://zalo.me/[SỐ_ZALO]" target="_blank" rel="noopener noreferrer">Zalo</a>
+          <a href="https://facebook.com/[PAGE]" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://instagram.com/[HANDLE]" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
+      </div>
+    </div>
+    <div class="dd-footer-bottom">
+      <p>© 2026 Nha Khoa Đông Đô. Bảo lưu mọi quyền.</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[SỐ_ZALO]" class="dd-zalo" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo với Nha Khoa Đông Đô">
+  <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M13 2C7.477 2 3 6.477 3 12c0 2.136.67 4.116 1.808 5.74L3 23l5.418-1.764A9.953 9.953 0 0013 22c5.523 0 10-4.477 10-10S18.523 2 13 2z" fill="white"/>
+    <path d="M8.5 10h3m-3 3h2m2-3v3m2-3v3" stroke="#0068FF" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const isOpen = mob.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    burger.setAttribute('aria-expanded', String(isOpen));
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  });
+  mob.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+}
+
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+// ── Min date = tomorrow ──
+const prefDate = document.getElementById('prefDate');
+if (prefDate) {
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+  prefDate.min = tomorrow.toISOString().slice(0, 10);
+}
+
+// ── Form submit ──
+const form = document.getElementById('bookingForm');
+const successBox = document.getElementById('formSuccess');
+if (form && successBox) {
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const required = form.querySelectorAll('[required]');
+    let valid = true;
+    required.forEach(field => {
+      field.style.borderBottomColor = '';
+      if (!field.value) {
+        field.style.borderBottomColor = 'var(--danger)';
+        valid = false;
+      }
+    });
+    if (!valid) return;
+
+    const btn = form.querySelector('button[type="submit"]');
+    const originalText = btn.textContent;
+    btn.textContent = 'Đang gửi...';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      form.style.display = 'none';
+      successBox.classList.add('show');
+      successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }, 900);
+  });
+
+  form.querySelectorAll('input, select, textarea').forEach(field => {
+    field.addEventListener('input', () => { field.style.borderBottomColor = ''; });
+    field.addEventListener('change', () => { field.style.borderBottomColor = ''; });
+  });
+}
+</script>
+</body>
+</html>

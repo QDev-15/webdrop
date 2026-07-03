@@ -80,7 +80,7 @@ Xây dựng và bán 3 nhóm sản phẩm chính:
 - [ ] Bất động sản
 - [x] Agency / Portfolio / Công ty — **DONE** (6 templates: `Companies/`, `Portfolios/`)
 - [x] Blog / Forum — **DONE** (`Blogs/`, `Forums/`)
-- [x] Nha khoa — **STARTED** (1 template: `Dental-Clinics/nha-khoa-an-nhien` — tông cream + gold/amber, prefix `nk-`)
+- [x] Nha khoa — **DONE** (10 template: `Dental-Clinics/` — 10 Identity Token khác nhau: LUXE-DARK, FRESH-MINIMAL, BOLD-EDITORIAL, GEOMETRIC-MODERN, SOFT-PASTEL, DARK-ENERGY, CLEAN-CORPORATE, ZEN-MINIMAL, RETRO-BOLD, GLASS-MODERN)
 - [ ] Landing page sản phẩm / Dịch vụ
 - [ ] CV cá nhân — **PLANNING** (CV Builder SaaS — xem `.claude/plans/cv-template-saas.md`)
 
@@ -90,7 +90,7 @@ Xây dựng và bán 3 nhóm sản phẩm chính:
 
 ### Giai đoạn 1 — 0 đến 6 tháng ✅ HOÀN THÀNH
 
-- [x] Xây web template theo ngành — **31 templates** (Restaurant, Spa, Agency, Company, Blog, Cafe, Forum, Portfolio)
+- [x] Xây web template theo ngành — **40 templates** (Restaurant, Spa, Agency, Company, Blog, Cafe, Forum, Portfolio, Dental-Clinics)
 - [x] Xây 1 admin template cơ bản — `Sources/templates/admin/basic-admin/`
 - [x] Thiết lập kênh bán (webdrop.store) — deploy Vercel, custom domain
 - [x] Đóng gói Gói Web cơ bản thành sản phẩm chuẩn (`Sources/products/goi-b/`)
@@ -195,7 +195,7 @@ webdrop/
 │       ├── Blogs/                  ← ✅ blog-ca-nhan
 │       ├── Forums/                 ← ✅ forum-cong-dong
 │       ├── Portfolios/             ← ✅ portfolio-toi
-│       ├── Dental-Clinics/         ← ✅ nha-khoa-an-nhien
+│       ├── Dental-Clinics/         ← ✅ 10 templates (xem ghi chú kỹ thuật)
 │       └── CVs/                   ← 🔲 PLANNING (5 mẫu: classic, minimal, creative, dark, executive)
 ├── documents/                      ← Prototype UI HTML (tham khảo)
 └── .gitignore
@@ -273,6 +273,14 @@ VPS AZDIGI Linux
 - Pattern: tách interactive part ra `XxxClient.tsx` (`'use client'`), `page.tsx` là Server Component
 - Áp dụng: `faq/`, `contact/`, `policies/[slug]/`
 
+### Dental-Clinics (10 templates, batch 2026-07-03)
+
+- Xây song song bằng 10 sub-agent, mỗi agent 1 Identity Token riêng (pre-assigned để tránh trùng lặp khi chạy song song) — chi tiết: `nha-khoa-dong-do` (LUXE-DARK), `nha-khoa-gia-dinh-sunrise` (FRESH-MINIMAL), `nha-khoa-tham-my-luxdental` (BOLD-EDITORIAL), `nha-khoa-chinh-nha-saigon` (GEOMETRIC-MODERN), `nha-khoa-tre-em-kidsmile` (SOFT-PASTEL), `nha-khoa-implant-future` (DARK-ENERGY), `nha-khoa-quoc-te-vietduc` (CLEAN-CORPORATE), `nha-khoa-tong-quat-antam` (ZEN-MINIMAL), `nha-khoa-nu-cuoi-xua` (RETRO-BOLD), `nha-khoa-cong-nghe-smiletech` (GLASS-MODERN)
+- Đã qua vòng reviewer + qa-tester (5 batch song song) — fix hết P0/P1: bug tính ngày (dong-do), branch-tab không filter (vietduc), class CSS chết làm vỡ nav mobile (implant-future), label thiếu `for`/`id` (vietduc, nu-cuoi-xua), form thiếu `preventDefault` (nu-cuoi-xua), thiếu `loading="lazy"` (luxdental, chinh-nha-saigon, nu-cuoi-xua), `href="#"` trên social link toàn bộ 10 template (đã đổi sang placeholder URL thật + `target="_blank"`)
+- `nha-khoa-dong-do` và `nha-khoa-cong-nghe-smiletech` dùng CSS Grid/Flexbox thuần thay vì Bootstrap `row/col-*` cho phần lớn layout (chủ đích cho bento/geometric-split) — đã đổi tên class container về `.wd-container` chuẩn dự án nhưng giữ nguyên hệ Grid, không refactor toàn bộ sang Bootstrap (quyết định 2026-07-03, tránh vỡ thiết kế)
+- Template gốc `nha-khoa-an-nhien` đã bị xóa chủ động bởi chủ dự án (2026-07-03) — không còn tồn tại
+- Đã seed vào System DB (`prisma/seed.ts`): industry mới `dental` (Nha khoa, sortOrder 7) + 10 template (category `web`, giá 99.000đ, status `published`, demoUrl trỏ `webdrop-eol.pages.dev/Dental-Clinics/[slug]/`) — tổng templates DB hiện tại: 41 (40 web + 1 admin)
+
 ### CV Builder SaaS
 
 > Plan chi tiết: `.claude/plans/cv-template-saas.md`
@@ -290,4 +298,4 @@ VPS AZDIGI Linux
 
 ---
 
-*Cập nhật lần cuối: 2026-07-01 — thêm template nha khoa (Dental-Clinics/nha-khoa-an-nhien)*
+*Cập nhật lần cuối: 2026-07-03 — hoàn thành 10 template Dental-Clinics (thay thế nha-khoa-an-nhien đã bị xóa), qua review + QA + fix toàn bộ issue*

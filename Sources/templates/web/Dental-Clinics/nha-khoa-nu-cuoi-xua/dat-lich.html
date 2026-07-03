@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đặt Lịch Hẹn — Nụ Cười Xưa Nha Khoa</title>
+<meta name="description" content="Đặt lịch hẹn khám nha khoa tại Nụ Cười Xưa — nhanh chóng, xác nhận qua Zalo trong 15 phút.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nc-nav-top">
+      <button class="nc-hamburger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <a class="nc-logo" href="index.html">Nụ Cười <span>Xưa</span></a>
+      <a href="dat-lich.html" class="nc-nav-cta">Đặt lịch</a>
+    </div>
+    <ul class="nc-nav-links">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="dich-vu.html">Dịch vụ</a></li>
+      <li><a href="cau-chuyen.html">Câu chuyện</a></li>
+      <li><a href="bac-si.html">Bác sĩ</a></li>
+      <li><a href="dat-lich.html" class="active">Đặt lịch</a></li>
+      <li><a href="lien-he.html">Liên hệ</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="nc-nav-mob" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ</a>
+  <a href="cau-chuyen.html">Câu chuyện</a>
+  <a href="bac-si.html">Bác sĩ</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="nc-mob-cta">Đặt lịch ngay</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="nc-page-hero">
+  <div class="wd-container">
+    <div class="nc-ph-crumb"><a href="index.html">Trang chủ</a> / Đặt lịch</div>
+    <h1 class="nc-ph-title">Đặt Lịch <span>Hẹn Khám</span></h1>
+    <p class="nc-ph-sub">Điền thông tin bên dưới — chúng tôi sẽ xác nhận lịch hẹn qua Zalo hoặc điện thoại trong vòng 15 phút.</p>
+  </div>
+</section>
+
+<!-- FORM ĐẶT LỊCH -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="row g-5">
+      <div class="col-lg-7" data-reveal>
+        <div class="nc-form-wrap">
+          <div class="d-flex align-items-center gap-2 mb-4">
+            <span class="nc-step-badge">1</span>
+            <span class="nc-step-label">Thông tin đặt lịch</span>
+          </div>
+          <form class="nc-booking-form" novalidate>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label" for="bookName">Họ và tên *</label>
+                <input type="text" id="bookName" name="bookName" class="form-control" placeholder="[Nguyễn Văn A]" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="bookPhone">Số điện thoại *</label>
+                <input type="tel" id="bookPhone" name="bookPhone" class="form-control" placeholder="09xx xxx xxx" required>
+              </div>
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label" for="bookEmail">Email</label>
+                <input type="email" id="bookEmail" name="bookEmail" class="form-control" placeholder="email@example.com">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="bookService">Dịch vụ quan tâm *</label>
+                <select id="bookService" name="bookService" class="form-select" required>
+                  <option selected disabled value="">Chọn dịch vụ</option>
+                  <option>Khám &amp; tư vấn tổng quát</option>
+                  <option>Tẩy trắng răng</option>
+                  <option>Niềng răng</option>
+                  <option>Bọc răng sứ / Veneer</option>
+                  <option>Cấy ghép Implant</option>
+                  <option>Nha khoa trẻ em</option>
+                  <option>Khác</option>
+                </select>
+              </div>
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label" for="bookDate">Ngày mong muốn *</label>
+                <input type="date" id="bookDate" name="bookDate" class="form-control" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="bookDoctor">Bác sĩ mong muốn</label>
+                <select id="bookDoctor" name="bookDoctor" class="form-select">
+                  <option selected>Không yêu cầu cụ thể</option>
+                  <option>[BS. Nguyễn Văn A]</option>
+                  <option>[BS. Trần Thị B]</option>
+                  <option>[BS. Lê Minh C]</option>
+                  <option>[BS. Phạm Thị D]</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="form-label" id="bookTimeLabel">Khung giờ mong muốn</div>
+              <div class="d-flex flex-wrap gap-2" role="group" aria-labelledby="bookTimeLabel">
+                <div class="nc-time-slot selected">08:00</div>
+                <div class="nc-time-slot">09:30</div>
+                <div class="nc-time-slot">11:00</div>
+                <div class="nc-time-slot">14:00</div>
+                <div class="nc-time-slot">15:30</div>
+                <div class="nc-time-slot disabled">17:00</div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label" for="bookNotes">Ghi chú thêm</label>
+              <textarea id="bookNotes" name="bookNotes" class="form-control" rows="3" placeholder="Mô tả tình trạng răng miệng hoặc yêu cầu đặc biệt (nếu có)..."></textarea>
+            </div>
+            <button type="submit" class="nc-btn w-100">Xác nhận đặt lịch</button>
+            <div class="nc-form-success" role="status" aria-live="polite" hidden>
+              ✓ Đã gửi yêu cầu đặt lịch! Chúng tôi sẽ liên hệ xác nhận qua Zalo/điện thoại trong vòng 15 phút.
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-lg-5" data-reveal data-delay="1">
+        <div class="nc-info-panel mb-4">
+          <div class="nc-info-row">
+            <div class="nc-info-icon">📍</div>
+            <div>
+              <div class="nc-info-label">Địa chỉ</div>
+              <div class="nc-info-val">[Số nhà, Tên đường, Phường, Quận, TP]</div>
+            </div>
+          </div>
+          <div class="nc-info-row">
+            <div class="nc-info-icon">📞</div>
+            <div>
+              <div class="nc-info-label">Hotline</div>
+              <div class="nc-info-val"><a href="tel:0901234567">0901 234 567</a></div>
+            </div>
+          </div>
+          <div class="nc-info-row">
+            <div class="nc-info-icon">✉</div>
+            <div>
+              <div class="nc-info-label">Email</div>
+              <div class="nc-info-val"><a href="mailto:lienhe@nucuoixua.vn">lienhe@nucuoixua.vn</a></div>
+            </div>
+          </div>
+          <div class="nc-info-row">
+            <div class="nc-info-icon">🕐</div>
+            <div>
+              <div class="nc-info-label">Giờ làm việc</div>
+              <div class="nc-info-val">T2 – T7: 8:00 – 20:00<br>Chủ nhật: 8:00 – 17:00</div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center" style="border:2px dashed var(--text); padding:22px; background:var(--surface); box-shadow:5px 5px 0 var(--mustard)">
+          <div style="font-size:13px;color:var(--text-2);margin-bottom:10px">Cần hỗ trợ nhanh hơn?</div>
+          <a href="https://zalo.me/[SỐ_ZALO]" class="nc-btn-outline" target="_blank" rel="noopener noreferrer">Chat Zalo ngay</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="nc-footer">
+  <div class="wd-container">
+    <div class="nc-footer-top">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <div class="nc-footer-brand">Nụ Cười <span>Xưa</span></div>
+          <p class="nc-footer-tagline">Nha khoa hiện đại mang tâm hồn hoài cổ — nơi mỗi nụ cười được chăm chút tận tâm như ngày xưa.</p>
+          <div class="nc-footer-social">
+            <a href="https://facebook.com/[TRANG_FACEBOOK]" target="_blank" class="nc-social-link" rel="noopener noreferrer" aria-label="Facebook">f</a>
+            <a href="https://instagram.com/[TRANG_INSTAGRAM]" target="_blank" class="nc-social-link" rel="noopener noreferrer" aria-label="Instagram">ig</a>
+            <a href="https://zalo.me/[SO_ZALO]" target="_blank" class="nc-social-link" rel="noopener noreferrer" aria-label="Zalo">zl</a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <div class="nc-footer-col-title">Điều hướng</div>
+          <ul class="nc-footer-links">
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="dich-vu.html">Dịch vụ</a></li>
+            <li><a href="cau-chuyen.html">Câu chuyện</a></li>
+            <li><a href="bac-si.html">Bác sĩ</a></li>
+            <li><a href="lien-he.html">Liên hệ</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-2">
+          <div class="nc-footer-col-title">Dịch vụ</div>
+          <ul class="nc-footer-links">
+            <li><a href="dich-vu.html">Khám tổng quát</a></li>
+            <li><a href="dich-vu.html">Tẩy trắng răng</a></li>
+            <li><a href="dich-vu.html">Niềng răng</a></li>
+            <li><a href="dich-vu.html">Cấy ghép Implant</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4">
+          <div class="nc-footer-col-title">Giờ mở cửa</div>
+          <ul class="nc-footer-hours">
+            <li><span>Thứ 2 – Thứ 7</span><span>8:00 – 20:00</span></li>
+            <li><span>Chủ nhật</span><span>8:00 – 17:00</span></li>
+          </ul>
+          <div style="margin-top:16px;font-size:13px;color:var(--cream-ink-2);font-weight:400">
+            📍 [Số nhà, Tên đường, Phường, Quận, TP]
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="nc-footer-bottom">
+      <div class="nc-footer-copy">&copy; 2026 Nụ Cười Xưa. Mọi quyền được bảo lưu.</div>
+      <div class="nc-footer-copy">Được xây dựng bởi <a href="https://webdrop.store" target="_blank" rel="noopener noreferrer">webdrop.store</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ZALO FLOAT -->
+<a href="https://zalo.me/[SỐ_ZALO]" class="nc-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+  <svg width="26" height="26" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><text y="38" font-size="38" fill="#fff">💬</text></svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const o = mob.classList.toggle('open');
+    burger.classList.toggle('open', o);
+    document.body.style.overflow = o ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+}
+
+// === Time slot select ===
+document.querySelectorAll('.nc-time-slot:not(.disabled)').forEach(slot => {
+  slot.addEventListener('click', () => {
+    document.querySelectorAll('.nc-time-slot').forEach(s => s.classList.remove('selected'));
+    slot.classList.add('selected');
+  });
+});
+
+// === Booking form submit (demo — replace with real API) ===
+const bookingForm = document.querySelector('.nc-booking-form');
+if (bookingForm) {
+  bookingForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const btn = bookingForm.querySelector('button[type="submit"]');
+    const successBox = bookingForm.querySelector('.nc-form-success');
+    const originalText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Đang gửi...';
+    setTimeout(() => {
+      if (successBox) successBox.hidden = false;
+      bookingForm.reset();
+      document.querySelectorAll('.nc-time-slot').forEach(s => s.classList.remove('selected'));
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }, 900);
+  });
+}
+</script>
+</body>
+</html>
