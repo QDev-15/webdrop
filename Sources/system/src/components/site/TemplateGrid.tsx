@@ -33,6 +33,28 @@ function WebsiteBadge() {
   )
 }
 
+// Không dùng thẻ <a> vì component này luôn nằm lồng trong <Link> của card —
+// nested <a> là HTML không hợp lệ và trình duyệt sẽ tự đóng thẻ ngoài sớm, vỡ layout.
+function DemoButton({ demoUrl }: { demoUrl?: string }) {
+  if (!demoUrl) return <div className="tc-demo-btn">Xem demo →</div>
+  const open = (e: React.SyntheticEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    window.open(demoUrl, '_blank', 'noopener,noreferrer')
+  }
+  return (
+    <div
+      className="tc-demo-btn"
+      role="link"
+      tabIndex={0}
+      onClick={open}
+      onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') open(e) }}
+    >
+      Xem demo →
+    </div>
+  )
+}
+
 const PAGE_SIZES = [20, 50, 100]
 
 function getPageNums(current: number, total: number): (number | '…')[] {
@@ -167,7 +189,9 @@ export default function TemplateGrid({ templates: propTemplates, homepage, pageT
                       <div className="tc-thumb">
                         <TemplateImage src={t.image} alt={t.name} name={t.name} category={t.category} />
                         {t.hasWebsite && <WebsiteBadge />}
-                        <div className="tc-hover-layer"><div className="tc-demo-btn">Xem demo →</div></div>
+                        <div className="tc-hover-layer">
+                          <DemoButton demoUrl={t.demoUrl} />
+                        </div>
                       </div>
                       <div className="tc-body">
                         <div className="tc-name">{t.name}{t.badge && <span className="tc-badge">{t.badge}</span>}</div>
@@ -262,7 +286,9 @@ export default function TemplateGrid({ templates: propTemplates, homepage, pageT
                     <div className="tc-thumb">
                       <TemplateImage src={t.image} alt={t.name} name={t.name} category={t.category} />
                       {t.hasWebsite && <WebsiteBadge />}
-                      <div className="tc-hover-layer"><div className="tc-demo-btn">Xem demo →</div></div>
+                      <div className="tc-hover-layer">
+                        <DemoButton demoUrl={t.demoUrl} />
+                      </div>
                     </div>
                     <div className="tc-body">
                       <div className="tc-name">{t.name}{t.badge && <span className="tc-badge">{t.badge}</span>}</div>
