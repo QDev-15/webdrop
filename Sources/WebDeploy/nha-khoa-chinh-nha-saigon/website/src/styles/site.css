@@ -1,0 +1,21 @@
+/* site.css — React-specific overrides for nha-khoa-chinh-nha-saigon */
+
+/* Ensure main content does not overlap fixed nav */
+main { min-height: 60vh; }
+
+/* Active NavLink in cn-nav-links */
+.cn-nav-links .active { color: var(--text) !important; }
+.cn-nav-links .active::after { right: 0 !important; }
+
+/* NavLink in mobile menu */
+.cn-mob .active { color: var(--accent); }
+
+/* Ensure hero section starts after nav */
+.cn-hero { padding-top: 84px; }
+@media (max-width: 900px) { .cn-hero { padding-top: 72px; } }
+
+/* cn-page-hero already pads for nav height via clamp */
+
+/* Remove default margin/padding issues with React rendering */
+#root { display: flex; flex-direction: column; min-height: 100vh; }
+#root > header, #root > main, #root > footer { flex-shrink: 0; }

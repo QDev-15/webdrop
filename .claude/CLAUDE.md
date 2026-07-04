@@ -95,7 +95,7 @@ Xây dựng và bán 3 nhóm sản phẩm chính:
 - [x] Thiết lập kênh bán (webdrop.store) — deploy Vercel, custom domain
 - [x] Đóng gói Gói Web cơ bản thành sản phẩm chuẩn (`Sources/products/goi-b/`)
 - [x] Tích hợp Sepay webhook auto-confirm đơn hàng + tạo download token
-- [x] Deploy website demo — xem bảng **WebDeploy Projects** (bao gồm `nail-salon` 2026-06-26, `pilates-studio` 2026-06-26, `spa-beauty` 2026-06-27, `tham-my-vien` 2026-07-01)
+- [x] Deploy website demo — xem bảng **WebDeploy Projects** (bao gồm `nail-salon` 2026-06-26, `pilates-studio` 2026-06-26, `spa-beauty` 2026-06-27, `tham-my-vien` 2026-07-01, `nha-khoa-chinh-nha-saigon` 2026-07-04, `nha-khoa-cong-nghe-smiletech` 2026-07-04)
 - [x] Tạo Admin Profile page (`/admin/profile`) — đổi tên, đổi password
 - [x] Tạo Admin Users page (`/admin/users`) — quản lý tài khoản, nâng/hạ cấp, xóa (superadmin only)
 - [x] Tạo hệ thống thống kê truy cập (`/admin/analytics`) — track page views, top pages, nguồn truy cập, recent visits
@@ -281,6 +281,30 @@ VPS AZDIGI Linux
 - Template gốc `nha-khoa-an-nhien` đã bị xóa chủ động bởi chủ dự án (2026-07-03) — không còn tồn tại
 - Đã seed vào System DB (`prisma/seed.ts`): industry mới `dental` (Nha khoa, sortOrder 7) + 10 template (category `web`, giá 99.000đ, status `published`, demoUrl trỏ `webdrop-eol.pages.dev/Dental-Clinics/[slug]/`) — tổng templates DB hiện tại: 41 (40 web + 1 admin)
 
+### WebDeploy Projects (2026-07-04)
+
+| Slug | Ngách | Identity | Build |
+|---|---|---|---|
+| `nail-salon` | Nail / Làm đẹp | — | ✅ |
+| `pilates-studio` | Pilates / Yoga | — | ✅ |
+| `spa-beauty` | Spa / Thẩm mỹ | — | ✅ |
+| `tham-my-vien` | Thẩm mỹ viện | — | ✅ |
+| `nha-khoa-chinh-nha-saigon` | Nha khoa chỉnh nha | GEOMETRIC-MODERN, cobalt `#1d4fd8` | ✅ |
+
+**Ghi chú kỹ thuật `nha-khoa-chinh-nha-saigon`:**
+- CSS prefix: `cn-` xuyên suốt (không dùng `tmv-`)
+- Identity: GEOMETRIC-MODERN — Space Grotesk font, cobalt blue `#1d4fd8`, hero layout: geometric split (H10)
+- Nav: always-solid (không transparent) — luôn background rgba(255,255,255,.94) backdrop-blur
+- Trang website: `/`, `/dich-vu`, `/quy-trinh-nieng`, `/bac-si`, `/dat-lich`, `/lien-he`
+- SiteContext: stat_cases, stat_doctors, stat_years, stat_satisfaction
+- Public API: `GET /public/settings`, `GET /public/services`, `GET /public/doctors`, `GET /public/testimonials`, `POST /public/bookings`, `POST /public/contact`
+- DB Extension tables: services, doctors, bookings, testimonials (ngoài core)
+- Fields booking: customer_name, phone, email, pref_service, pref_date, pref_time, note
+- Fields testimonials: author_name, author_role, content, rating, avatar_initial, is_featured
+- Fields doctors: name, role, photo, description, experience_years, specialties (pipe-separated), tag
+- TS build: website 52 modules (213.9kB JS), admin 56 modules (223.6kB JS) — 0 lỗi
+- PHP syntax: 24/24 files OK, 0 BOM
+
 ### CV Builder SaaS
 
 > Plan chi tiết: `.claude/plans/cv-template-saas.md`
@@ -298,4 +322,4 @@ VPS AZDIGI Linux
 
 ---
 
-*Cập nhật lần cuối: 2026-07-03 — hoàn thành 10 template Dental-Clinics (thay thế nha-khoa-an-nhien đã bị xóa), qua review + QA + fix toàn bộ issue*
+*Cập nhật lần cuối: 2026-07-04 — hoàn thành WebDeploy `nha-khoa-chinh-nha-saigon` (GEOMETRIC-MODERN identity, Space Grotesk, cobalt #1d4fd8, React + PHP + SQLite, TS website 52 modules 0 lỗi, admin 56 modules 0 lỗi, PHP 24/24 OK 0 BOM, qua reviewer + QA, fix P0+P1+P2: SettingsController `grp` column, seed key mismatch social/zalo/hero_title, testimonials filter, stub file, href="#" footer, console.error)*

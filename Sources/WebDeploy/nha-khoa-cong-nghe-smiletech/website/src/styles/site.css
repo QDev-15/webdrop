@@ -1,0 +1,58 @@
+/* site.css — SmileTech WebDeploy overrides */
+
+/* Alert messages */
+.st-alert {
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.st-alert-success {
+  background: rgba(62, 230, 168, 0.12);
+  border: 1px solid rgba(62, 230, 168, 0.3);
+  color: var(--success);
+}
+.st-alert-error {
+  background: rgba(255, 107, 122, 0.12);
+  border: 1px solid rgba(255, 107, 122, 0.3);
+  color: var(--danger);
+}
+
+/* Loading spinner */
+.st-spin {
+  width: 20px; height: 20px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: st-spin .7s linear infinite;
+  display: inline-block;
+}
+@keyframes st-spin { to { transform: rotate(360deg); } }
+
+/* Select option colors (dark mode) */
+.st-field select option {
+  background: #0c0e26;
+  color: var(--text);
+}
+
+/* Nav active link helper (used by Header) */
+.st-nav-links a.active::after { bottom: -19px; }
+
+/* Section separator gap */
+.st-sec-gap { height: clamp(60px, 8vw, 100px); }
+
+/* Fade loading skeleton */
+.st-skeleton {
+  background: linear-gradient(90deg, rgba(255,255,255,0.06) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.06) 75%);
+  background-size: 200% 100%;
+  animation: st-shimmer 1.4s infinite;
+  border-radius: var(--radius-sm);
+}
+@keyframes st-shimmer { to { background-position: -200% 0; } }
+
+/* Sec-header spacing helper */
+.st-sec-header { margin-bottom: 50px; }
