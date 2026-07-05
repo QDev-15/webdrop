@@ -296,6 +296,7 @@ VPS AZDIGI Linux
 | `nha-khoa-nu-cuoi-xua` | Nha khoa phong cách retro | RETRO-BOLD, Teal `#1f7a6b`, Mustard `#c98a1f` | ✅ |
 | `nha-khoa-quoc-te-vietduc` | Nha khoa quốc tế đa chi nhánh | CLEAN-CORPORATE, Teal `#0f6d82` | ✅ |
 | `nha-khoa-tham-my-luxdental` | Nha khoa thẩm mỹ cao cấp | BOLD-EDITORIAL, Scarlet `#d63b1f` | ✅ |
+| `nha-khoa-tong-quat-antam` | Nha khoa tổng quát | ZEN-MINIMAL, Sage green `#6b8067` | ✅ |
 
 **Ghi chú kỹ thuật `nha-khoa-chinh-nha-saigon`:**
 - CSS prefix: `cn-` xuyên suốt (không dùng `tmv-`)
@@ -346,7 +347,9 @@ VPS AZDIGI Linux
 
 ---
 
-*Cập nhật lần cuối: 2026-07-05 — hoàn thành WebDeploy `nha-khoa-tham-my-luxdental` (BOLD-EDITORIAL identity, Syne 800, Scarlet `#d63b1f`, warm white `#faf9f6`, React + PHP + SQLite, TS website 49 modules 210kB 0 lỗi, admin 56 modules 237kB 0 lỗi, PHP 24/24 OK 0 BOM, 6 trang: /, /dich-vu, /truoc-sau, /bac-si, /dat-lich, /lien-he, Nav-8 underline-active always-solid, H5 Bold Typography Only hero, bento-grid services, masonry before/after gallery, lx- CSS prefix)*
+*Cập nhật lần cuối: 2026-07-05 — hoàn thành WebDeploy `nha-khoa-tong-quat-antam` (ZEN-MINIMAL identity, Cormorant Garamond 300 + DM Sans, warm white #f7f5f0, Sage green #6b8067, React + PHP + SQLite, TS website 49 modules 200kB 0 lỗi, admin 56 modules 232kB 0 lỗi, PHP 23/23 OK 0 BOM, 5 trang: /, /dich-vu, /bac-si, /dat-lich, /lien-he, Nav transparent→scrolled, H11 Full-Width Text hero + marquee, List-Elegant services, Alternating-Strips team, at- CSS prefix)*
+
+*Cập nhật lần cuối trước: 2026-07-05 — hoàn thành WebDeploy `nha-khoa-tham-my-luxdental` (BOLD-EDITORIAL identity, Syne 800, Scarlet `#d63b1f`, warm white `#faf9f6`, React + PHP + SQLite, TS website 49 modules 210kB 0 lỗi, admin 56 modules 237kB 0 lỗi, PHP 24/24 OK 0 BOM, 6 trang: /, /dich-vu, /truoc-sau, /bac-si, /dat-lich, /lien-he, Nav-8 underline-active always-solid, H5 Bold Typography Only hero, bento-grid services, masonry before/after gallery, lx- CSS prefix)*
 
 *Cập nhật lần trước: 2026-07-05 — web-deploy-fixer `nha-khoa-quoc-te-vietduc` hoàn thành: fix bootstrap.php thiếu require_once MediaController/UnsplashController/UploadController, fix website/index.html thiếu Bootstrap 5.3.3 CDN, fix toàn bộ UI tiếng Việt có dấu trên tất cả 6 trang website (Header, Footer, HomePage, ServicesPage, FacilitiesPage, TeamPage, BookingPage, ContactPage), PHP 24/24 OK 0 BOM, TS website 44 modules 214kB 0 lỗi, admin 58 modules 233kB 0 lỗi — build ✅)*
 
@@ -429,6 +432,25 @@ VPS AZDIGI Linux
 - TS build: website 44 modules 214kB 0 lỗi, admin 58 modules 233kB 0 lỗi
 - PHP syntax: 24/24 files OK, 0 BOM
 - web-deploy-fixer fixes (2026-07-05): migrate() comment-stripping pattern, thêm routes /media + /upload + /unsplash vào bootstrap.php, fix MediaController::destroy dùng $p[1] thay $p['id'], fix build.mjs duplicate blocks, fix toàn bộ UI tiếng Việt có dấu
+
+**Ghi chú kỹ thuật `nha-khoa-tong-quat-antam`:**
+- CSS prefix: `at-` xuyên suốt (an-tam)
+- Identity: ZEN-MINIMAL — Cormorant Garamond weight 300 (heading) + DM Sans (body), nền warm white `#f7f5f0`, Sage green accent `#6b8067`
+- Nav: transparent → `.at-nav-scrolled` khi scrollY > 60 (Nav-1 tối giản, không blur mạnh)
+- Fonts: Bunny Fonts — cormorant-garamond:300,400,400i,500 + dm-sans:300,400,500,600
+- Hero: H11 Full-Width Text — heading serif clamp(46px,9.2vw,132px), marquee strip (28s), scroll hint animation
+- Trang website: `/`, `/dich-vu`, `/bac-si`, `/dat-lich`, `/lien-he` (5 trang)
+- Services: List-Elegant style (số thứ tự + tên + giá, hover indent), phân theo 3 nhóm: Khám & phòng ngừa, Điều trị, Thẩm mỹ răng
+- Team: Alternating-Strips layout (homepage) + Grid 4-col (team page)
+- SiteContext: stat_patients, stat_years, stat_satisfaction (3 stats) + calm_quote, calm_attr_name, calm_attr_role (philosophy section)
+- Public API: `GET /public/settings`, `GET /public/hero-slides`, `GET /public/service-categories`, `GET /public/services`, `GET /public/doctors`, `GET /public/testimonials`, `POST /public/bookings`, `POST /public/contact`
+- DB Extension tables: service_categories, services (number, price, price_unit, is_featured), doctors (specialties pipe-separated), bookings (fullname, phone, email, service, doctor, date, time, note), testimonials (author_avatar, rating, is_featured)
+- DB seed: 3 nhóm dịch vụ, 12 dịch vụ, 4 bác sĩ, 3 testimonials, 35 settings keys
+- Booking fields: fullname, phone, email, service, doctor, date, time, note
+- Admin pages: dashboard, bookings, services (+ categories), team, testimonials, contacts, slides, media, settings, profile
+- TS build: website 49 modules 200kB 0 lỗi, admin 56 modules 232kB 0 lỗi
+- PHP syntax: 23/23 files OK, 0 BOM
+- website/src/main.tsx: thiếu khi scaffold → tạo thủ công
 
 **Ghi chú kỹ thuật `nha-khoa-tham-my-luxdental`:**
 - CSS prefix: `lx-` xuyên suốt
