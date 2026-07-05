@@ -21,7 +21,8 @@
       "Bash(node scaffolder.mjs nha-hang-truyen restaurant)",
       "Bash(node scaffolder.mjs massage-tri-lieu spa-service)",
       "PowerShell(& \"C:\\\\xampp\\\\apache\\\\bin\\\\httpd.exe\" -t 2>&1)",
-      "Bash(node scaffolder.mjs tham-my-vien spa-service)"
+      "Bash(node scaffolder.mjs tham-my-vien spa-service)",
+      "Bash(git remote *)"
     ],
     "additionalDirectories": [
       "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"
