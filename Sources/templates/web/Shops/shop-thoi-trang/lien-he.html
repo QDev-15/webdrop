@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liên Hệ — [Tên Shop]</title>
+  <meta name="description" content="[Liên hệ với chúng tôi để được tư vấn sản phẩm, đặt hàng số lượng lớn hoặc giải quyết mọi thắc mắc]">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ── MOBILE NAV ── -->
+<div id="stMobNav" class="st-mob-nav" aria-hidden="true" role="dialog" aria-label="Menu di động">
+  <ul>
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="san-pham.html">Bộ sưu tập</a></li>
+    <li><a href="san-pham.html">Nam</a></li>
+    <li><a href="san-pham.html">Nữ</a></li>
+    <li><a href="san-pham.html">Sale</a></li>
+    <li><a href="lien-he.html" class="st-active">Liên hệ</a></li>
+  </ul>
+  <div class="st-mob-actions">
+    <a href="gio-hang.html" class="st-btn st-btn-outline-white">
+      <i class="bi bi-bag"></i> Giỏ hàng (3)
+    </a>
+  </div>
+</div>
+
+<!-- ══ NAV (scrolled) ══ -->
+<header id="stNav" class="st-nav st-scrolled" role="banner">
+  <div class="st-container st-nav-inner">
+    <a href="index.html" class="st-logo">[Tên<span>.</span>Shop]</a>
+    <nav class="st-nav-links" aria-label="Menu chính">
+      <a href="index.html">Trang chủ</a>
+      <a href="san-pham.html">Bộ sưu tập</a>
+      <a href="san-pham.html">Nam</a>
+      <a href="san-pham.html">Nữ</a>
+      <a href="san-pham.html">Sale</a>
+      <a href="lien-he.html" class="st-active">Liên hệ</a>
+    </nav>
+    <div class="st-nav-actions">
+      <a href="#" class="st-nav-icon" aria-label="Tìm kiếm"><i class="bi bi-search"></i></a>
+      <a href="gio-hang.html" class="st-nav-icon" aria-label="Giỏ hàng">
+        <i class="bi bi-bag"></i>
+        <span class="st-cart-badge">3</span>
+      </a>
+      <button id="stBurger" class="st-burger" aria-label="Mở menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ══ PAGE HERO ══ -->
+<section class="st-page-hero" aria-label="Tiêu đề trang">
+  <div class="st-container">
+    <nav class="st-breadcrumb mb-3" aria-label="Điều hướng">
+      <a href="index.html">Trang chủ</a>
+      <span class="st-breadcrumb-sep">/</span>
+      <span>Liên hệ</span>
+    </nav>
+    <h1 class="st-page-title">Liên Hệ<br>Với Chúng Tôi</h1>
+    <p style="color:rgba(255,255,255,.45);font-size:14px;font-weight:600;max-width:400px;margin-top:8px;">
+      [Chúng tôi luôn sẵn sàng hỗ trợ bạn — phản hồi trong vòng 2 giờ làm việc]
+    </p>
+  </div>
+</section>
+
+<!-- ══ CONTACT CONTENT ══ -->
+<section class="st-sec" aria-label="Thông tin liên hệ">
+  <div class="st-container">
+    <div class="st-contact-layout">
+
+      <!-- ── Contact Form ── -->
+      <div>
+        <div class="st-eyebrow" data-reveal>Gửi Tin Nhắn</div>
+        <h2 class="st-sec-title" data-reveal data-delay="1">Chúng Tôi<br>Lắng Nghe Bạn</h2>
+        <p class="st-sec-sub" style="margin-bottom:36px;" data-reveal data-delay="2">
+          [Điền thông tin vào form bên dưới, chúng tôi sẽ liên hệ lại trong vòng 24 giờ làm việc]
+        </p>
+
+        <form id="stContactForm" novalidate>
+          <div class="st-form-row" data-reveal data-delay="2">
+            <div class="st-form-group">
+              <label class="st-form-label" for="stName">Họ và tên *</label>
+              <input type="text" id="stName" name="name" class="st-form-input"
+                placeholder="[Nguyễn Văn A]" required autocomplete="name">
+            </div>
+            <div class="st-form-group">
+              <label class="st-form-label" for="stPhone">Số điện thoại *</label>
+              <input type="tel" id="stPhone" name="phone" class="st-form-input"
+                placeholder="[0901 234 567]" required autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="st-form-group" data-reveal data-delay="3">
+            <label class="st-form-label" for="stEmail">Email</label>
+            <input type="email" id="stEmail" name="email" class="st-form-input"
+              placeholder="[email@example.com]" autocomplete="email">
+          </div>
+
+          <div class="st-form-group" data-reveal data-delay="3">
+            <label class="st-form-label" for="stSubject">Chủ đề</label>
+            <select id="stSubject" name="subject" class="st-form-select">
+              <option value="">Chọn chủ đề...</option>
+              <option value="order">Hỏi về đơn hàng</option>
+              <option value="product">Tư vấn sản phẩm</option>
+              <option value="return">Đổi trả — Hoàn tiền</option>
+              <option value="wholesale">Mua sỉ / Đại lý</option>
+              <option value="collab">Hợp tác — Collab</option>
+              <option value="other">Khác</option>
+            </select>
+          </div>
+
+          <div class="st-form-group" data-reveal data-delay="4">
+            <label class="st-form-label" for="stMessage">Nội dung *</label>
+            <textarea id="stMessage" name="message" class="st-form-input"
+              placeholder="[Nhập nội dung tin nhắn của bạn...]" required rows="5"></textarea>
+          </div>
+
+          <div data-reveal data-delay="5">
+            <button type="submit" class="st-btn st-btn-primary st-btn-lg">
+              Gửi Tin Nhắn <i class="bi bi-send"></i>
+            </button>
+          </div>
+
+          <!-- Success message (hidden by default) -->
+          <div id="stFormSuccess" style="display:none;margin-top:20px;padding:16px 20px;background:var(--accent-light);border-left:4px solid var(--accent);">
+            <p style="font-size:14px;font-weight:700;color:var(--accent);margin:0;">
+              <i class="bi bi-check-circle me-2"></i>
+              Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi trong vòng 24 giờ.
+            </p>
+          </div>
+        </form>
+      </div>
+
+      <!-- ── Contact Info ── -->
+      <div>
+        <div class="st-eyebrow mb-3" data-reveal>Thông Tin</div>
+
+        <div class="st-contact-info-item" data-reveal data-delay="1">
+          <div class="st-ci-icon"><i class="bi bi-geo-alt-fill"></i></div>
+          <div>
+            <div class="st-ci-label">Địa Chỉ Cửa Hàng</div>
+            <div class="st-ci-val">[Số nhà, Tên đường, Phường/Xã]<br>[Quận/Huyện, Thành phố/Tỉnh]</div>
+          </div>
+        </div>
+
+        <div class="st-contact-info-item" data-reveal data-delay="2">
+          <div class="st-ci-icon"><i class="bi bi-telephone-fill"></i></div>
+          <div>
+            <div class="st-ci-label">Điện Thoại & Zalo</div>
+            <div class="st-ci-val">
+              <a href="tel:+840901234567" style="display:block;">[0901 234 567]</a>
+              <a href="tel:+840912345678" style="display:block;color:var(--text-3);font-size:14px;margin-top:2px;">[0912 345 678] — Hỗ trợ online</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="st-contact-info-item" data-reveal data-delay="3">
+          <div class="st-ci-icon"><i class="bi bi-envelope-fill"></i></div>
+          <div>
+            <div class="st-ci-label">Email</div>
+            <div class="st-ci-val">
+              <a href="mailto:hello@tenshop.vn">[hello@tenshop.vn]</a><br>
+              <a href="mailto:sale@tenshop.vn" style="color:var(--text-3);font-size:14px;">[sale@tenshop.vn] — Đặt hàng sỉ</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="st-contact-info-item" data-reveal data-delay="4">
+          <div class="st-ci-icon"><i class="bi bi-clock-fill"></i></div>
+          <div>
+            <div class="st-ci-label">Giờ Làm Việc</div>
+            <div class="st-ci-val" style="font-size:14px;">
+              Thứ 2 – Thứ 7: 8:00 – 21:00<br>
+              Chủ nhật: 9:00 – 19:00<br>
+              <span style="color:var(--accent);font-weight:700;">Chat online 7/7 qua Zalo</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social links -->
+        <div style="padding:28px;background:var(--dark);margin-top:8px;" data-reveal>
+          <div style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin-bottom:16px;">
+            Theo Dõi Chúng Tôi
+          </div>
+          <div class="d-flex gap-3">
+            <a href="https://facebook.com/[username]" target="_blank" rel="noopener noreferrer"
+              style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:rgba(255,255,255,.65);transition:color .2s;"
+              aria-label="Facebook">
+              <i class="bi bi-facebook" style="font-size:18px;color:#1877f2;"></i> Facebook
+            </a>
+            <a href="https://instagram.com/[username]" target="_blank" rel="noopener noreferrer"
+              style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:rgba(255,255,255,.65);transition:color .2s;"
+              aria-label="Instagram">
+              <i class="bi bi-instagram" style="font-size:18px;color:#e1306c;"></i> Instagram
+            </a>
+            <a href="https://tiktok.com/@[username]" target="_blank" rel="noopener noreferrer"
+              style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:rgba(255,255,255,.65);transition:color .2s;"
+              aria-label="TikTok">
+              <i class="bi bi-tiktok" style="font-size:18px;color:#fff;"></i> TikTok
+            </a>
+          </div>
+        </div>
+
+        <!-- Map placeholder -->
+        <div class="st-map-box" data-reveal>
+          <div style="text-align:center;">
+            <i class="bi bi-map" style="font-size:40px;display:block;margin-bottom:10px;color:var(--text-3);"></i>
+            [Bản đồ cửa hàng — Nhúng Google Maps iframe tại đây]
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.st-contact-layout -->
+  </div>
+</section>
+
+<!-- ══ FAQ SECTION ══ -->
+<section class="st-sec" style="background:var(--surface);" aria-label="Câu hỏi thường gặp">
+  <div class="st-container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <div data-reveal>
+          <div class="st-eyebrow">FAQ</div>
+          <h2 class="st-sec-title">Câu Hỏi<br>Thường Gặp</h2>
+          <p class="st-sec-sub">
+            [Nếu không tìm thấy câu trả lời, hãy liên hệ trực tiếp với chúng tôi]
+          </p>
+          <div class="mt-4">
+            <a href="https://zalo.me/[so-dien-thoai]" class="st-btn st-btn-dark" target="_blank" rel="noopener noreferrer">
+              <i class="bi bi-chat-dots"></i> Chat Zalo ngay
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="st-faq" data-reveal data-delay="1">
+
+          <div class="st-faq-item open">
+            <button class="st-faq-q" type="button" onclick="toggleFaq(this)" aria-expanded="true">
+              [Thời gian giao hàng mất bao lâu?]
+              <span class="st-faq-icon">+</span>
+            </button>
+            <div class="st-faq-a">
+              [Đơn hàng nội thành TP.HCM và Hà Nội: giao trong 1-2 ngày. Các tỉnh thành khác: 2-4 ngày làm việc.
+              Đơn hàng đặt trước 12h trưa sẽ được xử lý trong ngày. Bạn sẽ nhận được mã theo dõi đơn hàng qua SMS/email.]
+            </div>
+          </div>
+
+          <div class="st-faq-item">
+            <button class="st-faq-q" type="button" onclick="toggleFaq(this)" aria-expanded="false">
+              [Chính sách đổi trả như thế nào?]
+              <span class="st-faq-icon">+</span>
+            </button>
+            <div class="st-faq-a">
+              [Chúng tôi chấp nhận đổi trả trong vòng 14 ngày kể từ ngày nhận hàng. Sản phẩm phải còn nguyên tag, chưa giặt và không có dấu hiệu sử dụng. Phí vận chuyển đổi trả do khách chịu, trừ trường hợp lỗi từ chúng tôi.]
+            </div>
+          </div>
+
+          <div class="st-faq-item">
+            <button class="st-faq-q" type="button" onclick="toggleFaq(this)" aria-expanded="false">
+              [Làm sao để chọn đúng size?]
+              <span class="st-faq-icon">+</span>
+            </button>
+            <div class="st-faq-a">
+              [Chúng tôi có bảng size chi tiết (số đo cụ thể theo cm) trên mỗi trang sản phẩm. Bạn cũng có thể chat với chúng tôi qua Zalo để được tư vấn trực tiếp. Thông thường, nếu bạn nằm giữa 2 size thì chọn size lớn hơn để thoải mái hơn.]
+            </div>
+          </div>
+
+          <div class="st-faq-item">
+            <button class="st-faq-q" type="button" onclick="toggleFaq(this)" aria-expanded="false">
+              [Có mua sỉ được không? Chiết khấu bao nhiêu?]
+              <span class="st-faq-icon">+</span>
+            </button>
+            <div class="st-faq-a">
+              [Có! Chúng tôi hỗ trợ đặt hàng sỉ cho đại lý và nhà bán lẻ. Mức chiết khấu từ 20-40% tùy số lượng đặt hàng. Vui lòng liên hệ email sale@tenshop.vn hoặc gọi số hotline để được báo giá chi tiết.]
+            </div>
+          </div>
+
+          <div class="st-faq-item">
+            <button class="st-faq-q" type="button" onclick="toggleFaq(this)" aria-expanded="false">
+              [Phương thức thanh toán nào được chấp nhận?]
+              <span class="st-faq-icon">+</span>
+            </button>
+            <div class="st-faq-a">
+              [Chúng tôi chấp nhận: Thanh toán khi nhận hàng (COD), chuyển khoản ngân hàng, VNPAY, MoMo, ZaloPay và thẻ ATM nội địa. Tất cả giao dịch online đều được bảo mật bằng công nghệ SSL.]
+            </div>
+          </div>
+
+          <div class="st-faq-item">
+            <button class="st-faq-q" type="button" onclick="toggleFaq(this)" aria-expanded="false">
+              [Làm sao để theo dõi đơn hàng?]
+              <span class="st-faq-icon">+</span>
+            </button>
+            <div class="st-faq-a">
+              [Sau khi đơn hàng được xác nhận, bạn sẽ nhận được SMS/email chứa mã vận đơn. Dùng mã này để tra cứu trên website của đơn vị vận chuyển (Giao Hàng Nhanh, GHTK, ViettelPost...). Bạn cũng có thể inbox cho chúng tôi qua Zalo/Facebook để được hỗ trợ tra cứu.]
+            </div>
+          </div>
+
+        </div><!-- /.st-faq -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NEWSLETTER ══ -->
+<section class="st-newsletter" aria-label="Đăng ký nhận tin">
+  <div class="st-container">
+    <div class="st-newsletter-inner">
+      <div>
+        <h2 class="st-newsletter-heading">Đừng Bỏ Lỡ Ưu Đãi</h2>
+        <p class="st-newsletter-sub">Nhận thông báo về sản phẩm mới và flash sale độc quyền</p>
+      </div>
+      <form class="st-newsletter-form" onsubmit="return false;" novalidate>
+        <input type="email" placeholder="Nhập email của bạn..." aria-label="Email đăng ký">
+        <button type="submit">Đăng Ký</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="st-footer" aria-label="Footer">
+  <div class="st-container">
+    <div class="st-footer-grid">
+      <div>
+        <div class="st-footer-logo">[Tên<span>.</span>Shop]</div>
+        <p class="st-footer-desc">[Mô tả ngắn về thương hiệu và sứ mệnh của cửa hàng]</p>
+        <div class="st-footer-socials">
+          <a href="https://facebook.com/[username]" class="st-footer-social" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://instagram.com/[username]" class="st-footer-social" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://tiktok.com/@[username]" class="st-footer-social" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+          <a href="https://youtube.com/@[username]" class="st-footer-social" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="st-footer-col-title">Sản Phẩm</div>
+        <ul class="st-footer-links">
+          <li><a href="san-pham.html">Thời trang nữ</a></li>
+          <li><a href="san-pham.html">Thời trang nam</a></li>
+          <li><a href="san-pham.html">Trẻ em</a></li>
+          <li><a href="san-pham.html">Phụ kiện</a></li>
+          <li><a href="san-pham.html">Giày dép</a></li>
+          <li><a href="san-pham.html">Sale</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="st-footer-col-title">Hỗ Trợ</div>
+        <ul class="st-footer-links">
+          <li><a href="#">Hướng dẫn mua hàng</a></li>
+          <li><a href="#">Chính sách đổi trả</a></li>
+          <li><a href="#">Chính sách vận chuyển</a></li>
+          <li><a href="#">Bảo mật thông tin</a></li>
+          <li><a href="#">Câu hỏi thường gặp</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="st-footer-col-title">Liên Hệ</div>
+        <div class="st-footer-contact-row">
+          <i class="bi bi-geo-alt"></i>
+          <span>[Địa chỉ cửa hàng — số nhà, đường, phường, quận, thành phố]</span>
+        </div>
+        <div class="st-footer-contact-row">
+          <i class="bi bi-telephone"></i>
+          <span>[0901 234 567]</span>
+        </div>
+        <div class="st-footer-contact-row">
+          <i class="bi bi-envelope"></i>
+          <span>[email@tenshop.vn]</span>
+        </div>
+        <div class="st-footer-contact-row">
+          <i class="bi bi-clock"></i>
+          <span>T2–T7: 8:00–21:00 | CN: 9:00–19:00</span>
+        </div>
+      </div>
+    </div>
+    <div class="st-footer-bottom">
+      <span>© 2025 [Tên Shop]. Bảo lưu mọi quyền.</span>
+      <div class="st-pay-badges">
+        <span class="st-pay-badge">VNPAY</span>
+        <span class="st-pay-badge">MoMo</span>
+        <span class="st-pay-badge">ZaloPay</span>
+        <span class="st-pay-badge">COD</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[so-dien-thoai]" class="st-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo">
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  // Mobile menu
+  const burger = document.getElementById('stBurger');
+  const mobNav = document.getElementById('stMobNav');
+  if (burger && mobNav) {
+    burger.addEventListener('click', () => {
+      const isOpen = mobNav.classList.toggle('open');
+      burger.classList.toggle('open', isOpen);
+      burger.setAttribute('aria-expanded', String(isOpen));
+      mobNav.setAttribute('aria-hidden', String(!isOpen));
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+  }
+
+  // Reveal animation
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+  // FAQ accordion
+  window.toggleFaq = function (btn) {
+    const item = btn.closest('.st-faq-item');
+    const isOpen = item.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(isOpen));
+  };
+
+  // Contact form
+  const form = document.getElementById('stContactForm');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('stName').value.trim();
+      const phone = document.getElementById('stPhone').value.trim();
+      const msg = document.getElementById('stMessage').value.trim();
+      if (!name || !phone || !msg) {
+        alert('Vui lòng điền đầy đủ thông tin bắt buộc (*)');
+        return;
+      }
+      const success = document.getElementById('stFormSuccess');
+      if (success) {
+        success.style.display = 'block';
+        form.reset();
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  }
+
+})();
+</script>
+</body>
+</html>

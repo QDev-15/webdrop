@@ -81,6 +81,7 @@ Xây dựng và bán 3 nhóm sản phẩm chính:
 - [x] Agency / Portfolio / Công ty — **DONE** (6 templates: `Companies/`, `Portfolios/`)
 - [x] Blog / Forum — **DONE** (`Blogs/`, `Forums/`)
 - [x] Nha khoa — **DONE** (10 template: `Dental-Clinics/` — 10 Identity Token khác nhau: LUXE-DARK, FRESH-MINIMAL, BOLD-EDITORIAL, GEOMETRIC-MODERN, SOFT-PASTEL, DARK-ENERGY, CLEAN-CORPORATE, ZEN-MINIMAL, RETRO-BOLD, GLASS-MODERN)
+- [x] Shop bán hàng — **DONE** (2 templates: `shop-ban-hang/` ORGANIC-EARTH, `shop-thoi-trang/` BOLD-EDITORIAL — 5 trang mỗi template)
 - [ ] Landing page sản phẩm / Dịch vụ
 - [ ] CV cá nhân — **PLANNING** (CV Builder SaaS — xem `.claude/plans/cv-template-saas.md`)
 
@@ -196,6 +197,8 @@ webdrop/
 │       ├── Forums/                 ← ✅ forum-cong-dong
 │       ├── Portfolios/             ← ✅ portfolio-toi
 │       ├── Dental-Clinics/         ← ✅ 10 templates (xem ghi chú kỹ thuật)
+│       ├── shop-ban-hang/          ← ✅ 1 template (ORGANIC-EARTH identity — xem ghi chú kỹ thuật)
+│       ├── shop-thoi-trang/        ← ✅ 1 template (BOLD-EDITORIAL identity — xem ghi chú kỹ thuật)
 │       └── CVs/                   ← 🔲 PLANNING (5 mẫu: classic, minimal, creative, dark, executive)
 ├── documents/                      ← Prototype UI HTML (tham khảo)
 └── .gitignore
@@ -348,7 +351,36 @@ VPS AZDIGI Linux
 
 ---
 
-*Cập nhật lần cuối: 2026-07-05 — reviewer+qa fix `nha-khoa-tre-em-kidsmile`: P0 block check-hash.php via .htaccess, P1 TestimonialController store() `? 1 : 1` → `? 1 : 0`, P1 Settings.tsx hero tab keys `hero_eyebrow`+`hero_title`+`hero_subtitle`, P1 HeroSlider.tsx đọc hero_title/hero_subtitle/hero_eyebrow từ DB, P1 Contact.tsx `.ks-contact-grid` class + CSS moved to template.css + remove embedded style tag, P2 data-delay="undefined" → omit attribute khi index=0 (4 components), P2 App.tsx Zalo float button dùng zalo_number từ settings API, P2 Contact.tsx map_embed render iframe nếu có giá trị, P2 Database.php SQL interpolation → prepared statement, P1 breadcrumb `<a href="/">` → `<Link to="/">` toàn bộ 5 trang (ServicesPage, TeamPage, BookingPage, ArticlesPage, ContactPage). TS website 50 modules 204kB 0 lỗi, admin 58 modules 236kB 0 lỗi, PHP 25/25 OK*
+*Cập nhật lần cuối: 2026-07-05 — hoàn thành template `shop-thoi-trang` (BOLD-EDITORIAL identity, Syne 800 + Syne 400, near-white #f4f4f4, Electric Blue #0052ff accent, Nav-1 Transparent→Scrolled, H3 Magazine Grid, 5 trang: index/san-pham/chi-tiet-san-pham/gio-hang/lien-he, st- CSS prefix, Bootstrap 5.3.3, 6 layout patterns: STAT-BAR/GRID-CARDS/BENTO-GRID/ALTERNATING-STRIPS/FULL-BLEED/HORIZONTAL-SCROLL)*
+
+**Ghi chú kỹ thuật `shop-thoi-trang`:**
+- CSS prefix: `st-` xuyên suốt (shop-thoi-trang)
+- Identity: BOLD-EDITORIAL — Syne weight 800 (heading + body), nền near-white `#f4f4f4`, Electric Blue accent `#0052ff`, border-radius: 0 (editorial sharp)
+- Nav: Nav-1 Transparent→Scrolled — trong suốt trên hero tối, trắng khi scrollY > 80px
+- Hero: H3 Magazine Grid — text left 55% / 3-panel asymmetric image grid right 45% (1 tall + 2 stacked)
+- Trang: `index.html`, `san-pham.html`, `chi-tiet-san-pham.html`, `gio-hang.html`, `lien-he.html`
+- Sections: STAT-BAR (dark strip + counters), GRID-CARDS (6 categories), BENTO-GRID (1 large + 4 small products), ALTERNATING-STRIPS (2 brand story rows), FULL-BLEED (flash sale countdown), HORIZONTAL-SCROLL (testimonials)
+- Product card: hover lift + image zoom, action overlay buttons, color dots, size display
+- FAQ accordion (lien-he), gallery switcher + tab system + qty control (chi-tiet), cart qty + remove + coupon (gio-hang)
+- Không có console.log, tất cả target="_blank" có rel="noopener noreferrer", tất cả img có alt
+- Bootstrap Icons 1.11.3, Google Fonts Syne
+
+*Cập nhật lần trước: 2026-07-05 — hoàn thành template `shop-ban-hang` (ORGANIC-EARTH identity, Fraunces 500 + DM Sans, warm cream #f7f3ee, Terracotta #c4603a + Sage #6b8a7a, Nav-7 Split, H9 Product Showcase, 5 trang: index/san-pham/chi-tiet-san-pham/gio-hang/lien-he, sb- CSS prefix, Bootstrap 5.3.3, 6 layout patterns: GRID-CARDS/BENTO-GRID/ALTERNATING-STRIPS/FULL-BLEED/HORIZONTAL-SCROLL/STAT-BAR)*
+
+**Ghi chú kỹ thuật `shop-ban-hang`:**
+- CSS prefix: `sb-` xuyên suốt (shop-ban-hang)
+- Identity: ORGANIC-EARTH — Fraunces weight 500 (heading serif) + DM Sans (body), nền warm cream `#f7f3ee`, Terracotta accent `#c4603a`, Sage secondary `#6b8a7a`
+- Nav: Nav-7 Split — Logo left / Links center / Cart icon + CTA right
+- Hero: H9 Product Showcase — Left text 40% + Right 2×3 product grid 60%
+- Trang: `index.html`, `san-pham.html`, `chi-tiet-san-pham.html`, `gio-hang.html`, `lien-he.html`
+- Section layouts: GRID-CARDS (categories), BENTO-GRID (featured, bento lớn ×1 + nhỏ ×4), ALTERNATING-STRIPS (brand story 2 row), FULL-BLEED (promo banner + countdown), HORIZONTAL-SCROLL (testimonials), STAT-BAR (stats dark)
+- Cards: border-radius 16px, hover scale(1.02) + shadow — đúng ORGANIC-EARTH spec
+- Buttons: border-radius 8px earthy (primary terracotta, secondary sage, ghost/outline)
+- Footer: 3-col dark warm, social icons, payment badges
+- Tính năng: countdown timer, image gallery switcher (chi-tiet), tab system (chi-tiet), FAQ accordion (lien-he), cart qty control, coupon input
+- Không có console.log, tất cả `target="_blank"` có `rel="noopener noreferrer"`, tất cả img có alt
+
+*Cập nhật lần trước: 2026-07-05 — reviewer+qa fix `nha-khoa-tre-em-kidsmile`: P0 block check-hash.php via .htaccess, P1 TestimonialController store() `? 1 : 1` → `? 1 : 0`, P1 Settings.tsx hero tab keys `hero_eyebrow`+`hero_title`+`hero_subtitle`, P1 HeroSlider.tsx đọc hero_title/hero_subtitle/hero_eyebrow từ DB, P1 Contact.tsx `.ks-contact-grid` class + CSS moved to template.css + remove embedded style tag, P2 data-delay="undefined" → omit attribute khi index=0 (4 components), P2 App.tsx Zalo float button dùng zalo_number từ settings API, P2 Contact.tsx map_embed render iframe nếu có giá trị, P2 Database.php SQL interpolation → prepared statement, P1 breadcrumb `<a href="/">` → `<Link to="/">` toàn bộ 5 trang (ServicesPage, TeamPage, BookingPage, ArticlesPage, ContactPage). TS website 50 modules 204kB 0 lỗi, admin 58 modules 236kB 0 lỗi, PHP 25/25 OK*
 
 *Cập nhật lần trước: 2026-07-05 — hoàn thành WebDeploy `nha-khoa-tre-em-kidsmile` (SOFT-PASTEL identity, DM Sans italic 300, lilac `#9b7ef0` + mint `#34c98e`, warm white `#faf8ff`, React + PHP + SQLite, TS website 50 modules 204kB 0 lỗi, admin 58 modules 236kB 0 lỗi, PHP 25/25 OK 0 BOM, 6 trang: /, /dich-vu, /cam-nang-cha-me, /bac-si, /dat-lich, /lien-he, Nav-5 centered logo always-solid, H6 Asymmetric Offset hero, ks- CSS prefix, articles table cho cẩm nang cha mẹ, booking fields parent_name+child_name+child_age, author_meta cho testimonials)*
 

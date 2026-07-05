@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Tên Shop] — Cửa Hàng Thời Trang & Phụ Kiện</title>
+  <meta name="description" content="[Mô tả ngắn về cửa hàng, sản phẩm và phong cách của bạn]">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ── Mobile Nav ── -->
+<nav id="sb-nav-mob" role="navigation" aria-label="Menu di động">
+  <a href="index.html" class="active">Trang chủ</a>
+  <a href="san-pham.html">Sản phẩm</a>
+  <a href="san-pham.html">Bộ sưu tập</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="gio-hang.html" class="mt-3">
+    <i class="bi bi-bag me-2"></i>Giỏ hàng
+  </a>
+</nav>
+
+<!-- ── Nav-7 Split ── -->
+<header id="sb-nav" role="banner">
+  <div class="sb-nav-inner">
+    <!-- Logo -->
+    <a href="index.html" class="sb-logo">[Tên<span>.</span>Shop]</a>
+
+    <!-- Links center -->
+    <nav class="sb-nav-links" role="navigation" aria-label="Menu chính">
+      <a href="index.html" class="active">Trang chủ</a>
+      <a href="san-pham.html">Sản phẩm</a>
+      <a href="san-pham.html">Bộ sưu tập</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+
+    <!-- Right: cart + CTA + burger -->
+    <div class="sb-nav-right">
+      <a href="gio-hang.html" class="sb-nav-cart" aria-label="Giỏ hàng">
+        <i class="bi bi-bag"></i>
+        <span class="sb-cart-count">3</span>
+      </a>
+      <a href="san-pham.html" class="sb-nav-cta">Mua ngay</a>
+      <button id="sb-burger" aria-label="Mở menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     HERO — H9 Product Showcase
+══════════════════════════════════════════ -->
+<section class="sb-hero" aria-label="Hero">
+  <div class="sb-container">
+    <div class="sb-hero-inner">
+
+      <!-- Left text -->
+      <div class="sb-hero-text">
+        <div class="sb-hero-tag" data-reveal>
+          <i class="bi bi-patch-check-fill"></i>
+          [Thương hiệu được yêu thích năm 2025]
+        </div>
+        <h1 class="sb-hero-title" data-reveal data-delay="1">
+          Phong cách <em>tự nhiên</em> —<br>
+          Sống đúng với bản thân
+        </h1>
+        <p class="sb-hero-desc" data-reveal data-delay="2">
+          [Mô tả ngắn về cửa hàng — phong cách, giá trị và điều bạn mang lại cho khách hàng. Tối đa 2 dòng.]
+        </p>
+        <div class="sb-hero-actions" data-reveal data-delay="3">
+          <a href="san-pham.html" class="sb-btn sb-btn-primary">
+            <i class="bi bi-bag-heart"></i>
+            Khám phá ngay
+          </a>
+          <a href="san-pham.html" class="sb-btn sb-btn-ghost">
+            Xem bộ sưu tập
+          </a>
+        </div>
+        <p class="sb-hero-note" data-reveal data-delay="4">
+          Miễn phí giao hàng đơn từ [200.000đ] · Đổi trả trong [30 ngày]
+        </p>
+      </div>
+
+      <!-- Right product showcase grid -->
+      <div class="sb-hero-grid" data-reveal data-delay="2">
+        <div class="sb-hero-prod">
+          <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=600&auto=format&fit=crop&q=80" alt="[Sản phẩm nổi bật 1]" loading="lazy">
+          <div class="sb-hero-prod-badge">Hot</div>
+          <div class="sb-hero-prod-label">[Tên sản phẩm 1]</div>
+        </div>
+        <div class="sb-hero-prod">
+          <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=400&auto=format&fit=crop&q=80" alt="[Sản phẩm nổi bật 2]" loading="lazy">
+          <div class="sb-hero-prod-label">[Sản phẩm 2]</div>
+        </div>
+        <div class="sb-hero-prod">
+          <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400&auto=format&fit=crop&q=80" alt="[Sản phẩm nổi bật 3]" loading="lazy">
+          <div class="sb-hero-prod-badge new">Mới</div>
+        </div>
+        <div class="sb-hero-prod">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&auto=format&fit=crop&q=80" alt="[Sản phẩm nổi bật 4]" loading="lazy">
+          <div class="sb-hero-prod-label">[Sản phẩm 4]</div>
+        </div>
+        <div class="sb-hero-prod">
+          <img src="https://images.unsplash.com/photo-1503342452485-86b5ded8e65a?w=400&auto=format&fit=crop&q=80" alt="[Sản phẩm nổi bật 5]" loading="lazy">
+        </div>
+        <div class="sb-hero-prod">
+          <img src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?w=400&auto=format&fit=crop&q=80" alt="[Sản phẩm nổi bật 6]" loading="lazy">
+          <div class="sb-hero-prod-badge">-20%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CATEGORIES — GRID-CARDS
+══════════════════════════════════════════ -->
+<section class="sb-cat-section sb-sec" aria-labelledby="cat-heading">
+  <div class="sb-container">
+    <div class="row justify-content-between align-items-end g-0">
+      <div class="col-auto">
+        <div class="sb-eyebrow" data-reveal>Danh mục</div>
+        <h2 class="sb-sec-title" id="cat-heading" data-reveal data-delay="1">
+          Khám phá theo <em>chủ đề</em>
+        </h2>
+      </div>
+      <div class="col-auto" data-reveal data-delay="2">
+        <a href="san-pham.html" class="sb-btn sb-btn-ghost">
+          Xem tất cả <i class="bi bi-arrow-right ms-1"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="sb-cat-grid">
+      <div class="sb-cat-card" data-reveal data-delay="1">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&auto=format&fit=crop&q=80" alt="[Danh mục Thời Trang]" loading="lazy">
+        <div class="sb-cat-overlay"></div>
+        <div class="sb-cat-info">
+          <h3>[Thời Trang]</h3>
+          <p>[[Số lượng] sản phẩm]</p>
+        </div>
+        <a href="san-pham.html" class="sb-cat-arrow" aria-label="Xem danh mục [Thời Trang]">
+          <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+      <div class="sb-cat-card" data-reveal data-delay="2">
+        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=80" alt="[Danh mục Phụ Kiện]" loading="lazy">
+        <div class="sb-cat-overlay"></div>
+        <div class="sb-cat-info">
+          <h3>[Phụ Kiện]</h3>
+          <p>[[Số lượng] sản phẩm]</p>
+        </div>
+        <a href="san-pham.html" class="sb-cat-arrow" aria-label="Xem danh mục [Phụ Kiện]">
+          <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+      <div class="sb-cat-card" data-reveal data-delay="3">
+        <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600&auto=format&fit=crop&q=80" alt="[Danh mục Chăm Sóc]" loading="lazy">
+        <div class="sb-cat-overlay"></div>
+        <div class="sb-cat-info">
+          <h3>[Chăm Sóc]</h3>
+          <p>[[Số lượng] sản phẩm]</p>
+        </div>
+        <a href="san-pham.html" class="sb-cat-arrow" aria-label="Xem danh mục [Chăm Sóc]">
+          <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+      <div class="sb-cat-card" data-reveal data-delay="4">
+        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&auto=format&fit=crop&q=80" alt="[Danh mục Nội Thất]" loading="lazy">
+        <div class="sb-cat-overlay"></div>
+        <div class="sb-cat-info">
+          <h3>[Nội Thất & Decor]</h3>
+          <p>[[Số lượng] sản phẩm]</p>
+        </div>
+        <a href="san-pham.html" class="sb-cat-arrow" aria-label="Xem danh mục [Nội Thất]">
+          <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FEATURED PRODUCTS — BENTO-GRID
+══════════════════════════════════════════ -->
+<section class="sb-featured-section sb-sec" aria-labelledby="feat-heading">
+  <div class="sb-container">
+    <div class="sb-section-header">
+      <div>
+        <div class="sb-eyebrow" data-reveal>Nổi bật</div>
+        <h2 class="sb-sec-title" id="feat-heading" data-reveal data-delay="1">
+          Sản phẩm <em>được yêu thích</em>
+        </h2>
+        <p class="sb-sec-sub" data-reveal data-delay="2">
+          [Những sản phẩm bán chạy và được khách hàng đánh giá cao nhất tháng này]
+        </p>
+      </div>
+      <div data-reveal data-delay="2">
+        <a href="san-pham.html" class="sb-btn sb-btn-outline">
+          Xem thêm <i class="bi bi-arrow-right ms-1"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Bento grid -->
+    <div class="sb-bento">
+      <!-- Featured large card -->
+      <div class="sb-prod-card" data-reveal>
+        <div class="sb-prod-img">
+          <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=800&auto=format&fit=crop&q=80" alt="[Tên sản phẩm nổi bật]" loading="lazy">
+          <div class="sb-prod-badge">Bán chạy</div>
+          <div class="sb-prod-actions">
+            <button class="sb-prod-action-btn" aria-label="Yêu thích sản phẩm"><i class="bi bi-heart"></i></button>
+            <button class="sb-prod-action-btn" aria-label="Xem nhanh"><i class="bi bi-eye"></i></button>
+          </div>
+        </div>
+        <div class="sb-prod-info">
+          <div class="sb-prod-cat">[Danh mục]</div>
+          <h3 class="sb-prod-name">[Tên sản phẩm nổi bật — đặc biệt]</h3>
+          <div class="sb-prod-footer">
+            <div class="sb-prod-price">
+              <span class="sb-prod-price-new">[280.000]đ</span>
+              <span class="sb-prod-price-old">[350.000]đ</span>
+            </div>
+            <button class="sb-add-cart" aria-label="Thêm vào giỏ hàng">
+              <i class="bi bi-bag-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="sb-prod-card" data-reveal data-delay="1">
+        <div class="sb-prod-img">
+          <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=500&auto=format&fit=crop&q=80" alt="[Tên sản phẩm 2]" loading="lazy">
+          <div class="sb-prod-badge new">Mới</div>
+          <div class="sb-prod-actions">
+            <button class="sb-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button>
+            <button class="sb-prod-action-btn" aria-label="Xem nhanh"><i class="bi bi-eye"></i></button>
+          </div>
+        </div>
+        <div class="sb-prod-info">
+          <div class="sb-prod-cat">[Danh mục]</div>
+          <h3 class="sb-prod-name">[Tên sản phẩm 2]</h3>
+          <div class="sb-prod-footer">
+            <div class="sb-prod-price">
+              <span class="sb-prod-price-new">[185.000]đ</span>
+            </div>
+            <button class="sb-add-cart" aria-label="Thêm vào giỏ hàng">
+              <i class="bi bi-bag-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="sb-prod-card" data-reveal data-delay="2">
+        <div class="sb-prod-img">
+          <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=500&auto=format&fit=crop&q=80" alt="[Tên sản phẩm 3]" loading="lazy">
+          <div class="sb-prod-actions">
+            <button class="sb-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button>
+            <button class="sb-prod-action-btn" aria-label="Xem nhanh"><i class="bi bi-eye"></i></button>
+          </div>
+        </div>
+        <div class="sb-prod-info">
+          <div class="sb-prod-cat">[Danh mục]</div>
+          <h3 class="sb-prod-name">[Tên sản phẩm 3]</h3>
+          <div class="sb-prod-footer">
+            <div class="sb-prod-price">
+              <span class="sb-prod-price-new">[320.000]đ</span>
+              <span class="sb-prod-price-old">[400.000]đ</span>
+            </div>
+            <button class="sb-add-cart" aria-label="Thêm vào giỏ hàng">
+              <i class="bi bi-bag-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="sb-prod-card" data-reveal data-delay="1">
+        <div class="sb-prod-img">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&auto=format&fit=crop&q=80" alt="[Tên sản phẩm 4]" loading="lazy">
+          <div class="sb-prod-actions">
+            <button class="sb-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button>
+            <button class="sb-prod-action-btn" aria-label="Xem nhanh"><i class="bi bi-eye"></i></button>
+          </div>
+        </div>
+        <div class="sb-prod-info">
+          <div class="sb-prod-cat">[Danh mục]</div>
+          <h3 class="sb-prod-name">[Tên sản phẩm 4]</h3>
+          <div class="sb-prod-footer">
+            <div class="sb-prod-price">
+              <span class="sb-prod-price-new">[145.000]đ</span>
+            </div>
+            <button class="sb-add-cart" aria-label="Thêm vào giỏ hàng">
+              <i class="bi bi-bag-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="sb-prod-card" data-reveal data-delay="2">
+        <div class="sb-prod-img">
+          <img src="https://images.unsplash.com/photo-1503342452485-86b5ded8e65a?w=500&auto=format&fit=crop&q=80" alt="[Tên sản phẩm 5]" loading="lazy">
+          <div class="sb-prod-badge">-15%</div>
+          <div class="sb-prod-actions">
+            <button class="sb-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button>
+            <button class="sb-prod-action-btn" aria-label="Xem nhanh"><i class="bi bi-eye"></i></button>
+          </div>
+        </div>
+        <div class="sb-prod-info">
+          <div class="sb-prod-cat">[Danh mục]</div>
+          <h3 class="sb-prod-name">[Tên sản phẩm 5]</h3>
+          <div class="sb-prod-footer">
+            <div class="sb-prod-price">
+              <span class="sb-prod-price-new">[255.000]đ</span>
+              <span class="sb-prod-price-old">[300.000]đ</span>
+            </div>
+            <button class="sb-add-cart" aria-label="Thêm vào giỏ hàng">
+              <i class="bi bi-bag-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BRAND STORY — ALTERNATING-STRIPS
+══════════════════════════════════════════ -->
+<section class="sb-story-section sb-sec" aria-labelledby="story-heading">
+  <div class="sb-container">
+    <div class="text-center mb-5 pb-2">
+      <div class="sb-eyebrow justify-content-center" data-reveal>Về chúng tôi</div>
+      <h2 class="sb-sec-title" id="story-heading" data-reveal data-delay="1">
+        Câu chuyện <em>phía sau</em>
+      </h2>
+    </div>
+
+    <!-- Row 1 -->
+    <div class="sb-story-row">
+      <div class="sb-story-img" data-reveal>
+        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&auto=format&fit=crop&q=80" alt="[Hình ảnh workshop / xưởng sản xuất]" loading="lazy">
+      </div>
+      <div data-reveal data-delay="2">
+        <div class="sb-story-badge">Câu chuyện thương hiệu</div>
+        <h3 class="sb-story-title">
+          Sinh ra từ <em>tình yêu</em><br>với thiên nhiên
+        </h3>
+        <p class="sb-story-text">
+          [Đoạn văn kể câu chuyện khởi đầu của thương hiệu. Chia sẻ về nguồn cảm hứng, giá trị cốt lõi và điều bạn muốn mang lại cho khách hàng. Tối đa 3-4 câu.]
+        </p>
+        <div class="sb-story-features">
+          <div class="sb-story-feat">
+            <div class="sb-story-feat-icon"><i class="bi bi-leaf"></i></div>
+            [Nguyên liệu tự nhiên, thân thiện môi trường]
+          </div>
+          <div class="sb-story-feat">
+            <div class="sb-story-feat-icon"><i class="bi bi-award"></i></div>
+            [Chất lượng được kiểm định bởi chuyên gia]
+          </div>
+          <div class="sb-story-feat">
+            <div class="sb-story-feat-icon"><i class="bi bi-heart"></i></div>
+            [Mỗi sản phẩm đều được làm với tâm huyết]
+          </div>
+        </div>
+        <a href="lien-he.html" class="sb-btn sb-btn-sage">
+          Tìm hiểu thêm <i class="bi bi-arrow-right ms-1"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Row 2 (reversed) -->
+    <div class="sb-story-row reverse">
+      <div data-reveal>
+        <div class="sb-story-badge">Cam kết của chúng tôi</div>
+        <h3 class="sb-story-title">
+          Mỗi sản phẩm là<br>
+          một <em>tác phẩm</em>
+        </h3>
+        <p class="sb-story-text">
+          [Mô tả về quy trình sản xuất, chuẩn chất lượng hoặc điều đặc biệt trong từng sản phẩm. Nhấn mạnh sự tỉ mỉ, tâm huyết và chất liệu được chọn lọc kỹ lưỡng.]
+        </p>
+        <div class="sb-story-features">
+          <div class="sb-story-feat">
+            <div class="sb-story-feat-icon"><i class="bi bi-shield-check"></i></div>
+            [Bảo hành [12 tháng] cho mọi sản phẩm]
+          </div>
+          <div class="sb-story-feat">
+            <div class="sb-story-feat-icon"><i class="bi bi-truck"></i></div>
+            [Giao hàng toàn quốc trong [1-3 ngày]]
+          </div>
+        </div>
+        <a href="san-pham.html" class="sb-btn sb-btn-primary">
+          Mua sắm ngay <i class="bi bi-bag-heart ms-1"></i>
+        </a>
+      </div>
+      <div class="sb-story-img" data-reveal data-delay="2">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop&q=80" alt="[Hình ảnh sản phẩm được đóng gói]" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PROMO BANNER — FULL-BLEED
+══════════════════════════════════════════ -->
+<section class="sb-promo" aria-label="Khuyến mãi đặc biệt">
+  <div class="sb-container">
+    <div class="sb-promo-inner">
+      <!-- Left text -->
+      <div data-reveal>
+        <div class="sb-promo-label">Ưu đãi có giới hạn</div>
+        <h2 class="sb-promo-title">
+          Giảm đến <em>[30%]</em><br>
+          Bộ sưu tập mới
+        </h2>
+        <p class="sb-promo-sub">
+          [Mô tả chương trình khuyến mãi, điều kiện áp dụng và những sản phẩm nào đang trong đợt sale này]
+        </p>
+        <div class="sb-promo-timer" aria-label="Đếm ngược thời gian">
+          <div class="sb-timer-unit">
+            <div class="sb-timer-num" id="timer-days">02</div>
+            <div class="sb-timer-label">Ngày</div>
+          </div>
+          <div class="sb-timer-sep">:</div>
+          <div class="sb-timer-unit">
+            <div class="sb-timer-num" id="timer-hours">14</div>
+            <div class="sb-timer-label">Giờ</div>
+          </div>
+          <div class="sb-timer-sep">:</div>
+          <div class="sb-timer-unit">
+            <div class="sb-timer-num" id="timer-mins">37</div>
+            <div class="sb-timer-label">Phút</div>
+          </div>
+          <div class="sb-timer-sep">:</div>
+          <div class="sb-timer-unit">
+            <div class="sb-timer-num" id="timer-secs">44</div>
+            <div class="sb-timer-label">Giây</div>
+          </div>
+        </div>
+        <a href="san-pham.html" class="sb-btn sb-btn-primary">
+          Mua ngay <i class="bi bi-arrow-right ms-1"></i>
+        </a>
+      </div>
+
+      <!-- Right product grid -->
+      <div class="sb-promo-products" data-reveal data-delay="2">
+        <div class="sb-promo-prod">
+          <img src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?w=400&auto=format&fit=crop&q=80" alt="[Sản phẩm sale 1]" loading="lazy">
+          <div class="sb-promo-prod-info">
+            <strong>[Tên sản phẩm 1]</strong>
+            [Giá gốc: [350.000]đ]
+          </div>
+        </div>
+        <div class="sb-promo-prod">
+          <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=400&auto=format&fit=crop&q=80" alt="[Sản phẩm sale 2]" loading="lazy">
+          <div class="sb-promo-prod-info">
+            <strong>[Tên sản phẩm 2]</strong>
+            [Giá gốc: [420.000]đ]
+          </div>
+        </div>
+        <div class="sb-promo-prod">
+          <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&auto=format&fit=crop&q=80" alt="[Sản phẩm sale 3]" loading="lazy">
+          <div class="sb-promo-prod-info">
+            <strong>[Tên sản phẩm 3]</strong>
+            [Giá gốc: [280.000]đ]
+          </div>
+        </div>
+        <div class="sb-promo-prod">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&auto=format&fit=crop&q=80" alt="[Sản phẩm sale 4]" loading="lazy">
+          <div class="sb-promo-prod-info">
+            <strong>[Tên sản phẩm 4]</strong>
+            [Giá gốc: [520.000]đ]
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     TESTIMONIALS — HORIZONTAL-SCROLL
+══════════════════════════════════════════ -->
+<section class="sb-reviews-section sb-sec" aria-labelledby="review-heading">
+  <div class="sb-container">
+    <div class="row justify-content-between align-items-end g-0">
+      <div class="col-auto">
+        <div class="sb-eyebrow" data-reveal>Đánh giá</div>
+        <h2 class="sb-sec-title" id="review-heading" data-reveal data-delay="1">
+          Khách hàng <em>nói gì</em>
+        </h2>
+      </div>
+      <div class="col-auto d-flex align-items-center gap-2" data-reveal data-delay="2">
+        <i class="bi bi-star-fill text-warning"></i>
+        <span style="font-weight:500; color:var(--text)">4.9/5</span>
+        <span style="color:var(--text-3); font-size:13px">([2.400+] đánh giá)</span>
+      </div>
+    </div>
+
+    <div class="sb-reviews-scroll" role="list">
+      <div class="sb-review-card" data-reveal role="listitem">
+        <div class="sb-review-stars" aria-label="5 sao">
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+        </div>
+        <p class="sb-review-text">[Đây là sản phẩm tốt nhất mình từng dùng. Chất liệu cao cấp, bền đẹp và mùi thơm rất dễ chịu. Sẽ ủng hộ tiếp.]</p>
+        <div class="sb-review-author">
+          <div class="sb-review-avatar">N</div>
+          <div>
+            <div class="sb-review-name">[Nguyễn Thị Hoa]</div>
+            <div class="sb-review-sub">[TP.HCM] · [Tháng 6/2025]</div>
+          </div>
+        </div>
+        <div class="sb-review-product">
+          <i class="bi bi-bag-check"></i>
+          Đã mua: <strong>[Tên sản phẩm]</strong>
+        </div>
+      </div>
+
+      <div class="sb-review-card" data-reveal data-delay="1" role="listitem">
+        <div class="sb-review-stars" aria-label="5 sao">
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+        </div>
+        <p class="sb-review-text">[Giao hàng nhanh, đóng gói cẩn thận. Sản phẩm y như hình, thậm chí đẹp hơn. Mình rất hài lòng với lần mua này.]</p>
+        <div class="sb-review-author">
+          <div class="sb-review-avatar">T</div>
+          <div>
+            <div class="sb-review-name">[Trần Minh Tuấn]</div>
+            <div class="sb-review-sub">[Hà Nội] · [Tháng 6/2025]</div>
+          </div>
+        </div>
+        <div class="sb-review-product">
+          <i class="bi bi-bag-check"></i>
+          Đã mua: <strong>[Tên sản phẩm]</strong>
+        </div>
+      </div>
+
+      <div class="sb-review-card" data-reveal data-delay="2" role="listitem">
+        <div class="sb-review-stars" aria-label="5 sao">
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+        </div>
+        <p class="sb-review-text">[Shop tư vấn nhiệt tình, giúp mình chọn được size phù hợp. Hàng nhận được đúng như mong đợi, sẽ quay lại mua tiếp.]</p>
+        <div class="sb-review-author">
+          <div class="sb-review-avatar">L</div>
+          <div>
+            <div class="sb-review-name">[Lê Thu Lan]</div>
+            <div class="sb-review-sub">[Đà Nẵng] · [Tháng 5/2025]</div>
+          </div>
+        </div>
+        <div class="sb-review-product">
+          <i class="bi bi-bag-check"></i>
+          Đã mua: <strong>[Tên sản phẩm]</strong>
+        </div>
+      </div>
+
+      <div class="sb-review-card" data-reveal data-delay="3" role="listitem">
+        <div class="sb-review-stars" aria-label="4 sao">
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          <i class="bi bi-star"></i>
+        </div>
+        <p class="sb-review-text">[Chất lượng tốt, giá cả hợp lý. Mình đã mua lần thứ ba rồi. Chỉ tiếc là hết size mình thích, nhưng nhìn chung rất ok.]</p>
+        <div class="sb-review-author">
+          <div class="sb-review-avatar">P</div>
+          <div>
+            <div class="sb-review-name">[Phạm Việt Dũng]</div>
+            <div class="sb-review-sub">[Cần Thơ] · [Tháng 5/2025]</div>
+          </div>
+        </div>
+        <div class="sb-review-product">
+          <i class="bi bi-bag-check"></i>
+          Đã mua: <strong>[Tên sản phẩm]</strong>
+        </div>
+      </div>
+
+      <div class="sb-review-card" data-reveal data-delay="4" role="listitem">
+        <div class="sb-review-stars" aria-label="5 sao">
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+        </div>
+        <p class="sb-review-text">[Sản phẩm vượt kỳ vọng của mình. Mình đã giới thiệu cho cả nhóm bạn. Shop phục vụ chuyên nghiệp, cảm ơn nhiều nhé!]</p>
+        <div class="sb-review-author">
+          <div class="sb-review-avatar">H</div>
+          <div>
+            <div class="sb-review-name">[Hoàng Phương Thảo]</div>
+            <div class="sb-review-sub">[Bình Dương] · [Tháng 7/2025]</div>
+          </div>
+        </div>
+        <div class="sb-review-product">
+          <i class="bi bi-bag-check"></i>
+          Đã mua: <strong>[Tên sản phẩm]</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     STATS BAR — STAT-BAR
+══════════════════════════════════════════ -->
+<section class="sb-stats" aria-label="Số liệu thành tựu">
+  <div class="sb-container">
+    <div class="sb-stats-grid">
+      <div class="sb-stat" data-reveal>
+        <div class="sb-stat-num">
+          <span data-counter="15000" data-suffix="+">0+</span>
+        </div>
+        <div class="sb-stat-label">Khách hàng hài lòng</div>
+      </div>
+      <div class="sb-stat" data-reveal data-delay="1">
+        <div class="sb-stat-num">
+          <span data-counter="500" data-suffix="+">0+</span>
+        </div>
+        <div class="sb-stat-label">Sản phẩm đa dạng</div>
+      </div>
+      <div class="sb-stat" data-reveal data-delay="2">
+        <div class="sb-stat-num">
+          <span data-counter="5" data-suffix=" năm">0 năm</span>
+        </div>
+        <div class="sb-stat-label">Kinh nghiệm</div>
+      </div>
+      <div class="sb-stat" data-reveal data-delay="3">
+        <div class="sb-stat-num">
+          <span data-counter="63" data-suffix="">0</span>
+          <span> tỉnh</span>
+        </div>
+        <div class="sb-stat-label">Giao hàng toàn quốc</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     NEWSLETTER
+══════════════════════════════════════════ -->
+<section class="sb-newsletter" aria-labelledby="newsletter-heading">
+  <div class="sb-container">
+    <div class="sb-newsletter-inner">
+      <div class="sb-eyebrow justify-content-center" data-reveal>Nhận ưu đãi</div>
+      <h2 class="sb-sec-title" id="newsletter-heading" data-reveal data-delay="1">
+        Đăng ký nhận <em>tin khuyến mãi</em>
+      </h2>
+      <p style="font-size:16px; font-weight:300; color:var(--text-2); margin-top:12px;" data-reveal data-delay="2">
+        [Đăng ký nhận newsletter để được thông báo ưu đãi độc quyền, ra mắt sản phẩm mới và mã giảm giá đặc biệt]
+      </p>
+      <form class="sb-newsletter-form" data-reveal data-delay="3" novalidate>
+        <input type="email" name="email" placeholder="Email của bạn" aria-label="Nhập email đăng ký nhận tin">
+        <button type="submit">Đăng ký</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer id="sb-footer" role="contentinfo">
+  <div class="sb-container">
+    <div class="sb-footer-grid">
+      <!-- Brand col -->
+      <div class="sb-footer-brand">
+        <a href="index.html" class="sb-logo">[Tên<span>.</span>Shop]</a>
+        <p>[Mô tả ngắn về cửa hàng — triết lý thương hiệu, cam kết với khách hàng. Tối đa 2-3 câu.]</p>
+        <div class="sb-footer-social">
+          <a href="https://www.facebook.com/[fanpage]" class="sb-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <i class="bi bi-facebook"></i>
+          </a>
+          <a href="https://www.instagram.com/[account]" class="sb-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a href="https://www.tiktok.com/@[account]" class="sb-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <i class="bi bi-tiktok"></i>
+          </a>
+          <a href="https://zalo.me/[phone]" class="sb-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Zalo">
+            <i class="bi bi-chat-dots"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Links col 1 -->
+      <div class="sb-footer-col">
+        <h4>Sản phẩm</h4>
+        <ul>
+          <li><a href="san-pham.html">Tất cả sản phẩm</a></li>
+          <li><a href="san-pham.html">[Danh mục 1]</a></li>
+          <li><a href="san-pham.html">[Danh mục 2]</a></li>
+          <li><a href="san-pham.html">[Danh mục 3]</a></li>
+          <li><a href="san-pham.html">Sản phẩm mới</a></li>
+          <li><a href="san-pham.html">Đang giảm giá</a></li>
+        </ul>
+      </div>
+
+      <!-- Links col 2 -->
+      <div class="sb-footer-col">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="gio-hang.html">Theo dõi đơn hàng</a></li>
+          <li><a href="lien-he.html">Chính sách đổi trả</a></li>
+          <li><a href="lien-he.html">Chính sách vận chuyển</a></li>
+          <li><a href="lien-he.html">FAQ</a></li>
+          <li><a href="lien-he.html">Hướng dẫn chọn size</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer bottom -->
+    <div class="sb-footer-bottom">
+      <p>&copy; 2025 [Tên Shop]. Tất cả quyền được bảo lưu.</p>
+      <div class="sb-footer-pay" aria-label="Phương thức thanh toán">
+        <span class="sb-pay-badge">VISA</span>
+        <span class="sb-pay-badge">MasterCard</span>
+        <span class="sb-pay-badge">MoMo</span>
+        <span class="sb-pay-badge">ZaloPay</span>
+        <span class="sb-pay-badge">COD</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── Zalo Float ── -->
+<div class="sb-zalo-float" aria-label="Chat Zalo">
+  <div class="sb-zalo-tooltip">Chat Zalo</div>
+  <a href="https://zalo.me/[0900000000]" class="sb-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo">
+    <i class="bi bi-chat-fill"></i>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// === Reveal animation ===
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+  });
+}, { threshold: .08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+// === Mobile hamburger ===
+const burger = document.getElementById('sb-burger');
+const mob    = document.getElementById('sb-nav-mob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const open = mob.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  });
+}
+
+// === Counter animation ===
+document.querySelectorAll('[data-counter]').forEach(el => {
+  const cro = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      const target = +el.dataset.counter;
+      const suffix = el.dataset.suffix || '';
+      let cur = 0;
+      const step = Math.ceil(target / 60);
+      const t = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = cur + suffix;
+        if (cur >= target) clearInterval(t);
+      }, 25);
+      cro.disconnect();
+    }
+  }, { threshold: .5 });
+  cro.observe(el);
+});
+
+// === Countdown timer ===
+(function() {
+  const endDate = new Date();
+  endDate.setDate(endDate.getDate() + 2);
+  endDate.setHours(endDate.getHours() + 14);
+
+  function updateTimer() {
+    const now  = new Date();
+    const diff = endDate - now;
+    if (diff <= 0) return;
+
+    const days = Math.floor(diff / 86400000);
+    const hrs  = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000)  / 60000);
+    const secs = Math.floor((diff % 60000)    / 1000);
+
+    const pad = n => String(n).padStart(2, '0');
+    const dEl = document.getElementById('timer-days');
+    const hEl = document.getElementById('timer-hours');
+    const mEl = document.getElementById('timer-mins');
+    const sEl = document.getElementById('timer-secs');
+    if (dEl) dEl.textContent = pad(days);
+    if (hEl) hEl.textContent = pad(hrs);
+    if (mEl) mEl.textContent = pad(mins);
+    if (sEl) sEl.textContent = pad(secs);
+  }
+  updateTimer();
+  setInterval(updateTimer, 1000);
+})();
+</script>
+</body>
+</html>

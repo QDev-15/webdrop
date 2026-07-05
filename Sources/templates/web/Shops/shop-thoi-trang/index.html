@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Tên Shop] — Thời Trang Phong Cách</title>
+  <meta name="description" content="[Mô tả ngắn về cửa hàng: phong cách, thương hiệu và điều bạn mang lại cho khách hàng]">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ── MOBILE NAV ── -->
+<div id="stMobNav" class="st-mob-nav" aria-hidden="true" role="dialog" aria-label="Menu di động">
+  <ul>
+    <li><a href="index.html" class="st-active">Trang chủ</a></li>
+    <li><a href="san-pham.html">Bộ sưu tập</a></li>
+    <li><a href="san-pham.html">Nam</a></li>
+    <li><a href="san-pham.html">Nữ</a></li>
+    <li><a href="san-pham.html">Sale</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+  <div class="st-mob-actions">
+    <a href="gio-hang.html" class="st-btn st-btn-outline-white">
+      <i class="bi bi-bag"></i> Giỏ hàng (3)
+    </a>
+  </div>
+</div>
+
+<!-- ══ NAV-1: Transparent → Scrolled ══ -->
+<header id="stNav" class="st-nav" role="banner">
+  <div class="st-container st-nav-inner">
+    <!-- Logo -->
+    <a href="index.html" class="st-logo">[Tên<span>.</span>Shop]</a>
+
+    <!-- Center links -->
+    <nav class="st-nav-links" aria-label="Menu chính">
+      <a href="index.html" class="st-active">Trang chủ</a>
+      <a href="san-pham.html">Bộ sưu tập</a>
+      <a href="san-pham.html">Nam</a>
+      <a href="san-pham.html">Nữ</a>
+      <a href="san-pham.html">Sale</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+
+    <!-- Right actions -->
+    <div class="st-nav-actions">
+      <a href="#" class="st-nav-icon" aria-label="Tìm kiếm">
+        <i class="bi bi-search"></i>
+      </a>
+      <a href="gio-hang.html" class="st-nav-icon" aria-label="Giỏ hàng">
+        <i class="bi bi-bag"></i>
+        <span class="st-cart-badge">3</span>
+      </a>
+      <button id="stBurger" class="st-burger" aria-label="Mở menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════════════
+     HERO — H3: Magazine Grid
+══════════════════════════════════════════════════ -->
+<section class="st-hero" aria-label="Hero">
+  <div class="st-container">
+    <div class="st-hero-inner">
+
+      <!-- Left: editorial text -->
+      <div class="st-hero-text">
+        <div class="st-hero-eyebrow" data-reveal>
+          Bộ Sưu Tập Mới — 2025
+        </div>
+        <h1 class="st-hero-heading" data-reveal data-delay="1">
+          PHONG<br>
+          CÁCH<br>
+          <em>MỚI</em>
+        </h1>
+        <p class="st-hero-desc" data-reveal data-delay="2">
+          [Mô tả về cửa hàng — phong cách thời trang, chất lượng và giá trị thương hiệu.
+          Tối đa 2 dòng để giữ layout gọn.]
+        </p>
+        <div class="st-hero-cta" data-reveal data-delay="3">
+          <a href="san-pham.html" class="st-btn st-btn-primary st-btn-lg">
+            Khám Phá Ngay <i class="bi bi-arrow-right"></i>
+          </a>
+          <a href="san-pham.html" class="st-btn st-btn-outline-white">
+            Xem Lookbook
+          </a>
+        </div>
+        <div class="st-hero-scroll" data-reveal data-delay="4">
+          <span class="st-hero-scroll-line"></span>
+          Cuộn để khám phá
+        </div>
+      </div>
+
+      <!-- Right: Magazine image grid -->
+      <div class="st-hero-grid" data-reveal data-delay="2">
+        <!-- Large portrait left -->
+        <div class="st-hero-grid-item">
+          <img src="https://picsum.photos/seed/stH1/500/800" alt="[Bộ sưu tập nữ mùa hè]" loading="eager">
+          <div class="st-hero-grid-label">Nữ</div>
+        </div>
+        <!-- Small top right -->
+        <div class="st-hero-grid-item">
+          <img src="https://picsum.photos/seed/stH2/500/520" alt="[Bộ sưu tập nam mùa hè]" loading="eager">
+          <div class="st-hero-grid-label">Nam</div>
+        </div>
+        <!-- Small bottom right -->
+        <div class="st-hero-grid-item">
+          <img src="https://picsum.photos/seed/stH3/500/520" alt="[Phụ kiện thời trang]" loading="eager">
+          <div class="st-hero-grid-label">Phụ kiện</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     STAT BAR
+══════════════════════════════════════════════════ -->
+<section class="st-statbar" aria-label="Thống kê">
+  <div class="st-container">
+    <div class="st-statbar-grid">
+      <div class="st-stat-item">
+        <div class="st-stat-num">
+          <span data-counter="50" data-suffix="K+">0</span>
+        </div>
+        <div class="st-stat-label">Khách hàng</div>
+      </div>
+      <div class="st-stat-item">
+        <div class="st-stat-num">
+          <span data-counter="2500" data-suffix="+">0</span>
+        </div>
+        <div class="st-stat-label">Sản phẩm</div>
+      </div>
+      <div class="st-stat-item">
+        <div class="st-stat-num">
+          <span data-counter="5">0</span><span class="st-accent">★</span>
+        </div>
+        <div class="st-stat-label">Đánh giá trung bình</div>
+      </div>
+      <div class="st-stat-item">
+        <div class="st-stat-num">
+          <span data-counter="100" data-suffix="%">0</span>
+        </div>
+        <div class="st-stat-label">Miễn phí vận chuyển</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     CATEGORIES — GRID-CARDS
+══════════════════════════════════════════════════ -->
+<section class="st-sec-sm" aria-label="Danh mục sản phẩm">
+  <div class="st-container">
+    <div class="text-center mb-5" data-reveal>
+      <div class="st-eyebrow">Danh Mục</div>
+      <h2 class="st-sec-title">Phong Cách<br>Của Bạn</h2>
+    </div>
+  </div>
+  <div class="st-container">
+    <div class="st-cats-grid">
+      <a href="san-pham.html" class="st-cat-card" data-reveal>
+        <img src="https://picsum.photos/seed/stCat1/600/750" alt="[Thời trang nữ]" loading="lazy">
+        <div class="st-cat-overlay">
+          <div class="st-cat-name">Nữ</div>
+          <div class="st-cat-count">1.200+ sản phẩm</div>
+          <div class="st-cat-arrow">Xem tất cả <i class="bi bi-arrow-right"></i></div>
+        </div>
+      </a>
+      <a href="san-pham.html" class="st-cat-card" data-reveal data-delay="1">
+        <img src="https://picsum.photos/seed/stCat2/600/750" alt="[Thời trang nam]" loading="lazy">
+        <div class="st-cat-overlay">
+          <div class="st-cat-name">Nam</div>
+          <div class="st-cat-count">850+ sản phẩm</div>
+          <div class="st-cat-arrow">Xem tất cả <i class="bi bi-arrow-right"></i></div>
+        </div>
+      </a>
+      <a href="san-pham.html" class="st-cat-card" data-reveal data-delay="2">
+        <img src="https://picsum.photos/seed/stCat3/600/750" alt="[Thời trang trẻ em]" loading="lazy">
+        <div class="st-cat-overlay">
+          <div class="st-cat-name">Trẻ Em</div>
+          <div class="st-cat-count">320+ sản phẩm</div>
+          <div class="st-cat-arrow">Xem tất cả <i class="bi bi-arrow-right"></i></div>
+        </div>
+      </a>
+      <a href="san-pham.html" class="st-cat-card" data-reveal>
+        <img src="https://picsum.photos/seed/stCat4/600/460" alt="[Phụ kiện thời trang]" loading="lazy">
+        <div class="st-cat-overlay">
+          <div class="st-cat-name">Phụ Kiện</div>
+          <div class="st-cat-count">480+ sản phẩm</div>
+          <div class="st-cat-arrow">Xem tất cả <i class="bi bi-arrow-right"></i></div>
+        </div>
+      </a>
+      <a href="san-pham.html" class="st-cat-card" data-reveal data-delay="1">
+        <img src="https://picsum.photos/seed/stCat5/600/460" alt="[Giày dép thời trang]" loading="lazy">
+        <div class="st-cat-overlay">
+          <div class="st-cat-name">Giày Dép</div>
+          <div class="st-cat-count">290+ sản phẩm</div>
+          <div class="st-cat-arrow">Xem tất cả <i class="bi bi-arrow-right"></i></div>
+        </div>
+      </a>
+      <a href="san-pham.html" class="st-cat-card" data-reveal data-delay="2">
+        <img src="https://picsum.photos/seed/stCat6/600/460" alt="[Sale thời trang]" loading="lazy">
+        <div class="st-cat-overlay">
+          <div class="st-cat-name">Sale</div>
+          <div class="st-cat-count">Giảm đến 50%</div>
+          <div class="st-cat-arrow">Xem ngay <i class="bi bi-arrow-right"></i></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     FEATURED PRODUCTS — BENTO-GRID
+══════════════════════════════════════════════════ -->
+<section class="st-sec" style="background: var(--surface);" aria-label="Sản phẩm nổi bật">
+  <div class="st-container">
+    <div class="d-flex align-items-end justify-content-between gap-3 mb-5 flex-wrap" data-reveal>
+      <div>
+        <div class="st-eyebrow">Nổi Bật</div>
+        <h2 class="st-sec-title mb-0">Được Yêu<br>Thích Nhất</h2>
+      </div>
+      <a href="san-pham.html" class="st-btn st-btn-outline">
+        Xem tất cả <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+
+    <div class="st-bento">
+      <!-- Large card -->
+      <div class="st-bento-large st-prod-card" data-reveal>
+        <div class="st-prod-thumb">
+          <img src="https://picsum.photos/seed/stP1/600/900" alt="[Áo Oversize Premium]" loading="lazy">
+          <span class="st-prod-badge st-prod-badge-new">Mới nhất</span>
+          <div class="st-prod-actions">
+            <button aria-label="Thêm vào giỏ hàng">Thêm vào giỏ</button>
+            <button aria-label="Xem nhanh">Xem nhanh</button>
+          </div>
+        </div>
+        <div class="st-prod-info">
+          <div class="st-prod-brand">[Thương hiệu]</div>
+          <div class="st-prod-name">[Áo Oversize Premium — Màu Trắng]</div>
+          <div class="st-prod-price">
+            <span class="st-price-current">490.000đ</span>
+            <span class="st-price-original">680.000đ</span>
+            <span class="st-price-pct">-28%</span>
+          </div>
+          <div class="st-prod-colors">
+            <span class="st-color-dot active" style="background:#fff; outline:1px solid #ccc;" title="Trắng"></span>
+            <span class="st-color-dot" style="background:#0a0a0a;" title="Đen"></span>
+            <span class="st-color-dot" style="background:#0052ff;" title="Xanh"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Small card 1 -->
+      <div class="st-bento-small st-prod-card" data-reveal data-delay="1">
+        <div class="st-prod-thumb">
+          <img src="https://picsum.photos/seed/stP2/500/500" alt="[Quần Jeans Slim Fit]" loading="lazy">
+          <span class="st-prod-badge st-prod-badge-hot">Hot</span>
+          <div class="st-prod-actions">
+            <button aria-label="Thêm vào giỏ hàng">Thêm vào giỏ</button>
+          </div>
+        </div>
+        <div class="st-prod-info">
+          <div class="st-prod-brand">[Thương hiệu]</div>
+          <div class="st-prod-name">[Quần Jeans Slim Fit]</div>
+          <div class="st-prod-price">
+            <span class="st-price-current">620.000đ</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Small card 2 -->
+      <div class="st-bento-small st-prod-card" data-reveal data-delay="2">
+        <div class="st-prod-thumb">
+          <img src="https://picsum.photos/seed/stP3/500/500" alt="[Váy Wrap Floral]" loading="lazy">
+          <span class="st-prod-badge st-prod-badge-sale">Sale</span>
+          <div class="st-prod-actions">
+            <button aria-label="Thêm vào giỏ hàng">Thêm vào giỏ</button>
+          </div>
+        </div>
+        <div class="st-prod-info">
+          <div class="st-prod-brand">[Thương hiệu]</div>
+          <div class="st-prod-name">[Váy Wrap Họa Tiết Hoa]</div>
+          <div class="st-prod-price">
+            <span class="st-price-current">380.000đ</span>
+            <span class="st-price-original">520.000đ</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Small card 3 -->
+      <div class="st-bento-small st-prod-card" data-reveal data-delay="1">
+        <div class="st-prod-thumb">
+          <img src="https://picsum.photos/seed/stP4/500/500" alt="[Áo Khoác Bomber]" loading="lazy">
+          <div class="st-prod-actions">
+            <button aria-label="Thêm vào giỏ hàng">Thêm vào giỏ</button>
+          </div>
+        </div>
+        <div class="st-prod-info">
+          <div class="st-prod-brand">[Thương hiệu]</div>
+          <div class="st-prod-name">[Áo Khoác Bomber Unisex]</div>
+          <div class="st-prod-price">
+            <span class="st-price-current">850.000đ</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Small card 4 -->
+      <div class="st-bento-small st-prod-card" data-reveal data-delay="2">
+        <div class="st-prod-thumb">
+          <img src="https://picsum.photos/seed/stP5/500/500" alt="[Túi Tote Canvas]" loading="lazy">
+          <span class="st-prod-badge st-prod-badge-new">Mới</span>
+          <div class="st-prod-actions">
+            <button aria-label="Thêm vào giỏ hàng">Thêm vào giỏ</button>
+          </div>
+        </div>
+        <div class="st-prod-info">
+          <div class="st-prod-brand">[Thương hiệu]</div>
+          <div class="st-prod-name">[Túi Tote Canvas Logo]</div>
+          <div class="st-prod-price">
+            <span class="st-price-current">295.000đ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     BRAND STORY — ALTERNATING-STRIPS (2 rows)
+══════════════════════════════════════════════════ -->
+
+<!-- Strip 1: Image left | Text right -->
+<div class="st-strip" aria-label="Về thương hiệu">
+  <div class="st-strip-img">
+    <img src="https://picsum.photos/seed/stStory1/800/640" alt="[Ảnh câu chuyện thương hiệu]" loading="lazy">
+  </div>
+  <div class="st-strip-content">
+    <div class="st-strip-watermark" aria-hidden="true">01</div>
+    <div class="st-eyebrow">Câu Chuyện</div>
+    <h2 class="st-sec-title">Thời Trang<br>Từ Trái Tim</h2>
+    <p class="st-sec-sub" style="max-width:400px;">
+      [Câu chuyện thương hiệu — nguồn gốc, cảm hứng thiết kế và hành trình phát triển.
+      Tạo sự kết nối cảm xúc với khách hàng qua từng sản phẩm.]
+    </p>
+    <div class="st-strip-features" style="margin-top:24px;">
+      <div class="st-strip-feature">
+        <i class="bi bi-check2-circle"></i>
+        <span>Chất liệu cao cấp, bền đẹp theo thời gian</span>
+      </div>
+      <div class="st-strip-feature">
+        <i class="bi bi-check2-circle"></i>
+        <span>Thiết kế riêng biệt, không trùng lặp</span>
+      </div>
+      <div class="st-strip-feature">
+        <i class="bi bi-check2-circle"></i>
+        <span>Sản xuất có trách nhiệm, bảo vệ môi trường</span>
+      </div>
+    </div>
+    <div class="mt-4" data-reveal>
+      <a href="lien-he.html" class="st-btn st-btn-dark">
+        Tìm hiểu thêm <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Strip 2: Text (dark) left | Image right -->
+<div class="st-strip" aria-label="Cam kết chất lượng">
+  <div class="st-strip-content st-dark">
+    <div class="st-strip-watermark" aria-hidden="true">02</div>
+    <div class="st-eyebrow">Cam Kết</div>
+    <h2 class="st-sec-title">Chất Lượng<br>Không Thỏa Hiệp</h2>
+    <p class="st-sec-sub" style="max-width:400px;">
+      [Cam kết về chất lượng sản phẩm, chính sách đổi trả và dịch vụ khách hàng.
+      Mỗi sản phẩm đều được kiểm tra kỹ lưỡng trước khi đến tay bạn.]
+    </p>
+    <div class="st-strip-features" style="margin-top:24px;">
+      <div class="st-strip-feature">
+        <i class="bi bi-shield-check"></i>
+        <span>Bảo hành chất lượng 30 ngày</span>
+      </div>
+      <div class="st-strip-feature">
+        <i class="bi bi-arrow-repeat"></i>
+        <span>Đổi trả miễn phí trong 14 ngày</span>
+      </div>
+      <div class="st-strip-feature">
+        <i class="bi bi-truck"></i>
+        <span>Giao hàng nhanh toàn quốc 2-4 ngày</span>
+      </div>
+    </div>
+    <div class="mt-4">
+      <a href="san-pham.html" class="st-btn st-btn-outline-white">
+        Mua sắm ngay <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+  <div class="st-strip-img">
+    <img src="https://picsum.photos/seed/stStory2/800/640" alt="[Ảnh chất lượng sản phẩm]" loading="lazy">
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     PROMO BANNER — FULL-BLEED with Countdown
+══════════════════════════════════════════════════ -->
+<section class="st-promo" aria-label="Flash Sale">
+  <div class="st-container">
+    <div class="st-promo-inner">
+      <div class="st-promo-tag" data-reveal>Flash Sale</div>
+      <h2 class="st-promo-heading" data-reveal data-delay="1">
+        GIẢM ĐẾN<br>
+        <span>50%</span>
+      </h2>
+      <p class="st-promo-desc" data-reveal data-delay="2">
+        [Mô tả ngắn về chương trình khuyến mãi — điều kiện, sản phẩm áp dụng và thời hạn]
+      </p>
+      <div class="st-countdown" id="stCountdown" data-reveal data-delay="3" aria-label="Thời gian còn lại">
+        <div class="st-countdown-unit">
+          <span class="st-countdown-num" data-h>00</span>
+          <span class="st-countdown-label">Giờ</span>
+        </div>
+        <div class="st-countdown-sep">:</div>
+        <div class="st-countdown-unit">
+          <span class="st-countdown-num" data-m>00</span>
+          <span class="st-countdown-label">Phút</span>
+        </div>
+        <div class="st-countdown-sep">:</div>
+        <div class="st-countdown-unit">
+          <span class="st-countdown-num" data-s>00</span>
+          <span class="st-countdown-label">Giây</span>
+        </div>
+      </div>
+      <div data-reveal data-delay="4">
+        <a href="san-pham.html" class="st-btn st-btn-primary st-btn-lg">
+          Mua ngay — Kết thúc sớm <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     TESTIMONIALS — HORIZONTAL-SCROLL
+══════════════════════════════════════════════════ -->
+<section class="st-sec st-testi-bg" aria-label="Đánh giá khách hàng">
+  <div class="st-container">
+    <div class="d-flex align-items-end justify-content-between gap-3 mb-5 flex-wrap" data-reveal>
+      <div>
+        <div class="st-eyebrow">Phản Hồi</div>
+        <h2 class="st-sec-title mb-0">Khách Hàng<br>Nói Gì</h2>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="st-view-btn" onclick="document.querySelector('.st-testi-track').scrollBy({left:-380,behavior:'smooth'})" aria-label="Trước">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <button class="st-view-btn active" onclick="document.querySelector('.st-testi-track').scrollBy({left:380,behavior:'smooth'})" aria-label="Tiếp theo">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="st-testi-track">
+      <div class="st-testi-card">
+        <div class="st-testi-stars">
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+        </div>
+        <div class="st-testi-quote">"</div>
+        <p class="st-testi-text">
+          "[Nhận xét thực tế của khách hàng về chất lượng sản phẩm, dịch vụ giao hàng và trải nghiệm mua sắm]"
+        </p>
+        <div class="st-testi-author">
+          <div class="st-testi-avatar">N</div>
+          <div>
+            <div class="st-testi-name">[Nguyễn Thị A]</div>
+            <div class="st-testi-role">Khách hàng thường xuyên</div>
+            <div class="st-testi-brand">Mua áo oversize</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="st-testi-card">
+        <div class="st-testi-stars">
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+        </div>
+        <div class="st-testi-quote">"</div>
+        <p class="st-testi-text">
+          "[Nhận xét về chất vải, form dáng và cách phối đồ. Khách hàng chia sẻ cảm nhận sau khi sử dụng sản phẩm]"
+        </p>
+        <div class="st-testi-author">
+          <div class="st-testi-avatar">T</div>
+          <div>
+            <div class="st-testi-name">[Trần Văn B]</div>
+            <div class="st-testi-role">Khách hàng mới</div>
+            <div class="st-testi-brand">Mua quần jeans</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="st-testi-card">
+        <div class="st-testi-stars">
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+        </div>
+        <div class="st-testi-quote">"</div>
+        <p class="st-testi-text">
+          "[Chia sẻ về trải nghiệm mua sắm online, tốc độ giao hàng và chất lượng đóng gói sản phẩm]"
+        </p>
+        <div class="st-testi-author">
+          <div class="st-testi-avatar">L</div>
+          <div>
+            <div class="st-testi-name">[Lê Thị C]</div>
+            <div class="st-testi-role">Khách hàng VIP</div>
+            <div class="st-testi-brand">Mua váy floral</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="st-testi-card">
+        <div class="st-testi-stars">
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+        </div>
+        <div class="st-testi-quote">"</div>
+        <p class="st-testi-text">
+          "[Đánh giá về sự đa dạng của bộ sưu tập, phong cách thiết kế độc đáo và giá cả hợp lý]"
+        </p>
+        <div class="st-testi-author">
+          <div class="st-testi-avatar">P</div>
+          <div>
+            <div class="st-testi-name">[Phạm Minh D]</div>
+            <div class="st-testi-role">Khách hàng thường xuyên</div>
+            <div class="st-testi-brand">Mua áo khoác bomber</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="st-testi-card">
+        <div class="st-testi-stars">
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+        </div>
+        <div class="st-testi-quote">"</div>
+        <p class="st-testi-text">
+          "[Cảm nhận về chính sách đổi trả, hỗ trợ khách hàng và sự chuyên nghiệp của đội ngũ nhân viên]"
+        </p>
+        <div class="st-testi-author">
+          <div class="st-testi-avatar">H</div>
+          <div>
+            <div class="st-testi-name">[Hoàng Thị E]</div>
+            <div class="st-testi-role">Blogger thời trang</div>
+            <div class="st-testi-brand">Mua túi tote canvas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     NEWSLETTER
+══════════════════════════════════════════════════ -->
+<section class="st-newsletter" aria-label="Đăng ký nhận tin">
+  <div class="st-container">
+    <div class="st-newsletter-inner">
+      <div>
+        <h2 class="st-newsletter-heading">Nhận Ưu Đãi Độc Quyền</h2>
+        <p class="st-newsletter-sub">Đăng ký ngay để nhận thông tin bộ sưu tập mới và khuyến mãi hấp dẫn</p>
+      </div>
+      <form class="st-newsletter-form" onsubmit="return false;" novalidate>
+        <input type="email" placeholder="Nhập email của bạn..." aria-label="Email đăng ký">
+        <button type="submit">Đăng Ký</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════ -->
+<footer class="st-footer" aria-label="Footer">
+  <div class="st-container">
+    <div class="st-footer-grid">
+      <!-- Brand -->
+      <div>
+        <div class="st-footer-logo">[Tên<span>.</span>Shop]</div>
+        <p class="st-footer-desc">
+          [Mô tả ngắn về thương hiệu và sứ mệnh của cửa hàng. Tạo ấn tượng với khách hàng.]
+        </p>
+        <div class="st-footer-socials">
+          <a href="https://facebook.com/[username]" class="st-footer-social" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <i class="bi bi-facebook"></i>
+          </a>
+          <a href="https://instagram.com/[username]" class="st-footer-social" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a href="https://tiktok.com/@[username]" class="st-footer-social" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <i class="bi bi-tiktok"></i>
+          </a>
+          <a href="https://youtube.com/@[username]" class="st-footer-social" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <i class="bi bi-youtube"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Sản phẩm -->
+      <div>
+        <div class="st-footer-col-title">Sản Phẩm</div>
+        <ul class="st-footer-links">
+          <li><a href="san-pham.html">Thời trang nữ</a></li>
+          <li><a href="san-pham.html">Thời trang nam</a></li>
+          <li><a href="san-pham.html">Trẻ em</a></li>
+          <li><a href="san-pham.html">Phụ kiện</a></li>
+          <li><a href="san-pham.html">Giày dép</a></li>
+          <li><a href="san-pham.html">Sale</a></li>
+        </ul>
+      </div>
+
+      <!-- Hỗ trợ -->
+      <div>
+        <div class="st-footer-col-title">Hỗ Trợ</div>
+        <ul class="st-footer-links">
+          <li><a href="#">Hướng dẫn mua hàng</a></li>
+          <li><a href="#">Chính sách đổi trả</a></li>
+          <li><a href="#">Chính sách vận chuyển</a></li>
+          <li><a href="#">Bảo mật thông tin</a></li>
+          <li><a href="#">Câu hỏi thường gặp</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+        </ul>
+      </div>
+
+      <!-- Liên hệ -->
+      <div>
+        <div class="st-footer-col-title">Liên Hệ</div>
+        <div class="st-footer-contact-row">
+          <i class="bi bi-geo-alt"></i>
+          <span>[Địa chỉ cửa hàng — số nhà, đường, phường, quận, thành phố]</span>
+        </div>
+        <div class="st-footer-contact-row">
+          <i class="bi bi-telephone"></i>
+          <span>[0901 234 567]</span>
+        </div>
+        <div class="st-footer-contact-row">
+          <i class="bi bi-envelope"></i>
+          <span>[email@tenshop.vn]</span>
+        </div>
+        <div class="st-footer-contact-row">
+          <i class="bi bi-clock"></i>
+          <span>T2–T7: 8:00–21:00<br>Chủ nhật: 9:00–19:00</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="st-footer-bottom">
+      <span>© 2025 [Tên Shop]. Bảo lưu mọi quyền.</span>
+      <div class="st-pay-badges">
+        <span class="st-pay-badge">VNPAY</span>
+        <span class="st-pay-badge">MoMo</span>
+        <span class="st-pay-badge">ZaloPay</span>
+        <span class="st-pay-badge">COD</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── Zalo Float ── -->
+<a href="https://zalo.me/[so-dien-thoai]" class="st-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo">
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  // Nav scroll (Nav-1)
+  const nav = document.getElementById('stNav');
+  if (nav) {
+    const onScroll = () => nav.classList.toggle('st-scrolled', window.scrollY > 80);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  // Mobile menu
+  const burger = document.getElementById('stBurger');
+  const mobNav = document.getElementById('stMobNav');
+  if (burger && mobNav) {
+    burger.addEventListener('click', () => {
+      const isOpen = mobNav.classList.toggle('open');
+      burger.classList.toggle('open', isOpen);
+      burger.setAttribute('aria-expanded', String(isOpen));
+      mobNav.setAttribute('aria-hidden', String(!isOpen));
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+  }
+
+  // Reveal animation
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+  // Counter animation
+  document.querySelectorAll('[data-counter]').forEach(el => {
+    const cro = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        const target = +el.dataset.counter;
+        const suffix = el.dataset.suffix || '';
+        let cur = 0;
+        const step = Math.ceil(target / 60);
+        const t = setInterval(() => {
+          cur = Math.min(cur + step, target);
+          el.textContent = cur + suffix;
+          if (cur >= target) clearInterval(t);
+        }, 25);
+        cro.disconnect();
+      }
+    }, { threshold: 0.5 });
+    cro.observe(el);
+  });
+
+  // Countdown timer
+  const cdEl = document.getElementById('stCountdown');
+  if (cdEl) {
+    const end = new Date();
+    end.setHours(end.getHours() + 11, end.getMinutes() + 47, end.getSeconds() + 23);
+    const pad = n => String(n).padStart(2, '0');
+    const tick = () => {
+      const diff = end - new Date();
+      if (diff <= 0) { cdEl.innerHTML = '<span style="color:#fff;font-size:18px;font-weight:700">Đã kết thúc</span>'; return; }
+      cdEl.querySelector('[data-h]').textContent = pad(Math.floor(diff / 3600000));
+      cdEl.querySelector('[data-m]').textContent = pad(Math.floor((diff % 3600000) / 60000));
+      cdEl.querySelector('[data-s]').textContent = pad(Math.floor((diff % 60000) / 1000));
+    };
+    tick();
+    setInterval(tick, 1000);
+  }
+
+})();
+</script>
+</body>
+</html>

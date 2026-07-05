@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Tên Sản Phẩm] — [Tên Shop]</title>
+  <meta name="description" content="[Mô tả sản phẩm: chất liệu, form dáng, hướng dẫn phối đồ và bảo quản]">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ── MOBILE NAV ── -->
+<div id="stMobNav" class="st-mob-nav" aria-hidden="true" role="dialog" aria-label="Menu di động">
+  <ul>
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="san-pham.html" class="st-active">Bộ sưu tập</a></li>
+    <li><a href="san-pham.html">Nam</a></li>
+    <li><a href="san-pham.html">Nữ</a></li>
+    <li><a href="san-pham.html">Sale</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+  <div class="st-mob-actions">
+    <a href="gio-hang.html" class="st-btn st-btn-outline-white">
+      <i class="bi bi-bag"></i> Giỏ hàng (3)
+    </a>
+  </div>
+</div>
+
+<!-- ══ NAV (scrolled) ══ -->
+<header id="stNav" class="st-nav st-scrolled" role="banner">
+  <div class="st-container st-nav-inner">
+    <a href="index.html" class="st-logo">[Tên<span>.</span>Shop]</a>
+    <nav class="st-nav-links" aria-label="Menu chính">
+      <a href="index.html">Trang chủ</a>
+      <a href="san-pham.html" class="st-active">Bộ sưu tập</a>
+      <a href="san-pham.html">Nam</a>
+      <a href="san-pham.html">Nữ</a>
+      <a href="san-pham.html">Sale</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+    <div class="st-nav-actions">
+      <a href="#" class="st-nav-icon" aria-label="Tìm kiếm"><i class="bi bi-search"></i></a>
+      <a href="gio-hang.html" class="st-nav-icon" aria-label="Giỏ hàng">
+        <i class="bi bi-bag"></i>
+        <span class="st-cart-badge">3</span>
+      </a>
+      <button id="stBurger" class="st-burger" aria-label="Mở menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ══ BREADCRUMB ══ -->
+<div style="background:var(--surface);padding:88px 0 0;" aria-label="Điều hướng">
+  <div class="st-container" style="padding-top:24px;padding-bottom:16px;">
+    <nav class="st-breadcrumb" aria-label="Điều hướng">
+      <a href="index.html">Trang chủ</a>
+      <span class="st-breadcrumb-sep">/</span>
+      <a href="san-pham.html">Bộ sưu tập</a>
+      <span class="st-breadcrumb-sep">/</span>
+      <span>[Tên sản phẩm]</span>
+    </nav>
+  </div>
+</div>
+
+<!-- ══ PRODUCT DETAIL ══ -->
+<section class="st-sec" style="background:var(--surface);padding-top:32px;" aria-label="Chi tiết sản phẩm">
+  <div class="st-container">
+    <div class="st-detail-layout">
+
+      <!-- ── Gallery ── -->
+      <div class="st-gallery">
+        <!-- Main image -->
+        <div class="st-gallery-main" id="stMainImg" role="img" aria-label="[Ảnh chính sản phẩm]">
+          <img id="stMainImgEl" src="https://picsum.photos/seed/stDP1/600/800" alt="[Áo Oversize Premium — Màu Trắng — Góc chính diện]" loading="eager">
+        </div>
+        <!-- Thumbnails -->
+        <div class="st-gallery-thumbs" role="group" aria-label="Ảnh sản phẩm">
+          <div class="st-thumb st-active" onclick="switchImg(this, 'https://picsum.photos/seed/stDP1/600/800', '[Góc chính diện]')">
+            <img src="https://picsum.photos/seed/stDP1/150/200" alt="[Góc chính diện]" loading="lazy">
+          </div>
+          <div class="st-thumb" onclick="switchImg(this, 'https://picsum.photos/seed/stDP2/600/800', '[Góc sau]')">
+            <img src="https://picsum.photos/seed/stDP2/150/200" alt="[Góc sau]" loading="lazy">
+          </div>
+          <div class="st-thumb" onclick="switchImg(this, 'https://picsum.photos/seed/stDP3/600/800', '[Chi tiết cổ áo]')">
+            <img src="https://picsum.photos/seed/stDP3/150/200" alt="[Chi tiết cổ áo]" loading="lazy">
+          </div>
+          <div class="st-thumb" onclick="switchImg(this, 'https://picsum.photos/seed/stDP4/600/800', '[Ảnh mặc thực tế]')">
+            <img src="https://picsum.photos/seed/stDP4/150/200" alt="[Ảnh mặc thực tế]" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Info ── -->
+      <div class="st-detail-info">
+        <div class="st-detail-brand">[Thương hiệu]</div>
+        <h1 class="st-detail-title">[Áo Oversize<br>Premium]</h1>
+
+        <div class="st-detail-price">
+          <span class="st-d-price-now">490.000đ</span>
+          <span class="st-d-price-old">680.000đ</span>
+          <span class="st-d-price-save">Tiết kiệm 190.000đ</span>
+        </div>
+
+        <div class="st-detail-rating">
+          <div class="st-rating-stars" aria-label="4.8 sao">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-half"></i>
+          </div>
+          <span class="st-rating-count">4.8 (124 đánh giá)</span>
+          <span style="font-size:13px;color:var(--accent);font-weight:700;margin-left:8px;">Đã bán 2.300+</span>
+        </div>
+
+        <div class="st-divider"></div>
+
+        <!-- Color selection -->
+        <div class="st-opt-label">
+          Màu sắc: <strong style="font-weight:800;" id="stColorLabel">Trắng</strong>
+        </div>
+        <div class="d-flex gap-2 mb-4">
+          <span class="st-color-dot active" style="background:#fff;outline:1px solid #ccc;width:28px;height:28px;"
+            onclick="selectColor(this,'Trắng')" title="Trắng" role="button" tabindex="0" aria-label="Màu Trắng"></span>
+          <span class="st-color-dot" style="background:#0a0a0a;width:28px;height:28px;"
+            onclick="selectColor(this,'Đen')" title="Đen" role="button" tabindex="0" aria-label="Màu Đen"></span>
+          <span class="st-color-dot" style="background:#0052ff;width:28px;height:28px;"
+            onclick="selectColor(this,'Xanh dương')" title="Xanh dương" role="button" tabindex="0" aria-label="Màu Xanh dương"></span>
+          <span class="st-color-dot" style="background:#6b7280;width:28px;height:28px;"
+            onclick="selectColor(this,'Xám')" title="Xám" role="button" tabindex="0" aria-label="Màu Xám"></span>
+        </div>
+
+        <!-- Size selection -->
+        <div class="st-opt-label">
+          Size: <strong id="stSizeLabel" style="font-weight:800;">M</strong>
+          <a href="#" onclick="return false;">Hướng dẫn chọn size</a>
+        </div>
+        <div class="st-size-grid" id="stSizeGrid">
+          <button class="st-size-btn" onclick="selectSize(this)">XS</button>
+          <button class="st-size-btn" onclick="selectSize(this)">S</button>
+          <button class="st-size-btn active" onclick="selectSize(this)">M</button>
+          <button class="st-size-btn" onclick="selectSize(this)">L</button>
+          <button class="st-size-btn" onclick="selectSize(this)">XL</button>
+          <button class="st-size-btn" onclick="selectSize(this)">XXL</button>
+          <button class="st-size-btn" disabled>3XL</button>
+        </div>
+
+        <!-- Quantity -->
+        <div class="st-qty-row">
+          <div class="st-qty-ctrl">
+            <button type="button" onclick="changeQty(-1)" aria-label="Giảm số lượng">
+              <i class="bi bi-dash"></i>
+            </button>
+            <input type="number" id="stQty" value="1" min="1" max="99" aria-label="Số lượng">
+            <button type="button" onclick="changeQty(1)" aria-label="Tăng số lượng">
+              <i class="bi bi-plus"></i>
+            </button>
+          </div>
+          <span style="font-size:13px;color:var(--text-3);font-weight:600;">
+            Còn <strong style="color:var(--text);">48</strong> sản phẩm
+          </span>
+        </div>
+
+        <!-- CTA buttons -->
+        <div class="st-detail-ctas">
+          <a href="gio-hang.html" class="st-btn st-btn-dark st-btn-lg">
+            <i class="bi bi-bag-plus"></i> Thêm vào giỏ
+          </a>
+          <a href="gio-hang.html" class="st-btn st-btn-primary st-btn-lg">
+            Mua ngay <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Trust signals -->
+        <div class="st-detail-trust">
+          <div class="st-trust-item">
+            <i class="bi bi-truck"></i> Freeship đơn &gt; 300.000đ
+          </div>
+          <div class="st-trust-item">
+            <i class="bi bi-arrow-repeat"></i> Đổi trả 14 ngày
+          </div>
+          <div class="st-trust-item">
+            <i class="bi bi-shield-check"></i> Cam kết chính hãng
+          </div>
+        </div>
+      </div>
+    </div><!-- /.st-detail-layout -->
+
+    <!-- ══ PRODUCT TABS ══ -->
+    <div class="st-tabs">
+      <div class="st-tab-nav" role="tablist">
+        <button class="st-tab-btn active" onclick="switchTab(this,'stDesc')" role="tab" aria-selected="true" aria-controls="stDesc">
+          Mô tả
+        </button>
+        <button class="st-tab-btn" onclick="switchTab(this,'stSpecs')" role="tab" aria-selected="false" aria-controls="stSpecs">
+          Thông số
+        </button>
+        <button class="st-tab-btn" onclick="switchTab(this,'stReviews')" role="tab" aria-selected="false" aria-controls="stReviews">
+          Đánh giá (124)
+        </button>
+        <button class="st-tab-btn" onclick="switchTab(this,'stGuide')" role="tab" aria-selected="false" aria-controls="stGuide">
+          Hướng dẫn chăm sóc
+        </button>
+      </div>
+
+      <!-- Tab: Mô tả -->
+      <div class="st-tab-panel active" id="stDesc" role="tabpanel">
+        <div class="row g-4">
+          <div class="col-md-8">
+            <h3 style="font-size:22px;font-weight:800;letter-spacing:-.01em;text-transform:uppercase;margin-bottom:16px;">
+              [Tên Sản Phẩm Chi Tiết]
+            </h3>
+            <p style="font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:16px;">
+              [Mô tả chi tiết về sản phẩm — chất liệu vải, cảm giác khi mặc, thiết kế đặc biệt và phong cách phối đồ phù hợp. Khoảng 3-4 câu.]
+            </p>
+            <p style="font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:24px;">
+              [Thông tin thêm về form dáng — rộng, vừa hay ôm. Gợi ý về cách chọn size và cách mặc đẹp nhất cho từng dáng người.]
+            </p>
+            <ul style="display:flex;flex-direction:column;gap:10px;">
+              <li style="display:flex;gap:10px;font-size:14px;color:var(--text-2);align-items:flex-start;">
+                <i class="bi bi-check2-circle" style="color:var(--accent);margin-top:2px;font-size:16px;flex-shrink:0;"></i>
+                <span>[Chất liệu: Cotton 100% cao cấp, thoáng mát, thấm hút tốt]</span>
+              </li>
+              <li style="display:flex;gap:10px;font-size:14px;color:var(--text-2);align-items:flex-start;">
+                <i class="bi bi-check2-circle" style="color:var(--accent);margin-top:2px;font-size:16px;flex-shrink:0;"></i>
+                <span>[Form oversize rộng rãi, phù hợp mọi dáng người]</span>
+              </li>
+              <li style="display:flex;gap:10px;font-size:14px;color:var(--text-2);align-items:flex-start;">
+                <i class="bi bi-check2-circle" style="color:var(--accent);margin-top:2px;font-size:16px;flex-shrink:0;"></i>
+                <span>[Có thể mặc kết hợp với quần jeans, quần wide-leg hoặc chân váy midi]</span>
+              </li>
+              <li style="display:flex;gap:10px;font-size:14px;color:var(--text-2);align-items:flex-start;">
+                <i class="bi bi-check2-circle" style="color:var(--accent);margin-top:2px;font-size:16px;flex-shrink:0;"></i>
+                <span>[Giặt máy được ở nhiệt độ thấp, không tẩy, không sấy nóng]</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Thông số -->
+      <div class="st-tab-panel" id="stSpecs" role="tabpanel">
+        <div class="st-container-sm" style="padding:0;">
+          <table class="st-specs-table">
+            <tbody>
+              <tr><td>Chất liệu</td><td>[Cotton 100% combed, 220 gsm]</td></tr>
+              <tr><td>Form dáng</td><td>[Oversize — Rộng hơn size thật 2-3cm]</td></tr>
+              <tr><td>Xuất xứ</td><td>[Việt Nam]</td></tr>
+              <tr><td>Size có sẵn</td><td>[XS / S / M / L / XL / XXL]</td></tr>
+              <tr><td>Màu sắc</td><td>[Trắng / Đen / Xanh dương / Xám]</td></tr>
+              <tr><td>Chiều dài thân (size M)</td><td>[70 cm]</td></tr>
+              <tr><td>Chiều rộng ngực (size M)</td><td>[58 cm]</td></tr>
+              <tr><td>Chiều dài tay (size M)</td><td>[62 cm]</td></tr>
+              <tr><td>Đóng gói</td><td>[Túi zip tái chế, hộp giấy có thể tái sử dụng]</td></tr>
+              <tr><td>Bảo hành</td><td>[30 ngày — lỗi nhà sản xuất]</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab: Đánh giá -->
+      <div class="st-tab-panel" id="stReviews" role="tabpanel">
+        <div class="row g-4 mb-4">
+          <div class="col-auto" style="text-align:center;">
+            <div style="font-size:56px;font-weight:800;letter-spacing:-.03em;line-height:1;">4.8</div>
+            <div class="d-flex gap-1 justify-content-center my-2">
+              <i class="bi bi-star-fill" style="color:#f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color:#f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color:#f59e0b;"></i>
+              <i class="bi bi-star-fill" style="color:#f59e0b;"></i>
+              <i class="bi bi-star-half" style="color:#f59e0b;"></i>
+            </div>
+            <div style="font-size:12px;color:var(--text-3);font-weight:600;">124 đánh giá</div>
+          </div>
+        </div>
+
+        <div class="st-review-item">
+          <div class="st-review-top">
+            <div class="st-review-avatar">N</div>
+            <div>
+              <div class="st-review-name">[Nguyễn Thị A]</div>
+              <div class="d-flex gap-1 my-1">
+                <i class="bi bi-star-fill" style="color:#f59e0b;font-size:13px;"></i>
+                <i class="bi bi-star-fill" style="color:#f59e0b;font-size:13px;"></i>
+                <i class="bi bi-star-fill" style="color:#f59e0b;font-size:13px;"></i>
+                <i class="bi bi-star-fill" style="color:#f59e0b;font-size:13px;"></i>
+                <i class="bi bi-star-fill" style="color:#f59e0b;font-size:13px;"></i>
+              </div>
+              <div class="st-review-date">[Đã mua: Size M — Màu Trắng | Ngày 15/06/2025]</div>
+            </div>
+          </div>
+          <p class="st-review-text">
+            "[Nhận xét thực tế của khách hàng về chất lượng vải, form dáng và cảm giác khi mặc.
+            Chia sẻ về trải nghiệm mua hàng và đóng gói]"
+          </p>
+        </div>
+
+        <div class="st-review-item">
+          <div class="st-review-top">
+            <div class="st-review-avatar">T</div>
+            <div>
+              <div class="st-review-name">[Trần Văn B]</div>
+              <div class="d-flex gap-1 my-1">
+                <i class="bi bi-star-fill" style="color:#f59e0b;font-size:13px;"></i>
+                <i class="bi bi-star-fill" style="color:#f59e0b;font-size:13px;"></i>
+                <i class="bi bi-star-fill" style="color:#f59e0b;font-size:13px;"></i>
+                <i class="bi bi-star-fill" style="color:#f59e0b;font-size:13px;"></i>
+                <i class="bi bi-star" style="color:#f59e0b;font-size:13px;"></i>
+              </div>
+              <div class="st-review-date">[Đã mua: Size L — Màu Đen | Ngày 02/06/2025]</div>
+            </div>
+          </div>
+          <p class="st-review-text">
+            "[Đánh giá về độ bền màu sau khi giặt, form dáng sau khi mặc nhiều lần và so sánh với các sản phẩm tương tự trên thị trường]"
+          </p>
+        </div>
+
+        <div class="st-review-item">
+          <div class="st-review-top">
+            <div class="st-review-avatar">L</div>
+            <div>
+              <div class="st-review-name">[Lê Minh C]</div>
+              <div class="d-flex gap-1 my-1">
+                <i class="bi bi-star-fill" style="color:#f59e0b;font-size:13px;"></i>
+                <i class="bi bi-star-fill" style="color:#f59e0b;font-size:13px;"></i>
+                <i class="bi bi-star-fill" style="color:#f59e0b;font-size:13px;"></i>
+                <i class="bi bi-star-fill" style="color:#f59e0b;font-size:13px;"></i>
+                <i class="bi bi-star-fill" style="color:#f59e0b;font-size:13px;"></i>
+              </div>
+              <div class="st-review-date">[Đã mua: Size S — Màu Xanh dương | Ngày 28/05/2025]</div>
+            </div>
+          </div>
+          <p class="st-review-text">
+            "[Chia sẻ về cách phối đồ thực tế, ảnh khi mặc và lý do chọn mua lại lần thứ hai]"
+          </p>
+        </div>
+      </div>
+
+      <!-- Tab: Chăm sóc -->
+      <div class="st-tab-panel" id="stGuide" role="tabpanel">
+        <div class="row g-4">
+          <div class="col-md-8">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+              <div style="padding:20px;border:1px solid var(--border);">
+                <div style="font-size:28px;margin-bottom:12px;color:var(--accent);">🫧</div>
+                <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;">Giặt</div>
+                <p style="font-size:13px;color:var(--text-2);line-height:1.7;">[Giặt máy ở nhiệt độ ≤ 30°C. Lộn trái trước khi giặt để giữ màu bền]</p>
+              </div>
+              <div style="padding:20px;border:1px solid var(--border);">
+                <div style="font-size:28px;margin-bottom:12px;color:var(--accent);">🌡️</div>
+                <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;">Ủi</div>
+                <p style="font-size:13px;color:var(--text-2);line-height:1.7;">[Ủi ở nhiệt độ thấp (≤ 110°C). Không ủi trực tiếp lên hình in]</p>
+              </div>
+              <div style="padding:20px;border:1px solid var(--border);">
+                <div style="font-size:28px;margin-bottom:12px;color:var(--accent);">🏷️</div>
+                <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;">Tẩy & Phơi</div>
+                <p style="font-size:13px;color:var(--text-2);line-height:1.7;">[Không sử dụng nước tẩy. Phơi trong bóng râm, tránh ánh nắng trực tiếp]</p>
+              </div>
+              <div style="padding:20px;border:1px solid var(--border);">
+                <div style="font-size:28px;margin-bottom:12px;color:var(--accent);">👕</div>
+                <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;">Bảo quản</div>
+                <p style="font-size:13px;color:var(--text-2);line-height:1.7;">[Gấp gọn hoặc treo móc. Bảo quản nơi khô ráo, thoáng mát]</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.st-tabs -->
+
+    <!-- ══ RELATED PRODUCTS ══ -->
+    <div class="st-sec-sm">
+      <div class="d-flex align-items-end justify-content-between mb-4 flex-wrap gap-3">
+        <div>
+          <div class="st-eyebrow">Gợi Ý</div>
+          <h2 class="st-sec-title mb-0">Sản Phẩm Liên Quan</h2>
+        </div>
+        <a href="san-pham.html" class="st-btn st-btn-outline">Xem tất cả <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <div class="st-prods-grid">
+        <div class="st-prod-card" data-reveal>
+          <div class="st-prod-thumb">
+            <img src="https://picsum.photos/seed/stR1/500/666" alt="[Sản phẩm liên quan 1]" loading="lazy">
+            <div class="st-prod-actions"><button aria-label="Thêm vào giỏ hàng">Thêm giỏ</button></div>
+          </div>
+          <div class="st-prod-info">
+            <div class="st-prod-name"><a href="chi-tiet-san-pham.html">[Áo Thun Basic Nam]</a></div>
+            <div class="st-prod-price"><span class="st-price-current">245.000đ</span></div>
+          </div>
+        </div>
+        <div class="st-prod-card" data-reveal data-delay="1">
+          <div class="st-prod-thumb">
+            <img src="https://picsum.photos/seed/stR2/500/666" alt="[Sản phẩm liên quan 2]" loading="lazy">
+            <div class="st-prod-actions"><button aria-label="Thêm vào giỏ hàng">Thêm giỏ</button></div>
+          </div>
+          <div class="st-prod-info">
+            <div class="st-prod-name"><a href="chi-tiet-san-pham.html">[Quần Wide-Leg Linen]</a></div>
+            <div class="st-prod-price"><span class="st-price-current">480.000đ</span></div>
+          </div>
+        </div>
+        <div class="st-prod-card" data-reveal data-delay="2">
+          <div class="st-prod-thumb">
+            <img src="https://picsum.photos/seed/stR3/500/666" alt="[Sản phẩm liên quan 3]" loading="lazy">
+            <span class="st-prod-badge st-prod-badge-sale">-25%</span>
+            <div class="st-prod-actions"><button aria-label="Thêm vào giỏ hàng">Thêm giỏ</button></div>
+          </div>
+          <div class="st-prod-info">
+            <div class="st-prod-name"><a href="chi-tiet-san-pham.html">[Áo Polo Pique Classic]</a></div>
+            <div class="st-prod-price">
+              <span class="st-price-current">300.000đ</span>
+              <span class="st-price-original">400.000đ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.st-container -->
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="st-footer" aria-label="Footer">
+  <div class="st-container">
+    <div class="st-footer-grid">
+      <div>
+        <div class="st-footer-logo">[Tên<span>.</span>Shop]</div>
+        <p class="st-footer-desc">[Mô tả ngắn về thương hiệu]</p>
+        <div class="st-footer-socials">
+          <a href="https://facebook.com/[username]" class="st-footer-social" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://instagram.com/[username]" class="st-footer-social" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://tiktok.com/@[username]" class="st-footer-social" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="st-footer-col-title">Sản Phẩm</div>
+        <ul class="st-footer-links">
+          <li><a href="san-pham.html">Nữ</a></li>
+          <li><a href="san-pham.html">Nam</a></li>
+          <li><a href="san-pham.html">Phụ kiện</a></li>
+          <li><a href="san-pham.html">Sale</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="st-footer-col-title">Hỗ Trợ</div>
+        <ul class="st-footer-links">
+          <li><a href="#">Đổi trả</a></li>
+          <li><a href="#">Vận chuyển</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="st-footer-col-title">Liên Hệ</div>
+        <div class="st-footer-contact-row"><i class="bi bi-telephone"></i><span>[0901 234 567]</span></div>
+        <div class="st-footer-contact-row"><i class="bi bi-envelope"></i><span>[email@tenshop.vn]</span></div>
+      </div>
+    </div>
+    <div class="st-footer-bottom">
+      <span>© 2025 [Tên Shop]. Bảo lưu mọi quyền.</span>
+      <div class="st-pay-badges">
+        <span class="st-pay-badge">VNPAY</span>
+        <span class="st-pay-badge">MoMo</span>
+        <span class="st-pay-badge">COD</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[so-dien-thoai]" class="st-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo">
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  // Mobile menu
+  const burger = document.getElementById('stBurger');
+  const mobNav = document.getElementById('stMobNav');
+  if (burger && mobNav) {
+    burger.addEventListener('click', () => {
+      const isOpen = mobNav.classList.toggle('open');
+      burger.classList.toggle('open', isOpen);
+      burger.setAttribute('aria-expanded', String(isOpen));
+      mobNav.setAttribute('aria-hidden', String(!isOpen));
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+  }
+
+  // Reveal animation
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+  // Gallery image switcher
+  window.switchImg = function (thumb, src, alt) {
+    document.querySelectorAll('.st-thumb').forEach(t => t.classList.remove('st-active'));
+    thumb.classList.add('st-active');
+    const img = document.getElementById('stMainImgEl');
+    img.src = src;
+    img.alt = alt;
+  };
+
+  // Size selector
+  window.selectSize = function (btn) {
+    document.querySelectorAll('#stSizeGrid .st-size-btn:not(:disabled)').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('stSizeLabel').textContent = btn.textContent;
+  };
+
+  // Color selector
+  window.selectColor = function (dot, name) {
+    document.querySelectorAll('.st-detail-info .st-color-dot').forEach(d => d.classList.remove('active'));
+    dot.classList.add('active');
+    document.getElementById('stColorLabel').textContent = name;
+  };
+
+  // Quantity control
+  window.changeQty = function (delta) {
+    const inp = document.getElementById('stQty');
+    const val = Math.max(1, Math.min(99, parseInt(inp.value || '1', 10) + delta));
+    inp.value = val;
+  };
+
+  // Tab switcher
+  window.switchTab = function (btn, panelId) {
+    document.querySelectorAll('.st-tab-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
+    document.querySelectorAll('.st-tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    const panel = document.getElementById(panelId);
+    if (panel) panel.classList.add('active');
+  };
+
+})();
+</script>
+</body>
+</html>

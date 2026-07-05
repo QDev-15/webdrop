@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Tên Sản Phẩm] — [Tên Shop]</title>
+  <meta name="description" content="[Mô tả ngắn về sản phẩm — chất liệu, công dụng, điểm nổi bật]">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Mobile Nav -->
+<nav id="sb-nav-mob" role="navigation" aria-label="Menu di động">
+  <a href="index.html">Trang chủ</a>
+  <a href="san-pham.html" class="active">Sản phẩm</a>
+  <a href="san-pham.html">Bộ sưu tập</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="gio-hang.html" class="mt-3"><i class="bi bi-bag me-2"></i>Giỏ hàng</a>
+</nav>
+
+<!-- Nav -->
+<header id="sb-nav" role="banner">
+  <div class="sb-nav-inner">
+    <a href="index.html" class="sb-logo">[Tên<span>.</span>Shop]</a>
+    <nav class="sb-nav-links" role="navigation" aria-label="Menu chính">
+      <a href="index.html">Trang chủ</a>
+      <a href="san-pham.html" class="active">Sản phẩm</a>
+      <a href="san-pham.html">Bộ sưu tập</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+    <div class="sb-nav-right">
+      <a href="gio-hang.html" class="sb-nav-cart" aria-label="Giỏ hàng">
+        <i class="bi bi-bag"></i>
+        <span class="sb-cart-count">3</span>
+      </a>
+      <a href="san-pham.html" class="sb-nav-cta">Mua ngay</a>
+      <button id="sb-burger" aria-label="Mở menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Product Detail -->
+<main>
+  <div class="sb-product-detail-wrap">
+    <div class="sb-container">
+      <!-- Breadcrumb -->
+      <nav class="sb-breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Trang chủ</a>
+        <span><i class="bi bi-chevron-right" style="font-size:10px"></i></span>
+        <a href="san-pham.html">Sản phẩm</a>
+        <span><i class="bi bi-chevron-right" style="font-size:10px"></i></span>
+        <span>[Tên sản phẩm]</span>
+      </nav>
+
+      <div class="sb-detail-grid">
+        <!-- Image gallery -->
+        <div>
+          <div class="sb-gallery-main">
+            <img id="main-img" src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=800&auto=format&fit=crop&q=80" alt="[Ảnh sản phẩm chính]">
+          </div>
+          <div class="sb-gallery-thumbs">
+            <div class="sb-thumb active" onclick="switchImg(this, 'https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=800&auto=format&fit=crop&q=80')">
+              <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=200&auto=format&fit=crop&q=70" alt="[Ảnh góc 1]" loading="lazy">
+            </div>
+            <div class="sb-thumb" onclick="switchImg(this, 'https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=800&auto=format&fit=crop&q=80')">
+              <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=200&auto=format&fit=crop&q=70" alt="[Ảnh góc 2]" loading="lazy">
+            </div>
+            <div class="sb-thumb" onclick="switchImg(this, 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=800&auto=format&fit=crop&q=80')">
+              <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=200&auto=format&fit=crop&q=70" alt="[Ảnh góc 3]" loading="lazy">
+            </div>
+            <div class="sb-thumb" onclick="switchImg(this, 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&auto=format&fit=crop&q=80')">
+              <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=200&auto=format&fit=crop&q=70" alt="[Ảnh góc 4]" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <!-- Product info -->
+        <div class="sb-detail-info">
+          <div class="sb-prod-cat">[Danh mục sản phẩm]</div>
+          <h1 class="sb-detail-name">[Tên Sản Phẩm Đầy Đủ — Phong Cách Tự Nhiên]</h1>
+
+          <div class="sb-detail-rating">
+            <span class="stars" aria-label="Đánh giá 4.9 sao">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-half-fill"></i>
+            </span>
+            <span><strong>4.9</strong> ([128] đánh giá)</span>
+            <span>·</span>
+            <a href="#tab-reviews" style="color:var(--accent)">Xem tất cả</a>
+          </div>
+
+          <div class="sb-detail-price">
+            <span class="sb-detail-price-new">[280.000]đ</span>
+            <span class="sb-detail-price-old">[350.000]đ</span>
+            <span style="background:var(--accent); color:#fff; border-radius:6px; padding:4px 10px; font-size:12px; font-weight:600;">-20%</span>
+          </div>
+
+          <p class="sb-detail-desc">
+            [Mô tả chi tiết về sản phẩm — chất liệu, công dụng, điểm đặc biệt. Mô tả phải hấp dẫn và khiến khách hàng muốn mua ngay. Nêu rõ lợi ích cụ thể.]
+          </p>
+
+          <div class="sb-detail-divider"></div>
+
+          <!-- Color options -->
+          <div class="sb-variant-label">Màu sắc: <strong style="color:var(--text); text-transform:none;">[Terracotta]</strong></div>
+          <div style="display:flex; gap:10px; margin-bottom:24px;">
+            <div class="sb-color-swatch selected" style="background:#c4603a; width:36px; height:36px;" title="Terracotta"></div>
+            <div class="sb-color-swatch" style="background:#6b8a7a; width:36px; height:36px;" title="Sage"></div>
+            <div class="sb-color-swatch" style="background:#1e1610; width:36px; height:36px;" title="Đen"></div>
+            <div class="sb-color-swatch" style="background:#f7f3ee; border:1.5px solid var(--border); width:36px; height:36px;" title="Kem"></div>
+          </div>
+
+          <!-- Size options -->
+          <div class="sb-variant-label">Kích thước:</div>
+          <div class="sb-size-opts" role="group" aria-label="Chọn kích thước">
+            <button class="sb-size-opt" onclick="selectSize(this)">XS</button>
+            <button class="sb-size-opt selected" onclick="selectSize(this)">S</button>
+            <button class="sb-size-opt" onclick="selectSize(this)">M</button>
+            <button class="sb-size-opt" onclick="selectSize(this)">L</button>
+            <button class="sb-size-opt" onclick="selectSize(this)">XL</button>
+            <button class="sb-size-opt" onclick="selectSize(this)">XXL</button>
+          </div>
+          <a href="#" style="font-size:13px; color:var(--accent); text-decoration:underline; display:inline-block; margin-bottom:20px;">
+            Hướng dẫn chọn size <i class="bi bi-rulers ms-1"></i>
+          </a>
+
+          <div class="sb-detail-divider"></div>
+
+          <!-- Qty + add to cart -->
+          <div class="sb-qty-add">
+            <div class="sb-qty" role="group" aria-label="Số lượng">
+              <button onclick="changeQty(-1)" aria-label="Giảm số lượng">−</button>
+              <input type="number" id="qty-input" value="1" min="1" max="99" aria-label="Số lượng">
+              <button onclick="changeQty(1)" aria-label="Tăng số lượng">+</button>
+            </div>
+            <button class="sb-btn-cart-full">
+              <i class="bi bi-bag-plus"></i>
+              Thêm vào giỏ
+            </button>
+            <button class="sb-btn-wishlist" aria-label="Thêm vào danh sách yêu thích">
+              <i class="bi bi-heart"></i>
+            </button>
+          </div>
+
+          <a href="gio-hang.html" class="sb-btn-checkout" style="margin-top:0;">
+            <i class="bi bi-lightning-fill"></i>
+            Mua ngay
+          </a>
+
+          <!-- Tags -->
+          <div class="sb-product-tags">
+            <span style="color:var(--text-3); font-size:13px;">Từ khóa:</span>
+            <span>[tự nhiên]</span>
+            <span>[organic]</span>
+            <span>[handmade]</span>
+            <span>[phong cách]</span>
+          </div>
+
+          <!-- Info badges -->
+          <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:24px;">
+            <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-2);">
+              <i class="bi bi-truck" style="color:var(--sage)"></i>
+              Miễn phí giao hàng đơn từ [200.000đ]
+            </div>
+            <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-2);">
+              <i class="bi bi-arrow-repeat" style="color:var(--sage)"></i>
+              Đổi trả trong [30 ngày]
+            </div>
+            <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-2);">
+              <i class="bi bi-shield-check" style="color:var(--sage)"></i>
+              Hàng chính hãng bảo đảm
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Tabs -->
+      <div class="sb-tabs">
+        <div class="sb-tab-list" role="tablist">
+          <button class="sb-tab-btn active" role="tab" aria-selected="true" onclick="switchTab(this,'tab-desc')" id="btn-desc">Mô tả sản phẩm</button>
+          <button class="sb-tab-btn" role="tab" aria-selected="false" onclick="switchTab(this,'tab-details')" id="btn-details">Thông số kỹ thuật</button>
+          <button class="sb-tab-btn" role="tab" aria-selected="false" onclick="switchTab(this,'tab-reviews')" id="tab-reviews-btn">Đánh giá ([128])</button>
+          <button class="sb-tab-btn" role="tab" aria-selected="false" onclick="switchTab(this,'tab-ship')">Vận chuyển & đổi trả</button>
+        </div>
+
+        <!-- Tab: Description -->
+        <div id="tab-desc" class="sb-tab-panel active">
+          <div style="max-width:720px;">
+            <h3 style="font-family:var(--serif); font-size:22px; font-weight:500; margin-bottom:20px;">[Mô tả chi tiết sản phẩm]</h3>
+            <p style="font-size:15px; font-weight:300; color:var(--text-2); line-height:1.8; margin-bottom:16px;">
+              [Đoạn 1 — Giới thiệu tổng quan về sản phẩm, cảm hứng thiết kế, và phong cách mà sản phẩm hướng đến. Viết hấp dẫn và cảm xúc.]
+            </p>
+            <p style="font-size:15px; font-weight:300; color:var(--text-2); line-height:1.8; margin-bottom:24px;">
+              [Đoạn 2 — Mô tả chất liệu, cách sử dụng, hoặc cách phối đồ. Nhấn mạnh điểm khác biệt so với sản phẩm cùng loại.]
+            </p>
+            <ul style="padding-left:0; list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:24px;">
+              <li style="display:flex; align-items:flex-start; gap:10px; font-size:15px; font-weight:300; color:var(--text-2);">
+                <i class="bi bi-check2 mt-1" style="color:var(--accent); flex-shrink:0;"></i>
+                [Điểm nổi bật 1 — ví dụ: Chất liệu 100% cotton hữu cơ, thoáng mát và thân thiện với da]
+              </li>
+              <li style="display:flex; align-items:flex-start; gap:10px; font-size:15px; font-weight:300; color:var(--text-2);">
+                <i class="bi bi-check2 mt-1" style="color:var(--accent); flex-shrink:0;"></i>
+                [Điểm nổi bật 2 — ví dụ: Màu nhuộm tự nhiên, không gây dị ứng]
+              </li>
+              <li style="display:flex; align-items:flex-start; gap:10px; font-size:15px; font-weight:300; color:var(--text-2);">
+                <i class="bi bi-check2 mt-1" style="color:var(--accent); flex-shrink:0;"></i>
+                [Điểm nổi bật 3 — ví dụ: Thiết kế tối giản, phù hợp mọi hoàn cảnh]
+              </li>
+              <li style="display:flex; align-items:flex-start; gap:10px; font-size:15px; font-weight:300; color:var(--text-2);">
+                <i class="bi bi-check2 mt-1" style="color:var(--accent); flex-shrink:0;"></i>
+                [Điểm nổi bật 4 — ví dụ: Bền đẹp theo thời gian]
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tab: Specs -->
+        <div id="tab-details" class="sb-tab-panel">
+          <div style="max-width:600px;">
+            <h3 style="font-family:var(--serif); font-size:22px; font-weight:500; margin-bottom:24px;">Thông số sản phẩm</h3>
+            <table style="width:100%; border-collapse:collapse;">
+              <tbody>
+                <tr style="border-bottom:1px solid var(--border);">
+                  <td style="padding:14px 0; font-size:14px; color:var(--text-3); width:160px;">Chất liệu</td>
+                  <td style="padding:14px 0; font-size:14px; color:var(--text); font-weight:400;">[100% Cotton hữu cơ]</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border);">
+                  <td style="padding:14px 0; font-size:14px; color:var(--text-3);">Xuất xứ</td>
+                  <td style="padding:14px 0; font-size:14px; color:var(--text);">[Việt Nam]</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border);">
+                  <td style="padding:14px 0; font-size:14px; color:var(--text-3);">Trọng lượng</td>
+                  <td style="padding:14px 0; font-size:14px; color:var(--text);">[200g]</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border);">
+                  <td style="padding:14px 0; font-size:14px; color:var(--text-3);">Kích thước</td>
+                  <td style="padding:14px 0; font-size:14px; color:var(--text);">[XS — XXL (xem bảng size)]</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border);">
+                  <td style="padding:14px 0; font-size:14px; color:var(--text-3);">Màu sắc</td>
+                  <td style="padding:14px 0; font-size:14px; color:var(--text);">[Terracotta, Sage, Đen, Kem]</td>
+                </tr>
+                <tr>
+                  <td style="padding:14px 0; font-size:14px; color:var(--text-3);">Hướng dẫn bảo quản</td>
+                  <td style="padding:14px 0; font-size:14px; color:var(--text);">[Giặt máy 30°C, không tẩy, phơi bóng mát]</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tab: Reviews -->
+        <div id="tab-reviews" class="sb-tab-panel">
+          <div style="display:grid; grid-template-columns:220px 1fr; gap:48px; align-items:start;">
+            <!-- Rating summary -->
+            <div style="background:var(--cream-deep); border-radius:16px; padding:28px; text-align:center;">
+              <div style="font-family:var(--serif); font-size:56px; font-weight:500; color:var(--text); line-height:1;">4.9</div>
+              <div style="color:#f59e0b; font-size:20px; margin:10px 0;">★★★★★</div>
+              <div style="font-size:13px; color:var(--text-3);">Dựa trên [128] đánh giá</div>
+              <div style="margin-top:20px; display:flex; flex-direction:column; gap:8px;">
+                <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-2);">
+                  <span>5★</span>
+                  <div style="flex:1; height:6px; background:var(--border); border-radius:3px; overflow:hidden;">
+                    <div style="width:85%; height:100%; background:#f59e0b; border-radius:3px;"></div>
+                  </div>
+                  <span>85%</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-2);">
+                  <span>4★</span>
+                  <div style="flex:1; height:6px; background:var(--border); border-radius:3px; overflow:hidden;">
+                    <div style="width:10%; height:100%; background:#f59e0b; border-radius:3px;"></div>
+                  </div>
+                  <span>10%</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-2);">
+                  <span>3★</span>
+                  <div style="flex:1; height:6px; background:var(--border); border-radius:3px; overflow:hidden;">
+                    <div style="width:4%; height:100%; background:#f59e0b; border-radius:3px;"></div>
+                  </div>
+                  <span>4%</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-2);">
+                  <span>2★</span>
+                  <div style="flex:1; height:6px; background:var(--border); border-radius:3px; overflow:hidden;">
+                    <div style="width:1%; height:100%; background:#f59e0b; border-radius:3px;"></div>
+                  </div>
+                  <span>1%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review list -->
+            <div style="display:flex; flex-direction:column; gap:24px;">
+              <div style="padding:24px 0; border-bottom:1px solid var(--border);">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+                  <div style="display:flex; align-items:center; gap:12px;">
+                    <div class="sb-review-avatar">N</div>
+                    <div>
+                      <div style="font-size:14px; font-weight:500;">[Nguyễn Thị Hoa]</div>
+                      <div style="font-size:12px; color:var(--text-3);">[TP.HCM] · [Tháng 6/2025]</div>
+                    </div>
+                  </div>
+                  <span style="font-size:12px; color:var(--sage); background:var(--sage-light); padding:3px 10px; border-radius:50px;">Đã mua hàng</span>
+                </div>
+                <div style="color:#f59e0b; font-size:13px; margin-bottom:8px;">★★★★★</div>
+                <p style="font-size:15px; font-weight:300; color:var(--text-2); line-height:1.7;">[Sản phẩm rất đẹp, chất liệu mịn và thoáng. Giao hàng nhanh hơn dự kiến. Mình đã mua lần 2 rồi, chắc chắn sẽ tiếp tục ủng hộ shop!]</p>
+              </div>
+              <div style="padding:24px 0; border-bottom:1px solid var(--border);">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+                  <div style="display:flex; align-items:center; gap:12px;">
+                    <div class="sb-review-avatar">T</div>
+                    <div>
+                      <div style="font-size:14px; font-weight:500;">[Trần Văn Nam]</div>
+                      <div style="font-size:12px; color:var(--text-3);">[Hà Nội] · [Tháng 5/2025]</div>
+                    </div>
+                  </div>
+                  <span style="font-size:12px; color:var(--sage); background:var(--sage-light); padding:3px 10px; border-radius:50px;">Đã mua hàng</span>
+                </div>
+                <div style="color:#f59e0b; font-size:13px; margin-bottom:8px;">★★★★★</div>
+                <p style="font-size:15px; font-weight:300; color:var(--text-2); line-height:1.7;">[Mua về làm quà tặng, người nhận rất thích. Đóng gói cẩn thận, có túi đựng riêng rất sang trọng. Giá cả hợp lý cho chất lượng này.]</p>
+              </div>
+              <div style="padding:24px 0;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+                  <div style="display:flex; align-items:center; gap:12px;">
+                    <div class="sb-review-avatar">L</div>
+                    <div>
+                      <div style="font-size:14px; font-weight:500;">[Lê Thị Mai]</div>
+                      <div style="font-size:12px; color:var(--text-3);">[Đà Nẵng] · [Tháng 5/2025]</div>
+                    </div>
+                  </div>
+                  <span style="font-size:12px; color:var(--sage); background:var(--sage-light); padding:3px 10px; border-radius:50px;">Đã mua hàng</span>
+                </div>
+                <div style="color:#f59e0b; font-size:13px; margin-bottom:8px;">★★★★☆</div>
+                <p style="font-size:15px; font-weight:300; color:var(--text-2); line-height:1.7;">[Sản phẩm đẹp như hình, màu sắc cũng chuẩn. Chỉ tiếc là hết màu mình muốn, nhưng màu thay thế cũng rất xinh. Sẽ quay lại khi có hàng.]</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab: Shipping -->
+        <div id="tab-ship" class="sb-tab-panel">
+          <div style="max-width:680px; display:flex; flex-direction:column; gap:24px;">
+            <div style="padding:24px; background:var(--sage-light); border-radius:12px; border-left:4px solid var(--sage);">
+              <h4 style="font-size:16px; font-weight:500; color:var(--text); margin-bottom:12px;">
+                <i class="bi bi-truck me-2" style="color:var(--sage)"></i>Chính sách vận chuyển
+              </h4>
+              <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px; font-size:14px; font-weight:300; color:var(--text-2);">
+                <li>• Miễn phí giao hàng cho đơn hàng từ [200.000đ]</li>
+                <li>• Giao nhanh 2h trong nội thành [TP.HCM / Hà Nội]</li>
+                <li>• Giao toàn quốc [1–3 ngày làm việc]</li>
+                <li>• Đối tác vận chuyển: [Giao Hàng Nhanh, GHTK, J&T]</li>
+              </ul>
+            </div>
+            <div style="padding:24px; background:var(--accent-light); border-radius:12px; border-left:4px solid var(--accent);">
+              <h4 style="font-size:16px; font-weight:500; color:var(--text); margin-bottom:12px;">
+                <i class="bi bi-arrow-repeat me-2" style="color:var(--accent)"></i>Chính sách đổi trả
+              </h4>
+              <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px; font-size:14px; font-weight:300; color:var(--text-2);">
+                <li>• Đổi trả miễn phí trong [30 ngày] kể từ ngày nhận hàng</li>
+                <li>• Sản phẩm còn nguyên tem mác, chưa qua sử dụng</li>
+                <li>• Hoàn tiền [100%] nếu hàng bị lỗi do nhà sản xuất</li>
+                <li>• Liên hệ: [0900 000 000] hoặc Zalo để được hỗ trợ</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Products -->
+  <section class="sb-related" aria-labelledby="related-heading">
+    <div class="sb-container">
+      <div class="text-center mb-5">
+        <div class="sb-eyebrow justify-content-center" data-reveal>Gợi ý</div>
+        <h2 class="sb-sec-title" id="related-heading" data-reveal data-delay="1">Sản phẩm <em>tương tự</em></h2>
+      </div>
+      <div class="sb-related-grid">
+        <div class="sb-prod-card" data-reveal>
+          <div class="sb-prod-img">
+            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&auto=format&fit=crop&q=80" alt="[Sản phẩm liên quan 1]" loading="lazy">
+            <div class="sb-prod-actions">
+              <button class="sb-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button>
+              <button class="sb-prod-action-btn" aria-label="Xem nhanh"><i class="bi bi-eye"></i></button>
+            </div>
+          </div>
+          <div class="sb-prod-info">
+            <div class="sb-prod-cat">[Danh mục]</div>
+            <h3 class="sb-prod-name"><a href="chi-tiet-san-pham.html">[Tên sản phẩm liên quan 1]</a></h3>
+            <div class="sb-prod-footer">
+              <div class="sb-prod-price"><span class="sb-prod-price-new">[240.000]đ</span></div>
+              <button class="sb-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-bag-plus"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="sb-prod-card" data-reveal data-delay="1">
+          <div class="sb-prod-img">
+            <img src="https://images.unsplash.com/photo-1503342452485-86b5ded8e65a?w=400&auto=format&fit=crop&q=80" alt="[Sản phẩm liên quan 2]" loading="lazy">
+            <div class="sb-prod-badge new">Mới</div>
+            <div class="sb-prod-actions">
+              <button class="sb-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button>
+              <button class="sb-prod-action-btn" aria-label="Xem nhanh"><i class="bi bi-eye"></i></button>
+            </div>
+          </div>
+          <div class="sb-prod-info">
+            <div class="sb-prod-cat">[Danh mục]</div>
+            <h3 class="sb-prod-name"><a href="chi-tiet-san-pham.html">[Tên sản phẩm liên quan 2]</a></h3>
+            <div class="sb-prod-footer">
+              <div class="sb-prod-price"><span class="sb-prod-price-new">[190.000]đ</span></div>
+              <button class="sb-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-bag-plus"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="sb-prod-card" data-reveal data-delay="2">
+          <div class="sb-prod-img">
+            <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400&auto=format&fit=crop&q=80" alt="[Sản phẩm liên quan 3]" loading="lazy">
+            <div class="sb-prod-actions">
+              <button class="sb-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button>
+              <button class="sb-prod-action-btn" aria-label="Xem nhanh"><i class="bi bi-eye"></i></button>
+            </div>
+          </div>
+          <div class="sb-prod-info">
+            <div class="sb-prod-cat">[Danh mục]</div>
+            <h3 class="sb-prod-name"><a href="chi-tiet-san-pham.html">[Tên sản phẩm liên quan 3]</a></h3>
+            <div class="sb-prod-footer">
+              <div class="sb-prod-price">
+                <span class="sb-prod-price-new">[310.000]đ</span>
+                <span class="sb-prod-price-old">[380.000]đ</span>
+              </div>
+              <button class="sb-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-bag-plus"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="sb-prod-card" data-reveal data-delay="3">
+          <div class="sb-prod-img">
+            <img src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?w=400&auto=format&fit=crop&q=80" alt="[Sản phẩm liên quan 4]" loading="lazy">
+            <div class="sb-prod-actions">
+              <button class="sb-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button>
+              <button class="sb-prod-action-btn" aria-label="Xem nhanh"><i class="bi bi-eye"></i></button>
+            </div>
+          </div>
+          <div class="sb-prod-info">
+            <div class="sb-prod-cat">[Danh mục]</div>
+            <h3 class="sb-prod-name"><a href="chi-tiet-san-pham.html">[Tên sản phẩm liên quan 4]</a></h3>
+            <div class="sb-prod-footer">
+              <div class="sb-prod-price"><span class="sb-prod-price-new">[420.000]đ</span></div>
+              <button class="sb-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-bag-plus"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer id="sb-footer" role="contentinfo">
+  <div class="sb-container">
+    <div class="sb-footer-grid">
+      <div class="sb-footer-brand">
+        <a href="index.html" class="sb-logo">[Tên<span>.</span>Shop]</a>
+        <p>[Mô tả ngắn về cửa hàng.]</p>
+        <div class="sb-footer-social">
+          <a href="https://www.facebook.com/[fanpage]" class="sb-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/[account]" class="sb-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.tiktok.com/@[account]" class="sb-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+          <a href="https://zalo.me/[phone]" class="sb-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Zalo"><i class="bi bi-chat-dots"></i></a>
+        </div>
+      </div>
+      <div class="sb-footer-col">
+        <h4>Sản phẩm</h4>
+        <ul>
+          <li><a href="san-pham.html">Tất cả sản phẩm</a></li>
+          <li><a href="san-pham.html">[Danh mục 1]</a></li>
+          <li><a href="san-pham.html">Sản phẩm mới</a></li>
+          <li><a href="san-pham.html">Đang giảm giá</a></li>
+        </ul>
+      </div>
+      <div class="sb-footer-col">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="lien-he.html">Chính sách đổi trả</a></li>
+          <li><a href="lien-he.html">Chính sách vận chuyển</a></li>
+          <li><a href="lien-he.html">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sb-footer-bottom">
+      <p>&copy; 2025 [Tên Shop]. Tất cả quyền được bảo lưu.</p>
+      <div class="sb-footer-pay">
+        <span class="sb-pay-badge">VISA</span>
+        <span class="sb-pay-badge">MoMo</span>
+        <span class="sb-pay-badge">ZaloPay</span>
+        <span class="sb-pay-badge">COD</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Zalo Float -->
+<div class="sb-zalo-float" aria-label="Chat Zalo">
+  <div class="sb-zalo-tooltip">Chat Zalo</div>
+  <a href="https://zalo.me/[0900000000]" class="sb-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo">
+    <i class="bi bi-chat-fill"></i>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }});
+}, { threshold: .08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+const burger = document.getElementById('sb-burger');
+const mob    = document.getElementById('sb-nav-mob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const open = mob.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open'); burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  });
+}
+
+function switchImg(thumb, src) {
+  document.getElementById('main-img').src = src;
+  document.querySelectorAll('.sb-thumb').forEach(t => t.classList.remove('active'));
+  thumb.classList.add('active');
+}
+
+function selectSize(btn) {
+  document.querySelectorAll('.sb-size-opt').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function changeQty(delta) {
+  const input = document.getElementById('qty-input');
+  let val = parseInt(input.value) + delta;
+  if (val < 1) val = 1;
+  if (val > 99) val = 99;
+  input.value = val;
+}
+
+function switchTab(btn, panelId) {
+  document.querySelectorAll('.sb-tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+  document.querySelectorAll('.sb-tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected', 'true');
+  document.getElementById(panelId).classList.add('active');
+}
+</script>
+</body>
+</html>

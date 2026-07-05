@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giỏ Hàng — [Tên Shop]</title>
+  <meta name="description" content="Xem lại giỏ hàng và tiến hành thanh toán tại [Tên Shop]">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ── MOBILE NAV ── -->
+<div id="stMobNav" class="st-mob-nav" aria-hidden="true" role="dialog" aria-label="Menu di động">
+  <ul>
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="san-pham.html">Bộ sưu tập</a></li>
+    <li><a href="san-pham.html">Nam</a></li>
+    <li><a href="san-pham.html">Nữ</a></li>
+    <li><a href="san-pham.html">Sale</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+  <div class="st-mob-actions">
+    <a href="gio-hang.html" class="st-btn st-btn-primary">
+      <i class="bi bi-bag"></i> Giỏ hàng (3)
+    </a>
+  </div>
+</div>
+
+<!-- ══ NAV (scrolled) ══ -->
+<header id="stNav" class="st-nav st-scrolled" role="banner">
+  <div class="st-container st-nav-inner">
+    <a href="index.html" class="st-logo">[Tên<span>.</span>Shop]</a>
+    <nav class="st-nav-links" aria-label="Menu chính">
+      <a href="index.html">Trang chủ</a>
+      <a href="san-pham.html">Bộ sưu tập</a>
+      <a href="san-pham.html">Nam</a>
+      <a href="san-pham.html">Nữ</a>
+      <a href="san-pham.html">Sale</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+    <div class="st-nav-actions">
+      <a href="#" class="st-nav-icon" aria-label="Tìm kiếm"><i class="bi bi-search"></i></a>
+      <a href="gio-hang.html" class="st-nav-icon" aria-label="Giỏ hàng">
+        <i class="bi bi-bag"></i>
+        <span class="st-cart-badge">3</span>
+      </a>
+      <button id="stBurger" class="st-burger" aria-label="Mở menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ══ PAGE HERO ══ -->
+<section class="st-page-hero" aria-label="Tiêu đề trang">
+  <div class="st-container">
+    <nav class="st-breadcrumb mb-3" aria-label="Điều hướng">
+      <a href="index.html">Trang chủ</a>
+      <span class="st-breadcrumb-sep">/</span>
+      <span>Giỏ hàng</span>
+    </nav>
+    <h1 class="st-page-title">Giỏ Hàng</h1>
+    <p style="color:rgba(255,255,255,.45);font-size:14px;font-weight:600;margin-top:6px;">
+      3 sản phẩm trong giỏ hàng của bạn
+    </p>
+  </div>
+</section>
+
+<!-- ══ CART CONTENT ══ -->
+<section class="st-sec" aria-label="Giỏ hàng">
+  <div class="st-container">
+    <div class="st-cart-layout">
+
+      <!-- Cart items -->
+      <div>
+        <div class="st-cart-table-wrap">
+          <table class="st-cart-table">
+            <thead>
+              <tr>
+                <th style="min-width:260px;">Sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Tổng</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <!-- Item 1 -->
+              <tr>
+                <td>
+                  <div class="st-cart-item-wrap">
+                    <img class="st-cart-img" src="https://picsum.photos/seed/stC1/200/280" alt="[Áo Oversize Premium — Trắng — Size M]" loading="lazy">
+                    <div>
+                      <div class="st-cart-name"><a href="chi-tiet-san-pham.html">[Áo Oversize Premium]</a></div>
+                      <div class="st-cart-meta">
+                        Màu: Trắng<br>
+                        Size: M
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="st-cart-price">490.000đ</div>
+                  <div style="font-size:12px;color:var(--text-3);text-decoration:line-through;">680.000đ</div>
+                </td>
+                <td>
+                  <div class="st-qty-ctrl">
+                    <button type="button" onclick="changeQty(this,-1)" aria-label="Giảm số lượng"><i class="bi bi-dash"></i></button>
+                    <input type="number" value="1" min="1" max="99" style="width:40px;height:40px;" aria-label="Số lượng">
+                    <button type="button" onclick="changeQty(this,1)" aria-label="Tăng số lượng"><i class="bi bi-plus"></i></button>
+                  </div>
+                </td>
+                <td><div class="st-cart-price">490.000đ</div></td>
+                <td>
+                  <button class="st-cart-del" type="button" onclick="removeItem(this)" aria-label="Xóa sản phẩm">
+                    <i class="bi bi-x-lg"></i>
+                  </button>
+                </td>
+              </tr>
+
+              <!-- Item 2 -->
+              <tr>
+                <td>
+                  <div class="st-cart-item-wrap">
+                    <img class="st-cart-img" src="https://picsum.photos/seed/stC2/200/280" alt="[Quần Jeans Slim Fit — Đen — Size 30]" loading="lazy">
+                    <div>
+                      <div class="st-cart-name"><a href="chi-tiet-san-pham.html">[Quần Jeans Slim Fit]</a></div>
+                      <div class="st-cart-meta">
+                        Màu: Đen<br>
+                        Size: 30
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td><div class="st-cart-price">620.000đ</div></td>
+                <td>
+                  <div class="st-qty-ctrl">
+                    <button type="button" onclick="changeQty(this,-1)" aria-label="Giảm số lượng"><i class="bi bi-dash"></i></button>
+                    <input type="number" value="1" min="1" max="99" style="width:40px;height:40px;" aria-label="Số lượng">
+                    <button type="button" onclick="changeQty(this,1)" aria-label="Tăng số lượng"><i class="bi bi-plus"></i></button>
+                  </div>
+                </td>
+                <td><div class="st-cart-price">620.000đ</div></td>
+                <td>
+                  <button class="st-cart-del" type="button" onclick="removeItem(this)" aria-label="Xóa sản phẩm">
+                    <i class="bi bi-x-lg"></i>
+                  </button>
+                </td>
+              </tr>
+
+              <!-- Item 3 -->
+              <tr>
+                <td>
+                  <div class="st-cart-item-wrap">
+                    <img class="st-cart-img" src="https://picsum.photos/seed/stC3/200/280" alt="[Túi Tote Canvas — Trắng]" loading="lazy">
+                    <div>
+                      <div class="st-cart-name"><a href="chi-tiet-san-pham.html">[Túi Tote Canvas Logo]</a></div>
+                      <div class="st-cart-meta">
+                        Màu: Trắng<br>
+                        One size
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td><div class="st-cart-price">295.000đ</div></td>
+                <td>
+                  <div class="st-qty-ctrl">
+                    <button type="button" onclick="changeQty(this,-1)" aria-label="Giảm số lượng"><i class="bi bi-dash"></i></button>
+                    <input type="number" value="2" min="1" max="99" style="width:40px;height:40px;" aria-label="Số lượng">
+                    <button type="button" onclick="changeQty(this,1)" aria-label="Tăng số lượng"><i class="bi bi-plus"></i></button>
+                  </div>
+                </td>
+                <td><div class="st-cart-price">590.000đ</div></td>
+                <td>
+                  <button class="st-cart-del" type="button" onclick="removeItem(this)" aria-label="Xóa sản phẩm">
+                    <i class="bi bi-x-lg"></i>
+                  </button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Actions row -->
+        <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap mt-4 pt-4" style="border-top:1px solid var(--border);">
+          <a href="san-pham.html" class="st-btn st-btn-outline">
+            <i class="bi bi-chevron-left"></i> Tiếp tục mua sắm
+          </a>
+          <button type="button" class="st-btn st-btn-outline" style="border-color:var(--sale);color:var(--sale);" onclick="clearCart()">
+            <i class="bi bi-trash3"></i> Xóa giỏ hàng
+          </button>
+        </div>
+
+        <!-- Trust signals -->
+        <div class="d-flex gap-4 flex-wrap mt-5 pt-4" style="border-top:1px solid var(--border-light);">
+          <div class="st-trust-item">
+            <i class="bi bi-truck" style="color:var(--accent);font-size:18px;"></i>
+            <span style="font-size:13px;font-weight:600;color:var(--text-2);">Freeship đơn trên 300.000đ</span>
+          </div>
+          <div class="st-trust-item">
+            <i class="bi bi-shield-check" style="color:var(--accent);font-size:18px;"></i>
+            <span style="font-size:13px;font-weight:600;color:var(--text-2);">Thanh toán bảo mật 100%</span>
+          </div>
+          <div class="st-trust-item">
+            <i class="bi bi-arrow-repeat" style="color:var(--accent);font-size:18px;"></i>
+            <span style="font-size:13px;font-weight:600;color:var(--text-2);">Đổi trả miễn phí 14 ngày</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="st-cart-summary">
+        <div class="st-sum-title">Tóm Tắt Đơn Hàng</div>
+
+        <div class="st-sum-row">
+          <span>Tạm tính (4 sản phẩm)</span>
+          <span>1.700.000đ</span>
+        </div>
+        <div class="st-sum-row">
+          <span>Giảm giá</span>
+          <span style="color:var(--sale);">-190.000đ</span>
+        </div>
+        <div class="st-sum-row">
+          <span>Phí vận chuyển</span>
+          <span style="color:var(--accent);font-weight:700;">MIỄN PHÍ</span>
+        </div>
+
+        <div class="st-divider"></div>
+
+        <!-- Coupon -->
+        <div style="margin-bottom:6px;">
+          <label for="stCoupon" class="st-form-label">Mã giảm giá</label>
+        </div>
+        <div class="st-coupon-row">
+          <input type="text" id="stCoupon" placeholder="Nhập mã giảm giá..." aria-label="Mã giảm giá">
+          <button type="button" onclick="applyCoupon()">Áp Dụng</button>
+        </div>
+
+        <div class="st-sum-total">
+          <span class="st-sum-total-label">Tổng Cộng</span>
+          <span class="st-sum-total-val">1.510.000đ</span>
+        </div>
+
+        <a href="#" class="st-btn st-btn-primary st-btn-lg w-100 justify-content-center mt-4">
+          Tiến hành thanh toán <i class="bi bi-arrow-right"></i>
+        </a>
+
+        <p class="st-checkout-note">
+          Bằng cách đặt hàng, bạn đồng ý với
+          <a href="#" style="color:var(--accent);">Điều khoản sử dụng</a>
+          và <a href="#" style="color:var(--accent);">Chính sách bảo mật</a> của chúng tôi.
+        </p>
+
+        <!-- Payment icons -->
+        <div class="d-flex justify-content-center gap-2 mt-4 flex-wrap">
+          <span class="st-pay-badge" style="background:var(--bg);">VNPAY</span>
+          <span class="st-pay-badge" style="background:var(--bg);">MoMo</span>
+          <span class="st-pay-badge" style="background:var(--bg);">ZaloPay</span>
+          <span class="st-pay-badge" style="background:var(--bg);">COD</span>
+          <span class="st-pay-badge" style="background:var(--bg);">ATM</span>
+        </div>
+      </div>
+
+    </div><!-- /.st-cart-layout -->
+
+    <!-- You May Also Like -->
+    <div class="st-sec-sm" style="margin-top:16px;">
+      <div class="d-flex align-items-end justify-content-between mb-4 flex-wrap gap-3">
+        <div>
+          <div class="st-eyebrow">Gợi Ý</div>
+          <h2 class="st-sec-title mb-0">Bạn Có Thể Thích</h2>
+        </div>
+        <a href="san-pham.html" class="st-btn st-btn-outline">Xem thêm <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <div class="st-prods-grid">
+        <div class="st-prod-card" data-reveal>
+          <div class="st-prod-thumb">
+            <img src="https://picsum.photos/seed/stY1/500/666" alt="[Sản phẩm gợi ý 1]" loading="lazy">
+            <div class="st-prod-actions"><button aria-label="Thêm vào giỏ hàng">Thêm giỏ</button></div>
+          </div>
+          <div class="st-prod-info">
+            <div class="st-prod-name"><a href="chi-tiet-san-pham.html">[Áo Khoác Denim Unisex]</a></div>
+            <div class="st-prod-price"><span class="st-price-current">920.000đ</span></div>
+          </div>
+        </div>
+        <div class="st-prod-card" data-reveal data-delay="1">
+          <div class="st-prod-thumb">
+            <img src="https://picsum.photos/seed/stY2/500/666" alt="[Sản phẩm gợi ý 2]" loading="lazy">
+            <span class="st-prod-badge st-prod-badge-sale">-20%</span>
+            <div class="st-prod-actions"><button aria-label="Thêm vào giỏ hàng">Thêm giỏ</button></div>
+          </div>
+          <div class="st-prod-info">
+            <div class="st-prod-name"><a href="chi-tiet-san-pham.html">[Chân Váy Chữ A Kẻ Sọc]</a></div>
+            <div class="st-prod-price">
+              <span class="st-price-current">400.000đ</span>
+              <span class="st-price-original">500.000đ</span>
+            </div>
+          </div>
+        </div>
+        <div class="st-prod-card" data-reveal data-delay="2">
+          <div class="st-prod-thumb">
+            <img src="https://picsum.photos/seed/stY3/500/666" alt="[Sản phẩm gợi ý 3]" loading="lazy">
+            <div class="st-prod-actions"><button aria-label="Thêm vào giỏ hàng">Thêm giỏ</button></div>
+          </div>
+          <div class="st-prod-info">
+            <div class="st-prod-name"><a href="chi-tiet-san-pham.html">[Quần Short Linen Nam]</a></div>
+            <div class="st-prod-price"><span class="st-price-current">380.000đ</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.st-container -->
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="st-footer" aria-label="Footer">
+  <div class="st-container">
+    <div class="st-footer-grid">
+      <div>
+        <div class="st-footer-logo">[Tên<span>.</span>Shop]</div>
+        <p class="st-footer-desc">[Mô tả ngắn về thương hiệu]</p>
+        <div class="st-footer-socials">
+          <a href="https://facebook.com/[username]" class="st-footer-social" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://instagram.com/[username]" class="st-footer-social" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://tiktok.com/@[username]" class="st-footer-social" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="st-footer-col-title">Sản Phẩm</div>
+        <ul class="st-footer-links">
+          <li><a href="san-pham.html">Nữ</a></li>
+          <li><a href="san-pham.html">Nam</a></li>
+          <li><a href="san-pham.html">Phụ kiện</a></li>
+          <li><a href="san-pham.html">Sale</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="st-footer-col-title">Hỗ Trợ</div>
+        <ul class="st-footer-links">
+          <li><a href="#">Hướng dẫn mua hàng</a></li>
+          <li><a href="#">Đổi trả</a></li>
+          <li><a href="#">Vận chuyển</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="st-footer-col-title">Liên Hệ</div>
+        <div class="st-footer-contact-row"><i class="bi bi-telephone"></i><span>[0901 234 567]</span></div>
+        <div class="st-footer-contact-row"><i class="bi bi-envelope"></i><span>[email@tenshop.vn]</span></div>
+      </div>
+    </div>
+    <div class="st-footer-bottom">
+      <span>© 2025 [Tên Shop]. Bảo lưu mọi quyền.</span>
+      <div class="st-pay-badges">
+        <span class="st-pay-badge">VNPAY</span>
+        <span class="st-pay-badge">MoMo</span>
+        <span class="st-pay-badge">COD</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[so-dien-thoai]" class="st-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo">
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  // Mobile menu
+  const burger = document.getElementById('stBurger');
+  const mobNav = document.getElementById('stMobNav');
+  if (burger && mobNav) {
+    burger.addEventListener('click', () => {
+      const isOpen = mobNav.classList.toggle('open');
+      burger.classList.toggle('open', isOpen);
+      burger.setAttribute('aria-expanded', String(isOpen));
+      mobNav.setAttribute('aria-hidden', String(!isOpen));
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+  }
+
+  // Reveal animation
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+  // Quantity control
+  window.changeQty = function (btn, delta) {
+    const row = btn.closest('tr');
+    const inp = row.querySelector('input[type="number"]');
+    const val = Math.max(1, Math.min(99, parseInt(inp.value || '1', 10) + delta));
+    inp.value = val;
+  };
+
+  // Remove item
+  window.removeItem = function (btn) {
+    const row = btn.closest('tr');
+    row.style.opacity = '0';
+    row.style.transition = 'opacity .3s';
+    setTimeout(() => row.remove(), 300);
+  };
+
+  // Clear cart
+  window.clearCart = function () {
+    if (confirm('Bạn có chắc muốn xóa toàn bộ giỏ hàng?')) {
+      document.querySelectorAll('.st-cart-table tbody tr').forEach(row => {
+        row.style.opacity = '0';
+        row.style.transition = 'opacity .3s';
+      });
+      setTimeout(() => {
+        document.querySelectorAll('.st-cart-table tbody tr').forEach(row => row.remove());
+      }, 300);
+    }
+  };
+
+  // Apply coupon
+  window.applyCoupon = function () {
+    const val = document.getElementById('stCoupon').value.trim();
+    if (!val) return;
+    alert('Đang kiểm tra mã: ' + val);
+  };
+
+})();
+</script>
+</body>
+</html>
