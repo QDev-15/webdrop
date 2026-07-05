@@ -499,3 +499,24 @@ VPS AZDIGI Linux
 - website/src/pages/: không có trong scaffold → tạo thủ công (6 page files)
 - TS build: website 49 modules 210kB 0 lỗi, admin 56 modules 237kB 0 lỗi
 - PHP syntax: 24/24 files OK, 0 BOM
+
+**Ghi chú kỹ thuật `nha-khoa-tre-em-kidsmile`:**
+- CSS prefix: `ks-` xuyên suốt (kidsmile)
+- Identity: SOFT-PASTEL — DM Sans italic 300, warm white `#faf8ff`, Lilac accent `#9b7ef0`, Mint `#34c98e`, border-radius lớn (16-24px) — thân thiện trẻ em
+- Nav: transparent → `.ks-scrolled` khi scrollY > 60 (Nav-1 pastel, không blur mạnh)
+- Fonts: Bunny Fonts — dm-sans:300,300i,400,400i,500,500i,600,600i
+- Trang website: `/`, `/dich-vu`, `/bac-si`, `/dat-lich`, `/bai-viet`, `/lien-he` (6 trang — có /bai-viet)
+- SiteContext: stat_cases, stat_doctors, stat_years, stat_satisfaction + hero_eyebrow, hero_title, hero_subtitle (từ DB settings)
+- Public API: `GET /public/settings`, `GET /public/hero-slides`, `GET /public/service-categories`, `GET /public/services`, `GET /public/doctors`, `GET /public/testimonials`, `POST /public/bookings`, `POST /public/contact`
+- DB Extension tables: service_categories, services (category_id FK, tag, price, price_unit, is_featured), doctors (specialties pipe-separated), bookings (fullname, phone, email, service, doctor, date, time, note), testimonials (author_avatar, rating, is_featured)
+- DB seed: service categories + services, doctors, testimonials, settings đầy đủ
+- Booking fields: fullname, phone, email, service, doctor, date, time, note
+- Admin pages: dashboard, bookings, services (+ categories), team, testimonials, contacts, slides, media, settings, profile
+- Bugs fixed (reviewer + qa-tester): TestimonialController `is_featured` (`? 1 : 1` → `? 1 : 0`), Settings.tsx hero tab keys (hero_eyebrow/hero_title/hero_subtitle), HeroSlider đọc từ DB thay vì hardcode, Contact.tsx map_embed render iframe, breadcrumbs dùng Link thay href, data-delay="undefined" removed, Zalo float động từ settings, SQL injection fix trong seedServices()
+- check-hash.php blocked by .htaccess (HTTP 403) ← P0 fix
+- TS build: website 50 modules 204kB 0 lỗi, admin 58 modules 236kB 0 lỗi
+- PHP syntax: 25/25 files OK, 0 BOM
+
+---
+
+*Cập nhật lần cuối: 2026-07-05 — hoàn thành WebDeploy `nha-khoa-tre-em-kidsmile` (SOFT-PASTEL identity, DM Sans 300, warm white #faf8ff, Lilac #9b7ef0 + Mint #34c98e, React + PHP + SQLite, TS website 50 modules 204kB 0 lỗi, admin 58 modules 236kB 0 lỗi, PHP 25/25 OK 0 BOM, 6 trang: /, /dich-vu, /bac-si, /dat-lich, /bai-viet, /lien-he, Nav transparent→scrolled, ks- CSS prefix, reviewer+qa-tester pass)*
