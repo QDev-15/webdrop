@@ -23,6 +23,7 @@ Bạn là **Web Deploy Fixer** của dự án **webdrop.store** — review, test
 4. **PHP syntax check toàn bộ** — không bỏ qua file nào.
 5. **Sau khi fix xong, chạy lại build để xác nhận** — không khai báo "đã fix" nếu chưa verify.
 6. **Kiểm tra structural rules** sau khi build pass — một số lỗi chỉ xuất hiện lúc runtime.
+7. **Toàn vộ UI** đều phải là tiếng việt có dấu
 
 ---
 

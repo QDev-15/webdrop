@@ -290,6 +290,11 @@ VPS AZDIGI Linux
 | `spa-beauty` | Spa / Thẩm mỹ | — | ✅ |
 | `tham-my-vien` | Thẩm mỹ viện | — | ✅ |
 | `nha-khoa-chinh-nha-saigon` | Nha khoa chỉnh nha | GEOMETRIC-MODERN, cobalt `#1d4fd8` | ✅ |
+| `nha-khoa-dong-do` | Nha khoa cao cấp | LUXE-DARK, Jade Emerald `#0e7c66` | ✅ |
+| `nha-khoa-implant-future` | Nha khoa Implant chuyên sâu | DARK-ENERGY, neon magenta `#c026d3` | ✅ |
+| `nha-khoa-gia-dinh-sunrise` | Nha khoa gia đình | FRESH-MINIMAL, Sky Blue `#2f8fd1` | ✅ |
+| `nha-khoa-nu-cuoi-xua` | Nha khoa phong cách retro | RETRO-BOLD, Teal `#1f7a6b`, Mustard `#c98a1f` | ✅ |
+| `nha-khoa-quoc-te-vietduc` | Nha khoa quốc tế đa chi nhánh | CLEAN-CORPORATE, Teal `#0f6d82` | ✅ |
 
 **Ghi chú kỹ thuật `nha-khoa-chinh-nha-saigon`:**
 - CSS prefix: `cn-` xuyên suốt (không dùng `tmv-`)
@@ -303,6 +308,24 @@ VPS AZDIGI Linux
 - Fields testimonials: author_name, author_role, content, rating, avatar_initial, is_featured
 - Fields doctors: name, role, photo, description, experience_years, specialties (pipe-separated), tag
 - TS build: website 52 modules (213.9kB JS), admin 56 modules (223.6kB JS) — 0 lỗi
+- PHP syntax: 24/24 files OK, 0 BOM
+
+**Ghi chú kỹ thuật `nha-khoa-quoc-te-vietduc`:**
+- CSS prefix: `vd-` xuyên suốt
+- Identity: CLEAN-CORPORATE — Outfit font (Bunny Fonts), nền sáng `#f4f8fb`, Navy/Teal accent `#0f6d82`, structured 12-col grid
+- Nav: transparent → `.scrolled` khi scrollY > 60 (Nav-1 pattern)
+- Fonts: Bunny Fonts — outfit:300,400,500,600,700 (không dùng Google Fonts)
+- Trang website: `/`, `/dich-vu`, `/co-so-vat-chat`, `/bac-si`, `/dat-lich`, `/lien-he` (6 trang)
+- SiteContext: stat_branches, stat_doctors, stat_patients, stat_satisfaction
+- Public API: `GET /public/settings`, `GET /public/hero-slides`, `GET /public/service-categories`, `GET /public/services`, `GET /public/doctors`, `GET /public/testimonials`, `POST /public/bookings`, `POST /public/contact`
+- DB Extension tables: service_categories, services (category_id FK, tag, price, price_unit), doctors (flag: Trong nuoc/Quoc te, tags), bookings (pref_date, pref_time, service, branch), testimonials (is_featured)
+- Multi-branch settings keys: branch_hcm_address, branch_hcm_phone, branch_hn_address, branch_hn_phone, branch_dn_address, branch_dn_phone, branch_ct_address, branch_ct_phone, branch_nt_address, branch_nt_phone
+- Booking fields: fullname, phone, email, branch, service, pref_date, pref_time, note
+- Bento gallery on /co-so-vat-chat page (6 items), branch filter tabs on /lien-he
+- fix: bootstrap.php missing require_once for MediaController, UnsplashController, UploadController
+- fix: website/index.html missing Bootstrap 5.3.3 CDN (layout broken without it)
+- fix: extensive unaccented Vietnamese text across all 6 pages → fully corrected
+- TS build: website 44 modules (214.18kB JS), admin 58 modules (233.30kB JS) — 0 lỗi
 - PHP syntax: 24/24 files OK, 0 BOM
 
 ### CV Builder SaaS
@@ -322,4 +345,84 @@ VPS AZDIGI Linux
 
 ---
 
-*Cập nhật lần cuối: 2026-07-04 — hoàn thành WebDeploy `nha-khoa-chinh-nha-saigon` (GEOMETRIC-MODERN identity, Space Grotesk, cobalt #1d4fd8, React + PHP + SQLite, TS website 52 modules 0 lỗi, admin 56 modules 0 lỗi, PHP 24/24 OK 0 BOM, qua reviewer + QA, fix P0+P1+P2: SettingsController `grp` column, seed key mismatch social/zalo/hero_title, testimonials filter, stub file, href="#" footer, console.error)*
+*Cập nhật lần cuối: 2026-07-05 — web-deploy-fixer `nha-khoa-quoc-te-vietduc` hoàn thành: fix bootstrap.php thiếu require_once MediaController/UnsplashController/UploadController, fix website/index.html thiếu Bootstrap 5.3.3 CDN, fix toàn bộ UI tiếng Việt có dấu trên tất cả 6 trang website (Header, Footer, HomePage, ServicesPage, FacilitiesPage, TeamPage, BookingPage, ContactPage), PHP 24/24 OK 0 BOM, TS website 44 modules 214kB 0 lỗi, admin 58 modules 233kB 0 lỗi — build ✅)*
+
+*Cập nhật lần trước: 2026-07-04 — hoàn thành WebDeploy `nha-khoa-nu-cuoi-xua` (RETRO-BOLD identity, Space Grotesk 800, cream `#f5efdd`, Teal `#1f7a6b`, Mustard `#c98a1f`, React + PHP + SQLite, TS website 51 modules 212kB 0 lỗi, admin 57 modules 230kB 0 lỗi, PHP 24/24 OK 0 BOM, 6 trang: /, /dich-vu, /cau-chuyen, /bac-si, /dat-lich, /lien-he)*
+
+*Cập nhật lần trước: 2026-07-04 — hoàn thành WebDeploy `nha-khoa-implant-future` (DARK-ENERGY identity, Syne 800, full dark #0a0710, neon magenta #c026d3, React + PHP + SQLite, TS website 50 modules 222kB 0 lỗi, admin 55 modules 221kB 0 lỗi, PHP 23/23 OK 0 BOM, Vite build thành công cả 2)*
+
+**Ghi chú kỹ thuật `nha-khoa-implant-future`:**
+- CSS prefix: `ft-` xuyên suốt
+- Identity: DARK-ENERGY — Syne font weight 800, nền `#0a0710`, neon magenta `#c026d3`/`#e64fef`, violet `#7c3aed`
+- Nav: always dark (fixed, `#0d0916` background, không transparent)
+- Fonts: Bunny Fonts — syne:400,600,700,800 (không dùng Google Fonts)
+- Trang website: `/`, `/dich-vu-implant`, `/cong-nghe-3d`, `/bac-si`, `/dat-lich`, `/lien-he`
+- SiteContext: stat_cases, stat_doctors, stat_years, stat_satisfaction
+- Public API: `GET /public/settings`, `GET /public/hero-slides`, `GET /public/services`, `GET /public/doctors`, `GET /public/testimonials`, `POST /public/bookings`, `POST /public/contact`
+- DB Extension tables: services (number, features, price, is_featured, sort_order), doctors, bookings (pref_service, pref_date), testimonials (avatar_url, is_featured)
+- DB seed: 6 dịch vụ Implant, 4 bác sĩ chuyên sâu, 4 testimonials, 35 settings keys
+- TS build: website 50 modules 222kB 0 lỗi, admin 55 modules 221kB 0 lỗi
+- PHP syntax: 23/23 files OK, 0 BOM
+- Admin không có UserList route (không cần quản lý users riêng)
+
+**Ghi chú kỹ thuật `nha-khoa-gia-dinh-sunrise`:**
+- CSS prefix: `sr-` xuyên suốt
+- Identity: FRESH-MINIMAL — Plus Jakarta Sans (Bunny Fonts), nền sáng `#f7fafd`, accent Sky Blue `#2f8fd1`
+- Nav: transparent → `.scrolled` khi scrollY > 60 (Nav-1 pattern)
+- Fonts: Bunny Fonts — plus-jakarta-sans:300,400,500,600,700 (không dùng Google Fonts, không Bootstrap)
+- Trang website: `/`, `/dich-vu`, `/bac-si`, `/dat-lich`, `/lien-he`
+- Extension tables: service_categories, services (category_id FK), doctors, bookings, testimonials
+- DB seed: 5 nhóm dịch vụ, 15 dịch vụ (3/nhóm), 6 bác sĩ, 3 testimonials
+- Booking fields: fullname, phone, email, service, member_count, date, time, note
+- Social settings keys: `facebook`, `instagram`, `youtube`, `tiktok`, `zalo` (không có `_url` suffix)
+- `api/client.ts` admin: `api.put` → POST `/path/update`, `api.delete` → POST `/path/delete` (IIS compat)
+- web-deploy-fixer fix: SettingsController cột `group` → `grp`; tạo ProfileController.php missing; thêm routes `GET /hero-slides/:id` + `POST /users/:id/change-password`
+
+**Ghi chú kỹ thuật `nha-khoa-dong-do`:**
+- CSS prefix: `dd-` xuyên suốt
+- Identity: LUXE-DARK — Cormorant Garamond (heading italic 300) + DM Sans (body), nền `#0b0d0c`, Jade Emerald `#0e7c66`/`#16a184`
+- Nav: floating pill (fixed top 16px, border-radius 12px, shadow 0 24px 60px rgba(0,0,0,.5))
+- Fonts: Bunny Fonts (không dùng Google Fonts) — cormorant-garamond + dm-sans
+- Trang website: `/`, `/dich-vu`, `/doi-ngu-bac-si`, `/cong-nghe`, `/dat-lich`, `/lien-he`
+- Extension tables: services (number, features, image, is_featured, sort_order), doctors, bookings (pref_doctor), testimonials (avatar_url)
+- DB seed: 6 dịch vụ, 6 bác sĩ, 3 testimonials — nội dung từ template HTML thật
+- `api/client.ts` admin: `api.put` và `api.delete` là aliases → tự gọi POST với suffix `/update` và `/delete`*
+
+**Ghi chú kỹ thuật `nha-khoa-nu-cuoi-xua`:**
+- CSS prefix: `nc-` xuyên suốt
+- Identity: RETRO-BOLD — Space Grotesk weight 800, cream `#f5efdd`, Teal `#1f7a6b`, Mustard `#c98a1f`
+- Nav: Nav-5 poster style — centered logo framed (nc-logo, border+shadow 4px 4px 0 var(--accent)), links below (nc-nav-links dashed border-top), always solid bg (no transparent/scroll)
+- Fonts: Bunny Fonts — space-grotesk:300,400,500,600,700,800 (không dùng Google Fonts)
+- Trang website: `/`, `/dich-vu`, `/cau-chuyen`, `/bac-si`, `/dat-lich`, `/lien-he` (6 trang — có thêm /cau-chuyen so với sunrise)
+- SiteContext: stat_cases, stat_doctors, stat_years, stat_satisfaction, story_year, story_title, story_text, story_image
+- Public API: `GET /public/settings`, `GET /public/hero-slides`, `GET /public/service-categories`, `GET /public/services`, `GET /public/doctors`, `GET /public/testimonials`, `POST /public/bookings`, `POST /public/contact`
+- DB Extension tables: service_categories, services (category_id FK, image, tag, price, price_unit), doctors (tags, quote), bookings (pref_date, pref_time, pref_doctor), testimonials (author_avatar, stars, is_active, sort_order)
+- DB seed: 5 nhóm dịch vụ, 11 dịch vụ, 6 bác sĩ, 3 testimonials, 35 settings keys
+- Booking fields: fullname, phone, email, service, pref_date, pref_time, pref_doctor, note
+- ProfileController.php: thiếu khi scaffold → tạo thủ công (queryOne + Auth::user())
+- TS build: website 51 modules 212kB 0 lỗi, admin 57 modules 230kB 0 lỗi
+- PHP syntax: 24/24 files OK, 0 BOM
+
+**Ghi chú kỹ thuật `nha-khoa-quoc-te-vietduc`:**
+- CSS prefix: `vd-` xuyên suốt
+- Identity: CLEAN-CORPORATE — Outfit (Bunny Fonts), nền sáng `#f8fbfc`, accent Teal `#0f6d82`, dark `#0a2129`
+- Nav: Nav-4 transparent → `.scrolled` khi scrollY > 20, border-top 3px solid var(--accent) khi scrolled
+- Fonts: Bunny Fonts — outfit:300,400,500,600,700 (không dùng Google Fonts)
+- Trang website: `/`, `/dich-vu`, `/co-so-vat-chat` (FacilitiesPage), `/bac-si`, `/dat-lich`, `/lien-he`
+- SiteContext: stat_branches, stat_cities, stat_doctors, stat_years (thông tin đa chi nhánh quốc tế)
+- Public API: `GET /public/settings`, `GET /public/hero-slides`, `GET /public/service-categories`, `GET /public/services`, `GET /public/doctors`, `GET /public/testimonials`, `POST /public/bookings`, `POST /public/contact`
+- DB Extension tables: service_categories, services (category_id FK, tag, price, is_featured), doctors (flag TEXT DEFAULT 'Trong nuoc', tags pipe-separated), bookings (branch TEXT — đa chi nhánh), testimonials (avatar_url, is_featured)
+- `doctors.flag` column: `'Trong nuoc'` hoặc `'Quoc te'` — filter trên TeamPage và TeamList admin
+- `bookings.branch` column: duy nhất cho vietduc (đa chi nhánh) — select branch khi đặt lịch
+- DB seed: 6 nhóm dịch vụ, 11 dịch vụ, 8 bác sĩ (4 Trong nuoc + 4 Quoc te), 3 testimonials, settings gồm branch info (branch_hcm_address, branch_hn_address, etc.)
+- Booking fields: fullname, phone, email, branch, service, pref_date, pref_time (radio TIME_SLOTS), note
+- Auth.php: session_name `vietduc_sess` (không phải tên mặc định scaffold)
+- ProfileController.php: thiếu khi scaffold → tạo thủ công
+- UserList.tsx: thiếu khi scaffold → tạo thủ công
+- ContactDetail.tsx: thiếu khi scaffold → tạo stub re-export ContactList
+- main.tsx website: thiếu khi scaffold → tạo thủ công (import App + template.css)
+- Admin CSS: dùng `adm-*` prefix cho pages mới + `sb-*` cho Sidebar — alias block thêm vào admin.css
+- Admin Settings: 8 tabs (general, seo, social, contact, hero, stats, cloudinary, integrations) + branch info fields
+- TS build: website 44 modules 214kB 0 lỗi, admin 58 modules 233kB 0 lỗi
+- PHP syntax: 24/24 files OK, 0 BOM
+- web-deploy-fixer fixes (2026-07-05): migrate() comment-stripping pattern, thêm routes /media + /upload + /unsplash vào bootstrap.php, fix MediaController::destroy dùng $p[1] thay $p['id'], fix build.mjs duplicate blocks, fix toàn bộ UI tiếng Việt có dấu

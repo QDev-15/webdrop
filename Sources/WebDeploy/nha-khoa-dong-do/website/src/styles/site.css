@@ -1,0 +1,21 @@
+/* site.css — React-specific overrides for nha-khoa-dong-do */
+
+/* Root flex layout */
+#root { display: flex; flex-direction: column; min-height: 100vh; }
+#root > header, #root > main, #root > footer { flex-shrink: 0; }
+
+/* Main content min-height */
+main { min-height: 60vh; }
+
+/* Active NavLink in dd-nav-links */
+.dd-nav-links .active { color: var(--accent-bright) !important; }
+
+/* NavLink in mobile menu */
+.dd-nav-mob .active { color: var(--accent-bright); }
+
+/* Hero section — no top padding needed, fixed nav floats above */
+.dd-hero { padding-top: 0; }
+
+/* Inner page header — ensure enough top padding to clear the floating nav */
+.dd-page-header { padding-top: 176px; }
+@media (max-width: 991px) { .dd-page-header { padding-top: 120px; } }

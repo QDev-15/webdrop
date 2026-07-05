@@ -566,3 +566,73 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
   .ft-hero-ctas, .ft-cta-ctas { flex-direction: column; align-items: stretch; }
   .ft-hero-ctas .ft-btn, .ft-cta-ctas .ft-btn { justify-content: center; }
 }
+
+/* ═══════════ RESPONSIVE FIXES ═══════════ */
+
+/* Page header — reduce top padding on smaller screens */
+@media (max-width: 991px) {
+  .ft-page-head { padding: 130px 0 56px; }
+}
+@media (max-width: 767px) {
+  .ft-page-head { padding: 110px 0 48px; }
+}
+@media (max-width: 575px) {
+  .ft-page-head { padding: 96px 0 40px; }
+}
+
+/* Hero badge — prevent overflow on very small screens */
+@media (max-width: 400px) {
+  .ft-hero-badge {
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 8px 14px 8px 10px;
+  }
+}
+
+/* Full-bleed section — reduce min-height and content padding on mobile */
+@media (max-width: 767px) {
+  .ft-bleed { min-height: 420px; }
+  .ft-bleed-content { padding: 56px clamp(20px, 5vw, 48px); }
+}
+@media (max-width: 575px) {
+  .ft-bleed { min-height: 0; }
+  .ft-bleed-content { padding: 48px clamp(20px, 5vw, 32px); }
+}
+
+/* Review cards — prevent 340px fixed width overflowing on narrow screens */
+@media (max-width: 575px) {
+  .ft-rv-card { flex: 0 0 min(340px, 85vw); }
+}
+
+/* List items — allow value to wrap on very small screens */
+@media (max-width: 480px) {
+  .ft-list-item { flex-wrap: wrap; gap: 8px; }
+  .ft-list-value { padding-left: 48px; }
+}
+
+/* Stat bar — tighten vertical padding on mobile */
+@media (max-width: 767px) {
+  .ft-stat-bar { padding: 40px 0; }
+}
+
+/* CTA banner — reduce border-radius on mobile */
+@media (max-width: 575px) {
+  .ft-cta { border-radius: 16px; }
+}
+
+/* Footer bottom — stack vertically on mobile */
+@media (max-width: 575px) {
+  .ft-ft-bottom { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .ft-ft-cert { flex-direction: column; gap: 6px; }
+}
+
+/* Form panel — reduce padding on small screens */
+@media (max-width: 575px) {
+  .ft-form-panel { padding: clamp(20px, 5vw, 28px); }
+}
+
+/* Hero stats — stack to 2 columns on very small screens */
+@media (max-width: 400px) {
+  .ft-hero-stats { gap: 16px; }
+  .ft-hs-num { font-size: 22px; }
+}
