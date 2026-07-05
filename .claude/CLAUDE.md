@@ -297,6 +297,7 @@ VPS AZDIGI Linux
 | `nha-khoa-quoc-te-vietduc` | Nha khoa quốc tế đa chi nhánh | CLEAN-CORPORATE, Teal `#0f6d82` | ✅ |
 | `nha-khoa-tham-my-luxdental` | Nha khoa thẩm mỹ cao cấp | BOLD-EDITORIAL, Scarlet `#d63b1f` | ✅ |
 | `nha-khoa-tong-quat-antam` | Nha khoa tổng quát | ZEN-MINIMAL, Sage green `#6b8067` | ✅ |
+| `nha-khoa-tre-em-kidsmile` | Nha khoa trẻ em | SOFT-PASTEL, Lilac `#9b7ef0`, Mint `#34c98e` | ✅ |
 
 **Ghi chú kỹ thuật `nha-khoa-chinh-nha-saigon`:**
 - CSS prefix: `cn-` xuyên suốt (không dùng `tmv-`)
@@ -347,7 +348,11 @@ VPS AZDIGI Linux
 
 ---
 
-*Cập nhật lần cuối: 2026-07-05 — hoàn thành WebDeploy `nha-khoa-tong-quat-antam` (ZEN-MINIMAL identity, Cormorant Garamond 300 + DM Sans, warm white #f7f5f0, Sage green #6b8067, React + PHP + SQLite, TS website 49 modules 200kB 0 lỗi, admin 56 modules 232kB 0 lỗi, PHP 23/23 OK 0 BOM, 5 trang: /, /dich-vu, /bac-si, /dat-lich, /lien-he, Nav transparent→scrolled, H11 Full-Width Text hero + marquee, List-Elegant services, Alternating-Strips team, at- CSS prefix)*
+*Cập nhật lần cuối: 2026-07-05 — reviewer+qa fix `nha-khoa-tre-em-kidsmile`: P0 block check-hash.php via .htaccess, P1 TestimonialController store() `? 1 : 1` → `? 1 : 0`, P1 Settings.tsx hero tab keys `hero_eyebrow`+`hero_title`+`hero_subtitle`, P1 HeroSlider.tsx đọc hero_title/hero_subtitle/hero_eyebrow từ DB, P1 Contact.tsx `.ks-contact-grid` class + CSS moved to template.css + remove embedded style tag, P2 data-delay="undefined" → omit attribute khi index=0 (4 components), P2 App.tsx Zalo float button dùng zalo_number từ settings API, P2 Contact.tsx map_embed render iframe nếu có giá trị, P2 Database.php SQL interpolation → prepared statement, P1 breadcrumb `<a href="/">` → `<Link to="/">` toàn bộ 5 trang (ServicesPage, TeamPage, BookingPage, ArticlesPage, ContactPage). TS website 50 modules 204kB 0 lỗi, admin 58 modules 236kB 0 lỗi, PHP 25/25 OK*
+
+*Cập nhật lần trước: 2026-07-05 — hoàn thành WebDeploy `nha-khoa-tre-em-kidsmile` (SOFT-PASTEL identity, DM Sans italic 300, lilac `#9b7ef0` + mint `#34c98e`, warm white `#faf8ff`, React + PHP + SQLite, TS website 50 modules 204kB 0 lỗi, admin 58 modules 236kB 0 lỗi, PHP 25/25 OK 0 BOM, 6 trang: /, /dich-vu, /cam-nang-cha-me, /bac-si, /dat-lich, /lien-he, Nav-5 centered logo always-solid, H6 Asymmetric Offset hero, ks- CSS prefix, articles table cho cẩm nang cha mẹ, booking fields parent_name+child_name+child_age, author_meta cho testimonials)*
+
+*Cập nhật lần cuối trước: 2026-07-05 — hoàn thành WebDeploy `nha-khoa-tong-quat-antam` (ZEN-MINIMAL identity, Cormorant Garamond 300 + DM Sans, warm white #f7f5f0, Sage green #6b8067, React + PHP + SQLite, TS website 49 modules 200kB 0 lỗi, admin 56 modules 232kB 0 lỗi, PHP 23/23 OK 0 BOM, 5 trang: /, /dich-vu, /bac-si, /dat-lich, /lien-he, Nav transparent→scrolled, H11 Full-Width Text hero + marquee, List-Elegant services, Alternating-Strips team, at- CSS prefix)*
 
 *Cập nhật lần cuối trước: 2026-07-05 — hoàn thành WebDeploy `nha-khoa-tham-my-luxdental` (BOLD-EDITORIAL identity, Syne 800, Scarlet `#d63b1f`, warm white `#faf9f6`, React + PHP + SQLite, TS website 49 modules 210kB 0 lỗi, admin 56 modules 237kB 0 lỗi, PHP 24/24 OK 0 BOM, 6 trang: /, /dich-vu, /truoc-sau, /bac-si, /dat-lich, /lien-he, Nav-8 underline-active always-solid, H5 Bold Typography Only hero, bento-grid services, masonry before/after gallery, lx- CSS prefix)*
 
@@ -432,6 +437,27 @@ VPS AZDIGI Linux
 - TS build: website 44 modules 214kB 0 lỗi, admin 58 modules 233kB 0 lỗi
 - PHP syntax: 24/24 files OK, 0 BOM
 - web-deploy-fixer fixes (2026-07-05): migrate() comment-stripping pattern, thêm routes /media + /upload + /unsplash vào bootstrap.php, fix MediaController::destroy dùng $p[1] thay $p['id'], fix build.mjs duplicate blocks, fix toàn bộ UI tiếng Việt có dấu
+
+**Ghi chú kỹ thuật `nha-khoa-tre-em-kidsmile`:**
+- CSS prefix: `ks-` xuyên suốt (kidsmile)
+- Identity: SOFT-PASTEL — DM Sans italic weight 300 (heading), nền warm white `#faf8ff`, Lilac accent `#9b7ef0`, Mint accent `#34c98e`
+- Nav: NAV-5 Centered Logo + Links Below — always solid `rgba(255,255,255,.92)` backdrop-blur, không transparent/scroll
+- Fonts: Bunny Fonts — dm-sans:300,300i,400,400i,500,600 (không dùng Google Fonts)
+- Hero: H6 Asymmetric Offset — text left max-width 640px, image absolute right -8%, float-card-1 (bottom-left) + float-card-2 (top-right)
+- Trang website: `/`, `/dich-vu`, `/cam-nang-cha-me`, `/bac-si`, `/dat-lich`, `/lien-he` (6 trang)
+- SiteContext: stat_patients, stat_years, stat_satisfaction, stat_doctors (4 stats)
+- Public API: `GET /public/settings`, `GET /public/service-categories`, `GET /public/services`, `GET /public/doctors`, `GET /public/testimonials`, `GET /public/articles`, `POST /public/bookings`, `POST /public/contact`
+- DB Extension tables: service_categories, services (icon TEXT, tags TEXT pipe-separated), doctors, bookings (parent_name, child_name, child_age), testimonials (author_meta TEXT), articles (title, slug, excerpt, content, thumbnail, tag, read_time, status, sort_order)
+- Booking fields: parent_name, phone, email, child_name, child_age, service, date, time, note (unique parent/child focus)
+- Testimonials: `author_meta` thay vì `author_role` — format "Mẹ bé Bảo An, 5 tuổi"
+- DB seed: 3 nhóm dịch vụ (Khám & phòng ngừa, Điều trị, Phát triển hàm răng), 9 dịch vụ, 6 bác sĩ, 3 testimonials, 3 articles, 38 settings keys
+- Admin pages: dashboard, bookings, services (+categories), team, testimonials, articles (NEW), contacts, slides, media, settings (8 tabs), profile
+- AppShell: IO + MO cho `[data-reveal]` animation trong App.tsx
+- ProfileController.php: thiếu khi scaffold → tạo thủ công
+- website/src/main.tsx: thiếu khi scaffold → tạo thủ công
+- website/src/pages/: không có trong scaffold → tạo thủ công (6 page files + ArticlesPage.tsx)
+- TS build: website 50 modules 204kB 0 lỗi, admin 58 modules 236kB 0 lỗi
+- PHP syntax: 25/25 files OK, 0 BOM
 
 **Ghi chú kỹ thuật `nha-khoa-tong-quat-antam`:**
 - CSS prefix: `at-` xuyên suốt (an-tam)
