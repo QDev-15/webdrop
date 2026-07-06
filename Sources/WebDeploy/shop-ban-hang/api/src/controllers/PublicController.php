@@ -52,8 +52,11 @@ class PublicController {
             $where[] = "p.category_id IN ($ph)";
             array_push($params, ...$categoryIds);
         }
-        if ($minPrice !== null) { $where[] = "COALESCE(NULLIF(p.price_sale,0), p.price) >= ?"; $params[] = $minPrice; }
-        if ($maxPrice !== null) { $where[] = "COALESCE(NULLIF(p.price_sale,0), p.price) <= ?"; $params[] = $maxPrice; }
+        // CAST(? AS INTEGER) bắt buộc — PDOStatement::execute() với mảng luôn bind param dạng PARAM_STR,
+        // trong khi vế trái là biểu thức COALESCE (không có column affinity) nên SQLite so sánh theo storage
+        // class thô: numeric luôn "nhỏ hơn" text → thiếu CAST thì `>= ?` với chuỗi '0' luôn false, lọc mất hết sản phẩm.
+        if ($minPrice !== null) { $where[] = "COALESCE(NULLIF(p.price_sale,0), p.price) >= CAST(? AS INTEGER)"; $params[] = $minPrice; }
+        if ($maxPrice !== null) { $where[] = "COALESCE(NULLIF(p.price_sale,0), p.price) <= CAST(? AS INTEGER)"; $params[] = $maxPrice; }
         if ($colors) {
             $clauses = [];
             foreach ($colors as $c) { $clauses[] = "p.colors LIKE ?"; $params[] = '%' . $c . '%'; }
@@ -116,12 +119,17 @@ class PublicController {
         $rows = $this->db->query("SELECT key, value FROM settings WHERE grp = 'payment'");
         $s = [];
         foreach ($rows as $r) { $s[$r['key']] = $r['value']; }
+        $bankCode      = $s['sepay_bank_code'] ?? '';
+        $accountNumber = $s['sepay_account_number'] ?? '';
+        $accountName   = $s['sepay_account_name'] ?? '';
+        // Bật SePay nhưng chưa điền đủ tài khoản nhận tiền = chưa dùng được thật — không chào phương thức này cho khách
+        $sepayReady = ($s['payment_sepay_enabled'] ?? '0') === '1' && $bankCode !== '' && $accountNumber !== '' && $accountName !== '';
         Response::json([
             'cod_enabled'          => ($s['payment_cod_enabled'] ?? '1') === '1',
-            'sepay_enabled'        => ($s['payment_sepay_enabled'] ?? '0') === '1',
-            'sepay_bank_code'      => $s['sepay_bank_code'] ?? '',
-            'sepay_account_number' => $s['sepay_account_number'] ?? '',
-            'sepay_account_name'   => $s['sepay_account_name'] ?? '',
+            'sepay_enabled'        => $sepayReady,
+            'sepay_bank_code'      => $bankCode,
+            'sepay_account_number' => $accountNumber,
+            'sepay_account_name'   => $accountName,
         ]);
     }
 
@@ -157,9 +165,16 @@ class PublicController {
             Response::error('Phương thức thanh toán khi nhận hàng hiện không khả dụng', 422);
             return;
         }
-        if ($paymentMethod === 'sepay' && ($s['payment_sepay_enabled'] ?? '0') !== '1') {
-            Response::error('Phương thức chuyển khoản hiện không khả dụng', 422);
-            return;
+        if ($paymentMethod === 'sepay') {
+            if (($s['payment_sepay_enabled'] ?? '0') !== '1') {
+                Response::error('Phương thức chuyển khoản hiện không khả dụng', 422);
+                return;
+            }
+            // Bật SePay nhưng chưa cấu hình đủ tài khoản nhận tiền → không tạo đơn (khách sẽ không có gì để quét/chuyển khoản)
+            if (($s['sepay_bank_code'] ?? '') === '' || ($s['sepay_account_number'] ?? '') === '' || ($s['sepay_account_name'] ?? '') === '') {
+                Response::error('Cửa hàng chưa cấu hình tài khoản nhận tiền SePay — vui lòng chọn phương thức khác hoặc liên hệ shop.', 422);
+                return;
+            }
         }
 
         // Tính lại giá từ DB — không tin giá client gửi lên
