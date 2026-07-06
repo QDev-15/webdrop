@@ -1,0 +1,156 @@
+import { useEffect, useState } from 'react'
+import { api } from '../../api/client'
+
+type Settings = Record<string, string>
+
+const TABS = [
+  { id: 'general', label: 'Thông tin chung' },
+  { id: 'seo', label: 'SEO' },
+  { id: 'social', label: 'Mạng xã hội' },
+  { id: 'shop', label: 'Cửa hàng' },
+  { id: 'contact', label: 'Liên hệ' },
+  { id: 'smtp', label: 'SMTP' },
+  { id: 'cloudinary', label: '☁️ Cloudinary' },
+  { id: 'integrations', label: '🔌 Tích hợp' },
+]
+
+function Field({ label, name, value, onChange, type = 'text', placeholder = '' }: {
+  label: string; name: string; value: string; onChange: (k: string, v: string) => void
+  type?: string; placeholder?: string
+}) {
+  return (
+    <div className="form-group">
+      <label>{label}</label>
+      {type === 'textarea' ? (
+        <textarea rows={3} value={value} onChange={e => onChange(name, e.target.value)} placeholder={placeholder} />
+      ) : (
+        <input type={type} value={value} onChange={e => onChange(name, e.target.value)} placeholder={placeholder} />
+      )}
+    </div>
+  )
+}
+
+export default function Settings() {
+  const [settings, setSettings] = useState<Settings>({})
+  const [activeTab, setActiveTab] = useState('general')
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
+  const [saved, setSaved] = useState(false)
+
+  useEffect(() => {
+    api.get<Settings>('/settings')
+      .then(setSettings)
+      .catch(() => {})
+      .finally(() => setLoading(false))
+  }, [])
+
+  const set = (k: string, v: string) => setSettings(s => ({ ...s, [k]: v }))
+  const val = (k: string) => settings[k] ?? ''
+
+  const handleSave = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setSaving(true)
+    try {
+      await api.post('/settings/update', settings)
+      setSaved(true)
+      setTimeout(() => setSaved(false), 3000)
+    } catch { /* ignore */ }
+    finally { setSaving(false) }
+  }
+
+  if (loading) return <div className="admin-loading-box">Đang tải...</div>
+
+  return (
+    <div className="admin-page">
+      <div className="admin-page-header">
+        <h1 className="admin-page-title">Cài đặt hệ thống</h1>
+      </div>
+
+      <div className="settings-tabs">
+        {TABS.map(t => (
+          <button key={t.id} className={'settings-tab' + (activeTab === t.id ? ' active' : '')} onClick={() => setActiveTab(t.id)}>
+            {t.label}
+          </button>
+        ))}
+      </div>
+
+      <form onSubmit={handleSave} className="admin-form" style={{ marginTop: 24 }}>
+        {saved && <div className="form-success-banner">Đã lưu cài đặt thành công!</div>}
+
+        {activeTab === 'general' && <>
+          <Field label="Tên cửa hàng" name="site_name" value={val('site_name')} onChange={set} placeholder="Shop Hữu Cơ" />
+          <Field label="Slogan" name="site_slogan" value={val('site_slogan')} onChange={set} placeholder="Thiên nhiên trong từng sản phẩm" />
+          <Field label="Mô tả ngắn" name="site_description" value={val('site_description')} onChange={set} type="textarea" />
+          <Field label="Logo URL" name="site_logo" value={val('site_logo')} onChange={set} placeholder="https://..." />
+          <Field label="Favicon URL" name="site_favicon" value={val('site_favicon')} onChange={set} placeholder="https://..." />
+          <Field label="Giờ mở cửa" name="working_hours" value={val('working_hours')} onChange={set} placeholder="8:00 – 21:00, Thứ 2 – CN" />
+          <Field label="Số Zalo" name="zalo_number" value={val('zalo_number')} onChange={set} placeholder="0901234567" />
+        </>}
+
+        {activeTab === 'seo' && <>
+          <Field label="Meta Title" name="meta_title" value={val('meta_title')} onChange={set} placeholder="Shop Hữu Cơ | Sản phẩm thiên nhiên" />
+          <Field label="Meta Description" name="meta_description" value={val('meta_description')} onChange={set} type="textarea" placeholder="Mô tả SEO..." />
+          <Field label="OG Image URL" name="og_image" value={val('og_image')} onChange={set} placeholder="https://..." />
+          <Field label="Google Analytics ID" name="ga_id" value={val('ga_id')} onChange={set} placeholder="G-XXXXXXXXXX" />
+          <Field label="Google Tag Manager ID" name="gtm_id" value={val('gtm_id')} onChange={set} placeholder="GTM-XXXXXXX" />
+        </>}
+
+        {activeTab === 'social' && <>
+          <Field label="Facebook URL" name="facebook" value={val('facebook')} onChange={set} placeholder="https://facebook.com/shopname" />
+          <Field label="Instagram URL" name="instagram" value={val('instagram')} onChange={set} placeholder="https://instagram.com/shopname" />
+          <Field label="TikTok URL" name="tiktok" value={val('tiktok')} onChange={set} placeholder="https://tiktok.com/@shopname" />
+          <Field label="YouTube URL" name="youtube" value={val('youtube')} onChange={set} placeholder="https://youtube.com/@shopname" />
+          <Field label="Pinterest URL" name="pinterest" value={val('pinterest')} onChange={set} placeholder="https://pinterest.com/shopname" />
+        </>}
+
+        {activeTab === 'shop' && <>
+          <Field label="Phí vận chuyển (VND)" name="shipping_fee" value={val('shipping_fee')} onChange={set} placeholder="30000" />
+          <Field label="Miễn phí vận chuyển từ (VND)" name="free_shipping_threshold" value={val('free_shipping_threshold')} onChange={set} placeholder="500000" />
+          <Field label="Tiêu đề promo banner" name="promo_title" value={val('promo_title')} onChange={set} placeholder="Flash Sale Cuối Tuần" />
+          <Field label="Mô tả promo" name="promo_subtitle" value={val('promo_subtitle')} onChange={set} placeholder="Giảm đến 30% toàn bộ sản phẩm" />
+          <Field label="Ngày kết thúc promo (YYYY-MM-DD HH:MM:SS)" name="promo_end_date" value={val('promo_end_date')} onChange={set} placeholder="2026-12-31 23:59:59" />
+          <Field label="Thống kê: Số sản phẩm" name="stat_products" value={val('stat_products')} onChange={set} placeholder="500+" />
+          <Field label="Thống kê: Khách hàng" name="stat_customers" value={val('stat_customers')} onChange={set} placeholder="10.000+" />
+          <Field label="Thống kê: Năm kinh nghiệm" name="stat_years" value={val('stat_years')} onChange={set} placeholder="5+" />
+          <Field label="Thống kê: Đánh giá 5 sao" name="stat_reviews" value={val('stat_reviews')} onChange={set} placeholder="99%" />
+        </>}
+
+        {activeTab === 'contact' && <>
+          <Field label="Email liên hệ" name="site_email" value={val('site_email')} onChange={set} type="email" placeholder="hello@shophuuco.vn" />
+          <Field label="Số điện thoại" name="site_phone" value={val('site_phone')} onChange={set} placeholder="0901 234 567" />
+          <Field label="Địa chỉ" name="site_address" value={val('site_address')} onChange={set} placeholder="123 Đường ABC, Quận 1, TP.HCM" />
+          <Field label="Google Maps Embed URL" name="map_embed" value={val('map_embed')} onChange={set} placeholder="https://maps.google.com/maps?..." />
+        </>}
+
+        {activeTab === 'smtp' && <>
+          <Field label="SMTP Host" name="smtp_host" value={val('smtp_host')} onChange={set} placeholder="smtp.gmail.com" />
+          <Field label="SMTP Port" name="smtp_port" value={val('smtp_port')} onChange={set} placeholder="587" />
+          <Field label="SMTP Username" name="smtp_user" value={val('smtp_user')} onChange={set} placeholder="you@gmail.com" />
+          <Field label="SMTP Password" name="smtp_pass" value={val('smtp_pass')} onChange={set} type="password" placeholder="••••••••" />
+          <Field label="From Email" name="smtp_from_email" value={val('smtp_from_email')} onChange={set} placeholder="no-reply@shophuuco.vn" />
+          <Field label="From Name" name="smtp_from_name" value={val('smtp_from_name')} onChange={set} placeholder="Shop Hữu Cơ" />
+        </>}
+
+        {activeTab === 'cloudinary' && <>
+          <p style={{ color: '#888', fontSize: 13, marginBottom: 16 }}>Cấu hình Cloudinary để upload và quản lý ảnh sản phẩm.</p>
+          <Field label="Cloud Name" name="cloudinary_cloud_name" value={val('cloudinary_cloud_name')} onChange={set} placeholder="mycloud" />
+          <Field label="API Key" name="cloudinary_api_key" value={val('cloudinary_api_key')} onChange={set} placeholder="123456789012345" />
+          <Field label="API Secret" name="cloudinary_api_secret" value={val('cloudinary_api_secret')} onChange={set} type="password" placeholder="••••••••" />
+          <Field label="Upload Preset" name="cloudinary_upload_preset" value={val('cloudinary_upload_preset')} onChange={set} placeholder="ml_default" />
+        </>}
+
+        {activeTab === 'integrations' && <>
+          <p style={{ color: '#888', fontSize: 13, marginBottom: 16 }}>API keys cho các tích hợp bên ngoài.</p>
+          <Field label="Unsplash Access Key" name="unsplash_access_key" value={val('unsplash_access_key')} onChange={set} placeholder="Unsplash Access Key" />
+          <Field label="Facebook Pixel ID" name="fb_pixel_id" value={val('fb_pixel_id')} onChange={set} placeholder="123456789012345" />
+          <Field label="Zalo OA ID" name="zalo_oa_id" value={val('zalo_oa_id')} onChange={set} placeholder="Zalo OA ID" />
+          <Field label="Sepay Webhook Secret" name="sepay_webhook_secret" value={val('sepay_webhook_secret')} onChange={set} type="password" placeholder="••••••••" />
+        </>}
+
+        <div className="form-actions" style={{ marginTop: 32 }}>
+          <button type="submit" className="btn btn-primary" disabled={saving}>{saving ? 'Đang lưu...' : 'Lưu cài đặt'}</button>
+        </div>
+      </form>
+    </div>
+  )
+}

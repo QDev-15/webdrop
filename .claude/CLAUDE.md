@@ -301,6 +301,7 @@ VPS AZDIGI Linux
 | `nha-khoa-tham-my-luxdental` | Nha khoa thẩm mỹ cao cấp | BOLD-EDITORIAL, Scarlet `#d63b1f` | ✅ |
 | `nha-khoa-tong-quat-antam` | Nha khoa tổng quát | ZEN-MINIMAL, Sage green `#6b8067` | ✅ |
 | `nha-khoa-tre-em-kidsmile` | Nha khoa trẻ em | SOFT-PASTEL, Lilac `#9b7ef0`, Mint `#34c98e` | ✅ |
+| `shop-ban-hang` | Shop bán hàng hữu cơ | ORGANIC-EARTH, Terracotta `#c4603a`, Sage `#6b8a7a` | ✅ |
 
 **Ghi chú kỹ thuật `nha-khoa-chinh-nha-saigon`:**
 - CSS prefix: `cn-` xuyên suốt (không dùng `tmv-`)
@@ -351,7 +352,28 @@ VPS AZDIGI Linux
 
 ---
 
-*Cập nhật lần cuối: 2026-07-05 — hoàn thành template `shop-thoi-trang` (BOLD-EDITORIAL identity, Syne 800 + Syne 400, near-white #f4f4f4, Electric Blue #0052ff accent, Nav-1 Transparent→Scrolled, H3 Magazine Grid, 5 trang: index/san-pham/chi-tiet-san-pham/gio-hang/lien-he, st- CSS prefix, Bootstrap 5.3.3, 6 layout patterns: STAT-BAR/GRID-CARDS/BENTO-GRID/ALTERNATING-STRIPS/FULL-BLEED/HORIZONTAL-SCROLL)*
+*Cập nhật lần cuối: 2026-07-06 — reviewer+qa fix `shop-ban-hang`: P0 index.php `$router = require_once` → plain `require_once` (Router bị ghi đè bởi true), P0 ProductController/ProductCategoryController/TestimonialController `$params[1]` → `$params['id']`, P0 PublicController::productBySlug `$params[1]` → `$params['slug']`, P0 HeroSlideController dùng sai column `button_text`/`button_link`/`status` → `btn_text`/`btn_link`/`is_active` + SELECT alias cho form compat, P0 PublicController::settings() lọc `grp NOT IN ('smtp','cloudinary','integrations')` chặn credential leak, P1 schema.sql products `DEFAULT 'active'` → `DEFAULT 'published'` (đồng bộ với React filter + PHP WHERE), P1 ProductController::update() price_sale fallback `$row['price_sale']` thay vì luôn null, P2 category_id isset() trong store(), P2 contact length limits, xóa Unsplash key hardcode khỏi seed. PHP 25/25 OK, TS website 46 modules 0 lỗi, admin 54 modules 0 lỗi.*
+
+**Ghi chú kỹ thuật `shop-ban-hang` (WebDeploy):**
+- CSS prefix: `sb-` xuyên suốt (kế thừa từ template)
+- Identity: ORGANIC-EARTH — Fraunces weight 500 (heading serif) + DM Sans (body), nền warm cream `#f7f3ee`, Terracotta accent `#c4603a`, Sage secondary `#6b8a7a`
+- Nav: Nav-7 Split — Logo left / Links center / Cart+CTA+burger right — always solid bg `rgba(247,243,238,.95)`
+- Hero: H9 Product Showcase — Left text 40% + Right 2×3 product showcase grid 60% (dynamic từ featured products)
+- Fonts: Google Fonts — Fraunces + DM Sans (không dùng Bunny Fonts — kế thừa từ HTML template)
+- Trang website: `/`, `/san-pham`, `/san-pham/:slug`, `/gio-hang`, `/lien-he` (5 routes)
+- SiteContext: settings, products, categories, testimonials (tất cả fetch khi app load)
+- Public API: `GET /public/settings`, `GET /public/hero-slides`, `GET /public/product-categories`, `GET /public/products`, `GET /public/products/:slug`, `GET /public/testimonials`, `POST /public/contact`
+- DB Extension tables: product_categories (name, slug UNIQUE, image, sort_order), products (category_id FK, name, slug UNIQUE, image, price, price_sale, badge, description, material, is_featured, is_new, status, sort_order), testimonials (author_name, author_avatar, author_location, content, stars, product_purchased, is_active, sort_order)
+- DB seed: 4 product categories, 12 products (hữu cơ/thủ công), 5 testimonials, 40+ settings keys
+- Status values: `'published'` và `'draft'` (không phải `'active'`) — lưu ý cho các controller filter
+- Contact form fields: name, phone, email, topic (select 5 options), message
+- Admin pages: dashboard, product-categories, products, testimonials, contacts, slides, media, settings (7 tabs), profile
+- Settings tabs: Thông tin chung, SEO, Mạng xã hội, Cửa hàng, Liên hệ, SMTP, ☁️ Cloudinary, 🔌 Tích hợp
+- Settings endpoint: `POST /settings/update` (không phải `POST /settings`)
+- TS build: website 46 modules 200kB 0 lỗi, admin 54 modules 225kB 0 lỗi
+- PHP syntax: 25/25 files OK, 0 BOM
+
+*Cập nhật lần trước: 2026-07-05 — hoàn thành template `shop-thoi-trang` (BOLD-EDITORIAL identity, Syne 800 + Syne 400, near-white #f4f4f4, Electric Blue #0052ff accent, Nav-1 Transparent→Scrolled, H3 Magazine Grid, 5 trang: index/san-pham/chi-tiet-san-pham/gio-hang/lien-he, st- CSS prefix, Bootstrap 5.3.3, 6 layout patterns: STAT-BAR/GRID-CARDS/BENTO-GRID/ALTERNATING-STRIPS/FULL-BLEED/HORIZONTAL-SCROLL)*
 
 **Ghi chú kỹ thuật `shop-thoi-trang`:**
 - CSS prefix: `st-` xuyên suốt (shop-thoi-trang)
