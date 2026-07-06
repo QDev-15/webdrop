@@ -148,3 +148,32 @@ Trigger bằng `IntersectionObserver`, threshold `0.1`.
 | `documents/template_detail_page.html` | `1100px` |
 | `documents/checkout_page.html` | `960px` |
 | `documents/admin_dashboard.html` | No container (full layout) |
+
+---
+
+## 🎨 10 Theme Presets — Identity Tokens (dùng chung, tái sử dụng cho template khác)
+
+> Nguồn gốc: bộ 10 palette này được tạo lần đầu cho hệ thống chọn Theme trong admin của `shop-ban-hang` (2026-07-06) — implementation tham khảo: `Sources/WebDeploy/shop-ban-hang/website/src/data/themes.ts` + `admin/src/data/themes.ts`. Mỗi theme **chỉ định nghĩa màu sắc** (không đổi font, layout, spacing, border-radius) — áp dụng bằng cách override 17 CSS custom properties cùng tên đã dùng trong `shop-ban-hang`: `--bg, --surface, --dark, --dark2, --border, --border-light, --text, --text-2, --text-3, --accent, --accent-h, --accent-light, --accent-mid, --sage, --sage-h, --sage-light, --cream-deep, --terracotta-bg` (2 tên biến cuối là do kế thừa từ theme gốc ORGANIC-EARTH — về mặt ngữ nghĩa hãy hiểu là "accent phụ" và "nền tint theo accent chính", không phải nghĩa đen sage/terracotta).
+>
+> **Khi tạo template/site mới muốn có nhiều theme màu**: copy nguyên bộ giá trị bên dưới vào file `themes.ts` tương ứng, giữ nguyên slug + tên biến, chỉ đổi khi site đó không dùng đúng 17 biến này (vd site khác đặt tên biến khác thì phải map lại).
+
+| Slug | Tên | Mood | Accent chính | Accent phụ | Nền |
+|---|---|---|---|---|---|
+| `organic-earth` | Organic Earth | Mộc mạc, gần gũi thiên nhiên (mặc định) | `#c4603a` Terracotta | `#6b8a7a` Sage | Sáng, cream ấm |
+| `luxe-dark` | Luxe Dark | Cao cấp, huyền bí | `#0e7c66` Jade Emerald | `#c9a24d` Gold | Tối tuyệt đối |
+| `soft-pastel` | Soft Pastel | Dịu nhẹ, thân thiện | `#9b7ef0` Lilac | `#34c98e` Mint | Sáng, trắng ấm |
+| `bold-editorial` | Bold Editorial | Tương phản cao, tạp chí | `#d63b1f` Scarlet | `#0f0f0f` Đen (contrast) | Sáng, trắng lạnh |
+| `dark-energy` | Dark Energy | Trẻ trung, năng lượng cao | `#c026d3` Neon Magenta | `#7c3aed` Violet | Tối tuyệt đối |
+| `clean-corporate` | Clean Corporate | Chuyên nghiệp, đáng tin cậy | `#0f6d82` Teal | `#0a2129` Navy | Sáng, xanh nhạt |
+| `zen-minimal` | Zen Minimal | Tối giản, thiền định | `#6b8067` Sage Green | `#a9906b` Taupe | Sáng, warm white |
+| `retro-bold` | Retro Bold | Hoài cổ, cá tính | `#1f7a6b` Teal | `#c98a1f` Mustard | Sáng, cream |
+| `glass-modern` | Glass Modern | Hiện đại, công nghệ (glassmorphism) | `#4361ee` Blue | `#7209b7` Purple | Sáng, xanh rất nhạt |
+| `geometric-modern` | Geometric Modern | Mạnh mẽ, có cấu trúc hình học | `#1d4fd8` Cobalt | `#0a1128` Navy đậm | Sáng, xám xanh nhạt |
+
+Full giá trị 17 biến từng theme — xem trực tiếp `Sources/WebDeploy/shop-ban-hang/website/src/data/themes.ts` (đã đồng bộ với `admin/src/data/themes.ts`), không chép lại toàn bộ hex ở đây để tránh 2 nguồn dữ liệu lệch nhau khi 1 trong 2 chỗ được sửa sau này.
+
+**Cách áp dụng cho site mới** (pattern đã dùng ở `shop-ban-hang`):
+1. Copy `themes.ts` vào `website/src/data/` và `admin/src/data/` của site mới.
+2. Seed setting `site_theme` (giá trị mặc định = slug theme đang có sẵn của site, vd site mới theo identity nào thì set slug đó) vào nhóm `design` trong `Database.php`.
+3. Trong `SiteContext.tsx` (hoặc tương đương), sau khi fetch `/public/settings`, thêm `useEffect` tìm theme theo `settings.site_theme` rồi `document.documentElement.style.setProperty(key, value)` cho từng biến — override có độ ưu tiên cao hơn `:root {}` trong stylesheet nên không cần inject `<style>` riêng.
+4. Trong Settings admin, thêm tab "🎨 Giao diện" render grid các theme (mỗi thẻ preview 4 dải màu: bg/accent/sage/dark) cho chủ site tự chọn.

@@ -74,7 +74,11 @@ class Database {
 
     private function seedSettings(): void {
         $count = $this->pdo->query("SELECT COUNT(*) FROM settings")->fetchColumn();
-        if ($count > 0) return;
+        if ($count > 0) {
+            // DB đã seed trước khi tính năng Theme ra đời — backfill riêng key này để không bị bỏ sót
+            $this->pdo->exec("INSERT OR IGNORE INTO settings (key, value, grp) VALUES ('site_theme', 'organic-earth', 'design')");
+            return;
+        }
         $settings = [
             // General
             ['site_name',        'Tên Shop',                    'general'],
@@ -98,6 +102,8 @@ class Database {
             ['site_slogan',   'Phong cách tự nhiên',   'general'],
             ['site_logo',     '',                      'general'],
             ['site_favicon',  '',                      'general'],
+            // Theme — chỉ đổi màu sắc/hiệu ứng, xem website/src/data/themes.ts + admin/src/data/themes.ts
+            ['site_theme',    'organic-earth',         'design'],
             // SEO nâng cao
             ['meta_title',       'Tên Shop — Phong Cách Tự Nhiên', 'seo'],
             ['meta_description', 'Khám phá bộ sưu tập thời trang, phụ kiện và đồ dùng phong cách tự nhiên.', 'seo'],

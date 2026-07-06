@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { api } from '../../api/client'
+import { THEMES, DEFAULT_THEME_SLUG } from '../../data/themes'
 
 type Settings = Record<string, string>
 
 const TABS = [
   { id: 'general', label: 'Thông tin chung' },
+  { id: 'theme', label: '🎨 Giao diện' },
   { id: 'seo', label: 'SEO' },
   { id: 'social', label: 'Mạng xã hội' },
   { id: 'shop', label: 'Cửa hàng' },
@@ -101,6 +103,43 @@ export default function Settings() {
           <Field label="Favicon URL" name="site_favicon" value={val('site_favicon')} onChange={set} placeholder="https://..." />
           <Field label="Giờ mở cửa" name="working_hours" value={val('working_hours')} onChange={set} placeholder="8:00 – 21:00, Thứ 2 – CN" />
           <Field label="Số Zalo" name="zalo_number" value={val('zalo_number')} onChange={set} placeholder="0901234567" />
+        </>}
+
+        {activeTab === 'theme' && <>
+          <p style={{ color: '#888', fontSize: 13, marginBottom: 16 }}>
+            Chọn bảng màu hiển thị cho website. Theme chỉ đổi màu sắc/hiệu ứng — không ảnh hưởng bố cục, font chữ hay nội dung.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 14 }}>
+            {THEMES.map(theme => {
+              const active = (val('site_theme') || DEFAULT_THEME_SLUG) === theme.slug
+              return (
+                <button
+                  key={theme.slug}
+                  type="button"
+                  onClick={() => set('site_theme', theme.slug)}
+                  aria-pressed={active}
+                  aria-label={`Chọn theme ${theme.name}`}
+                  style={{
+                    textAlign: 'left', cursor: 'pointer', borderRadius: 12, padding: 14,
+                    border: active ? '2px solid var(--accent)' : '1px solid var(--border)',
+                    background: active ? 'var(--accent-light)' : 'var(--surface)',
+                  }}
+                >
+                  <div style={{ display: 'flex', height: 32, borderRadius: 8, overflow: 'hidden', marginBottom: 10, border: '1px solid rgba(0,0,0,.06)' }}>
+                    <span style={{ flex: 2, background: theme.vars['--bg'] }} />
+                    <span style={{ flex: 1, background: theme.vars['--accent'] }} />
+                    <span style={{ flex: 1, background: theme.vars['--sage'] }} />
+                    <span style={{ flex: 1, background: theme.vars['--dark'] }} />
+                  </div>
+                  <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--text)', display: 'flex', alignItems: 'center', gap: 6 }}>
+                    {theme.name}
+                    {active && <span style={{ fontSize: 11, color: 'var(--accent)' }}>✓ Đang dùng</span>}
+                  </div>
+                  <div style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 2 }}>{theme.description}</div>
+                </button>
+              )
+            })}
+          </div>
         </>}
 
         {activeTab === 'seo' && <>
