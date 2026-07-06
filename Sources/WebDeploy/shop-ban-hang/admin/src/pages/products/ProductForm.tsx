@@ -2,6 +2,29 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '../../api/client'
 
+// Phải khớp 100% với COLOR_SWATCHES ở website/src/pages/ProductsPage.tsx —
+// bộ lọc "Màu sắc" trên site chỉ nhận diện đúng các tên này.
+const COLOR_SWATCHES = [
+  { name: 'Terracotta', hex: '#c4603a' },
+  { name: 'Sage',       hex: '#6b8a7a' },
+  { name: 'Kem',        hex: '#f7f3ee' },
+  { name: 'Đen',        hex: '#1e1610' },
+  { name: 'Trắng',      hex: '#ffffff' },
+  { name: 'Nâu',        hex: '#8b6f5e' },
+]
+
+function parseColorNames(colors: string): string[] {
+  return colors.split('|').map(c => c.split(':')[0]).filter(Boolean)
+}
+
+function serializeColors(names: string[]): string {
+  return names
+    .map(name => COLOR_SWATCHES.find(c => c.name === name))
+    .filter((c): c is { name: string; hex: string } => Boolean(c))
+    .map(c => `${c.name}:${c.hex}`)
+    .join('|')
+}
+
 interface Category { id: number; name: string }
 interface FormData {
   name: string
@@ -70,6 +93,12 @@ export default function ProductForm() {
   }, [id, isEdit])
 
   const set = (k: keyof FormData, v: string | boolean) => setForm(f => ({ ...f, [k]: v }))
+
+  const selectedColors = parseColorNames(form.colors)
+  const toggleColor = (name: string) => {
+    const next = selectedColors.includes(name) ? selectedColors.filter(c => c !== name) : [...selectedColors, name]
+    set('colors', serializeColors(next))
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -156,13 +185,29 @@ export default function ProductForm() {
 
         <div className="form-group">
           <label>Màu sắc (dùng cho bộ lọc "Màu sắc" ở trang Sản phẩm)</label>
-          <input type="text" value={form.colors} onChange={e => set('colors', e.target.value)} placeholder='Định dạng "Tên:#hex", cách nhau bằng dấu | — VD: Terracotta:#c4603a|Sage:#6b8a7a' />
-          {form.colors && (
-            <div style={{ display: 'flex', gap: 6, marginTop: 8 }}>
-              {form.colors.split('|').map(c => c.split(':')).filter(([, hex]) => hex).map(([label, hex]) => (
-                <span key={label} title={label} style={{ width: 22, height: 22, borderRadius: '50%', background: hex, border: '1px solid #ddd', display: 'inline-block' }} />
-              ))}
-            </div>
+          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 4 }}>
+            {COLOR_SWATCHES.map(c => {
+              const active = selectedColors.includes(c.name)
+              return (
+                <button
+                  key={c.name}
+                  type="button"
+                  onClick={() => toggleColor(c.name)}
+                  title={c.name}
+                  aria-pressed={active}
+                  aria-label={`Màu ${c.name}`}
+                  style={{
+                    width: 30, height: 30, borderRadius: '50%', background: c.hex, padding: 0, cursor: 'pointer',
+                    border: c.hex === '#ffffff' ? '1px solid #ddd' : 'none',
+                    boxShadow: active ? '0 0 0 2px #fff, 0 0 0 4px var(--accent)' : 'none',
+                    transition: 'box-shadow .15s',
+                  }}
+                />
+              )
+            })}
+          </div>
+          {selectedColors.length > 0 && (
+            <p style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 8 }}>Đã chọn: {selectedColors.join(', ')}</p>
           )}
         </div>
 
