@@ -82,6 +82,7 @@ $router->add('POST', '/users/:id/change-password', [$users, 'changePassword']);
 $settings = new SettingsController($db);
 $router->add('GET',  '/settings',        [$settings, 'index']);
 $router->add('POST', '/settings/update', [$settings, 'update']);
+$router->add('POST', '/settings/sepay-sync', [$settings, 'syncSepayBankAccounts']);
 
 // Hero Slides
 $slides = new HeroSlideController($db);
