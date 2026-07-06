@@ -51,6 +51,8 @@ export default function Settings() {
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
   const [error, setError] = useState('')
+  const [syncing, setSyncing] = useState(false)
+  const [syncMsg, setSyncMsg] = useState<{ type: 'ok' | 'error'; text: string } | null>(null)
 
   useEffect(() => {
     api.get<Settings>('/settings')
@@ -73,6 +75,35 @@ export default function Settings() {
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Lưu thất bại, vui lòng thử lại')
     } finally { setSaving(false) }
+  }
+
+  const handleSyncSepay = async () => {
+    const apiKey = (val('sepay_webhook_secret') || '').trim()
+    if (!apiKey) {
+      setSyncMsg({ type: 'error', text: 'Nhập SePay API Access trước khi đồng bộ' })
+      return
+    }
+    setSyncing(true)
+    setSyncMsg(null)
+    try {
+      const data = await api.post<{ ok: boolean; bank: { bank_code: string; account_no: string; account_name: string }; warning?: string }>(
+        '/settings/sepay-sync', { api_key: apiKey }
+      )
+      setSettings(s => ({
+        ...s,
+        sepay_bank_code:      data.bank.bank_code,
+        sepay_account_number: data.bank.account_no,
+        sepay_account_name:   data.bank.account_name,
+      }))
+      setSyncMsg({
+        type: data.warning ? 'error' : 'ok',
+        text: data.warning || '✓ Đã lấy thông tin tài khoản từ SePay — nhớ nhấn "Lưu cài đặt" để áp dụng',
+      })
+    } catch (err) {
+      setSyncMsg({ type: 'error', text: err instanceof Error ? err.message : 'Đồng bộ thất bại' })
+    } finally {
+      setSyncing(false)
+    }
   }
 
   if (loading) return <div className="admin-loading-box">Đang tải...</div>
@@ -176,11 +207,28 @@ export default function Settings() {
             <ToggleField label="Thanh toán khi nhận hàng (COD)" name="payment_cod_enabled" value={val('payment_cod_enabled')} onChange={set} />
             <ToggleField label="Chuyển khoản trước qua SePay" name="payment_sepay_enabled" value={val('payment_sepay_enabled')} onChange={set} />
           </div>
-          <p style={{ color: '#888', fontSize: 13, margin: '20px 0 8px' }}>Thông tin tài khoản nhận tiền (dùng để tạo mã QR VietQR khi khách chọn SePay):</p>
+          <Field label="SePay API Access" name="sepay_webhook_secret" value={val('sepay_webhook_secret')} onChange={set} type="password" placeholder="Lấy tại my.sepay.vn → Cài đặt công ty → API Access" />
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', margin: '4px 0 20px' }}>
+            <button
+              type="button"
+              className="btn btn-outline"
+              onClick={handleSyncSepay}
+              disabled={syncing}
+            >
+              {syncing ? 'Đang đồng bộ...' : '🔄 Đồng bộ tài khoản từ SePay'}
+            </button>
+            {syncMsg && (
+              <span style={{ fontSize: 12.5, color: syncMsg.type === 'ok' ? 'var(--accent)' : 'var(--danger)' }}>
+                {syncMsg.text}
+              </span>
+            )}
+          </div>
+
+          <p style={{ color: '#888', fontSize: 13, margin: '20px 0 8px' }}>Thông tin tài khoản nhận tiền (dùng để tạo mã QR VietQR khi khách chọn SePay) — điền tay hoặc dùng nút đồng bộ ở trên:</p>
           <Field label="Mã ngân hàng (VietQR)" name="sepay_bank_code" value={val('sepay_bank_code')} onChange={set} placeholder="VD: MB, VCB, TCB, ACB" />
           <Field label="Số tài khoản" name="sepay_account_number" value={val('sepay_account_number')} onChange={set} placeholder="0123456789" />
           <Field label="Tên chủ tài khoản" name="sepay_account_name" value={val('sepay_account_name')} onChange={set} placeholder="NGUYEN VAN A" />
-          <Field label="SePay API Access" name="sepay_webhook_secret" value={val('sepay_webhook_secret')} onChange={set} type="password" placeholder="Lấy tại my.sepay.vn → Cài đặt công ty → API Access" />
         </>}
 
         {activeTab === 'contact' && <>
