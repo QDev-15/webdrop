@@ -59,6 +59,7 @@ class Database {
         $this->seedHeroSlides();
         $this->seedProductCategories();
         $this->seedProducts();
+        $this->seedMoreProducts();
         $this->seedTestimonials();
     }
 
@@ -303,80 +304,147 @@ class Database {
              380000, 475000, '-20%',
              'Áo khoác linen mỏng nhẹ — perfect cho những ngày chuyển mùa. Thiết kế trẻ trung, mix&match dễ dàng với mọi outfit.',
              'Linen 70% / Cotton 30%', $colorEarth, 4.7, 1, 1, 0, 12],
-             [1, 'Áo Linen Tự Nhiên', 'ao-linen-tu-nhien',
-             'https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=800&auto=format&fit=crop&q=80',
-             280000, 350000, 'Bán chạy',
-             'Áo linen tự nhiên với chất liệu 100% lanh hữu cơ, thoáng mát và thân thiện với da. Thiết kế tối giản, phù hợp mọi hoàn cảnh.',
-             '100% Linen hữu cơ', $colorEarth, 4.8, 1, 1, 0, 1],
-
-            [1, 'Váy Organic Cotton', 'vay-organic-cotton1',
-             'https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=800&auto=format&fit=crop&q=80',
-             185000, null, 'Mới',
-             'Váy cotton organic nhẹ nhàng, thoáng mát. Phù hợp cho những ngày hè nóng bức hoặc đi chơi dã ngoại cuối tuần.',
-             '100% Cotton hữu cơ', $colorNeutral, 4.6, 1, 1, 1, 2],
-
-            [1, 'Bộ Đồ Linen Set', 'bo-do-linen-set1',
-             'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=800&auto=format&fit=crop&q=80',
-             320000, 400000, null,
-             'Bộ đồ linen set gồm áo và quần, thiết kế đồng bộ sang trọng. Chất linen cao cấp co giãn tốt, không nhăn sau giặt.',
-             'Linen cao cấp', $colorDark, 5.0, 1, 1, 0, 3],
-
-            [2, 'Túi Tote Handmade', 'tui-tote-handmade1',
-             'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&auto=format&fit=crop&q=80',
-             145000, null, null,
-             'Túi tote làm thủ công từ vải canvas tự nhiên. Rộng rãi, chắc chắn — phù hợp đi chợ, đi học hoặc đi làm hàng ngày.',
-             'Canvas tự nhiên', $colorNeutral, 4.5, 1, 0, 0, 4],
-
-            [2, 'Mũ Cói Đan Tay', 'mu-coi-dan-tay1',
-             'https://images.unsplash.com/photo-1755051661952-00a7b396aaec?w=800&auto=format&fit=crop&q=80',
-             255000, 300000, '-15%',
-             'Mũ cói đan tay từ cói thiên nhiên, nhẹ và thoáng khí. Bảo vệ khỏi nắng hè, phù hợp đi biển hoặc dã ngoại.',
-             'Cói thiên nhiên', $colorNeutral, 4.7, 1, 1, 0, 5],
-
-            [3, 'Nến Thơm Soy Wax', 'nen-thom-soy-wax1',
-             'https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?w=800&auto=format&fit=crop&q=80',
-             490000, null, 'Mới',
-             'Nến thơm từ sáp đậu nành tự nhiên với tinh dầu nguyên chất. Cháy sạch không khói, mùi hương thư giãn và dễ chịu.',
-             'Sáp đậu nành, tinh dầu thiên nhiên', $colorEarth, 4.9, 1, 1, 1, 6],
-
-            [4, 'Khung Tranh Bamboo', 'khung-tranh-bamboo1',
-             'https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=800&auto=format&fit=crop&q=80',
-             220000, null, null,
-             'Khung tranh làm từ tre tự nhiên, thiết kế tối giản phù hợp phong cách Scandinavian hoặc Japandi.',
-             'Tre tự nhiên', $colorNeutral, 4.4, 1, 0, 0, 7],
-
-            [3, 'Dầu Dưỡng Tóc Argan', 'dau-duong-toc-argan1',
-             'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&auto=format&fit=crop&q=80',
-             175000, 210000, null,
-             'Dầu dưỡng tóc chiết xuất từ hạt argan Morocco. Phục hồi tóc hư tổn, làm bóng và mềm mượt từ sâu bên trong.',
-             'Argan Oil, Vitamin E', '', 4.6, 1, 0, 0, 8],
-
-            [2, 'Vòng Tay Đá Tự Nhiên', 'vong-tay-da-tu-nhien1',
-             'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80',
-             580000, null, 'Bán chạy',
-             'Vòng tay làm từ đá tự nhiên — mỗi viên đá là độc nhất. Được thiết kế bởi nghệ nhân thủ công Việt Nam.',
-             'Đá tự nhiên, dây elastic cao cấp', $colorDark, 5.0, 1, 1, 0, 9],
-
-            [4, 'Lẵng Cói Đan Tay', 'lang-coi-dan-tay1',
-             'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop&q=80',
-             340000, null, null,
-             'Lẵng cói đan tay đa năng — dùng đựng đồ, để trang trí góc nhà hoặc làm giỏ đi chợ. Sản phẩm thủ công của làng nghề truyền thống.',
-             'Cói tự nhiên', $colorNeutral, 4.3, 1, 0, 0, 10],
-
-            [4, 'Gương Khung Tre', 'guong-khung-tre1',
-             'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&auto=format&fit=crop&q=80',
-             265000, null, 'Mới',
-             'Gương trang điểm với khung tre tự nhiên, thiết kế tối giản. Phù hợp phòng ngủ hoặc phòng tắm phong cách organic.',
-             'Tre tự nhiên, kính cường lực', '', 4.5, 1, 0, 1, 11],
-
-            [1, 'Áo Khoác Linen Nhẹ', 'ao-khoac-linen-nhe1',
-             'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&auto=format&fit=crop&q=80',
-             380000, 475000, '-20%',
-             'Áo khoác linen mỏng nhẹ — perfect cho những ngày chuyển mùa. Thiết kế trẻ trung, mix&match dễ dàng với mọi outfit.',
-             'Linen 70% / Cotton 30%', $colorEarth, 4.7, 1, 1, 0, 12],
         ];
         $stmt = $this->pdo->prepare(
             "INSERT INTO products (category_id, name, slug, image, price, price_sale, badge, description, material, colors, rating, in_stock, is_featured, is_new, sort_order)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+        );
+        foreach ($products as $p) { $stmt->execute($p); }
+    }
+
+    /**
+     * 20 sản phẩm bổ sung — dùng INSERT OR IGNORE (không gate theo COUNT(*) toàn bảng như seedProducts())
+     * để chạy an toàn kể cả khi DB đã seed 12 sản phẩm gốc từ trước, tránh lặp lại lỗi
+     * "seed chỉ chạy 1 lần lúc bảng rỗng" đã gây khó khăn khi cần bổ sung dữ liệu về sau.
+     */
+    private function seedMoreProducts(): void {
+        $colorEarth   = 'Terracotta:#c4603a|Sage:#6b8a7a';
+        $colorNeutral = 'Kem:#f7f3ee|Nâu:#8b6f5e';
+        $colorDark    = 'Đen:#1e1610|Trắng:#ffffff';
+        $products = [
+            // [category_id, name, slug, image, price, price_sale, badge, description, material, colors, rating, in_stock, is_featured, is_new, sort_order]
+            [1, 'Áo Sơ Mi Linen Trắng', 'ao-so-mi-linen-trang',
+             'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80',
+             245000, null, 'Bán chạy',
+             'Áo sơ mi linen trắng tối giản, form rộng thoải mái. Chất liệu linen cao cấp thoáng khí, phù hợp mặc hàng ngày hoặc phối đồ công sở nhẹ nhàng.',
+             '100% Linen cao cấp', $colorDark, 4.7, 1, 1, 0, 13],
+
+            [1, 'Quần Ống Rộng Cotton', 'quan-ong-rong-cotton',
+             'https://images.unsplash.com/photo-1618932260643-eee4a2f652a6?w=800&auto=format&fit=crop&q=80',
+             295000, 250000, '-15%',
+             'Quần ống rộng chất cotton twill tự nhiên, form suông thoải mái, dễ phối cùng áo sơ mi hoặc áo thun basic.',
+             'Cotton twill tự nhiên', $colorNeutral, 4.5, 1, 0, 0, 14],
+
+            [1, 'Chân Váy Xếp Ly Đũi', 'chan-vay-xep-ly-dui',
+             'https://images.unsplash.com/photo-1551803091-e20673f15770?w=800&auto=format&fit=crop&q=80',
+             275000, null, 'Mới',
+             'Chân váy xếp ly chất đũi tơ tằm, độ rủ đẹp tự nhiên, thích hợp cho những ngày dạo phố hoặc đi làm nhẹ nhàng.',
+             'Vải đũi tơ tằm', $colorEarth, 4.6, 1, 0, 1, 15],
+
+            [1, 'Áo Len Merino Cổ Tròn', 'ao-len-merino-co-tron',
+             'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=800&auto=format&fit=crop&q=80',
+             420000, null, null,
+             'Áo len 100% Merino mềm mại, giữ ấm tốt mà vẫn nhẹ và thoáng. Cổ tròn basic dễ phối cho mùa thu đông.',
+             '100% Len Merino', $colorNeutral, 4.8, 1, 0, 0, 16],
+
+            [1, 'Đầm Suông Linen', 'dam-suong-linen',
+             'https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?w=800&auto=format&fit=crop&q=80',
+             385000, 320000, '-17%',
+             'Đầm suông linen hữu cơ, thiết kế tối giản tôn dáng, thoáng mát cho ngày hè. Có thể mặc đi làm hoặc dạo phố.',
+             'Linen 100% hữu cơ', $colorEarth, 4.9, 1, 1, 0, 17],
+
+            [2, 'Khăn Choàng Lụa Tơ Tằm', 'khan-choang-lua-to-tam',
+             'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&auto=format&fit=crop&q=80',
+             460000, null, 'Bán chạy',
+             'Khăn choàng lụa tơ tằm 100%, mềm mịn và có độ bóng tự nhiên. Món phụ kiện sang trọng cho mọi trang phục.',
+             '100% lụa tơ tằm', $colorDark, 4.8, 1, 0, 0, 18],
+
+            [2, 'Thắt Lưng Da Bò Thật', 'that-lung-da-bo-that',
+             'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&auto=format&fit=crop&q=80',
+             310000, null, null,
+             'Thắt lưng da bò thật nguyên tấm, khóa hợp kim chống gỉ. Càng dùng càng lên màu đẹp theo thời gian.',
+             'Da bò thật, khóa hợp kim', $colorNeutral, 4.6, 1, 0, 0, 19],
+
+            [2, 'Bông Tai Gỗ Handmade', 'bong-tai-go-handmade',
+             'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=800&auto=format&fit=crop&q=80',
+             95000, null, 'Mới',
+             'Bông tai gỗ tự nhiên chạm khắc thủ công, nhẹ và an toàn cho da nhạy cảm. Mỗi đôi là một tác phẩm độc bản.',
+             'Gỗ tự nhiên, sơn an toàn', $colorNeutral, 4.5, 1, 0, 1, 20],
+
+            [2, 'Ví Da Thủ Công', 'vi-da-thu-cong',
+             'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800&auto=format&fit=crop&q=80',
+             350000, 290000, '-17%',
+             'Ví da thật thuộc thủ công, nhiều ngăn tiện dụng. Đường may chắc chắn, kiểu dáng tối giản dễ sử dụng lâu dài.',
+             'Da bò thuộc thủ công', $colorDark, 4.7, 1, 1, 0, 21],
+
+            [2, 'Kính Mát Gọng Tre', 'kinh-mat-gong-tre',
+             'https://images.unsplash.com/photo-1602910344008-22f323cc1817?w=800&auto=format&fit=crop&q=80',
+             275000, null, 'Mới',
+             'Kính mát gọng tre tự nhiên, tròng chống UV400. Thiết kế độc đáo, nhẹ và thân thiện với môi trường.',
+             'Gọng tre tự nhiên, tròng UV400', $colorNeutral, 4.4, 1, 0, 1, 22],
+
+            [3, 'Tinh Dầu Tràm Trà', 'tinh-dau-tram-tra',
+             'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
+             165000, null, null,
+             'Tinh dầu tràm trà nguyên chất, kháng khuẩn tự nhiên. Dùng để xông phòng, massage hoặc chăm sóc da.',
+             'Tinh dầu tràm trà nguyên chất', '', 4.6, 1, 0, 0, 23],
+
+            [3, 'Son Dưỡng Môi Bơ Hạt Mỡ', 'son-duong-moi-bo-hat-mo',
+             'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=800&auto=format&fit=crop&q=80',
+             85000, null, 'Bán chạy',
+             'Son dưỡng môi từ bơ hạt mỡ và sáp ong tự nhiên, không màu không mùi hóa chất, dưỡng ẩm sâu cho môi khô nứt nẻ.',
+             'Bơ hạt mỡ, sáp ong tự nhiên', '', 4.7, 1, 0, 0, 24],
+
+            [3, 'Xà Phòng Handmade Oải Hương', 'xa-phong-handmade-oai-huong',
+             'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=800&auto=format&fit=crop&q=80',
+             65000, 50000, '-23%',
+             'Xà phòng thiên nhiên chiết xuất tinh dầu oải hương, làm sạch nhẹ nhàng và dưỡng ẩm cho da. An toàn cho da nhạy cảm.',
+             'Xà phòng thiên nhiên, tinh dầu oải hương', '', 4.8, 1, 1, 0, 25],
+
+            [3, 'Muối Tắm Thảo Mộc', 'muoi-tam-thao-moc',
+             'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=800&auto=format&fit=crop&q=80',
+             120000, null, 'Mới',
+             'Muối tắm kết hợp thảo mộc thiên nhiên, giúp thư giãn cơ thể và làm mềm da. Thích hợp cho những buổi ngâm tắm cuối tuần.',
+             'Muối biển, thảo mộc thiên nhiên', '', 4.5, 1, 0, 1, 26],
+
+            [3, 'Kem Dưỡng Da Nghệ', 'kem-duong-da-nghe',
+             'https://images.unsplash.com/photo-1608528577891-eb055944f2e7?w=800&auto=format&fit=crop&q=80',
+             195000, null, null,
+             'Kem dưỡng chiết xuất nghệ tươi và vitamin E, giúp làm sáng và đều màu da tự nhiên theo thời gian.',
+             'Nghệ tươi, vitamin E', '', 4.6, 1, 0, 0, 27],
+
+            [4, 'Giỏ Mây Đan Tay', 'gio-may-dan-tay',
+             'https://images.unsplash.com/photo-1493106641515-6b5631de4bb9?w=800&auto=format&fit=crop&q=80',
+             230000, null, 'Bán chạy',
+             'Giỏ mây đan tay đa năng, dùng đựng đồ hoặc trang trí góc nhà. Sản phẩm thủ công từ làng nghề truyền thống Việt Nam.',
+             'Mây tự nhiên đan thủ công', $colorNeutral, 4.7, 1, 1, 0, 28],
+
+            [4, 'Bình Gốm Trang Trí', 'binh-gom-trang-tri',
+             'https://images.unsplash.com/photo-1578500494198-246f612d3b3d?w=800&auto=format&fit=crop&q=80',
+             285000, 240000, '-16%',
+             'Bình gốm thủ công với men rạn tự nhiên, mỗi chiếc mang một vẻ đẹp riêng. Điểm nhấn tinh tế cho không gian sống.',
+             'Gốm sứ thủ công', '', 4.6, 1, 0, 0, 29],
+
+            [4, 'Đèn Bàn Gỗ Tre', 'den-ban-go-tre',
+             'https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?w=800&auto=format&fit=crop&q=80',
+             450000, null, 'Mới',
+             'Đèn bàn thân gỗ tre tự nhiên, ánh sáng ấm dịu nhẹ nhàng cho không gian đọc sách hoặc làm việc buổi tối.',
+             'Gỗ tre tự nhiên', $colorNeutral, 4.8, 1, 1, 1, 30],
+
+            [4, 'Thảm Cói Trải Sàn', 'tham-coi-trai-san',
+             'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=800&auto=format&fit=crop&q=80',
+             320000, null, null,
+             'Thảm cói dệt tay truyền thống, bề mặt thoáng mát và bền bỉ theo thời gian. Phù hợp phong cách nhà organic/mộc mạc.',
+             'Cói tự nhiên dệt tay', '', 4.3, 0, 0, 0, 31],
+
+            [4, 'Móc Treo Tường Gỗ', 'moc-treo-tuong-go',
+             'https://images.unsplash.com/photo-1449247709967-d4461a6a6103?w=800&auto=format&fit=crop&q=80',
+             145000, null, null,
+             'Móc treo tường gỗ sồi tự nhiên, thiết kế tối giản tiện dụng cho việc treo túi, khăn hoặc mũ trong nhà.',
+             'Gỗ sồi tự nhiên', $colorNeutral, 4.4, 1, 0, 0, 32],
+        ];
+        $stmt = $this->pdo->prepare(
+            "INSERT OR IGNORE INTO products (category_id, name, slug, image, price, price_sale, badge, description, material, colors, rating, in_stock, is_featured, is_new, sort_order)
              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
         );
         foreach ($products as $p) { $stmt->execute($p); }

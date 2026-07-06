@@ -32,6 +32,7 @@ class PublicController {
     }
 
     public function products(): void {
+        $search      = trim($_GET['q'] ?? '');
         $categoryIds = array_values(array_filter(array_map('intval', explode(',', $_GET['category_ids'] ?? '')), fn($v) => $v > 0));
         $minPrice    = isset($_GET['min_price']) && $_GET['min_price'] !== '' ? (int)$_GET['min_price'] : null;
         $maxPrice    = isset($_GET['max_price']) && $_GET['max_price'] !== '' ? (int)$_GET['max_price'] : null;
@@ -47,6 +48,11 @@ class PublicController {
         $where  = ["p.status = 'published'"];
         $params = [];
 
+        if ($search !== '') {
+            $where[] = '(p.name LIKE ? OR p.material LIKE ? OR p.description LIKE ?)';
+            $needle  = '%' . substr($search, 0, 100) . '%';
+            array_push($params, $needle, $needle, $needle);
+        }
         if ($categoryIds) {
             $ph = implode(',', array_fill(0, count($categoryIds), '?'));
             $where[] = "p.category_id IN ($ph)";

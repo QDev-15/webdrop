@@ -36,6 +36,8 @@ export default function ProductsPage() {
   const { addItem } = useCart()
 
   const [tab, setTab] = useState<'all' | 'sale' | number>('all')
+  const [searchInput, setSearchInput] = useState('')
+  const [appliedSearch, setAppliedSearch] = useState('')
   const [categoryIds, setCategoryIds] = useState<number[]>([])
   const [minPrice, setMinPrice] = useState('0')
   const [maxPrice, setMaxPrice] = useState('1000000')
@@ -63,8 +65,18 @@ export default function ProductsPage() {
   const [appliedMaxPrice, setAppliedMaxPrice] = useState('1000000')
   const [appliedCategoryIds, setAppliedCategoryIds] = useState<number[]>([])
 
+  // Search gõ-là-tự-tìm (debounce 400ms) — không cần bấm "Áp dụng bộ lọc" như các filter khác
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setAppliedSearch(searchInput.trim())
+      setPage(1)
+    }, 400)
+    return () => clearTimeout(t)
+  }, [searchInput])
+
   const query = useMemo(() => {
     const params = new URLSearchParams()
+    if (appliedSearch) params.set('q', appliedSearch)
     if (appliedCategoryIds.length) params.set('category_ids', appliedCategoryIds.join(','))
     if (appliedMinPrice) params.set('min_price', appliedMinPrice)
     if (appliedMaxPrice) params.set('max_price', appliedMaxPrice)
@@ -77,7 +89,7 @@ export default function ProductsPage() {
     params.set('page', String(page))
     params.set('per_page', String(PER_PAGE))
     return params.toString()
-  }, [appliedCategoryIds, appliedMinPrice, appliedMaxPrice, appliedColors, appliedRating, appliedInStock, appliedSaleOnly, appliedNew, sort, page])
+  }, [appliedSearch, appliedCategoryIds, appliedMinPrice, appliedMaxPrice, appliedColors, appliedRating, appliedInStock, appliedSaleOnly, appliedNew, sort, page])
 
   useEffect(() => {
     setLoading(true)
@@ -126,6 +138,7 @@ export default function ProductsPage() {
   }
 
   const resetFilters = () => {
+    setSearchInput(''); setAppliedSearch('')
     setCategoryIds([]); setMinPrice('0'); setMaxPrice('1000000')
     setSelectedColors([]); setMinRating(null); setInStockOnly(false); setNewOnly(false)
     setAppliedCategoryIds([]); setAppliedMinPrice('0'); setAppliedMaxPrice('1000000')
@@ -172,6 +185,21 @@ export default function ProductsPage() {
         <div className="sb-container">
           <div className="sb-shop-layout">
             <aside className="sb-filter-sidebar">
+              <div className="sb-filter-block">
+                <div className="sb-filter-title">Tìm kiếm</div>
+                <div className="sb-search-box">
+                  <i className="bi bi-search" aria-hidden="true" />
+                  <input
+                    type="search"
+                    className="sb-search-input"
+                    value={searchInput}
+                    onChange={e => setSearchInput(e.target.value)}
+                    placeholder="Tìm theo tên sản phẩm..."
+                    aria-label="Tìm kiếm sản phẩm"
+                  />
+                </div>
+              </div>
+
               <div className="sb-filter-block">
                 <div className="sb-filter-title">Mức giá</div>
                 <div className="sb-filter-price-range">
@@ -272,7 +300,7 @@ export default function ProductsPage() {
               ) : products.length === 0 ? (
                 <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--text-3)' }}>
                   <div style={{ fontSize: 48, marginBottom: 16 }}>🔍</div>
-                  <p>Không có sản phẩm nào khớp bộ lọc</p>
+                  <p>{appliedSearch ? `Không tìm thấy sản phẩm nào khớp với "${appliedSearch}"` : 'Không có sản phẩm nào khớp bộ lọc'}</p>
                 </div>
               ) : (
                 <div className="sb-prod-grid">
