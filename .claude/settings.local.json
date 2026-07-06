@@ -22,7 +22,11 @@
       "Bash(node scaffolder.mjs massage-tri-lieu spa-service)",
       "PowerShell(& \"C:\\\\xampp\\\\apache\\\\bin\\\\httpd.exe\" -t 2>&1)",
       "Bash(node scaffolder.mjs tham-my-vien spa-service)",
-      "Bash(git remote *)"
+      "Bash(git remote *)",
+      "Read(//tmp/**)",
+      "Bash(curl -s -m 3 http://localhost:8081/api/health)",
+      "Bash(curl -s -m 3 http://localhost:5174 -o /dev/null -w \"%{http_code}\\\\n\")",
+      "Bash(curl -s -m 3 http://localhost:5173 -o /dev/null -w \"%{http_code}\\\\n\")"
     ],
     "additionalDirectories": [
       "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"

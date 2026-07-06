@@ -20,7 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(204); exit; }
 // URI parsing — hỗ trợ cả Apache (REDIRECT_URL) và IIS (HTTP_X_ORIGINAL_URL)
 $uri     = $_SERVER['HTTP_X_ORIGINAL_URL'] ?? $_SERVER['REDIRECT_URL'] ?? $_SERVER['REQUEST_URI'] ?? '/';
 $rawPath = parse_url($uri, PHP_URL_PATH) ?? '/';
-$rawPath = preg_replace('#^/api#', '', $rawPath) ?: '/';
+// Cắt đến hết "/api" GẦN NHẤT (không chỉ literal leading "/api") — hỗ trợ site chạy ở domain root
+// (tenshop.vn/api/...) LẪN dưới subfolder khi test local qua XAMPP htdocs (localhost/shop-ban-hang/api/...).
+// Chỉ strip("^/api") sẽ bỏ sót phần subfolder phía trước → mọi route match fail → {"error":"Not found"}.
+$rawPath = preg_replace('#^.*/api#', '', $rawPath) ?: '/';
 
 // ⚠️  Health check — LUÔN phải có để khách tự diagnose sau deploy
 if ($rawPath === '/health') {
