@@ -149,8 +149,7 @@ class Database {
             ['sepay_bank_code',        '',  'payment'],  // vd: MB, VCB, TCB — mã ngân hàng theo chuẩn SePay/VietQR
             ['sepay_account_number',   '',  'payment'],
             ['sepay_account_name',     '',  'payment'],
-            ['sepay_api_token',        '',  'payment'],  // API Token từ my.sepay.vn > Cài đặt công ty > API Access — dùng để verify kết nối
-            ['sepay_webhook_secret',   '',  'payment'],
+            ['sepay_webhook_secret',   '',  'payment'],  // API Access token từ my.sepay.vn — dùng để xác thực webhook gửi tới /public/sepay-webhook
             // SMTP
             ['smtp_host',     '', 'smtp'],
             ['smtp_port',     '587', 'smtp'],
