@@ -146,9 +146,10 @@ class Database {
             // Payment methods — cấu hình bật/tắt tại tab "💳 Thanh toán"
             ['payment_cod_enabled',    '1', 'payment'],
             ['payment_sepay_enabled',  '0', 'payment'],
-            ['sepay_bank_code',        '',  'payment'],  // vd: MB, VCB, TCB — mã ngân hàng theo chuẩn VietQR
+            ['sepay_bank_code',        '',  'payment'],  // vd: MB, VCB, TCB — mã ngân hàng theo chuẩn SePay/VietQR
             ['sepay_account_number',   '',  'payment'],
             ['sepay_account_name',     '',  'payment'],
+            ['sepay_api_token',        '',  'payment'],  // API Token từ my.sepay.vn > Cài đặt công ty > API Access — dùng để verify kết nối
             ['sepay_webhook_secret',   '',  'payment'],
             // SMTP
             ['smtp_host',     '', 'smtp'],

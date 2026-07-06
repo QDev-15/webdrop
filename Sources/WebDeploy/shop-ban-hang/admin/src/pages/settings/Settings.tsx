@@ -48,6 +48,7 @@ export default function Settings() {
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
+  const [error, setError] = useState('')
 
   useEffect(() => {
     api.get<Settings>('/settings')
@@ -62,12 +63,14 @@ export default function Settings() {
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault()
     setSaving(true)
+    setError('')
     try {
       await api.post('/settings/update', settings)
       setSaved(true)
       setTimeout(() => setSaved(false), 3000)
-    } catch { /* ignore */ }
-    finally { setSaving(false) }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Lưu thất bại, vui lòng thử lại')
+    } finally { setSaving(false) }
   }
 
   if (loading) return <div className="admin-loading-box">Đang tải...</div>
@@ -88,6 +91,7 @@ export default function Settings() {
 
       <form onSubmit={handleSave} className="admin-form" style={{ marginTop: 24 }}>
         {saved && <div className="form-success-banner">Đã lưu cài đặt thành công!</div>}
+        {error && <div className="form-error-banner">{error}</div>}
 
         {activeTab === 'general' && <>
           <Field label="Tên cửa hàng" name="site_name" value={val('site_name')} onChange={set} placeholder="Shop Hữu Cơ" />
@@ -133,11 +137,18 @@ export default function Settings() {
             <ToggleField label="Thanh toán khi nhận hàng (COD)" name="payment_cod_enabled" value={val('payment_cod_enabled')} onChange={set} />
             <ToggleField label="Chuyển khoản trước qua SePay" name="payment_sepay_enabled" value={val('payment_sepay_enabled')} onChange={set} />
           </div>
-          <p style={{ color: '#888', fontSize: 13, margin: '20px 0 8px' }}>Thông tin tài khoản nhận tiền (dùng để tạo mã QR VietQR khi khách chọn SePay):</p>
-          <Field label="Mã ngân hàng (VietQR)" name="sepay_bank_code" value={val('sepay_bank_code')} onChange={set} placeholder="VD: MB, VCB, TCB, ACB" />
+          <p style={{ color: '#888', fontSize: 13, margin: '20px 0 8px' }}>
+            API Token dùng để hệ thống tự kiểm tra kết nối thật với SePay mỗi khi bạn bật/đổi thông tin bên dưới — lấy tại <strong>my.sepay.vn</strong> → Cài đặt công ty → API Access.
+          </p>
+          <Field label="SePay API Token" name="sepay_api_token" value={val('sepay_api_token')} onChange={set} type="password" placeholder="Dán API Token từ my.sepay.vn" />
+          <p style={{ color: '#888', fontSize: 13, margin: '20px 0 8px' }}>Thông tin tài khoản nhận tiền (dùng để tạo mã QR VietQR + đối chiếu với API SePay):</p>
+          <Field label="Mã ngân hàng (theo SePay)" name="sepay_bank_code" value={val('sepay_bank_code')} onChange={set} placeholder="VD: MB, VCB, TCB, ICB" />
           <Field label="Số tài khoản" name="sepay_account_number" value={val('sepay_account_number')} onChange={set} placeholder="0123456789" />
           <Field label="Tên chủ tài khoản" name="sepay_account_name" value={val('sepay_account_name')} onChange={set} placeholder="NGUYEN VAN A" />
           <Field label="SePay Webhook Secret" name="sepay_webhook_secret" value={val('sepay_webhook_secret')} onChange={set} type="password" placeholder="Lấy từ cấu hình Webhook trên SePay" />
+          <p style={{ color: '#888', fontSize: 12 }}>
+            Khi bạn bật "Chuyển khoản trước qua SePay" (hoặc đổi API Token/mã ngân hàng/số tài khoản) và bấm Lưu, hệ thống sẽ gọi API SePay để xác nhận tài khoản này thực sự tồn tại và thuộc về API Token đã nhập — nếu không kết nối được sẽ báo lỗi và không lưu.
+          </p>
         </>}
 
         {activeTab === 'contact' && <>
