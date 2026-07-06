@@ -1,12 +1,14 @@
 import { useEffect, useRef } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { SiteProvider, useSite } from './contexts/SiteContext'
+import { CartProvider } from './contexts/CartContext'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import HomePage from './pages/HomePage'
 import ProductsPage from './pages/ProductsPage'
 import ProductDetailPage from './pages/ProductDetailPage'
 import CartPage from './pages/CartPage'
+import CheckoutPage from './pages/CheckoutPage'
 import ContactPage from './pages/ContactPage'
 
 function ZaloFloat() {
@@ -64,6 +66,7 @@ function AppShell() {
           <Route path="san-pham" element={<ProductsPage />} />
           <Route path="san-pham/:slug" element={<ProductDetailPage />} />
           <Route path="gio-hang" element={<CartPage />} />
+          <Route path="thanh-toan" element={<CheckoutPage />} />
           <Route path="lien-he" element={<ContactPage />} />
         </Routes>
       </main>
@@ -76,7 +79,9 @@ function AppShell() {
 export default function App() {
   return (
     <SiteProvider>
-      <AppShell />
+      <CartProvider>
+        <AppShell />
+      </CartProvider>
     </SiteProvider>
   )
 }

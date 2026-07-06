@@ -53,7 +53,8 @@ export function SiteProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     Promise.all([
       api.get<Record<string, string>>('/public/settings'),
-      api.get<Product[]>('/public/products'),
+      // per_page cao để lấy toàn bộ catalog cho homepage/related/giỏ hàng — ProductsPage tự gọi phân trang riêng
+      api.get<Product[]>('/public/products?per_page=200'),
       api.get<Category[]>('/public/product-categories'),
       api.get<Testimonial[]>('/public/testimonials'),
     ]).then(([s, p, c, t]) => {

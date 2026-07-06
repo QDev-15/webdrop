@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { api } from '../api/client'
 import { useSite } from '../contexts/SiteContext'
+import { useCart } from '../contexts/CartContext'
 
 interface Product {
   id: number
@@ -14,24 +15,52 @@ interface Product {
   badge: string
   description: string
   material: string
+  colors: string
+  rating: number
+  in_stock: number
   is_new: number
 }
 
 export default function ProductDetailPage() {
   const { slug } = useParams<{ slug: string }>()
   const { products } = useSite()
+  const { addItem } = useCart()
   const [product, setProduct] = useState<Product | null>(null)
   const [loading, setLoading] = useState(true)
   const [qty, setQty] = useState(1)
   const [activeTab, setActiveTab] = useState(0)
+  const [selectedColor, setSelectedColor] = useState('')
+  const [added, setAdded] = useState(false)
 
   useEffect(() => {
     if (!slug) return
     api.get<Product>(`/public/products/${slug}`)
-      .then(setProduct)
+      .then(p => {
+        setProduct(p)
+        const firstColor = p.colors ? p.colors.split('|')[0]?.split(':')[0] : ''
+        setSelectedColor(firstColor || '')
+      })
       .catch(() => {})
       .finally(() => setLoading(false))
   }, [slug])
+
+  const colorOptions = product?.colors
+    ? product.colors.split('|').map(c => c.split(':')).filter(([name]) => name).map(([name, hex]) => ({ name, hex }))
+    : []
+
+  const handleAddToCart = () => {
+    if (!product) return
+    addItem({
+      product_id: product.id,
+      name: product.name,
+      slug: product.slug,
+      image: product.image,
+      price: product.price_sale || product.price,
+      color: selectedColor || undefined,
+    }, qty)
+    setAdded(true)
+    setTimeout(() => setAdded(false), 2000)
+  }
 
   const fmt = (n: number) => n.toLocaleString('vi-VN') + 'đ'
   const related = products.filter(p => p.slug !== slug && p.status === 'published').slice(0, 4)
@@ -78,8 +107,8 @@ export default function ProductDetailPage() {
               <div className="sb-prod-cat">{product.category_name}</div>
               <h1 className="sb-detail-name">{product.name}</h1>
               <div className="sb-detail-rating">
-                <span className="stars">★★★★★</span>
-                <span>5.0 (32 đánh giá)</span>
+                <span className="stars">{'★'.repeat(Math.round(product.rating))}{'☆'.repeat(5 - Math.round(product.rating))}</span>
+                <span>{product.rating.toFixed(1)} / 5</span>
               </div>
 
               <div className="sb-detail-price">
@@ -93,19 +122,53 @@ export default function ProductDetailPage() {
                 <p className="sb-detail-desc">{product.description}</p>
               )}
 
+              {colorOptions.length > 0 && (
+                <div style={{ margin: '20px 0' }}>
+                  <div style={{ fontSize: 13, fontWeight: 500, color: 'var(--text-2)', marginBottom: 8 }}>Màu sắc: {selectedColor}</div>
+                  <div className="sb-color-swatches">
+                    {colorOptions.map(c => (
+                      <div
+                        key={c.name}
+                        className={`sb-color-swatch ${selectedColor === c.name ? 'selected' : ''}`}
+                        style={{ background: c.hex, border: c.hex === '#ffffff' ? '1px solid var(--border)' : undefined }}
+                        title={c.name}
+                        role="button"
+                        tabIndex={0}
+                        aria-label={`Chọn màu ${c.name}`}
+                        onClick={() => setSelectedColor(c.name)}
+                        onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setSelectedColor(c.name) }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {!product.in_stock && (
+                <p style={{ color: '#dc2626', fontSize: 13, fontWeight: 500, margin: '12px 0' }}>Sản phẩm tạm hết hàng</p>
+              )}
+
               <div className="sb-detail-divider" />
 
               <div className="sb-qty-add">
-                <div className="sb-qty">
-                  <button onClick={() => setQty(v => Math.max(1, v - 1))}>−</button>
-                  <input type="number" value={qty} min={1} onChange={e => setQty(Math.max(1, parseInt(e.target.value) || 1))} />
-                  <button onClick={() => setQty(v => v + 1)}>+</button>
+                <div className="sb-qty" role="group" aria-label="Số lượng">
+                  <button onClick={() => setQty(v => Math.max(1, v - 1))} aria-label="Giảm số lượng">−</button>
+                  <input type="number" value={qty} min={1} aria-label="Số lượng sản phẩm" onChange={e => setQty(Math.max(1, parseInt(e.target.value) || 1))} />
+                  <button onClick={() => setQty(v => v + 1)} aria-label="Tăng số lượng">+</button>
                 </div>
-                <button className="sb-btn-cart-full">
-                  <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                  Thêm vào giỏ hàng
+                <button className="sb-btn-cart-full" disabled={!product.in_stock} onClick={handleAddToCart}>
+                  {added ? (
+                    <>
+                      <i className="bi bi-check-circle" />
+                      Đã thêm vào giỏ
+                    </>
+                  ) : (
+                    <>
+                      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                      Thêm vào giỏ hàng
+                    </>
+                  )}
                 </button>
                 <button className="sb-btn-wishlist" aria-label="Yêu thích">♡</button>
               </div>

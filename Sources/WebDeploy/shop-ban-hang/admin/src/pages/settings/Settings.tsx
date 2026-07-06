@@ -8,6 +8,7 @@ const TABS = [
   { id: 'seo', label: 'SEO' },
   { id: 'social', label: 'Mạng xã hội' },
   { id: 'shop', label: 'Cửa hàng' },
+  { id: 'payment', label: '💳 Thanh toán' },
   { id: 'contact', label: 'Liên hệ' },
   { id: 'smtp', label: 'SMTP' },
   { id: 'cloudinary', label: '☁️ Cloudinary' },
@@ -27,6 +28,17 @@ function Field({ label, name, value, onChange, type = 'text', placeholder = '' }
         <input type={type} value={value} onChange={e => onChange(name, e.target.value)} placeholder={placeholder} />
       )}
     </div>
+  )
+}
+
+function ToggleField({ label, name, value, onChange }: {
+  label: string; name: string; value: string; onChange: (k: string, v: string) => void
+}) {
+  return (
+    <label className="form-check">
+      <input type="checkbox" checked={value === '1'} onChange={e => onChange(name, e.target.checked ? '1' : '0')} />
+      <span>{label}</span>
+    </label>
   )
 }
 
@@ -115,6 +127,19 @@ export default function Settings() {
           <Field label="Thống kê: Đánh giá 5 sao" name="stat_reviews" value={val('stat_reviews')} onChange={set} placeholder="99%" />
         </>}
 
+        {activeTab === 'payment' && <>
+          <p style={{ color: '#888', fontSize: 13, marginBottom: 16 }}>Bật/tắt từng phương thức thanh toán hiển thị ở trang thanh toán của khách.</p>
+          <div className="form-row" style={{ gap: 24, marginBottom: 20 }}>
+            <ToggleField label="Thanh toán khi nhận hàng (COD)" name="payment_cod_enabled" value={val('payment_cod_enabled')} onChange={set} />
+            <ToggleField label="Chuyển khoản trước qua SePay" name="payment_sepay_enabled" value={val('payment_sepay_enabled')} onChange={set} />
+          </div>
+          <p style={{ color: '#888', fontSize: 13, margin: '20px 0 8px' }}>Thông tin tài khoản nhận tiền (dùng để tạo mã QR VietQR khi khách chọn SePay):</p>
+          <Field label="Mã ngân hàng (VietQR)" name="sepay_bank_code" value={val('sepay_bank_code')} onChange={set} placeholder="VD: MB, VCB, TCB, ACB" />
+          <Field label="Số tài khoản" name="sepay_account_number" value={val('sepay_account_number')} onChange={set} placeholder="0123456789" />
+          <Field label="Tên chủ tài khoản" name="sepay_account_name" value={val('sepay_account_name')} onChange={set} placeholder="NGUYEN VAN A" />
+          <Field label="SePay Webhook Secret" name="sepay_webhook_secret" value={val('sepay_webhook_secret')} onChange={set} type="password" placeholder="Lấy từ cấu hình Webhook trên SePay" />
+        </>}
+
         {activeTab === 'contact' && <>
           <Field label="Email liên hệ" name="site_email" value={val('site_email')} onChange={set} type="email" placeholder="hello@shophuuco.vn" />
           <Field label="Số điện thoại" name="site_phone" value={val('site_phone')} onChange={set} placeholder="0901 234 567" />
@@ -144,7 +169,6 @@ export default function Settings() {
           <Field label="Unsplash Access Key" name="unsplash_access_key" value={val('unsplash_access_key')} onChange={set} placeholder="Unsplash Access Key" />
           <Field label="Facebook Pixel ID" name="fb_pixel_id" value={val('fb_pixel_id')} onChange={set} placeholder="123456789012345" />
           <Field label="Zalo OA ID" name="zalo_oa_id" value={val('zalo_oa_id')} onChange={set} placeholder="Zalo OA ID" />
-          <Field label="Sepay Webhook Secret" name="sepay_webhook_secret" value={val('sepay_webhook_secret')} onChange={set} type="password" placeholder="••••••••" />
         </>}
 
         <div className="form-actions" style={{ marginTop: 32 }}>

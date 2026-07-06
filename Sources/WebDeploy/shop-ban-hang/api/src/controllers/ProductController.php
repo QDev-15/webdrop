@@ -39,6 +39,9 @@ class ProductController {
         $badge       = trim($data['badge'] ?? '');
         $description = trim($data['description'] ?? '');
         $material    = trim($data['material'] ?? '');
+        $colors      = trim($data['colors'] ?? '');
+        $rating      = isset($data['rating']) && $data['rating'] !== '' ? max(0, min(5, (float)$data['rating'])) : 5;
+        $in_stock    = isset($data['in_stock']) ? (int)$data['in_stock'] : 1;
         $is_featured = (int)($data['is_featured'] ?? 0);
         $is_new      = (int)($data['is_new'] ?? 0);
         $status      = trim($data['status'] ?? 'published');
@@ -54,9 +57,9 @@ class ProductController {
         }
 
         $id = $this->db->execute(
-            "INSERT INTO products (category_id, name, slug, image, price, price_sale, badge, description, material, is_featured, is_new, status, sort_order)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            [$category_id, $name, $slug, $image, $price, $price_sale, $badge, $description, $material, $is_featured ? 1 : 0, $is_new ? 1 : 0, $status, $sort_order]
+            "INSERT INTO products (category_id, name, slug, image, price, price_sale, badge, description, material, colors, rating, in_stock, is_featured, is_new, status, sort_order)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            [$category_id, $name, $slug, $image, $price, $price_sale, $badge, $description, $material, $colors, $rating, $in_stock ? 1 : 0, $is_featured ? 1 : 0, $is_new ? 1 : 0, $status, $sort_order]
         );
         $row = $this->db->queryOne("SELECT * FROM products WHERE id = ?", [$id]);
         Response::json($row, 201);
@@ -79,14 +82,17 @@ class ProductController {
         $badge       = trim($data['badge'] ?? ($row['badge'] ?? ''));
         $description = trim($data['description'] ?? ($row['description'] ?? ''));
         $material    = trim($data['material'] ?? ($row['material'] ?? ''));
+        $colors      = trim($data['colors'] ?? ($row['colors'] ?? ''));
+        $rating      = isset($data['rating']) && $data['rating'] !== '' ? max(0, min(5, (float)$data['rating'])) : (float)($row['rating'] ?? 5);
+        $in_stock    = isset($data['in_stock']) ? (int)$data['in_stock'] : (int)$row['in_stock'];
         $is_featured = (int)($data['is_featured'] ?? $row['is_featured']);
         $is_new      = (int)($data['is_new'] ?? $row['is_new']);
         $status      = trim($data['status'] ?? $row['status']);
         $sort_order  = (int)($data['sort_order'] ?? $row['sort_order']);
 
         $this->db->execute(
-            "UPDATE products SET category_id=?, name=?, image=?, price=?, price_sale=?, badge=?, description=?, material=?, is_featured=?, is_new=?, status=?, sort_order=?, updated_at=datetime('now') WHERE id=?",
-            [$category_id, $name, $image, $price, $price_sale, $badge, $description, $material, $is_featured ? 1 : 0, $is_new ? 1 : 0, $status, $sort_order, $id]
+            "UPDATE products SET category_id=?, name=?, image=?, price=?, price_sale=?, badge=?, description=?, material=?, colors=?, rating=?, in_stock=?, is_featured=?, is_new=?, status=?, sort_order=?, updated_at=datetime('now') WHERE id=?",
+            [$category_id, $name, $image, $price, $price_sale, $badge, $description, $material, $colors, $rating, $in_stock ? 1 : 0, $is_featured ? 1 : 0, $is_new ? 1 : 0, $status, $sort_order, $id]
         );
         $row = $this->db->queryOne("SELECT * FROM products WHERE id = ?", [$id]);
         Response::json($row);

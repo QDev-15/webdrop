@@ -331,14 +331,25 @@ ul { list-style: none; }
 .sb-filter-title { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--text-2); margin-bottom: 16px; }
 .sb-filter-options { display: flex; flex-direction: column; gap: 10px; }
 .sb-filter-opt { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-2); cursor: pointer; }
-.sb-filter-opt input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+.sb-filter-opt input[type="checkbox"], .sb-filter-opt input[type="radio"] { width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; flex-shrink: 0; }
+.sb-filter-price-range { display: flex; align-items: center; gap: 8px; }
+.sb-filter-price-range input { width: 0; flex: 1; height: 38px; padding: 0 10px; border: 1.5px solid var(--border); border-radius: 8px; font-family: var(--sans); font-size: 13px; color: var(--text); background: var(--bg); outline: none; }
+.sb-filter-price-range input:focus { border-color: var(--accent); }
+.sb-filter-price-range span { color: var(--text-3); font-size: 13px; }
+.sb-color-swatches { display: flex; flex-wrap: wrap; gap: 10px; }
+.sb-color-swatch { width: 26px; height: 26px; border-radius: 50%; cursor: pointer; transition: transform .15s, box-shadow .15s; }
+.sb-color-swatch:hover { transform: scale(1.1); }
+.sb-color-swatch.selected { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent); }
 .sb-sort-select { height: 40px; padding: 0 16px; border: 1.5px solid var(--border); border-radius: 8px; font-family: var(--sans); font-size: 14px; color: var(--text-2); background: var(--surface); cursor: pointer; outline: none; }
 .sb-sort-select:focus { border-color: var(--accent); }
 .sb-shop-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 12px; }
 .sb-prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .sb-pagination { display: flex; justify-content: center; gap: 8px; margin-top: 48px; }
-.sb-page-btn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 8px; border: 1.5px solid var(--border); font-size: 14px; font-weight: 500; color: var(--text-2); background: var(--surface); cursor: pointer; transition: all .2s; text-decoration: none; }
+.sb-page-btn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 8px; border: 1.5px solid var(--border); font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--text-2); background: var(--surface); cursor: pointer; transition: all .2s; text-decoration: none; }
 .sb-page-btn:hover, .sb-page-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.sb-page-btn:disabled { opacity: .4; cursor: not-allowed; }
+.sb-page-btn:disabled:hover { background: var(--surface); color: var(--text-2); border-color: var(--border); }
+.sb-add-cart:disabled, .sb-btn-cart-full:disabled { opacity: .5; cursor: not-allowed; }
 
 /* ── PRODUCT DETAIL PAGE ── */
 .sb-product-detail-wrap { padding: 100px 0 80px; }
@@ -436,6 +447,8 @@ ul { list-style: none; }
 .sb-form-group textarea { resize: vertical; min-height: 120px; }
 .sb-submit-btn { width: 100%; height: 52px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-family: var(--sans); font-size: 16px; font-weight: 500; cursor: pointer; transition: background .2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
 .sb-submit-btn:hover { background: var(--accent-h); }
+.sb-submit-btn:disabled { opacity: .5; cursor: not-allowed; }
+.sb-submit-btn:disabled:hover { background: var(--accent); }
 
 /* ── REVEAL ANIMATION ── */
 [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity .72s ease, transform .72s ease; }
@@ -498,4 +511,6 @@ ul { list-style: none; }
 @media (max-width: 400px) {
   .sb-prod-grid { grid-template-columns: 1fr; }
   .sb-cat-grid { grid-template-columns: 1fr; }
+  .sb-pagination { flex-wrap: wrap; }
+  .sb-page-btn { width: 34px; height: 34px; font-size: 13px; }
 }

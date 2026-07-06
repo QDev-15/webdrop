@@ -90,8 +90,20 @@ class Database {
             ['facebook',        'https://www.facebook.com/tenshop',   'social'],
             ['instagram',       'https://www.instagram.com/tenshop',  'social'],
             ['tiktok',          'https://www.tiktok.com/@tenshop',    'social'],
+            ['youtube',         '',                                   'social'],
+            ['pinterest',       '',                                   'social'],
             ['zalo',            'https://zalo.me/0900000000',         'social'],
             ['zalo_number',     '0900000000',                         'social'],
+            // Site meta (dùng ở tab "Thông tin chung")
+            ['site_slogan',   'Phong cách tự nhiên',   'general'],
+            ['site_logo',     '',                      'general'],
+            ['site_favicon',  '',                      'general'],
+            // SEO nâng cao
+            ['meta_title',       'Tên Shop — Phong Cách Tự Nhiên', 'seo'],
+            ['meta_description', 'Khám phá bộ sưu tập thời trang, phụ kiện và đồ dùng phong cách tự nhiên.', 'seo'],
+            ['og_image',  '', 'seo'],
+            ['ga_id',     '', 'seo'],
+            ['gtm_id',    '', 'seo'],
             // Footer
             ['footer_desc',     'Phong cách tự nhiên — sống đúng với bản thân. Chúng tôi mang đến những sản phẩm chất lượng, thân thiện với môi trường.', 'footer'],
             // Contact
@@ -124,10 +136,20 @@ class Database {
             ['promo_label',    'Ưu đãi có giới hạn',          'promo'],
             ['promo_title',    'Giảm đến 30% Bộ sưu tập mới', 'promo'],
             ['promo_subtitle', 'Ưu đãi đặc biệt cho bộ sưu tập hè — chất liệu nhẹ, thoáng mát, phù hợp phong cách tự nhiên hiện đại. Áp dụng đến hết tháng này.', 'promo'],
+            ['promo_end_date', '', 'promo'],
             // Shop policies
-            ['free_shipping_min', '200000', 'shop'],
-            ['return_days',       '30',     'shop'],
-            ['warranty_months',   '12',     'shop'],
+            ['shipping_fee',           '30000',  'shop'],
+            ['free_shipping_threshold','200000', 'shop'],
+            ['return_days',            '30',     'shop'],
+            ['warranty_months',        '12',     'shop'],
+            ['stat_reviews',           '99%',    'shop'],
+            // Payment methods — cấu hình bật/tắt tại tab "💳 Thanh toán"
+            ['payment_cod_enabled',    '1', 'payment'],
+            ['payment_sepay_enabled',  '0', 'payment'],
+            ['sepay_bank_code',        '',  'payment'],  // vd: MB, VCB, TCB — mã ngân hàng theo chuẩn VietQR
+            ['sepay_account_number',   '',  'payment'],
+            ['sepay_account_name',     '',  'payment'],
+            ['sepay_webhook_secret',   '',  'payment'],
             // SMTP
             ['smtp_host',     '', 'smtp'],
             ['smtp_port',     '587', 'smtp'],
@@ -144,6 +166,8 @@ class Database {
             ['cloudinary_api_secret', '', 'cloudinary'],
             // Integrations
             ['unsplash_access_key', '', 'integrations'],
+            ['fb_pixel_id', '', 'integrations'],
+            ['zalo_oa_id',  '', 'integrations'],
         ];
         $stmt = $this->pdo->prepare("INSERT OR IGNORE INTO settings (key, value, grp) VALUES (?, ?, ?)");
         foreach ($settings as $row) { $stmt->execute($row); }
@@ -197,83 +221,86 @@ class Database {
     private function seedProducts(): void {
         $count = $this->pdo->query("SELECT COUNT(*) FROM products")->fetchColumn();
         if ($count > 0) return;
+        $colorEarth  = 'Terracotta:#c4603a|Sage:#6b8a7a';
+        $colorNeutral = 'Kem:#f7f3ee|Nâu:#8b6f5e';
+        $colorDark   = 'Đen:#1e1610|Trắng:#ffffff';
         $products = [
-            // [category_id, name, slug, image, price, price_sale, badge, description, material, is_featured, is_new, sort_order]
+            // [category_id, name, slug, image, price, price_sale, badge, description, material, colors, rating, in_stock, is_featured, is_new, sort_order]
             [1, 'Áo Linen Tự Nhiên', 'ao-linen-tu-nhien',
              'https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=800&auto=format&fit=crop&q=80',
              280000, 350000, 'Bán chạy',
              'Áo linen tự nhiên với chất liệu 100% lanh hữu cơ, thoáng mát và thân thiện với da. Thiết kế tối giản, phù hợp mọi hoàn cảnh.',
-             '100% Linen hữu cơ', 1, 0, 1],
+             '100% Linen hữu cơ', $colorEarth, 4.8, 1, 1, 0, 1],
 
             [1, 'Váy Organic Cotton', 'vay-organic-cotton',
              'https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=800&auto=format&fit=crop&q=80',
              185000, null, 'Mới',
              'Váy cotton organic nhẹ nhàng, thoáng mát. Phù hợp cho những ngày hè nóng bức hoặc đi chơi dã ngoại cuối tuần.',
-             '100% Cotton hữu cơ', 1, 1, 2],
+             '100% Cotton hữu cơ', $colorNeutral, 4.6, 1, 1, 1, 2],
 
             [1, 'Bộ Đồ Linen Set', 'bo-do-linen-set',
              'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=800&auto=format&fit=crop&q=80',
              320000, 400000, null,
              'Bộ đồ linen set gồm áo và quần, thiết kế đồng bộ sang trọng. Chất linen cao cấp co giãn tốt, không nhăn sau giặt.',
-             'Linen cao cấp', 1, 0, 3],
+             'Linen cao cấp', $colorDark, 5.0, 1, 1, 0, 3],
 
             [2, 'Túi Tote Handmade', 'tui-tote-handmade',
              'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&auto=format&fit=crop&q=80',
              145000, null, null,
              'Túi tote làm thủ công từ vải canvas tự nhiên. Rộng rãi, chắc chắn — phù hợp đi chợ, đi học hoặc đi làm hàng ngày.',
-             'Canvas tự nhiên', 0, 0, 4],
+             'Canvas tự nhiên', $colorNeutral, 4.5, 1, 0, 0, 4],
 
             [2, 'Mũ Cói Đan Tay', 'mu-coi-dan-tay',
              'https://images.unsplash.com/photo-1503342452485-86b5ded8e65a?w=800&auto=format&fit=crop&q=80',
              255000, 300000, '-15%',
              'Mũ cói đan tay từ cói thiên nhiên, nhẹ và thoáng khí. Bảo vệ khỏi nắng hè, phù hợp đi biển hoặc dã ngoại.',
-             'Cói thiên nhiên', 1, 0, 5],
+             'Cói thiên nhiên', $colorNeutral, 4.7, 1, 1, 0, 5],
 
             [3, 'Nến Thơm Soy Wax', 'nen-thom-soy-wax',
              'https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?w=800&auto=format&fit=crop&q=80',
              490000, null, 'Mới',
              'Nến thơm từ sáp đậu nành tự nhiên với tinh dầu nguyên chất. Cháy sạch không khói, mùi hương thư giãn và dễ chịu.',
-             'Sáp đậu nành, tinh dầu thiên nhiên', 1, 1, 6],
+             'Sáp đậu nành, tinh dầu thiên nhiên', $colorEarth, 4.9, 1, 1, 1, 6],
 
             [4, 'Khung Tranh Bamboo', 'khung-tranh-bamboo',
              'https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=800&auto=format&fit=crop&q=80',
              220000, null, null,
              'Khung tranh làm từ tre tự nhiên, thiết kế tối giản phù hợp phong cách Scandinavian hoặc Japandi.',
-             'Tre tự nhiên', 0, 0, 7],
+             'Tre tự nhiên', $colorNeutral, 4.4, 1, 0, 0, 7],
 
             [3, 'Dầu Dưỡng Tóc Argan', 'dau-duong-toc-argan',
              'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&auto=format&fit=crop&q=80',
              175000, 210000, null,
              'Dầu dưỡng tóc chiết xuất từ hạt argan Morocco. Phục hồi tóc hư tổn, làm bóng và mềm mượt từ sâu bên trong.',
-             'Argan Oil, Vitamin E', 0, 0, 8],
+             'Argan Oil, Vitamin E', '', 4.6, 1, 0, 0, 8],
 
             [2, 'Vòng Tay Đá Tự Nhiên', 'vong-tay-da-tu-nhien',
              'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80',
              580000, null, 'Bán chạy',
              'Vòng tay làm từ đá tự nhiên — mỗi viên đá là độc nhất. Được thiết kế bởi nghệ nhân thủ công Việt Nam.',
-             'Đá tự nhiên, dây elastic cao cấp', 1, 0, 9],
+             'Đá tự nhiên, dây elastic cao cấp', $colorDark, 5.0, 1, 1, 0, 9],
 
             [4, 'Lẵng Cói Đan Tay', 'lang-coi-dan-tay',
              'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop&q=80',
              340000, null, null,
              'Lẵng cói đan tay đa năng — dùng đựng đồ, để trang trí góc nhà hoặc làm giỏ đi chợ. Sản phẩm thủ công của làng nghề truyền thống.',
-             'Cói tự nhiên', 0, 0, 10],
+             'Cói tự nhiên', $colorNeutral, 4.3, 1, 0, 0, 10],
 
             [4, 'Gương Khung Tre', 'guong-khung-tre',
              'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&auto=format&fit=crop&q=80',
              265000, null, 'Mới',
              'Gương trang điểm với khung tre tự nhiên, thiết kế tối giản. Phù hợp phòng ngủ hoặc phòng tắm phong cách organic.',
-             'Tre tự nhiên, kính cường lực', 0, 1, 11],
+             'Tre tự nhiên, kính cường lực', '', 4.5, 1, 0, 1, 11],
 
             [1, 'Áo Khoác Linen Nhẹ', 'ao-khoac-linen-nhe',
              'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&auto=format&fit=crop&q=80',
              380000, 475000, '-20%',
              'Áo khoác linen mỏng nhẹ — perfect cho những ngày chuyển mùa. Thiết kế trẻ trung, mix&match dễ dàng với mọi outfit.',
-             'Linen 70% / Cotton 30%', 1, 0, 12],
+             'Linen 70% / Cotton 30%', $colorEarth, 4.7, 1, 1, 0, 12],
         ];
         $stmt = $this->pdo->prepare(
-            "INSERT INTO products (category_id, name, slug, image, price, price_sale, badge, description, material, is_featured, is_new, sort_order)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            "INSERT INTO products (category_id, name, slug, image, price, price_sale, badge, description, material, colors, rating, in_stock, is_featured, is_new, sort_order)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
         );
         foreach ($products as $p) { $stmt->execute($p); }
     }

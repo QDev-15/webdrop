@@ -44,6 +44,12 @@ Kiểm tra thư mục tồn tại. Nếu không có → báo lỗi và dừng.
 - `admin/src/pages/settings/Settings.tsx`
 - `website/index.html`
 
+**Nếu site thuộc type `shop`/e-commerce** (có `products`, `product_categories` trong schema.sql), đọc thêm trước khi fix — xem checklist đầy đủ ở Bước 3.6:
+- `website/src/pages/ProductsPage.tsx`
+- `website/src/contexts/CartContext.tsx`
+- `website/src/pages/CheckoutPage.tsx` (có thể chưa tồn tại — đây chính là một issue cần fix, xem 3.6)
+- `api/src/controllers/PublicController.php` (method `products()`, `createOrder()`, `sepayWebhook()`)
+
 ---
 
 ## Bước 0.5 — BOM Check (LUÔN CHẠY TRƯỚC PHP SYNTAX CHECK)
@@ -340,6 +346,44 @@ Sau khi build pass (0 errors), kiểm tra các rules dưới đây. **Đọc fil
 **.htaccess & web.config:**
 - [ ] Cả 2 file tồn tại
 - [ ] Cả 2 chặn truy cập `.db` files
+
+### 3.6 — Shop/E-commerce (type `shop`) — chỉ áp dụng nếu schema.sql có bảng `products`
+
+> Phát hiện từ vụ `shop-ban-hang` (2026-07-06): site type `shop` build lệch hẳn thiết kế template gốc (`san-pham.html`/`gio-hang.html`) — chỉ có 1 filter danh mục dạng radio, không phân trang, giỏ hàng chỉ là trang tĩnh rỗng không có add-to-cart, không có trang thanh toán, không có phương thức thanh toán nào. Checklist dưới đây dùng để phát hiện lại đúng các lỗi này ở site shop khác.
+
+**Filter sidebar (`website/src/pages/ProductsPage.tsx`) — [P0]:**
+- [ ] Đủ 5 block: Mức giá (2 input min/max) · Danh mục (**checkbox multi-select**, không phải radio) · Màu sắc (swatch) · Đánh giá (checkbox lọc rating) · Tình trạng (Còn hàng/Đang giảm giá/Hàng mới)
+- [ ] Có 2 nút "Áp dụng bộ lọc" + "Xóa bộ lọc"
+- [ ] Có tab bar danh mục NGANG phía trên grid, tách biệt với sidebar
+- [ ] Nếu thiếu bất kỳ block nào → tự thêm theo đúng cấu trúc `san-pham.html` gốc của template, không rút gọn
+
+**Phân trang — [P0]:**
+- [ ] `GET /public/products` hỗ trợ `page`/`per_page`, trả tổng số qua header `X-Total-Count` (không bọc object — vi phạm rule "Public endpoint trả array thuần")
+- [ ] `api/client.ts` (website) có method đọc header (`getPaged` hoặc tương đương) — nếu chỉ có `api.get` thường thì KHÔNG đọc được `X-Total-Count`
+- [ ] Component `ProductsPage.tsx` có UI phân trang (`sb-pagination`/tương đương) — không tải toàn bộ sản phẩm 1 lần rồi paginate client-side (không scale, không đúng thiết kế "Hiển thị 1–12 trong số N")
+- [ ] **Nếu SiteContext cũng gọi `/public/products` không kèm `per_page`** — sẽ chỉ nhận về trang đầu (mặc định 12) → homepage/related products bị cắt cụt khi catalog > 12 sản phẩm. Fix: SiteContext gọi với `per_page` cao (vd 200, phải nằm trong cap server-side) để lấy toàn bộ catalog cho mục đích hiển thị chung, tách biệt với phân trang riêng của `ProductsPage`.
+
+**Schema `products` — [P0]:**
+- [ ] Có cột `colors` (TEXT, pipe-separated "Tên:#hex"), `rating` (REAL), `in_stock` (INTEGER) — cần cho 3/5 block filter ở trên
+- [ ] Nếu thiếu → thêm cột vào `schema.sql` + `Database.php::seedProducts()` + `ProductController.php` (CRUD) + `admin/.../ProductForm.tsx`
+
+**Giỏ hàng & Thanh toán — [P0]:**
+- [ ] Có `CartContext` thật (localStorage), KHÔNG phải trang tĩnh chỉ hiển thị "giỏ hàng trống"
+- [ ] Nút "Thêm vào giỏ hàng" ở `ProductsPage`/`ProductDetailPage` phải thực sự gọi vào cart context — không phải nút trang trí không có `onClick`
+- [ ] **`CartContext` định danh item theo `product_id` + `color`** — nếu `addItem` dedupe theo cả 2 field nhưng `updateQty`/`removeItem` chỉ nhận `product_id`, đổi số lượng/xóa 1 màu sẽ áp dụng nhầm sang toàn bộ màu khác của cùng sản phẩm. Kiểm tra kỹ 3 hàm này dùng chung 1 khóa định danh.
+- [ ] Có trang `/thanh-toan` (checkout) — **lưu ý: HTML template gốc thường KHÔNG có trang này** (nút "Thanh toán ngay" trỏ `href="#"` trong template tĩnh) nên không có gì để đối chiếu — tự dựng theo `rules/design-system.md`, giữ nguyên CSS vars/identity của site
+- [ ] Checkout có form thông tin khách (họ tên, SĐT, email, địa chỉ, ghi chú) + tóm tắt đơn hàng + chọn phương thức thanh toán
+
+**Thanh toán COD + SePay — [P0]:**
+- [ ] Settings có tab "💳 Thanh toán" với toggle bật/tắt riêng từng phương thức (`payment_cod_enabled`, `payment_sepay_enabled`) + field bank info (`sepay_bank_code`, `sepay_account_number`, `sepay_account_name`, `sepay_webhook_secret`)
+- [ ] **`GET /public/settings` PHẢI loại trừ nhóm `payment` khỏi kết quả** (`WHERE grp NOT IN (...,'payment')`) — nếu không, `sepay_webhook_secret` và bank info bị lộ qua endpoint public không cần auth. Đây là lỗ hổng bảo mật nghiêm trọng nhất đã gặp ở `shop-ban-hang` — luôn kiểm tra dòng SQL filter này đầu tiên khi review site shop.
+- [ ] Có endpoint riêng `GET /public/payment-methods` trả về cờ enabled + bank info (không kèm secret) để checkout page dùng
+- [ ] `POST /public/orders` (tạo đơn) phải **tính lại giá/tổng tiền từ DB** — không tin `price`/`total` client gửi lên. Kiểm tra: có query lại `products` theo `product_id` trước khi tính subtotal không.
+- [ ] `POST /public/sepay-webhook` verify bằng `hash_equals()` (không dùng `!==`/`===` thường — lộ qua timing attack), so khớp secret trong `Authorization` header
+- [ ] Có bảng `orders` + `order_items` — nếu thiếu, đây là site build sai từ đầu (bỏ qua toàn bộ luồng đặt hàng), cần bổ sung đầy đủ theo Bước 2/DB Schema của `web-deploy-builder.md` rule 41
+
+**Website Bootstrap CDN:**
+- [ ] `website/index.html` có Bootstrap 5.3.3 CDN — site shop dùng nhiều `bi bi-*` (Bootstrap Icons) cho giỏ hàng/wishlist/quick-view, kiểm tra thêm `bootstrap-icons` CDN có đủ không
 
 ---
 

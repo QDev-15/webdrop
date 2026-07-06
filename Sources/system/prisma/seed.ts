@@ -33,6 +33,7 @@ async function main() {
     prisma.industry.upsert({ where: { slug: 'blog' }, update: {}, create: { name: 'Blog', slug: 'blog', sortOrder: 5 } }),
     prisma.industry.upsert({ where: { slug: 'community' }, update: {}, create: { name: 'Cộng đồng / Forum', slug: 'community', sortOrder: 6 } }),
     prisma.industry.upsert({ where: { slug: 'dental' }, update: {}, create: { name: 'Nha khoa', slug: 'dental', sortOrder: 7 } }),
+    prisma.industry.upsert({ where: { slug: 'shop' }, update: {}, create: { name: 'Shop bán hàng', slug: 'shop', sortOrder: 8 } }),
   ])
   console.log('✅ Industries:', industries.length)
 
@@ -71,6 +72,7 @@ async function main() {
     price: number
     category: 'web' | 'admin'
     industrySlug: string | null
+    hasWebsite?: boolean
     salesCount: number
     status: 'published' | 'draft'
   }[] = [
@@ -570,6 +572,33 @@ async function main() {
         status: 'published',
       },
 
+      // ── Shops ──────────────────────────────────────────────────────────────
+      {
+        slug: 'shop-ban-hang',
+        name: 'Shop Bán Hàng Hữu Cơ',
+        description: 'Template + Website shop bán hàng phong cách ORGANIC-EARTH — thời trang, phụ kiện, đồ dùng tự nhiên. Có sẵn tìm kiếm/lọc sản phẩm, giỏ hàng, thanh toán COD/SePay.',
+        thumbnail: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80&auto=format&fit=crop',
+        demoUrl: `${DEMO_BASE}/Shops/shop-ban-hang/`,
+        price: 99000,
+        category: 'web',
+        industrySlug: 'shop',
+        hasWebsite: true,
+        salesCount: 4,
+        status: 'published',
+      },
+      {
+        slug: 'shop-thoi-trang',
+        name: 'Shop Thời Trang',
+        description: 'Template shop thời trang phong cách BOLD-EDITORIAL — tông tối giản sắc nét, Electric Blue accent, bố cục magazine grid.',
+        thumbnail: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=800&q=80&auto=format&fit=crop',
+        demoUrl: `${DEMO_BASE}/Shops/shop-thoi-trang/`,
+        price: 99000,
+        category: 'web',
+        industrySlug: 'shop',
+        salesCount: 3,
+        status: 'published',
+      },
+
       // ── Admin ──────────────────────────────────────────────────────────────
       {
         slug: 'admin-basic',
@@ -595,6 +624,7 @@ async function main() {
         demoUrl: t.demoUrl,
         price: t.price,
         websitePrice: 500000,
+        hasWebsite: t.hasWebsite ?? false,
         salesCount: t.salesCount,
       },
       create: {
@@ -607,6 +637,7 @@ async function main() {
         websitePrice: 500000,
         category: t.category,
         industryId: t.industrySlug ? industryMap[t.industrySlug] : null,
+        hasWebsite: t.hasWebsite ?? false,
         salesCount: t.salesCount,
         status: t.status,
       },

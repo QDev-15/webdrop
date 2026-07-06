@@ -12,6 +12,9 @@ interface FormData {
   badge: string
   description: string
   material: string
+  colors: string
+  rating: string
+  in_stock: boolean
   is_featured: boolean
   is_new: boolean
   status: string
@@ -20,7 +23,8 @@ interface FormData {
 
 const EMPTY: FormData = {
   name: '', category_id: '', image: '', price: '', price_sale: '',
-  badge: '', description: '', material: '', is_featured: false, is_new: false,
+  badge: '', description: '', material: '', colors: '', rating: '5', in_stock: true,
+  is_featured: false, is_new: false,
   status: 'published', sort_order: '0'
 }
 
@@ -52,6 +56,9 @@ export default function ProductForm() {
           badge: String(p.badge ?? ''),
           description: String(p.description ?? ''),
           material: String(p.material ?? ''),
+          colors: String(p.colors ?? ''),
+          rating: String(p.rating ?? '5'),
+          in_stock: p.in_stock === undefined ? true : Boolean(p.in_stock),
           is_featured: Boolean(p.is_featured),
           is_new: Boolean(p.is_new),
           status: String(p.status ?? 'published'),
@@ -73,6 +80,8 @@ export default function ProductForm() {
       category_id: form.category_id ? Number(form.category_id) : null,
       price: Number(form.price) || 0,
       price_sale: Number(form.price_sale) || 0,
+      rating: Math.max(0, Math.min(5, Number(form.rating) || 5)),
+      in_stock: form.in_stock ? 1 : 0,
       sort_order: Number(form.sort_order) || 0,
     }
     try {
@@ -145,6 +154,18 @@ export default function ProductForm() {
           <input type="text" value={form.material} onChange={e => set('material', e.target.value)} placeholder="VD: Vải đay tự nhiên, cotton hữu cơ" />
         </div>
 
+        <div className="form-group">
+          <label>Màu sắc (dùng cho bộ lọc "Màu sắc" ở trang Sản phẩm)</label>
+          <input type="text" value={form.colors} onChange={e => set('colors', e.target.value)} placeholder='Định dạng "Tên:#hex", cách nhau bằng dấu | — VD: Terracotta:#c4603a|Sage:#6b8a7a' />
+          {form.colors && (
+            <div style={{ display: 'flex', gap: 6, marginTop: 8 }}>
+              {form.colors.split('|').map(c => c.split(':')).filter(([, hex]) => hex).map(([label, hex]) => (
+                <span key={label} title={label} style={{ width: 22, height: 22, borderRadius: '50%', background: hex, border: '1px solid #ddd', display: 'inline-block' }} />
+              ))}
+            </div>
+          )}
+        </div>
+
         <div className="form-row">
           <div className="form-group" style={{ flex: 1 }}>
             <label>Trạng thái</label>
@@ -154,12 +175,20 @@ export default function ProductForm() {
             </select>
           </div>
           <div className="form-group" style={{ flex: 1 }}>
+            <label>Đánh giá (0-5 sao)</label>
+            <input type="number" value={form.rating} onChange={e => set('rating', e.target.value)} min={0} max={5} step={0.1} />
+          </div>
+          <div className="form-group" style={{ flex: 1 }}>
             <label>Thứ tự sắp xếp</label>
             <input type="number" value={form.sort_order} onChange={e => set('sort_order', e.target.value)} min={0} />
           </div>
         </div>
 
         <div className="form-row" style={{ gap: 24 }}>
+          <label className="form-check">
+            <input type="checkbox" checked={form.in_stock} onChange={e => set('in_stock', e.target.checked)} />
+            <span>Còn hàng</span>
+          </label>
           <label className="form-check">
             <input type="checkbox" checked={form.is_featured} onChange={e => set('is_featured', e.target.checked)} />
             <span>Sản phẩm nổi bật</span>

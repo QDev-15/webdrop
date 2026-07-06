@@ -14,6 +14,8 @@ import ProductList from './pages/products/ProductList'
 import ProductForm from './pages/products/ProductForm'
 import TestimonialList from './pages/testimonials/TestimonialList'
 import TestimonialForm from './pages/testimonials/TestimonialForm'
+import OrderList from './pages/orders/OrderList'
+import OrderDetail from './pages/orders/OrderDetail'
 import Settings from './pages/settings/Settings'
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
@@ -47,6 +49,8 @@ export default function App() {
               <Route path="testimonials" element={<TestimonialList />} />
               <Route path="testimonials/new" element={<TestimonialForm />} />
               <Route path="testimonials/:id/edit" element={<TestimonialForm />} />
+              <Route path="orders" element={<OrderList />} />
+              <Route path="orders/:id" element={<OrderDetail />} />
               <Route path="contacts" element={<ContactList />} />
               <Route path="settings" element={<Settings />} />
             </Routes>

@@ -12,7 +12,8 @@ if ($origin && in_array(rtrim($origin, '/'), array_map(fn($o) => rtrim($o, '/'),
     header('Access-Control-Allow-Origin: ' . $origin);
     header('Access-Control-Allow-Credentials: true');
     header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-    header('Access-Control-Allow-Headers: Content-Type, X-HTTP-Method-Override');
+    header('Access-Control-Allow-Headers: Content-Type, X-HTTP-Method-Override, Authorization');
+    header('Access-Control-Expose-Headers: X-Total-Count');
 }
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(204); exit; }
 

@@ -74,6 +74,9 @@ CREATE TABLE IF NOT EXISTS products (
     badge        TEXT,
     description  TEXT,
     material     TEXT,
+    colors       TEXT,                        -- pipe-separated "Tên:#hex" — vd "Terracotta:#c4603a|Sage:#6b8a7a"
+    rating       REAL    NOT NULL DEFAULT 5,   -- điểm đánh giá trung bình (0-5)
+    in_stock     INTEGER NOT NULL DEFAULT 1,   -- 1 = còn hàng, 0 = hết hàng
     is_featured  INTEGER NOT NULL DEFAULT 0,
     is_new       INTEGER NOT NULL DEFAULT 0,
     status       TEXT    NOT NULL DEFAULT 'published',
@@ -81,6 +84,37 @@ CREATE TABLE IF NOT EXISTS products (
     created_at   TEXT    NOT NULL DEFAULT (datetime('now')),
     updated_at   TEXT    NOT NULL DEFAULT (datetime('now')),
     FOREIGN KEY (category_id) REFERENCES product_categories(id) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS orders (
+    id             INTEGER PRIMARY KEY AUTOINCREMENT,
+    order_code     TEXT    NOT NULL UNIQUE,
+    customer_name  TEXT    NOT NULL,
+    phone          TEXT    NOT NULL,
+    email          TEXT,
+    address        TEXT    NOT NULL,
+    note           TEXT,
+    subtotal       INTEGER NOT NULL DEFAULT 0,
+    shipping_fee   INTEGER NOT NULL DEFAULT 0,
+    discount       INTEGER NOT NULL DEFAULT 0,
+    total          INTEGER NOT NULL DEFAULT 0,
+    payment_method TEXT    NOT NULL DEFAULT 'cod',    -- cod | sepay
+    payment_status TEXT    NOT NULL DEFAULT 'unpaid', -- unpaid | pending | paid
+    status         TEXT    NOT NULL DEFAULT 'pending', -- pending | processing | shipping | completed | cancelled
+    created_at     TEXT    NOT NULL DEFAULT (datetime('now')),
+    updated_at     TEXT    NOT NULL DEFAULT (datetime('now'))
+);
+
+CREATE TABLE IF NOT EXISTS order_items (
+    id           INTEGER PRIMARY KEY AUTOINCREMENT,
+    order_id     INTEGER NOT NULL,
+    product_id   INTEGER,
+    product_name TEXT    NOT NULL,
+    price        INTEGER NOT NULL DEFAULT 0,
+    qty          INTEGER NOT NULL DEFAULT 1,
+    subtotal     INTEGER NOT NULL DEFAULT 0,
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS testimonials (

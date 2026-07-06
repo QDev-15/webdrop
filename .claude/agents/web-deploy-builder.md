@@ -182,6 +182,44 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển �
 
 35. **Khi tạo website phải bám sát template** - Khi viết code tạo UI phải kiểm tra lại template để làm cho đúng với thiết kế template.
 
+36. **[P0 — BẮT BUỘC] Loại hình `shop` (e-commerce) có UI tìm kiếm/lọc sản phẩm phức tạp hơn hẳn các loại template khác — phải bám sát 100% template, không được rút gọn.** Sidebar lọc (`san-pham.html` template gốc) bắt buộc đủ 5 block đúng thứ tự:
+    - **Mức giá** — 2 input number (min/max), không cần slider nếu template không có
+    - **Danh mục** — checkbox **multi-select** (không phải radio single-select), mỗi option kèm số lượng `(N)` = COUNT thực tế trong DB
+    - **Màu sắc** — swatch tròn theo màu thật của sản phẩm (cần cột `colors` — xem rule 38)
+    - **Đánh giá** — checkbox lọc theo số sao tối thiểu (cần cột `rating` — xem rule 38)
+    - **Tình trạng** — checkbox: Còn hàng / Đang giảm giá / Hàng mới
+    - 2 nút cuối sidebar: **Áp dụng bộ lọc** (submit tất cả filter cùng lúc) + **Xóa bộ lọc** (reset về mặc định)
+    - **Tab bar danh mục** nằm NGANG phía trên grid (scroll-x trên mobile): "Tất cả | [mỗi danh mục] | Đang giảm giá" — tách biệt với sidebar, không gộp chung
+    Thiếu bất kỳ block nào = không đạt yêu cầu thiết kế. Đây chính là lỗi đã xảy ra ở `shop-ban-hang` (chỉ có 1 filter danh mục dạng radio, thiếu 4/5 block + thiếu tab bar) — nguyên nhân: site này được build bằng khung scaffold chung (không có type `shop` riêng — xem rule 42), không đối chiếu kỹ `san-pham.html`.
+
+37. **[P0] Phân trang (pagination) bắt buộc cho trang danh sách sản phẩm** — template có component `sb-pagination` (nút trước/sau + số trang + dấu "…"). Không được tải toàn bộ sản phẩm một lần:
+    - API: `GET /public/products?page=1&per_page=12&category_id=&sort=&min_price=&max_price=` — vẫn trả **array thuần** (đúng Rule 19/chuẩn PublicController của dự án); tổng số bản ghi để tính số trang trả qua HTTP header `X-Total-Count` — KHÔNG bọc object (tránh vi phạm rule "Public endpoint trả array thuần")
+    - `api/client.ts` cần thêm method trả kèm headers (không chỉ body JSON đã parse) để website đọc được `X-Total-Count` và tính `totalPages = Math.ceil(total / perPage)`
+    - Text hiển thị đúng template: "Hiển thị **1–12** trong số **[48]** sản phẩm" (page header) và "Tìm thấy **[48]** sản phẩm" (top bar trước ô sort)
+
+38. **[P0] Schema `products` phải mở rộng thêm cột phục vụ filter/pagination — schema hiện tại của `shop-ban-hang` KHÔNG được dùng làm chuẩn cho site shop tiếp theo, cần bổ sung:**
+    ```sql
+    colors        TEXT,              -- pipe-separated "Tên:#hex" — vd "Terracotta:#c4603a|Sage:#6b8a7a"
+    rating        REAL    NOT NULL DEFAULT 5,  -- điểm trung bình sao
+    in_stock      INTEGER NOT NULL DEFAULT 1   -- cột lọc "Còn hàng"
+    ```
+    `product_categories.product_count` tiếp tục tính qua COUNT query trong `PublicController` (không lưu cột) — giữ nguyên pattern đã đúng ở `shop-ban-hang`.
+
+39. **[P1] Giỏ hàng (cart) phức tạp hơn các loại template khác** — cần persist qua `localStorage` + đồng bộ số đếm ở Header (`sb-cart-count`) qua Context, không chỉ giữ state cục bộ trong `CartPage`. Yêu cầu tối thiểu theo template: hiển thị biến thể đã chọn (`sb-cart-prod-var`: màu/size), nút "Cập nhật giỏ hàng" tính lại subtotal/total realtime, ô nhập mã giảm giá (`sb-coupon-input`). Site nào cần coupon thật thì tạo bảng `coupons` riêng trong SQLite của site đó (độc lập với hệ discount của System DB webdrop.store).
+
+40. **[P0] Template gốc KHÔNG có trang thanh toán** — nút "Thanh toán ngay" ở `gio-hang.html` là `href="#"` (chưa thiết kế). Web-deploy-builder PHẢI tự dựng thêm trang `/thanh-toan` (checkout) theo `rules/design-system.md`, giữ nguyên CSS vars/identity của site (không có HTML mẫu để tham chiếu — tự thiết kế nhất quán). Trang checkout bắt buộc có: form thông tin khách (họ tên, SĐT, email, địa chỉ giao hàng, ghi chú), khối tóm tắt đơn hàng (giống bố cục `sb-order-summary`), và **chọn 1 trong 2 phương thức thanh toán** (rule 41).
+
+41. **[P0] Thanh toán bắt buộc 2 phương thức, bật/tắt riêng từng phương thức tại Admin Settings (thêm tab "💳 Thanh toán"):**
+    - **Phương thức 1 — COD (thanh toán khi nhận hàng):** tạo đơn `payment_method='cod'`, `payment_status='unpaid'`, `status='pending'` — admin xác nhận thủ công qua `/admin/orders`.
+    - **Phương thức 2 — SePay (chuyển khoản trước qua QR):** tạo đơn `payment_method='sepay'`, `payment_status='pending'` → hiển thị QR VietQR (ngân hàng + số tài khoản + số tiền + nội dung `[order_code]`) → SePay gọi webhook `POST /public/sepay-webhook` (theo đúng pattern đã tích hợp ở webdrop.store — xem CLAUDE.md mục "Tích hợp Sepay webhook auto-confirm đơn hàng") → verify secret → cập nhật `payment_status='paid'`, `status='processing'`.
+    - Settings keys nhóm `payment`: `payment_cod_enabled` (0/1), `payment_sepay_enabled` (0/1), `sepay_bank_code`, `sepay_account_number`, `sepay_account_name`, `sepay_webhook_secret`.
+    - Nếu cả 2 phương thức đều tắt → checkout ẩn nút đặt hàng, hiển thị "Cửa hàng tạm ngừng nhận đơn online — vui lòng liên hệ trực tiếp".
+    - Bảng mới bắt buộc: `orders` (order_code UNIQUE, customer_name, phone, email, address, note, subtotal, shipping_fee, discount, total, payment_method, payment_status, status, created_at) + `order_items` (order_id FK, product_id FK, product_name, price, qty, subtotal).
+
+42. **[P2 — cải tiến hạ tầng, KHÔNG chặn việc fix `shop-ban-hang` hiện tại]** `scaffolder.mjs` (`Sources/WebDeploy/scaffolder.mjs:16`) chưa có type `shop` trong `VALID_TYPES` (hiện chỉ có `cafe, restaurant, spa, spa-service, portfolio, company, blog`) — đây là nguyên nhân gốc khiến `shop-ban-hang` bị build lệch thiết kế. Khi có thời gian nên tạo `_scaffold/types/shop/` sẵn: `ProductController`, `ProductCategoryController`, `OrderController`, filter sidebar mẫu (5 block + tab bar), pagination hook, checkout page mẫu, Sepay QR helper — để các site shop kế tiếp không phải build lại từ đầu.
+
+43. **Nhắc lại Rule 5 (CLAUDE.md) áp dụng cho các rule 36-41:** khi fix `shop-ban-hang` theo các rule trên, CHỈ sửa trong `Sources/WebDeploy/shop-ban-hang/`. Các rule 36-41 chỉ áp dụng cho site có type `shop`/e-commerce — không áp dụng ngược cho site `company`/`restaurant`/... đã build trước đó.
+
 ---
 
 ## Bước 0 — Xác định template path
@@ -267,6 +305,7 @@ Ví dụ quy trình cho restaurant:
 | company | `services`, `team_members`, `projects`, `testimonials` |
 | portfolio | `projects`, `skills`, `testimonials` |
 | blog | `post_categories`, `posts` |
+| shop | `product_categories`, `products` (+ `colors`/`rating`/`in_stock` — rule 38), `orders`, `order_items`, `testimonials` — **xem rule 36-41 bắt buộc riêng cho type này, không dùng schema `shop-ban-hang` gốc làm chuẩn** |
 
 > **⚠️ Columns của extension tables phải xuất phát từ Bước 1b** — không dùng schema generic. Mỗi template hiển thị các fields khác nhau. Chỉ tạo column khi template có field đó trong UI.
 

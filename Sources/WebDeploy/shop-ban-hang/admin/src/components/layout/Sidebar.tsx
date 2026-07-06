@@ -10,10 +10,14 @@ export default function Sidebar() {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
   const [newContacts, setNewContacts] = useState(0)
+  const [pendingOrders, setPendingOrders] = useState(0)
 
   useEffect(() => {
-    api.get<{ new_contacts: number }>('/stats')
-      .then(r => { if (r.new_contacts) setNewContacts(r.new_contacts) })
+    api.get<{ new_contacts: number; pending_orders: number }>('/stats')
+      .then(r => {
+        if (r.new_contacts) setNewContacts(r.new_contacts)
+        if (r.pending_orders) setPendingOrders(r.pending_orders)
+      })
       .catch(() => {})
   }, [])
 
@@ -32,6 +36,10 @@ export default function Sidebar() {
         { to: '/product-categories', icon: '📂', label: 'Danh mục' },
         { to: '/products', icon: '🛍', label: 'Sản phẩm' },
       ]
+    },
+    {
+      section: 'Đơn hàng',
+      links: [{ to: '/orders', icon: '🧾', label: 'Đơn hàng', badge: pendingOrders }]
     },
     {
       section: 'Đánh giá',

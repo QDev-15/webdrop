@@ -44,7 +44,7 @@ const GROUP: Record<string, string> = {
   GROUP_I: 'Bảng I', GROUP_J: 'Bảng J', GROUP_K: 'Bảng K', GROUP_L: 'Bảng L',
 }
 const CHANNELS = [
-  { name: 'VTV3', url: 'https://vtvgo.vn/xem-truc-tuyen.html' },
+  { name: 'VTV3', url: 'https://vtvgo.vn/channel' },
   { name: 'FPT Play', url: 'https://fptplay.vn' },
   { name: 'K+', url: 'https://kpluscdn.net' },
 ]

@@ -44,6 +44,7 @@ require_once __DIR__ . '/controllers/ProductCategoryController.php';
 require_once __DIR__ . '/controllers/ProductController.php';
 require_once __DIR__ . '/controllers/TestimonialController.php';
 require_once __DIR__ . '/controllers/ProfileController.php';
+require_once __DIR__ . '/controllers/OrderController.php';
 
 // ─── Routes ───────────────────────────────────────────────────────────────────
 
@@ -138,6 +139,12 @@ $router->add('POST', '/testimonials',            [$testimonials, 'store']);
 $router->add('POST', '/testimonials/:id/update', [$testimonials, 'update']);
 $router->add('POST', '/testimonials/:id/delete', [$testimonials, 'destroy']);
 
+// Orders (admin)
+$orders = new OrderController($db);
+$router->add('GET',  '/orders',                   [$orders, 'index']);
+$router->add('GET',  '/orders/:id',                [$orders, 'show']);
+$router->add('POST', '/orders/:id/update-status',  [$orders, 'updateStatus']);
+
 // Public (no auth — website calls)
 $pub = new PublicController($db);
 $router->add('GET',  '/public/settings',            [$pub, 'settings']);
@@ -146,4 +153,8 @@ $router->add('GET',  '/public/product-categories',  [$pub, 'productCategories'])
 $router->add('GET',  '/public/products',            [$pub, 'products']);
 $router->add('GET',  '/public/products/:slug',      [$pub, 'productBySlug']);
 $router->add('GET',  '/public/testimonials',        [$pub, 'testimonials']);
+$router->add('GET',  '/public/payment-methods',     [$pub, 'paymentMethods']);
+$router->add('POST', '/public/orders',              [$pub, 'createOrder']);
+$router->add('GET',  '/public/orders/:code/status', [$pub, 'orderStatus']);
+$router->add('POST', '/public/sepay-webhook',       [$pub, 'sepayWebhook']);
 $router->add('POST', '/public/contact',             [$pub, 'submitContact']);
