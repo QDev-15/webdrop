@@ -257,7 +257,7 @@ class Database {
              'Canvas tự nhiên', $colorNeutral, 4.5, 1, 0, 0, 4],
 
             [2, 'Mũ Cói Đan Tay', 'mu-coi-dan-tay',
-             'https://images.unsplash.com/photo-1503342452485-86b5ded8e65a?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1755051661952-00a7b396aaec?w=800&auto=format&fit=crop&q=80',
              255000, 300000, '-15%',
              'Mũ cói đan tay từ cói thiên nhiên, nhẹ và thoáng khí. Bảo vệ khỏi nắng hè, phù hợp đi biển hoặc dã ngoại.',
              'Cói thiên nhiên', $colorNeutral, 4.7, 1, 1, 0, 5],
