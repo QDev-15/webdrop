@@ -2,11 +2,7 @@
 import { Suspense, useEffect, useRef, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
-
-const BANK_NAME    = 'MB Bank'
-const BANK_CODE    = 'MB'
-const ACCOUNT_NO   = '0988632841'
-const ACCOUNT_NAME = 'NGUYEN HUU QUYNH'
+import { useBankInfo } from '@/lib/hooks/useBankInfo'
 
 function fmtPrice(n: number) { return n.toLocaleString('vi-VN') + 'đ' }
 
@@ -121,9 +117,10 @@ function PendingContent() {
   const [dots, setDots] = useState('.')
   const [cvCreds, setCvCreds] = useState<CvCredentials | null>(null)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const bank = useBankInfo()
 
   const content = `WEBDROP ${code}`
-  const qrUrl   = `https://img.vietqr.io/image/${BANK_CODE}-${ACCOUNT_NO}-compact2.jpg?amount=${amount}&addInfo=${encodeURIComponent(content)}&accountName=${encodeURIComponent(ACCOUNT_NAME)}`
+  const qrUrl   = `https://img.vietqr.io/image/${bank.bankCode}-${bank.accountNo}-compact2.jpg?amount=${amount}&addInfo=${encodeURIComponent(content)}&accountName=${encodeURIComponent(bank.accountName)}`
 
   // Animate dots
   useEffect(() => {
@@ -216,9 +213,9 @@ function PendingContent() {
 
           {/* Bank info rows */}
           <div style={{ padding: '4px 20px 16px' }}>
-            <BankRow label="Ngân hàng"     value={BANK_NAME} />
-            <BankRow label="Số tài khoản"  value={ACCOUNT_NO}   copy />
-            <BankRow label="Chủ tài khoản" value={ACCOUNT_NAME} />
+            <BankRow label="Ngân hàng"     value={bank.bankName} />
+            <BankRow label="Số tài khoản"  value={bank.accountNo}   copy />
+            <BankRow label="Chủ tài khoản" value={bank.accountName} />
             <BankRow label="Số tiền"        value={fmtPrice(amount)} copy />
             <div style={{ padding: '9px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12 }}>
               <span style={{ fontSize: 13, color: 'var(--text-3)', flexShrink: 0 }}>Nội dung CK</span>

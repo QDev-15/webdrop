@@ -1,10 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { randomUUID } from 'crypto'
+import { randomUUID, timingSafeEqual } from 'crypto'
 import { sendDownloadEmail } from '@/lib/email'
 import { hashPassword } from '@/lib/auth'
+import { getSepayApiKey } from '@/lib/sepay'
 
-const SEPAY_API_KEY = process.env.SEPAY_API_KEY ?? ''
+function safeEqual(a: string, b: string): boolean {
+  const bufA = Buffer.from(a)
+  const bufB = Buffer.from(b)
+  if (bufA.length !== bufB.length) return false
+  return timingSafeEqual(bufA, bufB)
+}
+
 const TOKEN_TTL_HOURS = 72
 const TOKEN_MAX_USES  = 5
 
@@ -21,7 +28,8 @@ export async function POST(req: NextRequest) {
   // 1. Xác thực API Key — Sepay gửi dạng "Apikey XXXX"
   const authHeader = req.headers.get('authorization') ?? ''
   const token = authHeader.replace(/^Apikey\s+/i, '').trim()
-  if (!SEPAY_API_KEY || token !== SEPAY_API_KEY) {
+  const sepayApiKey = await getSepayApiKey()
+  if (!sepayApiKey || !safeEqual(token, sepayApiKey)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 

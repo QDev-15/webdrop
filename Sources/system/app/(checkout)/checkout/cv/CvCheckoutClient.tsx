@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useBankInfo } from '@/lib/hooks/useBankInfo'
 
 const BASE_PRICE = 59000
 function fmtPrice(n: number) { return n.toLocaleString('vi-VN') + 'đ' }
@@ -24,6 +25,7 @@ const FEATURES = [
 
 export default function CvCheckoutClient() {
   const router = useRouter()
+  const bank = useBankInfo()
   const [form, setForm] = useState<Form>({ name: '', email: '', phone: '' })
   const [errors, setErrors] = useState<Partial<Form>>({})
   const [submitting, setSubmitting] = useState(false)
@@ -181,8 +183,8 @@ export default function CvCheckoutClient() {
                   <div style={{ background: 'var(--accent-light)', border: '1px solid var(--accent-mid)', borderRadius: 10, padding: '14px 18px', margin: '16px 0 4px' }}>
                     <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.5px', marginBottom: 8 }}>Phương thức thanh toán</div>
                     <div style={{ fontSize: 13, color: 'var(--text-2)', lineHeight: 1.8 }}>
-                      <div><strong style={{ color: 'var(--text)' }}>Ngân hàng:</strong> MB Bank</div>
-                      <div><strong style={{ color: 'var(--text)' }}>Số TK:</strong> 0988 632 841 — NGUYEN HUU QUYNH</div>
+                      <div><strong style={{ color: 'var(--text)' }}>Ngân hàng:</strong> {bank.bankName}</div>
+                      <div><strong style={{ color: 'var(--text)' }}>Số TK:</strong> {bank.accountNo} — {bank.accountName}</div>
                       <div><strong style={{ color: 'var(--text)' }}>Số tiền:</strong> <strong style={{ color: 'var(--accent)', fontSize: 15 }}>{fmtPrice(finalPrice)}</strong></div>
                       <div><strong style={{ color: 'var(--text)' }}>Nội dung:</strong> <em>Mã đơn hàng (hiển thị sau khi đặt)</em></div>
                     </div>

@@ -139,6 +139,22 @@ const SETTING_GROUPS: SettingGroup[] = [
     ],
   },
   {
+    label: 'SePay / Ngân hàng', key: 'sepay', icon: '🏦',
+    fields: [
+      {
+        key: 'sepay_api_key',
+        label: 'SePay API Access',
+        type: 'password',
+        placeholder: 'Dán API Access từ my.sepay.vn → Công ty → API Access',
+        hint: 'Token này dùng để xác thực webhook Sepay gửi đến VÀ để đồng bộ thông tin tài khoản ngân hàng bên dưới. Chỉ 1 token duy nhất — Sepay không cấp token riêng cho từng việc.',
+      },
+      { key: 'sepay_bank_name',    label: 'Ngân hàng (tên hiển thị)', placeholder: 'MB Bank' },
+      { key: 'sepay_bank_code',    label: 'Mã ngân hàng (VietQR)',    placeholder: 'MB', hint: 'Mã ngắn dùng để tạo QR — VD: MB, VCB, TCB...' },
+      { key: 'sepay_account_no',   label: 'Số tài khoản',             placeholder: '0988632841' },
+      { key: 'sepay_account_name', label: 'Chủ tài khoản',            placeholder: 'NGUYEN HUU QUYNH' },
+    ],
+  },
+  {
     label: 'Tích hợp', key: 'integrations', icon: '🔌',
     fields: [
       {
@@ -177,6 +193,8 @@ export default function AdminSettingsPage() {
   const [saving, setSaving]       = useState(false)
   const [saved, setSaved]         = useState(false)
   const [activeGroup, setActiveGroup] = useState('general')
+  const [syncing, setSyncing]     = useState(false)
+  const [syncMsg, setSyncMsg]     = useState<{ type: 'ok' | 'error'; text: string } | null>(null)
 
   useEffect(() => {
     fetch('/api/admin/settings')
@@ -201,6 +219,43 @@ export default function AdminSettingsPage() {
 
   const set = (key: string, val: string) => setValues(prev => ({ ...prev, [key]: val }))
   const currentGroup = SETTING_GROUPS.find(g => g.key === activeGroup)!
+
+  async function handleSyncFromSepay() {
+    const apiKey = (values.sepay_api_key || '').trim()
+    if (!apiKey) {
+      setSyncMsg({ type: 'error', text: 'Nhập SePay API Access trước khi đồng bộ' })
+      return
+    }
+    setSyncing(true)
+    setSyncMsg(null)
+    try {
+      const res  = await fetch('/api/admin/settings/sepay-sync', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ apiKey }),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setSyncMsg({ type: 'error', text: data.error || 'Đồng bộ thất bại' })
+        return
+      }
+      setValues(prev => ({
+        ...prev,
+        sepay_bank_name:    data.bank.bankName,
+        sepay_bank_code:    data.bank.bankCode,
+        sepay_account_no:   data.bank.accountNo,
+        sepay_account_name: data.bank.accountName,
+      }))
+      setSyncMsg({
+        type: data.warning ? 'error' : 'ok',
+        text: data.warning || '✓ Đã lấy thông tin tài khoản từ SePay — nhớ nhấn "Lưu cài đặt" để áp dụng',
+      })
+    } catch {
+      setSyncMsg({ type: 'error', text: 'Không kết nối được đến SePay' })
+    } finally {
+      setSyncing(false)
+    }
+  }
 
   return (
     <AdminLayout title="Cài đặt">
@@ -228,6 +283,28 @@ export default function AdminSettingsPage() {
           {/* Fields panel */}
           <div style={{ flex: 1, background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 12, padding: '24px 28px' }}>
             <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 4 }}>{currentGroup.icon} {currentGroup.label}</div>
+
+            {currentGroup.key === 'sepay' && (
+              <div style={{ margin: '14px 0 4px', display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+                <button
+                  type="button"
+                  onClick={handleSyncFromSepay}
+                  disabled={syncing}
+                  style={{
+                    padding: '9px 16px', background: 'var(--accent-light)', color: 'var(--accent)',
+                    border: '1px solid var(--accent-mid)', borderRadius: 8, fontSize: 13, fontWeight: 600,
+                    fontFamily: 'var(--sans)', cursor: syncing ? 'not-allowed' : 'pointer', opacity: syncing ? .7 : 1,
+                  }}
+                >
+                  {syncing ? 'Đang đồng bộ...' : '🔄 Đồng bộ tài khoản từ SePay'}
+                </button>
+                {syncMsg && (
+                  <span style={{ fontSize: 12.5, color: syncMsg.type === 'ok' ? 'var(--accent)' : 'var(--danger)' }}>
+                    {syncMsg.text}
+                  </span>
+                )}
+              </div>
+            )}
 
             {/* Footer group: full-width single column */}
             {currentGroup.key === 'footer' ? (

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../contexts/CartContext'
 import { useSite } from '../contexts/SiteContext'
@@ -6,8 +6,8 @@ import { useSite } from '../contexts/SiteContext'
 export default function CartPage() {
   const { items, subtotal, updateQty, removeItem } = useCart()
   const { settings, products } = useSite()
-  const [coupon, setCoupon] = useState('')
-  const [couponMsg, setCouponMsg] = useState('')
+  // const [coupon, setCoupon] = useState('')
+  // const [couponMsg, setCouponMsg] = useState('')
 
   const fmt = (n: number) => n.toLocaleString('vi-VN') + 'đ'
   const shippingFee = Number(settings['shipping_fee'] || 0)
@@ -18,10 +18,10 @@ export default function CartPage() {
 
   const related = products.filter(p => !items.some(i => i.product_id === p.id) && p.status === 'published').slice(0, 4)
 
-  const applyCoupon = () => {
-    if (!coupon.trim()) return
-    setCouponMsg('Tính năng mã giảm giá sẽ sớm ra mắt — cảm ơn bạn đã quan tâm!')
-  }
+  // const applyCoupon = () => {
+  //   if (!coupon.trim()) return
+  //   setCouponMsg('Tính năng mã giảm giá sẽ sớm ra mắt — cảm ơn bạn đã quan tâm!')
+  // }
 
   if (items.length === 0) {
     return (
@@ -139,11 +139,11 @@ export default function CartPage() {
                 </div>
               )}
 
-              <div className="sb-coupon-input">
+              {/* <div className="sb-coupon-input">
                 <input type="text" value={coupon} onChange={e => setCoupon(e.target.value)} placeholder="Nhập mã giảm giá" aria-label="Mã giảm giá" />
                 <button type="button" onClick={applyCoupon}>Áp dụng</button>
               </div>
-              {couponMsg && <p style={{ fontSize: 12, color: 'var(--text-3)', marginTop: -12, marginBottom: 12 }}>{couponMsg}</p>}
+              {couponMsg && <p style={{ fontSize: 12, color: 'var(--text-3)', marginTop: -12, marginBottom: 12 }}>{couponMsg}</p>} */}
 
               <div className="sb-summary-row total">
                 <span>Tổng cộng</span>

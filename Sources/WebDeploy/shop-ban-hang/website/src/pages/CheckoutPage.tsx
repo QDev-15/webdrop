@@ -132,7 +132,7 @@ export default function CheckoutPage() {
                     <img
                       src={`https://img.vietqr.io/image/${result.sepay.bank_code}-${result.sepay.account_number}-compact2.png?amount=${result.sepay.amount}&addInfo=${encodeURIComponent(result.sepay.content)}&accountName=${encodeURIComponent(result.sepay.account_name)}`}
                       alt="Mã QR chuyển khoản"
-                      style={{ maxWidth: 280, width: '100%', borderRadius: 12, border: '1px solid var(--border)' }}
+                      style={{ maxWidth: 280, width: '100%', borderRadius: 12, border: '1px solid var(--border)', margin: "0 auto" }}
                     />
                     <div style={{ marginTop: 16, fontSize: 14, color: 'var(--text-2)', textAlign: 'left' }}>
                       <div className="sb-summary-row"><span>Ngân hàng</span><span>{result.sepay.bank_code}</span></div>

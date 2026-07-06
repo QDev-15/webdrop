@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { templates } from '@/data/templates'
+import { useBankInfo } from '@/lib/hooks/useBankInfo'
 
 interface FormData {
   name: string; email: string; phone: string; note: string
@@ -28,6 +29,7 @@ export default function CheckoutClient({
   const router       = useRouter()
   const slug         = searchParams.get('slug') ?? ''
   const template     = templates.find(t => t.slug === slug)
+  const bank          = useBankInfo()
 
   const [step, setStep]                 = useState(1)
   const [purchaseType, setPurchaseType] = useState<PurchaseType>('template')
@@ -325,9 +327,9 @@ export default function CheckoutClient({
                       <div style={{ background: 'var(--accent-light)', border: '1px solid var(--accent-mid)', borderRadius: 10, padding: '16px 18px', marginBottom: 16 }}>
                         <div style={{ fontSize: 13, fontWeight: 500, color: 'var(--accent)', marginBottom: 8 }}>Chuyển khoản ngân hàng</div>
                         <div style={{ fontSize: 13, color: 'var(--text-2)', lineHeight: 1.8, fontWeight: 300 }}>
-                          <div><strong style={{ color: 'var(--text)' }}>Ngân hàng:</strong> MB Bank</div>
-                          <div><strong style={{ color: 'var(--text)' }}>Số tài khoản:</strong> 0988 632 841</div>
-                          <div><strong style={{ color: 'var(--text)' }}>Chủ tài khoản:</strong> NGUYEN HUU QUYNH</div>
+                          <div><strong style={{ color: 'var(--text)' }}>Ngân hàng:</strong> {bank.bankName}</div>
+                          <div><strong style={{ color: 'var(--text)' }}>Số tài khoản:</strong> {bank.accountNo}</div>
+                          <div><strong style={{ color: 'var(--text)' }}>Chủ tài khoản:</strong> {bank.accountName}</div>
                           <div><strong style={{ color: 'var(--text)' }}>Nội dung:</strong> <em>Hiển thị sau khi đặt hàng</em></div>
                           <div style={{ marginTop: 8, paddingTop: 8, borderTop: '1px solid rgba(26,107,82,.15)' }}>
                             <strong style={{ color: 'var(--text)' }}>Số tiền:</strong>{' '}
