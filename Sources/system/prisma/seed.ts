@@ -782,12 +782,14 @@ async function main() {
     console.log('⏭  How It Works packages: đã có dữ liệu, bỏ qua')
   }
 
-  // ── Blog: Category + bài viết mẫu "Cẩm nang" ───────────────────────────
-  const blogCategory = await prisma.category.upsert({
-    where: { slug: 'cam-nang' },
-    update: {},
-    create: { name: 'Cẩm nang', slug: 'cam-nang' },
-  })
+  // ── Blog: Categories + bài viết mẫu ─────────────────────────────────────
+  const blogCategories = await Promise.all([
+    prisma.category.upsert({ where: { slug: 'cam-nang' }, update: {}, create: { name: 'Cẩm nang', slug: 'cam-nang' } }),
+    prisma.category.upsert({ where: { slug: 'case-study' }, update: {}, create: { name: 'Case Study', slug: 'case-study' } }),
+    prisma.category.upsert({ where: { slug: 'so-sanh' }, update: {}, create: { name: 'So sánh', slug: 'so-sanh' } }),
+  ])
+  const blogCategoryMap = Object.fromEntries(blogCategories.map(c => [c.slug, c.id]))
+  const blogCategory = blogCategories[0]
 
   const blogPosts: {
     slug: string
@@ -796,6 +798,7 @@ async function main() {
     metaTitle: string
     metaDescription: string
     content: string
+    categorySlug?: string
   }[] = [
     {
       slug: 'website-nha-khoa-tang-dat-lich',
@@ -827,6 +830,257 @@ Phần lớn khách hàng tìm phòng khám nha khoa qua tìm kiếm trên đi�
 
 Cả 5 yếu tố trên đều không đòi hỏi ngân sách lớn — quan trọng là được thiết kế đúng ngay từ đầu. Đây cũng là các nguyên tắc chúng tôi áp dụng khi xây dựng bộ template website nha khoa tại webdrop.store.`,
     },
+    {
+      slug: 'case-study-nha-khoa-chinh-nha-saigon',
+      title: 'Case study: Thiết kế website cho phòng khám nha khoa chỉnh nha',
+      excerpt: 'Ngành chỉnh nha có đặc thù riêng: quy trình điều trị dài, khách cần theo dõi tiến độ, và niềm tin vào bác sĩ là yếu tố quyết định. Đây là cách chúng tôi tiếp cận khi xây dựng website cho phòng khám chuyên chỉnh nha.',
+      metaTitle: 'Case study: Website cho phòng khám nha khoa chỉnh nha | webdrop.store',
+      metaDescription: 'Cách tiếp cận thiết kế website cho phòng khám chuyên chỉnh nha — quy trình điều trị, bộ lọc phương pháp, đội ngũ bác sĩ và form tư vấn.',
+      categorySlug: 'case-study',
+      content: `Khi nhận yêu cầu xây dựng website cho một phòng khám chuyên chỉnh nha, điều đầu tiên chúng tôi làm không phải là chọn màu sắc hay font chữ, mà là xác định câu hỏi lớn nhất mà khách hàng tiềm năng đang có trong đầu: chỉnh nha mất bao lâu, tốn bao nhiêu, và ai sẽ làm cho mình.
+
+**1. Quy trình điều trị được trực quan hóa**
+
+Chỉnh nha là dịch vụ kéo dài nhiều tháng, thậm chí vài năm. Thay vì chỉ liệt kê dịch vụ, chúng tôi thiết kế riêng một trang mô tả từng bước quy trình: thăm khám, lấy dấu răng, gắn khí cụ, tái khám định kỳ, tháo niềng. Khách hàng nhìn vào biết ngay mình đang bắt đầu từ đâu.
+
+**2. Bộ lọc theo loại hình chỉnh nha**
+
+Chỉnh nha có nhiều phương pháp như mắc cài kim loại, mắc cài sứ, khay trong suốt, với mức giá khác nhau. Trang dịch vụ cho phép khách so sánh nhanh giữa các phương pháp thay vì phải đọc hết từng đoạn văn dài.
+
+**3. Đội ngũ bác sĩ là trọng tâm, không phải phụ**
+
+Với dịch vụ có thời gian điều trị dài, khách hàng gắn bó với một bác sĩ cụ thể chứ không phải một phòng khám chung chung. Trang bác sĩ được thiết kế nổi bật ngay từ trang chủ, không giấu trong menu con.
+
+**4. Form đặt lịch tư vấn rút gọn**
+
+Khác với dịch vụ khám nhanh, chỉnh nha thường bắt đầu bằng buổi tư vấn miễn phí. Form đặt lịch vì vậy được thiết kế đơn giản, chỉ hỏi thông tin đủ để phòng khám liên hệ lại tư vấn kỹ hơn qua điện thoại.
+
+Kết quả là một website tập trung đúng vào tâm lý của người đang cân nhắc chỉnh nha: cần thời gian suy nghĩ, cần thông tin rõ ràng, và cần tin tưởng vào người sẽ đồng hành cùng mình trong suốt quá trình điều trị.`,
+    },
+    {
+      slug: 'case-study-shop-ban-hang-huu-co',
+      title: 'Case study: Xây dựng website bán hàng cho sản phẩm hữu cơ, thủ công',
+      excerpt: 'Sản phẩm hữu cơ và thủ công có đặc thù khác hẳn hàng công nghiệp: câu chuyện thương hiệu, chất liệu, và niềm tin vào nguồn gốc quan trọng không kém giá bán.',
+      metaTitle: 'Case study: Website bán hàng hữu cơ, thủ công | webdrop.store',
+      metaDescription: 'Cách tiếp cận thiết kế website bán hàng cho sản phẩm hữu cơ, thủ công — kể chuyện thương hiệu, mô tả chất liệu, bộ lọc theo nhu cầu, thanh toán linh hoạt.',
+      categorySlug: 'case-study',
+      content: `Bán hàng hữu cơ và đồ thủ công khác với bán hàng công nghiệp ở một điểm quan trọng: khách hàng không chỉ mua sản phẩm, họ mua câu chuyện đằng sau sản phẩm đó. Website vì vậy cần làm được nhiều hơn một trang danh mục sản phẩm thông thường.
+
+**1. Trang chủ kể chuyện trước khi bán hàng**
+
+Thay vì đưa ngay sản phẩm lên đầu trang, phần đầu trang chủ dành để giới thiệu triết lý thương hiệu: vì sao chọn nguyên liệu hữu cơ, quy trình sản xuất thủ công khác gì hàng đại trà. Sản phẩm xuất hiện ngay sau đó như một hệ quả tự nhiên của câu chuyện.
+
+**2. Mô tả sản phẩm nêu rõ chất liệu**
+
+Với hàng thủ công, chất liệu là yếu tố khách hàng quan tâm hàng đầu — vải gì, xử lý ra sao, có an toàn cho da nhạy cảm không. Mỗi sản phẩm có mục chất liệu tách riêng khỏi mô tả chung, dễ quét mắt tìm thông tin.
+
+**3. Bộ lọc theo nhu cầu thực tế**
+
+Khách mua hàng hữu cơ thường tìm theo nhu cầu cụ thể như màu sắc, mức giá, tình trạng còn hàng, hơn là duyệt ngẫu nhiên. Trang sản phẩm có bộ lọc đầy đủ: danh mục, khoảng giá, màu sắc, đánh giá, tình trạng kho, kèm ô tìm kiếm gõ là ra kết quả ngay.
+
+**4. Thanh toán linh hoạt, không ép một hình thức**
+
+Không phải khách hàng nào cũng quen chuyển khoản online. Website hỗ trợ song song thanh toán khi nhận hàng và chuyển khoản qua mã QR, để khách chọn hình thức họ thấy an tâm nhất.
+
+Một website bán hàng tốt cho nhóm sản phẩm hữu cơ, thủ công không chỉ là một cửa hàng online — nó là nơi khách hàng hiểu được vì sao sản phẩm có giá trị hơn hàng đại trà cùng loại.`,
+    },
+    {
+      slug: 'case-study-nha-khoa-tre-em',
+      title: 'Case study: Thiết kế website nha khoa trẻ em thân thiện với phụ huynh',
+      excerpt: 'Website nha khoa trẻ em có hai đối tượng cùng lúc: trẻ nhỏ cần cảm thấy an toàn, phụ huynh cần thông tin rõ ràng để yên tâm đặt lịch.',
+      metaTitle: 'Case study: Website nha khoa trẻ em | webdrop.store',
+      metaDescription: 'Cách cân bằng thiết kế website nha khoa trẻ em giữa hai đối tượng: trẻ nhỏ và phụ huynh — màu sắc, nội dung, cẩm nang cha mẹ, form đặt lịch.',
+      categorySlug: 'case-study',
+      content: `Nha khoa trẻ em là một trong những ngách khó thiết kế nhất, vì website phải nói chuyện được với hai đối tượng hoàn toàn khác nhau cùng lúc: đứa trẻ không phải người quyết định nhưng ảnh hưởng đến cảm xúc chuyến đi khám, và phụ huynh là người thực sự đặt lịch và trả tiền.
+
+**1. Màu sắc và hình khối mềm mại nhưng không trẻ con hóa quá mức**
+
+Màu sắc pastel, bo góc lớn giúp không gian trông thân thiện, nhưng vẫn cần giữ sự chuyên nghiệp để phụ huynh tin tưởng đây là cơ sở y tế thật sự, không phải khu vui chơi.
+
+**2. Nội dung viết cho phụ huynh, hình ảnh nói với trẻ**
+
+Toàn bộ phần chữ về dịch vụ, giá cả, quy trình được viết rõ ràng, chuyên nghiệp dành cho phụ huynh đọc và quyết định. Hình ảnh minh họa, biểu tượng thì thiết kế gần gũi, dễ thương để giảm cảm giác lo sợ khi trẻ nhìn vào.
+
+**3. Cẩm nang cho cha mẹ như một mục riêng**
+
+Phụ huynh có nhiều câu hỏi trước khi đưa con đi khám: khi nào nên khám lần đầu, cách chuẩn bị tâm lý cho trẻ, chăm sóc răng sữa. Một mục cẩm nang riêng giúp trả lời trước những băn khoăn này, giảm bớt lo lắng trước khi đặt lịch.
+
+**4. Form đặt lịch hỏi thông tin của cả phụ huynh và trẻ**
+
+Khác với nha khoa người lớn, form đặt lịch cần thêm trường tên trẻ và độ tuổi để phòng khám chuẩn bị trước cách tiếp cận phù hợp với từng lứa tuổi.
+
+Thiết kế cho nha khoa trẻ em vì vậy không đơn thuần là làm dễ thương hơn, mà là thiết kế đồng thời cho hai lớp cảm xúc khác nhau trong cùng một website.`,
+    },
+    {
+      slug: 'checklist-website-ban-hang-online',
+      title: 'Checklist 10 điều website bán hàng online cần có trước khi ra mắt',
+      excerpt: 'Trước khi bấm nút ra mắt website bán hàng, hãy chắc chắn 10 điều dưới đây đã có — thiếu một trong số này có thể khiến bạn mất đơn hàng ngay từ lần đầu khách ghé thăm.',
+      metaTitle: 'Checklist 10 điều website bán hàng online cần có | webdrop.store',
+      metaDescription: '10 điều cần kiểm tra trước khi ra mắt website bán hàng online: giá cả, thanh toán, tìm kiếm, tốc độ tải trang và niềm tin khách hàng.',
+      content: `Nhiều chủ shop mở website xong mới phát hiện thiếu những thứ cơ bản khiến khách bỏ giỏ hàng giữa chừng. Dưới đây là 10 điều nên kiểm tra trước khi chính thức ra mắt website bán hàng.
+
+- Trang sản phẩm có ảnh rõ nét, nhiều góc chụp, không chỉ 1 ảnh duy nhất
+- Giá hiển thị rõ ràng, không bắt khách phải nhắn tin hỏi giá
+- Có ít nhất 2 phương thức thanh toán, ví dụ thanh toán khi nhận hàng và chuyển khoản qua mã QR
+- Chính sách đổi trả được ghi rõ, dễ tìm thấy
+- Form liên hệ hoặc số điện thoại hiển thị ở nhiều vị trí, không chỉ trang liên hệ
+- Giỏ hàng và thanh toán hoạt động mượt trên điện thoại, không chỉ máy tính
+- Có tìm kiếm sản phẩm theo tên, không bắt khách cuộn qua toàn bộ danh mục
+- Có ít nhất vài đánh giá thật từ khách hàng, không để trang trống hoàn toàn
+- Tốc độ tải trang dưới 3 giây, ảnh sản phẩm đã được nén
+- Có thông tin cửa hàng thật như địa chỉ, giờ mở cửa để tạo niềm tin, không phải một trang vô danh
+
+Một website bán hàng không cần quá cầu kỳ để bắt đầu bán được hàng, nhưng thiếu bất kỳ điều nào trong danh sách trên đều có thể khiến khách rời đi trước khi kịp đặt hàng.`,
+    },
+    {
+      slug: 'thiet-ke-website-spa-tham-my',
+      title: 'Website spa/thẩm mỹ nên thiết kế thế nào để tăng khách hàng',
+      excerpt: 'Spa và thẩm mỹ viện là ngành mà cảm nhận thị giác quyết định phần lớn niềm tin ban đầu của khách. Đây là những nguyên tắc thiết kế giúp website spa chuyển đổi khách ghé thăm thành khách đặt lịch.',
+      metaTitle: 'Website spa, thẩm mỹ nên thiết kế thế nào | webdrop.store',
+      metaDescription: 'Nguyên tắc thiết kế website spa, thẩm mỹ viện giúp tăng đặt lịch: hình ảnh thật, bảng dịch vụ theo nhu cầu, ưu đãi liệu trình, đặt lịch online.',
+      content: `Khách hàng chọn spa hoặc thẩm mỹ viện phần lớn dựa trên cảm giác nơi này có sạch sẽ, chuyên nghiệp, đáng tin không, và cảm giác đó hình thành trong vài giây đầu tiên nhìn vào website.
+
+**1. Hình ảnh không gian thật, không dùng ảnh stock chung chung**
+
+Ảnh chụp thật không gian spa, phòng dịch vụ tạo cảm giác chân thực hơn nhiều so với ảnh minh họa lấy từ internet, dù ảnh thật có thể không đẹp hoàn hảo bằng ảnh stock.
+
+**2. Bảng dịch vụ phân nhóm rõ ràng theo nhu cầu**
+
+Spa thường có rất nhiều dịch vụ như chăm sóc da, massage, giảm béo, làm đẹp. Nhóm dịch vụ theo nhu cầu cụ thể của khách thay vì liệt kê một danh sách dài giúp khách tìm đúng thứ mình cần nhanh hơn.
+
+**3. Ưu đãi và gói liệu trình hiển thị nổi bật**
+
+Khách hàng spa thường quan tâm đến gói liệu trình nhiều buổi hơn là dịch vụ lẻ. Nếu có ưu đãi theo gói, nên hiển thị ngay ở vị trí dễ thấy thay vì chỉ nói khi khách gọi điện hỏi.
+
+**4. Đặt lịch online thay vì chỉ có số điện thoại**
+
+Nhiều khách hàng có xu hướng ngại gọi điện đặt lịch lần đầu. Một form đặt lịch online đơn giản giúp họ chủ động hơn, giảm rào cản tâm lý ban đầu.
+
+Thiết kế website spa, thẩm mỹ tốt không phải là làm cho đẹp mắt nhất có thể, mà là làm cho khách cảm thấy an tâm đủ để bước qua rào cản đặt lịch lần đầu tiên.`,
+    },
+    {
+      slug: 'website-cho-quan-cafe-nha-hang',
+      title: 'Mở quán cafe/nhà hàng có cần website riêng không?',
+      excerpt: 'Nhiều chủ quán nghĩ chỉ cần fanpage Facebook là đủ. Nhưng có một số tình huống website riêng vẫn mang lại giá trị mà fanpage không thể thay thế được.',
+      metaTitle: 'Mở quán cafe, nhà hàng có cần website riêng không | webdrop.store',
+      metaDescription: 'So sánh vai trò của website và fanpage Facebook cho quán cafe, nhà hàng — tìm kiếm Google, menu chuyên nghiệp, đặt bàn online.',
+      content: `Đây là câu hỏi phổ biến của nhiều chủ quán cafe, nhà hàng nhỏ: đã có fanpage Facebook rồi, có cần làm thêm website không? Câu trả lời phụ thuộc vào việc bạn muốn quán của mình được tìm thấy theo cách nào.
+
+**1. Fanpage phụ thuộc vào thuật toán, website thì không**
+
+Bài đăng trên fanpage chỉ tiếp cận được một phần nhỏ người theo dõi do thuật toán giới hạn hiển thị tự nhiên. Website luôn hiển thị đầy đủ thông tin cho bất kỳ ai truy cập, không bị giới hạn bởi thuật toán của bên thứ ba.
+
+**2. Tìm kiếm Google là kênh khách hàng mới không có trên fanpage**
+
+Người tìm nhà hàng hải sản gần đây trên Google thường không có sẵn trên fanpage của bạn để tìm thấy. Một website có SEO cơ bản gồm tên quán, địa chỉ, món ăn giúp xuất hiện đúng lúc khách đang tìm kiếm.
+
+**3. Menu và đặt bàn chuyên nghiệp hơn qua website**
+
+Xem menu qua ảnh đăng trên fanpage thường lộn xộn, khó tìm món cụ thể. Website có trang menu dạng danh sách, phân loại theo nhóm món, kèm hình ảnh và giá rõ ràng, dễ quét mắt hơn nhiều.
+
+**4. Website và fanpage nên đi cùng nhau, không thay thế nhau**
+
+Câu trả lời thực tế không phải là chọn một trong hai, mà là dùng fanpage để tương tác, đăng khuyến mãi hàng ngày, và dùng website để làm nơi khách tra cứu thông tin ổn định, đặt bàn, và xuất hiện trên Google tìm kiếm.
+
+Với quán quy mô nhỏ mới mở, website không phải là điều bắt buộc ngay từ ngày đầu, nhưng khi lượng khách tìm kiếm online tăng lên, đây là kênh giúp quán được tìm thấy mà không phụ thuộc hoàn toàn vào một nền tảng mạng xã hội duy nhất.`,
+    },
+    {
+      slug: 'top-10-mau-website-nha-khoa-2026',
+      title: 'Top 10 mẫu website nha khoa đẹp nhất 2026 (kèm demo)',
+      excerpt: 'Tổng hợp 10 mẫu website nha khoa với 10 phong cách thiết kế khác nhau, từ sang trọng, tối giản đến trẻ trung, phù hợp cho từng định vị phòng khám.',
+      metaTitle: 'Top 10 mẫu website nha khoa đẹp nhất 2026 | webdrop.store',
+      metaDescription: 'So sánh 10 mẫu website nha khoa theo 10 phong cách thiết kế khác nhau, kèm demo trực tiếp, phù hợp từng định vị phòng khám.',
+      categorySlug: 'so-sanh',
+      content: `Mỗi phòng khám nha khoa có một định vị khác nhau: cao cấp, gia đình, chuyên sâu, hay thân thiện với trẻ em. Dưới đây là 10 mẫu website nha khoa với 10 phong cách thiết kế riêng biệt để bạn tham khảo theo đúng định vị của phòng khám mình.
+
+- Phong cách sang trọng, tối màu, phù hợp phòng khám nha khoa cao cấp, dịch vụ thẩm mỹ răng giá trị cao
+- Phong cách tối giản, tươi sáng, phù hợp phòng khám nha khoa gia đình, đa khoa
+- Phong cách tương phản mạnh, hiện đại, phù hợp phòng khám định vị cao cấp, tập trung thẩm mỹ
+- Phong cách hình khối, có cấu trúc rõ ràng, phù hợp phòng khám chỉnh nha chuyên sâu
+- Phong cách pastel, mềm mại, phù hợp phòng khám nha khoa trẻ em
+- Phong cách năng lượng, tối màu có điểm nhấn nổi bật, phù hợp phòng khám Implant công nghệ cao
+- Phong cách chuyên nghiệp, gam xanh trầm, phù hợp phòng khám nha khoa quốc tế, đa chi nhánh
+- Phong cách thiền định, tối giản tuyệt đối, phù hợp phòng khám định vị chăm sóc nhẹ nhàng, không đau
+- Phong cách hoài cổ, cá tính riêng, phù hợp phòng khám muốn tạo dấu ấn khác biệt
+- Phong cách kính mờ, hiện đại công nghệ, phù hợp phòng khám định vị công nghệ tiên tiến
+
+Cả 10 mẫu đều dùng chung một bộ khung tính năng: trang dịch vụ, đội ngũ bác sĩ, đặt lịch online, đánh giá khách hàng, chỉ khác nhau ở màu sắc, font chữ và cách bố trí để phù hợp với từng định vị thương hiệu. Bạn có thể xem demo trực tiếp từng mẫu trong thư viện mẫu của chúng tôi trước khi quyết định.`,
+    },
+    {
+      slug: 'nen-chon-goi-template-hay-website-hoan-chinh',
+      title: 'Nên chọn Gói Template hay Gói Website hoàn chỉnh?',
+      excerpt: 'Cùng là mua một website, nhưng Gói Template và Gói Website hoàn chỉnh phục vụ hai nhu cầu rất khác nhau. Đây là cách chọn đúng gói cho tình huống của bạn.',
+      metaTitle: 'Nên chọn Gói Template hay Gói Website hoàn chỉnh | webdrop.store',
+      metaDescription: 'So sánh Gói Template và Gói Website hoàn chỉnh của webdrop.store — khác biệt về vận hành, chi phí và cách chọn đúng gói.',
+      categorySlug: 'so-sanh',
+      content: `Nhiều khách hàng mới tìm hiểu thường bối rối giữa hai lựa chọn: mua Gói Template hay Gói Website hoàn chỉnh. Cả hai đều cho ra một website chạy được, nhưng khác nhau ở cách vận hành phía sau.
+
+**Gói Template — phù hợp khi bạn muốn tự chủ hoàn toàn**
+
+Đây là file HTML/CSS thuần, mở thẳng trên trình duyệt, không cần server hay cơ sở dữ liệu. Bạn tự chỉnh sửa nội dung trực tiếp trong file, tự upload lên bất kỳ hosting nào. Phù hợp với người có chút hiểu biết kỹ thuật cơ bản, hoặc muốn nhờ người quen chỉnh sửa thêm sau này, và có ngân sách hạn chế.
+
+**Gói Website hoàn chỉnh — phù hợp khi bạn muốn quản lý nội dung dễ dàng**
+
+Đây là hệ thống kết hợp giao diện người dùng, backend và cơ sở dữ liệu, đi kèm trang quản trị riêng. Bạn tự thêm sản phẩm, bài viết, đổi thông tin liên hệ qua giao diện quản trị mà không cần đụng vào code. Phù hợp với người kinh doanh cần cập nhật nội dung thường xuyên như sản phẩm mới, khuyến mãi, bài viết, mà không muốn phụ thuộc vào việc sửa code mỗi lần.
+
+**Câu hỏi để tự quyết định**
+
+Nếu website của bạn gần như không đổi nội dung sau khi ra mắt, ví dụ trang giới thiệu công ty hay portfolio cá nhân, Gói Template là đủ và tiết kiệm chi phí. Nếu bạn cần tự thêm sản phẩm, bài viết, xử lý đơn hàng liên tục, Gói Website hoàn chỉnh sẽ tiết kiệm thời gian hơn nhiều về lâu dài dù chi phí ban đầu cao hơn.
+
+Không có lựa chọn nào tốt hơn tuyệt đối, chỉ có lựa chọn phù hợp hơn với cách bạn sẽ vận hành website sau khi nhận bàn giao.`,
+    },
+    {
+      slug: 'cv-online-la-gi',
+      title: 'CV Online là gì và vì sao nên có link CV thay vì chỉ file PDF',
+      excerpt: 'Gửi file PDF khi xin việc là cách làm quen thuộc, nhưng một link CV online đang dần trở thành lựa chọn được nhiều ứng viên sử dụng thêm. Đây là những khác biệt thực tế giữa hai hình thức.',
+      metaTitle: 'CV Online là gì, vì sao nên có link CV | webdrop.store',
+      metaDescription: 'So sánh CV Online và file PDF truyền thống khi xin việc — cập nhật một lần, dễ chia sẻ, trình bày trực quan hơn trên màn hình.',
+      content: `Khi ứng tuyển, phần lớn mọi người vẫn gửi CV dưới dạng file PDF đính kèm email. Cách này hoạt động tốt, nhưng CV Online, một trang web cá nhân hiển thị CV qua một đường link, đang dần được nhiều ứng viên lựa chọn thêm vì một vài lý do thực tế.
+
+**1. Cập nhật một lần, dùng cho mọi nơi ứng tuyển**
+
+Với file PDF, mỗi lần cập nhật kinh nghiệm bạn phải tải file mới và gửi lại cho từng nơi. Với CV Online, bạn chỉnh sửa một lần trên hệ thống, đường link không đổi, nhà tuyển dụng luôn xem được phiên bản mới nhất.
+
+**2. Dễ chia sẻ hơn trong nhiều tình huống**
+
+Một đường link ngắn dễ dán vào tin nhắn Zalo, email, hồ sơ mạng xã hội nghề nghiệp, thay vì phải gửi kèm file đính kèm mà một số nền tảng tuyển dụng giới hạn dung lượng hoặc định dạng.
+
+**3. Trình bày trực quan hơn trên màn hình**
+
+CV Online thiết kế dạng cuộn trang một trang duy nhất, tối ưu để đọc trên màn hình thay vì mô phỏng khổ giấy A4 như file PDF, dễ đọc hơn khi nhà tuyển dụng xem trên điện thoại hoặc máy tính.
+
+**4. Vẫn xuất được file khi cần**
+
+CV Online không thay thế hoàn toàn PDF, vẫn có thể xuất ra file khi một số nơi tuyển dụng yêu cầu nộp file cụ thể. Đây là lựa chọn bổ sung, không phải đánh đổi.
+
+Với ứng viên ứng tuyển nhiều nơi cùng lúc hoặc thường xuyên cập nhật kinh nghiệm, có thêm một link CV online bên cạnh file PDF truyền thống là một lựa chọn hợp lý, không tốn thêm nhiều công sức duy trì.`,
+    },
+    {
+      slug: 'website-agency-portfolio-can-gi',
+      title: 'Website Agency/Portfolio cần có gì để khách hàng tin tưởng chọn bạn',
+      excerpt: 'Với agency hay freelancer, website portfolio thường là nơi đầu tiên khách hàng tiềm năng đánh giá năng lực trước khi liên hệ. Đây là những yếu tố quyết định họ có nhắn tin cho bạn hay không.',
+      metaTitle: 'Website Agency, Portfolio cần có gì | webdrop.store',
+      metaDescription: 'Yếu tố quan trọng trong website portfolio agency, freelancer: dự án tiêu biểu, bối cảnh dự án, bảng giá minh bạch, phản hồi nhanh.',
+      content: `Khác với bán sản phẩm vật lý, agency và freelancer bán năng lực và uy tín, thứ khó chứng minh chỉ qua vài dòng giới thiệu. Website portfolio vì vậy đóng vai trò quan trọng hơn nhiều so với một trang giới thiệu thông thường.
+
+**1. Dự án tiêu biểu đặt lên đầu, không chôn trong danh sách dài**
+
+Khách hàng tiềm năng thường chỉ dành vài chục giây lướt qua trước khi quyết định có xem tiếp hay không. Vài dự án tốt nhất nên xuất hiện ngay ở trang chủ thay vì bắt khách phải bấm vào trang dự án mới thấy.
+
+**2. Mỗi dự án nên có bối cảnh, không chỉ ảnh đẹp**
+
+Một ảnh chụp giao diện đẹp không nói lên được vấn đề gì đã giải quyết cho khách hàng. Mỗi dự án nên có một đoạn ngắn mô tả bài toán ban đầu và cách tiếp cận, giúp khách hàng tiềm năng hình dung được năng lực xử lý vấn đề, không chỉ tay nghề thẩm mỹ.
+
+**3. Bảng giá minh bạch hoặc quy trình làm việc rõ ràng**
+
+Nhiều agency ngại công khai giá vì sợ mất khách so sánh. Nhưng việc giấu hoàn toàn giá và quy trình khiến khách hàng ngại liên hệ vì không biết mức độ phù hợp với ngân sách của mình. Công khai khoảng giá tham khảo hoặc ít nhất quy trình làm việc theo từng bước giúp khách chủ động hơn khi quyết định liên hệ.
+
+**4. Thông tin liên hệ dễ tìm, phản hồi nhanh là lợi thế cạnh tranh**
+
+Với dịch vụ agency, tốc độ phản hồi ban đầu ảnh hưởng trực tiếp đến việc chốt được khách hay không. Nút liên hệ nên xuất hiện ở nhiều vị trí, không chỉ ở cuối trang.
+
+Website agency tốt không phải là nơi khoe nhiều dự án nhất, mà là nơi giúp khách hàng tiềm năng trả lời nhanh câu hỏi: người hoặc đội ngũ này có giải quyết được đúng vấn đề tôi đang gặp không?`,
+    },
   ]
 
   for (const post of blogPosts) {
@@ -838,7 +1092,7 @@ Cả 5 yếu tố trên đều không đòi hỏi ngân sách lớn — quan tr�
         slug: post.slug,
         content: post.content,
         excerpt: post.excerpt,
-        categoryId: blogCategory.id,
+        categoryId: (post.categorySlug ? blogCategoryMap[post.categorySlug] : undefined) ?? blogCategory.id,
         status: 'published',
         metaTitle: post.metaTitle,
         metaDescription: post.metaDescription,
