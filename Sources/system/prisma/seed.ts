@@ -782,6 +782,72 @@ async function main() {
     console.log('⏭  How It Works packages: đã có dữ liệu, bỏ qua')
   }
 
+  // ── Blog: Category + bài viết mẫu "Cẩm nang" ───────────────────────────
+  const blogCategory = await prisma.category.upsert({
+    where: { slug: 'cam-nang' },
+    update: {},
+    create: { name: 'Cẩm nang', slug: 'cam-nang' },
+  })
+
+  const blogPosts: {
+    slug: string
+    title: string
+    excerpt: string
+    metaTitle: string
+    metaDescription: string
+    content: string
+  }[] = [
+    {
+      slug: 'website-nha-khoa-tang-dat-lich',
+      title: '5 điều website nha khoa cần có để tăng tỷ lệ đặt lịch',
+      excerpt: 'Nhiều phòng khám nha khoa có website nhưng vẫn ít người đặt lịch online. Vấn đề thường không nằm ở thiết kế đẹp hay xấu, mà ở 5 yếu tố cụ thể dưới đây.',
+      metaTitle: '5 điều website nha khoa cần có để tăng đặt lịch | webdrop.store',
+      metaDescription: 'Hướng dẫn 5 yếu tố quan trọng giúp website nha khoa tăng tỷ lệ đặt lịch online, đúc kết từ kinh nghiệm xây hơn 10 website nha khoa thực tế.',
+      content: `Nhiều phòng khám nha khoa đầu tư website nhưng lượng đặt lịch online vẫn thấp. Qua kinh nghiệm xây dựng hơn 10 website cho các phòng khám nha khoa với nhiều phong cách khác nhau, chúng tôi nhận thấy vấn đề thường không nằm ở giao diện đẹp hay xấu, mà ở 5 yếu tố cụ thể sau.
+
+**1. Form đặt lịch nằm ngay trang chủ, ít bước nhất có thể**
+
+Khách hàng tiềm năng thường lướt web trên điện thoại và không muốn tìm kiếm quá nhiều để đặt lịch. Form đặt lịch nên xuất hiện ngay ở phần đầu trang chủ (hoặc nút CTA nổi bật dẫn tới form), chỉ hỏi những thông tin thật sự cần thiết: họ tên, số điện thoại, dịch vụ quan tâm, thời gian mong muốn. Càng nhiều trường bắt buộc, tỷ lệ khách bỏ ngang càng cao.
+
+**2. Hiển thị đội ngũ bác sĩ rõ ràng, có ảnh thật và chuyên môn cụ thể**
+
+Nha khoa là dịch vụ liên quan trực tiếp đến sức khỏe, khách hàng cần biết ai sẽ điều trị cho mình trước khi đặt lịch. Trang bác sĩ nên có ảnh thật, số năm kinh nghiệm, chuyên môn cụ thể (chỉnh nha, implant, thẩm mỹ răng...). Đây là yếu tố tạo niềm tin nhanh nhất trên một trang y tế.
+
+**3. Bảng giá dịch vụ minh bạch, kể cả khi chỉ là khoảng giá**
+
+Rất nhiều website nha khoa giấu hoàn toàn giá dịch vụ, buộc khách phải gọi điện hỏi — điều này khiến một bộ phận khách hàng bỏ qua vì ngại hỏi giá. Hiển thị khoảng giá tham khảo cho từng dịch vụ, kèm ghi chú giá cụ thể tùy tình trạng răng và được tư vấn miễn phí khi thăm khám, giúp khách chủ động hơn và lọc trước đối tượng phù hợp.
+
+**4. Đánh giá và câu chuyện khách hàng thật, không chỉ là sao số**
+
+Testimonial dạng năm sao chung chung không còn thuyết phục. Nên có vài đánh giá chi tiết, gắn tên thật hoặc viết tắt, kèm dịch vụ đã sử dụng. Với các phòng khám chuyên sâu như implant hay chỉnh nha, ảnh trước/sau đã được khách đồng ý là yếu tố thuyết phục mạnh nhất.
+
+**5. Tốc độ tải trang nhanh trên di động**
+
+Phần lớn khách hàng tìm phòng khám nha khoa qua tìm kiếm trên điện thoại, thường trong lúc đang đau răng và cần quyết định nhanh. Website tải chậm sẽ mất phần lớn nhóm khách hàng này trước khi họ kịp thấy form đặt lịch. Ảnh cần được nén, hạn chế hiệu ứng nặng, và ưu tiên bố cục đơn giản trên màn hình nhỏ.
+
+Cả 5 yếu tố trên đều không đòi hỏi ngân sách lớn — quan trọng là được thiết kế đúng ngay từ đầu. Đây cũng là các nguyên tắc chúng tôi áp dụng khi xây dựng bộ template website nha khoa tại webdrop.store.`,
+    },
+  ]
+
+  for (const post of blogPosts) {
+    await prisma.post.upsert({
+      where: { slug: post.slug },
+      update: {},
+      create: {
+        title: post.title,
+        slug: post.slug,
+        content: post.content,
+        excerpt: post.excerpt,
+        categoryId: blogCategory.id,
+        status: 'published',
+        metaTitle: post.metaTitle,
+        metaDescription: post.metaDescription,
+        createdBy: admin.id,
+      },
+    })
+  }
+  console.log('✅ Blog posts:', blogPosts.length)
+
   console.log('\n🎉 Seed complete!')
   console.log(`   Templates  : ${templateData.length} (${templateData.filter(t => t.category === 'web').length} web + ${templateData.filter(t => t.category === 'admin').length} admin)`)
   console.log(`   Demo base  : ${DEMO_BASE}`)
