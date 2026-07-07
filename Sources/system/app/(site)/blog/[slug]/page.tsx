@@ -5,7 +5,9 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Footer from '@/components/site/Footer'
 import NavBar from '@/components/site/NavBar'
+import { PostCard, type BlogPostItem } from '@/components/site/BlogClient'
 import { prisma } from '@/lib/prisma'
+import { ensurePostThumbnail } from '@/lib/blogThumbnail'
 
 const BASE = process.env.NEXT_PUBLIC_URL || 'https://webdrop.store'
 
@@ -153,34 +155,82 @@ Liên kết giữa các trang trong website giúp Google hiểu cấu trúc và 
   },
 }
 
+async function getRelatedPosts(excludeId: number, categoryId: number | null) {
+  try {
+    const related = categoryId
+      ? await prisma.post.findMany({
+          where: { status: 'published', categoryId, NOT: { id: excludeId } },
+          include: { category: { select: { name: true, slug: true } } },
+          orderBy: { createdAt: 'desc' },
+          take: 6,
+        })
+      : []
+
+    if (related.length < 6) {
+      const excludeIds = [excludeId, ...related.map(r => r.id)]
+      const fillers = await prisma.post.findMany({
+        where: { status: 'published', NOT: { id: { in: excludeIds } } },
+        include: { category: { select: { name: true, slug: true } } },
+        orderBy: { createdAt: 'desc' },
+        take: 6 - related.length,
+      })
+      return [...related, ...fillers]
+    }
+    return related
+  } catch {
+    return []
+  }
+}
+
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
 
   let post: {
-    title: string; excerpt: string | null; content: string | null; thumbnail: string | null
-    category: { name: string; slug: string } | null; createdAt: Date | string
+    id: number; title: string; excerpt: string | null; content: string | null; thumbnail: string | null
+    category: { name: string; slug: string } | null; categoryId: number | null; createdAt: Date | string
   } | null = null
+  let fromDb = false
 
   try {
     const row = await prisma.post.findUnique({
       where: { slug, status: 'published' },
       include: { category: { select: { name: true, slug: true } } },
     })
-    if (row) post = row
+    if (row) { post = row; fromDb = true }
   } catch { /* DB offline */ }
 
   if (!post) {
     const mock = MOCK_POSTS[slug]
     if (!mock) notFound()
     post = {
+      id: -1,
       title: mock.title,
       excerpt: mock.excerpt,
       content: mock.content,
       thumbnail: null,
       category: { name: mock.category, slug: mock.category.toLowerCase() },
+      categoryId: null,
       createdAt: mock.date,
     }
   }
+
+  if (fromDb) {
+    post.thumbnail = await ensurePostThumbnail({ id: post.id, title: post.title, thumbnail: post.thumbnail })
+  }
+
+  const relatedRaw = fromDb ? await getRelatedPosts(post.id, post.categoryId) : []
+  const relatedPosts: BlogPostItem[] = await Promise.all(
+    relatedRaw.map(async r => ({
+      id: r.id,
+      title: r.title,
+      slug: r.slug,
+      excerpt: r.excerpt || '',
+      category: r.category,
+      createdAt: r.createdAt,
+      featured: r.featured,
+      thumbnail: await ensurePostThumbnail(r),
+    }))
+  )
 
   const dateStr = post.createdAt instanceof Date
     ? post.createdAt.toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' })
@@ -305,6 +355,21 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <Link href="/blog" style={{ fontSize: 13, color: 'var(--accent)', textDecoration: 'none', fontWeight: 500 }}>← Quay lại Blog</Link>
           </div>
         </div>
+
+        {relatedPosts.length > 0 && (
+          <div className="wd-container" style={{ padding: '0 clamp(20px,5vw,80px) clamp(56px,8vw,88px)' }}>
+            <div style={{ borderTop: '1px solid var(--border-light)', paddingTop: 'clamp(32px,5vw,48px)' }}>
+              <div style={{ fontSize: 11, fontWeight: 500, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: 18 }}>Bài viết liên quan</div>
+              <div className="row g-4">
+                {relatedPosts.map(rp => (
+                  <div key={rp.id} className="col-md-6 col-lg-4">
+                    <PostCard post={rp} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       <Footer />
     </>
