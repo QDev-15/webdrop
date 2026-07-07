@@ -236,6 +236,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     ? post.createdAt.toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' })
     : String(post.createdAt)
 
+  // Tách "**chữ đậm**" thành <strong> qua React node thật (không dangerouslySetInnerHTML) —
+  // phần chữ còn lại luôn đi qua React như text thuần nên tự động escape, không thể chèn HTML/script.
+  function renderInlineBold(text: string, keyPrefix: string): React.ReactNode {
+    const parts = text.split(/\*\*([^*]+)\*\*/g)
+    return parts.map((part, i) => (i % 2 === 1 ? <strong key={`${keyPrefix}-${i}`}>{part}</strong> : part))
+  }
+
   function renderMarkdown(text: string) {
     const lines = text.split('\n')
     const result: React.ReactNode[] = []
@@ -244,10 +251,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
     function flushList() {
       if (listItems.length > 0) {
+        const ulKey = listKey++
         result.push(
-          <ul key={`ul-${listKey++}`} style={{ paddingLeft: 20, marginBottom: 14 }}>
+          <ul key={`ul-${ulKey}`} style={{ paddingLeft: 20, marginBottom: 14 }}>
             {listItems.map((item, j) => (
-              <li key={j} style={{ marginBottom: 6 }} dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') }} />
+              <li key={j} style={{ marginBottom: 6 }}>{renderInlineBold(item, `li-${ulKey}-${j}`)}</li>
             ))}
           </ul>
         )
@@ -264,7 +272,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         result.push(<h2 key={i} style={{ fontSize: 17, fontWeight: 600, color: 'var(--text)', marginTop: 28, marginBottom: 10 }}>{line.replace(/\*\*/g, '')}</h2>)
       } else {
         flushList()
-        result.push(<p key={i} style={{ marginBottom: 14 }} dangerouslySetInnerHTML={{ __html: line.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') }} />)
+        result.push(<p key={i} style={{ marginBottom: 14 }}>{renderInlineBold(line, `p-${i}`)}</p>)
       }
     })
     flushList()
