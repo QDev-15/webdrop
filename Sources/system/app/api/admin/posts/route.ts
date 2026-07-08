@@ -9,8 +9,10 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const search = searchParams.get('q')
   const status = searchParams.get('status')
-  const page = Math.max(1, parseInt(searchParams.get('page') || '1'))
+  const pageParsed = parseInt(searchParams.get('page') || '1')
+  const page = Number.isNaN(pageParsed) ? 1 : Math.max(1, pageParsed)
   const limit = 20
+  const isAllUnfiltered = (!status || status === 'all') && !search
 
   const where: Record<string, unknown> = {}
   if (status && status !== 'all') where.status = status
@@ -21,18 +23,30 @@ export async function GET(req: NextRequest) {
     ]
   }
 
-  const [posts, total] = await Promise.all([
-    prisma.post.findMany({
-      where,
-      include: { category: { select: { name: true } }, author: { select: { name: true } } },
-      orderBy: { createdAt: 'desc' },
-      skip: (page - 1) * limit,
-      take: limit,
-    }),
-    prisma.post.count({ where }),
-  ])
+  try {
+    const [posts, total, allCount, publishedCount, draftCount] = await Promise.all([
+      prisma.post.findMany({
+        where,
+        include: { category: { select: { name: true } }, author: { select: { name: true } } },
+        orderBy: { createdAt: 'desc' },
+        skip: (page - 1) * limit,
+        take: limit,
+      }),
+      // Tránh query count trùng lặp khi đang xem "Tất cả" không search — total và allCount là cùng 1 con số
+      isAllUnfiltered ? Promise.resolve(-1) : prisma.post.count({ where }),
+      prisma.post.count({}),
+      prisma.post.count({ where: { status: 'published' } }),
+      prisma.post.count({ where: { status: 'draft' } }),
+    ])
+    const finalTotal = isAllUnfiltered ? allCount : total
 
-  return NextResponse.json({ posts, total, page, pages: Math.ceil(total / limit) })
+    return NextResponse.json({
+      posts, total: finalTotal, page, pages: Math.ceil(finalTotal / limit),
+      counts: { all: allCount, published: publishedCount, draft: draftCount },
+    })
+  } catch {
+    return NextResponse.json({ error: 'Lỗi tải danh sách bài viết' }, { status: 500 })
+  }
 }
 
 export async function POST(req: NextRequest) {
