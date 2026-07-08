@@ -155,11 +155,26 @@ Liên kết giữa các trang trong website giúp Google hiểu cấu trúc và 
   },
 }
 
-async function getRelatedPosts(excludeId: number, categoryId: number | null) {
+async function getLatestPosts(excludeId: number, limit: number) {
   try {
+    return await prisma.post.findMany({
+      where: { status: 'published', NOT: { id: excludeId } },
+      orderBy: { createdAt: 'desc' },
+      take: limit,
+    })
+  } catch {
+    return []
+  }
+}
+
+// extraExcludeIds: bài đã hiển thị ở sidebar "Bài viết mới nhất" — loại trừ để tránh
+// cùng 1 bài xuất hiện trùng lặp cả 2 nơi (và tránh gọi Unsplash 2 lần cho cùng bài).
+async function getRelatedPosts(excludeId: number, categoryId: number | null, extraExcludeIds: number[] = []) {
+  try {
+    const baseExcludeIds = [excludeId, ...extraExcludeIds]
     const related = categoryId
       ? await prisma.post.findMany({
-          where: { status: 'published', categoryId, NOT: { id: excludeId } },
+          where: { status: 'published', categoryId, NOT: { id: { in: baseExcludeIds } } },
           include: { category: { select: { name: true, slug: true } } },
           orderBy: { createdAt: 'desc' },
           take: 6,
@@ -167,7 +182,7 @@ async function getRelatedPosts(excludeId: number, categoryId: number | null) {
       : []
 
     if (related.length < 6) {
-      const excludeIds = [excludeId, ...related.map(r => r.id)]
+      const excludeIds = [...baseExcludeIds, ...related.map(r => r.id)]
       const fillers = await prisma.post.findMany({
         where: { status: 'published', NOT: { id: { in: excludeIds } } },
         include: { category: { select: { name: true, slug: true } } },
@@ -218,7 +233,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     post.thumbnail = await ensurePostThumbnail({ id: post.id, title: post.title, thumbnail: post.thumbnail })
   }
 
-  const relatedRaw = fromDb ? await getRelatedPosts(post.id, post.categoryId) : []
+  const latestRaw = fromDb ? await getLatestPosts(post.id, 5) : []
+  const latestPosts = await Promise.all(
+    latestRaw.map(async r => ({
+      id: r.id,
+      title: r.title,
+      slug: r.slug,
+      createdAt: r.createdAt,
+      thumbnail: await ensurePostThumbnail(r),
+    }))
+  )
+
+  const relatedRaw = fromDb ? await getRelatedPosts(post.id, post.categoryId, latestRaw.map(r => r.id)) : []
   const relatedPosts: BlogPostItem[] = await Promise.all(
     relatedRaw.map(async r => ({
       id: r.id,
@@ -316,51 +342,110 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         )}
 
         {/* Content */}
-        <div className="wd-container" style={{ maxWidth: 760, padding: 'clamp(36px,6vw,64px) clamp(20px,5vw,80px)' }}>
-          {/* Breadcrumb */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 28, fontSize: 13 }}>
-            <Link href="/" style={{ color: 'var(--text-3)', textDecoration: 'none' }}>Trang chủ</Link>
-            <span style={{ color: 'var(--text-3)' }}>›</span>
-            <Link href="/blog" style={{ color: 'var(--text-3)', textDecoration: 'none' }}>Blog</Link>
-            <span style={{ color: 'var(--text-3)' }}>›</span>
-            <span style={{ color: 'var(--text-2)' }}>{post.title.length > 40 ? post.title.slice(0, 40) + '...' : post.title}</span>
-          </div>
+        <div className="wd-container" style={{ padding: 'clamp(36px,6vw,64px) clamp(20px,5vw,80px)' }}>
+          <div className="row g-4 g-lg-5">
+            <div className="col-lg-8">
+              {/* Breadcrumb */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 28, fontSize: 13 }}>
+                <Link href="/" style={{ color: 'var(--text-3)', textDecoration: 'none' }}>Trang chủ</Link>
+                <span style={{ color: 'var(--text-3)' }}>›</span>
+                <Link href="/blog" style={{ color: 'var(--text-3)', textDecoration: 'none' }}>Blog</Link>
+                <span style={{ color: 'var(--text-3)' }}>›</span>
+                <span style={{ color: 'var(--text-2)' }}>{post.title.length > 40 ? post.title.slice(0, 40) + '...' : post.title}</span>
+              </div>
 
-          {/* Meta (if thumbnail hero) */}
-          {post.thumbnail && (
-            <div style={{ marginBottom: 20 }}>
-              {post.category && (
-                <span style={{ fontSize: 11, fontWeight: 600, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.5px', marginRight: 12 }}>{post.category.name}</span>
+              {/* Meta (if thumbnail hero) */}
+              {post.thumbnail && (
+                <div style={{ marginBottom: 20 }}>
+                  {post.category && (
+                    <span style={{ fontSize: 11, fontWeight: 600, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.5px', marginRight: 12 }}>{post.category.name}</span>
+                  )}
+                  <span style={{ fontSize: 13, color: 'var(--text-3)' }}>{dateStr}</span>
+                  <h1 style={{ fontSize: 'clamp(22px,3vw,36px)', fontWeight: 600, letterSpacing: '-.5px', lineHeight: 1.25, marginTop: 10 }}>{post.title}</h1>
+                </div>
               )}
-              <span style={{ fontSize: 13, color: 'var(--text-3)' }}>{dateStr}</span>
-              <h1 style={{ fontSize: 'clamp(22px,3vw,36px)', fontWeight: 600, letterSpacing: '-.5px', lineHeight: 1.25, marginTop: 10 }}>{post.title}</h1>
+
+              {/* Excerpt highlight */}
+              {post.excerpt && (
+                <p style={{ fontSize: 16, fontWeight: 400, color: 'var(--text-2)', lineHeight: 1.8, borderLeft: '3px solid var(--accent)', paddingLeft: 18, marginBottom: 32, fontStyle: 'italic' }}>
+                  {post.excerpt}
+                </p>
+              )}
+
+              {/* Body content */}
+              <div style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--text)', fontWeight: 300 }}>
+                {renderMarkdown(post.content || post.excerpt || '')}
+              </div>
+
+              {/* CTA */}
+              <div style={{ marginTop: 40, background: 'var(--accent-light)', border: '1px solid rgba(26,107,82,.15)', borderRadius: 14, padding: 'clamp(20px,4vw,32px)', textAlign: 'center' }}>
+                <div style={{ fontSize: 16, fontWeight: 600, marginBottom: 8 }}>Tìm template phù hợp cho doanh nghiệp của bạn?</div>
+                <p style={{ fontSize: 14, color: 'var(--text-2)', fontWeight: 300, marginBottom: 18 }}>Duyệt thư viện mẫu Bootstrap 5 — mở file là chạy, không cần build.</p>
+                <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+                  <Link href="/templates" style={{ padding: '10px 22px', borderRadius: 9, background: 'var(--accent)', color: '#fff', fontSize: 13, fontWeight: 500, textDecoration: 'none' }}>Xem thư viện mẫu</Link>
+                  <Link href="/contact" style={{ padding: '10px 22px', borderRadius: 9, border: '1px solid var(--border)', color: 'var(--text-2)', fontSize: 13, textDecoration: 'none' }}>Tư vấn miễn phí</Link>
+                </div>
+              </div>
+
+              <div style={{ marginTop: 32, paddingTop: 24, borderTop: '1px solid var(--border-light)' }}>
+                <Link href="/blog" style={{ fontSize: 13, color: 'var(--accent)', textDecoration: 'none', fontWeight: 500 }}>← Quay lại Blog</Link>
+              </div>
             </div>
-          )}
 
-          {/* Excerpt highlight */}
-          {post.excerpt && (
-            <p style={{ fontSize: 16, fontWeight: 400, color: 'var(--text-2)', lineHeight: 1.8, borderLeft: '3px solid var(--accent)', paddingLeft: 18, marginBottom: 32, fontStyle: 'italic' }}>
-              {post.excerpt}
-            </p>
-          )}
+            {/* Sidebar */}
+            <div className="col-lg-4">
+              <div style={{ position: 'sticky', top: 80, display: 'flex', flexDirection: 'column', gap: 24 }}>
+                {/* Tìm kiếm */}
+                <form action="/blog" method="GET" style={{ position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)', fontSize: 14, opacity: .5 }}>🔍</span>
+                  <input
+                    type="text"
+                    name="q"
+                    placeholder="Tìm bài viết theo từ khóa..."
+                    aria-label="Tìm bài viết"
+                    style={{
+                      width: '100%', padding: '12px 16px 12px 40px', borderRadius: 20,
+                      border: '1px solid var(--border)', background: 'var(--surface)',
+                      color: 'var(--text)', fontSize: 13.5, outline: 'none', fontFamily: 'var(--sans)',
+                    }}
+                  />
+                </form>
 
-          {/* Body content */}
-          <div style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--text)', fontWeight: 300 }}>
-            {renderMarkdown(post.content || post.excerpt || '')}
-          </div>
+                {/* Bài viết mới nhất */}
+                {latestPosts.length > 0 && (
+                  <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 14, padding: '20px 18px' }}>
+                    <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: 16 }}>Bài viết mới nhất</div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+                      {latestPosts.map(lp => (
+                        <Link key={lp.id} href={`/blog/${lp.slug}`} style={{ display: 'flex', gap: 12, alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
+                          <div style={{ width: 56, height: 56, borderRadius: 10, overflow: 'hidden', flexShrink: 0, background: 'var(--warm)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            {lp.thumbnail ? (
+                              <img src={lp.thumbnail} alt={lp.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            ) : (
+                              <span style={{ fontSize: 20 }}>📝</span>
+                            )}
+                          </div>
+                          <div style={{ minWidth: 0 }}>
+                            <div style={{ fontSize: 13, fontWeight: 500, lineHeight: 1.4, marginBottom: 4, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{lp.title}</div>
+                            <div style={{ fontSize: 11, color: 'var(--text-3)' }}>
+                              {(lp.createdAt instanceof Date ? lp.createdAt : new Date(lp.createdAt)).toLocaleDateString('vi-VN')}
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
-          {/* CTA */}
-          <div style={{ marginTop: 40, background: 'var(--accent-light)', border: '1px solid rgba(26,107,82,.15)', borderRadius: 14, padding: 'clamp(20px,4vw,32px)', textAlign: 'center' }}>
-            <div style={{ fontSize: 16, fontWeight: 600, marginBottom: 8 }}>Tìm template phù hợp cho doanh nghiệp của bạn?</div>
-            <p style={{ fontSize: 14, color: 'var(--text-2)', fontWeight: 300, marginBottom: 18 }}>Duyệt thư viện mẫu Bootstrap 5 — mở file là chạy, không cần build.</p>
-            <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link href="/templates" style={{ padding: '10px 22px', borderRadius: 9, background: 'var(--accent)', color: '#fff', fontSize: 13, fontWeight: 500, textDecoration: 'none' }}>Xem thư viện mẫu</Link>
-              <Link href="/contact" style={{ padding: '10px 22px', borderRadius: 9, border: '1px solid var(--border)', color: 'var(--text-2)', fontSize: 13, textDecoration: 'none' }}>Tư vấn miễn phí</Link>
+                {/* Vị trí quảng cáo — placeholder, chèn ad thật sau này */}
+                <div style={{
+                  border: '1px dashed var(--border)', borderRadius: 14, padding: '32px 18px',
+                  textAlign: 'center', color: 'var(--text-3)', fontSize: 12,
+                }}>
+                  Vị trí quảng cáo
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div style={{ marginTop: 32, paddingTop: 24, borderTop: '1px solid var(--border-light)' }}>
-            <Link href="/blog" style={{ fontSize: 13, color: 'var(--accent)', textDecoration: 'none', fontWeight: 500 }}>← Quay lại Blog</Link>
           </div>
         </div>
 

@@ -85,8 +85,8 @@ function HotCardSmall({ post }: { post: BlogPostItem }) {
   )
 }
 
-export default function BlogClient({ posts, categories }: { posts: BlogPostItem[]; categories: { name: string; slug: string }[] }) {
-  const [query, setQuery] = useState('')
+export default function BlogClient({ posts, categories, initialQuery = '' }: { posts: BlogPostItem[]; categories: { name: string; slug: string }[]; initialQuery?: string }) {
+  const [query, setQuery] = useState(initialQuery)
   const [activeCategory, setActiveCategory] = useState('all')
 
   const sorted = useMemo(
