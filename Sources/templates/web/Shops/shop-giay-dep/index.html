@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Tên Shop] — Giày Dép Chính Hãng, Phong Cách Đường Phố</title>
+  <meta name="description" content="[Mô tả ngắn về cửa hàng giày dép — phong cách, thương hiệu và cam kết chất lượng của bạn]">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Mobile Nav -->
+<nav id="gd-nav-mob" role="navigation" aria-label="Menu di động" inert>
+  <a href="index.html" class="active">Trang chủ</a>
+  <a href="san-pham.html">Sản phẩm</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="gio-hang.html"><i class="bi bi-bag me-2"></i>Giỏ hàng</a>
+</nav>
+
+<!-- Nav-3 Dark Floating Pill -->
+<header id="gd-nav" role="banner">
+  <div class="gd-nav-inner">
+    <a href="index.html" class="gd-logo">[Tên<span>.</span>Kicks]</a>
+    <nav class="gd-nav-links" role="navigation" aria-label="Menu chính">
+      <a href="index.html" class="active">Trang chủ</a>
+      <a href="san-pham.html">Sản phẩm</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+    <div class="gd-nav-right">
+      <a href="gio-hang.html" class="gd-nav-cart" aria-label="Giỏ hàng">
+        <i class="bi bi-bag"></i>
+        <span class="gd-cart-count">2</span>
+      </a>
+      <a href="san-pham.html" class="gd-nav-cta">Mua ngay</a>
+      <button id="gd-burger" aria-label="Mở menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     HERO — H1 Full-Screen Overlay
+══════════════════════════════════════════ -->
+<section class="gd-hero" aria-label="Hero">
+  <div class="gd-hero-bg">
+    <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?w=1600&auto=format&fit=crop&q=80" alt="[Bộ sưu tập giày sneaker mới nhất]" loading="eager">
+  </div>
+  <div class="gd-container">
+    <div class="gd-hero-inner">
+      <div class="gd-hero-tag" data-reveal>
+        <i class="bi bi-lightning-charge-fill"></i>
+        [Bộ sưu tập Thu Đông 2025 vừa ra mắt]
+      </div>
+      <h1 class="gd-hero-title" data-reveal data-delay="1">
+        Bước đi <em>khác biệt</em><br>mỗi ngày
+      </h1>
+      <p class="gd-hero-desc" data-reveal data-delay="2">
+        [Mô tả ngắn về cửa hàng — phong cách, chất lượng và cam kết mang lại cho khách hàng. Tối đa 2 dòng.]
+      </p>
+      <div class="gd-hero-actions" data-reveal data-delay="3">
+        <a href="san-pham.html" class="gd-btn gd-btn-primary">
+          <i class="bi bi-lightning-charge-fill"></i>
+          Khám phá ngay
+        </a>
+        <a href="san-pham.html" class="gd-btn gd-btn-outline">
+          Xem bộ sưu tập
+        </a>
+      </div>
+      <div class="gd-hero-stats" data-reveal data-delay="4">
+        <div>
+          <div class="gd-hero-stat-num"><span data-counter="120" data-suffix="+">0+</span></div>
+          <div class="gd-hero-stat-label">Mẫu giày</div>
+        </div>
+        <div>
+          <div class="gd-hero-stat-num"><span data-counter="18000" data-suffix="+">0+</span></div>
+          <div class="gd-hero-stat-label">Khách hàng</div>
+        </div>
+        <div>
+          <div class="gd-hero-stat-num"><span data-counter="4" data-suffix=".9★">0★</span></div>
+          <div class="gd-hero-stat-label">Đánh giá trung bình</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CATEGORIES — GRID-CARDS
+══════════════════════════════════════════ -->
+<section class="gd-sec" aria-labelledby="cat-heading">
+  <div class="gd-container">
+    <div class="gd-section-header">
+      <div>
+        <div class="gd-eyebrow" data-reveal>Danh mục</div>
+        <h2 class="gd-sec-title" id="cat-heading" data-reveal data-delay="1">
+          Tìm đúng <em>đôi giày</em><br>của bạn
+        </h2>
+      </div>
+      <a href="san-pham.html" class="gd-btn gd-btn-ghost" data-reveal data-delay="2">
+        Xem tất cả <i class="bi bi-arrow-right ms-1"></i>
+      </a>
+    </div>
+
+    <div class="gd-cat-grid">
+      <div class="gd-cat-card" data-reveal data-delay="1">
+        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=500&auto=format&fit=crop&q=80" alt="[Danh mục Sneaker]" loading="lazy">
+        <div class="gd-cat-info"><h3>Sneaker</h3><p>[42] mẫu</p></div>
+      </div>
+      <div class="gd-cat-card" data-reveal data-delay="2">
+        <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=500&auto=format&fit=crop&q=80" alt="[Danh mục Boot]" loading="lazy">
+        <div class="gd-cat-info"><h3>Boot</h3><p>[18] mẫu</p></div>
+      </div>
+      <div class="gd-cat-card" data-reveal data-delay="3">
+        <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=500&auto=format&fit=crop&q=80" alt="[Danh mục Chạy bộ]" loading="lazy">
+        <div class="gd-cat-info"><h3>Chạy bộ</h3><p>[27] mẫu</p></div>
+      </div>
+      <div class="gd-cat-card" data-reveal data-delay="4">
+        <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500&auto=format&fit=crop&q=80" alt="[Danh mục Sandal]" loading="lazy">
+        <div class="gd-cat-info"><h3>Sandal</h3><p>[15] mẫu</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FEATURED — BENTO-GRID
+══════════════════════════════════════════ -->
+<section class="gd-sec" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);" aria-labelledby="feat-heading">
+  <div class="gd-container">
+    <div class="gd-section-header">
+      <div>
+        <div class="gd-eyebrow" data-reveal>Nổi bật</div>
+        <h2 class="gd-sec-title" id="feat-heading" data-reveal data-delay="1">
+          Đang <em>bán chạy</em>
+        </h2>
+        <p class="gd-sec-sub" data-reveal data-delay="2">[Những đôi giày được săn đón nhiều nhất trong tháng này]</p>
+      </div>
+      <a href="san-pham.html" class="gd-btn gd-btn-outline" data-reveal data-delay="2">Xem thêm <i class="bi bi-arrow-right ms-1"></i></a>
+    </div>
+
+    <div class="gd-bento">
+      <div class="gd-prod-card" data-reveal>
+        <div class="gd-prod-thumb">
+          <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800&auto=format&fit=crop&q=80" alt="[Tên sản phẩm nổi bật]" loading="lazy">
+          <div class="gd-prod-badge">Bán chạy</div>
+          <div class="gd-prod-actions">
+            <button class="gd-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button>
+            <button class="gd-prod-action-btn" aria-label="Xem nhanh"><i class="bi bi-eye"></i></button>
+          </div>
+        </div>
+        <div class="gd-prod-info">
+          <div class="gd-prod-cat">Sneaker</div>
+          <h3 class="gd-prod-name"><a href="chi-tiet-san-pham.html">[Tên đôi giày nổi bật — đặc biệt]</a></h3>
+          <div class="gd-prod-footer">
+            <div><span class="gd-prod-price-new">[1.890.000]đ</span><span class="gd-prod-price-old">[2.390.000]đ</span></div>
+            <button class="gd-add-cart" aria-label="Thêm vào giỏ hàng"><i class="bi bi-bag-plus"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="gd-prod-card" data-reveal data-delay="1">
+        <div class="gd-prod-thumb">
+          <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=500&auto=format&fit=crop&q=80" alt="[Tên sản phẩm 2]" loading="lazy">
+          <div class="gd-prod-badge new">Mới</div>
+          <div class="gd-prod-actions"><button class="gd-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button></div>
+        </div>
+        <div class="gd-prod-info">
+          <div class="gd-prod-cat">Boot</div>
+          <h3 class="gd-prod-name"><a href="chi-tiet-san-pham.html">[Tên sản phẩm 2]</a></h3>
+          <div class="gd-prod-footer"><span class="gd-prod-price-new">[2.150.000]đ</span><button class="gd-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-bag-plus"></i></button></div>
+        </div>
+      </div>
+      <div class="gd-prod-card" data-reveal data-delay="2">
+        <div class="gd-prod-thumb">
+          <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=500&auto=format&fit=crop&q=80" alt="[Tên sản phẩm 3]" loading="lazy">
+          <div class="gd-prod-actions"><button class="gd-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button></div>
+        </div>
+        <div class="gd-prod-info">
+          <div class="gd-prod-cat">Chạy bộ</div>
+          <h3 class="gd-prod-name"><a href="chi-tiet-san-pham.html">[Tên sản phẩm 3]</a></h3>
+          <div class="gd-prod-footer"><span class="gd-prod-price-new">[1.450.000]đ</span><button class="gd-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-bag-plus"></i></button></div>
+        </div>
+      </div>
+      <div class="gd-prod-card" data-reveal data-delay="3">
+        <div class="gd-prod-thumb">
+          <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500&auto=format&fit=crop&q=80" alt="[Tên sản phẩm 4]" loading="lazy">
+          <div class="gd-prod-badge">-15%</div>
+          <div class="gd-prod-actions"><button class="gd-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button></div>
+        </div>
+        <div class="gd-prod-info">
+          <div class="gd-prod-cat">Sandal</div>
+          <h3 class="gd-prod-name"><a href="chi-tiet-san-pham.html">[Tên sản phẩm 4]</a></h3>
+          <div class="gd-prod-footer"><span class="gd-prod-price-new">[790.000]đ</span><button class="gd-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-bag-plus"></i></button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FEATURE-ICON-ROW — Why choose us
+══════════════════════════════════════════ -->
+<section class="gd-sec" aria-labelledby="why-heading">
+  <div class="gd-container">
+    <div class="gd-eyebrow" data-reveal>Vì sao chọn chúng tôi</div>
+    <h2 class="gd-sec-title" id="why-heading" data-reveal data-delay="1">Cam kết <em>chất lượng</em></h2>
+    <div class="gd-feat-row">
+      <div class="gd-feat-item" data-reveal>
+        <div class="gd-feat-icon"><i class="bi bi-patch-check-fill"></i></div>
+        <h3>[Hàng chính hãng 100%]</h3>
+        <p>[Cam kết sản phẩm chính hãng, có tem chống hàng giả và hóa đơn đầy đủ]</p>
+      </div>
+      <div class="gd-feat-item" data-reveal data-delay="1">
+        <div class="gd-feat-icon"><i class="bi bi-arrow-repeat"></i></div>
+        <h3>[Đổi trả trong 15 ngày]</h3>
+        <p>[Đổi size, đổi mẫu miễn phí nếu chưa vừa ý hoặc chưa đúng kích cỡ]</p>
+      </div>
+      <div class="gd-feat-item" data-reveal data-delay="2">
+        <div class="gd-feat-icon"><i class="bi bi-truck"></i></div>
+        <h3>[Giao hàng nhanh 2H]</h3>
+        <p>[Giao hàng hỏa tốc nội thành, toàn quốc trong 1-3 ngày làm việc]</p>
+      </div>
+      <div class="gd-feat-item" data-reveal data-delay="3">
+        <div class="gd-feat-icon"><i class="bi bi-headset"></i></div>
+        <h3>[Tư vấn 24/7]</h3>
+        <p>[Đội ngũ tư vấn viên hỗ trợ chọn size và mẫu giày phù hợp mọi lúc]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PROMO — FULL-BLEED
+══════════════════════════════════════════ -->
+<section class="gd-promo" aria-label="Khuyến mãi đặc biệt">
+  <div class="gd-container">
+    <div class="gd-promo-inner">
+      <div data-reveal>
+        <div class="gd-promo-label">Ưu đãi có giới hạn</div>
+        <h2 class="gd-promo-title">Giảm đến <em>[35%]</em><br>bộ sưu tập Sneaker</h2>
+        <p class="gd-promo-sub">[Mô tả chương trình khuyến mãi, điều kiện áp dụng và những mẫu giày nào đang trong đợt sale này]</p>
+        <div class="gd-promo-timer" aria-label="Đếm ngược thời gian">
+          <div class="gd-timer-unit"><div class="gd-timer-num" id="timer-days">02</div><div class="gd-timer-label">Ngày</div></div>
+          <div class="gd-timer-unit"><div class="gd-timer-num" id="timer-hours">14</div><div class="gd-timer-label">Giờ</div></div>
+          <div class="gd-timer-unit"><div class="gd-timer-num" id="timer-mins">37</div><div class="gd-timer-label">Phút</div></div>
+          <div class="gd-timer-unit"><div class="gd-timer-num" id="timer-secs">44</div><div class="gd-timer-label">Giây</div></div>
+        </div>
+        <a href="san-pham.html" class="gd-btn gd-btn-primary">Mua ngay <i class="bi bi-arrow-right ms-1"></i></a>
+      </div>
+      <div class="gd-promo-visual" data-reveal data-delay="2">
+        <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=700&auto=format&fit=crop&q=80" alt="[Sneaker đang giảm giá]" loading="lazy">
+        <div class="gd-promo-tag">-35%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     TESTIMONIALS — HORIZONTAL-SCROLL
+══════════════════════════════════════════ -->
+<section class="gd-sec" aria-labelledby="review-heading">
+  <div class="gd-container">
+    <div class="gd-section-header">
+      <div>
+        <div class="gd-eyebrow" data-reveal>Đánh giá</div>
+        <h2 class="gd-sec-title" id="review-heading" data-reveal data-delay="1">Khách hàng <em>nói gì</em></h2>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px;" data-reveal data-delay="2">
+        <i class="bi bi-star-fill" style="color:var(--accent);"></i>
+        <span style="font-weight:700;">4.9/5</span>
+        <span style="color:var(--text-3); font-size:13px;">([3.200+] đánh giá)</span>
+      </div>
+    </div>
+    <div class="gd-reviews-scroll" role="list">
+      <div class="gd-review-card" data-reveal role="listitem">
+        <div class="gd-review-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+        <p class="gd-review-text">[Đôi giày cực kỳ thoải mái, đi cả ngày không đau chân. Giao hàng nhanh, đóng gói cẩn thận.]</p>
+        <div class="gd-review-author">
+          <div class="gd-review-avatar">M</div>
+          <div><div class="gd-review-name">[Minh Khang]</div><div class="gd-review-sub">[TP.HCM] · [Tháng 6/2025]</div></div>
+        </div>
+      </div>
+      <div class="gd-review-card" data-reveal data-delay="1" role="listitem">
+        <div class="gd-review-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+        <p class="gd-review-text">[Chất lượng y như hình, form giày chuẩn. Đây là lần thứ 3 mình mua ở shop rồi.]</p>
+        <div class="gd-review-author">
+          <div class="gd-review-avatar">T</div>
+          <div><div class="gd-review-name">[Thanh Tùng]</div><div class="gd-review-sub">[Hà Nội] · [Tháng 6/2025]</div></div>
+        </div>
+      </div>
+      <div class="gd-review-card" data-reveal data-delay="2" role="listitem">
+        <div class="gd-review-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div>
+        <p class="gd-review-text">[Shop tư vấn size rất kỹ, mang vừa chân ngay lần đầu. Sẽ ủng hộ tiếp trong tương lai.]</p>
+        <div class="gd-review-author">
+          <div class="gd-review-avatar">H</div>
+          <div><div class="gd-review-name">[Hải Đăng]</div><div class="gd-review-sub">[Đà Nẵng] · [Tháng 5/2025]</div></div>
+        </div>
+      </div>
+      <div class="gd-review-card" data-reveal data-delay="3" role="listitem">
+        <div class="gd-review-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+        <p class="gd-review-text">[Mẫu mã đa dạng, giá hợp lý so với chất lượng. Đóng gói kỹ, không lo móp hộp.]</p>
+        <div class="gd-review-author">
+          <div class="gd-review-avatar">L</div>
+          <div><div class="gd-review-name">[Lan Phương]</div><div class="gd-review-sub">[Cần Thơ] · [Tháng 5/2025]</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     STATS — STAT-BAR
+══════════════════════════════════════════ -->
+<section class="gd-stats" aria-label="Số liệu thành tựu">
+  <div class="gd-container">
+    <div class="gd-stats-grid">
+      <div class="gd-stat" data-reveal><div class="gd-stat-num"><span data-counter="18000" data-suffix="+">0+</span></div><div class="gd-stat-label">Khách hàng hài lòng</div></div>
+      <div class="gd-stat" data-reveal data-delay="1"><div class="gd-stat-num"><span data-counter="120" data-suffix="+">0+</span></div><div class="gd-stat-label">Mẫu giày</div></div>
+      <div class="gd-stat" data-reveal data-delay="2"><div class="gd-stat-num"><span data-counter="6" data-suffix=" năm">0 năm</span></div><div class="gd-stat-label">Kinh nghiệm</div></div>
+      <div class="gd-stat" data-reveal data-delay="3"><div class="gd-stat-num"><span data-counter="63" data-suffix="">0</span> tỉnh</div><div class="gd-stat-label">Giao hàng toàn quốc</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     NEWSLETTER
+══════════════════════════════════════════ -->
+<section class="gd-sec gd-newsletter" aria-labelledby="newsletter-heading">
+  <div class="gd-container">
+    <div class="gd-newsletter-inner">
+      <div class="gd-eyebrow" style="justify-content:center;" data-reveal>Nhận ưu đãi</div>
+      <h2 class="gd-sec-title" id="newsletter-heading" data-reveal data-delay="1">Đăng ký nhận <em>tin khuyến mãi</em></h2>
+      <p style="font-size:15px; color:var(--text-2); margin-top:10px;" data-reveal data-delay="2">[Nhận thông báo ưu đãi độc quyền, hàng mới về và mã giảm giá đặc biệt]</p>
+      <form class="gd-newsletter-form" data-reveal data-delay="3" novalidate>
+        <input type="email" name="email" placeholder="Email của bạn" aria-label="Nhập email đăng ký nhận tin">
+        <button type="submit">Đăng ký</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer id="gd-footer" role="contentinfo">
+  <div class="gd-container">
+    <div class="gd-footer-grid">
+      <div class="gd-footer-brand">
+        <a href="index.html" class="gd-logo">[Tên<span>.</span>Kicks]</a>
+        <p>[Mô tả ngắn về cửa hàng — triết lý thương hiệu, cam kết với khách hàng.]</p>
+        <div class="gd-footer-social">
+          <a href="https://www.facebook.com/[fanpage]" class="gd-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/[account]" class="gd-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.tiktok.com/@[account]" class="gd-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+          <a href="https://zalo.me/[phone]" class="gd-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Zalo"><i class="bi bi-chat-dots"></i></a>
+        </div>
+      </div>
+      <div class="gd-footer-col">
+        <h4>Sản phẩm</h4>
+        <ul>
+          <li><a href="san-pham.html">Tất cả sản phẩm</a></li>
+          <li><a href="san-pham.html">Sneaker</a></li>
+          <li><a href="san-pham.html">Boot</a></li>
+          <li><a href="san-pham.html">Sản phẩm mới</a></li>
+          <li><a href="san-pham.html">Đang giảm giá</a></li>
+        </ul>
+      </div>
+      <div class="gd-footer-col">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="gio-hang.html">Theo dõi đơn hàng</a></li>
+          <li><a href="lien-he.html">Chính sách đổi trả</a></li>
+          <li><a href="lien-he.html">Hướng dẫn chọn size</a></li>
+          <li><a href="lien-he.html">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="gd-footer-bottom">
+      <p>&copy; 2025 [Tên Shop]. Tất cả quyền được bảo lưu.</p>
+      <div class="gd-footer-pay">
+        <span class="gd-pay-badge">VISA</span>
+        <span class="gd-pay-badge">MasterCard</span>
+        <span class="gd-pay-badge">MoMo</span>
+        <span class="gd-pay-badge">ZaloPay</span>
+        <span class="gd-pay-badge">COD</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Zalo Float -->
+<div class="gd-zalo-float" aria-label="Chat Zalo">
+  <div class="gd-zalo-tooltip">Chat Zalo</div>
+  <a href="https://zalo.me/[0900000000]" class="gd-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo">
+    <i class="bi bi-chat-fill"></i>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// === Reveal animation ===
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }});
+}, { threshold: .08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+// === Mobile hamburger ===
+const burger = document.getElementById('gd-burger');
+const mob    = document.getElementById('gd-nav-mob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const open = mob.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    mob.toggleAttribute('inert', !open);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      mob.setAttribute('inert', '');
+    }
+  });
+}
+
+// === Counter animation ===
+document.querySelectorAll('[data-counter]').forEach(el => {
+  const cro = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      const target = +el.dataset.counter;
+      const suffix = el.dataset.suffix || '';
+      let cur = 0;
+      const step = Math.ceil(target / 60);
+      const t = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = cur + suffix;
+        if (cur >= target) clearInterval(t);
+      }, 25);
+      cro.disconnect();
+    }
+  }, { threshold: .5 });
+  cro.observe(el);
+});
+
+// === Countdown timer ===
+(function() {
+  const endDate = new Date();
+  endDate.setDate(endDate.getDate() + 2);
+  endDate.setHours(endDate.getHours() + 14);
+  function updateTimer() {
+    const now = new Date();
+    const diff = endDate - now;
+    if (diff <= 0) return;
+    const days = Math.floor(diff / 86400000);
+    const hrs  = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+    const pad = n => String(n).padStart(2, '0');
+    const dEl = document.getElementById('timer-days');
+    const hEl = document.getElementById('timer-hours');
+    const mEl = document.getElementById('timer-mins');
+    const sEl = document.getElementById('timer-secs');
+    if (dEl) dEl.textContent = pad(days);
+    if (hEl) hEl.textContent = pad(hrs);
+    if (mEl) mEl.textContent = pad(mins);
+    if (sEl) sEl.textContent = pad(secs);
+  }
+  updateTimer();
+  setInterval(updateTimer, 1000);
+})();
+</script>
+</body>
+</html>

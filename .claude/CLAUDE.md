@@ -81,7 +81,7 @@ Xây dựng và bán 3 nhóm sản phẩm chính:
 - [x] Agency / Portfolio / Công ty — **DONE** (6 templates: `Companies/`, `Portfolios/`)
 - [x] Blog / Forum — **DONE** (`Blogs/`, `Forums/`)
 - [x] Nha khoa — **DONE** (10 template: `Dental-Clinics/` — 10 Identity Token khác nhau: LUXE-DARK, FRESH-MINIMAL, BOLD-EDITORIAL, GEOMETRIC-MODERN, SOFT-PASTEL, DARK-ENERGY, CLEAN-CORPORATE, ZEN-MINIMAL, RETRO-BOLD, GLASS-MODERN)
-- [x] Shop bán hàng — **DONE** (2 templates: `shop-ban-hang/` ORGANIC-EARTH, `shop-thoi-trang/` BOLD-EDITORIAL — 5 trang mỗi template)
+- [x] Shop bán hàng — **DONE** (4 templates: `shop-ban-hang/` ORGANIC-EARTH, `shop-thoi-trang/` BOLD-EDITORIAL, `shop-giay-dep/` DARK-ENERGY, `shop-quan-ao/` SOFT-PASTEL — 5 trang mỗi template)
 - [ ] Landing page sản phẩm / Dịch vụ
 - [ ] CV cá nhân — **PLANNING** (CV Builder SaaS — xem `.claude/plans/cv-template-saas.md`)
 
@@ -199,6 +199,8 @@ webdrop/
 │       ├── Dental-Clinics/         ← ✅ 10 templates (xem ghi chú kỹ thuật)
 │       ├── shop-ban-hang/          ← ✅ 1 template (ORGANIC-EARTH identity — xem ghi chú kỹ thuật)
 │       ├── shop-thoi-trang/        ← ✅ 1 template (BOLD-EDITORIAL identity — xem ghi chú kỹ thuật)
+│       ├── shop-giay-dep/          ← ✅ 1 template (DARK-ENERGY identity — xem ghi chú kỹ thuật)
+│       ├── shop-quan-ao/           ← ✅ 1 template (SOFT-PASTEL identity — xem ghi chú kỹ thuật)
 │       └── CVs/                   ← 🔲 PLANNING (5 mẫu: classic, minimal, creative, dark, executive)
 ├── documents/                      ← Prototype UI HTML (tham khảo)
 └── .gitignore
@@ -362,7 +364,9 @@ VPS AZDIGI Linux
 
 ---
 
-*Cập nhật lần cuối: 2026-07-07 — Site chính (`Sources/system`) thiết kế lại toàn bộ trang Blog "Kiến thức" theo yêu cầu: (1) bố cục kiểu trang chủ tin tức — hero + tìm kiếm + filter theo chủ đề + section "Nổi bật" (ưu tiên bài `featured`, fallback bài mới nhất) + grid bài mới nhất, (2) tự động lấy ảnh Unsplash cho bài chưa có thumbnail dựa theo tiêu đề (suy ra từ khóa tiếng Anh qua bảng ánh xạ ngách, chọn ảnh theo `post.id % 5` để tránh trùng ảnh giữa các bài cùng chủ đề, lưu vào DB để chỉ gọi Unsplash 1 lần/bài), (3) section "Bài viết liên quan" tối đa 6 bài ở trang chi tiết (ưu tiên cùng category, fallback bài mới nhất nếu thiếu). Chi tiết implementation ở mục "Next.js System" phía trên. Qua vòng reviewer (SHIP) + qa-tester (READY TO SHIP), 0 blocker/fail. Phát hiện 1 vấn đề bảo mật pre-existing không thuộc phạm vi hôm nay (XSS tiềm ẩn trong `renderMarkdown()`) — đã báo cáo, chưa fix.*
+*Cập nhật lần cuối: 2026-07-12 — thêm 2 template mới trong `Sources/templates/web/Shops/`: `shop-giay-dep` (shop giày dép/sneaker, DARK-ENERGY identity, Volt Lime `#d4ff3f` + Electric Cyan `#00e5ff`) và `shop-quan-ao` (shop quần áo/thời trang nữ, SOFT-PASTEL identity, Lavender Orchid `#b98bd1` + Butter Yellow `#f2c14e`) — mỗi template 5 trang (index/san-pham/chi-tiet-san-pham/gio-hang/lien-he), CSS viết từ đầu theo `template-builder.md`, không copy từ 2 template Shop có sẵn (`shop-ban-hang` ORGANIC-EARTH, `shop-thoi-trang` BOLD-EDITORIAL) — khác biệt rõ ở nav/hero/font/màu/layout, xem chi tiết ở ghi chú kỹ thuật riêng từng template phía dưới. Vì 2 custom agent `reviewer`/`qa-tester` không có sẵn trong danh sách subagent của môi trường phiên này (dù file `.claude/agents/reviewer.md` và `qa-tester.md` vẫn tồn tại), đã dùng `general-purpose` agent đóng vai trò tương đương, áp đúng checklist correctness+security của reviewer.md và structure/a11y/responsive của qa-tester.md (bỏ qua phần checklist riêng cho site chính như `.wd-container`/DM-Sans-only/logo `webdrop.vn` — không áp dụng cho template theo ngách). Kết quả: 0 blocker, 2 finding Important đã fix (swatch chọn size/màu không dùng được bằng bàn phím — thêm `tabindex`/`role="button"`/phím Enter-Space; tabs mô tả/thông số/đánh giá ở trang chi tiết khai báo `role="tablist"` nhưng thiếu `aria-selected`/`aria-controls`/`role="tabpanel"` — đã bổ sung đầy đủ) + 4 finding Minor đã fix (heading nhảy cấp h2→h4 ở section "Vì sao chọn chúng tôi"/"Cam kết của chúng tôi" → đổi thành h3; menu mobile ẩn (`right:-100%`) vẫn giữ nguyên trong tab order bàn phím dù đang đóng → thêm thuộc tính `inert` toggle qua JS khi mở/đóng; bộ lọc màu sắc ở `san-pham.html` chỉ cho chọn 1 màu trong khi bộ lọc size cho chọn nhiều (không nhất quán) → đổi màu sang multi-select giống size; nút "Cập nhật giỏ hàng" dùng `document.querySelector('[onclick="updateCart()"]')` để tự tìm lại chính nó thay vì nhận tham số trực tiếp → đổi sang `onclick="updateCart(this)"`). Đã verify lại bằng grep: không còn `var`, không `console.log`, mọi `target="_blank"` đều có `rel="noopener noreferrer"`.*
+
+*Cập nhật lần trước: 2026-07-07 — Site chính (`Sources/system`) thiết kế lại toàn bộ trang Blog "Kiến thức" theo yêu cầu: (1) bố cục kiểu trang chủ tin tức — hero + tìm kiếm + filter theo chủ đề + section "Nổi bật" (ưu tiên bài `featured`, fallback bài mới nhất) + grid bài mới nhất, (2) tự động lấy ảnh Unsplash cho bài chưa có thumbnail dựa theo tiêu đề (suy ra từ khóa tiếng Anh qua bảng ánh xạ ngách, chọn ảnh theo `post.id % 5` để tránh trùng ảnh giữa các bài cùng chủ đề, lưu vào DB để chỉ gọi Unsplash 1 lần/bài), (3) section "Bài viết liên quan" tối đa 6 bài ở trang chi tiết (ưu tiên cùng category, fallback bài mới nhất nếu thiếu). Chi tiết implementation ở mục "Next.js System" phía trên. Qua vòng reviewer (SHIP) + qa-tester (READY TO SHIP), 0 blocker/fail. Phát hiện 1 vấn đề bảo mật pre-existing không thuộc phạm vi hôm nay (XSS tiềm ẩn trong `renderMarkdown()`) — đã báo cáo, chưa fix.*
 
 *Cập nhật lần trước: 2026-07-07 — Site chính (`Sources/system`) bổ sung thêm 10 bài viết Blog (tổng 11 bài) + 2 category mới "Case Study" (slug `case-study`) và "So sánh" (slug `so-sanh`), tiếp nối bài mồi đầu tiên ở bản cập nhật ngay dưới. 10 bài: 3 case study (nha khoa chỉnh nha, shop bán hàng hữu cơ, nha khoa trẻ em — kể lại cách tiếp cận thiết kế thực tế, không bịa số liệu kinh doanh chưa xảy ra), 5 cẩm nang (checklist website bán hàng, thiết kế website spa, website cho quán cafe/nhà hàng, CV Online là gì, website agency/portfolio cần gì), 2 so sánh (top 10 mẫu website nha khoa, chọn Gói Template hay Gói Website hoàn chỉnh). Implementation: `blogCategories` upsert 3 category qua `Promise.all` (giữ đúng thứ tự index vì Promise.all không đảo thứ tự theo tốc độ resolve), `blogCategoryMap` slug→id, mỗi bài viết có field optional `categorySlug` để chọn category khác mặc định `cam-nang`. Qua vòng reviewer (SHIP, 1 P1 hardening: đổi `categoryId: cond ? map[x] : fallback` sang `(cond ? map[x] : undefined) ?? fallback` để category không âm thầm rơi về NULL nếu gõ sai slug — đã fix ngay dù chưa phải bug đang xảy ra) + qa-tester (READY TO SHIP, 0 fail — verify runtime qua curl: đủ 11/11 bài trong listing, cả 3 category badge đều xuất hiện, mỗi trong 10 slug mới đúng 1 H1 + JSON-LD Article hợp lệ, 2 bài dạng listicle đúng 10 `<li>` unique không trùng lặp, không lỗi encoding tiếng Việt). Đã chạy `npx tsc --noEmit` sạch + `npm run db:seed` 2 lần (trước và sau fix hardening) đều thành công vào DB dev Neon.*
 
@@ -433,6 +437,40 @@ VPS AZDIGI Linux
 - PHP syntax: 34/34 files OK, 0 BOM
 
 *Cập nhật lần trước: 2026-07-05 — hoàn thành template `shop-thoi-trang` (BOLD-EDITORIAL identity, Syne 800 + Syne 400, near-white #f4f4f4, Electric Blue #0052ff accent, Nav-1 Transparent→Scrolled, H3 Magazine Grid, 5 trang: index/san-pham/chi-tiet-san-pham/gio-hang/lien-he, st- CSS prefix, Bootstrap 5.3.3, 6 layout patterns: STAT-BAR/GRID-CARDS/BENTO-GRID/ALTERNATING-STRIPS/FULL-BLEED/HORIZONTAL-SCROLL)*
+
+**Ghi chú kỹ thuật `shop-giay-dep`:**
+- CSS prefix: `gd-` xuyên suốt (giay-dep)
+- Identity: DARK-ENERGY — Syne weight 700/800 (heading) + Space Grotesk (body), nền full dark `#0a0e0c`, Volt Lime accent `#d4ff3f`, Electric Cyan phụ `#00e5ff`
+- Nav: Nav-3 Dark Floating Pill — fixed top 16px, border-radius 999px, backdrop-blur, không cần scroll JS
+- Hero: H1 Full-Screen Overlay — ảnh nền opacity .34 + gradient tối dần xuống `--bg`, heading uppercase `clamp(44px,8vw,96px)`
+- Fonts: Google Fonts — Syne + Space Grotesk (không dùng Bunny Fonts)
+- Trang: `index.html`, `san-pham.html`, `chi-tiet-san-pham.html`, `gio-hang.html`, `lien-he.html` (5 trang)
+- Layout patterns: FULL-BLEED (hero + promo), GRID-CARDS (danh mục), BENTO-GRID (sản phẩm nổi bật, card đầu chiếm 2×2), FEATURE-ICON-ROW (vì sao chọn), HORIZONTAL-SCROLL (đánh giá), STAT-BAR (số liệu)
+- Card: `border-left: 3px solid transparent` → accent khi hover + shadow neon lime, border-radius 4px (sharp, đúng tinh thần dark-energy)
+- Button: pill (border-radius 999px), primary volt lime nền đặc + glow ring khi hover, outline/cyan variants
+- Filter sidebar (`san-pham.html`): size + màu đều multi-select (toggle độc lập), khác trang chi tiết sản phẩm (size/màu single-select — chọn đúng 1 biến thể để mua)
+- Swatch (size/màu) có `tabindex="0"` + `role="button"` + xử lý phím Enter/Space qua hàm dùng chung `makeSwatchKeyboardAccessible()` — không chỉ bắt sự kiện `click`
+- Tab mô tả/thông số/đánh giá (`chi-tiet-san-pham.html`): đủ bộ ARIA — `role="tablist"/"tab"/"tabpanel"`, `aria-selected`, `aria-controls`/`aria-labelledby` đồng bộ qua id
+- Menu mobile (`#gd-nav-mob`) dùng thuộc tính `inert` toggle bằng JS khi mở/đóng — tránh giữ link trong tab order khi menu đang ẩn ngoài màn hình
+- Footer: full dark `--dark`, 3-col, neon accent link hover
+- Không có console.log, tất cả `target="_blank"` có `rel="noopener noreferrer"`, tất cả img có alt
+
+**Ghi chú kỹ thuật `shop-quan-ao`:**
+- CSS prefix: `qa-` xuyên suốt (quan-ao)
+- Identity: SOFT-PASTEL — DM Sans italic 300 (heading) + Manrope (body), nền warm blush white `#fdf9f6`, Lavender Orchid accent `#b98bd1`, Butter Yellow phụ `#f2c14e` (khác hue với Lilac/Mint đã dùng ở `nha-khoa-tre-em-kidsmile`)
+- Nav: Nav-2 Always Solid Light — fixed, background trắng cố định, không cần scroll JS
+- Hero: H12 Two-Column Equal — text trái 50% / ảnh phải 50% cân bằng, có floating rating card + floating sale badge tròn
+- Fonts: Google Fonts — DM Sans (italic only) + Manrope (không dùng Bunny Fonts, không trùng cách phối font với `shop-ban-hang` Fraunces+DM Sans)
+- Trang: `index.html`, `san-pham.html`, `chi-tiet-san-pham.html`, `gio-hang.html`, `lien-he.html` (5 trang)
+- Layout patterns: GRID-CARDS (danh mục), MASONRY (sản phẩm nổi bật — CSS `columns`, không phải BENTO-GRID để tránh trùng 3 template Shop kia), LIST-ELEGANT (giá trị thương hiệu, đánh số 01-04), FULL-BLEED (promo, bo góc 32px thay vì full-width), HORIZONTAL-SCROLL (đánh giá), STAT-BAR (số liệu, nền blush nhạt)
+- Card: border-radius 24px, shadow tím nhạt, hover lift + shadow đậm hơn (đúng tinh thần soft-pastel)
+- Button: pill (border-radius 999px), primary lavender, phụ butter-yellow, ghost trắng
+- Footer: **nền sáng blush** (`--blush-light`) — chủ đích khác hẳn 3 template Shop còn lại đều dùng footer nền tối
+- Filter sidebar (`san-pham.html`): size + màu đều multi-select (toggle độc lập, đồng nhất với size) — trang chi tiết sản phẩm vẫn single-select cho cả 2 (chọn đúng 1 biến thể để mua)
+- Swatch (size/màu) có `tabindex="0"` + `role="button"` + xử lý phím Enter/Space qua hàm dùng chung `makeSwatchKeyboardAccessible()`
+- Tab mô tả/thông số/đánh giá (`chi-tiet-san-pham.html`): đủ bộ ARIA — `role="tablist"/"tab"/"tabpanel"`, `aria-selected`, `aria-controls`/`aria-labelledby` đồng bộ qua id
+- Menu mobile (`#qa-nav-mob`) dùng thuộc tính `inert` toggle bằng JS khi mở/đóng
+- Không có console.log, tất cả `target="_blank"` có `rel="noopener noreferrer"`, tất cả img có alt
 
 **Ghi chú kỹ thuật `shop-thoi-trang`:**
 - CSS prefix: `st-` xuyên suốt (shop-thoi-trang)
