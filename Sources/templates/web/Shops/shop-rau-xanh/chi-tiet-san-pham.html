@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cải Bó Xôi Baby Hữu Cơ — Vườn Xanh</title>
+  <meta name="description" content="Cải bó xôi baby hữu cơ, trồng theo tiêu chuẩn VietGAP, thu hoạch trong ngày — giao tận nhà cùng ngày đặt hàng.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ── Mobile Nav ── -->
+<nav id="rx-nav-mob" role="navigation" aria-label="Menu di động">
+  <a href="index.html" class="rx-logo">Vườn <span>Xanh</span></a>
+  <a href="index.html">Trang chủ</a>
+  <a href="san-pham.html" class="active">Sản phẩm</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="gio-hang.html" class="rx-btn rx-btn-primary">
+    <i class="bi bi-basket2"></i> Giỏ hàng
+  </a>
+</nav>
+
+<!-- ── Nav-5 ── -->
+<header id="rx-nav" role="banner">
+  <div class="rx-nav-strip">
+    <div class="rx-container">
+      <span>🌿 Giao rau trong ngày nội thành &middot; Freeship đơn từ <strong>300.000đ</strong></span>
+    </div>
+  </div>
+  <div class="rx-nav-body">
+    <div class="rx-container">
+      <div class="rx-nav-logo-row">
+        <a href="index.html" class="rx-logo">Vườn <span>Xanh</span></a>
+        <span class="rx-logo-tag">Nông sản sạch mỗi ngày</span>
+      </div>
+      <div class="rx-nav-links-row">
+        <div class="rx-nav-left">
+          <button id="rx-burger" aria-label="Mở menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+        <nav class="rx-nav-links" role="navigation" aria-label="Menu chính">
+          <a href="index.html">Trang chủ</a>
+          <a href="san-pham.html" class="active">Sản phẩm</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </nav>
+        <div class="rx-nav-right">
+          <a href="gio-hang.html" class="rx-nav-cart" aria-label="Giỏ hàng">
+            <i class="bi bi-basket2"></i>
+            <span class="rx-cart-count">2</span>
+          </a>
+          <a href="san-pham.html" class="rx-nav-cta">Đặt rau ngay</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="rx-page-header" style="padding-bottom:0;">
+  <div class="rx-container">
+    <nav class="rx-breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Trang chủ</a>
+      <span><i class="bi bi-chevron-right" style="font-size:10px"></i></span>
+      <a href="san-pham.html">Sản phẩm</a>
+      <span><i class="bi bi-chevron-right" style="font-size:10px"></i></span>
+      <span>Cải bó xôi baby hữu cơ</span>
+    </nav>
+  </div>
+</div>
+
+<main>
+  <div class="rx-container">
+    <div class="rx-detail-layout">
+
+      <!-- Gallery -->
+      <div>
+        <div class="rx-gallery-main">
+          <img id="rxMainImgEl" src="https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?w=800&auto=format&fit=crop&q=80" alt="Cải bó xôi baby hữu cơ" loading="lazy">
+        </div>
+        <div class="rx-gallery-thumbs">
+          <div class="rx-gallery-thumb active" onclick="switchImg(this, 'https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?w=800&auto=format&fit=crop&q=80', 'Cải bó xôi baby hữu cơ')">
+            <img src="https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?w=200&auto=format&fit=crop&q=80" alt="Cải bó xôi baby - ảnh 1" loading="lazy">
+          </div>
+          <div class="rx-gallery-thumb" onclick="switchImg(this, 'https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=800&auto=format&fit=crop&q=80', 'Cải bó xôi baby - đóng gói')">
+            <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=200&auto=format&fit=crop&q=80" alt="Cải bó xôi baby - ảnh 2" loading="lazy">
+          </div>
+          <div class="rx-gallery-thumb" onclick="switchImg(this, 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=800&auto=format&fit=crop&q=80', 'Cải bó xôi baby - cận cảnh lá')">
+            <img src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=200&auto=format&fit=crop&q=80" alt="Cải bó xôi baby - ảnh 3" loading="lazy">
+          </div>
+          <div class="rx-gallery-thumb" onclick="switchImg(this, 'https://images.unsplash.com/photo-1595855759920-86582396756c?w=800&auto=format&fit=crop&q=80', 'Cải bó xôi baby - vườn trồng')">
+            <img src="https://images.unsplash.com/photo-1595855759920-86582396756c?w=200&auto=format&fit=crop&q=80" alt="Cải bó xôi baby - ảnh 4" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div>
+        <div class="rx-detail-cat">Rau ăn lá</div>
+        <h1 class="rx-detail-title">Cải bó xôi baby <strong>hữu cơ</strong></h1>
+        <div class="rx-detail-rating">
+          <span class="rx-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></span>
+          <span>4.8 (126 đánh giá) · Đã bán 980+</span>
+        </div>
+        <div class="rx-detail-price">
+          <span class="rx-detail-price-new">28.000đ</span>
+          <span class="rx-detail-price-old">33.000đ</span>
+        </div>
+        <div class="rx-detail-unit">/túi 300g &middot; còn 42 túi</div>
+        <p class="rx-detail-desc">Cải bó xôi baby trồng thủy canh trong nhà kính, lá non mềm, vị ngọt nhẹ, thích hợp làm salad, sinh tố xanh hoặc xào tỏi. Thu hoạch trong ngày giao, không qua kho trung chuyển.</p>
+
+        <div class="rx-detail-badges">
+          <span class="rx-detail-badge"><i class="bi bi-patch-check-fill"></i> Hữu cơ</span>
+          <span class="rx-detail-badge"><i class="bi bi-award"></i> VietGAP</span>
+          <span class="rx-detail-badge"><i class="bi bi-shield-check"></i> Không thuốc BVTV</span>
+        </div>
+
+        <div class="rx-divider"></div>
+
+        <div class="rx-option-block">
+          <div class="rx-option-label">Số lượng</div>
+          <div class="rx-qty-add">
+            <div class="rx-qty-selector">
+              <button type="button" onclick="changeQty(-1)" aria-label="Giảm số lượng">−</button>
+              <input type="text" id="rxQty" value="1" readonly aria-label="Số lượng">
+              <button type="button" onclick="changeQty(1)" aria-label="Tăng số lượng">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="rx-detail-actions">
+          <button class="rx-btn rx-btn-primary rx-btn-lg"><i class="bi bi-basket2-fill"></i> Thêm vào giỏ</button>
+          <a href="gio-hang.html" class="rx-btn rx-btn-dark rx-btn-lg">Mua ngay</a>
+          <button class="rx-btn-wishlist" aria-label="Yêu thích"><i class="bi bi-heart"></i></button>
+        </div>
+
+        <div class="rx-detail-trust">
+          <span class="rx-trust-item"><i class="bi bi-truck"></i> Giao trong ngày</span>
+          <span class="rx-trust-item"><i class="bi bi-arrow-repeat"></i> Đổi trả trong 24h</span>
+          <span class="rx-trust-item"><i class="bi bi-shield-lock"></i> Thanh toán an toàn</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="rx-tabs">
+      <div class="rx-tab-nav" role="tablist">
+        <button class="rx-tab-btn active" role="tab" aria-selected="true" onclick="switchTab(this, 'rxTabMoTa')">Mô tả</button>
+        <button class="rx-tab-btn" role="tab" aria-selected="false" onclick="switchTab(this, 'rxTabDinhDuong')">Thông tin dinh dưỡng</button>
+        <button class="rx-tab-btn" role="tab" aria-selected="false" onclick="switchTab(this, 'rxTabDanhGia')">Đánh giá (126)</button>
+      </div>
+
+      <div class="rx-tab-panel active" id="rxTabMoTa">
+        <p style="max-width:760px; color:var(--text-2); line-height:1.85; font-size:15px;">
+          Cải bó xôi baby được trồng thủy canh trong nhà kính tại nông trại Đà Lạt, đảm bảo môi trường sạch, không tiếp xúc đất nhiễm hóa chất. Lá cải nhỏ, mềm, ít xơ, phù hợp ăn sống trong salad hoặc chế biến nhanh để giữ trọn vitamin. Sản phẩm được đóng gói trong túi thoáng khí, bảo quản ngăn mát tủ lạnh và nên dùng trong vòng 3–4 ngày để đạt độ tươi ngon tốt nhất.
+        </p>
+      </div>
+
+      <div class="rx-tab-panel" id="rxTabDinhDuong">
+        <table class="rx-nutri-table">
+          <tbody>
+            <tr><td>Năng lượng</td><td>23 kcal / 100g</td></tr>
+            <tr><td>Vitamin A</td><td>469% nhu cầu hàng ngày</td></tr>
+            <tr><td>Vitamin K</td><td>604% nhu cầu hàng ngày</td></tr>
+            <tr><td>Sắt</td><td>2.7 mg / 100g</td></tr>
+            <tr><td>Chất xơ</td><td>2.2 g / 100g</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rx-tab-panel" id="rxTabDanhGia">
+        <div class="rx-review-item">
+          <div class="rx-review-top">
+            <div class="rx-review-avatar">N</div>
+            <div>
+              <div class="rx-review-item-name">[Nguyễn Thảo Vy]</div>
+              <div class="rx-review-item-date">[15/06/2025]</div>
+            </div>
+          </div>
+          <div class="rx-review-stars" style="margin-bottom:8px;"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+          <p class="rx-review-item-text">Lá cải rất non và sạch, không có sâu, đóng gói cẩn thận. Con mình ăn được luôn không cần nấu kỹ.</p>
+        </div>
+        <div class="rx-review-item">
+          <div class="rx-review-top">
+            <div class="rx-review-avatar">Đ</div>
+            <div>
+              <div class="rx-review-item-name">[Đặng Quốc Bảo]</div>
+              <div class="rx-review-item-date">[02/06/2025]</div>
+            </div>
+          </div>
+          <div class="rx-review-stars" style="margin-bottom:8px;"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div>
+          <p class="rx-review-item-text">Tươi ngon, giao đúng hẹn. Giá hơi nhỉnh hơn siêu thị nhưng chất lượng xứng đáng.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related products -->
+  <section class="rx-related rx-sec" aria-label="Sản phẩm liên quan">
+    <div class="rx-container">
+      <div class="rx-eyebrow" data-reveal>Có thể bạn cũng thích</div>
+      <h2 class="rx-sec-title" data-reveal data-delay="1">Rau ăn lá <strong>khác đang có</strong></h2>
+
+      <div class="rx-related-grid">
+        <div class="rx-prod-card" data-reveal>
+          <div class="rx-prod-thumb">
+            <img src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=500&auto=format&fit=crop&q=80" alt="Rau muống hữu cơ" loading="lazy">
+            <div class="rx-prod-badge">Bán chạy</div>
+          </div>
+          <div class="rx-prod-info">
+            <div class="rx-prod-cat">Rau ăn lá</div>
+            <h3 class="rx-prod-name"><a href="chi-tiet-san-pham.html">Rau muống hữu cơ</a></h3>
+            <div class="rx-prod-footer">
+              <div class="rx-prod-price"><span class="rx-prod-price-new">15.000đ</span><span class="rx-prod-unit">/bó</span></div>
+              <button class="rx-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-plus-lg"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="rx-prod-card" data-reveal data-delay="1">
+          <div class="rx-prod-thumb">
+            <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=500&auto=format&fit=crop&q=80" alt="Xà lách Romaine" loading="lazy">
+          </div>
+          <div class="rx-prod-info">
+            <div class="rx-prod-cat">Rau ăn lá</div>
+            <h3 class="rx-prod-name"><a href="chi-tiet-san-pham.html">Xà lách Romaine</a></h3>
+            <div class="rx-prod-footer">
+              <div class="rx-prod-price"><span class="rx-prod-price-new">18.000đ</span><span class="rx-prod-unit">/bó</span></div>
+              <button class="rx-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-plus-lg"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="rx-prod-card" data-reveal data-delay="2">
+          <div class="rx-prod-thumb">
+            <img src="https://images.unsplash.com/photo-1518843875459-f738682238a6?w=500&auto=format&fit=crop&q=80" alt="Cải xoăn kale" loading="lazy">
+            <div class="rx-prod-badge new">Mới</div>
+          </div>
+          <div class="rx-prod-info">
+            <div class="rx-prod-cat">Rau ăn lá</div>
+            <h3 class="rx-prod-name"><a href="chi-tiet-san-pham.html">Cải xoăn Kale</a></h3>
+            <div class="rx-prod-footer">
+              <div class="rx-prod-price"><span class="rx-prod-price-new">35.000đ</span><span class="rx-prod-unit">/túi 250g</span></div>
+              <button class="rx-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-plus-lg"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="rx-prod-card" data-reveal data-delay="3">
+          <div class="rx-prod-thumb">
+            <img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=500&auto=format&fit=crop&q=80" alt="Rau cải ngọt" loading="lazy">
+          </div>
+          <div class="rx-prod-info">
+            <div class="rx-prod-cat">Rau ăn lá</div>
+            <h3 class="rx-prod-name"><a href="chi-tiet-san-pham.html">Cải ngọt</a></h3>
+            <div class="rx-prod-footer">
+              <div class="rx-prod-price"><span class="rx-prod-price-new">14.000đ</span><span class="rx-prod-unit">/bó</span></div>
+              <button class="rx-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-plus-lg"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer id="rx-footer" role="contentinfo">
+  <div class="rx-container">
+    <div class="rx-footer-top">
+      <div class="rx-newsletter-inner">
+        <h3>Nhận ưu đãi mỗi tuần</h3>
+        <p>Đăng ký để nhận mã giảm giá combo rau và thông báo hàng theo mùa mới về.</p>
+        <form class="rx-newsletter-form" novalidate>
+          <input type="email" name="email" placeholder="Email của bạn" aria-label="Nhập email đăng ký nhận tin">
+          <button type="submit">Đăng ký</button>
+        </form>
+      </div>
+      <div class="rx-footer-social">
+        <a href="https://www.facebook.com/[fanpage]" class="rx-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.instagram.com/[account]" class="rx-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        <a href="https://zalo.me/[phone]" class="rx-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Zalo"><i class="bi bi-chat-dots"></i></a>
+      </div>
+    </div>
+
+    <div class="rx-footer-grid">
+      <div class="rx-footer-brand">
+        <a href="index.html" class="rx-logo">Vườn <span>Xanh</span></a>
+        <p>Rau củ quả hữu cơ từ nông trại đến bàn ăn — tươi mỗi ngày, sạch mỗi bữa, minh bạch mỗi lô hàng.</p>
+      </div>
+      <div class="rx-footer-col">
+        <h4>Sản phẩm</h4>
+        <ul>
+          <li><a href="san-pham.html">Tất cả sản phẩm</a></li>
+          <li><a href="san-pham.html">Rau ăn lá</a></li>
+          <li><a href="san-pham.html">Củ quả tươi</a></li>
+          <li><a href="san-pham.html">Combo rau củ tuần</a></li>
+        </ul>
+      </div>
+      <div class="rx-footer-col">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="gio-hang.html">Giỏ hàng</a></li>
+          <li><a href="lien-he.html">Chính sách đổi trả</a></li>
+          <li><a href="lien-he.html">Câu hỏi thường gặp</a></li>
+        </ul>
+      </div>
+      <div class="rx-footer-col">
+        <h4>Liên hệ</h4>
+        <ul>
+          <li>[123 Đường Nông Trại, Q. Thủ Đức, TP.HCM]</li>
+          <li>[0909 123 456]</li>
+          <li>[hello@vuonxanh.vn]</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rx-footer-bottom">
+      <p>&copy; 2025 Vườn Xanh. Tất cả quyền được bảo lưu.</p>
+      <div class="rx-footer-pay" aria-label="Phương thức thanh toán">
+        <span class="rx-pay-badge">MoMo</span>
+        <span class="rx-pay-badge">ZaloPay</span>
+        <span class="rx-pay-badge">Chuyển khoản</span>
+        <span class="rx-pay-badge">COD</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="rx-zalo-float" aria-label="Chat Zalo">
+  <div class="rx-zalo-tooltip">Chat Zalo đặt rau</div>
+  <a href="https://zalo.me/[0909123456]" class="rx-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo">
+    <i class="bi bi-chat-fill"></i>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  // Mobile menu
+  const burger = document.getElementById('rx-burger');
+  const mob    = document.getElementById('rx-nav-mob');
+  if (burger && mob) {
+    burger.addEventListener('click', () => {
+      const open = mob.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && mob.classList.contains('open')) {
+        mob.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  // Reveal animation
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+  }, { threshold: .08, rootMargin: '0px 0px -36px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+  // Gallery image switcher
+  window.switchImg = function (thumb, src, alt) {
+    document.querySelectorAll('.rx-gallery-thumb').forEach(t => t.classList.remove('active'));
+    thumb.classList.add('active');
+    const img = document.getElementById('rxMainImgEl');
+    img.src = src;
+    img.alt = alt;
+  };
+
+  // Quantity control
+  window.changeQty = function (delta) {
+    const inp = document.getElementById('rxQty');
+    const val = Math.max(1, Math.min(99, parseInt(inp.value || '1', 10) + delta));
+    inp.value = val;
+  };
+
+  // Tab switcher
+  window.switchTab = function (btn, panelId) {
+    document.querySelectorAll('.rx-tab-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
+    document.querySelectorAll('.rx-tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    const panel = document.getElementById(panelId);
+    if (panel) panel.classList.add('active');
+  };
+})();
+</script>
+</body>
+</html>

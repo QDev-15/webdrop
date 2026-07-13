@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Tên Shop] — Thực Phẩm Sạch, Tươi Mỗi Ngày</title>
+  <meta name="description" content="[Mô tả ngắn về cửa hàng thực phẩm sạch — rau củ hữu cơ, thịt cá tươi, gạo & đồ khô truy xuất nguồn gốc rõ ràng, giao hàng lạnh trong ngày]">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav id="tp-nav-mob" class="tp-mob-nav" role="navigation" aria-label="Menu di động" inert>
+  <ul>
+    <li><a href="index.html" class="tp-active"><i class="bi bi-house"></i> Trang chủ</a></li>
+    <li><a href="san-pham.html"><i class="bi bi-basket2"></i> Sản phẩm</a></li>
+    <li><a href="lien-he.html"><i class="bi bi-envelope"></i> Liên hệ</a></li>
+    <li><a href="gio-hang.html"><i class="bi bi-bag"></i> Giỏ hàng</a></li>
+  </ul>
+  <div class="tp-mob-actions">
+    <a href="san-pham.html" class="tp-btn tp-btn-primary">Mua ngay</a>
+  </div>
+</nav>
+
+<!-- Nav-8 Underline-Active only -->
+<header id="tp-nav" class="tp-nav" role="banner">
+  <div class="tp-container tp-nav-inner">
+    <a href="index.html" class="tp-logo"><span class="tp-logo-dot"></span>[Tên Shop]</a>
+    <nav class="tp-nav-links" role="navigation" aria-label="Menu chính">
+      <a href="index.html" class="tp-active">Trang chủ</a>
+      <a href="san-pham.html">Sản phẩm</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+    <div class="tp-nav-actions">
+      <a href="gio-hang.html" class="tp-nav-icon" aria-label="Giỏ hàng">
+        <i class="bi bi-bag"></i>
+        <span class="tp-cart-badge">2</span>
+      </a>
+      <a href="san-pham.html" class="tp-btn tp-btn-primary tp-btn-sm">Mua ngay</a>
+      <button id="tp-burger" class="tp-burger" aria-label="Mở menu" aria-expanded="false" aria-controls="tp-nav-mob">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     HERO — H4 Centered Minimal
+══════════════════════════════════════════ -->
+<section class="tp-hero" aria-label="Giới thiệu">
+  <span class="tp-hero-blob tp-hero-blob-1" aria-hidden="true"></span>
+  <span class="tp-hero-blob tp-hero-blob-2" aria-hidden="true"></span>
+  <div class="tp-container">
+    <div class="tp-hero-inner">
+      <div class="tp-hero-tag" data-reveal>
+        <i class="bi bi-patch-check-fill"></i>
+        100% Organic — Đạt chuẩn VietGAP
+      </div>
+      <h1 class="tp-hero-title" data-reveal data-delay="1">
+        Thực phẩm sạch,<br><em>tươi mỗi ngày</em>
+      </h1>
+      <p class="tp-hero-desc" data-reveal data-delay="2">
+        [Rau củ hữu cơ, thịt cá tươi, gạo & đồ khô — chọn lọc từ nông trại liên kết, truy xuất nguồn gốc rõ ràng, giao đến tận bếp nhà bạn trong ngày.]
+      </p>
+      <div class="tp-hero-actions" data-reveal data-delay="3">
+        <a href="san-pham.html" class="tp-btn tp-btn-primary tp-btn-lg">
+          <i class="bi bi-basket3"></i> Khám phá sản phẩm
+        </a>
+        <a href="#quy-trinh" class="tp-btn tp-btn-ghost tp-btn-lg">Tìm hiểu quy trình</a>
+      </div>
+      <p class="tp-hero-note" data-reveal data-delay="4">
+        <i class="bi bi-truck"></i>
+        Giao hàng lạnh trong 2–4 giờ tại nội thành · Hoàn tiền nếu không hài lòng
+      </p>
+    </div>
+
+    <div class="tp-hero-visual" data-reveal data-delay="3">
+      <img src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?w=1400&auto=format&fit=crop&q=80" alt="[Rổ rau củ hữu cơ tươi mới thu hoạch]" loading="eager">
+      <div class="tp-hero-float-card">
+        <div class="tp-float-icon"><i class="bi bi-tree"></i></div>
+        <div>
+          <strong>120+ nông trại</strong>
+          <span>liên kết trên khắp Việt Nam</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust strip -->
+<section class="tp-trust" aria-label="Chứng nhận">
+  <div class="tp-container">
+    <div class="tp-trust-row" data-reveal>
+      <div class="tp-trust-item"><i class="bi bi-patch-check"></i> Đạt chuẩn VietGAP</div>
+      <div class="tp-trust-item"><i class="bi bi-shield-check"></i> Không thuốc BVTV</div>
+      <div class="tp-trust-item"><i class="bi bi-qr-code"></i> Truy xuất nguồn gốc</div>
+      <div class="tp-trust-item"><i class="bi bi-snow2"></i> Chuỗi lạnh khép kín</div>
+      <div class="tp-trust-item"><i class="bi bi-arrow-counterclockwise"></i> Đổi trả trong 24h</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FEATURE-ICON-ROW — Vì sao chọn chúng tôi
+══════════════════════════════════════════ -->
+<section class="tp-sec tp-features-bg">
+  <div class="tp-container">
+    <div class="tp-sec-header tp-center" data-reveal>
+      <div class="tp-eyebrow"><i class="bi bi-leaf"></i> Cam kết của chúng tôi</div>
+      <h2 class="tp-sec-title">Vì sao khách hàng <em>tin chọn</em></h2>
+      <p class="tp-sec-sub">Mỗi sản phẩm đều đi qua quy trình kiểm định nghiêm ngặt trước khi đến tay bạn.</p>
+    </div>
+    <div class="tp-feature-grid">
+      <div class="tp-feature" data-reveal data-delay="1">
+        <div class="tp-feature-icon"><i class="bi bi-flower1"></i></div>
+        <h3>100% tự nhiên</h3>
+        <p>Không chất bảo quản, không phẩm màu, không biến đổi gen — đúng như thiên nhiên vốn có.</p>
+      </div>
+      <div class="tp-feature" data-reveal data-delay="2">
+        <div class="tp-feature-icon"><i class="bi bi-qr-code-scan"></i></div>
+        <h3>Nguồn gốc rõ ràng</h3>
+        <p>Quét mã QR để xem thông tin nông trại, ngày thu hoạch của từng lô hàng.</p>
+      </div>
+      <div class="tp-feature" data-reveal data-delay="3">
+        <div class="tp-feature-icon"><i class="bi bi-snow"></i></div>
+        <h3>Giao hàng lạnh trong ngày</h3>
+        <p>Xe chuyên dụng bảo quản lạnh, đảm bảo độ tươi đến tận cửa nhà bạn.</p>
+      </div>
+      <div class="tp-feature" data-reveal data-delay="4">
+        <div class="tp-feature-icon"><i class="bi bi-arrow-repeat"></i></div>
+        <h3>Cam kết hoàn tiền</h3>
+        <p>Hoàn tiền 100% nếu sản phẩm không đạt chuẩn chất lượng đã công bố.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CATEGORIES — GRID-CARDS
+══════════════════════════════════════════ -->
+<section class="tp-sec">
+  <div class="tp-container">
+    <div class="tp-sec-header tp-split" data-reveal>
+      <div>
+        <div class="tp-eyebrow"><i class="bi bi-grid"></i> Danh mục</div>
+        <h2 class="tp-sec-title">Mua sắm theo <em>nhu cầu</em></h2>
+      </div>
+      <a href="san-pham.html" class="tp-btn tp-btn-ghost">Xem tất cả <i class="bi bi-arrow-right"></i></a>
+    </div>
+    <div class="tp-cat-grid">
+      <a href="san-pham.html" class="tp-cat-card" data-reveal data-delay="1">
+        <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&auto=format&fit=crop&q=80" alt="[Rau củ hữu cơ]" loading="lazy">
+        <div class="tp-cat-overlay"></div>
+        <div class="tp-cat-info"><h3>Rau Củ Hữu Cơ</h3><span>48 sản phẩm</span></div>
+      </a>
+      <a href="san-pham.html" class="tp-cat-card" data-reveal data-delay="2">
+        <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500&auto=format&fit=crop&q=80" alt="[Trái cây tươi]" loading="lazy">
+        <div class="tp-cat-overlay"></div>
+        <div class="tp-cat-info"><h3>Trái Cây Tươi</h3><span>36 sản phẩm</span></div>
+      </a>
+      <a href="san-pham.html" class="tp-cat-card" data-reveal data-delay="3">
+        <img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=500&auto=format&fit=crop&q=80" alt="[Thịt và hải sản sạch]" loading="lazy">
+        <div class="tp-cat-overlay"></div>
+        <div class="tp-cat-info"><h3>Thịt & Hải Sản Sạch</h3><span>29 sản phẩm</span></div>
+      </a>
+      <a href="san-pham.html" class="tp-cat-card" data-reveal data-delay="4">
+        <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500&auto=format&fit=crop&q=80" alt="[Gạo và ngũ cốc]" loading="lazy">
+        <div class="tp-cat-overlay"></div>
+        <div class="tp-cat-info"><h3>Gạo & Ngũ Cốc</h3><span>22 sản phẩm</span></div>
+      </a>
+      <a href="san-pham.html" class="tp-cat-card" data-reveal data-delay="5">
+        <img src="https://images.unsplash.com/photo-1587486913049-53fc88980cfc?w=500&auto=format&fit=crop&q=80" alt="[Trứng và sữa tươi]" loading="lazy">
+        <div class="tp-cat-overlay"></div>
+        <div class="tp-cat-info"><h3>Trứng & Sữa Tươi</h3><span>18 sản phẩm</span></div>
+      </a>
+      <a href="san-pham.html" class="tp-cat-card" data-reveal>
+        <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=500&auto=format&fit=crop&q=80" alt="[Gia vị và đồ khô]" loading="lazy">
+        <div class="tp-cat-overlay"></div>
+        <div class="tp-cat-info"><h3>Gia Vị & Đồ Khô</h3><span>41 sản phẩm</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     TIMELINE — Từ nông trại đến bàn ăn
+══════════════════════════════════════════ -->
+<section id="quy-trinh" class="tp-sec tp-timeline-bg">
+  <div class="tp-container">
+    <div class="tp-sec-header tp-center" data-reveal>
+      <div class="tp-eyebrow"><i class="bi bi-signpost-split"></i> Quy trình</div>
+      <h2 class="tp-sec-title">Từ nông trại <em>đến bàn ăn</em></h2>
+      <p class="tp-sec-sub">4 bước đảm bảo mỗi sản phẩm giữ trọn độ tươi và an toàn khi đến tay bạn.</p>
+    </div>
+    <div class="tp-timeline">
+      <div class="tp-timeline-item" data-reveal data-delay="1">
+        <div class="tp-timeline-dot">1</div>
+        <div class="tp-timeline-content">
+          <div class="tp-timeline-step">Bước 1</div>
+          <h3>Thu hoạch mỗi sáng sớm</h3>
+          <p>Nông sản được thu hoạch trực tiếp tại các nông trại liên kết ngay trong ngày, đảm bảo độ tươi tối đa.</p>
+        </div>
+      </div>
+      <div class="tp-timeline-item" data-reveal data-delay="2">
+        <div class="tp-timeline-dot">2</div>
+        <div class="tp-timeline-content">
+          <div class="tp-timeline-step">Bước 2</div>
+          <h3>Kiểm định chất lượng</h3>
+          <p>Test dư lượng thuốc bảo vệ thực vật, đối chiếu chuẩn VietGAP/Organic trước khi nhập kho.</p>
+        </div>
+      </div>
+      <div class="tp-timeline-item" data-reveal data-delay="3">
+        <div class="tp-timeline-dot">3</div>
+        <div class="tp-timeline-content">
+          <div class="tp-timeline-step">Bước 3</div>
+          <h3>Đóng gói & bảo quản lạnh</h3>
+          <p>Sản phẩm được đóng gói trong chuỗi lạnh khép kín, gắn mã QR truy xuất nguồn gốc từng lô hàng.</p>
+        </div>
+      </div>
+      <div class="tp-timeline-item" data-reveal data-delay="4">
+        <div class="tp-timeline-dot">4</div>
+        <div class="tp-timeline-content">
+          <div class="tp-timeline-step">Bước 4</div>
+          <h3>Giao hàng trong ngày</h3>
+          <p>Xe lạnh chuyên dụng giao tận nơi trong 2–4 giờ, đảm bảo thực phẩm tươi ngon khi đến bếp nhà bạn.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FEATURED PRODUCTS — BENTO-GRID
+══════════════════════════════════════════ -->
+<section class="tp-sec">
+  <div class="tp-container">
+    <div class="tp-sec-header tp-split" data-reveal>
+      <div>
+        <div class="tp-eyebrow"><i class="bi bi-star"></i> Bán chạy</div>
+        <h2 class="tp-sec-title">Sản phẩm <em>được yêu thích</em></h2>
+      </div>
+      <a href="san-pham.html" class="tp-btn tp-btn-ghost">Xem tất cả <i class="bi bi-arrow-right"></i></a>
+    </div>
+    <div class="tp-bento">
+      <a href="chi-tiet-san-pham.html" class="tp-prod-card tp-bento-large" data-reveal data-delay="1">
+        <div class="tp-prod-thumb">
+          <span class="tp-prod-badge tp-prod-badge-organic">Organic</span>
+          <img src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=700&auto=format&fit=crop&q=80" alt="[Rau muống hữu cơ bó 300g]" loading="lazy">
+          <span class="tp-prod-quickadd"><i class="bi bi-plus-lg"></i></span>
+        </div>
+        <div class="tp-prod-info">
+          <div class="tp-prod-cat">Rau Củ Hữu Cơ</div>
+          <div class="tp-prod-name">Rau muống hữu cơ (bó 300g)</div>
+          <div class="tp-prod-footer">
+            <div class="tp-prod-price"><span class="tp-price-now">18.000đ</span><span class="tp-price-unit">/bó</span></div>
+            <div class="tp-prod-rating"><i class="bi bi-star-fill"></i> 4.9</div>
+          </div>
+        </div>
+      </a>
+      <a href="chi-tiet-san-pham.html" class="tp-prod-card tp-bento-small" data-reveal data-delay="2">
+        <div class="tp-prod-thumb">
+          <span class="tp-prod-badge tp-prod-badge-organic">Organic</span>
+          <img src="https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=500&auto=format&fit=crop&q=80" alt="[Trứng gà ta hữu cơ hộp 10 quả]" loading="lazy">
+        </div>
+        <div class="tp-prod-info">
+          <div class="tp-prod-cat">Trứng & Sữa</div>
+          <div class="tp-prod-name">Trứng gà ta hữu cơ (hộp 10 quả)</div>
+          <div class="tp-prod-footer">
+            <div class="tp-prod-price"><span class="tp-price-now">45.000đ</span></div>
+          </div>
+        </div>
+      </a>
+      <a href="chi-tiet-san-pham.html" class="tp-prod-card tp-bento-small" data-reveal data-delay="3">
+        <div class="tp-prod-thumb">
+          <span class="tp-prod-badge tp-prod-badge-new">Mới</span>
+          <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500&auto=format&fit=crop&q=80" alt="[Gạo ST25 túi 5kg]" loading="lazy">
+        </div>
+        <div class="tp-prod-info">
+          <div class="tp-prod-cat">Gạo & Ngũ Cốc</div>
+          <div class="tp-prod-name">Gạo ST25 túi 5kg</div>
+          <div class="tp-prod-footer">
+            <div class="tp-prod-price"><span class="tp-price-now">175.000đ</span></div>
+          </div>
+        </div>
+      </a>
+      <a href="chi-tiet-san-pham.html" class="tp-prod-card tp-bento-small" data-reveal data-delay="4">
+        <div class="tp-prod-thumb">
+          <img src="https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=500&auto=format&fit=crop&q=80" alt="[Ức gà sạch không kháng sinh 500g]" loading="lazy">
+        </div>
+        <div class="tp-prod-info">
+          <div class="tp-prod-cat">Thịt Sạch</div>
+          <div class="tp-prod-name">Ức gà sạch không kháng sinh (500g)</div>
+          <div class="tp-prod-footer">
+            <div class="tp-prod-price"><span class="tp-price-now">62.000đ</span></div>
+          </div>
+        </div>
+      </a>
+      <a href="chi-tiet-san-pham.html" class="tp-prod-card tp-bento-small" data-reveal data-delay="5">
+        <div class="tp-prod-thumb">
+          <span class="tp-prod-badge tp-prod-badge-organic">Organic</span>
+          <img src="https://images.unsplash.com/photo-1587049633312-d628ae50a8ae?w=500&auto=format&fit=crop&q=80" alt="[Mật ong rừng nguyên chất chai 500ml]" loading="lazy">
+        </div>
+        <div class="tp-prod-info">
+          <div class="tp-prod-cat">Gia Vị & Đồ Khô</div>
+          <div class="tp-prod-name">Mật ong rừng nguyên chất (500ml)</div>
+          <div class="tp-prod-footer">
+            <div class="tp-prod-price"><span class="tp-price-now">195.000đ</span></div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     ALTERNATING-STRIPS — Câu chuyện nông trại
+══════════════════════════════════════════ -->
+<section class="tp-sec tp-features-bg">
+  <div class="tp-container">
+    <div class="tp-story-row" data-reveal>
+      <div class="tp-story-img">
+        <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=700&auto=format&fit=crop&q=80" alt="[Nông trại liên kết trồng rau hữu cơ]" loading="lazy">
+      </div>
+      <div>
+        <div class="tp-story-badge">Nông trại liên kết</div>
+        <h3 class="tp-story-title">120+ nông trại trên <em>khắp Việt Nam</em></h3>
+        <p class="tp-story-text">[Chúng tôi hợp tác trực tiếp với các nông trại canh tác theo hướng hữu cơ tại Đà Lạt, Mộc Châu, Long An — cắt bỏ khâu trung gian để mang đến giá tốt nhất cho khách hàng.]</p>
+        <ul class="tp-story-list">
+          <li><i class="bi bi-check-circle-fill"></i> Ký hợp đồng bao tiêu dài hạn với nông dân</li>
+          <li><i class="bi bi-check-circle-fill"></i> Hỗ trợ kỹ thuật canh tác hữu cơ</li>
+          <li><i class="bi bi-check-circle-fill"></i> Kiểm tra định kỳ chất lượng đất & nước</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tp-story-row tp-reverse" data-reveal>
+      <div class="tp-story-img">
+        <img src="https://images.unsplash.com/photo-1666063425838-0073a360c4f1?w=700&auto=format&fit=crop&q=80" alt="[Kiểm định chất lượng nông sản trước khi đóng gói]" loading="lazy">
+      </div>
+      <div>
+        <div class="tp-story-badge">Cam kết chất lượng</div>
+        <h3 class="tp-story-title">Không hóa chất, <em>không biến đổi gen</em></h3>
+        <p class="tp-story-text">[Mọi sản phẩm đều được xét nghiệm dư lượng thuốc bảo vệ thực vật tại phòng lab độc lập trước khi đến tay khách hàng — an tâm cho từng bữa ăn gia đình.]</p>
+        <ul class="tp-story-list">
+          <li><i class="bi bi-check-circle-fill"></i> Xét nghiệm dư lượng tại lab độc lập</li>
+          <li><i class="bi bi-check-circle-fill"></i> Không sử dụng chất bảo quản</li>
+          <li><i class="bi bi-check-circle-fill"></i> Bao bì thân thiện môi trường</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     STAT-BAR
+══════════════════════════════════════════ -->
+<section class="tp-stats" aria-label="Số liệu">
+  <div class="tp-container">
+    <div class="tp-stats-grid" data-reveal>
+      <div class="tp-stat">
+        <div class="tp-stat-num"><span data-counter="120" data-suffix="+">0</span></div>
+        <div class="tp-stat-label">Nông trại liên kết</div>
+      </div>
+      <div class="tp-stat">
+        <div class="tp-stat-num"><span data-counter="500" data-suffix="+">0</span></div>
+        <div class="tp-stat-label">Sản phẩm sạch</div>
+      </div>
+      <div class="tp-stat">
+        <div class="tp-stat-num"><span data-counter="15000" data-suffix="+">0</span></div>
+        <div class="tp-stat-label">Khách hàng tin dùng</div>
+      </div>
+      <div class="tp-stat">
+        <div class="tp-stat-num"><span data-counter="8">0</span></div>
+        <div class="tp-stat-label">Năm kinh nghiệm</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     TESTIMONIALS — HORIZONTAL-SCROLL
+══════════════════════════════════════════ -->
+<section class="tp-sec tp-features-bg">
+  <div class="tp-container">
+    <div class="tp-sec-header tp-center" data-reveal>
+      <div class="tp-eyebrow"><i class="bi bi-chat-heart"></i> Khách hàng nói gì</div>
+      <h2 class="tp-sec-title">Được <em>tin dùng</em> mỗi ngày</h2>
+    </div>
+    <div class="tp-testi-track" data-reveal>
+      <div class="tp-testi-card">
+        <div class="tp-testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+        <p class="tp-testi-text">"Rau ở đây tươi thật sự, mua buổi sáng là còn dính sương. Gia đình mình chuyển hẳn sang dùng đồ ở đây được 6 tháng rồi."</p>
+        <div class="tp-testi-author">
+          <div class="tp-testi-avatar">H</div>
+          <div><div class="tp-testi-name">Chị Hương</div><div class="tp-testi-role">Quận 2, TP.HCM</div></div>
+        </div>
+      </div>
+      <div class="tp-testi-card">
+        <div class="tp-testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+        <p class="tp-testi-text">"Thích nhất là mã QR truy xuất nguồn gốc — biết chính xác rau mua từ nông trại nào, thu hoạch ngày nào. Rất yên tâm."</p>
+        <div class="tp-testi-author">
+          <div class="tp-testi-avatar">T</div>
+          <div><div class="tp-testi-name">Anh Tuấn</div><div class="tp-testi-role">Cầu Giấy, Hà Nội</div></div>
+        </div>
+      </div>
+      <div class="tp-testi-card">
+        <div class="tp-testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+        <p class="tp-testi-text">"Giao hàng nhanh, đóng gói giữ lạnh cẩn thận. Thịt gà ức không có mùi kháng sinh như mấy chỗ khác."</p>
+        <div class="tp-testi-author">
+          <div class="tp-testi-avatar">L</div>
+          <div><div class="tp-testi-name">Chị Lan Anh</div><div class="tp-testi-role">Thủ Đức, TP.HCM</div></div>
+        </div>
+      </div>
+      <div class="tp-testi-card">
+        <div class="tp-testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+        <p class="tp-testi-text">"Giá hợp lý hơn mình nghĩ so với chất lượng nhận được. Đặt online tiện, có app theo dõi đơn hàng rõ ràng."</p>
+        <div class="tp-testi-author">
+          <div class="tp-testi-avatar">M</div>
+          <div><div class="tp-testi-name">Chị Minh Thư</div><div class="tp-testi-role">Hải Châu, Đà Nẵng</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="tp-newsletter">
+  <div class="tp-container">
+    <div class="tp-newsletter-inner" data-reveal>
+      <h2 class="tp-sec-title">Nhận ưu đãi & tin nông sản mới</h2>
+      <p class="tp-sec-sub" style="margin-left:auto;margin-right:auto;">Đăng ký để nhận mã giảm giá 10.000đ cho đơn hàng đầu tiên.</p>
+      <form class="tp-newsletter-form" onsubmit="return false;">
+        <input type="email" placeholder="Email của bạn" required aria-label="Email">
+        <button type="submit">Đăng ký</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="tp-footer">
+  <div class="tp-container">
+    <div class="tp-footer-grid">
+      <div>
+        <a href="index.html" class="tp-footer-logo"><span class="tp-logo-dot"></span>[Tên Shop]</a>
+        <p class="tp-footer-desc">[Thực phẩm sạch — rau củ hữu cơ, thịt cá tươi, gạo & đồ khô truy xuất nguồn gốc rõ ràng, giao hàng lạnh mỗi ngày.]</p>
+        <div class="tp-footer-social">
+          <a href="#" class="tp-soc-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="tp-soc-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://zalo.me/[0900000000]" class="tp-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Zalo"><i class="bi bi-chat-fill"></i></a>
+        </div>
+      </div>
+      <div class="tp-footer-col">
+        <h4>Danh mục</h4>
+        <ul>
+          <li><a href="san-pham.html">Rau Củ Hữu Cơ</a></li>
+          <li><a href="san-pham.html">Trái Cây Tươi</a></li>
+          <li><a href="san-pham.html">Thịt & Hải Sản</a></li>
+          <li><a href="san-pham.html">Gạo & Ngũ Cốc</a></li>
+        </ul>
+      </div>
+      <div class="tp-footer-col">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="gio-hang.html">Theo dõi đơn hàng</a></li>
+          <li><a href="lien-he.html">Chính sách đổi trả</a></li>
+          <li><a href="lien-he.html">Câu hỏi thường gặp</a></li>
+        </ul>
+      </div>
+      <div class="tp-footer-col">
+        <h4>Liên hệ</h4>
+        <ul class="tp-footer-contact">
+          <li><i class="bi bi-geo-alt"></i> [123 Đường ABC, Quận 1, TP.HCM]</li>
+          <li><i class="bi bi-telephone"></i> [0900 000 000]</li>
+          <li><i class="bi bi-envelope"></i> [lienhe@tenshop.vn]</li>
+          <li><i class="bi bi-clock"></i> 7:00 – 21:00 (Cả tuần)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tp-footer-bottom">
+      <p>&copy; 2026 [Tên Shop]. Tất cả quyền được bảo lưu.</p>
+      <div class="tp-footer-pay">
+        <span class="tp-pay-badge">VISA</span>
+        <span class="tp-pay-badge">MoMo</span>
+        <span class="tp-pay-badge">ZaloPay</span>
+        <span class="tp-pay-badge">COD</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="tp-zalo-float">
+  <div class="tp-zalo-tooltip">Chat Zalo</div>
+  <a href="https://zalo.me/[0900000000]" class="tp-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo">
+    <i class="bi bi-chat-fill"></i>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }});
+}, { threshold: .08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+const burger = document.getElementById('tp-burger');
+const mob    = document.getElementById('tp-nav-mob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const open = mob.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    mob.toggleAttribute('inert', !open);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      mob.setAttribute('inert', '');
+    }
+  });
+}
+
+document.querySelectorAll('[data-counter]').forEach(el => {
+  const cro = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      const target = +el.dataset.counter;
+      const suffix = el.dataset.suffix || '';
+      let cur = 0;
+      const step = Math.ceil(target / 60);
+      const t = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = cur.toLocaleString('vi-VN') + suffix;
+        if (cur >= target) clearInterval(t);
+      }, 25);
+      cro.disconnect();
+    }
+  }, { threshold: .5 });
+  cro.observe(el);
+});
+</script>
+</body>
+</html>

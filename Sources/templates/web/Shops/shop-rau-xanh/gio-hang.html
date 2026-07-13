@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giỏ Hàng — Vườn Xanh</title>
+  <meta name="description" content="Xem lại giỏ hàng rau củ quả hữu cơ trước khi thanh toán tại Vườn Xanh.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ── Mobile Nav ── -->
+<nav id="rx-nav-mob" role="navigation" aria-label="Menu di động">
+  <a href="index.html" class="rx-logo">Vườn <span>Xanh</span></a>
+  <a href="index.html">Trang chủ</a>
+  <a href="san-pham.html">Sản phẩm</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="gio-hang.html" class="rx-btn rx-btn-primary">
+    <i class="bi bi-basket2"></i> Giỏ hàng
+  </a>
+</nav>
+
+<!-- ── Nav-5 ── -->
+<header id="rx-nav" role="banner">
+  <div class="rx-nav-strip">
+    <div class="rx-container">
+      <span>🌿 Giao rau trong ngày nội thành &middot; Freeship đơn từ <strong>300.000đ</strong></span>
+    </div>
+  </div>
+  <div class="rx-nav-body">
+    <div class="rx-container">
+      <div class="rx-nav-logo-row">
+        <a href="index.html" class="rx-logo">Vườn <span>Xanh</span></a>
+        <span class="rx-logo-tag">Nông sản sạch mỗi ngày</span>
+      </div>
+      <div class="rx-nav-links-row">
+        <div class="rx-nav-left">
+          <button id="rx-burger" aria-label="Mở menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+        <nav class="rx-nav-links" role="navigation" aria-label="Menu chính">
+          <a href="index.html">Trang chủ</a>
+          <a href="san-pham.html">Sản phẩm</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </nav>
+        <div class="rx-nav-right">
+          <a href="gio-hang.html" class="rx-nav-cart" aria-label="Giỏ hàng">
+            <i class="bi bi-basket2"></i>
+            <span class="rx-cart-count">3</span>
+          </a>
+          <a href="san-pham.html" class="rx-nav-cta">Đặt rau ngay</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="rx-container rx-cart-wrap">
+    <nav class="rx-breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Trang chủ</a>
+      <span><i class="bi bi-chevron-right" style="font-size:10px"></i></span>
+      <span>Giỏ hàng</span>
+    </nav>
+    <h1 class="rx-cart-title">Giỏ hàng của bạn <span style="font-family:var(--sans); font-style:normal; font-size:16px; color:var(--text-3); font-weight:400;">(3 sản phẩm)</span></h1>
+
+    <div class="rx-cart-layout">
+      <div>
+        <div class="rx-cart-head">
+          <span>Sản phẩm</span>
+          <span>Đơn giá</span>
+          <span>Số lượng</span>
+          <span>Tạm tính</span>
+          <span></span>
+        </div>
+
+        <div class="rx-cart-item">
+          <div class="rx-cart-prod">
+            <div class="rx-cart-thumb"><img src="https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?w=200&auto=format&fit=crop&q=80" alt="Cải bó xôi baby hữu cơ" loading="lazy"></div>
+            <div>
+              <div class="rx-cart-prod-name">Cải bó xôi baby hữu cơ</div>
+              <div class="rx-cart-prod-var">Túi 300g</div>
+            </div>
+          </div>
+          <div class="rx-cart-price">28.000đ</div>
+          <div class="rx-cart-qty">
+            <button type="button" aria-label="Giảm số lượng">−</button>
+            <input type="text" value="2" readonly aria-label="Số lượng">
+            <button type="button" aria-label="Tăng số lượng">+</button>
+          </div>
+          <div class="rx-cart-subtotal">56.000đ</div>
+          <button class="rx-remove-btn" aria-label="Xóa sản phẩm"><i class="bi bi-trash"></i></button>
+        </div>
+
+        <div class="rx-cart-item">
+          <div class="rx-cart-prod">
+            <div class="rx-cart-thumb"><img src="https://images.unsplash.com/photo-1611048267451-e6ed903d4a38?w=200&auto=format&fit=crop&q=80" alt="Cà chua bi Đà Lạt" loading="lazy"></div>
+            <div>
+              <div class="rx-cart-prod-name">Cà chua bi Đà Lạt</div>
+              <div class="rx-cart-prod-var">Hộp 500g</div>
+            </div>
+          </div>
+          <div class="rx-cart-price">34.000đ</div>
+          <div class="rx-cart-qty">
+            <button type="button" aria-label="Giảm số lượng">−</button>
+            <input type="text" value="1" readonly aria-label="Số lượng">
+            <button type="button" aria-label="Tăng số lượng">+</button>
+          </div>
+          <div class="rx-cart-subtotal">34.000đ</div>
+          <button class="rx-remove-btn" aria-label="Xóa sản phẩm"><i class="bi bi-trash"></i></button>
+        </div>
+
+        <div class="rx-cart-item">
+          <div class="rx-cart-prod">
+            <div class="rx-cart-thumb"><img src="https://images.unsplash.com/photo-1596097635121-14b63b7a0c2c?w=200&auto=format&fit=crop&q=80" alt="Khoai lang mật" loading="lazy"></div>
+            <div>
+              <div class="rx-cart-prod-name">Khoai lang mật</div>
+              <div class="rx-cart-prod-var">1kg</div>
+            </div>
+          </div>
+          <div class="rx-cart-price">32.000đ</div>
+          <div class="rx-cart-qty">
+            <button type="button" aria-label="Giảm số lượng">−</button>
+            <input type="text" value="2" readonly aria-label="Số lượng">
+            <button type="button" aria-label="Tăng số lượng">+</button>
+          </div>
+          <div class="rx-cart-subtotal">64.000đ</div>
+          <button class="rx-remove-btn" aria-label="Xóa sản phẩm"><i class="bi bi-trash"></i></button>
+        </div>
+
+        <div style="margin-top:24px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+          <a href="san-pham.html" class="rx-btn rx-btn-ghost"><i class="bi bi-arrow-left"></i> Tiếp tục mua sắm</a>
+          <button class="rx-btn rx-btn-outline">Cập nhật giỏ hàng</button>
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <aside class="rx-order-summary">
+        <h3 class="rx-summary-title">Tóm tắt đơn hàng</h3>
+        <div class="rx-summary-row"><span>Tạm tính</span><span>154.000đ</span></div>
+        <div class="rx-summary-row"><span>Phí giao hàng</span><span>20.000đ</span></div>
+        <div class="rx-summary-row"><span>Giảm giá</span><span>−0đ</span></div>
+
+        <div class="rx-coupon-input">
+          <input type="text" placeholder="Nhập mã giảm giá" aria-label="Mã giảm giá">
+          <button type="button">Áp dụng</button>
+        </div>
+
+        <div class="rx-summary-row total"><span>Tổng cộng</span><span>174.000đ</span></div>
+
+        <a href="lien-he.html" class="rx-btn-checkout">
+          <i class="bi bi-lock-fill"></i> Tiến hành thanh toán
+        </a>
+
+        <div class="rx-secure-badges">
+          <span class="rx-secure-badge"><i class="bi bi-shield-check"></i> Thanh toán an toàn</span>
+          <span class="rx-secure-badge"><i class="bi bi-truck"></i> Giao trong ngày nội thành</span>
+          <span class="rx-secure-badge"><i class="bi bi-arrow-repeat"></i> Đổi trả trong 24h</span>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer id="rx-footer" role="contentinfo">
+  <div class="rx-container">
+    <div class="rx-footer-top">
+      <div class="rx-newsletter-inner">
+        <h3>Nhận ưu đãi mỗi tuần</h3>
+        <p>Đăng ký để nhận mã giảm giá combo rau và thông báo hàng theo mùa mới về.</p>
+        <form class="rx-newsletter-form" novalidate>
+          <input type="email" name="email" placeholder="Email của bạn" aria-label="Nhập email đăng ký nhận tin">
+          <button type="submit">Đăng ký</button>
+        </form>
+      </div>
+      <div class="rx-footer-social">
+        <a href="https://www.facebook.com/[fanpage]" class="rx-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.instagram.com/[account]" class="rx-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        <a href="https://zalo.me/[phone]" class="rx-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Zalo"><i class="bi bi-chat-dots"></i></a>
+      </div>
+    </div>
+
+    <div class="rx-footer-grid">
+      <div class="rx-footer-brand">
+        <a href="index.html" class="rx-logo">Vườn <span>Xanh</span></a>
+        <p>Rau củ quả hữu cơ từ nông trại đến bàn ăn — tươi mỗi ngày, sạch mỗi bữa, minh bạch mỗi lô hàng.</p>
+      </div>
+      <div class="rx-footer-col">
+        <h4>Sản phẩm</h4>
+        <ul>
+          <li><a href="san-pham.html">Tất cả sản phẩm</a></li>
+          <li><a href="san-pham.html">Rau ăn lá</a></li>
+          <li><a href="san-pham.html">Củ quả tươi</a></li>
+          <li><a href="san-pham.html">Combo rau củ tuần</a></li>
+        </ul>
+      </div>
+      <div class="rx-footer-col">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="gio-hang.html">Giỏ hàng</a></li>
+          <li><a href="lien-he.html">Chính sách đổi trả</a></li>
+          <li><a href="lien-he.html">Câu hỏi thường gặp</a></li>
+        </ul>
+      </div>
+      <div class="rx-footer-col">
+        <h4>Liên hệ</h4>
+        <ul>
+          <li>[123 Đường Nông Trại, Q. Thủ Đức, TP.HCM]</li>
+          <li>[0909 123 456]</li>
+          <li>[hello@vuonxanh.vn]</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rx-footer-bottom">
+      <p>&copy; 2025 Vườn Xanh. Tất cả quyền được bảo lưu.</p>
+      <div class="rx-footer-pay" aria-label="Phương thức thanh toán">
+        <span class="rx-pay-badge">MoMo</span>
+        <span class="rx-pay-badge">ZaloPay</span>
+        <span class="rx-pay-badge">Chuyển khoản</span>
+        <span class="rx-pay-badge">COD</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="rx-zalo-float" aria-label="Chat Zalo">
+  <div class="rx-zalo-tooltip">Chat Zalo đặt rau</div>
+  <a href="https://zalo.me/[0909123456]" class="rx-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo">
+    <i class="bi bi-chat-fill"></i>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  // Mobile menu
+  const burger = document.getElementById('rx-burger');
+  const mob    = document.getElementById('rx-nav-mob');
+  if (burger && mob) {
+    burger.addEventListener('click', () => {
+      const open = mob.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && mob.classList.contains('open')) {
+        mob.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  // Cart quantity stepper
+  document.querySelectorAll('.rx-cart-qty').forEach(group => {
+    const input = group.querySelector('input');
+    const [minusBtn, plusBtn] = group.querySelectorAll('button');
+    minusBtn.addEventListener('click', () => {
+      input.value = Math.max(1, parseInt(input.value || '1', 10) - 1);
+    });
+    plusBtn.addEventListener('click', () => {
+      input.value = Math.min(99, parseInt(input.value || '1', 10) + 1);
+    });
+  });
+
+  // Remove item (demo only — hides row)
+  document.querySelectorAll('.rx-remove-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.rx-cart-item');
+      if (item) item.style.display = 'none';
+    });
+  });
+})();
+</script>
+</body>
+</html>
