@@ -1,6 +1,6 @@
 /* ══════════════════════════════════════════════════════════════════
    SHOP GIÀY DÉP — DARK-ENERGY
-   Font: Syne 700/800 (heading) + Space Grotesk 400/500 (body)
+   Font: Space Grotesk 400/500/700/800 (heading + body, unified)
    Tone: full dark dominant | Identity: DARK-ENERGY
    Accent: Volt Lime #d4ff3f | Secondary: Electric Cyan #00e5ff
    Nav: Nav-3 Dark Floating Pill | Hero: H1 Full-Screen Overlay
@@ -9,7 +9,7 @@
             STAT-BAR · HORIZONTAL-SCROLL · FEATURE-ICON-ROW
    ══════════════════════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 /* ── CSS Custom Properties ── */
 :root {
@@ -30,7 +30,7 @@
   --cyan-light:      rgba(0,229,255,.12);
   --sale:            #ff3b5c;
   --sale-light:      rgba(255,59,92,.14);
-  --heading:         'Syne', sans-serif;
+  --heading:         'Space Grotesk', sans-serif;
   --sans:            'Space Grotesk', sans-serif;
 }
 
