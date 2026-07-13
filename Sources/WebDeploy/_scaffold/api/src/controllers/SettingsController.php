@@ -17,9 +17,9 @@ class SettingsController {
     public function update(array $p): void {
         Auth::require();
         $b = bodyJson();
-        $stmt = $this->db->query("SELECT key, \"group\" FROM settings");
+        $stmt = $this->db->query("SELECT key, grp FROM settings");
         $groupMap = [];
-        foreach ($stmt as $r) { $groupMap[$r['key']] = $r['group']; }
+        foreach ($stmt as $r) { $groupMap[$r['key']] = $r['grp']; }
 
         // Chỉ cho phép update các key đã tồn tại trong DB — không tạo key tùy ý
         foreach ($b as $key => $value) {
@@ -27,7 +27,7 @@ class SettingsController {
             if (!array_key_exists($key, $groupMap)) continue; // bỏ qua key không có trong settings
             $group = $groupMap[$key];
             $this->db->execute(
-                "INSERT INTO settings (key, value, \"group\") VALUES (?, ?, ?)
+                "INSERT INTO settings (key, value, grp) VALUES (?, ?, ?)
                  ON CONFLICT(key) DO UPDATE SET value = excluded.value",
                 [$key, (string)$value, $group]
             );

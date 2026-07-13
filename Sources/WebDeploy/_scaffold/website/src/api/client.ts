@@ -26,4 +26,16 @@ async function request<T>(method: string, path: string, body?: unknown): Promise
 export const api = {
   get:  <T>(path: string) => request<T>('GET', path),
   post: <T>(path: string, body: unknown) => request<T>('POST', path, body),
+  // Dùng cho danh sách có phân trang — đọc header X-Total-Count thay vì bọc { items, total } trong body
+  // (giữ nguyên rule "Public endpoint trả array thuần"). Dùng cho GET /public/products?page=...
+  getPaged: async <T>(path: string): Promise<{ data: T; total: number }> => {
+    const res = await fetch(BASE + path, { credentials: 'include' })
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ error: 'Lỗi không xác định' }))
+      throw new Error((err as { error?: string }).error || 'Request failed')
+    }
+    const total = Number(res.headers.get('X-Total-Count') || '0')
+    const data = await res.json() as T
+    return { data, total }
+  },
 }

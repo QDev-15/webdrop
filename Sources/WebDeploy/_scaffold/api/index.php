@@ -37,7 +37,10 @@ if ($rawPath === '/health') {
 }
 
 try {
-    $router = require_once __DIR__ . '/src/bootstrap.php';
+    // KHÔNG gán "$router = require_once(...)" — require_once trả về giá trị mặc định (1)
+    // nếu bootstrap.php không có "return $router;" ở cuối, sẽ ĐÈ MẤT biến $router thật.
+    // bootstrap.php chạy cùng scope với try{} này nên $router tự tồn tại sau require_once.
+    require_once __DIR__ . '/src/bootstrap.php';
     // X-HTTP-Method-Override: shared hosting IIS/WebDAV block PUT/DELETE
     $method = $_SERVER['REQUEST_METHOD'];
     if ($method === 'POST') {

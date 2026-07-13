@@ -1,19 +1,19 @@
 /**
  * WebDeploy Scaffolder
  * Usage: node scaffolder.mjs <slug> <type>
- * Types: cafe | restaurant | spa | portfolio | company | blog | spa-service
+ * Types: cafe | restaurant | spa | portfolio | company | blog | spa-service | shop
  *
  * Copies ~55% core files from _scaffold/ and creates placeholder structure
  * for AI (web-deploy-builder) to fill the remaining 45%.
  */
-import { cpSync, mkdirSync, existsSync, readFileSync, writeFileSync } from 'fs'
+import { cpSync, mkdirSync, existsSync, readFileSync, writeFileSync, appendFileSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
 const root = dirname(fileURLToPath(import.meta.url))
 const [,, slug, type] = process.argv
 
-const VALID_TYPES = ['cafe', 'restaurant', 'spa', 'spa-service', 'portfolio', 'company', 'blog']
+const VALID_TYPES = ['cafe', 'restaurant', 'spa', 'spa-service', 'portfolio', 'company', 'blog', 'shop']
 
 if (!slug || !type) {
   console.error('❌  Usage: node scaffolder.mjs <slug> <type>')
@@ -96,6 +96,7 @@ const TYPE_GROUP_MAP = {
   portfolio: 'portfolio',
   company: 'company',
   blog: 'blog',
+  shop: 'shop',
 }
 const typeGroup = TYPE_GROUP_MAP[type]
 const typeDir = join(root, '_scaffold', 'types', typeGroup)
@@ -106,13 +107,28 @@ if (existsSync(typeDir)) {
   console.log(`    ℹ No pre-built scaffold for type "${typeGroup}" — AI will generate all entity files`)
 }
 
+// Type "shop": append product_categories/products/orders/order_items TĨNH vào schema.sql core
+// đã copy ở Step 1 — deterministic, không phụ thuộc AI copy đúng. Xem _scaffold/types/shop-schema-fragment.sql.
+if (type === 'shop') {
+  const fragmentFile = join(root, '_scaffold', 'types', 'shop-schema-fragment.sql')
+  const schemaFile   = join(outputDir, 'api', 'schema.sql')
+  if (existsSync(fragmentFile) && existsSync(schemaFile)) {
+    appendFileSync(schemaFile, readFileSync(fragmentFile, 'utf8'))
+    console.log('    ✓ Appended shop schema fragment (product_categories/products/orders/order_items) vào api/schema.sql')
+  } else {
+    console.log('    ⚠ Không tìm thấy shop-schema-fragment.sql hoặc api/schema.sql — kiểm tra lại scaffold')
+  }
+}
+
 // ── Step 5: Create AI placeholder files ──────────────────────────────────────
 console.log('[5/5] Creating placeholder files for AI to fill...')
 
 // Files AI must generate (common to all types)
 // Note: HeroSlideList, HeroSlideForm, ContactList are now scaffolded — removed from AI list
 const AI_COMMON = [
-  'api/schema.sql',
+  // 'api/schema.sql' — KHÔNG còn ở đây: file này giờ có sẵn trong _scaffold/api/
+  // với 5 bảng core tĩnh (users/settings/hero_slides/contacts/media). AI chỉ
+  // APPEND bảng extension vào cuối file, không viết lại từ đầu.
   'api/src/Database.php',
   'api/src/bootstrap.php',
   'api/src/controllers/PublicController.php',
@@ -246,6 +262,22 @@ const TYPE_ENTITIES = {
       'website/src/components/PostList.tsx',
       'website/src/components/PostDetail.tsx',
       'website/src/components/About.tsx',
+    ],
+  },
+  shop: {
+    // ProductCategoryController/ProductController/OrderController/ShopPublicController/ShopSettingsController
+    // đã scaffolded tĩnh từ _scaffold/types/shop/ — Order+Payment không cần AI viết lại.
+    controllers: [],
+    // ProductCategoryList/Form, ProductList/Form, OrderList/Detail, PaymentSettingsTab đã scaffolded tĩnh.
+    // AI chỉ cần: (1) sửa COLOR_SWATCHES trong ProductForm.tsx khớp palette site, (2) nhúng
+    // PaymentSettingsTab vào Settings.tsx (xem web-deploy-builder.md mục "Loại hình shop").
+    admin: [],
+    // 3 trang này BẮT BUỘC AI tự viết — phải bám sát san-pham.html/chi-tiet-san-pham.html/gio-hang.html
+    // của template (rule 36: sidebar filter 5 block, không được dùng chung 1 bản cho mọi site).
+    website: [
+      'website/src/pages/ProductsPage.tsx',
+      'website/src/pages/ProductDetailPage.tsx',
+      'website/src/pages/CartPage.tsx',
     ],
   },
 }

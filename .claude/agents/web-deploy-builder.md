@@ -31,6 +31,7 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển �
 10. **`migrate()` phải check `file_get_contents` trả về false** — schema.sql thiếu mà không check → 500 im lặng.
 11. **Luôn có `GET /health`** trong index.php để khách diagnose sau deploy.
 12. **`build.mjs` phải check `node_modules`** trước khi build — `tsc` chỉ có trong local node_modules/.bin/.
+12b. **[2026-07-13] `api/schema.sql` KHÔNG còn là file AI viết từ đầu** — scaffolder đã copy sẵn 1 bản tĩnh chứa đúng 5 bảng core (`users`, `settings`, `hero_slides`, `contacts`, `media`) khớp 1-1 với các controller tĩnh có sẵn trong scaffold (`SettingsController.php` dùng cột `grp`; `hero_slides` dùng `button_text`/`button_link`/`status`; `contacts` dùng `status`). **AI CHỈ được APPEND bảng extension vào cuối file** (dưới marker `▼ EXTENSION TABLES`) — TUYỆT ĐỐI không sửa/xoá/đổi tên cột 5 bảng core, không viết `CREATE TABLE IF NOT EXISTS settings/hero_slides/contacts/users/media` lần nữa. Đây là fix gốc rễ cho lỗi từng lặp lại nhiều lần (site dùng `grp`, site khác `group_name`, site khác `"group"` — vì trước đây mỗi site tự viết lại core schema).
 13. **TypeScript: không mix `??` và `||` không có ngoặc** — lỗi TS5076. Dùng `(a ?? b) || c`.
 14. **Admin SPA routing dùng `^admin(/.*)?$`** (không phải `^admin/.*`) — pattern cũ không match `/admin` không trailing slash.
 15. **`body` trong admin.css KHÔNG có `display: flex; overflow: hidden`** — chỉ `html, body, #root { height: 100%; }`. AdminLayout tự xử lý flex qua `.admin-layout { display: flex; height: 100vh; overflow: hidden; }`.
@@ -216,9 +217,54 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển �
     - Nếu cả 2 phương thức đều tắt → checkout ẩn nút đặt hàng, hiển thị "Cửa hàng tạm ngừng nhận đơn online — vui lòng liên hệ trực tiếp".
     - Bảng mới bắt buộc: `orders` (order_code UNIQUE, customer_name, phone, email, address, note, subtotal, shipping_fee, discount, total, payment_method, payment_status, status, created_at) + `order_items` (order_id FK, product_id FK, product_name, price, qty, subtotal).
 
-42. **[P2 — cải tiến hạ tầng, KHÔNG chặn việc fix `shop-ban-hang` hiện tại]** `scaffolder.mjs` (`Sources/WebDeploy/scaffolder.mjs:16`) chưa có type `shop` trong `VALID_TYPES` (hiện chỉ có `cafe, restaurant, spa, spa-service, portfolio, company, blog`) — đây là nguyên nhân gốc khiến `shop-ban-hang` bị build lệch thiết kế. Khi có thời gian nên tạo `_scaffold/types/shop/` sẵn: `ProductController`, `ProductCategoryController`, `OrderController`, filter sidebar mẫu (5 block + tab bar), pagination hook, checkout page mẫu, Sepay QR helper — để các site shop kế tiếp không phải build lại từ đầu.
+42. **[✅ DONE 2026-07-13] `scaffolder.mjs` giờ có type `shop`** — `node scaffolder.mjs [slug] shop` copy sẵn TOÀN BỘ phần Order+Payment từ `_scaffold/types/shop/`: `ProductCategoryController.php`, `ProductController.php` (whitelist field mở rộng được), `OrderController.php`, `ShopPublicController.php` (categories/products/filter/pagination/paymentMethods/createOrder/orderStatus/sepayWebhook), `ShopSettingsController.php` (đồng bộ SePay) — cùng admin pages (`ProductCategoryList/Form`, `ProductList/Form`, `OrderList/Detail`, `PaymentSettingsTab.tsx`) và website (`CartContext.tsx`, `CheckoutPage.tsx` + `shop-checkout.css`). Schema `product_categories/products/orders/order_items` được **tự động append** vào `api/schema.sql` bởi scaffolder (không qua AI) — xem `_scaffold/types/shop-schema-fragment.sql`. **AI KHÔNG được viết lại các file Order/Payment này** — chỉ làm đúng 4 việc tích hợp bên dưới.
 
-43. **Nhắc lại Rule 5 (CLAUDE.md) áp dụng cho các rule 36-41:** khi fix `shop-ban-hang` theo các rule trên, CHỈ sửa trong `Sources/WebDeploy/shop-ban-hang/`. Các rule 36-41 chỉ áp dụng cho site có type `shop`/e-commerce — không áp dụng ngược cho site `company`/`restaurant`/... đã build trước đó.
+42b. **[BẮT BUỘC — tích hợp shop scaffold vào site]** Sau khi scaffold xong type `shop`, AI phải:
+    1. **`bootstrap.php`** — đăng ký routes cho 5 controller tĩnh:
+       ```php
+       $prodCat = new ProductCategoryController($db);
+       $router->add('GET',  '/product-categories',            [$prodCat, 'index']);
+       $router->add('GET',  '/product-categories/:id',        [$prodCat, 'show']);
+       $router->add('POST', '/product-categories',            [$prodCat, 'store']);
+       $router->add('POST', '/product-categories/:id/update', [$prodCat, 'update']);
+       $router->add('POST', '/product-categories/:id/delete', [$prodCat, 'destroy']);
+
+       $prod = new ProductController($db);
+       $router->add('GET',  '/products',            [$prod, 'index']);
+       $router->add('GET',  '/products/:id',        [$prod, 'show']);
+       $router->add('POST', '/products',            [$prod, 'store']);
+       $router->add('POST', '/products/:id/update', [$prod, 'update']);
+       $router->add('POST', '/products/:id/delete', [$prod, 'destroy']);
+
+       $order = new OrderController($db);
+       $router->add('GET',  '/orders',                  [$order, 'index']);
+       $router->add('GET',  '/orders/:id',               [$order, 'show']);
+       $router->add('POST', '/orders/:id/update-status', [$order, 'updateStatus']);
+
+       $shopSettings = new ShopSettingsController($db);
+       $router->add('POST', '/settings/sepay-sync', [$shopSettings, 'syncSepayBankAccounts']);
+
+       $shopPub = new ShopPublicController($db);
+       $router->add('GET',  '/public/product-categories',        [$shopPub, 'productCategories']);
+       $router->add('GET',  '/public/products',                  [$shopPub, 'products']);
+       $router->add('GET',  '/public/products/:slug',             [$shopPub, 'productBySlug']);
+       $router->add('GET',  '/public/payment-methods',            [$shopPub, 'paymentMethods']);
+       $router->add('POST', '/public/orders',                     [$shopPub, 'createOrder']);
+       $router->add('GET',  '/public/orders/:code/status',        [$shopPub, 'orderStatus']);
+       $router->add('POST', '/public/sepay-webhook',               [$shopPub, 'sepayWebhook']);
+       ```
+    2. **`Database.php::seedSettings()`** — seed đủ 8 key nhóm `payment`/`shop`: `payment_cod_enabled` (mặc định `'1'`), `payment_sepay_enabled` (mặc định `'0'`), `sepay_bank_code`, `sepay_account_number`, `sepay_account_name`, `sepay_webhook_secret`, `shipping_fee`, `free_shipping_threshold`. Thiếu key nào → `ShopPublicController::paymentMethods()`/`createOrder()` coi như rỗng, khách sẽ không thấy phương thức thanh toán nào.
+    3. **`PublicController::settings()`** (site tự viết, KHÔNG phải ShopPublicController) — bắt buộc lọc bỏ nhóm `payment` khỏi kết quả: `WHERE grp NOT IN ('smtp','cloudinary','integrations','payment')`. Thiếu dòng này = lộ `sepay_webhook_secret` qua endpoint public không cần auth (lỗ hổng nghiêm trọng nhất từng gặp ở `shop-ban-hang`).
+    4. **`Settings.tsx`** (site tự viết) — thêm tab payment bằng cách IMPORT component tĩnh, KHÔNG viết lại logic:
+       ```tsx
+       import PaymentSettingsTab from '../../components/PaymentSettingsTab'
+       // Trong mảng TABS: { id: 'payment', label: '💳 Thanh toán' }
+       // Trong JSX: {activeTab === 'payment' && <PaymentSettingsTab val={val} set={set} />}
+       ```
+    5. **`ProductForm.tsx`** (đã scaffolded tĩnh) — chỉ sửa đúng mảng `COLOR_SWATCHES` ở đầu file cho khớp palette màu thật của site. Nếu `products` có thêm cột ngoài base (brand/gallery/sizes/features/specs/origin) → thêm field tương ứng vào `FormData` + JSX + `ProductController.php::BASE_FIELDS` (3 chỗ phải đồng bộ).
+    6. **3 trang website AI vẫn phải tự viết** (không scaffolded — vì layout khác nhau theo template): `ProductsPage.tsx` (sidebar filter 5 block — rule 36, dùng `api.getPaged()` mới có trong `client.ts` để đọc `X-Total-Count`), `ProductDetailPage.tsx`, `CartPage.tsx` (đọc từ `CartContext` đã scaffolded). `CheckoutPage.tsx` đã scaffolded tĩnh — chỉ cần `import './styles/shop-checkout.css'` một lần trong `App.tsx` và thêm route `/thanh-toan`.
+
+43. **Nhắc lại Rule 5 (CLAUDE.md) áp dụng cho các rule 36-42b:** khi fix site shop theo các rule trên, CHỈ sửa trong `Sources/WebDeploy/[slug]/`. Các rule 36-42b chỉ áp dụng cho site có type `shop`/e-commerce — không áp dụng ngược cho site `company`/`restaurant`/... đã build trước đó.
 
 ---
 

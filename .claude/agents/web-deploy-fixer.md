@@ -46,9 +46,10 @@ Kiểm tra thư mục tồn tại. Nếu không có → báo lỗi và dừng.
 
 **Nếu site thuộc type `shop`/e-commerce** (có `products`, `product_categories` trong schema.sql), đọc thêm trước khi fix — xem checklist đầy đủ ở Bước 3.6:
 - `website/src/pages/ProductsPage.tsx`
-- `website/src/contexts/CartContext.tsx`
-- `website/src/pages/CheckoutPage.tsx` (có thể chưa tồn tại — đây chính là một issue cần fix, xem 3.6)
-- `api/src/controllers/PublicController.php` (method `products()`, `createOrder()`, `sepayWebhook()`)
+- `website/src/contexts/CartContext.tsx` — nếu site build từ 2026-07-13 trở đi, so khớp với bản gốc `_scaffold/types/shop/website/src/contexts/CartContext.tsx` (phải giống hệt — không AI tự viết)
+- `website/src/pages/CheckoutPage.tsx` — site cũ (trước 2026-07-13) có thể chưa tồn tại — đây chính là một issue cần fix, xem 3.6. Site mới: so khớp với `_scaffold/types/shop/website/src/pages/CheckoutPage.tsx`
+- `api/src/controllers/ShopPublicController.php` (site mới) hoặc `PublicController.php` (site cũ) — method `products()`, `createOrder()`, `sepayWebhook()`
+- `api/src/bootstrap.php` — xác nhận đủ routes theo rule 42b của `web-deploy-builder.md` (5 controller shop: ProductCategory, Product, Order, ShopPublicController, ShopSettingsController)
 
 ---
 
@@ -132,7 +133,9 @@ Sau khi build pass (0 errors), kiểm tra các rules dưới đây. **Đọc fil
 **schema.sql:**
 - [ ] Có `PRAGMA foreign_keys = ON` ở đầu file
 - [ ] Đủ core tables: `users`, `contacts`, `settings`, `hero_slides`, `media`
+- [ ] **[2026-07-13] 5 bảng core PHẢI khớp nguyên văn với bản tĩnh trong `_scaffold/api/schema.sql`** — `settings` dùng cột `grp` (không phải `"group"`/`group_name`), `hero_slides` dùng `button_text`/`button_link`/`status` (không phải `btn_text`/`btn_link`/`is_active`). Nếu site được build từ trước khi có fix này (site cũ) hoặc AI lỡ viết lại core table → `grep -n "CREATE TABLE IF NOT EXISTS settings\|CREATE TABLE IF NOT EXISTS hero_slides" api/schema.sql` rồi so cột trực tiếp, không cần Read toàn file.
 - [ ] Extension table columns khớp với UI của template (không generic, không thừa cột)
+- [ ] `grep -n "\$router = require_once" api/index.php` phải KHÔNG có kết quả — nếu có, đây là site cũ build trước fix 2026-07-13 (scaffold gốc đã sửa, nhưng site đã build trước đó copy bản lỗi) → xoá phần gán `$router =`, chỉ giữ `require_once __DIR__ . '/src/bootstrap.php';` dạng câu lệnh trần.
 
 **Database.php:**
 - [ ] `migrate()` check `file_get_contents` trả về false, **và strip comment TRƯỚC khi split** — nếu dùng filter `/^\s*--/` SAU split sẽ lọc mất `CREATE TABLE` nằm sau comment block → "no such table" trên mọi request:
@@ -346,10 +349,12 @@ Sau khi build pass (0 errors), kiểm tra các rules dưới đây. **Đọc fil
 **.htaccess & web.config:**
 - [ ] Cả 2 file tồn tại
 - [ ] Cả 2 chặn truy cập `.db` files
+- [ ] **[2026-07-13]** Cả 2 chặn `check-hash.php` (`_scaffold` gốc đã có sẵn từ fix này — nếu site build trước đó thiếu, thêm block `<Files "check-hash.php">Deny from all</Files>` vào `.htaccess` và `<add segment="check-hash.php"/>` vào `hiddenSegments` của `web.config`)
 
 ### 3.6 — Shop/E-commerce (type `shop`) — chỉ áp dụng nếu schema.sql có bảng `products`
 
-> Phát hiện từ vụ `shop-ban-hang` (2026-07-06): site type `shop` build lệch hẳn thiết kế template gốc (`san-pham.html`/`gio-hang.html`) — chỉ có 1 filter danh mục dạng radio, không phân trang, giỏ hàng chỉ là trang tĩnh rỗng không có add-to-cart, không có trang thanh toán, không có phương thức thanh toán nào. Checklist dưới đây dùng để phát hiện lại đúng các lỗi này ở site shop khác.
+> **[2026-07-13] Từ nay `scaffolder.mjs shop` đã cung cấp sẵn Order+Payment tĩnh** (`_scaffold/types/shop/`) — `ProductCategoryController.php`, `ProductController.php`, `OrderController.php`, `ShopPublicController.php`, `ShopSettingsController.php`, `PaymentSettingsTab.tsx`, `CartContext.tsx`, `CheckoutPage.tsx`. Nếu site được build bằng scaffolder mới, checklist bên dưới chủ yếu dùng để verify AI **tích hợp đúng** (rule 42b builder.md: đăng ký route bootstrap.php, seed settings, lọc `PublicController::settings()`, nhúng `PaymentSettingsTab`) — KHÔNG phải verify AI tự viết đúng từ đầu. Nếu phát hiện các file tĩnh này bị AI VIẾT LẠI (không còn khớp bản gốc trong `_scaffold/types/shop/`) → đây tự nó là một lỗi cần báo cáo, khôi phục lại bản gốc rồi chỉ chỉnh phần tích hợp.
+> Site build TRƯỚC 2026-07-13 (vd `shop-ban-hang`, `shop-thoi-trang`) không đi qua scaffold này — checklist dưới đây vẫn áp dụng đầy đủ như cũ để phát hiện lỗi (từng thấy ở `shop-ban-hang`: chỉ có 1 filter danh mục dạng radio, không phân trang, giỏ hàng tĩnh không có add-to-cart, không có trang thanh toán/phương thức thanh toán).
 
 **Filter sidebar (`website/src/pages/ProductsPage.tsx`) — [P0]:**
 - [ ] Đủ 5 block: Mức giá (2 input min/max) · Danh mục (**checkbox multi-select**, không phải radio) · Màu sắc (swatch) · Đánh giá (checkbox lọc rating) · Tình trạng (Còn hàng/Đang giảm giá/Hàng mới)
