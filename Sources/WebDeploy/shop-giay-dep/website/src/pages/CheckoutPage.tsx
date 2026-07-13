@@ -24,8 +24,10 @@ interface OrderResult {
   sepay?: { bank_code: string; account_number: string; account_name: string; amount: number; content: string }
 }
 
+interface CouponValidateResult { code: string; type: 'percent' | 'fixed'; discount: number }
+
 export default function CheckoutPage() {
-  const { items, subtotal, clear } = useCart()
+  const { items, subtotal, clear, couponCode } = useCart()
   const { settings } = useSite()
 
   const [methods, setMethods] = useState<PaymentMethods | null>(null)
@@ -35,13 +37,14 @@ export default function CheckoutPage() {
   const [error, setError] = useState('')
   const [result, setResult] = useState<OrderResult | null>(null)
   const [paidConfirmed, setPaidConfirmed] = useState(false)
+  const [discount, setDiscount] = useState(0)
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   const fmt = (n: number) => n.toLocaleString('vi-VN') + 'đ'
   const shippingFee = Number(settings['shipping_fee'] || 0)
   const freeShipThreshold = Number(settings['free_shipping_threshold'] || 0)
   const effectiveShipping = freeShipThreshold > 0 && subtotal >= freeShipThreshold ? 0 : shippingFee
-  const total = subtotal + effectiveShipping
+  const total = Math.max(0, subtotal + effectiveShipping - discount)
 
   useEffect(() => {
     api.get<PaymentMethods>('/public/payment-methods')
@@ -51,6 +54,13 @@ export default function CheckoutPage() {
       })
       .catch(() => {})
   }, [])
+
+  useEffect(() => {
+    if (!couponCode) { setDiscount(0); return }
+    api.post<CouponValidateResult>('/public/coupons/validate', { code: couponCode, subtotal })
+      .then(r => setDiscount(r.discount))
+      .catch(() => setDiscount(0))
+  }, [couponCode, subtotal])
 
   useEffect(() => {
     if (!result || result.payment_method !== 'sepay' || result.payment_status === 'paid') return
@@ -80,6 +90,7 @@ export default function CheckoutPage() {
       const order = await api.post<OrderResult>('/public/orders', {
         ...form,
         payment_method: paymentMethod,
+        coupon_code: couponCode || undefined,
         items: items.map(i => ({ product_id: i.product_id, qty: i.qty })),
       })
       setResult(order)
@@ -240,6 +251,12 @@ export default function CheckoutPage() {
                 <span>Phí vận chuyển</span>
                 <span style={{ color: effectiveShipping === 0 ? 'var(--accent, #16a34a)' : undefined }}>{effectiveShipping === 0 ? 'Miễn phí' : fmt(effectiveShipping)}</span>
               </div>
+              {discount > 0 && (
+                <div className="shop-checkout-summary-row">
+                  <span>Giảm giá ({couponCode})</span>
+                  <span style={{ color: 'var(--accent, #16a34a)' }}>−{fmt(discount)}</span>
+                </div>
+              )}
               <div className="shop-checkout-summary-row shop-checkout-summary-total">
                 <span>Tổng cộng</span><span>{fmt(total)}</span>
               </div>

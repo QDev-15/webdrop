@@ -15,6 +15,8 @@ interface CartCtx {
   items: CartItem[]
   count: number
   subtotal: number
+  couponCode: string | null
+  setCouponCode: (code: string | null) => void
   addItem: (item: Omit<CartItem, 'qty'>, qty?: number) => void
   updateQty: (product_id: number, qty: number, color?: string, size?: string) => void
   removeItem: (product_id: number, color?: string, size?: string) => void
@@ -22,6 +24,7 @@ interface CartCtx {
 }
 
 const STORAGE_KEY = 'shop_cart'
+const COUPON_STORAGE_KEY = 'shop_cart_coupon'
 
 // Định danh 1 dòng hàng theo product_id + color + size — mọi thao tác add/update/remove
 // PHẢI dùng cùng khoá này, nếu không 2 biến thể khác nhau của cùng sản phẩm sẽ bị gộp nhầm.
@@ -40,16 +43,27 @@ function readStorage(): CartItem[] {
 }
 
 const Ctx = createContext<CartCtx>({
-  items: [], count: 0, subtotal: 0,
+  items: [], count: 0, subtotal: 0, couponCode: null, setCouponCode: () => {},
   addItem: () => {}, updateQty: () => {}, removeItem: () => {}, clear: () => {},
 })
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>(() => readStorage())
+  const [couponCode, setCouponCodeState] = useState<string | null>(() => {
+    try { return localStorage.getItem(COUPON_STORAGE_KEY) } catch { return null }
+  })
 
   useEffect(() => {
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(items)) } catch { /* private mode / storage full — bỏ qua, không crash site */ }
   }, [items])
+
+  const setCouponCode = (code: string | null) => {
+    setCouponCodeState(code)
+    try {
+      if (code) localStorage.setItem(COUPON_STORAGE_KEY, code)
+      else localStorage.removeItem(COUPON_STORAGE_KEY)
+    } catch { /* ignore */ }
+  }
 
   const addItem: CartCtx['addItem'] = (item, qty = 1) => {
     setItems(prev => {
@@ -73,13 +87,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setItems(prev => prev.filter(i => !sameLine(i, { product_id, color, size })))
   }
 
-  const clear = () => setItems([])
+  const clear = () => { setItems([]); setCouponCode(null) }
 
   const count = items.reduce((s, i) => s + i.qty, 0)
   const subtotal = items.reduce((s, i) => s + i.qty * i.price, 0)
 
   return (
-    <Ctx.Provider value={{ items, count, subtotal, addItem, updateQty, removeItem, clear }}>
+    <Ctx.Provider value={{ items, count, subtotal, couponCode, setCouponCode, addItem, updateQty, removeItem, clear }}>
       {children}
     </Ctx.Provider>
   )

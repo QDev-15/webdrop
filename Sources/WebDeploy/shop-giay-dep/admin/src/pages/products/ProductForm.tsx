@@ -7,10 +7,15 @@ import ImageField from '../../components/ImageField'
 // Phải khớp 100% với COLOR_SWATCHES ở website/src/pages/ProductsPage.tsx —
 // bộ lọc "Màu sắc" trên site chỉ nhận diện đúng các tên khai báo ở đây.
 const COLOR_SWATCHES = [
-  { name: 'Đen', hex: '#1e1e1e' },
+  { name: 'Volt Lime', hex: '#d4ff3f' },
+  { name: 'Đen', hex: '#050706' },
   { name: 'Trắng', hex: '#ffffff' },
-  { name: 'Be', hex: '#e8dfd0' },
+  { name: 'Cyan', hex: '#00e5ff' },
+  { name: 'Nâu', hex: '#8b6f5e' },
 ]
+
+// Kích cỡ giày — khớp block filter "Kích cỡ" ở website/src/pages/ProductsPage.tsx
+const SIZE_OPTIONS = ['38', '39', '40', '41', '42', '43', '44']
 
 function parseColorNames(colors: string): string[] {
   return colors.split('|').map(c => c.split(':')[0]).filter(Boolean)
@@ -22,6 +27,10 @@ function serializeColors(names: string[]): string {
     .filter((c): c is { name: string; hex: string } => Boolean(c))
     .map(c => `${c.name}:${c.hex}`)
     .join('|')
+}
+
+function parseSizes(sizes: string): string[] {
+  return sizes.split('|').filter(Boolean)
 }
 
 interface Category { id: number; name: string }
@@ -40,15 +49,16 @@ interface FormData {
   is_new: boolean
   status: string
   sort_order: string
-  // ▼ AI: thêm field mới vào đây nếu products có thêm cột (brand, sizes, gallery, features, specs, origin...)
-  // — nhớ thêm tương ứng vào ProductController.php::BASE_FIELDS
+  // ▼ Field riêng theo template (san-pham.html có block filter "Kích cỡ") — đã thêm tương ứng vào
+  // ProductController.php::BASE_FIELDS
+  sizes: string
 }
 
 const EMPTY: FormData = {
   name: '', category_id: '', image: '', price: '', price_sale: '',
   badge: '', description: '', colors: '', rating: '5', in_stock: true,
   is_featured: false, is_new: false,
-  status: 'published', sort_order: '0'
+  status: 'published', sort_order: '0', sizes: '',
 }
 
 export default function ProductForm() {
@@ -85,6 +95,7 @@ export default function ProductForm() {
           is_new: Boolean(p.is_new),
           status: String(p.status ?? 'published'),
           sort_order: String(p.sort_order ?? '0'),
+          sizes: String(p.sizes ?? ''),
         })
       }
     }).catch(() => setError('Không tải được dữ liệu'))
@@ -97,6 +108,12 @@ export default function ProductForm() {
   const toggleColor = (name: string) => {
     const next = selectedColors.includes(name) ? selectedColors.filter(c => c !== name) : [...selectedColors, name]
     set('colors', serializeColors(next))
+  }
+
+  const selectedSizes = parseSizes(form.sizes)
+  const toggleSize = (size: string) => {
+    const next = selectedSizes.includes(size) ? selectedSizes.filter(s => s !== size) : [...selectedSizes, size]
+    set('sizes', next.join('|'))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -202,6 +219,32 @@ export default function ProductForm() {
           {selectedColors.length > 0 && (
             <p style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 8 }}>Đã chọn: {selectedColors.join(', ')}</p>
           )}
+        </div>
+
+        <div className="form-group">
+          <label>Kích cỡ (dùng cho bộ lọc "Kích cỡ" ở trang Sản phẩm)</label>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 4 }}>
+            {SIZE_OPTIONS.map(s => {
+              const active = selectedSizes.includes(s)
+              return (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => toggleSize(s)}
+                  aria-pressed={active}
+                  style={{
+                    minWidth: 40, height: 34, padding: '0 10px', borderRadius: 8,
+                    border: active ? '1.5px solid var(--accent)' : '1px solid #ddd',
+                    background: active ? 'var(--accent-light)' : '#fff',
+                    color: active ? 'var(--accent)' : '#333',
+                    fontSize: 13, fontWeight: 600, cursor: 'pointer',
+                  }}
+                >
+                  {s}
+                </button>
+              )
+            })}
+          </div>
         </div>
 
         <div className="form-row">
