@@ -329,7 +329,7 @@ VPS AZDIGI Linux
 | `nha-khoa-tre-em-kidsmile` | WebDeploy | Nha khoa trẻ em | SOFT-PASTEL, Lilac `#9b7ef0` + Mint `#34c98e` | `ks-` | DM Sans italic, border-radius lớn, nav centered-logo, có `/bai-viet` |
 | `shop-ban-hang` | WebDeploy + Template | Shop hữu cơ | ORGANIC-EARTH, Terracotta `#c4603a` + Sage `#6b8a7a` | `sb-` | Fraunces + DM Sans, Nav-7 Split, hệ 10-theme màu trong admin |
 | `shop-thoi-trang` | WebDeploy + Template | Shop thời trang | BOLD-EDITORIAL, Electric Blue `#0052ff` | `st-` | Outfit, Nav-1 transparent→scrolled, có coupon + product reviews riêng |
-| `shop-giay-dep` | Template-only | Shop giày dép | DARK-ENERGY, Volt Lime `#d4ff3f` + Cyan `#00e5ff` | `gd-` | Syne + Space Grotesk, Nav-3 dark floating pill |
+| `shop-giay-dep` | Template-only | Shop giày dép | DARK-ENERGY, Volt Lime `#d4ff3f` + Cyan `#00e5ff` | `gd-` | Space Grotesk (unified heading+body, đổi từ Syne 2026-07-13 do khó đọc ở size lớn), Nav-3 dark floating pill |
 | `shop-quan-ao` | Template-only | Shop quần áo nữ | SOFT-PASTEL, Lavender `#b98bd1` + Butter `#f2c14e` | `qa-` | DM Sans italic + Manrope, Nav-2 always solid, footer nền sáng (khác 3 shop kia) |
 
 ### CV Builder SaaS
