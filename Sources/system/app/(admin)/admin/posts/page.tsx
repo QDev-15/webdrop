@@ -1,10 +1,8 @@
-export const dynamic = 'force-dynamic'
+'use client'
 
-import { redirect } from 'next/navigation'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import AdminLayout from '@/components/admin/AdminLayout'
-import { prisma } from '@/lib/prisma'
-import { getSession } from '@/lib/auth'
 
 const STATUS_LABEL: Record<string, string> = { draft: 'Nháp', published: 'Đã đăng' }
 const STATUS_COLOR: Record<string, { bg: string; text: string }> = {
@@ -12,52 +10,62 @@ const STATUS_COLOR: Record<string, { bg: string; text: string }> = {
   published: { bg: 'var(--accent-light)', text: 'var(--accent)' },
 }
 
-export default async function PostsPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ q?: string; status?: string; page?: string }>
-}) {
-  const session = await getSession()
-  if (!session) redirect('/admin/login')
+interface Post {
+  id: number; title: string; slug: string; status: string; featured: boolean
+  createdAt: string; category: { name: string } | null
+}
 
-  const { q, status, page: pageStr } = await searchParams
-  const page = Math.max(1, parseInt(pageStr || '1'))
-  const limit = 20
+export default function PostsPage() {
+  const [posts, setPosts] = useState<Post[]>([])
+  const [pages, setPages] = useState(1)
+  const [counts, setCounts] = useState({ all: 0, published: 0, draft: 0 })
+  const [status, setStatus] = useState('all')
+  const [q, setQ] = useState('')
+  const [debouncedQ, setDebouncedQ] = useState('')
+  const [page, setPage] = useState(1)
+  const [loading, setLoading] = useState(true)
+  const [fetchError, setFetchError] = useState('')
 
-  const where: Record<string, unknown> = {}
-  if (status && status !== 'all') where.status = status
-  if (q) where.OR = [
-    { title: { contains: q, mode: 'insensitive' } },
-    { slug: { contains: q, mode: 'insensitive' } },
-  ]
+  // Debounce ô search — chỉ fetch sau khi ngừng gõ 400ms, không reload trang
+  useEffect(() => {
+    const t = setTimeout(() => setDebouncedQ(q), 400)
+    return () => clearTimeout(t)
+  }, [q])
 
-  let posts: Array<{
-    id: number; title: string; slug: string; status: string; featured: boolean
-    createdAt: Date; category: { name: string } | null
-  }> = []
-  let total = 0
-  let counts = { all: 0, published: 0, draft: 0 }
+  // Đổi filter/search → quay về trang 1
+  useEffect(() => {
+    setPage(1)
+  }, [status, debouncedQ])
 
-  try {
-    const [rows, cnt, all, pub, drf] = await Promise.all([
-      prisma.post.findMany({
-        where,
-        include: { category: { select: { name: true } } },
-        orderBy: { createdAt: 'desc' },
-        skip: (page - 1) * limit,
-        take: limit,
-      }),
-      prisma.post.count({ where }),
-      prisma.post.count({}),
-      prisma.post.count({ where: { status: 'published' } }),
-      prisma.post.count({ where: { status: 'draft' } }),
-    ])
-    posts = rows
-    total = cnt
-    counts = { all, published: pub, draft: drf }
-  } catch { /* DB offline */ }
+  // Fetch danh sách theo filter hiện tại — mọi thay đổi status/search/page đều gọi API,
+  // không điều hướng trang nên không reload
+  useEffect(() => {
+    let cancelled = false
+    setLoading(true)
+    setFetchError('')
 
-  const pages = Math.ceil(total / limit)
+    const params = new URLSearchParams()
+    if (status !== 'all') params.set('status', status)
+    if (debouncedQ) params.set('q', debouncedQ)
+    params.set('page', String(page))
+
+    fetch(`/api/admin/posts?${params.toString()}`)
+      .then(async res => {
+        if (cancelled) return
+        if (!res.ok) { setFetchError('Lỗi tải danh sách bài viết'); setLoading(false); return }
+        const data = await res.json()
+        setPosts(data.posts || [])
+        setPages(data.pages || 1)
+        if (data.counts) setCounts(data.counts)
+        setLoading(false)
+      })
+      .catch(() => {
+        if (!cancelled) { setFetchError('Lỗi kết nối server'); setLoading(false) }
+      })
+
+    return () => { cancelled = true }
+  }, [status, debouncedQ, page])
+
   const filterStatuses = [
     { key: 'all', label: `Tất cả (${counts.all})` },
     { key: 'published', label: `Đã đăng (${counts.published})` },
@@ -68,18 +76,21 @@ export default async function PostsPage({
     <AdminLayout title="Bài viết Blog">
       {/* Toolbar */}
       <div style={{ display: 'flex', gap: 10, marginBottom: 16, alignItems: 'center', flexWrap: 'wrap' }}>
-        <form method="GET" style={{ display: 'flex', gap: 8, flex: 1, minWidth: 200 }}>
-          {status && <input type="hidden" name="status" value={status} />}
-          <input name="q" defaultValue={q} placeholder="Tìm tiêu đề, slug..."
-            style={{ flex: 1, padding: '8px 12px', borderRadius: 8, border: '1px solid var(--border)', background: 'var(--bg)', fontSize: 13, fontFamily: 'var(--sans)', outline: 'none' }} />
-          <button type="submit" style={{ padding: '8px 16px', borderRadius: 8, background: 'var(--text)', color: '#fff', border: 'none', fontSize: 12, cursor: 'pointer', fontFamily: 'var(--sans)', flexShrink: 0 }}>Tìm</button>
-        </form>
+        <div style={{ flex: 1, minWidth: 200 }}>
+          <input
+            value={q}
+            onChange={e => setQ(e.target.value)}
+            placeholder="Tìm tiêu đề, slug..."
+            aria-label="Tìm bài viết"
+            style={{ width: '100%', padding: '8px 12px', borderRadius: 8, border: '1px solid var(--border)', background: 'var(--bg)', fontSize: 13, fontFamily: 'var(--sans)', outline: 'none' }}
+          />
+        </div>
         <div style={{ display: 'flex', gap: 6 }}>
           {filterStatuses.map(s => (
-            <a key={s.key} href={`/admin/posts?status=${s.key}${q ? `&q=${encodeURIComponent(q)}` : ''}`}
-              style={{ fontSize: 12, padding: '6px 12px', borderRadius: 20, textDecoration: 'none', border: `1px solid ${(status || 'all') === s.key ? 'var(--accent)' : 'var(--border)'}`, background: (status || 'all') === s.key ? 'var(--accent)' : 'transparent', color: (status || 'all') === s.key ? '#fff' : 'var(--text-2)', whiteSpace: 'nowrap' }}>
+            <button key={s.key} onClick={() => setStatus(s.key)}
+              style={{ fontSize: 12, padding: '6px 12px', borderRadius: 20, border: `1px solid ${status === s.key ? 'var(--accent)' : 'var(--border)'}`, background: status === s.key ? 'var(--accent)' : 'transparent', color: status === s.key ? '#fff' : 'var(--text-2)', whiteSpace: 'nowrap', cursor: 'pointer', fontFamily: 'var(--sans)' }}>
               {s.label}
-            </a>
+            </button>
           ))}
         </div>
         <Link href="/admin/posts/new"
@@ -89,10 +100,14 @@ export default async function PostsPage({
       </div>
 
       {/* Table */}
-      <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden' }}>
-        {posts.length === 0 ? (
+      <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden', opacity: loading ? .6 : 1, transition: 'opacity .15s' }}>
+        {fetchError ? (
+          <div style={{ padding: '56px 20px', textAlign: 'center', color: 'var(--danger)', fontSize: 14 }}>{fetchError}</div>
+        ) : posts.length === 0 ? (
           <div style={{ padding: '56px 20px', textAlign: 'center', color: 'var(--text-3)', fontSize: 14 }}>
-            Chưa có bài viết nào. <Link href="/admin/posts/new" style={{ color: 'var(--accent)' }}>Viết bài đầu tiên →</Link>
+            {loading ? 'Đang tải...' : debouncedQ || status !== 'all' ? 'Không tìm thấy bài viết phù hợp.' : (
+              <>Chưa có bài viết nào. <Link href="/admin/posts/new" style={{ color: 'var(--accent)' }}>Viết bài đầu tiên →</Link></>
+            )}
           </div>
         ) : (
           <div style={{ overflowX: 'auto' }}>
@@ -141,10 +156,10 @@ export default async function PostsPage({
       {pages > 1 && (
         <div style={{ display: 'flex', gap: 6, marginTop: 16, justifyContent: 'center' }}>
           {Array.from({ length: pages }, (_, i) => i + 1).map(p => (
-            <a key={p} href={`/admin/posts?page=${p}${status ? `&status=${status}` : ''}${q ? `&q=${encodeURIComponent(q)}` : ''}`}
-              style={{ width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 8, fontSize: 13, textDecoration: 'none', background: p === page ? 'var(--accent)' : 'var(--surface)', color: p === page ? '#fff' : 'var(--text-2)', border: `1px solid ${p === page ? 'var(--accent)' : 'var(--border)'}` }}>
+            <button key={p} onClick={() => setPage(p)}
+              style={{ width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 8, fontSize: 13, cursor: 'pointer', fontFamily: 'var(--sans)', background: p === page ? 'var(--accent)' : 'var(--surface)', color: p === page ? '#fff' : 'var(--text-2)', border: `1px solid ${p === page ? 'var(--accent)' : 'var(--border)'}` }}>
               {p}
-            </a>
+            </button>
           ))}
         </div>
       )}

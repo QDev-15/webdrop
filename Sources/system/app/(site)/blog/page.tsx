@@ -35,7 +35,8 @@ const mockPosts = [
   { id: 4, title: 'Checklist SEO cơ bản cho website nhỏ', slug: 'seo-co-ban', excerpt: '10 điểm SEO đơn giản mà mọi website cần có để xuất hiện trên Google, không cần thuê chuyên gia.', category: { name: 'Tips', slug: 'tips' }, createdAt: new Date('2026-04-28') },
 ]
 
-export default async function BlogPage() {
+export default async function BlogPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
+  const { q } = await searchParams
   const { posts: dbPosts, categories } = await getData()
   const hasDb = dbPosts.length > 0
 
@@ -62,7 +63,7 @@ export default async function BlogPage() {
     <>
       <RevealObserver />
       <div style={{ paddingTop: 62 }}>
-        <BlogClient posts={posts} categories={categoryList} />
+        <BlogClient posts={posts} categories={categoryList} initialQuery={q || ''} />
       </div>
       <Footer />
     </>
