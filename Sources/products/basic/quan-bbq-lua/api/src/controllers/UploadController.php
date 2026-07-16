@@ -94,6 +94,6 @@ class UploadController {
         $dir      = defined('UPLOAD_DIR') ? UPLOAD_DIR : rtrim(dirname(__DIR__, 3), '/') . '/uploads/';
         if (!is_dir($dir)) mkdir($dir, 0755, true);
         if (!move_uploaded_file($file['tmp_name'], $dir . $filename)) return null;
-        return rtrim(APP_URL, '/') . '/uploads/' . $filename;
+        return (defined('UPLOAD_URL') ? UPLOAD_URL : rtrim(APP_URL, '/') . '/api/uploads/') . $filename;
     }
 }

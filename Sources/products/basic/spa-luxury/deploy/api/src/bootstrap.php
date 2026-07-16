@@ -99,6 +99,7 @@ $router->add('POST', '/hero-slides/:id/delete',      fn($p) => $heroSlide->destr
 
 // Media (admin)
 $router->add('GET',  '/media',              fn($p) => $media->index($p));
+$router->add('POST', '/media/upload',   fn($p) => $media->upload($p));
 $router->add('POST', '/media/:id/delete',   fn($p) => $media->destroy($p));
 
 // Users (admin)

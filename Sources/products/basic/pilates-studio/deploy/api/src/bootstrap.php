@@ -108,6 +108,7 @@ $router->add('POST', '/users/:id/delete',              [$users, 'destroy']);
 
 // ── Media ──────────────────────────────────────────────────────────────────
 $router->add('GET',  '/media',                         [$media, 'index']);
+$router->add('POST', '/media/upload', [$media, 'upload']);
 $router->add('POST', '/media/:id/delete',              [$media, 'destroy']);
 
 // ── Upload / Unsplash ──────────────────────────────────────────────────────

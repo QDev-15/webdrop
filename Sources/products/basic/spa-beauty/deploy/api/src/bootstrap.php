@@ -100,6 +100,7 @@ $router->add('POST', '/contacts/:id/delete',   [$contacts, 'destroy']);
 // Media
 $media = new MediaController($db);
 $router->add('GET',  '/media',            [$media, 'index']);
+$router->add('POST', '/media/upload', [$media, 'upload']);
 $router->add('POST', '/media/:id/delete', [$media, 'destroy']);
 
 // Upload
