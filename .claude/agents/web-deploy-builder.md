@@ -40,7 +40,7 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển �
 18. **Chỉ dùng GET và POST** — IIS/WebDAV block PUT/DELETE trên shared hosting. Update/delete qua suffix: `POST /entities/:id/update`, `POST /entities/:id/delete`.
 19. **`Sidebar.tsx` khai báo `interface NavLinkItem { to, icon, label, exact?: boolean, badge?: number }`** — thiếu → TS2339.
 20. **Mọi trường ảnh trong admin form dùng `ImageField` component** (đã trong scaffold) — không dùng `<input type="text">` cho URL ảnh.
-21. **Đăng ký routes `/upload`, `/unsplash`** trong bootstrap.php — controller đã có trong scaffold.
+21. **Đăng ký routes `/upload`, `/unsplash`, `/media/upload`** trong bootstrap.php — cả 3 controller đã có sẵn trong scaffold (`UploadController`, `UnsplashController`, `MediaController`), chỉ thiếu đăng ký route là lỗi hay gặp nhất. Riêng `/media/upload` **cực kỳ dễ bị bỏ sót** — xem rule 44 chi tiết nguyên nhân.
 22. **Settings page có 2 tabs cuối**: ☁️ Cloudinary và 🔌 Tích hợp (Unsplash Access Key).
 23. **`api.upload` phải có trong `api/client.ts`**: `upload: <T>(path, formData) => request<T>('POST', path, formData)`.
 24. **Dùng Bunny Fonts** trong website/index.html và admin/index.html: `https://fonts.bunny.net/css?family=dm-sans:300,300i,400,400i,500,500i,600,600i&display=swap`
@@ -266,6 +266,14 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển �
 
 43. **Nhắc lại Rule 5 (CLAUDE.md) áp dụng cho các rule 36-42b:** khi fix site shop theo các rule trên, CHỈ sửa trong `Sources/WebDeploy/[slug]/`. Các rule 36-42b chỉ áp dụng cho site có type `shop`/e-commerce — không áp dụng ngược cho site `company`/`restaurant`/... đã build trước đó.
 
+44. **[BUG PATTERN — phát hiện 2026-07-13, đã fix hàng loạt 25 site] Route `POST /media/upload` cực kỳ dễ bị bỏ sót trong `bootstrap.php`.** Nguyên nhân: `MediaController.php` (scaffold) có 3 method `index()`/`upload()`/`destroy()`, nhưng khi AI tự đăng ký route hay chỉ nhìn theo pattern "GET index + POST :id/delete" (giống các entity CRUD khác) rồi quên mất `upload()` — trong khi `admin/src/pages/media/MediaPage.tsx` (cũng scaffold) gọi thẳng `api.upload('/media/upload', fd)`. Hậu quả: nút "⬆️ Upload ảnh" trong menu **Thư viện ảnh** (Media Library — trang quản lý file độc lập, KHÁC với `ImageField` dùng trong ProductForm/HeroSlideForm/...) bị lỗi `404 Not Found`. Lưu ý: đây **không** phải bug chặn luồng chính (thêm/sửa sản phẩm/danh mục/slide vẫn upload ảnh bình thường qua `ImageField` → route `/upload` riêng của `UploadController`) — nhưng vẫn phải đăng ký đủ vì Thư viện ảnh là tính năng chính thức trong sidebar. **Đăng ký đúng 3 route Media ngay sau khi tạo `$media = new MediaController($db)`:**
+    ```php
+    $router->add('GET',  '/media',            [$media, 'index']);
+    $router->add('POST', '/media/upload',     [$media, 'upload']);   // ← route hay bị bỏ sót nhất
+    $router->add('POST', '/media/:id/delete', [$media, 'destroy']);
+    ```
+    Checklist Bước 8 (cuối file) cũng phải kiểm tra route này trước khi báo hoàn thành.
+
 ---
 
 ## Bước 0 — Xác định template path
@@ -441,6 +449,19 @@ $router->add('POST', '/entities',            [$entity, 'store']);
 $router->add('POST', '/entities/:id/update', [$entity, 'update']);
 $router->add('POST', '/entities/:id/delete', [$entity, 'destroy']);
 
+// Media (scaffold sẵn — 3 route bắt buộc, /media/upload rất hay bị quên, xem rule 44):
+$media = new MediaController($db);
+$router->add('GET',  '/media',            [$media, 'index']);
+$router->add('POST', '/media/upload',     [$media, 'upload']);
+$router->add('POST', '/media/:id/delete', [$media, 'destroy']);
+
+// Upload cho ImageField + Unsplash (scaffold sẵn, xem rule 21):
+$upload = new UploadController($db);
+$router->add('POST', '/upload', [$upload, 'upload']);
+$unsplash = new UnsplashController($db);
+$router->add('GET',  '/unsplash',          [$unsplash, 'search']);
+$router->add('POST', '/unsplash/download', [$unsplash, 'trackDownload']);
+
 // Public (không cần auth — website gọi):
 $pub = new PublicController($db);
 $router->add('GET',  '/public/settings',   [$pub, 'settings']);
@@ -579,7 +600,7 @@ cd Sources/WebDeploy/[slug]/admin  && npm install && npm run build
 - [ ] `api/index.php` có health endpoint `/health`
 - [ ] `api/schema.sql` có `PRAGMA foreign_keys = ON` + seed data thực từ template
 - [ ] `api/src/Database.php` — `migrate()` check `file_get_contents` false; `seedTemplateData()` chỉ chạy khi table rỗng
-- [ ] `api/src/bootstrap.php` có helpers + `Auth::start()` trước `Database::getInstance()` + đủ routes
+- [ ] `api/src/bootstrap.php` có helpers + `Auth::start()` trước `Database::getInstance()` + đủ routes — **grep riêng `/media/upload`** trong file (rule 44, lỗi hay bị bỏ sót nhất, `php -l` không phát hiện được)
 - [ ] `admin/src/components/layout/Sidebar.tsx` — menu khớp nav; outer div `admin-sidebar`; section `sidebar-section`; footer NavLink → `/profile`
 - [ ] `admin/src/main.tsx` có dynamic basename + `AuthProvider` (scaffold — không ghi đè)
 - [ ] `admin/src/pages/settings/Settings.tsx` đủ tabs (gồm Cloudinary + Tích hợp)
