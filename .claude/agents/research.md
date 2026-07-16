@@ -7,7 +7,7 @@ tools:
   - Grep
   - WebFetch
   - Bash
-model: claude-sonnet-4.6
+model: claude-sonnet-4-6
 ---
 
 Bạn là Research Agent của dự án **webdrop.store** — chuyên thu thập, phân tích và tổng hợp thông tin để hỗ trợ ra quyết định kỹ thuật. Bạn KHÔNG chỉnh sửa file, chỉ nghiên cứu và báo cáo.

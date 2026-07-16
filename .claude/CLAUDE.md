@@ -82,7 +82,7 @@ Xây dựng và bán 3 nhóm sản phẩm chính:
 - [x] Agency / Portfolio / Công ty — **DONE** (6 templates: `Companies/`, `Portfolios/`)
 - [x] Blog / Forum — **DONE** (`Blogs/`, `Forums/`)
 - [x] Nha khoa — **DONE** (10 template: `Dental-Clinics/` — 10 Identity Token khác nhau: LUXE-DARK, FRESH-MINIMAL, BOLD-EDITORIAL, GEOMETRIC-MODERN, SOFT-PASTEL, DARK-ENERGY, CLEAN-CORPORATE, ZEN-MINIMAL, RETRO-BOLD, GLASS-MODERN)
-- [x] Shop bán hàng — **DONE** (6 templates, 5 trang mỗi template — `shop-ban-hang/` ORGANIC-EARTH, `shop-thoi-trang/` BOLD-EDITORIAL, `shop-giay-dep/` DARK-ENERGY, `shop-quan-ao/` SOFT-PASTEL đều đã có bản WebDeploy đầy đủ — xem bảng **WebDeploy Projects**; `shop-thuc-pham-sach/` FRESH-MINIMAL và `shop-rau-xanh/` WARM-ARTISAN mới là template-only)
+- [x] Shop bán hàng — **DONE** (6 templates, 5 trang mỗi template — tất cả đều đã có bản WebDeploy đầy đủ: `shop-ban-hang/` ORGANIC-EARTH, `shop-thoi-trang/` BOLD-EDITORIAL, `shop-giay-dep/` DARK-ENERGY, `shop-quan-ao/` SOFT-PASTEL, `shop-rau-xanh/` WARM-ARTISAN, `shop-thuc-pham-sach/` FRESH-MINIMAL — xem bảng **WebDeploy Projects**)
 - [ ] Landing page sản phẩm / Dịch vụ
 - [ ] CV cá nhân — **PLANNING** (CV Builder SaaS — xem `.claude/plans/cv-template-saas.md`)
 
@@ -97,7 +97,7 @@ Xây dựng và bán 3 nhóm sản phẩm chính:
 - [x] Thiết lập kênh bán (webdrop.store) — deploy Vercel, custom domain
 - [x] Đóng gói Gói Web cơ bản thành sản phẩm chuẩn (`Sources/products/goi-b/`)
 - [x] Tích hợp Sepay webhook auto-confirm đơn hàng + tạo download token
-- [x] Deploy website demo — xem bảng **WebDeploy Projects** (bao gồm `nail-salon` 2026-06-26, `pilates-studio` 2026-06-26, `spa-beauty` 2026-06-27, `tham-my-vien` 2026-07-01, `nha-khoa-chinh-nha-saigon` 2026-07-04, `nha-khoa-cong-nghe-smiletech` 2026-07-04, `shop-quan-ao` 2026-07-13, `shop-giay-dep` 2026-07-13)
+- [x] Deploy website demo — xem bảng **WebDeploy Projects** (bao gồm `nail-salon` 2026-06-26, `pilates-studio` 2026-06-26, `spa-beauty` 2026-06-27, `tham-my-vien` 2026-07-01, `nha-khoa-chinh-nha-saigon` 2026-07-04, `nha-khoa-cong-nghe-smiletech` 2026-07-04, `shop-quan-ao` 2026-07-13, `shop-giay-dep` 2026-07-13, `shop-rau-xanh` 2026-07-16, `shop-thuc-pham-sach` 2026-07-16)
 - [x] Tạo Admin Profile page (`/admin/profile`) — đổi tên, đổi password
 - [x] Tạo Admin Users page (`/admin/users`) — quản lý tài khoản, nâng/hạ cấp, xóa (superadmin only)
 - [x] Tạo hệ thống thống kê truy cập (`/admin/analytics`) — track page views, top pages, nguồn truy cập, recent visits
@@ -202,8 +202,8 @@ webdrop/
 │       ├── shop-thoi-trang/        ← ✅ 1 template (BOLD-EDITORIAL identity — xem ghi chú kỹ thuật)
 │       ├── shop-giay-dep/          ← ✅ 1 template + WebDeploy đầy đủ (DARK-ENERGY identity — xem ghi chú kỹ thuật)
 │       ├── shop-quan-ao/           ← ✅ 1 template + WebDeploy đầy đủ (SOFT-PASTEL identity — xem ghi chú kỹ thuật)
-│       ├── shop-thuc-pham-sach/    ← ✅ 1 template (FRESH-MINIMAL identity — xem ghi chú kỹ thuật)
-│       ├── shop-rau-xanh/          ← ✅ 1 template (WARM-ARTISAN identity — xem ghi chú kỹ thuật)
+│       ├── shop-thuc-pham-sach/    ← ✅ 1 template + WebDeploy đầy đủ (FRESH-MINIMAL identity — xem ghi chú kỹ thuật)
+│       ├── shop-rau-xanh/          ← ✅ 1 template + WebDeploy đầy đủ (WARM-ARTISAN identity — xem ghi chú kỹ thuật)
 │       └── CVs/                   ← 🔲 PLANNING (5 mẫu: classic, minimal, creative, dark, executive)
 ├── documents/                      ← Prototype UI HTML (tham khảo)
 └── .gitignore
@@ -297,7 +297,11 @@ VPS AZDIGI Linux
 - `api.getPaged()` trong `website/src/api/client.ts` (base scaffold, dùng chung mọi type) — đọc header `X-Total-Count` cho phân trang thay vì bọc `{items,total}` trong body.
 - PHP CLI trên máy dev hiện tại: `C:\xampp\php\php.exe` (không có trong PATH mặc định, đủ module `pdo_sqlite`) — gọi full path khi cần `php -l`/test runtime.
 - **Bug pattern đã lặp lại (`shop-quan-ao`, phát hiện 2026-07-13)**: các trang admin AI tự viết (`ProductForm`, `Settings`, `OrderList/Detail`, `ProductCategoryForm/List`, `Dashboard`, `Sidebar.tsx`) dùng convention class KHÔNG khớp với `admin/src/styles/admin.css` do scaffold sinh ra (vd dùng `admin-form`/`btn btn-primary`/`form-check`/`sidebar-header`/`sidebar-avatar` trong khi CSS chỉ định nghĩa `.card`/`.btn-accent`/`.form-checkbox`/`.sidebar-logo`) → form và cả sidebar mất toàn bộ style. **Bắt buộc sau khi viết xong mọi trang admin**: liệt kê toàn bộ `className="..."` trong từng `.tsx` ở `admin/src/pages/` + `admin/src/components/` (đặc biệt `Sidebar.tsx`, hay bị bỏ sót vì nằm trong `components/layout/`) rồi đối chiếu với class thực có trong `admin.css` — class nào thiếu thì bổ sung CSS tương ứng, không đổi tên class trong `.tsx`. Danh sách class "wrapper vô hại" được chấp nhận không cần định nghĩa riêng vì chỉ là `<div>` gộp nhóm không cần style: `.admin-page`, `.admin-table`, `.admin-quick-links`, `.stat-info`, `.req` (khi nested hợp lệ trong `.admin-form .req`).
-- **Module "Phiếu giảm giá" (coupon) cho site `shop`** — KHÔNG có sẵn trong scaffold, phải tự thêm khi cần (đã làm ở `shop-quan-ao`, `shop-giay-dep`, theo pattern gốc từ `shop-thoi-trang`): bảng `coupons` (code/type/value/min_order/max_uses/used_count/expires_at/is_active) + cột `coupon_code TEXT` thêm vào cuối bảng `orders` (không đổi cột cũ); `CouponController.php` mới (CRUD thuần, generic, copy được giữa các site); **ngoại lệ duy nhất được phép mở rộng file scaffold tĩnh `ShopPublicController.php`** — thêm `lookupCoupon()` (private) + `validateCoupon()` (public) + sửa `createOrder()` để trừ `$discount` vào `$total`, lưu `coupon_code`, tăng `used_count`; đăng ký route `POST /public/coupons/validate` + 5 route admin `/coupons`; trang admin `CouponList.tsx`/`CouponForm.tsx` + mục menu "Phiếu giảm giá" cạnh "Đơn hàng" trong Sidebar; phía website — `CartContext.tsx` thêm state `couponCode` (persist localStorage riêng), trang giỏ hàng gọi `/public/coupons/validate` thật (không còn placeholder trang trí), `CheckoutPage.tsx` đọc coupon từ context để hiển thị + gửi kèm khi tạo đơn.
+- **Module "Phiếu giảm giá" (coupon) cho site `shop`** — KHÔNG có sẵn trong scaffold, phải tự thêm khi cần (đã làm ở `shop-quan-ao`, `shop-giay-dep`, `shop-rau-xanh`, `shop-thuc-pham-sach`, theo pattern gốc từ `shop-thoi-trang`): bảng `coupons` (code/type/value/min_order/max_uses/used_count/expires_at/is_active) + cột `coupon_code TEXT` thêm vào cuối bảng `orders` (không đổi cột cũ); `CouponController.php` mới (CRUD thuần, generic, copy được giữa các site); **ngoại lệ duy nhất được phép mở rộng file scaffold tĩnh `ShopPublicController.php`** — thêm `lookupCoupon()` (private) + `validateCoupon()` (public) + sửa `createOrder()` để trừ `$discount` vào `$total`, lưu `coupon_code`, tăng `used_count`; đăng ký route `POST /public/coupons/validate` + 5 route admin `/coupons`; trang admin `CouponList.tsx`/`CouponForm.tsx` + mục menu "Phiếu giảm giá" cạnh "Đơn hàng" trong Sidebar; phía website — `CartContext.tsx` thêm state `couponCode` (persist localStorage riêng), trang giỏ hàng gọi `/public/coupons/validate` thật (không còn placeholder trang trí), `CheckoutPage.tsx` đọc coupon từ context để hiển thị + gửi kèm khi tạo đơn.
+- **[✅ FIXED 2026-07-16] 2 bug scaffold-level ảnh hưởng TOÀN BỘ site (không riêng `shop`), đã fix tại `_scaffold/` + hàng loạt site cũ + `Sources/products/basic/`:**
+  1. Route `POST /media/upload` (menu "Thư viện ảnh" độc lập, khác `ImageField`) hay bị AI bỏ sót khi tự đăng ký route trong `bootstrap.php` — nay `_scaffold/api/src/bootstrap.php` đã có sẵn route này, chỉ cần verify không bị xoá khi chỉnh sửa.
+  2. `UploadController::uploadToLocal()` trả URL thiếu `/api` (`APP_URL + '/uploads/'` thay vì đúng `/api/uploads/`) do không dùng constant `UPLOAD_URL` đã định nghĩa sẵn trong `config.php` — nay đã sửa dùng `defined('UPLOAD_URL') ? UPLOAD_URL : ...` trong cả `_scaffold/` lẫn source từng site.
+  Site build từ `_scaffold/` sau 2026-07-16 không cần tự fix 2 điều này nữa — chỉ cần verify ở Bước 8 checklist (rule 15 `web-deploy-builder.md`).
 
 ### Client vs Server Component
 
@@ -335,8 +339,8 @@ VPS AZDIGI Linux
 | `shop-thoi-trang` | WebDeploy + Template | Shop thời trang | BOLD-EDITORIAL, Electric Blue `#0052ff` | `st-` | Outfit, Nav-1 transparent→scrolled, có coupon + product reviews riêng |
 | `shop-giay-dep` | WebDeploy + Template | Shop giày dép | DARK-ENERGY, Volt Lime `#d4ff3f` + Cyan `#00e5ff` | `gd-` | Space Grotesk (unified heading+body, đổi từ Syne 2026-07-13 do khó đọc ở size lớn), Nav-3 dark floating pill, có coupon riêng |
 | `shop-quan-ao` | WebDeploy + Template | Shop quần áo nữ | SOFT-PASTEL, Lavender `#b98bd1` + Butter `#f2c14e` | `qa-` | DM Sans italic + Manrope, Nav-2 always solid, footer nền sáng (khác 3 shop kia), có coupon riêng |
-| `shop-thuc-pham-sach` | Template-only | Shop thực phẩm sạch | FRESH-MINIMAL, Leaf Green `#2f8f4e` + Harvest Amber `#dd8f3a` | `tp-` | Plus Jakarta Sans (unified), Nav-8 underline-active, Hero H4 centered minimal, footer tối (forest green) |
-| `shop-rau-xanh` | Template-only | Shop rau củ quả | WARM-ARTISAN, Ochre Clay `#a67a3c` + Khaki Olive `#7d7a4a` | `rx-` | Fraunces italic 300 (khác cách dùng Fraunces upright 500 của `shop-ban-hang`) + DM Sans, Nav-5 centered-logo 3-row signage, Hero H6 asymmetric offset, motif wabi-sabi blob/wavy-underline |
+| `shop-thuc-pham-sach` | WebDeploy + Template | Shop thực phẩm sạch | FRESH-MINIMAL, Leaf Green `#2f8f4e` + Harvest Amber `#dd8f3a` | `tp-` | Plus Jakarta Sans (unified), Nav-8 underline-active, Hero H4 centered minimal, footer tối (forest green), có coupon riêng |
+| `shop-rau-xanh` | WebDeploy + Template | Shop rau củ quả | WARM-ARTISAN, Ochre Clay `#a67a3c` + Khaki Olive `#7d7a4a` | `rx-` | Fraunces italic 300 (khác cách dùng Fraunces upright 500 của `shop-ban-hang`) + DM Sans, Nav-5 centered-logo 3-row signage, Hero H6 asymmetric offset, motif wabi-sabi blob/wavy-underline, có coupon riêng |
 
 ### CV Builder SaaS
 

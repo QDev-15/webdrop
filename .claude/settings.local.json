@@ -26,7 +26,9 @@
       "Read(//tmp/**)",
       "Bash(curl -s -m 3 http://localhost:8081/api/health)",
       "Bash(curl -s -m 3 http://localhost:5174 -o /dev/null -w \"%{http_code}\\\\n\")",
-      "Bash(curl -s -m 3 http://localhost:5173 -o /dev/null -w \"%{http_code}\\\\n\")"
+      "Bash(curl -s -m 3 http://localhost:5173 -o /dev/null -w \"%{http_code}\\\\n\")",
+      "Skill(claude-api)",
+      "Skill(claude-api:*)"
     ],
     "additionalDirectories": [
       "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"
