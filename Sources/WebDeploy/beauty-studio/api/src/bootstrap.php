@@ -168,6 +168,7 @@ $router->add('GET',  '/unsplash', [$unsplash, 'search']);
 // ─── Media ───────────────────────────────────────────────────────────────────
 
 $router->add('GET',  '/media',          [$media, 'index']);
+$router->add('POST', '/media/upload', [$media, 'upload']);
 $router->add('POST', '/media/:id/delete', [$media, 'destroy']);
 
 return $router;

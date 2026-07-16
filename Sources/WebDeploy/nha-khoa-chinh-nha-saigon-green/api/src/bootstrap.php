@@ -74,6 +74,7 @@ $router->add('POST', '/hero-slides/:id/delete',   [$heroSlides, 'destroy']);
 
 // ── Media ─────────────────────────────────────────────────────────────────────
 $router->add('GET',  '/media',            [$media, 'index']);
+$router->add('POST', '/media/upload', [$media, 'upload']);
 $router->add('POST', '/media/:id/delete', [$media, 'destroy']);
 
 // ── Upload & Unsplash ─────────────────────────────────────────────────────────

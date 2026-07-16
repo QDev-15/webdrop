@@ -138,6 +138,7 @@ $router->add('POST', '/contacts/:id/delete',          [$contact, 'destroy']);
 
 // --- Media routes ---
 $router->add('GET',  '/media',                        [$media, 'index']);
+$router->add('POST', '/media/upload', [$media, 'upload']);
 $router->add('POST', '/media/:id/delete',             [$media, 'destroy']);
 
 // --- Upload & Unsplash ---

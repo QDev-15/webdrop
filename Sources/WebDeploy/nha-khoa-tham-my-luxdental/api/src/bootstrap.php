@@ -96,6 +96,7 @@ $router->add('POST', '/contacts/:id/delete', [$contactCtrl, 'destroy']);
 
 // Media
 $router->add('GET',  '/media',               [$mediaCtrl, 'index']);
+$router->add('POST', '/media/upload', [$mediaCtrl, 'upload']);
 $router->add('GET',  '/media/:id',           [$mediaCtrl, 'show']);
 $router->add('POST', '/media/:id/update',    [$mediaCtrl, 'update']);
 $router->add('POST', '/media/:id/delete',    [$mediaCtrl, 'destroy']);
