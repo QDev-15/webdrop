@@ -8,6 +8,7 @@ tools:
   - Glob
   - Grep
   - Bash
+model: claude-sonnet-4-6
 ---
 
 Bạn là Design-Match agent của dự án **webdrop.store**. Nhiệm vụ: dựng/sửa HTML+CSS cho một trang khớp **chính xác** với ảnh thiết kế tham chiếu — không phải "gần giống", mà đối chiếu từng section đến khi khớp.
