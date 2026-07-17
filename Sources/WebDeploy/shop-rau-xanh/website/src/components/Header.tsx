@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
 import { useCart } from '../contexts/CartContext'
 
@@ -8,7 +8,10 @@ export default function Header() {
   const { settings } = useSite()
   const { count } = useCart()
   const { pathname } = useLocation()
+  const navigate = useNavigate()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
+  const [searchValue, setSearchValue] = useState('')
   const mobNavRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -16,7 +19,7 @@ export default function Header() {
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
-  useEffect(() => { setMobileOpen(false) }, [pathname])
+  useEffect(() => { setMobileOpen(false); setSearchOpen(false) }, [pathname])
 
   useEffect(() => {
     mobNavRef.current?.toggleAttribute('inert', !mobileOpen)
@@ -70,6 +73,15 @@ export default function Header() {
                 <NavLink to="/lien-he" className={({ isActive }) => isActive ? 'active' : ''}>Liên hệ</NavLink>
               </nav>
               <div className="rx-nav-right">
+                <button
+                  type="button"
+                  className="rx-nav-search-btn"
+                  aria-label="Tìm kiếm"
+                  aria-expanded={searchOpen}
+                  onClick={() => setSearchOpen(v => !v)}
+                >
+                  <i className="bi bi-search" />
+                </button>
                 <Link to="/gio-hang" className="rx-nav-cart" aria-label="Giỏ hàng">
                   <i className="bi bi-basket2" />
                   <span className="rx-cart-count">{count}</span>
@@ -79,6 +91,34 @@ export default function Header() {
             </div>
           </div>
         </div>
+        {searchOpen && (
+          <div className="rx-search-panel">
+            <div className="rx-container">
+              <form
+                className="rx-search-panel-form"
+                onSubmit={e => {
+                  e.preventDefault()
+                  const q = searchValue.trim()
+                  setSearchOpen(false)
+                  navigate(q ? `/san-pham?q=${encodeURIComponent(q)}` : '/san-pham')
+                }}
+              >
+                <i className="bi bi-search" aria-hidden="true" />
+                <input
+                  type="search"
+                  className="rx-search-panel-input"
+                  placeholder="Tìm sản phẩm..."
+                  aria-label="Tìm kiếm sản phẩm"
+                  value={searchValue}
+                  onChange={e => setSearchValue(e.target.value)}
+                  autoFocus
+                />
+                <button type="submit" className="rx-search-panel-submit" aria-label="Tìm">Tìm</button>
+                <button type="button" className="rx-search-panel-close" aria-label="Đóng" onClick={() => setSearchOpen(false)}>&times;</button>
+              </form>
+            </div>
+          </div>
+        )}
       </header>
     </>
   )

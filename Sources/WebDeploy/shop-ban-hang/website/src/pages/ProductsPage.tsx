@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { api } from '../api/client'
 import { useSite } from '../contexts/SiteContext'
 import { useCart } from '../contexts/CartContext'
@@ -64,6 +64,19 @@ export default function ProductsPage() {
   const [appliedMinPrice, setAppliedMinPrice] = useState('0')
   const [appliedMaxPrice, setAppliedMaxPrice] = useState('1000000')
   const [appliedCategoryIds, setAppliedCategoryIds] = useState<number[]>([])
+
+  const [searchParams] = useSearchParams()
+
+  // Đọc ?q= từ URL khi vào trang (vd điều hướng từ ô tìm kiếm trên Header) — áp dụng ngay,
+  // không chờ debounce 400ms của effect bên dưới
+  useEffect(() => {
+    const q = searchParams.get('q')
+    if (q) {
+      setSearchInput(q)
+      setAppliedSearch(q)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // Search gõ-là-tự-tìm (debounce 400ms) — không cần bấm "Áp dụng bộ lọc" như các filter khác
   useEffect(() => {

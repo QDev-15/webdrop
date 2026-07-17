@@ -28,7 +28,9 @@
       <a href="lien-he.html">Liên hệ</a>
     </nav>
     <div class="ts-nav-actions">
-      <a href="san-pham.html" class="ts-nav-icon-btn" aria-label="Tìm kiếm sản phẩm"><i class="bi bi-search"></i></a>
+      <button type="button" class="ts-nav-icon-btn" id="navSearchBtn" aria-label="Tìm kiếm" aria-expanded="false">
+        <i class="bi bi-search"></i>
+      </button>
       <a href="gio-hang.html" class="ts-nav-icon-btn" aria-label="Xem giỏ hàng">
         <i class="bi bi-bag"></i>
         <span class="ts-cart-count" id="ts-cart-count-badge">2</span>
@@ -39,6 +41,17 @@
     </div>
   </div>
 </header>
+
+<div class="ts-search-panel" id="searchPanel" hidden>
+  <div class="ts-container">
+    <form class="ts-search-panel-form" id="searchForm" role="search">
+      <i class="bi bi-search" aria-hidden="true"></i>
+      <input type="search" id="searchInput" class="ts-search-panel-input" placeholder="Tìm sản phẩm..." aria-label="Tìm kiếm sản phẩm">
+      <button type="submit" class="ts-search-panel-submit" aria-label="Tìm">Tìm</button>
+      <button type="button" class="ts-search-panel-close" id="searchClose" aria-label="Đóng">&times;</button>
+    </form>
+  </div>
+</div>
 
 <div class="ts-nav-scrim" id="ts-nav-scrim"></div>
 <nav id="ts-nav-mob" inert aria-label="Menu điều hướng di động">
@@ -367,6 +380,38 @@
   }
 
   recalcOrderTotals();
+
+  /* Nav search — toggle panel, submit to san-pham.html?q=... */
+  (function () {
+    const searchBtn = document.getElementById('navSearchBtn');
+    const searchPanel = document.getElementById('searchPanel');
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+    const searchClose = document.getElementById('searchClose');
+    if (!searchBtn || !searchPanel || !searchForm) return;
+
+    function openSearchPanel() {
+      searchPanel.hidden = false;
+      searchBtn.setAttribute('aria-expanded', 'true');
+      setTimeout(() => searchInput.focus(), 10);
+    }
+    function closeSearchPanel() {
+      searchPanel.hidden = true;
+      searchBtn.setAttribute('aria-expanded', 'false');
+    }
+    searchBtn.addEventListener('click', () => {
+      searchPanel.hidden ? openSearchPanel() : closeSearchPanel();
+    });
+    if (searchClose) searchClose.addEventListener('click', closeSearchPanel);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !searchPanel.hidden) closeSearchPanel();
+    });
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const q = searchInput.value.trim();
+      window.location.href = 'san-pham.html' + (q ? ('?q=' + encodeURIComponent(q)) : '');
+    });
+  })();
 </script>
 </body>
 </html>

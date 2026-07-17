@@ -1395,3 +1395,17 @@ input, textarea, select { font-family: var(--sans); }
   .tp-footer-grid { grid-template-columns: 1fr; gap: 28px; }
   .tp-gallery-thumbs { grid-template-columns: repeat(4, 1fr); }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   SEARCH — sidebar box (ProductsPage) + header panel (Header)
+   ══════════════════════════════════════════════════════════════════ */
+.tp-search-box { display: flex; align-items: center; gap: 8px; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; background: var(--surface); }
+.tp-search-box:focus-within { border-color: var(--accent); }
+.tp-search-input { flex: 1; border: none; outline: none; background: transparent; font-family: var(--sans); font-size: 14px; color: var(--text); }
+.tp-search-box i { color: var(--text-3); font-size: 14px; }
+
+.tp-search-panel { position: fixed; top: 0; left: 0; right: 0; z-index: 999; background: var(--surface); border-bottom: 1px solid var(--border); box-shadow: 0 12px 32px rgba(0,0,0,.08); padding: 18px 0; }
+.tp-search-panel-form { display: flex; align-items: center; gap: 12px; }
+.tp-search-panel-input { flex: 1; border: none; outline: none; background: transparent; font-family: var(--sans); font-size: 16px; color: var(--text); }
+.tp-search-panel-submit { background: var(--accent); color: #fff; border: none; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-family: var(--sans); font-size: 14px; }
+.tp-search-panel-close { background: none; border: none; font-size: 22px; color: var(--text-3); cursor: pointer; line-height: 1; padding: 0 4px; }

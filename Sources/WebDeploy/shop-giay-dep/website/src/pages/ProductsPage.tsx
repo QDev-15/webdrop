@@ -24,6 +24,9 @@ export default function ProductsPage() {
 
   const [tab, setTab] = useState<'all' | 'sale' | number>('all')
 
+  const [searchInput, setSearchInput] = useState('')
+  const [appliedSearch, setAppliedSearch] = useState('')
+
   const [minPrice, setMinPrice] = useState('')
   const [maxPrice, setMaxPrice] = useState('')
   const [categoryIds, setCategoryIds] = useState<number[]>([])
@@ -54,6 +57,8 @@ export default function ProductsPage() {
   useEffect(() => {
     const catSlug = searchParams.get('cat')
     const saleParam = searchParams.get('sale')
+    const qParam = searchParams.get('q')
+    if (qParam) { setSearchInput(qParam); setAppliedSearch(qParam) }
     if (catSlug && categories.length > 0) {
       const cat = categories.find(c => c.slug === catSlug)
       if (cat) { setTab(cat.id); setCategoryIds([cat.id]); setAppliedCategoryIds([cat.id]) }
@@ -63,8 +68,18 @@ export default function ProductsPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categories.length])
 
+  // Debounce ô tìm kiếm 400ms trước khi áp dụng vào query
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setAppliedSearch(searchInput.trim())
+      setPage(1)
+    }, 400)
+    return () => clearTimeout(t)
+  }, [searchInput])
+
   const query = useMemo(() => {
     const params = new URLSearchParams()
+    if (appliedSearch) params.set('q', appliedSearch)
     if (appliedCategoryIds.length) params.set('category_ids', appliedCategoryIds.join(','))
     if (appliedMinPrice) params.set('min_price', appliedMinPrice)
     if (appliedMaxPrice) params.set('max_price', appliedMaxPrice)
@@ -78,7 +93,7 @@ export default function ProductsPage() {
     params.set('page', String(page))
     params.set('per_page', String(PER_PAGE))
     return params.toString()
-  }, [appliedCategoryIds, appliedMinPrice, appliedMaxPrice, appliedSizes, appliedColors, appliedMinRating, appliedInStock, appliedSale, appliedNew, sort, page])
+  }, [appliedSearch, appliedCategoryIds, appliedMinPrice, appliedMaxPrice, appliedSizes, appliedColors, appliedMinRating, appliedInStock, appliedSale, appliedNew, sort, page])
 
   useEffect(() => {
     setLoading(true)
@@ -121,6 +136,7 @@ export default function ProductsPage() {
   }
 
   const clearFilters = () => {
+    setSearchInput(''); setAppliedSearch('')
     setMinPrice(''); setAppliedMinPrice('')
     setMaxPrice(''); setAppliedMaxPrice('')
     setCategoryIds([]); setAppliedCategoryIds([])
@@ -169,6 +185,21 @@ export default function ProductsPage() {
         <div className="gd-container">
           <div className="gd-shop-layout">
             <aside className="gd-filter-sidebar">
+              <div className="gd-filter-block">
+                <div className="gd-filter-title">Tìm kiếm</div>
+                <div className="gd-search-box">
+                  <i className="bi bi-search" aria-hidden="true" />
+                  <input
+                    type="search"
+                    className="gd-search-input"
+                    value={searchInput}
+                    onChange={e => setSearchInput(e.target.value)}
+                    placeholder="Tìm theo tên sản phẩm..."
+                    aria-label="Tìm kiếm sản phẩm"
+                  />
+                </div>
+              </div>
+
               <div className="gd-filter-block">
                 <div className="gd-filter-title">Mức giá</div>
                 <div className="gd-filter-price-range">
@@ -273,7 +304,9 @@ export default function ProductsPage() {
               {loading ? (
                 <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--text-3)' }}>Đang tải sản phẩm...</div>
               ) : products.length === 0 ? (
-                <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--text-3)' }}>Không tìm thấy sản phẩm nào khớp bộ lọc</div>
+                <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--text-3)' }}>
+                  {appliedSearch ? `Không tìm thấy sản phẩm nào khớp với "${appliedSearch}"` : 'Không tìm thấy sản phẩm nào khớp bộ lọc'}
+                </div>
               ) : (
                 <div className="gd-prod-grid">
                   {products.map(p => (

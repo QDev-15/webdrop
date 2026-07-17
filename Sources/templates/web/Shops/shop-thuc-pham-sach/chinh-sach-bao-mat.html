@@ -39,6 +39,9 @@
       <a href="lien-he.html">Liên hệ</a>
     </nav>
     <div class="tp-nav-actions">
+      <button type="button" class="tp-nav-search-btn" id="navSearchBtn" aria-label="Tìm kiếm" aria-expanded="false">
+        <i class="bi bi-search"></i>
+      </button>
       <a href="gio-hang.html" class="tp-nav-icon" aria-label="Giỏ hàng">
         <i class="bi bi-bag"></i>
         <span class="tp-cart-badge">2</span>
@@ -50,6 +53,17 @@
     </div>
   </div>
 </header>
+
+<div class="tp-search-panel" id="searchPanel" hidden>
+  <div class="tp-container">
+    <form class="tp-search-panel-form" id="searchForm" role="search">
+      <i class="bi bi-search" aria-hidden="true"></i>
+      <input type="search" id="searchInput" class="tp-search-panel-input" placeholder="Tìm sản phẩm..." aria-label="Tìm kiếm sản phẩm">
+      <button type="submit" class="tp-search-panel-submit" aria-label="Tìm">Tìm</button>
+      <button type="button" class="tp-search-panel-close" id="searchClose" aria-label="Đóng">&times;</button>
+    </form>
+  </div>
+</div>
 
 <div class="tp-container tp-contact-wrap" style="padding-bottom:40px;">
   <div class="tp-breadcrumb" style="margin-bottom:24px;">
@@ -215,6 +229,37 @@ if (burger && mob) {
     }
   });
 }
+
+(function () {
+  var btn = document.getElementById('navSearchBtn');
+  var panel = document.getElementById('searchPanel');
+  var form = document.getElementById('searchForm');
+  var input = document.getElementById('searchInput');
+  var close = document.getElementById('searchClose');
+  if (!btn || !panel || !form) return;
+
+  function openPanel() {
+    panel.hidden = false;
+    btn.setAttribute('aria-expanded', 'true');
+    setTimeout(function () { input.focus(); }, 10);
+  }
+  function closePanel() {
+    panel.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+  }
+  btn.addEventListener('click', function () {
+    panel.hidden ? openPanel() : closePanel();
+  });
+  if (close) close.addEventListener('click', closePanel);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !panel.hidden) closePanel();
+  });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var q = input.value.trim();
+    window.location.href = 'san-pham.html' + (q ? ('?q=' + encodeURIComponent(q)) : '');
+  });
+})();
 </script>
 </body>
 </html>

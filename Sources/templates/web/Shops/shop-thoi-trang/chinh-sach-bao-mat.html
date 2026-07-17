@@ -32,6 +32,16 @@
 
 <!-- ══ NAV (scrolled) ══ -->
 <header id="stNav" class="st-nav st-scrolled" role="banner">
+  <div class="st-search-panel" id="searchPanel" hidden>
+    <div class="st-container">
+      <form class="st-search-panel-form" id="searchForm" role="search">
+        <i class="bi bi-search" aria-hidden="true"></i>
+        <input type="search" id="searchInput" class="st-search-panel-input" placeholder="Tìm sản phẩm..." aria-label="Tìm kiếm sản phẩm">
+        <button type="submit" class="st-search-panel-submit" aria-label="Tìm">Tìm</button>
+        <button type="button" class="st-search-panel-close" id="searchClose" aria-label="Đóng">&times;</button>
+      </form>
+    </div>
+  </div>
   <div class="st-container st-nav-inner">
     <a href="index.html" class="st-logo">[Tên<span>.</span>Shop]</a>
     <nav class="st-nav-links" aria-label="Menu chính">
@@ -42,7 +52,9 @@
       <a href="lien-he.html">Liên hệ</a>
     </nav>
     <div class="st-nav-actions">
-      <a href="#" class="st-nav-icon" aria-label="Tìm kiếm"><i class="bi bi-search"></i></a>
+      <button type="button" class="st-nav-icon" id="navSearchBtn" aria-label="Tìm kiếm" aria-expanded="false">
+        <i class="bi bi-search"></i>
+      </button>
       <a href="gio-hang.html" class="st-nav-icon" aria-label="Giỏ hàng">
         <i class="bi bi-bag"></i>
         <span class="st-cart-badge">3</span>
@@ -235,6 +247,39 @@
   }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
   document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
 
+})();
+</script>
+<script>
+(function () {
+  'use strict';
+  var btn = document.getElementById('navSearchBtn');
+  var panel = document.getElementById('searchPanel');
+  var form = document.getElementById('searchForm');
+  var input = document.getElementById('searchInput');
+  var close = document.getElementById('searchClose');
+  if (!btn || !panel || !form) return;
+
+  function openPanel() {
+    panel.hidden = false;
+    btn.setAttribute('aria-expanded', 'true');
+    setTimeout(function () { input.focus(); }, 10);
+  }
+  function closePanel() {
+    panel.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+  }
+  btn.addEventListener('click', function () {
+    panel.hidden ? openPanel() : closePanel();
+  });
+  if (close) close.addEventListener('click', closePanel);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !panel.hidden) closePanel();
+  });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var q = input.value.trim();
+    window.location.href = 'san-pham.html' + (q ? ('?q=' + encodeURIComponent(q)) : '');
+  });
 })();
 </script>
 </body>

@@ -36,6 +36,9 @@
       <a href="lien-he.html">Liên hệ</a>
     </nav>
     <div class="sb-nav-right">
+      <button type="button" class="sb-nav-search-btn" id="navSearchBtn" aria-label="Tìm kiếm" aria-expanded="false">
+        <i class="bi bi-search"></i>
+      </button>
       <a href="gio-hang.html" class="sb-nav-cart" aria-label="Giỏ hàng">
         <i class="bi bi-bag"></i>
         <span class="sb-cart-count">3</span>
@@ -47,6 +50,18 @@
     </div>
   </div>
 </header>
+
+<!-- ── Search Panel ── -->
+<div class="sb-search-panel" id="searchPanel" hidden>
+  <div class="sb-container">
+    <form class="sb-search-panel-form" id="searchForm" role="search">
+      <i class="bi bi-search" aria-hidden="true"></i>
+      <input type="search" id="searchInput" class="sb-search-panel-input" placeholder="Tìm sản phẩm..." aria-label="Tìm kiếm sản phẩm">
+      <button type="submit" class="sb-search-panel-submit">Tìm</button>
+      <button type="button" class="sb-search-panel-close" id="searchClose" aria-label="Đóng">&times;</button>
+    </form>
+  </div>
+</div>
 
 <!-- Page Header -->
 <div class="sb-page-header" style="padding-bottom:56px;">
@@ -209,6 +224,36 @@ if (burger && mob) {
     }
   });
 }
+
+// === Nav search panel ===
+(function () {
+  const btn   = document.getElementById('navSearchBtn');
+  const panel = document.getElementById('searchPanel');
+  const form  = document.getElementById('searchForm');
+  const input = document.getElementById('searchInput');
+  const close = document.getElementById('searchClose');
+  if (!btn || !panel || !form) return;
+
+  function openPanel() {
+    panel.hidden = false;
+    btn.setAttribute('aria-expanded', 'true');
+    setTimeout(() => input.focus(), 10);
+  }
+  function closePanel() {
+    panel.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+  }
+  btn.addEventListener('click', () => { panel.hidden ? openPanel() : closePanel(); });
+  if (close) close.addEventListener('click', closePanel);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !panel.hidden) closePanel();
+  });
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const q = input.value.trim();
+    window.location.href = 'san-pham.html' + (q ? ('?q=' + encodeURIComponent(q)) : '');
+  });
+})();
 </script>
 </body>
 </html>

@@ -24,6 +24,16 @@
 </nav>
 
 <header id="qa-nav" role="banner">
+  <div class="qa-search-panel" id="searchPanel" hidden>
+    <div class="qa-container">
+      <form class="qa-search-panel-form" id="searchForm" role="search">
+        <i class="bi bi-search" aria-hidden="true"></i>
+        <input type="search" id="searchInput" class="qa-search-panel-input" placeholder="Tìm sản phẩm..." aria-label="Tìm kiếm sản phẩm">
+        <button type="submit" class="qa-search-panel-submit" aria-label="Tìm">Tìm</button>
+        <button type="button" class="qa-search-panel-close" id="searchClose" aria-label="Đóng">&times;</button>
+      </form>
+    </div>
+  </div>
   <div class="qa-container qa-nav-inner">
     <a href="index.html" class="qa-logo">[Tên<span>.</span>Chic]</a>
     <nav class="qa-nav-links" role="navigation" aria-label="Menu chính">
@@ -34,6 +44,9 @@
       <a href="lien-he.html">Liên hệ</a>
     </nav>
     <div class="qa-nav-right">
+      <button type="button" class="qa-nav-search-btn" id="navSearchBtn" aria-label="Tìm kiếm" aria-expanded="false">
+        <i class="bi bi-search"></i>
+      </button>
       <a href="gio-hang.html" class="qa-nav-cart" aria-label="Giỏ hàng"><i class="bi bi-bag"></i><span class="qa-cart-count">3</span></a>
       <a href="san-pham.html" class="qa-nav-cta">Mua ngay</a>
       <button id="qa-burger" aria-label="Mở menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -179,6 +192,37 @@ if (burger && mob) {
     }
   });
 }
+
+(function () {
+  var btn = document.getElementById('navSearchBtn');
+  var panel = document.getElementById('searchPanel');
+  var form = document.getElementById('searchForm');
+  var input = document.getElementById('searchInput');
+  var close = document.getElementById('searchClose');
+  if (!btn || !panel || !form) return;
+
+  function openPanel() {
+    panel.hidden = false;
+    btn.setAttribute('aria-expanded', 'true');
+    setTimeout(function () { input.focus(); }, 10);
+  }
+  function closePanel() {
+    panel.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+  }
+  btn.addEventListener('click', function () {
+    panel.hidden ? openPanel() : closePanel();
+  });
+  if (close) close.addEventListener('click', closePanel);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !panel.hidden) closePanel();
+  });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var q = input.value.trim();
+    window.location.href = 'san-pham.html' + (q ? ('?q=' + encodeURIComponent(q)) : '');
+  });
+})();
 </script>
 </body>
 </html>

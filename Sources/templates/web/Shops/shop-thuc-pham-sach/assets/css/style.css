@@ -1529,3 +1529,57 @@ input, textarea, select { font-family: var(--sans); }
   .tp-footer-grid { grid-template-columns: 1fr; gap: 28px; }
   .tp-gallery-thumbs { grid-template-columns: repeat(4, 1fr); }
 }
+
+/* ══════════════════════════════════════════
+   SEARCH — nav search panel + sidebar search box
+══════════════════════════════════════════ */
+.tp-nav-search-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-size: 17px;
+  transition: background .2s, color .2s;
+}
+.tp-nav-search-btn:hover,
+.tp-nav-search-btn[aria-expanded="true"] { background: var(--accent); color: #fff; }
+
+.tp-search-panel {
+  position: fixed;
+  top: 76px; left: 0; right: 0;
+  z-index: 899;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 12px 32px rgba(0,0,0,.08);
+  padding: 18px 0;
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform .25s ease, opacity .25s ease;
+  pointer-events: none;
+}
+.tp-search-panel:not([hidden]) { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.tp-search-panel-form { display: flex; align-items: center; gap: 12px; }
+.tp-search-panel-form > i { color: var(--text-3); font-size: 18px; }
+.tp-search-panel-input { flex: 1; border: none; outline: none; background: transparent; font-family: var(--sans); font-size: 16px; color: var(--text); }
+.tp-search-panel-submit { background: var(--accent); color: #fff; border: none; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-family: var(--sans); font-size: 14px; }
+.tp-search-panel-submit:hover { background: var(--accent-h); }
+.tp-search-panel-close { background: none; border: none; font-size: 22px; color: var(--text-3); cursor: pointer; line-height: 1; padding: 0 4px; }
+.tp-search-panel-close:hover { color: var(--text); }
+
+.tp-search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  background: var(--bg);
+}
+.tp-search-box i { color: var(--text-3); font-size: 15px; }
+.tp-search-input { flex: 1; border: none; outline: none; background: transparent; font-family: var(--sans); font-size: 14px; color: var(--text); }
+.tp-search-input::placeholder { color: var(--text-3); }
+.tp-search-empty { font-family: var(--sans); font-size: 15px; }

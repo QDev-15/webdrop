@@ -28,7 +28,9 @@
       <a href="lien-he.html">Liên hệ</a>
     </nav>
     <div class="ts-nav-actions">
-      <a href="san-pham.html" class="ts-nav-icon-btn" aria-label="Tìm kiếm sản phẩm"><i class="bi bi-search"></i></a>
+      <button type="button" class="ts-nav-icon-btn" id="navSearchBtn" aria-label="Tìm kiếm" aria-expanded="false">
+        <i class="bi bi-search"></i>
+      </button>
       <a href="gio-hang.html" class="ts-nav-icon-btn" aria-label="Xem giỏ hàng">
         <i class="bi bi-bag"></i>
         <span class="ts-cart-count">2</span>
@@ -39,6 +41,17 @@
     </div>
   </div>
 </header>
+
+<div class="ts-search-panel" id="searchPanel" hidden>
+  <div class="ts-container">
+    <form class="ts-search-panel-form" id="searchForm" role="search">
+      <i class="bi bi-search" aria-hidden="true"></i>
+      <input type="search" id="searchInput" class="ts-search-panel-input" placeholder="Tìm sản phẩm..." aria-label="Tìm kiếm sản phẩm">
+      <button type="submit" class="ts-search-panel-submit" aria-label="Tìm">Tìm</button>
+      <button type="button" class="ts-search-panel-close" id="searchClose" aria-label="Đóng">&times;</button>
+    </form>
+  </div>
+</div>
 
 <div class="ts-nav-scrim" id="ts-nav-scrim"></div>
 <nav id="ts-nav-mob" inert aria-label="Menu điều hướng di động">
@@ -83,6 +96,14 @@
 
       <!-- Sidebar filters -->
       <aside>
+        <div class="ts-filter-box">
+          <h2>Tìm kiếm</h2>
+          <div class="ts-search-box">
+            <i class="bi bi-search" aria-hidden="true"></i>
+            <input type="search" id="prodSearchInput" class="ts-search-input" placeholder="Tìm theo tên sản phẩm..." aria-label="Tìm kiếm sản phẩm">
+          </div>
+        </div>
+
         <div class="ts-filter-box">
           <h2>Khoảng giá</h2>
           <div class="ts-price-range">
@@ -225,6 +246,10 @@
             <h3 class="ts-card-name">Petit Sling</h3>
             <div class="ts-card-price">[1.690.000đ]</div>
           </a>
+        </div>
+
+        <div id="prodSearchEmpty" class="ts-search-empty" hidden style="text-align:center;padding:60px 0;color:var(--text-3);">
+          Không tìm thấy sản phẩm nào khớp với từ khóa tìm kiếm.
         </div>
 
         <nav class="ts-pagination" aria-label="Điều hướng phân trang">
@@ -387,6 +412,70 @@
     const value = parseInt(priceInput.value, 10).toLocaleString('vi-VN');
     priceValEl.textContent = value + 'đ';
   });
+
+  /* Nav search — toggle panel, submit to san-pham.html?q=... */
+  (function () {
+    const searchBtn = document.getElementById('navSearchBtn');
+    const searchPanel = document.getElementById('searchPanel');
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+    const searchClose = document.getElementById('searchClose');
+    if (!searchBtn || !searchPanel || !searchForm) return;
+
+    function openSearchPanel() {
+      searchPanel.hidden = false;
+      searchBtn.setAttribute('aria-expanded', 'true');
+      setTimeout(() => searchInput.focus(), 10);
+    }
+    function closeSearchPanel() {
+      searchPanel.hidden = true;
+      searchBtn.setAttribute('aria-expanded', 'false');
+    }
+    searchBtn.addEventListener('click', () => {
+      searchPanel.hidden ? openSearchPanel() : closeSearchPanel();
+    });
+    if (searchClose) searchClose.addEventListener('click', closeSearchPanel);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !searchPanel.hidden) closeSearchPanel();
+    });
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const q = searchInput.value.trim();
+      window.location.href = 'san-pham.html' + (q ? ('?q=' + encodeURIComponent(q)) : '');
+    });
+  })();
+
+  /* Product search — filter .ts-card by name, reads ?q= from URL on load */
+  (function () {
+    const input = document.getElementById('prodSearchInput');
+    const cards = document.querySelectorAll('.ts-products-grid .ts-card');
+    const emptyMsg = document.getElementById('prodSearchEmpty');
+    if (!input || !cards.length) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const initial = params.get('q') || '';
+    if (initial) input.value = initial;
+
+    function norm(s) {
+      return (s || '').toLowerCase();
+    }
+
+    function filterProducts() {
+      const q = norm(input.value.trim());
+      let visible = 0;
+      cards.forEach((card) => {
+        const nameEl = card.querySelector('.ts-card-name');
+        const name = norm(nameEl ? nameEl.textContent : '');
+        const match = !q || name.indexOf(q) !== -1;
+        card.style.display = match ? '' : 'none';
+        if (match) visible++;
+      });
+      if (emptyMsg) emptyMsg.hidden = visible !== 0;
+    }
+
+    input.addEventListener('input', filterProducts);
+    if (initial) filterProducts();
+  })();
 </script>
 </body>
 </html>

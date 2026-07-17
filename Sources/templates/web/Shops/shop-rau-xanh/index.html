@@ -54,6 +54,9 @@
           <a href="lien-he.html">Liên hệ</a>
         </nav>
         <div class="rx-nav-right">
+          <button type="button" class="rx-nav-search-btn" id="navSearchBtn" aria-label="Tìm kiếm" aria-expanded="false">
+            <i class="bi bi-search"></i>
+          </button>
           <a href="gio-hang.html" class="rx-nav-cart" aria-label="Giỏ hàng">
             <i class="bi bi-basket2"></i>
             <span class="rx-cart-count">2</span>
@@ -64,6 +67,17 @@
     </div>
   </div>
 </header>
+
+<div class="rx-search-panel" id="searchPanel" hidden>
+  <div class="rx-container">
+    <form class="rx-search-panel-form" id="searchForm" role="search">
+      <i class="bi bi-search" aria-hidden="true"></i>
+      <input type="search" id="searchInput" class="rx-search-panel-input" placeholder="Tìm sản phẩm..." aria-label="Tìm kiếm sản phẩm">
+      <button type="submit" class="rx-search-panel-submit" aria-label="Tìm">Tìm</button>
+      <button type="button" class="rx-search-panel-close" id="searchClose" aria-label="Đóng">&times;</button>
+    </form>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════════════
      HERO — H6 Asymmetric Offset
@@ -644,6 +658,38 @@ document.querySelectorAll('[data-counter]').forEach(el => {
   }, { threshold: .5 });
   cro.observe(el);
 });
+</script>
+<script>
+(function () {
+  var btn = document.getElementById('navSearchBtn');
+  var panel = document.getElementById('searchPanel');
+  var form = document.getElementById('searchForm');
+  var input = document.getElementById('searchInput');
+  var close = document.getElementById('searchClose');
+  if (!btn || !panel || !form) return;
+
+  function openPanel() {
+    panel.hidden = false;
+    btn.setAttribute('aria-expanded', 'true');
+    setTimeout(function () { input.focus(); }, 10);
+  }
+  function closePanel() {
+    panel.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+  }
+  btn.addEventListener('click', function () {
+    panel.hidden ? openPanel() : closePanel();
+  });
+  if (close) close.addEventListener('click', closePanel);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !panel.hidden) closePanel();
+  });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var q = input.value.trim();
+    window.location.href = 'san-pham.html' + (q ? ('?q=' + encodeURIComponent(q)) : '');
+  });
+})();
 </script>
 </body>
 </html>

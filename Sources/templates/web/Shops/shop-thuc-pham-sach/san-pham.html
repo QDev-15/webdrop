@@ -39,6 +39,9 @@
       <a href="lien-he.html">Liên hệ</a>
     </nav>
     <div class="tp-nav-actions">
+      <button type="button" class="tp-nav-search-btn" id="navSearchBtn" aria-label="Tìm kiếm" aria-expanded="false">
+        <i class="bi bi-search"></i>
+      </button>
       <a href="gio-hang.html" class="tp-nav-icon" aria-label="Giỏ hàng">
         <i class="bi bi-bag"></i>
         <span class="tp-cart-badge">2</span>
@@ -50,6 +53,17 @@
     </div>
   </div>
 </header>
+
+<div class="tp-search-panel" id="searchPanel" hidden>
+  <div class="tp-container">
+    <form class="tp-search-panel-form" id="searchForm" role="search">
+      <i class="bi bi-search" aria-hidden="true"></i>
+      <input type="search" id="searchInput" class="tp-search-panel-input" placeholder="Tìm sản phẩm..." aria-label="Tìm kiếm sản phẩm">
+      <button type="submit" class="tp-search-panel-submit" aria-label="Tìm">Tìm</button>
+      <button type="button" class="tp-search-panel-close" id="searchClose" aria-label="Đóng">&times;</button>
+    </form>
+  </div>
+</div>
 
 <section class="tp-page-hero">
   <div class="tp-container">
@@ -70,6 +84,14 @@
       <div class="tp-filter-hd">
         Bộ lọc
         <span class="tp-filter-clear">Xóa lọc</span>
+      </div>
+
+      <div class="tp-filter-block">
+        <div class="tp-filter-title">Tìm kiếm</div>
+        <div class="tp-search-box">
+          <i class="bi bi-search" aria-hidden="true"></i>
+          <input type="search" id="prodSearchInput" class="tp-search-input" placeholder="Tìm theo tên sản phẩm..." aria-label="Tìm kiếm sản phẩm">
+        </div>
       </div>
 
       <div class="tp-filter-block">
@@ -257,6 +279,9 @@
             </div>
           </div>
         </a>
+        <div id="prodSearchEmpty" class="tp-search-empty" hidden style="grid-column:1/-1;text-align:center;padding:60px 0;color:var(--text-3);">
+          Không tìm thấy sản phẩm nào khớp với từ khóa tìm kiếm.
+        </div>
       </div>
 
       <div class="tp-pagination">
@@ -355,6 +380,66 @@ if (burger && mob) {
     }
   });
 }
+
+(function () {
+  var btn = document.getElementById('navSearchBtn');
+  var panel = document.getElementById('searchPanel');
+  var form = document.getElementById('searchForm');
+  var input = document.getElementById('searchInput');
+  var close = document.getElementById('searchClose');
+  if (!btn || !panel || !form) return;
+
+  function openPanel() {
+    panel.hidden = false;
+    btn.setAttribute('aria-expanded', 'true');
+    setTimeout(function () { input.focus(); }, 10);
+  }
+  function closePanel() {
+    panel.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+  }
+  btn.addEventListener('click', function () {
+    panel.hidden ? openPanel() : closePanel();
+  });
+  if (close) close.addEventListener('click', closePanel);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !panel.hidden) closePanel();
+  });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var q = input.value.trim();
+    window.location.href = 'san-pham.html' + (q ? ('?q=' + encodeURIComponent(q)) : '');
+  });
+})();
+
+(function () {
+  var input = document.getElementById('prodSearchInput');
+  var cards = document.querySelectorAll('.tp-prod-card');
+  var emptyMsg = document.getElementById('prodSearchEmpty');
+  if (!input || !cards.length) return;
+
+  var params = new URLSearchParams(window.location.search);
+  var initial = params.get('q') || '';
+  if (initial) input.value = initial;
+
+  function norm(s) { return (s || '').toLowerCase(); }
+
+  function filterProducts() {
+    var q = norm(input.value.trim());
+    var visible = 0;
+    cards.forEach(function (card) {
+      var nameEl = card.querySelector('.tp-prod-name');
+      var name = norm(nameEl ? nameEl.textContent : '');
+      var match = !q || name.indexOf(q) !== -1;
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+    if (emptyMsg) emptyMsg.hidden = visible !== 0;
+  }
+
+  input.addEventListener('input', filterProducts);
+  if (initial) filterProducts();
+})();
 </script>
 </body>
 </html>

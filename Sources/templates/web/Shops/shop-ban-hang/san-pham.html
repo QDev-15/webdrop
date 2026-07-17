@@ -38,6 +38,9 @@
       <a href="lien-he.html">Liên hệ</a>
     </nav>
     <div class="sb-nav-right">
+      <button type="button" class="sb-nav-search-btn" id="navSearchBtn" aria-label="Tìm kiếm" aria-expanded="false">
+        <i class="bi bi-search"></i>
+      </button>
       <a href="gio-hang.html" class="sb-nav-cart" aria-label="Giỏ hàng">
         <i class="bi bi-bag"></i>
         <span class="sb-cart-count">3</span>
@@ -49,6 +52,18 @@
     </div>
   </div>
 </header>
+
+<!-- ── Search Panel ── -->
+<div class="sb-search-panel" id="searchPanel" hidden>
+  <div class="sb-container">
+    <form class="sb-search-panel-form" id="searchForm" role="search">
+      <i class="bi bi-search" aria-hidden="true"></i>
+      <input type="search" id="searchInput" class="sb-search-panel-input" placeholder="Tìm sản phẩm..." aria-label="Tìm kiếm sản phẩm">
+      <button type="submit" class="sb-search-panel-submit">Tìm</button>
+      <button type="button" class="sb-search-panel-close" id="searchClose" aria-label="Đóng">&times;</button>
+    </form>
+  </div>
+</div>
 
 <!-- Page Header -->
 <div class="sb-page-header">
@@ -82,6 +97,14 @@
 
       <!-- Sidebar filter -->
       <aside class="sb-filter-sidebar">
+        <div class="sb-filter-block">
+          <div class="sb-filter-title">Tìm kiếm</div>
+          <div class="sb-search-box">
+            <i class="bi bi-search" aria-hidden="true"></i>
+            <input type="search" id="prodSearchInput" class="sb-search-input" placeholder="Tìm theo tên sản phẩm..." aria-label="Tìm kiếm sản phẩm">
+          </div>
+        </div>
+
         <div class="sb-filter-block">
           <div class="sb-filter-title">Mức giá</div>
           <div class="sb-filter-price-range">
@@ -450,6 +473,9 @@
               </div>
             </div>
           </div>
+          <div id="prodSearchEmpty" class="sb-search-empty" hidden>
+            Không tìm thấy sản phẩm nào khớp với từ khóa tìm kiếm.
+          </div>
         </div>
 
         <!-- Pagination -->
@@ -556,6 +582,66 @@ function filterCat(btn, cat) {
   document.querySelectorAll('.sb-tab-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
 }
+
+// === Nav search panel ===
+(function () {
+  const btn   = document.getElementById('navSearchBtn');
+  const panel = document.getElementById('searchPanel');
+  const form  = document.getElementById('searchForm');
+  const input = document.getElementById('searchInput');
+  const close = document.getElementById('searchClose');
+  if (!btn || !panel || !form) return;
+
+  function openPanel() {
+    panel.hidden = false;
+    btn.setAttribute('aria-expanded', 'true');
+    setTimeout(() => input.focus(), 10);
+  }
+  function closePanel() {
+    panel.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+  }
+  btn.addEventListener('click', () => { panel.hidden ? openPanel() : closePanel(); });
+  if (close) close.addEventListener('click', closePanel);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !panel.hidden) closePanel();
+  });
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const q = input.value.trim();
+    window.location.href = 'san-pham.html' + (q ? ('?q=' + encodeURIComponent(q)) : '');
+  });
+})();
+
+// === Product search filter ===
+(function () {
+  const input    = document.getElementById('prodSearchInput');
+  const cards    = document.querySelectorAll('.sb-prod-card');
+  const emptyMsg = document.getElementById('prodSearchEmpty');
+  if (!input || !cards.length) return;
+
+  const params  = new URLSearchParams(window.location.search);
+  const initial = params.get('q') || '';
+  if (initial) input.value = initial;
+
+  function norm(s) { return (s || '').toLowerCase(); }
+
+  function filterProducts() {
+    const q = norm(input.value.trim());
+    let visible = 0;
+    cards.forEach(card => {
+      const nameEl = card.querySelector('.sb-prod-name');
+      const name   = norm(nameEl ? nameEl.textContent : '');
+      const match  = !q || name.indexOf(q) !== -1;
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+    if (emptyMsg) emptyMsg.hidden = visible !== 0;
+  }
+
+  input.addEventListener('input', filterProducts);
+  if (initial) filterProducts();
+})();
 </script>
 </body>
 </html>

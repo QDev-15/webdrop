@@ -32,6 +32,16 @@
 
 <!-- ══ NAV (scrolled mặc định) ══ -->
 <header id="stNav" class="st-nav st-scrolled" role="banner">
+  <div class="st-search-panel" id="searchPanel" hidden>
+    <div class="st-container">
+      <form class="st-search-panel-form" id="searchForm" role="search">
+        <i class="bi bi-search" aria-hidden="true"></i>
+        <input type="search" id="searchInput" class="st-search-panel-input" placeholder="Tìm sản phẩm..." aria-label="Tìm kiếm sản phẩm">
+        <button type="submit" class="st-search-panel-submit" aria-label="Tìm">Tìm</button>
+        <button type="button" class="st-search-panel-close" id="searchClose" aria-label="Đóng">&times;</button>
+      </form>
+    </div>
+  </div>
   <div class="st-container st-nav-inner">
     <a href="index.html" class="st-logo">[Tên<span>.</span>Shop]</a>
     <nav class="st-nav-links" aria-label="Menu chính">
@@ -42,7 +52,9 @@
       <a href="lien-he.html">Liên hệ</a>
     </nav>
     <div class="st-nav-actions">
-      <a href="#" class="st-nav-icon" aria-label="Tìm kiếm"><i class="bi bi-search"></i></a>
+      <button type="button" class="st-nav-icon" id="navSearchBtn" aria-label="Tìm kiếm" aria-expanded="false">
+        <i class="bi bi-search"></i>
+      </button>
       <a href="gio-hang.html" class="st-nav-icon" aria-label="Giỏ hàng">
         <i class="bi bi-bag"></i>
         <span class="st-cart-badge">3</span>
@@ -89,6 +101,14 @@
         <div class="st-filter-hd">
           Bộ lọc
           <button class="st-filter-clear" type="button">Xóa tất cả</button>
+        </div>
+
+        <div class="st-filter-group">
+          <div class="st-filter-group-title">Tìm kiếm</div>
+          <div class="st-search-box">
+            <i class="bi bi-search" aria-hidden="true"></i>
+            <input type="search" id="prodSearchInput" class="st-search-input" placeholder="Tìm theo tên sản phẩm..." aria-label="Tìm kiếm sản phẩm">
+          </div>
         </div>
 
         <div class="st-filter-group">
@@ -368,6 +388,10 @@
 
         </div><!-- /.st-prods-grid -->
 
+        <div id="prodSearchEmpty" class="st-search-empty" hidden style="grid-column:1/-1;text-align:center;padding:60px 0;color:var(--text-3);">
+          Không tìm thấy sản phẩm nào khớp với từ khóa tìm kiếm.
+        </div>
+
         <!-- Pagination -->
         <nav class="st-pagination" aria-label="Phân trang">
           <button class="st-page-btn st-wide" aria-label="Trang trước">
@@ -503,6 +527,70 @@
     });
   });
 
+})();
+</script>
+<script>
+(function () {
+  'use strict';
+  var btn = document.getElementById('navSearchBtn');
+  var panel = document.getElementById('searchPanel');
+  var form = document.getElementById('searchForm');
+  var input = document.getElementById('searchInput');
+  var close = document.getElementById('searchClose');
+  if (!btn || !panel || !form) return;
+
+  function openPanel() {
+    panel.hidden = false;
+    btn.setAttribute('aria-expanded', 'true');
+    setTimeout(function () { input.focus(); }, 10);
+  }
+  function closePanel() {
+    panel.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+  }
+  btn.addEventListener('click', function () {
+    panel.hidden ? openPanel() : closePanel();
+  });
+  if (close) close.addEventListener('click', closePanel);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !panel.hidden) closePanel();
+  });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var q = input.value.trim();
+    window.location.href = 'san-pham.html' + (q ? ('?q=' + encodeURIComponent(q)) : '');
+  });
+})();
+</script>
+<script>
+(function () {
+  'use strict';
+  var input = document.getElementById('prodSearchInput');
+  var cards = document.querySelectorAll('.st-prod-card');
+  var emptyMsg = document.getElementById('prodSearchEmpty');
+  if (!input || !cards.length) return;
+
+  var params = new URLSearchParams(window.location.search);
+  var initial = params.get('q') || '';
+  if (initial) input.value = initial;
+
+  function norm(s) { return (s || '').toLowerCase(); }
+
+  function filterProducts() {
+    var q = norm(input.value.trim());
+    var visible = 0;
+    cards.forEach(function (card) {
+      var nameEl = card.querySelector('.st-prod-name');
+      var name = norm(nameEl ? nameEl.textContent : '');
+      var match = !q || name.indexOf(q) !== -1;
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+    if (emptyMsg) emptyMsg.hidden = visible !== 0;
+  }
+
+  input.addEventListener('input', filterProducts);
+  if (initial) filterProducts();
 })();
 </script>
 </body>

@@ -24,6 +24,9 @@ export default function ProductsPage() {
 
   const [tab, setTab] = useState<'all' | 'sale' | number>('all')
 
+  const [searchInput, setSearchInput] = useState('')
+  const [appliedSearch, setAppliedSearch] = useState('')
+
   const [minPrice, setMinPrice] = useState('')
   const [maxPrice, setMaxPrice] = useState('')
   const [categoryIds, setCategoryIds] = useState<number[]>([])
@@ -63,8 +66,25 @@ export default function ProductsPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categories.length])
 
+  // Đọc ?q=từ khóa từ URL khi vào trang lần đầu (link từ ô tìm kiếm ở Header)
+  useEffect(() => {
+    const q = searchParams.get('q')
+    if (q) { setSearchInput(q); setAppliedSearch(q) }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // Debounce 400ms cho ô tìm kiếm sidebar
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setAppliedSearch(searchInput.trim())
+      setPage(1)
+    }, 400)
+    return () => clearTimeout(t)
+  }, [searchInput])
+
   const query = useMemo(() => {
     const params = new URLSearchParams()
+    if (appliedSearch) params.set('q', appliedSearch)
     if (appliedCategoryIds.length) params.set('category_ids', appliedCategoryIds.join(','))
     if (appliedMinPrice) params.set('min_price', appliedMinPrice)
     if (appliedMaxPrice) params.set('max_price', appliedMaxPrice)
@@ -78,7 +98,7 @@ export default function ProductsPage() {
     params.set('page', String(page))
     params.set('per_page', String(PER_PAGE))
     return params.toString()
-  }, [appliedCategoryIds, appliedMinPrice, appliedMaxPrice, appliedCerts, appliedColors, appliedMinRating, appliedInStock, appliedSale, appliedNew, sort, page])
+  }, [appliedSearch, appliedCategoryIds, appliedMinPrice, appliedMaxPrice, appliedCerts, appliedColors, appliedMinRating, appliedInStock, appliedSale, appliedNew, sort, page])
 
   useEffect(() => {
     setLoading(true)
@@ -121,6 +141,7 @@ export default function ProductsPage() {
   }
 
   const clearFilters = () => {
+    setSearchInput(''); setAppliedSearch('')
     setMinPrice(''); setAppliedMinPrice('')
     setMaxPrice(''); setAppliedMaxPrice('')
     setCategoryIds([]); setAppliedCategoryIds([])
@@ -173,6 +194,21 @@ export default function ProductsPage() {
             <div className="tp-filter-hd">
               Bộ lọc
               <span className="tp-filter-clear" onClick={clearFilters}>Xóa lọc</span>
+            </div>
+
+            <div className="tp-filter-block">
+              <div className="tp-filter-title">Tìm kiếm</div>
+              <div className="tp-search-box">
+                <i className="bi bi-search" aria-hidden="true" />
+                <input
+                  type="search"
+                  className="tp-search-input"
+                  value={searchInput}
+                  onChange={e => setSearchInput(e.target.value)}
+                  placeholder="Tìm theo tên sản phẩm..."
+                  aria-label="Tìm kiếm sản phẩm"
+                />
+              </div>
             </div>
 
             <div className="tp-filter-block">
@@ -272,7 +308,11 @@ export default function ProductsPage() {
             {loading ? (
               <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--text-3)' }}>Đang tải sản phẩm...</div>
             ) : products.length === 0 ? (
-              <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--text-3)' }}>Không tìm thấy sản phẩm nào khớp bộ lọc</div>
+              <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--text-3)' }}>
+                {appliedSearch
+                  ? <>Không tìm thấy sản phẩm nào khớp từ khóa "<strong>{appliedSearch}</strong>"</>
+                  : 'Không tìm thấy sản phẩm nào khớp bộ lọc'}
+              </div>
             ) : (
               <div className="tp-prod-grid">
                 {products.map(p => (

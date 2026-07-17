@@ -24,6 +24,16 @@
 </nav>
 
 <header id="gd-nav" role="banner">
+  <div class="gd-search-panel" id="searchPanel" hidden>
+    <div class="gd-container">
+      <form class="gd-search-panel-form" id="searchForm" role="search">
+        <i class="bi bi-search" aria-hidden="true"></i>
+        <input type="search" id="searchInput" class="gd-search-panel-input" placeholder="Tìm sản phẩm..." aria-label="Tìm kiếm sản phẩm">
+        <button type="submit" class="gd-search-panel-submit" aria-label="Tìm">Tìm</button>
+        <button type="button" class="gd-search-panel-close" id="searchClose" aria-label="Đóng">&times;</button>
+      </form>
+    </div>
+  </div>
   <div class="gd-nav-inner">
     <a href="index.html" class="gd-logo">[Tên<span>.</span>Kicks]</a>
     <nav class="gd-nav-links" role="navigation" aria-label="Menu chính">
@@ -34,6 +44,9 @@
       <a href="lien-he.html">Liên hệ</a>
     </nav>
     <div class="gd-nav-right">
+      <button type="button" class="gd-nav-search-btn" id="navSearchBtn" aria-label="Tìm kiếm" aria-expanded="false">
+        <i class="bi bi-search"></i>
+      </button>
       <a href="gio-hang.html" class="gd-nav-cart" aria-label="Giỏ hàng"><i class="bi bi-bag"></i><span class="gd-cart-count">2</span></a>
       <a href="san-pham.html" class="gd-nav-cta">Mua ngay</a>
       <button id="gd-burger" aria-label="Mở menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -293,6 +306,39 @@ function addToCartDetail(btn) {
   btn.innerHTML = '<i class="bi bi-check-circle-fill"></i> Đã thêm vào giỏ';
   setTimeout(() => { btn.innerHTML = originalText; }, 2000);
 }
+
+// === Nav search panel ===
+(function () {
+  var btn = document.getElementById('navSearchBtn');
+  var panel = document.getElementById('searchPanel');
+  var form = document.getElementById('searchForm');
+  var input = document.getElementById('searchInput');
+  var close = document.getElementById('searchClose');
+  if (!btn || !panel || !form) return;
+
+  function openPanel() {
+    panel.hidden = false;
+    btn.setAttribute('aria-expanded', 'true');
+    setTimeout(function () { input.focus(); }, 10);
+  }
+  function closePanel() {
+    panel.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+  }
+  btn.addEventListener('click', function () {
+    panel.hidden ? openPanel() : closePanel();
+  });
+  if (close) close.addEventListener('click', closePanel);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !panel.hidden) closePanel();
+  });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var q = input.value.trim();
+    window.location.href = 'san-pham.html' + (q ? ('?q=' + encodeURIComponent(q)) : '');
+  });
+})();
+
 </script>
 </body>
 </html>

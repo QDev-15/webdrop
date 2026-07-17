@@ -1085,3 +1085,26 @@ input, textarea, select { font-family: var(--sans); }
 @media (max-width: 420px) {
   .rx-prod-grid, .rx-cat-grid { grid-template-columns: 1fr; }
 }
+
+/* Tìm kiếm sản phẩm — ô trong sidebar filter */
+.rx-search-box { display: flex; align-items: center; gap: 8px; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; background: var(--surface); }
+.rx-search-box:focus-within { border-color: var(--accent); }
+.rx-search-input { flex: 1; border: none; outline: none; background: transparent; font-family: var(--sans); font-size: 14px; color: var(--text); }
+.rx-search-box i { color: var(--text-3); font-size: 14px; }
+
+/* Tìm kiếm — icon + panel trong Header */
+.rx-nav-search-btn {
+  width: 40px; height: 40px;
+  border-radius: 8px;
+  background: var(--clay-bg);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text);
+  font-size: 16px;
+  transition: background .2s;
+}
+.rx-nav-search-btn:hover { background: var(--accent-light); color: var(--accent); }
+.rx-search-panel { position: fixed; top: 0; left: 0; right: 0; z-index: 999; background: var(--surface); border-bottom: 1px solid var(--border); box-shadow: 0 12px 32px rgba(0,0,0,.08); padding: 18px 0; }
+.rx-search-panel-form { display: flex; align-items: center; gap: 12px; }
+.rx-search-panel-input { flex: 1; border: none; outline: none; background: transparent; font-family: var(--sans); font-size: 16px; color: var(--text); }
+.rx-search-panel-submit { background: var(--accent); color: #fff; border: none; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-family: var(--sans); font-size: 14px; }
+.rx-search-panel-close { background: none; border: none; font-size: 22px; color: var(--text-3); cursor: pointer; line-height: 1; padding: 0 4px; }

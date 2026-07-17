@@ -24,6 +24,16 @@
 </nav>
 
 <header id="qa-nav" role="banner">
+  <div class="qa-search-panel" id="searchPanel" hidden>
+    <div class="qa-container">
+      <form class="qa-search-panel-form" id="searchForm" role="search">
+        <i class="bi bi-search" aria-hidden="true"></i>
+        <input type="search" id="searchInput" class="qa-search-panel-input" placeholder="Tìm sản phẩm..." aria-label="Tìm kiếm sản phẩm">
+        <button type="submit" class="qa-search-panel-submit" aria-label="Tìm">Tìm</button>
+        <button type="button" class="qa-search-panel-close" id="searchClose" aria-label="Đóng">&times;</button>
+      </form>
+    </div>
+  </div>
   <div class="qa-container qa-nav-inner">
     <a href="index.html" class="qa-logo">[Tên<span>.</span>Chic]</a>
     <nav class="qa-nav-links" role="navigation" aria-label="Menu chính">
@@ -34,6 +44,9 @@
       <a href="lien-he.html">Liên hệ</a>
     </nav>
     <div class="qa-nav-right">
+      <button type="button" class="qa-nav-search-btn" id="navSearchBtn" aria-label="Tìm kiếm" aria-expanded="false">
+        <i class="bi bi-search"></i>
+      </button>
       <a href="gio-hang.html" class="qa-nav-cart" aria-label="Giỏ hàng"><i class="bi bi-bag"></i><span class="qa-cart-count">3</span></a>
       <a href="san-pham.html" class="qa-nav-cta">Mua ngay</a>
       <button id="qa-burger" aria-label="Mở menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -66,6 +79,13 @@
   <div class="qa-container">
     <div class="qa-shop-layout">
       <aside class="qa-filter-sidebar">
+        <div class="qa-filter-block">
+          <div class="qa-filter-title">Tìm kiếm</div>
+          <div class="qa-search-box">
+            <i class="bi bi-search" aria-hidden="true"></i>
+            <input type="search" id="prodSearchInput" class="qa-search-input" placeholder="Tìm theo tên sản phẩm..." aria-label="Tìm kiếm sản phẩm">
+          </div>
+        </div>
         <div class="qa-filter-block">
           <div class="qa-filter-title">Mức giá</div>
           <div class="qa-filter-price-range">
@@ -155,6 +175,9 @@
           <div class="qa-prod-card" data-reveal data-delay="2">
             <div class="qa-prod-thumb"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=500&auto=format&fit=crop&q=80" alt="[Tên sản phẩm 6]" loading="lazy"><div class="qa-prod-badge new">Mới</div><div class="qa-prod-actions"><button class="qa-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button><a href="chi-tiet-san-pham.html" class="qa-prod-action-btn" aria-label="Xem chi tiết"><i class="bi bi-eye"></i></a></div></div>
             <div class="qa-prod-info"><div class="qa-prod-cat">Váy đầm</div><h3 class="qa-prod-name"><a href="chi-tiet-san-pham.html">[Tên sản phẩm 6]</a></h3><div class="qa-prod-footer"><span class="qa-prod-price-new">[690.000]đ</span><button class="qa-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-bag-plus"></i></button></div></div>
+          </div>
+          <div id="prodSearchEmpty" class="qa-search-empty" hidden style="grid-column:1/-1;text-align:center;padding:60px 0;color:var(--text-3);">
+            Không tìm thấy sản phẩm nào khớp với từ khóa tìm kiếm.
           </div>
         </div>
 
@@ -259,6 +282,66 @@ document.querySelectorAll('.qa-color-swatch').forEach(sw => {
     sw.setAttribute('aria-pressed', String(next));
   });
 });
+
+(function () {
+  var btn = document.getElementById('navSearchBtn');
+  var panel = document.getElementById('searchPanel');
+  var form = document.getElementById('searchForm');
+  var input = document.getElementById('searchInput');
+  var close = document.getElementById('searchClose');
+  if (!btn || !panel || !form) return;
+
+  function openPanel() {
+    panel.hidden = false;
+    btn.setAttribute('aria-expanded', 'true');
+    setTimeout(function () { input.focus(); }, 10);
+  }
+  function closePanel() {
+    panel.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+  }
+  btn.addEventListener('click', function () {
+    panel.hidden ? openPanel() : closePanel();
+  });
+  if (close) close.addEventListener('click', closePanel);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !panel.hidden) closePanel();
+  });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var q = input.value.trim();
+    window.location.href = 'san-pham.html' + (q ? ('?q=' + encodeURIComponent(q)) : '');
+  });
+})();
+
+(function () {
+  var input = document.getElementById('prodSearchInput');
+  var cards = document.querySelectorAll('.qa-prod-card');
+  var emptyMsg = document.getElementById('prodSearchEmpty');
+  if (!input || !cards.length) return;
+
+  var params = new URLSearchParams(window.location.search);
+  var initial = params.get('q') || '';
+  if (initial) input.value = initial;
+
+  function norm(s) { return (s || '').toLowerCase(); }
+
+  function filterProducts() {
+    var q = norm(input.value.trim());
+    var visible = 0;
+    cards.forEach(function (card) {
+      var nameEl = card.querySelector('.qa-prod-name');
+      var name = norm(nameEl ? nameEl.textContent : '');
+      var match = !q || name.indexOf(q) !== -1;
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+    if (emptyMsg) emptyMsg.hidden = visible !== 0;
+  }
+
+  input.addEventListener('input', filterProducts);
+  if (initial) filterProducts();
+})();
 </script>
 </body>
 </html>

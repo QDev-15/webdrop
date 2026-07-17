@@ -875,3 +875,64 @@ input, textarea, select { font-family: var(--sans); }
   font-size: 14.5px; color: var(--text-2); line-height: 1.9;
 }
 .qa-legal-contact-box a { color: var(--accent); font-weight: 600; }
+
+/* ══════════════════════════════════════════════════════════════════
+   SEARCH — nav button + slide-down panel + sidebar product filter
+   ══════════════════════════════════════════════════════════════════ */
+.qa-nav-search-btn {
+  position: relative;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--blush-light);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text);
+  font-size: 17px;
+  transition: background .2s;
+}
+.qa-nav-search-btn:hover, .qa-nav-search-btn[aria-expanded="true"] { background: var(--blush); }
+
+.qa-search-panel {
+  position: fixed;
+  top: 82px; left: 0; right: 0;
+  z-index: 999;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 12px 32px rgba(43,34,48,.08);
+  padding: 18px 0;
+  transform: translateY(-12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .25s ease, opacity .25s ease;
+}
+.qa-search-panel:not([hidden]) { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.qa-search-panel-form { display: flex; align-items: center; gap: 12px; }
+.qa-search-panel-form > i { color: var(--text-3); font-size: 17px; }
+.qa-search-panel-input {
+  flex: 1; border: none; outline: none; background: transparent;
+  font-family: var(--sans); font-size: 16px; color: var(--text);
+}
+.qa-search-panel-input::placeholder { color: var(--text-3); }
+.qa-search-panel-submit {
+  background: var(--accent); color: #fff; border: none;
+  padding: 10px 24px; border-radius: 999px; cursor: pointer;
+  font-family: var(--sans); font-size: 14px; font-weight: 600; transition: background .2s;
+}
+.qa-search-panel-submit:hover { background: var(--accent-h); }
+.qa-search-panel-close {
+  background: none; border: none; font-size: 24px; color: var(--text-3);
+  cursor: pointer; line-height: 1; padding: 0 4px; transition: color .2s;
+}
+.qa-search-panel-close:hover { color: var(--text); }
+
+.qa-search-box {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 999px; padding: 10px 16px;
+}
+.qa-search-box i { color: var(--text-3); font-size: 15px; }
+.qa-search-input {
+  flex: 1; width: 0; border: none; outline: none; background: transparent;
+  font-family: var(--sans); font-size: 13.5px; color: var(--text);
+}
+.qa-search-input::placeholder { color: var(--text-3); }
+.qa-search-empty { font-size: 14.5px; }
