@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Tên sản phẩm] — [Tên Shop]</title>
+  <meta name="description" content="[Mô tả ngắn về sản phẩm — cấu hình, hiệu năng và ưu điểm nổi bật]">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="mt-blob mt-blob-a" aria-hidden="true"></div>
+<div class="mt-blob mt-blob-b" aria-hidden="true"></div>
+<div class="mt-blob mt-blob-c" aria-hidden="true"></div>
+
+<nav id="mt-nav-mob" role="navigation" aria-label="Menu di động" inert>
+  <a href="index.html">Trang chủ</a>
+  <a href="san-pham.html" class="active">Sản phẩm</a>
+  <a href="dich-vu.html">Dịch Vụ</a>
+  <a href="khuyen-mai.html">Khuyến Mãi</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="gio-hang.html"><i class="bi bi-bag me-2"></i>Giỏ hàng</a>
+</nav>
+
+<header id="mt-nav" class="scrolled" role="banner">
+  <div class="mt-container mt-nav-inner">
+    <a href="index.html" class="mt-logo">[Nova<span>.</span>Tech]</a>
+    <nav class="mt-nav-links" role="navigation" aria-label="Menu chính">
+      <a href="index.html">Trang chủ</a>
+      <a href="san-pham.html" class="active">Sản phẩm</a>
+      <a href="dich-vu.html">Dịch Vụ</a>
+      <a href="khuyen-mai.html">Khuyến Mãi</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+    <div class="mt-nav-right">
+      <a href="gio-hang.html" class="mt-nav-cart" aria-label="Giỏ hàng"><i class="bi bi-bag"></i><span class="mt-cart-count">2</span></a>
+      <a href="san-pham.html" class="mt-nav-cta">Mua ngay</a>
+      <button id="mt-burger" aria-label="Mở menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="mt-container">
+    <nav class="mt-breadcrumb" style="margin-top:150px;" aria-label="Breadcrumb">
+      <a href="index.html">Trang chủ</a><span><i class="bi bi-chevron-right" style="font-size:10px"></i></span>
+      <a href="san-pham.html">Sản phẩm</a><span><i class="bi bi-chevron-right" style="font-size:10px"></i></span>
+      <span>[Tên sản phẩm]</span>
+    </nav>
+
+    <div class="mt-detail-layout">
+      <div data-reveal>
+        <div class="mt-gallery-main">
+          <img id="main-gallery-img" src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=800&auto=format&fit=crop&q=80" alt="[PC Gaming Core i7 RTX 4060 — ảnh chính]" loading="eager">
+        </div>
+        <div class="mt-gallery-thumbs">
+          <div class="mt-gallery-thumb active" onclick="switchGallery(this,'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=800&auto=format&fit=crop&q=80')">
+            <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=200&auto=format&fit=crop&q=70" alt="[Ảnh góc 1 — toàn cảnh case]" loading="lazy">
+          </div>
+          <div class="mt-gallery-thumb" onclick="switchGallery(this,'https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=800&auto=format&fit=crop&q=80')">
+            <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=200&auto=format&fit=crop&q=70" alt="[Ảnh góc 2 — đèn RGB bên trong]" loading="lazy">
+          </div>
+          <div class="mt-gallery-thumb" onclick="switchGallery(this,'https://images.unsplash.com/photo-1625842268584-8f3296236761?w=800&auto=format&fit=crop&q=80')">
+            <img src="https://images.unsplash.com/photo-1625842268584-8f3296236761?w=200&auto=format&fit=crop&q=70" alt="[Ảnh góc 3 — card đồ họa]" loading="lazy">
+          </div>
+          <div class="mt-gallery-thumb" onclick="switchGallery(this,'https://images.unsplash.com/photo-1587614382346-4ec70e388b6d?w=800&auto=format&fit=crop&q=80')">
+            <img src="https://images.unsplash.com/photo-1587614382346-4ec70e388b6d?w=200&auto=format&fit=crop&q=70" alt="[Ảnh góc 4 — bo mạch chủ]" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal data-delay="1">
+        <div class="mt-detail-cat">PC Gaming</div>
+        <h1 class="mt-detail-title">[PC Gaming Core i7 RTX 4060 — hiệu năng vượt trội]</h1>
+        <div class="mt-detail-rating">
+          <span style="color:var(--amber)">★★★★★</span>
+          <span>4.8/5 ([186] đánh giá)</span>
+          <span>·</span>
+          <span style="color:var(--accent)">Còn hàng</span>
+        </div>
+        <div class="mt-detail-price">
+          <span class="mt-detail-price-new">[24.990.000]đ</span>
+          <span class="mt-detail-price-old">[27.990.000]đ</span>
+        </div>
+        <p class="mt-detail-desc">
+          [Cấu hình PC Gaming mạnh mẽ với CPU Core i7 thế hệ mới, card đồ họa RTX 4060 8GB, tản nhiệt AIO 240mm — chiến mọi tựa game AAA ở độ phân giải cao và mượt mà.]
+        </p>
+
+        <div class="mt-option-block">
+          <div class="mt-option-label"><span>Cấu hình RAM / Ổ cứng</span><span style="font-weight:400; color:var(--text-3);">[16GB / 512GB]</span></div>
+          <div class="mt-config-swatches">
+            <div class="mt-config-swatch">8GB / 256GB</div>
+            <div class="mt-config-swatch selected">16GB / 512GB</div>
+            <div class="mt-config-swatch">32GB / 1TB</div>
+          </div>
+        </div>
+
+        <div class="mt-option-block">
+          <div class="mt-option-label"><span>Màu sắc / Vỏ case</span><a href="lien-he.html" style="color:var(--accent); font-weight:400;">Xem hướng dẫn chọn case</a></div>
+          <div class="mt-color-swatches">
+            <div class="mt-color-swatch selected" style="background:#0f1029;" title="Đen"></div>
+            <div class="mt-color-swatch" style="background:#e8e9f2;" title="Trắng bạc"></div>
+            <div class="mt-color-swatch" style="background:#6d5ef8;" title="Indigo"></div>
+          </div>
+        </div>
+
+        <div class="mt-option-block">
+          <div class="mt-option-label"><span>Số lượng</span></div>
+          <div class="mt-qty-selector">
+            <button onclick="changeQty(-1)" aria-label="Giảm số lượng">−</button>
+            <input type="number" id="detail-qty" value="1" min="1" max="10" aria-label="Số lượng">
+            <button onclick="changeQty(1)" aria-label="Tăng số lượng">+</button>
+          </div>
+        </div>
+
+        <div class="mt-detail-actions">
+          <button class="mt-btn mt-btn-primary" style="flex:1; justify-content:center;" onclick="addToCartDetail(this)">
+            <i class="bi bi-bag-plus"></i> Thêm vào giỏ
+          </button>
+          <button class="mt-btn mt-btn-outline" aria-label="Yêu thích sản phẩm"><i class="bi bi-heart"></i></button>
+        </div>
+
+        <div class="mt-detail-features">
+          <div class="mt-detail-feature"><i class="bi bi-patch-check-fill"></i> Bảo hành chính hãng [24 tháng]</div>
+          <div class="mt-detail-feature"><i class="bi bi-credit-card-2-front"></i> Trả góp 0% lãi suất</div>
+          <div class="mt-detail-feature"><i class="bi bi-truck"></i> Giao hàng &amp; lắp đặt toàn quốc [1–3 ngày]</div>
+        </div>
+
+        <div class="mt-detail-tabs" role="tablist">
+          <button class="mt-detail-tab active" id="tabbtn-desc" onclick="switchTab(this,'desc')" role="tab" aria-selected="true" aria-controls="tab-desc">Mô tả</button>
+          <button class="mt-detail-tab" id="tabbtn-spec" onclick="switchTab(this,'spec')" role="tab" aria-selected="false" aria-controls="tab-spec">Thông số kỹ thuật</button>
+          <button class="mt-detail-tab" id="tabbtn-review" onclick="switchTab(this,'review')" role="tab" aria-selected="false" aria-controls="tab-review">Đánh giá ([186])</button>
+        </div>
+        <div id="tab-desc" role="tabpanel" aria-labelledby="tabbtn-desc" style="padding:20px 0; font-size:14px; color:var(--text-2); line-height:1.8;">
+          [Nội dung mô tả chi tiết đầy đủ về sản phẩm — linh kiện sử dụng, hiệu năng thực tế qua các bài test benchmark và hướng dẫn bảo quản.]
+        </div>
+        <div id="tab-spec" role="tabpanel" aria-labelledby="tabbtn-spec" style="display:none; padding:20px 0; font-size:14px; color:var(--text-2); line-height:2;">
+          <div>CPU: [Intel Core i7-13700F]</div>
+          <div>Card đồ họa: [NVIDIA RTX 4060 8GB]</div>
+          <div>RAM: [16GB DDR5 5200MHz]</div>
+          <div>Ổ cứng: [512GB NVMe SSD Gen4]</div>
+          <div>Nguồn: [650W 80 Plus Bronze]</div>
+          <div>Bảo hành: [24 tháng chính hãng]</div>
+        </div>
+        <div id="tab-review" role="tabpanel" aria-labelledby="tabbtn-review" style="display:none; padding:20px 0; font-size:14px; color:var(--text-2);">
+          [186] đánh giá — trung bình 4.8/5 sao.
+        </div>
+      </div>
+    </div>
+
+    <div style="margin:64px 0 80px;">
+      <div class="mt-eyebrow" data-reveal>Gợi ý thêm</div>
+      <h2 class="mt-sec-title" data-reveal data-delay="1">Sản phẩm <strong>liên quan</strong></h2>
+      <div class="mt-related-grid" style="margin-top:32px;">
+        <div class="mt-prod-card" data-reveal>
+          <div class="mt-prod-thumb"><img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&auto=format&fit=crop&q=80" alt="[Sản phẩm liên quan 1 — Laptop UltraSlim 14]" loading="lazy"></div>
+          <div class="mt-prod-info"><div class="mt-prod-cat">Laptop</div><h3 class="mt-prod-name"><a href="chi-tiet-san-pham.html">[Laptop Mỏng Nhẹ UltraSlim 14]</a></h3><div class="mt-prod-footer"><span class="mt-prod-price-new">[18.490.000]đ</span><button class="mt-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-bag-plus"></i></button></div></div>
+        </div>
+        <div class="mt-prod-card" data-reveal data-delay="1">
+          <div class="mt-prod-thumb"><img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400&auto=format&fit=crop&q=80" alt="[Sản phẩm liên quan 2 — Màn hình gaming 27 inch]" loading="lazy"></div>
+          <div class="mt-prod-info"><div class="mt-prod-cat">Màn hình</div><h3 class="mt-prod-name"><a href="chi-tiet-san-pham.html">[Màn Hình Gaming 27" QHD 165Hz]</a></h3><div class="mt-prod-footer"><span class="mt-prod-price-new">[6.290.000]đ</span><button class="mt-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-bag-plus"></i></button></div></div>
+        </div>
+        <div class="mt-prod-card" data-reveal data-delay="2">
+          <div class="mt-prod-thumb"><img src="https://images.unsplash.com/photo-1625842268584-8f3296236761?w=400&auto=format&fit=crop&q=80" alt="[Sản phẩm liên quan 3 — Card đồ họa RTX 4070]" loading="lazy"><div class="mt-prod-badge new">Mới</div></div>
+          <div class="mt-prod-info"><div class="mt-prod-cat">Linh kiện</div><h3 class="mt-prod-name"><a href="chi-tiet-san-pham.html">[Card Đồ Họa RTX 4070 12GB]</a></h3><div class="mt-prod-footer"><span class="mt-prod-price-new">[15.990.000]đ</span><button class="mt-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-bag-plus"></i></button></div></div>
+        </div>
+        <div class="mt-prod-card" data-reveal data-delay="3">
+          <div class="mt-prod-thumb"><img src="https://images.unsplash.com/photo-1602080858428-57174f9431cf?w=400&auto=format&fit=crop&q=80" alt="[Sản phẩm liên quan 4 — Bàn phím cơ RGB]" loading="lazy"><div class="mt-prod-badge sale">-15%</div></div>
+          <div class="mt-prod-info"><div class="mt-prod-cat">Gaming Gear</div><h3 class="mt-prod-name"><a href="chi-tiet-san-pham.html">[Bàn Phím Cơ RGB Switch Đỏ]</a></h3><div class="mt-prod-footer"><span class="mt-prod-price-new">[1.190.000]đ</span><button class="mt-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-bag-plus"></i></button></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer id="mt-footer" role="contentinfo">
+  <div class="mt-container">
+    <div class="mt-footer-grid">
+      <div class="mt-footer-brand">
+        <a href="index.html" class="mt-logo">[Nova<span>.</span>Tech]</a>
+        <p>[Cửa hàng máy tính uy tín — laptop, PC gaming, linh kiện chính hãng.]</p>
+        <div class="mt-footer-social">
+          <a href="https://www.facebook.com/[fanpage]" class="mt-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/[account]" class="mt-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.youtube.com/@[account]" class="mt-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          <a href="https://zalo.me/[phone]" class="mt-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Zalo"><i class="bi bi-chat-dots"></i></a>
+        </div>
+      </div>
+      <div class="mt-footer-col"><h4>Sản phẩm</h4><ul><li><a href="san-pham.html">Tất cả sản phẩm</a></li><li><a href="san-pham.html">Sản phẩm mới</a></li><li><a href="san-pham.html">Đang giảm giá</a></li></ul></div>
+      <div class="mt-footer-col"><h4>Hỗ trợ</h4><ul><li><a href="lien-he.html">Liên hệ</a></li><li><a href="lien-he.html">Chính sách bảo hành</a></li><li><a href="lien-he.html">FAQ</a></li></ul></div>
+    </div>
+    <div class="mt-footer-bottom">
+      <p>&copy; 2026 [Tên Shop]. Tất cả quyền được bảo lưu.</p>
+      <div class="mt-footer-pay"><span class="mt-pay-badge">VISA</span><span class="mt-pay-badge">MasterCard</span><span class="mt-pay-badge">MoMo</span><span class="mt-pay-badge">ZaloPay</span><span class="mt-pay-badge">COD</span></div>
+    </div>
+  </div>
+</footer>
+
+<div class="mt-zalo-float" aria-label="Chat Zalo">
+  <div class="mt-zalo-tooltip">Chat Zalo</div>
+  <a href="https://zalo.me/[0900000000]" class="mt-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo"><i class="bi bi-chat-fill"></i></a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }});
+}, { threshold: .08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+const navEl = document.getElementById('mt-nav');
+window.addEventListener('scroll', () => {
+  navEl.classList.toggle('scrolled', window.scrollY > 80);
+}, { passive: true });
+
+const burger = document.getElementById('mt-burger');
+const mob    = document.getElementById('mt-nav-mob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const open = mob.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    mob.toggleAttribute('inert', !open);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open'); burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      mob.setAttribute('inert', '');
+    }
+  });
+}
+
+function switchGallery(el, src) {
+  document.getElementById('main-gallery-img').src = src;
+  document.querySelectorAll('.mt-gallery-thumb').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function makeSwatchKeyboardAccessible(sw, onActivate) {
+  sw.setAttribute('tabindex', '0');
+  sw.setAttribute('role', 'button');
+  sw.addEventListener('click', onActivate);
+  sw.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onActivate();
+    }
+  });
+}
+
+/* Product detail swatches — single-select (choosing exactly one variant to buy) */
+document.querySelectorAll('.mt-config-swatch').forEach(sw => {
+  makeSwatchKeyboardAccessible(sw, () => {
+    document.querySelectorAll('.mt-config-swatch').forEach(s => { s.classList.remove('selected'); s.setAttribute('aria-pressed', 'false'); });
+    sw.classList.add('selected');
+    sw.setAttribute('aria-pressed', 'true');
+  });
+});
+document.querySelectorAll('.mt-color-swatch').forEach(sw => {
+  makeSwatchKeyboardAccessible(sw, () => {
+    document.querySelectorAll('.mt-color-swatch').forEach(s => { s.classList.remove('selected'); s.setAttribute('aria-pressed', 'false'); });
+    sw.classList.add('selected');
+    sw.setAttribute('aria-pressed', 'true');
+  });
+});
+
+function changeQty(delta) {
+  const input = document.getElementById('detail-qty');
+  let val = parseInt(input.value) + delta;
+  if (val < 1) val = 1;
+  if (val > 10) val = 10;
+  input.value = val;
+}
+
+function switchTab(btn, tab) {
+  document.querySelectorAll('.mt-detail-tab').forEach(t => {
+    t.classList.remove('active');
+    t.setAttribute('aria-selected', 'false');
+  });
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected', 'true');
+  ['desc','spec','review'].forEach(t => {
+    document.getElementById('tab-' + t).style.display = t === tab ? 'block' : 'none';
+  });
+}
+
+function addToCartDetail(btn) {
+  const originalText = btn.innerHTML;
+  btn.innerHTML = '<i class="bi bi-check-circle-fill"></i> Đã thêm vào giỏ';
+  setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+}
+</script>
+</body>
+</html>

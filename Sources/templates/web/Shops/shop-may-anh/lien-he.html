@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liên Hệ — [Tên Shop] Máy Ảnh & Thiết Bị Nhiếp Ảnh</title>
+  <meta name="description" content="[Liên hệ với Tên Shop — tư vấn chọn máy ảnh, ống kính, đặt lịch sửa chữa/vệ sinh cảm biến, hỗ trợ bảo hành]">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav id="ma-nav-mob" class="ma-mob-nav" role="navigation" aria-label="Menu di động" inert>
+  <ul>
+    <li><a href="index.html"><i class="bi bi-house"></i> Trang chủ</a></li>
+    <li><a href="san-pham.html"><i class="bi bi-camera"></i> Sản phẩm</a></li>
+    <li><a href="dich-vu.html"><i class="bi bi-tools"></i> Dịch Vụ</a></li>
+    <li><a href="thuong-hieu.html"><i class="bi bi-award"></i> Thương Hiệu</a></li>
+    <li><a href="lien-he.html" class="ma-active"><i class="bi bi-envelope"></i> Liên hệ</a></li>
+    <li><a href="gio-hang.html"><i class="bi bi-bag"></i> Giỏ hàng</a></li>
+  </ul>
+  <div class="ma-mob-actions">
+    <a href="san-pham.html" class="ma-btn ma-btn-primary ma-btn-full">Mua ngay</a>
+  </div>
+</nav>
+
+<header id="ma-nav" class="ma-scrolled" role="banner">
+  <div class="ma-container ma-nav-inner">
+    <a href="index.html" class="ma-logo"><span class="ma-logo-dot"></span>[Tên Shop]</a>
+    <nav class="ma-nav-links" role="navigation" aria-label="Menu chính">
+      <a href="index.html">Trang chủ</a>
+      <a href="san-pham.html">Sản phẩm</a>
+      <a href="dich-vu.html">Dịch Vụ</a>
+      <a href="thuong-hieu.html">Thương Hiệu</a>
+      <a href="lien-he.html" class="ma-active">Liên hệ</a>
+    </nav>
+    <div class="ma-nav-actions">
+      <a href="gio-hang.html" class="ma-nav-icon" aria-label="Giỏ hàng">
+        <i class="bi bi-bag"></i>
+        <span class="ma-cart-badge">2</span>
+      </a>
+      <a href="san-pham.html" class="ma-btn ma-btn-primary ma-btn-sm">Mua ngay</a>
+      <button id="ma-burger" class="ma-burger" aria-label="Mở menu" aria-expanded="false" aria-controls="ma-nav-mob">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Quick contact bar -->
+<div class="ma-quick-bar">
+  <div class="ma-container">
+    <div class="ma-quick-item"><i class="bi bi-telephone-fill"></i> Hotline: <strong>[0900 000 000]</strong></div>
+    <div class="ma-quick-item"><i class="bi bi-envelope-fill"></i> <strong>[lienhe@tenshop.vn]</strong></div>
+    <div class="ma-quick-item"><i class="bi bi-clock-fill"></i> 8:30 – 21:00, tất cả các ngày</div>
+  </div>
+</div>
+
+<div class="ma-container ma-contact-wrap">
+  <div class="ma-breadcrumb ma-on-light" style="margin-bottom:24px;">
+    <a href="index.html">Trang chủ</a>
+    <i class="bi bi-chevron-right" style="font-size:10px;"></i>
+    <span>Liên hệ</span>
+  </div>
+
+  <div class="ma-contact-grid">
+    <div class="ma-contact-info" data-reveal>
+      <h1>Cần tư vấn thiết bị? <em style="color:var(--accent);">Chúng tôi ở đây</em></h1>
+      <p>[Có câu hỏi về máy ảnh, ống kính hoặc muốn đặt lịch bảo trì, vệ sinh cảm biến? Gửi thông tin cho chúng tôi, kỹ thuật viên sẽ phản hồi trong vòng 2 giờ làm việc.]</p>
+
+      <div class="ma-contact-details">
+        <div class="ma-contact-detail">
+          <div class="ma-contact-icon"><i class="bi bi-geo-alt"></i></div>
+          <div class="ma-contact-detail-text">
+            <strong>Địa chỉ cửa hàng</strong>
+            <p>[123 Đường ABC, Phường Bến Nghé, Quận 1, TP.HCM]</p>
+          </div>
+        </div>
+        <div class="ma-contact-detail">
+          <div class="ma-contact-icon"><i class="bi bi-telephone"></i></div>
+          <div class="ma-contact-detail-text">
+            <strong>Hotline tư vấn</strong>
+            <p>[0900 000 000] (8:30 – 21:00)</p>
+          </div>
+        </div>
+        <div class="ma-contact-detail">
+          <div class="ma-contact-icon"><i class="bi bi-envelope"></i></div>
+          <div class="ma-contact-detail-text">
+            <strong>Email hỗ trợ</strong>
+            <p>[lienhe@tenshop.vn]</p>
+          </div>
+        </div>
+        <div class="ma-contact-detail">
+          <div class="ma-contact-icon"><i class="bi bi-wrench-adjustable"></i></div>
+          <div class="ma-contact-detail-text">
+            <strong>Xưởng kỹ thuật</strong>
+            <p>Nhận sửa chữa & vệ sinh cảm biến trong ngày, có lịch hẹn trước</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ma-contact-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4952!2d106.700!3d10.776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQ2JzMzLjYiTiAxMDbCsDQyJzAwLjAiRQ!5e0!3m2!1svi!2s!4v1700000000000" title="Bản đồ vị trí cửa hàng" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+
+    <div class="ma-contact-form" data-reveal data-delay="1">
+      <h2>Gửi tin nhắn cho chúng tôi</h2>
+      <form onsubmit="return false;">
+        <div class="ma-form-row">
+          <div class="ma-form-group">
+            <label for="ma-name">Họ và tên</label>
+            <input type="text" id="ma-name" placeholder="Nguyễn Văn A" required>
+          </div>
+          <div class="ma-form-group">
+            <label for="ma-phone">Số điện thoại</label>
+            <input type="tel" id="ma-phone" placeholder="09xx xxx xxx" required>
+          </div>
+        </div>
+        <div class="ma-form-group">
+          <label for="ma-email">Email</label>
+          <input type="email" id="ma-email" placeholder="ban@email.com">
+        </div>
+        <div class="ma-form-group">
+          <label for="ma-subject">Chủ đề</label>
+          <select id="ma-subject">
+            <option>Tư vấn chọn máy / ống kính</option>
+            <option>Hỏi về đơn hàng</option>
+            <option>Bảo hành / sửa chữa</option>
+            <option>Đặt lịch vệ sinh cảm biến</option>
+            <option>Khác</option>
+          </select>
+        </div>
+        <div class="ma-form-group">
+          <label for="ma-message">Nội dung</label>
+          <textarea id="ma-message" placeholder="Nội dung tin nhắn của bạn..." required></textarea>
+        </div>
+        <button type="submit" class="ma-btn ma-btn-primary ma-btn-full">
+          <i class="bi bi-send"></i> Gửi tin nhắn
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="ma-sec ma-faq-bg">
+  <div class="ma-container">
+    <div class="ma-sec-header ma-center" data-reveal>
+      <div class="ma-eyebrow"><i class="bi bi-question-circle"></i> Hỏi đáp</div>
+      <h2 class="ma-sec-title">Câu hỏi <em>thường gặp</em></h2>
+    </div>
+    <div class="ma-faq-list" data-reveal>
+      <div class="ma-faq-item open">
+        <button class="ma-faq-q">
+          Máy ảnh mua tại đây có phải hàng chính hãng không?
+          <span class="ma-faq-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="ma-faq-a">Có. Mọi thiết bị đều nhập khẩu chính ngạch, có tem chống hàng giả và phiếu bảo hành điện tử kích hoạt ngay khi giao hàng — có thể tra cứu trực tuyến.</div>
+      </div>
+      <div class="ma-faq-item">
+        <button class="ma-faq-q">
+          Thời gian bảo hành và phạm vi áp dụng?
+          <span class="ma-faq-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="ma-faq-a">Bảo hành chính hãng 24 tháng cho thân máy và ống kính, 12 tháng cho phụ kiện (flash, tripod, balo) — áp dụng lỗi do nhà sản xuất, không bao gồm va đập hoặc vào nước.</div>
+      </div>
+      <div class="ma-faq-item">
+        <button class="ma-faq-q">
+          Có nhận sửa chữa máy không mua tại cửa hàng không?
+          <span class="ma-faq-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="ma-faq-a">Có. Xưởng kỹ thuật nhận sửa chữa, vệ sinh cảm biến và hiệu chỉnh lấy nét cho mọi dòng máy, kèm báo giá chi tiết trước khi tiến hành.</div>
+      </div>
+      <div class="ma-faq-item">
+        <button class="ma-faq-q">
+          Chính sách đổi trả áp dụng như thế nào?
+          <span class="ma-faq-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="ma-faq-a">Đổi trả trong vòng 7 ngày kể từ ngày nhận hàng nếu thiết bị còn nguyên tem, đầy đủ phụ kiện và lỗi thuộc về nhà sản xuất.</div>
+      </div>
+      <div class="ma-faq-item">
+        <button class="ma-faq-q">
+          Có hỗ trợ trả góp khi mua thân máy hoặc ống kính không?
+          <span class="ma-faq-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="ma-faq-a">Có. Hỗ trợ trả góp 0% lãi suất qua thẻ tín dụng của các ngân hàng liên kết hoặc qua công ty tài chính, duyệt hồ sơ nhanh trong ngày.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA dark section with image grid -->
+<section class="ma-cta-dark">
+  <div class="ma-container ma-cta-grid">
+    <div class="ma-cta-content" data-reveal>
+      <div class="ma-eyebrow"><i class="bi bi-camera-reels"></i> Ghé thăm showroom</div>
+      <h2>Trải nghiệm máy trực tiếp<br><em>trước khi quyết định</em></h2>
+      <p>[Ghé showroom để cầm thử thân máy, so sánh ống kính và nhận tư vấn 1-1 từ kỹ thuật viên — không gian trưng bày mở cửa mỗi ngày.]</p>
+      <a href="#" class="ma-btn ma-btn-white ma-btn-lg"><i class="bi bi-geo-alt"></i> Xem chỉ đường đến showroom</a>
+    </div>
+    <div class="ma-cta-images" data-reveal data-delay="1">
+      <img src="https://images.unsplash.com/photo-1550928431-ee0ec6db30d3?w=500&auto=format&fit=crop&q=80" alt="[Không gian trưng bày thiết bị nhiếp ảnh]" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1552168324-d612d77725e3?w=500&auto=format&fit=crop&q=80" alt="[Kỹ thuật viên tư vấn khách hàng chọn máy ảnh]" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<footer class="ma-footer">
+  <div class="ma-container">
+    <div class="ma-footer-grid">
+      <div>
+        <a href="index.html" class="ma-footer-logo"><span class="ma-logo-dot"></span>[Tên Shop]</a>
+        <p class="ma-footer-desc">[Cửa hàng máy ảnh & thiết bị nhiếp ảnh chính hãng — thân máy, ống kính, tripod, phụ kiện — bảo hành chính hãng toàn quốc.]</p>
+        <div class="ma-footer-social">
+          <a href="#" class="ma-soc-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="ma-soc-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://zalo.me/[0900000000]" class="ma-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Zalo"><i class="bi bi-chat-fill"></i></a>
+        </div>
+      </div>
+      <div class="ma-footer-col">
+        <h4>Danh mục</h4>
+        <ul>
+          <li><a href="san-pham.html">Máy Ảnh Mirrorless</a></li>
+          <li><a href="san-pham.html">Máy Ảnh DSLR</a></li>
+          <li><a href="san-pham.html">Ống Kính</a></li>
+          <li><a href="san-pham.html">Tripod & Phụ Kiện</a></li>
+        </ul>
+      </div>
+      <div class="ma-footer-col">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="gio-hang.html">Theo dõi đơn hàng</a></li>
+          <li><a href="lien-he.html">Chính sách bảo hành</a></li>
+          <li><a href="lien-he.html">Câu hỏi thường gặp</a></li>
+        </ul>
+      </div>
+      <div class="ma-footer-col">
+        <h4>Liên hệ</h4>
+        <ul class="ma-footer-contact">
+          <li><i class="bi bi-geo-alt"></i> [123 Đường ABC, Quận 1, TP.HCM]</li>
+          <li><i class="bi bi-telephone"></i> [0900 000 000]</li>
+          <li><i class="bi bi-envelope"></i> [lienhe@tenshop.vn]</li>
+          <li><i class="bi bi-clock"></i> 8:30 – 21:00 (Cả tuần)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ma-footer-bottom">
+      <p>&copy; 2026 [Tên Shop]. Tất cả quyền được bảo lưu.</p>
+      <div class="ma-footer-pay">
+        <span class="ma-pay-badge">VISA</span>
+        <span class="ma-pay-badge">MoMo</span>
+        <span class="ma-pay-badge">ZaloPay</span>
+        <span class="ma-pay-badge">COD</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="ma-zalo-float">
+  <div class="ma-zalo-tooltip">Chat Zalo</div>
+  <a href="https://zalo.me/[0900000000]" class="ma-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo">
+    <i class="bi bi-chat-fill"></i>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }});
+}, { threshold: .08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+const nav = document.getElementById('ma-nav');
+if (nav) {
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('ma-scrolled', window.scrollY > 80);
+  }, { passive: true });
+}
+
+const burger = document.getElementById('ma-burger');
+const mob    = document.getElementById('ma-nav-mob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const open = mob.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    mob.toggleAttribute('inert', !open);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      mob.setAttribute('inert', '');
+    }
+  });
+}
+
+document.querySelectorAll('.ma-faq-item').forEach(item => {
+  const q = item.querySelector('.ma-faq-q');
+  q.setAttribute('aria-expanded', item.classList.contains('open') ? 'true' : 'false');
+  q.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.ma-faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.ma-faq-q').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      q.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+</script>
+</body>
+</html>

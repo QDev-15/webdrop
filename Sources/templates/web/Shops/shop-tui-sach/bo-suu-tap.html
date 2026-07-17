@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bộ Sưu Tập — [Tên Thương Hiệu]</title>
+<meta name="description" content="[Khám phá các dòng bộ sưu tập túi da thủ công cao cấp — từ dòng da thật đến dòng giới hạn.]">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header id="ts-nav">
+  <div class="ts-container ts-nav-inner">
+    <a href="index.html" class="ts-logo">Maison<span>Cuir</span></a>
+    <nav class="ts-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="san-pham.html">Sản phẩm</a>
+      <a href="bo-suu-tap.html" class="active">Bộ Sưu Tập</a>
+      <a href="ve-chung-toi.html">Về Chúng Tôi</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+    <div class="ts-nav-actions">
+      <a href="san-pham.html" class="ts-nav-icon-btn" aria-label="Tìm kiếm sản phẩm"><i class="bi bi-search"></i></a>
+      <a href="gio-hang.html" class="ts-nav-icon-btn" aria-label="Xem giỏ hàng">
+        <i class="bi bi-bag"></i>
+        <span class="ts-cart-count">2</span>
+      </a>
+      <button class="ts-burger" id="ts-burger" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="ts-nav-mob">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="ts-nav-scrim" id="ts-nav-scrim"></div>
+<nav id="ts-nav-mob" inert aria-label="Menu điều hướng di động">
+  <button class="ts-nav-mob-close" id="ts-nav-mob-close" aria-label="Đóng menu"><i class="bi bi-x-lg"></i></button>
+  <ul class="ts-nav-mob-links">
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="san-pham.html">Sản phẩm</a></li>
+    <li><a href="bo-suu-tap.html" class="active">Bộ Sưu Tập</a></li>
+    <li><a href="ve-chung-toi.html">Về Chúng Tôi</a></li>
+    <li><a href="gio-hang.html">Giỏ hàng</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+</nav>
+
+<!-- ============ PAGE HEADER ============ -->
+<section class="ts-page-header">
+  <div class="ts-container">
+    <h1>Bộ sưu tập</h1>
+    <div class="ts-breadcrumb">
+      <a href="index.html">Trang chủ</a>
+      <span>/</span>
+      <span class="current">Bộ sưu tập</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COLLECTIONS ============ -->
+<section class="ts-sec">
+  <div class="ts-container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; padding-bottom:72px; border-bottom:1px solid var(--border);" data-reveal>
+      <div style="border-radius:2px; overflow:hidden; aspect-ratio:4/3;">
+        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&auto=format&fit=crop&q=80" alt="[Dòng da thật cao cấp — túi xách nữ]" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+      <div>
+        <div class="ts-eyebrow">[Dòng chủ lực]</div>
+        <h2 class="ts-sec-title">Dòng <em>Da Thật</em> Cao Cấp</h2>
+        <p style="color:var(--text-2); line-height:1.75; max-width:460px; margin-bottom:24px;">[Mô tả bộ sưu tập — da bò thật 100%, thuộc da tự nhiên, chế tác thủ công bởi nghệ nhân lành nghề. Tối đa 3-4 câu.]</p>
+        <a href="san-pham.html" class="ts-btn solid">Khám phá ngay</a>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; padding:72px 0; border-bottom:1px solid var(--border);" data-reveal>
+      <div style="order:2; border-radius:2px; overflow:hidden; aspect-ratio:4/3;">
+        <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?w=800&auto=format&fit=crop&q=80" alt="[Dòng giới hạn — thiết kế độc bản]" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+      <div style="order:1;">
+        <div class="ts-eyebrow">[Số lượng giới hạn]</div>
+        <h2 class="ts-sec-title">Bộ Sưu Tập <em>Giới Hạn</em></h2>
+        <p style="color:var(--text-2); line-height:1.75; max-width:460px; margin-bottom:24px;">[Mô tả bộ sưu tập — sản xuất số lượng giới hạn, mỗi chiếc túi mang một mã số riêng biệt.]</p>
+        <a href="san-pham.html" class="ts-btn solid">Khám phá ngay</a>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; padding-top:72px;" data-reveal>
+      <div style="border-radius:2px; overflow:hidden; aspect-ratio:4/3;">
+        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&auto=format&fit=crop&q=80" alt="[Dòng công sở — thanh lịch tối giản]" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+      <div>
+        <div class="ts-eyebrow">[Thanh lịch]</div>
+        <h2 class="ts-sec-title">Dòng <em>Công Sở</em></h2>
+        <p style="color:var(--text-2); line-height:1.75; max-width:460px; margin-bottom:24px;">[Mô tả bộ sưu tập — thiết kế tối giản, tinh tế, phù hợp môi trường công sở hiện đại.]</p>
+        <a href="san-pham.html" class="ts-btn solid">Khám phá ngay</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="ts-footer">
+  <div class="ts-container">
+    <div class="ts-footer-grid">
+      <div class="ts-footer-brand">
+        <a href="index.html" class="ts-logo">Maison<span>Cuir</span></a>
+        <p>[Thương hiệu túi da thủ công cao cấp, chế tác từ da thật với hơn 15 năm kinh nghiệm — tôn vinh nghệ thuật thủ công truyền thống.]</p>
+        <div class="ts-footer-social">
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="ts-footer-col">
+        <h3>Danh mục</h3>
+        <ul>
+          <li><a href="san-pham.html">Túi xách tay</a></li>
+          <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+          <li><a href="san-pham.html">Ví &amp; Clutch</a></li>
+          <li><a href="san-pham.html">Phụ kiện da</a></li>
+        </ul>
+      </div>
+      <div class="ts-footer-col">
+        <h3>Hỗ trợ</h3>
+        <ul>
+          <li><a href="ve-chung-toi.html">Về chúng tôi</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="#">Chính sách bảo hành</a></li>
+          <li><a href="#">Vận chuyển &amp; Đổi trả</a></li>
+        </ul>
+      </div>
+      <div class="ts-footer-col">
+        <h3>Liên hệ</h3>
+        <ul>
+          <li><a href="tel:+84900000000">[0900 000 000]</a></li>
+          <li><a href="mailto:hello@maisoncuir.vn">[hello@maisoncuir.vn]</a></li>
+          <li><span>[Số ..., Đường ..., Quận ..., TP.HCM]</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ts-footer-bottom">
+      <div class="ts-footer-pay">
+        <span>Visa</span><span>Mastercard</span><span>Momo</span><span>COD</span>
+      </div>
+      <div class="ts-footer-copy">© 2026 [Maison Cuir]. Toàn bộ bản quyền được bảo lưu.</div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/0900000000" target="_blank" rel="noopener noreferrer" class="ts-zalo-float" aria-label="Chat Zalo với chúng tôi">
+  <i class="bi bi-chat-dots-fill"></i>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const burger = document.getElementById('ts-burger');
+  const navMob = document.getElementById('ts-nav-mob');
+  const navScrim = document.getElementById('ts-nav-scrim');
+  const navMobClose = document.getElementById('ts-nav-mob-close');
+
+  function openMobNav() {
+    navMob.classList.add('open');
+    navScrim.classList.add('open');
+    burger.classList.add('open');
+    burger.setAttribute('aria-expanded', 'true');
+    navMob.toggleAttribute('inert', false);
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobNav() {
+    navMob.classList.remove('open');
+    navScrim.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    navMob.setAttribute('inert', '');
+    document.body.style.overflow = '';
+  }
+
+  burger.addEventListener('click', () => {
+    if (navMob.classList.contains('open')) {
+      closeMobNav();
+    } else {
+      openMobNav();
+    }
+  });
+
+  navMobClose.addEventListener('click', closeMobNav);
+  navScrim.addEventListener('click', closeMobNav);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navMob.classList.contains('open')) {
+      closeMobNav();
+    }
+  });
+
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+  revealEls.forEach((el) => revealObserver.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giỏ Hàng — [Tên Shop] Máy Ảnh & Thiết Bị Nhiếp Ảnh</title>
+  <meta name="description" content="[Giỏ hàng của bạn tại Tên Shop — kiểm tra thiết bị, số lượng và thanh toán an toàn]">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav id="ma-nav-mob" class="ma-mob-nav" role="navigation" aria-label="Menu di động" inert>
+  <ul>
+    <li><a href="index.html"><i class="bi bi-house"></i> Trang chủ</a></li>
+    <li><a href="san-pham.html"><i class="bi bi-camera"></i> Sản phẩm</a></li>
+    <li><a href="dich-vu.html"><i class="bi bi-tools"></i> Dịch Vụ</a></li>
+    <li><a href="thuong-hieu.html"><i class="bi bi-award"></i> Thương Hiệu</a></li>
+    <li><a href="lien-he.html"><i class="bi bi-envelope"></i> Liên hệ</a></li>
+    <li><a href="gio-hang.html" class="ma-active"><i class="bi bi-bag"></i> Giỏ hàng</a></li>
+  </ul>
+  <div class="ma-mob-actions">
+    <a href="san-pham.html" class="ma-btn ma-btn-primary ma-btn-full">Tiếp tục mua sắm</a>
+  </div>
+</nav>
+
+<header id="ma-nav" class="ma-scrolled" role="banner">
+  <div class="ma-container ma-nav-inner">
+    <a href="index.html" class="ma-logo"><span class="ma-logo-dot"></span>[Tên Shop]</a>
+    <nav class="ma-nav-links" role="navigation" aria-label="Menu chính">
+      <a href="index.html">Trang chủ</a>
+      <a href="san-pham.html">Sản phẩm</a>
+      <a href="dich-vu.html">Dịch Vụ</a>
+      <a href="thuong-hieu.html">Thương Hiệu</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+    <div class="ma-nav-actions">
+      <a href="gio-hang.html" class="ma-nav-icon ma-active" aria-label="Giỏ hàng">
+        <i class="bi bi-bag"></i>
+        <span class="ma-cart-badge">2</span>
+      </a>
+      <a href="san-pham.html" class="ma-btn ma-btn-primary ma-btn-sm">Mua ngay</a>
+      <button id="ma-burger" class="ma-burger" aria-label="Mở menu" aria-expanded="false" aria-controls="ma-nav-mob">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="ma-container ma-cart-wrap">
+  <div class="ma-breadcrumb ma-on-light" style="margin-bottom:24px;">
+    <a href="index.html">Trang chủ</a>
+    <i class="bi bi-chevron-right" style="font-size:10px;"></i>
+    <span>Giỏ hàng</span>
+  </div>
+  <h1 class="ma-page-title" style="color:var(--dark); margin-bottom:32px;">Giỏ hàng của bạn</h1>
+
+  <div class="ma-cart-layout">
+    <div class="ma-cart-table-wrap">
+      <table class="ma-cart-table">
+        <thead>
+          <tr>
+            <th>Sản phẩm</th>
+            <th>Đơn giá</th>
+            <th>Số lượng</th>
+            <th>Tạm tính</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-unit-price="52990000">
+            <td>
+              <div class="ma-cart-item-wrap">
+                <img class="ma-cart-img" src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=200&auto=format&fit=crop&q=80" alt="[Sony Alpha A7 IV thân máy mirrorless]" loading="lazy">
+                <div>
+                  <div class="ma-cart-name">Sony Alpha A7 IV (Thân máy)</div>
+                  <div class="ma-cart-meta">Màu: Đen · Gói: Chỉ thân máy</div>
+                </div>
+              </div>
+            </td>
+            <td class="ma-cart-price">52.990.000đ</td>
+            <td>
+              <div class="ma-cart-qty">
+                <button aria-label="Giảm số lượng" onclick="maCartStep(this,-1)">−</button>
+                <input type="number" value="1" min="1" max="10" aria-label="Số lượng">
+                <button aria-label="Tăng số lượng" onclick="maCartStep(this,1)">+</button>
+              </div>
+            </td>
+            <td class="ma-cart-price ma-cart-subtotal">52.990.000đ</td>
+            <td><button class="ma-cart-del" aria-label="Xóa sản phẩm" onclick="maRemoveItem(this)"><i class="bi bi-trash"></i></button></td>
+          </tr>
+          <tr data-unit-price="45990000">
+            <td>
+              <div class="ma-cart-item-wrap">
+                <img class="ma-cart-img" src="https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?w=200&auto=format&fit=crop&q=80" alt="[Sony FE 24-70mm f/2.8 GM II ống kính]" loading="lazy">
+                <div>
+                  <div class="ma-cart-name">Sony FE 24-70mm f/2.8 GM II</div>
+                  <div class="ma-cart-meta">Ngàm: Sony E</div>
+                </div>
+              </div>
+            </td>
+            <td class="ma-cart-price">45.990.000đ</td>
+            <td>
+              <div class="ma-cart-qty">
+                <button aria-label="Giảm số lượng" onclick="maCartStep(this,-1)">−</button>
+                <input type="number" value="1" min="1" max="10" aria-label="Số lượng">
+                <button aria-label="Tăng số lượng" onclick="maCartStep(this,1)">+</button>
+              </div>
+            </td>
+            <td class="ma-cart-price ma-cart-subtotal">45.990.000đ</td>
+            <td><button class="ma-cart-del" aria-label="Xóa sản phẩm" onclick="maRemoveItem(this)"><i class="bi bi-trash"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="ma-trust-badges-strip">
+        <div class="ma-trust-badge-item"><i class="bi bi-shield-check"></i> Hàng chính hãng, bảo hành 24 tháng</div>
+        <div class="ma-trust-badge-item"><i class="bi bi-truck"></i> Giao hàng toàn quốc</div>
+        <div class="ma-trust-badge-item"><i class="bi bi-arrow-counterclockwise"></i> Đổi trả trong 7 ngày</div>
+        <div class="ma-trust-badge-item"><i class="bi bi-lock"></i> Thanh toán an toàn</div>
+      </div>
+
+      <div style="display:flex; gap:12px; margin-top:24px; flex-wrap:wrap;">
+        <a href="san-pham.html" class="ma-btn ma-btn-ghost">
+          <i class="bi bi-arrow-left"></i> Tiếp tục mua sắm
+        </a>
+        <button type="button" class="ma-btn ma-btn-ghost" onclick="this.blur()">
+          <i class="bi bi-arrow-repeat"></i> Cập nhật giỏ hàng
+        </button>
+      </div>
+    </div>
+
+    <aside class="ma-order-summary">
+      <div class="ma-summary-title">Tóm tắt đơn hàng</div>
+      <div class="ma-summary-row"><span>Tạm tính</span><span id="ma-summary-subtotal-val">98.980.000đ</span></div>
+      <div class="ma-summary-row"><span>Phí giao hàng bảo hiểm</span><span>0đ</span></div>
+      <div class="ma-summary-row"><span>Giảm giá</span><span>-0đ</span></div>
+
+      <div class="ma-coupon-row">
+        <label for="ma-coupon-input" class="visually-hidden">Mã giảm giá</label>
+        <input type="text" id="ma-coupon-input" placeholder="Mã giảm giá" aria-label="Mã giảm giá">
+        <button type="button" onclick="maApplyCoupon()">Áp dụng</button>
+      </div>
+
+      <div class="ma-summary-total">
+        <span class="ma-summary-total-label">Tổng cộng</span>
+        <span class="ma-summary-total-val" id="ma-summary-total-val">98.980.000đ</span>
+      </div>
+
+      <a href="lien-he.html" class="ma-btn ma-btn-primary ma-btn-full" style="margin-top:20px;">
+        Tiến hành thanh toán <i class="bi bi-arrow-right"></i>
+      </a>
+      <p class="ma-secure-note"><i class="bi bi-shield-check"></i> Thanh toán an toàn · Kiểm tra máy khi nhận hàng</p>
+    </aside>
+  </div>
+
+  <!-- You may also like -->
+  <section style="padding-bottom:90px;">
+    <div class="ma-sec-header" data-reveal>
+      <div class="ma-eyebrow"><i class="bi bi-bag-plus"></i> Gợi ý thêm</div>
+      <h2 class="ma-sec-title">Có thể bạn <em>cũng cần</em></h2>
+    </div>
+    <div class="ma-suggest-grid">
+      <a href="chi-tiet-san-pham.html" class="ma-prod-card">
+        <div class="ma-prod-thumb">
+          <img src="https://images.unsplash.com/photo-1610465299996-30f240ac2b1c?w=500&auto=format&fit=crop&q=80" alt="[SanDisk Extreme Pro 128GB thẻ nhớ tốc độ cao]" loading="lazy">
+        </div>
+        <div class="ma-prod-info">
+          <div class="ma-prod-cat">Thẻ Nhớ & Balo</div>
+          <div class="ma-prod-name">SanDisk Extreme Pro 128GB</div>
+          <div class="ma-prod-footer"><div class="ma-prod-price"><span class="ma-price-now">890.000đ</span></div></div>
+        </div>
+      </a>
+      <a href="chi-tiet-san-pham.html" class="ma-prod-card">
+        <div class="ma-prod-thumb">
+          <img src="https://images.unsplash.com/photo-1519638399535-1b036603ac77?w=500&auto=format&fit=crop&q=80" alt="[Lowepro ProTactic 350 AW II balo đựng máy ảnh]" loading="lazy">
+        </div>
+        <div class="ma-prod-info">
+          <div class="ma-prod-cat">Thẻ Nhớ & Balo</div>
+          <div class="ma-prod-name">Lowepro ProTactic 350 AW II</div>
+          <div class="ma-prod-footer"><div class="ma-prod-price"><span class="ma-price-now">3.190.000đ</span></div></div>
+        </div>
+      </a>
+      <a href="chi-tiet-san-pham.html" class="ma-prod-card">
+        <div class="ma-prod-thumb">
+          <span class="ma-prod-badge ma-prod-badge-sale">-12%</span>
+          <img src="https://images.unsplash.com/photo-1607685836727-b2b3c58f9a16?w=500&auto=format&fit=crop&q=80" alt="[Manfrotto Befree Advanced tripod du lịch]" loading="lazy">
+        </div>
+        <div class="ma-prod-info">
+          <div class="ma-prod-cat">Tripod & Phụ Kiện</div>
+          <div class="ma-prod-name">Manfrotto Befree Advanced</div>
+          <div class="ma-prod-footer"><div class="ma-prod-price"><span class="ma-price-now">4.290.000đ</span></div></div>
+        </div>
+      </a>
+      <a href="chi-tiet-san-pham.html" class="ma-prod-card">
+        <div class="ma-prod-thumb">
+          <img src="https://images.unsplash.com/photo-1516724562728-afc824a36e84?w=500&auto=format&fit=crop&q=80" alt="[Godox V1 đèn flash rời cho máy ảnh]" loading="lazy">
+        </div>
+        <div class="ma-prod-info">
+          <div class="ma-prod-cat">Flash & Đèn Chụp</div>
+          <div class="ma-prod-name">Godox V1 (Đèn Flash Rời)</div>
+          <div class="ma-prod-footer"><div class="ma-prod-price"><span class="ma-price-now">5.190.000đ</span></div></div>
+        </div>
+      </a>
+    </div>
+  </section>
+</div>
+
+<footer class="ma-footer">
+  <div class="ma-container">
+    <div class="ma-footer-grid">
+      <div>
+        <a href="index.html" class="ma-footer-logo"><span class="ma-logo-dot"></span>[Tên Shop]</a>
+        <p class="ma-footer-desc">[Cửa hàng máy ảnh & thiết bị nhiếp ảnh chính hãng — thân máy, ống kính, tripod, phụ kiện — bảo hành chính hãng toàn quốc.]</p>
+        <div class="ma-footer-social">
+          <a href="#" class="ma-soc-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="ma-soc-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://zalo.me/[0900000000]" class="ma-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Zalo"><i class="bi bi-chat-fill"></i></a>
+        </div>
+      </div>
+      <div class="ma-footer-col">
+        <h4>Danh mục</h4>
+        <ul>
+          <li><a href="san-pham.html">Máy Ảnh Mirrorless</a></li>
+          <li><a href="san-pham.html">Máy Ảnh DSLR</a></li>
+          <li><a href="san-pham.html">Ống Kính</a></li>
+          <li><a href="san-pham.html">Tripod & Phụ Kiện</a></li>
+        </ul>
+      </div>
+      <div class="ma-footer-col">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="gio-hang.html">Theo dõi đơn hàng</a></li>
+          <li><a href="lien-he.html">Chính sách bảo hành</a></li>
+          <li><a href="lien-he.html">Câu hỏi thường gặp</a></li>
+        </ul>
+      </div>
+      <div class="ma-footer-col">
+        <h4>Liên hệ</h4>
+        <ul class="ma-footer-contact">
+          <li><i class="bi bi-geo-alt"></i> [123 Đường ABC, Quận 1, TP.HCM]</li>
+          <li><i class="bi bi-telephone"></i> [0900 000 000]</li>
+          <li><i class="bi bi-envelope"></i> [lienhe@tenshop.vn]</li>
+          <li><i class="bi bi-clock"></i> 8:30 – 21:00 (Cả tuần)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ma-footer-bottom">
+      <p>&copy; 2026 [Tên Shop]. Tất cả quyền được bảo lưu.</p>
+      <div class="ma-footer-pay">
+        <span class="ma-pay-badge">VISA</span>
+        <span class="ma-pay-badge">MoMo</span>
+        <span class="ma-pay-badge">ZaloPay</span>
+        <span class="ma-pay-badge">COD</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="ma-zalo-float">
+  <div class="ma-zalo-tooltip">Chat Zalo</div>
+  <a href="https://zalo.me/[0900000000]" class="ma-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo">
+    <i class="bi bi-chat-fill"></i>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }});
+}, { threshold: .08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+const nav = document.getElementById('ma-nav');
+if (nav) {
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('ma-scrolled', window.scrollY > 80);
+  }, { passive: true });
+}
+
+const burger = document.getElementById('ma-burger');
+const mob    = document.getElementById('ma-nav-mob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const open = mob.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    mob.toggleAttribute('inert', !open);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      mob.setAttribute('inert', '');
+    }
+  });
+}
+
+function maFormatVnd(n) {
+  return n.toLocaleString('vi-VN') + 'đ';
+}
+
+function maRecalcCartTotals() {
+  const rows = document.querySelectorAll('.ma-cart-table tbody tr');
+  let subtotal = 0;
+  rows.forEach(row => {
+    const unitPrice = parseInt(row.dataset.unitPrice, 10) || 0;
+    const qty = parseInt(row.querySelector('.ma-cart-qty input').value, 10) || 1;
+    const rowTotal = unitPrice * qty;
+    subtotal += rowTotal;
+    const subtotalCell = row.querySelector('.ma-cart-subtotal');
+    if (subtotalCell) subtotalCell.textContent = maFormatVnd(rowTotal);
+  });
+  const subtotalEl = document.getElementById('ma-summary-subtotal-val');
+  const totalEl = document.getElementById('ma-summary-total-val');
+  if (subtotalEl) subtotalEl.textContent = maFormatVnd(subtotal);
+  if (totalEl) totalEl.textContent = maFormatVnd(subtotal);
+  const badge = document.querySelector('.ma-cart-badge');
+  if (badge) badge.textContent = String(rows.length);
+}
+
+function maCartStep(btn, delta) {
+  const input = btn.parentElement.querySelector('input');
+  const next = Math.min(10, Math.max(1, (parseInt(input.value, 10) || 1) + delta));
+  input.value = next;
+  maRecalcCartTotals();
+}
+
+function maRemoveItem(btn) {
+  const row = btn.closest('tr');
+  if (row) row.remove();
+  maRecalcCartTotals();
+}
+
+function maApplyCoupon() {
+  const input = document.getElementById('ma-coupon-input');
+  const code = input.value.trim().toUpperCase();
+  if (!code) return;
+  alert('Mã giảm giá "' + code + '" đã được áp dụng!');
+}
+</script>
+</body>
+</html>

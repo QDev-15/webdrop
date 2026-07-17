@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giỏ hàng — [Tên Thương Hiệu] | Túi Da Thủ Công Cao Cấp</title>
+<meta name="description" content="Xem lại giỏ hàng của bạn — túi xách, ví da thủ công cao cấp tại [Tên Thương Hiệu]. Áp dụng mã giảm giá và tiến hành thanh toán.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header id="ts-nav">
+  <div class="ts-container ts-nav-inner">
+    <a href="index.html" class="ts-logo">Maison<span>Cuir</span></a>
+    <nav class="ts-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="san-pham.html">Sản phẩm</a>
+      <a href="bo-suu-tap.html">Bộ Sưu Tập</a>
+      <a href="ve-chung-toi.html">Về Chúng Tôi</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+    <div class="ts-nav-actions">
+      <a href="san-pham.html" class="ts-nav-icon-btn" aria-label="Tìm kiếm sản phẩm"><i class="bi bi-search"></i></a>
+      <a href="gio-hang.html" class="ts-nav-icon-btn" aria-label="Xem giỏ hàng">
+        <i class="bi bi-bag"></i>
+        <span class="ts-cart-count" id="ts-cart-count-badge">2</span>
+      </a>
+      <button class="ts-burger" id="ts-burger" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="ts-nav-mob">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="ts-nav-scrim" id="ts-nav-scrim"></div>
+<nav id="ts-nav-mob" inert aria-label="Menu điều hướng di động">
+  <button class="ts-nav-mob-close" id="ts-nav-mob-close" aria-label="Đóng menu"><i class="bi bi-x-lg"></i></button>
+  <ul class="ts-nav-mob-links">
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="san-pham.html">Sản phẩm</a></li>
+    <li><a href="bo-suu-tap.html">Bộ Sưu Tập</a></li>
+    <li><a href="ve-chung-toi.html">Về Chúng Tôi</a></li>
+    <li><a href="gio-hang.html" class="active">Giỏ hàng</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+</nav>
+
+<!-- ============ PAGE HEADER ============ -->
+<section class="ts-page-header">
+  <div class="ts-container">
+    <h1>Giỏ hàng của bạn</h1>
+    <div class="ts-breadcrumb">
+      <a href="index.html">Trang chủ</a>
+      <span>/</span>
+      <span class="current">Giỏ hàng</span>
+    </div>
+  </div>
+</section>
+
+<section class="sec-pad">
+  <div class="ts-container">
+    <div class="ts-cart-layout">
+
+      <!-- Cart items -->
+      <div>
+        <div class="ts-cart-head-row d-none d-md-flex" style="justify-content:space-between; padding-bottom:14px; border-bottom:1px solid var(--border); font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-3);">
+          <span>Sản phẩm</span>
+          <span>Tổng</span>
+        </div>
+
+        <div class="ts-cart-item" id="ts-cart-item-1">
+          <div class="ts-cart-item-img">
+            <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=200&auto=format&fit=crop&q=80" alt="Túi xách tay da nâu Signature Tote" loading="lazy">
+          </div>
+          <div>
+            <div class="ts-cart-item-name">Signature Tote</div>
+            <div class="ts-cart-item-variant">Màu: [Nâu da bò] · Size: [M]</div>
+          </div>
+          <div class="ts-cart-item-price">[2.890.000đ]</div>
+          <div class="ts-qty-stepper">
+            <button type="button" onclick="stepCartQty(this, -1)" aria-label="Giảm số lượng Signature Tote">−</button>
+            <label for="ts-cart-qty-1" class="visually-hidden">Số lượng Signature Tote</label>
+            <input type="text" id="ts-cart-qty-1" value="1" readonly data-price="2890000" data-subtotal-id="ts-cart-subtotal-1">
+            <button type="button" onclick="stepCartQty(this, 1)" aria-label="Tăng số lượng Signature Tote">+</button>
+          </div>
+          <div class="ts-cart-item-subtotal" id="ts-cart-subtotal-1">[2.890.000đ]</div>
+          <button class="ts-cart-remove" onclick="removeCartItem(this)" aria-label="Xóa Signature Tote khỏi giỏ hàng"><i class="bi bi-trash3"></i></button>
+        </div>
+
+        <div class="ts-cart-item" id="ts-cart-item-2">
+          <div class="ts-cart-item-img">
+            <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?w=200&auto=format&fit=crop&q=80" alt="Ví da nữ cầm tay Noir Clutch" loading="lazy">
+          </div>
+          <div>
+            <div class="ts-cart-item-name">Noir Clutch</div>
+            <div class="ts-cart-item-variant">Màu: [Đen] · Size: [S]</div>
+          </div>
+          <div class="ts-cart-item-price">[1.290.000đ]</div>
+          <div class="ts-qty-stepper">
+            <button type="button" onclick="stepCartQty(this, -1)" aria-label="Giảm số lượng Noir Clutch">−</button>
+            <label for="ts-cart-qty-2" class="visually-hidden">Số lượng Noir Clutch</label>
+            <input type="text" id="ts-cart-qty-2" value="1" readonly data-price="1290000" data-subtotal-id="ts-cart-subtotal-2">
+            <button type="button" onclick="stepCartQty(this, 1)" aria-label="Tăng số lượng Noir Clutch">+</button>
+          </div>
+          <div class="ts-cart-item-subtotal" id="ts-cart-subtotal-2">[1.290.000đ]</div>
+          <button class="ts-cart-remove" onclick="removeCartItem(this)" aria-label="Xóa Noir Clutch khỏi giỏ hàng"><i class="bi bi-trash3"></i></button>
+        </div>
+
+        <div class="ts-cart-toolbar">
+          <a href="san-pham.html" class="ts-btn">← Tiếp tục mua sắm</a>
+          <button type="button" class="ts-btn" onclick="updateCart(this)">Cập nhật giỏ hàng</button>
+        </div>
+
+        <div class="ts-trust-strip">
+          <div class="item"><i class="bi bi-shield-check"></i> Thanh toán an toàn</div>
+          <div class="item"><i class="bi bi-truck"></i> Giao hàng toàn quốc</div>
+          <div class="item"><i class="bi bi-arrow-repeat"></i> Đổi trả trong 30 ngày</div>
+        </div>
+      </div>
+
+      <!-- Order summary -->
+      <aside class="ts-order-summary">
+        <h2>Tổng đơn hàng</h2>
+        <div class="ts-order-row"><span>Tạm tính</span><span id="ts-order-subtotal">[4.180.000đ]</span></div>
+        <div class="ts-order-row"><span>Phí vận chuyển</span><span>[Miễn phí]</span></div>
+        <div class="ts-order-row"><span>Giảm giá</span><span id="ts-order-discount">−0đ</span></div>
+
+        <div class="ts-coupon-row">
+          <label for="ts-coupon-input" class="visually-hidden">Mã giảm giá</label>
+          <input type="text" id="ts-coupon-input" placeholder="Nhập mã giảm giá">
+          <button type="button" class="ts-btn sm" onclick="applyCoupon(this)">Áp dụng</button>
+        </div>
+
+        <div class="ts-order-row total"><span>Tổng cộng</span><span id="ts-order-total">[4.180.000đ]</span></div>
+
+        <a href="lien-he.html" class="ts-btn solid block" style="margin-top:24px;">Tiến hành thanh toán</a>
+        <div class="ts-secure-note"><i class="bi bi-lock"></i> Thanh toán được mã hóa &amp; bảo mật</div>
+      </aside>
+
+    </div>
+
+    <!-- You may also like -->
+    <div style="margin-top:96px;">
+      <div class="ts-sec-head" data-reveal>
+        <div class="ts-eyebrow">Gợi ý cho bạn</div>
+        <h2 class="ts-sec-title">Có thể bạn <em>cũng thích</em></h2>
+      </div>
+      <div class="ts-products-grid">
+        <a href="chi-tiet-san-pham.html" class="ts-card" data-reveal>
+          <div class="ts-card-media">
+            <span class="ts-card-tag">Mới về</span>
+            <button class="ts-card-wish" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&auto=format&fit=crop&q=80" alt="Túi xách vai da Atelier Shoulder Bag" loading="lazy">
+          </div>
+          <span class="ts-card-cat">Túi đeo vai</span>
+          <h3 class="ts-card-name">Atelier Shoulder Bag</h3>
+          <div class="ts-card-price">[3.190.000đ]</div>
+        </a>
+        <a href="chi-tiet-san-pham.html" class="ts-card" data-reveal>
+          <div class="ts-card-media">
+            <button class="ts-card-wish" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?w=600&auto=format&fit=crop&q=80" alt="Thắt lưng da nam Classic Belt" loading="lazy">
+          </div>
+          <span class="ts-card-cat">Phụ kiện da</span>
+          <h3 class="ts-card-name">Classic Belt</h3>
+          <div class="ts-card-price">[890.000đ]</div>
+        </a>
+        <a href="chi-tiet-san-pham.html" class="ts-card" data-reveal>
+          <div class="ts-card-media">
+            <span class="ts-card-tag sale">-15%</span>
+            <button class="ts-card-wish" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=600&auto=format&fit=crop&q=80" alt="Túi xách tay da đen Minimal Satchel" loading="lazy">
+          </div>
+          <span class="ts-card-cat">Túi xách tay</span>
+          <h3 class="ts-card-name">Minimal Satchel</h3>
+          <div class="ts-card-price">[2.550.000đ] <del>[3.000.000đ]</del></div>
+        </a>
+        <a href="chi-tiet-san-pham.html" class="ts-card" data-reveal>
+          <div class="ts-card-media">
+            <button class="ts-card-wish" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1601369447883-2a2eb0b34e6e?w=600&auto=format&fit=crop&q=80" alt="Ví nam da bò Executive Wallet" loading="lazy">
+          </div>
+          <span class="ts-card-cat">Phụ kiện da</span>
+          <h3 class="ts-card-name">Executive Wallet</h3>
+          <div class="ts-card-price">[750.000đ]</div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="ts-footer">
+  <div class="ts-container">
+    <div class="ts-footer-grid">
+      <div class="ts-footer-brand">
+        <a href="index.html" class="ts-logo">Maison<span>Cuir</span></a>
+        <p>[Thương hiệu túi da thủ công cao cấp, chế tác từ da thật với hơn 15 năm kinh nghiệm — tôn vinh nghệ thuật thủ công truyền thống.]</p>
+        <div class="ts-footer-social">
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="ts-footer-col">
+        <h3>Danh mục</h3>
+        <ul>
+          <li><a href="san-pham.html">Túi xách tay</a></li>
+          <li><a href="san-pham.html">Túi đeo chéo</a></li>
+          <li><a href="san-pham.html">Ví &amp; Clutch</a></li>
+          <li><a href="san-pham.html">Phụ kiện da</a></li>
+        </ul>
+      </div>
+      <div class="ts-footer-col">
+        <h3>Hỗ trợ</h3>
+        <ul>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="#">Chính sách bảo hành</a></li>
+          <li><a href="#">Hướng dẫn bảo quản</a></li>
+          <li><a href="#">Vận chuyển &amp; Đổi trả</a></li>
+        </ul>
+      </div>
+      <div class="ts-footer-col">
+        <h3>Liên hệ</h3>
+        <ul>
+          <li><a href="tel:+84900000000">[0900 000 000]</a></li>
+          <li><a href="mailto:hello@maisoncuir.vn">[hello@maisoncuir.vn]</a></li>
+          <li><span>[Số ..., Đường ..., Quận ..., TP.HCM]</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ts-footer-bottom">
+      <div class="ts-footer-pay">
+        <span>Visa</span><span>Mastercard</span><span>Momo</span><span>COD</span>
+      </div>
+      <div class="ts-footer-copy">© 2026 [Maison Cuir]. Toàn bộ bản quyền được bảo lưu.</div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/0900000000" target="_blank" rel="noopener noreferrer" class="ts-zalo-float" aria-label="Chat Zalo với chúng tôi">
+  <i class="bi bi-chat-dots-fill"></i>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const burger = document.getElementById('ts-burger');
+  const navMob = document.getElementById('ts-nav-mob');
+  const navScrim = document.getElementById('ts-nav-scrim');
+  const navMobClose = document.getElementById('ts-nav-mob-close');
+
+  function openMobNav() {
+    navMob.classList.add('open');
+    navScrim.classList.add('open');
+    burger.classList.add('open');
+    burger.setAttribute('aria-expanded', 'true');
+    navMob.toggleAttribute('inert', false);
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobNav() {
+    navMob.classList.remove('open');
+    navScrim.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    navMob.setAttribute('inert', '');
+    document.body.style.overflow = '';
+  }
+
+  burger.addEventListener('click', () => {
+    if (navMob.classList.contains('open')) {
+      closeMobNav();
+    } else {
+      openMobNav();
+    }
+  });
+
+  navMobClose.addEventListener('click', closeMobNav);
+  navScrim.addEventListener('click', closeMobNav);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navMob.classList.contains('open')) {
+      closeMobNav();
+    }
+  });
+
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+  revealEls.forEach((el) => revealObserver.observe(el));
+
+  function formatVnd(value) {
+    return '[' + value.toLocaleString('vi-VN') + 'đ]';
+  }
+
+  function recalcOrderTotals() {
+    let subtotal = 0;
+    document.querySelectorAll('.ts-cart-item').forEach((item) => {
+      const qtyInput = item.querySelector('input[data-price]');
+      if (!qtyInput) return;
+      const price = parseInt(qtyInput.getAttribute('data-price'), 10);
+      const qty = parseInt(qtyInput.value, 10) || 1;
+      subtotal += price * qty;
+    });
+    document.getElementById('ts-order-subtotal').textContent = formatVnd(subtotal);
+    document.getElementById('ts-order-total').textContent = formatVnd(subtotal);
+  }
+
+  /* Quantity stepper — clamped 1-10, receives `this` directly */
+  function stepCartQty(btn, delta) {
+    const stepper = btn.closest('.ts-qty-stepper');
+    const input = stepper.querySelector('input[data-price]');
+    let value = parseInt(input.value, 10) || 1;
+    value = Math.min(10, Math.max(1, value + delta));
+    input.value = value;
+    const price = parseInt(input.getAttribute('data-price'), 10);
+    const subtotalEl = document.getElementById(input.getAttribute('data-subtotal-id'));
+    subtotalEl.textContent = formatVnd(price * value);
+    recalcOrderTotals();
+  }
+
+  function removeCartItem(btn) {
+    const item = btn.closest('.ts-cart-item');
+    item.remove();
+    recalcOrderTotals();
+    const badge = document.getElementById('ts-cart-count-badge');
+    const count = document.querySelectorAll('.ts-cart-item').length;
+    badge.textContent = count;
+  }
+
+  function updateCart(btn) {
+    const original = btn.textContent;
+    btn.textContent = 'Đã cập nhật ✓';
+    recalcOrderTotals();
+    setTimeout(() => {
+      btn.textContent = original;
+    }, 1400);
+  }
+
+  function applyCoupon(btn) {
+    const input = document.getElementById('ts-coupon-input');
+    if (!input.value.trim()) return;
+    const original = btn.textContent;
+    btn.textContent = 'Đã áp dụng';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.disabled = false;
+    }, 1600);
+  }
+
+  recalcOrderTotals();
+</script>
+</body>
+</html>

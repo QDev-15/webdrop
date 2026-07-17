@@ -15,9 +15,11 @@
 <body>
 
 <!-- ── Mobile Nav ── -->
-<nav id="sb-nav-mob" role="navigation" aria-label="Menu di động">
+<nav id="sb-nav-mob" role="navigation" aria-label="Menu di động" inert>
   <a href="index.html" class="active">Trang chủ</a>
   <a href="san-pham.html">Sản phẩm</a>
+  <a href="ve-chung-toi.html">Về Chúng Tôi</a>
+  <a href="khuyen-mai.html">Khuyến Mãi</a>
   <a href="lien-he.html">Liên hệ</a>
   <a href="gio-hang.html" class="mt-3">
     <i class="bi bi-bag me-2"></i>Giỏ hàng
@@ -34,6 +36,8 @@
     <nav class="sb-nav-links" role="navigation" aria-label="Menu chính">
       <a href="index.html" class="active">Trang chủ</a>
       <a href="san-pham.html">Sản phẩm</a>
+      <a href="ve-chung-toi.html">Về Chúng Tôi</a>
+      <a href="khuyen-mai.html">Khuyến Mãi</a>
       <a href="lien-he.html">Liên hệ</a>
     </nav>
 
@@ -759,6 +763,7 @@ if (burger && mob) {
     burger.classList.toggle('open', open);
     burger.setAttribute('aria-expanded', open);
     document.body.style.overflow = open ? 'hidden' : '';
+    mob.toggleAttribute('inert', !open);
   });
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && mob.classList.contains('open')) {
@@ -766,6 +771,7 @@ if (burger && mob) {
       burger.classList.remove('open');
       burger.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
+      mob.setAttribute('inert', '');
     }
   });
 }

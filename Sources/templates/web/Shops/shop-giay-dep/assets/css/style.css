@@ -832,11 +832,38 @@ input, textarea, select { font-family: var(--sans); }
 }
 
 /* ══════════════════════════════════════════════════════════════════
+   COLLECTIONS PAGE (bo-suu-tap.html)
+   ══════════════════════════════════════════════════════════════════ */
+.gd-collection-row { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.gd-collection-row.reverse .gd-collection-visual { order: 2; }
+.gd-collection-visual { position: relative; border-radius: 4px; overflow: hidden; aspect-ratio: 4/3; }
+.gd-collection-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.gd-collection-visual:hover img { transform: scale(1.05); }
+.gd-collection-tag {
+  position: absolute; top: 20px; left: 20px;
+  background: var(--accent); color: #0a0e0c;
+  font-family: var(--heading); font-weight: 800; font-size: 12px;
+  letter-spacing: .06em; text-transform: uppercase;
+  padding: 8px 16px; border-radius: 999px;
+}
+.gd-collection-info h3 {
+  font-family: var(--heading); font-size: clamp(26px, 3vw, 36px); font-weight: 800;
+  line-height: 1.08; margin-bottom: 16px; text-transform: uppercase;
+}
+.gd-collection-info h3 em { color: var(--accent); font-style: normal; }
+.gd-collection-info > p { font-size: 15px; color: var(--text-2); line-height: 1.75; margin-bottom: 22px; max-width: 460px; }
+.gd-collection-features { display: flex; flex-direction: column; gap: 11px; margin-bottom: 28px; }
+.gd-collection-features li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-2); }
+.gd-collection-features li i { color: var(--accent); font-size: 16px; flex-shrink: 0; }
+
+/* ══════════════════════════════════════════════════════════════════
    RESPONSIVE
    ══════════════════════════════════════════════════════════════════ */
 @media (max-width: 992px) {
   .gd-nav-links, .gd-nav-cta { display: none; }
   #gd-burger { display: flex; }
+  .gd-collection-row { grid-template-columns: 1fr; gap: 28px; }
+  .gd-collection-row.reverse .gd-collection-visual { order: 0; }
   .gd-cat-grid { grid-template-columns: repeat(2, 1fr); }
   .gd-bento { grid-template-columns: repeat(2, 1fr); }
   .gd-bento .gd-prod-card:first-child { grid-column: span 2; grid-row: span 1; }

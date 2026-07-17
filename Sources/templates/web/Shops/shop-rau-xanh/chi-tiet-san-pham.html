@@ -15,10 +15,12 @@
 <body>
 
 <!-- ── Mobile Nav ── -->
-<nav id="rx-nav-mob" role="navigation" aria-label="Menu di động">
+<nav id="rx-nav-mob" role="navigation" aria-label="Menu di động" inert>
   <a href="index.html" class="rx-logo">Vườn <span>Xanh</span></a>
   <a href="index.html">Trang chủ</a>
   <a href="san-pham.html" class="active">Sản phẩm</a>
+  <a href="ve-chung-toi.html">Về Chúng Tôi</a>
+  <a href="khuyen-mai.html">Khuyến Mãi</a>
   <a href="lien-he.html">Liên hệ</a>
   <a href="gio-hang.html" class="rx-btn rx-btn-primary">
     <i class="bi bi-basket2"></i> Giỏ hàng
@@ -47,6 +49,8 @@
         <nav class="rx-nav-links" role="navigation" aria-label="Menu chính">
           <a href="index.html">Trang chủ</a>
           <a href="san-pham.html" class="active">Sản phẩm</a>
+          <a href="ve-chung-toi.html">Về Chúng Tôi</a>
+          <a href="khuyen-mai.html">Khuyến Mãi</a>
           <a href="lien-he.html">Liên hệ</a>
         </nav>
         <div class="rx-nav-right">
@@ -352,6 +356,7 @@
       burger.classList.toggle('open', open);
       burger.setAttribute('aria-expanded', open);
       document.body.style.overflow = open ? 'hidden' : '';
+      mob.toggleAttribute('inert', !open);
     });
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && mob.classList.contains('open')) {
@@ -359,6 +364,7 @@
         burger.classList.remove('open');
         burger.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
+        mob.setAttribute('inert', '');
       }
     });
   }
