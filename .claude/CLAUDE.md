@@ -83,7 +83,7 @@ Xây dựng và bán 3 nhóm sản phẩm chính:
 - [x] Agency / Portfolio / Công ty — **DONE** (6 templates: `Companies/`, `Portfolios/`)
 - [x] Blog / Forum — **DONE** (`Blogs/`, `Forums/`)
 - [x] Nha khoa — **DONE** (10 template: `Dental-Clinics/` — 10 Identity Token khác nhau: LUXE-DARK, FRESH-MINIMAL, BOLD-EDITORIAL, GEOMETRIC-MODERN, SOFT-PASTEL, DARK-ENERGY, CLEAN-CORPORATE, ZEN-MINIMAL, RETRO-BOLD, GLASS-MODERN)
-- [x] Shop bán hàng — **DONE** (6 templates, 5 trang mỗi template — tất cả đều đã có bản WebDeploy đầy đủ: `shop-ban-hang/` ORGANIC-EARTH, `shop-thoi-trang/` BOLD-EDITORIAL, `shop-giay-dep/` DARK-ENERGY, `shop-quan-ao/` SOFT-PASTEL, `shop-rau-xanh/` WARM-ARTISAN, `shop-thuc-pham-sach/` FRESH-MINIMAL — xem bảng **WebDeploy Projects**)
+- [x] Shop bán hàng — **DONE** (9 templates, 5 trang mỗi template — 6 template đầu đã có bản WebDeploy đầy đủ: `shop-ban-hang/` ORGANIC-EARTH, `shop-thoi-trang/` BOLD-EDITORIAL, `shop-giay-dep/` DARK-ENERGY, `shop-quan-ao/` SOFT-PASTEL, `shop-rau-xanh/` WARM-ARTISAN, `shop-thuc-pham-sach/` FRESH-MINIMAL — xem bảng **WebDeploy Projects**; 3 template mới — template-only, chưa có WebDeploy: `shop-tui-sach/` LUXE-DARK, `shop-may-anh/` GEOMETRIC-MODERN, `shop-may-tinh/` GLASS-MODERN)
 - [ ] Landing page sản phẩm / Dịch vụ
 - [ ] CV cá nhân — **PLANNING** (CV Builder SaaS — xem `.claude/plans/cv-template-saas.md`)
 
@@ -205,6 +205,9 @@ webdrop/
 │       ├── shop-quan-ao/           ← ✅ 1 template + WebDeploy đầy đủ (SOFT-PASTEL identity — xem ghi chú kỹ thuật)
 │       ├── shop-thuc-pham-sach/    ← ✅ 1 template + WebDeploy đầy đủ (FRESH-MINIMAL identity — xem ghi chú kỹ thuật)
 │       ├── shop-rau-xanh/          ← ✅ 1 template + WebDeploy đầy đủ (WARM-ARTISAN identity — xem ghi chú kỹ thuật)
+│       ├── shop-tui-sach/          ← ✅ 1 template (LUXE-DARK identity — xem ghi chú kỹ thuật)
+│       ├── shop-may-anh/           ← ✅ 1 template (GEOMETRIC-MODERN identity — xem ghi chú kỹ thuật)
+│       ├── shop-may-tinh/          ← ✅ 1 template (GLASS-MODERN identity — xem ghi chú kỹ thuật)
 │       └── CVs/                   ← 🔲 PLANNING (5 mẫu: classic, minimal, creative, dark, executive)
 ├── documents/                      ← Prototype UI HTML (tham khảo)
 └── .gitignore
@@ -342,6 +345,9 @@ VPS AZDIGI Linux
 | `shop-quan-ao` | WebDeploy + Template | Shop quần áo nữ | SOFT-PASTEL, Lavender `#b98bd1` + Butter `#f2c14e` | `qa-` | DM Sans italic + Manrope, Nav-2 always solid, footer nền sáng (khác 3 shop kia), có coupon riêng |
 | `shop-thuc-pham-sach` | WebDeploy + Template | Shop thực phẩm sạch | FRESH-MINIMAL, Leaf Green `#2f8f4e` + Harvest Amber `#dd8f3a` | `tp-` | Plus Jakarta Sans (unified), Nav-8 underline-active, Hero H4 centered minimal, footer tối (forest green), có coupon riêng |
 | `shop-rau-xanh` | WebDeploy + Template | Shop rau củ quả | WARM-ARTISAN, Ochre Clay `#a67a3c` + Khaki Olive `#7d7a4a` | `rx-` | Fraunces italic 300 (khác cách dùng Fraunces upright 500 của `shop-ban-hang`) + DM Sans, Nav-5 centered-logo 3-row signage, Hero H6 asymmetric offset, motif wabi-sabi blob/wavy-underline, có coupon riêng |
+| `shop-tui-sach` | Template only | Shop túi xách/túi da cao cấp | LUXE-DARK, Gold `#c9a24d` + Burgundy `#7a2e3a` | `ts-` | Cormorant Garamond italic 300 + DM Sans, Nav-6 full-width dark bar (luôn tối), Hero H2 split 45/55 không overlay, card không border/shadow (chỉ ảnh + text, hover đổi opacity), 7 layout pattern (FEATURE-ICON-ROW/BENTO-GRID/STAT-BAR/GRID-CARDS/FULL-BLEED/LIST-ELEGANT/HORIZONTAL-SCROLL) |
+| `shop-may-anh` | Template only | Shop máy ảnh & thiết bị nhiếp ảnh | GEOMETRIC-MODERN, Optical Teal `#0d8a82` + Amber `#e8871e` | `ma-` | Sora (unified heading+body), Nav-4 minimal top-line (`.ma-scrolled` khi scrollY>80), Hero H10 geometric split (3 lớp `clip-path` chồng), card border-top 4px accent + border-radius 3px, button hover `rotate(1deg)`, 7 layout pattern (FEATURE-ICON-ROW/GRID-CARDS/TIMELINE/BENTO-GRID/ALTERNATING-STRIPS/STAT-BAR/HORIZONTAL-SCROLL) |
+| `shop-may-tinh` | Template only | Shop máy tính & laptop | GLASS-MODERN, Indigo `#6d5ef8` + Cyan `#22d3ee` | `mt-` | Inter (unified), Nav-1 transparent→scrolled nhưng style glass (backdrop-blur, translucent) khác hẳn bản flat của `shop-thoi-trang`, Hero H7 slider crossfade 4 ảnh + dot indicator (auto-cycle + click-to-jump), glassmorphism card (`backdrop-filter:blur`, border rgba trắng), 3 blob gradient nền cố định phía sau các panel kính |
 
 ### CV Builder SaaS
 

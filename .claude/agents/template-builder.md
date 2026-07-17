@@ -39,7 +39,7 @@ Glob: Sources/templates/web/*/assets/css/style.css
 - ✅ Viết CSS từ đầu cho từng template — không dùng template CSS mẫu có sẵn
 - ✅ Mỗi template có **Design Identity Token** riêng (xem mục bên dưới)
 - ✅ Chứng minh sự khác biệt ở ít nhất 6 điểm: nav / hero / typography / màu / layout sections / components
-
+- ✅ Mỗi template có ít nhất 5 item menu khác nhau tương ứng với ít nhất 5 page khác nhau
 ---
 
 ## Bước 1 — Kiểm tra Bootstrap & Chọn Design Identity

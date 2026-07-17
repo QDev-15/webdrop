@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Tên Shop] — Máy Ảnh & Thiết Bị Nhiếp Ảnh Chính Hãng</title>
+  <meta name="description" content="[Cửa hàng máy ảnh & thiết bị nhiếp ảnh chính hãng — thân máy mirrorless/DSLR, ống kính, tripod, phụ kiện — bảo hành chính hãng, tư vấn kỹ thuật chuyên sâu]">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav id="ma-nav-mob" class="ma-mob-nav" role="navigation" aria-label="Menu di động" inert>
+  <ul>
+    <li><a href="index.html" class="ma-active"><i class="bi bi-house"></i> Trang chủ</a></li>
+    <li><a href="san-pham.html"><i class="bi bi-camera"></i> Sản phẩm</a></li>
+    <li><a href="lien-he.html"><i class="bi bi-envelope"></i> Liên hệ</a></li>
+    <li><a href="gio-hang.html"><i class="bi bi-bag"></i> Giỏ hàng</a></li>
+  </ul>
+  <div class="ma-mob-actions">
+    <a href="san-pham.html" class="ma-btn ma-btn-primary ma-btn-full">Mua ngay</a>
+  </div>
+</nav>
+
+<!-- Nav-4 Minimal Top Line -->
+<header id="ma-nav" role="banner">
+  <div class="ma-container ma-nav-inner">
+    <a href="index.html" class="ma-logo"><span class="ma-logo-dot"></span>[Tên Shop]</a>
+    <nav class="ma-nav-links" role="navigation" aria-label="Menu chính">
+      <a href="index.html" class="ma-active">Trang chủ</a>
+      <a href="san-pham.html">Sản phẩm</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+    <div class="ma-nav-actions">
+      <a href="gio-hang.html" class="ma-nav-icon" aria-label="Giỏ hàng">
+        <i class="bi bi-bag"></i>
+        <span class="ma-cart-badge">2</span>
+      </a>
+      <a href="san-pham.html" class="ma-btn ma-btn-primary ma-btn-sm">Mua ngay</a>
+      <button id="ma-burger" class="ma-burger" aria-label="Mở menu" aria-expanded="false" aria-controls="ma-nav-mob">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     HERO — H10 Geometric Split
+══════════════════════════════════════════ -->
+<section class="ma-hero" aria-label="Giới thiệu">
+  <div class="ma-hero-split" aria-hidden="true">
+    <span class="ma-split-dark"></span>
+    <span class="ma-split-line"></span>
+    <span class="ma-split-line2"></span>
+  </div>
+  <div class="ma-container ma-hero-grid">
+    <div class="ma-hero-content" data-reveal>
+      <div class="ma-hero-tag"><i class="bi bi-patch-check-fill"></i> Đại lý ủy quyền chính hãng</div>
+      <h1 class="ma-hero-title">Bắt trọn từng<br><em>khoảnh khắc sắc nét</em></h1>
+      <p class="ma-hero-desc">[Thân máy mirrorless & DSLR, ống kính, tripod và phụ kiện chính hãng — tư vấn kỹ thuật chuyên sâu, bảo hành toàn quốc, hỗ trợ trả góp 0%.]</p>
+      <div class="ma-hero-actions">
+        <a href="san-pham.html" class="ma-btn ma-btn-primary ma-btn-lg"><i class="bi bi-camera"></i> Khám phá sản phẩm</a>
+        <a href="#quy-trinh" class="ma-btn ma-btn-outline-dark ma-btn-lg">Quy trình mua hàng</a>
+      </div>
+      <p class="ma-hero-note"><i class="bi bi-shield-check"></i> Bảo hành chính hãng 24 tháng · Đổi trả trong 7 ngày</p>
+    </div>
+    <div class="ma-hero-visual" data-reveal data-delay="2">
+      <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=900&auto=format&fit=crop&q=80" alt="[Thân máy ảnh mirrorless cao cấp đặt trên bàn gỗ tối giản]" loading="eager">
+      <div class="ma-hero-float-card">
+        <div class="ma-float-icon"><i class="bi bi-award"></i></div>
+        <div>
+          <strong>30+ thương hiệu</strong>
+          <span>phân phối chính hãng</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust strip -->
+<section class="ma-trust" aria-label="Cam kết">
+  <div class="ma-container">
+    <div class="ma-trust-row" data-reveal>
+      <div class="ma-trust-item"><i class="bi bi-patch-check"></i> Hàng chính hãng 100%</div>
+      <div class="ma-trust-item"><i class="bi bi-shield-check"></i> Bảo hành 24 tháng</div>
+      <div class="ma-trust-item"><i class="bi bi-arrow-counterclockwise"></i> Đổi trả 7 ngày</div>
+      <div class="ma-trust-item"><i class="bi bi-credit-card"></i> Trả góp 0%</div>
+      <div class="ma-trust-item"><i class="bi bi-truck"></i> Giao hàng toàn quốc</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FEATURE-ICON-ROW — Dịch vụ
+══════════════════════════════════════════ -->
+<section class="ma-sec">
+  <div class="ma-container">
+    <div class="ma-sec-header ma-center" data-reveal>
+      <div class="ma-eyebrow"><i class="bi bi-tools"></i> Dịch vụ hậu mãi</div>
+      <h2 class="ma-sec-title">Đồng hành cùng <em>người cầm máy</em></h2>
+      <p class="ma-sec-sub">Từ tư vấn chọn máy đến bảo hành, sửa chữa — đội ngũ kỹ thuật viên chuyên sâu luôn sẵn sàng hỗ trợ.</p>
+    </div>
+    <div class="ma-feature-grid">
+      <div class="ma-feature" data-reveal data-delay="1">
+        <div class="ma-feature-icon"><i class="bi bi-chat-square-dots"></i></div>
+        <h3>Tư vấn kỹ thuật</h3>
+        <p>Kỹ thuật viên giàu kinh nghiệm tư vấn theo nhu cầu chụp thực tế, không chạy theo doanh số.</p>
+      </div>
+      <div class="ma-feature" data-reveal data-delay="2">
+        <div class="ma-feature-icon"><i class="bi bi-patch-check"></i></div>
+        <h3>Bảo hành chính hãng</h3>
+        <p>Bảo hành 24 tháng tại trung tâm ủy quyền, hỗ trợ đổi máy nếu lỗi do nhà sản xuất.</p>
+      </div>
+      <div class="ma-feature" data-reveal data-delay="3">
+        <div class="ma-feature-icon"><i class="bi bi-wrench-adjustable"></i></div>
+        <h3>Sửa chữa & vệ sinh cảm biến</h3>
+        <p>Dịch vụ vệ sinh cảm biến, hiệu chỉnh lấy nét, thay thế linh kiện chính hãng tại chỗ.</p>
+      </div>
+      <div class="ma-feature" data-reveal data-delay="4">
+        <div class="ma-feature-icon"><i class="bi bi-credit-card-2-front"></i></div>
+        <h3>Trả góp 0% lãi suất</h3>
+        <p>Hỗ trợ trả góp qua thẻ tín dụng và công ty tài chính, duyệt hồ sơ nhanh trong ngày.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     GRID-CARDS — Danh mục
+══════════════════════════════════════════ -->
+<section class="ma-sec ma-sec-alt">
+  <div class="ma-container">
+    <div class="ma-sec-header ma-split" data-reveal>
+      <div>
+        <div class="ma-eyebrow"><i class="bi bi-grid"></i> Danh mục</div>
+        <h2 class="ma-sec-title">Trang bị theo <em>phong cách chụp</em></h2>
+      </div>
+      <a href="san-pham.html" class="ma-btn ma-btn-ghost">Xem tất cả <i class="bi bi-arrow-right"></i></a>
+    </div>
+    <div class="ma-cat-grid">
+      <a href="san-pham.html" class="ma-cat-card" data-reveal data-delay="1">
+        <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600&auto=format&fit=crop&q=80" alt="[Máy ảnh mirrorless full-frame]" loading="lazy">
+        <div class="ma-cat-overlay"></div>
+        <div class="ma-cat-info"><h3>Máy Ảnh Mirrorless</h3><span>42 sản phẩm</span></div>
+      </a>
+      <a href="san-pham.html" class="ma-cat-card" data-reveal data-delay="2">
+        <img src="https://images.unsplash.com/photo-1519183071298-a2962be96f83?w=600&auto=format&fit=crop&q=80" alt="[Máy ảnh DSLR chuyên nghiệp]" loading="lazy">
+        <div class="ma-cat-overlay"></div>
+        <div class="ma-cat-info"><h3>Máy Ảnh DSLR</h3><span>26 sản phẩm</span></div>
+      </a>
+      <a href="san-pham.html" class="ma-cat-card" data-reveal data-delay="3">
+        <img src="https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?w=600&auto=format&fit=crop&q=80" alt="[Ống kính máy ảnh chuyên nghiệp]" loading="lazy">
+        <div class="ma-cat-overlay"></div>
+        <div class="ma-cat-info"><h3>Ống Kính</h3><span>68 sản phẩm</span></div>
+      </a>
+      <a href="san-pham.html" class="ma-cat-card" data-reveal data-delay="4">
+        <img src="https://images.unsplash.com/photo-1607685836727-b2b3c58f9a16?w=600&auto=format&fit=crop&q=80" alt="[Tripod và chân máy quay phim]" loading="lazy">
+        <div class="ma-cat-overlay"></div>
+        <div class="ma-cat-info"><h3>Tripod & Phụ Kiện</h3><span>35 sản phẩm</span></div>
+      </a>
+      <a href="san-pham.html" class="ma-cat-card" data-reveal data-delay="5">
+        <img src="https://images.unsplash.com/photo-1516724562728-afc824a36e84?w=600&auto=format&fit=crop&q=80" alt="[Đèn flash rời cho máy ảnh]" loading="lazy">
+        <div class="ma-cat-overlay"></div>
+        <div class="ma-cat-info"><h3>Flash & Đèn Chụp</h3><span>19 sản phẩm</span></div>
+      </a>
+      <a href="san-pham.html" class="ma-cat-card" data-reveal>
+        <img src="https://images.unsplash.com/photo-1519638399535-1b036603ac77?w=600&auto=format&fit=crop&q=80" alt="[Balo và túi đựng máy ảnh chuyên dụng]" loading="lazy">
+        <div class="ma-cat-overlay"></div>
+        <div class="ma-cat-info"><h3>Thẻ Nhớ & Balo</h3><span>51 sản phẩm</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     TIMELINE — Quy trình mua hàng
+══════════════════════════════════════════ -->
+<section id="quy-trinh" class="ma-sec">
+  <div class="ma-container">
+    <div class="ma-sec-header ma-center" data-reveal>
+      <div class="ma-eyebrow"><i class="bi bi-signpost-split"></i> Quy trình</div>
+      <h2 class="ma-sec-title">Mua máy <em>đơn giản, minh bạch</em></h2>
+      <p class="ma-sec-sub">4 bước để sở hữu thiết bị đúng nhu cầu, không phát sinh chi phí ẩn.</p>
+    </div>
+    <div class="ma-timeline">
+      <div class="ma-timeline-item" data-reveal data-delay="1">
+        <div class="ma-timeline-dot">1</div>
+        <div class="ma-timeline-content">
+          <div class="ma-timeline-step">Bước 1</div>
+          <h3>Tư vấn nhu cầu chụp</h3>
+          <p>Chia sẻ phong cách chụp (chân dung, phong cảnh, sự kiện, vlog) để được gợi ý combo thân máy + ống kính phù hợp.</p>
+        </div>
+      </div>
+      <div class="ma-timeline-item" data-reveal data-delay="2">
+        <div class="ma-timeline-dot">2</div>
+        <div class="ma-timeline-content">
+          <div class="ma-timeline-step">Bước 2</div>
+          <h3>Kiểm tra máy trước khi giao</h3>
+          <p>Mỗi thân máy được test cảm biến, autofocus, màn trập trước khi đóng gói — kèm phiếu kiểm định.</p>
+        </div>
+      </div>
+      <div class="ma-timeline-item" data-reveal data-delay="3">
+        <div class="ma-timeline-dot">3</div>
+        <div class="ma-timeline-content">
+          <div class="ma-timeline-step">Bước 3</div>
+          <h3>Giao hàng & kích hoạt bảo hành</h3>
+          <p>Giao hàng toàn quốc, kích hoạt bảo hành điện tử ngay khi nhận máy — tra cứu online mọi lúc.</p>
+        </div>
+      </div>
+      <div class="ma-timeline-item" data-reveal data-delay="4">
+        <div class="ma-timeline-dot">4</div>
+        <div class="ma-timeline-content">
+          <div class="ma-timeline-step">Bước 4</div>
+          <h3>Hỗ trợ trọn đời sản phẩm</h3>
+          <p>Vệ sinh cảm biến miễn phí định kỳ, ưu tiên đặt lịch sửa chữa cho khách hàng đã mua tại cửa hàng.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BENTO-GRID — Sản phẩm nổi bật
+══════════════════════════════════════════ -->
+<section class="ma-sec ma-sec-alt">
+  <div class="ma-container">
+    <div class="ma-sec-header ma-split" data-reveal>
+      <div>
+        <div class="ma-eyebrow"><i class="bi bi-star"></i> Bán chạy</div>
+        <h2 class="ma-sec-title">Thiết bị <em>được săn đón</em></h2>
+      </div>
+      <a href="san-pham.html" class="ma-btn ma-btn-ghost">Xem tất cả <i class="bi bi-arrow-right"></i></a>
+    </div>
+    <div class="ma-bento">
+      <a href="chi-tiet-san-pham.html" class="ma-prod-card ma-bento-large" data-reveal data-delay="1">
+        <div class="ma-prod-thumb">
+          <span class="ma-prod-badge ma-prod-badge-hot">Bán chạy</span>
+          <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&auto=format&fit=crop&q=80" alt="[Sony Alpha A7 IV thân máy mirrorless full-frame]" loading="lazy">
+          <span class="ma-prod-quickadd"><i class="bi bi-plus-lg"></i></span>
+        </div>
+        <div class="ma-prod-info">
+          <div class="ma-prod-cat">Máy Ảnh Mirrorless</div>
+          <div class="ma-prod-name">Sony Alpha A7 IV (Thân máy)</div>
+          <div class="ma-prod-footer">
+            <div class="ma-prod-price"><span class="ma-price-now">52.990.000đ</span></div>
+            <div class="ma-prod-rating"><i class="bi bi-star-fill"></i> 4.9</div>
+          </div>
+        </div>
+      </a>
+      <a href="chi-tiet-san-pham.html" class="ma-prod-card ma-bento-small" data-reveal data-delay="2">
+        <div class="ma-prod-thumb">
+          <span class="ma-prod-badge ma-prod-badge-new">Mới</span>
+          <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=500&auto=format&fit=crop&q=80" alt="[Canon EOS R6 Mark II thân máy]" loading="lazy">
+        </div>
+        <div class="ma-prod-info">
+          <div class="ma-prod-cat">Máy Ảnh Mirrorless</div>
+          <div class="ma-prod-name">Canon EOS R6 Mark II</div>
+          <div class="ma-prod-footer">
+            <div class="ma-prod-price"><span class="ma-price-now">48.500.000đ</span></div>
+          </div>
+        </div>
+      </a>
+      <a href="chi-tiet-san-pham.html" class="ma-prod-card ma-bento-small" data-reveal data-delay="3">
+        <div class="ma-prod-thumb">
+          <img src="https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?w=500&auto=format&fit=crop&q=80" alt="[Sony FE 24-70mm f/2.8 GM II ống kính]" loading="lazy">
+        </div>
+        <div class="ma-prod-info">
+          <div class="ma-prod-cat">Ống Kính</div>
+          <div class="ma-prod-name">Sony FE 24-70mm f/2.8 GM II</div>
+          <div class="ma-prod-footer">
+            <div class="ma-prod-price"><span class="ma-price-now">45.990.000đ</span></div>
+          </div>
+        </div>
+      </a>
+      <a href="chi-tiet-san-pham.html" class="ma-prod-card ma-bento-small" data-reveal data-delay="4">
+        <div class="ma-prod-thumb">
+          <span class="ma-prod-badge ma-prod-badge-sale">-12%</span>
+          <img src="https://images.unsplash.com/photo-1607685836727-b2b3c58f9a16?w=500&auto=format&fit=crop&q=80" alt="[Manfrotto Befree Advanced tripod du lịch]" loading="lazy">
+        </div>
+        <div class="ma-prod-info">
+          <div class="ma-prod-cat">Tripod & Phụ Kiện</div>
+          <div class="ma-prod-name">Manfrotto Befree Advanced</div>
+          <div class="ma-prod-footer">
+            <div class="ma-prod-price"><span class="ma-price-now">4.290.000đ</span><span class="ma-price-old">4.890.000đ</span></div>
+          </div>
+        </div>
+      </a>
+      <a href="chi-tiet-san-pham.html" class="ma-prod-card ma-bento-small" data-reveal data-delay="5">
+        <div class="ma-prod-thumb">
+          <img src="https://images.unsplash.com/photo-1519638399535-1b036603ac77?w=500&auto=format&fit=crop&q=80" alt="[Lowepro ProTactic 350 AW II balo máy ảnh]" loading="lazy">
+        </div>
+        <div class="ma-prod-info">
+          <div class="ma-prod-cat">Thẻ Nhớ & Balo</div>
+          <div class="ma-prod-name">Lowepro ProTactic 350 AW II</div>
+          <div class="ma-prod-footer">
+            <div class="ma-prod-price"><span class="ma-price-now">3.190.000đ</span></div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     ALTERNATING-STRIPS — Câu chuyện cửa hàng
+══════════════════════════════════════════ -->
+<section class="ma-sec">
+  <div class="ma-container">
+    <div class="ma-story-row" data-reveal>
+      <div class="ma-story-img">
+        <img src="https://images.unsplash.com/photo-1550928431-ee0ec6db30d3?w=700&auto=format&fit=crop&q=80" alt="[Không gian trưng bày máy ảnh và ống kính tại cửa hàng]" loading="lazy">
+      </div>
+      <div>
+        <div class="ma-story-badge">Đại lý ủy quyền</div>
+        <h3 class="ma-story-title">Phân phối chính hãng từ <em>30+ thương hiệu</em></h3>
+        <p class="ma-story-text">[Là đại lý ủy quyền của Sony, Canon, Fujifilm, Nikon và các hãng phụ kiện hàng đầu — mọi sản phẩm đều có tem chống hàng giả và phiếu bảo hành điện tử.]</p>
+        <ul class="ma-story-list">
+          <li><i class="bi bi-check-circle-fill"></i> Nhập khẩu chính ngạch, đầy đủ hóa đơn VAT</li>
+          <li><i class="bi bi-check-circle-fill"></i> Kiểm định 100% máy trước khi lên kệ</li>
+          <li><i class="bi bi-check-circle-fill"></i> Đội ngũ kỹ thuật viên được hãng đào tạo</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ma-story-row ma-reverse" data-reveal>
+      <div class="ma-story-img">
+        <img src="https://images.unsplash.com/photo-1552168324-d612d77725e3?w=700&auto=format&fit=crop&q=80" alt="[Kỹ thuật viên kiểm tra và hiệu chỉnh máy ảnh]" loading="lazy">
+      </div>
+      <div>
+        <div class="ma-story-badge">Xưởng kỹ thuật riêng</div>
+        <h3 class="ma-story-title">Sửa chữa & bảo trì <em>tại chỗ, minh bạch</em></h3>
+        <p class="ma-story-text">[Xưởng kỹ thuật trang bị máy hiệu chỉnh lấy nét chuyên dụng, xử lý từ vệ sinh cảm biến đến thay thế mainboard — báo giá rõ ràng trước khi sửa.]</p>
+        <ul class="ma-story-list">
+          <li><i class="bi bi-check-circle-fill"></i> Báo giá chi tiết trước khi tiến hành sửa</li>
+          <li><i class="bi bi-check-circle-fill"></i> Linh kiện thay thế chính hãng có tem bảo hành</li>
+          <li><i class="bi bi-check-circle-fill"></i> Nhận sửa cả máy không mua tại cửa hàng</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     STAT-BAR
+══════════════════════════════════════════ -->
+<section class="ma-stats" aria-label="Số liệu">
+  <div class="ma-container">
+    <div class="ma-stats-grid" data-reveal>
+      <div class="ma-stat">
+        <div class="ma-stat-num"><span data-counter="30" data-suffix="+">0</span></div>
+        <div class="ma-stat-label">Thương hiệu phân phối</div>
+      </div>
+      <div class="ma-stat">
+        <div class="ma-stat-num"><span data-counter="850" data-suffix="+">0</span></div>
+        <div class="ma-stat-label">Thiết bị đang bán</div>
+      </div>
+      <div class="ma-stat">
+        <div class="ma-stat-num"><span data-counter="12000" data-suffix="+">0</span></div>
+        <div class="ma-stat-label">Nhiếp ảnh gia tin dùng</div>
+      </div>
+      <div class="ma-stat">
+        <div class="ma-stat-num"><span data-counter="11">0</span></div>
+        <div class="ma-stat-label">Năm kinh nghiệm</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     HORIZONTAL-SCROLL — Đánh giá khách hàng
+══════════════════════════════════════════ -->
+<section class="ma-sec ma-sec-alt">
+  <div class="ma-container">
+    <div class="ma-sec-header ma-center" data-reveal>
+      <div class="ma-eyebrow"><i class="bi bi-chat-heart"></i> Khách hàng nói gì</div>
+      <h2 class="ma-sec-title">Được <em>tin tưởng</em> bởi người cầm máy</h2>
+    </div>
+    <div class="ma-testi-track" data-reveal>
+      <div class="ma-testi-card">
+        <div class="ma-testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+        <p class="ma-testi-text">"Được tư vấn combo thân máy + ống kính đúng nhu cầu chụp sự kiện, không bị ép mua thêm phụ kiện không cần thiết. Rất chuyên nghiệp."</p>
+        <div class="ma-testi-author">
+          <div class="ma-testi-avatar">H</div>
+          <div><div class="ma-testi-name">Anh Huy</div><div class="ma-testi-role">Nhiếp ảnh gia sự kiện, TP.HCM</div></div>
+        </div>
+      </div>
+      <div class="ma-testi-card">
+        <div class="ma-testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+        <p class="ma-testi-text">"Máy được kiểm định kỹ trước khi giao, có phiếu test cảm biến đầy đủ. Mua online mà vẫn yên tâm như mua trực tiếp."</p>
+        <div class="ma-testi-author">
+          <div class="ma-testi-avatar">L</div>
+          <div><div class="ma-testi-name">Chị Linh</div><div class="ma-testi-role">Content creator, Hà Nội</div></div>
+        </div>
+      </div>
+      <div class="ma-testi-card">
+        <div class="ma-testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+        <p class="ma-testi-text">"Dịch vụ vệ sinh cảm biến nhanh gọn, kỹ thuật viên giải thích rõ tình trạng máy. Sẽ quay lại khi cần nâng cấp thiết bị."</p>
+        <div class="ma-testi-author">
+          <div class="ma-testi-avatar">M</div>
+          <div><div class="ma-testi-name">Anh Minh</div><div class="ma-testi-role">Nhiếp ảnh phong cảnh, Đà Lạt</div></div>
+        </div>
+      </div>
+      <div class="ma-testi-card">
+        <div class="ma-testi-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+        <p class="ma-testi-text">"Trả góp 0% duyệt nhanh, giao hàng đúng hẹn. Thân máy còn nguyên tem chống giả, bảo hành tra cứu online rõ ràng."</p>
+        <div class="ma-testi-author">
+          <div class="ma-testi-avatar">T</div>
+          <div><div class="ma-testi-name">Chị Thu</div><div class="ma-testi-role">Studio ảnh cưới, Đà Nẵng</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="ma-newsletter">
+  <div class="ma-container">
+    <div class="ma-newsletter-inner" data-reveal>
+      <h2 class="ma-sec-title">Nhận tin khuyến mãi & hàng mới về</h2>
+      <p class="ma-sec-sub">Đăng ký để nhận mã giảm 500.000đ cho đơn hàng thân máy đầu tiên.</p>
+      <form class="ma-newsletter-form" onsubmit="return false;">
+        <input type="email" placeholder="Email của bạn" required aria-label="Email">
+        <button type="submit">Đăng ký</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="ma-footer">
+  <div class="ma-container">
+    <div class="ma-footer-grid">
+      <div>
+        <a href="index.html" class="ma-footer-logo"><span class="ma-logo-dot"></span>[Tên Shop]</a>
+        <p class="ma-footer-desc">[Cửa hàng máy ảnh & thiết bị nhiếp ảnh chính hãng — thân máy, ống kính, tripod, phụ kiện — bảo hành chính hãng toàn quốc.]</p>
+        <div class="ma-footer-social">
+          <a href="#" class="ma-soc-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="ma-soc-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://zalo.me/[0900000000]" class="ma-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Zalo"><i class="bi bi-chat-fill"></i></a>
+        </div>
+      </div>
+      <div class="ma-footer-col">
+        <h4>Danh mục</h4>
+        <ul>
+          <li><a href="san-pham.html">Máy Ảnh Mirrorless</a></li>
+          <li><a href="san-pham.html">Máy Ảnh DSLR</a></li>
+          <li><a href="san-pham.html">Ống Kính</a></li>
+          <li><a href="san-pham.html">Tripod & Phụ Kiện</a></li>
+        </ul>
+      </div>
+      <div class="ma-footer-col">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="gio-hang.html">Theo dõi đơn hàng</a></li>
+          <li><a href="lien-he.html">Chính sách bảo hành</a></li>
+          <li><a href="lien-he.html">Câu hỏi thường gặp</a></li>
+        </ul>
+      </div>
+      <div class="ma-footer-col">
+        <h4>Liên hệ</h4>
+        <ul class="ma-footer-contact">
+          <li><i class="bi bi-geo-alt"></i> [123 Đường ABC, Quận 1, TP.HCM]</li>
+          <li><i class="bi bi-telephone"></i> [0900 000 000]</li>
+          <li><i class="bi bi-envelope"></i> [lienhe@tenshop.vn]</li>
+          <li><i class="bi bi-clock"></i> 8:30 – 21:00 (Cả tuần)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ma-footer-bottom">
+      <p>&copy; 2026 [Tên Shop]. Tất cả quyền được bảo lưu.</p>
+      <div class="ma-footer-pay">
+        <span class="ma-pay-badge">VISA</span>
+        <span class="ma-pay-badge">MoMo</span>
+        <span class="ma-pay-badge">ZaloPay</span>
+        <span class="ma-pay-badge">COD</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="ma-zalo-float">
+  <div class="ma-zalo-tooltip">Chat Zalo</div>
+  <a href="https://zalo.me/[0900000000]" class="ma-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo">
+    <i class="bi bi-chat-fill"></i>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }});
+}, { threshold: .08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+const nav = document.getElementById('ma-nav');
+if (nav) {
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('ma-scrolled', window.scrollY > 80);
+  }, { passive: true });
+}
+
+const burger = document.getElementById('ma-burger');
+const mob    = document.getElementById('ma-nav-mob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const open = mob.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    mob.toggleAttribute('inert', !open);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      mob.setAttribute('inert', '');
+    }
+  });
+}
+
+document.querySelectorAll('[data-counter]').forEach(el => {
+  const cro = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      const target = +el.dataset.counter;
+      const suffix = el.dataset.suffix || '';
+      let cur = 0;
+      const step = Math.ceil(target / 60);
+      const t = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = cur.toLocaleString('vi-VN') + suffix;
+        if (cur >= target) clearInterval(t);
+      }, 25);
+      cro.disconnect();
+    }
+  }, { threshold: .5 });
+  cro.observe(el);
+});
+</script>
+</body>
+</html>

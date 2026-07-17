@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sản Phẩm — [Tên Shop] Máy Ảnh & Thiết Bị Nhiếp Ảnh</title>
+  <meta name="description" content="[Danh sách máy ảnh, ống kính, tripod và phụ kiện nhiếp ảnh chính hãng — lọc theo danh mục, giá, màu thân máy, tình trạng]">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav id="ma-nav-mob" class="ma-mob-nav" role="navigation" aria-label="Menu di động" inert>
+  <ul>
+    <li><a href="index.html"><i class="bi bi-house"></i> Trang chủ</a></li>
+    <li><a href="san-pham.html" class="ma-active"><i class="bi bi-camera"></i> Sản phẩm</a></li>
+    <li><a href="lien-he.html"><i class="bi bi-envelope"></i> Liên hệ</a></li>
+    <li><a href="gio-hang.html"><i class="bi bi-bag"></i> Giỏ hàng</a></li>
+  </ul>
+  <div class="ma-mob-actions">
+    <a href="gio-hang.html" class="ma-btn ma-btn-primary ma-btn-full">Xem giỏ hàng</a>
+  </div>
+</nav>
+
+<header id="ma-nav" class="ma-scrolled" role="banner">
+  <div class="ma-container ma-nav-inner">
+    <a href="index.html" class="ma-logo"><span class="ma-logo-dot"></span>[Tên Shop]</a>
+    <nav class="ma-nav-links" role="navigation" aria-label="Menu chính">
+      <a href="index.html">Trang chủ</a>
+      <a href="san-pham.html" class="ma-active">Sản phẩm</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+    <div class="ma-nav-actions">
+      <a href="gio-hang.html" class="ma-nav-icon" aria-label="Giỏ hàng">
+        <i class="bi bi-bag"></i>
+        <span class="ma-cart-badge">2</span>
+      </a>
+      <a href="san-pham.html" class="ma-btn ma-btn-primary ma-btn-sm">Mua ngay</a>
+      <button id="ma-burger" class="ma-burger" aria-label="Mở menu" aria-expanded="false" aria-controls="ma-nav-mob">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="ma-page-hero">
+  <div class="ma-container">
+    <div class="ma-breadcrumb">
+      <a href="index.html">Trang chủ</a>
+      <i class="bi bi-chevron-right" style="font-size:10px;"></i>
+      <span>Sản phẩm</span>
+    </div>
+    <h1 class="ma-page-title">Tất cả sản phẩm</h1>
+    <p class="ma-page-count">Hiển thị 1–9 trên 241 thiết bị nhiếp ảnh</p>
+  </div>
+</section>
+
+<div class="ma-container">
+  <div class="ma-cat-tabs" role="group" aria-label="Lọc theo danh mục">
+    <a href="#" class="ma-cat-tab ma-active">Tất cả</a>
+    <a href="#" class="ma-cat-tab">Máy Ảnh</a>
+    <a href="#" class="ma-cat-tab">Ống Kính</a>
+    <a href="#" class="ma-cat-tab">Tripod & Phụ Kiện</a>
+    <a href="#" class="ma-cat-tab">Đang giảm giá</a>
+  </div>
+
+  <div class="ma-shop-layout">
+    <!-- Filter sidebar -->
+    <aside class="ma-filter-sidebar" aria-label="Bộ lọc sản phẩm">
+      <div class="ma-filter-hd">
+        Bộ lọc
+        <span class="ma-filter-clear">Xóa lọc</span>
+      </div>
+
+      <div class="ma-filter-block">
+        <div class="ma-filter-title">Danh mục</div>
+        <div class="ma-filter-opts">
+          <label class="ma-filter-opt"><input type="checkbox" checked> Máy Ảnh Mirrorless <span class="ma-count">42</span></label>
+          <label class="ma-filter-opt"><input type="checkbox"> Máy Ảnh DSLR <span class="ma-count">26</span></label>
+          <label class="ma-filter-opt"><input type="checkbox"> Ống Kính <span class="ma-count">68</span></label>
+          <label class="ma-filter-opt"><input type="checkbox"> Tripod & Phụ Kiện <span class="ma-count">35</span></label>
+          <label class="ma-filter-opt"><input type="checkbox"> Flash & Đèn Chụp <span class="ma-count">19</span></label>
+          <label class="ma-filter-opt"><input type="checkbox"> Thẻ Nhớ & Balo <span class="ma-count">51</span></label>
+        </div>
+      </div>
+
+      <div class="ma-filter-block">
+        <div class="ma-filter-title">Khoảng giá</div>
+        <div class="ma-price-range">
+          <input type="number" placeholder="0" aria-label="Giá thấp nhất">
+          <span>—</span>
+          <input type="number" placeholder="60.000.000" aria-label="Giá cao nhất">
+        </div>
+      </div>
+
+      <div class="ma-filter-block">
+        <div class="ma-filter-title">Màu thân máy</div>
+        <div class="ma-swatch-row">
+          <button type="button" class="ma-filter-swatch ma-selected" style="background:#1c1c1c;" aria-label="Màu đen" aria-pressed="true" data-color="Đen"></button>
+          <button type="button" class="ma-filter-swatch" style="background:#c7c9cb;" aria-label="Màu bạc" aria-pressed="false" data-color="Bạc"></button>
+          <button type="button" class="ma-filter-swatch" style="background:#f2f1ec; border-color:#d7dbdc;" aria-label="Màu trắng" aria-pressed="false" data-color="Trắng"></button>
+          <button type="button" class="ma-filter-swatch" style="background:#5c6650;" aria-label="Màu xanh rêu" aria-pressed="false" data-color="Xanh rêu"></button>
+        </div>
+      </div>
+
+      <div class="ma-filter-block">
+        <div class="ma-filter-title">Thương hiệu</div>
+        <div class="ma-filter-opts">
+          <label class="ma-filter-opt"><input type="checkbox"> Sony</label>
+          <label class="ma-filter-opt"><input type="checkbox"> Canon</label>
+          <label class="ma-filter-opt"><input type="checkbox"> Fujifilm</label>
+          <label class="ma-filter-opt"><input type="checkbox"> Nikon</label>
+        </div>
+      </div>
+
+      <div class="ma-filter-block">
+        <div class="ma-filter-title">Tình trạng</div>
+        <div class="ma-filter-opts">
+          <label class="ma-filter-opt"><input type="checkbox"> Còn hàng</label>
+          <label class="ma-filter-opt"><input type="checkbox"> Hàng mới 100%</label>
+          <label class="ma-filter-opt"><input type="checkbox"> Đang khuyến mãi</label>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Product grid -->
+    <div>
+      <div class="ma-shop-top">
+        <span class="ma-result-count">241 sản phẩm</span>
+        <select class="ma-sort-select" aria-label="Sắp xếp">
+          <option>Mới nhất</option>
+          <option>Bán chạy nhất</option>
+          <option>Giá: Thấp đến cao</option>
+          <option>Giá: Cao đến thấp</option>
+        </select>
+      </div>
+
+      <div class="ma-prod-grid">
+        <a href="chi-tiet-san-pham.html" class="ma-prod-card">
+          <div class="ma-prod-thumb">
+            <span class="ma-prod-badge ma-prod-badge-hot">Bán chạy</span>
+            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500&auto=format&fit=crop&q=80" alt="[Sony Alpha A7 IV thân máy mirrorless]" loading="lazy">
+            <span class="ma-prod-quickadd"><i class="bi bi-plus-lg"></i></span>
+          </div>
+          <div class="ma-prod-info">
+            <div class="ma-prod-cat">Máy Ảnh Mirrorless</div>
+            <div class="ma-prod-name">Sony Alpha A7 IV (Thân máy)</div>
+            <div class="ma-prod-footer">
+              <div class="ma-prod-price"><span class="ma-price-now">52.990.000đ</span></div>
+              <div class="ma-prod-rating"><i class="bi bi-star-fill"></i> 4.9</div>
+            </div>
+          </div>
+        </a>
+        <a href="chi-tiet-san-pham.html" class="ma-prod-card">
+          <div class="ma-prod-thumb">
+            <span class="ma-prod-badge ma-prod-badge-new">Mới</span>
+            <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=500&auto=format&fit=crop&q=80" alt="[Canon EOS R6 Mark II thân máy]" loading="lazy">
+            <span class="ma-prod-quickadd"><i class="bi bi-plus-lg"></i></span>
+          </div>
+          <div class="ma-prod-info">
+            <div class="ma-prod-cat">Máy Ảnh Mirrorless</div>
+            <div class="ma-prod-name">Canon EOS R6 Mark II</div>
+            <div class="ma-prod-footer">
+              <div class="ma-prod-price"><span class="ma-price-now">48.500.000đ</span></div>
+              <div class="ma-prod-rating"><i class="bi bi-star-fill"></i> 4.8</div>
+            </div>
+          </div>
+        </a>
+        <a href="chi-tiet-san-pham.html" class="ma-prod-card">
+          <div class="ma-prod-thumb">
+            <img src="https://images.unsplash.com/photo-1519183071298-a2962be96f83?w=500&auto=format&fit=crop&q=80" alt="[Fujifilm X-T5 máy ảnh mirrorless APS-C]" loading="lazy">
+            <span class="ma-prod-quickadd"><i class="bi bi-plus-lg"></i></span>
+          </div>
+          <div class="ma-prod-info">
+            <div class="ma-prod-cat">Máy Ảnh Mirrorless</div>
+            <div class="ma-prod-name">Fujifilm X-T5 (Thân máy)</div>
+            <div class="ma-prod-footer">
+              <div class="ma-prod-price"><span class="ma-price-now">36.900.000đ</span></div>
+              <div class="ma-prod-rating"><i class="bi bi-star-fill"></i> 4.9</div>
+            </div>
+          </div>
+        </a>
+        <a href="chi-tiet-san-pham.html" class="ma-prod-card">
+          <div class="ma-prod-thumb">
+            <img src="https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?w=500&auto=format&fit=crop&q=80" alt="[Sony FE 24-70mm f/2.8 GM II ống kính zoom chuyên nghiệp]" loading="lazy">
+            <span class="ma-prod-quickadd"><i class="bi bi-plus-lg"></i></span>
+          </div>
+          <div class="ma-prod-info">
+            <div class="ma-prod-cat">Ống Kính</div>
+            <div class="ma-prod-name">Sony FE 24-70mm f/2.8 GM II</div>
+            <div class="ma-prod-footer">
+              <div class="ma-prod-price"><span class="ma-price-now">45.990.000đ</span></div>
+              <div class="ma-prod-rating"><i class="bi bi-star-fill"></i> 5.0</div>
+            </div>
+          </div>
+        </a>
+        <a href="chi-tiet-san-pham.html" class="ma-prod-card">
+          <div class="ma-prod-thumb">
+            <span class="ma-prod-badge ma-prod-badge-sale">-12%</span>
+            <img src="https://images.unsplash.com/photo-1607685836727-b2b3c58f9a16?w=500&auto=format&fit=crop&q=80" alt="[Manfrotto Befree Advanced tripod du lịch]" loading="lazy">
+            <span class="ma-prod-quickadd"><i class="bi bi-plus-lg"></i></span>
+          </div>
+          <div class="ma-prod-info">
+            <div class="ma-prod-cat">Tripod & Phụ Kiện</div>
+            <div class="ma-prod-name">Manfrotto Befree Advanced</div>
+            <div class="ma-prod-footer">
+              <div class="ma-prod-price"><span class="ma-price-now">4.290.000đ</span><span class="ma-price-old">4.890.000đ</span></div>
+              <div class="ma-prod-rating"><i class="bi bi-star-fill"></i> 4.7</div>
+            </div>
+          </div>
+        </a>
+        <a href="chi-tiet-san-pham.html" class="ma-prod-card">
+          <div class="ma-prod-thumb">
+            <img src="https://images.unsplash.com/photo-1516724562728-afc824a36e84?w=500&auto=format&fit=crop&q=80" alt="[Godox V1 đèn flash rời cho máy ảnh]" loading="lazy">
+            <span class="ma-prod-quickadd"><i class="bi bi-plus-lg"></i></span>
+          </div>
+          <div class="ma-prod-info">
+            <div class="ma-prod-cat">Flash & Đèn Chụp</div>
+            <div class="ma-prod-name">Godox V1 (Đèn Flash Rời)</div>
+            <div class="ma-prod-footer">
+              <div class="ma-prod-price"><span class="ma-price-now">5.190.000đ</span></div>
+              <div class="ma-prod-rating"><i class="bi bi-star-fill"></i> 4.6</div>
+            </div>
+          </div>
+        </a>
+        <a href="chi-tiet-san-pham.html" class="ma-prod-card">
+          <div class="ma-prod-thumb">
+            <img src="https://images.unsplash.com/photo-1519638399535-1b036603ac77?w=500&auto=format&fit=crop&q=80" alt="[Lowepro ProTactic 350 AW II balo đựng máy ảnh]" loading="lazy">
+            <span class="ma-prod-quickadd"><i class="bi bi-plus-lg"></i></span>
+          </div>
+          <div class="ma-prod-info">
+            <div class="ma-prod-cat">Thẻ Nhớ & Balo</div>
+            <div class="ma-prod-name">Lowepro ProTactic 350 AW II</div>
+            <div class="ma-prod-footer">
+              <div class="ma-prod-price"><span class="ma-price-now">3.190.000đ</span></div>
+              <div class="ma-prod-rating"><i class="bi bi-star-fill"></i> 4.8</div>
+            </div>
+          </div>
+        </a>
+        <a href="chi-tiet-san-pham.html" class="ma-prod-card">
+          <div class="ma-prod-thumb">
+            <img src="https://images.unsplash.com/photo-1610465299996-30f240ac2b1c?w=500&auto=format&fit=crop&q=80" alt="[SanDisk Extreme Pro 128GB thẻ nhớ tốc độ cao]" loading="lazy">
+            <span class="ma-prod-quickadd"><i class="bi bi-plus-lg"></i></span>
+          </div>
+          <div class="ma-prod-info">
+            <div class="ma-prod-cat">Thẻ Nhớ & Balo</div>
+            <div class="ma-prod-name">SanDisk Extreme Pro 128GB</div>
+            <div class="ma-prod-footer">
+              <div class="ma-prod-price"><span class="ma-price-now">890.000đ</span></div>
+              <div class="ma-prod-rating"><i class="bi bi-star-fill"></i> 4.9</div>
+            </div>
+          </div>
+        </a>
+        <a href="chi-tiet-san-pham.html" class="ma-prod-card">
+          <div class="ma-prod-thumb">
+            <img src="https://images.unsplash.com/photo-1585155770447-2f66e2a397b5?w=500&auto=format&fit=crop&q=80" alt="[Nikon Z6 III thân máy mirrorless full-frame]" loading="lazy">
+            <span class="ma-prod-quickadd"><i class="bi bi-plus-lg"></i></span>
+          </div>
+          <div class="ma-prod-info">
+            <div class="ma-prod-cat">Máy Ảnh Mirrorless</div>
+            <div class="ma-prod-name">Nikon Z6 III (Thân máy)</div>
+            <div class="ma-prod-footer">
+              <div class="ma-prod-price"><span class="ma-price-now">55.900.000đ</span></div>
+              <div class="ma-prod-rating"><i class="bi bi-star-fill"></i> 4.8</div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="ma-pagination">
+        <a href="#" class="ma-page-btn" aria-label="Trang trước"><i class="bi bi-chevron-left"></i></a>
+        <a href="#" class="ma-page-btn ma-active">1</a>
+        <a href="#" class="ma-page-btn">2</a>
+        <a href="#" class="ma-page-btn">3</a>
+        <a href="#" class="ma-page-btn">…</a>
+        <a href="#" class="ma-page-btn">27</a>
+        <a href="#" class="ma-page-btn" aria-label="Trang sau"><i class="bi bi-chevron-right"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="ma-footer" style="margin-top:56px;">
+  <div class="ma-container">
+    <div class="ma-footer-grid">
+      <div>
+        <a href="index.html" class="ma-footer-logo"><span class="ma-logo-dot"></span>[Tên Shop]</a>
+        <p class="ma-footer-desc">[Cửa hàng máy ảnh & thiết bị nhiếp ảnh chính hãng — thân máy, ống kính, tripod, phụ kiện — bảo hành chính hãng toàn quốc.]</p>
+        <div class="ma-footer-social">
+          <a href="#" class="ma-soc-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="ma-soc-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://zalo.me/[0900000000]" class="ma-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Zalo"><i class="bi bi-chat-fill"></i></a>
+        </div>
+      </div>
+      <div class="ma-footer-col">
+        <h4>Danh mục</h4>
+        <ul>
+          <li><a href="san-pham.html">Máy Ảnh Mirrorless</a></li>
+          <li><a href="san-pham.html">Máy Ảnh DSLR</a></li>
+          <li><a href="san-pham.html">Ống Kính</a></li>
+          <li><a href="san-pham.html">Tripod & Phụ Kiện</a></li>
+        </ul>
+      </div>
+      <div class="ma-footer-col">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="gio-hang.html">Theo dõi đơn hàng</a></li>
+          <li><a href="lien-he.html">Chính sách bảo hành</a></li>
+          <li><a href="lien-he.html">Câu hỏi thường gặp</a></li>
+        </ul>
+      </div>
+      <div class="ma-footer-col">
+        <h4>Liên hệ</h4>
+        <ul class="ma-footer-contact">
+          <li><i class="bi bi-geo-alt"></i> [123 Đường ABC, Quận 1, TP.HCM]</li>
+          <li><i class="bi bi-telephone"></i> [0900 000 000]</li>
+          <li><i class="bi bi-envelope"></i> [lienhe@tenshop.vn]</li>
+          <li><i class="bi bi-clock"></i> 8:30 – 21:00 (Cả tuần)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ma-footer-bottom">
+      <p>&copy; 2026 [Tên Shop]. Tất cả quyền được bảo lưu.</p>
+      <div class="ma-footer-pay">
+        <span class="ma-pay-badge">VISA</span>
+        <span class="ma-pay-badge">MoMo</span>
+        <span class="ma-pay-badge">ZaloPay</span>
+        <span class="ma-pay-badge">COD</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="ma-zalo-float">
+  <div class="ma-zalo-tooltip">Chat Zalo</div>
+  <a href="https://zalo.me/[0900000000]" class="ma-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo">
+    <i class="bi bi-chat-fill"></i>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const nav = document.getElementById('ma-nav');
+if (nav) {
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('ma-scrolled', window.scrollY > 80);
+  }, { passive: true });
+}
+
+const burger = document.getElementById('ma-burger');
+const mob    = document.getElementById('ma-nav-mob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const open = mob.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    mob.toggleAttribute('inert', !open);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      mob.setAttribute('inert', '');
+    }
+  });
+}
+
+/* Shared keyboard-accessible swatch helper (reused on detail page too) */
+function makeSwatchKeyboardAccessible(sw, onActivate) {
+  sw.setAttribute('tabindex', '0');
+  sw.setAttribute('role', 'button');
+  sw.addEventListener('click', () => onActivate(sw));
+  sw.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onActivate(sw);
+    }
+  });
+}
+
+/* Filter sidebar color swatches — multi-select toggle */
+document.querySelectorAll('.ma-filter-swatch').forEach(sw => {
+  makeSwatchKeyboardAccessible(sw, el => {
+    const nowSelected = !el.classList.contains('ma-selected');
+    el.classList.toggle('ma-selected', nowSelected);
+    el.setAttribute('aria-pressed', nowSelected);
+  });
+});
+
+/* Category filter tabs bar */
+document.querySelectorAll('.ma-cat-tab').forEach(tab => {
+  tab.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelectorAll('.ma-cat-tab').forEach(t => t.classList.remove('ma-active'));
+    tab.classList.add('ma-active');
+  });
+});
+</script>
+</body>
+</html>

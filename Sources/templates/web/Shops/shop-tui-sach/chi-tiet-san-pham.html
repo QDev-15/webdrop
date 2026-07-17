@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signature Tote — [Tên Thương Hiệu] | Túi Da Thủ Công Cao Cấp</title>
+<meta name="description" content="Signature Tote — túi xách tay da thật thủ công, form dáng tối giản sang trọng. Xem chi tiết chất liệu, kích thước, đánh giá khách hàng.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header id="ts-nav">
+  <div class="ts-container ts-nav-inner">
+    <a href="index.html" class="ts-logo">Maison<span>Cuir</span></a>
+    <nav class="ts-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="san-pham.html" class="active">Sản phẩm</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+    <div class="ts-nav-actions">
+      <a href="san-pham.html" class="ts-nav-icon-btn" aria-label="Tìm kiếm sản phẩm"><i class="bi bi-search"></i></a>
+      <a href="gio-hang.html" class="ts-nav-icon-btn" aria-label="Xem giỏ hàng">
+        <i class="bi bi-bag"></i>
+        <span class="ts-cart-count">2</span>
+      </a>
+      <button class="ts-burger" id="ts-burger" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="ts-nav-mob">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="ts-nav-scrim" id="ts-nav-scrim"></div>
+<nav id="ts-nav-mob" inert aria-label="Menu điều hướng di động">
+  <button class="ts-nav-mob-close" id="ts-nav-mob-close" aria-label="Đóng menu"><i class="bi bi-x-lg"></i></button>
+  <ul class="ts-nav-mob-links">
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="san-pham.html" class="active">Sản phẩm</a></li>
+    <li><a href="gio-hang.html">Giỏ hàng</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+</nav>
+
+<!-- ============ BREADCRUMB ============ -->
+<div class="ts-container" style="padding-top:110px;">
+  <div class="ts-breadcrumb" style="justify-content:flex-start;">
+    <a href="index.html">Trang chủ</a>
+    <span>/</span>
+    <a href="san-pham.html">Sản phẩm</a>
+    <span>/</span>
+    <span class="current">Signature Tote</span>
+  </div>
+</div>
+
+<!-- ============ PRODUCT DETAIL ============ -->
+<section class="sec-pad" style="padding-top:32px;">
+  <div class="ts-container">
+    <div class="ts-pd-layout">
+
+      <!-- Gallery -->
+      <div>
+        <div class="ts-pd-main-img">
+          <img id="ts-pd-main-img-el" src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=900&auto=format&fit=crop&q=80" alt="Túi xách tay da nâu Signature Tote — góc nhìn chính diện" loading="eager">
+        </div>
+        <div class="ts-pd-thumbs">
+          <button class="ts-pd-thumb active" onclick="switchGallery(this, 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=900&auto=format&fit=crop&q=80')" aria-label="Xem ảnh 1">
+            <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=200&auto=format&fit=crop&q=80" alt="Ảnh thu nhỏ Signature Tote góc 1" loading="lazy">
+          </button>
+          <button class="ts-pd-thumb" onclick="switchGallery(this, 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=900&auto=format&fit=crop&q=80')" aria-label="Xem ảnh 2">
+            <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=200&auto=format&fit=crop&q=80" alt="Ảnh thu nhỏ Signature Tote góc 2" loading="lazy">
+          </button>
+          <button class="ts-pd-thumb" onclick="switchGallery(this, 'https://images.unsplash.com/photo-1591561954557-26941169b49e?w=900&auto=format&fit=crop&q=80')" aria-label="Xem ảnh 3">
+            <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?w=200&auto=format&fit=crop&q=80" alt="Ảnh thu nhỏ Signature Tote góc 3" loading="lazy">
+          </button>
+          <button class="ts-pd-thumb" onclick="switchGallery(this, 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=900&auto=format&fit=crop&q=80')" aria-label="Xem ảnh 4">
+            <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=200&auto=format&fit=crop&q=80" alt="Ảnh thu nhỏ Signature Tote góc 4" loading="lazy">
+          </button>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="ts-pd-info">
+        <span class="ts-card-cat">Túi xách tay</span>
+        <h1>Signature Tote</h1>
+        <div class="ts-pd-rating">
+          <span class="stars">★★★★★</span>
+          <span>4.9/5 · [128] đánh giá · Đã bán [340+]</span>
+        </div>
+        <div class="ts-pd-price">[2.890.000đ] <del>[3.290.000đ]</del></div>
+        <p class="ts-pd-desc">[Signature Tote là mẫu túi biểu tượng của thương hiệu — chế tác từ da bò thật nguyên miếng, form dáng tối giản, dung tích rộng rãi phù hợp cho công sở lẫn dạo phố. Đường may tay tỉ mỉ, khóa kim loại mạ vàng chống oxy hóa.]</p>
+
+        <div class="ts-pd-option-block">
+          <div class="ts-pd-option-label">Màu sắc <span class="val" id="ts-pd-color-val">Nâu da bò</span></div>
+          <div class="ts-swatch-row" id="ts-pd-color-row">
+            <div class="ts-color-swatch active" style="background:#3b2a1e;" tabindex="0" role="button" aria-pressed="true" aria-label="Màu nâu da bò" data-label="Nâu da bò"></div>
+            <div class="ts-color-swatch" style="background:#0e0c0a;" tabindex="0" role="button" aria-pressed="false" aria-label="Màu đen" data-label="Đen"></div>
+            <div class="ts-color-swatch" style="background:#7a2e3a;" tabindex="0" role="button" aria-pressed="false" aria-label="Màu burgundy" data-label="Burgundy"></div>
+            <div class="ts-color-swatch" style="background:#e8ded0;" tabindex="0" role="button" aria-pressed="false" aria-label="Màu kem" data-label="Kem"></div>
+          </div>
+        </div>
+
+        <div class="ts-pd-option-block">
+          <div class="ts-pd-option-label">Kích thước <span class="val" id="ts-pd-size-val">M</span></div>
+          <div class="ts-swatch-row" id="ts-pd-size-row">
+            <div class="ts-size-swatch" tabindex="0" role="button" aria-pressed="false" data-label="S">S</div>
+            <div class="ts-size-swatch active" tabindex="0" role="button" aria-pressed="true" data-label="M">M</div>
+            <div class="ts-size-swatch" tabindex="0" role="button" aria-pressed="false" data-label="L">L</div>
+          </div>
+        </div>
+
+        <div class="ts-pd-option-block">
+          <div class="ts-pd-option-label">Số lượng</div>
+          <div class="ts-qty-stepper">
+            <button type="button" onclick="stepQty(this, -1)" aria-label="Giảm số lượng">−</button>
+            <label for="ts-qty-input" class="visually-hidden">Số lượng sản phẩm</label>
+            <input type="text" id="ts-qty-input" value="1" readonly>
+            <button type="button" onclick="stepQty(this, 1)" aria-label="Tăng số lượng">+</button>
+          </div>
+        </div>
+
+        <div class="ts-pd-actions">
+          <button type="button" class="ts-btn solid" onclick="addToCart(this)">Thêm vào giỏ hàng</button>
+          <button type="button" class="ts-pd-wish-btn" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+        </div>
+
+        <ul class="ts-pd-features">
+          <li><i class="bi bi-check2"></i> Da bò thật nguyên miếng, thuộc theo tiêu chuẩn Ý</li>
+          <li><i class="bi bi-check2"></i> Bảo hành trọn đời — sửa chữa miễn phí</li>
+          <li><i class="bi bi-check2"></i> Giao hàng toàn quốc trong [2-4] ngày</li>
+          <li><i class="bi bi-check2"></i> Đổi trả miễn phí trong 30 ngày</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div style="margin-top:80px;">
+      <div class="ts-tabs-nav" role="tablist" aria-label="Thông tin sản phẩm">
+        <button class="ts-tab-btn" id="tabbtn-desc" role="tab" aria-selected="true" aria-controls="tab-desc" onclick="switchTab('desc')">Mô tả</button>
+        <button class="ts-tab-btn" id="tabbtn-spec" role="tab" aria-selected="false" aria-controls="tab-spec" onclick="switchTab('spec')">Thông số</button>
+        <button class="ts-tab-btn" id="tabbtn-review" role="tab" aria-selected="false" aria-controls="tab-review" onclick="switchTab('review')">Đánh giá (128)</button>
+      </div>
+
+      <div class="ts-tab-panel active" id="tab-desc" role="tabpanel" aria-labelledby="tabbtn-desc">
+        <p>[Signature Tote được chế tác thủ công 100% từ da bò thật, trải qua quy trình thuộc da chuẩn Ý giúp bề mặt da mềm mại nhưng vẫn giữ được độ bền cao theo thời gian. Thiết kế tối giản với đường nét thanh lịch, phù hợp cho môi trường công sở lẫn các dịp dạo phố cuối tuần. Bên trong túi có ngăn chia hợp lý, đủ chứa laptop 13 inch, ví, sổ tay và các vật dụng cá nhân khác.]</p>
+        <p>[Mỗi chiếc túi mất trung bình 18 giờ để hoàn thiện bởi nghệ nhân lành nghề — từ khâu chọn da, cắt, may tay đến đánh bóng cạnh da thủ công.]</p>
+      </div>
+
+      <div class="ts-tab-panel" id="tab-spec" role="tabpanel" aria-labelledby="tabbtn-spec" hidden>
+        <table class="ts-spec-table">
+          <tr><td>Chất liệu</td><td>[Da bò thật nguyên miếng, thuộc da chuẩn Ý]</td></tr>
+          <tr><td>Kích thước</td><td>[34cm x 26cm x 14cm]</td></tr>
+          <tr><td>Trọng lượng</td><td>[820g]</td></tr>
+          <tr><td>Khóa kim loại</td><td>[Hợp kim mạ vàng 18K, chống oxy hóa]</td></tr>
+          <tr><td>Lót trong</td><td>[Vải canvas cao cấp chống thấm]</td></tr>
+          <tr><td>Bảo hành</td><td>[Trọn đời sản phẩm]</td></tr>
+          <tr><td>Xuất xứ</td><td>[Sản xuất tại Việt Nam]</td></tr>
+        </table>
+      </div>
+
+      <div class="ts-tab-panel" id="tab-review" role="tabpanel" aria-labelledby="tabbtn-review" hidden>
+        <div class="ts-review-item">
+          <div class="ts-review-head">
+            <strong>[Ngọc Anh]</strong>
+            <span class="ts-review-date">[12/06/2026]</span>
+          </div>
+          <div class="stars" style="margin-bottom:8px;">★★★★★</div>
+          <p>[Chất da rất đẹp, mùi da thật rõ ràng. Đóng gói sang trọng, giao hàng nhanh.]</p>
+        </div>
+        <div class="ts-review-item">
+          <div class="ts-review-head">
+            <strong>[Minh Quân]</strong>
+            <span class="ts-review-date">[03/06/2026]</span>
+          </div>
+          <div class="stars" style="margin-bottom:8px;">★★★★★</div>
+          <p>[Form túi đẹp, dùng đi làm rất hợp. Sẽ ủng hộ shop thêm lần nữa.]</p>
+        </div>
+        <div class="ts-review-item" style="border-bottom:none;">
+          <div class="ts-review-head">
+            <strong>[Thu Hà]</strong>
+            <span class="ts-review-date">[28/05/2026]</span>
+          </div>
+          <div class="stars" style="margin-bottom:8px;">★★★★☆</div>
+          <p>[Sản phẩm tốt, tuy nhiên thời gian giao hàng hơi lâu so với dự kiến.]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related products -->
+    <div style="margin-top:96px;">
+      <div class="ts-sec-head" data-reveal>
+        <div class="ts-eyebrow">Có thể bạn thích</div>
+        <h2 class="ts-sec-title">Sản phẩm <em>liên quan</em></h2>
+      </div>
+      <div class="ts-products-grid">
+        <a href="chi-tiet-san-pham.html" class="ts-card" data-reveal>
+          <div class="ts-card-media">
+            <span class="ts-card-tag sale">-20%</span>
+            <button class="ts-card-wish" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&auto=format&fit=crop&q=80" alt="Túi đeo chéo da bò Heritage Crossbody" loading="lazy">
+          </div>
+          <span class="ts-card-cat">Túi đeo chéo</span>
+          <h3 class="ts-card-name">Heritage Crossbody</h3>
+          <div class="ts-card-price">[1.990.000đ] <del>[2.490.000đ]</del></div>
+        </a>
+        <a href="chi-tiet-san-pham.html" class="ts-card" data-reveal>
+          <div class="ts-card-media">
+            <button class="ts-card-wish" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?w=600&auto=format&fit=crop&q=80" alt="Ví da nữ cầm tay Noir Clutch" loading="lazy">
+          </div>
+          <span class="ts-card-cat">Ví &amp; Clutch</span>
+          <h3 class="ts-card-name">Noir Clutch</h3>
+          <div class="ts-card-price">[1.290.000đ]</div>
+        </a>
+        <a href="chi-tiet-san-pham.html" class="ts-card" data-reveal>
+          <div class="ts-card-media">
+            <span class="ts-card-tag">Mới về</span>
+            <button class="ts-card-wish" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&auto=format&fit=crop&q=80" alt="Túi xách vai da Atelier Shoulder Bag" loading="lazy">
+          </div>
+          <span class="ts-card-cat">Túi đeo vai</span>
+          <h3 class="ts-card-name">Atelier Shoulder Bag</h3>
+          <div class="ts-card-price">[3.190.000đ]</div>
+        </a>
+        <a href="chi-tiet-san-pham.html" class="ts-card" data-reveal>
+          <div class="ts-card-media">
+            <button class="ts-card-wish" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=600&auto=format&fit=crop&q=80" alt="Túi xách tay da đen Minimal Satchel" loading="lazy">
+          </div>
+          <span class="ts-card-cat">Túi xách tay</span>
+          <h3 class="ts-card-name">Minimal Satchel</h3>
+          <div class="ts-card-price">[2.550.000đ]</div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="ts-footer">
+  <div class="ts-container">
+    <div class="ts-footer-grid">
+      <div class="ts-footer-brand">
+        <a href="index.html" class="ts-logo">Maison<span>Cuir</span></a>
+        <p>[Thương hiệu túi da thủ công cao cấp, chế tác từ da thật với hơn 15 năm kinh nghiệm — tôn vinh nghệ thuật thủ công truyền thống.]</p>
+        <div class="ts-footer-social">
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="ts-footer-col">
+        <h3>Danh mục</h3>
+        <ul>
+          <li><a href="san-pham.html">Túi xách tay</a></li>
+          <li><a href="san-pham.html">Túi đeo chéo</a></li>
+          <li><a href="san-pham.html">Ví &amp; Clutch</a></li>
+          <li><a href="san-pham.html">Phụ kiện da</a></li>
+        </ul>
+      </div>
+      <div class="ts-footer-col">
+        <h3>Hỗ trợ</h3>
+        <ul>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="#">Chính sách bảo hành</a></li>
+          <li><a href="#">Hướng dẫn bảo quản</a></li>
+          <li><a href="#">Vận chuyển &amp; Đổi trả</a></li>
+        </ul>
+      </div>
+      <div class="ts-footer-col">
+        <h3>Liên hệ</h3>
+        <ul>
+          <li><a href="tel:+84900000000">[0900 000 000]</a></li>
+          <li><a href="mailto:hello@maisoncuir.vn">[hello@maisoncuir.vn]</a></li>
+          <li><span>[Số ..., Đường ..., Quận ..., TP.HCM]</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ts-footer-bottom">
+      <div class="ts-footer-pay">
+        <span>Visa</span><span>Mastercard</span><span>Momo</span><span>COD</span>
+      </div>
+      <div class="ts-footer-copy">© 2026 [Maison Cuir]. Toàn bộ bản quyền được bảo lưu.</div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/0900000000" target="_blank" rel="noopener noreferrer" class="ts-zalo-float" aria-label="Chat Zalo với chúng tôi">
+  <i class="bi bi-chat-dots-fill"></i>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const burger = document.getElementById('ts-burger');
+  const navMob = document.getElementById('ts-nav-mob');
+  const navScrim = document.getElementById('ts-nav-scrim');
+  const navMobClose = document.getElementById('ts-nav-mob-close');
+
+  function openMobNav() {
+    navMob.classList.add('open');
+    navScrim.classList.add('open');
+    burger.classList.add('open');
+    burger.setAttribute('aria-expanded', 'true');
+    navMob.toggleAttribute('inert', false);
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobNav() {
+    navMob.classList.remove('open');
+    navScrim.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    navMob.setAttribute('inert', '');
+    document.body.style.overflow = '';
+  }
+
+  burger.addEventListener('click', () => {
+    if (navMob.classList.contains('open')) {
+      closeMobNav();
+    } else {
+      openMobNav();
+    }
+  });
+
+  navMobClose.addEventListener('click', closeMobNav);
+  navScrim.addEventListener('click', closeMobNav);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navMob.classList.contains('open')) {
+      closeMobNav();
+    }
+  });
+
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+  revealEls.forEach((el) => revealObserver.observe(el));
+
+  /* Gallery */
+  function switchGallery(el, src) {
+    document.getElementById('ts-pd-main-img-el').src = src;
+    document.querySelectorAll('.ts-pd-thumb').forEach((t) => t.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  /* Shared keyboard-accessible swatch helper */
+  function makeSwatchKeyboardAccessible(sw, onActivate) {
+    sw.addEventListener('click', () => onActivate(sw));
+    sw.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        onActivate(sw);
+      }
+    });
+  }
+
+  /* Product detail swatches — single-select (exactly one variant to buy) */
+  function selectSingleSwatch(sw, groupSelector, valueTargetId) {
+    const group = sw.parentElement.querySelectorAll(groupSelector);
+    group.forEach((s) => {
+      s.classList.remove('active');
+      s.setAttribute('aria-pressed', 'false');
+    });
+    sw.classList.add('active');
+    sw.setAttribute('aria-pressed', 'true');
+    const label = sw.getAttribute('data-label');
+    if (label && valueTargetId) {
+      document.getElementById(valueTargetId).textContent = label;
+    }
+  }
+
+  document.querySelectorAll('#ts-pd-color-row .ts-color-swatch').forEach((sw) => {
+    makeSwatchKeyboardAccessible(sw, (el) => selectSingleSwatch(el, '.ts-color-swatch', 'ts-pd-color-val'));
+  });
+  document.querySelectorAll('#ts-pd-size-row .ts-size-swatch').forEach((sw) => {
+    makeSwatchKeyboardAccessible(sw, (el) => selectSingleSwatch(el, '.ts-size-swatch', 'ts-pd-size-val'));
+  });
+
+  /* Quantity stepper — clamped 1-10 */
+  function stepQty(btn, delta) {
+    const input = document.getElementById('ts-qty-input');
+    let value = parseInt(input.value, 10) || 1;
+    value = Math.min(10, Math.max(1, value + delta));
+    input.value = value;
+  }
+
+  /* Add to cart — passes `this` directly instead of re-querying */
+  function addToCart(btn) {
+    const original = btn.textContent;
+    btn.textContent = 'Đã thêm vào giỏ ✓';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.disabled = false;
+    }, 1600);
+  }
+
+  /* ARIA tabs */
+  function switchTab(name) {
+    const tabs = ['desc', 'spec', 'review'];
+    tabs.forEach((t) => {
+      const btn = document.getElementById('tabbtn-' + t);
+      const panel = document.getElementById('tab-' + t);
+      const isActive = t === name;
+      btn.setAttribute('aria-selected', String(isActive));
+      panel.classList.toggle('active', isActive);
+      panel.hidden = !isActive;
+    });
+  }
+</script>
+</body>
+</html>

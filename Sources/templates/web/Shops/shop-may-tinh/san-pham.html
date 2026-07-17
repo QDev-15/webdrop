@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sản Phẩm — [Tên Shop]</title>
+  <meta name="description" content="[Khám phá đầy đủ laptop, PC gaming, linh kiện và phụ kiện máy tính chính hãng]">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="mt-blob mt-blob-a" aria-hidden="true"></div>
+<div class="mt-blob mt-blob-b" aria-hidden="true"></div>
+<div class="mt-blob mt-blob-c" aria-hidden="true"></div>
+
+<nav id="mt-nav-mob" role="navigation" aria-label="Menu di động" inert>
+  <a href="index.html">Trang chủ</a>
+  <a href="san-pham.html" class="active">Sản phẩm</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="gio-hang.html"><i class="bi bi-bag me-2"></i>Giỏ hàng</a>
+</nav>
+
+<header id="mt-nav" class="scrolled" role="banner">
+  <div class="mt-container mt-nav-inner">
+    <a href="index.html" class="mt-logo">[Nova<span>.</span>Tech]</a>
+    <nav class="mt-nav-links" role="navigation" aria-label="Menu chính">
+      <a href="index.html">Trang chủ</a>
+      <a href="san-pham.html" class="active">Sản phẩm</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+    <div class="mt-nav-right">
+      <a href="gio-hang.html" class="mt-nav-cart" aria-label="Giỏ hàng"><i class="bi bi-bag"></i><span class="mt-cart-count">2</span></a>
+      <a href="san-pham.html" class="mt-nav-cta">Mua ngay</a>
+      <button id="mt-burger" aria-label="Mở menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mt-page-header">
+  <div class="mt-container">
+    <nav class="mt-breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Trang chủ</a><span><i class="bi bi-chevron-right" style="font-size:10px"></i></span><span>Sản phẩm</span>
+    </nav>
+    <h1 class="mt-page-title">Tất cả sản phẩm</h1>
+    <p class="mt-page-count">Hiển thị <strong>1–12</strong> trong số <strong>[320]</strong> sản phẩm</p>
+  </div>
+</div>
+
+<div class="mt-tab-bar">
+  <div class="mt-container mt-tab-bar-inner">
+    <button class="mt-tab-btn active" onclick="filterCat(this,'all')">Tất cả</button>
+    <button class="mt-tab-btn" onclick="filterCat(this,'laptop')">Laptop</button>
+    <button class="mt-tab-btn" onclick="filterCat(this,'pc')">PC Desktop</button>
+    <button class="mt-tab-btn" onclick="filterCat(this,'linhkien')">Linh kiện</button>
+    <button class="mt-tab-btn" onclick="filterCat(this,'gaming')">Gaming Gear</button>
+    <button class="mt-tab-btn" onclick="filterCat(this,'sale')">Đang giảm giá</button>
+  </div>
+</div>
+
+<main>
+  <div class="mt-container">
+    <div class="mt-shop-layout">
+      <aside class="mt-filter-sidebar">
+        <div class="mt-filter-block">
+          <div class="mt-filter-title">Mức giá</div>
+          <div class="mt-filter-price-range">
+            <input type="number" id="price-min" value="0" min="0" aria-label="Giá thấp nhất">
+            <span>—</span>
+            <input type="number" id="price-max" value="30000000" min="0" aria-label="Giá cao nhất">
+            <span style="font-size:12px; color:var(--text-3)">đ</span>
+          </div>
+        </div>
+        <div class="mt-filter-block">
+          <div class="mt-filter-title">Danh mục</div>
+          <div class="mt-filter-options">
+            <label class="mt-filter-opt"><input type="checkbox" checked> Laptop ([68])</label>
+            <label class="mt-filter-opt"><input type="checkbox"> PC Desktop ([42])</label>
+            <label class="mt-filter-opt"><input type="checkbox"> Linh kiện ([120])</label>
+            <label class="mt-filter-opt"><input type="checkbox"> Gaming Gear ([54])</label>
+            <label class="mt-filter-opt"><input type="checkbox"> Màn hình &amp; Phụ kiện ([36])</label>
+          </div>
+        </div>
+        <div class="mt-filter-block">
+          <div class="mt-filter-title">Cấu hình RAM / Ổ cứng</div>
+          <div class="mt-config-swatches">
+            <div class="mt-config-swatch">8GB</div>
+            <div class="mt-config-swatch selected">16GB</div>
+            <div class="mt-config-swatch">32GB</div>
+            <div class="mt-config-swatch">512GB</div>
+            <div class="mt-config-swatch">1TB</div>
+          </div>
+        </div>
+        <div class="mt-filter-block">
+          <div class="mt-filter-title">Màu sắc / Vỏ case</div>
+          <div class="mt-color-swatches">
+            <div class="mt-color-swatch selected" style="background:#0f1029;" title="Đen"></div>
+            <div class="mt-color-swatch" style="background:#e8e9f2;" title="Trắng bạc"></div>
+            <div class="mt-color-swatch" style="background:#6d5ef8;" title="Indigo"></div>
+            <div class="mt-color-swatch" style="background:#22d3ee;" title="Cyan"></div>
+            <div class="mt-color-swatch" style="background:#9295b3;" title="Xám titan"></div>
+          </div>
+        </div>
+        <div class="mt-filter-block">
+          <div class="mt-filter-title">Tình trạng</div>
+          <div class="mt-filter-options">
+            <label class="mt-filter-opt"><input type="checkbox" checked> Còn hàng</label>
+            <label class="mt-filter-opt"><input type="checkbox"> Đang giảm giá</label>
+            <label class="mt-filter-opt"><input type="checkbox"> Hàng mới về</label>
+          </div>
+        </div>
+        <button class="mt-btn mt-btn-outline w-100" style="margin-top:8px; justify-content:center;">Áp dụng bộ lọc</button>
+        <button class="mt-btn mt-btn-ghost w-100" style="margin-top:8px; justify-content:center;">Xóa bộ lọc</button>
+      </aside>
+
+      <div>
+        <div class="mt-shop-top">
+          <div style="font-size:14px; color:var(--text-2);">Tìm thấy <strong style="color:var(--text)">[320]</strong> sản phẩm</div>
+          <div class="d-flex align-items-center gap-2">
+            <label for="sort-select" style="font-size:14px; color:var(--text-2);">Sắp xếp:</label>
+            <select id="sort-select" class="mt-sort-select">
+              <option>Nổi bật nhất</option>
+              <option>Mới nhất</option>
+              <option>Giá: Thấp đến cao</option>
+              <option>Giá: Cao đến thấp</option>
+              <option>Đánh giá cao nhất</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mt-prod-grid">
+          <div class="mt-prod-card" data-reveal>
+            <div class="mt-prod-thumb"><img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&auto=format&fit=crop&q=80" alt="[PC Gaming Core i7 RTX 4060]" loading="lazy"><div class="mt-prod-badge">Bán chạy</div><div class="mt-prod-actions"><button class="mt-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button><a href="chi-tiet-san-pham.html" class="mt-prod-action-btn" aria-label="Xem chi tiết"><i class="bi bi-eye"></i></a></div></div>
+            <div class="mt-prod-info"><div class="mt-prod-cat">PC Gaming · 16GB / 512GB</div><h3 class="mt-prod-name"><a href="chi-tiet-san-pham.html">[PC Gaming Core i7 RTX 4060]</a></h3><div class="mt-prod-footer"><div><span class="mt-prod-price-new">[24.990.000]đ</span><span class="mt-prod-price-old">[27.990.000]đ</span></div><button class="mt-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-bag-plus"></i></button></div></div>
+          </div>
+          <div class="mt-prod-card" data-reveal data-delay="1">
+            <div class="mt-prod-thumb"><img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&auto=format&fit=crop&q=80" alt="[Laptop Mỏng Nhẹ UltraSlim 14]" loading="lazy"><div class="mt-prod-badge new">Mới</div><div class="mt-prod-actions"><button class="mt-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button><a href="chi-tiet-san-pham.html" class="mt-prod-action-btn" aria-label="Xem chi tiết"><i class="bi bi-eye"></i></a></div></div>
+            <div class="mt-prod-info"><div class="mt-prod-cat">Laptop · 16GB / 1TB</div><h3 class="mt-prod-name"><a href="chi-tiet-san-pham.html">[Laptop Mỏng Nhẹ UltraSlim 14]</a></h3><div class="mt-prod-footer"><span class="mt-prod-price-new">[18.490.000]đ</span><button class="mt-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-bag-plus"></i></button></div></div>
+          </div>
+          <div class="mt-prod-card" data-reveal data-delay="2">
+            <div class="mt-prod-thumb"><img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=500&auto=format&fit=crop&q=80" alt="[Màn Hình Gaming 27 QHD 165Hz]" loading="lazy"><div class="mt-prod-actions"><button class="mt-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button><a href="chi-tiet-san-pham.html" class="mt-prod-action-btn" aria-label="Xem chi tiết"><i class="bi bi-eye"></i></a></div></div>
+            <div class="mt-prod-info"><div class="mt-prod-cat">Màn hình · 27" 165Hz</div><h3 class="mt-prod-name"><a href="chi-tiet-san-pham.html">[Màn Hình Gaming 27" QHD 165Hz]</a></h3><div class="mt-prod-footer"><span class="mt-prod-price-new">[6.290.000]đ</span><button class="mt-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-bag-plus"></i></button></div></div>
+          </div>
+          <div class="mt-prod-card" data-reveal>
+            <div class="mt-prod-thumb"><img src="https://images.unsplash.com/photo-1602080858428-57174f9431cf?w=500&auto=format&fit=crop&q=80" alt="[Bàn Phím Cơ RGB Switch Đỏ]" loading="lazy"><div class="mt-prod-badge sale">-15%</div><div class="mt-prod-actions"><button class="mt-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button><a href="chi-tiet-san-pham.html" class="mt-prod-action-btn" aria-label="Xem chi tiết"><i class="bi bi-eye"></i></a></div></div>
+            <div class="mt-prod-info"><div class="mt-prod-cat">Gaming Gear</div><h3 class="mt-prod-name"><a href="chi-tiet-san-pham.html">[Bàn Phím Cơ RGB Switch Đỏ]</a></h3><div class="mt-prod-footer"><span class="mt-prod-price-new">[1.190.000]đ</span><button class="mt-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-bag-plus"></i></button></div></div>
+          </div>
+          <div class="mt-prod-card" data-reveal data-delay="1">
+            <div class="mt-prod-thumb"><img src="https://images.unsplash.com/photo-1625842268584-8f3296236761?w=500&auto=format&fit=crop&q=80" alt="[Card Đồ Họa RTX 4070 12GB]" loading="lazy"><div class="mt-prod-badge new">Mới</div><div class="mt-prod-actions"><button class="mt-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button><a href="chi-tiet-san-pham.html" class="mt-prod-action-btn" aria-label="Xem chi tiết"><i class="bi bi-eye"></i></a></div></div>
+            <div class="mt-prod-info"><div class="mt-prod-cat">Linh kiện · VGA 12GB</div><h3 class="mt-prod-name"><a href="chi-tiet-san-pham.html">[Card Đồ Họa RTX 4070 12GB]</a></h3><div class="mt-prod-footer"><span class="mt-prod-price-new">[15.990.000]đ</span><button class="mt-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-bag-plus"></i></button></div></div>
+          </div>
+          <div class="mt-prod-card" data-reveal data-delay="2">
+            <div class="mt-prod-thumb"><img src="https://images.unsplash.com/photo-1600861195091-690c92fdf20f?w=500&auto=format&fit=crop&q=80" alt="[Laptop Gaming RGB Core i9]" loading="lazy"><div class="mt-prod-badge new">Mới</div><div class="mt-prod-actions"><button class="mt-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button><a href="chi-tiet-san-pham.html" class="mt-prod-action-btn" aria-label="Xem chi tiết"><i class="bi bi-eye"></i></a></div></div>
+            <div class="mt-prod-info"><div class="mt-prod-cat">Laptop Gaming · 32GB / 1TB</div><h3 class="mt-prod-name"><a href="chi-tiet-san-pham.html">[Laptop Gaming RGB Core i9]</a></h3><div class="mt-prod-footer"><span class="mt-prod-price-new">[38.990.000]đ</span><button class="mt-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-bag-plus"></i></button></div></div>
+          </div>
+          <div class="mt-prod-card" data-reveal>
+            <div class="mt-prod-thumb"><img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=500&auto=format&fit=crop&q=80" alt="[Bộ Setup Bàn Gaming RGB]" loading="lazy"><div class="mt-prod-actions"><button class="mt-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button><a href="chi-tiet-san-pham.html" class="mt-prod-action-btn" aria-label="Xem chi tiết"><i class="bi bi-eye"></i></a></div></div>
+            <div class="mt-prod-info"><div class="mt-prod-cat">Gaming Gear</div><h3 class="mt-prod-name"><a href="chi-tiet-san-pham.html">[Bộ Setup Bàn Gaming RGB]</a></h3><div class="mt-prod-footer"><span class="mt-prod-price-new">[3.490.000]đ</span><button class="mt-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-bag-plus"></i></button></div></div>
+          </div>
+          <div class="mt-prod-card" data-reveal data-delay="1">
+            <div class="mt-prod-thumb"><img src="https://images.unsplash.com/photo-1587614382346-4ec70e388b6d?w=500&auto=format&fit=crop&q=80" alt="[Bo Mạch Chủ Chipset B760]" loading="lazy"><div class="mt-prod-actions"><button class="mt-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button><a href="chi-tiet-san-pham.html" class="mt-prod-action-btn" aria-label="Xem chi tiết"><i class="bi bi-eye"></i></a></div></div>
+            <div class="mt-prod-info"><div class="mt-prod-cat">Linh kiện · Mainboard</div><h3 class="mt-prod-name"><a href="chi-tiet-san-pham.html">[Bo Mạch Chủ Chipset B760]</a></h3><div class="mt-prod-footer"><span class="mt-prod-price-new">[3.190.000]đ</span><button class="mt-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-bag-plus"></i></button></div></div>
+          </div>
+          <div class="mt-prod-card" data-reveal data-delay="2">
+            <div class="mt-prod-thumb"><img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=500&auto=format&fit=crop&q=80" alt="[Laptop Văn Phòng Core i5]" loading="lazy"><div class="mt-prod-badge sale">-10%</div><div class="mt-prod-actions"><button class="mt-prod-action-btn" aria-label="Yêu thích"><i class="bi bi-heart"></i></button><a href="chi-tiet-san-pham.html" class="mt-prod-action-btn" aria-label="Xem chi tiết"><i class="bi bi-eye"></i></a></div></div>
+            <div class="mt-prod-info"><div class="mt-prod-cat">Laptop · 8GB / 512GB</div><h3 class="mt-prod-name"><a href="chi-tiet-san-pham.html">[Laptop Văn Phòng Core i5]</a></h3><div class="mt-prod-footer"><span class="mt-prod-price-new">[12.490.000]đ</span><button class="mt-add-cart" aria-label="Thêm vào giỏ"><i class="bi bi-bag-plus"></i></button></div></div>
+          </div>
+        </div>
+
+        <nav class="mt-pagination" aria-label="Phân trang">
+          <a href="#" class="mt-page-btn" aria-label="Trang trước"><i class="bi bi-chevron-left"></i></a>
+          <a href="#" class="mt-page-btn active" aria-current="page">1</a>
+          <a href="#" class="mt-page-btn">2</a>
+          <a href="#" class="mt-page-btn">3</a>
+          <span class="mt-page-btn" style="pointer-events:none; border:none; color:var(--text-3)">…</span>
+          <a href="#" class="mt-page-btn">[27]</a>
+          <a href="#" class="mt-page-btn" aria-label="Trang tiếp"><i class="bi bi-chevron-right"></i></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer id="mt-footer" role="contentinfo">
+  <div class="mt-container">
+    <div class="mt-footer-grid">
+      <div class="mt-footer-brand">
+        <a href="index.html" class="mt-logo">[Nova<span>.</span>Tech]</a>
+        <p>[Cửa hàng máy tính uy tín — laptop, PC gaming, linh kiện chính hãng.]</p>
+        <div class="mt-footer-social">
+          <a href="https://www.facebook.com/[fanpage]" class="mt-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/[account]" class="mt-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.youtube.com/@[account]" class="mt-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          <a href="https://zalo.me/[phone]" class="mt-soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Zalo"><i class="bi bi-chat-dots"></i></a>
+        </div>
+      </div>
+      <div class="mt-footer-col"><h4>Sản phẩm</h4><ul><li><a href="san-pham.html">Tất cả sản phẩm</a></li><li><a href="san-pham.html">Laptop</a></li><li><a href="san-pham.html">Sản phẩm mới</a></li><li><a href="san-pham.html">Đang giảm giá</a></li></ul></div>
+      <div class="mt-footer-col"><h4>Hỗ trợ</h4><ul><li><a href="lien-he.html">Liên hệ</a></li><li><a href="gio-hang.html">Theo dõi đơn hàng</a></li><li><a href="lien-he.html">Chính sách bảo hành</a></li><li><a href="lien-he.html">FAQ</a></li></ul></div>
+    </div>
+    <div class="mt-footer-bottom">
+      <p>&copy; 2026 [Tên Shop]. Tất cả quyền được bảo lưu.</p>
+      <div class="mt-footer-pay"><span class="mt-pay-badge">VISA</span><span class="mt-pay-badge">MasterCard</span><span class="mt-pay-badge">MoMo</span><span class="mt-pay-badge">ZaloPay</span><span class="mt-pay-badge">COD</span></div>
+    </div>
+  </div>
+</footer>
+
+<div class="mt-zalo-float" aria-label="Chat Zalo">
+  <div class="mt-zalo-tooltip">Chat Zalo</div>
+  <a href="https://zalo.me/[0900000000]" class="mt-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo"><i class="bi bi-chat-fill"></i></a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }});
+}, { threshold: .08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+const navEl = document.getElementById('mt-nav');
+window.addEventListener('scroll', () => {
+  navEl.classList.toggle('scrolled', window.scrollY > 80);
+}, { passive: true });
+
+const burger = document.getElementById('mt-burger');
+const mob    = document.getElementById('mt-nav-mob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const open = mob.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    mob.toggleAttribute('inert', !open);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open'); burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      mob.setAttribute('inert', '');
+    }
+  });
+}
+
+function filterCat(btn, cat) {
+  document.querySelectorAll('.mt-tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function makeSwatchKeyboardAccessible(sw, onActivate) {
+  sw.setAttribute('tabindex', '0');
+  sw.setAttribute('role', 'button');
+  sw.addEventListener('click', onActivate);
+  sw.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onActivate();
+    }
+  });
+}
+
+/* Filter sidebar swatches — multi-select (toggle) for both RAM/storage and color/finish */
+document.querySelectorAll('.mt-config-swatch').forEach(sw => {
+  makeSwatchKeyboardAccessible(sw, () => {
+    const next = !sw.classList.contains('selected');
+    sw.classList.toggle('selected', next);
+    sw.setAttribute('aria-pressed', String(next));
+  });
+});
+document.querySelectorAll('.mt-color-swatch').forEach(sw => {
+  makeSwatchKeyboardAccessible(sw, () => {
+    const next = !sw.classList.contains('selected');
+    sw.classList.toggle('selected', next);
+    sw.setAttribute('aria-pressed', String(next));
+  });
+});
+</script>
+</body>
+</html>
