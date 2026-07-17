@@ -36,10 +36,10 @@ Glob: Sources/templates/web/*/assets/css/style.css
 - ❌ Mọi section trên trang đều dùng cùng một bố cục grid
 
 ### Bắt buộc
-- ✅ Viết CSS từ đầu cho từng template — không dùng template CSS mẫu có sẵn
-- ✅ Mỗi template có **Design Identity Token** riêng (xem mục bên dưới)
-- ✅ Chứng minh sự khác biệt ở ít nhất 6 điểm: nav / hero / typography / màu / layout sections / components
-- ✅ Mỗi template có ít nhất 5 item menu khác nhau tương ứng với ít nhất 5 page khác nhau
+1. Viết CSS từ đầu cho từng template — không dùng template CSS mẫu có sẵn
+2. Mỗi template có **Design Identity Token** riêng (xem mục bên dưới)
+3. Chứng minh sự khác biệt ở ít nhất 6 điểm: nav / hero / typography / màu / layout sections / components
+4. Mỗi template có ít nhất 5 item menu khác nhau (Trang chủ, Giới thiệu | Về chúng tôi, liên hệ, chính sách bảo mật, điều khoản) tương ứng với ít nhất 5 page khác nhau, tùy từng shop mà add thêm các menu khác.
 ---
 
 ## Bước 1 — Kiểm tra Bootstrap & Chọn Design Identity

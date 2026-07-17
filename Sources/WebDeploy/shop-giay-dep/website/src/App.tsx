@@ -10,6 +10,8 @@ import ProductDetailPage from './pages/ProductDetailPage'
 import CartPage from './pages/CartPage'
 import CheckoutPage from './pages/CheckoutPage'
 import ContactPage from './pages/ContactPage'
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
+import TermsPage from './pages/TermsPage'
 
 function ZaloFloat() {
   const { settings } = useSite()
@@ -73,6 +75,8 @@ function AppShell() {
         <Route path="/gio-hang" element={<CartPage />} />
         <Route path="/thanh-toan" element={<CheckoutPage />} />
         <Route path="/lien-he" element={<ContactPage />} />
+        <Route path="/chinh-sach-bao-mat" element={<PrivacyPolicyPage />} />
+        <Route path="/dieu-khoan" element={<TermsPage />} />
       </Routes>
       <Footer />
       <ZaloFloat />
