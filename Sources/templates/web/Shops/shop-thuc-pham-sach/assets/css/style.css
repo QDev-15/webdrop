@@ -1331,6 +1331,83 @@ input, textarea, select { font-family: var(--sans); }
 .tp-faq-item.open .tp-faq-a { max-height: 240px; padding-bottom: 20px; }
 
 /* ══════════════════════════════════════════════════════════════════
+   PROMOTIONS — Promo Cards (khuyen-mai.html)
+   ══════════════════════════════════════════════════════════════════ */
+.tp-promo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.tp-promo-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.tp-promo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 44px rgba(22,36,28,.09);
+  border-color: transparent;
+}
+.tp-promo-media {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: var(--accent-light);
+}
+.tp-promo-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .45s ease;
+}
+.tp-promo-card:hover .tp-promo-media img { transform: scale(1.06); }
+.tp-promo-badge {
+  position: absolute;
+  top: 14px; left: 14px;
+  background: var(--sale);
+  color: #fff;
+  padding: 7px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  z-index: 2;
+}
+.tp-promo-body { padding: 24px 24px 26px; }
+.tp-promo-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--amber-h);
+  margin-bottom: 8px;
+}
+.tp-promo-title {
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.tp-promo-desc {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+.tp-promo-meta {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  color: var(--text-3);
+  margin-bottom: 18px;
+}
+.tp-promo-meta i { color: var(--accent); }
+
+/* ══════════════════════════════════════════════════════════════════
    RESPONSIVE
    ══════════════════════════════════════════════════════════════════ */
 @media (max-width: 1200px) {

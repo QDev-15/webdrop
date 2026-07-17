@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bộ Sưu Tập — [Tên Shop]</title>
+  <meta name="description" content="[Khám phá các bộ sưu tập theo mùa — từ đường phố năng động đến thanh lịch công sở]">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ── MOBILE NAV ── -->
+<div id="stMobNav" class="st-mob-nav" aria-hidden="true" role="dialog" aria-label="Menu di động">
+  <ul>
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="san-pham.html">Sản phẩm</a></li>
+    <li><a href="bo-suu-tap.html" class="st-active">Bộ Sưu Tập</a></li>
+    <li><a href="ve-chung-toi.html">Về Chúng Tôi</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+  <div class="st-mob-actions">
+    <a href="gio-hang.html" class="st-btn st-btn-outline-white">
+      <i class="bi bi-bag"></i> Giỏ hàng (3)
+    </a>
+  </div>
+</div>
+
+<!-- ══ NAV (scrolled) ══ -->
+<header id="stNav" class="st-nav st-scrolled" role="banner">
+  <div class="st-container st-nav-inner">
+    <a href="index.html" class="st-logo">[Tên<span>.</span>Shop]</a>
+    <nav class="st-nav-links" aria-label="Menu chính">
+      <a href="index.html">Trang chủ</a>
+      <a href="san-pham.html">Sản phẩm</a>
+      <a href="bo-suu-tap.html" class="st-active">Bộ Sưu Tập</a>
+      <a href="ve-chung-toi.html">Về Chúng Tôi</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+    <div class="st-nav-actions">
+      <a href="#" class="st-nav-icon" aria-label="Tìm kiếm"><i class="bi bi-search"></i></a>
+      <a href="gio-hang.html" class="st-nav-icon" aria-label="Giỏ hàng">
+        <i class="bi bi-bag"></i>
+        <span class="st-cart-badge">3</span>
+      </a>
+      <button id="stBurger" class="st-burger" aria-label="Mở menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ══ PAGE HERO ══ -->
+<section class="st-page-hero" aria-label="Tiêu đề trang">
+  <div class="st-container">
+    <nav class="st-breadcrumb mb-3" aria-label="Điều hướng">
+      <a href="index.html">Trang chủ</a>
+      <span class="st-breadcrumb-sep">/</span>
+      <span>Bộ sưu tập</span>
+    </nav>
+    <h1 class="st-page-title">Bộ Sưu Tập</h1>
+    <p style="color:rgba(255,255,255,.45);font-size:14px;font-weight:600;max-width:400px;margin-top:8px;">
+      [Mỗi bộ sưu tập kể một câu chuyện riêng — chọn phong cách phù hợp với bạn]
+    </p>
+  </div>
+</section>
+
+<!-- ══ COLLECTIONS — ALTERNATING-STRIPS ══ -->
+<section class="st-sec" aria-label="Danh sách bộ sưu tập">
+  <div class="st-container">
+    <div class="st-strip" data-reveal style="display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; padding-bottom:64px;">
+      <div style="border-radius:0; overflow:hidden; aspect-ratio:4/3;">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&auto=format&fit=crop&q=80" alt="[Bộ sưu tập Đường Phố — phong cách năng động]" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+      <div>
+        <div class="st-eyebrow">[Drop mới nhất]</div>
+        <h2 class="st-sec-title">Đường Phố<br><em>Năng Động</em></h2>
+        <p class="st-sec-sub" style="max-width:420px;">[Mô tả bộ sưu tập — chất liệu bền, form rộng, cá tính, phù hợp phong cách streetwear. Tối đa 3-4 câu.]</p>
+        <a href="san-pham.html" class="st-btn st-btn-primary" style="margin-top:20px;">Khám phá ngay <i class="bi bi-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="st-strip" data-reveal style="display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; padding-bottom:64px;">
+      <div style="order:2; border-radius:0; overflow:hidden; aspect-ratio:4/3;">
+        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80" alt="[Bộ sưu tập Công Sở — thanh lịch hiện đại]" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+      <div style="order:1;">
+        <div class="st-eyebrow">[Giới hạn số lượng]</div>
+        <h2 class="st-sec-title">Công Sở<br><em>Hiện Đại</em></h2>
+        <p class="st-sec-sub" style="max-width:420px;">[Mô tả bộ sưu tập — thiết kế tối giản, chất liệu cao cấp, phù hợp môi trường công sở năng động. Tối đa 3-4 câu.]</p>
+        <a href="san-pham.html" class="st-btn st-btn-primary" style="margin-top:20px;">Khám phá ngay <i class="bi bi-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="st-strip" data-reveal style="display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;">
+      <div style="border-radius:0; overflow:hidden; aspect-ratio:4/3;">
+        <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&auto=format&fit=crop&q=80" alt="[Bộ sưu tập Giới Hạn — thiết kế độc bản]" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+      <div>
+        <div class="st-eyebrow">[Sản xuất giới hạn]</div>
+        <h2 class="st-sec-title">Bộ Sưu Tập<br><em>Độc Bản</em></h2>
+        <p class="st-sec-sub" style="max-width:420px;">[Mô tả bộ sưu tập — số lượng giới hạn, thiết kế độc quyền, dành cho những ai yêu thích sự khác biệt.]</p>
+        <a href="san-pham.html" class="st-btn st-btn-primary" style="margin-top:20px;">Khám phá ngay <i class="bi bi-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="st-footer" aria-label="Footer">
+  <div class="st-container">
+    <div class="st-footer-grid">
+      <div>
+        <div class="st-footer-logo">[Tên<span>.</span>Shop]</div>
+        <p class="st-footer-desc">[Mô tả ngắn về thương hiệu và sứ mệnh của cửa hàng]</p>
+        <div class="st-footer-socials">
+          <a href="https://facebook.com/[username]" class="st-footer-social" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://instagram.com/[username]" class="st-footer-social" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://tiktok.com/@[username]" class="st-footer-social" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+          <a href="https://youtube.com/@[username]" class="st-footer-social" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="st-footer-col-title">Sản Phẩm</div>
+        <ul class="st-footer-links">
+          <li><a href="san-pham.html">Thời trang nữ</a></li>
+          <li><a href="san-pham.html">Thời trang nam</a></li>
+          <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+          <li><a href="san-pham.html">Phụ kiện</a></li>
+          <li><a href="san-pham.html">Giày dép</a></li>
+          <li><a href="san-pham.html">Sale</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="st-footer-col-title">Hỗ Trợ</div>
+        <ul class="st-footer-links">
+          <li><a href="ve-chung-toi.html">Về chúng tôi</a></li>
+          <li><a href="#">Chính sách đổi trả</a></li>
+          <li><a href="#">Chính sách vận chuyển</a></li>
+          <li><a href="#">Bảo mật thông tin</a></li>
+          <li><a href="#">Câu hỏi thường gặp</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="st-footer-col-title">Liên Hệ</div>
+        <div class="st-footer-contact-row">
+          <i class="bi bi-geo-alt"></i>
+          <span>[Địa chỉ cửa hàng — số nhà, đường, phường, quận, thành phố]</span>
+        </div>
+        <div class="st-footer-contact-row">
+          <i class="bi bi-telephone"></i>
+          <span>[0901 234 567]</span>
+        </div>
+        <div class="st-footer-contact-row">
+          <i class="bi bi-envelope"></i>
+          <span>[email@tenshop.vn]</span>
+        </div>
+        <div class="st-footer-contact-row">
+          <i class="bi bi-clock"></i>
+          <span>T2–T7: 8:00–21:00 | CN: 9:00–19:00</span>
+        </div>
+      </div>
+    </div>
+    <div class="st-footer-bottom">
+      <span>© 2025 [Tên Shop]. Bảo lưu mọi quyền.</span>
+      <div class="st-pay-badges">
+        <span class="st-pay-badge">VNPAY</span>
+        <span class="st-pay-badge">MoMo</span>
+        <span class="st-pay-badge">ZaloPay</span>
+        <span class="st-pay-badge">COD</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[so-dien-thoai]" class="st-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo">
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  const burger = document.getElementById('stBurger');
+  const mobNav = document.getElementById('stMobNav');
+  if (burger && mobNav) {
+    burger.addEventListener('click', () => {
+      const isOpen = mobNav.classList.toggle('open');
+      burger.classList.toggle('open', isOpen);
+      burger.setAttribute('aria-expanded', String(isOpen));
+      mobNav.setAttribute('aria-hidden', String(!isOpen));
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+  }
+
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+})();
+</script>
+</body>
+</html>
