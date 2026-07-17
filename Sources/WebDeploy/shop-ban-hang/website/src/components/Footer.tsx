@@ -47,6 +47,8 @@ export default function Footer() {
               <li><a href="#!">Chính sách đổi trả</a></li>
               <li><a href="#!">Chính sách vận chuyển</a></li>
               <li><a href="#!">Câu hỏi thường gặp</a></li>
+              <li><Link to="/chinh-sach-bao-mat">Chính sách bảo mật</Link></li>
+              <li><Link to="/dieu-khoan">Điều khoản sử dụng</Link></li>
             </ul>
           </div>
         </div>
