@@ -2473,7 +2473,7 @@ h6 {
 
 .ts-search-panel {
   position: fixed;
-  top: 0;
+  top: 84px;
   left: 0;
   right: 0;
   z-index: 999;
