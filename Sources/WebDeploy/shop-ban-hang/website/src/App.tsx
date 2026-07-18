@@ -10,6 +10,8 @@ import ProductDetailPage from './pages/ProductDetailPage'
 import CartPage from './pages/CartPage'
 import CheckoutPage from './pages/CheckoutPage'
 import ContactPage from './pages/ContactPage'
+import AboutPage from './pages/AboutPage'
+import PromotionsPage from './pages/PromotionsPage'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 import TermsPage from './pages/TermsPage'
 
@@ -69,6 +71,8 @@ function AppShell() {
           <Route path="san-pham/:slug" element={<ProductDetailPage />} />
           <Route path="gio-hang" element={<CartPage />} />
           <Route path="thanh-toan" element={<CheckoutPage />} />
+          <Route path="ve-chung-toi" element={<AboutPage />} />
+          <Route path="khuyen-mai" element={<PromotionsPage />} />
           <Route path="lien-he" element={<ContactPage />} />
           <Route path="chinh-sach-bao-mat" element={<PrivacyPolicyPage />} />
           <Route path="dieu-khoan" element={<TermsPage />} />

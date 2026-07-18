@@ -5,10 +5,9 @@ import { useCart } from '../contexts/CartContext'
 
 const NAV_LINKS = [
   { to: '/', label: 'Trang chủ', end: true },
-  { to: '/san-pham', label: 'Bộ sưu tập' },
-  { to: '/san-pham?cat=nam', label: 'Nam' },
-  { to: '/san-pham?cat=nu', label: 'Nữ' },
-  { to: '/san-pham?sale=1', label: 'Sale' },
+  { to: '/san-pham', label: 'Sản phẩm' },
+  { to: '/bo-suu-tap', label: 'Bộ Sưu Tập' },
+  { to: '/ve-chung-toi', label: 'Về Chúng Tôi' },
   { to: '/lien-he', label: 'Liên hệ' },
 ]
 

@@ -36,6 +36,7 @@ export default function Footer() {
               <li><Link to="/san-pham">Tất cả sản phẩm</Link></li>
               <li><Link to="/san-pham">Hàng mới về</Link></li>
               <li><Link to="/san-pham">Bán chạy nhất</Link></li>
+              <li><Link to="/khuyen-mai">Khuyến mãi</Link></li>
               <li><Link to="/gio-hang">Giỏ hàng</Link></li>
             </ul>
           </div>
@@ -43,6 +44,7 @@ export default function Footer() {
           <div className="sb-footer-col">
             <h4>Hỗ trợ</h4>
             <ul>
+              <li><Link to="/ve-chung-toi">Về chúng tôi</Link></li>
               <li><Link to="/lien-he">Liên hệ</Link></li>
               <li><a href="#!">Chính sách đổi trả</a></li>
               <li><a href="#!">Chính sách vận chuyển</a></li>

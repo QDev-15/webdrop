@@ -37,6 +37,8 @@ export default function Header() {
         <Link to="/" className="rx-logo">{namePart1} <span>{namePart2}</span></Link>
         <NavLink to="/" end className={({ isActive }) => isActive ? 'active' : ''}>Trang chủ</NavLink>
         <NavLink to="/san-pham" className={({ isActive }) => isActive ? 'active' : ''}>Sản phẩm</NavLink>
+        <NavLink to="/ve-chung-toi" className={({ isActive }) => isActive ? 'active' : ''}>Về Chúng Tôi</NavLink>
+        <NavLink to="/khuyen-mai" className={({ isActive }) => isActive ? 'active' : ''}>Khuyến Mãi</NavLink>
         <NavLink to="/lien-he" className={({ isActive }) => isActive ? 'active' : ''}>Liên hệ</NavLink>
         <NavLink to="/gio-hang" className="rx-btn rx-btn-primary">
           <i className="bi bi-basket2" /> Giỏ hàng ({count})
@@ -70,6 +72,8 @@ export default function Header() {
               <nav className="rx-nav-links" role="navigation" aria-label="Menu chính">
                 <NavLink to="/" end className={({ isActive }) => isActive ? 'active' : ''}>Trang chủ</NavLink>
                 <NavLink to="/san-pham" className={({ isActive }) => isActive ? 'active' : ''}>Sản phẩm</NavLink>
+                <NavLink to="/ve-chung-toi" className={({ isActive }) => isActive ? 'active' : ''}>Về Chúng Tôi</NavLink>
+                <NavLink to="/khuyen-mai" className={({ isActive }) => isActive ? 'active' : ''}>Khuyến Mãi</NavLink>
                 <NavLink to="/lien-he" className={({ isActive }) => isActive ? 'active' : ''}>Liên hệ</NavLink>
               </nav>
               <div className="rx-nav-right">

@@ -33,6 +33,8 @@ export default function Header() {
         <ul>
           <li><NavLink to="/" end className={({ isActive }) => isActive ? 'tp-active' : ''}><i className="bi bi-house" /> Trang chủ</NavLink></li>
           <li><NavLink to="/san-pham" className={({ isActive }) => isActive ? 'tp-active' : ''}><i className="bi bi-basket2" /> Sản phẩm</NavLink></li>
+          <li><NavLink to="/ve-chung-toi" className={({ isActive }) => isActive ? 'tp-active' : ''}><i className="bi bi-info-circle" /> Về Chúng Tôi</NavLink></li>
+          <li><NavLink to="/khuyen-mai" className={({ isActive }) => isActive ? 'tp-active' : ''}><i className="bi bi-tag" /> Khuyến Mãi</NavLink></li>
           <li><NavLink to="/lien-he" className={({ isActive }) => isActive ? 'tp-active' : ''}><i className="bi bi-envelope" /> Liên hệ</NavLink></li>
           <li><NavLink to="/gio-hang" className={({ isActive }) => isActive ? 'tp-active' : ''}><i className="bi bi-bag" /> Giỏ hàng</NavLink></li>
         </ul>
@@ -47,6 +49,8 @@ export default function Header() {
           <nav className="tp-nav-links" role="navigation" aria-label="Menu chính">
             <NavLink to="/" end className={({ isActive }) => isActive ? 'tp-active' : ''}>Trang chủ</NavLink>
             <NavLink to="/san-pham" className={({ isActive }) => isActive ? 'tp-active' : ''}>Sản phẩm</NavLink>
+            <NavLink to="/ve-chung-toi" className={({ isActive }) => isActive ? 'tp-active' : ''}>Về Chúng Tôi</NavLink>
+            <NavLink to="/khuyen-mai" className={({ isActive }) => isActive ? 'tp-active' : ''}>Khuyến Mãi</NavLink>
             <NavLink to="/lien-he" className={({ isActive }) => isActive ? 'tp-active' : ''}>Liên hệ</NavLink>
           </nav>
           <div className="tp-nav-actions">

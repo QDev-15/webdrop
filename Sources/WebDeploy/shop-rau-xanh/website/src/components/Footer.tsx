@@ -50,6 +50,8 @@ export default function Footer() {
           <div className="rx-footer-col">
             <h4>Hỗ trợ</h4>
             <ul>
+              <li><Link to="/ve-chung-toi">Về chúng tôi</Link></li>
+              <li><Link to="/khuyen-mai">Khuyến mãi</Link></li>
               <li><Link to="/lien-he">Liên hệ</Link></li>
               <li><Link to="/gio-hang">Giỏ hàng</Link></li>
               <li><Link to="/lien-he">Chính sách đổi trả</Link></li>

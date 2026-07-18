@@ -35,6 +35,7 @@ export default function Footer() {
             <h4>Sản phẩm</h4>
             <ul>
               <li><Link to="/san-pham">Tất cả sản phẩm</Link></li>
+              <li><Link to="/bo-suu-tap">Bộ sưu tập</Link></li>
               {categories.slice(0, 4).map(c => (
                 <li key={c.id}><Link to={`/san-pham?cat=${c.slug}`}>{c.name}</Link></li>
               ))}
@@ -45,6 +46,7 @@ export default function Footer() {
           <div className="qa-footer-col">
             <h4>Hỗ trợ</h4>
             <ul>
+              <li><Link to="/ve-chung-toi">Về chúng tôi</Link></li>
               <li><Link to="/lien-he">Liên hệ</Link></li>
               <li><Link to="/gio-hang">Theo dõi đơn hàng</Link></li>
               <li><Link to="/lien-he">Chính sách đổi trả</Link></li>

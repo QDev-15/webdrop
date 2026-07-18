@@ -35,6 +35,8 @@ export default function Header() {
       <nav ref={mobNavRef} id="gd-nav-mob" role="navigation" aria-label="Menu di động" className={mobileOpen ? 'open' : ''}>
         <NavLink to="/" end className={({ isActive }) => isActive ? 'active' : ''}>Trang chủ</NavLink>
         <NavLink to="/san-pham" className={({ isActive }) => isActive ? 'active' : ''}>Sản phẩm</NavLink>
+        <NavLink to="/bo-suu-tap" className={({ isActive }) => isActive ? 'active' : ''}>Bộ Sưu Tập</NavLink>
+        <NavLink to="/ve-chung-toi" className={({ isActive }) => isActive ? 'active' : ''}>Về Chúng Tôi</NavLink>
         <NavLink to="/lien-he" className={({ isActive }) => isActive ? 'active' : ''}>Liên hệ</NavLink>
         <NavLink to="/gio-hang" className={({ isActive }) => isActive ? 'active' : ''}><i className="bi bi-bag me-2" />Giỏ hàng ({count})</NavLink>
       </nav>
@@ -45,6 +47,8 @@ export default function Header() {
           <nav className="gd-nav-links" role="navigation" aria-label="Menu chính">
             <NavLink to="/" end className={({ isActive }) => isActive ? 'active' : ''}>Trang chủ</NavLink>
             <NavLink to="/san-pham" className={({ isActive }) => isActive ? 'active' : ''}>Sản phẩm</NavLink>
+            <NavLink to="/bo-suu-tap" className={({ isActive }) => isActive ? 'active' : ''}>Bộ Sưu Tập</NavLink>
+            <NavLink to="/ve-chung-toi" className={({ isActive }) => isActive ? 'active' : ''}>Về Chúng Tôi</NavLink>
             <NavLink to="/lien-he" className={({ isActive }) => isActive ? 'active' : ''}>Liên hệ</NavLink>
           </nav>
           <div className="gd-nav-right">

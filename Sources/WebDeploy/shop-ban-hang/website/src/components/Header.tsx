@@ -33,6 +33,8 @@ export default function Header() {
           <div className="sb-nav-links">
             <NavLink to="/" end className={({ isActive }) => isActive ? 'active' : ''}>Trang chủ</NavLink>
             <NavLink to="/san-pham" className={({ isActive }) => isActive ? 'active' : ''}>Sản phẩm</NavLink>
+            <NavLink to="/ve-chung-toi" className={({ isActive }) => isActive ? 'active' : ''}>Về Chúng Tôi</NavLink>
+            <NavLink to="/khuyen-mai" className={({ isActive }) => isActive ? 'active' : ''}>Khuyến Mãi</NavLink>
             <NavLink to="/lien-he" className={({ isActive }) => isActive ? 'active' : ''}>Liên hệ</NavLink>
           </div>
 
@@ -84,8 +86,10 @@ export default function Header() {
       <div id="sb-nav-mob" className={mobOpen ? 'open' : ''}>
         <Link to="/" onClick={close}>Trang chủ</Link>
         <Link to="/san-pham" onClick={close}>Sản phẩm</Link>
-        <Link to="/gio-hang" onClick={close}>Giỏ hàng</Link>
+        <Link to="/ve-chung-toi" onClick={close}>Về Chúng Tôi</Link>
+        <Link to="/khuyen-mai" onClick={close}>Khuyến Mãi</Link>
         <Link to="/lien-he" onClick={close}>Liên hệ</Link>
+        <Link to="/gio-hang" onClick={close} className="mt-3"><i className="bi bi-bag me-2" />Giỏ hàng</Link>
       </div>
     </>
   )
