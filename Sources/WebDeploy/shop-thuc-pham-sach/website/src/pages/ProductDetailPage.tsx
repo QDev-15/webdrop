@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { api } from '../api/client'
 import { useSite, type Product } from '../contexts/SiteContext'
 import { useCart } from '../contexts/CartContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 function parseLines(v: string): string[] {
   return v ? v.split('|').filter(Boolean) : []
@@ -28,6 +29,11 @@ export default function ProductDetailPage() {
   const [activeTab, setActiveTab] = useState<'mota' | 'dinhduong' | 'nguongoc' | 'danhgia'>('mota')
   const [activeImg, setActiveImg] = useState(0)
   const [added, setAdded] = useState(false)
+
+  useDocumentMeta({
+    title: product ? `${product.name} — Tươi Mỗi Ngày` : 'Tươi Mỗi Ngày',
+    description: product?.description ? product.description.slice(0, 155) : undefined,
+  })
 
   useEffect(() => {
     if (!slug) return

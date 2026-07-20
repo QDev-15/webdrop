@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function PrivacyPolicyPage() {
+  useDocumentMeta({
+    title: 'Chính sách bảo mật — Lys Chic',
+    description: 'Chính sách bảo mật thông tin khách hàng của Lys Chic — cách thu thập, sử dụng và bảo vệ dữ liệu cá nhân.',
+  })
   const { settings } = useSite()
   const siteName = settings.site_name || 'Lys Chic'
 

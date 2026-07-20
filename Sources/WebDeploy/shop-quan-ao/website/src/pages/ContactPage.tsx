@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
 import Contact from '../components/Contact'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const FAQS = [
   { q: 'Làm sao để chọn đúng size?', a: 'Tham khảo bảng size chi tiết ở mỗi trang sản phẩm hoặc liên hệ hotline/Zalo để được tư vấn theo số đo cơ thể thực tế.' },
@@ -12,6 +13,10 @@ const FAQS = [
 ]
 
 export default function ContactPage() {
+  useDocumentMeta({
+    title: 'Liên hệ — Lys Chic',
+    description: 'Liên hệ Lys Chic để được tư vấn size, đặt hàng hoặc hợp tác đại lý — hotline, Zalo, email và bản đồ cửa hàng.',
+  })
   const { settings } = useSite()
   const [openIdx, setOpenIdx] = useState<number | null>(null)
 

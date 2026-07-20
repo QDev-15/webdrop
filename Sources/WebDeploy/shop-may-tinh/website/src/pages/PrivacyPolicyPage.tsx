@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function PrivacyPolicyPage() {
+  useDocumentMeta({
+    title: 'Chính sách bảo mật — NovaTech',
+    description: 'Chính sách bảo mật của NovaTech — cách chúng tôi thu thập, sử dụng và bảo vệ thông tin cá nhân của khách hàng.',
+  })
+
   const { settings } = useSite()
   const siteName = settings.site_name || 'NovaTech'
   const phone = settings.site_phone || '0900 123 456'

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { api } from '../api/client'
 import { useCart } from '../contexts/CartContext'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 // Trang thanh toán TĨNH — template gốc KHÔNG có trang này (nút "Thanh toán ngay" chỉ là href="#"),
 // nên tự thiết kế nhất quán bằng CSS riêng (shop-checkout.css) — không phụ thuộc prefix của site.
@@ -29,6 +30,11 @@ interface CouponValidateResult { code: string; type: 'percent' | 'fixed'; discou
 export default function CheckoutPage() {
   const { items, subtotal, clear, couponCode } = useCart()
   const { settings } = useSite()
+
+  useDocumentMeta({
+    title: 'Thanh toán — Vườn Xanh',
+    description: 'Hoàn tất đơn hàng rau củ quả hữu cơ của bạn tại Vườn Xanh — thanh toán khi nhận hàng hoặc chuyển khoản.',
+  })
 
   const [methods, setMethods] = useState<PaymentMethods | null>(null)
   const [paymentMethod, setPaymentMethod] = useState<'cod' | 'sepay'>('cod')

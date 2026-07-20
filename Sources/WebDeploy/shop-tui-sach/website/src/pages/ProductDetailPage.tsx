@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { api } from '../api/client'
 import { useSite, type Product } from '../contexts/SiteContext'
 import { useCart } from '../contexts/CartContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 function parseColors(colors: string): { name: string; hex: string }[] {
   return colors ? colors.split('|').map(c => c.split(':')).filter(([n]) => n).map(([name, hex]) => ({ name, hex })) : []
@@ -43,6 +44,11 @@ export default function ProductDetailPage() {
       .catch(() => setNotFound(true))
       .finally(() => setLoading(false))
   }, [slug])
+
+  useDocumentMeta({
+    title: product ? `${product.name} — Maison Cuir` : 'Maison Cuir',
+    description: product?.description ? product.description.slice(0, 155) : undefined,
+  })
 
   const fmt = (n: number) => n.toLocaleString('vi-VN') + 'đ'
 

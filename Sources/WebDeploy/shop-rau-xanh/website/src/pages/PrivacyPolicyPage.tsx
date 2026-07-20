@@ -1,9 +1,15 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function PrivacyPolicyPage() {
   const { settings } = useSite()
   const siteName = settings.site_name || 'Vườn Xanh'
+
+  useDocumentMeta({
+    title: `Chính sách bảo mật — ${siteName}`,
+    description: `${siteName} cam kết bảo vệ thông tin cá nhân của khách hàng khi mua sắm rau củ quả tại đây.`,
+  })
 
   return (
     <main>

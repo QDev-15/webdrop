@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface CollectionItem {
   eyebrow: string
@@ -39,6 +40,10 @@ const COLLECTIONS: CollectionItem[] = [
 ]
 
 export default function CollectionPage() {
+  useDocumentMeta({
+    title: 'Bộ Sưu Tập — Nova Store',
+    description: 'Khám phá các bộ sưu tập thời trang theo mùa của Nova Store — từ đường phố năng động đến công sở hiện đại.',
+  })
   return (
     <>
       <section className="st-page-hero" aria-label="Tiêu đề trang">

@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function PrivacyPolicyPage() {
+  useDocumentMeta({
+    title: 'Chính Sách Bảo Mật — Tươi Mỗi Ngày',
+    description: 'Cam kết bảo vệ thông tin cá nhân của khách hàng khi mua sắm thực phẩm sạch tại Tươi Mỗi Ngày.',
+  })
   const { settings } = useSite()
   const siteName = settings.site_name || 'Tươi Mỗi Ngày'
 

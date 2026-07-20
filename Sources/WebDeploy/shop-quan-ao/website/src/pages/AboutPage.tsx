@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 function CountUp({ target, suffix }: { target: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null)
@@ -34,6 +35,10 @@ const VALUES = [
 ]
 
 export default function AboutPage() {
+  useDocumentMeta({
+    title: 'Về chúng tôi — Lys Chic',
+    description: 'Tìm hiểu câu chuyện thương hiệu, giá trị cốt lõi và hành trình phát triển của Lys Chic — thời trang nữ nhẹ nhàng, tinh tế.',
+  })
   const { settings } = useSite()
   const siteName = settings.site_name || 'Lys Chic'
 

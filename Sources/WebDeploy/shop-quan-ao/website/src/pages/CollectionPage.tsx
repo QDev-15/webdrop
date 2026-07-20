@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const COLLECTIONS = [
   {
@@ -32,6 +33,10 @@ const COLLECTIONS = [
 ]
 
 export default function CollectionPage() {
+  useDocumentMeta({
+    title: 'Bộ sưu tập — Lys Chic',
+    description: 'Khám phá các bộ sưu tập thời trang nữ theo mùa tại Lys Chic — Xuân Hè, Công Sở, Dạo Phố Cuối Tuần với chất liệu và thiết kế riêng biệt.',
+  })
   const { settings } = useSite()
   const siteName = settings.site_name || 'Lys Chic'
 

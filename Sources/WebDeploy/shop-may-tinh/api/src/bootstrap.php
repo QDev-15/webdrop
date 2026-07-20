@@ -141,3 +141,4 @@ $router->add('GET',  '/public/payment-methods',     [$shopPub, 'paymentMethods']
 $router->add('POST', '/public/orders',              [$shopPub, 'createOrder']);
 $router->add('GET',  '/public/orders/:code/status', [$shopPub, 'orderStatus']);
 $router->add('POST', '/public/sepay-webhook',       [$shopPub, 'sepayWebhook']);
+$router->add('GET',  '/sitemap.xml',                [$shopPub, 'sitemap']);

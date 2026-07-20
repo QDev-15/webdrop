@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function TermsPage() {
+  useDocumentMeta({
+    title: 'Điều khoản sử dụng — NovaTech',
+    description: 'Điều khoản sử dụng khi đặt hàng và sử dụng dịch vụ tại NovaTech — laptop, PC gaming, linh kiện máy tính chính hãng.',
+  })
+
   const { settings } = useSite()
   const siteName = settings.site_name || 'NovaTech'
 

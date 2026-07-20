@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import HeroSlider from '../components/HeroSlider'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const VALUES_STORY = [
   { num: '01', title: 'Da thuộc Ý cao cấp', desc: 'Nguồn da được chọn lọc kỹ lưỡng từ các xưởng thuộc da uy tín, đảm bảo độ bền và vẻ đẹp tự nhiên theo thời gian.' },
@@ -13,6 +14,11 @@ const BENTO_CLASS = ['big', 'wide', '', '']
 
 export default function HomePage() {
   const { settings, categories, products } = useSite()
+
+  useDocumentMeta({
+    title: 'Maison Cuir — Túi Da Thủ Công Cao Cấp',
+    description: 'Maison Cuir — túi xách da thật thủ công cao cấp, thiết kế tinh xảo, bảo hành trọn đời. Khám phá bộ sưu tập túi xách, ví da, phụ kiện da cao cấp.',
+  })
 
   const featured = products.filter(p => p.is_featured).slice(0, 4)
   const featuredList = featured.length > 0 ? featured : products.slice(0, 4)

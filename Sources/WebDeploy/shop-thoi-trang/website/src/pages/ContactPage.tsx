@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 import Contact from '../components/Contact'
 
 const FAQS = [
@@ -31,6 +32,10 @@ const FAQS = [
 ]
 
 export default function ContactPage() {
+  useDocumentMeta({
+    title: 'Liên Hệ — Nova Store',
+    description: 'Liên hệ với Nova Store để được tư vấn về sản phẩm, đơn hàng và chính sách đổi trả.',
+  })
   const { settings } = useSite()
   const [openIdx, setOpenIdx] = useState(0)
 

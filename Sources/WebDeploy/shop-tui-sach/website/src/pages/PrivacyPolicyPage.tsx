@@ -1,9 +1,15 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function PrivacyPolicyPage() {
   const { settings } = useSite()
   const siteName = settings.site_name || 'Maison Cuir'
+
+  useDocumentMeta({
+    title: 'Chính sách bảo mật — Maison Cuir',
+    description: 'Chính sách bảo mật thông tin khách hàng của Maison Cuir — cách chúng tôi thu thập, sử dụng và bảo vệ dữ liệu cá nhân.',
+  })
 
   return (
     <>

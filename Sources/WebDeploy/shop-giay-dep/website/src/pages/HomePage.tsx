@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import HeroSlider from '../components/HeroSlider'
 import { useSite } from '../contexts/SiteContext'
 import { useCart } from '../contexts/CartContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 function CountUp({ target, suffix }: { target: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null)
@@ -66,6 +67,11 @@ function PromoTimer() {
 export default function HomePage() {
   const { settings, categories, products } = useSite()
   const { addItem } = useCart()
+
+  useDocumentMeta({
+    title: 'Volt Kicks — Giày Dép Chính Hãng, Phong Cách Đường Phố',
+    description: 'Khám phá bộ sưu tập sneaker, boot, giày chạy bộ và sandal chính hãng tại Volt Kicks — thiết kế cá tính, chất lượng cao, giao hàng toàn quốc.',
+  })
 
   const featured = products.filter(p => p.is_featured).slice(0, 4)
   const featuredList = featured.length > 0 ? featured : products.slice(0, 4)

@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function TermsPage() {
+  useDocumentMeta({
+    title: 'Điều Khoản Sử Dụng — Tươi Mỗi Ngày',
+    description: 'Quy định áp dụng khi bạn truy cập, đặt hàng và sử dụng dịch vụ của Tươi Mỗi Ngày.',
+  })
   const { settings } = useSite()
   const siteName = settings.site_name || 'Tươi Mỗi Ngày'
 

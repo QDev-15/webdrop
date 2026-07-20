@@ -3,12 +3,18 @@ import { Link } from 'react-router-dom'
 import { api } from '../api/client'
 import { useCart } from '../contexts/CartContext'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface CouponValidateResult { code: string; type: 'percent' | 'fixed'; discount: number }
 
 export default function CartPage() {
   const { items, subtotal, updateQty, removeItem, couponCode, setCouponCode } = useCart()
   const { settings, products } = useSite()
+
+  useDocumentMeta({
+    title: 'Giỏ hàng — Vườn Xanh',
+    description: 'Xem lại giỏ hàng rau củ quả hữu cơ của bạn tại Vườn Xanh trước khi tiến hành thanh toán.',
+  })
   const [couponInput, setCouponInput] = useState('')
   const [couponMsg, setCouponMsg] = useState('')
   const [couponError, setCouponError] = useState('')

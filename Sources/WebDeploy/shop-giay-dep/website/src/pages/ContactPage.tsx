@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
 import Contact from '../components/Contact'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const FAQS = [
   { q: 'Làm sao để chọn đúng size giày?', a: 'Tham khảo bảng size chi tiết ở trang sản phẩm hoặc liên hệ hotline/Zalo để được tư vấn theo số đo bàn chân thực tế của bạn.' },
@@ -14,6 +15,11 @@ const FAQS = [
 export default function ContactPage() {
   const { settings } = useSite()
   const [openIdx, setOpenIdx] = useState<number | null>(null)
+
+  useDocumentMeta({
+    title: 'Liên hệ — Volt Kicks',
+    description: 'Liên hệ Volt Kicks để được tư vấn size, đặt hàng và giải đáp thắc mắc — hotline, Zalo, email và bản đồ cửa hàng.',
+  })
 
   return (
     <>

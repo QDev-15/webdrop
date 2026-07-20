@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const PROMOS = [
   {
@@ -41,6 +42,10 @@ const FAQS = [
 
 export default function PromotionsPage() {
   const [openIdx, setOpenIdx] = useState<number | null>(null)
+  useDocumentMeta({
+    title: 'Khuyến mãi | Shop Hữu Cơ',
+    description: 'Cập nhật các chương trình khuyến mãi, giảm giá và ưu đãi mới nhất tại Shop Hữu Cơ.',
+  })
 
   return (
     <>

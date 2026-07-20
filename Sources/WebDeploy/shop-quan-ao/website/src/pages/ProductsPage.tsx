@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { api } from '../api/client'
 import { useSite, type Product } from '../contexts/SiteContext'
 import { useCart } from '../contexts/CartContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const PER_PAGE = 12
 
@@ -18,6 +19,10 @@ const COLOR_SWATCHES = [
 const SIZE_OPTIONS = ['XS', 'S', 'M', 'L', 'XL', 'One Size']
 
 export default function ProductsPage() {
+  useDocumentMeta({
+    title: 'Tất cả sản phẩm — Lys Chic',
+    description: 'Khám phá đầy đủ bộ sưu tập váy đầm, áo, quần và phụ kiện thời trang nữ tại Lys Chic — lọc theo danh mục, giá, kích cỡ, màu sắc.',
+  })
   const { categories } = useSite()
   const { addItem } = useCart()
   const [searchParams] = useSearchParams()

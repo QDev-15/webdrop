@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api/client'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const FAQS = [
   {
@@ -27,6 +28,11 @@ const FAQS = [
 ]
 
 export default function Contact() {
+  useDocumentMeta({
+    title: 'Liên hệ — NovaTech',
+    description: 'Liên hệ NovaTech để được tư vấn cấu hình laptop, PC gaming, linh kiện máy tính và hỗ trợ bảo hành nhanh chóng.',
+  })
+
   const { settings } = useSite()
   const val = (k: string, fallback = '') => settings[k] || fallback
 

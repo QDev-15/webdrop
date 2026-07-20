@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const PROMOS = [
   {
@@ -28,6 +29,10 @@ const PROMOS = [
 ]
 
 export default function PromotionsPage() {
+  useDocumentMeta({
+    title: 'Khuyến Mãi — Tươi Mỗi Ngày',
+    description: 'Ưu đãi theo mùa, combo tiết kiệm, freeship và chương trình khách hàng thân thiết tại Tươi Mỗi Ngày.',
+  })
   return (
     <>
       <div className="tp-container tp-contact-wrap">

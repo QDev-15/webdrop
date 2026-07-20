@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { api } from '../api/client'
 import { useSite, type Product } from '../contexts/SiteContext'
 import { useCart } from '../contexts/CartContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 function parseColors(colors: string): { name: string; hex: string }[] {
   return colors ? colors.split('|').map(c => c.split(':')).filter(([n]) => n).map(([name, hex]) => ({ name, hex })) : []
@@ -26,6 +27,11 @@ export default function ProductDetailPage() {
   const [selectedSize, setSelectedSize] = useState('')
   const [activeImg, setActiveImg] = useState(0)
   const [added, setAdded] = useState(false)
+
+  useDocumentMeta({
+    title: product ? `${product.name} — Volt Kicks` : 'Volt Kicks',
+    description: product?.description ? product.description.slice(0, 155) : undefined,
+  })
 
   useEffect(() => {
     if (!slug) return

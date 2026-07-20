@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { api } from '../api/client'
 import { useSite, type Product } from '../contexts/SiteContext'
 import { useCart } from '../contexts/CartContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const PER_PAGE = 9
 
@@ -18,6 +19,10 @@ const COLOR_SWATCHES = [
 const CERT_OPTIONS = ['VietGAP', 'Organic', 'GlobalGAP']
 
 export default function ProductsPage() {
+  useDocumentMeta({
+    title: 'Sản Phẩm — Tươi Mỗi Ngày',
+    description: 'Rau củ hữu cơ, trái cây, thịt cá tươi, gạo & đồ khô chuẩn VietGAP — lọc theo danh mục, giá, chứng nhận, giao hàng lạnh trong ngày.',
+  })
   const { categories } = useSite()
   const { addItem } = useCart()
   const [searchParams] = useSearchParams()

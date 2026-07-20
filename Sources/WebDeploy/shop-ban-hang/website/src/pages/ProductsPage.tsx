@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { api } from '../api/client'
 import { useSite } from '../contexts/SiteContext'
 import { useCart } from '../contexts/CartContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface Product {
   id: number
@@ -34,6 +35,10 @@ const COLOR_SWATCHES = [
 export default function ProductsPage() {
   const { categories } = useSite()
   const { addItem } = useCart()
+  useDocumentMeta({
+    title: 'Sản phẩm | Shop Hữu Cơ',
+    description: 'Khám phá bộ sưu tập sản phẩm hữu cơ, thủ công và thân thiện với môi trường tại Shop Hữu Cơ.',
+  })
 
   const [tab, setTab] = useState<'all' | 'sale' | number>('all')
   const [searchInput, setSearchInput] = useState('')

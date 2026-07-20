@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import HeroSlider from '../components/HeroSlider'
 import { useSite } from '../contexts/SiteContext'
 import { useCart } from '../contexts/CartContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 function CountUp({ target, suffix }: { target: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null)
@@ -64,6 +65,10 @@ function PromoTimer() {
 }
 
 export default function HomePage() {
+  useDocumentMeta({
+    title: 'Lys Chic — Thời Trang Nữ Nhẹ Nhàng, Tinh Tế',
+    description: 'Khám phá bộ sưu tập váy đầm, áo, quần và phụ kiện thời trang nữ tại Lys Chic — chất liệu mềm mại, form dáng tinh tế, giao hàng toàn quốc.',
+  })
   const { settings, categories, products } = useSite()
   const { addItem } = useCart()
 

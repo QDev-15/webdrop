@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import StatCounter from '../components/StatCounter'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const FEATURES = [
   { icon: 'cpu-fill', title: 'Build PC theo yêu cầu', desc: 'Tư vấn và lắp ráp cấu hình PC theo nhu cầu — gaming, đồ họa, văn phòng — tối ưu hiệu năng/chi phí.' },
@@ -15,6 +16,11 @@ const PROCESS = [
 ]
 
 export default function ServicesPage() {
+  useDocumentMeta({
+    title: 'Dịch vụ — NovaTech',
+    description: 'Build PC theo yêu cầu, trả góp 0% lãi suất, sửa chữa & nâng cấp, bảo hành chính hãng — dịch vụ trọn gói tại NovaTech.',
+  })
+
   return (
     <>
       <div className="mt-page-header" style={{ paddingBottom: 52 }}>

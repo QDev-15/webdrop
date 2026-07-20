@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 function useCountUp(target: number, active: boolean) {
   const [value, setValue] = useState(0)
@@ -56,6 +57,10 @@ const VALUES = [
 ]
 
 export default function AboutPage() {
+  useDocumentMeta({
+    title: 'Về Chúng Tôi — Nova Store',
+    description: 'Tìm hiểu về Nova Store — hành trình xây dựng thương hiệu thời trang phong cách mới, táo bạo và chất lượng.',
+  })
   const { settings } = useSite()
   const siteName = settings.site_name || 'Nova Store'
 

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Contact from '../components/Contact'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const FAQS = [
   { q: 'Rau củ có thực sự không thuốc bảo vệ thực vật?', a: 'Có. Mọi lô hàng đều được xét nghiệm dư lượng thuốc bảo vệ thực vật tại phòng lab độc lập trước khi nhập kho, kết quả được lưu và có thể tra cứu qua mã QR trên bao bì.' },
@@ -10,6 +11,10 @@ const FAQS = [
 ]
 
 export default function ContactPage() {
+  useDocumentMeta({
+    title: 'Liên Hệ — Tươi Mỗi Ngày',
+    description: 'Liên hệ đặt hàng, tư vấn thực phẩm sạch — hotline, địa chỉ, giờ làm việc và câu hỏi thường gặp.',
+  })
   const [openIdx, setOpenIdx] = useState<number | null>(0)
 
   return (

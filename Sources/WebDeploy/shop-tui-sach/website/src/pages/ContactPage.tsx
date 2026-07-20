@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
 import Contact from '../components/Contact'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const FAQS = [
   { q: 'Sản phẩm có được bảo hành không?', a: 'Tất cả sản phẩm tại Maison Cuir được bảo hành trọn đời — bao gồm sửa chữa khóa, chỉ may và đánh bóng da miễn phí trong suốt vòng đời sản phẩm.' },
@@ -14,6 +15,11 @@ const FAQS = [
 export default function ContactPage() {
   const { settings } = useSite()
   const [openIdx, setOpenIdx] = useState<number | null>(0)
+
+  useDocumentMeta({
+    title: 'Liên hệ — Maison Cuir',
+    description: 'Liên hệ Maison Cuir để được tư vấn sản phẩm túi da thủ công cao cấp — hotline, email, showroom và giờ làm việc.',
+  })
 
   return (
     <>

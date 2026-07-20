@@ -2,10 +2,15 @@
 import { Link } from 'react-router-dom'
 import { useCart } from '../contexts/CartContext'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function CartPage() {
   const { items, subtotal, updateQty, removeItem } = useCart()
   const { settings, products } = useSite()
+  useDocumentMeta({
+    title: 'Giỏ hàng | Shop Hữu Cơ',
+    description: 'Xem lại giỏ hàng và tiến hành thanh toán tại Shop Hữu Cơ.',
+  })
   // const [coupon, setCoupon] = useState('')
   // const [couponMsg, setCouponMsg] = useState('')
 

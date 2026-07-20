@@ -2,12 +2,18 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../contexts/CartContext'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 function fmt(n: number) {
   return n.toLocaleString('vi-VN') + 'đ'
 }
 
 export default function CartPage() {
+  useDocumentMeta({
+    title: 'Giỏ hàng — NovaTech',
+    description: 'Xem lại giỏ hàng và tiến hành thanh toán các sản phẩm laptop, PC gaming, linh kiện máy tính tại NovaTech.',
+  })
+
   const { items, subtotal, updateQty, removeItem } = useCart()
   const { settings, products } = useSite()
   const [couponInput, setCouponInput] = useState('')

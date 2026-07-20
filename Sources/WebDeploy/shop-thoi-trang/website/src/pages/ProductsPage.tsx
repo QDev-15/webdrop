@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { api } from '../api/client'
 import { useSite, type Product } from '../contexts/SiteContext'
 import { useCart } from '../contexts/CartContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const PER_PAGE = 12
 
@@ -27,6 +28,10 @@ const PRICE_RANGES: { label: string; min: number; max: number | null }[] = [
 ]
 
 export default function ProductsPage() {
+  useDocumentMeta({
+    title: 'Sản Phẩm — Nova Store',
+    description: 'Khám phá bộ sưu tập thời trang mới nhất tại Nova Store — thiết kế táo bạo, chất liệu cao cấp, giá cả hợp lý.',
+  })
   const { categories } = useSite()
   const { addItem } = useCart()
   const [searchParams] = useSearchParams()

@@ -3,10 +3,15 @@ import { Link } from 'react-router-dom'
 import { api } from '../api/client'
 import { useCart } from '../contexts/CartContext'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface CouponValidateResult { code: string; type: 'percent' | 'fixed'; discount: number }
 
 export default function CartPage() {
+  useDocumentMeta({
+    title: 'Giỏ hàng — Lys Chic',
+    description: 'Xem lại sản phẩm trong giỏ hàng, áp dụng mã giảm giá và tiến hành thanh toán tại Lys Chic.',
+  })
   const { items, subtotal, updateQty, removeItem, couponCode, setCouponCode } = useCart()
   const { settings, products } = useSite()
   const [couponInput, setCouponInput] = useState('')

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Contact from '../components/Contact'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const FAQS = [
   { q: 'Rau có được giao trong ngày không?', a: 'Có. Nếu bạn đặt hàng trước 10:00 sáng, đơn hàng sẽ được giao ngay trong chiều cùng ngày ở khu vực nội thành. Đơn đặt sau 10:00 sẽ được giao vào sáng hôm sau.' },
@@ -10,6 +11,11 @@ const FAQS = [
 ]
 
 export default function ContactPage() {
+  useDocumentMeta({
+    title: 'Liên hệ — Vườn Xanh',
+    description: 'Liên hệ Vườn Xanh để đặt rau củ quả hữu cơ số lượng lớn, hỏi đáp về sản phẩm hoặc gửi góp ý.',
+  })
+
   const [openIdx, setOpenIdx] = useState<number | null>(0)
 
   return (

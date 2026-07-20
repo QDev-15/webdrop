@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
 import HeroSlider from '../components/HeroSlider'
 import Testimonials from '../components/Testimonials'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 function ProductCard({ name, slug, category_name, image, price, price_sale, badge, is_new }: {
   name: string; slug: string; category_name: string; image: string
@@ -42,6 +43,10 @@ function ProductCard({ name, slug, category_name, image, price, price_sale, badg
 
 export default function HomePage() {
   const { settings, products, categories } = useSite()
+  useDocumentMeta({
+    title: settings['site_name'] ? `${settings['site_name']} | Sản phẩm thiên nhiên` : 'Shop Hữu Cơ | Sản phẩm thiên nhiên',
+    description: settings['site_description'] || 'Cửa hàng sản phẩm hữu cơ, thủ công và thân thiện với môi trường.',
+  })
   const featured = products.filter(p => p.is_featured && p.status === 'published').slice(0, 5)
   const statProducts = settings['stat_products'] || '500+'
   const statCustomers = settings['stat_customers'] || '10.000+'

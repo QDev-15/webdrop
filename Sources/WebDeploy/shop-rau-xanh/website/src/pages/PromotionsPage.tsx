@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface PromoItem {
   image: string
@@ -37,6 +38,11 @@ const PROMOS: PromoItem[] = [
 ]
 
 export default function PromotionsPage() {
+  useDocumentMeta({
+    title: 'Khuyến mãi — Vườn Xanh',
+    description: 'Những ưu đãi theo mùa đang diễn ra tại Vườn Xanh — combo rau củ giảm giá, miễn phí giao hàng, ưu đãi khách hàng thân thiết.',
+  })
+
   return (
     <main>
       <div className="rx-container" style={{ paddingTop: 32 }}>

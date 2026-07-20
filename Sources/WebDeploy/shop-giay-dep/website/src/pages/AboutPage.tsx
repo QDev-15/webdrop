@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 function CountUp({ target, suffix }: { target: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null)
@@ -36,6 +37,11 @@ const WHY_ITEMS = [
 export default function AboutPage() {
   const { settings } = useSite()
   const siteName = settings.site_name || 'Volt Kicks'
+
+  useDocumentMeta({
+    title: `Về chúng tôi — ${siteName}`,
+    description: `Tìm hiểu câu chuyện thương hiệu, giá trị cốt lõi và hành trình phát triển của ${siteName} — điểm đến giày dép chính hãng, phong cách đường phố.`,
+  })
 
   const stats = [1, 2, 3, 4].map(i => ({
     num: Number(settings[`stat${i}_num`] || 0),

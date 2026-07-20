@@ -377,4 +377,32 @@ class PublicController {
         );
         Response::json(['message' => 'Gửi tin nhắn thành công! Chúng tôi sẽ phản hồi trong vòng 24 giờ.']);
     }
+
+    public function sitemap(): void {
+        header('Content-Type: application/xml; charset=utf-8');
+
+        $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+        $base   = $scheme . '://' . ($_SERVER['HTTP_HOST'] ?? 'localhost');
+
+        $staticRoutes = ['/', '/san-pham', '/bo-suu-tap', '/ve-chung-toi', '/lien-he', '/chinh-sach-bao-mat', '/dieu-khoan'];
+
+        $urls = [];
+        foreach ($staticRoutes as $route) {
+            $urls[] = ['loc' => $base . $route, 'lastmod' => null];
+        }
+
+        $products = $this->db->query("SELECT slug, updated_at FROM products WHERE status = 'published'");
+        foreach ($products as $p) {
+            $urls[] = ['loc' => $base . '/san-pham/' . $p['slug'], 'lastmod' => substr($p['updated_at'], 0, 10)];
+        }
+
+        echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+        foreach ($urls as $u) {
+            echo '  <url><loc>' . htmlspecialchars($u['loc'], ENT_XML1) . '</loc>';
+            if ($u['lastmod']) echo '<lastmod>' . $u['lastmod'] . '</lastmod>';
+            echo '</url>' . "\n";
+        }
+        echo '</urlset>';
+    }
 }

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface CollectionBlock {
   eyebrow: string
@@ -39,6 +40,11 @@ const BLOCKS: CollectionBlock[] = [
 ]
 
 export default function CollectionPage() {
+  useDocumentMeta({
+    title: 'Bộ sưu tập — Maison Cuir',
+    description: 'Khám phá các dòng bộ sưu tập túi da thủ công của Maison Cuir — dòng da thật, dòng giới hạn số lượng, dòng công sở thanh lịch.',
+  })
+
   return (
     <>
       <section className="ts-page-header">

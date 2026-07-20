@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { api } from '../api/client'
 import { useSite, type Product } from '../contexts/SiteContext'
 import { useCart } from '../contexts/CartContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const PER_PAGE = 12
 
@@ -21,6 +22,11 @@ export default function ProductsPage() {
   const { categories } = useSite()
   const { addItem } = useCart()
   const [searchParams] = useSearchParams()
+
+  useDocumentMeta({
+    title: 'Sản phẩm — Volt Kicks',
+    description: 'Khám phá toàn bộ sneaker, boot, giày chạy bộ và sandal chính hãng tại Volt Kicks — lọc theo danh mục, size, màu sắc và mức giá phù hợp với bạn.',
+  })
 
   const [tab, setTab] = useState<'all' | 'sale' | number>('all')
 

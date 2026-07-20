@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { api } from '../api/client'
 import { useSite, type Product } from '../contexts/SiteContext'
 import { useCart } from '../contexts/CartContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const PER_PAGE = 9
 
@@ -18,6 +19,11 @@ export default function ProductsPage() {
   const { categories } = useSite()
   const { addItem } = useCart()
   const [searchParams] = useSearchParams()
+
+  useDocumentMeta({
+    title: 'Sản phẩm — Vườn Xanh',
+    description: 'Khám phá toàn bộ rau củ quả hữu cơ tươi mỗi ngày tại Vườn Xanh — chọn theo danh mục, mức giá, màu sắc, lọc theo nhu cầu của bạn.',
+  })
 
   const [tab, setTab] = useState<'all' | 'sale' | number>('all')
 

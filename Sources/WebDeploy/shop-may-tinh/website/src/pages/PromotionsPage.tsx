@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const PROMOS = [
   {
@@ -22,6 +23,11 @@ const PROMOS = [
 ]
 
 export default function PromotionsPage() {
+  useDocumentMeta({
+    title: 'Khuyến mãi — NovaTech',
+    description: 'Cập nhật các chương trình khuyến mãi, flash sale PC gaming, combo laptop và ưu đãi sinh viên đang diễn ra tại NovaTech.',
+  })
+
   return (
     <>
       <div className="mt-page-header" style={{ paddingBottom: 52 }}>

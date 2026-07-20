@@ -1,8 +1,13 @@
 import { useSite } from '../contexts/SiteContext'
 import Contact from '../components/Contact'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ContactPage() {
   const { settings } = useSite()
+  useDocumentMeta({
+    title: 'Liên hệ | Shop Hữu Cơ',
+    description: 'Liên hệ với Shop Hữu Cơ để được tư vấn sản phẩm, theo dõi đơn hàng hoặc giải đáp thắc mắc.',
+  })
   const phone = settings['site_phone'] || ''
   const email = settings['site_email'] || ''
   const address = settings['site_address'] || ''

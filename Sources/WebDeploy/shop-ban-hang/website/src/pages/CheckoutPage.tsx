@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { api } from '../api/client'
 import { useCart } from '../contexts/CartContext'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface PaymentMethods {
   cod_enabled: boolean
@@ -23,6 +24,10 @@ interface OrderResult {
 export default function CheckoutPage() {
   const { items, subtotal, clear } = useCart()
   const { settings } = useSite()
+  useDocumentMeta({
+    title: 'Thanh toán | Shop Hữu Cơ',
+    description: 'Hoàn tất đơn hàng của bạn tại Shop Hữu Cơ.',
+  })
 
   const [methods, setMethods] = useState<PaymentMethods | null>(null)
   const [paymentMethod, setPaymentMethod] = useState<'cod' | 'sepay'>('cod')

@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function PrivacyPolicyPage() {
   const { settings } = useSite()
   const siteName = settings.site_name || 'Nova Store'
+  useDocumentMeta({
+    title: `Chính Sách Bảo Mật — ${siteName}`,
+    description: `Chính sách bảo mật của ${siteName} — cam kết bảo vệ thông tin cá nhân khách hàng theo đúng quy định pháp luật hiện hành.`,
+  })
 
   return (
     <>

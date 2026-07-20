@@ -1,10 +1,15 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function AboutPage() {
   const { settings } = useSite()
   const siteName = settings['site_name'] || 'Shop Hữu Cơ'
+  useDocumentMeta({
+    title: `Về chúng tôi | ${siteName}`,
+    description: `Tìm hiểu câu chuyện, sứ mệnh và giá trị của ${siteName} — cửa hàng sản phẩm hữu cơ, thủ công và thân thiện với môi trường.`,
+  })
 
   // Đếm số dần khi cuộn tới khối thống kê — port từ script gốc trong ve-chung-toi.html (data-counter/data-suffix)
   useEffect(() => {

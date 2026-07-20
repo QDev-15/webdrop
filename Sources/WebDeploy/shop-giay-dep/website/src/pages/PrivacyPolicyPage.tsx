@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const SECTIONS = [
   {
@@ -48,6 +49,11 @@ const SECTIONS = [
 
 export default function PrivacyPolicyPage() {
   const { settings } = useSite()
+
+  useDocumentMeta({
+    title: 'Chính sách bảo mật — Volt Kicks',
+    description: 'Chính sách bảo mật thông tin khách hàng của Volt Kicks — thu thập, sử dụng, chia sẻ và bảo vệ dữ liệu cá nhân.',
+  })
 
   return (
     <>

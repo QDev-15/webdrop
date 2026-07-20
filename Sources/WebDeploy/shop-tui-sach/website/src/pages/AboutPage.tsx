@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const VALUE_ITEMS = [
   { icon: 'gem', title: 'Chất liệu thượng hạng', desc: 'Chỉ sử dụng da bò thật 100%, chọn lọc kỹ càng từ các xưởng thuộc da uy tín.' },
@@ -10,6 +11,11 @@ const VALUE_ITEMS = [
 export default function AboutPage() {
   const { settings } = useSite()
   const siteName = settings.site_name || 'Maison Cuir'
+
+  useDocumentMeta({
+    title: 'Về chúng tôi — Maison Cuir',
+    description: 'Câu chuyện thương hiệu Maison Cuir — túi da thủ công cao cấp, chế tác tỉ mỉ từ da bò thật, cam kết chất lượng và bảo hành trọn đời.',
+  })
 
   const stats = [1, 2, 3, 4].map(i => ({
     num: settings[`stat${i}_num`] || '',

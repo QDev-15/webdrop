@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import HeroSlider from '../components/HeroSlider'
 import { useSite } from '../contexts/SiteContext'
 import { useCart } from '../contexts/CartContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 function CountUp({ target, suffix }: { target: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null)
@@ -32,6 +33,11 @@ function CountUp({ target, suffix }: { target: number; suffix: string }) {
 export default function HomePage() {
   const { settings, categories, products } = useSite()
   const { addItem } = useCart()
+
+  useDocumentMeta({
+    title: 'Vườn Xanh — Rau Củ Quả Hữu Cơ Giao Tận Nhà',
+    description: 'Vườn Xanh cung cấp rau củ quả hữu cơ tươi mỗi ngày từ nông trại đến bàn ăn — không thuốc bảo vệ thực vật, giao hàng trong ngày.',
+  })
 
   const fmt = (n: number) => n.toLocaleString('vi-VN') + 'đ'
 

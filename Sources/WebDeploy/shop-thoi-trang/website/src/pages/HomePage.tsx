@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
 import { useCart } from '../contexts/CartContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 import HeroSlider from '../components/HeroSlider'
 
 function useCountUp(target: number, active: boolean) {
@@ -74,6 +75,10 @@ function Countdown({ endAt }: { endAt: string }) {
 }
 
 export default function HomePage() {
+  useDocumentMeta({
+    title: 'Nova Store — Thời Trang Phong Cách Mới',
+    description: 'Nova Store — thời trang phong cách mới. Thiết kế táo bạo, chất liệu cao cấp, giá cả hợp lý.',
+  })
   const { settings, categories, products, testimonials } = useSite()
   const { addItem } = useCart()
   const fmt = (n: number) => n.toLocaleString('vi-VN') + 'đ'

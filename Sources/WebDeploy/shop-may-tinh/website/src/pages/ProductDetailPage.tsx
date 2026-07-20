@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { api } from '../api/client'
 import { useCart } from '../contexts/CartContext'
 import { useSite, type Product } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 function fmt(n: number) {
   return n.toLocaleString('vi-VN') + 'đ'
@@ -57,6 +58,11 @@ export default function ProductDetailPage() {
       .catch(() => setProduct(null))
       .finally(() => setLoading(false))
   }, [slug])
+
+  useDocumentMeta({
+    title: product ? `${product.name} — NovaTech` : 'NovaTech',
+    description: product?.description ? product.description.slice(0, 155) : undefined,
+  })
 
   if (loading) {
     return <div style={{ padding: '180px 0 80px', textAlign: 'center', color: 'var(--text-3)' }}>Đang tải sản phẩm...</div>

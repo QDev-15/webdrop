@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { api } from '../api/client'
 import { useCart } from '../contexts/CartContext'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 // Trang thanh toán TĨNH — template gốc KHÔNG có trang này (nút "Thanh toán ngay" chỉ là href="#"),
 // nên tự thiết kế nhất quán bằng CSS riêng (shop-checkout.css) — không phụ thuộc prefix của site.
@@ -27,6 +28,10 @@ interface OrderResult {
 interface CouponValidateResult { code: string; type: 'percent' | 'fixed'; discount: number }
 
 export default function CheckoutPage() {
+  useDocumentMeta({
+    title: 'Thanh Toán — Tươi Mỗi Ngày',
+    description: 'Hoàn tất đặt hàng thực phẩm sạch — thanh toán COD hoặc chuyển khoản, giao hàng lạnh trong ngày.',
+  })
   const { items, subtotal, clear, couponCode } = useCart()
   const { settings } = useSite()
 

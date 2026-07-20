@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { api } from '../api/client'
 import { useCart } from '../contexts/CartContext'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 // Trang thanh toán TĨNH — template gốc KHÔNG có trang này (nút "Thanh toán ngay" chỉ là href="#"),
 // nên tự thiết kế nhất quán bằng CSS riêng (shop-checkout.css) — không phụ thuộc prefix của site.
@@ -39,6 +40,11 @@ export default function CheckoutPage() {
   const [paidConfirmed, setPaidConfirmed] = useState(false)
   const [discount, setDiscount] = useState(0)
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  useDocumentMeta({
+    title: 'Thanh toán — Maison Cuir',
+    description: 'Hoàn tất đơn hàng của bạn tại Maison Cuir — giao hàng nhanh chóng, an toàn.',
+  })
 
   const fmt = (n: number) => n.toLocaleString('vi-VN') + 'đ'
   const shippingFee = Number(settings['shipping_fee'] || 0)

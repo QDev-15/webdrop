@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { api } from '../api/client'
 import { useCart } from '../contexts/CartContext'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface CouponValidateResult { code: string; type: 'percent' | 'fixed'; discount: number }
 
@@ -15,6 +16,11 @@ export default function CartPage() {
   const [discount, setDiscount] = useState(0)
   const [checkingCoupon, setCheckingCoupon] = useState(false)
   const [updated, setUpdated] = useState(false)
+
+  useDocumentMeta({
+    title: 'Giỏ hàng — Maison Cuir',
+    description: 'Xem lại giỏ hàng của bạn tại Maison Cuir trước khi tiến hành thanh toán.',
+  })
 
   const fmt = (n: number) => n.toLocaleString('vi-VN') + 'đ'
   const shippingFee = Number(settings.shipping_fee || 0)

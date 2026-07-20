@@ -2,8 +2,13 @@ import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
 import { useCart } from '../contexts/CartContext'
 import HeroSlider from '../components/HeroSlider'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function HomePage() {
+  useDocumentMeta({
+    title: 'Tươi Mỗi Ngày — Thực Phẩm Sạch, Tươi Mỗi Ngày',
+    description: 'Rau củ hữu cơ, thịt cá tươi, gạo & đồ khô truy xuất nguồn gốc rõ ràng, giao hàng lạnh trong ngày. Đạt chuẩn VietGAP — không thuốc bảo vệ thực vật.',
+  })
   const { settings, categories, products } = useSite()
   const { addItem } = useCart()
   const fmt = (n: number) => n.toLocaleString('vi-VN') + 'đ'

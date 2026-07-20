@@ -1,9 +1,15 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function TermsPage() {
   const { settings } = useSite()
   const siteName = settings.site_name || 'Vườn Xanh'
+
+  useDocumentMeta({
+    title: `Điều khoản sử dụng — ${siteName}`,
+    description: `Vui lòng đọc kỹ các điều khoản trước khi đặt hàng tại ${siteName}.`,
+  })
 
   return (
     <main>

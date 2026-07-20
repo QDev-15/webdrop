@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function TermsPage() {
+  useDocumentMeta({
+    title: 'Điều khoản sử dụng — Lys Chic',
+    description: 'Điều khoản sử dụng dịch vụ mua sắm tại Lys Chic — quy định về đặt hàng, thanh toán, đổi trả và quyền lợi khách hàng.',
+  })
   const { settings } = useSite()
   const siteName = settings.site_name || 'Lys Chic'
 

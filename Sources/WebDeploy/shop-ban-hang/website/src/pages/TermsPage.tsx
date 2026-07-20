@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function TermsPage() {
   const { settings } = useSite()
   const siteName = settings['site_name'] || 'Shop Hữu Cơ'
+  useDocumentMeta({
+    title: `Điều khoản sử dụng | ${siteName}`,
+    description: `Điều khoản sử dụng dịch vụ và quy định mua hàng tại ${siteName}.`,
+  })
   const phone = settings['site_phone'] || '0900 000 000'
   const email = settings['site_email'] || 'lienhe@shop.vn'
 

@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function PrivacyPolicyPage() {
   const { settings } = useSite()
   const siteName = settings['site_name'] || 'Shop Hữu Cơ'
+  useDocumentMeta({
+    title: `Chính sách bảo mật | ${siteName}`,
+    description: `Chính sách bảo mật và cam kết bảo vệ thông tin cá nhân của khách hàng khi mua sắm tại ${siteName}.`,
+  })
   const phone = settings['site_phone'] || '0900 000 000'
   const email = settings['site_email'] || 'lienhe@shop.vn'
   const address = settings['site_address'] || ''

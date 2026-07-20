@@ -4,6 +4,7 @@ import HeroSlider from '../components/HeroSlider'
 import StatCounter from '../components/StatCounter'
 import { useCart } from '../contexts/CartContext'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 function fmt(n: number) {
   return n.toLocaleString('vi-VN') + 'đ'
@@ -39,6 +40,11 @@ function PromoTimer() {
 }
 
 export default function HomePage() {
+  useDocumentMeta({
+    title: 'NovaTech — Laptop, PC Gaming & Linh Kiện Máy Tính Chính Hãng',
+    description: 'Cửa hàng máy tính uy tín — laptop, PC gaming, linh kiện chính hãng, bảo hành tận tâm, trả góp 0% lãi suất.',
+  })
+
   const { settings, products, categories } = useSite()
   const { addItem } = useCart()
   const val = (k: string, fallback = '') => settings[k] || fallback

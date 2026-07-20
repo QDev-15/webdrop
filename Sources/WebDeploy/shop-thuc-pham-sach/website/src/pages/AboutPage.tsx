@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const CERTS = [
   {
@@ -27,6 +28,10 @@ const STATS = [
 ]
 
 export default function AboutPage() {
+  useDocumentMeta({
+    title: 'Về Chúng Tôi — Tươi Mỗi Ngày',
+    description: 'Câu chuyện, cam kết chất lượng và hành trình mang thực phẩm sạch, truy xuất nguồn gốc đến từng bữa ăn gia đình bạn.',
+  })
   const { settings } = useSite()
   const siteName = settings.site_name || 'Tươi Mỗi Ngày'
 

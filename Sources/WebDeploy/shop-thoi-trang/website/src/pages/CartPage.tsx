@@ -3,8 +3,13 @@ import { Link } from 'react-router-dom'
 import { useCart } from '../contexts/CartContext'
 import { useSite } from '../contexts/SiteContext'
 import { api } from '../api/client'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function CartPage() {
+  useDocumentMeta({
+    title: 'Giỏ Hàng — Nova Store',
+    description: 'Xem lại giỏ hàng của bạn trước khi thanh toán tại Nova Store.',
+  })
   const { items, subtotal, coupon, updateQty, removeItem, clear, setCoupon } = useCart()
   const { settings, products } = useSite()
   const [couponInput, setCouponInput] = useState('')

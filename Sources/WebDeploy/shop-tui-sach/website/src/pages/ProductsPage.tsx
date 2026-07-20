@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { api } from '../api/client'
 import { useSite, type Product } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const PER_PAGE = 8
 
@@ -20,6 +21,11 @@ const MAX_PRICE = 10000000
 export default function ProductsPage() {
   const { categories } = useSite()
   const [searchParams] = useSearchParams()
+
+  useDocumentMeta({
+    title: 'Bộ sưu tập sản phẩm — Maison Cuir',
+    description: 'Khám phá bộ sưu tập túi xách, ví da, phụ kiện da thật thủ công cao cấp tại Maison Cuir — thiết kế tinh xảo, bảo hành trọn đời.',
+  })
 
   const [tab, setTab] = useState<'all' | 'sale' | number>('all')
 

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { api } from '../api/client'
 import { useCart } from '../contexts/CartContext'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface PaymentMethods {
   cod_enabled: boolean
@@ -22,6 +23,10 @@ interface OrderResult {
 }
 
 export default function CheckoutPage() {
+  useDocumentMeta({
+    title: 'Thanh Toán — Nova Store',
+    description: 'Hoàn tất đơn hàng của bạn tại Nova Store — thanh toán nhanh chóng và an toàn.',
+  })
   const { items, subtotal, coupon, clear } = useCart()
   const { settings } = useSite()
 

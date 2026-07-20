@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const SECTIONS = [
   {
@@ -51,6 +52,11 @@ const SECTIONS = [
 
 export default function TermsPage() {
   const { settings } = useSite()
+
+  useDocumentMeta({
+    title: 'Điều khoản sử dụng — Volt Kicks',
+    description: 'Điều khoản sử dụng dịch vụ tại Volt Kicks — quy định đặt hàng, thanh toán, đổi trả và trách nhiệm các bên.',
+  })
 
   return (
     <>

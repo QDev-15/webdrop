@@ -1,9 +1,15 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function TermsPage() {
   const { settings } = useSite()
   const siteName = settings.site_name || 'Maison Cuir'
+
+  useDocumentMeta({
+    title: 'Điều khoản sử dụng — Maison Cuir',
+    description: 'Điều khoản sử dụng dịch vụ và mua hàng tại Maison Cuir — quy định đặt hàng, thanh toán, đổi trả và bảo hành sản phẩm.',
+  })
 
   return (
     <>

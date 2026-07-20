@@ -151,3 +151,4 @@ $router->add('POST', '/public/orders',              [$shopPub, 'createOrder']);
 $router->add('GET',  '/public/orders/:code/status', [$shopPub, 'orderStatus']);
 $router->add('POST', '/public/sepay-webhook',       [$shopPub, 'sepayWebhook']);
 $router->add('POST', '/public/coupons/validate',    [$shopPub, 'validateCoupon']);
+$router->add('GET',  '/sitemap.xml',                [$shopPub, 'sitemap']);

@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function TermsPage() {
   const { settings } = useSite()
   const siteName = settings.site_name || 'Nova Store'
+  useDocumentMeta({
+    title: `Điều Khoản Sử Dụng — ${siteName}`,
+    description: `Điều khoản sử dụng dịch vụ và mua hàng tại ${siteName}.`,
+  })
 
   return (
     <>
