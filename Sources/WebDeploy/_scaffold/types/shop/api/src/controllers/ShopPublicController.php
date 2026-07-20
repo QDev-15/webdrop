@@ -265,4 +265,38 @@ class ShopPublicController {
         );
         Response::json(['success' => true]);
     }
+
+    // Sitemap XML động — route GET /sitemap.xml (đăng ký ở bootstrap.php, xem
+    // web-deploy-builder.md rule SEO). Ghi đè Content-Type JSON mặc định của Router.
+    // $staticRoutes chỉ liệt kê các trang tĩnh CHUNG cho mọi site shop — nếu site có thêm
+    // trang riêng (vd /ve-chung-toi, /khuyen-mai, /bo-suu-tap) thì AI (web-deploy-builder)
+    // phải tự thêm vào mảng này khi tích hợp — KHÔNG viết lại toàn bộ method.
+    public function sitemap(): void {
+        header('Content-Type: application/xml; charset=utf-8');
+
+        $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+        $base   = $scheme . '://' . ($_SERVER['HTTP_HOST'] ?? 'localhost');
+
+        $staticRoutes = ['/', '/san-pham', '/lien-he', '/chinh-sach-bao-mat', '/dieu-khoan'];
+        // ▼ AI thêm route tĩnh riêng của site tại đây, ví dụ: '/ve-chung-toi', '/khuyen-mai'
+
+        $urls = [];
+        foreach ($staticRoutes as $route) {
+            $urls[] = ['loc' => $base . $route, 'lastmod' => null];
+        }
+
+        $products = $this->db->query("SELECT slug, updated_at FROM products WHERE status = 'published'");
+        foreach ($products as $p) {
+            $urls[] = ['loc' => $base . '/san-pham/' . $p['slug'], 'lastmod' => substr($p['updated_at'], 0, 10)];
+        }
+
+        echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+        foreach ($urls as $u) {
+            echo '  <url><loc>' . htmlspecialchars($u['loc'], ENT_XML1) . '</loc>';
+            if ($u['lastmod']) echo '<lastmod>' . $u['lastmod'] . '</lastmod>';
+            echo '</url>' . "\n";
+        }
+        echo '</urlset>';
+    }
 }

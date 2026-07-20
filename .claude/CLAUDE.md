@@ -290,6 +290,14 @@ VPS AZDIGI Linux
 - Schema: `schema.sql` (SQLite) + `schema_mysql.sql` (MySQL option)
 - Đã test: PA Vietnam Windows hosting (Plesk + IIS + PHP 8.3 FastCGI)
 
+### SEO baseline cho site WebDeploy (2026-07-18)
+
+Audit phát hiện: site WebDeploy là React SPA thuần (CSR, không SSR) — trước đây chỉ có title/meta description TĨNH giống nhau cho mọi trang, không OG/Twitter/canonical, không robots.txt/sitemap.xml, không đọc `settings` nhóm `seo` (đã seed trong DB nhưng không nơi nào dùng tới). Đã vá ở **cấp `_scaffold/`** (áp dụng cho site MỚI từ giờ trở đi — KHÔNG hồi tố 47 site đã build, xem `web-deploy-builder.md` rule 30 cho chi tiết đầy đủ):
+- `_scaffold/website/public/robots.txt` — file tĩnh mới, trỏ `Sitemap: /api/sitemap.xml`.
+- `_scaffold/website/src/hooks/useDocumentMeta.ts` — hook mới, mọi page gọi để set title/meta description/canonical THEO ĐÚNG route (không cần react-helmet — chỉ `useEffect` thao tác `document.head` trực tiếp).
+- `_scaffold/types/shop/api/src/controllers/ShopPublicController.php` — thêm method `sitemap()` (tĩnh, deterministic) sinh XML động từ bảng `products` thật + route `GET /sitemap.xml` (đăng ký ở rule 28b). Site type khác `shop` (`restaurant`/`cafe`/`spa-service`/`company`/`portfolio`/`blog`) chưa có bản scaffold tĩnh tương ứng — AI tự viết theo pattern nêu ở rule 30 vì `PublicController.php` các type này vốn đã do AI viết riêng.
+- Route path `/sitemap.xml` (không tiền tố `/api`) vì `api/index.php` tự strip `/api` khỏi `$rawPath` trước khi dispatch — request thật vào `https://domain/api/sitemap.xml`.
+
 ### WebDeploy Shop Scaffold (type `shop`)
 
 - `node scaffolder.mjs [slug] shop` — scaffold sẵn Order+Payment TĨNH từ `_scaffold/types/shop/`, AI không viết lại: `ProductCategoryController.php`, `ProductController.php` (whitelist `BASE_FIELDS` mở rộng được qua 1 mảng), `OrderController.php`, `ShopPublicController.php` (categories/products lọc+phân trang/`paymentMethods`/`createOrder` tính lại giá từ DB/`orderStatus`/`sepayWebhook` verify `hash_equals`), `ShopSettingsController.php` (đồng bộ SePay). Admin: `ProductCategoryList/Form` (dùng `ImageField`), `ProductList/Form` (màu = mảng `COLOR_SWATCHES` AI chỉ đổi giá trị), `OrderList/Detail`, `PaymentSettingsTab.tsx` (import + 2 dòng JSX vào `Settings.tsx`, không viết lại logic). Website: `CartContext.tsx` (định danh item theo `product_id`+`color`+`size`), `CheckoutPage.tsx` + `shop-checkout.css` (CSS riêng không phụ thuộc prefix từng site — template gốc không có trang checkout để đối chiếu).

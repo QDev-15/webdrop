@@ -13,7 +13,7 @@ model: claude-sonnet-4-6
 
 Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển đổi template HTML tĩnh thành website deploy hoàn chỉnh: **React SPA frontend + React SPA admin + PHP backend + SQLite**.
 
-> **Scaffold đã cung cấp ~55% code**: Router, Auth, Database, Response, 8 controllers lõi, admin.css, client.ts, AuthContext, AdminLayout, Sidebar skeleton, ImageField, UnsplashPicker, LoginPage, ProfilePage, MediaPage, build scripts, .htaccess, web.config. **AI chỉ fill phần còn lại.**
+> **Scaffold đã cung cấp ~55% code**: Router, Auth, Database, Response, 8 controllers lõi, admin.css, client.ts, AuthContext, AdminLayout, Sidebar skeleton, ImageField, UnsplashPicker, LoginPage, ProfilePage, MediaPage, build scripts, .htaccess, web.config, `website/public/robots.txt`, `website/src/hooks/useDocumentMeta.ts` (xem rule 30). **AI chỉ fill phần còn lại.**
 
 ---
 
@@ -266,6 +266,7 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển �
        $router->add('POST', '/public/orders',                     [$shopPub, 'createOrder']);
        $router->add('GET',  '/public/orders/:code/status',        [$shopPub, 'orderStatus']);
        $router->add('POST', '/public/sepay-webhook',               [$shopPub, 'sepayWebhook']);
+       $router->add('GET',  '/sitemap.xml',                       [$shopPub, 'sitemap']);   // ← xem rule 30 (SEO)
        ```
     2. **`Database.php::seedSettings()`** — seed đủ 8 key nhóm `payment`/`shop`: `payment_cod_enabled` (mặc định `'1'`), `payment_sepay_enabled` (mặc định `'0'`), `sepay_bank_code`, `sepay_account_number`, `sepay_account_name`, `sepay_webhook_secret`, `shipping_fee`, `free_shipping_threshold`. Thiếu key nào → `ShopPublicController::paymentMethods()`/`createOrder()` coi như rỗng, khách sẽ không thấy phương thức thanh toán nào.
     3. **`PublicController::settings()`** (site tự viết, KHÔNG phải ShopPublicController) — bắt buộc lọc bỏ nhóm `payment` khỏi kết quả: `WHERE grp NOT IN ('smtp','cloudinary','integrations','payment')`. Thiếu dòng này = lộ `sepay_webhook_secret` qua endpoint public không cần auth (lỗ hổng nghiêm trọng nhất từng gặp ở `shop-ban-hang`).
@@ -279,6 +280,33 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển �
     6. **3 trang website AI vẫn phải tự viết** (không scaffolded — vì layout khác nhau theo template): `ProductsPage.tsx` (sidebar filter 5 block — rule 22, dùng `api.getPaged()` mới có trong `client.ts` để đọc `X-Total-Count`), `ProductDetailPage.tsx`, `CartPage.tsx` (đọc từ `CartContext` đã scaffolded). `CheckoutPage.tsx` đã scaffolded tĩnh — chỉ cần `import './styles/shop-checkout.css'` một lần trong `App.tsx` và thêm route `/thanh-toan`.
 
 29. **Nhắc lại Rule 5 (CLAUDE.md) áp dụng cho các rule 22-28b:** khi fix site shop theo các rule trên, CHỈ sửa trong `Sources/WebDeploy/[slug]/`. Các rule 22-28b chỉ áp dụng cho site có type `shop`/e-commerce — không áp dụng ngược cho site `company`/`restaurant`/... đã build trước đó.
+
+30. **[BẮT BUỘC — SEO cơ bản, áp dụng MỌI type, thêm 2026-07-18]** Site React SPA thuần (không SSR) nên bot không chạy JS (Bing, Zalo/Facebook preview) chỉ thấy đúng nội dung tĩnh trong `index.html` — 4 việc bắt buộc:
+    - **`website/index.html`** — viết `<title>`, `<meta name="description">` bằng nội dung THẬT của site (tên + tagline/mô tả ngắn từ template, không placeholder chung chung), cộng thêm OG/Twitter tĩnh:
+      ```html
+      <meta property="og:type" content="website">
+      <meta property="og:site_name" content="[Tên site thật]">
+      <meta property="og:title" content="[Trùng <title>]">
+      <meta property="og:description" content="[Trùng meta description]">
+      <meta property="og:image" content="[URL ảnh hero thật từ template, absolute URL]">
+      <meta property="og:locale" content="vi_VN">
+      <meta name="twitter:card" content="summary_large_image">
+      ```
+      Đây là nội dung MẶC ĐỊNH cho toàn site (bot không chạy JS chỉ thấy đúng phần này) — không cần đổi theo route vì CSR không cho phép server render khác nhau theo URL.
+    - **Mỗi page component** gọi hook có sẵn `useDocumentMeta` (`website/src/hooks/useDocumentMeta.ts` — đã scaffold, KHÔNG viết lại) ngay đầu component để set `document.title`/meta description/canonical THEO ĐÚNG trang cho trình duyệt thật + Googlebot (Googlebot có chạy JS):
+      ```tsx
+      import { useDocumentMeta } from '../hooks/useDocumentMeta'
+      // Trang tĩnh — gọi 1 lần:
+      useDocumentMeta({ title: 'Sản phẩm — [Tên site]', description: 'Khám phá toàn bộ sản phẩm...' })
+      // Trang chi tiết (product/service/post) — gọi lại khi data load xong, ví dụ trong ProductDetailPage:
+      useDocumentMeta({
+        title: product ? `${product.name} — [Tên site]` : '[Tên site]',
+        description: product?.description?.slice(0, 155),
+      })
+      ```
+      Áp dụng cho TẤT CẢ page trong `website/src/pages/` — không được bỏ sót trang nào, kể cả `chinh-sach-bao-mat.html`/`dieu-khoan.html` tương ứng nếu site có (title: "Chính sách bảo mật — [Tên site]" v.v.)
+    - **`robots.txt`** đã scaffold sẵn tại `website/public/robots.txt` (trỏ `Sitemap: /api/sitemap.xml`) — không cần AI tạo lại, chỉ verify còn tồn tại sau build.
+    - **`sitemap.xml` động** — site type `shop` đã có method `ShopPublicController::sitemap()` (scaffold tĩnh) + route `/sitemap.xml` (rule 28b) — AI CHỈ cần bổ sung route tĩnh riêng của site (`/ve-chung-toi`, `/khuyen-mai`, `/bo-suu-tap`...) vào mảng `$staticRoutes` ngay trong method đó (đã có comment đánh dấu vị trí, không viết lại toàn bộ method). Site type KHÁC `shop` (`restaurant`/`cafe`/`spa-service`/`company`/`portfolio`/`blog`) — PHP `PublicController.php` do AI tự viết, phải tự thêm method `sitemap()` tương tự (liệt kê route tĩnh + slug của entity chính có trang chi tiết, ví dụ `menu_items`/`services`/`projects`/`posts` — bảng nào có cột `slug` và trang `/xxx/:slug` tương ứng) và đăng ký route `GET /sitemap.xml` trong `bootstrap.php`. Bắt buộc `header('Content-Type: application/xml; charset=utf-8')` trước khi echo XML (Router mặc định force `application/json`, phải ghi đè).
 
 ---
 
@@ -562,6 +590,7 @@ Tab Tích hợp phải có input `unsplash_access_key` với default value là k
 2. Mỗi section = 1 React component, giữ nguyên HTML structure, thay static content bằng state từ API
 3. `SiteContext.tsx` fetch `Promise.all([/public/settings, /public/hero-slides])` khi mount
 4. `api/client.ts` detect base từ `import.meta.url`, đi lên 2 cấp từ assets/
+5. Mỗi page trong `pages/` gọi `useDocumentMeta` (đã scaffold ở `src/hooks/useDocumentMeta.ts`) — xem rule 30
 
 ---
 
@@ -611,6 +640,10 @@ cd Sources/WebDeploy/[slug]/admin  && npm install && npm run build
 - [ ] `admin/src/main.tsx` có dynamic basename + `AuthProvider` (scaffold — không ghi đè)
 - [ ] `admin/src/pages/settings/Settings.tsx` đủ tabs (gồm Cloudinary + Tích hợp)
 - [ ] `website/index.html` có Bootstrap 5.3.3 CDN + Bunny Fonts
+- [ ] `website/index.html` có title/description thật (không placeholder) + OG/Twitter tags (rule 30)
+- [ ] `website/public/robots.txt` còn tồn tại sau build (scaffold sẵn, không tự xoá)
+- [ ] Mọi page trong `website/src/pages/` đều gọi `useDocumentMeta` (rule 30) — grep `useDocumentMeta` phải ra số dòng ≥ số file page
+- [ ] Route `GET /sitemap.xml` đã đăng ký trong `bootstrap.php`, trả `Content-Type: application/xml` (rule 30)
 - [ ] `website/src/styles/template.css` là bản copy từ template
 - [ ] `README.md` có hướng dẫn deploy
 
