@@ -7,8 +7,8 @@ import { usePageTitle } from '../../hooks/usePageTitle'
 const CATEGORIES = ['Tất Cả', 'Luật Doanh Nghiệp', 'Tranh Tụng', 'Bất Động Sản', 'Luật Lao Động', 'Hình Sự Kinh Tế', 'Sở Hữu Trí Tuệ']
 
 export default function CasesPage() {
-  usePageTitle('Vụ án tiêu biểu')
   const { settings, cases, testimonials } = useSite()
+  usePageTitle('Vụ án tiêu biểu', `Những vụ án tiêu biểu ${settings.site_name || 'chúng tôi'} đã tư vấn và giải quyết thành công.`)
   const phone = settings.site_phone || '0900 000 000'
   const [active, setActive] = useState('Tất Cả')
 

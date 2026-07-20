@@ -13,8 +13,8 @@ function formatPrice(p: number) {
 }
 
 export default function BangGia() {
-  usePageTitle('Bảng giá')
   const { settings } = useSite()
+  usePageTitle('Bảng giá', `Bảng giá các gói dịch vụ của ${settings.site_name || 'chúng tôi'}.`)
   const [plans, setPlans]   = useState<PricingPlan[]>([])
   const [faqs, setFaqs]     = useState<Faq[]>([])
   const [billing, setBilling] = useState<'monthly' | 'yearly'>('monthly')

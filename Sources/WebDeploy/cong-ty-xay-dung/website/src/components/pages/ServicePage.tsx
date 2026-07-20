@@ -1,9 +1,15 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
+import { useDocumentMeta } from '../../hooks/useDocumentMeta'
 
 export default function ServicePage() {
   const { settings, services } = useSite()
+
+  useDocumentMeta({
+    title: 'Dịch vụ — Công Ty Xây Dựng Hoàng Gia',
+    description: 'Các dịch vụ xây dựng của Công Ty Xây Dựng Hoàng Gia: thi công dân dụng, công nghiệp, thiết kế kiến trúc, tư vấn dự án, cải tạo sửa chữa.',
+  })
 
   useEffect(() => {
     const timer = setTimeout(() => {

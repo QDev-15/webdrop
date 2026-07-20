@@ -1,8 +1,13 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
+import { useDocumentMeta } from '../../hooks/useDocumentMeta'
 
 export default function ContactPage() {
+  useDocumentMeta({
+    title: 'Liên hệ — Agency Sáng Tạo',
+    description: 'Liên hệ với Agency Sáng Tạo để trao đổi về dự án branding, thiết kế và digital marketing cho thương hiệu của bạn.',
+  })
   const { settings } = useSite()
   const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '' })
   const [submitting, setSubmit] = useState(false)

@@ -4,8 +4,8 @@ import { api } from '../../api/client'
 import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function ContactPage() {
-  usePageTitle('Liên hệ')
   const { settings } = useSite()
+  usePageTitle('Liên hệ', `Liên hệ hợp tác với ${settings.site_name || 'chúng tôi'}.`)
   const [form, setForm] = useState({ name: '', phone: '', email: '', subject: '', message: '' })
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [submitting, setSubmitting] = useState(false)

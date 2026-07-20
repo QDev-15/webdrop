@@ -4,8 +4,8 @@ import { useSite } from '../../contexts/SiteContext'
 import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function ServicesPage() {
-  usePageTitle('Dịch vụ')
-  const { services } = useSite()
+  const { services, settings } = useSite()
+  usePageTitle('Dịch vụ', `Các dịch vụ tư vấn tài chính tại ${settings.site_name || 'chúng tôi'}.`)
 
   useEffect(() => {
     const timer = setTimeout(() => {

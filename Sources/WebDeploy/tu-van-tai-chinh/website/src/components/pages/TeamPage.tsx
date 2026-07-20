@@ -16,8 +16,8 @@ const DEFAULT_EXPERTS = [
 ]
 
 export default function TeamPage() {
-  usePageTitle('Đội ngũ')
-  const { team } = useSite()
+  const { team, settings } = useSite()
+  usePageTitle('Đội ngũ', `Đội ngũ chuyên gia tư vấn tài chính của ${settings.site_name || 'chúng tôi'}.`)
 
   useEffect(() => {
     const timer = setTimeout(() => {

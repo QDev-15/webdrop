@@ -147,6 +147,7 @@ $router->add('GET',  '/public/testimonials', [$pub, 'testimonials']);
 $router->add('GET',  '/public/faqs',         [$pub, 'faqs']);
 $router->add('POST', '/public/contact',      [$pub, 'submitContact']);
 $router->add('POST', '/public/demo',         [$pub, 'submitDemo']);
+$router->add('GET',  '/sitemap.xml',         [$pub, 'sitemap']);
 
 
 // ── UPLOAD & UNSPLASH ─────────────────────────────────────────────────────────

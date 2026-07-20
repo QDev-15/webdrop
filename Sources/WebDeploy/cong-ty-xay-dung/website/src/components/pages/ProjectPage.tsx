@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import type { Project } from '../../contexts/SiteContext'
+import { useDocumentMeta } from '../../hooks/useDocumentMeta'
 
 const FILTERS = [
   { value: '', label: 'Tất cả' },
@@ -14,6 +15,11 @@ const FILTERS = [
 export default function ProjectPage() {
   const { settings, projects } = useSite()
   const [activeFilter, setActiveFilter] = useState('')
+
+  useDocumentMeta({
+    title: 'Dự án — Công Ty Xây Dựng Hoàng Gia',
+    description: 'Các công trình tiêu biểu đã hoàn thành của Công Ty Xây Dựng Hoàng Gia: nhà ở, biệt thự, nhà xưởng công nghiệp, trung tâm thương mại.',
+  })
 
   useEffect(() => {
     const timer = setTimeout(() => {

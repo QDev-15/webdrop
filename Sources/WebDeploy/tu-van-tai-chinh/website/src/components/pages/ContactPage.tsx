@@ -4,8 +4,8 @@ import { useSite } from '../../contexts/SiteContext'
 import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function ContactPage() {
-  usePageTitle('Liên hệ')
   const { settings } = useSite()
+  usePageTitle('Liên hệ', `Liên hệ tư vấn tài chính với ${settings.site_name || 'chúng tôi'}.`)
 
   useEffect(() => {
     const els = document.querySelectorAll('[data-reveal]')

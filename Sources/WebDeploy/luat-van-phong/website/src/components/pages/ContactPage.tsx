@@ -30,8 +30,8 @@ const FAQS = [
 ]
 
 export default function ContactPage() {
-  usePageTitle('Liên hệ & Tư vấn')
   const { settings } = useSite()
+  usePageTitle('Liên hệ & Tư vấn', `Liên hệ ${settings.site_name || 'văn phòng luật'} để được tư vấn pháp lý.`)
   const phone    = settings.site_phone    || '0900 000 000'
   const phone2   = settings.site_phone_2  || '0800 000 000'
   const email    = settings.site_email    || ''

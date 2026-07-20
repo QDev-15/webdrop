@@ -7,8 +7,8 @@ import { usePageTitle } from '../../hooks/usePageTitle'
 const romanNumerals = ['I.', 'II.', 'III.', 'IV.', 'V.', 'VI.']
 
 export default function ServicesPage() {
-  usePageTitle('Lĩnh vực tư vấn')
   const { settings, services } = useSite()
+  usePageTitle('Lĩnh vực tư vấn', `Các lĩnh vực tư vấn pháp lý của ${settings.site_name || 'chúng tôi'}.`)
   const phone = settings.site_phone || '0900 000 000'
 
   const processSteps = [

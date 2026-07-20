@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
+import { useDocumentMeta } from '../../hooks/useDocumentMeta'
 
 interface Project {
   id: number
@@ -16,6 +17,10 @@ interface Project {
 const CATEGORIES = ['Tất cả', 'Brand Identity', 'Digital Design', 'Campaign', 'Social Media', 'Event Branding', 'Digital Marketing']
 
 export default function ProjectsPage() {
+  useDocumentMeta({
+    title: 'Dự án — Agency Sáng Tạo',
+    description: 'Khám phá các dự án branding, digital design và campaign nổi bật đã thực hiện bởi Agency Sáng Tạo.',
+  })
   const { settings } = useSite()
   const [projects, setProjects]     = useState<Project[]>([])
   const [loading, setLoading]       = useState(true)

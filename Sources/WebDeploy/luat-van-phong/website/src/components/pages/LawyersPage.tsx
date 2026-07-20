@@ -4,8 +4,8 @@ import Reveal from '../Reveal'
 import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function LawyersPage() {
-  usePageTitle('Đội ngũ luật sư')
-  const { lawyers } = useSite()
+  const { lawyers, settings } = useSite()
+  usePageTitle('Đội ngũ luật sư', `Đội ngũ luật sư giàu kinh nghiệm của ${settings.site_name || 'chúng tôi'}.`)
 
   const partners   = lawyers.filter(l => Number(l.is_partner))
   const associates = lawyers.filter(l => !Number(l.is_partner))

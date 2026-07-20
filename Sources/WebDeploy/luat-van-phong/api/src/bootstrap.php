@@ -150,6 +150,7 @@ $router->add('GET',  '/public/cases',         [$pub, 'cases']);
 $router->add('GET',  '/public/testimonials',  [$pub, 'testimonials']);
 $router->add('POST', '/public/contact',       [$pub, 'submitContact']);
 $router->add('POST', '/public/consultation',  [$pub, 'submitConsultation']);
+$router->add('GET',  '/sitemap.xml',          [$pub, 'sitemap']);
 
 
 // ── UPLOAD & UNSPLASH ─────────────────────────────────────────────────────────

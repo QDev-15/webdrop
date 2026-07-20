@@ -1,5 +1,9 @@
-﻿import { useEffect } from 'react'
-import { useSite } from '../contexts/SiteContext'
+import { useEffect } from 'react'
+
+interface DocumentMeta {
+  title: string
+  description?: string
+}
 
 function upsertMeta(attr: 'name' | 'property', key: string, content: string) {
   let el = document.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`)
@@ -11,19 +15,17 @@ function upsertMeta(attr: 'name' | 'property', key: string, content: string) {
   el.setAttribute('content', content)
 }
 
-export function usePageTitle(pageTitle?: string, description?: string) {
-  const { settings } = useSite()
-
+// Đặt title + meta description + canonical + OG cho ĐÚNG trang hiện tại — gọi ở đầu
+// mỗi page component: useDocumentMeta({ title: '...', description: '...' }).
+// Không cần thư viện ngoài (react-helmet) — site này không có build system nặng nên
+// chỉ cần useEffect thao tác trực tiếp document.head, đủ dùng cho SPA nội bộ.
+export function useDocumentMeta({ title, description }: DocumentMeta) {
   useEffect(() => {
-    const siteName = settings.site_name || 'Website'
-    const title = pageTitle ? `${pageTitle} | ${siteName}` : (settings.meta_title || siteName)
     document.title = title
-
-    const desc = description || settings.meta_description
-    if (desc) {
-      upsertMeta('name', 'description', desc)
-      upsertMeta('property', 'og:description', desc)
-      upsertMeta('name', 'twitter:description', desc)
+    if (description) {
+      upsertMeta('name', 'description', description)
+      upsertMeta('property', 'og:description', description)
+      upsertMeta('name', 'twitter:description', description)
     }
     upsertMeta('property', 'og:title', title)
     upsertMeta('name', 'twitter:title', title)
@@ -35,5 +37,5 @@ export function usePageTitle(pageTitle?: string, description?: string) {
       document.head.appendChild(canonical)
     }
     canonical.setAttribute('href', window.location.origin + window.location.pathname)
-  }, [pageTitle, description, settings.site_name, settings.meta_title, settings.meta_description])
+  }, [title, description])
 }

@@ -2,10 +2,16 @@ import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
+import { useDocumentMeta } from '../../hooks/useDocumentMeta'
 
 export default function HomePage() {
   const { settings, slides, services, projects, testimonials } = useSite()
   const s = settings
+
+  useDocumentMeta({
+    title: 'Công Ty Xây Dựng Hoàng Gia — Tổng Thầu Uy Tín TP.HCM',
+    description: 'Tổng thầu xây dựng dân dụng, công nghiệp, thiết kế kiến trúc tại TP.HCM. Hơn 18 năm kinh nghiệm, hơn 350 công trình hoàn thành.',
+  })
 
   // Contact form state
   const nameRef = useRef<HTMLInputElement>(null)

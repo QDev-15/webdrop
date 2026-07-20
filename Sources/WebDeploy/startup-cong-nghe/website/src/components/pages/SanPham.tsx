@@ -7,8 +7,8 @@ import { usePageTitle } from '../../hooks/usePageTitle'
 interface Feature { id: number; name: string; tag: string; icon: string; description: string; content: string }
 
 export default function SanPham() {
-  usePageTitle('Sản phẩm')
   const { settings } = useSite()
+  usePageTitle('Sản phẩm', `Khám phá sản phẩm và tính năng của ${settings.site_name || 'chúng tôi'}.`)
   const [features, setFeatures] = useState<Feature[]>([])
 
   useEffect(() => {

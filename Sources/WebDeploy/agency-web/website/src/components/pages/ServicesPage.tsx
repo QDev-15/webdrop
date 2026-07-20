@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
 import { usePageTitle } from '../../hooks/usePageTitle'
 
@@ -8,7 +9,8 @@ interface Service {
 }
 
 export default function ServicesPage() {
-  usePageTitle('Dịch vụ')
+  const { settings } = useSite()
+  usePageTitle('Dịch vụ', `Các dịch vụ agency cung cấp tại ${settings.site_name || 'chúng tôi'}.`)
   const [services, setServices] = useState<Service[]>([])
 
   useEffect(() => {

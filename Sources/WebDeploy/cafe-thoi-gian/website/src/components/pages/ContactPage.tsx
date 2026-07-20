@@ -4,8 +4,8 @@ import { api } from '../../api/client'
 import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function ContactPage() {
-  usePageTitle('Liên hệ & Đặt chỗ')
   const { settings } = useSite()
+  usePageTitle('Liên hệ & Đặt chỗ', `Liên hệ đặt bàn hoặc góp ý với ${settings.site_name || 'quán'}.`)
   const [form, setForm] = useState({
     name: '', phone: '', email: '', purpose: '',
     date: '', time: '', guests: '2 người', area: 'Không cần thiết', message: ''

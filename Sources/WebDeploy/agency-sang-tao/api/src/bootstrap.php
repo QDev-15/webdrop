@@ -141,6 +141,7 @@ $router->add('GET',  '/public/featured-projects', [$pub, 'featuredProjects']);
 $router->add('GET',  '/public/team',              [$pub, 'team']);
 $router->add('GET',  '/public/testimonials',      [$pub, 'testimonials']);
 $router->add('POST', '/public/contact',           [$pub, 'submitContact']);
+$router->add('GET',  '/sitemap.xml',              [$pub, 'sitemap']);
 
 // ── UPLOAD & UNSPLASH ────────────────────────────────────────────────────────
 $upload = new UploadController($db);

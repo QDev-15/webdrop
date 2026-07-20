@@ -5,8 +5,8 @@ import { api } from '../../api/client'
 import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function LienHe() {
-  usePageTitle('Liên hệ')
   const { settings } = useSite()
+  usePageTitle('Liên hệ', `Liên hệ với ${settings.site_name || 'chúng tôi'} để được tư vấn.`)
 
   const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', size: '', interest: '', message: '' })
   const [submitting, setSubmitting] = useState(false)

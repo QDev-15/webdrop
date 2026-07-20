@@ -13,8 +13,8 @@ interface GalleryItem {
 }
 
 export default function SpacePage() {
-  usePageTitle('Không gian')
   const { settings } = useSite()
+  usePageTitle('Không gian', `Khám phá không gian quán tại ${settings.site_name || 'quán'}.`)
   const [gallery, setGallery] = useState<GalleryItem[]>([])
 
   useEffect(() => {

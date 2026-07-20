@@ -9,8 +9,8 @@ interface TeamMember {
 }
 
 export default function AboutPage() {
-  usePageTitle('Về chúng tôi')
   const { settings } = useSite()
+  usePageTitle('Về chúng tôi', `Tìm hiểu về ${settings.site_name || 'chúng tôi'}.`)
   const [team, setTeam] = useState<TeamMember[]>([])
 
   useEffect(() => {

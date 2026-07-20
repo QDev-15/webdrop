@@ -2,10 +2,16 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
+import { useDocumentMeta } from '../../hooks/useDocumentMeta'
 
 export default function ContactPage() {
   const { settings } = useSite()
   const s = settings
+
+  useDocumentMeta({
+    title: 'Liên hệ — Công Ty Xây Dựng Hoàng Gia',
+    description: 'Liên hệ Công Ty Xây Dựng Hoàng Gia để được tư vấn báo giá thi công xây dựng dân dụng, công nghiệp, thiết kế kiến trúc.',
+  })
   const [form, setForm] = useState({ name: '', phone: '', email: '', type: '', message: '' })
   const [sending, setSending] = useState(false)
   const [msg, setMsg] = useState<{ type: 'success' | 'error'; text: string } | null>(null)

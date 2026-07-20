@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
+import { useDocumentMeta } from '../../hooks/useDocumentMeta'
 
 interface TeamMember {
   id: number
@@ -12,6 +13,10 @@ interface TeamMember {
 }
 
 export default function AboutPage() {
+  useDocumentMeta({
+    title: 'Về chúng tôi — Agency Sáng Tạo',
+    description: 'Tìm hiểu về đội ngũ và câu chuyện của Agency Sáng Tạo — agency chuyên branding, thiết kế và digital creative tại TP.HCM.',
+  })
   const { settings } = useSite()
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([])
 

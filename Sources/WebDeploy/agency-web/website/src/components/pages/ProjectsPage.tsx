@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
 import { usePageTitle } from '../../hooks/usePageTitle'
 
@@ -8,7 +9,8 @@ interface Project {
 }
 
 export default function ProjectsPage() {
-  usePageTitle('Dự án')
+  const { settings } = useSite()
+  usePageTitle('Dự án', `Dự án tiêu biểu đã thực hiện bởi ${settings.site_name || 'chúng tôi'}.`)
   const [projects, setProjects] = useState<Project[]>([])
   const [active, setActive] = useState('all')
 

@@ -108,4 +108,21 @@ class PublicController {
         );
         Response::json(['ok' => true, 'id' => $id], 201);
     }
+
+    public function sitemap(array $p): void {
+        header('Content-Type: application/xml; charset=utf-8');
+
+        $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+        $base   = $scheme . '://' . ($_SERVER['HTTP_HOST'] ?? 'localhost');
+
+        // Site này KHÔNG có route chi tiết động (menu/gallery không có trang riêng) — chỉ liệt kê route tĩnh thật từ App.tsx
+        $staticRoutes = ['/', '/menu', '/khong-gian', '/lien-he'];
+
+        echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+        foreach ($staticRoutes as $route) {
+            echo '  <url><loc>' . htmlspecialchars($base . $route, ENT_XML1) . '</loc></url>' . "\n";
+        }
+        echo '</urlset>';
+    }
 }

@@ -2,6 +2,7 @@ import { useEffect, useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import { api } from '../../api/client'
+import { useDocumentMeta } from '../../hooks/useDocumentMeta'
 
 interface Service {
   id: number
@@ -39,6 +40,10 @@ interface Testimonial {
 }
 
 export default function HomePage() {
+  useDocumentMeta({
+    title: 'Agency Sáng Tạo — Branding & Digital Creative',
+    description: 'Agency sáng tạo chuyên branding, thiết kế, marketing và digital creative tại TP.HCM. Chúng tôi tạo ra những thương hiệu đáng nhớ.',
+  })
   const { settings } = useSite()
   const [services, setServices]         = useState<Service[]>([])
   const [projects, setProjects]         = useState<Project[]>([])
