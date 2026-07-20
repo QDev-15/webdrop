@@ -1,5 +1,24 @@
 {
+  "permissions": {
+    "deny": [
+      "Bash(git commit*)",
+      "Bash(git push*)"
+    ]
+  },
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "command": "$j = $input | Out-String | ConvertFrom-Json; $c = $j.tool_input.command; if ($c -and $c -match '(^|[;&|])\\s*git\\s+(commit|push)\\b') { @{hookSpecificOutput=@{hookEventName='PreToolUse';permissionDecision='deny';permissionDecisionReason='Bi chan: git commit/push phai do nguoi dung xac nhan truc tiep - khong agent nao (ke ca background subagent) duoc tu chay lenh nay, du dung rieng le hay noi chuoi voi && ; |. Neu can commit, dung lai va hoi nguoi dung truoc.'}} | ConvertTo-Json -Depth 5 -Compress }",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "hooks": [

@@ -4,7 +4,6 @@
       "Skill(update-config)",
       "Skill(update-config:*)",
       "Bash(git add *)",
-      "Bash(git commit -m ' *)",
       "Bash(npm run *)",
       "Bash(npx tsc *)",
       "Bash(npx prisma *)",
@@ -28,7 +27,8 @@
       "Bash(curl -s -m 3 http://localhost:5174 -o /dev/null -w \"%{http_code}\\\\n\")",
       "Bash(curl -s -m 3 http://localhost:5173 -o /dev/null -w \"%{http_code}\\\\n\")",
       "Skill(claude-api)",
-      "Skill(claude-api:*)"
+      "Skill(claude-api:*)",
+      "Bash(echo \"exit:$?\")"
     ],
     "additionalDirectories": [
       "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"
