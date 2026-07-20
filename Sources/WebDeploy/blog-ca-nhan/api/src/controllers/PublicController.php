@@ -198,4 +198,43 @@ class PublicController {
         $thankYou = $this->db->scalar("SELECT value FROM settings WHERE key = 'newsletter_thank_you'") ?? 'Đăng ký thành công!';
         Response::json(['ok' => true, 'message' => $thankYou]);
     }
+
+    // Sitemap XML động — route GET /sitemap.xml. Ghi đè Content-Type JSON mặc định của Router.
+    public function sitemap(array $p): void {
+        header('Content-Type: application/xml; charset=utf-8');
+
+        $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+        $base   = $scheme . '://' . ($_SERVER['HTTP_HOST'] ?? 'localhost');
+
+        $staticRoutes = ['/', '/lien-he', '/ve-toi', '/tat-ca-bai-viet'];
+
+        $urls = [];
+        foreach ($staticRoutes as $route) {
+            $urls[] = ['loc' => $base . $route, 'lastmod' => null];
+        }
+
+        $posts = $this->db->query("SELECT slug, updated_at FROM posts WHERE status = 'published'");
+        foreach ($posts as $post) {
+            $urls[] = ['loc' => $base . '/bai-viet/' . $post['slug'], 'lastmod' => substr($post['updated_at'], 0, 10)];
+        }
+
+        $cats = $this->db->query("SELECT slug FROM post_categories WHERE slug IS NOT NULL");
+        foreach ($cats as $cat) {
+            $urls[] = ['loc' => $base . '/danh-muc/' . $cat['slug'], 'lastmod' => null];
+        }
+
+        $tags = $this->db->query("SELECT slug FROM tags WHERE slug IS NOT NULL");
+        foreach ($tags as $tag) {
+            $urls[] = ['loc' => $base . '/tag/' . $tag['slug'], 'lastmod' => null];
+        }
+
+        echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+        foreach ($urls as $u) {
+            echo '  <url><loc>' . htmlspecialchars($u['loc'], ENT_XML1) . '</loc>';
+            if ($u['lastmod']) echo '<lastmod>' . $u['lastmod'] . '</lastmod>';
+            echo '</url>' . "\n";
+        }
+        echo '</urlset>';
+    }
 }

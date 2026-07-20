@@ -24,8 +24,8 @@ interface PostsResponse {
 }
 
 export default function ArchivePage() {
-  usePageTitle('Tất cả bài viết')
   const { settings } = useSite()
+  usePageTitle('Tất cả bài viết', `Toàn bộ bài viết đã đăng trên ${settings.site_name || 'blog'}.`)
   const navigate = useNavigate()
   const [posts, setPosts] = useState<Post[]>([])
   const [total, setTotal] = useState(0)

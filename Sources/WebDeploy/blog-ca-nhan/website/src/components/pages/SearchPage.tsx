@@ -24,10 +24,10 @@ interface PostsResponse {
 }
 
 export default function SearchPage() {
-  usePageTitle('Tìm kiếm')
   const [searchParams, setSearchParams] = useSearchParams()
   const { settings } = useSite()
   const q = searchParams.get('q') ?? ''
+  usePageTitle('Tìm kiếm', q ? `Kết quả tìm kiếm cho "${q}" trên ${settings.site_name || 'blog'}.` : `Tìm kiếm bài viết trên ${settings.site_name || 'blog'}.`)
   const [input, setInput] = useState(q)
   const [posts, setPosts] = useState<Post[]>([])
   const [total, setTotal] = useState(0)

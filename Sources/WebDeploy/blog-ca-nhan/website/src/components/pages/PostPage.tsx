@@ -39,7 +39,7 @@ export default function PostPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  usePageTitle(post?.title)
+  usePageTitle(post?.title, post?.excerpt)
 
   const authorName = settings.author_name ?? 'Nguyễn Văn A'
   const authorAvatar = settings.author_avatar ?? 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&q=80&auto=format&fit=crop&crop=face'

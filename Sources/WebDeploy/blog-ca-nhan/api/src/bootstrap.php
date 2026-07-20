@@ -145,6 +145,7 @@ $router->add('GET',  '/public/featured-post',   [$pub, 'featuredPost']);
 $router->add('GET',  '/public/popular-posts',   [$pub, 'popularPosts']);
 $router->add('POST', '/public/contact',         [$pub, 'submitContact']);
 $router->add('POST', '/public/newsletter',      [$pub, 'newsletter']);
+$router->add('GET',  '/sitemap.xml',            [$pub, 'sitemap']);
 
 
 // ── UPLOAD & UNSPLASH ─────────────────────────────────────────────────────────

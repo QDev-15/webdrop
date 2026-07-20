@@ -4,12 +4,12 @@ import { useSite } from '../../contexts/SiteContext'
 import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function AboutPage() {
-  usePageTitle('Về tôi')
   const { settings } = useSite()
 
   const authorName = settings.author_name ?? 'Nguyễn Văn A'
   const authorTitle = settings.author_title ?? 'Developer & Writer'
   const authorBio = settings.author_bio ?? 'Tôi viết về công nghệ, tư duy và cuộc sống. Mỗi tuần một bài, đúng giờ.'
+  usePageTitle('Về tôi', authorBio)
   const authorAvatar = settings.author_avatar ?? 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&q=80&auto=format&fit=crop&crop=face'
   const siteEmail = settings.site_email ?? ''
   const socialFacebook = settings.social_facebook ?? ''

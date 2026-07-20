@@ -29,7 +29,11 @@ export default function CategoryPage() {
   const { settings } = useSite()
   const navigate = useNavigate()
   const isTag = window.location.pathname.startsWith('/tag/')
-  usePageTitle(isTag ? 'Bài viết theo thẻ' : (slug?.replace(/-/g, ' ') || 'Danh mục'))
+  const categoryLabel = slug?.replace(/-/g, ' ') || 'danh mục'
+  usePageTitle(
+    isTag ? 'Bài viết theo thẻ' : (slug?.replace(/-/g, ' ') || 'Danh mục'),
+    isTag ? `Các bài viết được gắn thẻ "${categoryLabel}" trên ${settings.site_name || 'blog'}.` : `Bài viết thuộc danh mục "${categoryLabel}" trên ${settings.site_name || 'blog'}.`
+  )
   const [posts, setPosts] = useState<Post[]>([])
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(1)

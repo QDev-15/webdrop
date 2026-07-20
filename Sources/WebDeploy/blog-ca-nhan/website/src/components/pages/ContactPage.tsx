@@ -4,8 +4,8 @@ import { useSite } from '../../contexts/SiteContext'
 import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function ContactPage() {
-  usePageTitle('Liên hệ')
   const { settings } = useSite()
+  usePageTitle('Liên hệ', `Liên hệ với ${settings.site_name || 'chúng tôi'} — góp ý, hợp tác hoặc trao đổi về bài viết.`)
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
   const [submitting, setSubmitting] = useState(false)
   const [success, setSuccess] = useState('')
