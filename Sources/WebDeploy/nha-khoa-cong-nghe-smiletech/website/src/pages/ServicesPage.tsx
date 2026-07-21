@@ -1,6 +1,12 @@
 import Services from '../components/Services'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ServicesPage() {
+  useDocumentMeta({
+    title: 'Dịch vụ — SmileTech Nha Khoa Công Nghệ Cao',
+    description: 'Dịch vụ nha khoa ứng dụng AI chẩn đoán, scan 3D không đau và số hóa toàn diện từ chẩn đoán đến điều trị tại SmileTech.',
+  })
+
   return (
     <>
       <header className="st-page-header">

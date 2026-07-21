@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api/client'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface Doctor {
   id: number
@@ -22,6 +24,8 @@ const CREDENTIALS = [
 ]
 
 export default function TeamPage() {
+  const { settings } = useSite()
+  useDocumentMeta({ title: `Đội ngũ bác sĩ — ${settings.site_name || 'Nha khoa'}`, description: `Đội ngũ bác sĩ chuyên khoa Implant tại ${settings.site_name || 'nha khoa'}.` })
   const [doctors, setDoctors] = useState<Doctor[]>([])
 
   useEffect(() => {

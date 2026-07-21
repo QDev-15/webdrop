@@ -1,6 +1,12 @@
 import Contact from '../components/Contact'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ContactPage() {
+  useDocumentMeta({
+    title: 'Liên hệ — SmileTech Nha Khoa Công Nghệ Cao',
+    description: 'Gửi câu hỏi, yêu cầu tư vấn hoặc phản hồi tới SmileTech — đội ngũ sẽ phản hồi trong thời gian sớm nhất.',
+  })
+
   return (
     <>
       <header className="st-page-header">

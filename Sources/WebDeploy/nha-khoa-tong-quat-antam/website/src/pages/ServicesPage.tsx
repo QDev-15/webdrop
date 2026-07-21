@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api/client'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface Category {
   id: number
@@ -22,6 +23,7 @@ interface Service {
 }
 
 export default function ServicesPage() {
+  useDocumentMeta({ title: 'Dịch vụ — Nha Khoa An Tâm', description: 'Các dịch vụ nha khoa tổng quát tại Nha Khoa An Tâm.' })
   const [categories, setCategories] = useState<Category[]>([])
   const [services, setServices] = useState<Service[]>([])
   const [loading, setLoading] = useState(true)

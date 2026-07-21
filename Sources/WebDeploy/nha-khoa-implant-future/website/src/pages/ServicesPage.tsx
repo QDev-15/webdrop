@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api/client'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface Service {
   id: number
@@ -23,6 +25,8 @@ const TIMELINE_STEPS = [
 ]
 
 export default function ServicesPage() {
+  const { settings } = useSite()
+  useDocumentMeta({ title: `Dịch vụ Implant — ${settings.site_name || 'Nha khoa'}`, description: `Các dịch vụ cấy ghép Implant tại ${settings.site_name || 'nha khoa'}.` })
   const [services, setServices] = useState<Service[]>([])
 
   useEffect(() => {

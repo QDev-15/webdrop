@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 import Booking from '../components/Booking'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function BookingPage() {
+  useDocumentMeta({ title: 'Đặt lịch khám — KidSmile', description: 'Đặt lịch khám nha khoa cho bé tại KidSmile — nhanh chóng, dễ dàng.' })
   return (
     <>
       {/* Page header */}

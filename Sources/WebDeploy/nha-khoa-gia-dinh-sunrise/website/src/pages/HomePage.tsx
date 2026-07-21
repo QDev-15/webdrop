@@ -5,6 +5,7 @@ import Team from '../components/Team'
 import Testimonials from '../components/Testimonials'
 import { useSite } from '../contexts/SiteContext'
 import { Link } from 'react-router-dom'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const TIMELINE = [
   { num: '01', title: 'Khám và chẩn đoán', text: 'Bác sĩ thăm khám, chụp X-quang, đánh giá tình trạng răng miệng toàn diện và tư vấn phương án điều trị phù hợp.', active: true },
@@ -14,6 +15,11 @@ const TIMELINE = [
 ]
 
 export default function HomePage() {
+  useDocumentMeta({
+    title: 'Sunrise — Nha Khoa Gia Đình | Chăm sóc răng miệng cho cả nhà',
+    description: 'Sunrise Nha Khoa Gia Đình — phòng khám nha khoa thân thiện, ấm áp, phù hợp mọi lứa tuổi từ trẻ em đến người lớn tuổi. Đặt lịch khám ngay hôm nay.',
+  })
+
   const { settings } = useSite()
 
   const statYears    = settings.stat_years            || '10 năm'

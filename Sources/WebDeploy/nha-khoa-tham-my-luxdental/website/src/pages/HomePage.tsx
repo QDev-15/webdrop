@@ -5,9 +5,11 @@ import Services from '../components/Services'
 import Team from '../components/Team'
 import Testimonials from '../components/Testimonials'
 import { useSite } from '../App'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function HomePage() {
   const { settings } = useSite()
+  useDocumentMeta({ title: settings.meta_title || settings.site_name || 'LuxDental', description: settings.meta_description })
 
   return (
     <>

@@ -89,4 +89,22 @@ class PublicController {
         );
         Response::json(['message' => 'Cam on ban da lien he. Chung toi se phan hoi trong 24 gio lam viec.'], 201);
     }
+
+    // GET /sitemap.xml — chi co route tinh, khong co trang chi tiet dong
+    public function sitemap(array $p = []): void {
+        header('Content-Type: application/xml; charset=utf-8');
+
+        $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+        $base   = $scheme . '://' . ($_SERVER['HTTP_HOST'] ?? 'localhost');
+
+        // Site nay khong co trang chi tiet dong — chi route tinh
+        $staticRoutes = ['/', '/dich-vu', '/quy-trinh-nieng', '/bac-si', '/dat-lich', '/lien-he'];
+
+        echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+        foreach ($staticRoutes as $route) {
+            echo '  <url><loc>' . htmlspecialchars($base . $route, ENT_XML1) . '</loc></url>' . "\n";
+        }
+        echo '</urlset>';
+    }
 }

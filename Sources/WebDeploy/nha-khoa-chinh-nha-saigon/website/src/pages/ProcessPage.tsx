@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const STEPS = [
   {
@@ -53,6 +54,11 @@ const FAQS = [
 ]
 
 export default function ProcessPage() {
+  useDocumentMeta({
+    title: 'Quy trình niềng răng — Nha Khoa Chỉnh Nha Sài Gòn',
+    description: '6 bước chỉnh nha chuẩn hóa: thăm khám, scan 3D, lập kế hoạch điều trị, gắn mắc cài/khay niềng, tái khám định kỳ, tháo niềng và đeo hàm duy trì.',
+  })
+
   return (
     <>
       <section className="cn-page-hero">

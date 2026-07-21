@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 import Contact from '../components/Contact'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ContactPage() {
+  useDocumentMeta({ title: 'Liên hệ — KidSmile', description: 'Liên hệ KidSmile để được tư vấn và đặt lịch khám nha khoa cho bé.' })
   return (
     <>
       {/* Page header */}

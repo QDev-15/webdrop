@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function TechPage() {
+  useDocumentMeta({
+    title: 'Công nghệ điều trị — Nha Khoa Đông Đô',
+    description: 'Hệ thống trang thiết bị hiện đại chuẩn quốc tế tại Nha Khoa Đông Đô: CT Cone Beam 3D, scan nội nha CAD/CAM, laser nha khoa thế hệ mới — chẩn đoán chính xác, điều trị ít xâm lấn.',
+  })
+
   return (
     <>
       <div className="dd-page-header">

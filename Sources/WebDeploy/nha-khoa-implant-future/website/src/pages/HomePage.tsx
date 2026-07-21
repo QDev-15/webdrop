@@ -4,9 +4,11 @@ import Services from '../components/Services'
 import Testimonials from '../components/Testimonials'
 import Team from '../components/Team'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function HomePage() {
   const { settings } = useSite()
+  useDocumentMeta({ title: settings.meta_title || settings.site_name || 'Nha khoa Implant', description: settings.meta_description })
   const phone = settings.site_phone || '028 3800 5566'
 
   return (

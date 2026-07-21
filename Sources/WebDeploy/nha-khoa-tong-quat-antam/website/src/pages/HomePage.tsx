@@ -4,8 +4,10 @@ import About from '../components/About'
 import Services from '../components/Services'
 import Team from '../components/Team'
 import Testimonials from '../components/Testimonials'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function HomePage() {
+  useDocumentMeta({ title: 'Nha Khoa An Tâm — Nha Khoa Tổng Quát, Không Gian Yên Tĩnh', description: 'Phòng khám nha khoa tổng quát với không gian yên tĩnh, tối giản — nơi mọi lo âu được lắng nghe trước khi điều trị.' })
   return (
     <>
       {/* Hero */}

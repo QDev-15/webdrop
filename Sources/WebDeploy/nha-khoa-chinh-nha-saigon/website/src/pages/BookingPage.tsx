@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom'
 import Booking from '../components/Booking'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function BookingPage() {
+  useDocumentMeta({
+    title: 'Đặt lịch tư vấn — Nha Khoa Chỉnh Nha Sài Gòn',
+    description: 'Đặt lịch tư vấn niềng răng miễn phí — đội ngũ Nha Khoa Chỉnh Nha Sài Gòn liên hệ xác nhận lịch hẹn trong vòng 30 phút trong giờ làm việc.',
+  })
+
   return (
     <>
       <section className="cn-page-hero">

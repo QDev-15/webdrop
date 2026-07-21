@@ -151,5 +151,6 @@ $router->add('GET',  '/public/doctors',            [$publicCtrl, 'doctors']);
 $router->add('GET',  '/public/testimonials',       [$publicCtrl, 'testimonials']);
 $router->add('POST', '/public/bookings',           [$publicCtrl, 'createBooking']);
 $router->add('POST', '/public/contact',            [$publicCtrl, 'createContact']);
+$router->add('GET',  '/sitemap.xml',               [$publicCtrl, 'sitemap']);
 
 return $router;

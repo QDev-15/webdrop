@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api/client'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface Doctor {
   id: number
@@ -21,6 +22,10 @@ const FALLBACK: Doctor[] = [
 ]
 
 export default function TeamPage() {
+  useDocumentMeta({
+    title: 'Đội ngũ bác sĩ — Nụ Cười Xưa',
+    description: 'Gặp gỡ đội ngũ bác sĩ chuyên khoa giàu kinh nghiệm của Nụ Cười Xưa — tận tâm, chuyên nghiệp, luôn đặt sự an toàn của bệnh nhân lên hàng đầu.',
+  })
   const [doctors, setDoctors] = useState<Doctor[]>([])
   const [loading, setLoading] = useState(true)
 

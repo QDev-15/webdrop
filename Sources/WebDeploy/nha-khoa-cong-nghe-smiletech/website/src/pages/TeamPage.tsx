@@ -1,6 +1,12 @@
 import Team from '../components/Team'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function TeamPage() {
+  useDocumentMeta({
+    title: 'Bác sĩ — SmileTech Nha Khoa Công Nghệ Cao',
+    description: 'Đội ngũ bác sĩ SmileTech được đào tạo chuyên sâu để làm chủ AI chẩn đoán, scan 3D và phần mềm mô phỏng điều trị.',
+  })
+
   return (
     <>
       <header className="st-page-header">

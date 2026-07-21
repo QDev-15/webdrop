@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 import Team from '../components/Team'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function TeamPage() {
+  useDocumentMeta({ title: 'Đội ngũ bác sĩ — Nha Khoa An Tâm', description: 'Đội ngũ bác sĩ giàu kinh nghiệm, tận tâm của Nha Khoa An Tâm.' })
   return (
     <>
       <header className="at-page-hero">

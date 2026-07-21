@@ -13,7 +13,6 @@ import ContactPage from './pages/ContactPage'
 function AppShell() {
   const { settings } = useSite()
   const location = useLocation()
-  const siteName = settings.site_name || 'Nu Cuoi Xua Nha Khoa'
   const zalo = settings.zalo_number || settings.zalo || ''
 
   useEffect(() => {
@@ -49,7 +48,6 @@ function AppShell() {
 
   return (
     <>
-      <title>{siteName} | Rang dep — Nu cuoi dep</title>
       <Header />
       <main>
         <Routes>

@@ -1,4 +1,11 @@
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
+
 export default function TechPage() {
+  useDocumentMeta({
+    title: 'Công nghệ — SmileTech Nha Khoa Công Nghệ Cao',
+    description: 'Khám phá hệ sinh thái công nghệ SmileTech: AI chẩn đoán, scan 3D không đau và hồ sơ số hóa toàn diện.',
+  })
+
   return (
     <>
       <header className="st-page-header">

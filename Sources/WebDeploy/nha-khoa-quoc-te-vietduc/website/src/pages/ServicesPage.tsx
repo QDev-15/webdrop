@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api/client'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface Category { id: number; name: string; description: string }
 interface Service  { id: number; category_id: number | null; category_name: string; name: string; description: string; tag: string; price: string; price_unit: string }
 
 export default function ServicesPage() {
+  const { settings } = useSite()
+  useDocumentMeta({ title: `Dịch vụ — ${settings.site_name || 'Nha khoa'}`, description: `Các dịch vụ nha khoa chuẩn quốc tế tại ${settings.site_name || 'nha khoa'}.` })
   const [cats, setCats]     = useState<Category[]>([])
   const [services, setServices] = useState<Service[]>([])
   const [active, setActive] = useState(0)

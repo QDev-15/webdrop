@@ -121,4 +121,22 @@ class PublicController {
         );
         Response::json(['ok' => true, 'message' => 'Cam on ban da lien he. Chung toi se phan hoi som nhat.']);
     }
+
+    // Sitemap XML động — route GET /sitemap.xml. Ghi đè Content-Type JSON mặc định của Router.
+    public function sitemap(): void {
+        header('Content-Type: application/xml; charset=utf-8');
+
+        $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+        $base   = $scheme . '://' . ($_SERVER['HTTP_HOST'] ?? 'localhost');
+
+        // Site này không có trang chi tiết động — chỉ route tĩnh
+        $staticRoutes = ['/', '/dich-vu', '/co-so-vat-chat', '/bac-si', '/dat-lich', '/lien-he'];
+
+        echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+        foreach ($staticRoutes as $route) {
+            echo '  <url><loc>' . htmlspecialchars($base . $route, ENT_XML1) . '</loc></url>' . "\n";
+        }
+        echo '</urlset>';
+    }
 }

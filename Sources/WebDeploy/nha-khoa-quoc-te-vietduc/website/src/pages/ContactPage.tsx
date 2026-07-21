@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
 import { api } from '../api/client'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const BRANCHES = [
   { id: 'hcm', label: 'TP.HCM',    addrKey: 'branch_hcm_address', phoneKey: 'branch_hcm_phone' },
@@ -13,6 +14,7 @@ const BRANCHES = [
 
 export default function ContactPage() {
   const { settings } = useSite()
+  useDocumentMeta({ title: `Liên hệ — ${settings.site_name || 'Nha khoa'}`, description: `Liên hệ các chi nhánh của ${settings.site_name || 'nha khoa'} trên toàn quốc.` })
   const [activeBranch, setActiveBranch] = useState('hcm')
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'loading' | 'ok' | 'err'>('idle')

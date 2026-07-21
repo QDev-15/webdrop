@@ -1,4 +1,6 @@
 import { NavLink } from 'react-router-dom'
+import { useSite } from '../App'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 // Static before/after gallery — real content from template
 const BA_ITEMS = [
@@ -18,6 +20,8 @@ const BEFORE_COLOR = (i: number) => `hsl(${(i * 35 + 200) % 360},15%,30%)`
 const AFTER_COLOR  = (i: number) => `hsl(${(i * 35 + 200) % 360},35%,55%)`
 
 export default function BeforeAfterPage() {
+  const { settings } = useSite()
+  useDocumentMeta({ title: `Trước & Sau — ${settings.site_name || 'LuxDental'}`, description: `Hình ảnh kết quả thực tế trước và sau điều trị thẩm mỹ nha khoa tại ${settings.site_name || 'LuxDental'}.` })
   return (
     <>
       <section className="lx-page-hero">

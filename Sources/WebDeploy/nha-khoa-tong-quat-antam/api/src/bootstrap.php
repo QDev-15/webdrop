@@ -53,6 +53,7 @@ $router->add('GET',  '/public/doctors',             [$pub, 'doctors']);
 $router->add('GET',  '/public/testimonials',        [$pub, 'testimonials']);
 $router->add('POST', '/public/bookings',            [$pub, 'createBooking']);
 $router->add('POST', '/public/contact',             [$pub, 'createContact']);
+$router->add('GET',  '/sitemap.xml',                [$pub, 'sitemap']);
 
 // ── Auth ───────────────────────────────────────────────────────────────────
 $router->add('POST', '/auth/login',    [$auth, 'login']);

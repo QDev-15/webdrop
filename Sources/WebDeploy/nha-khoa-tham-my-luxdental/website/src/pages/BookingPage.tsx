@@ -1,9 +1,11 @@
 import { NavLink } from 'react-router-dom'
 import Booking from '../components/Booking'
 import { useSite } from '../App'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function BookingPage() {
   const { settings } = useSite()
+  useDocumentMeta({ title: `Đặt lịch — ${settings.site_name || 'LuxDental'}`, description: `Đặt lịch tư vấn thẩm mỹ nha khoa miễn phí tại ${settings.site_name || 'LuxDental'}.` })
 
   return (
     <>

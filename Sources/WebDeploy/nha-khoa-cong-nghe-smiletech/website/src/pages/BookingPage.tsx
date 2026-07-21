@@ -1,6 +1,12 @@
 import Booking from '../components/Booking'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function BookingPage() {
+  useDocumentMeta({
+    title: 'Đặt lịch khám — SmileTech Nha Khoa Công Nghệ Cao',
+    description: 'Đặt lịch khám trực tuyến tại SmileTech — hệ thống đặt lịch thời gian thực, xác nhận trong vòng 15 phút qua SMS hoặc Zalo.',
+  })
+
   return (
     <>
       <header className="st-page-header">

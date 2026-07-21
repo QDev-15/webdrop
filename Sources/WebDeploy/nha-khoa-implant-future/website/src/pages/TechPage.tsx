@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const TECHS = [
   {
@@ -34,6 +35,7 @@ const TECHS = [
 
 export default function TechPage() {
   const { settings } = useSite()
+  useDocumentMeta({ title: `Công nghệ 3D — ${settings.site_name || 'Nha khoa'}`, description: `Công nghệ cấy ghép Implant 3D hiện đại tại ${settings.site_name || 'nha khoa'}.` })
   const statCases = settings.stat_cases || '12.000+'
   const statSatisfaction = settings.stat_satisfaction || '99.2%'
   const statYears = settings.stat_years || '10+'

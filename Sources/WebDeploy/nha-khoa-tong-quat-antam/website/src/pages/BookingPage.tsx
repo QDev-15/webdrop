@@ -1,6 +1,8 @@
 import Booking from '../components/Booking'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function BookingPage() {
+  useDocumentMeta({ title: 'Đặt lịch — Nha Khoa An Tâm', description: 'Đặt lịch khám nha khoa tổng quát tại Nha Khoa An Tâm.' })
   return (
     <>
       <header className="at-page-hero">

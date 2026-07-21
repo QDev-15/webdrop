@@ -134,5 +134,6 @@ $router->add('GET',  '/public/doctors',       [$pub, 'doctors']);
 $router->add('GET',  '/public/testimonials',  [$pub, 'testimonials']);
 $router->add('POST', '/public/bookings',      [$pub, 'submitBooking']);
 $router->add('POST', '/public/contact',       [$pub, 'submitContact']);
+$router->add('GET',  '/sitemap.xml',          [$pub, 'sitemap']);
 
 return $router;

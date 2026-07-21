@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const TIMELINE = [
   { year: '2008', text: 'Nụ Cười Xưa thành lập tại một căn nhà nhỏ trên đường Nguyễn Văn Linh, Q.7. Phòng khám bắt đầu với 2 bác sĩ và một ghế nha khoa cổ điển, ấm cúng phong cách vintage mà người sáng lập tâm huyết.' },
@@ -11,6 +12,10 @@ const TIMELINE = [
 
 export default function StoryPage() {
   const { settings } = useSite()
+  useDocumentMeta({
+    title: 'Câu chuyện — Nụ Cười Xưa',
+    description: 'Hành trình 16 năm của Nụ Cười Xưa — từ một phòng khám nhỏ phong cách retro-vintage đến hệ thống nha khoa uy tín với 8+ bác sĩ chuyên khoa.',
+  })
 
   const storyYear  = settings.story_year  || '2008'
   const storyTitle = settings.story_title || 'Hành trình 16 năm — Từ một phòng khám nhỏ'

@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom'
 import Contact from '../components/Contact'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ContactPage() {
+  useDocumentMeta({
+    title: 'Liên hệ — Sunrise Nha Khoa Gia Đình',
+    description: 'Liên hệ với Sunrise Nha Khoa Gia Đình để được tư vấn — đội ngũ luôn sẵn sàng hỗ trợ qua điện thoại, email hoặc form liên hệ trực tiếp.',
+  })
+
   return (
     <>
       <div className="sr-page-header">

@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom'
 import Contact from '../components/Contact'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ContactPage() {
+  useDocumentMeta({
+    title: 'Liên hệ — Nha Khoa Chỉnh Nha Sài Gòn',
+    description: 'Liên hệ Nha Khoa Chỉnh Nha Sài Gòn để được tư vấn niềng răng. Xem giờ làm việc, địa chỉ và thông tin liên hệ nhanh chóng.',
+  })
+
   return (
     <>
       <section className="cn-page-hero">

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api/client'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface Category {
   id: number
@@ -31,6 +32,10 @@ const COMPARE_ROWS = [
 ]
 
 export default function DichVuPage() {
+  useDocumentMeta({
+    title: 'Dịch vụ niềng răng — Nha Khoa Chỉnh Nha Sài Gòn',
+    description: 'Bảng giá và so sánh các phương pháp niềng răng: mắc cài kim loại, mắc cài sứ, mắc cài tự buộc, mặt trong, Invisalign, khay trong nội địa. Chọn giải pháp phù hợp với bạn.',
+  })
   const [categories, setCategories] = useState<Category[]>([])
   const [services, setServices]     = useState<Service[]>([])
   const [activeTab, setActiveTab]   = useState(0)

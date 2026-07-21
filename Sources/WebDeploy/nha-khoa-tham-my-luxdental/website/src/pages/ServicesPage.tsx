@@ -1,7 +1,11 @@
 import { NavLink } from 'react-router-dom'
 import Services from '../components/Services'
+import { useSite } from '../App'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ServicesPage() {
+  const { settings } = useSite()
+  useDocumentMeta({ title: `Dịch vụ — ${settings.site_name || 'LuxDental'}`, description: `Các dịch vụ thẩm mỹ nha khoa cao cấp tại ${settings.site_name || 'LuxDental'} — veneer sứ, bọc răng sứ, tẩy trắng.` })
   return (
     <>
       {/* Page hero */}

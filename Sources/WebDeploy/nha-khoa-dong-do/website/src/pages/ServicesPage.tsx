@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom'
 import Services from '../components/Services'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ServicesPage() {
+  useDocumentMeta({
+    title: 'Dịch vụ nha khoa — Nha Khoa Đông Đô',
+    description: 'Dịch vụ nha khoa toàn diện tại Nha Khoa Đông Đô: trồng răng Implant, bọc sứ & Veneer thẩm mỹ, chỉnh nha Invisalign — mỗi liệu trình được lập kế hoạch cá nhân hóa bởi chuyên gia.',
+  })
+
   return (
     <>
       {/* Page header */}

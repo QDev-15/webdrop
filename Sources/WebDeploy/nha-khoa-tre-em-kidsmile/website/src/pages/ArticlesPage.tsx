@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api/client'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface Article {
   id: number
@@ -21,6 +22,7 @@ const FALLBACK_IMGS = [
 ]
 
 export default function ArticlesPage() {
+  useDocumentMeta({ title: 'Cẩm nang cha mẹ — KidSmile', description: 'Kiến thức chăm sóc răng miệng cho bé từ chuyên gia KidSmile — cẩm nang dành cho cha mẹ.' })
   const [articles, setArticles] = useState<Article[]>([])
   const [loading, setLoading] = useState(true)
 

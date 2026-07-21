@@ -1,6 +1,10 @@
 import Contact from '../components/Contact'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ContactPage() {
+  const { settings } = useSite()
+  useDocumentMeta({ title: `Liên hệ — ${settings.site_name || 'Nha khoa'}`, description: `Liên hệ ${settings.site_name || 'nha khoa'} để được tư vấn Implant.` })
   return (
     <>
       {/* Page Header */}

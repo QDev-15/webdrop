@@ -103,6 +103,7 @@ $router->add('GET', '/public/services',           [$pub, 'services']);
 $router->add('GET', '/public/team',               [$pub, 'team']);
 $router->add('GET', '/public/testimonials',       [$pub, 'testimonials']);
 $router->add('GET', '/public/service-categories', [$pub, 'serviceCategories']);
+$router->add('GET', '/sitemap.xml',               [$pub, 'sitemap']);
 
 // ── Stats ─────────────────────────────────────────────────────────────────────
 $router->add('GET', '/stats', [$stats, 'index']);

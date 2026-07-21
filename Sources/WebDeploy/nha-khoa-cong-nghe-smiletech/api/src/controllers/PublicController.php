@@ -105,4 +105,21 @@ class PublicController
         );
         Response::json(['message' => 'Dat lich thanh cong! Chung toi se xac nhan qua SMS/Zalo trong vong 15 phut.']);
     }
+
+    public function sitemap(array $p): void {
+        header('Content-Type: application/xml; charset=utf-8');
+
+        $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+        $base   = $scheme . '://' . ($_SERVER['HTTP_HOST'] ?? 'localhost');
+
+        // Site này không có trang chi tiết động — chỉ route tĩnh
+        $staticRoutes = ['/', '/dich-vu', '/cong-nghe', '/bac-si', '/dat-lich', '/lien-he'];
+
+        echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+        foreach ($staticRoutes as $route) {
+            echo '  <url><loc>' . htmlspecialchars($base . $route, ENT_XML1) . '</loc></url>' . "\n";
+        }
+        echo '</urlset>';
+    }
 }

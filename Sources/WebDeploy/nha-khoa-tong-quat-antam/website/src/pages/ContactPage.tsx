@@ -1,6 +1,8 @@
 import Contact from '../components/Contact'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ContactPage() {
+  useDocumentMeta({ title: 'Liên hệ — Nha Khoa An Tâm', description: 'Liên hệ Nha Khoa An Tâm để được tư vấn và đặt lịch khám.' })
   return (
     <>
       <header className="at-page-hero">

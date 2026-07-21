@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom'
 import Team from '../components/Team'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function TeamPage() {
+  useDocumentMeta({
+    title: 'Đội ngũ bác sĩ — Nha Khoa Chỉnh Nha Sài Gòn',
+    description: 'Đội ngũ bác sĩ chuyên khoa Chỉnh nha giàu kinh nghiệm, thường xuyên cập nhật kỹ thuật niềng răng mới nhất từ các hội nghị quốc tế.',
+  })
+
   return (
     <>
       <section className="cn-page-hero">

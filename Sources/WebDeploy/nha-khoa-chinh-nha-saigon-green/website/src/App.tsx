@@ -13,7 +13,6 @@ import LienHePage from './pages/LienHePage'
 function AppShell() {
   const { settings } = useSite()
   const location = useLocation()
-  const siteName = settings.site_name || 'Chỉnh Nha Sài Gòn'
   const zalo = settings.zalo_number || ''
 
   useEffect(() => {
@@ -50,7 +49,6 @@ function AppShell() {
 
   return (
     <>
-      <title>{siteName} — Niềng Răng Công Nghệ Số</title>
       <Header />
       <main>
         <Routes>

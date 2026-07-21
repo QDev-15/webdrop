@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
 import { api } from '../api/client'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface Service {
   id: number; name: string; description: string; tag: string; image: string; price: string; price_unit: string;
@@ -26,6 +27,7 @@ const USP = [
 
 export default function HomePage() {
   const { settings } = useSite()
+  useDocumentMeta({ title: settings.meta_title || settings.site_name || 'Nha khoa quốc tế', description: settings.meta_description })
   const [services, setServices]       = useState<Service[]>([])
   const [testimonials, setTestimonials] = useState<Testimonial[]>([])
 

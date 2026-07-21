@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom'
 import Services from '../components/Services'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ServicesPage() {
+  useDocumentMeta({
+    title: 'Dịch vụ chỉnh nha — Nha Khoa Chỉnh Nha Sài Gòn',
+    description: 'Đầy đủ giải pháp niềng răng: mắc cài kim loại, mắc cài sứ, Invisalign. So sánh phương pháp, tư vấn lộ trình phù hợp với từng tình trạng răng.',
+  })
+
   return (
     <>
       {/* Page hero */}

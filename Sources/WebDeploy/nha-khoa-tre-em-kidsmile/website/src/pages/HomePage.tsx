@@ -4,8 +4,10 @@ import About from '../components/About'
 import Services from '../components/Services'
 import Team from '../components/Team'
 import Testimonials from '../components/Testimonials'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function HomePage() {
+  useDocumentMeta({ title: 'KidSmile — Nha Khoa Trẻ Em | Chăm sóc răng miệng vui tươi cho bé', description: 'KidSmile là nha khoa chuyên biệt cho trẻ em — không gian như công viên, bác sĩ nhẹ nhàng, kỹ thuật không đau. Bé sẽ mong chờ được đến khám lần sau!' })
   return (
     <>
       {/* Hero — H6 Asymmetric Offset */}

@@ -1,7 +1,11 @@
 import { NavLink } from 'react-router-dom'
 import Team from '../components/Team'
+import { useSite } from '../App'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function TeamPage() {
+  const { settings } = useSite()
+  useDocumentMeta({ title: `Đội ngũ bác sĩ — ${settings.site_name || 'LuxDental'}`, description: `Đội ngũ bác sĩ chuyên khoa thẩm mỹ của ${settings.site_name || 'LuxDental'}.` })
   return (
     <>
       <section className="lx-page-hero">

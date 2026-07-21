@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom'
 import Contact from '../components/Contact'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ContactPage() {
+  useDocumentMeta({
+    title: 'Liên hệ — Nha Khoa Đông Đô',
+    description: 'Liên hệ Nha Khoa Đông Đô — chúng tôi lắng nghe mọi câu hỏi, phản hồi và yêu cầu hợp tác. Thời gian phản hồi thông thường trong vòng 24 giờ làm việc.',
+  })
+
   return (
     <>
       <div className="dd-page-header">

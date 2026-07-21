@@ -4,8 +4,14 @@ import Services from '../components/Services'
 import About from '../components/About'
 import Team from '../components/Team'
 import Testimonials from '../components/Testimonials'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function HomePage() {
+  useDocumentMeta({
+    title: 'Nha Khoa Đông Đô — Nha Khoa Cao Cấp, Dịch Vụ Trọn Gói',
+    description: 'Nha Khoa Đông Đô — phòng khám nha khoa cao cấp dành cho khách hàng thành đạt. Trồng răng Implant, bọc sứ thẩm mỹ, chỉnh nha Invisalign cùng đội ngũ chuyên gia hàng đầu.',
+  })
+
   return (
     <>
       <HeroSlider />

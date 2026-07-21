@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 import Services from '../components/Services'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ServicesPage() {
+  useDocumentMeta({ title: 'Dịch vụ nha khoa cho bé — KidSmile', description: 'Đầy đủ dịch vụ nha khoa Nhi tại KidSmile — khám định kỳ đến điều trị chuyên sâu, nhẹ nhàng và an toàn cho bé.' })
   return (
     <>
       {/* Page header */}

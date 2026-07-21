@@ -12,7 +12,6 @@ import ContactPage from './pages/ContactPage'
 function AppShell() {
   const { settings } = useSite()
   const location = useLocation()
-  const siteName = settings.site_name || 'Sunrise — Nha Khoa Gia Dinh'
   const zalo = settings.zalo_number || settings.zalo || ''
 
   useEffect(() => {
@@ -48,7 +47,6 @@ function AppShell() {
 
   return (
     <>
-      <title>{siteName} | Cham soc rang mieng cho ca nha</title>
       <Header />
       <main>
         <Routes>

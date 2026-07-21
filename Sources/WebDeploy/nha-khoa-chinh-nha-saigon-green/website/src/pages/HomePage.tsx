@@ -5,6 +5,7 @@ import Testimonials from '../components/Testimonials'
 import Booking from '../components/Booking'
 import { useSite } from '../contexts/SiteContext'
 import { Link } from 'react-router-dom'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const USP_ITEMS = [
   {
@@ -51,6 +52,10 @@ const USP_ITEMS = [
 ]
 
 export default function HomePage() {
+  useDocumentMeta({
+    title: 'Nha Khoa Chỉnh Nha Sài Gòn — Niềng Răng Công Nghệ Số',
+    description: 'Nha Khoa Chỉnh Nha Sài Gòn chuyên khoa niềng răng, chỉnh nha công nghệ số: mắc cài kim loại, mắc cài sứ, Invisalign. Scan 3D không đau, kế hoạch điều trị rõ ràng, đặt lịch tư vấn miễn phí.',
+  })
   const { settings } = useSite()
   const cases    = settings.stat_cases    || '4.500'
   const doctors  = settings.stat_doctors  || '6'

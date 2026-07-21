@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
 import Booking from '../components/Booking'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function BookingPage() {
   const { settings } = useSite()
+  useDocumentMeta({
+    title: 'Đặt lịch khám — Nụ Cười Xưa',
+    description: 'Đặt lịch khám nha khoa tại Nụ Cười Xưa — chọn thời gian phù hợp, chúng tôi liên hệ xác nhận trong vòng 30 phút trong giờ làm việc.',
+  })
   const phone = settings.site_phone || '0901 234 567'
 
   return (

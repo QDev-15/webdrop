@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const STEPS_FULL = [
   {
@@ -77,6 +78,10 @@ const TECH_ITEMS = [
 ]
 
 export default function QuyTrinhNiengPage() {
+  useDocumentMeta({
+    title: 'Quy trình điều trị — Nha Khoa Chỉnh Nha Sài Gòn',
+    description: '6 bước khoa học trong quy trình niềng răng: thăm khám & scan 3D, lập kế hoạch điều trị 3D, chuẩn bị răng, gắn thiết bị, tái khám định kỳ đến tháo niềng.',
+  })
   return (
     <>
       <div className="cn-page-hero">

@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom'
 import Contact from '../components/Contact'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ContactPage() {
+  useDocumentMeta({
+    title: 'Liên hệ — Nụ Cười Xưa',
+    description: 'Liên hệ với Nụ Cười Xưa — chúng tôi sẵn sàng lắng nghe và hỗ trợ bạn mọi lúc, từ tư vấn dịch vụ đến đặt lịch khám nha khoa.',
+  })
   return (
     <>
       {/* Page hero */}

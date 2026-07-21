@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
 import { api } from '../api/client'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const BRANCHES = ['TP.HCM', 'Hà Nội', 'Đà Nẵng', 'Cần Thơ', 'Nha Trang']
 const SERVICES = ['Khám tổng quát', 'Implant nha khoa', 'Chỉnh nha niềng răng', 'Răng sứ Zirconia', 'Dán sứ Veneer', 'Tẩy trắng răng', 'Răng trẻ em']
@@ -11,6 +12,7 @@ type Slot = typeof TIME_SLOTS[number]
 
 export default function BookingPage() {
   const { settings } = useSite()
+  useDocumentMeta({ title: `Đặt lịch — ${settings.site_name || 'Nha khoa'}`, description: `Đặt lịch khám tại các chi nhánh của ${settings.site_name || 'nha khoa'}.` })
   const [form, setForm] = useState({
     fullname: '', phone: '', email: '', branch: '', service: '',
     pref_date: '', pref_time: '', note: '',

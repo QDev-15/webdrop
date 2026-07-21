@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const BENTO_ITEMS = [
   { big: true,  caption: 'Phòng điều trị hiện đại',   sub: 'Trang thiết bị nhập khẩu châu Âu',  img: 'https://plus.unsplash.com/premium_photo-1674368232044-31d75efc09fa??w=800' },
@@ -19,6 +20,7 @@ const TECH_USP = [
 
 export default function FacilitiesPage() {
   const { settings } = useSite()
+  useDocumentMeta({ title: `Cơ sở vật chất — ${settings.site_name || 'Nha khoa'}`, description: `Hệ thống cơ sở vật chất hiện đại chuẩn quốc tế tại ${settings.site_name || 'nha khoa'}.` })
   const branches   = settings.stat_branches || '12'
   const cities     = '6'
   const chairs     = '40+'

@@ -3,8 +3,14 @@ import HeroSlider from '../components/HeroSlider'
 import About from '../components/About'
 import Services from '../components/Services'
 import Testimonials from '../components/Testimonials'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function HomePage() {
+  useDocumentMeta({
+    title: 'Nha Khoa Chỉnh Nha Sài Gòn — Niềng Răng Công Nghệ Số',
+    description: 'Chuyên khoa niềng răng, chỉnh nha công nghệ số tại Sài Gòn: mắc cài kim loại, mắc cài sứ, Invisalign. Scan 3D, lộ trình điều trị chính xác từng milimet.',
+  })
+
   return (
     <>
       <HeroSlider />

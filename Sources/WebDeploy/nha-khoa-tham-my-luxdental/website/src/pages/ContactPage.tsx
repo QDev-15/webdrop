@@ -1,7 +1,11 @@
 import { NavLink } from 'react-router-dom'
 import Contact from '../components/Contact'
+import { useSite } from '../App'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ContactPage() {
+  const { settings } = useSite()
+  useDocumentMeta({ title: `Liên hệ — ${settings.site_name || 'LuxDental'}`, description: `Liên hệ ${settings.site_name || 'LuxDental'} để đặt lịch tư vấn thẩm mỹ nha khoa.` })
   return (
     <>
       <section className="lx-page-hero">

@@ -1,8 +1,10 @@
 import Booking from '../components/Booking'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function BookingPage() {
   const { settings } = useSite()
+  useDocumentMeta({ title: `Đặt lịch — ${settings.site_name || 'Nha khoa'}`, description: `Đặt lịch khám và tư vấn Implant tại ${settings.site_name || 'nha khoa'}.` })
   const phone = settings.site_phone || '028 3800 5566'
   const address = settings.site_address || '258 Nam Kỳ Khởi Nghĩa, Quận 3, TP.HCM'
   const hours = settings.working_hours || 'T2–T7: 8:00–20:00 | CN: 9:00–17:00'

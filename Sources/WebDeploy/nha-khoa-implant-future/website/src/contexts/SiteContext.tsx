@@ -4,6 +4,8 @@ import { api } from '../api/client'
 export interface SiteSettings {
   site_name?: string
   site_tagline?: string
+  meta_title?: string
+  meta_description?: string
   site_phone?: string
   site_email?: string
   site_address?: string

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api/client'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface Doctor {
   id: number; name: string; role: string; flag: string;
@@ -8,6 +10,8 @@ interface Doctor {
 }
 
 export default function TeamPage() {
+  const { settings } = useSite()
+  useDocumentMeta({ title: `Đội ngũ bác sĩ — ${settings.site_name || 'Nha khoa'}`, description: `Đội ngũ bác sĩ đa quốc gia của ${settings.site_name || 'nha khoa'}.` })
   const [doctors, setDoctors] = useState<Doctor[]>([])
   const [filter, setFilter]   = useState('all')
 

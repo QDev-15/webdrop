@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom'
 import Booking from '../components/Booking'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function BookingPage() {
+  useDocumentMeta({
+    title: 'Đặt lịch khám — Sunrise Nha Khoa Gia Đình',
+    description: 'Đặt lịch khám nha khoa nhanh chóng tại Sunrise — điền form, chúng tôi liên hệ xác nhận trong vòng 30 phút, hoàn toàn miễn phí.',
+  })
+
   return (
     <>
       <div className="sr-page-header">

@@ -5,6 +5,7 @@ import Team from '../components/Team'
 import Testimonials from '../components/Testimonials'
 import { useSite } from '../contexts/SiteContext'
 import { Link } from 'react-router-dom'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const PROCESS_STEPS = [
   { num: '01', title: 'Kham va chuan doan', text: 'Bac si tham kham, chup X-quang ky thuat so, danh gia toan dien tinh trang rang mieng va tu van phuong an dieu tri phu hop.' },
@@ -15,6 +16,10 @@ const PROCESS_STEPS = [
 
 export default function HomePage() {
   const { settings } = useSite()
+  useDocumentMeta({
+    title: 'Nụ Cười Xưa — Nha Khoa Phong Cách Retro | Răng đẹp, Nụ cười đẹp',
+    description: 'Phòng khám nha khoa phong cách retro-vintage tại Q.7, chuyên sâu răng thẩm mỹ, niềng răng, Implant với bài bí hiện đại. Đặt lịch khám ngay.',
+  })
 
   const statCases    = settings.stat_cases           || '15.000+'
   const statDoctors  = settings.stat_doctors         || '8+'
