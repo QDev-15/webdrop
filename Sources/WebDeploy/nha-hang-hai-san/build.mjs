@@ -21,7 +21,7 @@ function stripBomDir(dir) {
 }
 
 const root = dirname(fileURLToPath(import.meta.url))
-let isTest = true
+let isTest = false
 const productDir = join(root, '..', '..', 'products', 'basic', basename(root), 'deploy')
 const test = join(dirname(root), `_output-deploy`)
 
