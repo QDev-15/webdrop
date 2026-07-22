@@ -5,8 +5,14 @@ import { fileURLToPath } from 'url'
 import { randomBytes } from 'crypto'
 
 const root = dirname(fileURLToPath(import.meta.url))
-const slug = "_output" // basename(root)
-const deploy = join(dirname(root), `${slug}-deploy`)
+let isTest = true
+const productDir = join(root, '..', '..', 'products', 'basic', basename(root), 'deploy')
+const test = join(dirname(root), `_output-deploy`)
+
+let deploy = test;
+if (isTest == false) {
+    deploy = productDir
+}
 
 console.log('=== Forum Cong Dong — Build ===\n')
 

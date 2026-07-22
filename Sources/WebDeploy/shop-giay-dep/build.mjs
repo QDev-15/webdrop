@@ -21,8 +21,14 @@ function stripBomDir(dir) {
 }
 
 const root = dirname(fileURLToPath(import.meta.url))
-const slug = "_output" // basename(root)
-const deploy = join(dirname(root), `${slug}-deploy`)
+let isTest = true
+const productDir = join(root, '..', '..', 'products', 'basic', basename(root), 'deploy')
+const test = join(dirname(root), `_output-deploy`)
+
+let deploy = test;
+if (isTest == false) {
+    deploy = productDir
+}
 
 console.log('=== shop-giay-dep — Build Script ===')
 console.log('')
@@ -117,13 +123,13 @@ if (existsSync(join(root, 'README.md'))) {
 console.log('')
 console.log('[4/4] Hoàn thành!')
 console.log('')
-console.log(`Thư mục deploy đã sẵn sàng: ../${slug}-deploy/`)
+console.log(`Thư mục deploy đã sẵn sàng: ${deploy}/`)
 console.log('')
 console.log('Các bước tiếp theo:')
-console.log(`  1. Upload toàn bộ nội dung trong ../${slug}-deploy/ lên public_html/ của hosting`)
-console.log(`  2. Mở ../${slug}-deploy/api/config.php và sửa APP_URL thành URL thực của website`)
-console.log(`  1. Upload toàn bộ nội dung trong ../${slug}-deploy/ lên public_html/ của hosting`)
-console.log(`  2. Mở ../${slug}-deploy/api/config.php và sửa APP_URL thành URL thực của website`)
+console.log(`  1. Upload toàn bộ nội dung trong ${deploy}/ lên public_html/ của hosting`)
+console.log(`  2. Mở ${deploy}/api/config.php và sửa APP_URL thành URL thực của website`)
+console.log(`  1. Upload toàn bộ nội dung trong ${deploy}/ lên public_html/ của hosting`)
+console.log(`  2. Mở ${deploy}/api/config.php và sửa APP_URL thành URL thực của website`)
 console.log('  3. Kiểm tra: https://yourdomain.com/api/health')
 console.log('  4. Đăng nhập admin: https://yourdomain.com/admin')
 console.log('     Xem tài khoản mặc định trong README.md')

@@ -5,8 +5,14 @@ import { fileURLToPath } from 'url'
 import { randomBytes } from 'crypto'
 
 const root = dirname(fileURLToPath(import.meta.url))
-const slug = "_output" // basename(root)
-const deploy = join(dirname(root), `${slug}-deploy`)
+let isTest = true
+const productDir = join(root, '..', '..', 'products', 'basic', basename(root), 'deploy')
+const test = join(dirname(root), `_output-deploy`)
+
+let deploy = test;
+if (isTest == false) {
+    deploy = productDir
+}
 
 console.log('TechFlow Startup — Build bắt đầu...\n')
 
@@ -83,9 +89,9 @@ if (existsSync(join(root, 'README.md'))) {
 console.log('\nBuild hoàn tất!')
 console.log('Output: ' + deploy)
 console.log('\nHướng dẫn deploy:')
-console.log(`  1. Upload toàn bộ nội dung trong ../${slug}-deploy/ lên public_html/`)
-console.log(`  2. Mở ../${slug}-deploy/api/config.php và sửa APP_URL thành URL thực của website`)
-console.log(`  1. Upload toàn bộ nội dung trong ../${slug}-deploy/ lên public_html/`)
-console.log(`  2. Mở ../${slug}-deploy/api/config.php và sửa APP_URL thành URL thực của website`)
+console.log(`  1. Upload toàn bộ nội dung trong ${deploy}/ lên public_html/`)
+console.log(`  2. Mở ${deploy}/api/config.php và sửa APP_URL thành URL thực của website`)
+console.log(`  1. Upload toàn bộ nội dung trong ${deploy}/ lên public_html/`)
+console.log(`  2. Mở ${deploy}/api/config.php và sửa APP_URL thành URL thực của website`)
 console.log('  3. Truy cập website.vn/admin để đăng nhập')
 console.log('  4. Tài khoản mặc định: sysadmin@admin.com / 123456')

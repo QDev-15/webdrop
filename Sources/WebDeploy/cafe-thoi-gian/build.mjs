@@ -24,8 +24,14 @@ function stripBomPhp(dir) {
 }
 
 const root = dirname(fileURLToPath(import.meta.url))
-const slug = "_output" // basename(root)
-const deploy = join(dirname(root), `${slug}-deploy`)
+let isTest = true
+const productDir = join(root, '..', '..', 'products', 'basic', basename(root), 'deploy')
+const test = join(dirname(root), `_output-deploy`)
+
+let deploy = test;
+if (isTest == false) {
+    deploy = productDir
+}
 
 console.log('=== Build Cà Phê Thời Gian ===\n')
 
@@ -113,10 +119,10 @@ if (existsSync(join(root, 'README.md'))) {
 console.log('\n=== Build hoàn thành! ===')
 console.log(`Deploy folder: ${deploy}`)
 console.log('\nHướng dẫn tiếp theo:')
-console.log(`  1. Upload toàn bộ nội dung trong ../${slug}-deploy/ lên public_html/`)
-console.log(`  2. Mở ../${slug}-deploy/api/config.php và sửa APP_URL thành URL thực của website`)
-console.log(`  1. Upload toàn bộ nội dung trong ../${slug}-deploy/ lên public_html/`)
-console.log(`  2. Mở ../${slug}-deploy/api/config.php và sửa APP_URL thành URL thực của website`)
+console.log(`  1. Upload toàn bộ nội dung trong ${deploy}/ lên public_html/`)
+console.log(`  2. Mở ${deploy}/api/config.php và sửa APP_URL thành URL thực của website`)
+console.log(`  1. Upload toàn bộ nội dung trong ${deploy}/ lên public_html/`)
+console.log(`  2. Mở ${deploy}/api/config.php và sửa APP_URL thành URL thực của website`)
 console.log('  3. Truy cập https://yoursite.com/api/health để kiểm tra')
 console.log('  4. Đăng nhập admin: https://yoursite.com/admin')
 console.log('     Email: sysadmin@admin.com | Mật khẩu: 123456')
