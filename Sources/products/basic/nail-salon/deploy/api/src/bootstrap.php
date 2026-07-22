@@ -73,6 +73,7 @@ $router->add('GET',  '/public/team',         [$pub, 'team']);
 $router->add('POST', '/public/contact',      [$pub, 'submitContact']);
 $router->add('POST', '/public/booking',            [$pub, 'submitBooking']);
 $router->add('GET',  '/public/service-categories', [$pub, 'serviceCategories']);
+$router->add('GET',  '/sitemap.xml', [$pub, 'sitemap']);
 
 // Settings
 $settings = new SettingsController($db);

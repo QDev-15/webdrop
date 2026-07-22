@@ -116,6 +116,7 @@ $router->add('GET', '/public/testimonials',       [$pub, 'testimonials']);
 $router->add('GET', '/public/gallery',            [$pub, 'gallery']);
 $router->add('POST','/public/contact',            [$pub, 'submitContact']);
 $router->add('POST','/public/booking',            [$pub, 'submitBooking']);
+$router->add('GET', '/sitemap.xml',               [$pub, 'sitemap']);
 
 // ── Stats ─────────────────────────────────────────────────────────────────────
 $router->add('GET', '/stats', [$stats, 'index']);

@@ -97,4 +97,17 @@ class PublicController {
         );
         Response::json(['ok' => true, 'id' => $id, 'message' => 'Đặt bàn thành công! Chúng tôi sẽ xác nhận qua điện thoại.'], 201);
     }
+
+    // GET /sitemap.xml
+    public function sitemap(array $p): void {
+        header('Content-Type: application/xml; charset=utf-8');
+        $base = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https://' : 'http://') . ($_SERVER['HTTP_HOST'] ?? 'localhost');
+        $staticRoutes = ['/', '/thuc-don', '/dat-ban', '/gallery', '/lien-he'];
+        echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+        foreach ($staticRoutes as $route) {
+            echo '  <url><loc>' . htmlspecialchars($base . $route) . '</loc></url>' . "\n";
+        }
+        echo '</urlset>';
+    }
 }

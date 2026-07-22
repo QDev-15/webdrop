@@ -160,3 +160,4 @@ $router->add('POST', '/public/orders',              [$pub, 'createOrder']);
 $router->add('GET',  '/public/orders/:code/status', [$pub, 'orderStatus']);
 $router->add('POST', '/public/sepay-webhook',       [$pub, 'sepayWebhook']);
 $router->add('POST', '/public/contact',             [$pub, 'submitContact']);
+$router->add('GET',  '/sitemap.xml',                [$pub, 'sitemap']);

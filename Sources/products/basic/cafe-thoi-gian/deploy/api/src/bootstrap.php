@@ -142,6 +142,7 @@ $router->add('GET',  '/public/gallery',         [$pub, 'gallery']);
 $router->add('GET',  '/public/testimonials',    [$pub, 'testimonials']);
 $router->add('POST', '/public/contact',         [$pub, 'submitContact']);
 $router->add('POST', '/public/reservation',     [$pub, 'submitReservation']);
+$router->add('GET',  '/sitemap.xml',            [$pub, 'sitemap']);
 
 
 // ── UPLOAD & UNSPLASH ─────────────────────────────────────────────────────────

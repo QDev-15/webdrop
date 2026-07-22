@@ -73,7 +73,7 @@ class Database {
         if ($this->scalar("SELECT COUNT(*) FROM settings") > 0) return;
         $rows = [
             // general
-            ['site_name',        'Agency ST',                                   'general'],
+            ['site_name',        'Agency Sáng Tạo',                                   'general'],
             ['site_description', 'Agency sáng tạo chuyên branding, thiết kế, marketing và digital creative. Chúng tôi tạo ra những thương hiệu đáng nhớ.', 'general'],
             ['site_logo',        '',                                                     'general'],
             ['site_favicon',     '',                                                     'general'],

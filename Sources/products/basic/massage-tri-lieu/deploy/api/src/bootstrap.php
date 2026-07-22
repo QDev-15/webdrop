@@ -158,5 +158,6 @@ $router->add('GET',  '/public/testimonials',       [$pub, 'testimonials']);
 $router->add('GET',  '/public/team',               [$pub, 'team']);
 $router->add('POST', '/public/contact',            [$pub, 'submitContact']);
 $router->add('POST', '/public/booking',            [$pub, 'submitBooking']);
+$router->add('GET',  '/sitemap.xml',                [$pub, 'sitemap']);
 
 return $router;

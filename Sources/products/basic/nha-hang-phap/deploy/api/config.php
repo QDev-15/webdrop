@@ -22,7 +22,7 @@ define('DB_PASS', 'mat_khau');
 define('APP_URL', 'http://localhost:8081');
 define('APP_ENV', 'development');
 // ⚠️  APP_KEY được auto-generate bởi build.mjs — không cần sửa thủ công
-define('APP_KEY', '10ae9386960e83d5ba55f1f2e4d9bdaebecec501389682cb215b570a9ccbeabf');
+define('APP_KEY', '71c3bf84cf15fc879bf060b4fbab9bcf0140078a70f97fd847952f6c27ddcefa');
 
 // ─── CORS ────────────────────────────────────────────────────────────────────
 // Danh sách origin được phép gọi API (để trống = chỉ cho phép APP_URL)

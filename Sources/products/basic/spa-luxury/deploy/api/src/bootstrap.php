@@ -163,5 +163,6 @@ $router->add('GET',  '/public/testimonials',       fn($p) => $public->testimonia
 $router->add('GET',  '/public/team',               fn($p) => $public->team($p));
 $router->add('GET',  '/public/gallery',            fn($p) => $public->gallery($p));
 $router->add('GET',  '/public/hero-slides',        fn($p) => $public->heroSlides($p));
+$router->add('GET',  '/sitemap.xml',               fn($p) => $public->sitemap($p));
 
 return $router;

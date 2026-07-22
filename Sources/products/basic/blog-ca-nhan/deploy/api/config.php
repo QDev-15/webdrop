@@ -22,7 +22,7 @@ define('DB_PASS', 'mat_khau');
 define('APP_URL', 'http://localhost:8081');
 define('APP_ENV', 'production');
 // ⚠️  Sửa APP_KEY thành chuỗi ngẫu nhiên 32 ký tự
-define('APP_KEY', '3c0371660a5d3261c6c9fd7504461ba2d1a448dbf92aae937c5b76dd16dcac7c');
+define('APP_KEY', '41d8aaf124563e6e966e3318ba49be3a302db806f55d6d801c6c3c3cace6f461');
 
 // ─── CORS ────────────────────────────────────────────────────────────────────
 // Danh sách origin được phép gọi API (để trống = chỉ cho phép APP_URL)

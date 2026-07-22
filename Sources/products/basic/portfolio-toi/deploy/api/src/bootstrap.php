@@ -126,6 +126,7 @@ $router->add('GET',  '/public/hero-slides',     [$pub, 'heroSlides']);
 $router->add('GET',  '/public/projects',        [$pub, 'projects']);
 $router->add('GET',  '/public/skills',          [$pub, 'skills']);
 $router->add('GET',  '/public/testimonials',    [$pub, 'testimonials']);
+$router->add('GET',  '/sitemap.xml',            [$pub, 'sitemap']);
 $router->add('POST', '/public/contact',         [$pub, 'submitContact']);
 
 // ── UPLOAD & UNSPLASH ─────────────────────────────────────────────────────────
