@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api/client'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface TeamMember {
   id: number
@@ -40,6 +42,11 @@ const STRENGTHS = [
 ]
 
 export default function BacSiPage() {
+  const { settings } = useSite()
+  useDocumentMeta({
+    title: `Đội ngũ bác sĩ — ${settings.site_name || 'Thẩm Mỹ Viện Quốc Tế'}`,
+    description: 'Đội ngũ bác sĩ thẩm mỹ giàu kinh nghiệm, đào tạo bài bản trong và ngoài nước, sở hữu chứng chỉ hành nghề quốc tế.',
+  })
   const [team, setTeam]       = useState<TeamMember[]>([])
   const [loading, setLoading] = useState(true)
 

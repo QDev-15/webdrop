@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { api } from '../api/client'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface BookingForm {
   full_name: string
@@ -49,6 +50,10 @@ const SCHEDULE = [
 
 export default function TuVanPage() {
   const { settings } = useSite()
+  useDocumentMeta({
+    title: `Đặt lịch tư vấn — ${settings.site_name || 'Thẩm Mỹ Viện Quốc Tế'}`,
+    description: 'Đặt lịch tư vấn thẩm mỹ miễn phí với đội ngũ bác sĩ chuyên môn cao — chọn dịch vụ, bác sĩ và thời gian phù hợp với bạn.',
+  })
   const [form, setForm]       = useState<BookingForm>(EMPTY)
   const [submitting, setSub]  = useState(false)
   const [success, setSuccess] = useState(false)

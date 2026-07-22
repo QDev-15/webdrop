@@ -1,12 +1,13 @@
-import { useEffect } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Contact from '../components/Contact'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ContactPage() {
-  useEffect(() => {
-    document.title = 'Liên Hệ — Nhà Hàng Ẩm Thực Truyền Thống'
-  }, [])
+  useDocumentMeta({
+    title: 'Liên Hệ — Nhà Hàng Ẩm Thực Truyền Thống',
+    description: 'Liên hệ Nhà Hàng Ẩm Thực Truyền Thống — địa chỉ, số điện thoại, giờ mở cửa. Đội ngũ nhân viên luôn sẵn sàng hỗ trợ bạn.',
+  })
 
   return (
     <>

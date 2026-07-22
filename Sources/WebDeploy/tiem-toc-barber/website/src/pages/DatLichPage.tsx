@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import { useSite } from '../contexts/SiteContext'
 import { api } from '../api/client'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface Category {
   id: number
@@ -28,6 +29,10 @@ const TIME_SLOTS = [
 
 export default function DatLichPage() {
   const { settings } = useSite()
+  useDocumentMeta({
+    title: `Đặt lịch hẹn — ${settings.site_name || 'Tiệm Tóc Barber'}`,
+    description: 'Đặt lịch cắt tóc, cạo râu, uốn nhuộm online — chọn dịch vụ, stylist, ngày giờ phù hợp và xác nhận qua Zalo trong 15 phút.',
+  })
   const [categories, setCategories] = useState<Category[]>([])
   const [services, setServices] = useState<Service[]>([])
   const [team, setTeam] = useState<TeamMember[]>([])

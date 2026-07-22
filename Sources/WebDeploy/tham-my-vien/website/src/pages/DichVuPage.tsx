@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api/client'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface ServiceCategory {
   id: number
@@ -35,6 +36,10 @@ const DEFAULT_ICON = `<svg width="22" height="22" viewBox="0 0 24 24" fill="none
 
 export default function DichVuPage() {
   const { settings }                = useSite()
+  useDocumentMeta({
+    title: `Bảng giá dịch vụ thẩm mỹ — ${settings.site_name || 'Thẩm Mỹ Viện Quốc Tế'}`,
+    description: 'Danh mục dịch vụ thẩm mỹ toàn diện: nâng mũi, độn cằm, cắt mí, căng da, chăm sóc da laser cùng đội ngũ bác sĩ giàu kinh nghiệm.',
+  })
   const [categories, setCategories] = useState<ServiceCategory[]>([])
   const [services, setServices]     = useState<Service[]>([])
   const [activeTab, setActiveTab]   = useState<number | 'all'>('all')

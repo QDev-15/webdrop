@@ -7,8 +7,16 @@ import About from '../components/About'
 import Testimonials from '../components/Testimonials'
 import Gallery from '../components/Gallery'
 import { Link } from 'react-router-dom'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function HomePage() {
+  const { settings } = useSite()
+  useDocumentMeta({
+    title: settings.meta_title || 'Nhà Hàng Ẩm Thực — Hương vị đích thực Việt Nam',
+    description: settings.meta_description || 'Nhà hàng phục vụ ẩm thực Việt Nam truyền thống với hơn 60 món ăn. Đặt bàn ngay hôm nay.',
+  })
+
   useEffect(() => {
     const timer = setTimeout(() => {
       const els = document.querySelectorAll<Element>('.reveal:not(.visible)')

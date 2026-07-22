@@ -9,6 +9,7 @@ import About from './components/About'
 import Testimonials from './components/Testimonials'
 import Gallery from './components/Gallery'
 import Contact from './components/Contact'
+import { useDocumentMeta } from './hooks/useDocumentMeta'
 
 // ── Site Context ──────────────────────────────────────────────────────────────
 
@@ -37,6 +38,11 @@ export const useSite = () => useContext(SiteContext)
 
 function HomePage() {
   const { settings, slides } = useSite()
+
+  useDocumentMeta({
+    title: settings.meta_title || 'Quán Ăn Phở Bình Dân — Ngon, Rẻ, Nhanh',
+    description: settings.meta_description || 'Phở, cơm tấm, bún bò, bánh mì và nhiều món Việt ngon từ 20.000đ. Mở cửa 6:00 – 22:00 hàng ngày.',
+  })
 
   return (
     <>
@@ -176,6 +182,13 @@ function HomePage() {
 }
 
 function MenuPage() {
+  const { settings } = useSite()
+
+  useDocumentMeta({
+    title: `Thực đơn — ${settings.site_name || 'Quán Ăn Phở Bình Dân'}`,
+    description: 'Thực đơn đầy đủ: phở, cơm tấm, bún bò Huế, bún riêu cua, bánh mì thịt — nấu tươi mỗi ngày, giá từ 20.000đ.',
+  })
+
   return (
     <>
       <div className="page-hero">
@@ -206,6 +219,12 @@ function MenuPage() {
 
 function CuaHangPage() {
   const { settings } = useSite()
+
+  useDocumentMeta({
+    title: `Cửa hàng — ${settings.site_name || 'Quán Ăn Phở Bình Dân'}`,
+    description: `Địa chỉ, giờ mở cửa và hình ảnh quán tại ${settings.site_address || '123 Đường Nguyễn Trãi, Q.5, TP.HCM'}.`,
+  })
+
   return (
     <>
       <div className="page-hero">
@@ -272,6 +291,12 @@ function CuaHangPage() {
 
 function LienHePage() {
   const { settings } = useSite()
+
+  useDocumentMeta({
+    title: `Liên hệ — ${settings.site_name || 'Quán Ăn Phở Bình Dân'}`,
+    description: `Gọi điện hoặc nhắn Zalo để đặt món tại ${settings.site_name || 'Quán Ăn Phở Bình Dân'} — phục vụ nhanh, giao hàng tận nơi.`,
+  })
+
   return (
     <>
       <div className="page-hero">

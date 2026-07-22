@@ -1,6 +1,15 @@
 import Booking from '../components/Booking'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function BookingPage() {
+  const { settings } = useSite()
+
+  useDocumentMeta({
+    title: `Đăng ký lớp học — ${settings.site_name}`,
+    description: 'Đăng ký buổi học thử pilates ngay hôm nay — chúng tôi sẽ liên hệ xác nhận lịch trong vòng 2 giờ.',
+  })
+
   return (
     <>
       <section className="ps-page-hero">

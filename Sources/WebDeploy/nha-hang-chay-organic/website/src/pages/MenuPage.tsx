@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface MenuItem {
   id: number
@@ -28,8 +29,13 @@ const CATEGORY_ICONS: Record<string, string> = {
 }
 
 export default function MenuPage() {
-  const { menuItems, menuCategories } = useSite()
+  const { settings, menuItems, menuCategories } = useSite()
   const [activeCategory, setActiveCategory] = useState<number | null>(null)
+
+  useDocumentMeta({
+    title: `Thực Đơn Chay Organic — ${settings.site_name || 'Lá Xanh Chay Organic'}`,
+    description: 'Hơn 50 món chay organic theo mùa — khai vị, salad, món chính, nước ép và tráng miệng, đầy đủ thông tin calorie và nguồn gốc nguyên liệu.',
+  })
 
   useEffect(() => {
     const timer = setTimeout(() => {

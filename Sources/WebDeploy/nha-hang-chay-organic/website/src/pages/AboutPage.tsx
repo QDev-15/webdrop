@@ -1,9 +1,15 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function AboutPage() {
   const { settings } = useSite()
+
+  useDocumentMeta({
+    title: `Câu Chuyện Thuần Chay — ${settings.site_name || 'Lá Xanh Chay Organic'}`,
+    description: 'Hành trình xây dựng nhà hàng chay organic — từ niềm tin vào lối sống lành mạnh đến hợp tác cùng các nông trại hữu cơ tại Đà Lạt và Lâm Đồng.',
+  })
 
   useEffect(() => {
     const timer = setTimeout(() => {

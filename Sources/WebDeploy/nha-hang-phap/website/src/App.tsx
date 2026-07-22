@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { api } from './api/client'
+import { useDocumentMeta } from './hooks/useDocumentMeta'
 import './styles/template.css'
 
 import Header from './components/Header'
@@ -87,6 +88,11 @@ function AppShell() {
 function HomePage() {
   const { settings } = useSite()
 
+  useDocumentMeta({
+    title: settings['meta_title'] || 'Le Bistro Français — Nhà hàng Pháp tại TP.HCM',
+    description: settings['meta_description'] || 'Ẩm thực Pháp tinh tế, không gian lãng mạn, rượu vang chọn lọc. Đặt bàn ngay tại Le Bistro Français.',
+  })
+
   const zaloPhone = settings['zalo_phone'] || '0901234567'
 
   return (
@@ -149,6 +155,12 @@ function HomePage() {
 
 function MenuPage() {
   const { settings } = useSite()
+
+  useDocumentMeta({
+    title: `Thực đơn — ${settings['site_name'] || 'Le Bistro Français'}`,
+    description: 'Thực đơn Pháp theo mùa: khai vị, súp, cá, thịt và tráng miệng — chế biến từ nguyên liệu tươi ngon nhất.',
+  })
+
   const zaloPhone = settings['zalo_phone'] || '0901234567'
   return (
     <>
@@ -170,6 +182,12 @@ function MenuPage() {
 
 function ReservationPage() {
   const { settings } = useSite()
+
+  useDocumentMeta({
+    title: `Đặt bàn — ${settings['site_name'] || 'Le Bistro Français'}`,
+    description: 'Đặt bàn trước cho dịp đặc biệt tại Le Bistro Français — chúng tôi sẽ xác nhận qua điện thoại trong vòng 2 giờ.',
+  })
+
   const zaloPhone = settings['zalo_phone'] || '0901234567'
   return (
     <>
@@ -191,6 +209,12 @@ function ReservationPage() {
 
 function ContactPage() {
   const { settings } = useSite()
+
+  useDocumentMeta({
+    title: `Liên hệ — ${settings['site_name'] || 'Le Bistro Français'}`,
+    description: settings['site_address'] || 'Tìm chúng tôi tại trung tâm thành phố — nơi ẩm thực Pháp và không khí Việt Nam giao thoa.',
+  })
+
   const zaloPhone = settings['zalo_phone'] || '0901234567'
   return (
     <>

@@ -9,6 +9,7 @@ import Menu from './components/Menu'
 import Testimonials from './components/Testimonials'
 import Contact from './components/Contact'
 import Reservation from './components/Reservation'
+import { useDocumentMeta } from './hooks/useDocumentMeta'
 
 interface SiteSettings {
   site_name?: string
@@ -68,6 +69,11 @@ function SiteProvider({ children }: { children: React.ReactNode }) {
 }
 
 function HomePage() {
+  const { settings } = useSite()
+  useDocumentMeta({
+    title: settings.meta_title || 'Nhà Hàng Nhật Bản Omakase & Sushi — Ẩm thực Nhật chính thống',
+    description: settings.meta_description || 'Nhà hàng Nhật Bản chính thống với Omakase, Sushi, Ramen cao cấp. Bếp trưởng 15 năm kinh nghiệm tại Tokyo.',
+  })
   return (
     <>
       <HeroSlider />
@@ -263,6 +269,11 @@ export default function App() {
 }
 
 function MenuPage() {
+  const { settings } = useSite()
+  useDocumentMeta({
+    title: `Thực đơn — ${settings.site_name || 'Nhà Hàng Nhật Bản Omakase & Sushi'}`,
+    description: 'Hơn 60 món Nhật Bản chính thống — Omakase, Sushi, Sashimi, Ramen, Teppanyaki — từ nguyên liệu nhập Nhật trực tiếp, tươi mới mỗi ngày.',
+  })
   return (
     <>
       <div className="page-hero">
@@ -279,6 +290,11 @@ function MenuPage() {
 }
 
 function SushiBarPage() {
+  const { settings } = useSite()
+  useDocumentMeta({
+    title: `Sushi Bar Experience — ${settings.site_name || 'Nhà Hàng Nhật Bản Omakase & Sushi'}`,
+    description: 'Ngồi trực tiếp tại quầy sushi — quan sát bếp trưởng sáng tạo từng miếng sushi. Chọn gói Omakase Standard, Premium hoặc Signature.',
+  })
   useReveal()
   return (
     <>
@@ -353,6 +369,11 @@ function SushiBarPage() {
 }
 
 function DatBanPage() {
+  const { settings } = useSite()
+  useDocumentMeta({
+    title: `Đặt bàn trực tuyến — ${settings.site_name || 'Nhà Hàng Nhật Bản Omakase & Sushi'}`,
+    description: 'Đặt bàn Omakase trực tuyến — điền thông tin, chúng tôi xác nhận trong vòng 2 giờ qua điện thoại hoặc Zalo.',
+  })
   return (
     <>
       <div className="page-hero">
@@ -406,6 +427,11 @@ function ReservationSidebar() {
 }
 
 function LienHePage() {
+  const { settings } = useSite()
+  useDocumentMeta({
+    title: `Liên hệ — ${settings.site_name || 'Nhà Hàng Nhật Bản Omakase & Sushi'}`,
+    description: 'Liên hệ nhà hàng Nhật Bản — đặt bàn, hỏi về thực đơn, hoặc tổ chức sự kiện riêng tư. Địa chỉ, điện thoại, giờ mở cửa đầy đủ.',
+  })
   return (
     <>
       <div className="page-hero">

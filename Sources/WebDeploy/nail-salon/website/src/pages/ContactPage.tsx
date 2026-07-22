@@ -1,7 +1,15 @@
 import ContactSection from '../components/Contact'
 import BookingCTA from '../components/Booking'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ContactPage() {
+  const { settings } = useSite()
+  useDocumentMeta({
+    title: `Liên hệ — ${settings.site_name || 'NAIL Studio'}`,
+    description: 'Liên hệ với chúng tôi để được tư vấn miễn phí hoặc đặt lịch hẹn nail ngay hôm nay.',
+  })
+
   return (
     <>
       {/* Page hero */}

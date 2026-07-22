@@ -4,6 +4,8 @@ import Services from '../components/Services'
 import Team from '../components/Team'
 import Testimonials from '../components/Testimonials'
 import { Link } from 'react-router-dom'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const PROBLEMS = [
   { icon: '🔴', title: 'Mụn trứng cá', desc: 'Mụn viêm, mụn đầu đen, mụn bọc — điều trị tận gốc, ngăn tái phát.' },
@@ -23,6 +25,12 @@ const PROCESS_STEPS = [
 ]
 
 export default function HomePage() {
+  const { settings } = useSite()
+  useDocumentMeta({
+    title: settings.meta_title || 'DermaCare Clinic — Phòng khám Da liễu & Skincare',
+    description: settings.meta_description || 'Phòng khám da liễu chuyên sâu. Điều trị mụn, nám, lão hóa với công nghệ Laser, IPL, Microneedling hiện đại.',
+  })
+
   return (
     <>
       <HeroSlider />

@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom'
 import { ServicesTable } from '../components/Services'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ServicesPage() {
+  useDocumentMeta({
+    title: 'Bảng giá dịch vụ — Bella Spa',
+    description: 'Danh mục dịch vụ spa, massage, chăm sóc da đầy đủ với bảng giá minh bạch tại Bella Spa TP.HCM.',
+  })
+
   return (
     <main>
       {/* Page hero */}

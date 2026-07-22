@@ -1,7 +1,15 @@
 import Contact from '../components/Contact'
 import { Link } from 'react-router-dom'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ContactPage() {
+  const { settings } = useSite()
+  useDocumentMeta({
+    title: `Liên hệ — ${settings.site_name}`,
+    description: 'Thông tin liên hệ, địa chỉ và giờ làm việc của ' + settings.site_name + '. Ghé thăm studio hoặc gửi tin nhắn, phản hồi trong vòng 24 giờ.',
+  })
+
   return (
     <>
       <div style={{ paddingTop: 64, background: 'var(--dark2)', borderBottom: '1px solid var(--border-pink)', textAlign: 'center', padding: 'calc(64px + clamp(32px,5vw,60px)) 20px clamp(32px,5vw,56px)' }}>

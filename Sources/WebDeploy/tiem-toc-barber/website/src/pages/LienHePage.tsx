@@ -1,4 +1,6 @@
 import Contact from '../components/Contact'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const FAQS = [
   {
@@ -24,6 +26,11 @@ const FAQS = [
 ]
 
 export default function LienHePage() {
+  const { settings } = useSite()
+  useDocumentMeta({
+    title: `Liên hệ — ${settings.site_name || 'Tiệm Tóc Barber'}`,
+    description: 'Liên hệ tiệm tóc barber để được tư vấn kiểu tóc, đặt lịch hoặc giải đáp thắc mắc — nhắn Zalo trả lời trong 5 phút.',
+  })
   return (
     <>
       <section className="tb-page-hero">

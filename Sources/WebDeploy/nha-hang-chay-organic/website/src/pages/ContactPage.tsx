@@ -1,9 +1,15 @@
 import { useEffect } from 'react'
 import Reservation from '../components/Reservation'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ContactPage() {
   const { settings } = useSite()
+
+  useDocumentMeta({
+    title: `Liên Hệ & Đặt Bàn — ${settings.site_name || 'Lá Xanh Chay Organic'}`,
+    description: 'Đặt bàn tại nhà hàng chay organic — thông tin địa chỉ, số điện thoại, giờ mở cửa và form đặt bàn nhanh.',
+  })
 
   useEffect(() => {
     const timer = setTimeout(() => {

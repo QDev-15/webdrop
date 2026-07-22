@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext, useContext } from 'react'
 import { api } from './api/client'
+import { useDocumentMeta } from './hooks/useDocumentMeta'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import HeroSlider from './components/HeroSlider'
@@ -74,18 +75,15 @@ export default function App() {
       if (s.primary_color) {
         document.documentElement.style.setProperty('--accent', s.primary_color)
       }
-      // Set page title
-      if (s.meta_title || s.site_name) {
-        document.title = s.meta_title || s.site_name || 'Nhà Hàng Cao Cấp'
-      }
-      if (s.meta_description) {
-        const meta = document.querySelector('meta[name="description"]')
-        if (meta) meta.setAttribute('content', s.meta_description)
-      }
     }).catch(() => {
       // Fallback silently — site still renders with empty data
     }).finally(() => setLoading(false))
   }, [])
+
+  useDocumentMeta({
+    title: settings.meta_title || settings.site_name || 'Fine Dining Cao Cap',
+    description: settings.meta_description || settings.site_description,
+  })
 
   if (loading) {
     return (

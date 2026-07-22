@@ -1,7 +1,15 @@
 import Booking from '../components/Booking'
 import { Link } from 'react-router-dom'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function BookingPage() {
+  const { settings } = useSite()
+  useDocumentMeta({
+    title: `Đặt lịch — ${settings.site_name}`,
+    description: 'Đặt lịch làm đẹp nhanh chóng tại ' + settings.site_name + ' — chọn dịch vụ, ngày giờ phù hợp, xác nhận trong vòng 1 giờ.',
+  })
+
   return (
     <>
       <div style={{ paddingTop: 64, background: 'var(--dark2)', borderBottom: '1px solid var(--border-pink)', textAlign: 'center', padding: 'calc(64px + clamp(32px,5vw,60px)) 20px clamp(32px,5vw,56px)' }}>

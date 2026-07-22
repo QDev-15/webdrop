@@ -1,6 +1,12 @@
 import Contact from '../components/Contact'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ContactPage() {
+  useDocumentMeta({
+    title: 'Liên hệ — DermaCare Clinic',
+    description: 'Liên hệ DermaCare Clinic để đặt câu hỏi, nhận tư vấn hoặc tìm đường đến phòng khám — đội ngũ luôn sẵn sàng hỗ trợ bạn.',
+  })
+
   return (
     <>
       <div className="csd-page-hero" style={{ paddingTop: 'calc(68px + clamp(40px,6vw,72px))' }}>

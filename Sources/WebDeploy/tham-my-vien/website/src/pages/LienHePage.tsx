@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { api } from '../api/client'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface ContactForm {
   name: string
@@ -26,6 +27,10 @@ export default function LienHePage() {
   const today = new Date().getDay() // 0=Sun,1=Mon,...6=Sat
   const todayIdx = today === 0 ? 6 : today - 1
   const { settings } = useSite()
+  useDocumentMeta({
+    title: `Liên hệ — ${settings.site_name || 'Thẩm Mỹ Viện Quốc Tế'}`,
+    description: 'Liên hệ Thẩm Mỹ Viện Quốc Tế để được tư vấn và đặt lịch hẹn — địa chỉ, số điện thoại, giờ làm việc và bản đồ chỉ đường.',
+  })
   const [form, setForm]       = useState<ContactForm>(EMPTY)
   const [submitting, setSub]  = useState(false)
   const [success, setSuccess] = useState(false)

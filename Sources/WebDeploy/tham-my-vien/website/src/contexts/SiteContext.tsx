@@ -9,6 +9,8 @@ export interface SiteSettings {
   site_address?: string
   working_hours?: string
   zalo_number?: string
+  meta_title?: string
+  meta_description?: string
   hero_badge?: string
   hero_title_1?: string
   hero_title_em?: string

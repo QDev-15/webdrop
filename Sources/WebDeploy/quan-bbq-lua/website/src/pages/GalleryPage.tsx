@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { api } from '../api/client'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface GalleryItem {
   id: number
@@ -21,10 +23,16 @@ const STATIC_ITEMS: GalleryItem[] = [
 ]
 
 export default function GalleryPage() {
+  const { settings } = useSite()
   const [items, setItems] = useState<GalleryItem[]>([])
   const [active, setActive] = useState('Tất cả')
   const [lightbox, setLightbox] = useState<GalleryItem | null>(null)
   const ref = useRef<HTMLDivElement>(null)
+
+  useDocumentMeta({
+    title: `Không Gian — ${settings.site_name}`,
+    description: `Không gian ấm cúng & sôi động tại ${settings.site_name} — sức chứa 200+ chỗ ngồi, 4 phòng VIP, hệ thống hút khói hiện đại.`,
+  })
 
   useEffect(() => {
     api.get<GalleryItem[]>('/public/gallery')

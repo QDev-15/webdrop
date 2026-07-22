@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 import HeroSlider from '../components/HeroSlider'
 import FeaturedMenu from '../components/Menu'
 import About from '../components/About'
@@ -8,7 +9,12 @@ import Testimonials from '../components/Testimonials'
 import Gallery from '../components/Gallery'
 
 export default function HomePage() {
-  const { slides, featuredItems, testimonials, gallery } = useSite()
+  const { settings, slides, featuredItems, testimonials, gallery } = useSite()
+
+  useDocumentMeta({
+    title: settings.meta_title || 'Lá Xanh Chay Organic — Ẩm Thực Thuần Chay Tươi Lành',
+    description: settings.meta_description || 'Nhà hàng chay organic tại TP.HCM. Hơn 50 món chay từ nguyên liệu organic Đà Lạt, không chất bảo quản, không phụ gia.',
+  })
 
   useEffect(() => {
     const timer = setTimeout(() => {

@@ -2,8 +2,16 @@ import { useEffect } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Reservation from '../components/Reservation'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ReservationPage() {
+  const { settings } = useSite()
+  useDocumentMeta({
+    title: `Đặt bàn — ${settings.site_name || 'Nhà Hàng Ẩm Thực'}`,
+    description: 'Đặt bàn trước để có vị trí đẹp nhất — đặc biệt vào cuối tuần và ngày lễ. Xác nhận nhanh trong 30 phút.',
+  })
+
   useEffect(() => {
     const timer = setTimeout(() => {
       const els = document.querySelectorAll<Element>('.reveal:not(.visible)')

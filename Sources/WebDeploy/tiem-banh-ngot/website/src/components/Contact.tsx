@@ -1,9 +1,16 @@
 import { useState } from 'react'
 import { useSite } from '../App'
 import { api } from '../api/client'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function Contact() {
   const { settings } = useSite()
+  useDocumentMeta({
+    title: 'Liên hệ — La Douceur Patisserie',
+    description: settings.site_address
+      ? `Liên hệ La Douceur Patisserie tại ${settings.site_address}. Tư vấn đặt bánh, giờ mở cửa và thông tin liên lạc.`
+      : 'Liên hệ La Douceur Patisserie để được tư vấn đặt bánh, xem giờ mở cửa và thông tin liên lạc trực tiếp.',
+  })
   const [form, setForm] = useState({ name: '', phone: '', email: '', subject: '', message: '' })
   const [sending, setSending] = useState(false)
   const [msg, setMsg] = useState<{ type: 'success' | 'error'; text: string } | null>(null)

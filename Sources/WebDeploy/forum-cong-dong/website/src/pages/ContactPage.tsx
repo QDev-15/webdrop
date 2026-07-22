@@ -3,9 +3,11 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { api } from '../api/client'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ContactPage() {
   const { settings } = useSite()
+  useDocumentMeta({ title: `Liên hệ — ${settings.site_name || 'Forum Cộng Đồng'}`, description: 'Liên hệ Forum Cộng Đồng để được hỗ trợ và giải đáp thắc mắc.' })
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
   const [sending, setSending] = useState(false)
   const [success, setSuccess] = useState(false)

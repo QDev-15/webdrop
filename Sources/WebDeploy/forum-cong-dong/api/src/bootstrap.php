@@ -128,6 +128,7 @@ $router->add('GET',  '/public/forum-categories',  [$pub, 'forumCategories']);
 $router->add('GET',  '/public/forum-threads',     [$pub, 'forumThreads']);
 $router->add('GET',  '/public/forum-tags',        [$pub, 'forumTags']);
 $router->add('POST', '/public/contact',           [$pub, 'submitContact']);
+$router->add('GET',  '/sitemap.xml',              [$pub, 'sitemap']);
 
 // ── UPLOAD & UNSPLASH ─────────────────────────────────────────────────────────
 $upload = new UploadController($db);

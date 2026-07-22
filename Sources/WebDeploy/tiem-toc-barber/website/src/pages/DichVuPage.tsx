@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api/client'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface Category {
   id: number
@@ -36,6 +38,11 @@ const FEATURE_DESC: Record<string, string> = {
 }
 
 export default function DichVuPage() {
+  const { settings } = useSite()
+  useDocumentMeta({
+    title: `Bảng giá dịch vụ — ${settings.site_name || 'Tiệm Tóc Barber'}`,
+    description: 'Bảng giá đầy đủ dịch vụ cắt tóc, uốn nhuộm, cạo râu tại tiệm — minh bạch, không phát sinh chi phí ẩn.',
+  })
   const [categories, setCategories] = useState<Category[]>([])
   const [services, setServices] = useState<Service[]>([])
 

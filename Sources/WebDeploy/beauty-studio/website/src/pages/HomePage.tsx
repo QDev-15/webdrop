@@ -4,8 +4,16 @@ import About         from '../components/About'
 import Team          from '../components/Team'
 import Testimonials  from '../components/Testimonials'
 import Booking       from '../components/Booking'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function HomePage() {
+  const { settings } = useSite()
+  useDocumentMeta({
+    title: settings.meta_title,
+    description: settings.meta_description,
+  })
+
   return (
     <>
       <HeroSlider />

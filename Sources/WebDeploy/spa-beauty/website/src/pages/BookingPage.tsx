@@ -1,6 +1,12 @@
 import Booking from '../components/Booking'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function BookingPage() {
+  useDocumentMeta({
+    title: 'Đặt lịch trực tuyến — Bella Spa',
+    description: 'Đặt lịch spa, massage, chăm sóc da tại Bella Spa chỉ vài bước. Chúng tôi xác nhận trong 15 phút.',
+  })
+
   return (
     <main>
       {/* Page hero */}

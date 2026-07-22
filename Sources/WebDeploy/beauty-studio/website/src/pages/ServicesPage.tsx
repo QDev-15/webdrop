@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api/client'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface Category { id: number; name: string; icon: string; description: string; slug: string }
 interface Service  { id: number; category_id: number | null; name: string; price: string; description: string; badge: string }
@@ -8,6 +10,12 @@ interface Service  { id: number; category_id: number | null; name: string; price
 interface PromoCombos { id: number; title: string; description: string; price_new: string; price_old: string; services_included: string }
 
 export default function ServicesPage() {
+  const { settings } = useSite()
+  useDocumentMeta({
+    title: `Dịch vụ & Bảng giá — ${settings.site_name}`,
+    description: 'Bảng giá dịch vụ Tóc, Nail, Makeup, Skincare đầy đủ — kèm combo ưu đãi tại ' + settings.site_name + '.',
+  })
+
   const [cats, setCats]   = useState<Category[]>([])
   const [svcs, setSvcs]   = useState<Service[]>([])
   const [combos, setCombos] = useState<PromoCombos[]>([])

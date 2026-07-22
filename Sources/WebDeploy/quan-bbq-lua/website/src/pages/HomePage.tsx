@@ -5,10 +5,16 @@ import About from '../components/About'
 import Gallery from '../components/Gallery'
 import Testimonials from '../components/Testimonials'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function HomePage() {
   const { settings } = useSite()
   const s = settings
+
+  useDocumentMeta({
+    title: s.meta_title || 'BBQ Lửa Hồng — Thịt Nướng Than Hoa Đích Thực',
+    description: s.meta_description || 'Thịt tươi chọn lọc mỗi sáng, than hoa âm ỉ, gia vị ướp bí truyền — mỗi bữa BBQ là một buổi tụ họp đáng nhớ.',
+  })
 
   // Global reveal for this page
   useEffect(() => {

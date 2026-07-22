@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api/client'
 import BookingCTA from '../components/Booking'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface Service {
   id: number; name: string; tag: string; description: string; price: string
@@ -37,6 +39,11 @@ const FEATURE_STRIPS = [
 ]
 
 export default function ServicesPage() {
+  const { settings } = useSite()
+  useDocumentMeta({
+    title: `Bảng giá dịch vụ — ${settings.site_name || 'NAIL Studio'}`,
+    description: 'Bảng giá dịch vụ nail gel, nail art, pedicure, acrylic minh bạch, không phụ thu ẩn. Xem chi tiết và đặt lịch ngay.',
+  })
   const [services, setServices] = useState<Service[]>([])
   const [categories, setCategories] = useState<ServiceCategory[]>([])
 

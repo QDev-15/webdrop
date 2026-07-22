@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 import HeroSlider from '../components/HeroSlider'
 import Services from '../components/Services'
 import About from '../components/About'
@@ -8,6 +9,11 @@ import Team from '../components/Team'
 
 export default function HomePage() {
   const { settings: s } = useSite()
+
+  useDocumentMeta({
+    title: s.meta_title || 'Bella Spa — Spa & Làm đẹp cao cấp TP.HCM',
+    description: s.meta_description || 'Bella Spa — Nơi bạn được chăm sóc toàn diện. Dịch vụ spa, massage, chăm sóc da chuyên nghiệp tại TP.HCM.',
+  })
 
   const stats = [
     { val: s.stat_customers || '500+', label: 'Khách hàng hài lòng' },

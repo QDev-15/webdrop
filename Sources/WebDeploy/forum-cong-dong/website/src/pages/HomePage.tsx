@@ -6,9 +6,11 @@ import CategoryGrid from '../components/CategoryGrid'
 import ThreadList from '../components/ThreadList'
 import Sidebar from '../components/Sidebar'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function HomePage() {
-  const { categories, threads, tags } = useSite()
+  const { settings, categories, threads, tags } = useSite()
+  useDocumentMeta({ title: settings.meta_title || settings.site_name || 'Forum Cộng Đồng', description: settings.meta_description })
 
   // Reveal animation
   useEffect(() => {

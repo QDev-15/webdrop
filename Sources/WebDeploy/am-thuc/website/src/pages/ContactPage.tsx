@@ -3,9 +3,14 @@ import { useSite } from '../contexts/SiteContext'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Contact from '../components/Contact'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ContactPage() {
   const { settings } = useSite()
+  useDocumentMeta({
+    title: `Liên hệ — ${settings.site_name || 'Nhà Hàng Ẩm Thực'}`,
+    description: 'Liên hệ đặt bàn, hỏi về tiệc nhóm hoặc thực đơn mới nhất. Chúng tôi luôn sẵn lòng hỗ trợ bạn.',
+  })
 
   useEffect(() => {
     const timer = setTimeout(() => {

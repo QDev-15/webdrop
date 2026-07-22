@@ -1,6 +1,7 @@
 import { useState, useEffect, createContext, useContext } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { api } from './api/client'
+import { useDocumentMeta } from './hooks/useDocumentMeta'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import HeroSlider from './components/HeroSlider'
@@ -130,6 +131,11 @@ function RevealObserver() {
 
 // ── Home Page ──────────────────────────────────────────────────────────────────
 function HomePage() {
+  const { settings } = useSite()
+  useDocumentMeta({
+    title: settings.meta_title || 'La Douceur Patisserie — Bánh Ngọt Thủ Công Cao Cấp',
+    description: settings.site_description || 'Tiệm bánh thủ công cao cấp tại TP.HCM. Bánh kem sinh nhật, macaron Pháp, croissant bơ — làm tươi mỗi ngày từ nguyên liệu nhập khẩu.',
+  })
   return (
     <>
       <HeroSlider />
@@ -141,6 +147,15 @@ function HomePage() {
   )
 }
 
+// ── Products Page (full-page Menu wrapper) ──────────────────────────────────────
+function ProductsPage() {
+  useDocumentMeta({
+    title: 'Sản phẩm — La Douceur Patisserie',
+    description: 'Hơn 200 loại bánh thủ công cao cấp — bánh kem sinh nhật, macaron Pháp, croissant bơ, tart & muffin — làm tươi mỗi ngày tại La Douceur Patisserie.',
+  })
+  return <Menu fullPage />
+}
+
 // ── App ────────────────────────────────────────────────────────────────────────
 export default function App() {
   return (
@@ -150,7 +165,7 @@ export default function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/san-pham" element={<Menu fullPage />} />
+          <Route path="/san-pham" element={<ProductsPage />} />
           <Route path="/dat-hang" element={<Reservation />} />
           <Route path="/lien-he" element={<Contact />} />
         </Routes>

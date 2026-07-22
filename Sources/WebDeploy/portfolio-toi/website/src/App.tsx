@@ -8,6 +8,7 @@ import Skills from './components/Skills'
 import Testimonials from './components/Testimonials'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import { useDocumentMeta } from './hooks/useDocumentMeta'
 
 export interface Settings {
   [key: string]: string
@@ -61,10 +62,10 @@ export default function App() {
       setProjects(p)
       setSkillGroups(sg)
       setTestimonials(t)
-      // Update document title
-      if (s.meta_title) document.title = s.meta_title
     }).finally(() => setLoading(false))
   }, [])
+
+  useDocumentMeta({ title: settings.meta_title || settings.site_name || 'Portfolio Tôi', description: settings.meta_description })
 
   if (loading) {
     return (

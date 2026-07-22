@@ -7,6 +7,8 @@ import About from '../components/About'
 import Gallery from '../components/Gallery'
 import Testimonials from '../components/Testimonials'
 import { Link } from 'react-router-dom'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 function useRevealObserver(ref: React.RefObject<HTMLElement | null>) {
   useEffect(() => {
@@ -82,6 +84,12 @@ function CtaSection() {
 }
 
 export default function HomePage() {
+  const { settings } = useSite()
+  useDocumentMeta({
+    title: settings.meta_title || 'Nhà Hàng Ẩm Thực Truyền Thống — Hương Vị Gia Truyền',
+    description: settings.meta_description || 'Nhà hàng ẩm thực Việt Nam truyền thống. Hương vị gia truyền, nguyên liệu tươi sạch, không gian ấm cúng. Đặt bàn ngay hôm nay.',
+  })
+
   return (
     <>
       <Header />

@@ -1,13 +1,14 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Menu from '../components/Menu'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function MenuPage() {
-  useEffect(() => {
-    document.title = 'Thực Đơn — Nhà Hàng Ẩm Thực Truyền Thống'
-  }, [])
+  useDocumentMeta({
+    title: 'Thực Đơn — Nhà Hàng Ẩm Thực Truyền Thống',
+    description: 'Hơn 70 món ăn gia truyền: khai vị, món chính, tráng miệng, đồ uống. Chế biến mỗi ngày từ nguyên liệu tươi sạch, không bột ngọt, không chất bảo quản.',
+  })
 
   return (
     <>

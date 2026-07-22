@@ -1,9 +1,15 @@
 import Contact from '../components/Contact'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ContactPage() {
   const { settings: s } = useSite()
   const mapSrc = s.google_maps_embed || ''
+
+  useDocumentMeta({
+    title: 'Liên hệ — Bella Spa',
+    description: 'Liên hệ Bella Spa để được tư vấn dịch vụ spa, massage, chăm sóc da phù hợp nhất với bạn.',
+  })
 
   return (
     <main>

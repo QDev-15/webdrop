@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { api } from './api/client'
+import { useDocumentMeta } from './hooks/useDocumentMeta'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import HeroSlider from './components/HeroSlider'
@@ -26,6 +27,10 @@ interface Slide {
 }
 
 function HomePage({ settings, slides }: { settings: Settings; slides: Slide[] }) {
+  useDocumentMeta({
+    title: settings.meta_title || 'Vị Biển Hải Sản — Tươi Sống Nhập Mỗi Ngày',
+    description: settings.meta_description || 'Nhà hàng hải sản tươi sống Vị Biển — tôm, cua, ghẹ, mực nhập từ ngư dân địa phương mỗi ngày. Đặt bàn ngay!',
+  })
   return (
     <>
       <HeroSlider settings={settings} slides={slides} />
@@ -38,6 +43,10 @@ function HomePage({ settings, slides }: { settings: Settings; slides: Slide[] })
 }
 
 function MenuPage() {
+  useDocumentMeta({
+    title: 'Thực đơn — Vị Biển Hải Sản',
+    description: 'Menu hải sản tươi sống Vị Biển — tôm, cua, ghẹ, mực, cá biển nhập tươi mỗi ngày, tính giá theo kg.',
+  })
   return (
     <>
       <div className="page-hero">
@@ -57,6 +66,10 @@ function MenuPage() {
 }
 
 function ReservationPage({ settings }: { settings: Settings }) {
+  useDocumentMeta({
+    title: 'Đặt bàn — Vị Biển Hải Sản',
+    description: 'Đặt bàn trước tại Vị Biển Hải Sản để giữ chỗ và chuẩn bị hải sản tươi ngon nhất cho bạn.',
+  })
   return (
     <>
       <div className="page-hero">
@@ -76,6 +89,10 @@ function ReservationPage({ settings }: { settings: Settings }) {
 }
 
 function ContactPage({ settings }: { settings: Settings }) {
+  useDocumentMeta({
+    title: 'Liên hệ — Vị Biển Hải Sản',
+    description: 'Thông tin liên hệ, địa chỉ và giờ mở cửa của nhà hàng hải sản Vị Biển. Gọi ngay để đặt bàn.',
+  })
   return (
     <>
       <div className="page-hero">
@@ -95,6 +112,10 @@ function ContactPage({ settings }: { settings: Settings }) {
 }
 
 function GalleryPage() {
+  useDocumentMeta({
+    title: 'Thư viện ảnh — Vị Biển Hải Sản',
+    description: 'Khám phá không gian nhà hàng và hải sản tươi sống tại Vị Biển qua bộ sưu tập hình ảnh.',
+  })
   return (
     <>
       <div className="page-hero">

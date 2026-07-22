@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api/client'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const SERVICES = [
   { group: 'Nail Tay 💅', options: ['Sơn thường', 'Gel màu cơ bản', 'Gel màu nâng cao', 'Nail Art đơn giản', 'Nail Art phức tạp'] },
@@ -19,6 +20,10 @@ const blank = { name: '', phone: '', service: '', technician: '', date: '', time
 export default function BookingPage() {
   const { settings } = useSite()
   const s = (k: string, fb = '') => settings[k] || fb
+  useDocumentMeta({
+    title: `Đặt lịch hẹn — ${s('site_name', 'NAIL Studio')}`,
+    description: 'Đặt lịch hẹn nail nhanh chóng, chọn dịch vụ, thợ nail và giờ hẹn phù hợp với bạn.',
+  })
   const [form, setForm] = useState(blank)
   const [sending, setSending] = useState(false)
   const [sent, setSent] = useState(false)

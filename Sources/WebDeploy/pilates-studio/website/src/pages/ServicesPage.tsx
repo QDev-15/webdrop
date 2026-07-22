@@ -1,6 +1,15 @@
 import Services from '../components/Services'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ServicesPage() {
+  const { settings } = useSite()
+
+  useDocumentMeta({
+    title: `Lớp học & Dịch vụ — ${settings.site_name}`,
+    description: 'Chọn lớp pilates phù hợp với bạn — từ mat pilates, reformer đến clinical pilates, đủ mọi trình độ.',
+  })
+
   return (
     <>
       <section className="ps-page-hero">

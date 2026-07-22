@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { api } from '../api/client'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 const CAKE_TYPES = ['Bánh kem sinh nhật', 'Bánh kem cưới', 'Bánh macaron', 'Croissant & Pastry', 'Tart & Muffin', 'Bánh kem theo yêu cầu']
 const CAKE_SIZES = ['15cm (4–6 người)', '18cm (6–8 người)', '20cm (8–12 người)', '25cm (12–18 người)', '30cm (18–30 người)']
@@ -33,6 +34,10 @@ interface FormData {
 }
 
 export default function Reservation() {
+  useDocumentMeta({
+    title: 'Đặt bánh theo yêu cầu — La Douceur Patisserie',
+    description: 'Đặt bánh kem sinh nhật, bánh cưới, macaron theo yêu cầu riêng. Đặt trước tối thiểu 3 ngày, tư vấn hương vị và trang trí chi tiết.',
+  })
   const [form, setForm] = useState<FormData>({
     name: '', phone: '', email: '',
     cake_type: '', cake_size: '', flavors: [],

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { api } from '../api/client'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface MenuCategory {
   id: number
@@ -21,6 +23,12 @@ interface MenuItem {
 }
 
 export default function MenuPage() {
+  const { settings } = useSite()
+  useDocumentMeta({
+    title: `Thực đơn — ${settings.site_name || 'Nhà Hàng Ẩm Thực'}`,
+    description: 'Thực đơn hơn 60 món ẩm thực Việt Nam — từ khai vị đến tráng miệng, nấu mới mỗi ngày từ nguyên liệu tươi sạch.',
+  })
+
   const [categories, setCategories] = useState<MenuCategory[]>([])
   const [activeFilter, setActiveFilter] = useState('all')
   const [loading, setLoading] = useState(true)

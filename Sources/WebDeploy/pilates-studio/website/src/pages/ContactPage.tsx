@@ -1,6 +1,15 @@
 import Contact from '../components/Contact'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ContactPage() {
+  const { settings } = useSite()
+
+  useDocumentMeta({
+    title: `Liên hệ — ${settings.site_name}`,
+    description: 'Liên hệ với studio để được tư vấn về lớp học, thiết bị Reformer hoặc đặt buổi tư vấn cá nhân.',
+  })
+
   return (
     <>
       <section className="ps-page-hero">

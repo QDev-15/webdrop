@@ -29,13 +29,6 @@ function AppShell() {
     return () => clearTimeout(t)
   }, [location.pathname, settings])
 
-  // Update document title
-  useEffect(() => {
-    if (settings.site_name) {
-      document.title = settings.site_name + ' — ' + (settings.site_tagline || 'Beauty Studio')
-    }
-  }, [settings.site_name, settings.site_tagline])
-
   return (
     <>
       <Header />

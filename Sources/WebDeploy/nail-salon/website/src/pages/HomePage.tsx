@@ -7,6 +7,7 @@ import Team from '../components/Team'
 import Testimonials from '../components/Testimonials'
 import BookingCTA from '../components/Booking'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface GalleryItem { id: number; image: string; title: string }
 
@@ -62,6 +63,12 @@ function Gallery() {
 }
 
 export default function HomePage() {
+  const { settings } = useSite()
+  useDocumentMeta({
+    title: settings.meta_title || 'NAIL Studio — Nail Salon Chuyên Nghiệp TP.HCM',
+    description: settings.meta_description || 'Tiệm nail chuyên nghiệp tại TP.HCM. Nail gel, nail art, pedicure, acrylic. Đặt lịch ngay hôm nay.',
+  })
+
   return (
     <>
       <HeroMosaic />

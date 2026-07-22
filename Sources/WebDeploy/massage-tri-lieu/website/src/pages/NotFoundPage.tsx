@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function NotFoundPage() {
+  useDocumentMeta({
+    title: 'Không tìm thấy trang — Tâm Thư Massage',
+  })
+
   return (
     <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '120px 20px 60px' }}>
       <div>

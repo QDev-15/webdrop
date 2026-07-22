@@ -6,6 +6,8 @@ import About from '../components/About'
 import Team from '../components/Team'
 import Testimonials from '../components/Testimonials'
 import { api } from '../api/client'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface ServicePackage {
   id: number
@@ -114,6 +116,13 @@ function CTASection() {
 }
 
 export default function HomePage() {
+  const { settings } = useSite()
+
+  useDocumentMeta({
+    title: settings.meta_title || 'Tâm Thư Massage - Trị Liệu Chuyên Nghiệp TP.HCM',
+    description: settings.meta_description || 'Trung tâm massage trị liệu Tâm Thư - Massage Thái, Đá Nóng, Bấm Huyệt. Đội ngũ 12 chuyên viên, 8 năm kinh nghiệm.',
+  })
+
   return (
     <>
       <HeroSlider />

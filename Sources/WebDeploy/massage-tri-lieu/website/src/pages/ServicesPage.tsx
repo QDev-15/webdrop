@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api/client'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 interface ServiceCategory {
   id: number
@@ -37,6 +39,13 @@ function formatPrice(price: number): string {
 }
 
 export default function ServicesPage() {
+  const { settings } = useSite()
+
+  useDocumentMeta({
+    title: `Bảng giá dịch vụ — ${settings.site_name || 'Tâm Thư Massage'}`,
+    description: 'Danh sách dịch vụ massage trị liệu: Massage Thái, Đá Nóng, Bấm Huyệt cùng các gói liệu trình ưu đãi tại Tâm Thư Massage.',
+  })
+
   const [categories, setCategories] = useState<ServiceCategory[]>([])
   const [services, setServices] = useState<Service[]>([])
   const [packages, setPackages] = useState<ServicePackage[]>([])

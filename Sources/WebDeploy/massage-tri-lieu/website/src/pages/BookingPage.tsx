@@ -1,6 +1,15 @@
 import Booking from '../components/Booking'
+import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function BookingPage() {
+  const { settings } = useSite()
+
+  useDocumentMeta({
+    title: `Đặt lịch — ${settings.site_name || 'Tâm Thư Massage'}`,
+    description: 'Đặt lịch massage trị liệu tại Tâm Thư Massage — chọn dịch vụ, thời gian phù hợp, xác nhận trong vòng 30 phút.',
+  })
+
   return (
     <>
       {/* Page hero */}

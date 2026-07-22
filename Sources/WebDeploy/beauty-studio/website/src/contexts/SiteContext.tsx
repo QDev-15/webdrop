@@ -33,6 +33,8 @@ interface SiteSettings {
   stat_rating: string
   booking_title: string
   booking_subtitle: string
+  meta_title: string
+  meta_description: string
   [key: string]: string
 }
 
@@ -57,6 +59,8 @@ const defaults: SiteSettings = {
   stat_clients: '5.000+', stat_years: '7+', stat_artists: '12+', stat_rating: '4.9',
   booking_title: 'Đặt lịch ngay hôm nay',
   booking_subtitle: 'Chỉ mất 30 giây — nhận xác nhận trong vòng 1 giờ.',
+  meta_title: 'Glow Beauty Studio — Tóc, Nail, Makeup, Skincare tại TP.HCM',
+  meta_description: 'Beauty Studio tổng hợp: Tóc, Nail, Makeup, Skincare chuyên nghiệp. Phong cách trendy, Instagram-worthy tại TP. Hồ Chí Minh.',
 }
 
 const SiteContext = createContext<SiteContextValue>({ settings: defaults, slides: [], loading: true })

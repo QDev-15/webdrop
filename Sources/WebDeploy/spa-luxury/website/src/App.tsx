@@ -9,6 +9,9 @@ import Booking from './components/Booking'
 import Contact from './components/Contact'
 import Testimonials from './components/Testimonials'
 import Team from './components/Team'
+import { useDocumentMeta } from './hooks/useDocumentMeta'
+
+const SITE_NAME = 'Luxury Spa Resort'
 
 // ─── Reveal observer (global, re-runs on every route change) ──
 function useRevealObserver(dep: unknown) {
@@ -54,6 +57,11 @@ function useRevealObserver(dep: unknown) {
 function HomePage() {
   const location = useLocation()
   useRevealObserver(location.pathname)
+  useDocumentMeta({
+    title: `${SITE_NAME} — Resort Spa Cao Cấp 5 Sao`,
+    description:
+      'Trải nghiệm nghỉ dưỡng thư giãn toàn diện — liệu trình cao cấp, không gian thiên nhiên và dịch vụ 5 sao dành riêng cho bạn.',
+  })
 
   return (
     <>
@@ -95,6 +103,11 @@ function CTASection() {
 function ServicesPage() {
   const location = useLocation()
   useRevealObserver(location.pathname)
+  useDocumentMeta({
+    title: `Dịch vụ — ${SITE_NAME}`,
+    description:
+      'Khám phá bộ sưu tập liệu trình spa cao cấp được thiết kế riêng cho từng nhu cầu thư giãn và phục hồi.',
+  })
 
   return (
     <>
@@ -119,6 +132,11 @@ function ServicesPage() {
 function BookingPage() {
   const location = useLocation()
   useRevealObserver(location.pathname)
+  useDocumentMeta({
+    title: `Đặt lịch — ${SITE_NAME}`,
+    description:
+      'Đặt gói trải nghiệm spa cao cấp ngay hôm nay — đội ngũ Luxury Spa Resort liên hệ xác nhận trong vòng 2 giờ.',
+  })
 
   return (
     <>
@@ -142,6 +160,11 @@ function BookingPage() {
 function ContactPage() {
   const location = useLocation()
   useRevealObserver(location.pathname)
+  useDocumentMeta({
+    title: `Liên hệ — ${SITE_NAME}`,
+    description:
+      'Liên hệ Luxury Spa Resort để được tư vấn gói dịch vụ phù hợp nhất — hotline, email và địa chỉ resort.',
+  })
 
   return (
     <>
@@ -165,6 +188,11 @@ function ContactPage() {
 function TeamPage() {
   const location = useLocation()
   useRevealObserver(location.pathname)
+  useDocumentMeta({
+    title: `Đội ngũ — ${SITE_NAME}`,
+    description:
+      'Đội ngũ chuyên viên spa được đào tạo chuyên nghiệp, tận tâm trong từng liệu trình tại Luxury Spa Resort.',
+  })
 
   return (
     <>

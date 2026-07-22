@@ -1,12 +1,13 @@
-import { useEffect } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Reservation from '../components/Reservation'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ReservationPage() {
-  useEffect(() => {
-    document.title = 'Đặt Bàn — Nhà Hàng Ẩm Thực Truyền Thống'
-  }, [])
+  useDocumentMeta({
+    title: 'Đặt Bàn — Nhà Hàng Ẩm Thực Truyền Thống',
+    description: 'Đặt bàn trước để có chỗ ngồi đẹp nhất tại Nhà Hàng Ẩm Thực Truyền Thống. Xác nhận qua điện thoại trong vòng 30 phút.',
+  })
 
   return (
     <>
