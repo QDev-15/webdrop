@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khuyến mãi — AMI Mobile</title>
+  <meta name="description" content="[Các chương trình khuyến mãi, ưu đãi hot nhất tại AMI Mobile — giảm giá điện thoại, tai nghe, phụ kiện]">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header id="mb-nav">
+  <div class="mb-nav-inner mb-container">
+    <a href="index.html" class="mb-logo"><span class="mb-logo-dot"></span>AMI<em>MOBILE</em></a>
+    <nav class="mb-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="san-pham.html">Sản phẩm</a>
+      <a href="khuyen-mai.html" class="active">Khuyến mãi</a>
+      <a href="ve-chung-toi.html">Giới thiệu</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+    <div class="mb-nav-actions">
+      <button class="mb-icon-btn" id="mbSearchToggle" aria-label="Tìm kiếm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <div class="mb-cart-wrap">
+        <a href="gio-hang.html" class="mb-icon-btn" aria-label="Giỏ hàng">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        </a>
+        <span class="mb-cart-badge">0</span>
+      </div>
+      <button class="mb-burger" id="mbBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mb-search-panel" id="mbSearchPanel">
+    <div class="mb-container">
+      <form class="mb-search-form" action="san-pham.html" method="get">
+        <input type="text" name="q" class="mb-search-input" placeholder="Tìm iPhone, Samsung, tai nghe..." autocomplete="off">
+        <button type="submit" class="mb-search-btn">Tìm</button>
+      </form>
+    </div>
+  </div>
+  <div class="mb-mob-menu" id="mbMobMenu">
+    <nav class="mb-mob-nav">
+      <a href="index.html">Trang chủ</a>
+      <a href="san-pham.html">Sản phẩm</a>
+      <a href="khuyen-mai.html" class="active">Khuyến mãi</a>
+      <a href="ve-chung-toi.html">Giới thiệu</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+  </div>
+</header>
+
+<div class="mb-page-hero">
+  <div class="mb-container">
+    <div class="mb-breadcrumb">
+      <a href="index.html">Trang chủ</a><span>/</span><span>Khuyến mãi</span>
+    </div>
+    <div class="mb-label mb-page-hero-label">Ưu đãi</div>
+    <h1>Khuyến mãi <em>đặc biệt</em></h1>
+    <p>Ưu đãi có thời hạn — đặt hàng ngay trước khi hết</p>
+  </div>
+</div>
+
+<!-- Banner khuyến mãi chính -->
+<section class="mb-sec" style="padding-top:48px">
+  <div class="mb-container">
+    <div class="mb-promo-hero" data-reveal>
+      <div class="mb-promo-hero-text">
+        <span class="mb-label" style="color:var(--mustard)">Flash Sale</span>
+        <h2>GIẢM ĐẾN <em>30%</em><br>ĐIỆN THOẠI CHÍNH HÃNG</h2>
+        <p>Áp dụng cho iPhone 15 Series, Samsung Galaxy S24, Xiaomi 14 và nhiều mẫu khác. Số lượng có hạn!</p>
+        <a href="san-pham.html?sort=price-asc&brand=apple,samsung,xiaomi" class="mb-btn">Mua ngay</a>
+      </div>
+      <div class="mb-promo-hero-badge">
+        <div class="mb-promo-circle">
+          <span class="mb-promo-pct">30%</span>
+          <span class="mb-promo-off">OFF</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Deals section -->
+<section class="mb-sec" style="padding-bottom:72px">
+  <div class="mb-container">
+    <div class="mb-label" data-reveal>Đang giảm giá</div>
+    <h2 class="mb-sec-title" data-reveal>Sản phẩm <em>ưu đãi</em></h2>
+    <div class="mb-prod-grid" id="saleGrid"></div>
+    <div style="text-align:center;margin-top:32px" data-reveal>
+      <a href="san-pham.html?theme=giam-gia" class="mb-btn mb-btn-outline">Xem tất cả ưu đãi →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Ưu đãi đặc biệt cards -->
+<section class="mb-sec" style="background:var(--surface);padding:56px 0">
+  <div class="mb-container">
+    <div class="mb-label" data-reveal>Chính sách</div>
+    <h2 class="mb-sec-title" data-reveal>Ưu đãi <em>thêm</em> khi mua</h2>
+    <div class="row g-4 mt-2">
+      <div class="col-md-4" data-reveal>
+        <div class="mb-promo-card">
+          <div class="mb-promo-icon">📦</div>
+          <h3>Miễn phí vận chuyển</h3>
+          <p>Áp dụng cho đơn hàng từ 500,000đ. Giao hàng nhanh 2–4 giờ nội thành TP.HCM.</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal>
+        <div class="mb-promo-card">
+          <div class="mb-promo-icon">🔄</div>
+          <h3>Đổi trả trong 7 ngày</h3>
+          <p>Không hài lòng? Đổi trả miễn phí trong 7 ngày kể từ ngày mua — không cần lý do.</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal>
+        <div class="mb-promo-card">
+          <div class="mb-promo-icon">🛡️</div>
+          <h3>Bảo hành 12 tháng</h3>
+          <p>Toàn bộ sản phẩm đều được bảo hành 12 tháng tại trung tâm bảo hành ủy quyền chính hãng.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sản phẩm mới về với giá tốt -->
+<section class="mb-sec" style="padding:56px 0 72px">
+  <div class="mb-container">
+    <div class="mb-label" data-reveal>Hàng về</div>
+    <h2 class="mb-sec-title" data-reveal>Mới về — <em>giá tốt</em></h2>
+    <div class="mb-prod-grid" id="newGrid"></div>
+  </div>
+</section>
+
+<footer class="mb-footer">
+  <div class="mb-container">
+    <div class="mb-footer-grid">
+      <div>
+        <div class="mb-footer-logo">AMI<em>MOBILE</em></div>
+        <p class="mb-footer-about">[Địa chỉ: 123 Đường ABC, Quận 1, TP.HCM] — Chuyên điện thoại, tai nghe, phụ kiện chính hãng.</p>
+      </div>
+      <div class="mb-footer-col"><h4>Sản phẩm</h4><ul>
+        <li><a href="san-pham.html?category=dien-thoai">Điện thoại</a></li>
+        <li><a href="san-pham.html?category=tai-nghe">Tai nghe</a></li>
+        <li><a href="san-pham.html?category=sac-cap">Sạc & Cáp</a></li>
+        <li><a href="san-pham.html?category=op-lung">Ốp lưng</a></li>
+      </ul></div>
+      <div class="mb-footer-col"><h4>Hỗ trợ</h4><ul>
+        <li><a href="ve-chung-toi.html">Về chúng tôi</a></li>
+        <li><a href="lien-he.html">Liên hệ</a></li>
+        <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+      </ul></div>
+      <div class="mb-footer-col"><h4>Chính sách</h4><ul>
+        <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+        <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+      </ul></div>
+    </div>
+    <div class="mb-footer-bottom">
+      <p class="mb-footer-copy">&copy; 2025 AMI Mobile. Bảo lưu mọi quyền.</p>
+      <div class="mb-footer-legal">
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[SỐ_ĐIỆN_THOẠI]" class="mb-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat qua Zalo">
+  <svg viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="20" fill="#0068FF"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="14" font-weight="bold" font-family="Arial">Z</text></svg>
+</a>
+
+<script src="assets/js/products-data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const burger = document.getElementById('mbBurger');
+const mobMenu = document.getElementById('mbMobMenu');
+if (burger && mobMenu) {
+  burger.addEventListener('click', () => { const o = mobMenu.classList.toggle('open'); burger.classList.toggle('open', o); document.body.style.overflow = o ? 'hidden' : ''; });
+}
+document.getElementById('mbSearchToggle')?.addEventListener('click', () => document.getElementById('mbSearchPanel').classList.toggle('open'));
+
+function fmt(n) { return new Intl.NumberFormat('vi-VN').format(n) + 'đ'; }
+
+function cardHtml(p) {
+  const e = p.salePrice ?? p.price;
+  const w = p.salePrice ? `<span class="mb-prod-price-was">${fmt(p.price)}</span>` : '';
+  return `<div class="mb-prod-card">
+    <div class="mb-prod-thumb"><img src="${p.image}" alt="${p.name}" loading="lazy"></div>
+    <div class="mb-prod-body">
+      <div class="mb-prod-brand">${p.brand}</div>
+      <div class="mb-prod-name">${p.name}</div>
+      <div class="mb-prod-price"><span class="mb-prod-price-now">${fmt(e)}</span>${w}</div>
+    </div>
+    <div class="mb-prod-foot"><span class="mb-prod-sold">Đã bán ${p.sold}</span><a href="chi-tiet-san-pham.html?id=${p.id}" class="mb-prod-btn">Xem</a></div>
+  </div>`;
+}
+
+// Sale products
+const saleProds = PRODUCTS.filter(p => p.theme.includes('giam-gia')).slice(0,8);
+document.getElementById('saleGrid').innerHTML = saleProds.map(cardHtml).join('');
+
+// New products
+const newProds = PRODUCTS.filter(p => p.theme.includes('moi-ve')).slice(0,4);
+document.getElementById('newGrid').innerHTML = newProds.map(cardHtml).join('');
+
+// Cart badge
+const cart = JSON.parse(localStorage.getItem('mb_cart') || '[]');
+document.querySelectorAll('.mb-cart-badge').forEach(b => b.textContent = cart.reduce((s, i) => s + i.qty, 0));
+
+// Reveal
+const ro = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } }), { threshold: .08 });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đặt lịch tư vấn — Nha Khoa Chỉnh Nha Sài Gòn</title>
+<meta name="description" content="Đặt lịch scan 3D và tư vấn kế hoạch điều trị niềng răng hoàn toàn miễn phí — bác sĩ chuyên khoa phân tích trực tiếp ngay buổi đầu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <div class="wd-container cn-nav-inner">
+    <a href="index.html" class="cn-logo">
+      <div class="cn-logo-mark" aria-hidden="true"></div>
+      <div class="cn-logo-text">
+        <span>Chỉnh Nha Sài Gòn</span>
+        <span>Orthodontic Center</span>
+      </div>
+    </a>
+    <nav class="cn-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="dich-vu.html">Dịch vụ</a>
+      <a href="quy-trinh-nieng.html">Quy trình niềng</a>
+      <a href="bac-si.html">Bác sĩ</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+    <div class="cn-nav-cta">
+      <a href="dat-lich.html" class="cn-nav-btn cn-btn-primary">Đặt lịch tư vấn</a>
+    </div>
+    <button class="cn-burger" id="navBurger" aria-label="Mở menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="cn-mobile-menu" id="navMobileMenu">
+  <button id="navMobileClose" aria-label="Đóng menu" style="position:absolute;top:20px;right:20px;background:none;border:none;font-size:24px;cursor:pointer;color:var(--text-2);">✕</button>
+  <a href="index.html">Trang chủ</a>
+  <a href="dich-vu.html">Dịch vụ</a>
+  <a href="quy-trinh-nieng.html">Quy trình niềng</a>
+  <a href="bac-si.html">Bác sĩ</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="dat-lich.html" class="cn-mob-cta">Đặt lịch tư vấn</a>
+</div>
+
+<!-- ══ PAGE HERO ══ -->
+<div class="cn-page-hero">
+  <div class="wd-container">
+    <div class="cn-ph-badge">Đặt lịch tư vấn</div>
+    <h1 class="cn-ph-title">Bắt đầu hành trình <em>niềng răng</em></h1>
+    <p class="cn-ph-sub">Scan 3D và tư vấn kế hoạch điều trị hoàn toàn miễn phí — bác sĩ chuyên khoa phân tích trực tiếp ngay buổi đầu.</p>
+  </div>
+</div>
+
+<!-- ══ BOOKING FORM ══ -->
+<section class="cn-booking sec-pad">
+  <div class="wd-container">
+    <div style="text-align:center;margin-bottom:52px;" data-reveal>
+      <div class="cn-eyebrow" style="justify-content:center;">Đặt lịch tư vấn</div>
+      <h2 class="cn-title">Bắt đầu hành trình <em>niềng răng</em></h2>
+      <p class="cn-sub" style="margin:0 auto;">Đặt lịch tư vấn và scan 3D miễn phí — không mất thêm chi phí.</p>
+    </div>
+
+    <div class="cn-booking-wrap">
+      <div class="cn-booking-form" data-reveal>
+        <div class="cn-booking-title">Đặt lịch tư vấn</div>
+        <div class="cn-booking-sub">Điền thông tin bên dưới, chúng tôi sẽ liên hệ xác nhận trong vòng 30 phút.</div>
+
+        <form id="cnBookingForm" novalidate>
+          <div class="cn-form-grid-2">
+            <div class="cn-form-group">
+              <label class="cn-form-label" for="bk-name">Họ tên *</label>
+              <input id="bk-name" name="full_name" class="cn-form-control" placeholder="Nguyễn Thị An" required>
+            </div>
+            <div class="cn-form-group">
+              <label class="cn-form-label" for="bk-phone">Điện thoại *</label>
+              <input id="bk-phone" name="phone" class="cn-form-control" type="tel" placeholder="0901 234 567" required>
+            </div>
+          </div>
+          <div class="cn-form-group">
+            <label class="cn-form-label" for="bk-email">Email</label>
+            <input id="bk-email" name="email" class="cn-form-control" type="email" placeholder="email@example.com">
+          </div>
+          <div class="cn-form-group">
+            <label class="cn-form-label" for="bk-service">Dịch vụ quan tâm</label>
+            <select id="bk-service" name="service_name" class="cn-form-control">
+              <option value="">-- Chọn dịch vụ (tuỳ chọn) --</option>
+              <option>Mắc cài kim loại</option>
+              <option>Mắc cài sứ thẩm mỹ</option>
+              <option>Mắc cài tự buộc</option>
+              <option>Mắc cài mặt trong</option>
+              <option>Invisalign</option>
+              <option>Khay trong suốt nội địa</option>
+              <option>Thăm khám &amp; Scan 3D</option>
+              <option>Tư vấn chung</option>
+            </select>
+          </div>
+          <div class="cn-form-grid-2">
+            <div class="cn-form-group">
+              <label class="cn-form-label" for="bk-date">Ngày mong muốn</label>
+              <input id="bk-date" name="pref_date" class="cn-form-control" type="date">
+            </div>
+            <div class="cn-form-group">
+              <label class="cn-form-label" for="bk-time">Khung giờ</label>
+              <select id="bk-time" name="pref_time" class="cn-form-control">
+                <option value="">-- Chọn giờ --</option>
+                <option>8:00</option><option>9:00</option><option>10:00</option><option>11:00</option>
+                <option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option>
+                <option>17:00</option><option>18:00</option><option>19:00</option>
+              </select>
+            </div>
+          </div>
+          <div class="cn-form-group">
+            <label class="cn-form-label" for="bk-msg">Ghi chú thêm</label>
+            <textarea id="bk-msg" name="message" class="cn-form-control" rows="3" placeholder="Mô tả tình trạng răng hoặc yêu cầu đặc biệt..."></textarea>
+          </div>
+          <button type="submit" class="cn-submit">✓ Đặt lịch tư vấn miễn phí</button>
+        </form>
+
+        <div class="cn-form-success" id="cnBookingSuccess">
+          <div class="cn-form-success-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <div class="cn-form-success-title">Đặt lịch thành công!</div>
+          <div class="cn-form-success-sub">Cảm ơn bạn. Chúng tôi sẽ liên hệ xác nhận lịch hẹn trong thời gian sớm nhất.</div>
+        </div>
+      </div>
+
+      <div class="cn-booking-info" data-reveal data-delay="1">
+        <div class="cn-info-title">Thông tin phòng khám</div>
+        <div class="cn-info-sub">Chúng tôi luôn sẵn sàng tư vấn và giải đáp mọi thắc mắc về niềng răng.</div>
+        <div class="cn-info-item">
+          <div class="cn-info-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-mid)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div>
+            <div class="cn-info-label">Điện thoại</div>
+            <div class="cn-info-val"><a href="tel:0283822000" style="color:inherit;text-decoration:none;">028 3822 0000</a></div>
+          </div>
+        </div>
+        <div class="cn-info-item">
+          <div class="cn-info-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-mid)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div>
+            <div class="cn-info-label">Địa chỉ</div>
+            <div class="cn-info-val">123 Đường Nguyễn Văn Trỗi, P.12, Q. Phú Nhuận, TP.HCM</div>
+          </div>
+        </div>
+        <div class="cn-info-item">
+          <div class="cn-info-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-mid)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div>
+            <div class="cn-info-label">Giờ làm việc</div>
+            <div class="cn-info-val">T2–T7: 8:00–20:00 | CN: 8:00–12:00</div>
+          </div>
+        </div>
+        <div class="cn-info-item">
+          <div class="cn-info-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-mid)" stroke-width="2"><path d="M12 2l9 4.5v9L12 20l-9-4.5v-9L12 2z"/></svg></div>
+          <div>
+            <div class="cn-info-label">Tư vấn &amp; Scan 3D</div>
+            <div class="cn-info-val">Miễn phí cho lần khám đầu tiên — không ràng buộc điều trị</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="wd-container">
+    <div class="cn-ft-top">
+      <div class="row g-5">
+        <div class="col-12 col-lg-3">
+          <a href="index.html" class="cn-ft-logo" style="text-decoration:none;">
+            <div class="cn-ft-logo-mark" aria-hidden="true"></div>
+            <div>
+              <div class="cn-ft-logo-name">Chỉnh Nha Sài Gòn</div>
+              <span class="cn-ft-logo-sub">Orthodontic Center</span>
+            </div>
+          </a>
+          <p class="cn-ft-desc">Chuyên khoa niềng răng ứng dụng công nghệ số — scan 3D, kế hoạch điều trị kỹ thuật số, chính xác từng milimet.</p>
+          <div class="cn-ft-socials">
+            <a href="https://facebook.com/chinhnhasaigon" target="_blank" rel="noopener noreferrer" class="cn-ft-soc">f</a>
+            <a href="https://instagram.com/chinhnhasaigon" target="_blank" rel="noopener noreferrer" class="cn-ft-soc">ig</a>
+            <a href="https://youtube.com/chinhnhasaigon" target="_blank" rel="noopener noreferrer" class="cn-ft-soc">yt</a>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <div class="cn-ft-col-title">Điều hướng</div>
+          <div class="cn-ft-links">
+            <a href="dich-vu.html">Dịch vụ niềng răng</a>
+            <a href="quy-trinh-nieng.html">Quy trình điều trị</a>
+            <a href="bac-si.html">Đội ngũ bác sĩ</a>
+            <a href="dat-lich.html">Đặt lịch tư vấn</a>
+            <a href="lien-he.html">Liên hệ</a>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <div class="cn-ft-col-title">Dịch vụ chỉnh nha</div>
+          <div class="cn-ft-links">
+            <a href="dich-vu.html">Mắc cài kim loại</a>
+            <a href="dich-vu.html">Mắc cài sứ thẩm mỹ</a>
+            <a href="dich-vu.html">Mắc cài tự buộc</a>
+            <a href="dich-vu.html">Invisalign</a>
+            <a href="dich-vu.html">Khay trong suốt</a>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-4 offset-lg-1">
+          <div class="cn-ft-col-title">Liên hệ</div>
+          <div class="cn-ft-contact-item">
+            <div class="cn-ft-contact-icon">📍</div>
+            <div class="cn-ft-contact-text"><strong>Địa chỉ</strong>123 Đường Nguyễn Văn Trỗi, P.12, Q. Phú Nhuận, TP.HCM</div>
+          </div>
+          <div class="cn-ft-contact-item">
+            <div class="cn-ft-contact-icon">📞</div>
+            <div class="cn-ft-contact-text"><strong>Điện thoại</strong><a href="tel:0283822000">028 3822 0000</a></div>
+          </div>
+          <div class="cn-ft-contact-item">
+            <div class="cn-ft-contact-icon">✉</div>
+            <div class="cn-ft-contact-text"><strong>Email</strong><a href="mailto:lienhe@chinhnhasaigon.vn">lienhe@chinhnhasaigon.vn</a></div>
+          </div>
+          <div class="cn-ft-contact-item">
+            <div class="cn-ft-contact-icon">⏱</div>
+            <div class="cn-ft-contact-text"><strong>Giờ làm việc</strong>T2–T7: 8:00–20:00 | CN: 8:00–12:00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cn-ft-bottom">
+      <div class="cn-ft-copy">© 2026 Chỉnh Nha Sài Gòn. Bảo lưu mọi quyền.</div>
+      <div class="cn-ft-cert">
+        <span>✓ Bộ Y tế cấp phép</span>
+        <span>✓ Chỉnh nha chuyên khoa</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/0283822000" target="_blank" rel="noopener noreferrer" class="cn-zalo" aria-label="Chat qua Zalo">
+  <svg width="22" height="22" viewBox="0 0 48 48" fill="none"><path d="M14 30V18h3.2v9.3L22.5 18h3.6l-5.4 9.4L26.4 30h-3.7l-4.5-7.4V30H14z" fill="#fff"/><path d="M28 30V18h3v12h-3z" fill="#fff"/><path d="M33.5 30V18h6.8v2.6h-4v2.2h3.6v2.5h-3.6v2.1h4.1V30h-6.9z" fill="#fff"/></svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

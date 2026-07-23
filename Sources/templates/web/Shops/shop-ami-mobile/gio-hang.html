@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giỏ hàng — AMI Mobile</title>
+  <meta name="description" content="[Xem và quản lý giỏ hàng của bạn tại AMI Mobile]">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<!-- ── Navigation ── -->
+<header id="mb-nav">
+  <div class="mb-nav-inner mb-container">
+    <a href="index.html" class="mb-logo"><span class="mb-logo-dot"></span>AMI<em>MOBILE</em></a>
+    <nav class="mb-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="san-pham.html">Sản phẩm</a>
+      <a href="khuyen-mai.html">Khuyến mãi</a>
+      <a href="ve-chung-toi.html">Giới thiệu</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+    <div class="mb-nav-actions">
+      <button class="mb-icon-btn" id="mbSearchToggle" aria-label="Tìm kiếm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <div class="mb-cart-wrap">
+        <a href="gio-hang.html" class="mb-icon-btn active" aria-label="Giỏ hàng">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        </a>
+        <span class="mb-cart-badge">0</span>
+      </div>
+      <button class="mb-burger" id="mbBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mb-search-panel" id="mbSearchPanel">
+    <div class="mb-container">
+      <form class="mb-search-form" action="san-pham.html" method="get">
+        <input type="text" name="q" class="mb-search-input" placeholder="Tìm iPhone, Samsung, tai nghe..." autocomplete="off">
+        <button type="submit" class="mb-search-btn">Tìm</button>
+      </form>
+    </div>
+  </div>
+  <div class="mb-mob-menu" id="mbMobMenu">
+    <nav class="mb-mob-nav">
+      <a href="index.html">Trang chủ</a>
+      <a href="san-pham.html">Sản phẩm</a>
+      <a href="khuyen-mai.html">Khuyến mãi</a>
+      <a href="ve-chung-toi.html">Giới thiệu</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+  </div>
+</header>
+
+<div class="mb-page-hero">
+  <div class="mb-container">
+    <div class="mb-breadcrumb">
+      <a href="index.html">Trang chủ</a><span>/</span><span>Giỏ hàng</span>
+    </div>
+    <div class="mb-label">Mua sắm</div>
+    <h1>Giỏ hàng</h1>
+  </div>
+</div>
+
+<section class="mb-sec" style="padding:40px 0 72px">
+  <div class="mb-container">
+    <div class="row g-4 g-lg-5" id="cartLayout">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<footer class="mb-footer">
+  <div class="mb-container">
+    <div class="mb-footer-grid">
+      <div>
+        <div class="mb-footer-logo">AMI<em>MOBILE</em></div>
+        <p class="mb-footer-about">[Địa chỉ: 123 Đường ABC, Quận 1, TP.HCM]</p>
+      </div>
+      <div class="mb-footer-col"><h4>Sản phẩm</h4><ul>
+        <li><a href="san-pham.html">Tất cả sản phẩm</a></li>
+        <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+      </ul></div>
+      <div class="mb-footer-col"><h4>Chính sách</h4><ul>
+        <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+        <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+      </ul></div>
+      <div class="mb-footer-col"><h4>Hỗ trợ</h4><ul>
+        <li><a href="lien-he.html">Liên hệ</a></li>
+        <li><a href="ve-chung-toi.html">Về chúng tôi</a></li>
+      </ul></div>
+    </div>
+    <div class="mb-footer-bottom">
+      <p class="mb-footer-copy">&copy; 2025 AMI Mobile. Bảo lưu mọi quyền.</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[SỐ_ĐIỆN_THOẠI]" class="mb-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat qua Zalo">
+  <svg viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="20" fill="#0068FF"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="14" font-weight="bold" font-family="Arial">Z</text></svg>
+</a>
+
+<script src="assets/js/products-data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const burger = document.getElementById('mbBurger');
+const mobMenu = document.getElementById('mbMobMenu');
+if (burger && mobMenu) {
+  burger.addEventListener('click', () => { const o = mobMenu.classList.toggle('open'); burger.classList.toggle('open', o); document.body.style.overflow = o ? 'hidden' : ''; });
+}
+document.getElementById('mbSearchToggle')?.addEventListener('click', () => document.getElementById('mbSearchPanel').classList.toggle('open'));
+
+function fmt(n) { return new Intl.NumberFormat('vi-VN').format(n) + 'đ'; }
+
+function getCart() { return JSON.parse(localStorage.getItem('mb_cart') || '[]'); }
+function saveCart(c) { localStorage.setItem('mb_cart', JSON.stringify(c)); }
+
+function renderCart() {
+  let cart = getCart();
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  document.querySelectorAll('.mb-cart-badge').forEach(b => b.textContent = cart.reduce((s, i) => s + i.qty, 0));
+
+  if (cart.length === 0) {
+    document.getElementById('cartLayout').innerHTML = `
+      <div class="col-12 text-center" style="padding:80px 0">
+        <div style="font-size:48px;margin-bottom:16px">🛒</div>
+        <h3 style="font-size:22px;margin-bottom:8px">Giỏ hàng trống</h3>
+        <p style="color:var(--text-2);margin-bottom:24px">Thêm sản phẩm vào giỏ để tiến hành đặt mua.</p>
+        <a href="san-pham.html" class="mb-btn">Tiếp tục mua sắm</a>
+      </div>`;
+    return;
+  }
+
+  const itemsHtml = cart.map((item, idx) => `
+    <div class="mb-cart-row" data-idx="${idx}">
+      <div class="mb-cart-img">
+        <img src="${item.image}" alt="${item.name}">
+      </div>
+      <div class="mb-cart-info">
+        <div class="mb-cart-name">${item.name}</div>
+        <div class="mb-cart-unit">${fmt(item.price)}</div>
+      </div>
+      <div class="mb-cart-qty-wrap">
+        <button class="mb-qty-btn" data-action="dec" data-idx="${idx}">−</button>
+        <span class="mb-qty-val">${item.qty}</span>
+        <button class="mb-qty-btn" data-action="inc" data-idx="${idx}">+</button>
+      </div>
+      <div class="mb-cart-sub">${fmt(item.price * item.qty)}</div>
+      <button class="mb-cart-remove" data-idx="${idx}" aria-label="Xóa">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>`).join('');
+
+  document.getElementById('cartLayout').innerHTML = `
+    <div class="col-lg-8">
+      <div class="mb-cart-table">
+        <div class="mb-cart-header">
+          <span>Sản phẩm</span><span></span><span>Số lượng</span><span>Thành tiền</span><span></span>
+        </div>
+        ${itemsHtml}
+      </div>
+      <div class="mb-cart-continue">
+        <a href="san-pham.html" class="mb-btn mb-btn-outline">← Tiếp tục mua sắm</a>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="mb-cart-summary">
+        <h3 class="mb-cart-summary-title">Tóm tắt đơn hàng</h3>
+        <div class="mb-cart-summary-row"><span>Tạm tính</span><span>${fmt(total)}</span></div>
+        <div class="mb-cart-summary-row"><span>Phí vận chuyển</span><span>Miễn phí</span></div>
+        <div class="mb-cart-summary-total"><span>Tổng cộng</span><span>${fmt(total)}</span></div>
+        <a href="lien-he.html" class="mb-btn" style="width:100%;display:block;text-align:center;margin-top:20px">Đặt hàng</a>
+        <p style="font-size:13px;color:var(--text-2);text-align:center;margin-top:12px">Liên hệ qua Zalo / Hotline để đặt hàng nhanh</p>
+      </div>
+    </div>`;
+
+  // Qty buttons
+  document.querySelectorAll('.mb-qty-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      let c = getCart();
+      const i = +btn.dataset.idx;
+      if (btn.dataset.action === 'inc') c[i].qty++;
+      else if (c[i].qty > 1) c[i].qty--;
+      saveCart(c); renderCart();
+    });
+  });
+  // Remove buttons
+  document.querySelectorAll('.mb-cart-remove').forEach(btn => {
+    btn.addEventListener('click', () => {
+      let c = getCart();
+      c.splice(+btn.dataset.idx, 1);
+      saveCart(c); renderCart();
+    });
+  });
+}
+
+renderCart();
+</script>
+</body>
+</html>

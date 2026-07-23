@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sản phẩm — AMI Mobile</title>
+  <meta name="description" content="[Toàn bộ sản phẩm AMI Mobile: điện thoại, tai nghe, sạc & cáp, ốp lưng — lọc nhanh, giá tốt, chính hãng]">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ── Navigation ───────────────────────────────────────────────────────── -->
+<header id="mb-nav">
+  <div class="mb-nav-inner mb-container">
+    <a href="index.html" class="mb-logo"><span class="mb-logo-dot"></span>AMI<em>MOBILE</em></a>
+    <nav class="mb-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="san-pham.html" class="active">Sản phẩm</a>
+      <a href="khuyen-mai.html">Khuyến mãi</a>
+      <a href="ve-chung-toi.html">Giới thiệu</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+    <div class="mb-nav-actions">
+      <button class="mb-icon-btn" id="mbSearchToggle" aria-label="Tìm kiếm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <div class="mb-cart-wrap">
+        <a href="gio-hang.html" class="mb-icon-btn" aria-label="Giỏ hàng">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        </a>
+        <span class="mb-cart-badge">0</span>
+      </div>
+      <button class="mb-burger" id="mbBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mb-search-panel" id="mbSearchPanel">
+    <div class="mb-container">
+      <form class="mb-search-form" id="navSearchForm">
+        <input type="text" id="navSearchInput" class="mb-search-input" placeholder="Tìm iPhone, Samsung, tai nghe..." autocomplete="off">
+        <button type="submit" class="mb-search-btn">Tìm</button>
+      </form>
+    </div>
+  </div>
+  <div class="mb-mob-menu" id="mbMobMenu">
+    <nav class="mb-mob-nav">
+      <a href="index.html">Trang chủ</a>
+      <a href="san-pham.html" class="active">Sản phẩm</a>
+      <a href="khuyen-mai.html">Khuyến mãi</a>
+      <a href="ve-chung-toi.html">Giới thiệu</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ── Page Hero ─────────────────────────────────────────────────────────── -->
+<div class="mb-page-hero">
+  <div class="mb-container">
+    <div class="mb-breadcrumb">
+      <a href="index.html">Trang chủ</a>
+      <span>/</span>
+      <span>Sản phẩm</span>
+    </div>
+    <div class="mb-label mb-page-hero-label">Danh mục</div>
+    <h1>Tất cả sản phẩm</h1>
+    <p>Điện thoại, tai nghe, sạc & cáp, ốp lưng — chính hãng, bảo hành đầy đủ</p>
+  </div>
+</div>
+
+<!-- ── Filter Toolbar (horizontal, NOT sidebar) ─────────────────────────── -->
+<div class="mb-container" style="padding-top:28px">
+
+  <!-- Desktop filter bar -->
+  <div class="mb-filter-bar d-none d-lg-block" id="filterBarDesktop">
+    <div class="mb-filter-row1">
+      <!-- Category pills -->
+      <div class="mb-filter-cat" id="filterCatPills">
+        <button class="mb-filter-cat-btn active" data-cat="">Tất cả</button>
+        <button class="mb-filter-cat-btn" data-cat="dien-thoai">Điện thoại</button>
+        <button class="mb-filter-cat-btn" data-cat="tai-nghe">Tai nghe</button>
+        <button class="mb-filter-cat-btn" data-cat="sac-cap">Sạc & Cáp</button>
+        <button class="mb-filter-cat-btn" data-cat="op-lung">Ốp lưng</button>
+      </div>
+
+      <!-- Brand dropdown -->
+      <div class="mb-filter-dropdown" id="dropBrand">
+        <button class="mb-filter-dropdown-btn" id="dropBrandBtn">
+          Thương hiệu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="mb-filter-dropdown-menu" id="dropBrandMenu">
+          <label class="mb-filter-check-item"><input type="checkbox" value="apple"> <span>Apple</span></label>
+          <label class="mb-filter-check-item"><input type="checkbox" value="samsung"> <span>Samsung</span></label>
+          <label class="mb-filter-check-item"><input type="checkbox" value="xiaomi"> <span>Xiaomi</span></label>
+          <label class="mb-filter-check-item"><input type="checkbox" value="oppo"> <span>OPPO</span></label>
+          <label class="mb-filter-check-item"><input type="checkbox" value="sony"> <span>Sony</span></label>
+          <label class="mb-filter-check-item"><input type="checkbox" value="jbl"> <span>JBL</span></label>
+          <label class="mb-filter-check-item"><input type="checkbox" value="anker"> <span>Anker</span></label>
+        </div>
+      </div>
+
+      <!-- Price range dropdown -->
+      <div class="mb-filter-dropdown" id="dropPrice">
+        <button class="mb-filter-dropdown-btn" id="dropPriceBtn">
+          Khoảng giá <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="mb-filter-dropdown-menu" id="dropPriceMenu" style="min-width:220px;padding:16px">
+          <div class="mb-filter-price-wrap">
+            <label class="mb-filter-price-label">Giá tối đa: <span id="priceValDisplay">50,000,000đ</span></label>
+            <input type="range" id="priceRangeInput" class="mb-filter-price-range" min="0" max="50000000" step="500000" value="50000000">
+            <div class="mb-filter-price-vals"><span>0đ</span><span>50,000,000đ</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Color dropdown -->
+      <div class="mb-filter-dropdown" id="dropColor">
+        <button class="mb-filter-dropdown-btn" id="dropColorBtn">
+          Màu sắc <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="mb-filter-dropdown-menu" id="dropColorMenu">
+          <label class="mb-filter-check-item"><input type="checkbox" value="den"> <span>Đen</span></label>
+          <label class="mb-filter-check-item"><input type="checkbox" value="trang"> <span>Trắng</span></label>
+          <label class="mb-filter-check-item"><input type="checkbox" value="xanh"> <span>Xanh</span></label>
+          <label class="mb-filter-check-item"><input type="checkbox" value="tim"> <span>Tím</span></label>
+          <label class="mb-filter-check-item"><input type="checkbox" value="vang"> <span>Vàng</span></label>
+          <label class="mb-filter-check-item"><input type="checkbox" value="bac"> <span>Bạc</span></label>
+        </div>
+      </div>
+
+      <!-- Sort + count -->
+      <div class="mb-filter-sort-row">
+        <span class="mb-filter-count" id="filterCount" aria-live="polite">Hiển thị 1–12 trong 42 sản phẩm</span>
+        <select class="mb-filter-sort" id="sortSelect" aria-label="Sắp xếp">
+          <option value="newest">Mới nhất</option>
+          <option value="price-asc">Giá tăng dần</option>
+          <option value="price-desc">Giá giảm dần</option>
+          <option value="bestseller">Bán chạy nhất</option>
+          <option value="rating">Đánh giá cao</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Active chips row -->
+    <div class="mb-chips-row" id="chipsRow">
+      <!-- Chips injected by JS -->
+    </div>
+  </div>
+
+  <!-- Mobile filter button -->
+  <div class="d-lg-none mb-3">
+    <div class="d-flex align-items-center gap-2 flex-wrap">
+      <button class="mb-filter-mobile-btn" id="filterMobileBtn" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas" aria-controls="filterOffcanvas">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="12" y1="18" x2="20" y2="18"/></svg>
+        Bộ lọc
+        <span class="mb-filter-badge" id="filterBadgeMob">0</span>
+      </button>
+      <select class="mb-filter-sort" id="sortSelectMob" style="margin-left:auto" aria-label="Sắp xếp">
+        <option value="newest">Mới nhất</option>
+        <option value="price-asc">Giá tăng dần</option>
+        <option value="price-desc">Giá giảm dần</option>
+        <option value="bestseller">Bán chạy nhất</option>
+        <option value="rating">Đánh giá cao</option>
+      </select>
+    </div>
+    <div class="mb-chips-row" id="chipsRowMob">
+      <!-- Chips (mobile) -->
+    </div>
+  </div>
+
+</div>
+
+<!-- ── Mobile Offcanvas Filter ───────────────────────────────────────────── -->
+<div class="offcanvas offcanvas-start mb-offcanvas" id="filterOffcanvas" tabindex="-1">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">Bộ lọc</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Đóng"></button>
+  </div>
+  <div class="offcanvas-body">
+    <!-- Category -->
+    <div class="mb-offcanvas-section">
+      <span class="mb-offcanvas-label">Danh mục</span>
+      <div class="mb-filter-cat" id="filterCatPillsMob" style="flex-wrap:wrap">
+        <button class="mb-filter-cat-btn active" data-cat="" style="margin-bottom:6px">Tất cả</button>
+        <button class="mb-filter-cat-btn" data-cat="dien-thoai" style="margin-bottom:6px">Điện thoại</button>
+        <button class="mb-filter-cat-btn" data-cat="tai-nghe" style="margin-bottom:6px">Tai nghe</button>
+        <button class="mb-filter-cat-btn" data-cat="sac-cap" style="margin-bottom:6px">Sạc & Cáp</button>
+        <button class="mb-filter-cat-btn" data-cat="op-lung" style="margin-bottom:6px">Ốp lưng</button>
+      </div>
+    </div>
+    <!-- Brand -->
+    <div class="mb-offcanvas-section">
+      <span class="mb-offcanvas-label">Thương hiệu</span>
+      <label class="mb-filter-check-item"><input type="checkbox" class="mob-brand" value="apple"><span>Apple</span></label>
+      <label class="mb-filter-check-item"><input type="checkbox" class="mob-brand" value="samsung"><span>Samsung</span></label>
+      <label class="mb-filter-check-item"><input type="checkbox" class="mob-brand" value="xiaomi"><span>Xiaomi</span></label>
+      <label class="mb-filter-check-item"><input type="checkbox" class="mob-brand" value="oppo"><span>OPPO</span></label>
+      <label class="mb-filter-check-item"><input type="checkbox" class="mob-brand" value="sony"><span>Sony</span></label>
+      <label class="mb-filter-check-item"><input type="checkbox" class="mob-brand" value="jbl"><span>JBL</span></label>
+      <label class="mb-filter-check-item"><input type="checkbox" class="mob-brand" value="anker"><span>Anker</span></label>
+    </div>
+    <!-- Price range -->
+    <div class="mb-offcanvas-section">
+      <span class="mb-offcanvas-label">Khoảng giá</span>
+      <div class="mb-filter-price-wrap">
+        <label class="mb-filter-price-label">Giá tối đa: <span id="priceValMob">50,000,000đ</span></label>
+        <input type="range" id="priceRangeMob" class="mb-filter-price-range" min="0" max="50000000" step="500000" value="50000000">
+        <div class="mb-filter-price-vals"><span>0đ</span><span>50,000,000đ</span></div>
+      </div>
+    </div>
+    <!-- Color -->
+    <div class="mb-offcanvas-section">
+      <span class="mb-offcanvas-label">Màu sắc</span>
+      <label class="mb-filter-check-item"><input type="checkbox" class="mob-color" value="den"><span>Đen</span></label>
+      <label class="mb-filter-check-item"><input type="checkbox" class="mob-color" value="trang"><span>Trắng</span></label>
+      <label class="mb-filter-check-item"><input type="checkbox" class="mob-color" value="xanh"><span>Xanh</span></label>
+      <label class="mb-filter-check-item"><input type="checkbox" class="mob-color" value="tim"><span>Tím</span></label>
+      <label class="mb-filter-check-item"><input type="checkbox" class="mob-color" value="vang"><span>Vàng</span></label>
+      <label class="mb-filter-check-item"><input type="checkbox" class="mob-color" value="bac"><span>Bạc</span></label>
+    </div>
+  </div>
+</div>
+
+<!-- ── Product Grid ───────────────────────────────────────────────────────── -->
+<div class="mb-container" style="padding-bottom: 60px">
+  <!-- Empty State -->
+  <div class="mb-empty-state" id="emptyState">
+    <div class="mb-empty-icon">📱</div>
+    <div class="mb-empty-title">Không tìm thấy sản phẩm</div>
+    <p class="mb-empty-sub">Thử xóa bộ lọc hoặc tìm kiếm với từ khóa khác.</p>
+    <button class="mb-btn mb-btn-outline" id="emptyStateClear">Xóa tất cả bộ lọc</button>
+  </div>
+
+  <!-- Grid -->
+  <div class="mb-prod-grid" id="productGrid"></div>
+
+  <!-- Pagination -->
+  <nav aria-label="Phân trang sản phẩm">
+    <ul class="mb-pagination" id="paginationEl"></ul>
+  </nav>
+</div>
+
+<!-- ── Footer ─────────────────────────────────────────────────────────────── -->
+<footer class="mb-footer">
+  <div class="mb-container">
+    <div class="mb-footer-grid">
+      <div>
+        <div class="mb-footer-logo">AMI<em>MOBILE</em></div>
+        <p class="mb-footer-about">[Địa chỉ: 123 Đường ABC, Quận 1, TP.HCM] — Chuyên điện thoại, tai nghe, phụ kiện chính hãng.</p>
+        <div class="mb-footer-socials">
+          <a href="#" class="mb-footer-social" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" class="mb-footer-social" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="mb-footer-col">
+        <h4>Sản phẩm</h4>
+        <ul>
+          <li><a href="san-pham.html?category=dien-thoai">Điện thoại</a></li>
+          <li><a href="san-pham.html?category=tai-nghe">Tai nghe</a></li>
+          <li><a href="san-pham.html?category=sac-cap">Sạc & Cáp</a></li>
+          <li><a href="san-pham.html?category=op-lung">Ốp lưng</a></li>
+        </ul>
+      </div>
+      <div class="mb-footer-col">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="ve-chung-toi.html">Về chúng tôi</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+        </ul>
+      </div>
+      <div class="mb-footer-col">
+        <h4>Chính sách</h4>
+        <ul>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mb-footer-bottom">
+      <p class="mb-footer-copy">&copy; 2025 AMI Mobile. Bảo lưu mọi quyền.</p>
+      <div class="mb-footer-legal">
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[SỐ_ĐIỆN_THOẠI]" class="mb-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat qua Zalo">
+  <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="40" height="40" rx="20" fill="#0068FF"/>
+    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="14" font-weight="bold" font-family="Arial">Z</text>
+  </svg>
+</a>
+
+<!-- ── Scripts ─────────────────────────────────────────────────────────────── -->
+<script src="assets/js/products-data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// === Nav ===
+const burger = document.getElementById('mbBurger');
+const mobMenu = document.getElementById('mbMobMenu');
+if (burger && mobMenu) {
+  burger.addEventListener('click', () => {
+    const o = mobMenu.classList.toggle('open');
+    burger.classList.toggle('open', o);
+    document.body.style.overflow = o ? 'hidden' : '';
+  });
+}
+const searchToggle = document.getElementById('mbSearchToggle');
+const searchPanel  = document.getElementById('mbSearchPanel');
+if (searchToggle && searchPanel) {
+  searchToggle.addEventListener('click', () => searchPanel.classList.toggle('open'));
+}
+// Nav search → update filter state (search within catalog)
+document.getElementById('navSearchForm')?.addEventListener('submit', e => {
+  e.preventDefault();
+  const q = document.getElementById('navSearchInput').value.trim();
+  if (q) { state.search = q; onFilterChange(); }
+});
+
+// === Filter Engine ===
+const MAX_PRICE = 50000000;
+const PER_PAGE  = 12;
+let state = {
+  category: '', brand: [], price: [0, MAX_PRICE],
+  color: [], theme: '', search: '', sort: 'newest', page: 1
+};
+
+function fmt(n) { return new Intl.NumberFormat('vi-VN').format(n) + 'đ'; }
+function stars(r) {
+  const full = Math.floor(r); const half = r % 1 >= .5 ? 1 : 0;
+  return '★'.repeat(full) + (half ? '½' : '') + '☆'.repeat(5 - full - half);
+}
+function badgeHtml(b) {
+  if (!b) return '';
+  const map = { hot: 'HOT', sale: 'SALE', new: 'MỚI' };
+  return `<span class="mb-prod-badge ${b}">${map[b]}</span>`;
+}
+
+function matchProduct(p) {
+  if (state.category && p.category !== state.category) return false;
+  if (state.brand.length && !state.brand.includes(p.brand)) return false;
+  const price = p.salePrice ?? p.price;
+  if (price < state.price[0] || price > state.price[1]) return false;
+  if (state.color.length && !state.color.includes(p.color)) return false;
+  if (state.theme && !p.theme.includes(state.theme)) return false;
+  if (state.search && !p.name.toLowerCase().includes(state.search.toLowerCase())) return false;
+  return true;
+}
+
+function sortProducts(list) {
+  const arr = [...list];
+  const eff = p => p.salePrice ?? p.price;
+  if (state.sort === 'price-asc')   arr.sort((a, b) => eff(a) - eff(b));
+  else if (state.sort === 'price-desc') arr.sort((a, b) => eff(b) - eff(a));
+  else if (state.sort === 'rating')     arr.sort((a, b) => b.rating - a.rating);
+  else if (state.sort === 'bestseller') arr.sort((a, b) => (b.sold || 0) - (a.sold || 0));
+  else arr.sort((a, b) => b.id - a.id);
+  return arr;
+}
+
+function cardHtml(p) {
+  const price = p.salePrice ?? p.price;
+  const wasHtml = p.salePrice ? `<span class="mb-prod-price-was">${fmt(p.price)}</span>` : '';
+  return `
+    <div class="mb-prod-card">
+      <div class="mb-prod-thumb">
+        <img src="${p.image}" alt="${p.name}" loading="lazy">
+        ${badgeHtml(p.badge)}
+      </div>
+      <div class="mb-prod-body">
+        <div class="mb-prod-brand">${p.brand}</div>
+        <div class="mb-prod-name">${p.name}</div>
+        <div class="mb-prod-rating">
+          <span class="stars">${stars(p.rating)}</span>
+          <span class="count">(${p.sold})</span>
+        </div>
+        <div class="mb-prod-price">
+          <span class="mb-prod-price-now">${fmt(price)}</span>
+          ${wasHtml}
+        </div>
+      </div>
+      <div class="mb-prod-foot">
+        <span class="mb-prod-sold">Đã bán ${p.sold}</span>
+        <a href="chi-tiet-san-pham.html?id=${p.id}" class="mb-prod-btn">Xem</a>
+      </div>
+    </div>`;
+}
+
+const productGrid = document.getElementById('productGrid');
+const emptyState  = document.getElementById('emptyState');
+const paginationEl = document.getElementById('paginationEl');
+const filterCount  = document.getElementById('filterCount');
+
+function renderGrid(items) {
+  if (items.length === 0) {
+    productGrid.innerHTML = '';
+    productGrid.style.display = 'none';
+    emptyState.classList.add('show');
+  } else {
+    emptyState.classList.remove('show');
+    productGrid.style.display = '';
+    productGrid.innerHTML = items.map(p => cardHtml(p)).join('');
+  }
+}
+
+function renderCount(total, start, count) {
+  const end = start + count;
+  const txt = total === 0 ? '0 sản phẩm' : `Hiển thị ${start + 1}–${end} trong ${total} sản phẩm`;
+  if (filterCount) filterCount.textContent = txt;
+}
+
+function renderPagination(totalPages) {
+  if (!paginationEl) return;
+  paginationEl.hidden = totalPages <= 1;
+  if (totalPages <= 1) return;
+  // Max 7 page buttons (window of 5 around current)
+  let pages = [];
+  for (let i = 1; i <= totalPages; i++) pages.push(i);
+  paginationEl.innerHTML = pages.map(n => `
+    <li class="page-item${n === state.page ? ' active' : ''}">
+      <button class="page-link" data-page="${n}">${n}</button>
+    </li>`).join('');
+}
+
+function countActiveFilters() {
+  let n = 0;
+  if (state.category) n++;
+  n += state.brand.length;
+  n += state.color.length;
+  if (state.price[1] < MAX_PRICE) n++;
+  if (state.theme) n++;
+  if (state.search) n++;
+  return n;
+}
+
+function renderActiveChips() {
+  const chips = [];
+  const catLabels = { 'dien-thoai':'Điện thoại','tai-nghe':'Tai nghe','sac-cap':'Sạc & Cáp','op-lung':'Ốp lưng' };
+  if (state.category) chips.push({ key: 'category', label: catLabels[state.category] || state.category });
+  state.brand.forEach(b => chips.push({ key: 'brand', val: b, label: b.charAt(0).toUpperCase() + b.slice(1) }));
+  state.color.forEach(c => chips.push({ key: 'color', val: c, label: c }));
+  if (state.price[1] < MAX_PRICE) chips.push({ key: 'price', label: 'Đến ' + fmt(state.price[1]) });
+  if (state.theme) chips.push({ key: 'theme', label: 'Theme: ' + state.theme });
+  if (state.search) chips.push({ key: 'search', label: 'Tìm: ' + state.search });
+
+  const chipsHtml = chips.map(c => `
+    <button class="mb-chip" data-chip-key="${c.key}" data-chip-val="${c.val || ''}" aria-label="Xóa lọc ${c.label}">
+      ${c.label} <span class="mb-chip-x">&times;</span>
+    </button>`).join('');
+  const clearBtn = chips.length ? '<button class="mb-chip-clear" id="clearAllBtn">Xóa tất cả</button>' : '';
+  const allHtml = chipsHtml + clearBtn;
+
+  ['chipsRow','chipsRowMob'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = allHtml;
+    el.classList.toggle('show', chips.length > 0);
+  });
+
+  // Update mobile badge
+  const badgeN = countActiveFilters();
+  const badge = document.getElementById('filterBadgeMob');
+  if (badge) { badge.textContent = badgeN; badge.classList.toggle('show', badgeN > 0); }
+
+  // Chip events
+  document.querySelectorAll('.mb-chip[data-chip-key]').forEach(btn => {
+    btn.addEventListener('click', () => removeChip(btn.dataset.chipKey, btn.dataset.chipVal));
+  });
+  document.querySelectorAll('#clearAllBtn').forEach(btn => {
+    btn.addEventListener('click', clearAllFilters);
+  });
+}
+
+function removeChip(key, val) {
+  if (key === 'category') { state.category = ''; syncCatPills(''); }
+  else if (key === 'brand') { state.brand = state.brand.filter(b => b !== val); syncBrandCheckboxes(); }
+  else if (key === 'color') { state.color = state.color.filter(c => c !== val); syncColorCheckboxes(); }
+  else if (key === 'price')  { state.price[1] = MAX_PRICE; syncPriceSliders(); }
+  else if (key === 'theme')  { state.theme = ''; }
+  else if (key === 'search') { state.search = ''; }
+  onFilterChange();
+}
+
+function clearAllFilters() {
+  state.category = ''; state.brand = []; state.color = [];
+  state.price    = [0, MAX_PRICE]; state.theme = ''; state.search = '';
+  syncCatPills(''); syncBrandCheckboxes(); syncColorCheckboxes(); syncPriceSliders();
+  onFilterChange();
+}
+
+function writeStateToURL() {
+  const p = new URLSearchParams();
+  if (state.category) p.set('category', state.category);
+  if (state.brand.length) p.set('brand', state.brand.join(','));
+  if (state.color.length) p.set('color', state.color.join(','));
+  if (state.price[1] < MAX_PRICE) p.set('priceMax', state.price[1]);
+  if (state.theme) p.set('theme', state.theme);
+  if (state.search) p.set('q', state.search);
+  if (state.sort !== 'newest') p.set('sort', state.sort);
+  if (state.page > 1) p.set('page', state.page);
+  history.replaceState(null, '', p.toString() ? '?' + p.toString() : location.pathname);
+}
+
+function readStateFromURL() {
+  const p = new URLSearchParams(location.search);
+  if (p.get('category')) { state.category = p.get('category'); syncCatPills(state.category); }
+  if (p.get('brand'))    { state.brand = p.get('brand').split(','); syncBrandCheckboxes(); }
+  if (p.get('color'))    { state.color = p.get('color').split(','); syncColorCheckboxes(); }
+  if (p.get('priceMax')) { state.price[1] = +p.get('priceMax'); syncPriceSliders(); }
+  if (p.get('theme'))    state.theme = p.get('theme');
+  if (p.get('q'))        state.search = p.get('q');
+  if (p.get('sort'))     { state.sort = p.get('sort'); syncSortSelects(); }
+  if (p.get('page'))     state.page = +p.get('page');
+}
+
+function syncCatPills(val) {
+  document.querySelectorAll('[data-cat]').forEach(b => b.classList.toggle('active', (b.dataset.cat || '') === (val || '')));
+}
+function syncBrandCheckboxes() {
+  document.querySelectorAll('[value]').forEach(cb => {
+    if (cb.type === 'checkbox' && (cb.closest('#dropBrandMenu') || cb.classList.contains('mob-brand'))) {
+      cb.checked = state.brand.includes(cb.value);
+      cb.closest('.mb-filter-check-item')?.querySelector('span') && 0;
+    }
+  });
+  document.getElementById('dropBrandBtn')?.classList.toggle('has-active', state.brand.length > 0);
+}
+function syncColorCheckboxes() {
+  document.querySelectorAll('[value]').forEach(cb => {
+    if (cb.type === 'checkbox' && (cb.closest('#dropColorMenu') || cb.classList.contains('mob-color'))) {
+      cb.checked = state.color.includes(cb.value);
+    }
+  });
+  document.getElementById('dropColorBtn')?.classList.toggle('has-active', state.color.length > 0);
+}
+function syncPriceSliders() {
+  const v = state.price[1];
+  const disp = fmt(v);
+  const priceIn  = document.getElementById('priceRangeInput');
+  const priceMob = document.getElementById('priceRangeMob');
+  if (priceIn)  priceIn.value  = v;
+  if (priceMob) priceMob.value = v;
+  const d1 = document.getElementById('priceValDisplay');
+  const d2 = document.getElementById('priceValMob');
+  if (d1) d1.textContent = disp;
+  if (d2) d2.textContent = disp;
+  document.getElementById('dropPriceBtn')?.classList.toggle('has-active', v < MAX_PRICE);
+}
+function syncSortSelects() {
+  ['sortSelect','sortSelectMob'].forEach(id => {
+    const s = document.getElementById(id);
+    if (s) s.value = state.sort;
+  });
+}
+
+function render() {
+  const filtered  = sortProducts(PRODUCTS.filter(matchProduct));
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+  state.page = Math.min(state.page, totalPages);
+  const start   = (state.page - 1) * PER_PAGE;
+  const visible = filtered.slice(start, start + PER_PAGE);
+  renderGrid(visible);
+  renderCount(filtered.length, start, visible.length);
+  renderPagination(totalPages);
+  renderActiveChips();
+  writeStateToURL();
+}
+
+function onFilterChange() { state.page = 1; render(); }
+
+// ── Category pills ──
+document.querySelectorAll('[data-cat]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    state.category = btn.dataset.cat || '';
+    syncCatPills(state.category);
+    onFilterChange();
+  });
+});
+
+// ── Brand checkboxes (desktop) ──
+document.querySelectorAll('#dropBrandMenu input[type="checkbox"]').forEach(cb => {
+  cb.addEventListener('change', () => {
+    state.brand = [...document.querySelectorAll('#dropBrandMenu input:checked')].map(c => c.value);
+    document.getElementById('dropBrandBtn').classList.toggle('has-active', state.brand.length > 0);
+    onFilterChange();
+  });
+});
+
+// ── Color checkboxes (desktop) ──
+document.querySelectorAll('#dropColorMenu input[type="checkbox"]').forEach(cb => {
+  cb.addEventListener('change', () => {
+    state.color = [...document.querySelectorAll('#dropColorMenu input:checked')].map(c => c.value);
+    document.getElementById('dropColorBtn').classList.toggle('has-active', state.color.length > 0);
+    onFilterChange();
+  });
+});
+
+// ── Mobile brand/color checkboxes ──
+document.querySelectorAll('.mob-brand').forEach(cb => {
+  cb.addEventListener('change', () => {
+    state.brand = [...document.querySelectorAll('.mob-brand:checked')].map(c => c.value);
+    onFilterChange();
+  });
+});
+document.querySelectorAll('.mob-color').forEach(cb => {
+  cb.addEventListener('change', () => {
+    state.color = [...document.querySelectorAll('.mob-color:checked')].map(c => c.value);
+    onFilterChange();
+  });
+});
+
+// ── Price range (desktop + mobile, debounce) ──
+let priceTimer;
+function onPriceChange(val) {
+  clearTimeout(priceTimer);
+  priceTimer = setTimeout(() => {
+    state.price[1] = +val;
+    syncPriceSliders();
+    onFilterChange();
+  }, 250);
+}
+document.getElementById('priceRangeInput')?.addEventListener('input', e => {
+  document.getElementById('priceValDisplay').textContent = fmt(e.target.value);
+  onPriceChange(e.target.value);
+});
+document.getElementById('priceRangeMob')?.addEventListener('input', e => {
+  document.getElementById('priceValMob').textContent = fmt(e.target.value);
+  onPriceChange(e.target.value);
+});
+
+// ── Sort selects ──
+['sortSelect','sortSelectMob'].forEach(id => {
+  document.getElementById(id)?.addEventListener('change', e => {
+    state.sort = e.target.value;
+    syncSortSelects();
+    onFilterChange();
+  });
+});
+
+// ── Dropdown open/close (desktop) ──
+['Brand','Price','Color'].forEach(name => {
+  const btn  = document.getElementById('drop' + name + 'Btn');
+  const menu = document.getElementById('drop' + name + 'Menu');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    ['Brand','Price','Color'].forEach(n => {
+      if (n !== name) document.getElementById('drop' + n + 'Menu')?.classList.remove('open');
+    });
+    menu.classList.toggle('open');
+  });
+});
+document.addEventListener('click', () => {
+  document.querySelectorAll('.mb-filter-dropdown-menu.open').forEach(m => m.classList.remove('open'));
+});
+
+// ── Pagination ──
+paginationEl?.addEventListener('click', e => {
+  const btn = e.target.closest('[data-page]');
+  if (!btn) return;
+  state.page = +btn.dataset.page;
+  render();
+  document.getElementById('productGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+// ── Empty state clear button ──
+document.getElementById('emptyStateClear')?.addEventListener('click', clearAllFilters);
+
+// ── Mobile cat pills in offcanvas ──
+document.querySelectorAll('#filterCatPillsMob [data-cat]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    state.category = btn.dataset.cat || '';
+    document.querySelectorAll('#filterCatPillsMob [data-cat]').forEach(b => b.classList.toggle('active', (b.dataset.cat||'') === (state.category||'')));
+    onFilterChange();
+  });
+});
+
+// ── Reveal ──
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+}, { threshold: .08 });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+// ── Init ──
+readStateFromURL();
+render();
+</script>
+</body>
+</html>
