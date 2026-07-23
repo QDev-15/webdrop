@@ -250,10 +250,10 @@ class Database {
         $count = $this->pdo->query("SELECT COUNT(*) FROM product_categories")->fetchColumn();
         if ($count > 0) return;
         $cats = [
-            ['Máy Ảnh Mirrorless',   'may-anh-mirrorless',   'https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600&auto=format&fit=crop&q=80', 1],
-            ['Máy Ảnh DSLR',         'may-anh-dslr',         'https://images.unsplash.com/photo-1519183071298-a2962be96f83?w=600&auto=format&fit=crop&q=80', 2],
+            ['Máy Ảnh Mirrorless',   'may-anh-mirrorless',   'https://images.unsplash.com/photo-1626006113664-4a217873939d?w=600&auto=format&fit=crop&q=80', 1],
+            ['Máy Ảnh DSLR',         'may-anh-dslr',         'https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=600&auto=format&fit=crop&q=80', 2],
             ['Ống Kính',             'ong-kinh',             'https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?w=600&auto=format&fit=crop&q=80', 3],
-            ['Tripod & Phụ Kiện',    'tripod-phu-kien',      'https://images.unsplash.com/photo-1607685836727-b2b3c58f9a16?w=600&auto=format&fit=crop&q=80', 4],
+            ['Tripod & Phụ Kiện',    'tripod-phu-kien',      'https://images.unsplash.com/photo-1634680582783-0b06ca18a449?w=600&auto=format&fit=crop&q=80', 4],
             ['Flash & Đèn Chụp',     'flash-den-chup',       'https://images.unsplash.com/photo-1516724562728-afc824a36e84?w=600&auto=format&fit=crop&q=80', 5],
             ['Thẻ Nhớ & Balo',       'the-nho-balo',         'https://images.unsplash.com/photo-1519638399535-1b036603ac77?w=600&auto=format&fit=crop&q=80', 6],
         ];

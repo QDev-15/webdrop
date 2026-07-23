@@ -53,6 +53,15 @@ export default function Header() {
 
   const navClass = ({ isActive }: { isActive: boolean }) => (isActive ? 'ma-active' : '')
 
+  // Trang có banner/hero nền tối ngay dưới nav (Trang chủ, Sản phẩm, Dịch vụ, Thương hiệu,
+  // Chính sách, Điều khoản) cần chữ nav sáng màu khi chưa scroll — tránh chìm vào nền tối.
+  // Giỏ hàng/Chi tiết sản phẩm/Thanh toán/Liên hệ có nền sáng ngay dưới nav nên giữ nguyên chữ tối.
+  const navOnDarkRoutes = ['/', '/san-pham', '/dich-vu', '/thuong-hieu', '/chinh-sach-bao-mat', '/dieu-khoan']
+  const isOnDarkTop = navOnDarkRoutes.includes(pathname)
+  const navClassName = [scrolled ? 'ma-scrolled' : '', !scrolled && isOnDarkTop ? 'ma-nav-on-dark' : '']
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <>
       <nav ref={mobNavRef} id="ma-nav-mob" className={'ma-mob-nav' + (mobileOpen ? ' open' : '')} aria-label="Menu di động">
@@ -70,7 +79,7 @@ export default function Header() {
       </nav>
 
       {/* Nav-4 Minimal Top Line */}
-      <header id="ma-nav" className={scrolled ? 'ma-scrolled' : ''}>
+      <header id="ma-nav" className={navClassName}>
         <div className="ma-container ma-nav-inner">
           <Link to="/" className="ma-logo"><span className="ma-logo-dot" />PhotoPro</Link>
           <nav className="ma-nav-links" aria-label="Menu chính">

@@ -105,12 +105,21 @@ h1, h2, h3, h4 { font-weight: 700; line-height: 1.18; letter-spacing: -0.01em; }
   background: transparent; border-top: 3px solid var(--accent);
   transition: background .28s ease, box-shadow .28s ease, border-color .28s ease;
 }
+/* Scrim luôn hiện phía sau nav khi chưa scroll — đảm bảo tương phản bất kể hero bên dưới
+   là vùng tối (.ma-split-dark) hay sáng, tránh nav "chìm" theo vị trí lát cắt geometric split. */
+#ma-nav::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 140px;
+  background: linear-gradient(to bottom, rgba(18,24,27,.6) 0%, rgba(18,24,27,.32) 60%, rgba(18,24,27,0) 100%);
+  z-index: 1; pointer-events: none;
+  opacity: 1; transition: opacity .28s ease;
+}
 #ma-nav.ma-scrolled {
   background: #fff;
   box-shadow: 0 1px 0 var(--border), 0 12px 28px rgba(28,36,40,.06);
 }
-.ma-nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; }
-.ma-logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 20px; letter-spacing: -.02em; color: var(--dark); }
+#ma-nav.ma-scrolled::before { opacity: 0; }
+.ma-nav-inner { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; padding: 20px 0; }
+.ma-logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 20px; letter-spacing: -.02em; color: var(--dark); transition: color .2s; }
 .ma-logo-dot { width: 9px; height: 9px; background: var(--amber); flex-shrink: 0; }
 .ma-nav-links { display: flex; align-items: center; gap: 34px; }
 .ma-nav-links a { font-weight: 500; font-size: 14.5px; color: var(--text-2); padding: 6px 2px; border-bottom: 2px solid transparent; transition: color .2s, border-color .2s; }
@@ -120,10 +129,27 @@ h1, h2, h3, h4 { font-weight: 700; line-height: 1.18; letter-spacing: -0.01em; }
 .ma-nav-icon:hover, .ma-nav-icon.ma-active { border-color: var(--accent); color: var(--accent); }
 .ma-cart-badge { position: absolute; top: -7px; right: -7px; background: var(--amber); color: #fff; font-size: 10.5px; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 .ma-burger { width: 38px; height: 38px; border: 1.5px solid var(--border); border-radius: var(--radius-btn); background: transparent; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
-.ma-burger span { width: 17px; height: 2px; background: var(--dark); transition: transform .25s, opacity .25s; }
+.ma-burger span { width: 17px; height: 2px; background: var(--dark); transition: transform .25s, opacity .25s, background .2s; }
 .ma-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .ma-burger.open span:nth-child(2) { opacity: 0; }
 .ma-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Trạng thái chưa scroll: nav đè trực tiếp lên hero (luôn có scrim tối phía sau) → chữ/icon dùng màu sáng.
+   Sau khi scroll (.ma-scrolled, nền trắng đặc) mới trả về màu tối như trên các trang con luôn-scrolled. */
+#ma-nav:not(.ma-scrolled) .ma-logo,
+#ma-nav:not(.ma-scrolled) .ma-nav-links a,
+#ma-nav:not(.ma-scrolled) .ma-nav-icon {
+  color: #fff;
+}
+#ma-nav:not(.ma-scrolled) .ma-nav-links a:hover,
+#ma-nav:not(.ma-scrolled) .ma-nav-links a.ma-active {
+  color: #fff; border-bottom-color: var(--amber);
+}
+#ma-nav:not(.ma-scrolled) .ma-nav-icon { border-color: rgba(255,255,255,.4); }
+#ma-nav:not(.ma-scrolled) .ma-nav-icon:hover,
+#ma-nav:not(.ma-scrolled) .ma-nav-icon.ma-active { border-color: var(--amber); color: var(--amber); }
+#ma-nav:not(.ma-scrolled) .ma-burger { border-color: rgba(255,255,255,.4); }
+#ma-nav:not(.ma-scrolled) .ma-burger span { background: #fff; }
 
 /* ---------- HERO — H10 Geometric Split ---------- */
 .ma-hero {
@@ -608,7 +634,7 @@ h1, h2, h3, h4 { font-weight: 700; line-height: 1.18; letter-spacing: -0.01em; }
 /* ---------- Nav search (icon + dropdown panel) ---------- */
 .ma-nav-search-btn { background: none; padding: 0; }
 .ma-search-panel {
-  position: absolute; top: 100%; left: 0; right: 0;
+  position: absolute; top: 100%; left: 0; right: 0; z-index: 3;
   background: var(--surface); border-bottom: 1px solid var(--border);
   box-shadow: 0 12px 32px rgba(28,36,40,.08); padding: 18px 0;
   transform: translateY(-8px); opacity: 0;
