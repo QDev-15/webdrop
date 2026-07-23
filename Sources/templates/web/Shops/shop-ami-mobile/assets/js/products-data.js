@@ -19,7 +19,7 @@ const PRODUCTS = [
     sold: 456,
     stock: true,
     badge: 'hot',
-    image: 'assets/img/products/1.jpg'
+    image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 2,
@@ -35,7 +35,7 @@ const PRODUCTS = [
     sold: 312,
     stock: true,
     badge: 'sale',
-    image: 'assets/img/products/2.jpg'
+    image: 'https://images.unsplash.com/photo-1523206489230-c012c64b2b48?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 3,
@@ -51,7 +51,7 @@ const PRODUCTS = [
     sold: 145,
     stock: true,
     badge: 'new',
-    image: 'assets/img/products/3.jpg'
+    image: 'https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 4,
@@ -67,7 +67,7 @@ const PRODUCTS = [
     sold: 234,
     stock: true,
     badge: 'new',
-    image: 'assets/img/products/4.jpg'
+    image: 'https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 5,
@@ -83,7 +83,7 @@ const PRODUCTS = [
     sold: 267,
     stock: true,
     badge: 'sale',
-    image: 'assets/img/products/5.jpg'
+    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 6,
@@ -99,7 +99,7 @@ const PRODUCTS = [
     sold: 489,
     stock: true,
     badge: 'sale',
-    image: 'assets/img/products/6.jpg'
+    image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 7,
@@ -115,7 +115,7 @@ const PRODUCTS = [
     sold: 178,
     stock: true,
     badge: null,
-    image: 'assets/img/products/7.jpg'
+    image: 'https://images.unsplash.com/photo-1634403665481-74948d815f03?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 8,
@@ -131,7 +131,7 @@ const PRODUCTS = [
     sold: 678,
     stock: true,
     badge: 'sale',
-    image: 'assets/img/products/8.jpg'
+    image: 'https://images.unsplash.com/photo-1583291023438-41cef6453b1f?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 9,
@@ -147,7 +147,7 @@ const PRODUCTS = [
     sold: 89,
     stock: true,
     badge: null,
-    image: 'assets/img/products/9.jpg'
+    image: 'https://images.unsplash.com/photo-1524226108234-3cccbbbfa86d?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 10,
@@ -163,7 +163,7 @@ const PRODUCTS = [
     sold: 345,
     stock: true,
     badge: 'sale',
-    image: 'assets/img/products/10.jpg'
+    image: 'https://images.unsplash.com/photo-1583142485083-291557266e6a?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 11,
@@ -179,7 +179,7 @@ const PRODUCTS = [
     sold: 456,
     stock: true,
     badge: 'sale',
-    image: 'assets/img/products/11.jpg'
+    image: 'https://images.unsplash.com/photo-1557680784-6db47c6f56ab?w=600&auto=format&fit=crop&q=80'
   },
 
   // ── SAMSUNG (8 sản phẩm) ────────────────────────────────────────────────
@@ -197,7 +197,7 @@ const PRODUCTS = [
     sold: 389,
     stock: true,
     badge: 'hot',
-    image: 'assets/img/products/12.jpg'
+    image: 'https://images.unsplash.com/photo-1576107324820-c10884700b6b?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 13,
@@ -213,7 +213,7 @@ const PRODUCTS = [
     sold: 234,
     stock: true,
     badge: 'sale',
-    image: 'assets/img/products/13.jpg'
+    image: 'https://images.unsplash.com/photo-1547658718-f4311ad64746?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 14,
@@ -229,7 +229,7 @@ const PRODUCTS = [
     sold: 178,
     stock: true,
     badge: 'new',
-    image: 'assets/img/products/14.jpg'
+    image: 'https://images.unsplash.com/photo-1707438095940-1eee18e85400?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 15,
@@ -245,7 +245,7 @@ const PRODUCTS = [
     sold: 89,
     stock: true,
     badge: 'hot',
-    image: 'assets/img/products/15.jpg'
+    image: 'https://images.unsplash.com/photo-1655803281586-2053d8edcaa1?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 16,
@@ -261,7 +261,7 @@ const PRODUCTS = [
     sold: 134,
     stock: true,
     badge: 'new',
-    image: 'assets/img/products/16.jpg'
+    image: 'https://images.unsplash.com/photo-1721864457758-ff2cfa47f58a?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 17,
@@ -277,7 +277,7 @@ const PRODUCTS = [
     sold: 267,
     stock: true,
     badge: null,
-    image: 'assets/img/products/17.jpg'
+    image: 'https://images.unsplash.com/photo-1705585174953-9b2aa8afc174?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 18,
@@ -293,7 +293,7 @@ const PRODUCTS = [
     sold: 345,
     stock: true,
     badge: 'sale',
-    image: 'assets/img/products/18.jpg'
+    image: 'https://images.unsplash.com/photo-1583573636246-18cb2246697f?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 19,
@@ -309,7 +309,7 @@ const PRODUCTS = [
     sold: 198,
     stock: true,
     badge: null,
-    image: 'assets/img/products/19.jpg'
+    image: 'https://images.unsplash.com/photo-1628866971123-6697eb767771?w=600&auto=format&fit=crop&q=80'
   },
 
   // ── XIAOMI (5 sản phẩm) ─────────────────────────────────────────────────
@@ -327,7 +327,7 @@ const PRODUCTS = [
     sold: 145,
     stock: true,
     badge: 'hot',
-    image: 'assets/img/products/20.jpg'
+    image: 'https://images.unsplash.com/photo-1567428486597-8c5328fd3816?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 21,
@@ -343,7 +343,7 @@ const PRODUCTS = [
     sold: 167,
     stock: true,
     badge: null,
-    image: 'assets/img/products/21.jpg'
+    image: 'https://images.unsplash.com/photo-1544228865-7d73678c0f28?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 22,
@@ -359,7 +359,7 @@ const PRODUCTS = [
     sold: 456,
     stock: true,
     badge: 'sale',
-    image: 'assets/img/products/22.jpg'
+    image: 'https://images.unsplash.com/photo-1539693186763-df6665847771?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 23,
@@ -375,7 +375,7 @@ const PRODUCTS = [
     sold: 234,
     stock: true,
     badge: 'new',
-    image: 'assets/img/products/23.jpg'
+    image: 'https://images.unsplash.com/photo-1537145605632-2fa0f95316b0?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 24,
@@ -391,7 +391,7 @@ const PRODUCTS = [
     sold: 678,
     stock: true,
     badge: null,
-    image: 'assets/img/products/24.jpg'
+    image: 'https://images.unsplash.com/photo-1592320402243-605cc3e935f7?w=600&auto=format&fit=crop&q=80'
   },
 
   // ── OPPO (4 sản phẩm) ───────────────────────────────────────────────────
@@ -409,7 +409,7 @@ const PRODUCTS = [
     sold: 89,
     stock: true,
     badge: 'hot',
-    image: 'assets/img/products/25.jpg'
+    image: 'https://images.unsplash.com/photo-1557767382-97b28f5488e7?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 26,
@@ -425,7 +425,7 @@ const PRODUCTS = [
     sold: 178,
     stock: true,
     badge: 'sale',
-    image: 'assets/img/products/26.jpg'
+    image: 'https://images.unsplash.com/photo-1600577231598-31ea4cb50da3?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 27,
@@ -441,7 +441,7 @@ const PRODUCTS = [
     sold: 234,
     stock: true,
     badge: null,
-    image: 'assets/img/products/27.jpg'
+    image: 'https://images.unsplash.com/photo-1596207891316-23851be3cc20?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 28,
@@ -457,7 +457,7 @@ const PRODUCTS = [
     sold: 78,
     stock: true,
     badge: 'new',
-    image: 'assets/img/products/28.jpg'
+    image: 'https://images.unsplash.com/photo-1724323192353-f80f38e91b9d?w=600&auto=format&fit=crop&q=80'
   },
 
   // ── TAI NGHE (6 sản phẩm) ───────────────────────────────────────────────
@@ -475,7 +475,7 @@ const PRODUCTS = [
     sold: 567,
     stock: true,
     badge: 'sale',
-    image: 'assets/img/products/29.jpg'
+    image: 'https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 30,
@@ -491,7 +491,7 @@ const PRODUCTS = [
     sold: 234,
     stock: true,
     badge: 'new',
-    image: 'assets/img/products/30.jpg'
+    image: 'https://images.unsplash.com/photo-1778577528649-7fa38128332a?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 31,
@@ -507,7 +507,7 @@ const PRODUCTS = [
     sold: 189,
     stock: true,
     badge: 'sale',
-    image: 'assets/img/products/31.jpg'
+    image: 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 32,
@@ -523,7 +523,7 @@ const PRODUCTS = [
     sold: 145,
     stock: true,
     badge: null,
-    image: 'assets/img/products/32.jpg'
+    image: 'https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 33,
@@ -539,7 +539,7 @@ const PRODUCTS = [
     sold: 456,
     stock: true,
     badge: null,
-    image: 'assets/img/products/33.jpg'
+    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 34,
@@ -555,7 +555,7 @@ const PRODUCTS = [
     sold: 289,
     stock: true,
     badge: 'new',
-    image: 'assets/img/products/34.jpg'
+    image: 'https://images.unsplash.com/photo-1578319439584-104c94d37305?w=600&auto=format&fit=crop&q=80'
   },
 
   // ── SẠC & CÁP (4 sản phẩm) ─────────────────────────────────────────────
@@ -573,7 +573,7 @@ const PRODUCTS = [
     sold: 678,
     stock: true,
     badge: null,
-    image: 'assets/img/products/35.jpg'
+    image: 'https://images.unsplash.com/photo-1591290619618-904f6dd935e3?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 36,
@@ -589,7 +589,7 @@ const PRODUCTS = [
     sold: 456,
     stock: true,
     badge: null,
-    image: 'assets/img/products/36.jpg'
+    image: 'https://images.unsplash.com/photo-1520287636485-66d0e25add79?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 37,
@@ -605,7 +605,7 @@ const PRODUCTS = [
     sold: 345,
     stock: true,
     badge: 'sale',
-    image: 'assets/img/products/37.jpg'
+    image: 'https://images.unsplash.com/photo-1566554738544-d962991c3fee?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 38,
@@ -621,7 +621,7 @@ const PRODUCTS = [
     sold: 789,
     stock: true,
     badge: null,
-    image: 'assets/img/products/38.jpg'
+    image: 'https://images.unsplash.com/photo-1499033300314-43c811cff6d5?w=600&auto=format&fit=crop&q=80'
   },
 
   // ── ỐP LƯNG & PHỤ KIỆN (4 sản phẩm) ───────────────────────────────────
@@ -639,7 +639,7 @@ const PRODUCTS = [
     sold: 345,
     stock: true,
     badge: 'new',
-    image: 'assets/img/products/39.jpg'
+    image: 'https://images.unsplash.com/photo-1535157412991-2ef801c1748b?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 40,
@@ -655,7 +655,7 @@ const PRODUCTS = [
     sold: 267,
     stock: true,
     badge: null,
-    image: 'assets/img/products/40.jpg'
+    image: 'https://images.unsplash.com/photo-1542219550-76864b1bc385?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 41,
@@ -671,7 +671,7 @@ const PRODUCTS = [
     sold: 189,
     stock: true,
     badge: 'sale',
-    image: 'assets/img/products/41.jpg'
+    image: 'https://images.unsplash.com/photo-1613294064031-8935937266f4?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 42,
@@ -687,6 +687,6 @@ const PRODUCTS = [
     sold: 567,
     stock: true,
     badge: null,
-    image: 'assets/img/products/42.jpg'
+    image: 'https://images.unsplash.com/photo-1667525338522-db562e851305?w=600&auto=format&fit=crop&q=80'
   }
 ];
