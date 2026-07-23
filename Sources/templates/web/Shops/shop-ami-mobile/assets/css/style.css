@@ -254,6 +254,7 @@ h1, h2, h3, h4, h5 { font-family: var(--heading); line-height: 1.15; }
   border-radius: var(--radius); overflow: hidden;
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   display: flex; flex-direction: column;
+  height: 100%;
 }
 .mb-prod-card:hover {
   border-color: var(--accent); transform: translate(-3px, -3px);
@@ -300,11 +301,13 @@ h1, h2, h3, h4, h5 { font-family: var(--heading); line-height: 1.15; }
 }
 .mb-prod-foot {
   padding: 12px 16px; border-top: 1px solid var(--border-light);
-  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  display: flex; flex-direction: column; gap: 10px;
 }
 .mb-prod-sold { font-size: 12px; color: var(--text-3); }
+.mb-prod-actions { display: flex; align-items: stretch; gap: 8px; }
 .mb-prod-btn {
-  display: inline-flex; align-items: center; gap: 6px;
+  flex: 1;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
   font-family: var(--heading); font-size: 12px; font-weight: 700;
   letter-spacing: .06em; text-transform: uppercase;
   background: var(--accent); color: #fff; padding: 8px 14px;
@@ -315,6 +318,32 @@ h1, h2, h3, h4, h5 { font-family: var(--heading); line-height: 1.15; }
   background: var(--accent-h); border-color: var(--accent-h);
   box-shadow: 3px 3px 0 var(--accent-light); transform: translate(-1px, -1px);
 }
+.mb-prod-cart-btn {
+  flex-shrink: 0; width: 40px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--surface); color: var(--accent);
+  border: 2px solid var(--accent); border-radius: var(--radius);
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+.mb-prod-cart-btn svg { width: 18px; height: 18px; }
+.mb-prod-cart-btn:hover, .mb-prod-cart-btn.is-added {
+  background: var(--accent); color: #fff;
+  box-shadow: 3px 3px 0 var(--accent-light); transform: translate(-1px, -1px);
+}
+
+/* ── Add-to-cart toast ──────────────────────────────────────────────────── */
+.mb-toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translate(-50%, 12px);
+  z-index: 1200; display: flex; align-items: center; gap: 10px;
+  background: var(--dark); color: #fff; border: 2px solid var(--mustard);
+  border-radius: var(--radius); padding: 12px 18px;
+  font-size: 13.5px; font-weight: 600;
+  opacity: 0; pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.mb-toast.show { opacity: 1; transform: translate(-50%, 0); }
+.mb-toast svg { width: 18px; height: 18px; color: var(--mustard); flex-shrink: 0; }
 
 /* ── Horizontal scroll row (Mode B themed sections) ────────────────────── */
 .mb-scroll-row {
@@ -368,25 +397,6 @@ h1, h2, h3, h4, h5 { font-family: var(--heading); line-height: 1.15; }
 }
 .mb-sec-all:hover { gap: 8px; }
 .mb-sec-all svg { width: 16px; height: 16px; }
-
-/* ── Bento Grid (accessories section) ──────────────────────────────────── */
-.mb-bento {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto auto;
-  gap: 14px;
-}
-.mb-bento-big {
-  grid-column: 1 / 2; grid-row: 1 / 3;
-}
-@media (max-width: 768px) {
-  .mb-bento { grid-template-columns: 1fr 1fr; }
-  .mb-bento-big { grid-column: 1 / 3; grid-row: auto; }
-}
-@media (max-width: 480px) {
-  .mb-bento { grid-template-columns: 1fr; }
-  .mb-bento-big { grid-column: auto; grid-row: auto; }
-}
 
 /* ── Stat Bar ───────────────────────────────────────────────────────────── */
 .mb-stat-bar { background: var(--dark2); padding: clamp(36px, 5vw, 60px) 0; }
@@ -671,6 +681,9 @@ h1, h2, h3, h4, h5 { font-family: var(--heading); line-height: 1.15; }
   background: var(--dark2); padding: clamp(56px, 8vw, 88px) 0 clamp(40px, 5vw, 60px);
   border-bottom: 4px solid var(--mustard);
 }
+/* Biến thể chỉ chứa breadcrumb (không h1/p) — vd trang chi tiết sản phẩm */
+.mb-page-hero.is-slim { padding: 22px 0; }
+.mb-page-hero.is-slim .mb-breadcrumb { margin-bottom: 0; }
 .mb-page-hero-label { color: var(--mustard); margin-bottom: 12px; }
 .mb-page-hero h1 {
   font-family: var(--heading); font-weight: 800;
@@ -955,6 +968,52 @@ body { padding-top: 70px; }
   display: inline-flex; align-items: center; gap: 4px;
   font-size: 12px; font-weight: 600; color: var(--accent);
   background: var(--accent-light); border-radius: 3px; padding: 5px 10px;
+}
+
+/* ── Promo box (ưu đãi/khuyến mãi trên trang chi tiết) ──────────────────── */
+.mb-promo-box {
+  background: var(--mustard-light); border: 2px dashed var(--mustard);
+  border-radius: var(--radius); padding: 16px 18px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.mb-promo-title {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--heading); font-weight: 800; font-size: 12.5px;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--mustard-h);
+}
+.mb-promo-title svg { width: 18px; height: 18px; flex-shrink: 0; }
+.mb-promo-box ul { display: flex; flex-direction: column; gap: 8px; }
+.mb-promo-box li { display: flex; align-items: flex-start; gap: 8px; font-size: 13.5px; color: var(--text-2); line-height: 1.5; }
+.mb-promo-box li svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; color: var(--accent); }
+
+/* ── Specs tabs (thông số kỹ thuật trên trang chi tiết) ─────────────────── */
+.mb-specs-tabbar {
+  display: flex; flex-wrap: wrap; gap: 4px;
+  border-bottom: 2px solid var(--border);
+}
+.mb-specs-tab {
+  padding: 12px 18px; margin-bottom: -2px;
+  font-family: var(--heading); font-size: 12.5px; font-weight: 700;
+  letter-spacing: .04em; text-transform: uppercase;
+  color: var(--text-3); background: transparent;
+  border: none; border-bottom: 3px solid transparent; cursor: pointer;
+  transition: color .15s ease, border-color .15s ease;
+}
+.mb-specs-tab:hover { color: var(--text); }
+.mb-specs-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.mb-specs-table {
+  display: none; width: 100%; border-collapse: collapse;
+  background: var(--surface); border: 2px solid var(--border); border-top: none;
+}
+.mb-specs-table.active { display: table; }
+.mb-specs-table tr:not(:last-child) th,
+.mb-specs-table tr:not(:last-child) td { border-bottom: 1px solid var(--border-light); }
+.mb-specs-table th, .mb-specs-table td { text-align: left; padding: 13px 18px; font-size: 14px; vertical-align: top; }
+.mb-specs-table th { width: 220px; color: var(--text-3); font-weight: 600; background: var(--mustard-light); }
+.mb-specs-table td { color: var(--text); }
+@media (max-width: 576px) {
+  .mb-specs-table th { width: 130px; font-size: 12.5px; }
+  .mb-specs-table th, .mb-specs-table td { padding: 10px 12px; }
 }
 
 /* ── Cart Page (inner page classes) ─────────────────────────────────────── */

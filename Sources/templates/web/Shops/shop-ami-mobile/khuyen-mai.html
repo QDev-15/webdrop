@@ -172,6 +172,7 @@
 </a>
 
 <script src="assets/js/products-data.js"></script>
+<script src="assets/js/cart-ui.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 const burger = document.getElementById('mbBurger');
@@ -193,7 +194,15 @@ function cardHtml(p) {
       <div class="mb-prod-name">${p.name}</div>
       <div class="mb-prod-price"><span class="mb-prod-price-now">${fmt(e)}</span>${w}</div>
     </div>
-    <div class="mb-prod-foot"><span class="mb-prod-sold">Đã bán ${p.sold}</span><a href="chi-tiet-san-pham.html?id=${p.id}" class="mb-prod-btn">Xem</a></div>
+    <div class="mb-prod-foot">
+      <span class="mb-prod-sold">Đã bán ${p.sold}</span>
+      <div class="mb-prod-actions">
+        <a href="chi-tiet-san-pham.html?id=${p.id}" class="mb-prod-btn">Xem</a>
+        <button type="button" class="mb-prod-cart-btn" aria-label="Thêm vào giỏ hàng" onclick="quickAddToCart(${p.id}, event)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        </button>
+      </div>
+    </div>
   </div>`;
 }
 

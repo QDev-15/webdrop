@@ -52,7 +52,7 @@
   </div>
 </header>
 
-<div class="mb-page-hero">
+<div class="mb-page-hero is-slim">
   <div class="mb-container">
     <div class="mb-breadcrumb">
       <a href="index.html">Trang chủ</a><span>/</span>
@@ -63,9 +63,20 @@
 </div>
 
 <!-- ── Product Detail ── -->
-<section class="mb-sec" style="padding-top:40px;padding-bottom:64px">
+<section class="mb-sec" style="padding-top:40px;padding-bottom:0">
   <div class="mb-container" id="productDetail">
     <div class="row g-4 g-lg-5" id="detailRow">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ── Thông số kỹ thuật (tabs) ── -->
+<section class="mb-sec" style="padding-top:48px;padding-bottom:56px" id="specsSection">
+  <div class="mb-container">
+    <div class="mb-label" data-reveal>Chi tiết cấu hình</div>
+    <h2 class="mb-sec-title" data-reveal>Thông số <em>kỹ thuật</em></h2>
+    <div class="mb-specs-tabs" data-reveal id="specsTabs">
       <!-- Injected by JS -->
     </div>
   </div>
@@ -120,6 +131,7 @@
 </a>
 
 <script src="assets/js/products-data.js"></script>
+<script src="assets/js/cart-ui.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 const burger = document.getElementById('mbBurger');
@@ -146,6 +158,8 @@ const saleHtml = product.salePrice
   ? `<span class="mb-detail-price-was">${fmt(product.price)}</span><span class="mb-detail-badge-sale">-${Math.round((1 - product.salePrice/product.price)*100)}%</span>`
   : '';
 
+const CART_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>';
+
 document.getElementById('detailRow').innerHTML = `
   <div class="col-lg-6">
     <div class="mb-detail-img">
@@ -163,13 +177,25 @@ document.getElementById('detailRow').innerHTML = `
       <div class="mb-detail-price-row">
         <span class="mb-detail-price">${fmt(eff)}</span> ${saleHtml}
       </div>
+      <div class="mb-promo-box">
+        <div class="mb-promo-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41L11 3.83A2 2 0 009.59 3.24H4a1 1 0 00-1 1v5.59a2 2 0 00.59 1.41l9.58 9.58a2 2 0 002.82 0l4.6-4.6a2 2 0 000-2.82z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
+          Ưu đãi khi mua hàng
+        </div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> Giảm thêm 300.000đ khi thanh toán qua VNPay hoặc Momo</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 000-5C9 2 12 7 12 7z"/></svg> Tặng kèm ốp lưng + cường lực trị giá 390.000đ</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> Trả góp 0% lãi suất qua thẻ tín dụng, duyệt hồ sơ trong 5 phút</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Miễn phí giao hàng toàn quốc, nội thành nhận trong 24h</li>
+        </ul>
+      </div>
       <div class="mb-detail-meta">
         <span class="mb-detail-meta-item">Màu: <strong>${product.color}</strong></span>
         <span class="mb-detail-meta-item">Tình trạng: <strong>${product.stock ? 'Còn hàng' : 'Hết hàng'}</strong></span>
       </div>
       <p class="mb-detail-desc">Sản phẩm ${product.name} chính hãng, bảo hành 12 tháng tại trung tâm bảo hành ủy quyền. Giao hàng toàn quốc, đổi trả trong 7 ngày.</p>
       <div class="mb-detail-actions">
-        <button class="mb-btn" onclick="addToCart()">Thêm vào giỏ</button>
+        <button class="mb-btn mb-btn-primary" onclick="addToCartById(${product.id})">${CART_ICON} Thêm vào giỏ</button>
         <a href="lien-he.html" class="mb-btn mb-btn-outline">Tư vấn ngay</a>
       </div>
       <div class="mb-detail-badges">
@@ -181,41 +207,315 @@ document.getElementById('detailRow').innerHTML = `
     </div>
   </div>`;
 
-// Related products — same category, excluding current
-const related = PRODUCTS.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+// ── Thông số kỹ thuật (tabs) — chi tiết đầy đủ cho điện thoại ──────────────
+const SPEC_TABS = ['manHinh', 'camera', 'hieuNang', 'pin', 'ketNoi'];
+const SPEC_TAB_LABEL = { manHinh: 'Màn hình', camera: 'Camera', hieuNang: 'Hiệu năng', pin: 'Pin & Sạc', ketNoi: 'Kết nối & Thiết kế' };
+
+function storageOf(name) {
+  const m = name.match(/(\d+)\s?(GB|TB)/i);
+  return m ? m[1] + m[2].toUpperCase() : '128GB';
+}
+
+const PHONE_PROFILES = [
+  { test: n => n.includes('16 Pro Max'), specs: {
+    manHinh: [['Kích thước', '6.9 inch Super Retina XDR OLED'], ['Độ phân giải', '2868 × 1320 px'], ['Tần số quét', '120Hz ProMotion'], ['Độ sáng tối đa', '2000 nits']],
+    camera: [['Camera sau', 'Chính 48MP + Góc siêu rộng 48MP + Tele 12MP (zoom quang 5x)'], ['Camera trước', '12MP TrueDepth'], ['Quay video', '4K Dolby Vision đến 120fps'], ['Tính năng', 'Camera Control, chụp đêm, chân dung thông minh']],
+    hieuNang: [['Chip xử lý', 'Apple A18 Pro (6 nhân CPU, 6 nhân GPU)'], ['RAM', '8GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'iOS 18']],
+    pin: [['Dung lượng', '~4685 mAh'], ['Sạc có dây', 'Đến 27W, MagSafe 25W'], ['Sạc không dây', 'Qi2 25W'], ['Thời lượng video', 'Đến 33 giờ']],
+    ketNoi: [['Cổng kết nối', 'USB-C (USB 3)'], ['Kết nối không dây', '5G, Wi-Fi 7, Bluetooth 5.3, NFC'], ['Chất liệu khung', 'Titanium cấp độ 5'], ['Chống nước bụi', 'IP68 (6m/30 phút)']]
+  } },
+  { test: n => n.includes('16 Pro'), specs: {
+    manHinh: [['Kích thước', '6.3 inch Super Retina XDR OLED'], ['Độ phân giải', '2622 × 1206 px'], ['Tần số quét', '120Hz ProMotion'], ['Độ sáng tối đa', '2000 nits']],
+    camera: [['Camera sau', 'Chính 48MP + Góc siêu rộng 48MP + Tele 12MP (zoom quang 5x)'], ['Camera trước', '12MP TrueDepth'], ['Quay video', '4K Dolby Vision đến 120fps'], ['Tính năng', 'Camera Control, chụp đêm, chân dung thông minh']],
+    hieuNang: [['Chip xử lý', 'Apple A18 Pro (6 nhân CPU, 6 nhân GPU)'], ['RAM', '8GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'iOS 18']],
+    pin: [['Dung lượng', '~3582 mAh'], ['Sạc có dây', 'Đến 27W, MagSafe 25W'], ['Sạc không dây', 'Qi2 25W'], ['Thời lượng video', 'Đến 27 giờ']],
+    ketNoi: [['Cổng kết nối', 'USB-C (USB 3)'], ['Kết nối không dây', '5G, Wi-Fi 7, Bluetooth 5.3, NFC'], ['Chất liệu khung', 'Titanium cấp độ 5'], ['Chống nước bụi', 'IP68 (6m/30 phút)']]
+  } },
+  { test: n => n.includes('16 Plus'), specs: {
+    manHinh: [['Kích thước', '6.7 inch Super Retina XDR OLED'], ['Độ phân giải', '2796 × 1290 px'], ['Tần số quét', '60Hz'], ['Độ sáng tối đa', '2000 nits']],
+    camera: [['Camera sau', 'Fusion 48MP chính + 12MP góc siêu rộng'], ['Camera trước', '12MP TrueDepth'], ['Quay video', '4K Dolby Vision đến 60fps'], ['Tính năng', 'Chụp đêm, chân dung thông minh']],
+    hieuNang: [['Chip xử lý', 'Apple A18 (6 nhân CPU, 5 nhân GPU)'], ['RAM', '8GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'iOS 18']],
+    pin: [['Dung lượng', '~4674 mAh'], ['Sạc có dây', 'Đến 20W, MagSafe 25W'], ['Sạc không dây', 'Qi2 15W'], ['Thời lượng video', 'Đến 32 giờ']],
+    ketNoi: [['Cổng kết nối', 'USB-C (USB 2)'], ['Kết nối không dây', '5G, Wi-Fi 7, Bluetooth 5.3, NFC'], ['Chất liệu khung', 'Nhôm cấp độ hàng không'], ['Chống nước bụi', 'IP68 (6m/30 phút)']]
+  } },
+  { test: n => n.includes('iPhone 16'), specs: {
+    manHinh: [['Kích thước', '6.1 inch Super Retina XDR OLED'], ['Độ phân giải', '2556 × 1179 px'], ['Tần số quét', '60Hz'], ['Độ sáng tối đa', '2000 nits']],
+    camera: [['Camera sau', 'Fusion 48MP chính + 12MP góc siêu rộng'], ['Camera trước', '12MP TrueDepth'], ['Quay video', '4K Dolby Vision đến 60fps'], ['Tính năng', 'Chụp đêm, chân dung thông minh']],
+    hieuNang: [['Chip xử lý', 'Apple A18 (6 nhân CPU, 5 nhân GPU)'], ['RAM', '8GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'iOS 18']],
+    pin: [['Dung lượng', '~3561 mAh'], ['Sạc có dây', 'Đến 20W, MagSafe 25W'], ['Sạc không dây', 'Qi2 15W'], ['Thời lượng video', 'Đến 22 giờ']],
+    ketNoi: [['Cổng kết nối', 'USB-C (USB 2)'], ['Kết nối không dây', '5G, Wi-Fi 7, Bluetooth 5.3, NFC'], ['Chất liệu khung', 'Nhôm cấp độ hàng không'], ['Chống nước bụi', 'IP68 (6m/30 phút)']]
+  } },
+  { test: n => n.includes('15 Pro'), specs: {
+    manHinh: [['Kích thước', '6.1 inch Super Retina XDR OLED'], ['Độ phân giải', '2556 × 1179 px'], ['Tần số quét', '120Hz ProMotion'], ['Độ sáng tối đa', '2000 nits']],
+    camera: [['Camera sau', 'Chính 48MP + Góc siêu rộng 12MP + Tele 12MP (zoom quang 3x)'], ['Camera trước', '12MP TrueDepth'], ['Quay video', '4K Dolby Vision đến 60fps'], ['Tính năng', 'Nút Action, chụp đêm']],
+    hieuNang: [['Chip xử lý', 'Apple A17 Pro (6 nhân CPU, 6 nhân GPU)'], ['RAM', '8GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'iOS 17 (nâng cấp iOS 18)']],
+    pin: [['Dung lượng', '~3274 mAh'], ['Sạc có dây', 'Đến 20W, MagSafe 15W'], ['Sạc không dây', 'Qi2 15W'], ['Thời lượng video', 'Đến 23 giờ']],
+    ketNoi: [['Cổng kết nối', 'USB-C (USB 3)'], ['Kết nối không dây', '5G, Wi-Fi 6E, Bluetooth 5.3, NFC'], ['Chất liệu khung', 'Titanium cấp độ 5'], ['Chống nước bụi', 'IP68 (6m/30 phút)']]
+  } },
+  { test: n => n.includes('15 Plus'), specs: {
+    manHinh: [['Kích thước', '6.7 inch Super Retina XDR OLED'], ['Độ phân giải', '2796 × 1290 px'], ['Tần số quét', '60Hz'], ['Tính năng', 'Dynamic Island']],
+    camera: [['Camera sau', '48MP chính + 12MP góc siêu rộng'], ['Camera trước', '12MP TrueDepth'], ['Quay video', '4K Dolby Vision đến 60fps'], ['Tính năng', 'Chụp đêm, chân dung thông minh']],
+    hieuNang: [['Chip xử lý', 'Apple A16 Bionic'], ['RAM', '6GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'iOS 17 (nâng cấp iOS 18)']],
+    pin: [['Dung lượng', '~4383 mAh'], ['Sạc có dây', 'Đến 20W, MagSafe 15W'], ['Sạc không dây', 'Qi 15W'], ['Thời lượng video', 'Đến 26 giờ']],
+    ketNoi: [['Cổng kết nối', 'Lightning'], ['Kết nối không dây', '5G, Wi-Fi 6, Bluetooth 5.3, NFC'], ['Chất liệu khung', 'Nhôm & kính'], ['Chống nước bụi', 'IP68 (6m/30 phút)']]
+  } },
+  { test: n => n.includes('iPhone 15'), specs: {
+    manHinh: [['Kích thước', '6.1 inch Super Retina XDR OLED'], ['Độ phân giải', '2556 × 1179 px'], ['Tần số quét', '60Hz'], ['Tính năng', 'Dynamic Island']],
+    camera: [['Camera sau', '48MP chính + 12MP góc siêu rộng'], ['Camera trước', '12MP TrueDepth'], ['Quay video', '4K Dolby Vision đến 60fps'], ['Tính năng', 'Chụp đêm, chân dung thông minh']],
+    hieuNang: [['Chip xử lý', 'Apple A16 Bionic'], ['RAM', '6GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'iOS 17 (nâng cấp iOS 18)']],
+    pin: [['Dung lượng', '~3349 mAh'], ['Sạc có dây', 'Đến 20W, MagSafe 15W'], ['Sạc không dây', 'Qi 15W'], ['Thời lượng video', 'Đến 20 giờ']],
+    ketNoi: [['Cổng kết nối', 'Lightning'], ['Kết nối không dây', '5G, Wi-Fi 6, Bluetooth 5.3, NFC'], ['Chất liệu khung', 'Nhôm & kính'], ['Chống nước bụi', 'IP68 (6m/30 phút)']]
+  } },
+  { test: n => n.includes('14 Plus'), specs: {
+    manHinh: [['Kích thước', '6.7 inch Super Retina XDR OLED'], ['Độ phân giải', '2778 × 1284 px'], ['Tần số quét', '60Hz'], ['Tính năng', 'Notch tai thỏ']],
+    camera: [['Camera sau', 'Kép 12MP chính + 12MP góc siêu rộng'], ['Camera trước', '12MP TrueDepth'], ['Quay video', '4K HDR đến 60fps'], ['Tính năng', 'Chụp đêm, Photonic Engine']],
+    hieuNang: [['Chip xử lý', 'Apple A15 Bionic (5 nhân GPU)'], ['RAM', '6GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'iOS 16 (nâng cấp iOS 18)']],
+    pin: [['Dung lượng', '~4325 mAh'], ['Sạc có dây', 'Đến 20W, MagSafe 15W'], ['Sạc không dây', 'Qi 7.5W'], ['Thời lượng video', 'Đến 26 giờ']],
+    ketNoi: [['Cổng kết nối', 'Lightning'], ['Kết nối không dây', '5G, Wi-Fi 6, Bluetooth 5.3, NFC'], ['Chất liệu khung', 'Nhôm & kính'], ['Chống nước bụi', 'IP68 (6m/30 phút)']]
+  } },
+  { test: n => n.includes('iPhone 14'), specs: {
+    manHinh: [['Kích thước', '6.1 inch Super Retina XDR OLED'], ['Độ phân giải', '2532 × 1170 px'], ['Tần số quét', '60Hz'], ['Tính năng', 'Notch tai thỏ']],
+    camera: [['Camera sau', 'Kép 12MP chính + 12MP góc siêu rộng'], ['Camera trước', '12MP TrueDepth'], ['Quay video', '4K HDR đến 60fps'], ['Tính năng', 'Chụp đêm, Photonic Engine']],
+    hieuNang: [['Chip xử lý', 'Apple A15 Bionic (5 nhân GPU)'], ['RAM', '6GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'iOS 16 (nâng cấp iOS 18)']],
+    pin: [['Dung lượng', '~3279 mAh'], ['Sạc có dây', 'Đến 20W, MagSafe 15W'], ['Sạc không dây', 'Qi 7.5W'], ['Thời lượng video', 'Đến 20 giờ']],
+    ketNoi: [['Cổng kết nối', 'Lightning'], ['Kết nối không dây', '5G, Wi-Fi 6, Bluetooth 5.3, NFC'], ['Chất liệu khung', 'Nhôm & kính'], ['Chống nước bụi', 'IP68 (6m/30 phút)']]
+  } },
+  { test: n => n.includes('iPhone SE'), specs: {
+    manHinh: [['Kích thước', '4.7 inch Retina IPS LCD'], ['Độ phân giải', '1334 × 750 px'], ['Tần số quét', '60Hz'], ['Bảo mật', 'Touch ID (nút Home)']],
+    camera: [['Camera sau', 'Đơn 12MP'], ['Camera trước', '7MP'], ['Quay video', '4K HDR đến 30fps'], ['Tính năng', 'Photonic Engine, chân dung']],
+    hieuNang: [['Chip xử lý', 'Apple A15 Bionic (4 nhân GPU)'], ['RAM', '4GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'iOS 15 (nâng cấp iOS 18)']],
+    pin: [['Dung lượng', '~2018 mAh'], ['Sạc có dây', 'Đến 20W'], ['Sạc không dây', 'Qi 7.5W'], ['Thời lượng video', 'Đến 15 giờ']],
+    ketNoi: [['Cổng kết nối', 'Lightning'], ['Kết nối không dây', '5G, Wi-Fi 6, Bluetooth 5.0, NFC'], ['Chất liệu khung', 'Nhôm & kính'], ['Chống nước bụi', 'IP67']]
+  } },
+  { test: n => n.includes('iPhone 13'), specs: {
+    manHinh: [['Kích thước', '6.1 inch Super Retina XDR OLED'], ['Độ phân giải', '2532 × 1170 px'], ['Tần số quét', '60Hz'], ['Tính năng', 'Notch tai thỏ']],
+    camera: [['Camera sau', 'Kép 12MP chính + 12MP góc siêu rộng'], ['Camera trước', '12MP TrueDepth'], ['Quay video', '4K HDR đến 60fps'], ['Tính năng', 'Chế độ điện ảnh (Cinematic)']],
+    hieuNang: [['Chip xử lý', 'Apple A15 Bionic'], ['RAM', '4GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'iOS 15 (nâng cấp iOS 18)']],
+    pin: [['Dung lượng', '~3227 mAh'], ['Sạc có dây', 'Đến 20W, MagSafe 15W'], ['Sạc không dây', 'Qi 7.5W'], ['Thời lượng video', 'Đến 19 giờ']],
+    ketNoi: [['Cổng kết nối', 'Lightning'], ['Kết nối không dây', '5G, Wi-Fi 6, Bluetooth 5.0, NFC'], ['Chất liệu khung', 'Nhôm & kính'], ['Chống nước bụi', 'IP68 (6m/30 phút)']]
+  } },
+  { test: n => n.includes('S24 Ultra'), specs: {
+    manHinh: [['Kích thước', '6.8 inch Dynamic AMOLED 2X phẳng'], ['Độ phân giải', '3120 × 1440 px (QHD+)'], ['Tần số quét', '120Hz thích ứng'], ['Mặt kính', 'Corning Gorilla Armor chống chói']],
+    camera: [['Camera sau', '200MP chính + 50MP Tele 5x + 10MP Tele 3x + 12MP góc siêu rộng'], ['Camera trước', '12MP'], ['Quay video', '8K đến 30fps'], ['Tính năng', 'Kèm bút S Pen, Galaxy AI']],
+    hieuNang: [['Chip xử lý', 'Snapdragon 8 Gen 3 for Galaxy'], ['RAM', '12GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'Android 14, One UI 6.1']],
+    pin: [['Dung lượng', '5000 mAh'], ['Sạc có dây', '45W'], ['Sạc không dây', '15W, sạc ngược 4.5W'], ['Thời lượng', 'Cả ngày sử dụng liên tục']],
+    ketNoi: [['Cổng kết nối', 'USB-C 3.2'], ['Kết nối không dây', '5G, Wi-Fi 7, Bluetooth 5.3, NFC, UWB'], ['Chất liệu khung', 'Titanium'], ['Chống nước bụi', 'IP68']]
+  } },
+  { test: n => n.includes('S24+'), specs: {
+    manHinh: [['Kích thước', '6.7 inch Dynamic AMOLED 2X'], ['Độ phân giải', '3120 × 1440 px (QHD+)'], ['Tần số quét', '120Hz thích ứng'], ['Mặt kính', 'Corning Gorilla Victus 2']],
+    camera: [['Camera sau', '50MP chính + 10MP Tele 3x + 12MP góc siêu rộng'], ['Camera trước', '12MP'], ['Quay video', '8K đến 30fps'], ['Tính năng', 'Galaxy AI, chụp đêm']],
+    hieuNang: [['Chip xử lý', 'Snapdragon 8 Gen 3 for Galaxy'], ['RAM', '12GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'Android 14, One UI 6.1']],
+    pin: [['Dung lượng', '4900 mAh'], ['Sạc có dây', '45W'], ['Sạc không dây', '15W, sạc ngược 4.5W'], ['Thời lượng', 'Cả ngày sử dụng liên tục']],
+    ketNoi: [['Cổng kết nối', 'USB-C 3.2'], ['Kết nối không dây', '5G, Wi-Fi 7, Bluetooth 5.3, NFC'], ['Chất liệu khung', 'Nhôm Armor'], ['Chống nước bụi', 'IP68']]
+  } },
+  { test: n => n.includes('Galaxy S24'), specs: {
+    manHinh: [['Kích thước', '6.2 inch Dynamic AMOLED 2X'], ['Độ phân giải', '2340 × 1080 px (FHD+)'], ['Tần số quét', '120Hz thích ứng'], ['Mặt kính', 'Corning Gorilla Victus 2']],
+    camera: [['Camera sau', '50MP chính + 10MP Tele 3x + 12MP góc siêu rộng'], ['Camera trước', '12MP'], ['Quay video', '8K đến 30fps'], ['Tính năng', 'Galaxy AI, chụp đêm']],
+    hieuNang: [['Chip xử lý', 'Snapdragon 8 Gen 3 for Galaxy'], ['RAM', '8GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'Android 14, One UI 6.1']],
+    pin: [['Dung lượng', '4000 mAh'], ['Sạc có dây', '25W'], ['Sạc không dây', '15W, sạc ngược 4.5W'], ['Thời lượng', 'Cả ngày sử dụng liên tục']],
+    ketNoi: [['Cổng kết nối', 'USB-C 3.2'], ['Kết nối không dây', '5G, Wi-Fi 7, Bluetooth 5.3, NFC'], ['Chất liệu khung', 'Nhôm Armor'], ['Chống nước bụi', 'IP68']]
+  } },
+  { test: n => n.includes('Z Fold'), specs: {
+    manHinh: [['Màn hình chính', '7.6 inch Dynamic AMOLED 2X gập, 120Hz'], ['Màn hình phụ', '6.3 inch Dynamic AMOLED 2X, 120Hz'], ['Độ phân giải', '2160 × 1856 px (màn chính)'], ['Mặt kính', 'Gorilla Glass Victus 2 (mặt ngoài)']],
+    camera: [['Camera sau', '50MP chính + 10MP Tele 3x + 12MP góc siêu rộng'], ['Camera trước', 'Camera dưới màn 4MP + 10MP màn phụ'], ['Quay video', '8K đến 30fps'], ['Tính năng', 'Hỗ trợ bút S Pen rời']],
+    hieuNang: [['Chip xử lý', 'Snapdragon 8 Gen 3 for Galaxy'], ['RAM', '12GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'Android 14, One UI 6.1.1']],
+    pin: [['Dung lượng', '4400 mAh'], ['Sạc có dây', '25W'], ['Sạc không dây', '15W, sạc ngược 4.5W'], ['Thời lượng', 'Cả ngày sử dụng liên tục']],
+    ketNoi: [['Cổng kết nối', 'USB-C 3.2'], ['Kết nối không dây', '5G, Wi-Fi 7, Bluetooth 5.3, NFC'], ['Chất liệu khung', 'Armor Aluminum, bản lề Titanium'], ['Chống nước bụi', 'IP48']]
+  } },
+  { test: n => n.includes('Z Flip'), specs: {
+    manHinh: [['Màn hình chính', '6.7 inch Dynamic AMOLED 2X gập, 120Hz'], ['Màn hình phụ', '3.4 inch Flex Window'], ['Độ phân giải', '2640 × 1080 px (màn chính)'], ['Mặt kính', 'Gorilla Glass Victus 2']],
+    camera: [['Camera sau', 'Kép 50MP chính + 12MP góc siêu rộng'], ['Camera trước', '10MP'], ['Quay video', '4K đến 60fps'], ['Tính năng', 'FlexCam tự chụp bằng màn phụ']],
+    hieuNang: [['Chip xử lý', 'Snapdragon 8 Gen 3 for Galaxy'], ['RAM', '12GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'Android 14, One UI 6.1.1']],
+    pin: [['Dung lượng', '4000 mAh'], ['Sạc có dây', '25W'], ['Sạc không dây', '15W, sạc ngược 4.5W'], ['Thời lượng', 'Cả ngày sử dụng liên tục']],
+    ketNoi: [['Cổng kết nối', 'USB-C 3.2'], ['Kết nối không dây', '5G, Wi-Fi 7, Bluetooth 5.3, NFC'], ['Chất liệu khung', 'Armor Aluminum'], ['Chống nước bụi', 'IP48']]
+  } },
+  { test: n => n.includes('A55'), specs: {
+    manHinh: [['Kích thước', '6.6 inch Super AMOLED phẳng'], ['Độ phân giải', '1080 × 2340 px (FHD+)'], ['Tần số quét', '120Hz'], ['Mặt kính', 'Gorilla Glass Victus+']],
+    camera: [['Camera sau', '50MP chính OIS + 12MP góc siêu rộng + 5MP Macro'], ['Camera trước', '32MP'], ['Quay video', '4K đến 30fps'], ['Tính năng', 'Nightography chụp đêm']],
+    hieuNang: [['Chip xử lý', 'Exynos 1480'], ['RAM', '8GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'Android 14, One UI 6.1']],
+    pin: [['Dung lượng', '5000 mAh'], ['Sạc có dây', '25W'], ['Sạc không dây', 'Không hỗ trợ'], ['Thời lượng', '~2 ngày sử dụng vừa']],
+    ketNoi: [['Cổng kết nối', 'USB-C 2.0'], ['Kết nối không dây', '5G, Wi-Fi 6, Bluetooth 5.3, NFC'], ['Chất liệu khung', 'Khung nhôm'], ['Chống nước bụi', 'IP67']]
+  } },
+  { test: n => n.includes('A35'), specs: {
+    manHinh: [['Kích thước', '6.6 inch Super AMOLED phẳng'], ['Độ phân giải', '1080 × 2340 px (FHD+)'], ['Tần số quét', '120Hz'], ['Mặt kính', 'Gorilla Glass Victus+']],
+    camera: [['Camera sau', '50MP chính OIS + 8MP góc siêu rộng + 5MP Macro'], ['Camera trước', '13MP'], ['Quay video', '4K đến 30fps'], ['Tính năng', 'Nightography chụp đêm']],
+    hieuNang: [['Chip xử lý', 'Exynos 1380'], ['RAM', '8GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'Android 14, One UI 6.1']],
+    pin: [['Dung lượng', '5000 mAh'], ['Sạc có dây', '25W'], ['Sạc không dây', 'Không hỗ trợ'], ['Thời lượng', '~2 ngày sử dụng vừa']],
+    ketNoi: [['Cổng kết nối', 'USB-C 2.0'], ['Kết nối không dây', '5G, Wi-Fi 5, Bluetooth 5.3, NFC'], ['Chất liệu khung', 'Nhựa viền nhôm'], ['Chống nước bụi', 'IP67']]
+  } },
+  { test: n => n.includes('M55'), specs: {
+    manHinh: [['Kích thước', '6.7 inch Super AMOLED phẳng'], ['Độ phân giải', '1080 × 2340 px (FHD+)'], ['Tần số quét', '120Hz'], ['Mặt kính', 'Gorilla Glass Victus']],
+    camera: [['Camera sau', '50MP chính OIS + 8MP góc siêu rộng + 2MP Macro'], ['Camera trước', '50MP'], ['Quay video', '4K đến 30fps'], ['Tính năng', 'Nightography chụp đêm']],
+    hieuNang: [['Chip xử lý', 'Snapdragon 7 Gen 1'], ['RAM', '8GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'Android 14, One UI 6.1']],
+    pin: [['Dung lượng', '5000 mAh'], ['Sạc có dây', '45W siêu nhanh'], ['Sạc không dây', 'Không hỗ trợ'], ['Thời lượng', '~2 ngày sử dụng vừa']],
+    ketNoi: [['Cổng kết nối', 'USB-C 2.0'], ['Kết nối không dây', '5G, Wi-Fi 5, Bluetooth 5.3, NFC'], ['Chất liệu khung', 'Khung nhựa'], ['Chống nước bụi', 'Kháng nước nhẹ']]
+  } },
+  { test: n => n.includes('Xiaomi 14 Ultra'), specs: {
+    manHinh: [['Kích thước', '6.73 inch LTPO AMOLED'], ['Độ phân giải', '3200 × 1440 px (2K)'], ['Tần số quét', '120Hz'], ['Độ sáng tối đa', '3000 nits, kính Xiaomi Shield']],
+    camera: [['Camera sau', 'Leica 50MP chính + 50MP góc siêu rộng + 50MP Tele 3.2x + 50MP Periscope 5x'], ['Camera trước', '32MP'], ['Quay video', '8K đến 24fps'], ['Tính năng', 'Ống kính Leica Summilux, khẩu độ vật lý thay đổi']],
+    hieuNang: [['Chip xử lý', 'Snapdragon 8 Gen 3'], ['RAM', '16GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'Android 14, HyperOS']],
+    pin: [['Dung lượng', '5300 mAh'], ['Sạc có dây', '90W'], ['Sạc không dây', '80W'], ['Thời lượng', 'Cả ngày sử dụng liên tục']],
+    ketNoi: [['Cổng kết nối', 'USB-C 3.2'], ['Kết nối không dây', '5G, Wi-Fi 7, Bluetooth 5.4, NFC, hồng ngoại'], ['Chất liệu khung', 'Khung Titan'], ['Chống nước bụi', 'IP68']]
+  } },
+  { test: n => n.includes('Xiaomi 14'), specs: {
+    manHinh: [['Kích thước', '6.36 inch LTPO AMOLED'], ['Độ phân giải', '2670 × 1200 px'], ['Tần số quét', '120Hz'], ['Độ sáng tối đa', '3000 nits']],
+    camera: [['Camera sau', 'Leica 50MP chính + 50MP góc siêu rộng + 50MP Tele 3.2x'], ['Camera trước', '32MP'], ['Quay video', '8K đến 24fps'], ['Tính năng', 'Ống kính Leica Summilux']],
+    hieuNang: [['Chip xử lý', 'Snapdragon 8 Gen 3'], ['RAM', '12GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'Android 14, HyperOS']],
+    pin: [['Dung lượng', '4610 mAh'], ['Sạc có dây', '90W'], ['Sạc không dây', '50W'], ['Thời lượng', 'Cả ngày sử dụng liên tục']],
+    ketNoi: [['Cổng kết nối', 'USB-C 3.2'], ['Kết nối không dây', '5G, Wi-Fi 7, Bluetooth 5.4, NFC, hồng ngoại'], ['Chất liệu khung', 'Nhôm & kính'], ['Chống nước bụi', 'IP68']]
+  } },
+  { test: n => n.includes('Redmi Note 13 Pro'), specs: {
+    manHinh: [['Kích thước', '6.67 inch AMOLED cong'], ['Độ phân giải', '2712 × 1220 px'], ['Tần số quét', '120Hz'], ['Mặt kính', 'Gorilla Glass Victus']],
+    camera: [['Camera sau', '200MP chính OIS + 8MP góc siêu rộng + 2MP Macro'], ['Camera trước', '16MP'], ['Quay video', '4K đến 30fps'], ['Tính năng', 'Chụp đêm, HDR10+']],
+    hieuNang: [['Chip xử lý', 'Snapdragon 7s Gen 2'], ['RAM', '8GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'Android 13, MIUI 14']],
+    pin: [['Dung lượng', '5100 mAh'], ['Sạc có dây', '67W siêu nhanh'], ['Sạc không dây', 'Không hỗ trợ'], ['Thời lượng', '~2 ngày sử dụng vừa']],
+    ketNoi: [['Cổng kết nối', 'USB-C 2.0'], ['Kết nối không dây', '5G, Wi-Fi 5, Bluetooth 5.3, NFC'], ['Chất liệu khung', 'Nhựa viền phẳng'], ['Chống nước bụi', 'IP54']]
+  } },
+  { test: n => n.includes('Poco X6 Pro'), specs: {
+    manHinh: [['Kích thước', '6.67 inch AMOLED phẳng'], ['Độ phân giải', '2712 × 1220 px'], ['Tần số quét', '120Hz'], ['Độ sáng tối đa', '1800 nits']],
+    camera: [['Camera sau', '64MP chính OIS + 8MP góc siêu rộng + 2MP Macro'], ['Camera trước', '16MP'], ['Quay video', '4K đến 60fps'], ['Tính năng', 'Chụp đêm, HDR10+']],
+    hieuNang: [['Chip xử lý', 'MediaTek Dimensity 8300 Ultra'], ['RAM', '12GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'Android 14, HyperOS']],
+    pin: [['Dung lượng', '5000 mAh'], ['Sạc có dây', '67W siêu nhanh'], ['Sạc không dây', 'Không hỗ trợ'], ['Thời lượng', '~2 ngày sử dụng vừa']],
+    ketNoi: [['Cổng kết nối', 'USB-C 2.0'], ['Kết nối không dây', '5G, Wi-Fi 6, Bluetooth 5.4, NFC, hồng ngoại'], ['Chất liệu khung', 'Nhựa viền phẳng'], ['Chống nước bụi', 'IP54']]
+  } },
+  { test: n => n.includes('Redmi 13'), specs: {
+    manHinh: [['Kích thước', '6.79 inch IPS LCD'], ['Độ phân giải', '2460 × 1080 px'], ['Tần số quét', '90Hz'], ['Độ sáng tối đa', '550 nits']],
+    camera: [['Camera sau', '108MP chính + 2MP Macro'], ['Camera trước', '13MP'], ['Quay video', '1080p đến 30fps'], ['Tính năng', 'Chế độ chân dung']],
+    hieuNang: [['Chip xử lý', 'MediaTek Helio G91 Ultra'], ['RAM', '8GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'Android 13, MIUI 14']],
+    pin: [['Dung lượng', '5030 mAh'], ['Sạc có dây', '33W'], ['Sạc không dây', 'Không hỗ trợ'], ['Thời lượng', '~2 ngày sử dụng vừa']],
+    ketNoi: [['Cổng kết nối', 'USB-C 2.0'], ['Kết nối không dây', '4G, Wi-Fi 5, Bluetooth 5.3, hồng ngoại'], ['Chất liệu khung', 'Khung nhựa'], ['Chống nước bụi', 'Kháng bụi nhẹ']]
+  } },
+  { test: n => n.includes('Find X7 Ultra'), specs: {
+    manHinh: [['Kích thước', '6.82 inch LTPO AMOLED'], ['Độ phân giải', '3168 × 1440 px'], ['Tần số quét', '120Hz'], ['Độ sáng tối đa', '4500 nits đỉnh']],
+    camera: [['Camera sau', 'Hasselblad 50MP chính + 50MP góc siêu rộng + 50MP Tele 3x + 50MP Periscope 6x'], ['Camera trước', '32MP'], ['Quay video', '4K Dolby Vision'], ['Tính năng', 'Ống kính kép Hasselblad Pro']],
+    hieuNang: [['Chip xử lý', 'Snapdragon 8 Gen 3'], ['RAM', '16GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'Android 14, ColorOS 14']],
+    pin: [['Dung lượng', '5000 mAh'], ['Sạc có dây', '100W SuperVOOC'], ['Sạc không dây', '50W AirVOOC'], ['Thời lượng', 'Cả ngày sử dụng liên tục']],
+    ketNoi: [['Cổng kết nối', 'USB-C 3.1'], ['Kết nối không dây', '5G, Wi-Fi 7, Bluetooth 5.4, NFC, hồng ngoại'], ['Chất liệu khung', 'Nhôm & kính'], ['Chống nước bụi', 'IP68']]
+  } },
+  { test: n => n.includes('Reno 12 Pro'), specs: {
+    manHinh: [['Kích thước', '6.7 inch AMOLED cong'], ['Độ phân giải', '2772 × 1240 px'], ['Tần số quét', '120Hz'], ['Độ sáng tối đa', '1200 nits']],
+    camera: [['Camera sau', '50MP chính OIS + 8MP góc siêu rộng + 2MP Macro AI'], ['Camera trước', '50MP'], ['Quay video', '4K đến 30fps'], ['Tính năng', 'AI Eraser, chân dung AI']],
+    hieuNang: [['Chip xử lý', 'MediaTek Dimensity 8350'], ['RAM', '12GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'Android 14, ColorOS 14']],
+    pin: [['Dung lượng', '5000 mAh'], ['Sạc có dây', '80W SuperVOOC'], ['Sạc không dây', 'Không hỗ trợ'], ['Thời lượng', 'Cả ngày sử dụng liên tục']],
+    ketNoi: [['Cổng kết nối', 'USB-C 2.0'], ['Kết nối không dây', '5G, Wi-Fi 6, Bluetooth 5.4, NFC'], ['Chất liệu khung', 'Nhôm viền cong'], ['Chống nước bụi', 'IP65']]
+  } },
+  { test: n => n.includes('OPPO A79'), specs: {
+    manHinh: [['Kích thước', '6.72 inch IPS LCD'], ['Độ phân giải', '2400 × 1080 px'], ['Tần số quét', '90Hz'], ['Độ sáng tối đa', '950 nits']],
+    camera: [['Camera sau', '50MP chính + 2MP Depth'], ['Camera trước', '8MP'], ['Quay video', '1080p đến 30fps'], ['Tính năng', 'Chân dung AI']],
+    hieuNang: [['Chip xử lý', 'MediaTek Dimensity 6020'], ['RAM', '8GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'Android 13, ColorOS 13.1']],
+    pin: [['Dung lượng', '5000 mAh'], ['Sạc có dây', '33W SuperVOOC'], ['Sạc không dây', 'Không hỗ trợ'], ['Thời lượng', '~2 ngày sử dụng vừa']],
+    ketNoi: [['Cổng kết nối', 'USB-C 2.0'], ['Kết nối không dây', '5G, Wi-Fi 5, Bluetooth 5.1, NFC'], ['Chất liệu khung', 'Khung nhựa'], ['Chống nước bụi', 'IP54']]
+  } },
+  { test: n => n.includes('Find N3 Flip'), specs: {
+    manHinh: [['Màn hình chính', '6.8 inch AMOLED gập, 120Hz'], ['Màn hình phụ', '3.26 inch cảm ứng đầy đủ'], ['Độ phân giải', '2520 × 1080 px (màn chính)'], ['Mặt kính', 'Kính cường lực chống trầy']],
+    camera: [['Camera sau', '50MP chính OIS + 48MP góc siêu rộng + 32MP Tele 2x'], ['Camera trước', '32MP'], ['Quay video', '4K đến 30fps'], ['Tính năng', 'Chụp selfie bằng màn phụ']],
+    hieuNang: [['Chip xử lý', 'MediaTek Dimensity 9200'], ['RAM', '12GB'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'Android 13, ColorOS 13.2']],
+    pin: [['Dung lượng', '4300 mAh'], ['Sạc có dây', '44W SuperVOOC'], ['Sạc không dây', 'Không hỗ trợ'], ['Thời lượng', 'Cả ngày sử dụng liên tục']],
+    ketNoi: [['Cổng kết nối', 'USB-C 2.0'], ['Kết nối không dây', '5G, Wi-Fi 6, Bluetooth 5.3, NFC'], ['Chất liệu khung', 'Nhôm hàng không'], ['Chống nước bụi', 'IPX4']]
+  } },
+  { test: () => true, specs: {
+    manHinh: [['Kích thước', '6.5 inch màn hình cảm ứng Full HD+'], ['Tần số quét', '90–120Hz tuỳ phiên bản'], ['Độ sáng', 'Sáng rõ ngoài trời']],
+    camera: [['Camera sau', 'Đa ống kính độ phân giải cao'], ['Camera trước', 'Camera selfie hỗ trợ AI'], ['Quay video', 'Full HD/4K tuỳ phiên bản']],
+    hieuNang: [['Chip xử lý', 'Chip xử lý thế hệ mới'], ['Bộ nhớ trong', '{STORAGE}'], ['Hệ điều hành', 'Phiên bản mới nhất']],
+    pin: [['Dung lượng', 'Pin dung lượng lớn'], ['Sạc', 'Hỗ trợ sạc nhanh']],
+    ketNoi: [['Cổng kết nối', 'USB-C'], ['Kết nối không dây', '5G/4G, Wi-Fi, Bluetooth, NFC']]
+  } }
+];
+
+function genericSpecsTable(p) {
+  const catLabel = { 'tai-nghe': 'Tai nghe', 'sac-cap': 'Sạc & Cáp', 'op-lung': 'Ốp lưng & Phụ kiện' }[p.category] || p.category;
+  const rows = [
+    ['Thương hiệu', p.brand.toUpperCase()],
+    ['Danh mục', catLabel],
+    ['Màu sắc', p.color],
+    ['Bảo hành', '12 tháng chính hãng'],
+    ['Tình trạng', p.stock ? 'Còn hàng' : 'Hết hàng']
+  ];
+  return `<table class="mb-specs-table active"><tbody>${rows.map(([l, v]) => `<tr><th>${l}</th><td>${v}</td></tr>`).join('')}</tbody></table>`;
+}
+
+function renderSpecsTabs(product) {
+  const section = document.getElementById('specsSection');
+  const tabsEl = document.getElementById('specsTabs');
+
+  if (product.category !== 'dien-thoai') {
+    section.querySelector('.mb-label').textContent = 'Thông tin sản phẩm';
+    section.querySelector('h2').innerHTML = 'Thông tin <em>chi tiết</em>';
+    tabsEl.innerHTML = genericSpecsTable(product);
+    return;
+  }
+
+  const profile = PHONE_PROFILES.find(pr => pr.test(product.name));
+  const storage = storageOf(product.name);
+  const tabsBar = '<div class="mb-specs-tabbar" role="tablist">' +
+    SPEC_TABS.map((k, i) => `<button type="button" class="mb-specs-tab${i === 0 ? ' active' : ''}" data-tab="${k}" role="tab">${SPEC_TAB_LABEL[k]}</button>`).join('') +
+    '</div>';
+  const panels = SPEC_TABS.map((k, i) => {
+    const rows = profile.specs[k].map(([label, val]) => `<tr><th>${label}</th><td>${String(val).replace('{STORAGE}', storage)}</td></tr>`).join('');
+    return `<table class="mb-specs-table${i === 0 ? ' active' : ''}" data-panel="${k}"><tbody>${rows}</tbody></table>`;
+  }).join('');
+  tabsEl.innerHTML = tabsBar + panels;
+
+  tabsEl.querySelectorAll('.mb-specs-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabsEl.querySelectorAll('.mb-specs-tab').forEach(b => b.classList.remove('active'));
+      tabsEl.querySelectorAll('.mb-specs-table').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      tabsEl.querySelector(`.mb-specs-table[data-panel="${btn.dataset.tab}"]`).classList.add('active');
+    });
+  });
+}
+renderSpecsTabs(product);
+
+// ── Sản phẩm liên quan — ưu tiên cùng danh mục, dự phòng cùng thương hiệu / bán chạy ──
+function pickRelated(current, count) {
+  const pool = PRODUCTS.filter(p => p.id !== current.id);
+  const result = pool.filter(p => p.category === current.category).slice(0, count);
+  const used = new Set(result.map(p => p.id));
+  if (result.length < count) {
+    pool.filter(p => p.brand === current.brand && !used.has(p.id)).forEach(p => {
+      if (result.length < count) { result.push(p); used.add(p.id); }
+    });
+  }
+  if (result.length < count) {
+    [...pool].filter(p => !used.has(p.id)).sort((a, b) => b.sold - a.sold).forEach(p => {
+      if (result.length < count) { result.push(p); used.add(p.id); }
+    });
+  }
+  return result;
+}
+
+const related = pickRelated(product, 8);
 if (related.length) {
   document.getElementById('relatedGrid').innerHTML = related.map(p => {
     const e = p.salePrice ?? p.price;
     const w = p.salePrice ? `<span class="mb-prod-price-was">${fmt(p.price)}</span>` : '';
+    const badgeMap = { hot: 'HOT', sale: 'SALE', new: 'MỚI' };
+    const badge = p.badge ? `<span class="mb-prod-badge ${p.badge}">${badgeMap[p.badge]}</span>` : '';
     return `<div class="mb-prod-card">
-      <div class="mb-prod-thumb"><img src="${p.image}" alt="${p.name}" loading="lazy"></div>
+      <div class="mb-prod-thumb"><img src="${p.image}" alt="${p.name}" loading="lazy">${badge}</div>
       <div class="mb-prod-body">
         <div class="mb-prod-brand">${p.brand}</div>
         <div class="mb-prod-name">${p.name}</div>
+        <div class="mb-prod-rating"><span class="stars">${stars(p.rating)}</span><span class="count">(${p.sold})</span></div>
         <div class="mb-prod-price"><span class="mb-prod-price-now">${fmt(e)}</span>${w}</div>
       </div>
-      <div class="mb-prod-foot"><span></span><a href="chi-tiet-san-pham.html?id=${p.id}" class="mb-prod-btn">Xem</a></div>
+      <div class="mb-prod-foot">
+        <span class="mb-prod-sold">Đã bán ${p.sold}</span>
+        <div class="mb-prod-actions">
+          <a href="chi-tiet-san-pham.html?id=${p.id}" class="mb-prod-btn">Xem</a>
+          <button type="button" class="mb-prod-cart-btn" aria-label="Thêm vào giỏ hàng" onclick="quickAddToCart(${p.id}, event)">${CART_ICON}</button>
+        </div>
+      </div>
     </div>`;
   }).join('');
-}
-
-function addToCart() {
-  const cart = JSON.parse(localStorage.getItem('mb_cart') || '[]');
-  const idx = cart.findIndex(i => i.id === product.id);
-  if (idx > -1) cart[idx].qty++;
-  else cart.push({ id: product.id, name: product.name, price: eff, image: product.image, qty: 1 });
-  localStorage.setItem('mb_cart', JSON.stringify(cart));
-  document.querySelectorAll('.mb-cart-badge').forEach(b => b.textContent = cart.reduce((s, i) => s + i.qty, 0));
-  alert('Đã thêm vào giỏ hàng!');
 }
 
 // Reveal
 const ro = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } }), { threshold: .08 });
 document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
 
-// Cart badge
-const cart = JSON.parse(localStorage.getItem('mb_cart') || '[]');
-document.querySelectorAll('.mb-cart-badge').forEach(b => b.textContent = cart.reduce((s, i) => s + i.qty, 0));
+updateCartBadge();
 </script>
 </body>
 </html>
