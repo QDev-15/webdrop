@@ -742,6 +742,32 @@ async function main() {
         salesCount: 3,
         status: 'published',
       },
+      {
+        slug: 'shop-ami-mobile',
+        name: 'AMI Mobile',
+        description: 'Template + Website shop điện thoại & phụ kiện — tông mustard ấm, 9 trang đầy đủ (sản phẩm, khuyến mãi, giới thiệu...). Có sẵn tìm kiếm/lọc sản phẩm, giỏ hàng, thanh toán COD/SePay.',
+        thumbnail: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&q=80&auto=format&fit=crop',
+        demoUrl: `${DEMO_BASE}/Shops/shop-ami-mobile/`,
+        price: 99000,
+        category: 'web',
+        industrySlug: 'shop',
+        hasWebsite: true,
+        salesCount: 1,
+        status: 'published',
+      },
+      {
+        slug: 'shop-quan-ao-ami',
+        name: 'AMI Fashion',
+        description: 'Template + Website shop thời trang tối giản phong cách ZEN-MINIMAL — Sage Green + Taupe accent, bộ sưu tập theo mùa, chất liệu cao cấp. Có sẵn tìm kiếm/lọc sản phẩm, giỏ hàng, thanh toán COD/SePay.',
+        thumbnail: 'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=800&q=80&auto=format&fit=crop',
+        demoUrl: `${DEMO_BASE}/Shops/shop-quan-ao-ami/`,
+        price: 99000,
+        category: 'web',
+        industrySlug: 'shop',
+        hasWebsite: true,
+        salesCount: 1,
+        status: 'published',
+      },
 
       // ── Admin ──────────────────────────────────────────────────────────────
       {
