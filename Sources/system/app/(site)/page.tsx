@@ -67,7 +67,7 @@ async function getSlides() {
 async function getTemplates(): Promise<Template[]> {
   try {
     const rows = await prisma.template.findMany({ where: { status: 'published' }, include: { industry: { select: { name: true } } }, orderBy: { salesCount: 'desc' } })
-    return rows.map(t => ({ slug: t.slug, name: t.name, category: t.industry?.name || t.category, price: formatPrice(t.price as Parameters<typeof formatPrice>[0]), image: t.thumbnail || 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80&auto=format&fit=crop', badge: toBadge(t.salesCount, t.createdAt), demoUrl: t.demoUrl || undefined }))
+    return rows.map(t => ({ slug: t.slug, name: t.name, category: t.industry?.name || t.category, price: formatPrice(t.price as Parameters<typeof formatPrice>[0]), image: t.thumbnail || 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80&auto=format&fit=crop', badge: toBadge(t.salesCount, t.createdAt), demoUrl: t.demoUrl || undefined, deployUrl: t.deployUrl || undefined }))
   } catch { return [] }
 }
 

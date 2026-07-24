@@ -23,6 +23,7 @@ export default async function EditTemplatePage({ params }: { params: Promise<{ i
           description: template.description || '',
           thumbnail: template.thumbnail || '',
           demoUrl: template.demoUrl || '',
+          deployUrl: template.deployUrl || '',
           price:        String(Number(template.price)),
           websitePrice: template.websitePrice ? String(Number(template.websitePrice)) : '',
           customPrice:  template.customPrice  ? String(Number(template.customPrice))  : '',

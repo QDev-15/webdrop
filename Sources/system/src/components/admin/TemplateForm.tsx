@@ -11,7 +11,7 @@ interface TemplateFormProps {
   industries: Industry[]
   initial?: {
     name: string; slug: string; description: string; thumbnail: string
-    demoUrl: string; price: string; websitePrice: string; customPrice: string
+    demoUrl: string; deployUrl: string; price: string; websitePrice: string; customPrice: string
     category: string; industryId: string; status: string
     hasWebsite: boolean
   }
@@ -25,6 +25,7 @@ export default function TemplateForm({ mode, id, industries, initial }: Template
     description: initial?.description ?? '',
     thumbnail: initial?.thumbnail ?? '',
     demoUrl: initial?.demoUrl ?? '',
+    deployUrl: initial?.deployUrl ?? '',
     price: initial?.price ?? '',
     websitePrice: initial?.websitePrice ?? '',
     customPrice: initial?.customPrice ?? '',
@@ -126,6 +127,13 @@ export default function TemplateForm({ mode, id, industries, initial }: Template
         <div style={{ gridColumn: '1/-1' }}>
           {label('Demo URL')}
           {input('demoUrl', { placeholder: 'https://demo.webdrop.store/...' })}
+        </div>
+        <div style={{ gridColumn: '1/-1' }}>
+          {label('Deploy URL')}
+          {input('deployUrl', { placeholder: 'https://ten-mien-that.com/...' })}
+          <div style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 4 }}>
+            Link website đã triển khai thật (nếu có) — khi điền, nút &quot;Xem demo&quot; trên trang chính sẽ ưu tiên trỏ tới đây thay vì Demo URL.
+          </div>
         </div>
         <div>
           {label('Loại template')}

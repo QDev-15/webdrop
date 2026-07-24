@@ -190,7 +190,7 @@ export default function TemplateGrid({ templates: propTemplates, homepage, pageT
                         <TemplateImage src={t.image} alt={t.name} name={t.name} category={t.category} />
                         {t.hasWebsite && <WebsiteBadge />}
                         <div className="tc-hover-layer">
-                          <DemoButton demoUrl={t.demoUrl} />
+                          <DemoButton demoUrl={t.deployUrl || t.demoUrl} />
                         </div>
                       </div>
                       <div className="tc-body">
@@ -287,7 +287,7 @@ export default function TemplateGrid({ templates: propTemplates, homepage, pageT
                       <TemplateImage src={t.image} alt={t.name} name={t.name} category={t.category} />
                       {t.hasWebsite && <WebsiteBadge />}
                       <div className="tc-hover-layer">
-                        <DemoButton demoUrl={t.demoUrl} />
+                        <DemoButton demoUrl={t.deployUrl || t.demoUrl} />
                       </div>
                     </div>
                     <div className="tc-body">

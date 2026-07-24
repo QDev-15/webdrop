@@ -226,6 +226,7 @@ model Template {
   description String?
   thumbnail   String?
   demoUrl     String?      @map("demo_url")
+  deployUrl   String?      @map("deploy_url")
   downloadUrl String?      @map("download_url")
   price        Decimal
   websitePrice Decimal?     @map("website_price")

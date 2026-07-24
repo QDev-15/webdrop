@@ -38,6 +38,7 @@ async function getTemplates(type: PageType): Promise<Template[]> {
       image:      t.thumbnail || 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80',
       badge:      t.salesCount >= 30 ? 'Bán chạy' : undefined,
       demoUrl:    t.demoUrl || undefined,
+      deployUrl:  t.deployUrl || undefined,
       hasWebsite: t.hasWebsite,
     }))
   } catch {

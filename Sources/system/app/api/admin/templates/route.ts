@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
   }
 
   const body = await req.json()
-  const { name, slug, description, thumbnail, demoUrl, price, websitePrice, customPrice, category, industryId, status, hasWebsite } = body
+  const { name, slug, description, thumbnail, demoUrl, deployUrl, price, websitePrice, customPrice, category, industryId, status, hasWebsite } = body
 
   if (!name || !slug || !price || !category) {
     return NextResponse.json({ error: 'Thiếu thông tin bắt buộc' }, { status: 400 })
@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
 
   const template = await prisma.template.create({
     data: {
-      name, slug, description, thumbnail, demoUrl, price, category,
+      name, slug, description, thumbnail, demoUrl, deployUrl, price, category,
       websitePrice: websitePrice ?? null,
       customPrice:  customPrice  ?? null,
       industryId: industryId || null,

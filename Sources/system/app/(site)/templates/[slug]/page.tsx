@@ -73,6 +73,7 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
         image:       row.thumbnail || 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80&auto=format&fit=crop',
         badge:       row.salesCount >= 30 ? 'Bán chạy' : undefined,
         demoUrl:     row.demoUrl || undefined,
+        deployUrl:   row.deployUrl || undefined,
         hasWebsite:  row.hasWebsite,
         description: row.description || undefined,
         salesCount:  row.salesCount,

@@ -123,6 +123,7 @@ export default function TemplateDetailClient({
 
   const galleryImages = getGalleryImages(template.image, screenshots)
   const pages         = getPagesByIndustry(template.category)
+  const demoLink       = template.deployUrl || template.demoUrl
 
   const salesCount = template.salesCount ?? 0
 
@@ -157,9 +158,9 @@ export default function TemplateDetailClient({
           <div className="gallery-hero">
             <img src={galleryImages[activeImg]} alt={template.name} />
             <div className="gallery-overlay" />
-            {template.demoUrl && (
+            {demoLink && (
               <a
-                href={template.demoUrl}
+                href={demoLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="preview-label"
@@ -168,7 +169,7 @@ export default function TemplateDetailClient({
                 Xem live demo →
               </a>
             )}
-            {!template.demoUrl && (
+            {!demoLink && (
               <div className="preview-label">Preview</div>
             )}
           </div>
@@ -327,8 +328,8 @@ export default function TemplateDetailClient({
                 Liên hệ Gói theo yêu cầu
               </a>
             )}
-            {template.demoUrl && (
-              <a href={template.demoUrl} target="_blank" rel="noopener noreferrer" className="buy-btn-g d-block text-center text-decoration-none mt-2">
+            {demoLink && (
+              <a href={demoLink} target="_blank" rel="noopener noreferrer" className="buy-btn-g d-block text-center text-decoration-none mt-2">
                 Xem demo live
               </a>
             )}

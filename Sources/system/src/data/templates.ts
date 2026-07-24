@@ -6,6 +6,7 @@ export interface Template {
   image:       string
   badge?:      string
   demoUrl?:    string
+  deployUrl?:  string
   hasWebsite?: boolean
   description?:  string
   salesCount?:   number

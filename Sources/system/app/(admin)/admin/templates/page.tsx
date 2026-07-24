@@ -114,8 +114,8 @@ export default async function AdminTemplatesPage({
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--accent)' }}>{formatPrice(t.price)}</div>
                     <div style={{ display: 'flex', gap: 8 }}>
-                      {t.demoUrl && (
-                        <a href={t.demoUrl} target="_blank" rel="noopener noreferrer"
+                      {(t.deployUrl || t.demoUrl) && (
+                        <a href={t.deployUrl || t.demoUrl!} target="_blank" rel="noopener noreferrer"
                           style={{ fontSize: 12, color: 'var(--text-2)', textDecoration: 'none' }}>Demo ↗</a>
                       )}
                       <Link href={`/admin/templates/${t.id}/edit`}
