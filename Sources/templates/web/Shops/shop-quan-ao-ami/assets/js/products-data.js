@@ -1,0 +1,647 @@
+/**
+ * AMI Fashion — ZEN-MINIMAL (shop-quan-ao-ami)
+ * CSS prefix: am-
+ * Identity Token: ZEN-MINIMAL
+ * 36 sản phẩm thời trang, 5 danh mục
+ */
+
+const PRODUCTS = [
+
+  /* ===== ÁO THUN (8 sản phẩm) ===== */
+  {
+    id: 1,
+    name: 'Áo Thun Basic Trắng AMI',
+    slug: 'ao-thun-basic-trang',
+    price: 290000,
+    salePrice: null,
+    category: 'ao-thun',
+    theme: ['ban-chay', 'hang-moi'],
+    color: 'trang',
+    size: ['XS', 'S', 'M', 'L', 'XL'],
+    rating: 4.8,
+    sold: 318,
+    stock: true,
+    badge: 'hot',
+    image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 2,
+    name: 'Áo Thun Basic Đen AMI',
+    slug: 'ao-thun-basic-den',
+    price: 290000,
+    salePrice: null,
+    category: 'ao-thun',
+    theme: ['ban-chay'],
+    color: 'den',
+    size: ['XS', 'S', 'M', 'L', 'XL'],
+    rating: 4.7,
+    sold: 291,
+    stock: true,
+    badge: 'hot',
+    image: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 3,
+    name: 'Áo Thun Oversized Be AMI',
+    slug: 'ao-thun-oversized-be',
+    price: 350000,
+    salePrice: null,
+    category: 'ao-thun',
+    theme: ['hang-moi'],
+    color: 'be',
+    size: ['S', 'M', 'L', 'XL'],
+    rating: 4.6,
+    sold: 84,
+    stock: true,
+    badge: 'new',
+    image: 'https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 4,
+    name: 'Áo Thun Kẻ Sọc AMI',
+    slug: 'ao-thun-ke-soc',
+    price: 320000,
+    salePrice: 249000,
+    category: 'ao-thun',
+    theme: ['giam-gia'],
+    color: 'trang',
+    size: ['S', 'M', 'L'],
+    rating: 4.3,
+    sold: 152,
+    stock: true,
+    badge: 'sale',
+    image: 'https://images.unsplash.com/photo-1622445275576-721325763afe?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 5,
+    name: 'Áo Thun In Hoa AMI',
+    slug: 'ao-thun-in-hoa',
+    price: 380000,
+    salePrice: null,
+    category: 'ao-thun',
+    theme: ['hang-moi'],
+    color: 'trang',
+    size: ['XS', 'S', 'M', 'L'],
+    rating: 4.5,
+    sold: 67,
+    stock: true,
+    badge: 'new',
+    image: 'https://images.unsplash.com/photo-1618354691792-d1d42acfd860?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 6,
+    name: 'Áo Thun Crop Top AMI',
+    slug: 'ao-thun-crop-top',
+    price: 260000,
+    salePrice: 210000,
+    category: 'ao-thun',
+    theme: ['ban-chay', 'giam-gia'],
+    color: 'den',
+    size: ['XS', 'S', 'M'],
+    rating: 4.4,
+    sold: 209,
+    stock: true,
+    badge: 'sale',
+    image: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 7,
+    name: 'Áo Thun Basic Xám AMI',
+    slug: 'ao-thun-basic-xam',
+    price: 290000,
+    salePrice: null,
+    category: 'ao-thun',
+    theme: ['ban-chay'],
+    color: 'xam',
+    size: ['XS', 'S', 'M', 'L', 'XL'],
+    rating: 4.6,
+    sold: 243,
+    stock: true,
+    badge: null,
+    image: 'https://images.unsplash.com/photo-1554568218-0f1715e72254?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 8,
+    name: 'Áo Thun Ribbed AMI',
+    slug: 'ao-thun-ribbed',
+    price: 340000,
+    salePrice: null,
+    category: 'ao-thun',
+    theme: ['hang-moi'],
+    color: 'be',
+    size: ['XS', 'S', 'M', 'L'],
+    rating: 4.7,
+    sold: 92,
+    stock: true,
+    badge: 'new',
+    image: 'https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=600&auto=format&fit=crop&q=80'
+  },
+
+  /* ===== ÁO SƠ MI (7 sản phẩm) ===== */
+  {
+    id: 9,
+    name: 'Áo Sơ Mi Linen Trắng AMI',
+    slug: 'ao-so-mi-linen-trang',
+    price: 590000,
+    salePrice: null,
+    category: 'ao-so-mi',
+    theme: ['ban-chay'],
+    color: 'trang',
+    size: ['XS', 'S', 'M', 'L', 'XL'],
+    rating: 4.9,
+    sold: 376,
+    stock: true,
+    badge: 'hot',
+    image: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 10,
+    name: 'Áo Sơ Mi Oversize AMI',
+    slug: 'ao-so-mi-oversize',
+    price: 620000,
+    salePrice: null,
+    category: 'ao-so-mi',
+    theme: ['hang-moi'],
+    color: 'be',
+    size: ['S', 'M', 'L', 'XL'],
+    rating: 4.7,
+    sold: 98,
+    stock: true,
+    badge: 'new',
+    image: 'https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 11,
+    name: 'Áo Sơ Mi Kẻ Classic AMI',
+    slug: 'ao-so-mi-ke-classic',
+    price: 550000,
+    salePrice: null,
+    category: 'ao-so-mi',
+    theme: ['ban-chay'],
+    color: 'trang',
+    size: ['S', 'M', 'L', 'XL'],
+    rating: 4.8,
+    sold: 284,
+    stock: true,
+    badge: null,
+    image: 'https://images.unsplash.com/photo-1618932260643-eee4a2f652a6?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 12,
+    name: 'Áo Sơ Mi Cotton Oxford AMI',
+    slug: 'ao-so-mi-cotton-oxford',
+    price: 480000,
+    salePrice: 390000,
+    category: 'ao-so-mi',
+    theme: ['giam-gia'],
+    color: 'xanh-navy',
+    size: ['S', 'M', 'L'],
+    rating: 4.5,
+    sold: 143,
+    stock: true,
+    badge: 'sale',
+    image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 13,
+    name: 'Áo Sơ Mi Dáng Suông AMI',
+    slug: 'ao-so-mi-dang-suong',
+    price: 510000,
+    salePrice: null,
+    category: 'ao-so-mi',
+    theme: ['hang-moi'],
+    color: 'trang',
+    size: ['XS', 'S', 'M', 'L'],
+    rating: 4.6,
+    sold: 75,
+    stock: true,
+    badge: 'new',
+    image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 14,
+    name: 'Áo Sơ Mi Túi Ngực AMI',
+    slug: 'ao-so-mi-tui-nguc',
+    price: 450000,
+    salePrice: null,
+    category: 'ao-so-mi',
+    theme: ['ban-chay'],
+    color: 'be',
+    size: ['S', 'M', 'L', 'XL'],
+    rating: 4.7,
+    sold: 198,
+    stock: true,
+    badge: null,
+    image: 'https://images.unsplash.com/photo-1608234807905-4466023792f5?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 15,
+    name: 'Áo Sơ Mi Tay Lửng AMI',
+    slug: 'ao-so-mi-tay-lung',
+    price: 430000,
+    salePrice: 350000,
+    category: 'ao-so-mi',
+    theme: ['giam-gia'],
+    color: 'trang',
+    size: ['XS', 'S', 'M', 'L'],
+    rating: 4.4,
+    sold: 166,
+    stock: true,
+    badge: 'sale',
+    image: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&auto=format&fit=crop&q=80'
+  },
+
+  /* ===== QUẦN JEAN (6 sản phẩm) ===== */
+  {
+    id: 16,
+    name: 'Quần Jean Straight AMI',
+    slug: 'quan-jean-straight',
+    price: 690000,
+    salePrice: null,
+    category: 'quan-jean',
+    theme: ['ban-chay'],
+    color: 'xanh-navy',
+    size: ['XS', 'S', 'M', 'L', 'XL'],
+    rating: 4.8,
+    sold: 327,
+    stock: true,
+    badge: 'hot',
+    image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 17,
+    name: 'Quần Jean Rách Gối AMI',
+    slug: 'quan-jean-rach-goi',
+    price: 750000,
+    salePrice: null,
+    category: 'quan-jean',
+    theme: ['hang-moi'],
+    color: 'xanh-navy',
+    size: ['XS', 'S', 'M', 'L'],
+    rating: 4.5,
+    sold: 89,
+    stock: true,
+    badge: 'new',
+    image: 'https://images.unsplash.com/photo-1475178626620-a4d074967452?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 18,
+    name: 'Quần Jean Baggy AMI',
+    slug: 'quan-jean-baggy',
+    price: 790000,
+    salePrice: null,
+    category: 'quan-jean',
+    theme: ['hang-moi', 'ban-chay'],
+    color: 'xanh-navy',
+    size: ['S', 'M', 'L', 'XL'],
+    rating: 4.7,
+    sold: 215,
+    stock: true,
+    badge: 'hot',
+    image: 'https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 19,
+    name: 'Quần Jean Wide Leg AMI',
+    slug: 'quan-jean-wide-leg',
+    price: 820000,
+    salePrice: null,
+    category: 'quan-jean',
+    theme: ['ban-chay', 'hang-moi'],
+    color: 'xanh-navy',
+    size: ['XS', 'S', 'M', 'L'],
+    rating: 4.8,
+    sold: 248,
+    stock: true,
+    badge: 'hot',
+    image: 'https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 20,
+    name: 'Quần Jean Skinny AMI',
+    slug: 'quan-jean-skinny',
+    price: 650000,
+    salePrice: 520000,
+    category: 'quan-jean',
+    theme: ['giam-gia'],
+    color: 'den',
+    size: ['XS', 'S', 'M', 'L'],
+    rating: 4.3,
+    sold: 172,
+    stock: true,
+    badge: 'sale',
+    image: 'https://images.unsplash.com/photo-1626497764746-6dc36546b388?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 21,
+    name: 'Quần Jean Short AMI',
+    slug: 'quan-jean-short',
+    price: 490000,
+    salePrice: 390000,
+    category: 'quan-jean',
+    theme: ['giam-gia'],
+    color: 'xanh-navy',
+    size: ['XS', 'S', 'M', 'L'],
+    rating: 4.2,
+    sold: 134,
+    stock: true,
+    badge: 'sale',
+    image: 'https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=600&auto=format&fit=crop&q=80'
+  },
+
+  /* ===== VÁY & ĐẦM (8 sản phẩm) ===== */
+  {
+    id: 22,
+    name: 'Váy Midi Linen AMI',
+    slug: 'vay-midi-linen',
+    price: 790000,
+    salePrice: null,
+    category: 'vay-dam',
+    theme: ['ban-chay', 'hang-moi'],
+    color: 'be',
+    size: ['XS', 'S', 'M', 'L'],
+    rating: 4.9,
+    sold: 412,
+    stock: true,
+    badge: 'hot',
+    image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 23,
+    name: 'Đầm Maxi Hoa Nhí AMI',
+    slug: 'dam-maxi-hoa-nhi',
+    price: 890000,
+    salePrice: null,
+    category: 'vay-dam',
+    theme: ['hang-moi'],
+    color: 'trang',
+    size: ['XS', 'S', 'M', 'L'],
+    rating: 4.7,
+    sold: 87,
+    stock: true,
+    badge: 'new',
+    image: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 24,
+    name: 'Váy Mini Caro AMI',
+    slug: 'vay-mini-caro',
+    price: 490000,
+    salePrice: null,
+    category: 'vay-dam',
+    theme: ['ban-chay'],
+    color: 'den',
+    size: ['XS', 'S', 'M'],
+    rating: 4.6,
+    sold: 263,
+    stock: true,
+    badge: null,
+    image: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 25,
+    name: 'Đầm Sơ Mi AMI',
+    slug: 'dam-so-mi',
+    price: 650000,
+    salePrice: null,
+    category: 'vay-dam',
+    theme: ['hang-moi'],
+    color: 'trang',
+    size: ['XS', 'S', 'M', 'L'],
+    rating: 4.6,
+    sold: 104,
+    stock: true,
+    badge: 'new',
+    image: 'https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 26,
+    name: 'Váy Wrap AMI',
+    slug: 'vay-wrap',
+    price: 720000,
+    salePrice: null,
+    category: 'vay-dam',
+    theme: ['ban-chay'],
+    color: 'hong',
+    size: ['XS', 'S', 'M', 'L'],
+    rating: 4.7,
+    sold: 196,
+    stock: true,
+    badge: null,
+    image: 'https://images.unsplash.com/photo-1520367445093-50dc08a59d9d?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 27,
+    name: 'Đầm Đen Basic AMI',
+    slug: 'dam-den-basic',
+    price: 580000,
+    salePrice: 460000,
+    category: 'vay-dam',
+    theme: ['ban-chay', 'giam-gia'],
+    color: 'den',
+    size: ['XS', 'S', 'M', 'L', 'XL'],
+    rating: 4.8,
+    sold: 338,
+    stock: true,
+    badge: 'sale',
+    image: 'https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 28,
+    name: 'Váy Xếp Ly AMI',
+    slug: 'vay-xep-ly',
+    price: 610000,
+    salePrice: null,
+    category: 'vay-dam',
+    theme: ['hang-moi'],
+    color: 'vang-kem',
+    size: ['XS', 'S', 'M', 'L'],
+    rating: 4.5,
+    sold: 79,
+    stock: true,
+    badge: 'new',
+    image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 29,
+    name: 'Đầm Chiffon Hoa AMI',
+    slug: 'dam-chiffon-hoa',
+    price: 780000,
+    salePrice: 590000,
+    category: 'vay-dam',
+    theme: ['hang-moi', 'giam-gia'],
+    color: 'hong',
+    size: ['XS', 'S', 'M'],
+    rating: 4.4,
+    sold: 121,
+    stock: true,
+    badge: 'sale',
+    image: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=600&auto=format&fit=crop&q=80'
+  },
+
+  /* ===== ÁO KHOÁC (7 sản phẩm) ===== */
+  {
+    id: 30,
+    name: 'Áo Khoác Denim AMI',
+    slug: 'ao-khoac-denim',
+    price: 990000,
+    salePrice: null,
+    category: 'ao-khoac',
+    theme: ['ban-chay', 'hang-moi'],
+    color: 'xanh-navy',
+    size: ['S', 'M', 'L', 'XL'],
+    rating: 4.9,
+    sold: 289,
+    stock: true,
+    badge: 'hot',
+    image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 31,
+    name: 'Áo Blazer Linen AMI',
+    slug: 'ao-blazer-linen',
+    price: 1190000,
+    salePrice: null,
+    category: 'ao-khoac',
+    theme: ['hang-moi'],
+    color: 'be',
+    size: ['XS', 'S', 'M', 'L'],
+    rating: 4.8,
+    sold: 76,
+    stock: true,
+    badge: 'new',
+    image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 32,
+    name: 'Áo Khoác Gió AMI',
+    slug: 'ao-khoac-gio',
+    price: 850000,
+    salePrice: 650000,
+    category: 'ao-khoac',
+    theme: ['giam-gia'],
+    color: 'den',
+    size: ['S', 'M', 'L', 'XL'],
+    rating: 4.4,
+    sold: 143,
+    stock: true,
+    badge: 'sale',
+    image: 'https://images.unsplash.com/photo-1520975954732-35dd22299614?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 33,
+    name: 'Áo Bomber AMI',
+    slug: 'ao-bomber',
+    price: 780000,
+    salePrice: null,
+    category: 'ao-khoac',
+    theme: ['ban-chay'],
+    color: 'xam',
+    size: ['S', 'M', 'L', 'XL'],
+    rating: 4.6,
+    sold: 187,
+    stock: true,
+    badge: null,
+    image: 'https://images.unsplash.com/photo-1544923408-75c5cef46f14?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 34,
+    name: 'Áo Len Cardigan AMI',
+    slug: 'ao-len-cardigan',
+    price: 690000,
+    salePrice: null,
+    category: 'ao-khoac',
+    theme: ['hang-moi'],
+    color: 'be',
+    size: ['S', 'M', 'L'],
+    rating: 4.7,
+    sold: 112,
+    stock: true,
+    badge: 'new',
+    image: 'https://images.unsplash.com/photo-1544441893-675973e31985?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 35,
+    name: 'Áo Vest AMI',
+    slug: 'ao-vest',
+    price: 990000,
+    salePrice: null,
+    category: 'ao-khoac',
+    theme: ['ban-chay'],
+    color: 'xam',
+    size: ['XS', 'S', 'M', 'L'],
+    rating: 4.8,
+    sold: 221,
+    stock: true,
+    badge: null,
+    image: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 36,
+    name: 'Áo Khoác Nhẹ AMI',
+    slug: 'ao-khoac-nhe',
+    price: 590000,
+    salePrice: 450000,
+    category: 'ao-khoac',
+    theme: ['giam-gia'],
+    color: 'xam',
+    size: ['S', 'M', 'L', 'XL'],
+    rating: 4.3,
+    sold: 98,
+    stock: true,
+    badge: 'sale',
+    image: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&auto=format&fit=crop&q=80'
+  }
+];
+
+/* ─── Helpers ──────────────────────────────────────────────── */
+
+const CAT_LABELS = {
+  'ao-thun':   'Áo Thun',
+  'ao-so-mi':  'Áo Sơ Mi',
+  'quan-jean': 'Quần Jean',
+  'vay-dam':   'Váy & Đầm',
+  'ao-khoac':  'Áo Khoác'
+};
+
+const COLOR_LABELS = {
+  'trang':      'Trắng',
+  'den':        'Đen',
+  'be':         'Be',
+  'xam':        'Xám',
+  'xanh-navy':  'Xanh Navy',
+  'hong':       'Hồng',
+  'vang-kem':   'Vàng Kem'
+};
+
+const COLOR_HEX = {
+  'trang':     '#f5f5f3',
+  'den':       '#1a1916',
+  'be':        '#e8d5b8',
+  'xam':       '#9e9b95',
+  'xanh-navy': '#1e3a5f',
+  'hong':      '#f4a7b9',
+  'vang-kem':  '#f0d57c'
+};
+
+const BADGE_LABELS = { hot: 'Nổi bật', new: 'Mới', sale: 'Giảm giá' };
+
+function fmtPrice(n) {
+  return n.toLocaleString('vi-VN') + '₫';
+}
+
+function catLabel(cat) {
+  return CAT_LABELS[cat] || cat;
+}
+
+function colorName(c) {
+  return COLOR_LABELS[c] || c;
+}
+
+function colorHex(c) {
+  return COLOR_HEX[c] || '#ccc';
+}
+
+function badgeLabel(b) {
+  return BADGE_LABELS[b] || b;
+}

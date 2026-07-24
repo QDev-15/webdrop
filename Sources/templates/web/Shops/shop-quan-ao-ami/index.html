@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMI Fashion — Thời trang tối giản, chất liệu chuẩn</title>
+  <meta name="description" content="AMI Fashion — Bộ sưu tập quần áo thời trang tối giản, chất liệu cao cấp. Áo thun, áo sơ mi, quần jean, váy đầm, áo khoác.">
+  <meta property="og:title" content="AMI Fashion">
+  <meta property="og:description" content="Thời trang tối giản, chất liệu chuẩn">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Topbar — 1 dòng thông báo (ngoại lệ được phép) -->
+  <div class="am-topbar" role="banner">
+    <span>Miễn phí vận chuyển đơn từ 599K</span>
+    <span class="am-topbar-dot">·</span>
+    <span>Đổi trả trong 30 ngày</span>
+    <span class="am-topbar-dot">·</span>
+    <span>Bảo hành chính hãng</span>
+  </div>
+
+  <!-- NAV — Nav-8 Underline-Active (ZEN-MINIMAL) -->
+  <nav id="am-nav" role="navigation" aria-label="Điều hướng chính">
+    <div class="am-nav-inner">
+      <a href="index.html" class="am-logo" aria-label="AMI Fashion — Trang chủ">AMI</a>
+
+      <ul class="am-nav-links" role="list">
+        <li><a href="index.html" class="active" aria-current="page">Trang chủ</a></li>
+        <li><a href="san-pham.html">Sản phẩm</a></li>
+        <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+        <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+        <li><a href="lien-he.html">Liên hệ</a></li>
+      </ul>
+
+      <div class="am-nav-actions">
+        <button class="am-nav-icon-btn" id="amSearchToggle" aria-label="Tìm kiếm" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <a href="gio-hang.html" class="am-nav-icon-btn am-cart-badge" aria-label="Giỏ hàng">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span id="cartCount">0</span>
+        </a>
+        <button class="am-hamburger" id="navBurger" aria-label="Mở menu" aria-expanded="false" aria-controls="navMob">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Nav search panel -->
+  <div class="am-search-panel" id="amSearchPanel" role="search">
+    <form action="san-pham.html" method="get">
+      <input type="text" name="q" placeholder="Tìm sản phẩm AMI..." autocomplete="off">
+      <button type="submit">Tìm</button>
+    </form>
+  </div>
+
+  <!-- Mobile Nav -->
+  <div class="am-nav-mob" id="navMob" aria-hidden="true">
+    <ul role="list">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="san-pham.html">Sản phẩm</a></li>
+      <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+      <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+      <li><a href="lien-he.html">Liên hệ</a></li>
+    </ul>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="am-page-body">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SEARCH ZONE — "Hero" duy nhất được phép (Biến thể 2)
+         Không có: tagline thương hiệu, lifestyle image, USP kể chuyện
+         ═══════════════════════════════════════════════════════ -->
+    <section class="am-search-zone" aria-label="Tìm kiếm sản phẩm">
+      <div class="am-container">
+        <h1 class="am-search-zone-sub">Tìm trong hơn 36 sản phẩm AMI</h1>
+        <form action="san-pham.html" method="get" role="search">
+          <input type="text" name="q" placeholder="Tên sản phẩm, chất liệu, màu sắc..." aria-label="Từ khóa tìm kiếm">
+          <button type="submit">Tìm kiếm</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 1: Hàng mới về (theme: hang-moi, 8 items)
+         ═══════════════════════════════════════════════════════ -->
+    <section class="am-home-section" aria-labelledby="sec-hang-moi">
+      <div class="am-container">
+        <div class="am-sec-head">
+          <div class="am-sec-head-left">
+            <span class="am-eyebrow">Mới nhất</span>
+            <h2 class="am-sec-title" id="sec-hang-moi"><em>Hàng mới về</em></h2>
+          </div>
+          <div class="am-sec-head-right">
+            <input type="text" class="am-local-search" data-grid="grid-hang-moi" placeholder="Tìm trong mục này..." aria-label="Tìm trong Hàng mới về">
+            <a href="san-pham.html?theme=hang-moi" class="am-view-all">Xem tất cả →</a>
+          </div>
+        </div>
+        <div class="am-prod-grid am-prod-grid-4" id="grid-hang-moi" role="list" aria-label="Hàng mới về">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 2: Bán chạy nhất (theme: ban-chay, 8 items)
+         ═══════════════════════════════════════════════════════ -->
+    <section class="am-home-section" aria-labelledby="sec-ban-chay">
+      <div class="am-container">
+        <div class="am-sec-head">
+          <div class="am-sec-head-left">
+            <span class="am-eyebrow">Yêu thích nhất</span>
+            <h2 class="am-sec-title" id="sec-ban-chay"><em>Bán chạy nhất</em></h2>
+          </div>
+          <div class="am-sec-head-right">
+            <input type="text" class="am-local-search" data-grid="grid-ban-chay" placeholder="Tìm trong mục này..." aria-label="Tìm trong Bán chạy nhất">
+            <a href="san-pham.html?theme=ban-chay" class="am-view-all">Xem tất cả →</a>
+          </div>
+        </div>
+        <div class="am-prod-grid am-prod-grid-4" id="grid-ban-chay" role="list" aria-label="Bán chạy nhất">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 3: Đang giảm giá (salePrice !== null, 8 items)
+         ═══════════════════════════════════════════════════════ -->
+    <section class="am-home-section" aria-labelledby="sec-giam-gia">
+      <div class="am-container">
+        <div class="am-sec-head">
+          <div class="am-sec-head-left">
+            <span class="am-eyebrow">Khuyến mãi</span>
+            <h2 class="am-sec-title" id="sec-giam-gia"><em>Đang giảm giá</em></h2>
+          </div>
+          <div class="am-sec-head-right">
+            <input type="text" class="am-local-search" data-grid="grid-giam-gia" placeholder="Tìm trong mục này..." aria-label="Tìm trong Đang giảm giá">
+            <a href="san-pham.html?theme=giam-gia" class="am-view-all">Xem tất cả →</a>
+          </div>
+        </div>
+        <div class="am-prod-grid am-prod-grid-4" id="grid-giam-gia" role="list" aria-label="Đang giảm giá">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 4: Áo & Tops (category: ao-thun + ao-so-mi, 4 items)
+         ═══════════════════════════════════════════════════════ -->
+    <section class="am-home-section" style="padding-bottom: clamp(56px, 8vw, 96px);" aria-labelledby="sec-ao-tops">
+      <div class="am-container">
+        <div class="am-sec-head">
+          <div class="am-sec-head-left">
+            <span class="am-eyebrow">Danh mục nổi bật</span>
+            <h2 class="am-sec-title" id="sec-ao-tops"><em>Áo &amp; Tops</em></h2>
+          </div>
+          <div class="am-sec-head-right">
+            <input type="text" class="am-local-search" data-grid="grid-ao-tops" placeholder="Tìm trong mục này..." aria-label="Tìm trong Áo & Tops">
+            <a href="san-pham.html?category=ao-thun,ao-so-mi" class="am-view-all">Xem tất cả →</a>
+          </div>
+        </div>
+        <div class="am-prod-grid am-prod-grid-4" id="grid-ao-tops" role="list" aria-label="Áo & Tops">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="am-footer" role="contentinfo">
+    <div class="am-container">
+      <div class="am-footer-grid">
+        <div class="am-footer-brand">
+          <span class="am-footer-logo">AMI</span>
+          <p>Thời trang tối giản, chất liệu chuẩn. Mỗi sản phẩm AMI được chọn lọc kỹ lưỡng để mang lại sự thoải mái và phong cách bền vững.</p>
+          <div class="am-footer-socials">
+            <a href="#" rel="noopener noreferrer" target="_blank">Facebook</a>
+            <a href="#" rel="noopener noreferrer" target="_blank">Instagram</a>
+            <a href="#" rel="noopener noreferrer" target="_blank">TikTok</a>
+          </div>
+        </div>
+        <div class="am-footer-col">
+          <p class="am-footer-col-title">Mua sắm</p>
+          <ul>
+            <li><a href="san-pham.html">Tất cả sản phẩm</a></li>
+            <li><a href="san-pham.html?category=ao-thun">Áo Thun</a></li>
+            <li><a href="san-pham.html?category=ao-so-mi">Áo Sơ Mi</a></li>
+            <li><a href="san-pham.html?category=quan-jean">Quần Jean</a></li>
+            <li><a href="san-pham.html?category=vay-dam">Váy &amp; Đầm</a></li>
+            <li><a href="san-pham.html?category=ao-khoac">Áo Khoác</a></li>
+            <li><a href="san-pham.html?theme=giam-gia">Đang giảm giá</a></li>
+          </ul>
+        </div>
+        <div class="am-footer-col">
+          <p class="am-footer-col-title">Hỗ trợ</p>
+          <ul>
+            <li><a href="ve-chung-toi.html">Giới thiệu AMI</a></li>
+            <li><a href="lien-he.html">Liên hệ</a></li>
+            <li><a href="lien-he.html">Hướng dẫn chọn size</a></li>
+            <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+            <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="am-footer-bottom">
+        <p class="am-footer-copy">© 2025 AMI Fashion. Tất cả quyền được bảo lưu.</p>
+        <div class="am-footer-legal">
+          <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+          <a href="dieu-khoan.html">Điều khoản</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Zalo Float Button -->
+  <a href="https://zalo.me/[ZALO_NUMBER]" class="am-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M24 4C13 4 4 13 4 24c0 5.3 2 10.1 5.3 13.7L7 44l6.6-2.2C16.7 43.5 20.2 44 24 44c11 0 20-9 20-20S35 4 24 4z"/><text x="12" y="30" font-family="Arial,sans-serif" font-weight="700" font-size="13" fill="#0068FF">Zalo</text></svg>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/products-data.js"></script>
+  <script>
+    /* ─── NAV: hamburger + search panel ─────────────────────── */
+    const burger = document.getElementById('navBurger');
+    const mob    = document.getElementById('navMob');
+    const searchToggle = document.getElementById('amSearchToggle');
+    const searchPanel  = document.getElementById('amSearchPanel');
+
+    burger.addEventListener('click', () => {
+      const open = mob.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', String(open));
+      mob.setAttribute('aria-hidden', String(!open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    searchToggle.addEventListener('click', () => {
+      const open = searchPanel.classList.toggle('open');
+      searchToggle.setAttribute('aria-expanded', String(open));
+      if (open) searchPanel.querySelector('input').focus();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        mob.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        mob.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        searchPanel.classList.remove('open');
+        searchToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    /* ─── Cart count (localStorage) ─────────────────────────── */
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('ami_cart') || '[]');
+      const total = cart.reduce((s, i) => s + (i.qty || 1), 0);
+      document.getElementById('cartCount').textContent = total;
+    }
+    updateCartCount();
+
+    /* ─── Product card HTML builder ──────────────────────────── */
+    function productCardHTML(p) {
+      const salePrice = p.salePrice;
+      let priceHTML = '';
+      if (salePrice) {
+        priceHTML = `<span class="am-price am-price-sale">${fmtPrice(salePrice)}</span><span class="am-price-orig">${fmtPrice(p.price)}</span>`;
+      } else {
+        priceHTML = `<span class="am-price">${fmtPrice(p.price)}</span>`;
+      }
+      const badgeHTML = p.badge
+        ? `<span class="am-prod-badge ${p.badge}">${badgeLabel(p.badge)}</span>`
+        : '';
+      const colorHTML = p.color
+        ? `<div class="am-color-dots"><span class="am-cdot" style="background:${colorHex(p.color)}" title="${colorName(p.color)}"></span></div>`
+        : '';
+
+      return `
+        <article class="am-prod-card" role="listitem">
+          <a href="chi-tiet-san-pham.html?id=${p.id}" class="am-prod-img-link">
+            <img src="${p.image}" alt="${p.name}" class="am-prod-img" loading="lazy"
+                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='800' viewBox='0 0 600 800'%3E%3Crect width='600' height='800' fill='%23f0ede8'/%3E%3C/svg%3E'">
+            ${badgeHTML}
+            <button class="am-quick-add" onclick="event.preventDefault();event.stopPropagation();addToCart(${p.id})" type="button">
+              Thêm vào giỏ
+            </button>
+          </a>
+          <div class="am-prod-body">
+            <span class="am-prod-cat">${catLabel(p.category)}</span>
+            <h3 class="am-prod-name">
+              <a href="chi-tiet-san-pham.html?id=${p.id}">${p.name}</a>
+            </h3>
+            <div class="am-prod-foot">
+              <div class="am-prod-price">${priceHTML}</div>
+              ${colorHTML}
+            </div>
+          </div>
+        </article>`;
+    }
+
+    /* ─── Render section grid ────────────────────────────────── */
+    function renderGrid(gridId, items) {
+      const el = document.getElementById(gridId);
+      if (!el) return;
+      el.innerHTML = items.map(productCardHTML).join('');
+    }
+
+    function addToCart(id) {
+      const p = PRODUCTS.find(x => x.id === id);
+      if (!p) return;
+      const cart = JSON.parse(localStorage.getItem('ami_cart') || '[]');
+      const existing = cart.find(x => x.id === id);
+      if (existing) {
+        existing.qty = (existing.qty || 1) + 1;
+      } else {
+        cart.push({ id, qty: 1, name: p.name, price: p.salePrice || p.price, image: p.image });
+      }
+      localStorage.setItem('ami_cart', JSON.stringify(cart));
+      updateCartCount();
+      showAddedFeedback(id);
+    }
+
+    function showAddedFeedback(id) {
+      /* brief visual feedback — button text changes momentarily */
+      const btns = document.querySelectorAll(`.am-quick-add`);
+      btns.forEach(btn => {
+        if (btn.closest('[class]')?.outerHTML?.includes(`addToCart(${id})`)) {
+          const orig = btn.textContent;
+          btn.textContent = 'Đã thêm ✓';
+          setTimeout(() => { btn.textContent = orig; }, 1200);
+        }
+      });
+    }
+
+    /* ─── Populate sections ──────────────────────────────────── */
+
+    // Section 1: Hàng mới về
+    const hangMoi = PRODUCTS.filter(p => p.theme && p.theme.includes('hang-moi')).slice(0, 8);
+    renderGrid('grid-hang-moi', hangMoi);
+
+    // Section 2: Bán chạy nhất
+    const banChay = PRODUCTS
+      .filter(p => p.theme && p.theme.includes('ban-chay'))
+      .sort((a, b) => (b.sold || 0) - (a.sold || 0))
+      .slice(0, 8);
+    renderGrid('grid-ban-chay', banChay);
+
+    // Section 3: Đang giảm giá
+    const giamGia = PRODUCTS
+      .filter(p => p.salePrice !== null)
+      .slice(0, 8);
+    renderGrid('grid-giam-gia', giamGia);
+
+    // Section 4: Áo & Tops
+    const aoTops = PRODUCTS
+      .filter(p => ['ao-thun', 'ao-so-mi'].includes(p.category))
+      .sort((a, b) => (b.sold || 0) - (a.sold || 0))
+      .slice(0, 4);
+    renderGrid('grid-ao-tops', aoTops);
+
+    /* ─── Local search (section-level) ──────────────────────── */
+    document.querySelectorAll('.am-local-search').forEach(input => {
+      input.addEventListener('input', () => {
+        const q = input.value.toLowerCase().trim();
+        const gridEl = document.getElementById(input.dataset.grid);
+        if (!gridEl) return;
+        gridEl.querySelectorAll('.am-prod-card').forEach(card => {
+          const name = card.querySelector('.am-prod-name')?.textContent.toLowerCase() || '';
+          const cat  = card.querySelector('.am-prod-cat')?.textContent.toLowerCase() || '';
+          card.hidden = q ? !name.includes(q) && !cat.includes(q) : false;
+        });
+      });
+    });
+
+    /* ─── Reveal animation ───────────────────────────────────── */
+    const ro = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+    document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+  </script>
+</body>
+</html>

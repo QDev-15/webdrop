@@ -91,11 +91,18 @@ const PRODUCTS = [
     sold: 120,
     stock: true,
     badge: 'new',           // new | sale | hot | null
-    image: 'assets/img/products/1.jpg'
+    image: 'https://images.unsplash.com/photo-XXXXXXXXXXXXX-XXXXXXXXXXXX?w=600&auto=format&fit=crop&q=80'
   },
   // 30–60 sản phẩm mock, đủ để phân trang có ý nghĩa (≥3 trang với 12/trang)
 ];
 ```
+
+**⚠️ [P0 — BẮT BUỘC] Ảnh sản phẩm PHẢI là URL Unsplash hotlink thật, KHÔNG BAO GIỜ dùng đường dẫn local `assets/img/...`.** Template không có pipeline build/asset — không có bước nào tải ảnh về `assets/img/`, nên bất kỳ `image: 'assets/img/products/N.jpg'` nào cũng chắc chắn vỡ ảnh 100% (đã xảy ra thật ở `shop-quan-ao-ami`, phát hiện qua báo cáo người dùng "ảnh toàn bộ bị lỗi" — nguyên nhân gốc rễ chính là ví dụ mẫu cũ ở đây dùng path local). Quy trình bắt buộc:
+1. Dùng domain `https://images.unsplash.com/photo-[id]?w=[width]&auto=format&fit=crop&q=80` — KHÔNG dùng `source.unsplash.com` (dịch vụ này đã ngừng hoạt động, không còn trả ảnh).
+2. **Verify từng URL trả về HTTP 200 trước khi đưa vào file** — chạy `curl -s -o /dev/null -w "%{http_code}" "https://images.unsplash.com/photo-[id]?w=100"` cho mỗi ID trước khi dùng, loại bỏ ID nào không phải 200. Không đoán ID rồi dùng luôn mà không kiểm tra.
+3. Áp dụng cho MỌI chỗ có ảnh trong template, không chỉ `PRODUCTS` — banner bộ sưu tập, ảnh trang Giới thiệu/Dịch vụ, avatar testimonial, ảnh chi tiết sản phẩm — tất cả đều phải là URL Unsplash thật đã verify, không local path.
+4. `onerror` fallback trên `<img>` (nếu dùng) trỏ về SVG data-URI nội tuyến (vd `data:image/svg+xml,%3Csvg...%3E`) thay vì `assets/img/placeholder.jpg` — file đó cũng không tồn tại nên fallback sẽ vỡ tiếp nếu ảnh chính lỗi.
+5. Checklist cuối bắt buộc thêm bước: `grep -rn "assets/img/" [thư mục template]/*.html assets/js/*.js` phải KHÔNG ra kết quả nào trước khi báo hoàn thành.
 
 Bảng gợi ý **filter dimensions** theo loại shop (chọn 4-6 dimension phù hợp, không cần dùng hết):
 
@@ -292,6 +299,8 @@ Sources/templates/web/[slug]/
 □ Nếu Mode B: mỗi section có tìm kiếm cục bộ riêng (không đụng URL/state trang catalog), có link "Xem tất cả" đúng chủ đề trỏ san-pham.html?theme=
 □ Tìm kiếm chung (nav) và tìm kiếm cục bộ theo chủ đề (nếu có) không xung đột nhau
 □ Mảng PRODUCTS có 30–60 sản phẩm mock, đủ ít nhất 3 trang phân trang
+□ Toàn bộ ảnh (PRODUCTS, collection, about, avatar...) là URL Unsplash thật đã verify HTTP 200 — grep "assets/img/" toàn bộ *.html + assets/js/*.js phải KHÔNG ra kết quả
+□ onerror fallback (nếu có) trỏ về SVG data-URI, không trỏ về file local không tồn tại
 □ Toàn bộ checklist gốc của template-builder vẫn áp dụng đầy đủ
 ```
 

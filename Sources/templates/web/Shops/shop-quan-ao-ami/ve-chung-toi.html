@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giới thiệu AMI Fashion — Thời trang tối giản</title>
+  <meta name="description" content="AMI Fashion ra đời từ tình yêu với thời trang tối giản. Tìm hiểu câu chuyện thương hiệu, giá trị cốt lõi và cam kết chất lượng của chúng tôi.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <div class="am-topbar" role="banner">
+    <span>Miễn phí vận chuyển đơn từ 599K</span>
+    <span class="am-topbar-dot">·</span>
+    <span>Đổi trả trong 30 ngày</span>
+    <span class="am-topbar-dot">·</span>
+    <span>Bảo hành chính hãng</span>
+  </div>
+
+  <nav id="am-nav" role="navigation" aria-label="Điều hướng chính">
+    <div class="am-nav-inner">
+      <a href="index.html" class="am-logo">AMI</a>
+      <ul class="am-nav-links" role="list">
+        <li><a href="index.html">Trang chủ</a></li>
+        <li><a href="san-pham.html">Sản phẩm</a></li>
+        <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+        <li><a href="ve-chung-toi.html" class="active" aria-current="page">Giới thiệu</a></li>
+        <li><a href="lien-he.html">Liên hệ</a></li>
+      </ul>
+      <div class="am-nav-actions">
+        <button class="am-nav-icon-btn" id="amSearchToggle" aria-label="Tìm kiếm" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <a href="gio-hang.html" class="am-nav-icon-btn am-cart-badge" aria-label="Giỏ hàng">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span id="cartCount">0</span>
+        </a>
+        <button class="am-hamburger" id="navBurger" aria-label="Mở menu" aria-expanded="false" aria-controls="navMob">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="am-search-panel" id="amSearchPanel" role="search">
+    <form action="san-pham.html" method="get">
+      <input type="text" name="q" placeholder="Tìm sản phẩm AMI..." autocomplete="off">
+      <button type="submit">Tìm</button>
+    </form>
+  </div>
+
+  <div class="am-nav-mob" id="navMob" aria-hidden="true">
+    <ul role="list">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="san-pham.html">Sản phẩm</a></li>
+      <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+      <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+      <li><a href="lien-he.html">Liên hệ</a></li>
+    </ul>
+  </div>
+
+  <main class="am-page-body">
+
+    <!-- ══════════════════════════════════════════════════════════
+         HERO GIỚI THIỆU — Kể chuyện thương hiệu (được phép đầy đủ ở đây)
+         ══════════════════════════════════════════════════════════ -->
+    <section class="am-about-hero" aria-labelledby="about-hero-heading">
+      <div class="am-container">
+        <p class="am-about-hero-label">Câu chuyện AMI</p>
+        <h1 id="about-hero-heading"><em>Ít hơn,<br>nhưng tốt hơn.</em></h1>
+        <p>AMI Fashion ra đời từ niềm tin rằng thời trang thật sự không cần quá nhiều. Chúng tôi tạo ra những sản phẩm bền vững, tối giản — để bạn mặc mãi mà không lo lỗi thời.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         STORY SECTION — Hành trình thương hiệu
+         ══════════════════════════════════════════════════════════ -->
+    <section class="am-sec" aria-labelledby="story-heading">
+      <div class="am-container">
+        <div class="am-story" data-reveal>
+          <div class="am-story-img">
+            <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=900&auto=format&fit=crop&q=80" alt="Xưởng may AMI Fashion" onerror="this.style.background='#e8e5df'">
+          </div>
+          <div class="am-story-content">
+            <span class="am-eyebrow">Hành trình của chúng tôi</span>
+            <h2 id="story-heading"><em>Từ một chiếc áo thun trắng</em></h2>
+            <p>AMI Fashion được thành lập vào năm 2020 bởi hai người bạn với chung một nỗi trăn trở: tại sao những chiếc áo thun cơ bản lại khó tìm đến vậy? Chất liệu không đạt, đường may không chắc, màu sắc nhanh phai.</p>
+            <p>Xuất phát từ đó, chúng tôi bắt đầu nghiên cứu chất liệu cotton hữu cơ từ các nhà cung cấp uy tín, cộng tác với các xưởng may nhỏ có tay nghề cao tại Việt Nam — và ra mắt chiếc áo thun basic đầu tiên với cam kết: <em>"mặc được 5 năm"</em>.</p>
+            <p>Ngày nay, AMI Fashion có hơn 36 sản phẩm trong bộ sưu tập, từ áo thun, sơ mi, quần jean đến váy đầm và áo khoác — tất cả đều giữ vững triết lý ban đầu: <strong>ít hơn, nhưng tốt hơn</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         VALUES — Giá trị cốt lõi
+         ══════════════════════════════════════════════════════════ -->
+    <section class="am-values" aria-labelledby="values-heading">
+      <div class="am-container">
+        <div style="text-align:center;max-width:560px;margin:0 auto 56px;" data-reveal>
+          <span class="am-eyebrow">Triết lý thiết kế</span>
+          <h2 class="am-sec-title" id="values-heading"><em>Ba giá trị cốt lõi</em></h2>
+        </div>
+        <div class="am-value-grid">
+          <div class="am-value-item" data-reveal>
+            <div class="am-value-num">01</div>
+            <p class="am-value-title">Chất liệu trước tiên</p>
+            <p class="am-value-desc">Mọi sản phẩm AMI đều bắt đầu từ việc chọn chất liệu. Chúng tôi ưu tiên cotton hữu cơ, linen tự nhiên và các sợi vải thân thiện môi trường — có thể mặc thoải mái cả ngày dài.</p>
+          </div>
+          <div class="am-value-item" data-reveal data-reveal-d1>
+            <div class="am-value-num">02</div>
+            <p class="am-value-title">Thiết kế vĩnh cửu</p>
+            <p class="am-value-desc">Không theo xu hướng theo mùa, không "lỗi thời" sau 3 tháng. AMI thiết kế những sản phẩm bạn có thể mặc 5 năm sau mà vẫn phù hợp — tiết kiệm và bền vững hơn cho cả bạn và môi trường.</p>
+          </div>
+          <div class="am-value-item" data-reveal data-reveal-d2>
+            <div class="am-value-num">03</div>
+            <p class="am-value-title">Sản xuất có trách nhiệm</p>
+            <p class="am-value-desc">Chúng tôi chỉ cộng tác với các xưởng may tại Việt Nam đảm bảo điều kiện làm việc tốt, trả lương công bằng và không sử dụng lao động trẻ em. Mỗi sản phẩm AMI là sản phẩm của sự tử tế.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         STAT BAR — Số liệu thương hiệu
+         ══════════════════════════════════════════════════════════ -->
+    <section class="am-stat-bar" aria-label="Số liệu thương hiệu">
+      <div class="am-container">
+        <div class="am-stat-grid" data-reveal>
+          <div>
+            <div class="am-stat-num" data-counter="5000" data-suffix="+">[5.000+]</div>
+            <p class="am-stat-label">Khách hàng tin dùng</p>
+          </div>
+          <div>
+            <div class="am-stat-num" data-counter="36" data-suffix="">[36]</div>
+            <p class="am-stat-label">Sản phẩm trong bộ sưu tập</p>
+          </div>
+          <div>
+            <div class="am-stat-num" data-counter="5" data-suffix=" năm">[5 năm]</div>
+            <p class="am-stat-label">Kinh nghiệm sản xuất</p>
+          </div>
+          <div>
+            <div class="am-stat-num" data-counter="98" data-suffix="%">[98%]</div>
+            <p class="am-stat-label">Khách hàng hài lòng</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         WHY CHOOSE US — Vì sao chọn AMI
+         ══════════════════════════════════════════════════════════ -->
+    <section class="am-sec" aria-labelledby="why-heading">
+      <div class="am-container">
+        <div style="text-align:center;max-width:480px;margin:0 auto 56px;" data-reveal>
+          <span class="am-eyebrow">Lý do chọn chúng tôi</span>
+          <h2 class="am-sec-title" id="why-heading"><em>Vì sao chọn AMI?</em></h2>
+        </div>
+        <div class="am-why" data-reveal>
+          <div class="am-why-item">
+            <div class="am-why-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <p class="am-why-title">Chất liệu kiểm định</p>
+            <p class="am-why-desc">100% cotton hữu cơ và linen tự nhiên, kiểm tra chất lượng từng lô hàng trước khi đưa vào sản xuất.</p>
+          </div>
+          <div class="am-why-item">
+            <div class="am-why-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <p class="am-why-title">Giao hàng nhanh</p>
+            <p class="am-why-desc">Giao hàng trong 24-48 giờ tại TP.HCM và Hà Nội. Toàn quốc 2-4 ngày làm việc.</p>
+          </div>
+          <div class="am-why-item">
+            <div class="am-why-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <p class="am-why-title">Đổi trả dễ dàng</p>
+            <p class="am-why-desc">30 ngày đổi trả miễn phí nếu sản phẩm lỗi hoặc không vừa size. Không cần lý do.</p>
+          </div>
+          <div class="am-why-item">
+            <div class="am-why-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <p class="am-why-title">Bảo hành chất liệu</p>
+            <p class="am-why-desc">Cam kết bảo hành chất liệu 6 tháng — phai màu, bung đường may được đổi sản phẩm mới.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         TESTIMONIALS — Đánh giá khách hàng
+         ══════════════════════════════════════════════════════════ -->
+    <section class="am-sec am-testimonials" aria-labelledby="testimonials-heading">
+      <div class="am-container">
+        <div style="text-align:center;max-width:480px;margin:0 auto 48px;" data-reveal>
+          <span class="am-eyebrow">Khách hàng nói gì</span>
+          <h2 class="am-sec-title" id="testimonials-heading"><em>Cảm nhận thật</em></h2>
+        </div>
+        <div class="am-testimonial-grid" data-reveal>
+          <div class="am-testimonial">
+            <div class="am-testimonial-stars">★★★★★</div>
+            <p class="am-testimonial-text">"Mình đã mặc chiếc áo thun trắng AMI được hơn 2 năm, giặt máy hàng tuần mà vẫn trắng đẹp, không co rút. Chất liệu vượt quá kỳ vọng của mình."</p>
+            <div class="am-testimonial-author">
+              <div class="am-testimonial-avatar">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&auto=format&fit=crop&q=80" alt="Linh Nguyễn" onerror="this.style.background='#eee'">
+              </div>
+              <div>
+                <p class="am-testimonial-name">Linh Nguyễn</p>
+                <p class="am-testimonial-role">Nhân viên văn phòng, Hà Nội</p>
+              </div>
+            </div>
+          </div>
+          <div class="am-testimonial">
+            <div class="am-testimonial-stars">★★★★★</div>
+            <p class="am-testimonial-text">"AMI là thương hiệu mình tin dùng nhất cho quần jean. Chiếc Wide Leg mình mua năm ngoái vẫn đẹp như mới, dù đã mặc rất nhiều. Form chuẩn, chất jean dày và bền."</p>
+            <div class="am-testimonial-author">
+              <div class="am-testimonial-avatar">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&auto=format&fit=crop&q=80" alt="Minh Trang" onerror="this.style.background='#eee'">
+              </div>
+              <div>
+                <p class="am-testimonial-name">Minh Trang</p>
+                <p class="am-testimonial-role">Nhiếp ảnh gia, TP.HCM</p>
+              </div>
+            </div>
+          </div>
+          <div class="am-testimonial">
+            <div class="am-testimonial-stars">★★★★☆</div>
+            <p class="am-testimonial-text">"Chiếc váy Midi Linen của AMI là món đồ mình mặc nhiều nhất mùa hè này. Nhẹ, mát, không nhăn, đi làm lẫn đi chơi đều phù hợp. Giao hàng cũng rất nhanh."</p>
+            <div class="am-testimonial-author">
+              <div class="am-testimonial-avatar">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80" alt="Thu Hà" onerror="this.style.background='#eee'">
+              </div>
+              <div>
+                <p class="am-testimonial-name">Thu Hà</p>
+                <p class="am-testimonial-role">Giáo viên, Đà Nẵng</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         FEATURE-ICON-ROW — Chính sách đầy đủ
+         ══════════════════════════════════════════════════════════ -->
+    <section aria-label="Chính sách mua hàng">
+      <div class="am-container">
+        <div class="am-policy-row" data-reveal>
+          <div class="am-policy-item">
+            <div class="am-policy-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <p class="am-policy-title">Miễn phí vận chuyển</p>
+            <p class="am-policy-desc">Đơn hàng từ 599K được miễn phí ship toàn quốc. Giao trong 24-48 giờ tại TP.HCM và Hà Nội.</p>
+          </div>
+          <div class="am-policy-item">
+            <div class="am-policy-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.17"/></svg>
+            </div>
+            <p class="am-policy-title">Đổi trả 30 ngày</p>
+            <p class="am-policy-desc">Đổi trả miễn phí trong 30 ngày nếu sản phẩm lỗi hoặc không đúng size. Hoàn tiền trong 3-5 ngày làm việc.</p>
+          </div>
+          <div class="am-policy-item">
+            <div class="am-policy-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <p class="am-policy-title">Bảo hành chất liệu</p>
+            <p class="am-policy-desc">Cam kết bảo hành chất liệu 6 tháng — phai màu bất thường hoặc bung đường may được đổi miễn phí.</p>
+          </div>
+          <div class="am-policy-item">
+            <div class="am-policy-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.16h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <p class="am-policy-title">Hỗ trợ 24/7</p>
+            <p class="am-policy-desc">Đội ngũ tư vấn qua Zalo, email và điện thoại. Trả lời trong vòng 30 phút trong giờ làm việc.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         ABOUT CTA — Trỏ về trang Sản phẩm
+         ══════════════════════════════════════════════════════════ -->
+    <section class="am-about-cta" aria-labelledby="cta-heading">
+      <div class="am-container">
+        <span class="am-about-hero-label">Sẵn sàng chưa?</span>
+        <h2 id="cta-heading"><em>Khám phá bộ sưu tập AMI</em></h2>
+        <p>Tìm chiếc sản phẩm phù hợp với phong cách của bạn.</p>
+        <a href="san-pham.html" class="am-btn-light">Mua sắm ngay →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="am-footer" role="contentinfo">
+    <div class="am-container">
+      <div class="am-footer-grid">
+        <div class="am-footer-brand">
+          <span class="am-footer-logo">AMI</span>
+          <p>Thời trang tối giản, chất liệu chuẩn. Mỗi sản phẩm AMI được chọn lọc kỹ lưỡng để mang lại sự thoải mái và phong cách bền vững.</p>
+          <div class="am-footer-socials">
+            <a href="#" rel="noopener noreferrer" target="_blank">Facebook</a>
+            <a href="#" rel="noopener noreferrer" target="_blank">Instagram</a>
+            <a href="#" rel="noopener noreferrer" target="_blank">TikTok</a>
+          </div>
+        </div>
+        <div class="am-footer-col">
+          <p class="am-footer-col-title">Mua sắm</p>
+          <ul>
+            <li><a href="san-pham.html">Tất cả sản phẩm</a></li>
+            <li><a href="san-pham.html?category=ao-thun">Áo Thun</a></li>
+            <li><a href="san-pham.html?category=ao-so-mi">Áo Sơ Mi</a></li>
+            <li><a href="san-pham.html?category=quan-jean">Quần Jean</a></li>
+            <li><a href="san-pham.html?category=vay-dam">Váy &amp; Đầm</a></li>
+            <li><a href="san-pham.html?category=ao-khoac">Áo Khoác</a></li>
+            <li><a href="san-pham.html?theme=giam-gia">Đang giảm giá</a></li>
+          </ul>
+        </div>
+        <div class="am-footer-col">
+          <p class="am-footer-col-title">Hỗ trợ</p>
+          <ul>
+            <li><a href="ve-chung-toi.html">Giới thiệu AMI</a></li>
+            <li><a href="lien-he.html">Liên hệ</a></li>
+            <li><a href="lien-he.html">Hướng dẫn chọn size</a></li>
+            <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+            <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="am-footer-bottom">
+        <p class="am-footer-copy">© 2025 AMI Fashion. Tất cả quyền được bảo lưu.</p>
+        <div class="am-footer-legal">
+          <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+          <a href="dieu-khoan.html">Điều khoản</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://zalo.me/[ZALO_NUMBER]" class="am-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M24 4C13 4 4 13 4 24c0 5.3 2 10.1 5.3 13.7L7 44l6.6-2.2C16.7 43.5 20.2 44 24 44c11 0 20-9 20-20S35 4 24 4z"/><text x="12" y="30" font-family="Arial,sans-serif" font-weight="700" font-size="13" fill="#0068FF">Zalo</text></svg>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    /* ─── NAV ──────────────────────────────────────────────── */
+    const burger = document.getElementById('navBurger');
+    const mob    = document.getElementById('navMob');
+    const searchToggle = document.getElementById('amSearchToggle');
+    const searchPanel  = document.getElementById('amSearchPanel');
+    burger.addEventListener('click', () => {
+      const open = mob.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', String(open));
+      mob.setAttribute('aria-hidden', String(!open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    searchToggle.addEventListener('click', () => {
+      const open = searchPanel.classList.toggle('open');
+      searchToggle.setAttribute('aria-expanded', String(open));
+      if (open) searchPanel.querySelector('input').focus();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        mob.classList.remove('open'); burger.classList.remove('open');
+        document.body.style.overflow = '';
+        searchPanel.classList.remove('open');
+      }
+    });
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('ami_cart') || '[]');
+      document.getElementById('cartCount').textContent = cart.reduce((s, i) => s + (i.qty || 1), 0);
+    }
+    updateCartCount();
+
+    /* ─── COUNTER ANIMATION ─────────────────────────────────── */
+    document.querySelectorAll('[data-counter]').forEach(el => {
+      const cro = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          const target = +el.dataset.counter;
+          const suffix = el.dataset.suffix || '';
+          let cur = 0;
+          const step = Math.ceil(target / 60);
+          const t = setInterval(() => {
+            cur = Math.min(cur + step, target);
+            el.textContent = cur.toLocaleString('vi-VN') + suffix;
+            if (cur >= target) clearInterval(t);
+          }, 25);
+          cro.disconnect();
+        }
+      }, { threshold: 0.5 });
+      cro.observe(el);
+    });
+
+    /* ─── REVEAL ANIMATION ──────────────────────────────────── */
+    const ro = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+    document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+  </script>
+</body>
+</html>

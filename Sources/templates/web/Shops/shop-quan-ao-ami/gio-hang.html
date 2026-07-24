@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giỏ hàng — AMI Fashion</title>
+  <meta name="description" content="Xem giỏ hàng và thanh toán đơn hàng tại AMI Fashion.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <div class="am-topbar" role="banner">
+    <span>Miễn phí vận chuyển đơn từ 599K</span>
+    <span class="am-topbar-dot">·</span>
+    <span>Đổi trả trong 30 ngày</span>
+    <span class="am-topbar-dot">·</span>
+    <span>Bảo hành chính hãng</span>
+  </div>
+
+  <nav id="am-nav" role="navigation" aria-label="Điều hướng chính">
+    <div class="am-nav-inner">
+      <a href="index.html" class="am-logo">AMI</a>
+      <ul class="am-nav-links" role="list">
+        <li><a href="index.html">Trang chủ</a></li>
+        <li><a href="san-pham.html">Sản phẩm</a></li>
+        <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+        <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+        <li><a href="lien-he.html">Liên hệ</a></li>
+      </ul>
+      <div class="am-nav-actions">
+        <button class="am-nav-icon-btn" id="amSearchToggle" aria-label="Tìm kiếm" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <a href="gio-hang.html" class="am-nav-icon-btn am-cart-badge" aria-label="Giỏ hàng">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span id="cartCount">0</span>
+        </a>
+        <button class="am-hamburger" id="navBurger" aria-label="Mở menu" aria-expanded="false" aria-controls="navMob">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="am-search-panel" id="amSearchPanel" role="search">
+    <form action="san-pham.html" method="get">
+      <input type="text" name="q" placeholder="Tìm sản phẩm AMI..." autocomplete="off">
+      <button type="submit">Tìm</button>
+    </form>
+  </div>
+
+  <div class="am-nav-mob" id="navMob" aria-hidden="true">
+    <ul role="list">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="san-pham.html">Sản phẩm</a></li>
+      <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+      <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+      <li><a href="lien-he.html">Liên hệ</a></li>
+    </ul>
+  </div>
+
+  <main class="am-page-body">
+    <div class="am-container am-cart-wrap">
+
+      <div class="am-page-hero" style="border-bottom:none;padding-bottom:24px;">
+        <h1>Giỏ hàng</h1>
+      </div>
+
+      <!-- Empty cart state -->
+      <div id="cartEmpty" style="display:none;text-align:center;padding:80px 24px;">
+        <p style="font-family:var(--serif);font-style:italic;font-size:22px;color:var(--text-3);margin-bottom:24px;">Giỏ hàng của bạn đang trống.</p>
+        <a href="san-pham.html" class="am-link-btn">Tiếp tục mua sắm →</a>
+      </div>
+
+      <!-- Cart content -->
+      <div id="cartContent" class="row g-5">
+        <div class="col-lg-8">
+          <table class="am-cart-table w-100">
+            <thead>
+              <tr>
+                <th colspan="2">Sản phẩm</th>
+                <th>Số lượng</th>
+                <th style="text-align:right;">Thành tiền</th>
+              </tr>
+            </thead>
+            <tbody id="cartBody">
+              <!-- Rendered by JS -->
+            </tbody>
+          </table>
+          <div style="margin-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+            <a href="san-pham.html" class="am-link-btn">← Tiếp tục mua sắm</a>
+            <button type="button" id="clearCartBtn" style="background:none;border:none;font-size:12px;letter-spacing:1px;color:var(--text-3);text-decoration:underline;text-underline-offset:2px;cursor:pointer;">Xóa giỏ hàng</button>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="am-cart-summary">
+            <p style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);margin-bottom:20px;">Tổng đơn hàng</p>
+            <div class="am-summary-row">
+              <span>Tạm tính</span>
+              <span id="subtotal">0₫</span>
+            </div>
+            <div class="am-summary-row">
+              <span>Phí vận chuyển</span>
+              <span id="shipping">—</span>
+            </div>
+            <div class="am-summary-row" id="discountRow" style="display:none;">
+              <span>Giảm giá <span id="couponCodeLabel"></span></span>
+              <span id="discountAmount"></span>
+            </div>
+
+            <div class="am-coupon-box">
+              <div class="am-coupon-input-row">
+                <input type="text" id="couponInput" placeholder="Nhập mã giảm giá" aria-label="Mã giảm giá" maxlength="20">
+                <button type="button" id="couponApplyBtn" data-mode="apply">Áp dụng</button>
+              </div>
+              <p class="am-coupon-msg" id="couponMsg"></p>
+            </div>
+
+            <div class="am-summary-total">
+              <span>Tổng cộng</span>
+              <span id="cartTotal">0₫</span>
+            </div>
+            <button class="am-btn-primary" style="margin-top:20px;" type="button" onclick="location.href='lien-he.html'">Tiến hành thanh toán</button>
+            <p style="font-size:11px;color:var(--text-3);text-align:center;margin-top:12px;">Miễn phí ship đơn từ 599K</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="am-footer" role="contentinfo">
+    <div class="am-container">
+      <div class="am-footer-bottom">
+        <p class="am-footer-copy">© 2025 AMI Fashion. Tất cả quyền được bảo lưu.</p>
+        <div class="am-footer-legal">
+          <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+          <a href="dieu-khoan.html">Điều khoản</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://zalo.me/[ZALO_NUMBER]" class="am-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M24 4C13 4 4 13 4 24c0 5.3 2 10.1 5.3 13.7L7 44l6.6-2.2C16.7 43.5 20.2 44 24 44c11 0 20-9 20-20S35 4 24 4z"/><text x="12" y="30" font-family="Arial,sans-serif" font-weight="700" font-size="13" fill="#0068FF">Zalo</text></svg>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/products-data.js"></script>
+  <script>
+    /* ─── NAV ──────────────────────────────────────────────── */
+    const burger = document.getElementById('navBurger');
+    const mob    = document.getElementById('navMob');
+    const searchToggle = document.getElementById('amSearchToggle');
+    const searchPanel  = document.getElementById('amSearchPanel');
+    burger.addEventListener('click', () => {
+      const open = mob.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', String(open));
+      mob.setAttribute('aria-hidden', String(!open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    searchToggle.addEventListener('click', () => {
+      const open = searchPanel.classList.toggle('open');
+      searchToggle.setAttribute('aria-expanded', String(open));
+      if (open) searchPanel.querySelector('input').focus();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        mob.classList.remove('open'); burger.classList.remove('open');
+        document.body.style.overflow = '';
+        searchPanel.classList.remove('open');
+      }
+    });
+
+    /* ─── CART ──────────────────────────────────────────────── */
+    function getCart() {
+      return JSON.parse(localStorage.getItem('ami_cart') || '[]');
+    }
+    function saveCart(cart) {
+      localStorage.setItem('ami_cart', JSON.stringify(cart));
+    }
+
+    function updateCartCount() {
+      const cart = getCart();
+      document.getElementById('cartCount').textContent = cart.reduce((s, i) => s + (i.qty || 1), 0);
+    }
+
+    /* ─── COUPON ────────────────────────────────────────────── */
+    const COUPONS = {
+      AMI10:     { type: 'percent',  value: 10,    label: 'Giảm 10% tổng đơn' },
+      WELCOME50: { type: 'fixed',    value: 50000, label: 'Giảm 50.000₫' },
+      FREESHIP:  { type: 'freeship', value: 0,     label: 'Miễn phí vận chuyển' },
+    };
+
+    function getCoupon() {
+      return localStorage.getItem('ami_coupon') || '';
+    }
+    function saveCoupon(code) {
+      if (code) localStorage.setItem('ami_coupon', code);
+      else localStorage.removeItem('ami_coupon');
+    }
+
+    function recalcCartTotals() {
+      const cart = getCart();
+      let sub = 0;
+      cart.forEach(item => { sub += item.price * (item.qty || 1); });
+      document.getElementById('subtotal').textContent = fmtPrice(sub);
+
+      let ship = sub >= 599000 ? 0 : 30000;
+      let discount = 0;
+
+      const code = getCoupon();
+      const coupon = COUPONS[code];
+      const discountRow = document.getElementById('discountRow');
+      const applyBtn = document.getElementById('couponApplyBtn');
+      const couponInput = document.getElementById('couponInput');
+
+      if (coupon) {
+        if (coupon.type === 'percent') discount = Math.round(sub * coupon.value / 100);
+        else if (coupon.type === 'fixed') discount = Math.min(coupon.value, sub);
+        else if (coupon.type === 'freeship') ship = 0;
+
+        document.getElementById('couponCodeLabel').textContent = `(${code})`;
+        document.getElementById('discountAmount').textContent = discount > 0 ? `−${fmtPrice(discount)}` : coupon.label;
+        discountRow.style.display = 'flex';
+        applyBtn.textContent = 'Hủy';
+        applyBtn.dataset.mode = 'remove';
+        if (couponInput && document.activeElement !== couponInput) couponInput.value = code;
+      } else {
+        discountRow.style.display = 'none';
+        applyBtn.textContent = 'Áp dụng';
+        applyBtn.dataset.mode = 'apply';
+      }
+
+      document.getElementById('shipping').textContent = ship === 0 ? 'Miễn phí' : fmtPrice(ship);
+      const total = Math.max(0, sub + ship - discount);
+      document.getElementById('cartTotal').textContent = fmtPrice(total);
+    }
+
+    function initCoupon() {
+      const input = document.getElementById('couponInput');
+      const btn = document.getElementById('couponApplyBtn');
+      const msg = document.getElementById('couponMsg');
+      const existing = getCoupon();
+      if (existing) input.value = existing;
+
+      function showMsg(text, isError) {
+        msg.textContent = text;
+        msg.classList.toggle('is-error', !!isError);
+        msg.classList.toggle('is-success', !isError && !!text);
+      }
+
+      btn.addEventListener('click', () => {
+        if (btn.dataset.mode === 'remove') {
+          saveCoupon('');
+          input.value = '';
+          showMsg('');
+          recalcCartTotals();
+          return;
+        }
+        const code = input.value.trim().toUpperCase();
+        if (!code) return;
+        if (COUPONS[code]) {
+          saveCoupon(code);
+          showMsg(`Đã áp dụng mã "${code}" — ${COUPONS[code].label}`, false);
+          recalcCartTotals();
+        } else {
+          showMsg('Mã giảm giá không hợp lệ hoặc đã hết hạn.', true);
+        }
+      });
+
+      input.addEventListener('keydown', e => {
+        if (e.key === 'Enter') { e.preventDefault(); btn.click(); }
+      });
+    }
+
+    function renderCart() {
+      const cart = getCart();
+      const empty = document.getElementById('cartEmpty');
+      const content = document.getElementById('cartContent');
+      if (cart.length === 0) {
+        empty.style.display = 'block';
+        content.style.display = 'none';
+        document.getElementById('cartCount').textContent = '0';
+        return;
+      }
+      empty.style.display = 'none';
+      content.style.display = 'flex';
+
+      const tbody = document.getElementById('cartBody');
+      tbody.innerHTML = cart.map((item, idx) => `
+        <tr class="am-cart-item">
+          <td style="width:90px;padding-right:16px;">
+            <img src="${item.image}" alt="${item.name}" class="am-cart-thumb" onerror="this.src='data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='800' viewBox='0 0 600 800'%3E%3Crect width='600' height='800' fill='%23f0ede8'/%3E%3C/svg%3E'">
+          </td>
+          <td>
+            <div class="am-cart-item-name">${item.name}</div>
+            <div class="am-cart-item-meta">
+              ${item.color ? colorName(item.color) : ''}${item.size ? ' · Size ' + item.size : ''}
+            </div>
+            <div style="margin-top:8px;font-size:14px;font-weight:400;color:var(--text);">${fmtPrice(item.price)}</div>
+          </td>
+          <td>
+            <div class="am-qty-wrap">
+              <button class="am-qty-btn" data-action="minus" data-idx="${idx}" type="button">−</button>
+              <input type="number" class="am-qty-val" value="${item.qty || 1}" min="1" max="99" data-idx="${idx}" aria-label="Số lượng">
+              <button class="am-qty-btn" data-action="plus" data-idx="${idx}" type="button">+</button>
+            </div>
+            <button class="am-cart-remove" data-idx="${idx}" type="button" style="margin-top:8px;">Xóa</button>
+          </td>
+          <td style="text-align:right;font-size:14px;font-weight:400;">${fmtPrice(item.price * (item.qty || 1))}</td>
+        </tr>`).join('');
+
+      /* Qty events */
+      tbody.querySelectorAll('[data-action]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const cart2 = getCart();
+          const i = +btn.dataset.idx;
+          if (btn.dataset.action === 'minus') {
+            if (cart2[i].qty > 1) cart2[i].qty--;
+          } else {
+            cart2[i].qty++;
+          }
+          saveCart(cart2);
+          renderCart();
+          recalcCartTotals();
+          updateCartCount();
+        });
+      });
+
+      tbody.querySelectorAll('input.am-qty-val').forEach(inp => {
+        inp.addEventListener('change', () => {
+          const cart2 = getCart();
+          const i = +inp.dataset.idx;
+          const v = Math.max(1, Math.min(99, +inp.value || 1));
+          cart2[i].qty = v;
+          saveCart(cart2);
+          recalcCartTotals();
+          updateCartCount();
+        });
+      });
+
+      tbody.querySelectorAll('.am-cart-remove').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const cart2 = getCart();
+          cart2.splice(+btn.dataset.idx, 1);
+          saveCart(cart2);
+          renderCart();
+          recalcCartTotals();
+          updateCartCount();
+        });
+      });
+
+      recalcCartTotals();
+    }
+
+    document.getElementById('clearCartBtn').addEventListener('click', () => {
+      if (confirm('Xóa toàn bộ giỏ hàng?')) {
+        localStorage.removeItem('ami_cart');
+        saveCoupon('');
+        document.getElementById('couponInput').value = '';
+        document.getElementById('couponMsg').textContent = '';
+        renderCart();
+        updateCartCount();
+      }
+    });
+
+    initCoupon();
+    renderCart();
+    updateCartCount();
+  </script>
+</body>
+</html>
