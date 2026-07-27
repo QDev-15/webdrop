@@ -256,10 +256,11 @@ input, select, textarea { font-family: var(--sans); }
   border-bottom: 1px solid var(--border);
   padding: 24px;
   transform: translateY(-110%);
-  transition: transform .3s ease;
+  visibility: hidden;
+  transition: transform .3s ease, visibility 0s linear .3s;
   z-index: 990;
 }
-.mp-mob-menu.open { transform: translateY(0); }
+.mp-mob-menu.open { transform: translateY(0); visibility: visible; transition: transform .3s ease; }
 .mp-mob-menu ul { display: flex; flex-direction: column; gap: 0; }
 .mp-mob-menu li a {
   display: block;
