@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Liên hệ KidZone — hotline, email và form tư vấn đồ chơi cho bé. Chúng tôi phản hồi trong 1 giờ làm việc.">
+<meta property="og:title" content="Liên hệ — KidZone">
+<title>Liên hệ — KidZone Shop Đồ Chơi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="dc-topbar">
+  <div class="dc-topbar-inner">
+    <span>Miễn phí ship đơn từ 300K</span>
+    <span class="dc-topbar-sep">·</span>
+    <span>Đổi trả 30 ngày</span>
+    <span class="dc-topbar-sep">·</span>
+    <span>Bảo hành chính hãng</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="dc-nav" id="dcNav" aria-label="Menu chính">
+  <div class="dc-nav-inner">
+    <a href="index.html" class="dc-nav-logo" aria-label="KidZone trang chủ">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="var(--accent)"/>
+        <text x="16" y="22" font-size="18" text-anchor="middle" font-family="Baloo 2" font-weight="800" fill="white">K</text>
+      </svg>
+      <span>KidZone</span>
+    </a>
+    <ul class="dc-nav-links" role="list">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="san-pham.html">Sản phẩm</a></li>
+      <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+      <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+      <li><a href="lien-he.html" class="active" aria-current="page">Liên hệ</a></li>
+    </ul>
+    <div class="dc-nav-actions">
+      <button class="dc-nav-icon" id="dcSearchBtn" aria-label="Tìm kiếm" aria-expanded="false" aria-controls="dcSearchPanel" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+      <a href="gio-hang.html" class="dc-nav-icon dc-cart-icon" aria-label="Giỏ hàng">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="dc-cart-badge" id="dcCartCount">0</span>
+      </a>
+      <button class="dc-burger" id="dcBurger" aria-label="Mở menu" aria-expanded="false" aria-controls="dcNavMob" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="dc-search-panel" id="dcSearchPanel" hidden>
+    <form class="dc-search-form" action="san-pham.html" method="get" role="search">
+      <input type="text" name="q" id="dcSearchInput" placeholder="Tìm đồ chơi cho bé..." autocomplete="off" aria-label="Tìm kiếm">
+      <button type="submit" aria-label="Tìm">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+    </form>
+  </div>
+</nav>
+
+<div class="dc-nav-mob" id="dcNavMob" aria-hidden="true" role="dialog" aria-label="Menu di động">
+  <ul role="list">
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="san-pham.html">Sản phẩm</a></li>
+    <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+    <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+    <li><a href="lien-he.html" class="active">Liên hệ</a></li>
+  </ul>
+</div>
+
+<!-- PAGE HERO -->
+<div class="dc-page-hero">
+  <div class="dc-container">
+    <h1>Liên hệ với chúng tôi</h1>
+    <p>Tư vấn chọn đồ chơi phù hợp · Đặt hàng số lượng lớn · Hỗ trợ sau mua</p>
+  </div>
+</div>
+
+<!-- CONTACT SECTION -->
+<section class="dc-section">
+  <div class="dc-container">
+    <div class="dc-contact-layout">
+
+      <!-- Info column -->
+      <div class="dc-contact-info" data-reveal>
+        <h2 class="dc-contact-info-title">Thông tin liên hệ</h2>
+
+        <div class="dc-contact-item">
+          <div class="dc-contact-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38C1.58 2.28 2.4 1.35 3.5 1H6.5a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <h3>Hotline</h3>
+            <p><a href="tel:0901234567">0901 234 567</a></p>
+            <p class="dc-contact-note">Thứ 2 – Chủ nhật, 8:00 – 21:00</p>
+          </div>
+        </div>
+
+        <div class="dc-contact-item">
+          <div class="dc-contact-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </div>
+          <div>
+            <h3>Email</h3>
+            <p><a href="mailto:hello@kidzone.vn">hello@kidzone.vn</a></p>
+            <p class="dc-contact-note">Phản hồi trong vòng 1 giờ làm việc</p>
+          </div>
+        </div>
+
+        <div class="dc-contact-item">
+          <div class="dc-contact-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <h3>Showroom</h3>
+            <p>123 Nguyễn Văn Cừ, Q.5, TP.HCM</p>
+            <p class="dc-contact-note">Thứ 2 – Thứ 7: 9:00 – 20:00</p>
+          </div>
+        </div>
+
+        <div class="dc-contact-item">
+          <div class="dc-contact-icon" style="background:rgba(0,104,255,.12);" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#0068FF" aria-hidden="true"><path d="M12.001 2C6.478 2 2 6.477 2 12c0 2.25.751 4.33 2.015 6.004L2.5 21.5l3.594-1.49C7.657 21.17 9.75 22 12 22c5.523 0 10-4.477 10-10S17.524 2 12.001 2zm4.894 13.37c-.193.543-.573.968-1.086 1.073-.29.058-.664.105-2.097-.452-1.75-.69-2.88-2.453-2.967-2.568-.086-.115-.703-.937-.703-1.787 0-.849.445-1.267.603-1.44a.632.632 0 0 1 .459-.215c.114 0 .229 0 .329.005.106.005.248-.04.388.296.143.344.486 1.187.529 1.274.043.086.072.187.014.3-.057.114-.086.185-.172.286-.086.1-.18.224-.257.3-.086.087-.176.181-.076.355.1.173.446.735.958 1.19.66.586 1.216.768 1.388.854.172.086.271.072.372-.043.1-.115.43-.503.545-.676.114-.172.229-.143.386-.086.157.057.999.472 1.17.557.172.086.287.129.33.2.042.071.042.413-.15.955z"/></svg>
+          </div>
+          <div>
+            <h3>Zalo</h3>
+            <p><a href="https://zalo.me/0901234567" target="_blank" rel="noopener">Chat Zalo ngay</a></p>
+            <p class="dc-contact-note">Phản hồi nhanh nhất</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form column -->
+      <div class="dc-contact-form-wrap" data-reveal>
+        <h2 class="dc-contact-form-title">Gửi tin nhắn cho chúng tôi</h2>
+        <form class="dc-contact-form" id="contactForm" novalidate>
+          <div class="dc-form-row">
+            <div class="dc-form-group">
+              <label for="contactName">Họ và tên <span class="dc-req" aria-hidden="true">*</span></label>
+              <input type="text" id="contactName" name="name" placeholder="Nguyễn Thị An" required autocomplete="name">
+              <span class="dc-form-err" id="nameErr" aria-live="polite"></span>
+            </div>
+            <div class="dc-form-group">
+              <label for="contactPhone">Số điện thoại <span class="dc-req" aria-hidden="true">*</span></label>
+              <input type="tel" id="contactPhone" name="phone" placeholder="0901 234 567" required autocomplete="tel">
+              <span class="dc-form-err" id="phoneErr" aria-live="polite"></span>
+            </div>
+          </div>
+          <div class="dc-form-group">
+            <label for="contactEmail">Email</label>
+            <input type="email" id="contactEmail" name="email" placeholder="email@example.com" autocomplete="email">
+            <span class="dc-form-err" id="emailErr" aria-live="polite"></span>
+          </div>
+          <div class="dc-form-group">
+            <label for="contactSubject">Chủ đề</label>
+            <select id="contactSubject" name="subject">
+              <option value="">Chọn chủ đề...</option>
+              <option value="tuvan">Tư vấn chọn đồ chơi</option>
+              <option value="donhang">Hỏi về đơn hàng</option>
+              <option value="doitra">Đổi trả / Bảo hành</option>
+              <option value="soluong">Đặt hàng số lượng lớn</option>
+              <option value="khac">Khác</option>
+            </select>
+          </div>
+          <div class="dc-form-group">
+            <label for="contactMessage">Nội dung <span class="dc-req" aria-hidden="true">*</span></label>
+            <textarea id="contactMessage" name="message" rows="5" placeholder="Bé nhà tôi 4 tuổi, muốn tư vấn đồ chơi giáo dục phù hợp..." required></textarea>
+            <span class="dc-form-err" id="messageErr" aria-live="polite"></span>
+          </div>
+          <button type="submit" class="dc-btn-primary dc-form-submit" id="contactSubmit">
+            Gửi tin nhắn
+          </button>
+          <div class="dc-form-success" id="formSuccess" hidden role="alert">
+            Cảm ơn bạn! Chúng tôi sẽ liên hệ lại trong vòng 1 giờ làm việc.
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="dc-footer">
+  <div class="dc-container">
+    <div class="dc-footer-grid">
+      <div class="dc-footer-col dc-footer-brand">
+        <a href="index.html" class="dc-footer-logo">
+          <svg width="36" height="36" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <rect width="32" height="32" rx="8" fill="var(--yellow)"/>
+            <text x="16" y="22" font-size="18" text-anchor="middle" font-family="Baloo 2" font-weight="800" fill="#0c2a3d">K</text>
+          </svg>
+          <span>KidZone</span>
+        </a>
+        <p class="dc-footer-desc">Shop đồ chơi trẻ em chất lượng cao, an toàn cho bé từ 0–12 tuổi.</p>
+        <div class="dc-footer-social">
+          <a href="#" aria-label="Facebook" class="dc-footer-soc-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram" class="dc-footer-soc-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        </div>
+      </div>
+      <div class="dc-footer-col">
+        <h3 class="dc-footer-col-title">Sản phẩm</h3>
+        <ul>
+          <li><a href="san-pham.html?category=do-choi-giao-duc">Đồ chơi giáo dục</a></li>
+          <li><a href="san-pham.html?category=lego-xep-hinh">Lego & Xếp hình</a></li>
+          <li><a href="san-pham.html?category=bup-be-thu-bong">Búp bê & Thú bông</a></li>
+        </ul>
+      </div>
+      <div class="dc-footer-col">
+        <h3 class="dc-footer-col-title">Hỗ trợ</h3>
+        <ul>
+          <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+          <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+          <li><a href="gio-hang.html">Giỏ hàng</a></li>
+        </ul>
+      </div>
+      <div class="dc-footer-col">
+        <h3 class="dc-footer-col-title">Chính sách</h3>
+        <ul>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="dc-footer-bottom">
+      <span>© 2025 KidZone. Bảo lưu mọi quyền.</span>
+      <span>Designed with ❤ for little ones</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/0901234567" class="dc-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo với KidZone">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M12.001 2C6.478 2 2 6.477 2 12c0 2.25.751 4.33 2.015 6.004L2.5 21.5l3.594-1.49C7.657 21.17 9.75 22 12 22c5.523 0 10-4.477 10-10S17.524 2 12.001 2zm4.894 13.37c-.193.543-.573.968-1.086 1.073-.29.058-.664.105-2.097-.452-1.75-.69-2.88-2.453-2.967-2.568-.086-.115-.703-.937-.703-1.787 0-.849.445-1.267.603-1.44a.632.632 0 0 1 .459-.215c.114 0 .229 0 .329.005.106.005.248-.04.388.296.143.344.486 1.187.529 1.274.043.086.072.187.014.3-.057.114-.086.185-.172.286-.086.1-.18.224-.257.3-.086.087-.176.181-.076.355.1.173.446.735.958 1.19.66.586 1.216.768 1.388.854.172.086.271.072.372-.043.1-.115.43-.503.545-.676.114-.172.229-.143.386-.086.157.057.999.472 1.17.557.172.086.287.129.33.2.042.071.042.413-.15.955z"/></svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products-data.js"></script>
+<script>
+(function () {
+  'use strict';
+  const form = document.getElementById('contactForm');
+  const successMsg = document.getElementById('formSuccess');
+  const submitBtn = document.getElementById('contactSubmit');
+
+  function setErr(id, msg) {
+    const el = document.getElementById(id);
+    if (el) { el.textContent = msg; el.hidden = !msg; }
+  }
+  function clearErrs() {
+    ['nameErr', 'phoneErr', 'emailErr', 'messageErr'].forEach(id => setErr(id, ''));
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    clearErrs();
+    let valid = true;
+    const name = form.querySelector('#contactName').value.trim();
+    const phone = form.querySelector('#contactPhone').value.trim();
+    const email = form.querySelector('#contactEmail').value.trim();
+    const message = form.querySelector('#contactMessage').value.trim();
+
+    if (!name) { setErr('nameErr', 'Vui lòng nhập họ và tên.'); valid = false; }
+    if (!phone || !/^[0-9\s\-\+]{9,12}$/.test(phone.replace(/\s/g, ''))) {
+      setErr('phoneErr', 'Vui lòng nhập số điện thoại hợp lệ.'); valid = false;
+    }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setErr('emailErr', 'Địa chỉ email không hợp lệ.'); valid = false;
+    }
+    if (!message || message.length < 10) {
+      setErr('messageErr', 'Vui lòng nhập nội dung (ít nhất 10 ký tự).'); valid = false;
+    }
+    if (!valid) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Đang gửi...';
+    setTimeout(() => {
+      form.reset();
+      form.hidden = true;
+      successMsg.hidden = false;
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Gửi tin nhắn';
+    }, 900);
+  });
+})();
+</script>
+</body>
+</html>

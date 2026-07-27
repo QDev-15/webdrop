@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nhà Đẹp Store — Đồ Gia Dụng Chất Lượng Cao</title>
+  <meta name="description" content="Shop đồ gia dụng, đồ trang trí nhà cửa, nội thất nhỏ chất lượng cao. Miễn phí vận chuyển từ 500K, đổi trả 30 ngày.">
+  <meta property="og:title" content="Nhà Đẹp Store — Đồ Gia Dụng Chất Lượng Cao">
+  <meta property="og:description" content="Shop đồ gia dụng, đồ trang trí nhà cửa, nội thất nhỏ chất lượng cao.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="index.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Topbar -->
+<div id="dg-topbar" role="banner">
+  <div class="dg-topbar__items">
+    <span class="dg-topbar__item">Miễn phí ship từ 500K</span>
+    <span class="dg-topbar__item">Đổi trả 30 ngày</span>
+    <span class="dg-topbar__item">Bảo hành chính hãng</span>
+  </div>
+</div>
+
+<!-- Navigation -->
+<nav id="dg-nav" role="navigation" aria-label="Menu chính">
+  <div class="dg-nav__inner">
+    <a href="index.html" class="dg-nav__logo">Nhà Đẹp<span>.</span></a>
+    <ul class="dg-nav__links">
+      <li><a href="index.html" class="active">Trang chủ</a></li>
+      <li><a href="san-pham.html">Sản phẩm</a></li>
+      <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+      <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+      <li><a href="lien-he.html">Liên hệ</a></li>
+    </ul>
+    <div class="dg-nav__actions">
+      <button class="dg-nav__icon-btn" id="dg-search-toggle" aria-label="Tìm kiếm">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <a href="gio-hang.html" class="dg-nav__icon-btn" aria-label="Giỏ hàng">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="dg-cart-count" id="dg-cart-count">0</span>
+      </a>
+      <button class="dg-hamburger" id="dg-hamburger" aria-label="Mở menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Search Panel -->
+<div id="dg-search-panel" role="search">
+  <div class="dg-search-panel__inner">
+    <input type="text" class="dg-search-panel__input" id="dg-search-input" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm sản phẩm">
+    <button class="dg-search-panel__btn" id="dg-search-submit">Tìm kiếm</button>
+  </div>
+</div>
+
+<!-- Mobile Nav -->
+<div id="dg-nav-overlay"></div>
+<div id="dg-nav-mob" role="navigation" aria-label="Menu di động">
+  <button id="dg-nav-close" aria-label="Đóng menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <ul class="dg-nav-mob__links">
+    <li><a href="index.html" class="active">Trang chủ</a></li>
+    <li><a href="san-pham.html">Sản phẩm</a></li>
+    <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+    <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+</div>
+
+<!-- ══ SEARCH ZONE (Homepage Hero replacement) ══ -->
+<section id="dg-search-zone" aria-labelledby="dg-sz-heading">
+  <div class="dg-container">
+    <div class="dg-search-zone__content">
+      <h1 class="dg-search-zone__h1" id="dg-sz-heading">
+        Tất cả sản phẩm <em>gia dụng</em>
+      </h1>
+      <p class="dg-search-zone__sub">Tìm trong hơn 40 sản phẩm đồ gia dụng chất lượng cao</p>
+      <form class="dg-search-zone__form" id="dg-sz-form" role="search">
+        <input type="text" class="dg-search-zone__input" id="dg-sz-input" placeholder="Bạn muốn tìm gì? (nồi, đèn, khung ảnh...)" aria-label="Tìm kiếm sản phẩm">
+        <button type="submit" class="dg-search-zone__submit">Tìm kiếm</button>
+      </form>
+      <div class="dg-search-zone__cats">
+        <a href="san-pham.html?category=nha-bep" class="dg-search-zone__cat">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18M3 9h18M3 15h18"/></svg>
+          Đồ dùng nhà bếp
+        </a>
+        <a href="san-pham.html?category=trang-tri" class="dg-search-zone__cat">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          Trang trí nhà
+        </a>
+        <a href="san-pham.html?category=phong-tam" class="dg-search-zone__cat">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M4 6h16M4 18h16"/></svg>
+          Phòng tắm
+        </a>
+        <a href="san-pham.html?category=noi-that-nho" class="dg-search-zone__cat">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+          Nội thất nhỏ
+        </a>
+        <a href="san-pham.html?category=den-anh-sang" class="dg-search-zone__cat">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          Đèn & Ánh sáng
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SECTION 1 — Bán chạy nhất ══ -->
+<section class="dg-section" aria-labelledby="dg-s1-title">
+  <div class="dg-container">
+    <div class="dg-section__head">
+      <div>
+        <p class="dg-section__label">Được yêu thích</p>
+        <h2 class="dg-section__title" id="dg-s1-title">Bán chạy nhất</h2>
+      </div>
+      <div class="dg-section__search">
+        <input type="text" class="dg-section__search-input" placeholder="Tìm trong mục này..." aria-label="Tìm trong bán chạy" data-section="ban-chay">
+        <svg class="dg-section__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </div>
+      <a href="san-pham.html?theme=ban-chay" class="dg-section__see-all">
+        Xem tất cả
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="dg-grid dg-grid--4" id="dg-sec-ban-chay" data-section="ban-chay"></div>
+    <p class="dg-section__empty" id="dg-empty-ban-chay">Không tìm thấy sản phẩm phù hợp.</p>
+  </div>
+</section>
+
+<!-- ══ SECTION 2 — Hàng mới về ══ -->
+<section class="dg-section dg-section--alt" aria-labelledby="dg-s2-title">
+  <div class="dg-container">
+    <div class="dg-section__head">
+      <div>
+        <p class="dg-section__label">Mới nhập kho</p>
+        <h2 class="dg-section__title" id="dg-s2-title">Hàng mới về</h2>
+      </div>
+      <div class="dg-section__search">
+        <input type="text" class="dg-section__search-input" placeholder="Tìm trong mục này..." aria-label="Tìm trong hàng mới" data-section="moi-ve">
+        <svg class="dg-section__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </div>
+      <a href="san-pham.html?theme=moi-ve" class="dg-section__see-all">
+        Xem tất cả
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="dg-grid dg-grid--4" id="dg-sec-moi-ve" data-section="moi-ve"></div>
+    <p class="dg-section__empty" id="dg-empty-moi-ve">Không tìm thấy sản phẩm phù hợp.</p>
+  </div>
+</section>
+
+<!-- ══ SECTION 3 — Đang giảm giá ══ -->
+<section class="dg-section" aria-labelledby="dg-s3-title">
+  <div class="dg-container">
+    <div class="dg-section__head">
+      <div>
+        <p class="dg-section__label">Khuyến mãi</p>
+        <h2 class="dg-section__title" id="dg-s3-title">Đang giảm giá</h2>
+      </div>
+      <div class="dg-section__search">
+        <input type="text" class="dg-section__search-input" placeholder="Tìm trong mục này..." aria-label="Tìm trong khuyến mãi" data-section="giam-gia">
+        <svg class="dg-section__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </div>
+      <a href="san-pham.html?theme=giam-gia" class="dg-section__see-all">
+        Xem tất cả
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="dg-grid dg-grid--4" id="dg-sec-giam-gia" data-section="giam-gia"></div>
+    <p class="dg-section__empty" id="dg-empty-giam-gia">Không tìm thấy sản phẩm phù hợp.</p>
+  </div>
+</section>
+
+<!-- ══ SECTION 4 — Đồ dùng nhà bếp ══ -->
+<section class="dg-section dg-section--alt" aria-labelledby="dg-s4-title">
+  <div class="dg-container">
+    <div class="dg-section__head">
+      <div>
+        <p class="dg-section__label">Nhà bếp tiện nghi</p>
+        <h2 class="dg-section__title" id="dg-s4-title">Đồ dùng nhà bếp</h2>
+      </div>
+      <div class="dg-section__search">
+        <input type="text" class="dg-section__search-input" placeholder="Tìm trong mục này..." aria-label="Tìm đồ nhà bếp" data-section="nha-bep">
+        <svg class="dg-section__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </div>
+      <a href="san-pham.html?category=nha-bep" class="dg-section__see-all">
+        Xem tất cả
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="dg-grid dg-grid--4" id="dg-sec-nha-bep" data-section="nha-bep"></div>
+    <p class="dg-section__empty" id="dg-empty-nha-bep">Không tìm thấy sản phẩm phù hợp.</p>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer id="dg-footer">
+  <div class="dg-container">
+    <div class="dg-footer__main">
+      <div class="dg-footer__brand">
+        <div class="dg-nav__logo">Nhà Đẹp<span>.</span></div>
+        <p class="dg-footer__tagline">Mang đến không gian sống tinh tế và tiện nghi cho mọi gia đình Việt.</p>
+        <div class="dg-footer__socials">
+          <a href="#" class="dg-footer__social" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="dg-footer__social" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+          </a>
+          <a href="#" class="dg-footer__social" aria-label="Zalo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><text x="3" y="16" font-size="12" font-weight="700">Z</text></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 class="dg-footer__col-title">Danh mục</h3>
+        <ul class="dg-footer__links">
+          <li><a href="san-pham.html?category=nha-bep">Đồ dùng nhà bếp</a></li>
+          <li><a href="san-pham.html?category=trang-tri">Đồ trang trí nhà</a></li>
+          <li><a href="san-pham.html?category=phong-tam">Đồ dùng phòng tắm</a></li>
+          <li><a href="san-pham.html?category=noi-that-nho">Nội thất nhỏ</a></li>
+          <li><a href="san-pham.html?category=den-anh-sang">Đèn & Ánh sáng</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="dg-footer__col-title">Thông tin</h3>
+        <ul class="dg-footer__links">
+          <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+          <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+          <li><a href="san-pham.html?theme=giam-gia">Khuyến mãi</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="dg-footer__col-title">Hỗ trợ</h3>
+        <ul class="dg-footer__links">
+          <li><a href="lien-he.html">Chăm sóc khách hàng</a></li>
+          <li><a href="ve-chung-toi.html#chinh-sach">Chính sách đổi trả</a></li>
+          <li><a href="ve-chung-toi.html#chinh-sach">Hướng dẫn mua hàng</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="dg-footer__bottom">
+      <p class="dg-footer__copy">© 2024 Nhà Đẹp Store. Tất cả quyền được bảo lưu.</p>
+      <nav class="dg-footer__legal">
+        <a href="chinh-sach-bao-mat.html">Bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<!-- Zalo Float -->
+<a href="https://zalo.me/0901234567" class="dg-zalo-float" target="_blank" rel="noopener" aria-label="Chat Zalo">
+  <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
+    <circle cx="24" cy="24" r="24" fill="#0068FF"/>
+    <text x="9" y="32" font-size="20" font-weight="700" fill="#fff" font-family="Arial">Z</text>
+    <text x="20" y="32" font-size="14" font-weight="400" fill="rgba(255,255,255,.85)" font-family="Arial">alo</text>
+  </svg>
+</a>
+
+<script src="assets/js/products-data.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  // ── Render sections ──
+  const SECTIONS = [
+    {
+      id: 'dg-sec-ban-chay',
+      emptyId: 'dg-empty-ban-chay',
+      filter: p => p.theme.includes('ban-chay'),
+      limit: 8
+    },
+    {
+      id: 'dg-sec-moi-ve',
+      emptyId: 'dg-empty-moi-ve',
+      filter: p => p.theme.includes('moi-ve'),
+      limit: 8
+    },
+    {
+      id: 'dg-sec-giam-gia',
+      emptyId: 'dg-empty-giam-gia',
+      filter: p => p.theme.includes('giam-gia'),
+      limit: 8
+    },
+    {
+      id: 'dg-sec-nha-bep',
+      emptyId: 'dg-empty-nha-bep',
+      filter: p => p.category === 'nha-bep',
+      limit: 8
+    }
+  ];
+
+  function renderSection(sectionConf, query) {
+    const grid = document.getElementById(sectionConf.id);
+    const emptyEl = document.getElementById(sectionConf.emptyId);
+    if (!grid) return;
+    let products = PRODUCTS.filter(sectionConf.filter).slice(0, sectionConf.limit);
+    if (query) {
+      const q = query.toLowerCase().trim();
+      products = products.filter(p => p.name.toLowerCase().includes(q));
+    }
+    if (products.length === 0) {
+      grid.innerHTML = '';
+      if (emptyEl) emptyEl.style.display = 'block';
+    } else {
+      grid.innerHTML = products.map(p => renderProductCard(p)).join('');
+      if (emptyEl) emptyEl.style.display = 'none';
+    }
+  }
+
+  function initSections() {
+    SECTIONS.forEach(sec => renderSection(sec, ''));
+  }
+
+  // ── Section search ──
+  function initSectionSearch() {
+    const inputs = document.querySelectorAll('.dg-section__search-input');
+    inputs.forEach(input => {
+      const sectionKey = input.dataset.section;
+      const sectionConf = SECTIONS.find(s => s.id.endsWith(sectionKey) || s.id.includes(sectionKey));
+      if (!sectionConf) return;
+      let timer;
+      input.addEventListener('input', function() {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          renderSection(sectionConf, this.value);
+        }, 250);
+      });
+    });
+  }
+
+  // ── Search zone form ──
+  document.getElementById('dg-sz-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const q = document.getElementById('dg-sz-input').value.trim();
+    if (q) {
+      window.location.href = 'san-pham.html?q=' + encodeURIComponent(q);
+    }
+  });
+
+  // ── Nav search toggle ──
+  const searchToggle = document.getElementById('dg-search-toggle');
+  const searchPanel = document.getElementById('dg-search-panel');
+  const searchInput = document.getElementById('dg-search-input');
+  const searchSubmit = document.getElementById('dg-search-submit');
+
+  searchToggle.addEventListener('click', function() {
+    const isOpen = searchPanel.classList.toggle('open');
+    if (isOpen) setTimeout(() => searchInput.focus(), 200);
+  });
+
+  searchSubmit.addEventListener('click', function() {
+    const q = searchInput.value.trim();
+    if (q) window.location.href = 'san-pham.html?q=' + encodeURIComponent(q);
+  });
+
+  searchInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      const q = this.value.trim();
+      if (q) window.location.href = 'san-pham.html?q=' + encodeURIComponent(q);
+    }
+    if (e.key === 'Escape') searchPanel.classList.remove('open');
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!searchPanel.contains(e.target) && !searchToggle.contains(e.target)) {
+      searchPanel.classList.remove('open');
+    }
+  });
+
+  // ── Mobile nav ──
+  const hamburger = document.getElementById('dg-hamburger');
+  const navMob = document.getElementById('dg-nav-mob');
+  const navOverlay = document.getElementById('dg-nav-overlay');
+  const navClose = document.getElementById('dg-nav-close');
+
+  function openMobileNav() {
+    navMob.classList.add('open');
+    navOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobileNav() {
+    navMob.classList.remove('open');
+    navOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', openMobileNav);
+  navClose.addEventListener('click', closeMobileNav);
+  navOverlay.addEventListener('click', closeMobileNav);
+
+  // ── Reveal on scroll ──
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  function observeReveal() {
+    document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+  }
+
+  // ── Init ──
+  updateCartCount();
+  initSections();
+  initSectionSearch();
+  setTimeout(observeReveal, 100);
+
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

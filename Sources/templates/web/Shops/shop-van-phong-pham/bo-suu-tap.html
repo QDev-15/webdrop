@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Bộ sưu tập — OFFICEHUB</title>
+  <meta name="description" content="Khám phá các bộ sưu tập văn phòng phẩm được chọn lọc kỹ lưỡng: bút viết cao cấp, sổ tay thiết kế, phụ kiện laptop, dụng cụ bàn làm việc.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Topbar -->
+<div class="vp-topbar" role="status">
+  <div class="vp-container">
+    <span class="vp-topbar-item">Miễn phí ship đơn từ 500K</span>
+    <span class="vp-topbar-sep">·</span>
+    <span class="vp-topbar-item">Đổi hàng trong 30 ngày</span>
+    <span class="vp-topbar-sep">·</span>
+    <span class="vp-topbar-item">Hỗ trợ doanh nghiệp B2B</span>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav id="vp-nav" aria-label="Menu chính">
+  <div class="vp-container">
+    <div class="vp-nav-inner">
+      <a href="index.html" class="vp-logo" aria-label="OFFICEHUB - Trang chủ">
+        <span class="vp-logo-mark">OH</span>
+        <span class="vp-logo-text">OFFICE<span>HUB</span></span>
+      </a>
+      <ul class="vp-nav-links d-none d-lg-flex">
+        <li><a href="index.html">Trang chủ</a></li>
+        <li><a href="bo-suu-tap.html" class="active">Bộ sưu tập</a></li>
+        <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+        <li><a href="dich-vu.html">Dịch vụ</a></li>
+        <li><a href="lien-he.html">Liên hệ</a></li>
+      </ul>
+      <div class="vp-nav-actions">
+        <button id="vp-search-btn" class="vp-nav-action-btn" aria-label="Tìm kiếm" aria-expanded="false" aria-controls="vp-search-panel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </button>
+        <a href="gio-hang.html" class="vp-cart-link" aria-label="Giỏ hàng">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="vp-cart-count" id="cartCount"></span>
+        </a>
+        <button id="navBurger" class="d-lg-none" aria-label="Mở menu" aria-expanded="false" aria-controls="navMob">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="vp-search-panel" id="vp-search-panel" hidden>
+      <div class="vp-search-form">
+        <input type="search" id="navSearchInput" placeholder="Tìm bút viết, sổ tay, balo..." aria-label="Từ khóa tìm kiếm">
+        <button id="navSearchSubmit" type="button">Tìm kiếm</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="vp-mob-nav" id="navMob" role="dialog" aria-modal="true" aria-label="Menu">
+  <button class="vp-mob-close" id="navMobClose" aria-label="Đóng menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <ul class="vp-mob-links">
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="bo-suu-tap.html" class="active">Bộ sưu tập</a></li>
+    <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+    <li><a href="dich-vu.html">Dịch vụ</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+</div>
+
+<!-- Page header -->
+<div class="vp-page-header">
+  <div class="vp-container">
+    <nav aria-label="Breadcrumb" class="vp-breadcrumb">
+      <a href="index.html">Trang chủ</a>
+      <span>›</span>
+      <span aria-current="page">Bộ sưu tập</span>
+    </nav>
+    <h1>Bộ sưu tập</h1>
+    <p>Những bộ sưu tập được chọn lọc theo phong cách và nhu cầu làm việc</p>
+  </div>
+</div>
+
+<!-- Collections grid -->
+<section class="vp-section">
+  <div class="vp-container">
+    <div class="vp-collections-grid">
+
+      <!-- Collection 1 -->
+      <article class="vp-collection-card" data-reveal>
+        <a href="index.html?category=but-viet" class="vp-col-img-wrap" aria-label="Xem bộ sưu tập Bút Cao Cấp">
+          <img src="https://images.unsplash.com/photo-1622560481979-f5b0174242a0?w=800&auto=format&fit=crop&q=80"
+               alt="Bộ sưu tập bút viết cao cấp"
+               loading="lazy"
+               onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect width=%22800%22 height=%22500%22 fill=%22%23f1f5f9%22/%3E%3C/svg%3E'">
+          <div class="vp-col-overlay">
+            <span class="vp-col-tag">Bút viết</span>
+            <h2 class="vp-col-name">Bút Cao Cấp</h2>
+            <p class="vp-col-desc">Gel, bi, nước — nét mượt mà, lâu mực</p>
+            <span class="vp-col-cta">Khám phá ngay →</span>
+          </div>
+        </a>
+      </article>
+
+      <!-- Collection 2 -->
+      <article class="vp-collection-card" data-reveal>
+        <a href="index.html?category=so-tay" class="vp-col-img-wrap" aria-label="Xem bộ sưu tập Sổ Tay Thiết Kế">
+          <img src="https://images.unsplash.com/photo-1568247067952-eab2ce84a349?w=800&auto=format&fit=crop&q=80"
+               alt="Bộ sưu tập sổ tay và giấy note"
+               loading="lazy"
+               onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect width=%22800%22 height=%22500%22 fill=%22%23f1f5f9%22/%3E%3C/svg%3E'">
+          <div class="vp-col-overlay">
+            <span class="vp-col-tag">Sổ tay</span>
+            <h2 class="vp-col-name">Sổ Tay Thiết Kế</h2>
+            <p class="vp-col-desc">Bìa cứng, dotted & ruled — cho mọi phong cách ghi chép</p>
+            <span class="vp-col-cta">Khám phá ngay →</span>
+          </div>
+        </a>
+      </article>
+
+      <!-- Collection 3 -->
+      <article class="vp-collection-card" data-reveal>
+        <a href="index.html?category=balo-tui" class="vp-col-img-wrap" aria-label="Xem bộ sưu tập Balo Laptop">
+          <img src="https://images.unsplash.com/photo-1528921581519-52b9d779df2b?w=800&auto=format&fit=crop&q=80"
+               alt="Bộ sưu tập balo và túi laptop"
+               loading="lazy"
+               onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect width=%22800%22 height=%22500%22 fill=%22%23f1f5f9%22/%3E%3C/svg%3E'">
+          <div class="vp-col-overlay">
+            <span class="vp-col-tag">Balo & Túi</span>
+            <h2 class="vp-col-name">Balo Laptop</h2>
+            <p class="vp-col-desc">Chống nước, đa ngăn, vừa laptop 15.6"</p>
+            <span class="vp-col-cta">Khám phá ngay →</span>
+          </div>
+        </a>
+      </article>
+
+      <!-- Collection 4 -->
+      <article class="vp-collection-card" data-reveal>
+        <a href="index.html?category=dung-cu" class="vp-col-img-wrap" aria-label="Xem bộ sưu tập Góc Làm Việc">
+          <img src="https://images.unsplash.com/photo-1577733966973-d680bffd2e80?w=800&auto=format&fit=crop&q=80"
+               alt="Bộ sưu tập dụng cụ bàn làm việc"
+               loading="lazy"
+               onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect width=%22800%22 height=%22500%22 fill=%22%23f1f5f9%22/%3E%3C/svg%3E'">
+          <div class="vp-col-overlay">
+            <span class="vp-col-tag">Dụng cụ VP</span>
+            <h2 class="vp-col-name">Góc Làm Việc</h2>
+            <p class="vp-col-desc">Kéo, dập ghim, bấm lỗ, hộp đựng bút — hoàn thiện bàn làm việc</p>
+            <span class="vp-col-cta">Khám phá ngay →</span>
+          </div>
+        </a>
+      </article>
+
+    </div><!-- /.vp-collections-grid -->
+
+    <!-- Featured collection strip -->
+    <div class="vp-col-feature" data-reveal>
+      <div class="vp-col-feature-text">
+        <div class="vp-eyebrow">Được mua nhiều nhất</div>
+        <h2 class="vp-sec-title">Bộ Văn Phòng Phẩm <em>Trọn Gói</em></h2>
+        <p class="vp-sec-sub">Lựa chọn hoàn hảo cho công ty, trường học, văn phòng mới khai trương — đầy đủ bút, sổ, file, dụng cụ trong một đơn hàng.</p>
+        <ul class="vp-col-feature-list">
+          <li>✓ Tiết kiệm 15–25% so với mua lẻ</li>
+          <li>✓ Đóng gói riêng từng bộ theo yêu cầu</li>
+          <li>✓ Hỗ trợ in logo doanh nghiệp</li>
+          <li>✓ Giao hàng ngay trong ngày nội thành</li>
+        </ul>
+        <a href="lien-he.html" class="vp-btn vp-btn-primary" id="btnColContactCta">Liên hệ báo giá bộ trọn gói</a>
+      </div>
+      <div class="vp-col-feature-img">
+        <img src="https://images.unsplash.com/photo-1577733966973-d680bffd2e80?w=600&auto=format&fit=crop&q=80"
+             alt="Bộ văn phòng phẩm trọn gói"
+             loading="lazy"
+             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22%3E%3Crect width=%22600%22 height=%22400%22 fill=%22%23f1f5f9%22/%3E%3C/svg%3E'">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="vp-cta-bar" aria-label="Xem tất cả sản phẩm">
+  <div class="vp-container" style="text-align:center">
+    <h2 style="color:#fff;font-size:clamp(22px,3vw,32px);font-weight:700;margin-bottom:12px">Chưa tìm thấy thứ bạn cần?</h2>
+    <p style="color:rgba(255,255,255,.8);margin-bottom:24px">Khám phá hơn 500 sản phẩm văn phòng phẩm trong danh mục đầy đủ</p>
+    <a href="index.html" class="vp-btn vp-btn-white" id="btnColViewAll">Xem tất cả sản phẩm →</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="vp-footer" aria-label="Footer">
+  <div class="vp-container">
+    <div class="vp-footer-grid">
+      <div>
+        <div class="vp-footer-logo">
+          <span class="vp-logo-mark">OH</span>
+          <span class="vp-logo-text">OFFICE<span>HUB</span></span>
+        </div>
+        <p class="vp-footer-desc">Chuyên cung cấp văn phòng phẩm chính hãng cho cá nhân, doanh nghiệp và trường học trên toàn quốc.</p>
+        <div class="vp-footer-social">
+          <a href="#" aria-label="Facebook" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" aria-label="YouTube" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.4 19.54C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 001.94-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Sản phẩm</h5>
+        <ul class="vp-footer-links">
+          <li><a href="index.html?category=but-viet">Bút viết</a></li>
+          <li><a href="index.html?category=so-tay">Sổ tay &amp; giấy note</a></li>
+          <li><a href="index.html?category=file-kep">File &amp; kẹp tài liệu</a></li>
+          <li><a href="index.html?category=dung-cu">Dụng cụ văn phòng</a></li>
+          <li><a href="index.html?category=balo-tui">Balo &amp; túi laptop</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Hỗ trợ</h5>
+        <ul class="vp-footer-links">
+          <li><a href="dich-vu.html">Dịch vụ doanh nghiệp</a></li>
+          <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+          <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Liên hệ</h5>
+        <div class="vp-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>[ĐỊA CHỈ VĂN PHÒNG]</span></div>
+        <div class="vp-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg><a href="tel:[SỐ_ĐIỆN_THOẠI]" style="color:inherit">[SỐ_ĐIỆN_THOẠI]</a></div>
+        <div class="vp-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:[EMAIL]" style="color:inherit">[EMAIL]</a></div>
+        <div class="vp-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>T2–T7: 8:00–18:00</span></div>
+      </div>
+    </div>
+    <div class="vp-footer-bottom">
+      <p>© 2026 OFFICEHUB. Tất cả quyền được bảo lưu.</p>
+      <div class="vp-footer-bottom-links">
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="vp-zalo-float">
+  <a href="https://zalo.me/[ZALO_NUMBER]" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+    <svg viewBox="0 0 48 48" width="28" height="28"><text y="36" font-size="32" fill="#fff">Z</text></svg>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function () {
+  'use strict';
+  // Cart count
+  const cart = JSON.parse(localStorage.getItem('vp_cart') || '[]');
+  const count = cart.reduce(function(s, i){ return s + i.qty; }, 0);
+  const countEl = document.getElementById('cartCount');
+  if (countEl) { countEl.textContent = count || ''; countEl.style.display = count ? '' : 'none'; }
+
+  // Nav burger
+  const burger = document.getElementById('navBurger');
+  const mobNav = document.getElementById('navMob');
+  if (burger && mobNav) {
+    burger.addEventListener('click', function() {
+      const o = mobNav.classList.toggle('open');
+      burger.classList.toggle('open', o);
+      burger.setAttribute('aria-expanded', String(o));
+      document.body.style.overflow = o ? 'hidden' : '';
+    });
+    document.getElementById('navMobClose').addEventListener('click', function() {
+      mobNav.classList.remove('open'); burger.classList.remove('open'); document.body.style.overflow = '';
+    });
+  }
+
+  // Search panel
+  const searchBtn = document.getElementById('vp-search-btn');
+  const searchPanel = document.getElementById('vp-search-panel');
+  const searchInput = document.getElementById('navSearchInput');
+  const searchSubmit = document.getElementById('navSearchSubmit');
+  if (searchBtn && searchPanel) {
+    searchBtn.addEventListener('click', function() {
+      const o = !searchPanel.hidden; searchPanel.hidden = o;
+      searchBtn.setAttribute('aria-expanded', String(!o));
+      if (!o) searchInput.focus();
+    });
+  }
+  function doSearch() { const q = searchInput.value.trim(); if (q) location.href = 'index.html?q=' + encodeURIComponent(q); }
+  if (searchSubmit) searchSubmit.addEventListener('click', doSearch);
+  if (searchInput) searchInput.addEventListener('keydown', function(e){ if(e.key==='Enter') doSearch(); });
+
+  // Reveal
+  const ro = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); }}); }, { threshold: 0.08 });
+  document.querySelectorAll('[data-reveal]').forEach(function(el){ ro.observe(el); });
+})();
+</script>
+</body>
+</html>

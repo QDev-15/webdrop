@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tất cả sản phẩm đồ chơi trẻ em tại KidZone — lọc theo danh mục, độ tuổi, khoảng giá. Hơn 500 sản phẩm chất lượng.">
+<meta property="og:title" content="Sản phẩm — KidZone">
+<title>Sản phẩm — KidZone Shop Đồ Chơi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="dc-topbar">
+  <div class="dc-topbar-inner">
+    <span>Miễn phí ship đơn từ 300K</span>
+    <span class="dc-topbar-sep">·</span>
+    <span>Đổi trả 30 ngày</span>
+    <span class="dc-topbar-sep">·</span>
+    <span>Bảo hành chính hãng</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="dc-nav" id="dcNav" aria-label="Menu chính">
+  <div class="dc-nav-inner">
+    <a href="index.html" class="dc-nav-logo" aria-label="KidZone trang chủ">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="var(--accent)"/>
+        <text x="16" y="22" font-size="18" text-anchor="middle" font-family="Baloo 2" font-weight="800" fill="white">K</text>
+      </svg>
+      <span>KidZone</span>
+    </a>
+    <ul class="dc-nav-links" role="list" id="dcNavLinks">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="san-pham.html" class="active" aria-current="page">Sản phẩm</a></li>
+      <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+      <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+      <li><a href="lien-he.html">Liên hệ</a></li>
+    </ul>
+    <div class="dc-nav-actions">
+      <button class="dc-nav-icon" id="dcSearchBtn" aria-label="Tìm kiếm" aria-expanded="false" aria-controls="dcSearchPanel" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+      <a href="gio-hang.html" class="dc-nav-icon dc-cart-icon" aria-label="Giỏ hàng">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="dc-cart-badge" id="dcCartCount">0</span>
+      </a>
+      <button class="dc-burger" id="dcBurger" aria-label="Mở menu" aria-expanded="false" aria-controls="dcNavMob" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="dc-search-panel" id="dcSearchPanel" hidden>
+    <form class="dc-search-form" action="san-pham.html" method="get" role="search">
+      <input type="text" name="q" id="dcSearchInput" placeholder="Tìm đồ chơi cho bé..." autocomplete="off" aria-label="Tìm kiếm">
+      <button type="submit" aria-label="Tìm">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+    </form>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="dc-nav-mob" id="dcNavMob" aria-hidden="true" role="dialog" aria-label="Menu di động">
+  <ul role="list">
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="san-pham.html" class="active">Sản phẩm</a></li>
+    <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+    <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+</div>
+
+<!-- PAGE HERO -->
+<div class="dc-page-hero">
+  <div class="dc-container">
+    <h1>Tất cả sản phẩm</h1>
+    <p>Khám phá hơn 500 đồ chơi chất lượng cho bé yêu</p>
+  </div>
+</div>
+
+<!-- ═══ FILTER TOOLBAR ═══ -->
+<div class="dc-filter-wrap" id="filterWrap">
+  <div class="dc-container">
+    <div class="dc-filter-bar">
+      <!-- Category pills -->
+      <div class="dc-filter-cats" role="list" aria-label="Lọc theo danh mục">
+        <button class="dc-filter-cat active" data-cat="" type="button" role="listitem">Tất cả</button>
+        <button class="dc-filter-cat" data-cat="do-choi-giao-duc" type="button" role="listitem">Giáo dục</button>
+        <button class="dc-filter-cat" data-cat="xe-mo-hinh" type="button" role="listitem">Xe & Mô hình</button>
+        <button class="dc-filter-cat" data-cat="bup-be-thu-bong" type="button" role="listitem">Búp bê & Thú bông</button>
+        <button class="dc-filter-cat" data-cat="do-choi-ngoai-troi" type="button" role="listitem">Ngoài trời</button>
+        <button class="dc-filter-cat" data-cat="lego-xep-hinh" type="button" role="listitem">Lego & Xếp hình</button>
+      </div>
+      <!-- Right controls -->
+      <div class="dc-filter-controls">
+        <!-- Age dropdown -->
+        <div class="dc-dropdown" id="ageDropdown">
+          <button class="dc-dropdown-btn" id="ageDropBtn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="ageDropMenu">
+            <span id="ageDropLabel">Độ tuổi</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="dc-dropdown-menu" id="ageDropMenu" role="listbox" aria-label="Chọn độ tuổi">
+            <label class="dc-dropdown-item"><input type="radio" name="ageFilter" value="" checked> Tất cả</label>
+            <label class="dc-dropdown-item"><input type="radio" name="ageFilter" value="0-2"> 0–2 tuổi</label>
+            <label class="dc-dropdown-item"><input type="radio" name="ageFilter" value="3-5"> 3–5 tuổi</label>
+            <label class="dc-dropdown-item"><input type="radio" name="ageFilter" value="6-8"> 6–8 tuổi</label>
+            <label class="dc-dropdown-item"><input type="radio" name="ageFilter" value="9+"> 9+ tuổi</label>
+          </div>
+        </div>
+        <!-- Price dropdown -->
+        <div class="dc-dropdown" id="priceDropdown">
+          <button class="dc-dropdown-btn" id="priceDropBtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="priceDropMenu">
+            <span id="priceDropLabel">Khoảng giá</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="dc-dropdown-menu dc-price-menu" id="priceDropMenu" role="dialog" aria-label="Chọn khoảng giá">
+            <div class="dc-price-slider-wrap">
+              <label>Tối đa: <strong id="priceMaxLabel">1.500.000đ</strong></label>
+              <input type="range" id="priceSlider" min="0" max="1500000" step="50000" value="1500000" aria-label="Giá tối đa">
+            </div>
+          </div>
+        </div>
+        <!-- Sort -->
+        <select class="dc-sort" id="sortSelect" aria-label="Sắp xếp">
+          <option value="default">Mặc định</option>
+          <option value="price-asc">Giá tăng dần</option>
+          <option value="price-desc">Giá giảm dần</option>
+          <option value="popular">Bán chạy nhất</option>
+          <option value="newest">Mới nhất</option>
+        </select>
+        <!-- Mobile filter toggle -->
+        <button class="dc-filter-mob-toggle" id="filterMobToggle" type="button" aria-label="Bộ lọc" aria-controls="filterOffcanvas">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+          Bộ lọc <span class="dc-filter-badge" id="filterBadge" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTIVE CHIPS -->
+<div class="dc-active-chips-wrap" id="activeChipsWrap" hidden>
+  <div class="dc-container">
+    <div class="dc-active-chips" id="activeChips" role="list" aria-label="Bộ lọc đang áp dụng"></div>
+    <button class="dc-clear-all" id="clearAllBtn" type="button">Xóa tất cả</button>
+  </div>
+</div>
+
+<!-- CATALOG CONTENT -->
+<section class="dc-catalog-section">
+  <div class="dc-container">
+    <div class="dc-result-bar">
+      <p class="dc-result-count" id="resultCount">Đang tải...</p>
+    </div>
+    <div class="dc-prod-grid" id="catalogGrid"></div>
+    <!-- Empty state -->
+    <div class="dc-empty" id="emptyState" hidden>
+      <div class="dc-empty-icon" aria-hidden="true">🔍</div>
+      <h3>Không tìm thấy sản phẩm</h3>
+      <p>Thử điều chỉnh bộ lọc hoặc từ khóa tìm kiếm của bạn.</p>
+      <button class="dc-btn-primary" id="emptyResetBtn" type="button">Xóa bộ lọc</button>
+    </div>
+    <!-- Pagination -->
+    <nav class="dc-pagination" id="pagination" aria-label="Phân trang" hidden></nav>
+  </div>
+</section>
+
+<!-- MOBILE OFFCANVAS FILTER -->
+<div class="dc-offcanvas-backdrop" id="offcanvasBackdrop" aria-hidden="true"></div>
+<div class="dc-offcanvas" id="filterOffcanvas" role="dialog" aria-modal="true" aria-label="Bộ lọc sản phẩm" aria-hidden="true">
+  <div class="dc-offcanvas-head">
+    <h2>Bộ lọc</h2>
+    <button class="dc-offcanvas-close" id="offcanvasClose" type="button" aria-label="Đóng bộ lọc">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="dc-offcanvas-body">
+    <div class="dc-offcanvas-group">
+      <h3>Danh mục</h3>
+      <div class="dc-offcanvas-cats">
+        <button class="dc-filter-cat active" data-mob-cat="" type="button">Tất cả</button>
+        <button class="dc-filter-cat" data-mob-cat="do-choi-giao-duc" type="button">Giáo dục</button>
+        <button class="dc-filter-cat" data-mob-cat="xe-mo-hinh" type="button">Xe & Mô hình</button>
+        <button class="dc-filter-cat" data-mob-cat="bup-be-thu-bong" type="button">Búp bê & Thú bông</button>
+        <button class="dc-filter-cat" data-mob-cat="do-choi-ngoai-troi" type="button">Ngoài trời</button>
+        <button class="dc-filter-cat" data-mob-cat="lego-xep-hinh" type="button">Lego & Xếp hình</button>
+      </div>
+    </div>
+    <div class="dc-offcanvas-group">
+      <h3>Độ tuổi</h3>
+      <div class="dc-offcanvas-ages">
+        <label class="dc-dropdown-item"><input type="radio" name="ageFilterMob" value="" checked> Tất cả</label>
+        <label class="dc-dropdown-item"><input type="radio" name="ageFilterMob" value="0-2"> 0–2 tuổi</label>
+        <label class="dc-dropdown-item"><input type="radio" name="ageFilterMob" value="3-5"> 3–5 tuổi</label>
+        <label class="dc-dropdown-item"><input type="radio" name="ageFilterMob" value="6-8"> 6–8 tuổi</label>
+        <label class="dc-dropdown-item"><input type="radio" name="ageFilterMob" value="9+"> 9+ tuổi</label>
+      </div>
+    </div>
+    <div class="dc-offcanvas-group">
+      <h3>Khoảng giá (tối đa)</h3>
+      <div class="dc-price-slider-wrap">
+        <label>Tối đa: <strong id="priceMaxLabelMob">1.500.000đ</strong></label>
+        <input type="range" id="priceSliderMob" min="0" max="1500000" step="50000" value="1500000" aria-label="Giá tối đa (mobile)">
+      </div>
+    </div>
+    <button class="dc-btn-primary dc-offcanvas-apply" id="offcanvasApply" type="button">Áp dụng</button>
+    <button class="dc-btn-outline dc-offcanvas-reset" id="offcanvasReset" type="button">Đặt lại</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="dc-footer">
+  <div class="dc-container">
+    <div class="dc-footer-grid">
+      <div class="dc-footer-col dc-footer-brand">
+        <a href="index.html" class="dc-footer-logo">
+          <svg width="36" height="36" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <rect width="32" height="32" rx="8" fill="var(--yellow)"/>
+            <text x="16" y="22" font-size="18" text-anchor="middle" font-family="Baloo 2" font-weight="800" fill="#0c2a3d">K</text>
+          </svg>
+          <span>KidZone</span>
+        </a>
+        <p class="dc-footer-desc">Shop đồ chơi trẻ em chất lượng cao, an toàn cho bé từ 0–12 tuổi. Sản phẩm được kiểm định đạt tiêu chuẩn an toàn quốc tế.</p>
+        <div class="dc-footer-social">
+          <a href="#" aria-label="Facebook" class="dc-footer-soc-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="TikTok" class="dc-footer-soc-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+          <a href="#" aria-label="Instagram" class="dc-footer-soc-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        </div>
+      </div>
+      <div class="dc-footer-col">
+        <h3 class="dc-footer-col-title">Sản phẩm</h3>
+        <ul>
+          <li><a href="san-pham.html?category=do-choi-giao-duc">Đồ chơi giáo dục</a></li>
+          <li><a href="san-pham.html?category=xe-mo-hinh">Xe & Mô hình</a></li>
+          <li><a href="san-pham.html?category=bup-be-thu-bong">Búp bê & Thú bông</a></li>
+          <li><a href="san-pham.html?category=do-choi-ngoai-troi">Đồ chơi ngoài trời</a></li>
+          <li><a href="san-pham.html?category=lego-xep-hinh">Lego & Xếp hình</a></li>
+        </ul>
+      </div>
+      <div class="dc-footer-col">
+        <h3 class="dc-footer-col-title">Hỗ trợ</h3>
+        <ul>
+          <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+          <li><a href="gio-hang.html">Giỏ hàng</a></li>
+        </ul>
+      </div>
+      <div class="dc-footer-col">
+        <h3 class="dc-footer-col-title">Chính sách</h3>
+        <ul>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+        <div class="dc-footer-contact">
+          <p><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38C1.58 2.28 2.4 1.35 3.5 1H6.5a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> 0901 234 567</p>
+          <p><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> hello@kidzone.vn</p>
+        </div>
+      </div>
+    </div>
+    <div class="dc-footer-bottom">
+      <span>© 2025 KidZone. Bảo lưu mọi quyền.</span>
+      <span>Designed with ❤ for little ones</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ZALO FLOAT -->
+<a href="https://zalo.me/0901234567" class="dc-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo với KidZone">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M12.001 2C6.478 2 2 6.477 2 12c0 2.25.751 4.33 2.015 6.004L2.5 21.5l3.594-1.49C7.657 21.17 9.75 22 12 22c5.523 0 10-4.477 10-10S17.524 2 12.001 2zm4.894 13.37c-.193.543-.573.968-1.086 1.073-.29.058-.664.105-2.097-.452-1.75-.69-2.88-2.453-2.967-2.568-.086-.115-.703-.937-.703-1.787 0-.849.445-1.267.603-1.44a.632.632 0 0 1 .459-.215c.114 0 .229 0 .329.005.106.005.248-.04.388.296.143.344.486 1.187.529 1.274.043.086.072.187.014.3-.057.114-.086.185-.172.286-.086.1-.18.224-.257.3-.086.087-.176.181-.076.355.1.173.446.735.958 1.19.66.586 1.216.768 1.388.854.172.086.271.072.372-.043.1-.115.43-.503.545-.676.114-.172.229-.143.386-.086.157.057.999.472 1.17.557.172.086.287.129.33.2.042.071.042.413-.15.955z"/></svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products-data.js"></script>
+<script>
+(function () {
+  'use strict';
+  const PLACEHOLDER_IMG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Crect width='600' height='600' fill='%23e0f4fb'/%3E%3C/svg%3E";
+
+  // ── State ──
+  const state = {
+    category: '',
+    age: '',
+    maxPrice: 1500000,
+    sort: 'default',
+    query: '',
+    theme: '',
+    page: 1
+  };
+
+  // ── DOM refs ──
+  const grid = document.getElementById('catalogGrid');
+  const resultCount = document.getElementById('resultCount');
+  const paginationEl = document.getElementById('pagination');
+  const emptyState = document.getElementById('emptyState');
+  const activeChipsWrap = document.getElementById('activeChipsWrap');
+  const activeChipsEl = document.getElementById('activeChips');
+  const clearAllBtn = document.getElementById('clearAllBtn');
+  const filterBadge = document.getElementById('filterBadge');
+  const priceMaxLabel = document.getElementById('priceMaxLabel');
+  const priceSlider = document.getElementById('priceSlider');
+  const sortSelect = document.getElementById('sortSelect');
+
+  // ── Read URL params on load ──
+  function readURL() {
+    const p = new URLSearchParams(window.location.search);
+    if (p.get('category')) state.category = p.get('category');
+    if (p.get('age')) state.age = p.get('age');
+    if (p.get('maxPrice')) state.maxPrice = parseInt(p.get('maxPrice'), 10) || 1500000;
+    if (p.get('sort')) state.sort = p.get('sort');
+    if (p.get('q')) state.query = p.get('q');
+    if (p.get('theme')) state.theme = p.get('theme');
+    if (p.get('page')) state.page = Math.max(1, parseInt(p.get('page'), 10) || 1);
+  }
+
+  // ── Sync URL ──
+  function pushURL() {
+    const p = new URLSearchParams();
+    if (state.category) p.set('category', state.category);
+    if (state.age) p.set('age', state.age);
+    if (state.maxPrice < 1500000) p.set('maxPrice', state.maxPrice);
+    if (state.sort && state.sort !== 'default') p.set('sort', state.sort);
+    if (state.query) p.set('q', state.query);
+    if (state.theme) p.set('theme', state.theme);
+    if (state.page > 1) p.set('page', state.page);
+    const qs = p.toString();
+    history.replaceState(null, '', qs ? '?' + qs : window.location.pathname);
+  }
+
+  // ── Filter + sort ──
+  function getFiltered() {
+    let items = PRODUCTS.slice();
+    if (state.category) items = items.filter(p => p.category === state.category);
+    if (state.age) items = items.filter(p => p.ageGroup === state.age);
+    if (state.maxPrice < 1500000) items = items.filter(p => (p.salePrice || p.price) <= state.maxPrice);
+    if (state.query) {
+      const q = state.query.toLowerCase();
+      items = items.filter(p => p.name.toLowerCase().includes(q));
+    }
+    if (state.theme) items = items.filter(p => p.theme && p.theme.includes(state.theme));
+    // Sort
+    if (state.sort === 'price-asc') items.sort((a, b) => (a.salePrice || a.price) - (b.salePrice || b.price));
+    else if (state.sort === 'price-desc') items.sort((a, b) => (b.salePrice || b.price) - (a.salePrice || a.price));
+    else if (state.sort === 'popular') items.sort((a, b) => b.sold - a.sold);
+    else if (state.sort === 'newest') items.sort((a, b) => b.id - a.id);
+    return items;
+  }
+
+  // ── Render ──
+  function render() {
+    const all = getFiltered();
+    const totalPages = Math.ceil(all.length / PER_PAGE) || 1;
+    state.page = Math.min(state.page, totalPages);
+
+    const start = (state.page - 1) * PER_PAGE;
+    const page = all.slice(start, start + PER_PAGE);
+
+    if (all.length === 0) {
+      grid.innerHTML = '';
+      grid.hidden = true;
+      emptyState.hidden = false;
+      paginationEl.hidden = true;
+    } else {
+      grid.innerHTML = page.map(p => renderCard(p)).join('');
+      grid.hidden = false;
+      emptyState.hidden = true;
+      renderPagination(totalPages);
+    }
+
+    resultCount.textContent = all.length + ' sản phẩm';
+    renderChips();
+    syncUI();
+    pushURL();
+  }
+
+  function renderPagination(totalPages) {
+    if (totalPages <= 1) { paginationEl.hidden = true; return; }
+    paginationEl.hidden = false;
+    let html = '';
+    if (state.page > 1) html += `<button class="dc-page-btn" data-pg="${state.page - 1}" aria-label="Trang trước">‹</button>`;
+    for (let i = 1; i <= totalPages; i++) {
+      if (i === state.page) {
+        html += `<button class="dc-page-btn active" aria-current="page" aria-label="Trang ${i}">${i}</button>`;
+      } else if (i === 1 || i === totalPages || Math.abs(i - state.page) <= 2) {
+        html += `<button class="dc-page-btn" data-pg="${i}" aria-label="Trang ${i}">${i}</button>`;
+      } else if (Math.abs(i - state.page) === 3) {
+        html += `<span class="dc-page-ellipsis">…</span>`;
+      }
+    }
+    if (state.page < totalPages) html += `<button class="dc-page-btn" data-pg="${state.page + 1}" aria-label="Trang sau">›</button>`;
+    paginationEl.innerHTML = html;
+  }
+
+  function renderChips() {
+    let chips = '';
+    let count = 0;
+    const AGE_LBL = { '0-2': '0–2 tuổi', '3-5': '3–5 tuổi', '6-8': '6–8 tuổi', '9+': '9+ tuổi' };
+    const CAT_LBL2 = { 'do-choi-giao-duc': 'Giáo dục', 'xe-mo-hinh': 'Xe & Mô hình', 'bup-be-thu-bong': 'Búp bê & Thú bông', 'do-choi-ngoai-troi': 'Ngoài trời', 'lego-xep-hinh': 'Lego & Xếp hình' };
+    if (state.category) { chips += `<button class="dc-chip" data-rm="category" type="button">${CAT_LBL2[state.category] || state.category} ×</button>`; count++; }
+    if (state.age) { chips += `<button class="dc-chip" data-rm="age" type="button">${AGE_LBL[state.age] || state.age} ×</button>`; count++; }
+    if (state.maxPrice < 1500000) { chips += `<button class="dc-chip" data-rm="maxPrice" type="button">Tối đa ${state.maxPrice.toLocaleString('vi-VN')}đ ×</button>`; count++; }
+    if (state.query) { chips += `<button class="dc-chip" data-rm="query" type="button">Từ khóa: ${state.query} ×</button>`; count++; }
+    if (state.theme) { chips += `<button class="dc-chip" data-rm="theme" type="button">Nhóm: ${state.theme} ×</button>`; count++; }
+    activeChipsEl.innerHTML = chips;
+    activeChipsWrap.hidden = count === 0;
+    filterBadge.textContent = count > 0 ? count : '';
+    filterBadge.hidden = count === 0;
+  }
+
+  function syncUI() {
+    // Category pills
+    document.querySelectorAll('[data-cat]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.cat === state.category);
+    });
+    document.querySelectorAll('[data-mob-cat]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.mobCat === state.category);
+    });
+    // Age
+    document.querySelectorAll('input[name="ageFilter"]').forEach(r => { r.checked = r.value === state.age; });
+    document.querySelectorAll('input[name="ageFilterMob"]').forEach(r => { r.checked = r.value === state.age; });
+    // Price
+    if (priceSlider) { priceSlider.value = state.maxPrice; priceMaxLabel.textContent = state.maxPrice.toLocaleString('vi-VN') + 'đ'; }
+    const psm = document.getElementById('priceSliderMob');
+    const pmlm = document.getElementById('priceMaxLabelMob');
+    if (psm) { psm.value = state.maxPrice; if (pmlm) pmlm.textContent = state.maxPrice.toLocaleString('vi-VN') + 'đ'; }
+    // Age dropdown label
+    const ageLabel = document.getElementById('ageDropLabel');
+    const AGE_LBL = { '': 'Độ tuổi', '0-2': '0–2 tuổi', '3-5': '3–5 tuổi', '6-8': '6–8 tuổi', '9+': '9+ tuổi' };
+    if (ageLabel) ageLabel.textContent = AGE_LBL[state.age] || 'Độ tuổi';
+    // Price label
+    const priceLabel = document.getElementById('priceDropLabel');
+    if (priceLabel) priceLabel.textContent = state.maxPrice < 1500000 ? 'Đến ' + state.maxPrice.toLocaleString('vi-VN') + 'đ' : 'Khoảng giá';
+    // Sort
+    if (sortSelect) sortSelect.value = state.sort;
+  }
+
+  function resetAll() {
+    state.category = ''; state.age = ''; state.maxPrice = 1500000;
+    state.sort = 'default'; state.query = ''; state.theme = ''; state.page = 1;
+    render();
+  }
+
+  // ── Dropdown toggle ──
+  function setupDropdown(btnId, menuId) {
+    const btn = document.getElementById(btnId);
+    const menu = document.getElementById(menuId);
+    if (!btn || !menu) return;
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('show');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', e => {
+      if (!btn.contains(e.target) && !menu.contains(e.target)) {
+        menu.classList.remove('show');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+  setupDropdown('ageDropBtn', 'ageDropMenu');
+  setupDropdown('priceDropBtn', 'priceDropMenu');
+
+  // ── Category pills ──
+  document.querySelectorAll('[data-cat]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.category = btn.dataset.cat;
+      state.page = 1;
+      render();
+    });
+  });
+
+  // ── Age radio ──
+  document.querySelectorAll('input[name="ageFilter"]').forEach(r => {
+    r.addEventListener('change', () => {
+      state.age = r.value;
+      state.page = 1;
+      render();
+      document.getElementById('ageDropMenu').classList.remove('show');
+      document.getElementById('ageDropBtn').setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // ── Price slider (debounce 250ms) ──
+  let priceTimer;
+  if (priceSlider) {
+    priceSlider.addEventListener('input', () => {
+      priceMaxLabel.textContent = parseInt(priceSlider.value, 10).toLocaleString('vi-VN') + 'đ';
+      clearTimeout(priceTimer);
+      priceTimer = setTimeout(() => {
+        state.maxPrice = parseInt(priceSlider.value, 10);
+        state.page = 1;
+        render();
+      }, 250);
+    });
+  }
+
+  // ── Sort ──
+  if (sortSelect) {
+    sortSelect.addEventListener('change', () => {
+      state.sort = sortSelect.value;
+      state.page = 1;
+      render();
+    });
+  }
+
+  // ── Active chips remove ──
+  activeChipsEl.addEventListener('click', e => {
+    const chip = e.target.closest('[data-rm]');
+    if (!chip) return;
+    const key = chip.dataset.rm;
+    if (key === 'category') state.category = '';
+    else if (key === 'age') state.age = '';
+    else if (key === 'maxPrice') state.maxPrice = 1500000;
+    else if (key === 'query') state.query = '';
+    else if (key === 'theme') state.theme = '';
+    state.page = 1;
+    render();
+  });
+  clearAllBtn.addEventListener('click', resetAll);
+  document.getElementById('emptyResetBtn').addEventListener('click', resetAll);
+
+  // ── Pagination ──
+  paginationEl.addEventListener('click', e => {
+    const btn = e.target.closest('[data-pg]');
+    if (!btn) return;
+    state.page = parseInt(btn.dataset.pg, 10);
+    render();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ── Mobile offcanvas ──
+  const filterMobToggle = document.getElementById('filterMobToggle');
+  const offcanvas = document.getElementById('filterOffcanvas');
+  const backdrop = document.getElementById('offcanvasBackdrop');
+  const offcanvasClose = document.getElementById('offcanvasClose');
+
+  function openOffcanvas() {
+    offcanvas.classList.add('show');
+    backdrop.classList.add('show');
+    offcanvas.setAttribute('aria-hidden', 'false');
+    backdrop.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeOffcanvas() {
+    offcanvas.classList.remove('show');
+    backdrop.classList.remove('show');
+    offcanvas.setAttribute('aria-hidden', 'true');
+    backdrop.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  if (filterMobToggle) filterMobToggle.addEventListener('click', openOffcanvas);
+  if (offcanvasClose) offcanvasClose.addEventListener('click', closeOffcanvas);
+  if (backdrop) backdrop.addEventListener('click', closeOffcanvas);
+
+  document.querySelectorAll('[data-mob-cat]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.category = btn.dataset.mobCat;
+      document.querySelectorAll('[data-mob-cat]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+  document.querySelectorAll('input[name="ageFilterMob"]').forEach(r => {
+    r.addEventListener('change', () => { state.age = r.value; });
+  });
+  const psMob = document.getElementById('priceSliderMob');
+  const pmlMob = document.getElementById('priceMaxLabelMob');
+  if (psMob) {
+    psMob.addEventListener('input', () => {
+      if (pmlMob) pmlMob.textContent = parseInt(psMob.value, 10).toLocaleString('vi-VN') + 'đ';
+    });
+  }
+  const offcanvasApply = document.getElementById('offcanvasApply');
+  if (offcanvasApply) {
+    offcanvasApply.addEventListener('click', () => {
+      if (psMob) state.maxPrice = parseInt(psMob.value, 10);
+      state.page = 1;
+      render();
+      closeOffcanvas();
+    });
+  }
+  const offcanvasReset = document.getElementById('offcanvasReset');
+  if (offcanvasReset) {
+    offcanvasReset.addEventListener('click', () => { resetAll(); closeOffcanvas(); });
+  }
+
+  // ── Init ──
+  readURL();
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="KidZone — Shop đồ chơi trẻ em an toàn, chất lượng cao. Đồ chơi giáo dục, Lego, búp bê, xe mô hình, đồ chơi ngoài trời. Miễn phí ship đơn từ 300K.">
+<meta property="og:title" content="KidZone — Shop Đồ Chơi Trẻ Em">
+<meta property="og:description" content="Hơn 500 loại đồ chơi an toàn, chất lượng cho bé từ 0–12 tuổi. Miễn phí vận chuyển, đổi trả 30 ngày.">
+<meta property="og:type" content="website">
+<meta name="robots" content="index, follow">
+<title>KidZone — Shop Đồ Chơi Trẻ Em Chất Lượng Cao</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="dc-topbar">
+  <div class="dc-topbar-inner">
+    <span>Miễn phí ship đơn từ 300K</span>
+    <span class="dc-topbar-sep">·</span>
+    <span>Đổi trả 30 ngày</span>
+    <span class="dc-topbar-sep">·</span>
+    <span>Bảo hành chính hãng</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="dc-nav" id="dcNav" aria-label="Menu chính">
+  <div class="dc-nav-inner">
+    <a href="index.html" class="dc-nav-logo" aria-label="KidZone trang chủ">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="var(--accent)"/>
+        <text x="16" y="22" font-size="18" text-anchor="middle" font-family="Baloo 2" font-weight="800" fill="white">K</text>
+      </svg>
+      <span>KidZone</span>
+    </a>
+    <ul class="dc-nav-links" role="list" id="dcNavLinks">
+      <li><a href="index.html" class="active" aria-current="page">Trang chủ</a></li>
+      <li><a href="san-pham.html">Sản phẩm</a></li>
+      <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+      <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+      <li><a href="lien-he.html">Liên hệ</a></li>
+    </ul>
+    <div class="dc-nav-actions">
+      <button class="dc-nav-icon" id="dcSearchBtn" aria-label="Tìm kiếm" aria-expanded="false" aria-controls="dcSearchPanel" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+      <a href="gio-hang.html" class="dc-nav-icon dc-cart-icon" aria-label="Giỏ hàng">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="dc-cart-badge" id="dcCartCount">0</span>
+      </a>
+      <button class="dc-burger" id="dcBurger" aria-label="Mở menu" aria-expanded="false" aria-controls="dcNavMob" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <!-- Search panel -->
+  <div class="dc-search-panel" id="dcSearchPanel" hidden>
+    <form class="dc-search-form" action="san-pham.html" method="get" role="search">
+      <input type="text" name="q" id="dcSearchInput" placeholder="Tìm đồ chơi cho bé..." autocomplete="off" aria-label="Tìm kiếm sản phẩm">
+      <button type="submit" aria-label="Tìm">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+    </form>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="dc-nav-mob" id="dcNavMob" aria-hidden="true" role="dialog" aria-label="Menu di động">
+  <ul role="list">
+    <li><a href="index.html" class="active">Trang chủ</a></li>
+    <li><a href="san-pham.html">Sản phẩm</a></li>
+    <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+    <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+</div>
+
+<!-- ═══ HERO: SEARCH ZONE ═══ -->
+<section class="dc-search-zone" id="searchZone">
+  <div class="dc-container">
+    <h1 class="dc-search-zone-title">Tìm đồ chơi hoàn hảo cho bé</h1>
+    <p class="dc-search-zone-sub">Hơn 500 sản phẩm an toàn, chất lượng cao từ 0–12 tuổi</p>
+    <form class="dc-search-zone-form" action="san-pham.html" method="get" role="search">
+      <input type="text" name="q" placeholder="Ví dụ: Lego, gấu bông, xe điều khiển..." autocomplete="off" aria-label="Tìm kiếm sản phẩm">
+      <button type="submit" aria-label="Tìm kiếm">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <span>Tìm kiếm</span>
+      </button>
+    </form>
+    <div class="dc-search-zone-chips" aria-label="Danh mục nhanh">
+      <a href="san-pham.html?category=do-choi-giao-duc">Giáo dục</a>
+      <a href="san-pham.html?category=lego-xep-hinh">Lego & Xếp hình</a>
+      <a href="san-pham.html?category=xe-mo-hinh">Xe & Mô hình</a>
+      <a href="san-pham.html?category=bup-be-thu-bong">Búp bê & Thú bông</a>
+      <a href="san-pham.html?category=do-choi-ngoai-troi">Ngoài trời</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION 1: BÁN CHẠY NHẤT ═══ -->
+<section class="dc-section" id="secBanChay">
+  <div class="dc-container">
+    <div class="dc-section-head" data-reveal>
+      <div class="dc-section-head-left">
+        <div class="dc-eyebrow">Được yêu thích nhất</div>
+        <h2 class="dc-section-title">Bán chạy nhất <span>tháng này</span></h2>
+      </div>
+      <a href="san-pham.html?theme=ban-chay" class="dc-section-viewall">Xem tất cả <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+    <div class="dc-section-search" data-reveal>
+      <input type="text" id="searchBanChay" placeholder="Tìm trong bán chạy..." aria-label="Tìm trong sản phẩm bán chạy">
+    </div>
+    <div class="dc-prod-grid" id="gridBanChay" data-reveal></div>
+    <div class="dc-section-footer" data-reveal>
+      <a href="san-pham.html?theme=ban-chay" class="dc-btn-outline">Xem tất cả bán chạy →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION 2: ĐỒ CHƠI GIÁO DỤC ═══ -->
+<section class="dc-section dc-section-alt" id="secGiaoDuc">
+  <div class="dc-container">
+    <div class="dc-section-head" data-reveal>
+      <div class="dc-section-head-left">
+        <div class="dc-eyebrow">Học mà chơi</div>
+        <h2 class="dc-section-title">Đồ chơi <span>giáo dục</span></h2>
+      </div>
+      <a href="san-pham.html?category=do-choi-giao-duc" class="dc-section-viewall">Xem tất cả <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+    <div class="dc-section-search" data-reveal>
+      <input type="text" id="searchGiaoDuc" placeholder="Tìm đồ chơi giáo dục..." aria-label="Tìm trong đồ chơi giáo dục">
+    </div>
+    <div class="dc-prod-grid" id="gridGiaoDuc" data-reveal></div>
+    <div class="dc-section-footer" data-reveal>
+      <a href="san-pham.html?category=do-choi-giao-duc" class="dc-btn-outline">Xem tất cả giáo dục →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION 3: HÀNG MỚI VỀ ═══ -->
+<section class="dc-section" id="secHangMoi">
+  <div class="dc-container">
+    <div class="dc-section-head" data-reveal>
+      <div class="dc-section-head-left">
+        <div class="dc-eyebrow">Cập nhật liên tục</div>
+        <h2 class="dc-section-title">Hàng mới <span>về</span></h2>
+      </div>
+      <a href="san-pham.html?theme=hang-moi" class="dc-section-viewall">Xem tất cả <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+    <div class="dc-section-search" data-reveal>
+      <input type="text" id="searchHangMoi" placeholder="Tìm hàng mới..." aria-label="Tìm trong hàng mới về">
+    </div>
+    <div class="dc-prod-grid" id="gridHangMoi" data-reveal></div>
+    <div class="dc-section-footer" data-reveal>
+      <a href="san-pham.html?theme=hang-moi" class="dc-btn-outline">Xem tất cả hàng mới →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION 4: ĐANG GIẢM GIÁ ═══ -->
+<section class="dc-section dc-section-alt" id="secGiamGia">
+  <div class="dc-container">
+    <div class="dc-section-head" data-reveal>
+      <div class="dc-section-head-left">
+        <div class="dc-eyebrow">Tiết kiệm hơn</div>
+        <h2 class="dc-section-title">Đang <span>giảm giá</span></h2>
+      </div>
+      <a href="san-pham.html?theme=giam-gia" class="dc-section-viewall">Xem tất cả <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+    <div class="dc-section-search" data-reveal>
+      <input type="text" id="searchGiamGia" placeholder="Tìm sản phẩm giảm giá..." aria-label="Tìm trong sản phẩm giảm giá">
+    </div>
+    <div class="dc-prod-grid" id="gridGiamGia" data-reveal></div>
+    <div class="dc-section-footer" data-reveal>
+      <a href="san-pham.html?theme=giam-gia" class="dc-btn-outline">Xem tất cả đang giảm →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="dc-footer">
+  <div class="dc-container">
+    <div class="dc-footer-grid">
+      <div class="dc-footer-col dc-footer-brand">
+        <a href="index.html" class="dc-footer-logo">
+          <svg width="36" height="36" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <rect width="32" height="32" rx="8" fill="var(--yellow)"/>
+            <text x="16" y="22" font-size="18" text-anchor="middle" font-family="Baloo 2" font-weight="800" fill="#0c2a3d">K</text>
+          </svg>
+          <span>KidZone</span>
+        </a>
+        <p class="dc-footer-desc">Shop đồ chơi trẻ em chất lượng cao, an toàn cho bé từ 0–12 tuổi. Sản phẩm được kiểm định đạt tiêu chuẩn an toàn quốc tế.</p>
+        <div class="dc-footer-social">
+          <a href="#" aria-label="Facebook" class="dc-footer-soc-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="TikTok" class="dc-footer-soc-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram" class="dc-footer-soc-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="dc-footer-col">
+        <h3 class="dc-footer-col-title">Sản phẩm</h3>
+        <ul>
+          <li><a href="san-pham.html?category=do-choi-giao-duc">Đồ chơi giáo dục</a></li>
+          <li><a href="san-pham.html?category=xe-mo-hinh">Xe & Mô hình</a></li>
+          <li><a href="san-pham.html?category=bup-be-thu-bong">Búp bê & Thú bông</a></li>
+          <li><a href="san-pham.html?category=do-choi-ngoai-troi">Đồ chơi ngoài trời</a></li>
+          <li><a href="san-pham.html?category=lego-xep-hinh">Lego & Xếp hình</a></li>
+        </ul>
+      </div>
+      <div class="dc-footer-col">
+        <h3 class="dc-footer-col-title">Hỗ trợ</h3>
+        <ul>
+          <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+          <li><a href="gio-hang.html">Giỏ hàng</a></li>
+        </ul>
+      </div>
+      <div class="dc-footer-col">
+        <h3 class="dc-footer-col-title">Chính sách</h3>
+        <ul>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+        <div class="dc-footer-contact">
+          <p><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38C1.58 2.28 2.4 1.35 3.5 1H6.5a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> 0901 234 567</p>
+          <p><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> hello@kidzone.vn</p>
+        </div>
+      </div>
+    </div>
+    <div class="dc-footer-bottom">
+      <span>© 2025 KidZone. Bảo lưu mọi quyền.</span>
+      <span>Designed with ❤ for little ones</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ZALO FLOAT -->
+<a href="https://zalo.me/0901234567" class="dc-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo với KidZone">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M12.001 2C6.478 2 2 6.477 2 12c0 2.25.751 4.33 2.015 6.004L2.5 21.5l3.594-1.49C7.657 21.17 9.75 22 12 22c5.523 0 10-4.477 10-10S17.524 2 12.001 2zm4.894 13.37c-.193.543-.573.968-1.086 1.073-.29.058-.664.105-2.097-.452-1.75-.69-2.88-2.453-2.967-2.568-.086-.115-.703-.937-.703-1.787 0-.849.445-1.267.603-1.44a.632.632 0 0 1 .459-.215c.114 0 .229 0 .329.005.106.005.248-.04.388.296.143.344.486 1.187.529 1.274.043.086.072.187.014.3-.057.114-.086.185-.172.286-.086.1-.18.224-.257.3-.086.087-.176.181-.076.355.1.173.446.735.958 1.19.66.586 1.216.768 1.388.854.172.086.271.072.372-.043.1-.115.43-.503.545-.676.114-.172.229-.143.386-.086.157.057.999.472 1.17.557.172.086.287.129.33.2.042.071.042.413-.15.955z"/></svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products-data.js"></script>
+<script>
+(function() {
+  // Render 4 sections
+  renderSection('gridBanChay', function(p) { return p.theme.includes('ban-chay'); }, 8);
+  renderSection('gridGiaoDuc', function(p) { return p.category === 'do-choi-giao-duc'; }, 8);
+  renderSection('gridHangMoi', function(p) { return p.theme.includes('hang-moi'); }, 8);
+  renderSection('gridGiamGia', function(p) { return p.salePrice !== null; }, 8);
+
+  // Local search for each section
+  initSectionSearch('searchBanChay', 'gridBanChay');
+  initSectionSearch('searchGiaoDuc', 'gridGiaoDuc');
+  initSectionSearch('searchHangMoi', 'gridHangMoi');
+  initSectionSearch('searchGiamGia', 'gridGiamGia');
+})();
+</script>
+</body>
+</html>

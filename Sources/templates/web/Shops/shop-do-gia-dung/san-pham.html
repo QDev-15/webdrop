@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sản phẩm — Nhà Đẹp Store</title>
+  <meta name="description" content="Khám phá toàn bộ sản phẩm đồ gia dụng tại Nhà Đẹp Store. Lọc theo danh mục, giá, màu sắc — miễn phí ship từ 500K.">
+  <meta property="og:title" content="Sản phẩm — Nhà Đẹp Store">
+  <link rel="canonical" href="san-pham.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Topbar -->
+<div id="dg-topbar" role="banner">
+  <div class="dg-topbar__items">
+    <span class="dg-topbar__item">Miễn phí ship từ 500K</span>
+    <span class="dg-topbar__item">Đổi trả 30 ngày</span>
+    <span class="dg-topbar__item">Bảo hành chính hãng</span>
+  </div>
+</div>
+
+<!-- Navigation -->
+<nav id="dg-nav" role="navigation" aria-label="Menu chính">
+  <div class="dg-nav__inner">
+    <a href="index.html" class="dg-nav__logo">Nhà Đẹp<span>.</span></a>
+    <ul class="dg-nav__links">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="san-pham.html" class="active">Sản phẩm</a></li>
+      <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+      <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+      <li><a href="lien-he.html">Liên hệ</a></li>
+    </ul>
+    <div class="dg-nav__actions">
+      <button class="dg-nav__icon-btn" id="dg-search-toggle" aria-label="Tìm kiếm">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <a href="gio-hang.html" class="dg-nav__icon-btn" aria-label="Giỏ hàng">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="dg-cart-count" id="dg-cart-count">0</span>
+      </a>
+      <button class="dg-hamburger" id="dg-hamburger" aria-label="Mở menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Search Panel -->
+<div id="dg-search-panel" role="search">
+  <div class="dg-search-panel__inner">
+    <input type="text" class="dg-search-panel__input" id="dg-search-input" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
+    <button class="dg-search-panel__btn" id="dg-search-submit">Tìm kiếm</button>
+  </div>
+</div>
+
+<!-- Mobile Nav -->
+<div id="dg-nav-overlay"></div>
+<div id="dg-nav-mob" role="navigation" aria-label="Menu di động">
+  <button id="dg-nav-close" aria-label="Đóng menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <ul class="dg-nav-mob__links">
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="san-pham.html" class="active">Sản phẩm</a></li>
+    <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+    <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+</div>
+
+<!-- Page Hero -->
+<div class="dg-page-hero">
+  <div class="dg-container">
+    <p class="dg-page-hero__label">Cửa hàng</p>
+    <h1 class="dg-page-hero__title">Tất cả sản phẩm</h1>
+    <p class="dg-page-hero__sub">Khám phá bộ sưu tập đồ gia dụng chất lượng cao, được tuyển chọn kỹ lưỡng.</p>
+  </div>
+</div>
+
+<!-- Main Content -->
+<main class="dg-container sec-pad" style="padding-top: 32px;">
+
+  <!-- Filter Bar -->
+  <div class="dg-filter-bar">
+    <!-- Row 1: Categories + Mobile toggle -->
+    <div class="dg-filter-bar__row">
+      <div class="dg-cat-pills" id="dg-cat-pills">
+        <button class="dg-cat-pill active" data-cat="">Tất cả</button>
+        <button class="dg-cat-pill" data-cat="nha-bep">Nhà bếp</button>
+        <button class="dg-cat-pill" data-cat="trang-tri">Trang trí</button>
+        <button class="dg-cat-pill" data-cat="phong-tam">Phòng tắm</button>
+        <button class="dg-cat-pill" data-cat="noi-that-nho">Nội thất nhỏ</button>
+        <button class="dg-cat-pill" data-cat="den-anh-sang">Đèn & Ánh sáng</button>
+      </div>
+      <button class="dg-filter-mob-btn" id="dg-filter-mob-open">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+        Bộ lọc
+        <span class="dg-count" id="dg-filter-badge" style="display:none">0</span>
+      </button>
+    </div>
+
+    <!-- Row 2: Dropdowns + Sort + Count (hidden on mobile) -->
+    <div class="dg-filter-bar__row desktop-filters">
+      <!-- Search input -->
+      <div style="position:relative; flex:0 0 220px;">
+        <input type="text" id="dg-filter-search" placeholder="Tìm theo tên..." aria-label="Tìm theo tên"
+          style="width:100%; height:36px; border:1.5px solid var(--border); border-radius:var(--radius-btn); padding:0 36px 0 14px; font-size:13.5px; background:var(--bg); outline:none; font-family:var(--sans); color:var(--text);">
+        <svg style="position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--text-3);pointer-events:none;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </div>
+
+      <!-- Price dropdown -->
+      <div class="dg-filter-dropdown" id="dd-price">
+        <button class="dg-filter-dropdown__btn" id="btn-dd-price">
+          Khoảng giá
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="dg-filter-dropdown__menu" id="menu-dd-price">
+          <div class="dg-price-range">
+            <input type="range" id="dg-price-slider" min="0" max="3000000" step="50000" value="3000000">
+            <span class="dg-price-range__vals" id="dg-price-val">Đến 3.000.000đ</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Color dropdown -->
+      <div class="dg-filter-dropdown" id="dd-color">
+        <button class="dg-filter-dropdown__btn" id="btn-dd-color">
+          Màu sắc
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="dg-filter-dropdown__menu" id="menu-dd-color">
+          <label class="dg-filter-option"><input type="checkbox" name="color" value="trang"><span>Trắng tinh</span></label>
+          <label class="dg-filter-option"><input type="checkbox" name="color" value="den"><span>Đen mờ</span></label>
+          <label class="dg-filter-option"><input type="checkbox" name="color" value="nau"><span>Nâu đất</span></label>
+          <label class="dg-filter-option"><input type="checkbox" name="color" value="bac"><span>Bạc/Inox</span></label>
+          <label class="dg-filter-option"><input type="checkbox" name="color" value="xanh"><span>Xanh sage</span></label>
+          <label class="dg-filter-option"><input type="checkbox" name="color" value="kem"><span>Kem nhẹ</span></label>
+        </div>
+      </div>
+
+      <!-- Sort -->
+      <select class="dg-sort-select" id="dg-sort" aria-label="Sắp xếp">
+        <option value="">Sắp xếp mặc định</option>
+        <option value="price-asc">Giá tăng dần</option>
+        <option value="price-desc">Giá giảm dần</option>
+        <option value="name-asc">Tên A–Z</option>
+        <option value="newest">Mới nhất</option>
+        <option value="sale">Đang giảm giá</option>
+      </select>
+
+      <!-- Result count -->
+      <span class="dg-result-count" id="dg-result-count">40 sản phẩm</span>
+    </div>
+  </div>
+
+  <!-- Active filter chips -->
+  <div class="dg-active-chips" id="dg-active-chips"></div>
+
+  <!-- Product Grid -->
+  <div class="dg-grid dg-grid--4" id="dg-products-grid"></div>
+
+  <!-- Empty state -->
+  <div class="dg-empty-state" id="dg-empty-state">
+    <div class="dg-empty-state__icon">🏡</div>
+    <p class="dg-empty-state__text">Không tìm thấy sản phẩm phù hợp với bộ lọc hiện tại.</p>
+    <button class="dg-btn dg-btn--outline" id="dg-reset-btn">Xóa bộ lọc</button>
+  </div>
+
+  <!-- Pagination -->
+  <nav class="dg-pagination" id="dg-pagination" aria-label="Phân trang"></nav>
+</main>
+
+<!-- ══ OFFCANVAS MOBILE FILTER ══ -->
+<div id="dg-offcanvas-overlay" class="dg-offcanvas__overlay"></div>
+<div id="dg-offcanvas" class="dg-offcanvas" role="dialog" aria-label="Bộ lọc sản phẩm">
+  <div class="dg-offcanvas__header">
+    <h2 class="dg-offcanvas__title">Bộ lọc</h2>
+    <button class="dg-offcanvas__close" id="dg-offcanvas-close" aria-label="Đóng">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="dg-offcanvas__body">
+    <!-- Search -->
+    <div class="dg-offcanvas-group">
+      <p class="dg-offcanvas-group__label">Tìm kiếm</p>
+      <input type="text" id="dg-mob-search" placeholder="Tên sản phẩm..." aria-label="Tìm theo tên"
+        style="width:100%; height:40px; border:1.5px solid var(--border); border-radius:var(--radius-btn); padding:0 14px; font-size:14px; font-family:var(--sans); outline:none; background:var(--bg);">
+    </div>
+    <!-- Category -->
+    <div class="dg-offcanvas-group">
+      <p class="dg-offcanvas-group__label">Danh mục</p>
+      <div class="dg-cat-pills" id="dg-mob-cats" style="flex-direction:column; gap:4px;">
+        <button class="dg-cat-pill active" data-cat="" style="text-align:left; border-radius:6px;">Tất cả</button>
+        <button class="dg-cat-pill" data-cat="nha-bep" style="text-align:left; border-radius:6px;">Nhà bếp</button>
+        <button class="dg-cat-pill" data-cat="trang-tri" style="text-align:left; border-radius:6px;">Trang trí</button>
+        <button class="dg-cat-pill" data-cat="phong-tam" style="text-align:left; border-radius:6px;">Phòng tắm</button>
+        <button class="dg-cat-pill" data-cat="noi-that-nho" style="text-align:left; border-radius:6px;">Nội thất nhỏ</button>
+        <button class="dg-cat-pill" data-cat="den-anh-sang" style="text-align:left; border-radius:6px;">Đèn & Ánh sáng</button>
+      </div>
+    </div>
+    <!-- Price -->
+    <div class="dg-offcanvas-group">
+      <p class="dg-offcanvas-group__label">Khoảng giá</p>
+      <div class="dg-price-range" style="padding:0 0 10px;">
+        <input type="range" id="dg-mob-price-slider" min="0" max="3000000" step="50000" value="3000000">
+        <span class="dg-price-range__vals" id="dg-mob-price-val">Đến 3.000.000đ</span>
+      </div>
+    </div>
+    <!-- Color -->
+    <div class="dg-offcanvas-group">
+      <p class="dg-offcanvas-group__label">Màu sắc</p>
+      <div class="dg-offcanvas-options">
+        <label class="dg-filter-option"><input type="checkbox" name="mob-color" value="trang"><span>Trắng tinh</span></label>
+        <label class="dg-filter-option"><input type="checkbox" name="mob-color" value="den"><span>Đen mờ</span></label>
+        <label class="dg-filter-option"><input type="checkbox" name="mob-color" value="nau"><span>Nâu đất</span></label>
+        <label class="dg-filter-option"><input type="checkbox" name="mob-color" value="bac"><span>Bạc/Inox</span></label>
+        <label class="dg-filter-option"><input type="checkbox" name="mob-color" value="xanh"><span>Xanh sage</span></label>
+        <label class="dg-filter-option"><input type="checkbox" name="mob-color" value="kem"><span>Kem nhẹ</span></label>
+      </div>
+    </div>
+  </div>
+  <div class="dg-offcanvas__footer">
+    <div style="display:flex; gap:8px;">
+      <button class="dg-btn dg-btn--ghost dg-btn--sm" style="flex:1;" id="dg-mob-reset">Xóa lọc</button>
+      <button class="dg-btn dg-btn--primary dg-btn--sm" style="flex:2;" id="dg-mob-apply">Xem kết quả</button>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer id="dg-footer">
+  <div class="dg-container">
+    <div class="dg-footer__main">
+      <div class="dg-footer__brand">
+        <div class="dg-nav__logo">Nhà Đẹp<span>.</span></div>
+        <p class="dg-footer__tagline">Mang đến không gian sống tinh tế và tiện nghi cho mọi gia đình Việt.</p>
+        <div class="dg-footer__socials">
+          <a href="#" class="dg-footer__social" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="dg-footer__social" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 class="dg-footer__col-title">Danh mục</h3>
+        <ul class="dg-footer__links">
+          <li><a href="san-pham.html?category=nha-bep">Đồ dùng nhà bếp</a></li>
+          <li><a href="san-pham.html?category=trang-tri">Đồ trang trí nhà</a></li>
+          <li><a href="san-pham.html?category=phong-tam">Đồ dùng phòng tắm</a></li>
+          <li><a href="san-pham.html?category=noi-that-nho">Nội thất nhỏ</a></li>
+          <li><a href="san-pham.html?category=den-anh-sang">Đèn & Ánh sáng</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="dg-footer__col-title">Thông tin</h3>
+        <ul class="dg-footer__links">
+          <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+          <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="dg-footer__col-title">Hỗ trợ</h3>
+        <ul class="dg-footer__links">
+          <li><a href="lien-he.html">Chăm sóc khách hàng</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="dg-footer__bottom">
+      <p class="dg-footer__copy">© 2024 Nhà Đẹp Store. Tất cả quyền được bảo lưu.</p>
+      <nav class="dg-footer__legal">
+        <a href="chinh-sach-bao-mat.html">Bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/0901234567" class="dg-zalo-float" target="_blank" rel="noopener" aria-label="Chat Zalo">
+  <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
+    <circle cx="24" cy="24" r="24" fill="#0068FF"/>
+    <text x="9" y="32" font-size="20" font-weight="700" fill="#fff" font-family="Arial">Z</text>
+    <text x="20" y="32" font-size="14" font-weight="400" fill="rgba(255,255,255,.85)" font-family="Arial">alo</text>
+  </svg>
+</a>
+
+<script src="assets/js/products-data.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  const PER_PAGE = 12;
+
+  // ── State ──
+  const state = {
+    category: '',
+    search: '',
+    maxPrice: 3000000,
+    colors: [],
+    sort: '',
+    theme: '',
+    page: 1
+  };
+
+  // ── Read URL params on load ──
+  function readURLParams() {
+    const p = new URLSearchParams(window.location.search);
+    if (p.get('category')) state.category = p.get('category');
+    if (p.get('q')) state.search = p.get('q');
+    if (p.get('theme')) state.theme = p.get('theme');
+    if (p.get('page')) state.page = parseInt(p.get('page')) || 1;
+  }
+
+  // ── Push state to URL ──
+  function pushURL() {
+    const p = new URLSearchParams();
+    if (state.category) p.set('category', state.category);
+    if (state.search) p.set('q', state.search);
+    if (state.theme) p.set('theme', state.theme);
+    if (state.maxPrice < 3000000) p.set('maxPrice', state.maxPrice);
+    if (state.colors.length) p.set('colors', state.colors.join(','));
+    if (state.sort) p.set('sort', state.sort);
+    if (state.page > 1) p.set('page', state.page);
+    const qs = p.toString();
+    window.history.replaceState({}, '', qs ? '?' + qs : window.location.pathname);
+  }
+
+  // ── Filter + Sort ──
+  function getFiltered() {
+    let list = [...PRODUCTS];
+    if (state.category) list = list.filter(p => p.category === state.category);
+    if (state.theme) list = list.filter(p => p.theme.includes(state.theme));
+    if (state.search) {
+      const q = state.search.toLowerCase();
+      list = list.filter(p => p.name.toLowerCase().includes(q) || p.categoryName.toLowerCase().includes(q));
+    }
+    if (state.maxPrice < 3000000) {
+      list = list.filter(p => (p.salePrice || p.price) <= state.maxPrice);
+    }
+    if (state.colors.length) {
+      list = list.filter(p => state.colors.includes(p.color));
+    }
+    // Sort
+    if (state.sort === 'price-asc') list.sort((a,b) => (a.salePrice||a.price) - (b.salePrice||b.price));
+    else if (state.sort === 'price-desc') list.sort((a,b) => (b.salePrice||b.price) - (a.salePrice||a.price));
+    else if (state.sort === 'name-asc') list.sort((a,b) => a.name.localeCompare(b.name));
+    else if (state.sort === 'newest') list.sort((a,b) => (b.theme.includes('moi-ve')?1:0) - (a.theme.includes('moi-ve')?1:0));
+    else if (state.sort === 'sale') list = list.filter(p => p.salePrice).concat(list.filter(p => !p.salePrice));
+    return list;
+  }
+
+  // ── Render ──
+  function render() {
+    const filtered = getFiltered();
+    const total = filtered.length;
+    const totalPages = Math.ceil(total / PER_PAGE);
+    if (state.page > totalPages && totalPages > 0) state.page = totalPages;
+    if (state.page < 1) state.page = 1;
+
+    const start = (state.page - 1) * PER_PAGE;
+    const pageItems = filtered.slice(start, start + PER_PAGE);
+
+    const grid = document.getElementById('dg-products-grid');
+    const emptyEl = document.getElementById('dg-empty-state');
+    const countEl = document.getElementById('dg-result-count');
+
+    if (pageItems.length === 0) {
+      grid.innerHTML = '';
+      emptyEl.style.display = 'block';
+    } else {
+      grid.innerHTML = pageItems.map(p => renderProductCard(p)).join('');
+      emptyEl.style.display = 'none';
+    }
+
+    if (countEl) countEl.textContent = total + ' sản phẩm';
+
+    renderPagination(totalPages);
+    renderChips();
+    syncUI();
+    pushURL();
+    updateCartCount();
+  }
+
+  function renderPagination(totalPages) {
+    const nav = document.getElementById('dg-pagination');
+    if (totalPages <= 1) { nav.innerHTML = ''; return; }
+    let html = '<ul>';
+    html += `<li class="page-item${state.page === 1 ? ' disabled' : ''}">
+      <button class="page-link" data-page="${state.page - 1}" aria-label="Trang trước">‹</button></li>`;
+    for (let i = 1; i <= totalPages; i++) {
+      html += `<li class="page-item${i === state.page ? ' active' : ''}">
+        <button class="page-link" data-page="${i}">${i}</button></li>`;
+    }
+    html += `<li class="page-item${state.page === totalPages ? ' disabled' : ''}">
+      <button class="page-link" data-page="${state.page + 1}" aria-label="Trang sau">›</button></li>`;
+    html += '</ul>';
+    nav.innerHTML = html;
+    nav.querySelectorAll('[data-page]').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const pg = parseInt(this.dataset.page);
+        if (pg < 1 || pg > totalPages) return;
+        state.page = pg;
+        render();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  }
+
+  function renderChips() {
+    const el = document.getElementById('dg-active-chips');
+    let chips = '';
+    let count = 0;
+    if (state.category) {
+      const catMap = { 'nha-bep': 'Nhà bếp', 'trang-tri': 'Trang trí', 'phong-tam': 'Phòng tắm', 'noi-that-nho': 'Nội thất nhỏ', 'den-anh-sang': 'Đèn & Ánh sáng' };
+      chips += `<span class="dg-chip" data-remove="category">📂 ${catMap[state.category]||state.category} <span class="dg-chip__x">×</span></span>`;
+      count++;
+    }
+    if (state.theme) {
+      const tMap = { 'ban-chay': 'Bán chạy', 'moi-ve': 'Mới về', 'giam-gia': 'Giảm giá' };
+      chips += `<span class="dg-chip" data-remove="theme">🏷 ${tMap[state.theme]||state.theme} <span class="dg-chip__x">×</span></span>`;
+      count++;
+    }
+    if (state.search) {
+      chips += `<span class="dg-chip" data-remove="search">🔍 "${state.search}" <span class="dg-chip__x">×</span></span>`;
+      count++;
+    }
+    if (state.maxPrice < 3000000) {
+      chips += `<span class="dg-chip" data-remove="price">💰 Đến ${(state.maxPrice/1000).toFixed(0)}K <span class="dg-chip__x">×</span></span>`;
+      count++;
+    }
+    state.colors.forEach(c => {
+      chips += `<span class="dg-chip" data-remove="color" data-val="${c}">🎨 ${c} <span class="dg-chip__x">×</span></span>`;
+      count++;
+    });
+    if (count > 0) chips += `<button class="dg-clear-all" id="dg-clear-all">Xóa tất cả</button>`;
+    el.innerHTML = chips;
+
+    // Chip remove handlers
+    el.querySelectorAll('.dg-chip').forEach(chip => {
+      chip.addEventListener('click', function() {
+        const type = this.dataset.remove;
+        if (type === 'category') state.category = '';
+        else if (type === 'theme') state.theme = '';
+        else if (type === 'search') { state.search = ''; document.getElementById('dg-filter-search').value = ''; }
+        else if (type === 'price') { state.maxPrice = 3000000; document.getElementById('dg-price-slider').value = 3000000; updatePriceLabel(); }
+        else if (type === 'color') {
+          const v = this.dataset.val;
+          state.colors = state.colors.filter(c => c !== v);
+          document.querySelectorAll('input[name="color"]').forEach(cb => { if (cb.value === v) cb.checked = false; });
+          document.querySelectorAll('input[name="mob-color"]').forEach(cb => { if (cb.value === v) cb.checked = false; });
+        }
+        state.page = 1;
+        render();
+      });
+    });
+
+    const clearAll = document.getElementById('dg-clear-all');
+    if (clearAll) clearAll.addEventListener('click', resetFilters);
+
+    // Update mobile badge
+    const badge = document.getElementById('dg-filter-badge');
+    if (badge) {
+      badge.textContent = count;
+      badge.style.display = count > 0 ? 'inline-flex' : 'none';
+    }
+  }
+
+  function syncUI() {
+    // Sync category pills (desktop)
+    document.querySelectorAll('#dg-cat-pills .dg-cat-pill').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.cat === state.category);
+    });
+    // Sync category pills (mobile)
+    document.querySelectorAll('#dg-mob-cats .dg-cat-pill').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.cat === state.category);
+    });
+    // Sync sort
+    const sortEl = document.getElementById('dg-sort');
+    if (sortEl) sortEl.value = state.sort;
+    // Sync price
+    const priceSlider = document.getElementById('dg-price-slider');
+    if (priceSlider) priceSlider.value = state.maxPrice;
+    updatePriceLabel();
+    // Sync search input
+    const searchEl = document.getElementById('dg-filter-search');
+    if (searchEl && !searchEl.value && state.search) searchEl.value = state.search;
+    const mobSearch = document.getElementById('dg-mob-search');
+    if (mobSearch && !mobSearch.value && state.search) mobSearch.value = state.search;
+  }
+
+  function updatePriceLabel() {
+    const val = parseInt(document.getElementById('dg-price-slider')?.value || 3000000);
+    const el = document.getElementById('dg-price-val');
+    if (el) el.textContent = val >= 3000000 ? 'Tất cả mức giá' : 'Đến ' + (val/1000).toFixed(0) + 'K';
+    const mobEl = document.getElementById('dg-mob-price-val');
+    if (mobEl) {
+      const mobVal = parseInt(document.getElementById('dg-mob-price-slider')?.value || 3000000);
+      mobEl.textContent = mobVal >= 3000000 ? 'Tất cả mức giá' : 'Đến ' + (mobVal/1000).toFixed(0) + 'K';
+    }
+  }
+
+  function resetFilters() {
+    state.category = '';
+    state.search = '';
+    state.maxPrice = 3000000;
+    state.colors = [];
+    state.sort = '';
+    state.theme = '';
+    state.page = 1;
+    document.getElementById('dg-filter-search').value = '';
+    document.getElementById('dg-price-slider').value = 3000000;
+    document.getElementById('dg-sort').value = '';
+    document.querySelectorAll('input[name="color"]').forEach(cb => cb.checked = false);
+    document.querySelectorAll('input[name="mob-color"]').forEach(cb => cb.checked = false);
+    document.getElementById('dg-mob-search').value = '';
+    document.getElementById('dg-mob-price-slider').value = 3000000;
+    render();
+  }
+
+  // ── Event Listeners ──
+
+  // Category pills (desktop)
+  document.querySelectorAll('#dg-cat-pills .dg-cat-pill').forEach(btn => {
+    btn.addEventListener('click', function() {
+      state.category = this.dataset.cat;
+      state.page = 1;
+      render();
+    });
+  });
+
+  // Category pills (mobile)
+  document.querySelectorAll('#dg-mob-cats .dg-cat-pill').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#dg-mob-cats .dg-cat-pill').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      state.category = this.dataset.cat;
+    });
+  });
+
+  // Search (desktop) — debounce 300ms
+  let searchTimer;
+  document.getElementById('dg-filter-search').addEventListener('input', function() {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      state.search = this.value.trim();
+      state.page = 1;
+      render();
+    }, 300);
+  });
+
+  // Price range — debounce 250ms
+  let priceTimer;
+  document.getElementById('dg-price-slider').addEventListener('input', function() {
+    updatePriceLabel();
+    clearTimeout(priceTimer);
+    priceTimer = setTimeout(() => {
+      state.maxPrice = parseInt(this.value);
+      state.page = 1;
+      render();
+    }, 250);
+  });
+
+  // Color checkboxes
+  document.querySelectorAll('input[name="color"]').forEach(cb => {
+    cb.addEventListener('change', function() {
+      if (this.checked) {
+        if (!state.colors.includes(this.value)) state.colors.push(this.value);
+      } else {
+        state.colors = state.colors.filter(c => c !== this.value);
+      }
+      state.page = 1;
+      render();
+    });
+  });
+
+  // Sort
+  document.getElementById('dg-sort').addEventListener('change', function() {
+    state.sort = this.value;
+    state.page = 1;
+    render();
+  });
+
+  // Reset button
+  document.getElementById('dg-reset-btn').addEventListener('click', resetFilters);
+
+  // Dropdown toggles
+  ['dd-price', 'dd-color'].forEach(id => {
+    const wrap = document.getElementById(id);
+    const btn = wrap.querySelector('.dg-filter-dropdown__btn');
+    const menu = wrap.querySelector('.dg-filter-dropdown__menu');
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const isOpen = menu.classList.toggle('open');
+      btn.classList.toggle('open', isOpen);
+      // Close other dropdowns
+      document.querySelectorAll('.dg-filter-dropdown__menu.open').forEach(m => {
+        if (m !== menu) { m.classList.remove('open'); m.previousElementSibling?.classList.remove('open'); }
+      });
+    });
+  });
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.dg-filter-dropdown__menu.open').forEach(m => {
+      m.classList.remove('open');
+      m.previousElementSibling?.classList.remove('open');
+    });
+  });
+
+  // Mobile offcanvas
+  const offcanvas = document.getElementById('dg-offcanvas');
+  const offcanvasOverlay = document.getElementById('dg-offcanvas-overlay');
+
+  document.getElementById('dg-filter-mob-open').addEventListener('click', function() {
+    offcanvas.classList.add('open');
+    offcanvasOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // Sync mobile controls from state
+    document.getElementById('dg-mob-search').value = state.search;
+    document.getElementById('dg-mob-price-slider').value = state.maxPrice;
+    updatePriceLabel();
+    document.querySelectorAll('input[name="mob-color"]').forEach(cb => {
+      cb.checked = state.colors.includes(cb.value);
+    });
+  });
+  function closeOffcanvas() {
+    offcanvas.classList.remove('open');
+    offcanvasOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('dg-offcanvas-close').addEventListener('click', closeOffcanvas);
+  offcanvasOverlay.addEventListener('click', closeOffcanvas);
+
+  document.getElementById('dg-mob-price-slider').addEventListener('input', updatePriceLabel);
+
+  document.getElementById('dg-mob-reset').addEventListener('click', function() {
+    closeOffcanvas();
+    resetFilters();
+  });
+
+  document.getElementById('dg-mob-apply').addEventListener('click', function() {
+    // Apply mobile filters
+    state.search = document.getElementById('dg-mob-search').value.trim();
+    state.maxPrice = parseInt(document.getElementById('dg-mob-price-slider').value);
+    state.colors = [];
+    document.querySelectorAll('input[name="mob-color"]:checked').forEach(cb => state.colors.push(cb.value));
+    // category already set via pills
+    state.page = 1;
+    closeOffcanvas();
+    render();
+  });
+
+  // Nav search
+  const searchToggle = document.getElementById('dg-search-toggle');
+  const searchPanel = document.getElementById('dg-search-panel');
+  const searchInput = document.getElementById('dg-search-input');
+  searchToggle.addEventListener('click', function() {
+    const isOpen = searchPanel.classList.toggle('open');
+    if (isOpen) setTimeout(() => searchInput.focus(), 200);
+  });
+  document.getElementById('dg-search-submit').addEventListener('click', function() {
+    const q = searchInput.value.trim();
+    if (q) { state.search = q; state.page = 1; render(); searchPanel.classList.remove('open'); }
+  });
+  searchInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      const q = this.value.trim();
+      if (q) { state.search = q; state.page = 1; render(); searchPanel.classList.remove('open'); }
+    }
+    if (e.key === 'Escape') searchPanel.classList.remove('open');
+  });
+
+  // Mobile nav
+  const hamburger = document.getElementById('dg-hamburger');
+  const navMob = document.getElementById('dg-nav-mob');
+  const navOverlay = document.getElementById('dg-nav-overlay');
+  hamburger.addEventListener('click', () => { navMob.classList.add('open'); navOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; });
+  document.getElementById('dg-nav-close').addEventListener('click', () => { navMob.classList.remove('open'); navOverlay.classList.remove('open'); document.body.style.overflow = ''; });
+  navOverlay.addEventListener('click', () => { navMob.classList.remove('open'); navOverlay.classList.remove('open'); document.body.style.overflow = ''; });
+
+  // ── Init ──
+  readURLParams();
+  render();
+
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

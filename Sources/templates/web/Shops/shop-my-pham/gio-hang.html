@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giỏ Hàng — LUMIÈRE Beauty</title>
+  <meta name="description" content="Xem và quản lý giỏ hàng của bạn tại LUMIÈRE Beauty. Freeship đơn từ 500K, đổi trả 30 ngày.">
+  <link rel="canonical" href="gio-hang.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="mp-topbar" role="banner">
+  <div class="mp-topbar-inner">
+    <span>Miễn phí ship đơn từ 500K</span>
+    <span class="mp-topbar-dot" aria-hidden="true">·</span>
+    <span>Đổi trả 30 ngày</span>
+    <span class="mp-topbar-dot" aria-hidden="true">·</span>
+    <span>Thành phần an toàn</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="mp-nav" class="mp-scrolled" role="navigation" aria-label="Navigation chính">
+  <div class="wd-container">
+    <div class="mp-nav-inner">
+      <a href="index.html" class="mp-logo" aria-label="LUMIÈRE Beauty — Trang chủ"><em>L</em>UMIÈRE</a>
+      <ul class="mp-nav-links" role="menubar">
+        <li role="none"><a href="index.html" role="menuitem">Trang chủ</a></li>
+        <li role="none"><a href="san-pham.html" role="menuitem">Sản phẩm</a></li>
+        <li role="none"><a href="bo-suu-tap.html" role="menuitem">Bộ sưu tập</a></li>
+        <li role="none"><a href="ve-chung-toi.html" role="menuitem">Giới thiệu</a></li>
+        <li role="none"><a href="lien-he.html" role="menuitem">Liên hệ</a></li>
+      </ul>
+      <div class="mp-nav-actions">
+        <button class="mp-nav-search-btn" id="mpNavSearchBtn" aria-label="Mở tìm kiếm" aria-expanded="false">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <a href="gio-hang.html" class="mp-nav-cart-btn active" aria-label="Giỏ hàng" aria-current="page">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="mp-cart-count" id="mpCartCount" aria-live="polite">0</span>
+        </a>
+        <button class="mp-hamburger" id="mpBurger" aria-label="Mở menu" aria-expanded="false" aria-controls="mpMobMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="mp-search-panel" id="mpSearchPanel" role="search">
+    <div class="wd-container">
+      <form class="mp-search-form" action="san-pham.html" method="get">
+        <input type="search" name="q" id="mpSearchPanelInput" placeholder="Tìm sản phẩm mỹ phẩm..." autocomplete="off" aria-label="Từ khóa tìm kiếm">
+        <button type="submit" aria-label="Tìm kiếm">Tìm</button>
+      </form>
+    </div>
+  </div>
+  <div class="mp-mob-menu" id="mpMobMenu" role="dialog" aria-label="Menu điều hướng" aria-modal="true">
+    <ul>
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="san-pham.html">Sản phẩm</a></li>
+      <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+      <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+      <li><a href="lien-he.html">Liên hệ</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="mp-page-hero">
+  <div class="wd-container">
+    <nav aria-label="Breadcrumb">
+      <ol class="mp-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="index.html" itemprop="item"><span itemprop="name">Trang chủ</span></a>
+          <meta itemprop="position" content="1">
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span itemprop="name">Giỏ hàng</span>
+          <meta itemprop="position" content="2">
+        </li>
+      </ol>
+    </nav>
+    <h1 class="mp-page-hero-title">Giỏ Hàng</h1>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main id="mp-main">
+  <div class="wd-container">
+
+    <!-- EMPTY CART STATE -->
+    <div class="mp-cart-empty" id="mpCartEmpty" style="display:none" aria-live="polite" role="status">
+      <div class="mp-empty-icon" aria-hidden="true">🛍️</div>
+      <h2>Giỏ hàng của bạn đang trống</h2>
+      <p>Hãy khám phá các sản phẩm mỹ phẩm tuyệt vời từ LUMIÈRE.</p>
+      <a href="san-pham.html" class="mp-btn mp-btn-accent">Xem sản phẩm</a>
+    </div>
+
+    <!-- CART TABLE -->
+    <div class="mp-cart-wrap" id="mpCartWrap" style="display:none">
+      <div class="mp-cart-layout">
+
+        <!-- Cart items -->
+        <div class="mp-cart-items-col">
+          <div class="mp-cart-header-row" aria-label="Tiêu đề bảng giỏ hàng" role="row">
+            <span>Sản phẩm</span>
+            <span>Đơn giá</span>
+            <span>Số lượng</span>
+            <span>Thành tiền</span>
+            <span></span>
+          </div>
+          <div id="mpCartItemsList" aria-label="Danh sách sản phẩm trong giỏ" aria-live="polite"></div>
+          <div class="mp-cart-continue">
+            <a href="san-pham.html" class="mp-btn mp-btn-ghost">← Tiếp tục mua sắm</a>
+          </div>
+        </div>
+
+        <!-- Summary -->
+        <aside class="mp-cart-summary" aria-label="Tóm tắt đơn hàng">
+          <h2 class="mp-cart-summary-title">Tóm tắt đơn hàng</h2>
+          <dl class="mp-cart-totals">
+            <div class="mp-cart-total-row">
+              <dt>Tạm tính</dt>
+              <dd id="mpSubtotal">0đ</dd>
+            </div>
+            <div class="mp-cart-total-row">
+              <dt>Phí vận chuyển</dt>
+              <dd id="mpShipping">Miễn phí</dd>
+            </div>
+            <div class="mp-cart-total-row mp-cart-total-row--grand">
+              <dt>Tổng cộng</dt>
+              <dd id="mpTotal">0đ</dd>
+            </div>
+          </dl>
+          <p class="mp-cart-ship-note" id="mpShipNote" aria-live="polite"></p>
+          <button class="mp-btn mp-btn-accent mp-btn-full" id="mpCheckoutBtn" aria-label="Tiến hành thanh toán">Thanh toán →</button>
+          <div class="mp-cart-secure">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Thanh toán bảo mật · Hàng chính hãng
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- SUGGESTED PRODUCTS -->
+    <section class="mp-related" id="mpSuggestedSection" aria-labelledby="mpSuggestedTitle" style="display:none" data-reveal>
+      <div class="mp-sec-header">
+        <div class="mp-sec-header-left">
+          <div class="mp-eyebrow">Gợi ý</div>
+          <h2 id="mpSuggestedTitle" class="mp-sec-title">Bạn Có Thể Thích</h2>
+        </div>
+        <a href="san-pham.html" class="mp-sec-viewall">Xem thêm →</a>
+      </div>
+      <div class="mp-grid" id="mpSuggestedGrid" role="list"></div>
+    </section>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer id="mp-footer" role="contentinfo">
+  <div class="wd-container">
+    <div class="mp-footer-grid">
+      <div class="mp-footer-brand">
+        <a href="index.html" class="mp-footer-logo" aria-label="LUMIÈRE Beauty"><em>L</em>UMIÈRE</a>
+        <p class="mp-footer-tagline">Mỹ phẩm cao cấp, thành phần an toàn.<br>Vẻ đẹp đích thực từ thiên nhiên.</p>
+        <div class="mp-footer-social" aria-label="Mạng xã hội">
+          <a href="#" aria-label="Facebook LUMIÈRE" rel="noopener noreferrer" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram LUMIÈRE" rel="noopener noreferrer" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        </div>
+      </div>
+      <div class="mp-footer-col">
+        <h4>Danh mục</h4>
+        <ul>
+          <li><a href="san-pham.html?category=cham-soc-da">Chăm Sóc Da</a></li>
+          <li><a href="san-pham.html?category=trang-diem">Trang Điểm</a></li>
+          <li><a href="san-pham.html?category=cham-soc-toc">Chăm Sóc Tóc</a></li>
+          <li><a href="san-pham.html?category=nuoc-hoa">Nước Hoa</a></li>
+          <li><a href="san-pham.html?category=dung-cu-lam-dep">Dụng Cụ Làm Đẹp</a></li>
+        </ul>
+      </div>
+      <div class="mp-footer-col">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mp-footer-bottom">
+      <span>© 2025 LUMIÈRE Beauty. Bảo lưu mọi quyền.</span>
+      <div class="mp-footer-legal">
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[SỐ_ĐIỆN_THOẠI_ZALO]" target="_blank" rel="noopener noreferrer" class="mp-zalo-float" aria-label="Liên hệ qua Zalo">
+  <svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" aria-hidden="true"><text x="6" y="34" font-size="28" font-weight="bold" font-family="Arial,sans-serif">Z</text></svg>
+</a>
+
+<script src="assets/js/products-data.js"></script>
+<script>
+(function () {
+  'use strict';
+  const SHIPPING_THRESHOLD = 500000;
+
+  // === NAV ===
+  const mpBurger = document.getElementById('mpBurger');
+  const mpMobMenu = document.getElementById('mpMobMenu');
+  const mpNavSearchBtn = document.getElementById('mpNavSearchBtn');
+  const mpSearchPanel = document.getElementById('mpSearchPanel');
+  const mpSearchPanelInput = document.getElementById('mpSearchPanelInput');
+  if (mpBurger && mpMobMenu) {
+    mpBurger.addEventListener('click', () => { const open = mpMobMenu.classList.toggle('open'); mpBurger.classList.toggle('open', open); mpBurger.setAttribute('aria-expanded', String(open)); document.body.style.overflow = open ? 'hidden' : ''; });
+  }
+  if (mpNavSearchBtn && mpSearchPanel) {
+    mpNavSearchBtn.addEventListener('click', () => { const open = mpSearchPanel.classList.toggle('open'); mpNavSearchBtn.setAttribute('aria-expanded', String(open)); if (open && mpSearchPanelInput) mpSearchPanelInput.focus(); });
+  }
+
+  // === RENDER CART ===
+  function renderCart() {
+    const cart = JSON.parse(localStorage.getItem('mp_cart') || '[]');
+    const emptyEl = document.getElementById('mpCartEmpty');
+    const wrapEl = document.getElementById('mpCartWrap');
+    const sugSec = document.getElementById('mpSuggestedSection');
+
+    if (cart.length === 0) {
+      if (emptyEl) emptyEl.style.display = 'block';
+      if (wrapEl) wrapEl.style.display = 'none';
+      if (sugSec) sugSec.style.display = 'none';
+    } else {
+      if (emptyEl) emptyEl.style.display = 'none';
+      if (wrapEl) wrapEl.style.display = 'block';
+      if (sugSec) sugSec.style.display = 'block';
+      renderItems(cart);
+      renderSummary(cart);
+    }
+
+    mpUpdateCartCount();
+  }
+
+  function renderItems(cart) {
+    const list = document.getElementById('mpCartItemsList');
+    if (!list) return;
+    const svgPh = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23f5ebe8'/%3E%3C/svg%3E";
+    list.innerHTML = cart.map(item => {
+      const price = item.salePrice !== null && item.salePrice !== undefined ? item.salePrice : item.price;
+      return `<div class="mp-cart-item" data-item-id="${item.id}" role="row">
+        <div class="mp-cart-item-product">
+          <img src="${item.image}" alt="${item.name}" class="mp-cart-item-img" loading="lazy" onerror="this.src='${svgPh}'">
+          <div class="mp-cart-item-detail">
+            <div class="mp-cart-item-name">${item.name}</div>
+            <div class="mp-cart-item-brand">${item.brand || ''}</div>
+            ${item.salePrice ? `<span class="mp-badge" style="background:#e24b4a;font-size:11px">Sale</span>` : ''}
+          </div>
+        </div>
+        <div class="mp-cart-item-price">${mpFmt(price)}</div>
+        <div class="mp-cart-item-qty">
+          <button class="mp-qty-btn" data-qty-minus="${item.id}" aria-label="Giảm số lượng ${item.name}">−</button>
+          <span class="mp-cart-item-qty-num" aria-live="polite">${item.qty}</span>
+          <button class="mp-qty-btn" data-qty-plus="${item.id}" aria-label="Tăng số lượng ${item.name}">+</button>
+        </div>
+        <div class="mp-cart-item-subtotal">${mpFmt(price * item.qty)}</div>
+        <button class="mp-cart-item-remove" data-remove="${item.id}" aria-label="Xóa ${item.name} khỏi giỏ">✕</button>
+      </div>`;
+    }).join('');
+  }
+
+  function renderSummary(cart) {
+    const subtotal = cart.reduce((s, i) => {
+      const price = i.salePrice !== null && i.salePrice !== undefined ? i.salePrice : i.price;
+      return s + price * i.qty;
+    }, 0);
+    const shipping = subtotal >= SHIPPING_THRESHOLD ? 0 : 30000;
+    const total = subtotal + shipping;
+
+    const subtotalEl = document.getElementById('mpSubtotal');
+    const shippingEl = document.getElementById('mpShipping');
+    const totalEl = document.getElementById('mpTotal');
+    const noteEl = document.getElementById('mpShipNote');
+
+    if (subtotalEl) subtotalEl.textContent = mpFmt(subtotal);
+    if (shippingEl) shippingEl.textContent = shipping === 0 ? 'Miễn phí' : mpFmt(shipping);
+    if (totalEl) totalEl.textContent = mpFmt(total);
+    if (noteEl) {
+      if (shipping > 0) {
+        const need = SHIPPING_THRESHOLD - subtotal;
+        noteEl.textContent = `Mua thêm ${mpFmt(need)} để được miễn phí vận chuyển.`;
+      } else {
+        noteEl.textContent = '✓ Bạn được miễn phí vận chuyển!';
+        noteEl.style.color = 'var(--accent)';
+      }
+    }
+  }
+
+  // === CART ACTIONS (delegation) ===
+  const itemsList = document.getElementById('mpCartItemsList');
+  if (itemsList) {
+    itemsList.addEventListener('click', e => {
+      const minusBtn = e.target.closest('[data-qty-minus]');
+      const plusBtn = e.target.closest('[data-qty-plus]');
+      const removeBtn = e.target.closest('[data-remove]');
+
+      if (minusBtn) {
+        const id = +minusBtn.dataset.qtyMinus;
+        const cart = JSON.parse(localStorage.getItem('mp_cart') || '[]');
+        const item = cart.find(i => i.id === id);
+        if (item) {
+          item.qty = Math.max(1, item.qty - 1);
+          localStorage.setItem('mp_cart', JSON.stringify(cart));
+          renderCart();
+        }
+      } else if (plusBtn) {
+        const id = +plusBtn.dataset.qtyPlus;
+        const cart = JSON.parse(localStorage.getItem('mp_cart') || '[]');
+        const item = cart.find(i => i.id === id);
+        if (item) {
+          item.qty = Math.min(99, item.qty + 1);
+          localStorage.setItem('mp_cart', JSON.stringify(cart));
+          renderCart();
+        }
+      } else if (removeBtn) {
+        const id = +removeBtn.dataset.remove;
+        let cart = JSON.parse(localStorage.getItem('mp_cart') || '[]');
+        cart = cart.filter(i => i.id !== id);
+        localStorage.setItem('mp_cart', JSON.stringify(cart));
+        renderCart();
+      }
+    });
+  }
+
+  // === CHECKOUT ===
+  const checkoutBtn = document.getElementById('mpCheckoutBtn');
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+      const cart = JSON.parse(localStorage.getItem('mp_cart') || '[]');
+      if (cart.length === 0) { alert('Giỏ hàng của bạn đang trống.'); return; }
+      alert('Cảm ơn bạn! Chức năng thanh toán sẽ được tích hợp khi triển khai thực tế.\n\nVui lòng liên hệ hotline hoặc Zalo để đặt hàng.');
+    });
+  }
+
+  // === SUGGESTED PRODUCTS ===
+  const cart = JSON.parse(localStorage.getItem('mp_cart') || '[]');
+  const cartIds = cart.map(i => i.id);
+  const suggested = PRODUCTS.filter(p => !cartIds.includes(p.id) && p.theme.includes('ban-chay')).slice(0, 4);
+  const sugGrid = document.getElementById('mpSuggestedGrid');
+  if (sugGrid) {
+    sugGrid.innerHTML = suggested.map(mpRenderCard).join('');
+    sugGrid.addEventListener('click', e => {
+      const btn = e.target.closest('[data-cart-btn]');
+      if (btn) { mpAddToCart(+btn.dataset.id); renderCart(); }
+    });
+  }
+
+  // === REVEAL ===
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
+
+  // === INIT ===
+  renderCart();
+
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

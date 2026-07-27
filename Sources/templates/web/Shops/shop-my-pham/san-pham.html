@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sản Phẩm — LUMIÈRE Beauty</title>
+  <meta name="description" content="Khám phá 36 sản phẩm mỹ phẩm cao cấp tại LUMIÈRE: chăm sóc da, trang điểm, nước hoa, dụng cụ làm đẹp. Lọc theo loại da, thương hiệu, giá.">
+  <meta property="og:title" content="Sản Phẩm — LUMIÈRE Beauty">
+  <meta property="og:description" content="Tất cả sản phẩm mỹ phẩm cao cấp — chăm sóc da, trang điểm, nước hoa, dụng cụ làm đẹp.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="san-pham.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="mp-topbar" role="banner">
+  <div class="mp-topbar-inner">
+    <span>Miễn phí ship đơn từ 500K</span>
+    <span class="mp-topbar-dot" aria-hidden="true">·</span>
+    <span>Đổi trả 30 ngày</span>
+    <span class="mp-topbar-dot" aria-hidden="true">·</span>
+    <span>Thành phần an toàn</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="mp-nav" class="mp-scrolled" role="navigation" aria-label="Navigation chính">
+  <div class="wd-container">
+    <div class="mp-nav-inner">
+      <a href="index.html" class="mp-logo" aria-label="LUMIÈRE Beauty — Trang chủ"><em>L</em>UMIÈRE</a>
+      <ul class="mp-nav-links" role="menubar">
+        <li role="none"><a href="index.html" role="menuitem">Trang chủ</a></li>
+        <li role="none"><a href="san-pham.html" role="menuitem" class="active">Sản phẩm</a></li>
+        <li role="none"><a href="bo-suu-tap.html" role="menuitem">Bộ sưu tập</a></li>
+        <li role="none"><a href="ve-chung-toi.html" role="menuitem">Giới thiệu</a></li>
+        <li role="none"><a href="lien-he.html" role="menuitem">Liên hệ</a></li>
+      </ul>
+      <div class="mp-nav-actions">
+        <button class="mp-nav-search-btn" id="mpNavSearchBtn" aria-label="Mở tìm kiếm" aria-expanded="false">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <a href="gio-hang.html" class="mp-nav-cart-btn" aria-label="Giỏ hàng">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="mp-cart-count" id="mpCartCount" aria-live="polite">0</span>
+        </a>
+        <button class="mp-hamburger" id="mpBurger" aria-label="Mở menu" aria-expanded="false" aria-controls="mpMobMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="mp-search-panel" id="mpSearchPanel" role="search">
+    <div class="wd-container">
+      <form class="mp-search-form" action="san-pham.html" method="get">
+        <input type="search" name="q" id="mpSearchPanelInput" placeholder="Tìm sản phẩm mỹ phẩm..." autocomplete="off" aria-label="Từ khóa tìm kiếm">
+        <button type="submit" aria-label="Tìm kiếm">Tìm</button>
+      </form>
+    </div>
+  </div>
+  <div class="mp-mob-menu" id="mpMobMenu" role="dialog" aria-label="Menu điều hướng" aria-modal="true">
+    <ul>
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="san-pham.html" class="active">Sản phẩm</a></li>
+      <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+      <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+      <li><a href="lien-he.html">Liên hệ</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="mp-page-hero">
+  <div class="wd-container">
+    <nav aria-label="Breadcrumb">
+      <ol class="mp-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="index.html" itemprop="item"><span itemprop="name">Trang chủ</span></a>
+          <meta itemprop="position" content="1">
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span itemprop="name">Sản phẩm</span>
+          <meta itemprop="position" content="2">
+        </li>
+      </ol>
+    </nav>
+    <h1 class="mp-page-hero-title">Tất Cả Sản Phẩm</h1>
+    <p class="mp-page-hero-sub">Khám phá bộ sưu tập mỹ phẩm cao cấp từ các thương hiệu uy tín hàng đầu thế giới</p>
+  </div>
+</section>
+
+<!-- MAIN CATALOG -->
+<main id="mp-main" class="mp-catalog-wrap">
+  <div class="wd-container">
+
+    <!-- FILTER TOOLBAR -->
+    <div class="mp-filter-toolbar" role="search" aria-label="Bộ lọc sản phẩm">
+
+      <!-- Category Pills -->
+      <div class="mp-filter-row mp-filter-row--cats" role="group" aria-label="Lọc theo danh mục">
+        <button class="mp-cat-pill active" data-cat="" aria-pressed="true">Tất cả</button>
+        <button class="mp-cat-pill" data-cat="cham-soc-da" aria-pressed="false">Chăm Sóc Da</button>
+        <button class="mp-cat-pill" data-cat="trang-diem" aria-pressed="false">Trang Điểm</button>
+        <button class="mp-cat-pill" data-cat="cham-soc-toc" aria-pressed="false">Chăm Sóc Tóc</button>
+        <button class="mp-cat-pill" data-cat="nuoc-hoa" aria-pressed="false">Nước Hoa</button>
+        <button class="mp-cat-pill" data-cat="dung-cu-lam-dep" aria-pressed="false">Dụng Cụ</button>
+      </div>
+
+      <!-- Dropdowns + Sort Row -->
+      <div class="mp-filter-row mp-filter-row--dropdowns">
+
+        <!-- Search input -->
+        <div class="mp-filter-search-wrap">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="mpFilterSearch" class="mp-filter-search-input" placeholder="Tìm kiếm..." aria-label="Tìm kiếm sản phẩm">
+        </div>
+
+        <!-- Brand dropdown -->
+        <div class="mp-dropdown-wrap" id="mpBrandWrap">
+          <button class="mp-dropdown-btn" id="mpBrandBtn" aria-haspopup="listbox" aria-expanded="false" aria-controls="mpBrandMenu">
+            Thương hiệu <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            <span class="mp-dd-badge" id="mpBrandBadge" aria-live="polite" hidden>0</span>
+          </button>
+          <div class="mp-dropdown-menu" id="mpBrandMenu" role="listbox" aria-multiselectable="true">
+            <label class="mp-dd-opt"><input type="checkbox" value="The Ordinary"> The Ordinary</label>
+            <label class="mp-dd-opt"><input type="checkbox" value="CeraVe"> CeraVe</label>
+            <label class="mp-dd-opt"><input type="checkbox" value="Innisfree"> Innisfree</label>
+            <label class="mp-dd-opt"><input type="checkbox" value="Anessa"> Anessa</label>
+            <label class="mp-dd-opt"><input type="checkbox" value="Laneige"> Laneige</label>
+            <label class="mp-dd-opt"><input type="checkbox" value="Sulwhasoo"> Sulwhasoo</label>
+            <label class="mp-dd-opt"><input type="checkbox" value="MAC"> MAC</label>
+            <label class="mp-dd-opt"><input type="checkbox" value="Charlotte Tilbury"> Charlotte Tilbury</label>
+            <label class="mp-dd-opt"><input type="checkbox" value="L'Occitane"> L'Occitane</label>
+            <label class="mp-dd-opt"><input type="checkbox" value="Kérastase"> Kérastase</label>
+            <label class="mp-dd-opt"><input type="checkbox" value="Chanel"> Chanel</label>
+            <label class="mp-dd-opt"><input type="checkbox" value="Foreo"> Foreo</label>
+            <label class="mp-dd-opt"><input type="checkbox" value="Generic"> Khác</label>
+          </div>
+        </div>
+
+        <!-- Skin type dropdown -->
+        <div class="mp-dropdown-wrap" id="mpSkinWrap">
+          <button class="mp-dropdown-btn" id="mpSkinBtn" aria-haspopup="listbox" aria-expanded="false" aria-controls="mpSkinMenu">
+            Loại da <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            <span class="mp-dd-badge" id="mpSkinBadge" aria-live="polite" hidden>0</span>
+          </button>
+          <div class="mp-dropdown-menu" id="mpSkinMenu" role="listbox" aria-multiselectable="true">
+            <label class="mp-dd-opt"><input type="checkbox" value="da-dau"> Da dầu</label>
+            <label class="mp-dd-opt"><input type="checkbox" value="da-kho"> Da khô</label>
+            <label class="mp-dd-opt"><input type="checkbox" value="da-hon-hop"> Da hỗn hợp</label>
+            <label class="mp-dd-opt"><input type="checkbox" value="da-nhay-cam"> Da nhạy cảm</label>
+            <label class="mp-dd-opt"><input type="checkbox" value="moi-loai-da"> Mọi loại da</label>
+          </div>
+        </div>
+
+        <!-- Price range -->
+        <div class="mp-dropdown-wrap" id="mpPriceWrap">
+          <button class="mp-dropdown-btn" id="mpPriceBtn" aria-haspopup="dialog" aria-expanded="false" aria-controls="mpPriceMenu">
+            Khoảng giá <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            <span class="mp-dd-badge" id="mpPriceBadge" aria-live="polite" hidden>!</span>
+          </button>
+          <div class="mp-dropdown-menu mp-price-menu" id="mpPriceMenu" role="dialog" aria-label="Khoảng giá">
+            <div class="mp-price-labels">
+              <span id="mpPriceMin" aria-live="polite">0đ</span>
+              <span id="mpPriceMax" aria-live="polite">3.000.000đ</span>
+            </div>
+            <input type="range" id="mpRangeMin" min="0" max="3000000" step="50000" value="0" class="mp-range" aria-label="Giá tối thiểu">
+            <input type="range" id="mpRangeMax" min="0" max="3000000" step="50000" value="3000000" class="mp-range" aria-label="Giá tối đa">
+          </div>
+        </div>
+
+        <div class="mp-filter-spacer"></div>
+
+        <!-- Sort -->
+        <div class="mp-sort-wrap">
+          <label for="mpSortSelect" class="mp-sort-label">Sắp xếp:</label>
+          <select id="mpSortSelect" class="mp-sort-select" aria-label="Sắp xếp sản phẩm">
+            <option value="default">Mặc định</option>
+            <option value="price-asc">Giá: Thấp đến cao</option>
+            <option value="price-desc">Giá: Cao đến thấp</option>
+            <option value="rating-desc">Đánh giá cao nhất</option>
+            <option value="sold-desc">Bán chạy nhất</option>
+            <option value="newest">Mới nhất</option>
+          </select>
+        </div>
+
+        <!-- Mobile filter button -->
+        <button class="mp-mob-filter-btn" id="mpMobFilterBtn" aria-label="Mở bộ lọc" aria-expanded="false" aria-controls="mpMobFilterPanel">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+          Lọc
+          <span class="mp-mob-filter-badge" id="mpMobFilterBadge" aria-live="polite" hidden>0</span>
+        </button>
+      </div>
+
+      <!-- Active filter chips -->
+      <div class="mp-active-chips" id="mpActiveChips" role="group" aria-label="Bộ lọc đang áp dụng" aria-live="polite"></div>
+    </div>
+
+    <!-- RESULT COUNT -->
+    <div class="mp-result-info" aria-live="polite">
+      <span id="mpResultCount">36 sản phẩm</span>
+    </div>
+
+    <!-- PRODUCT GRID -->
+    <div class="mp-grid" id="mpProductGrid" role="list" aria-live="polite" aria-label="Danh sách sản phẩm"></div>
+
+    <!-- EMPTY STATE -->
+    <div class="mp-empty-state" id="mpEmptyState" style="display:none" aria-live="polite" role="status">
+      <div class="mp-empty-icon" aria-hidden="true">🔍</div>
+      <h3>Không tìm thấy sản phẩm</h3>
+      <p>Thử điều chỉnh bộ lọc hoặc tìm kiếm với từ khóa khác.</p>
+      <button class="mp-btn mp-btn-accent" id="mpClearFiltersBtn">Xóa tất cả bộ lọc</button>
+    </div>
+
+    <!-- PAGINATION -->
+    <nav class="mp-pagination" id="mpPagination" aria-label="Phân trang sản phẩm" aria-live="polite"></nav>
+
+  </div>
+</main>
+
+<!-- MOBILE FILTER OFFCANVAS -->
+<div class="mp-mob-filter-backdrop" id="mpMobFilterBackdrop" aria-hidden="true"></div>
+<div class="mp-mob-filter-panel" id="mpMobFilterPanel" role="dialog" aria-label="Bộ lọc sản phẩm" aria-modal="true">
+  <div class="mp-mob-filter-header">
+    <span class="mp-mob-filter-title">Bộ lọc</span>
+    <button class="mp-mob-filter-close" id="mpMobFilterClose" aria-label="Đóng bộ lọc">✕</button>
+  </div>
+  <div class="mp-mob-filter-body">
+
+    <div class="mp-mob-filter-section">
+      <div class="mp-mob-filter-section-title">Danh mục</div>
+      <div class="mp-mob-cats">
+        <button class="mp-mob-cat-btn active" data-mob-cat="" aria-pressed="true">Tất cả</button>
+        <button class="mp-mob-cat-btn" data-mob-cat="cham-soc-da" aria-pressed="false">Chăm Sóc Da</button>
+        <button class="mp-mob-cat-btn" data-mob-cat="trang-diem" aria-pressed="false">Trang Điểm</button>
+        <button class="mp-mob-cat-btn" data-mob-cat="cham-soc-toc" aria-pressed="false">Chăm Sóc Tóc</button>
+        <button class="mp-mob-cat-btn" data-mob-cat="nuoc-hoa" aria-pressed="false">Nước Hoa</button>
+        <button class="mp-mob-cat-btn" data-mob-cat="dung-cu-lam-dep" aria-pressed="false">Dụng Cụ</button>
+      </div>
+    </div>
+
+    <div class="mp-mob-filter-section">
+      <div class="mp-mob-filter-section-title">Loại da</div>
+      <div class="mp-mob-checkboxes" id="mpMobSkinChecks">
+        <label class="mp-dd-opt"><input type="checkbox" value="da-dau"> Da dầu</label>
+        <label class="mp-dd-opt"><input type="checkbox" value="da-kho"> Da khô</label>
+        <label class="mp-dd-opt"><input type="checkbox" value="da-hon-hop"> Da hỗn hợp</label>
+        <label class="mp-dd-opt"><input type="checkbox" value="da-nhay-cam"> Da nhạy cảm</label>
+        <label class="mp-dd-opt"><input type="checkbox" value="moi-loai-da"> Mọi loại da</label>
+      </div>
+    </div>
+
+    <div class="mp-mob-filter-section">
+      <div class="mp-mob-filter-section-title">Khoảng giá</div>
+      <div class="mp-price-labels">
+        <span id="mpMobPriceMin" aria-live="polite">0đ</span>
+        <span id="mpMobPriceMax" aria-live="polite">3.000.000đ</span>
+      </div>
+      <input type="range" id="mpMobRangeMin" min="0" max="3000000" step="50000" value="0" class="mp-range" aria-label="Giá tối thiểu">
+      <input type="range" id="mpMobRangeMax" min="0" max="3000000" step="50000" value="3000000" class="mp-range" aria-label="Giá tối đa">
+    </div>
+
+    <div class="mp-mob-filter-section">
+      <div class="mp-mob-filter-section-title">Thương hiệu</div>
+      <div class="mp-mob-checkboxes" id="mpMobBrandChecks">
+        <label class="mp-dd-opt"><input type="checkbox" value="The Ordinary"> The Ordinary</label>
+        <label class="mp-dd-opt"><input type="checkbox" value="CeraVe"> CeraVe</label>
+        <label class="mp-dd-opt"><input type="checkbox" value="Innisfree"> Innisfree</label>
+        <label class="mp-dd-opt"><input type="checkbox" value="Anessa"> Anessa</label>
+        <label class="mp-dd-opt"><input type="checkbox" value="Laneige"> Laneige</label>
+        <label class="mp-dd-opt"><input type="checkbox" value="Sulwhasoo"> Sulwhasoo</label>
+        <label class="mp-dd-opt"><input type="checkbox" value="MAC"> MAC</label>
+        <label class="mp-dd-opt"><input type="checkbox" value="Charlotte Tilbury"> Charlotte Tilbury</label>
+        <label class="mp-dd-opt"><input type="checkbox" value="L'Occitane"> L'Occitane</label>
+        <label class="mp-dd-opt"><input type="checkbox" value="Kérastase"> Kérastase</label>
+        <label class="mp-dd-opt"><input type="checkbox" value="Chanel"> Chanel</label>
+        <label class="mp-dd-opt"><input type="checkbox" value="Foreo"> Foreo</label>
+        <label class="mp-dd-opt"><input type="checkbox" value="Generic"> Khác</label>
+      </div>
+    </div>
+  </div>
+  <div class="mp-mob-filter-footer">
+    <button class="mp-btn mp-btn-ghost" id="mpMobResetBtn">Xóa lọc</button>
+    <button class="mp-btn mp-btn-accent" id="mpMobApplyBtn">Áp dụng</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="mp-footer" role="contentinfo">
+  <div class="wd-container">
+    <div class="mp-footer-grid">
+      <div class="mp-footer-brand">
+        <a href="index.html" class="mp-footer-logo" aria-label="LUMIÈRE Beauty"><em>L</em>UMIÈRE</a>
+        <p class="mp-footer-tagline">Mỹ phẩm cao cấp, thành phần an toàn.<br>Vẻ đẹp đích thực từ thiên nhiên.</p>
+        <div class="mp-footer-social" aria-label="Mạng xã hội">
+          <a href="#" aria-label="Facebook LUMIÈRE" rel="noopener noreferrer" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram LUMIÈRE" rel="noopener noreferrer" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" aria-label="YouTube LUMIÈRE" rel="noopener noreferrer" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon fill="#fff" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+          <a href="#" aria-label="TikTok LUMIÈRE" rel="noopener noreferrer" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.88a8.16 8.16 0 0 0 4.77 1.53V6.96a4.85 4.85 0 0 1-1-.27z"/></svg></a>
+        </div>
+      </div>
+      <div class="mp-footer-col">
+        <h4>Danh mục</h4>
+        <ul>
+          <li><a href="san-pham.html?category=cham-soc-da">Chăm Sóc Da</a></li>
+          <li><a href="san-pham.html?category=trang-diem">Trang Điểm</a></li>
+          <li><a href="san-pham.html?category=cham-soc-toc">Chăm Sóc Tóc</a></li>
+          <li><a href="san-pham.html?category=nuoc-hoa">Nước Hoa</a></li>
+          <li><a href="san-pham.html?category=dung-cu-lam-dep">Dụng Cụ Làm Đẹp</a></li>
+        </ul>
+      </div>
+      <div class="mp-footer-col">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="lien-he.html#doi-tra">Chính sách đổi trả</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mp-footer-bottom">
+      <span>© 2025 LUMIÈRE Beauty. Bảo lưu mọi quyền.</span>
+      <div class="mp-footer-legal">
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[SỐ_ĐIỆN_THOẠI_ZALO]" target="_blank" rel="noopener noreferrer" class="mp-zalo-float" aria-label="Liên hệ qua Zalo">
+  <svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" aria-hidden="true"><text x="6" y="34" font-size="28" font-weight="bold" font-family="Arial,sans-serif">Z</text></svg>
+</a>
+
+<script src="assets/js/products-data.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  const PER_PAGE = 12;
+
+  // === NAV ===
+  const mpNav = document.getElementById('mp-nav');
+  const mpBurger = document.getElementById('mpBurger');
+  const mpMobMenu = document.getElementById('mpMobMenu');
+  const mpNavSearchBtn = document.getElementById('mpNavSearchBtn');
+  const mpSearchPanel = document.getElementById('mpSearchPanel');
+  const mpSearchPanelInput = document.getElementById('mpSearchPanelInput');
+
+  if (mpBurger && mpMobMenu) {
+    mpBurger.addEventListener('click', () => {
+      const open = mpMobMenu.classList.toggle('open');
+      mpBurger.classList.toggle('open', open);
+      mpBurger.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+  }
+  if (mpNavSearchBtn && mpSearchPanel) {
+    mpNavSearchBtn.addEventListener('click', () => {
+      const open = mpSearchPanel.classList.toggle('open');
+      mpNavSearchBtn.setAttribute('aria-expanded', String(open));
+      if (open && mpSearchPanelInput) mpSearchPanelInput.focus();
+    });
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      if (mpSearchPanel && mpSearchPanel.classList.contains('open')) { mpSearchPanel.classList.remove('open'); mpNavSearchBtn && mpNavSearchBtn.setAttribute('aria-expanded', 'false'); }
+      if (mpMobMenu && mpMobMenu.classList.contains('open')) { mpMobMenu.classList.remove('open'); mpBurger && mpBurger.classList.remove('open'); mpBurger && mpBurger.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; }
+    }
+  });
+
+  // === FILTER STATE ===
+  const state = {
+    category: '', brands: [], skinTypes: [],
+    priceMin: 0, priceMax: 3000000,
+    search: '', sort: 'default', page: 1, theme: ''
+  };
+
+  // === READ URL PARAMS ===
+  function readURL() {
+    const p = new URLSearchParams(location.search);
+    if (p.get('category')) state.category = p.get('category');
+    if (p.get('theme')) state.theme = p.get('theme');
+    if (p.get('q')) state.search = p.get('q');
+    if (p.get('sort')) state.sort = p.get('sort');
+    if (p.get('page')) state.page = Math.max(1, parseInt(p.get('page')) || 1);
+    if (p.get('brand')) state.brands = p.get('brand').split(',').filter(Boolean);
+    if (p.get('skin')) state.skinTypes = p.get('skin').split(',').filter(Boolean);
+    if (p.get('minPrice')) state.priceMin = parseInt(p.get('minPrice')) || 0;
+    if (p.get('maxPrice')) state.priceMax = parseInt(p.get('maxPrice')) || 3000000;
+  }
+
+  // === WRITE URL ===
+  function writeURL() {
+    const p = new URLSearchParams();
+    if (state.category) p.set('category', state.category);
+    if (state.theme) p.set('theme', state.theme);
+    if (state.search) p.set('q', state.search);
+    if (state.sort !== 'default') p.set('sort', state.sort);
+    if (state.page > 1) p.set('page', state.page);
+    if (state.brands.length) p.set('brand', state.brands.join(','));
+    if (state.skinTypes.length) p.set('skin', state.skinTypes.join(','));
+    if (state.priceMin > 0) p.set('minPrice', state.priceMin);
+    if (state.priceMax < 3000000) p.set('maxPrice', state.priceMax);
+    const qs = p.toString();
+    history.replaceState(null, '', qs ? '?' + qs : location.pathname);
+  }
+
+  // === FILTER PRODUCTS ===
+  function matchProduct(p) {
+    if (state.category && p.category !== state.category) return false;
+    if (state.theme && !p.theme.includes(state.theme)) return false;
+    if (state.brands.length && !state.brands.includes(p.brand)) return false;
+    if (state.skinTypes.length && !state.skinTypes.some(s => p.skinType.includes(s))) return false;
+    const effectivePrice = p.salePrice !== null ? p.salePrice : p.price;
+    if (effectivePrice < state.priceMin || effectivePrice > state.priceMax) return false;
+    if (state.search) {
+      const q = state.search.toLowerCase();
+      if (!p.name.toLowerCase().includes(q) && !p.brand.toLowerCase().includes(q)) return false;
+    }
+    return true;
+  }
+
+  function sortProducts(arr) {
+    const a = [...arr];
+    switch (state.sort) {
+      case 'price-asc': return a.sort((x, y) => (x.salePrice || x.price) - (y.salePrice || y.price));
+      case 'price-desc': return a.sort((x, y) => (y.salePrice || y.price) - (x.salePrice || x.price));
+      case 'rating-desc': return a.sort((x, y) => y.rating - x.rating);
+      case 'sold-desc': return a.sort((x, y) => y.sold - x.sold);
+      case 'newest': return a.sort((x, y) => y.id - x.id);
+      default: return a;
+    }
+  }
+
+  // === SYNC UI WITH STATE ===
+  function syncUI() {
+    // Category pills
+    document.querySelectorAll('.mp-cat-pill').forEach(btn => {
+      const isActive = btn.dataset.cat === state.category;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', String(isActive));
+    });
+    // Search input
+    const si = document.getElementById('mpFilterSearch');
+    if (si && si.value !== state.search) si.value = state.search;
+    // Sort
+    const ss = document.getElementById('mpSortSelect');
+    if (ss) ss.value = state.sort;
+    // Brand checkboxes
+    document.querySelectorAll('#mpBrandMenu input[type="checkbox"]').forEach(cb => {
+      cb.checked = state.brands.includes(cb.value);
+    });
+    // Skin checkboxes
+    document.querySelectorAll('#mpSkinMenu input[type="checkbox"]').forEach(cb => {
+      cb.checked = state.skinTypes.includes(cb.value);
+    });
+    // Price ranges
+    const rMin = document.getElementById('mpRangeMin');
+    const rMax = document.getElementById('mpRangeMax');
+    if (rMin) rMin.value = state.priceMin;
+    if (rMax) rMax.value = state.priceMax;
+    document.getElementById('mpPriceMin').textContent = mpFmt(state.priceMin);
+    document.getElementById('mpPriceMax').textContent = mpFmt(state.priceMax);
+    // Badge updates
+    const brandBadge = document.getElementById('mpBrandBadge');
+    if (brandBadge) { brandBadge.textContent = state.brands.length; brandBadge.hidden = state.brands.length === 0; }
+    const skinBadge = document.getElementById('mpSkinBadge');
+    if (skinBadge) { skinBadge.textContent = state.skinTypes.length; skinBadge.hidden = state.skinTypes.length === 0; }
+    const priceBadge = document.getElementById('mpPriceBadge');
+    if (priceBadge) { const hasPriceFilt = state.priceMin > 0 || state.priceMax < 3000000; priceBadge.hidden = !hasPriceFilt; }
+    // Mobile filter badge
+    const totalFilters = (state.category ? 1 : 0) + state.brands.length + state.skinTypes.length + (state.priceMin > 0 || state.priceMax < 3000000 ? 1 : 0) + (state.search ? 1 : 0) + (state.theme ? 1 : 0);
+    const mob = document.getElementById('mpMobFilterBadge');
+    if (mob) { mob.textContent = totalFilters; mob.hidden = totalFilters === 0; }
+    const mfBtn = document.getElementById('mpMobFilterBtn');
+    if (mfBtn) mfBtn.setAttribute('aria-expanded', document.getElementById('mpMobFilterPanel').classList.contains('open') ? 'true' : 'false');
+  }
+
+  // === ACTIVE CHIPS ===
+  const catLabels = { 'cham-soc-da': 'Chăm Sóc Da', 'trang-diem': 'Trang Điểm', 'cham-soc-toc': 'Chăm Sóc Tóc', 'nuoc-hoa': 'Nước Hoa', 'dung-cu-lam-dep': 'Dụng Cụ' };
+  const skinLabels = { 'da-dau': 'Da dầu', 'da-kho': 'Da khô', 'da-hon-hop': 'Da hỗn hợp', 'da-nhay-cam': 'Da nhạy cảm', 'moi-loai-da': 'Mọi loại da' };
+  const themeLabels = { 'ban-chay': 'Bán chạy nhất', 'hang-moi': 'Hàng mới về', 'giam-gia': 'Đang giảm giá' };
+
+  function renderChips() {
+    const container = document.getElementById('mpActiveChips');
+    if (!container) return;
+    const chips = [];
+    if (state.category) chips.push({ label: catLabels[state.category] || state.category, action: () => { state.category = ''; state.page = 1; applyAndRender(); } });
+    if (state.theme) chips.push({ label: themeLabels[state.theme] || state.theme, action: () => { state.theme = ''; state.page = 1; applyAndRender(); } });
+    state.brands.forEach(b => chips.push({ label: b, action: () => { state.brands = state.brands.filter(x => x !== b); state.page = 1; applyAndRender(); } }));
+    state.skinTypes.forEach(s => chips.push({ label: skinLabels[s] || s, action: () => { state.skinTypes = state.skinTypes.filter(x => x !== s); state.page = 1; applyAndRender(); } }));
+    if (state.priceMin > 0 || state.priceMax < 3000000) chips.push({ label: `${mpFmt(state.priceMin)} – ${mpFmt(state.priceMax)}`, action: () => { state.priceMin = 0; state.priceMax = 3000000; state.page = 1; applyAndRender(); } });
+    if (state.search) chips.push({ label: `"${state.search}"`, action: () => { state.search = ''; state.page = 1; applyAndRender(); } });
+    container.innerHTML = chips.map((c, i) => `<button class="mp-chip" data-chip="${i}" aria-label="Xóa bộ lọc: ${c.label}">${c.label} ✕</button>`).join('');
+    chips.forEach((c, i) => {
+      const el = container.querySelector(`[data-chip="${i}"]`);
+      if (el) el.addEventListener('click', c.action);
+    });
+  }
+
+  // === RENDER ===
+  function applyAndRender() {
+    const filtered = sortProducts(PRODUCTS.filter(matchProduct));
+    const total = filtered.length;
+    const totalPages = Math.max(1, Math.ceil(total / PER_PAGE));
+    if (state.page > totalPages) state.page = totalPages;
+    const start = (state.page - 1) * PER_PAGE;
+    const pageItems = filtered.slice(start, start + PER_PAGE);
+
+    // Result count
+    const rc = document.getElementById('mpResultCount');
+    if (rc) rc.textContent = `${total} sản phẩm`;
+
+    // Grid
+    const grid = document.getElementById('mpProductGrid');
+    const emptyState = document.getElementById('mpEmptyState');
+    if (total === 0) {
+      if (grid) grid.innerHTML = '';
+      if (emptyState) emptyState.style.display = 'block';
+    } else {
+      if (emptyState) emptyState.style.display = 'none';
+      if (grid) grid.innerHTML = pageItems.map(mpRenderCard).join('');
+    }
+
+    // Pagination
+    renderPagination(totalPages);
+
+    // Chips
+    renderChips();
+
+    // Sync UI
+    syncUI();
+
+    // Write URL
+    writeURL();
+
+    // Scroll top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // === PAGINATION ===
+  function renderPagination(totalPages) {
+    const container = document.getElementById('mpPagination');
+    if (!container) return;
+    if (totalPages <= 1) { container.innerHTML = ''; return; }
+    let html = '';
+    if (state.page > 1) html += `<button class="mp-page-btn" data-page="${state.page - 1}" aria-label="Trang trước">‹</button>`;
+    for (let i = 1; i <= totalPages; i++) {
+      if (i === 1 || i === totalPages || Math.abs(i - state.page) <= 2) {
+        html += `<button class="mp-page-btn${i === state.page ? ' active' : ''}" data-page="${i}" aria-label="Trang ${i}" ${i === state.page ? 'aria-current="page"' : ''}>${i}</button>`;
+      } else if (Math.abs(i - state.page) === 3) {
+        html += `<span class="mp-page-ellipsis" aria-hidden="true">…</span>`;
+      }
+    }
+    if (state.page < totalPages) html += `<button class="mp-page-btn" data-page="${state.page + 1}" aria-label="Trang tiếp">›</button>`;
+    container.innerHTML = html;
+    container.querySelectorAll('.mp-page-btn').forEach(btn => {
+      btn.addEventListener('click', () => { state.page = +btn.dataset.page; applyAndRender(); });
+    });
+  }
+
+  // === CART DELEGATION ===
+  const grid = document.getElementById('mpProductGrid');
+  if (grid) {
+    grid.addEventListener('click', e => {
+      const btn = e.target.closest('[data-cart-btn]');
+      if (btn) mpAddToCart(+btn.dataset.id);
+    });
+  }
+
+  // === CATEGORY PILLS ===
+  document.querySelectorAll('.mp-cat-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.category = btn.dataset.cat;
+      state.theme = '';
+      state.page = 1;
+      applyAndRender();
+    });
+  });
+
+  // === SEARCH ===
+  let searchTimer;
+  const filterSearchInput = document.getElementById('mpFilterSearch');
+  if (filterSearchInput) {
+    filterSearchInput.addEventListener('input', () => {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => { state.search = filterSearchInput.value.trim(); state.page = 1; applyAndRender(); }, 280);
+    });
+  }
+
+  // === SORT ===
+  const sortSelect = document.getElementById('mpSortSelect');
+  if (sortSelect) {
+    sortSelect.addEventListener('change', () => { state.sort = sortSelect.value; state.page = 1; applyAndRender(); });
+  }
+
+  // === BRAND CHECKBOXES ===
+  document.querySelectorAll('#mpBrandMenu input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      if (cb.checked) { if (!state.brands.includes(cb.value)) state.brands.push(cb.value); }
+      else { state.brands = state.brands.filter(b => b !== cb.value); }
+      state.page = 1; applyAndRender();
+    });
+  });
+
+  // === SKIN CHECKBOXES ===
+  document.querySelectorAll('#mpSkinMenu input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      if (cb.checked) { if (!state.skinTypes.includes(cb.value)) state.skinTypes.push(cb.value); }
+      else { state.skinTypes = state.skinTypes.filter(s => s !== cb.value); }
+      state.page = 1; applyAndRender();
+    });
+  });
+
+  // === PRICE RANGE ===
+  let priceTimer;
+  function onPriceChange() {
+    const rMin = document.getElementById('mpRangeMin');
+    const rMax = document.getElementById('mpRangeMax');
+    if (!rMin || !rMax) return;
+    let minVal = +rMin.value, maxVal = +rMax.value;
+    if (minVal > maxVal) { const t = minVal; minVal = maxVal; maxVal = t; rMin.value = minVal; rMax.value = maxVal; }
+    document.getElementById('mpPriceMin').textContent = mpFmt(minVal);
+    document.getElementById('mpPriceMax').textContent = mpFmt(maxVal);
+    clearTimeout(priceTimer);
+    priceTimer = setTimeout(() => { state.priceMin = minVal; state.priceMax = maxVal; state.page = 1; applyAndRender(); }, 250);
+  }
+  const rMin = document.getElementById('mpRangeMin');
+  const rMax = document.getElementById('mpRangeMax');
+  if (rMin) rMin.addEventListener('input', onPriceChange, {passive: true});
+  if (rMax) rMax.addEventListener('input', onPriceChange, {passive: true});
+
+  // === DROPDOWN TOGGLES ===
+  function setupDropdown(btnId, menuId) {
+    const btn = document.getElementById(btnId);
+    const menu = document.getElementById(menuId);
+    if (!btn || !menu) return;
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      document.querySelectorAll('.mp-dropdown-menu.open').forEach(m => {
+        if (m !== menu) { m.classList.remove('open'); const b = m.previousElementSibling; if (b) b.setAttribute('aria-expanded', 'false'); }
+      });
+    });
+  }
+  setupDropdown('mpBrandBtn', 'mpBrandMenu');
+  setupDropdown('mpSkinBtn', 'mpSkinMenu');
+  setupDropdown('mpPriceBtn', 'mpPriceMenu');
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.mp-dropdown-menu.open').forEach(m => {
+      m.classList.remove('open');
+      const b = m.previousElementSibling;
+      if (b) b.setAttribute('aria-expanded', 'false');
+    });
+  });
+  document.querySelectorAll('.mp-dropdown-menu').forEach(m => m.addEventListener('click', e => e.stopPropagation()));
+
+  // === CLEAR FILTERS ===
+  const clearBtn = document.getElementById('mpClearFiltersBtn');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      state.category = ''; state.theme = ''; state.brands = []; state.skinTypes = [];
+      state.priceMin = 0; state.priceMax = 3000000; state.search = ''; state.sort = 'default'; state.page = 1;
+      applyAndRender();
+    });
+  }
+
+  // === MOBILE OFFCANVAS ===
+  const mobFilterBtn = document.getElementById('mpMobFilterBtn');
+  const mobPanel = document.getElementById('mpMobFilterPanel');
+  const mobBackdrop = document.getElementById('mpMobFilterBackdrop');
+  const mobClose = document.getElementById('mpMobFilterClose');
+
+  function openMobFilter() {
+    if (!mobPanel) return;
+    syncMobFilterUI();
+    mobPanel.classList.add('open');
+    if (mobBackdrop) mobBackdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    if (mobFilterBtn) mobFilterBtn.setAttribute('aria-expanded', 'true');
+  }
+  function closeMobFilter() {
+    if (!mobPanel) return;
+    mobPanel.classList.remove('open');
+    if (mobBackdrop) mobBackdrop.classList.remove('open');
+    document.body.style.overflow = '';
+    if (mobFilterBtn) mobFilterBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  function syncMobFilterUI() {
+    // Category
+    document.querySelectorAll('.mp-mob-cat-btn').forEach(btn => {
+      const isActive = btn.dataset.mobCat === state.category;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', String(isActive));
+    });
+    // Skin
+    document.querySelectorAll('#mpMobSkinChecks input[type="checkbox"]').forEach(cb => { cb.checked = state.skinTypes.includes(cb.value); });
+    // Brand
+    document.querySelectorAll('#mpMobBrandChecks input[type="checkbox"]').forEach(cb => { cb.checked = state.brands.includes(cb.value); });
+    // Price
+    const mMin = document.getElementById('mpMobRangeMin');
+    const mMax = document.getElementById('mpMobRangeMax');
+    if (mMin) mMin.value = state.priceMin;
+    if (mMax) mMax.value = state.priceMax;
+    document.getElementById('mpMobPriceMin').textContent = mpFmt(state.priceMin);
+    document.getElementById('mpMobPriceMax').textContent = mpFmt(state.priceMax);
+  }
+
+  if (mobFilterBtn) mobFilterBtn.addEventListener('click', openMobFilter);
+  if (mobClose) mobClose.addEventListener('click', closeMobFilter);
+  if (mobBackdrop) mobBackdrop.addEventListener('click', closeMobFilter);
+
+  // Mob category
+  document.querySelectorAll('.mp-mob-cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.category = btn.dataset.mobCat;
+      state.theme = '';
+      document.querySelectorAll('.mp-mob-cat-btn').forEach(b => { b.classList.toggle('active', b.dataset.mobCat === state.category); b.setAttribute('aria-pressed', String(b.dataset.mobCat === state.category)); });
+    });
+  });
+
+  // Mob skin
+  document.querySelectorAll('#mpMobSkinChecks input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      if (cb.checked) { if (!state.skinTypes.includes(cb.value)) state.skinTypes.push(cb.value); }
+      else { state.skinTypes = state.skinTypes.filter(s => s !== cb.value); }
+    });
+  });
+
+  // Mob brand
+  document.querySelectorAll('#mpMobBrandChecks input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      if (cb.checked) { if (!state.brands.includes(cb.value)) state.brands.push(cb.value); }
+      else { state.brands = state.brands.filter(b => b !== cb.value); }
+    });
+  });
+
+  // Mob price range
+  function onMobPriceChange() {
+    const mMin = document.getElementById('mpMobRangeMin');
+    const mMax = document.getElementById('mpMobRangeMax');
+    if (!mMin || !mMax) return;
+    let minV = +mMin.value, maxV = +mMax.value;
+    if (minV > maxV) { const t = minV; minV = maxV; maxV = t; mMin.value = minV; mMax.value = maxV; }
+    document.getElementById('mpMobPriceMin').textContent = mpFmt(minV);
+    document.getElementById('mpMobPriceMax').textContent = mpFmt(maxV);
+    state.priceMin = minV;
+    state.priceMax = maxV;
+  }
+  const mMin = document.getElementById('mpMobRangeMin');
+  const mMax = document.getElementById('mpMobRangeMax');
+  if (mMin) mMin.addEventListener('input', onMobPriceChange, {passive: true});
+  if (mMax) mMax.addEventListener('input', onMobPriceChange, {passive: true});
+
+  // Mob apply
+  const mobApply = document.getElementById('mpMobApplyBtn');
+  if (mobApply) {
+    mobApply.addEventListener('click', () => { state.page = 1; closeMobFilter(); applyAndRender(); });
+  }
+
+  // Mob reset
+  const mobReset = document.getElementById('mpMobResetBtn');
+  if (mobReset) {
+    mobReset.addEventListener('click', () => {
+      state.category = ''; state.theme = ''; state.brands = []; state.skinTypes = [];
+      state.priceMin = 0; state.priceMax = 3000000; state.search = ''; state.sort = 'default';
+      syncMobFilterUI();
+    });
+  }
+
+  // === INIT ===
+  readURL();
+  mpUpdateCartCount();
+  applyAndRender();
+
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>OFFICEHUB — Văn phòng phẩm chính hãng</title>
+  <meta name="description" content="Văn phòng phẩm chính hãng: bút viết, sổ tay, file tài liệu, dụng cụ văn phòng, balo laptop. Giao hàng nhanh, giá tốt nhất TP.HCM và toàn quốc.">
+  <meta property="og:title" content="OFFICEHUB — Văn phòng phẩm chính hãng">
+  <meta property="og:description" content="Hơn 500 sản phẩm văn phòng phẩm chính hãng, giao hàng nhanh trong ngày.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ── Topbar ── -->
+<div class="vp-topbar" role="status">
+  <div class="vp-container">
+    <span class="vp-topbar-item">
+      <svg class="vp-topbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Miễn phí ship đơn từ 500K
+    </span>
+    <span class="vp-topbar-sep">·</span>
+    <span class="vp-topbar-item">
+      <svg class="vp-topbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M12 12v.01"/></svg>
+      Đổi hàng trong 30 ngày
+    </span>
+    <span class="vp-topbar-sep">·</span>
+    <span class="vp-topbar-item">
+      <svg class="vp-topbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+      Hỗ trợ doanh nghiệp B2B
+    </span>
+  </div>
+</div>
+
+<!-- ── Navigation ── -->
+<nav id="vp-nav" aria-label="Menu chính">
+  <div class="vp-container">
+    <div class="vp-nav-inner">
+      <!-- Logo -->
+      <a href="index.html" class="vp-logo" aria-label="OFFICEHUB - Trang chủ">
+        <span class="vp-logo-mark">OH</span>
+        <span class="vp-logo-text">OFFICE<span>HUB</span></span>
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="vp-nav-links d-none d-lg-flex">
+        <li><a href="index.html" class="active">Trang chủ</a></li>
+        <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+        <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+        <li><a href="dich-vu.html">Dịch vụ</a></li>
+        <li><a href="lien-he.html">Liên hệ</a></li>
+      </ul>
+
+      <!-- Actions -->
+      <div class="vp-nav-actions">
+        <button id="vp-search-btn" class="vp-nav-action-btn" aria-label="Tìm kiếm" aria-expanded="false" aria-controls="vp-search-panel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </button>
+        <a href="gio-hang.html" class="vp-cart-link" aria-label="Giỏ hàng">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="vp-cart-count" id="cartCount" aria-live="polite">0</span>
+        </a>
+        <button id="navBurger" class="d-lg-none" aria-label="Mở menu" aria-expanded="false" aria-controls="navMob">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search panel -->
+    <div class="vp-search-panel" id="vp-search-panel" hidden>
+      <div class="vp-search-form">
+        <input type="search" id="navSearchInput" placeholder="Tìm bút viết, sổ tay, balo..." aria-label="Từ khóa tìm kiếm">
+        <button id="navSearchSubmit" type="button">Tìm kiếm</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="vp-mob-nav" id="navMob" role="dialog" aria-modal="true" aria-label="Menu điều hướng">
+  <button class="vp-mob-close" id="navMobClose" aria-label="Đóng menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <ul class="vp-mob-links">
+    <li><a href="index.html" class="active">Trang chủ</a></li>
+    <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+    <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+    <li><a href="dich-vu.html">Dịch vụ</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+  <div class="vp-mob-actions">
+    <a href="gio-hang.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+      Giỏ hàng của tôi
+    </a>
+    <a href="tel:[SỐ_ĐIỆN_THOẠI]">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      [SỐ_ĐIỆN_THOẠI]
+    </a>
+  </div>
+</div>
+
+<!-- ── Page Header (Search Zone — Biến thể 1) ── -->
+<section class="vp-page-header">
+  <div class="vp-container">
+    <div class="vp-page-header-inner">
+      <h1>Văn phòng phẩm chính hãng</h1>
+      <p class="vp-page-header-sub">Hơn 500 sản phẩm — giao hàng nhanh trong ngày tại TP.HCM</p>
+      <div class="vp-search-zone" role="search">
+        <input type="search" id="mainSearch" placeholder="Tìm bút viết, sổ tay, file hộp, balo laptop..." aria-label="Tìm sản phẩm">
+        <button type="button" id="mainSearchBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline;margin-right:6px;vertical-align:middle"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          Tìm kiếm
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Filter Toolbar ── -->
+<div class="vp-toolbar-wrap" id="toolbarWrap">
+  <div class="vp-container">
+
+    <!-- Desktop filter row -->
+    <div class="vp-toolbar d-none d-lg-flex" id="desktopToolbar">
+      <!-- Category pills -->
+      <div class="vp-cat-pills" id="catPills" role="group" aria-label="Lọc theo danh mục">
+        <button class="vp-cat-pill active" data-cat="tat-ca">Tất cả</button>
+        <button class="vp-cat-pill" data-cat="but-viet">Bút viết</button>
+        <button class="vp-cat-pill" data-cat="so-tay">Sổ tay &amp; giấy note</button>
+        <button class="vp-cat-pill" data-cat="file-kep">File &amp; kẹp</button>
+        <button class="vp-cat-pill" data-cat="dung-cu">Dụng cụ VP</button>
+        <button class="vp-cat-pill" data-cat="balo-tui">Balo &amp; túi</button>
+      </div>
+
+      <div class="vp-toolbar-divider"></div>
+
+      <!-- Brand dropdown -->
+      <div class="vp-dropdown" id="brandDropdown">
+        <button class="vp-dropdown-btn" id="brandDropBtn" aria-expanded="false" aria-controls="brandMenu">
+          Thương hiệu
+          <svg class="vp-dd-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="vp-dropdown-menu" id="brandMenu" role="listbox" aria-label="Chọn thương hiệu">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Price range -->
+      <div class="vp-price-range" aria-label="Khoảng giá">
+        <span class="vp-price-label">Giá:</span>
+        <input type="range" id="priceRange" min="0" max="2500000" step="50000" value="2500000" aria-label="Giá tối đa">
+        <span class="vp-price-label" id="priceDisplay">Tất cả</span>
+      </div>
+
+      <!-- Sort -->
+      <div class="vp-sort" aria-label="Sắp xếp">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M7 12h10M11 18h2"/></svg>
+        <select id="sortSelect" aria-label="Sắp xếp theo">
+          <option value="newest">Mới nhất</option>
+          <option value="price-asc">Giá tăng dần</option>
+          <option value="price-desc">Giá giảm dần</option>
+          <option value="bestseller">Bán chạy</option>
+          <option value="rating">Đánh giá cao</option>
+        </select>
+      </div>
+
+      <!-- Result count -->
+      <div class="vp-result-count" id="resultCount" aria-live="polite">36 sản phẩm</div>
+    </div>
+
+    <!-- Mobile filter row -->
+    <div class="d-flex d-lg-none align-items-center justify-content-between gap-2" style="flex-wrap:wrap;">
+      <div class="vp-cat-pills" style="flex-wrap:wrap;" id="catPillsMobile">
+        <button class="vp-cat-pill active" data-cat="tat-ca">Tất cả</button>
+        <button class="vp-cat-pill" data-cat="but-viet">Bút</button>
+        <button class="vp-cat-pill" data-cat="so-tay">Sổ tay</button>
+        <button class="vp-cat-pill" data-cat="file-kep">File</button>
+        <button class="vp-cat-pill" data-cat="dung-cu">Dụng cụ</button>
+        <button class="vp-cat-pill" data-cat="balo-tui">Balo</button>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="vp-filter-mobile-btn" id="filterMobileBtn" aria-label="Mở bộ lọc" aria-expanded="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
+          Lọc
+          <span class="vp-filter-badge" id="filterBadge" style="display:none">0</span>
+        </button>
+        <select id="sortSelectMobile" class="vp-sort" style="padding:0 10px;min-width:120px;" aria-label="Sắp xếp">
+          <option value="newest">Mới nhất</option>
+          <option value="price-asc">Giá tăng</option>
+          <option value="price-desc">Giá giảm</option>
+          <option value="bestseller">Bán chạy</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Active chips row -->
+    <div class="vp-chips-row" id="chipsRow" style="display:none;" aria-live="polite">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ── Main Catalog ── -->
+<main class="vp-catalog-wrap">
+  <div class="vp-container">
+
+    <!-- Product grid -->
+    <div class="vp-prod-grid" id="productGrid" aria-live="polite" aria-label="Danh sách sản phẩm">
+      <!-- Populated by JS -->
+    </div>
+
+    <!-- Empty state -->
+    <div class="vp-empty-state" id="emptyState" style="display:none;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+      <h3>Không tìm thấy sản phẩm nào</h3>
+      <p>Thử thay đổi bộ lọc hoặc từ khóa tìm kiếm</p>
+      <button class="vp-btn vp-btn-outline" id="clearAllFilters">Xóa tất cả bộ lọc</button>
+    </div>
+
+    <!-- Pagination -->
+    <nav aria-label="Phân trang" class="vp-pagination" id="pagination">
+      <!-- Populated by JS -->
+    </nav>
+  </div>
+</main>
+
+<!-- ── Mobile Offcanvas Filter ── -->
+<div class="vp-offcanvas" id="filterOffcanvas" role="dialog" aria-modal="true" aria-label="Bộ lọc sản phẩm">
+  <div class="vp-offcanvas-backdrop" id="offcanvasBackdrop"></div>
+  <div class="vp-offcanvas-panel">
+    <div class="vp-offcanvas-header">
+      <span class="vp-offcanvas-title">Bộ lọc</span>
+      <button class="vp-offcanvas-close" id="offcanvasClose" aria-label="Đóng bộ lọc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Brand filter -->
+    <div class="vp-filter-section">
+      <div class="vp-filter-section-title">Thương hiệu</div>
+      <div id="brandChecksMobile"><!-- Populated by JS --></div>
+    </div>
+
+    <!-- Price range -->
+    <div class="vp-filter-section">
+      <div class="vp-filter-section-title">Khoảng giá</div>
+      <input type="range" id="priceRangeMobile" min="0" max="2500000" step="50000" value="2500000" style="width:100%;accent-color:var(--accent);" aria-label="Giá tối đa">
+      <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-2);margin-top:6px;">
+        <span>0₫</span>
+        <span id="priceDisplayMobile">Tất cả</span>
+        <span>2.500.000₫</span>
+      </div>
+    </div>
+
+    <div class="d-flex gap-2 mt-3">
+      <button class="vp-btn vp-btn-ghost vp-btn-sm" id="clearMobileFilters" style="flex:1">Xóa bộ lọc</button>
+      <button class="vp-btn vp-btn-primary vp-btn-sm" id="applyMobileFilters" style="flex:2">Áp dụng</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Footer ── -->
+<footer class="vp-footer" aria-label="Footer">
+  <div class="vp-container">
+    <div class="vp-footer-grid">
+      <div>
+        <div class="vp-footer-logo">
+          <span class="vp-logo-mark">OH</span>
+          <span class="vp-logo-text">OFFICE<span>HUB</span></span>
+        </div>
+        <p class="vp-footer-desc">Chuyên cung cấp văn phòng phẩm chính hãng cho cá nhân, doanh nghiệp và trường học trên toàn quốc.</p>
+        <div class="vp-footer-social">
+          <a href="#" aria-label="Facebook" rel="noopener noreferrer" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram" rel="noopener noreferrer" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube" rel="noopener noreferrer" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.4 19.54C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 001.94-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h5>Sản phẩm</h5>
+        <ul class="vp-footer-links">
+          <li><a href="index.html?category=but-viet">Bút viết</a></li>
+          <li><a href="index.html?category=so-tay">Sổ tay &amp; giấy note</a></li>
+          <li><a href="index.html?category=file-kep">File &amp; kẹp tài liệu</a></li>
+          <li><a href="index.html?category=dung-cu">Dụng cụ văn phòng</a></li>
+          <li><a href="index.html?category=balo-tui">Balo &amp; túi laptop</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Hỗ trợ</h5>
+        <ul class="vp-footer-links">
+          <li><a href="dich-vu.html">Dịch vụ doanh nghiệp</a></li>
+          <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+          <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Liên hệ</h5>
+        <div class="vp-footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>[ĐỊA CHỈ VĂN PHÒNG]</span>
+        </div>
+        <div class="vp-footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          <a href="tel:[SỐ_ĐIỆN_THOẠI]" style="color:inherit">[SỐ_ĐIỆN_THOẠI]</a>
+        </div>
+        <div class="vp-footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:[EMAIL]" style="color:inherit">[EMAIL]</a>
+        </div>
+        <div class="vp-footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>T2–T7: 8:00–18:00</span>
+        </div>
+      </div>
+    </div>
+    <div class="vp-footer-bottom">
+      <p>© 2026 OFFICEHUB. Tất cả quyền được bảo lưu.</p>
+      <div class="vp-footer-bottom-links">
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Zalo float -->
+<div class="vp-zalo-float">
+  <a href="https://zalo.me/[ZALO_NUMBER]" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+    <svg viewBox="0 0 48 48" width="28" height="28"><text y="36" font-size="32" fill="#fff">Z</text></svg>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products-data.js"></script>
+<script>
+/* ══ OFFICEHUB — Main Catalog JS ══ */
+(function () {
+  'use strict';
+
+  /* ── State ── */
+  let state = {
+    category: 'tat-ca',
+    brand: [],
+    price: MAX_PRICE,
+    search: '',
+    sort: 'newest',
+    page: 1
+  };
+
+  /* ── DOM refs ── */
+  const grid = document.getElementById('productGrid');
+  const paginationEl = document.getElementById('pagination');
+  const emptyEl = document.getElementById('emptyState');
+  const chipsRow = document.getElementById('chipsRow');
+  const resultCountEl = document.getElementById('resultCount');
+  const priceRange = document.getElementById('priceRange');
+  const priceDisplay = document.getElementById('priceDisplay');
+  const priceRangeMobile = document.getElementById('priceRangeMobile');
+  const priceDisplayMobile = document.getElementById('priceDisplayMobile');
+  const sortSelect = document.getElementById('sortSelect');
+  const sortSelectMobile = document.getElementById('sortSelectMobile');
+  const mainSearch = document.getElementById('mainSearch');
+  const filterBadge = document.getElementById('filterBadge');
+
+  /* ── Cart state ── */
+  let cart = JSON.parse(localStorage.getItem('vp_cart') || '[]');
+  function saveCart() { localStorage.setItem('vp_cart', JSON.stringify(cart)); }
+  function updateCartCount() {
+    const count = cart.reduce((s, i) => s + i.qty, 0);
+    document.getElementById('cartCount').textContent = count || '';
+    document.getElementById('cartCount').style.display = count ? '' : 'none';
+  }
+  updateCartCount();
+
+  function addToCart(id) {
+    const p = PRODUCTS.find(x => x.id === id);
+    if (!p) return;
+    const ex = cart.find(x => x.id === id);
+    if (ex) ex.qty++;
+    else cart.push({ id: p.id, name: p.name, price: p.salePrice || p.price, brand: p.brand, image: p.image, qty: 1 });
+    saveCart();
+    updateCartCount();
+    showAddedFeedback(id);
+  }
+
+  function showAddedFeedback(id) {
+    const btn = document.querySelector(`[data-add-id="${id}"]`);
+    if (!btn) return;
+    const orig = btn.textContent;
+    btn.textContent = '✓ Đã thêm';
+    btn.disabled = true;
+    setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 1200);
+  }
+
+  /* ── Brand menu builder ── */
+  function buildBrandMenu() {
+    const menu = document.getElementById('brandMenu');
+    menu.innerHTML = BRANDS.map(b =>
+      `<label class="vp-dd-option">
+        <input type="checkbox" value="${b}" class="vp-brand-cb"> <span>${b}</span>
+      </label>`
+    ).join('');
+    const mobileCont = document.getElementById('brandChecksMobile');
+    if (mobileCont) {
+      mobileCont.innerHTML = BRANDS.map(b =>
+        `<label class="vp-dd-option">
+          <input type="checkbox" value="${b}" class="vp-brand-cb-mob"> <span>${b}</span>
+        </label>`
+      ).join('');
+    }
+    document.querySelectorAll('.vp-brand-cb').forEach(cb => {
+      cb.addEventListener('change', () => {
+        state.brand = [...document.querySelectorAll('.vp-brand-cb:checked')].map(c => c.value);
+        updateBrandLabel();
+        onFilterChange();
+      });
+    });
+  }
+
+  function updateBrandLabel() {
+    const btn = document.getElementById('brandDropBtn');
+    const badge = btn.querySelector('.vp-dd-badge');
+    if (state.brand.length > 0) {
+      if (!badge) {
+        const b = document.createElement('span');
+        b.className = 'vp-dd-badge';
+        btn.insertBefore(b, btn.querySelector('.vp-dd-arrow'));
+      }
+      btn.querySelector('.vp-dd-badge').textContent = state.brand.length;
+    } else {
+      if (badge) badge.remove();
+    }
+    updateFilterBadge();
+  }
+
+  /* ── Dropdown toggle ── */
+  document.getElementById('brandDropBtn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const menu = document.getElementById('brandMenu');
+    const btn = document.getElementById('brandDropBtn');
+    const isOpen = menu.classList.contains('show');
+    closeAllDropdowns();
+    if (!isOpen) {
+      menu.classList.add('show');
+      btn.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+  document.addEventListener('click', closeAllDropdowns);
+  function closeAllDropdowns() {
+    document.querySelectorAll('.vp-dropdown-menu.show').forEach(m => m.classList.remove('show'));
+    document.querySelectorAll('.vp-dropdown-btn.open').forEach(b => {
+      b.classList.remove('open');
+      b.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  /* ── Category pills ── */
+  function initCatPills(groupId) {
+    document.querySelectorAll(`#${groupId} .vp-cat-pill`).forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll(`#${groupId} .vp-cat-pill`).forEach(b => b.classList.remove('active'));
+        // Also sync the other pill group
+        const otherGroup = groupId === 'catPills' ? 'catPillsMobile' : 'catPills';
+        const cat = btn.dataset.cat;
+        document.querySelectorAll(`#${otherGroup} .vp-cat-pill`).forEach(b => {
+          b.classList.toggle('active', b.dataset.cat === cat);
+        });
+        btn.classList.add('active');
+        state.category = cat;
+        onFilterChange();
+      });
+    });
+  }
+  initCatPills('catPills');
+  initCatPills('catPillsMobile');
+
+  /* ── Price range ── */
+  let priceTimer;
+  function onPriceInput(val, displayEl) {
+    clearTimeout(priceTimer);
+    const v = parseInt(val);
+    displayEl.textContent = v >= MAX_PRICE ? 'Tất cả' : v.toLocaleString('vi-VN') + '₫';
+    priceTimer = setTimeout(() => {
+      state.price = v;
+      // Sync both sliders
+      if (priceRange) priceRange.value = v;
+      if (priceRangeMobile) priceRangeMobile.value = v;
+      onFilterChange();
+    }, 250);
+  }
+  if (priceRange) priceRange.addEventListener('input', e => onPriceInput(e.target.value, priceDisplay), {passive:true});
+  if (priceRangeMobile) priceRangeMobile.addEventListener('input', e => onPriceInput(e.target.value, priceDisplayMobile), {passive:true});
+
+  /* ── Sort ── */
+  if (sortSelect) sortSelect.addEventListener('change', () => { state.sort = sortSelect.value; if(sortSelectMobile) sortSelectMobile.value = sortSelect.value; onFilterChange(); });
+  if (sortSelectMobile) sortSelectMobile.addEventListener('change', () => { state.sort = sortSelectMobile.value; if(sortSelect) sortSelect.value = sortSelectMobile.value; onFilterChange(); });
+
+  /* ── Search ── */
+  let searchTimer;
+  if (mainSearch) {
+    mainSearch.addEventListener('input', () => {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => { state.search = mainSearch.value.trim(); onFilterChange(); }, 300);
+    }, {passive:true});
+  }
+  document.getElementById('mainSearchBtn').addEventListener('click', () => {
+    state.search = mainSearch.value.trim();
+    onFilterChange();
+  });
+
+  /* ── Nav search ── */
+  const searchBtn = document.getElementById('vp-search-btn');
+  const searchPanel = document.getElementById('vp-search-panel');
+  const navSearchInput = document.getElementById('navSearchInput');
+  const navSearchSubmit = document.getElementById('navSearchSubmit');
+  if (searchBtn) {
+    searchBtn.addEventListener('click', () => {
+      const willShow = searchPanel.hidden;
+      searchPanel.hidden = !willShow;
+      searchBtn.setAttribute('aria-expanded', String(willShow));
+      if (willShow) navSearchInput.focus();
+    });
+  }
+  if (navSearchSubmit) {
+    navSearchSubmit.addEventListener('click', () => {
+      const q = navSearchInput.value.trim();
+      if (q) { state.search = q; if(mainSearch) mainSearch.value = q; onFilterChange(); searchPanel.hidden = true; }
+    });
+  }
+
+  /* ── Mobile offcanvas ── */
+  const offcanvas = document.getElementById('filterOffcanvas');
+  const offcanvasClose = document.getElementById('offcanvasClose');
+  const offcanvasBackdrop = document.getElementById('offcanvasBackdrop');
+  const filterMobileBtn = document.getElementById('filterMobileBtn');
+
+  function openOffcanvas() { offcanvas.classList.add('show'); document.body.style.overflow = 'hidden'; filterMobileBtn.setAttribute('aria-expanded','true'); }
+  function closeOffcanvas() { offcanvas.classList.remove('show'); document.body.style.overflow = ''; filterMobileBtn.setAttribute('aria-expanded','false'); }
+  if (filterMobileBtn) filterMobileBtn.addEventListener('click', openOffcanvas);
+  if (offcanvasClose) offcanvasClose.addEventListener('click', closeOffcanvas);
+  if (offcanvasBackdrop) offcanvasBackdrop.addEventListener('click', closeOffcanvas);
+
+  document.getElementById('applyMobileFilters').addEventListener('click', () => {
+    const checked = [...document.querySelectorAll('.vp-brand-cb-mob:checked')].map(c => c.value);
+    state.brand = checked;
+    // sync desktop
+    document.querySelectorAll('.vp-brand-cb').forEach(cb => { cb.checked = state.brand.includes(cb.value); });
+    updateBrandLabel();
+    onFilterChange();
+    closeOffcanvas();
+  });
+  document.getElementById('clearMobileFilters').addEventListener('click', () => {
+    document.querySelectorAll('.vp-brand-cb-mob').forEach(cb => cb.checked = false);
+    if (priceRangeMobile) { priceRangeMobile.value = MAX_PRICE; priceDisplayMobile.textContent = 'Tất cả'; }
+    state.brand = [];
+    state.price = MAX_PRICE;
+    if (priceRange) priceRange.value = MAX_PRICE;
+    if (priceDisplay) priceDisplay.textContent = 'Tất cả';
+    updateBrandLabel();
+    onFilterChange();
+  });
+
+  /* ── Filter badge count ── */
+  function updateFilterBadge() {
+    let count = 0;
+    if (state.brand.length) count += state.brand.length;
+    if (state.price < MAX_PRICE) count++;
+    if (filterBadge) {
+      filterBadge.textContent = count;
+      filterBadge.style.display = count > 0 ? '' : 'none';
+    }
+  }
+
+  /* ── Filter engine ── */
+  function matchProduct(p) {
+    if (state.category !== 'tat-ca' && p.category !== state.category) return false;
+    if (state.brand.length && !state.brand.includes(p.brand)) return false;
+    const price = p.salePrice ?? p.price;
+    if (price > state.price) return false;
+    if (state.search && !p.name.toLowerCase().includes(state.search.toLowerCase()) && !p.brand.toLowerCase().includes(state.search.toLowerCase())) return false;
+    return true;
+  }
+
+  function sortProducts(list) {
+    const arr = [...list];
+    const effPrice = p => p.salePrice ?? p.price;
+    if (state.sort === 'price-asc') arr.sort((a, b) => effPrice(a) - effPrice(b));
+    else if (state.sort === 'price-desc') arr.sort((a, b) => effPrice(b) - effPrice(a));
+    else if (state.sort === 'bestseller') arr.sort((a, b) => (b.sold || 0) - (a.sold || 0));
+    else if (state.sort === 'rating') arr.sort((a, b) => b.rating - a.rating);
+    else arr.sort((a, b) => b.id - a.id);
+    return arr;
+  }
+
+  function formatPrice(n) { return n.toLocaleString('vi-VN') + '₫'; }
+
+  function renderStars(r) {
+    return '★'.repeat(Math.floor(r)) + (r % 1 >= 0.5 ? '☆' : '') + '☆'.repeat(5 - Math.ceil(r));
+  }
+
+  function badgeHtml(badge, stock) {
+    if (!stock) return '<span class="vp-prod-badge vp-prod-badge-out">Hết hàng</span>';
+    if (badge === 'new') return '<span class="vp-prod-badge vp-prod-badge-new">Mới</span>';
+    if (badge === 'sale') return '<span class="vp-prod-badge vp-prod-badge-sale">Giảm</span>';
+    if (badge === 'hot') return '<span class="vp-prod-badge vp-prod-badge-hot">Hot</span>';
+    return '';
+  }
+
+  const SVG_FALLBACK = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450' viewBox='0 0 600 450'%3E%3Crect width='600' height='450' fill='%23f1f5f9'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%2394a3b8' font-size='18' font-family='sans-serif'%3ENo Image%3C/text%3E%3C/svg%3E";
+
+  function renderGrid(items) {
+    if (items.length === 0) {
+      grid.innerHTML = '';
+      grid.style.display = 'none';
+      emptyEl.style.display = '';
+      return;
+    }
+    grid.style.display = '';
+    emptyEl.style.display = 'none';
+    grid.innerHTML = items.map(p => {
+      const price = p.salePrice ? formatPrice(p.salePrice) : formatPrice(p.price);
+      const oldPrice = p.salePrice ? `<span class="vp-price-old">${formatPrice(p.price)}</span>` : '';
+      const priceClass = p.salePrice ? 'vp-price-main vp-price-sale' : 'vp-price-main';
+      return `<article class="vp-prod-card" data-id="${p.id}">
+        <a href="chi-tiet-san-pham.html?id=${p.id}" class="vp-prod-img" aria-label="${p.name}">
+          <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='${SVG_FALLBACK}'">
+          ${badgeHtml(p.badge, p.stock)}
+          <span class="vp-prod-fav" aria-label="Yêu thích">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </span>
+        </a>
+        <div class="vp-prod-body">
+          <div class="vp-prod-brand">${p.brand}</div>
+          <h3 class="vp-prod-name"><a href="chi-tiet-san-pham.html?id=${p.id}">${p.name}</a></h3>
+          <div class="vp-prod-rating">
+            <span class="vp-rating-stars" aria-label="${p.rating} sao">${renderStars(p.rating)}</span>
+            <span>${p.rating} (${p.sold.toLocaleString()})</span>
+          </div>
+          <div class="vp-prod-price">
+            <span class="${priceClass}">${price}</span>
+            ${oldPrice}
+          </div>
+          <div class="vp-prod-actions">
+            <button class="vp-btn-add" data-add-id="${p.id}" ${p.stock ? '' : 'disabled'}>
+              ${p.stock ? '+ Thêm vào giỏ' : 'Hết hàng'}
+            </button>
+            <a href="chi-tiet-san-pham.html?id=${p.id}" class="vp-btn-detail" aria-label="Xem chi tiết ${p.name}">Chi tiết</a>
+          </div>
+        </div>
+      </article>`;
+    }).join('');
+
+    // Attach add-to-cart listeners
+    grid.querySelectorAll('.vp-btn-add').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        addToCart(parseInt(btn.dataset.addId));
+      });
+    });
+  }
+
+  function renderCount(total, start, pageLen) {
+    if (!resultCountEl) return;
+    if (total === 0) { resultCountEl.textContent = 'Không tìm thấy sản phẩm'; return; }
+    const end = start + pageLen;
+    resultCountEl.textContent = `Hiển thị ${start + 1}–${end} trong ${total} sản phẩm`;
+  }
+
+  function renderPagination(totalPages) {
+    paginationEl.innerHTML = '';
+    if (totalPages <= 1) { paginationEl.style.display = 'none'; return; }
+    paginationEl.style.display = '';
+
+    // Prev
+    const prevLi = document.createElement('li');
+    prevLi.className = 'vp-page-item' + (state.page === 1 ? ' disabled' : '');
+    prevLi.innerHTML = `<button class="page-link" data-page="${state.page - 1}" aria-label="Trang trước" ${state.page === 1 ? 'disabled' : ''}>&lsaquo;</button>`;
+    paginationEl.appendChild(prevLi);
+
+    // Pages
+    for (let i = 1; i <= totalPages; i++) {
+      const li = document.createElement('li');
+      li.className = 'vp-page-item' + (i === state.page ? ' active' : '');
+      li.innerHTML = `<button class="page-link" data-page="${i}" aria-label="Trang ${i}" aria-current="${i === state.page ? 'page' : 'false'}">${i}</button>`;
+      paginationEl.appendChild(li);
+    }
+
+    // Next
+    const nextLi = document.createElement('li');
+    nextLi.className = 'vp-page-item' + (state.page === totalPages ? ' disabled' : '');
+    nextLi.innerHTML = `<button class="page-link" data-page="${state.page + 1}" aria-label="Trang sau" ${state.page === totalPages ? 'disabled' : ''}>&rsaquo;</button>`;
+    paginationEl.appendChild(nextLi);
+
+    paginationEl.querySelectorAll('[data-page]').forEach(btn => {
+      if (btn.disabled) return;
+      btn.addEventListener('click', () => {
+        const pg = parseInt(btn.dataset.page);
+        if (pg < 1 || pg > totalPages) return;
+        state.page = pg;
+        render();
+        document.getElementById('productGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  }
+
+  function renderActiveChips() {
+    const chips = [];
+    if (state.category !== 'tat-ca') {
+      const cat = CATEGORIES.find(c => c.slug === state.category);
+      chips.push({ label: cat ? cat.label : state.category, type: 'category' });
+    }
+    state.brand.forEach(b => chips.push({ label: b, type: 'brand', value: b }));
+    if (state.price < MAX_PRICE) chips.push({ label: 'Giá ≤ ' + formatPrice(state.price), type: 'price' });
+    if (state.search) chips.push({ label: '"' + state.search + '"', type: 'search' });
+
+    if (chips.length === 0) { chipsRow.style.display = 'none'; return; }
+    chipsRow.style.display = '';
+
+    chipsRow.innerHTML = chips.map((c, i) =>
+      `<span class="vp-chip">
+        ${c.label}
+        <span class="vp-chip-remove" data-chip-idx="${i}" role="button" aria-label="Xóa bộ lọc ${c.label}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </span>
+      </span>`
+    ).join('') +
+    `<span class="vp-chips-clear" role="button" tabindex="0" id="chipsClr">Xóa tất cả</span>`;
+
+    chipsRow.querySelectorAll('.vp-chip-remove').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const chip = chips[parseInt(btn.dataset.chipIdx)];
+        if (chip.type === 'category') { state.category = 'tat-ca'; syncCatPills('tat-ca'); }
+        else if (chip.type === 'brand') {
+          state.brand = state.brand.filter(b => b !== chip.value);
+          document.querySelectorAll('.vp-brand-cb, .vp-brand-cb-mob').forEach(cb => { if(cb.value === chip.value) cb.checked = false; });
+          updateBrandLabel();
+        }
+        else if (chip.type === 'price') {
+          state.price = MAX_PRICE;
+          if (priceRange) priceRange.value = MAX_PRICE;
+          if (priceDisplay) priceDisplay.textContent = 'Tất cả';
+          if (priceRangeMobile) priceRangeMobile.value = MAX_PRICE;
+          if (priceDisplayMobile) priceDisplayMobile.textContent = 'Tất cả';
+        }
+        else if (chip.type === 'search') {
+          state.search = '';
+          if (mainSearch) mainSearch.value = '';
+        }
+        onFilterChange();
+      });
+    });
+
+    const clrBtn = document.getElementById('chipsClr');
+    if (clrBtn) clrBtn.addEventListener('click', clearAllState);
+    clrBtn.addEventListener('keydown', e => { if (e.key === 'Enter') clearAllState(); });
+  }
+
+  function syncCatPills(cat) {
+    ['catPills','catPillsMobile'].forEach(gid => {
+      document.querySelectorAll(`#${gid} .vp-cat-pill`).forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+    });
+  }
+
+  function clearAllState() {
+    state.category = 'tat-ca';
+    state.brand = [];
+    state.price = MAX_PRICE;
+    state.search = '';
+    state.sort = 'newest';
+    state.page = 1;
+    syncCatPills('tat-ca');
+    if (priceRange) priceRange.value = MAX_PRICE;
+    if (priceDisplay) priceDisplay.textContent = 'Tất cả';
+    if (priceRangeMobile) priceRangeMobile.value = MAX_PRICE;
+    if (priceDisplayMobile) priceDisplayMobile.textContent = 'Tất cả';
+    if (mainSearch) mainSearch.value = '';
+    if (sortSelect) sortSelect.value = 'newest';
+    if (sortSelectMobile) sortSelectMobile.value = 'newest';
+    document.querySelectorAll('.vp-brand-cb, .vp-brand-cb-mob').forEach(cb => cb.checked = false);
+    updateBrandLabel();
+    onFilterChange();
+  }
+
+  document.getElementById('clearAllFilters').addEventListener('click', clearAllState);
+
+  /* ── URL sync ── */
+  function writeStateToURL() {
+    const p = new URLSearchParams();
+    if (state.category !== 'tat-ca') p.set('category', state.category);
+    if (state.brand.length) p.set('brand', state.brand.join(','));
+    if (state.price < MAX_PRICE) p.set('maxprice', state.price);
+    if (state.search) p.set('q', state.search);
+    if (state.sort !== 'newest') p.set('sort', state.sort);
+    if (state.page > 1) p.set('page', state.page);
+    const qs = p.toString();
+    history.replaceState(null, '', qs ? '?' + qs : location.pathname);
+  }
+
+  function readStateFromURL() {
+    const p = new URLSearchParams(location.search);
+    if (p.get('category')) { state.category = p.get('category'); syncCatPills(state.category); }
+    if (p.get('brand')) { state.brand = p.get('brand').split(','); }
+    if (p.get('maxprice')) {
+      state.price = parseInt(p.get('maxprice'));
+      if (priceRange) priceRange.value = state.price;
+      if (priceDisplay) priceDisplay.textContent = state.price.toLocaleString('vi-VN') + '₫';
+      if (priceRangeMobile) priceRangeMobile.value = state.price;
+      if (priceDisplayMobile) priceDisplayMobile.textContent = state.price.toLocaleString('vi-VN') + '₫';
+    }
+    if (p.get('q')) { state.search = p.get('q'); if (mainSearch) mainSearch.value = state.search; }
+    if (p.get('sort')) {
+      state.sort = p.get('sort');
+      if (sortSelect) sortSelect.value = state.sort;
+      if (sortSelectMobile) sortSelectMobile.value = state.sort;
+    }
+    if (p.get('page')) state.page = parseInt(p.get('page')) || 1;
+    // Sync brand checkboxes
+    if (state.brand.length) {
+      document.querySelectorAll('.vp-brand-cb, .vp-brand-cb-mob').forEach(cb => {
+        cb.checked = state.brand.includes(cb.value);
+      });
+      updateBrandLabel();
+    }
+  }
+
+  /* ── Main render ── */
+  function render() {
+    const filtered = sortProducts(PRODUCTS.filter(matchProduct));
+    const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+    if (state.page > totalPages) state.page = totalPages;
+    const start = (state.page - 1) * PER_PAGE;
+    const pageItems = filtered.slice(start, start + PER_PAGE);
+
+    renderGrid(pageItems);
+    renderCount(filtered.length, start, pageItems.length);
+    renderPagination(totalPages);
+    renderActiveChips();
+    updateFilterBadge();
+    writeStateToURL();
+  }
+
+  function onFilterChange() { state.page = 1; render(); }
+
+  /* ── Mobile nav ── */
+  const burger = document.getElementById('navBurger');
+  const mobNav = document.getElementById('navMob');
+  const mobClose = document.getElementById('navMobClose');
+  if (burger && mobNav) {
+    burger.addEventListener('click', () => {
+      const o = mobNav.classList.toggle('open');
+      burger.classList.toggle('open', o);
+      burger.setAttribute('aria-expanded', String(o));
+      document.body.style.overflow = o ? 'hidden' : '';
+    });
+    if (mobClose) mobClose.addEventListener('click', () => {
+      mobNav.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        mobNav.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  /* ── Reveal animation ── */
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+  /* ── Init ── */
+  buildBrandMenu();
+  readStateFromURL();
+  render();
+})();
+</script>
+</body>
+</html>
