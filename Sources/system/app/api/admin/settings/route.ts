@@ -4,7 +4,7 @@ import { getSession } from '@/lib/auth'
 
 const SENSITIVE_KEYS = new Set([
   'smtp_password', 'cloudinary_api_secret', 'unsplash_access_key',
-  'football_api_key', 'sepay_api_key',
+  'football_api_key', 'sepay_api_key', 'telegram_bot_token',
 ])
 
 export async function GET() {

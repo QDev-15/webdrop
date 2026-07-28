@@ -12,6 +12,10 @@ interface SettingField {
   placeholder?: string
   hint?: string
   rows?: number
+  // Toggle chỉ bật được khi field này (cùng group) có giá trị — vd Zalo chat chỉ bật khi đã điền OA ID
+  dependsOn?: string
+  // Nhãn app/dịch vụ — dùng để chia nhỏ 1 group lớn (vd "Tích hợp") thành từng cụm theo app
+  subgroup?: string
 }
 
 interface SettingGroup {
@@ -163,6 +167,7 @@ const SETTING_GROUPS: SettingGroup[] = [
         type: 'password',
         placeholder: 'Dán Access Key từ unsplash.com/developers',
         hint: 'Đăng ký miễn phí tại unsplash.com/developers → New Application → copy Access Key. Dùng để tìm kiếm ảnh trong admin.',
+        subgroup: '🖼️ Unsplash (tìm ảnh)',
       },
       {
         key: 'football_api_key',
@@ -170,12 +175,44 @@ const SETTING_GROUPS: SettingGroup[] = [
         type: 'password',
         placeholder: 'Dán API key từ football-data.org/account',
         hint: 'Đăng ký miễn phí tại football-data.org → My Account → API Key. Dùng để hiển thị lịch & tỉ số World Cup 2026 tự động.',
+        subgroup: '⚽ Football API (lịch bóng đá)',
       },
       {
         key: 'football_youtube_embed',
         label: 'YouTube Live — ID hoặc URL video',
         placeholder: 'VD: dQw4w9WgXcQ hoặc https://youtu.be/dQw4w9WgXcQ',
         hint: 'Dán ID / URL video YouTube chính thức đang livestream. Hiển thị tự động trên trang Lịch WC 2026. Xóa trắng khi không có stream.',
+        subgroup: '⚽ Football API (lịch bóng đá)',
+      },
+      {
+        key: 'zalo_oa_id',
+        label: 'Zalo OA ID',
+        placeholder: 'VD: 1234567890123456789',
+        hint: 'Lấy tại oa.zalo.me → chọn OA của bạn → Cài đặt → phần Widget chat / thông tin OA. Cần có Zalo Official Account (khác tài khoản Zalo cá nhân).',
+        subgroup: '💬 Zalo OA (chat trực tiếp)',
+      },
+      {
+        key: 'zalo_chat_enabled',
+        label: 'Bật khung chat Zalo trên website',
+        type: 'toggle',
+        dependsOn: 'zalo_oa_id',
+        hint: 'Hiển thị khung chat Zalo nổi trên mọi trang, khách bấm vào chat trực tiếp — tin nhắn về thẳng Zalo OA của bạn. Chỉ bật được sau khi đã điền Zalo OA ID ở trên.',
+        subgroup: '💬 Zalo OA (chat trực tiếp)',
+      },
+      {
+        key: 'telegram_bot_token',
+        label: 'Telegram Bot Token',
+        type: 'password',
+        placeholder: 'Dán token từ @BotFather, VD: 123456789:AAH...',
+        hint: 'Tạo bot miễn phí: mở Telegram, chat với @BotFather → /newbot → làm theo hướng dẫn → copy token được cấp.',
+        subgroup: '📩 Telegram (thông báo liên hệ)',
+      },
+      {
+        key: 'telegram_chat_id',
+        label: 'Telegram Chat ID (của bạn)',
+        placeholder: 'Bấm nút bên dưới để tự động lấy, hoặc nhập tay',
+        hint: 'Trước tiên: mở Telegram, tìm đúng bot vừa tạo, bấm Start (hoặc nhắn bất kỳ tin gì). Sau đó bấm "Lấy Chat ID tự động" bên dưới.',
+        subgroup: '📩 Telegram (thông báo liên hệ)',
       },
     ],
   },
@@ -195,6 +232,8 @@ export default function AdminSettingsPage() {
   const [activeGroup, setActiveGroup] = useState('general')
   const [syncing, setSyncing]     = useState(false)
   const [syncMsg, setSyncMsg]     = useState<{ type: 'ok' | 'error'; text: string } | null>(null)
+  const [tgFetching, setTgFetching] = useState(false)
+  const [tgMsg, setTgMsg]           = useState<{ type: 'ok' | 'error'; text: string } | null>(null)
 
   useEffect(() => {
     fetch('/api/admin/settings')
@@ -254,6 +293,34 @@ export default function AdminSettingsPage() {
       setSyncMsg({ type: 'error', text: 'Không kết nối được đến SePay' })
     } finally {
       setSyncing(false)
+    }
+  }
+
+  async function handleFetchTelegramChatId() {
+    const botToken = (values.telegram_bot_token || '').trim()
+    if (!botToken) {
+      setTgMsg({ type: 'error', text: 'Nhập Telegram Bot Token trước' })
+      return
+    }
+    setTgFetching(true)
+    setTgMsg(null)
+    try {
+      const res  = await fetch('/api/admin/settings/telegram-fetch-chat-id', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ botToken }),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setTgMsg({ type: 'error', text: data.error || 'Không lấy được Chat ID' })
+        return
+      }
+      set('telegram_chat_id', data.chatId)
+      setTgMsg({ type: 'ok', text: `✓ Đã tìm thấy Chat ID của "${data.name}" — nhớ nhấn "Lưu cài đặt" để áp dụng` })
+    } catch {
+      setTgMsg({ type: 'error', text: 'Không kết nối được đến Telegram' })
+    } finally {
+      setTgFetching(false)
     }
   }
 
@@ -324,9 +391,16 @@ export default function AdminSettingsPage() {
                 ))}
               </div>
             ) : (
-              /* Other groups: 2-column grid */
-              <div className="row g-3" style={{ marginTop: 6 }}>
-                {currentGroup.fields.map(f => (
+              /* Other groups: 2-column grid, chunked theo subgroup (vd Tích hợp: Unsplash / Football / Zalo / Telegram) */
+              (() => {
+                const chunks: { label?: string; fields: SettingField[] }[] = []
+                for (const f of currentGroup.fields) {
+                  const last = chunks[chunks.length - 1]
+                  if (last && last.label === f.subgroup) last.fields.push(f)
+                  else chunks.push({ label: f.subgroup, fields: [f] })
+                }
+
+                const renderField = (f: SettingField) => (
                   <div key={f.key} className={f.type === 'textarea' || f.type === 'image' ? 'col-12' : 'col-md-6'}>
                     {f.type !== 'image' && (
                       <label style={{ display: 'block', fontSize: 12, fontWeight: 500, color: 'var(--text-2)', marginBottom: 5 }}>{f.label}</label>
@@ -348,24 +422,35 @@ export default function AdminSettingsPage() {
                       />
                     ) : f.type === 'toggle' ? (
                       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 4 }}>
-                        <button
-                          type="button"
-                          onClick={() => set(f.key, values[f.key] === 'true' ? 'false' : 'true')}
-                          style={{
-                            width: 44, height: 24, borderRadius: 12, border: 'none', cursor: 'pointer',
-                            background: values[f.key] === 'true' ? 'var(--accent)' : 'var(--border)',
-                            position: 'relative', transition: 'background .2s', flexShrink: 0,
-                          }}
-                        >
-                          <span style={{
-                            position: 'absolute', top: 3, left: values[f.key] === 'true' ? 23 : 3,
-                            width: 18, height: 18, borderRadius: '50%', background: '#fff',
-                            transition: 'left .2s', boxShadow: '0 1px 4px rgba(0,0,0,.2)',
-                          }} />
-                        </button>
-                        <span style={{ fontSize: 13, color: values[f.key] === 'true' ? 'var(--accent)' : 'var(--text-3)', fontWeight: values[f.key] === 'true' ? 500 : 400 }}>
-                          {values[f.key] === 'true' ? 'Đang bật' : 'Đang tắt'}
-                        </span>
+                        {(() => {
+                          const locked = !!f.dependsOn && !(values[f.dependsOn] || '').trim()
+                          const on = values[f.key] === 'true' && !locked
+                          return (
+                            <>
+                              <button
+                                type="button"
+                                disabled={locked}
+                                onClick={() => set(f.key, values[f.key] === 'true' ? 'false' : 'true')}
+                                style={{
+                                  width: 44, height: 24, borderRadius: 12, border: 'none',
+                                  cursor: locked ? 'not-allowed' : 'pointer',
+                                  background: on ? 'var(--accent)' : 'var(--border)',
+                                  position: 'relative', transition: 'background .2s', flexShrink: 0,
+                                  opacity: locked ? .5 : 1,
+                                }}
+                              >
+                                <span style={{
+                                  position: 'absolute', top: 3, left: on ? 23 : 3,
+                                  width: 18, height: 18, borderRadius: '50%', background: '#fff',
+                                  transition: 'left .2s', boxShadow: '0 1px 4px rgba(0,0,0,.2)',
+                                }} />
+                              </button>
+                              <span style={{ fontSize: 13, color: on ? 'var(--accent)' : 'var(--text-3)', fontWeight: on ? 500 : 400 }}>
+                                {locked ? 'Cần điền OA ID trước' : on ? 'Đang bật' : 'Đang tắt'}
+                              </span>
+                            </>
+                          )
+                        })()}
                       </div>
                     ) : (
                       <input
@@ -377,8 +462,45 @@ export default function AdminSettingsPage() {
                       />
                     )}
                   </div>
-                ))}
-              </div>
+                )
+
+                return chunks.map((chunk, ci) => (
+                  <div key={chunk.label || `_${ci}`} style={{ marginTop: ci === 0 ? 6 : 26 }}>
+                    {chunk.label && (
+                      <div style={{
+                        fontSize: 11.5, fontWeight: 700, color: 'var(--text-3)', textTransform: 'uppercase',
+                        letterSpacing: '.5px', marginBottom: 12, paddingBottom: 8, borderBottom: '1px solid var(--border-light)',
+                      }}>
+                        {chunk.label}
+                      </div>
+                    )}
+                    <div className="row g-3">
+                      {chunk.fields.map(renderField)}
+                    </div>
+                    {chunk.label === '📩 Telegram (thông báo liên hệ)' && (
+                      <div style={{ marginTop: 12, display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+                        <button
+                          type="button"
+                          onClick={handleFetchTelegramChatId}
+                          disabled={tgFetching}
+                          style={{
+                            padding: '9px 16px', background: 'var(--accent-light)', color: 'var(--accent)',
+                            border: '1px solid var(--accent-mid)', borderRadius: 8, fontSize: 13, fontWeight: 600,
+                            fontFamily: 'var(--sans)', cursor: tgFetching ? 'not-allowed' : 'pointer', opacity: tgFetching ? .7 : 1,
+                          }}
+                        >
+                          {tgFetching ? 'Đang tìm...' : '📩 Lấy Chat ID tự động (Telegram)'}
+                        </button>
+                        {tgMsg && (
+                          <span style={{ fontSize: 12.5, color: tgMsg.type === 'ok' ? 'var(--accent)' : 'var(--danger)' }}>
+                            {tgMsg.text}
+                          </span>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ))
+              })()
             )}
           </div>
         </div>

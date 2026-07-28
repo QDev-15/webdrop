@@ -83,14 +83,20 @@ const ORG_SCHEMA = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   let gaId: string | null = null
   let gtmId: string | null = null
+  let zaloOaId: string | null = null
+  let zaloChatEnabled = false
   try {
     const rows = await prisma.setting.findMany({
-      where: { key: { in: ['google_analytics_id', 'gtm_id'] } },
+      where: { key: { in: ['google_analytics_id', 'gtm_id', 'zalo_oa_id', 'zalo_chat_enabled'] } },
     })
     const map = Object.fromEntries(rows.map(r => [r.key, r.value?.trim() || '']))
     gaId  = map['google_analytics_id'] || null
     gtmId = map['gtm_id'] || null
+    zaloOaId        = map['zalo_oa_id'] || null
+    zaloChatEnabled = map['zalo_chat_enabled'] === 'true'
   } catch { /* skip if DB unavailable */ }
+
+  const showZaloWidget = zaloChatEnabled && !!zaloOaId
 
   return (
     <html lang="vi">
@@ -128,6 +134,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <Script id="ga-init" strategy="afterInteractive">
               {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${gaId}');`}
             </Script>
+          </>
+        )}
+
+        {/* Zalo OA Chat Widget — bật/tắt + OA ID qua Admin → Cài đặt → Tích hợp */}
+        {showZaloWidget && (
+          <>
+            <div className="zalo-chat-widget" data-oaid={zaloOaId} data-welcome-message="Xin chào! Bạn cần hỗ trợ gì?" data-autopopup="0" data-width="" data-height=""></div>
+            <Script src="https://sp.zalo.me/plugins/sdk.js" strategy="lazyOnload" />
           </>
         )}
       </body>

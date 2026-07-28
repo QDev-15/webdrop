@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { sendTelegramNotification } from '@/lib/telegram'
 
 export async function POST(req: NextRequest) {
   try {
@@ -16,6 +17,14 @@ export async function POST(req: NextRequest) {
         status: 'new',
       },
     })
+
+    sendTelegramNotification(
+      `📩 <b>Liên hệ mới từ website</b>\n👤 ${name}\n📞 ${phone}` +
+      (email ? `\n✉️ ${email}` : '') +
+      (service ? `\n📋 ${service}` : '') +
+      `\n💬 ${message || '(không có nội dung)'}`
+    ).catch(() => {})
+
     return NextResponse.json({ ok: true })
   } catch {
     return NextResponse.json({ error: 'Lỗi server' }, { status: 500 })
