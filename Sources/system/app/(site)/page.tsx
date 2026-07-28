@@ -96,6 +96,8 @@ async function getTemplateSections(): Promise<TemplateSection[]> {
         name: t.name,
         category: g.category,
         price: formatPrice(t.price as Parameters<typeof formatPrice>[0]),
+        priceNum: Number(t.price),
+        websitePriceNum: t.hasWebsite && t.websitePrice ? Number(t.websitePrice) : undefined,
         image: t.thumbnail || 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80&auto=format&fit=crop',
         badge: toBadge(t.salesCount, t.createdAt),
         demoUrl: t.demoUrl || undefined,

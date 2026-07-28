@@ -35,6 +35,8 @@ async function getTemplates(type: PageType): Promise<Template[]> {
       name:       t.name,
       category:   t.industry?.name || t.category,
       price:      fmtPrice(t.price),
+      priceNum:   Number(t.price),
+      websitePriceNum: t.hasWebsite && t.websitePrice ? Number(t.websitePrice) : undefined,
       image:      t.thumbnail || 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80',
       badge:      t.salesCount >= 30 ? 'Bán chạy' : undefined,
       demoUrl:    t.demoUrl || undefined,

@@ -3,6 +3,8 @@ export interface Template {
   name:        string
   category:    string
   price:       string
+  priceNum?:   number        // giá template dạng số — dùng cho giỏ hàng
+  websitePriceNum?: number   // giá website Gói B dạng số — dùng cho giỏ hàng
   image:       string
   badge?:      string
   demoUrl?:    string

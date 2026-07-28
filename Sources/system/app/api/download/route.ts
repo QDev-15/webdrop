@@ -60,8 +60,9 @@ const TOKEN_MAX_USES = 5
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
-  const tokenParam = searchParams.get('token')
-  const file       = searchParams.get('file') // 'template' | 'web' | 'admin'
+  const tokenParam  = searchParams.get('token')
+  const file        = searchParams.get('file') // 'template' | 'web' | 'admin'
+  const slugParam   = searchParams.get('slug') // chọn đúng sản phẩm khi đơn có nhiều item
 
   if (!tokenParam || !file) {
     return NextResponse.json({ error: 'Thiếu tham số token hoặc file' }, { status: 400 })
@@ -73,7 +74,10 @@ export async function GET(request: NextRequest) {
   // Xác minh token
   let order
   try {
-    order = await prisma.order.findUnique({ where: { downloadToken: tokenParam } })
+    order = await prisma.order.findUnique({
+      where: { downloadToken: tokenParam },
+      include: { items: { select: { itemType: true, note: true } } },
+    })
   } catch {
     return NextResponse.json({ error: 'Lỗi DB' }, { status: 500 })
   }
@@ -90,12 +94,31 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: `Link đã dùng tối đa ${TOKEN_MAX_USES} lần. Liên hệ hỗ trợ để được cấp lại.` }, { status: 429 })
   }
 
-  // Kiểm tra loại đơn khớp với file yêu cầu
-  if (file === 'template' && order.type !== 'template') {
-    return NextResponse.json({ error: 'Đơn hàng này không bao gồm file template' }, { status: 403 })
+  // ── Xác định item được yêu cầu tải — đơn giỏ hàng nhiều item lưu slug ở OrderItem.note.
+  // Đơn cũ (trước khi có giỏ hàng) không có note → suy ra slug duy nhất từ order.title. ──
+  const legacySlug = extractSlug(order.title)
+  const wantType: 'template' | 'website' = file === 'template' ? 'template' : 'website'
+
+  const matchedItem = slugParam
+    ? order.items.find(it => it.note === slugParam)
+    : order.items.find(it => (it.itemType === 'website' ? 'website' : 'template') === wantType) ?? order.items[0]
+
+  const slug = matchedItem?.note || legacySlug
+  const itemType: 'template' | 'website' = matchedItem
+    ? (matchedItem.itemType === 'website' ? 'website' : 'template')
+    : order.type === 'website' ? 'website' : 'template'
+
+  if (!slug) {
+    return NextResponse.json({ error: 'Không xác định được sản phẩm cần tải' }, { status: 400 })
   }
-  if ((file === 'web' || file === 'admin') && order.type !== 'website') {
-    return NextResponse.json({ error: 'Đơn hàng này không bao gồm gói website' }, { status: 403 })
+
+  // Kiểm tra loại sản phẩm khớp với file yêu cầu (kiểm tra theo ITEM, không phải theo cả đơn —
+  // đơn giỏ hàng có thể trộn cả template lẫn website ở các item khác nhau)
+  if (file === 'template' && itemType !== 'template') {
+    return NextResponse.json({ error: 'Sản phẩm này không bao gồm file template' }, { status: 403 })
+  }
+  if ((file === 'web' || file === 'admin') && itemType !== 'website') {
+    return NextResponse.json({ error: 'Sản phẩm này không bao gồm gói website' }, { status: 403 })
   }
 
   // Tăng số lần dùng
@@ -109,9 +132,6 @@ export async function GET(request: NextRequest) {
 
   // ── Template download ──
   if (file === 'template') {
-    const slug = extractSlug(order.title)
-    if (!slug) return NextResponse.json({ error: 'Không xác định được template slug' }, { status: 400 })
-
     const templateDir = findTemplateDir(slug)
     if (!templateDir) {
       return NextResponse.json({ error: `Template "${slug}" không tìm thấy` }, { status: 404 })
@@ -123,9 +143,6 @@ export async function GET(request: NextRequest) {
 
   // ── Website standard — deploy-ready package theo slug ──
   else {
-    const slug = extractSlug(order.title)
-    if (!slug) return NextResponse.json({ error: 'Không xác định được template slug' }, { status: 400 })
-
     const deployDir = join(SOURCES_DIR, 'products', 'basic', slug)
     if (!existsSync(deployDir)) {
       return NextResponse.json({ error: `Gói website "${slug}" chưa sẵn sàng` }, { status: 503 })

@@ -2,6 +2,7 @@
 import { DM_Sans } from 'next/font/google'
 import Script from 'next/script'
 import { prisma } from '@/lib/prisma'
+import { CartProvider } from '@/contexts/CartContext'
 import '../src/styles/globals.css'
 
 const dmSans = DM_Sans({
@@ -112,7 +113,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             />
           </noscript>
         )}
-        {children}
+        <CartProvider>{children}</CartProvider>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_SCHEMA) }}

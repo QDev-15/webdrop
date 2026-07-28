@@ -110,7 +110,6 @@ function PendingContent() {
   const router       = useRouter()
 
   const code    = searchParams.get('code')   ?? ''
-  const slug    = searchParams.get('slug')   ?? ''
   const amount  = parseInt(searchParams.get('amount') ?? '499000')
   const isCv    = searchParams.get('type') === 'cv'
 
@@ -142,7 +141,7 @@ function PendingContent() {
             // Hiển thị credentials ngay trên trang — không redirect
             setCvCreds({ email: data.email, password: data.password, existingUser: data.existingUser })
           } else if (data.token) {
-            router.push(`/checkout/success?token=${encodeURIComponent(data.token)}&type=${data.type}&slug=${encodeURIComponent(data.slug ?? slug)}`)
+            router.push(`/checkout/success?code=${encodeURIComponent(code)}`)
           }
         }
       } catch { /* ignore */ }
@@ -151,7 +150,7 @@ function PendingContent() {
     check()
     intervalRef.current = setInterval(check, 5000)
     return () => { if (intervalRef.current) clearInterval(intervalRef.current) }
-  }, [code, router, slug])
+  }, [code, router])
 
   // Khi CV đã thanh toán — show credentials panel thay thế toàn bộ trang
   if (cvCreds) {

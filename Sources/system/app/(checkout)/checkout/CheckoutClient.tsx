@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { templates } from '@/data/templates'
 import { useBankInfo } from '@/lib/hooks/useBankInfo'
+import CartCheckoutClient from './CartCheckoutClient'
 
 interface FormData {
   name: string; email: string; phone: string; note: string
@@ -30,6 +31,11 @@ export default function CheckoutClient({
   const slug         = searchParams.get('slug') ?? ''
   const template     = templates.find(t => t.slug === slug)
   const bank          = useBankInfo()
+
+  // Không có ?slug= → checkout từ giỏ hàng (nhiều sản phẩm) thay vì mua ngay 1 sản phẩm
+  if (!slug) {
+    return <CartCheckoutClient />
+  }
 
   const [step, setStep]                 = useState(1)
   const [purchaseType, setPurchaseType] = useState<PurchaseType>('template')

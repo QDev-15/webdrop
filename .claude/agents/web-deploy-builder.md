@@ -8,7 +8,7 @@ tools:
   - Glob
   - Grep
   - Bash
-model: claude-sonnet-4-6
+model: claude-haiku-4-5-20251001
 ---
 
 Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển đổi template HTML tĩnh thành website deploy hoàn chỉnh: **React SPA frontend + React SPA admin + PHP backend + SQLite**.

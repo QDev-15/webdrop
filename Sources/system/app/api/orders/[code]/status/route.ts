@@ -15,6 +15,7 @@ export async function GET(
       type:          true,
       title:         true,
       customer:      { select: { email: true } },
+      items:         { select: { itemType: true, itemName: true, note: true } },
     },
   })
 
@@ -37,12 +38,20 @@ export async function GET(
     })
   }
 
-  const slug = extractSlug(order.title)
+  // Đơn cũ (1 sản phẩm, trước khi có giỏ hàng) — OrderItem.note trống, suy ra slug từ order.title
+  const legacySlug = extractSlug(order.title)
+  const items = order.items.map(it => ({
+    slug: it.note || legacySlug,
+    type: it.itemType === 'website' ? 'website' as const : 'template' as const,
+    name: it.itemName,
+  }))
+
   return NextResponse.json({
     paid:  true,
     token: order.downloadToken,
     type:  order.type,
-    slug,
+    slug:  legacySlug,
+    items,
   })
 }
 

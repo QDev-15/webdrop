@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import { templates as mockTemplates } from '../../data/templates'
 import type { Template } from '../../data/templates'
+import { AddToCartButton, DemoActionButton } from './TemplateShowcase'
+import DemoIframePreview from './DemoIframePreview'
 
 function TemplateImage({ src, alt, name, category }: { src: string; alt: string; name: string; category: string }) {
   const [failed, setFailed] = useState(false)
@@ -279,35 +281,45 @@ export default function TemplateGrid({ templates: propTemplates, homepage, pageT
           </div>
         ) : (
           <div className="row g-3">
-            {paginated.map(t => (
-              <div key={t.slug} className="col-md-4">
-                <Link href={`/templates/${t.slug}`} style={{ textDecoration: 'none' }}>
+            {paginated.map(t => {
+              const demoLink = t.deployUrl || t.demoUrl
+              return (
+                <div key={t.slug} className="col-md-4">
                   <div className="tc">
-                    <div className="tc-thumb">
-                      <TemplateImage src={t.image} alt={t.name} name={t.name} category={t.category} />
-                      {t.hasWebsite && <WebsiteBadge />}
-                      <div className="tc-hover-layer">
-                        <DemoButton demoUrl={t.deployUrl || t.demoUrl} />
+                    <Link href={`/templates/${t.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
+                      <div className="tc-thumb tc-thumb-tall">
+                        <TemplateImage src={t.image} alt={t.name} name={t.name} category={t.category} />
+                        {demoLink && <DemoIframePreview src={demoLink} title={t.name} />}
+                        {!pageType && (
+                          <span style={{
+                            position: 'absolute', top: 10, left: 10, zIndex: 4,
+                            fontSize: 11, padding: '3px 9px', borderRadius: 4, fontWeight: 600,
+                            background: t.hasWebsite ? 'var(--accent)' : 'rgba(255,255,255,.92)',
+                            color: t.hasWebsite ? '#fff' : 'var(--text-2)',
+                            boxShadow: '0 2px 8px rgba(0,0,0,.18)',
+                          }}>
+                            {t.hasWebsite ? '🌐 Website + Admin' : '📦 Chỉ template'}
+                          </span>
+                        )}
                       </div>
-                    </div>
+                    </Link>
                     <div className="tc-body">
-                      <div className="tc-name">{t.name}{t.badge && <span className="tc-badge">{t.badge}</span>}</div>
-                      <div className="tc-meta">
+                      <Link href={`/templates/${t.slug}`} style={{ textDecoration: 'none' }}>
+                        <div className="tc-name">{t.name}{t.badge && <span className="tc-badge">{t.badge}</span>}</div>
+                      </Link>
+                      <div className="tc-meta" style={{ margin: '6px 0 10px' }}>
                         <span className="tc-cat">{t.category}</span>
                         <span className="tc-price">{t.price}</span>
                       </div>
-                      {!pageType && (
-                        <div style={{ marginTop: 6 }}>
-                          <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 4, fontWeight: 500, background: t.hasWebsite ? 'var(--accent-light)' : 'var(--warm2)', color: t.hasWebsite ? 'var(--accent)' : 'var(--text-2)' }}>
-                            {t.hasWebsite ? 'Web + Admin' : 'Chỉ template'}
-                          </span>
-                        </div>
-                      )}
+                      <div className="tc-actions">
+                        <AddToCartButton t={t} />
+                        <DemoActionButton href={demoLink} />
+                      </div>
                     </div>
                   </div>
-                </Link>
-              </div>
-            ))}
+                </div>
+              )
+            })}
           </div>
         )}
 

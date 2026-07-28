@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
+import { useCart } from '@/contexts/CartContext'
 
 const navLinks: { href: string; label: string; highlight?: boolean }[] = [
   { href: '/templates',   label: 'Thư viện mẫu' },
@@ -19,6 +20,7 @@ export default function NavBar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
+  const { itemCount } = useCart()
   const isHome = pathname === '/'
   const isActive = (href: string) =>
     pathname === href || (href !== '/' && pathname.startsWith(href.split('#')[0]) && !href.includes('#'))
@@ -73,16 +75,22 @@ export default function NavBar() {
                 </Link>
               ))}
             </div>
-            <Link href="/contact" className="nav-cta d-none d-md-inline-flex">
-              Liên hệ ngay
-            </Link>
-            <button
-              className={`nav-hamburger${mobileOpen ? ' open' : ''}`}
-              aria-label="Mở menu" aria-expanded={mobileOpen}
-              onClick={() => setMobileOpen(v => !v)}
-            >
-              <span /><span /><span />
-            </button>
+            <div className="nav-actions">
+              <Link href="/gio-hang" className="nav-cart-btn" aria-label="Giỏ hàng" onClick={() => setMobileOpen(false)}>
+                🛒
+                {itemCount > 0 && <span className="nav-cart-badge">{itemCount}</span>}
+              </Link>
+              <Link href="/contact" className="nav-cta d-none d-md-inline-flex">
+                Liên hệ ngay
+              </Link>
+              <button
+                className={`nav-hamburger${mobileOpen ? ' open' : ''}`}
+                aria-label="Mở menu" aria-expanded={mobileOpen}
+                onClick={() => setMobileOpen(v => !v)}
+              >
+                <span /><span /><span />
+              </button>
+            </div>
           </div>
         </div>
       </nav>
@@ -95,6 +103,9 @@ export default function NavBar() {
             {l.label}
           </Link>
         ))}
+        <Link href="/gio-hang" onClick={() => setMobileOpen(false)}>
+          🛒 Giỏ hàng{itemCount > 0 && ` (${itemCount})`}
+        </Link>
         <Link href="/contact" className="nm-cta" onClick={() => setMobileOpen(false)}>Liên hệ ngay</Link>
       </div>
     </>

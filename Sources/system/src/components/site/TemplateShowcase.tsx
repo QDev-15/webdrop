@@ -1,36 +1,98 @@
+'use client'
+import { useState } from 'react'
 import Link from 'next/link'
 import type { Template } from '../../data/templates'
-import { WebsiteBadge } from './TemplateGrid'
+import { useCart } from '../../contexts/CartContext'
 import DemoIframePreview from './DemoIframePreview'
 
-// Tối đa 4 hàng/section. Grid 1 cột (xs) / 2 cột (sm-lg) / 4 cột (lg+)
-// → hiện 4 / 8 / 16 item tương ứng để không vượt quá 4 hàng ở bất kỳ breakpoint nào.
-const MAX_ITEMS = 16
+// Tối đa 4 section trên trang chủ, mỗi section tối đa 4 hàng.
+// Grid 1 cột (xs) / 2 cột (sm-lg) / 3 cột (lg+) → hiện 4 / 8 / 12 item tương ứng.
+const MAX_SECTIONS = 4
+const MAX_ITEMS = 12
+
+export function AddToCartButton({ t }: { t: Template }) {
+  const { addItem, isInCart } = useCart()
+  const [added, setAdded] = useState(false)
+  const inCart = added || isInCart(t.slug)
+
+  function handleClick(e: React.SyntheticEvent) {
+    e.preventDefault()
+    e.stopPropagation()
+    if (inCart) return
+    addItem({
+      slug: t.slug,
+      name: t.name,
+      image: t.image,
+      price: t.priceNum ?? 0,
+      websitePrice: t.websitePriceNum,
+      hasWebsite: !!t.hasWebsite,
+    })
+    setAdded(true)
+  }
+
+  return (
+    <button
+      onClick={handleClick}
+      disabled={inCart}
+      className="tc-action-btn tc-action-primary"
+      style={inCart ? { background: 'var(--accent)', color: '#fff', borderColor: 'var(--accent)' } : undefined}
+    >
+      {inCart ? '✓ Đã thêm' : '🛒 Thêm giỏ hàng'}
+    </button>
+  )
+}
+
+export function DemoActionButton({ href }: { href?: string }) {
+  function handleClick(e: React.SyntheticEvent) {
+    e.preventDefault()
+    e.stopPropagation()
+    if (href) window.open(href, '_blank', 'noopener,noreferrer')
+  }
+  return (
+    <button onClick={handleClick} disabled={!href} className="tc-action-btn">
+      Demo
+    </button>
+  )
+}
 
 function TemplateCard({ t, index }: { t: Template; index: number }) {
   const demoLink = t.deployUrl || t.demoUrl
-  let colClass = 'col-12 col-sm-6 col-lg-3'
+  let colClass = 'col-12 col-sm-6 col-lg-4'
   if (index >= 8) colClass += ' d-none d-lg-block'
   else if (index >= 4) colClass += ' d-none d-sm-block'
 
   return (
     <div className={colClass}>
-      <Link href={`/templates/${t.slug}`} style={{ textDecoration: 'none' }}>
-        <div className={`tc reveal reveal-d${(index % 3) + 1}`}>
-          <div className="tc-thumb">
+      <div className={`tc reveal reveal-d${(index % 3) + 1}`} style={{ cursor: 'default' }}>
+        <Link href={`/templates/${t.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
+          <div className="tc-thumb tc-thumb-tall">
             <img src={t.image} alt={t.name} loading="lazy" />
             {demoLink && <DemoIframePreview src={demoLink} title={t.name} />}
-            {t.hasWebsite && <WebsiteBadge />}
+            <span style={{
+              position: 'absolute', top: 10, left: 10, zIndex: 4,
+              fontSize: 11, padding: '3px 9px', borderRadius: 4, fontWeight: 600,
+              background: t.hasWebsite ? 'var(--accent)' : 'rgba(255,255,255,.92)',
+              color: t.hasWebsite ? '#fff' : 'var(--text-2)',
+              boxShadow: '0 2px 8px rgba(0,0,0,.18)',
+            }}>
+              {t.hasWebsite ? '🌐 Website + Admin' : '📦 Chỉ template'}
+            </span>
           </div>
-          <div className="tc-body">
-            <div className="tc-name">{t.name}{t.badge && <span className="tc-badge">{t.badge}</span>}</div>
-            <div className="tc-meta">
-              <span className="tc-cat">{t.category}</span>
-              <span className="tc-price">{t.price}</span>
-            </div>
+        </Link>
+        <div className="tc-body">
+          <Link href={`/templates/${t.slug}`} style={{ textDecoration: 'none' }}>
+            <div className="tc-name">{t.name}</div>
+          </Link>
+          <div className="tc-meta" style={{ margin: '6px 0 10px' }}>
+            <span className="tc-cat">{t.category}</span>
+            <span className="tc-price">{t.price}</span>
+          </div>
+          <div className="tc-actions">
+            <AddToCartButton t={t} />
+            <DemoActionButton href={demoLink} />
           </div>
         </div>
-      </Link>
+      </div>
     </div>
   )
 }
@@ -42,10 +104,11 @@ export interface TemplateSection {
 
 export default function TemplateShowcase({ sections }: { sections: TemplateSection[] }) {
   if (sections.length === 0) return null
+  const visibleSections = sections.slice(0, MAX_SECTIONS)
 
   return (
     <div id="templates">
-      {sections.map((s, si) => (
+      {visibleSections.map((s, si) => (
         <section key={s.category} className="sec-pad" style={{ background: si % 2 === 0 ? 'var(--bg)' : 'var(--surface)' }}>
           <div className="wd-container">
             <div className="text-center reveal mb-4">
