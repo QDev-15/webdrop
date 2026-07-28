@@ -20,6 +20,8 @@ export default function NavBar() {
   const pathname = usePathname()
   const router = useRouter()
   const isHome = pathname === '/'
+  const isActive = (href: string) =>
+    pathname === href || (href !== '/' && pathname.startsWith(href.split('#')[0]) && !href.includes('#'))
 
   useEffect(() => {
     const check = () => setScrolled(window.scrollY > 60)
@@ -65,7 +67,7 @@ export default function NavBar() {
               {navLinks.map(l => (
                 <Link key={l.href} href={l.href}
                   onClick={e => handleNavClick(e, l.href)}
-                  className={pathname === l.href || (l.href !== '/' && pathname.startsWith(l.href.split('#')[0]) && !l.href.includes('#')) ? 'active' : ''}
+                  className={isActive(l.href) ? 'active' : ''}
                   style={l.highlight ? { color: 'var(--accent)', fontWeight: 500 } : undefined}>
                   {l.label}
                 </Link>
@@ -88,6 +90,7 @@ export default function NavBar() {
       <div className={`nav-mobile${mobileOpen ? ' open' : ''}`} role="dialog" aria-label="Menu điều hướng">
         {navLinks.map(l => (
           <Link key={l.href} href={l.href} onClick={e => handleNavClick(e, l.href)}
+            className={isActive(l.href) ? 'active' : ''}
             style={l.highlight ? { color: 'var(--accent)', fontWeight: 600 } : undefined}>
             {l.label}
           </Link>

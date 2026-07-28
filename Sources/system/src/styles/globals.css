@@ -117,7 +117,9 @@ body {
 .nav-links a { font-size: 13.5px; color: rgba(255,255,255,.65); text-decoration: none; transition: color .25s; }
 #nav.scrolled .nav-links a { color: var(--text-2); }
 .nav-links a:hover { color: #fff; }
+.nav-links a.active { color: #fff; font-weight: 500; }
 #nav.scrolled .nav-links a:hover { color: var(--text); }
+#nav.scrolled .nav-links a.active { color: var(--accent); font-weight: 500; }
 .nav-cta {
   font-size: 13px; font-weight: 500; background: #fff; color: var(--dark);
   padding: 9px 22px; border-radius: 8px; border: none; cursor: pointer;
@@ -148,6 +150,7 @@ body {
 .nav-mobile.open { opacity: 1; pointer-events: auto; }
 .nav-mobile a { font-size: 22px; font-weight: 500; color: rgba(255,255,255,.7); text-decoration: none; transition: color .2s; }
 .nav-mobile a:hover { color: #fff; }
+.nav-mobile a.active { color: #fff; font-weight: 600; }
 .nav-mobile .nm-cta {
   font-size: 15px; font-weight: 500; background: var(--accent);
   color: #fff; padding: 13px 36px; border-radius: 9px; margin-top: 8px;
