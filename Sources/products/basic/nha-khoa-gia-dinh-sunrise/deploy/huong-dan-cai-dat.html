@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hướng dẫn cài đặt Website — webdrop.store</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f7; --surface: #fff; --dark: #0c0b09; --dark2: #141210;
+    --border: #e8e5df; --border-light: #f0ede8;
+    --text: #1a1917; --text-2: #6b6760; --text-3: #a09d97;
+    --accent: #1a6b52; --accent-h: #155a44; --accent-light: #e8f4ef; --accent-mid: #2d9b73;
+    --warm: #f5f0e8; --warm2: #ede8df; --danger: #e24b4a;
+    --sans: 'DM Sans', sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+  .wd-container { max-width: 860px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 60px); }
+
+  .gd-hero { background: var(--dark2); padding: 56px 0 44px; text-align: center; color: #fff; }
+  .gd-hero .logo { font-size: 18px; font-weight: 600; letter-spacing: -.3px; margin-bottom: 22px; display: inline-block; }
+  .gd-hero .logo span { color: #4ade80; }
+  .gd-hero .eyebrow { font-size: 11px; font-weight: 500; color: #4ade80; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+  .gd-hero h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 600; letter-spacing: -.6px; margin-bottom: 10px; }
+  .gd-hero p { font-size: 14.5px; font-weight: 300; color: rgba(255,255,255,.55); max-width: 480px; margin: 0 auto; }
+
+  .gd-sec { padding: 40px 0; border-bottom: 1px solid var(--border-light); }
+  .gd-sec:last-of-type { border-bottom: none; }
+  .gd-sec-title { font-size: 20px; font-weight: 600; letter-spacing: -.3px; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+  .gd-sec-title .n { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 13px; font-weight: 600; flex-shrink: 0; }
+  .gd-sec-sub { font-size: 13.5px; color: var(--text-2); font-weight: 300; margin-bottom: 20px; }
+
+  .gd-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; margin-bottom: 12px; }
+  .gd-card code, .gd-mono { font-family: 'SF Mono', Consolas, monospace; font-size: 12.5px; background: var(--warm); border-radius: 5px; padding: 2px 7px; color: var(--accent); }
+  .gd-card pre { background: var(--dark2); color: #e8e5df; border-radius: 8px; padding: 14px 16px; font-size: 12.5px; overflow-x: auto; margin: 10px 0 0; font-family: 'SF Mono', Consolas, monospace; }
+  .gd-card ul { margin: 8px 0 0; padding-left: 20px; font-size: 13.5px; color: var(--text-2); line-height: 1.8; }
+  .gd-card p { font-size: 13.5px; color: var(--text-2); line-height: 1.75; margin: 0; }
+  .gd-card p + p { margin-top: 8px; }
+  .gd-card strong { color: var(--text); font-weight: 600; }
+
+  .gd-badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 9px; border-radius: 5px; background: var(--accent-light); color: var(--accent); margin-left: 4px; }
+  .gd-warn { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 10px; padding: 14px 16px; font-size: 13px; color: #9a3412; line-height: 1.7; }
+  .gd-warn strong { color: #7c2d12; }
+  .gd-danger { background: #fef2f2; border: 1px solid #fecaca; border-radius: 10px; padding: 14px 16px; font-size: 13px; color: #991b1b; line-height: 1.7; }
+  .gd-danger strong { color: #7f1d1d; }
+  .gd-ok { background: var(--accent-light); border: 1px solid #bfe3d4; border-radius: 10px; padding: 14px 16px; font-size: 13px; color: #155a44; line-height: 1.7; }
+
+  .gd-tree { background: var(--dark2); color: #e8e5df; border-radius: 10px; padding: 16px 20px; font-family: 'SF Mono', Consolas, monospace; font-size: 12.5px; line-height: 1.9; overflow-x: auto; white-space: pre; }
+  .gd-tree .dim { color: #6b6760; }
+  .gd-tree .hi  { color: #4ade80; }
+
+  .accordion-button { font-family: var(--sans); font-size: 13.5px; font-weight: 500; color: var(--text); background: var(--surface); }
+  .accordion-button:not(.collapsed) { background: var(--accent-light); color: var(--accent); box-shadow: none; }
+  .accordion-button:focus { box-shadow: none; border-color: var(--border); }
+  .accordion-item { border-color: var(--border); border-radius: 10px !important; overflow: hidden; margin-bottom: 10px; }
+  .accordion-body { font-size: 13.5px; color: var(--text-2); line-height: 1.75; }
+  .accordion-body code { font-family: 'SF Mono', Consolas, monospace; font-size: 12px; background: var(--warm); border-radius: 5px; padding: 1px 6px; color: var(--accent); }
+
+  .gd-footer { background: var(--dark2); color: rgba(255,255,255,.5); text-align: center; padding: 32px 0; font-size: 12.5px; }
+  .gd-footer a { color: #4ade80; text-decoration: none; }
+  .gd-footer a:hover { text-decoration: underline; }
+
+  .gd-fill { background: #fffbeb; border-bottom: 1px dashed #d97706; padding: 1px 4px; color: #92400e; font-weight: 500; }
+
+  @media print {
+    .gd-hero { background: var(--dark2) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .gd-tree, .gd-card pre { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="gd-hero">
+  <div class="wd-container">
+    <div class="logo">web<span>drop</span>.store</div>
+    <div class="eyebrow">Hướng dẫn cài đặt</div>
+    <h1>Đưa website của bạn lên hosting</h1>
+    <p>Hướng dẫn từng bước để cài đặt gói website (React + PHP + SQLite) sau khi tải về — không cần biết lập trình.</p>
+  </div>
+</div>
+
+<div class="wd-container">
+
+  <!-- 0. Tổng quan -->
+  <div class="gd-sec">
+    <div class="gd-sec-title"><span class="n">i</span>Trong gói tải về có gì?</div>
+    <div class="gd-sec-sub">Website của bạn gồm 2 phần: <strong>trang web chính</strong> (khách truy cập) và <strong>trang quản trị /admin</strong> (bạn quản lý nội dung, đơn hàng...). Cả 2 đã được build sẵn — bạn chỉ cần upload lên hosting, không cần cài Node.js hay chạy lệnh gì.</div>
+    <div class="gd-tree">
+<span class="dim">thu-muc-giai-nen/</span>
+├── index.html, assets/        <span class="dim">← trang web chính</span>
+├── web.config, .htaccess      <span class="dim">← định tuyến (IIS / Apache)</span>
+├── favicon.ico
+├── <span class="hi">admin/</span>                     <span class="dim">← trang quản trị</span>
+└── <span class="hi">api/</span>                       <span class="dim">← xử lý dữ liệu (PHP + SQLite)</span>
+    ├── config.php          <span class="dim">← chỉ cần sửa 1 dòng ở Bước 3</span>
+    ├── database/           <span class="dim">← nơi lưu dữ liệu, tự tạo lần đầu chạy</span>
+    └── check-hash.php      <span class="dim">← xóa file này sau khi cài xong (Bước 6)</span>
+    </div>
+  </div>
+
+  <!-- 1. Yêu cầu hosting -->
+  <div class="gd-sec">
+    <div class="gd-sec-title"><span class="n">1</span>Yêu cầu hosting</div>
+    <div class="gd-card">
+      <ul>
+        <li>Hosting hỗ trợ <strong>PHP 8.1 trở lên</strong>, có bật extension <span class="gd-mono">pdo_sqlite</span> (hầu hết hosting cPanel/Plesk phổ biến ở Việt Nam đều có sẵn — nếu không chắc, hỏi bộ phận hỗ trợ nhà cung cấp hosting).</li>
+        <li>Hỗ trợ <span class="gd-mono">.htaccess</span> (nếu hosting chạy Apache/LiteSpeed) hoặc <span class="gd-mono">web.config</span> (nếu hosting chạy Windows/IIS) — gói tải về đã có sẵn cả 2 file, không cần tự tạo.</li>
+        <li>Có quyền ghi (write) vào thư mục — cần thiết để hệ thống tự tạo database và lưu ảnh upload.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 2. Giải nén + Upload -->
+  <div class="gd-sec">
+    <div class="gd-sec-title"><span class="n">2</span>Giải nén và Upload lên hosting</div>
+    <div class="gd-card">
+      <p><strong>2.1</strong> Giải nén file <span class="gd-mono">.zip</span> đã tải về ra 1 thư mục trên máy tính.</p>
+      <p><strong>2.2</strong> Đăng nhập <strong>cPanel</strong> (hoặc trình quản lý file của hosting) → mở <strong>File Manager</strong> → vào thư mục <span class="gd-mono">public_html</span> (đây là thư mục gốc website).</p>
+      <p><strong>2.3</strong> Upload <strong>toàn bộ nội dung bên trong</strong> thư mục vừa giải nén vào <span class="gd-mono">public_html</span> — lưu ý upload đúng các file/thư mục con (index.html, assets/, admin/, api/...), không upload cả thư mục cha bọc ngoài.</p>
+      <div class="gd-warn" style="margin-top: 10px;"><strong>Mẹo:</strong> nếu hosting hỗ trợ upload file <span class="gd-mono">.zip</span> rồi giải nén trực tiếp trên server (đa số cPanel đều có tính năng này) sẽ nhanh hơn nhiều so với upload từng file qua FTP.</div>
+    </div>
+  </div>
+
+  <!-- 3. Cấu hình -->
+  <div class="gd-sec">
+    <div class="gd-sec-title"><span class="n">3</span>Cấu hình địa chỉ website</div>
+    <div class="gd-card">
+      <p>Mở file <span class="gd-mono">api/config.php</span> bằng công cụ chỉnh sửa file trong cPanel (hoặc tải về sửa bằng Notepad rồi upload lại), tìm dòng:</p>
+      <pre>define('APP_URL', '<span class="gd-fill">http://localhost:8081</span>');</pre>
+      <p>Sửa thành đúng domain thật của website (không có dấu <span class="gd-mono">/</span> ở cuối), ví dụ:</p>
+      <pre>define('APP_URL', 'https://tenmiencuaban.vn');</pre>
+      <p><span class="gd-mono">APP_KEY</span> đã được tự sinh ngẫu nhiên sẵn — không cần sửa dòng này.</p>
+    </div>
+  </div>
+
+  <!-- 4. Kiểm tra -->
+  <div class="gd-sec">
+    <div class="gd-sec-title"><span class="n">4</span>Kiểm tra website đã chạy chưa</div>
+    <div class="gd-card">
+      <p>Mở trình duyệt, truy cập: <span class="gd-mono">https://tenmiencuaban.vn/api/health</span></p>
+      <p>Nếu thấy dòng JSON có <span class="gd-mono">"status":"ok"</span> — website đã sẵn sàng. Dữ liệu mẫu (danh mục, sản phẩm/bài viết mẫu...) sẽ <strong>tự động được tạo</strong> ngay lần truy cập đầu tiên, không cần thao tác gì thêm.</p>
+      <div class="gd-warn" style="margin-top: 10px;">Nếu thấy báo lỗi liên quan <span class="gd-mono">"not writable"</span> — xem mục "Xử lý sự cố" bên dưới.</div>
+    </div>
+  </div>
+
+  <!-- 5. Đăng nhập admin -->
+  <div class="gd-sec">
+    <div class="gd-sec-title"><span class="n">5</span>Đăng nhập trang quản trị</div>
+    <div class="gd-card">
+      <p>Truy cập: <span class="gd-mono">https://tenmiencuaban.vn/admin</span></p>
+      <p>Tài khoản mặc định:</p>
+      <ul style="margin-top: 4px;">
+        <li>Email: <span class="gd-mono">sysadmin@admin.com</span></li>
+        <li>Mật khẩu: <span class="gd-mono">123456</span></li>
+      </ul>
+      <div class="gd-danger" style="margin-top: 10px;"><strong>Bắt buộc:</strong> đổi mật khẩu ngay sau lần đăng nhập đầu tiên — vào menu <strong>Hồ sơ</strong> trong trang quản trị.</div>
+    </div>
+  </div>
+
+  <!-- 6. Bảo mật -->
+  <div class="gd-sec">
+    <div class="gd-sec-title"><span class="n">6</span>Hoàn tất — dọn dẹp bảo mật</div>
+    <div class="gd-card">
+      <p>Xóa file <span class="gd-mono">api/check-hash.php</span> khỏi server sau khi đã cài đặt xong và kiểm tra hoạt động ổn định — đây là file debug chỉ dùng trong quá trình phát triển, không cần thiết khi website đã chạy thật và nên được gỡ bỏ để tránh lộ thông tin không cần thiết.</p>
+    </div>
+    <div class="gd-ok">✓ Vậy là xong! Website đã sẵn sàng để sử dụng và giới thiệu tới khách hàng.</div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="gd-sec">
+    <div class="gd-sec-title"><span class="n">?</span>Xử lý sự cố thường gặp</div>
+    <div class="accordion" id="faq">
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f1">
+            Trang /api/health báo "not writable" hoặc database lỗi
+          </button>
+        </h2>
+        <div id="f1" class="accordion-collapse collapse" data-bs-parent="#faq">
+          <div class="accordion-body">
+            Thư mục <code>api/database/</code> và <code>api/uploads/</code> cần có quyền ghi. Trong File Manager của cPanel, click chuột phải vào 2 thư mục này → <strong>Permissions</strong> (hoặc CHMOD) → đặt thành <code>755</code>. Nếu vẫn lỗi, thử <code>775</code>.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f2">
+            Vào /admin bị lỗi 404 Not Found
+          </button>
+        </h2>
+        <div id="f2" class="accordion-collapse collapse" data-bs-parent="#faq">
+          <div class="accordion-body">
+            Kiểm tra hosting đã đọc đúng file định tuyến chưa: Apache/LiteSpeed dùng <code>.htaccess</code>, Windows/IIS dùng <code>web.config</code> — cả 2 đã có sẵn trong gói tải về, đừng xóa nhầm. Một số hosting mặc định tắt <code>.htaccess</code> (cần bật <code>AllowOverride All</code> hoặc liên hệ nhà cung cấp hosting để bật hỗ trợ).
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f3">
+            Trang chủ hiển thị trắng trơn (blank page)
+          </button>
+        </h2>
+        <div id="f3" class="accordion-collapse collapse" data-bs-parent="#faq">
+          <div class="accordion-body">
+            Thường do upload thiếu file hoặc sai cấu trúc thư mục — kiểm tra lại thư mục <code>assets/</code> đã upload đầy đủ cùng cấp với <code>index.html</code> chưa (xem lại sơ đồ thư mục ở đầu trang). Mở Console trình duyệt (F12) để xem lỗi cụ thể nếu cần hỗ trợ thêm.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f4">
+            Upload ảnh trong trang quản trị bị lỗi
+          </button>
+        </h2>
+        <div id="f4" class="accordion-collapse collapse" data-bs-parent="#faq">
+          <div class="accordion-body">
+            Kiểm tra quyền ghi (permissions) của thư mục <code>api/uploads/</code> — làm tương tự hướng dẫn CHMOD ở mục đầu tiên.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f5">
+            Website có tính năng thanh toán/đơn hàng — cần cấu hình gì thêm?
+          </button>
+        </h2>
+        <div id="f5" class="accordion-collapse collapse" data-bs-parent="#faq">
+          <div class="accordion-body">
+            Vào trang quản trị → <strong>Cài đặt</strong> → tab <strong>Thanh toán</strong> để bật/tắt hình thức thanh toán (COD, chuyển khoản QR...) và điền thông tin tài khoản ngân hàng. Mục này chỉ áp dụng với các website có bán hàng.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f6">
+            Muốn chuyển sang dùng MySQL thay vì SQLite mặc định?
+          </button>
+        </h2>
+        <div id="f6" class="accordion-collapse collapse" data-bs-parent="#faq">
+          <div class="accordion-body">
+            Đây là thay đổi kỹ thuật cần hỗ trợ trực tiếp — liên hệ theo thông tin bên dưới để được hướng dẫn.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="gd-footer">
+  <div class="wd-container">
+    Cần hỗ trợ thêm? Liên hệ Zalo <a href="https://zalo.me/0988632841">0988 632 841</a> · Email <a href="mailto:hello@webdrop.store">hello@webdrop.store</a><br>
+    © webdrop.store — Mẫu web đẹp, triển khai trọn gói
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
