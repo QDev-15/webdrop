@@ -254,10 +254,6 @@ export default function CvCheckoutClient() {
             <div style={{ marginTop: 14, padding: '12px 14px', background: 'var(--accent-light)', borderRadius: 8, fontSize: 12.5, color: 'var(--accent)', lineHeight: 1.7, border: '1px solid var(--accent-mid)' }}>
               ⚡ Tự động xác nhận qua Sepay — nhận email đăng nhập trong vài giây sau khi chuyển khoản
             </div>
-
-            <div style={{ fontSize: 12, color: 'var(--text-3)', fontWeight: 300, marginTop: 12, lineHeight: 1.6 }}>
-              🛡️ Hoàn tiền 100% trong 7 ngày nếu không hài lòng
-            </div>
           </div>
         </div>
       </div>

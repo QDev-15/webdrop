@@ -271,10 +271,6 @@ export default function CartCheckoutClient() {
                 <span>Tổng cộng</span>
                 <span style={{ color: isFree ? 'var(--accent)' : undefined }}>{isFree ? 'Miễn phí 🎁' : fmtPrice(price)}</span>
               </div>
-
-              <div style={{ fontSize: 12, color: 'var(--text-3)', fontWeight: 300, marginTop: 12, lineHeight: 1.6 }}>
-                🛡️ Hoàn tiền 100% trong 7 ngày nếu không hài lòng
-              </div>
             </div>
           </div>
         </div>

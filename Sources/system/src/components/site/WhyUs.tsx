@@ -1,7 +1,7 @@
 const DEFAULT_ITEMS = [
   { num: '01', icon: '⚡', title: 'Nhanh chóng', desc: 'Bàn giao trong 3–5 ngày làm việc, không kéo dài hàng tháng như agency truyền thống' },
   { num: '02', icon: '💎', title: 'Chất lượng cao', desc: 'Mẫu thiết kế bởi chuyên gia, responsive hoàn toàn, PageSpeed 90+, chuẩn SEO' },
-  { num: '03', icon: '🛡️', title: 'An tâm tuyệt đối', desc: 'Hoàn tiền 100% trong 7 ngày nếu không hài lòng. Hỗ trợ 30 ngày sau bàn giao' },
+  { num: '03', icon: '🛡️', title: 'An tâm tuyệt đối', desc: 'Hỗ trợ 30 ngày sau bàn giao' },
   { num: '04', icon: '📈', title: 'Đồng hành lâu dài', desc: 'Gói duy trì hàng tháng, gia hạn hosting, cập nhật nội dung — mọi thứ bạn cần' },
 ]
 

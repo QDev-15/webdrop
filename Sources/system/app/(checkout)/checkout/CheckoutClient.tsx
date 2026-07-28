@@ -401,10 +401,6 @@ export default function CheckoutClient({
                   <>🌐 Nhận: <strong>web.zip</strong> + <strong>admin.zip</strong><br />⚡ Download ngay sau đặt hàng<br />📖 Kèm hướng dẫn cài đặt chi tiết</>
                 )}
               </div>
-
-              <div style={{ fontSize: 12, color: 'var(--text-3)', fontWeight: 300, marginTop: 12, lineHeight: 1.6 }}>
-                🛡️ Hoàn tiền 100% trong 7 ngày nếu không hài lòng
-              </div>
             </div>
           </div>
         </div>

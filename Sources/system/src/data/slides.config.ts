@@ -131,7 +131,6 @@ export const slides: Slide[] = [
       { icon: '⚡', text: 'Bàn giao trong', highlight: '3–5 ngày làm việc', },
       { icon: '🎨', text: 'Hơn 30 mẫu hiện đại,',  highlight: 'responsive' },
       { icon: '🔧', text: 'Hosting, domain, SSL —', highlight: 'tất cả trong một gói' },
-      { icon: '🛡️', text: 'Hoàn tiền 100% trong 7 ngày nếu không hài lòng' },
     ],
     tags: ['SEO chuẩn', 'PageSpeed 90+', 'Hỗ trợ tiếng Việt', 'Gói duy trì hàng tháng'],
     buttons: [

@@ -98,7 +98,6 @@ export default function CvsPage() {
                   Đã có tài khoản →
                 </Link>
               </div>
-              <div style={{ marginTop: 10, fontSize: 13, color: '#a09d97' }}>🛡️ Hoàn tiền 100% trong 7 ngày nếu không hài lòng</div>
             </div>
           </div>
         </section>
