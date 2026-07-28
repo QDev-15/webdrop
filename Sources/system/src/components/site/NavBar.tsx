@@ -6,10 +6,10 @@ import { usePathname, useRouter } from 'next/navigation'
 const navLinks = [
   { href: '/templates',   label: 'Thư viện mẫu' },
   { href: '/cvs',         label: 'CV Online' },
-  { href: '/blog',        label: 'Kiến thức' },
+  { href: '/blog',        label: 'Blog' },
   { href: '/pricing',     label: 'Bảng giá' },
   { href: '/how-it-works', label: 'Quy trình' },
-  { href: '/lich-bong-da', label: '⚽ WC 2026', highlight: true },
+  // { href: '/lich-bong-da', label: '⚽ WC 2026', highlight: true },
   { href: '/about',       label: 'Về chúng tôi' },
 ]
 
