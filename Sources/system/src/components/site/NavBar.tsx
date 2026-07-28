@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 
-const navLinks = [
+const navLinks: { href: string; label: string; highlight?: boolean }[] = [
   { href: '/templates',   label: 'Thư viện mẫu' },
   { href: '/cvs',         label: 'CV Online' },
   { href: '/blog',        label: 'Blog' },
@@ -12,6 +12,7 @@ const navLinks = [
   // { href: '/lich-bong-da', label: '⚽ WC 2026', highlight: true },
   { href: '/about',       label: 'Về chúng tôi' },
 ]
+
 
 export default function NavBar() {
   const [scrolled, setScrolled] = useState(false)
