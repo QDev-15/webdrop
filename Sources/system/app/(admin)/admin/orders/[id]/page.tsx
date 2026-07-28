@@ -115,7 +115,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
             </Link>
           </div>
 
-          <OrderStatusUpdater orderId={order.id} currentStatus={order.status} />
+          <OrderStatusUpdater orderId={order.id} currentStatus={order.status} isPaid={order.paidAt !== null} />
         </div>
       </div>
     </AdminLayout>

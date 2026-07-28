@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { randomUUID, timingSafeEqual } from 'crypto'
-import { sendDownloadEmail } from '@/lib/email'
-import { hashPassword } from '@/lib/auth'
+import { timingSafeEqual } from 'crypto'
 import { getSepayApiKey } from '@/lib/sepay'
+import { confirmOrderPayment } from '@/lib/orderConfirm'
 
 function safeEqual(a: string, b: string): boolean {
   const bufA = Buffer.from(a)
@@ -11,9 +10,6 @@ function safeEqual(a: string, b: string): boolean {
   if (bufA.length !== bufB.length) return false
   return timingSafeEqual(bufA, bufB)
 }
-
-const TOKEN_TTL_HOURS = 72
-const TOKEN_MAX_USES  = 5
 
 function ok()  { return NextResponse.json({ success: true }) }
 function skip() { return NextResponse.json({ success: true, skipped: true }) }
@@ -51,14 +47,8 @@ export async function POST(req: NextRequest) {
   const orderCode = extractOrderCode(content)
   if (!orderCode) return skip()
 
-  // 4. Tìm đơn hàng
-  const order = await prisma.order.findUnique({
-    where: { code: orderCode },
-    include: {
-      customer: { select: { name: true, email: true } },
-      payments: { where: { status: 'pending' }, take: 1 },
-    },
-  })
+  // 4. Tìm đơn hàng (chỉ để kiểm tra tồn tại + số tiền — confirmOrderPayment tự query lại)
+  const order = await prisma.order.findUnique({ where: { code: orderCode } })
   if (!order) return skip()
 
   // 5. Idempotent — đã xử lý rồi thì bỏ qua
@@ -71,146 +61,10 @@ export async function POST(req: NextRequest) {
     return skip()
   }
 
-  // 7a. Xử lý đơn CV — tạo tài khoản user, không cần download token
-  if (order.type === 'cv') {
-    const customerEmail = order.customer.email
-    if (!customerEmail) {
-      console.warn(`[sepay] Đơn CV ${orderCode}: không có email — bỏ qua tạo tài khoản`)
-      return skip()
-    }
+  // 7. Xác nhận thanh toán — logic dùng chung với admin "Xác nhận thủ công"
+  const result = await confirmOrderPayment(orderCode, `Thanh toán tự động qua Sepay — ${body.referenceCode ?? ''}`)
+  if (!result.ok) return skip()
 
-    const tempPassword = 'WD' + randomUUID().replace(/-/g, '').slice(0, 6).toUpperCase()
-
-    await prisma.$transaction(async (tx) => {
-      // Tạo user nếu chưa tồn tại
-      const existingUser = await tx.user.findUnique({ where: { email: customerEmail } })
-      let credentialToken: string
-
-      if (!existingUser) {
-        const newUser = await tx.user.create({
-          data: { name: order.customer.name, email: customerEmail, password: hashPassword(tempPassword), role: 'user' },
-        })
-        const slug = generateCvSlug(order.customer.name)
-        await tx.cvProfile.create({
-          data: { userId: newUser.id, slug, templateType: 'classic', data: { create: {} } },
-        })
-        // Lưu mật khẩu tạm vào downloadToken để client lấy và hiển thị
-        credentialToken = tempPassword
-      } else {
-        // User đã tồn tại, tạo cv profile nếu chưa có
-        const existingProfile = await tx.cvProfile.findUnique({ where: { userId: existingUser.id } })
-        if (!existingProfile) {
-          const slug = generateCvSlug(order.customer.name)
-          await tx.cvProfile.create({
-            data: { userId: existingUser.id, slug, templateType: 'classic', data: { create: {} } },
-          })
-        }
-        credentialToken = 'EXISTING_USER'
-      }
-
-      await tx.order.update({
-        where: { id: order.id },
-        data: { status: 'confirmed', paidAt: new Date(), downloadToken: credentialToken },
-      })
-
-      if (order.payments.length > 0) {
-        await tx.payment.update({
-          where: { id: order.payments[0].id },
-          data: { status: 'paid', paidAt: new Date() },
-        })
-      }
-
-      const now = new Date()
-      await tx.revenue.create({
-        data: {
-          orderId: order.id,
-          paymentId: order.payments[0]?.id ?? null,
-          amount: order.total,
-          month: now.getMonth() + 1,
-          year: now.getFullYear(),
-          note: `CV Builder — Sepay ${body.referenceCode ?? ''}`,
-        },
-      })
-    })
-
-    console.log(`[sepay] Đơn CV ${orderCode} đã thanh toán — tài khoản CV tạo OK`)
-    return ok()
-  }
-
-  // 7b. Đơn template/website — sinh download token
-  const downloadToken  = randomUUID()
-  const tokenExpiresAt = new Date(Date.now() + TOKEN_TTL_HOURS * 60 * 60 * 1000)
-
-  // 8. Update order + payment trong 1 transaction
-  await prisma.$transaction(async (tx) => {
-    await tx.order.update({
-      where: { id: order.id },
-      data: {
-        status:        'confirmed',
-        paidAt:        new Date(),
-        downloadToken,
-        tokenExpiresAt,
-        tokenUsedCount: 0,
-      },
-    })
-
-    if (order.payments.length > 0) {
-      await tx.payment.update({
-        where: { id: order.payments[0].id },
-        data:  { status: 'paid', paidAt: new Date() },
-      })
-    }
-
-    // Ghi nhận doanh thu
-    const now = new Date()
-    await tx.revenue.create({
-      data: {
-        orderId:  order.id,
-        paymentId: order.payments[0]?.id ?? null,
-        amount:   order.total,
-        month:    now.getMonth() + 1,
-        year:     now.getFullYear(),
-        note:     `Thanh toán tự động qua Sepay — ${body.referenceCode ?? ''}`,
-      },
-    })
-  })
-
-  console.log(`[sepay] Đơn ${orderCode} đã thanh toán — token sinh OK`)
-
-  // Gửi email download nếu tính năng được bật và khách có email
-  if (order.customer.email) {
-    const emailToggle = await prisma.setting.findFirst({ where: { key: 'email_send_download' } })
-    if (emailToggle?.value === 'true') {
-      const slug = extractSlug(order.title)
-      sendDownloadEmail({
-        to:            order.customer.email,
-        customerName:  order.customer.name,
-        orderCode:     order.code,
-        downloadToken,
-        type:          order.type === 'website' ? 'website' : 'template',
-        slug,
-        amount:        Number(order.total),
-      }).catch(e => console.error('[email] sendDownloadEmail failed:', e))
-    }
-  }
-
+  console.log(`[sepay] Đơn ${orderCode} đã thanh toán`)
   return ok()
-}
-
-function extractSlug(title: string): string {
-  const m = title.match(/Template:\s*(.+)/) ?? title.match(/Website Gói B \((.+)\)/)
-  return m?.[1]?.trim() ?? ''
-}
-
-function generateCvSlug(name: string): string {
-  const base = name.toLowerCase()
-    .normalize('NFD').replace(/[̀-ͯ]/g, '')
-    .replace(/đ/g, 'd')
-    .replace(/[^\w\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .slice(0, 30)
-    .replace(/-$/, '')
-  const suffix = Math.random().toString(36).slice(2, 6)
-  return `${base}-${suffix}`
 }
