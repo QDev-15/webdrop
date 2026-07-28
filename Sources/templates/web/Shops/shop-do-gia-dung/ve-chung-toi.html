@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giới thiệu — Nhà Đẹp Store</title>
+  <meta name="description" content="Nhà Đẹp Store — hành trình 8 năm mang đến đồ gia dụng chất lượng cao, thiết kế tinh tế cho mọi gia đình Việt.">
+  <meta property="og:title" content="Giới thiệu — Nhà Đẹp Store">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* Counter animation */
+    .dg-stat-bar__num[data-target] { font-variant-numeric: tabular-nums; }
+  </style>
+</head>
+<body>
+
+<!-- Topbar -->
+<div id="dg-topbar" role="banner">
+  <div class="dg-topbar__items">
+    <span class="dg-topbar__item">Miễn phí ship từ 500K</span>
+    <span class="dg-topbar__item">Đổi trả 30 ngày</span>
+    <span class="dg-topbar__item">Bảo hành chính hãng</span>
+  </div>
+</div>
+
+<!-- Navigation -->
+<nav id="dg-nav" role="navigation" aria-label="Menu chính">
+  <div class="dg-nav__inner">
+    <a href="index.html" class="dg-nav__logo">Nhà Đẹp<span>.</span></a>
+    <ul class="dg-nav__links">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="san-pham.html">Sản phẩm</a></li>
+      <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+      <li><a href="ve-chung-toi.html" class="active">Giới thiệu</a></li>
+      <li><a href="lien-he.html">Liên hệ</a></li>
+    </ul>
+    <div class="dg-nav__actions">
+      <button class="dg-nav__icon-btn" id="dg-search-toggle" aria-label="Tìm kiếm">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <a href="gio-hang.html" class="dg-nav__icon-btn" aria-label="Giỏ hàng">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="dg-cart-count" id="dg-cart-count">0</span>
+      </a>
+      <button class="dg-hamburger" id="dg-hamburger" aria-label="Mở menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Search Panel -->
+<div id="dg-search-panel" role="search">
+  <div class="dg-search-panel__inner">
+    <input type="text" class="dg-search-panel__input" id="dg-search-input" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
+    <button class="dg-search-panel__btn" id="dg-search-submit">Tìm kiếm</button>
+  </div>
+</div>
+
+<!-- Mobile Nav -->
+<div id="dg-nav-overlay"></div>
+<div id="dg-nav-mob" role="navigation" aria-label="Menu di động">
+  <button id="dg-nav-close" aria-label="Đóng menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <ul class="dg-nav-mob__links">
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="san-pham.html">Sản phẩm</a></li>
+    <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+    <li><a href="ve-chung-toi.html" class="active">Giới thiệu</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+</div>
+
+<!-- ══ HERO — Brand Hero (full lifestyle, allowed on this page) ══ -->
+<div class="dg-about-hero">
+  <div class="dg-about-hero__bg">
+    <img src="https://images.unsplash.com/photo-1581591524425-c7e0978865fc?w=1400&auto=format&fit=crop&q=75"
+      alt="Không gian nhà đẹp"
+      onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%221400%22 height=%22600%22%3E%3Crect fill=%22%231c1510%22 width=%221400%22 height=%22600%22/%3E%3C/svg%3E'">
+  </div>
+  <div class="dg-container">
+    <div class="dg-about-hero__content">
+      <p class="dg-about-hero__eyebrow">Câu chuyện thương hiệu</p>
+      <h1 class="dg-about-hero__h1">Biến ngôi nhà thành<br>không gian sống đáng mơ ước</h1>
+      <p class="dg-about-hero__sub">Từ năm 2016, chúng tôi mang đến những sản phẩm gia dụng chất lượng cao, thiết kế đẹp mắt — giúp mỗi gia đình Việt có không gian sống tiện nghi và cảm xúc hơn.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ STORY SECTION — Hành trình thương hiệu ══ -->
+<section class="sec-pad">
+  <div class="dg-container">
+    <div class="dg-story" data-reveal>
+      <div class="dg-story__img">
+        <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&auto=format&fit=crop&q=80"
+          alt="Xưởng lựa chọn sản phẩm"
+          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22450%22%3E%3Crect fill=%22%23f5ede0%22 width=%22600%22 height=%22450%22/%3E%3C/svg%3E'">
+      </div>
+      <div class="dg-story__text">
+        <p class="dg-story__eyebrow">Khởi đầu khiêm tốn</p>
+        <h2 class="dg-story__title">Từ một cửa hàng nhỏ đến thương hiệu uy tín</h2>
+        <p class="dg-story__text-body">Năm 2016, Nhà Đẹp Store bắt đầu với một gian hàng nhỏ tại chợ Bến Thành, chỉ với vài chục sản phẩm và niềm tin vào chất lượng. Chúng tôi tin rằng đồ gia dụng không chỉ là vật dụng — chúng tạo nên cảm xúc, thói quen, và ký ức trong mỗi ngôi nhà.</p>
+        <p class="dg-story__text-body" style="margin-top:14px;">Sau 8 năm, chúng tôi đã phục vụ hơn 15.000 khách hàng trên toàn quốc, với danh mục sản phẩm đa dạng từ đồ dùng nhà bếp, trang trí nội thất, đến đèn chiếu sáng — tất cả đều được tuyển chọn kỹ lưỡng theo tiêu chuẩn chất lượng và thẩm mỹ của riêng chúng tôi.</p>
+      </div>
+    </div>
+
+    <div class="dg-story dg-story--reverse" style="margin-top:clamp(40px,6vw,72px);" data-reveal>
+      <div class="dg-story__img">
+        <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&auto=format&fit=crop&q=80"
+          alt="Kiểm tra chất lượng sản phẩm"
+          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22450%22%3E%3Crect fill=%22%23ede0ce%22 width=%22600%22 height=%22450%22/%3E%3C/svg%3E'">
+      </div>
+      <div class="dg-story__text">
+        <p class="dg-story__eyebrow">Cam kết chất lượng</p>
+        <h2 class="dg-story__title">Mỗi sản phẩm đều được kiểm định nghiêm ngặt</h2>
+        <p class="dg-story__text-body">Chúng tôi không chọn sản phẩm chỉ vì giá rẻ. Mỗi món đồ phải vượt qua 3 vòng kiểm định: vật liệu an toàn, độ bền trong sử dụng, và tính thẩm mỹ phù hợp với không gian sống hiện đại của người Việt.</p>
+        <p class="dg-story__text-body" style="margin-top:14px;">Đội ngũ tuyển chọn sản phẩm của chúng tôi thường xuyên cập nhật xu hướng thiết kế từ Nhật Bản, Scandinavia và Hàn Quốc — để mang về những sản phẩm vừa đẹp, vừa bền, vừa phù hợp với gu thẩm mỹ Việt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STAT BAR ══ -->
+<div class="dg-stat-bar">
+  <div class="dg-container">
+    <div class="dg-stat-bar__grid">
+      <div data-reveal data-delay="1">
+        <span class="dg-stat-bar__num" data-target="15000">0</span>
+        <span class="dg-stat-bar__label">Khách hàng hài lòng</span>
+      </div>
+      <div data-reveal data-delay="2">
+        <span class="dg-stat-bar__num" data-target="8">0</span>
+        <span class="dg-stat-bar__label">Năm kinh nghiệm</span>
+      </div>
+      <div data-reveal data-delay="3">
+        <span class="dg-stat-bar__num" data-target="40">0</span>
+        <span class="dg-stat-bar__label">Sản phẩm chọn lọc</span>
+      </div>
+      <div data-reveal data-delay="4">
+        <span class="dg-stat-bar__num" data-target="63">0</span>
+        <span class="dg-stat-bar__label">Tỉnh thành giao hàng</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ VALUES — Giá trị cốt lõi ══ -->
+<section class="sec-pad bg-warm">
+  <div class="dg-container">
+    <div style="text-align:center; margin-bottom:40px;" data-reveal>
+      <p class="dg-section__label">Định hướng kinh doanh</p>
+      <h2 style="font-size:clamp(24px,3.5vw,36px);">Giá trị cốt lõi của chúng tôi</h2>
+      <p style="font-size:15px; color:var(--text-2); max-width:520px; margin:12px auto 0; line-height:1.7;">Bốn nguyên tắc định hướng mọi quyết định của Nhà Đẹp Store — từ cách chọn sản phẩm đến cách phục vụ khách hàng.</p>
+    </div>
+    <div class="dg-values">
+      <div class="dg-value-card" data-reveal data-delay="1">
+        <div class="dg-value-icon">🌿</div>
+        <h3 class="dg-value-title">Chất lượng tự nhiên</h3>
+        <p class="dg-value-desc">Ưu tiên vật liệu an toàn, thân thiện với môi trường — gỗ tự nhiên, gốm sứ, tre trúc — không dùng hóa chất độc hại trong sản xuất.</p>
+      </div>
+      <div class="dg-value-card" data-reveal data-delay="2">
+        <div class="dg-value-icon">✨</div>
+        <h3 class="dg-value-title">Thẩm mỹ tinh tế</h3>
+        <p class="dg-value-desc">Mỗi sản phẩm phải đẹp theo nghĩa thực sự — đẹp khi dùng, đẹp khi trưng bày, đẹp cả khi năm tháng trôi qua.</p>
+      </div>
+      <div class="dg-value-card" data-reveal data-delay="3">
+        <div class="dg-value-icon">🤝</div>
+        <h3 class="dg-value-title">Trung thực, rõ ràng</h3>
+        <p class="dg-value-desc">Giá niêm yết cố định, không thổi phồng để giảm, không dùng đánh giá ảo. Mọi thông tin về sản phẩm đều chính xác và minh bạch.</p>
+      </div>
+      <div class="dg-value-card" data-reveal data-delay="4">
+        <div class="dg-value-icon">🏡</div>
+        <h3 class="dg-value-title">Khách hàng là trung tâm</h3>
+        <p class="dg-value-desc">Chính sách đổi trả 30 ngày không cần lý do, bảo hành đầy đủ, tư vấn tận tình — vì chúng tôi muốn bạn thực sự hạnh phúc với lựa chọn của mình.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHY-CHOOSE-US — Vì sao chọn Nhà Đẹp ══ -->
+<section class="sec-pad">
+  <div class="dg-container">
+    <div style="text-align:center; margin-bottom:40px;" data-reveal>
+      <p class="dg-section__label">Lý do lựa chọn</p>
+      <h2 style="font-size:clamp(24px,3.5vw,36px);">Vì sao chọn Nhà Đẹp Store?</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px;" class="why-grid">
+      <div style="display:flex; flex-direction:column; gap:10px;" data-reveal data-delay="1">
+        <div style="width:52px;height:52px;background:var(--accent-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;">🎯</div>
+        <h3 style="font-size:17px;">Tuyển chọn có chủ đích</h3>
+        <p style="font-size:14px;color:var(--text-2);line-height:1.65;">Không bán tràn lan — chúng tôi chỉ giữ lại những sản phẩm thực sự xứng đáng có mặt trong ngôi nhà của bạn.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px;" data-reveal data-delay="2">
+        <div style="width:52px;height:52px;background:var(--accent-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;">📦</div>
+        <h3 style="font-size:17px;">Đóng gói cẩn thận</h3>
+        <p style="font-size:14px;color:var(--text-2);line-height:1.65;">Mỗi đơn hàng được đóng gói kỹ lưỡng với vật liệu bảo vệ tái chế — an toàn trong vận chuyển và thân thiện với môi trường.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px;" data-reveal data-delay="3">
+        <div style="width:52px;height:52px;background:var(--accent-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;">⭐</div>
+        <h3 style="font-size:17px;">Đánh giá thật 100%</h3>
+        <p style="font-size:14px;color:var(--text-2);line-height:1.65;">Toàn bộ đánh giá đều từ khách hàng mua thật — chúng tôi không can thiệp, không chỉnh sửa, kể cả khi đánh giá không tốt.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px;" data-reveal data-delay="1">
+        <div style="width:52px;height:52px;background:var(--accent-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;">🚀</div>
+        <h3 style="font-size:17px;">Giao hàng nhanh toàn quốc</h3>
+        <p style="font-size:14px;color:var(--text-2);line-height:1.65;">Giao hàng trong 1–3 ngày tại TP.HCM, 2–5 ngày toàn quốc. Miễn phí vận chuyển cho đơn hàng từ 500.000đ.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px;" data-reveal data-delay="2">
+        <div style="width:52px;height:52px;background:var(--accent-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;">🔄</div>
+        <h3 style="font-size:17px;">Đổi trả không rắc rối</h3>
+        <p style="font-size:14px;color:var(--text-2);line-height:1.65;">Đổi trả trong 30 ngày — chụp ảnh, nhắn Zalo, chúng tôi xử lý trong 24 giờ. Không hỏi thêm, không phán xét.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px;" data-reveal data-delay="3">
+        <div style="width:52px;height:52px;background:var(--accent-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;">💬</div>
+        <h3 style="font-size:17px;">Tư vấn tận tâm</h3>
+        <p style="font-size:14px;color:var(--text-2);line-height:1.65;">Đội ngũ tư vấn sẵn sàng hỗ trợ qua Zalo, Facebook, email — không phải bot tự động, là người thật phản hồi bạn.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="sec-pad bg-warm">
+  <div class="dg-container">
+    <div style="text-align:center; margin-bottom:40px;" data-reveal>
+      <p class="dg-section__label">Phản hồi khách hàng</p>
+      <h2 style="font-size:clamp(24px,3.5vw,36px);">Khách hàng nói gì về chúng tôi</h2>
+    </div>
+    <div class="dg-testimonials">
+      <div class="dg-testimonial" data-reveal data-delay="1">
+        <div class="dg-testimonial__stars">★★★★★</div>
+        <p class="dg-testimonial__text">"Mua bộ nồi đất cho mẹ — chất lượng vượt mong đợi. Giao hàng nhanh, đóng gói cẩn thận, không có gì chê. Sẽ quay lại!"</p>
+        <div class="dg-testimonial__author">
+          <div class="dg-testimonial__avatar">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=88&auto=format&fit=crop&q=80"
+              alt="Chị Lan Anh"
+              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2244%22 height=%2244%22%3E%3Crect fill=%22%23f5ede0%22 width=%2244%22 height=%2244%22 rx=%2222%22/%3E%3C/svg%3E'">
+          </div>
+          <div>
+            <p class="dg-testimonial__name">Chị Lan Anh</p>
+            <p class="dg-testimonial__role">Nội trợ, Hà Nội</p>
+          </div>
+        </div>
+      </div>
+      <div class="dg-testimonial" data-reveal data-delay="2">
+        <div class="dg-testimonial__stars">★★★★★</div>
+        <p class="dg-testimonial__text">"Mua đèn ngủ cho phòng con — thiết kế đẹp lắm, ánh sáng ấm áp đúng như mô tả. Shop tư vấn rất nhiệt tình, gợi ý đúng cái mình cần."</p>
+        <div class="dg-testimonial__author">
+          <div class="dg-testimonial__avatar">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=88&auto=format&fit=crop&q=80"
+              alt="Anh Minh Tuấn"
+              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2244%22 height=%2244%22%3E%3Crect fill=%22%23ede0ce%22 width=%2244%22 height=%2244%22 rx=%2222%22/%3E%3C/svg%3E'">
+          </div>
+          <div>
+            <p class="dg-testimonial__name">Anh Minh Tuấn</p>
+            <p class="dg-testimonial__role">Kiến trúc sư, TP.HCM</p>
+          </div>
+        </div>
+      </div>
+      <div class="dg-testimonial" data-reveal data-delay="3">
+        <div class="dg-testimonial__stars">★★★★☆</div>
+        <p class="dg-testimonial__text">"Tủ kệ nhỏ đặt phòng tắm rất xinh, dễ lắp ráp. Có 1 cái vít thiếu nhưng shop gửi bổ sung ngay hôm sau. Dịch vụ tốt, sẽ tiếp tục ủng hộ."</p>
+        <div class="dg-testimonial__author">
+          <div class="dg-testimonial__avatar">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=88&auto=format&fit=crop&q=80"
+              alt="Chị Hương Giang"
+              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2244%22 height=%2244%22%3E%3Crect fill=%22%23f5ede0%22 width=%2244%22 height=%2244%22 rx=%2222%22/%3E%3C/svg%3E'">
+          </div>
+          <div>
+            <p class="dg-testimonial__name">Chị Hương Giang</p>
+            <p class="dg-testimonial__role">Giáo viên, Đà Nẵng</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FEATURE-ICON-ROW — Chính sách mua hàng ══ -->
+<section class="sec-pad" id="chinh-sach">
+  <div class="dg-container">
+    <div style="text-align:center; margin-bottom:36px;" data-reveal>
+      <p class="dg-section__label">Cam kết</p>
+      <h2 style="font-size:clamp(24px,3.5vw,36px);">Chính sách mua hàng</h2>
+    </div>
+    <div class="dg-policy-row">
+      <div class="dg-policy-item" data-reveal data-delay="1">
+        <div class="dg-policy-icon">🚚</div>
+        <div>
+          <p class="dg-policy-title">Miễn phí vận chuyển</p>
+          <p class="dg-policy-desc">Đơn hàng từ 500.000đ miễn phí ship toàn quốc qua các đơn vị vận chuyển uy tín. Đơn dưới 500K phụ phí 30.000đ.</p>
+        </div>
+      </div>
+      <div class="dg-policy-item" data-reveal data-delay="2">
+        <div class="dg-policy-icon">🔄</div>
+        <div>
+          <p class="dg-policy-title">Đổi trả 30 ngày</p>
+          <p class="dg-policy-desc">Đổi trả trong 30 ngày kể từ ngày nhận hàng nếu sản phẩm lỗi hoặc không đúng mô tả. Hoàn tiền trong 3–5 ngày làm việc.</p>
+        </div>
+      </div>
+      <div class="dg-policy-item" data-reveal data-delay="3">
+        <div class="dg-policy-icon">🛡️</div>
+        <div>
+          <p class="dg-policy-title">Bảo hành chính hãng</p>
+          <p class="dg-policy-desc">Tất cả sản phẩm được bảo hành ít nhất 12 tháng từ ngày mua. Lỗi nhà sản xuất — đổi mới không tính phí.</p>
+        </div>
+      </div>
+      <div class="dg-policy-item" data-reveal data-delay="4">
+        <div class="dg-policy-icon">💳</div>
+        <div>
+          <p class="dg-policy-title">Thanh toán an toàn</p>
+          <p class="dg-policy-desc">Chấp nhận COD, chuyển khoản ngân hàng, ví điện tử (MoMo, ZaloPay). Xác nhận đơn trong 30 phút sau khi đặt hàng.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA cuối trang ══ -->
+<div class="dg-about-cta">
+  <div class="dg-container">
+    <p style="font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--accent-mid); margin-bottom:12px;">Sẵn sàng chưa?</p>
+    <h2 class="dg-about-cta__title">Tìm đồ gia dụng ưng ý ngay hôm nay</h2>
+    <p class="dg-about-cta__sub">Hơn 40 sản phẩm được tuyển chọn kỹ lưỡng, giao hàng nhanh, đổi trả dễ dàng.</p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <a href="san-pham.html" class="dg-btn dg-btn--primary dg-btn--lg">
+        Xem tất cả sản phẩm
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="lien-he.html" class="dg-btn dg-btn--lg" style="background:transparent;border:1.5px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);padding:12px 28px;border-radius:var(--radius-btn);">
+        Liên hệ tư vấn
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer id="dg-footer">
+  <div class="dg-container">
+    <div class="dg-footer__main">
+      <div class="dg-footer__brand">
+        <div class="dg-nav__logo">Nhà Đẹp<span>.</span></div>
+        <p class="dg-footer__tagline">Mang đến không gian sống tinh tế và tiện nghi cho mọi gia đình Việt.</p>
+        <div class="dg-footer__socials">
+          <a href="#" class="dg-footer__social" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="dg-footer__social" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 class="dg-footer__col-title">Danh mục</h3>
+        <ul class="dg-footer__links">
+          <li><a href="san-pham.html?category=nha-bep">Đồ dùng nhà bếp</a></li>
+          <li><a href="san-pham.html?category=trang-tri">Đồ trang trí nhà</a></li>
+          <li><a href="san-pham.html?category=phong-tam">Đồ dùng phòng tắm</a></li>
+          <li><a href="san-pham.html?category=noi-that-nho">Nội thất nhỏ</a></li>
+          <li><a href="san-pham.html?category=den-anh-sang">Đèn & Ánh sáng</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="dg-footer__col-title">Thông tin</h3>
+        <ul class="dg-footer__links">
+          <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+          <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="dg-footer__col-title">Hỗ trợ</h3>
+        <ul class="dg-footer__links">
+          <li><a href="lien-he.html">Chăm sóc khách hàng</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="dg-footer__bottom">
+      <p class="dg-footer__copy">© 2024 Nhà Đẹp Store. Tất cả quyền được bảo lưu.</p>
+      <nav class="dg-footer__legal">
+        <a href="chinh-sach-bao-mat.html">Bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/0901234567" class="dg-zalo-float" target="_blank" rel="noopener" aria-label="Chat Zalo">
+  <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
+    <circle cx="24" cy="24" r="24" fill="#0068FF"/>
+    <text x="9" y="32" font-size="20" font-weight="700" fill="#fff" font-family="Arial">Z</text>
+    <text x="20" y="32" font-size="14" font-weight="400" fill="rgba(255,255,255,.85)" font-family="Arial">alo</text>
+  </svg>
+</a>
+
+<script src="assets/js/products-data.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  // ── Counter animation ──
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target) || 0;
+    const duration = 1800;
+    const start = performance.now();
+    function step(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      const val = Math.round(ease * target);
+      el.textContent = val >= 1000 ? (val/1000).toFixed(0) + '.000+' : val + (target > 40 ? '+' : '');
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  // ── Reveal + counter trigger ──
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // If inside stat bar, trigger counters
+        const counters = e.target.querySelectorAll ? e.target.querySelectorAll('[data-target]') : [];
+        counters.forEach(c => animateCounter(c));
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  // Observe stat bar parent
+  const statBar = document.querySelector('.dg-stat-bar');
+  if (statBar) {
+    const statObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          document.querySelectorAll('[data-target]').forEach(el => animateCounter(el));
+          statObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    statObs.observe(statBar);
+  }
+
+  document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
+
+  // ── Why grid responsive ──
+  const whyGrid = document.querySelector('.why-grid');
+  if (whyGrid) {
+    const mq = window.matchMedia('(max-width: 768px)');
+    function adjustGrid(e) { whyGrid.style.gridTemplateColumns = e.matches ? '1fr' : 'repeat(3,1fr)'; }
+    mq.addEventListener('change', adjustGrid);
+    adjustGrid(mq);
+  }
+
+  // ── Nav search ──
+  const searchToggle = document.getElementById('dg-search-toggle');
+  const searchPanel = document.getElementById('dg-search-panel');
+  const searchInputEl = document.getElementById('dg-search-input');
+  searchToggle.addEventListener('click', function() {
+    const isOpen = searchPanel.classList.toggle('open');
+    if (isOpen) setTimeout(() => searchInputEl.focus(), 200);
+  });
+  document.getElementById('dg-search-submit').addEventListener('click', function() {
+    const q = searchInputEl.value.trim();
+    if (q) window.location.href = 'san-pham.html?q=' + encodeURIComponent(q);
+  });
+  searchInputEl.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { const q = this.value.trim(); if (q) window.location.href = 'san-pham.html?q=' + encodeURIComponent(q); }
+    if (e.key === 'Escape') searchPanel.classList.remove('open');
+  });
+
+  // ── Mobile nav ──
+  const hamburger = document.getElementById('dg-hamburger');
+  const navMob = document.getElementById('dg-nav-mob');
+  const navOverlay = document.getElementById('dg-nav-overlay');
+  hamburger.addEventListener('click', () => { navMob.classList.add('open'); navOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; });
+  document.getElementById('dg-nav-close').addEventListener('click', () => { navMob.classList.remove('open'); navOverlay.classList.remove('open'); document.body.style.overflow = ''; });
+  navOverlay.addEventListener('click', () => { navMob.classList.remove('open'); navOverlay.classList.remove('open'); document.body.style.overflow = ''; });
+
+  updateCartCount();
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

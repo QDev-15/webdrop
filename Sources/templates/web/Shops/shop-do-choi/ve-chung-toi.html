@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="KidZone — Câu chuyện thương hiệu đồ chơi trẻ em. Sứ mệnh mang đồ chơi an toàn, chất lượng đến tay mọi gia đình Việt Nam.">
+<meta property="og:title" content="Giới thiệu — KidZone">
+<title>Giới thiệu — KidZone Shop Đồ Chơi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="dc-topbar">
+  <div class="dc-topbar-inner">
+    <span>Miễn phí ship đơn từ 300K</span>
+    <span class="dc-topbar-sep">·</span>
+    <span>Đổi trả 30 ngày</span>
+    <span class="dc-topbar-sep">·</span>
+    <span>Bảo hành chính hãng</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="dc-nav" id="dcNav" aria-label="Menu chính">
+  <div class="dc-nav-inner">
+    <a href="index.html" class="dc-nav-logo" aria-label="KidZone trang chủ">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="var(--accent)"/>
+        <text x="16" y="22" font-size="18" text-anchor="middle" font-family="Baloo 2" font-weight="800" fill="white">K</text>
+      </svg>
+      <span>KidZone</span>
+    </a>
+    <ul class="dc-nav-links" role="list">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="san-pham.html">Sản phẩm</a></li>
+      <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+      <li><a href="ve-chung-toi.html" class="active" aria-current="page">Giới thiệu</a></li>
+      <li><a href="lien-he.html">Liên hệ</a></li>
+    </ul>
+    <div class="dc-nav-actions">
+      <button class="dc-nav-icon" id="dcSearchBtn" aria-label="Tìm kiếm" aria-expanded="false" aria-controls="dcSearchPanel" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+      <a href="gio-hang.html" class="dc-nav-icon dc-cart-icon" aria-label="Giỏ hàng">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="dc-cart-badge" id="dcCartCount">0</span>
+      </a>
+      <button class="dc-burger" id="dcBurger" aria-label="Mở menu" aria-expanded="false" aria-controls="dcNavMob" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="dc-search-panel" id="dcSearchPanel" hidden>
+    <form class="dc-search-form" action="san-pham.html" method="get" role="search">
+      <input type="text" name="q" id="dcSearchInput" placeholder="Tìm đồ chơi cho bé..." autocomplete="off" aria-label="Tìm kiếm">
+      <button type="submit" aria-label="Tìm">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+    </form>
+  </div>
+</nav>
+
+<div class="dc-nav-mob" id="dcNavMob" aria-hidden="true" role="dialog" aria-label="Menu di động">
+  <ul role="list">
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="san-pham.html">Sản phẩm</a></li>
+    <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+    <li><a href="ve-chung-toi.html" class="active">Giới thiệu</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+</div>
+
+<!-- ═══ HERO GIỚI THIỆU ═══ -->
+<section class="dc-about-hero">
+  <div class="dc-about-hero-overlay" aria-hidden="true"></div>
+  <img src="https://images.unsplash.com/photo-1560961911-ba7ef651a56c?w=1400&auto=format&fit=crop&q=80"
+       alt="Trẻ em vui chơi với đồ chơi" class="dc-about-hero-img" width="1400" height="700"
+       onerror="this.onerror=null;this.style.display='none'">
+  <div class="dc-container dc-about-hero-content">
+    <h1 class="dc-about-hero-title">Nơi tuổi thơ bắt đầu</h1>
+    <p class="dc-about-hero-sub">KidZone — hành trình 10 năm mang niềm vui và sự phát triển đến với trẻ em Việt Nam thông qua những món đồ chơi chất lượng, an toàn.</p>
+    <a href="san-pham.html" class="dc-btn-yellow">Khám phá cửa hàng</a>
+  </div>
+</section>
+
+<!-- ═══ STORY SECTION ═══ -->
+<section class="dc-section">
+  <div class="dc-container">
+    <div class="dc-story-row" data-reveal>
+      <div class="dc-story-text">
+        <div class="dc-eyebrow">Câu chuyện của chúng tôi</div>
+        <h2 class="dc-section-title">Từ một cửa tiệm nhỏ<br><span>đến 50.000+ gia đình tin tưởng</span></h2>
+        <p>Năm 2014, KidZone ra đời từ niềm trăn trở của một bà mẹ hai con — làm thế nào để tìm được đồ chơi vừa an toàn, vừa giúp bé học hỏi mà không tốn quá nhiều thời gian tìm kiếm?</p>
+        <p>Khởi đầu chỉ với một cửa hàng nhỏ 30m² ở Quận 5, TP.HCM, chúng tôi đã không ngừng lắng nghe các phụ huynh, cộng tác với các chuyên gia giáo dục mầm non để tuyển chọn những sản phẩm tốt nhất cho trẻ.</p>
+        <p>Hôm nay, KidZone tự hào phục vụ hơn 50.000 gia đình trên khắp Việt Nam — mỗi sản phẩm đều được kiểm định an toàn theo tiêu chuẩn quốc tế trước khi đến tay bé yêu của bạn.</p>
+      </div>
+      <div class="dc-story-img">
+        <img src="https://images.unsplash.com/photo-1543886151-3bc2b944c718?w=700&auto=format&fit=crop&q=80"
+             alt="Cửa hàng KidZone" width="700" height="500"
+             onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22700%22 height=%22500%22%3E%3Crect width=%22700%22 height=%22500%22 fill=%22%23e0f4fb%22/%3E%3C/svg%3E'">
+      </div>
+    </div>
+
+    <div class="dc-story-row dc-story-row-rev" data-reveal>
+      <div class="dc-story-img">
+        <img src="https://images.unsplash.com/photo-1646995477167-a344548ce6b9?w=700&auto=format&fit=crop&q=80"
+             alt="Đội ngũ KidZone kiểm định sản phẩm" width="700" height="500"
+             onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22700%22 height=%22500%22%3E%3Crect width=%22700%22 height=%22500%22 fill=%22%23e0f4fb%22/%3E%3C/svg%3E'">
+      </div>
+      <div class="dc-story-text">
+        <div class="dc-eyebrow">Cam kết của chúng tôi</div>
+        <h2 class="dc-section-title">An toàn là<br><span>ưu tiên số một</span></h2>
+        <p>Mỗi sản phẩm tại KidZone đều trải qua quy trình kiểm định nghiêm ngặt: chất liệu không độc hại (BPA-free, chứng nhận EN71), cạnh và góc được bo tròn an toàn, chi tiết nhỏ đảm bảo không gây nguy hiểm cho trẻ dưới 3 tuổi.</p>
+        <p>Đội ngũ tư vấn của chúng tôi gồm các chuyên gia giáo dục mầm non với hơn 15 năm kinh nghiệm — luôn sẵn sàng giúp bạn chọn được món đồ chơi phù hợp nhất với từng giai đoạn phát triển của bé.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GIÁ TRỊ CỐT LÕI ═══ -->
+<section class="dc-section dc-section-alt">
+  <div class="dc-container">
+    <div style="text-align:center;margin-bottom:56px;" data-reveal>
+      <div class="dc-eyebrow">Triết lý của chúng tôi</div>
+      <h2 class="dc-section-title">Giá trị cốt lõi</h2>
+    </div>
+    <div class="dc-values-grid" data-reveal>
+      <div class="dc-value-card">
+        <div class="dc-value-icon" aria-hidden="true">🛡️</div>
+        <h3>An toàn tuyệt đối</h3>
+        <p>Mọi sản phẩm đều vượt qua kiểm định tiêu chuẩn an toàn EN71 và ASTM F963 trước khi đến tay bé. Không compromise với sức khỏe của trẻ.</p>
+      </div>
+      <div class="dc-value-card">
+        <div class="dc-value-icon" aria-hidden="true">🧠</div>
+        <h3>Học qua chơi</h3>
+        <p>Chúng tôi tin rằng mọi đồ chơi đều là cơ hội học hỏi. Mỗi sản phẩm được chọn lọc để kích thích sự phát triển tư duy, sáng tạo và kỹ năng sống.</p>
+      </div>
+      <div class="dc-value-card">
+        <div class="dc-value-icon" aria-hidden="true">💚</div>
+        <h3>Thân thiện môi trường</h3>
+        <p>Ưu tiên sản phẩm từ vật liệu tái chế, đóng gói giảm nhựa và các thương hiệu cam kết phát triển bền vững — vì một thế giới tốt đẹp hơn cho thế hệ sau.</p>
+      </div>
+      <div class="dc-value-card">
+        <div class="dc-value-icon" aria-hidden="true">💛</div>
+        <h3>Giá trị thực sự</h3>
+        <p>Chúng tôi không bán hàng đắt vô lý. Bạn trả đúng giá trị nhận được — chất lượng quốc tế, bảo hành đầy đủ, tư vấn miễn phí không giới hạn.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STAT BAR ═══ -->
+<section class="dc-stat-bar" aria-label="Thành tích KidZone">
+  <div class="dc-container">
+    <div class="dc-stat-grid" data-reveal>
+      <div class="dc-stat-item">
+        <span class="dc-stat-num" data-count="50000">50.000+</span>
+        <span class="dc-stat-label">Gia đình tin tưởng</span>
+      </div>
+      <div class="dc-stat-item">
+        <span class="dc-stat-num" data-count="500">500+</span>
+        <span class="dc-stat-label">Sản phẩm chất lượng</span>
+      </div>
+      <div class="dc-stat-item">
+        <span class="dc-stat-num" data-count="10">10</span>
+        <span class="dc-stat-label">Năm kinh nghiệm</span>
+      </div>
+      <div class="dc-stat-item">
+        <span class="dc-stat-num" data-count="98">98%</span>
+        <span class="dc-stat-label">Khách hàng hài lòng</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VÌ SAO CHỌN KIDZONE ═══ -->
+<section class="dc-section">
+  <div class="dc-container">
+    <div style="text-align:center;margin-bottom:56px;" data-reveal>
+      <div class="dc-eyebrow">Lý do lựa chọn</div>
+      <h2 class="dc-section-title">Vì sao phụ huynh<br><span>chọn KidZone?</span></h2>
+    </div>
+    <div class="dc-why-grid" data-reveal>
+      <div class="dc-why-item">
+        <div class="dc-why-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div>
+          <h3>Kiểm định an toàn độc lập</h3>
+          <p>Chúng tôi hợp tác với các tổ chức kiểm định độc lập để xác nhận mọi sản phẩm an toàn — không chỉ dựa vào giấy tờ nhà sản xuất cung cấp.</p>
+        </div>
+      </div>
+      <div class="dc-why-item">
+        <div class="dc-why-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <h3>Giao hàng nhanh 2–4 giờ</h3>
+          <p>Khu vực nội thành TP.HCM và Hà Nội, chúng tôi cam kết giao hàng trong 2–4 giờ. Tỉnh thành khác 1–2 ngày qua đối tác vận chuyển uy tín.</p>
+        </div>
+      </div>
+      <div class="dc-why-item">
+        <div class="dc-why-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        </div>
+        <div>
+          <h3>Đổi trả miễn phí 30 ngày</h3>
+          <p>Mua rồi mà bé không thích hoặc sản phẩm có lỗi? Đổi trả hoàn toàn miễn phí trong 30 ngày, không cần giải thích lý do.</p>
+        </div>
+      </div>
+      <div class="dc-why-item">
+        <div class="dc-why-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div>
+          <h3>Tư vấn chuyên gia miễn phí</h3>
+          <p>Không biết chọn gì cho bé? Đội ngũ chuyên gia giáo dục của chúng tôi tư vấn hoàn toàn miễn phí qua Zalo, điện thoại hoặc đến trực tiếp showroom.</p>
+        </div>
+      </div>
+      <div class="dc-why-item">
+        <div class="dc-why-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <h3>Bảo hành 12 tháng toàn bộ</h3>
+          <p>Mọi sản phẩm tại KidZone đều được bảo hành 12 tháng. Lỗi kỹ thuật hay hư hỏng bất thường — chúng tôi xử lý ngay, không phiền phức.</p>
+        </div>
+      </div>
+      <div class="dc-why-item">
+        <div class="dc-why-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <div>
+          <h3>Hàng chính hãng 100%</h3>
+          <p>KidZone là đại lý chính thức của LEGO, Fisher-Price, Mattel, VTech và nhiều thương hiệu uy tín khác. Mọi sản phẩm đều có tem chứng nhận chính hãng.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="dc-section dc-section-alt">
+  <div class="dc-container">
+    <div style="text-align:center;margin-bottom:56px;" data-reveal>
+      <div class="dc-eyebrow">Phụ huynh nói gì</div>
+      <h2 class="dc-section-title">Cảm nhận từ<br><span>50.000+ gia đình</span></h2>
+    </div>
+    <div class="dc-testimonials-grid" data-reveal>
+
+      <blockquote class="dc-testimonial">
+        <div class="dc-testimonial-stars" aria-label="5 sao">★★★★★</div>
+        <p class="dc-testimonial-text">"Con trai 4 tuổi của tôi cực kỳ mê bộ xếp hình giáo dục mua ở KidZone. Chất lượng tốt hơn kỳ vọng rất nhiều, và quan trọng là tôi yên tâm về độ an toàn. Nhân viên tư vấn nhiệt tình, giao hàng nhanh không tưởng!"</p>
+        <footer class="dc-testimonial-author">
+          <img src="https://images.unsplash.com/photo-1648311203209-da34f7d0d800?w=80&auto=format&fit=crop&q=80"
+               alt="Chị Lan Anh" width="48" height="48"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22%3E%3Crect width=%2248%22 height=%2248%22 rx=%2224%22 fill=%22%23e0f4fb%22/%3E%3C/svg%3E'">
+          <div>
+            <cite class="dc-testimonial-name">Chị Lan Anh</cite>
+            <span class="dc-testimonial-role">Mẹ bé Khôi, 4 tuổi — Hà Nội</span>
+          </div>
+        </footer>
+      </blockquote>
+
+      <blockquote class="dc-testimonial">
+        <div class="dc-testimonial-stars" aria-label="5 sao">★★★★★</div>
+        <p class="dc-testimonial-text">"Đã mua đồ chơi ở nhiều nơi nhưng KidZone là nơi tôi yên tâm nhất. Hàng chính hãng, có tem kiểm định an toàn, quan trọng nhất là các bé thích mê. Bộ LEGO City mua cho con gái 7 tuổi — bé ngồi lắp mấy tiếng không chán!"</p>
+        <footer class="dc-testimonial-author">
+          <img src="https://images.unsplash.com/photo-1530325553241-4f6e7690cf36?w=80&auto=format&fit=crop&q=80"
+               alt="Anh Minh Tuấn" width="48" height="48"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22%3E%3Crect width=%2248%22 height=%2248%22 rx=%2224%22 fill=%22%23e0f4fb%22/%3E%3C/svg%3E'">
+          <div>
+            <cite class="dc-testimonial-name">Anh Minh Tuấn</cite>
+            <span class="dc-testimonial-role">Bố bé Hân, 7 tuổi — TP.HCM</span>
+          </div>
+        </footer>
+      </blockquote>
+
+      <blockquote class="dc-testimonial">
+        <div class="dc-testimonial-stars" aria-label="5 sao">★★★★★</div>
+        <p class="dc-testimonial-text">"Là giáo viên mầm non, tôi rất khó tính trong việc chọn đồ chơi cho học sinh. KidZone không chỉ có đồ chơi đa dạng mà còn có thông tin chi tiết về lứa tuổi và kỹ năng phát triển tương ứng. Đã giới thiệu cho rất nhiều đồng nghiệp!"</p>
+        <footer class="dc-testimonial-author">
+          <img src="https://images.unsplash.com/photo-1588090644556-14707d0e886a?w=80&auto=format&fit=crop&q=80"
+               alt="Cô Phương Linh" width="48" height="48"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22%3E%3Crect width=%2248%22 height=%2248%22 rx=%2224%22 fill=%22%23e0f4fb%22/%3E%3C/svg%3E'">
+          <div>
+            <cite class="dc-testimonial-name">Cô Phương Linh</cite>
+            <span class="dc-testimonial-role">Giáo viên mầm non — Đà Nẵng</span>
+          </div>
+        </footer>
+      </blockquote>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CHÍNH SÁCH (FEATURE-ICON-ROW đầy đủ) ═══ -->
+<section class="dc-section">
+  <div class="dc-container">
+    <div style="text-align:center;margin-bottom:48px;" data-reveal>
+      <div class="dc-eyebrow">Cam kết mua sắm</div>
+      <h2 class="dc-section-title">Chính sách<br><span>mua hàng tại KidZone</span></h2>
+    </div>
+    <div class="dc-policy-row" data-reveal>
+      <div class="dc-policy-item">
+        <div class="dc-policy-icon" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </div>
+        <h3>Miễn phí vận chuyển</h3>
+        <p>Đơn hàng từ 300.000đ được miễn phí giao hàng toàn quốc. Nội thành TP.HCM và Hà Nội giao trong 2–4 giờ.</p>
+      </div>
+      <div class="dc-policy-item">
+        <div class="dc-policy-icon" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        </div>
+        <h3>Đổi trả 30 ngày</h3>
+        <p>Không hài lòng vì bất kỳ lý do gì — gửi trả trong 30 ngày, nhận hoàn tiền 100% hoặc đổi sản phẩm khác miễn phí.</p>
+      </div>
+      <div class="dc-policy-item">
+        <div class="dc-policy-icon" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Bảo hành 12 tháng</h3>
+        <p>Tất cả sản phẩm được bảo hành chính hãng 12 tháng. Hư hỏng do lỗi kỹ thuật — thay mới hoàn toàn miễn phí.</p>
+      </div>
+      <div class="dc-policy-item">
+        <div class="dc-policy-icon" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <h3>Hàng chính hãng 100%</h3>
+        <p>Đại lý chính thức tại Việt Nam của các thương hiệu LEGO, Fisher-Price, Mattel, VTech. Có tem chống hàng giả.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA CUỐI TRANG ═══ -->
+<section class="dc-about-cta">
+  <div class="dc-container">
+    <div class="dc-about-cta-inner" data-reveal>
+      <h2>Sẵn sàng tìm đồ chơi<br>hoàn hảo cho bé?</h2>
+      <p>Hơn 500 sản phẩm chất lượng đang chờ bạn — mỗi mua hàng là một khoảnh khắc vui của bé.</p>
+      <div class="dc-about-cta-btns">
+        <a href="san-pham.html" class="dc-btn-yellow">Xem tất cả sản phẩm</a>
+        <a href="lien-he.html" class="dc-btn-outline-light">Tư vấn miễn phí</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="dc-footer">
+  <div class="dc-container">
+    <div class="dc-footer-grid">
+      <div class="dc-footer-col dc-footer-brand">
+        <a href="index.html" class="dc-footer-logo">
+          <svg width="36" height="36" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <rect width="32" height="32" rx="8" fill="var(--yellow)"/>
+            <text x="16" y="22" font-size="18" text-anchor="middle" font-family="Baloo 2" font-weight="800" fill="#0c2a3d">K</text>
+          </svg>
+          <span>KidZone</span>
+        </a>
+        <p class="dc-footer-desc">Shop đồ chơi trẻ em chất lượng cao, an toàn cho bé từ 0–12 tuổi.</p>
+        <div class="dc-footer-social">
+          <a href="#" aria-label="Facebook" class="dc-footer-soc-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram" class="dc-footer-soc-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        </div>
+      </div>
+      <div class="dc-footer-col">
+        <h3 class="dc-footer-col-title">Sản phẩm</h3>
+        <ul>
+          <li><a href="san-pham.html?category=do-choi-giao-duc">Đồ chơi giáo dục</a></li>
+          <li><a href="san-pham.html?category=xe-mo-hinh">Xe & Mô hình</a></li>
+          <li><a href="san-pham.html?category=bup-be-thu-bong">Búp bê & Thú bông</a></li>
+          <li><a href="san-pham.html?category=do-choi-ngoai-troi">Đồ chơi ngoài trời</a></li>
+          <li><a href="san-pham.html?category=lego-xep-hinh">Lego & Xếp hình</a></li>
+        </ul>
+      </div>
+      <div class="dc-footer-col">
+        <h3 class="dc-footer-col-title">Hỗ trợ</h3>
+        <ul>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+          <li><a href="gio-hang.html">Giỏ hàng</a></li>
+        </ul>
+      </div>
+      <div class="dc-footer-col">
+        <h3 class="dc-footer-col-title">Chính sách</h3>
+        <ul>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+        <div class="dc-footer-contact">
+          <p><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38C1.58 2.28 2.4 1.35 3.5 1H6.5a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> 0901 234 567</p>
+          <p><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> hello@kidzone.vn</p>
+        </div>
+      </div>
+    </div>
+    <div class="dc-footer-bottom">
+      <span>© 2025 KidZone. Bảo lưu mọi quyền.</span>
+      <span>Designed with ❤ for little ones</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/0901234567" class="dc-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo với KidZone">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M12.001 2C6.478 2 2 6.477 2 12c0 2.25.751 4.33 2.015 6.004L2.5 21.5l3.594-1.49C7.657 21.17 9.75 22 12 22c5.523 0 10-4.477 10-10S17.524 2 12.001 2zm4.894 13.37c-.193.543-.573.968-1.086 1.073-.29.058-.664.105-2.097-.452-1.75-.69-2.88-2.453-2.967-2.568-.086-.115-.703-.937-.703-1.787 0-.849.445-1.267.603-1.44a.632.632 0 0 1 .459-.215c.114 0 .229 0 .329.005.106.005.248-.04.388.296.143.344.486 1.187.529 1.274.043.086.072.187.014.3-.057.114-.086.185-.172.286-.086.1-.18.224-.257.3-.086.087-.176.181-.076.355.1.173.446.735.958 1.19.66.586 1.216.768 1.388.854.172.086.271.072.372-.043.1-.115.43-.503.545-.676.114-.172.229-.143.386-.086.157.057.999.472 1.17.557.172.086.287.129.33.2.042.071.042.413-.15.955z"/></svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products-data.js"></script>
+<script>
+// Counter animation for stat bar
+(function() {
+  const stats = document.querySelectorAll('.dc-stat-num[data-count]');
+  if (!stats.length) return;
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      ro.unobserve(e.target);
+      const target = parseInt(e.target.dataset.count, 10);
+      const suffix = e.target.textContent.replace(/[\d,\.]/g, '');
+      let start = 0;
+      const step = Math.ceil(target / 40);
+      const timer = setInterval(() => {
+        start = Math.min(start + step, target);
+        e.target.textContent = start.toLocaleString('vi-VN') + suffix;
+        if (start >= target) clearInterval(timer);
+      }, 40);
+    });
+  }, { threshold: 0.5 });
+  stats.forEach(s => ro.observe(s));
+})();
+</script>
+</body>
+</html>

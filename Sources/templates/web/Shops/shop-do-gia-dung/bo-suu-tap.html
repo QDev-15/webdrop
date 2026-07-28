@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bộ sưu tập — Nhà Đẹp Store</title>
+  <meta name="description" content="Khám phá các bộ sưu tập đồ gia dụng được tuyển chọn theo phong cách và không gian sống.">
+  <meta property="og:title" content="Bộ sưu tập — Nhà Đẹp Store">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Topbar -->
+<div id="dg-topbar" role="banner">
+  <div class="dg-topbar__items">
+    <span class="dg-topbar__item">Miễn phí ship từ 500K</span>
+    <span class="dg-topbar__item">Đổi trả 30 ngày</span>
+    <span class="dg-topbar__item">Bảo hành chính hãng</span>
+  </div>
+</div>
+
+<!-- Navigation -->
+<nav id="dg-nav" role="navigation" aria-label="Menu chính">
+  <div class="dg-nav__inner">
+    <a href="index.html" class="dg-nav__logo">Nhà Đẹp<span>.</span></a>
+    <ul class="dg-nav__links">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="san-pham.html">Sản phẩm</a></li>
+      <li><a href="bo-suu-tap.html" class="active">Bộ sưu tập</a></li>
+      <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+      <li><a href="lien-he.html">Liên hệ</a></li>
+    </ul>
+    <div class="dg-nav__actions">
+      <button class="dg-nav__icon-btn" id="dg-search-toggle" aria-label="Tìm kiếm">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <a href="gio-hang.html" class="dg-nav__icon-btn" aria-label="Giỏ hàng">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="dg-cart-count" id="dg-cart-count">0</span>
+      </a>
+      <button class="dg-hamburger" id="dg-hamburger" aria-label="Mở menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Search Panel -->
+<div id="dg-search-panel" role="search">
+  <div class="dg-search-panel__inner">
+    <input type="text" class="dg-search-panel__input" id="dg-search-input" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
+    <button class="dg-search-panel__btn" id="dg-search-submit">Tìm kiếm</button>
+  </div>
+</div>
+
+<!-- Mobile Nav -->
+<div id="dg-nav-overlay"></div>
+<div id="dg-nav-mob" role="navigation" aria-label="Menu di động">
+  <button id="dg-nav-close" aria-label="Đóng menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <ul class="dg-nav-mob__links">
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="san-pham.html">Sản phẩm</a></li>
+    <li><a href="bo-suu-tap.html" class="active">Bộ sưu tập</a></li>
+    <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+</div>
+
+<!-- Page Hero -->
+<div class="dg-page-hero">
+  <div class="dg-container">
+    <p class="dg-page-hero__label">Curation</p>
+    <h1 class="dg-page-hero__title">Bộ sưu tập</h1>
+    <p class="dg-page-hero__sub">Những bộ sưu tập được tuyển chọn theo không gian sống và phong cách riêng của bạn.</p>
+  </div>
+</div>
+
+<!-- Bento Grid Collections -->
+<main class="dg-container sec-pad" style="padding-top: 40px;">
+
+  <!-- Main Bento -->
+  <section aria-label="Bộ sưu tập nổi bật">
+    <div class="dg-bento" data-reveal>
+      <!-- Wide item -->
+      <a href="san-pham.html?category=nha-bep" class="dg-bento__item dg-bento__item--wide">
+        <img class="dg-bento__img"
+          src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=900&auto=format&fit=crop&q=80"
+          alt="Nhà bếp hiện đại"
+          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22450%22%3E%3Crect fill=%22%23f5ede0%22 width=%22900%22 height=%22450%22/%3E%3C/svg%3E'">
+        <div class="dg-bento__overlay">
+          <p class="dg-bento__label">Danh mục 01</p>
+          <h2 class="dg-bento__title">Nhà bếp hiện đại</h2>
+          <span class="dg-bento__cta">Khám phá ngay →</span>
+        </div>
+      </a>
+
+      <!-- Tall item -->
+      <a href="san-pham.html?category=den-anh-sang" class="dg-bento__item dg-bento__item--tall">
+        <img class="dg-bento__img"
+          src="https://images.unsplash.com/photo-1527515545081-5db817172677?w=600&auto=format&fit=crop&q=80"
+          alt="Đèn và ánh sáng"
+          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22600%22%3E%3Crect fill=%22%23ede0ce%22 width=%22300%22 height=%22600%22/%3E%3C/svg%3E'">
+        <div class="dg-bento__overlay">
+          <p class="dg-bento__label">Danh mục 02</p>
+          <h2 class="dg-bento__title">Đèn & Ánh sáng</h2>
+          <span class="dg-bento__cta">Khám phá ngay →</span>
+        </div>
+      </a>
+
+      <!-- Square item -->
+      <a href="san-pham.html?category=trang-tri" class="dg-bento__item">
+        <img class="dg-bento__img"
+          src="https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=600&auto=format&fit=crop&q=80"
+          alt="Trang trí nhà"
+          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%23f5ede0%22 width=%22400%22 height=%22400%22/%3E%3C/svg%3E'">
+        <div class="dg-bento__overlay">
+          <p class="dg-bento__label">Danh mục 03</p>
+          <h2 class="dg-bento__title">Trang trí nhà</h2>
+          <span class="dg-bento__cta">Khám phá ngay →</span>
+        </div>
+      </a>
+
+      <!-- Square item -->
+      <a href="san-pham.html?category=phong-tam" class="dg-bento__item">
+        <img class="dg-bento__img"
+          src="https://images.unsplash.com/photo-1578898887932-dce23a595ad4?w=600&auto=format&fit=crop&q=80"
+          alt="Phòng tắm spa tại nhà"
+          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%23f5ede0%22 width=%22400%22 height=%22400%22/%3E%3C/svg%3E'">
+        <div class="dg-bento__overlay">
+          <p class="dg-bento__label">Danh mục 04</p>
+          <h2 class="dg-bento__title">Phòng tắm spa</h2>
+          <span class="dg-bento__cta">Khám phá ngay →</span>
+        </div>
+      </a>
+
+      <!-- Wide bottom item -->
+      <a href="san-pham.html?category=noi-that-nho" class="dg-bento__item dg-bento__item--wide">
+        <img class="dg-bento__img"
+          src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=900&auto=format&fit=crop&q=80"
+          alt="Nội thất nhỏ"
+          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22450%22%3E%3Crect fill=%22%23ede0ce%22 width=%22900%22 height=%22450%22/%3E%3C/svg%3E'">
+        <div class="dg-bento__overlay">
+          <p class="dg-bento__label">Danh mục 05</p>
+          <h2 class="dg-bento__title">Nội thất nhỏ & Tiện ích</h2>
+          <span class="dg-bento__cta">Khám phá ngay →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Curated Picks: Bán chạy -->
+  <section style="margin-top: 64px;" aria-labelledby="dg-picks-title">
+    <div class="dg-section__head" style="margin-bottom:24px;">
+      <div>
+        <p class="dg-section__label">Lựa chọn nổi bật</p>
+        <h2 class="dg-section__title" id="dg-picks-title">Sản phẩm được ưa chuộng</h2>
+      </div>
+      <a href="san-pham.html?theme=ban-chay" class="dg-section__see-all">
+        Xem tất cả
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="dg-grid dg-grid--4" id="dg-picks-grid"></div>
+  </section>
+
+  <!-- Phong cách Seasonal picks -->
+  <section class="dg-section dg-section--alt" style="margin: 48px -16px 0; padding-left:16px; padding-right:16px;" aria-labelledby="dg-new-title">
+    <div class="dg-container">
+      <div class="dg-section__head" style="margin-bottom:24px;">
+        <div>
+          <p class="dg-section__label">Mới nhất</p>
+          <h2 class="dg-section__title" id="dg-new-title">Hàng mới về</h2>
+        </div>
+        <a href="san-pham.html?theme=moi-ve" class="dg-section__see-all">
+          Xem tất cả
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="dg-grid dg-grid--4" id="dg-new-grid"></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="margin-top:64px; text-align:center;" data-reveal>
+    <p class="dg-section__label" style="margin-bottom:12px;">Khám phá thêm</p>
+    <h2 style="font-size:clamp(22px,4vw,34px); margin-bottom:14px;">Xem toàn bộ sản phẩm</h2>
+    <p style="font-size:15px; color:var(--text-2); margin-bottom:28px; max-width:440px; margin-left:auto; margin-right:auto;">
+      Hơn 40 sản phẩm đồ gia dụng chất lượng cao, được phân loại theo không gian sống.
+    </p>
+    <a href="san-pham.html" class="dg-btn dg-btn--primary dg-btn--lg">
+      Xem tất cả sản phẩm
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer id="dg-footer">
+  <div class="dg-container">
+    <div class="dg-footer__main">
+      <div class="dg-footer__brand">
+        <div class="dg-nav__logo">Nhà Đẹp<span>.</span></div>
+        <p class="dg-footer__tagline">Mang đến không gian sống tinh tế và tiện nghi cho mọi gia đình Việt.</p>
+        <div class="dg-footer__socials">
+          <a href="#" class="dg-footer__social" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="dg-footer__social" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 class="dg-footer__col-title">Danh mục</h3>
+        <ul class="dg-footer__links">
+          <li><a href="san-pham.html?category=nha-bep">Đồ dùng nhà bếp</a></li>
+          <li><a href="san-pham.html?category=trang-tri">Đồ trang trí nhà</a></li>
+          <li><a href="san-pham.html?category=phong-tam">Đồ dùng phòng tắm</a></li>
+          <li><a href="san-pham.html?category=noi-that-nho">Nội thất nhỏ</a></li>
+          <li><a href="san-pham.html?category=den-anh-sang">Đèn & Ánh sáng</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="dg-footer__col-title">Thông tin</h3>
+        <ul class="dg-footer__links">
+          <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+          <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="dg-footer__col-title">Hỗ trợ</h3>
+        <ul class="dg-footer__links">
+          <li><a href="lien-he.html">Chăm sóc khách hàng</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="dg-footer__bottom">
+      <p class="dg-footer__copy">© 2024 Nhà Đẹp Store. Tất cả quyền được bảo lưu.</p>
+      <nav class="dg-footer__legal">
+        <a href="chinh-sach-bao-mat.html">Bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/0901234567" class="dg-zalo-float" target="_blank" rel="noopener" aria-label="Chat Zalo">
+  <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
+    <circle cx="24" cy="24" r="24" fill="#0068FF"/>
+    <text x="9" y="32" font-size="20" font-weight="700" fill="#fff" font-family="Arial">Z</text>
+    <text x="20" y="32" font-size="14" font-weight="400" fill="rgba(255,255,255,.85)" font-family="Arial">alo</text>
+  </svg>
+</a>
+
+<script src="assets/js/products-data.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  // Render picks and new arrivals
+  const picks = PRODUCTS.filter(p => p.theme.includes('ban-chay')).slice(0, 4);
+  document.getElementById('dg-picks-grid').innerHTML = picks.map(p => renderProductCard(p)).join('');
+
+  const newArrivals = PRODUCTS.filter(p => p.theme.includes('moi-ve')).slice(0, 4);
+  document.getElementById('dg-new-grid').innerHTML = newArrivals.map(p => renderProductCard(p)).join('');
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+
+  // Nav search
+  const searchToggle = document.getElementById('dg-search-toggle');
+  const searchPanel = document.getElementById('dg-search-panel');
+  const searchInputEl = document.getElementById('dg-search-input');
+  searchToggle.addEventListener('click', function() {
+    const isOpen = searchPanel.classList.toggle('open');
+    if (isOpen) setTimeout(() => searchInputEl.focus(), 200);
+  });
+  document.getElementById('dg-search-submit').addEventListener('click', function() {
+    const q = searchInputEl.value.trim();
+    if (q) window.location.href = 'san-pham.html?q=' + encodeURIComponent(q);
+  });
+  searchInputEl.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { const q = this.value.trim(); if (q) window.location.href = 'san-pham.html?q=' + encodeURIComponent(q); }
+    if (e.key === 'Escape') searchPanel.classList.remove('open');
+  });
+
+  // Mobile nav
+  const hamburger = document.getElementById('dg-hamburger');
+  const navMob = document.getElementById('dg-nav-mob');
+  const navOverlay = document.getElementById('dg-nav-overlay');
+  hamburger.addEventListener('click', () => { navMob.classList.add('open'); navOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; });
+  document.getElementById('dg-nav-close').addEventListener('click', () => { navMob.classList.remove('open'); navOverlay.classList.remove('open'); document.body.style.overflow = ''; });
+  navOverlay.addEventListener('click', () => { navMob.classList.remove('open'); navOverlay.classList.remove('open'); document.body.style.overflow = ''; });
+
+  updateCartCount();
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

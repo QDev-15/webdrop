@@ -28,7 +28,8 @@
       "Bash(curl -s -m 3 http://localhost:5173 -o /dev/null -w \"%{http_code}\\\\n\")",
       "Skill(claude-api)",
       "Skill(claude-api:*)",
-      "Bash(echo \"exit:$?\")"
+      "Bash(echo \"exit:$?\")",
+      "Bash(grep -oP \"^\\\\| \\\\`shop-[a-z-]+\\\\` \\\\| [^|]+ \\\\| [^|]+ \\\\| [A-Z-]+\" \"/d/Working/project/WebApps/WebDrop/webdrop/.claude/CLAUDE.md\")"
     ],
     "additionalDirectories": [
       "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"

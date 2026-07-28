@@ -114,6 +114,7 @@ Nav vẫn ≥5 mục theo rule chung của `template-builder` — ví dụ: Tran
 □ Trust badge/ticker 1 dòng (nếu có) đúng giới hạn ngoại lệ — không phình thành section riêng
 □ Toàn bộ checklist Bước B→E của shop-template-builder vẫn áp dụng đầy đủ (data-driven PRODUCTS, filter toolbar ngang, JS filter engine, phân trang cổ điển)
 □ Toàn bộ checklist gốc của template-builder vẫn áp dụng đầy đủ (Identity Token, Nav Style, ≥5 menu item, Chính sách bảo mật + Điều khoản ở footer...)
+□ [P0 — bắt buộc] Đối chiếu CSS ↔ HTML: trích xuất toàn bộ class `[prefix]-*` xuất hiện trong cả 9 file HTML (kể cả class gán động qua JS `classList`/`className`), đối chiếu với toàn bộ selector định nghĩa trong `assets/css/style.css` — xác nhận 0 class HTML nào thiếu CSS trước khi báo hoàn thành. Lý do: batch 2026-07-27 phát hiện 2/5 template (`shop-do-choi`, `shop-my-pham`) viết CSS theo quy ước đặt tên KHÁC hoàn toàn với class thực dùng trong HTML (vd `.dc-container` dùng 37 lần trong HTML nhưng CSS chỉ có `.wd-container`; `.mp-btn-accent` dùng ~20 lần nhưng CSS không định nghĩa) — vỡ style gần như toàn bộ trang dù JS/data layer hoàn toàn đúng. Không được chỉ tự tin vào việc "đã viết CSS đầy đủ" mà không grep đối chiếu thật.
 ```
 
 ---

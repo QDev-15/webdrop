@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Khuyến mãi đồ thể thao — [TÊN SHOP]. Giảm giá lên đến 40% quần áo, giày chạy bộ, dụng cụ gym. Cập nhật hàng tuần.">
+  <meta property="og:title" content="Khuyến mãi — [TÊN SHOP]">
+  <title>Khuyến mãi — [TÊN SHOP]</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="tt-topbar">
+  <div class="tt-topbar-inner">
+    <span>Miễn phí ship đơn từ 500K</span>
+    <span class="tt-topbar-sep">·</span>
+    <span>Đổi size miễn phí</span>
+    <span class="tt-topbar-sep">·</span>
+    <span>Bảo hành 12 tháng</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="ttNav" class="tt-scrolled">
+  <div class="tt-nav-inner">
+    <a href="index.html" class="tt-logo">SPORT<span>THE THAO</span></a>
+    <div class="tt-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="bo-suu-tap.html">Bộ sưu tập</a>
+      <a href="khuyen-mai.html" class="active">Khuyến mãi</a>
+      <a href="dich-vu.html">Dịch vụ</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <div class="tt-nav-actions">
+      <button class="tt-nav-btn" id="ttNavSearchBtn" aria-label="Tìm kiếm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <a href="gio-hang.html" class="tt-nav-btn" aria-label="Giỏ hàng" style="position:relative">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="tt-cart-count" id="ttCartCount" style="display:none">0</span>
+      </a>
+      <button class="tt-burger" id="ttBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="tt-mob-nav" id="ttMobNav">
+  <a href="index.html">Trang chủ</a>
+  <a href="bo-suu-tap.html">Bộ sưu tập</a>
+  <a href="khuyen-mai.html" class="active">Khuyến mãi</a>
+  <a href="dich-vu.html">Dịch vụ</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <div class="tt-mob-nav-sep"></div>
+  <div class="tt-mob-nav-footer">
+    <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+    <a href="dieu-khoan.html">Điều khoản</a>
+  </div>
+</div>
+
+<!-- PROMO BANNER -->
+<div class="tt-promo-hero">
+  <div class="tt-container">
+    <div class="tt-promo-hero-inner">
+      <div class="tt-promo-tag">⚡ Flash Sale hôm nay</div>
+      <h1 class="tt-promo-title">Giảm đến <span>40%</span><br>đồ thể thao chính hãng</h1>
+      <p class="tt-promo-sub">Cập nhật hàng tuần · Số lượng có hạn · Áp dụng đến hết ngày 31/12/2025</p>
+      <a href="index.html?sort=price-asc" class="tt-btn-primary">Xem tất cả sản phẩm giảm giá</a>
+    </div>
+    <div class="tt-promo-countdown" id="ttCountdown">
+      <div class="tt-countdown-item"><span id="ttCdHours">00</span><small>giờ</small></div>
+      <div class="tt-countdown-sep">:</div>
+      <div class="tt-countdown-item"><span id="ttCdMins">00</span><small>phút</small></div>
+      <div class="tt-countdown-sep">:</div>
+      <div class="tt-countdown-item"><span id="ttCdSecs">00</span><small>giây</small></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROMO STRIPS -->
+<section style="background:var(--surface);padding:28px 0;border-bottom:1px solid var(--border)">
+  <div class="tt-container">
+    <div class="tt-promo-strips">
+      <div class="tt-promo-strip tt-promo-strip-orange">
+        <div class="tt-strip-pct">-25%</div>
+        <div>
+          <strong>Giày chạy bộ</strong>
+          <p>Toàn bộ dòng giày chạy bộ — Áp dụng tự động khi thêm vào giỏ</p>
+        </div>
+      </div>
+      <div class="tt-promo-strip tt-promo-strip-blue">
+        <div class="tt-strip-pct">-30%</div>
+        <div>
+          <strong>Dụng cụ gym</strong>
+          <p>Tạ tay, dây kháng lực, thảm tập — Số lượng có hạn</p>
+        </div>
+      </div>
+      <div class="tt-promo-strip" style="border-left:4px solid #4ade80">
+        <div class="tt-strip-pct" style="color:#4ade80">-40%</div>
+        <div>
+          <strong>Quần áo thể thao</strong>
+          <p>Chỉ áp dụng cho sản phẩm có nhãn Sale · Hết hàng là hết deal</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SALE PRODUCTS -->
+<section class="tt-sec">
+  <div class="tt-container">
+    <div class="tt-sec-header" style="margin-bottom:36px" data-reveal>
+      <div class="tt-eyebrow">Flash Sale</div>
+      <h2 class="tt-sec-title">Sản phẩm đang giảm giá</h2>
+    </div>
+    <div class="tt-prod-grid" id="ttSaleGrid">
+      <!-- JS rendered -->
+    </div>
+    <div style="text-align:center;margin-top:40px" data-reveal>
+      <a href="index.html" class="tt-btn-ghost">Xem toàn bộ 40 sản phẩm →</a>
+    </div>
+  </div>
+</section>
+
+<!-- POLICY ROW -->
+<section style="background:var(--surface-2);padding:40px 0">
+  <div class="tt-container">
+    <div class="tt-policy-row">
+      <div class="tt-policy-item" data-reveal>
+        <div class="tt-policy-icon" style="color:var(--accent)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32"><path d="M5 12h14"/><path d="m12 5-7 7 7 7"/></svg>
+        </div>
+        <strong>Miễn phí đổi size</strong>
+        <p>Đổi size miễn phí trong 30 ngày nếu không vừa</p>
+      </div>
+      <div class="tt-policy-item" data-reveal data-reveal-d1>
+        <div class="tt-policy-icon" style="color:var(--blue)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <strong>Bảo hành 12 tháng</strong>
+        <p>Tất cả sản phẩm được bảo hành lỗi nhà sản xuất</p>
+      </div>
+      <div class="tt-policy-item" data-reveal data-reveal-d2>
+        <div class="tt-policy-icon" style="color:#4ade80">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <strong>Giao hàng toàn quốc</strong>
+        <p>Miễn phí ship đơn từ 500K · Giao nhanh nội thành</p>
+      </div>
+      <div class="tt-policy-item" data-reveal data-reveal-d3>
+        <div class="tt-policy-icon" style="color:var(--accent)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32"><path d="M12 2L3 7l9 5 9-5-9-5z"/><path d="M3 17l9 5 9-5"/><path d="M3 12l9 5 9-5"/></svg>
+        </div>
+        <strong>Hàng chính hãng</strong>
+        <p>100% sản phẩm chính hãng có tem phân phối chính thức</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="tt-footer">
+  <div class="tt-container">
+    <div class="tt-footer-grid">
+      <div class="tt-footer-col">
+        <div class="tt-footer-logo">SPORT<span>THE THAO</span></div>
+        <p class="tt-footer-desc">Chuyên cung cấp đồ thể thao & gym chính hãng. Tất cả sản phẩm có bảo hành, đổi size miễn phí trong 30 ngày.</p>
+        <div class="tt-footer-social">
+          <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer">f</a>
+          <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">ig</a>
+          <a href="https://zalo.me/[ZALO_NUMBER]" aria-label="Zalo" target="_blank" rel="noopener noreferrer">z</a>
+        </div>
+      </div>
+      <div class="tt-footer-col">
+        <h4>Danh mục</h4>
+        <ul>
+          <li><a href="index.html?category=quan-ao">Quần áo thể thao</a></li>
+          <li><a href="index.html?category=giay">Giày chạy bộ & gym</a></li>
+          <li><a href="index.html?category=dung-cu">Dụng cụ tập gym</a></li>
+          <li><a href="index.html?category=phu-kien">Phụ kiện thể thao</a></li>
+          <li><a href="index.html?category=yoga">Yoga & Pilates</a></li>
+        </ul>
+      </div>
+      <div class="tt-footer-col">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="dich-vu.html">Dịch vụ</a></li>
+          <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+          <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+      <div class="tt-footer-col">
+        <h4>Liên hệ</h4>
+        <div class="tt-footer-contact-items">
+          <p>📍 [ĐỊA CHỈ CỬA HÀNG]</p>
+          <p>📞 <a href="tel:[SỐ_ĐIỆN_THOẠI]" style="color:inherit">[SỐ_ĐIỆN_THOẠI]</a></p>
+          <p>✉️ <a href="mailto:[EMAIL@SPORTTHETAO.VN]" style="color:inherit">[EMAIL@SPORTTHETAO.VN]</a></p>
+          <p>🕐 T2–T7: 8:00–21:00 | CN: 9:00–18:00</p>
+        </div>
+      </div>
+    </div>
+    <div class="tt-footer-bottom">
+      <p>© 2025 [TÊN SHOP]. Tất cả quyền được bảo lưu.</p>
+      <div class="tt-footer-bottom-links">
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ZALO FLOAT -->
+<a href="https://zalo.me/[ZALO_NUMBER]" class="tt-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.17.7 4.18 1.88 5.81L2.5 21.5l3.8-1.35A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a7.95 7.95 0 01-4.13-1.15l-.29-.18-3.04 1.08 1.09-2.97-.2-.31A8 8 0 1112 20zm4.51-5.95c-.24-.12-1.43-.71-1.65-.79-.22-.08-.38-.12-.54.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.19-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.1-.49.1-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.47-.39-.4-.54-.41-.14 0-.3-.01-.46-.01s-.42.06-.64.3c-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.09 3.62.57.25 1.02.4 1.37.5.57.18 1.1.16 1.51.1.46-.07 1.43-.59 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg>
+</a>
+
+<!-- NAV SEARCH PANEL -->
+<div class="tt-nav-search-panel" id="ttNavSearchPanel" style="display:none">
+  <div class="tt-container" style="display:flex;gap:8px;align-items:center">
+    <input type="text" id="ttNavSearchInput" placeholder="Tìm sản phẩm..." autocomplete="off" style="flex:1;background:var(--surface-2);border:1px solid var(--border);color:var(--text);padding:10px 16px;border-radius:var(--radius);">
+    <button id="ttNavSearchSubmit" style="background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:var(--radius);font-family:var(--sans);cursor:pointer;">Tìm</button>
+    <button id="ttNavSearchClose" style="background:transparent;border:none;color:var(--text-2);cursor:pointer;font-size:22px;line-height:1;padding:4px 8px;" aria-label="Đóng">×</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products-data.js"></script>
+<script>
+'use strict';
+
+// Cart badge
+function updateCartBadge() {
+  try {
+    const cart = JSON.parse(localStorage.getItem('tt_cart') || '[]');
+    const total = cart.reduce((s, i) => s + (i.qty || 1), 0);
+    const el = document.getElementById('ttCartCount');
+    if (el) { el.textContent = total; el.style.display = total > 0 ? 'flex' : 'none'; }
+  } catch(e) {}
+}
+
+// Countdown (fake deadline: 8 hours from now)
+function runCountdown() {
+  const end = Date.now() + 8 * 60 * 60 * 1000;
+  function tick() {
+    const diff = Math.max(0, end - Date.now());
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('ttCdHours').textContent = String(h).padStart(2, '0');
+    document.getElementById('ttCdMins').textContent = String(m).padStart(2, '0');
+    document.getElementById('ttCdSecs').textContent = String(s).padStart(2, '0');
+  }
+  tick();
+  setInterval(tick, 1000);
+}
+runCountdown();
+
+// Render sale products from PRODUCTS data
+(function renderSaleGrid() {
+  const saleProds = PRODUCTS.filter(p => p.salePrice !== null);
+  const fmt = n => n.toLocaleString('vi-VN') + 'đ';
+  const fallbackSVG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='800'%3E%3Crect width='600' height='800' fill='%231c1c22'/%3E%3C/svg%3E";
+  const grid = document.getElementById('ttSaleGrid');
+  if (!grid) return;
+  grid.innerHTML = saleProds.map(p => {
+    const pct = Math.round((1 - p.salePrice / p.price) * 100);
+    return `<div class="tt-prod-card">
+      <a href="chi-tiet-san-pham.html" class="tt-prod-img-wrap">
+        <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='${fallbackSVG}'">
+        <span class="tt-badge tt-badge-sale">-${pct}%</span>
+      </a>
+      <div class="tt-prod-body">
+        <div class="tt-prod-cat">${{'quan-ao':'Quần áo','giay':'Giày','dung-cu':'Dụng cụ','phu-kien':'Phụ kiện','yoga':'Yoga'}[p.category] || p.category}</div>
+        <h3 class="tt-prod-name"><a href="chi-tiet-san-pham.html">${p.name}</a></h3>
+        <div class="tt-prod-price">
+          <span class="tt-price sale">${fmt(p.salePrice)}</span>
+          <span class="tt-price-orig">${fmt(p.price)}</span>
+        </div>
+        <div class="tt-prod-actions">
+          <button class="tt-btn-cart" data-sale-add="${p.id}">Thêm vào giỏ</button>
+          <a href="chi-tiet-san-pham.html" class="tt-btn-detail">Chi tiết</a>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Event delegation for add-to-cart buttons
+  grid.addEventListener('click', function(e) {
+    const btn = e.target.closest('[data-sale-add]');
+    if (!btn) return;
+    const id = parseInt(btn.dataset.saleAdd);
+    const prod = PRODUCTS.find(x => x.id === id);
+    if (!prod) return;
+    try {
+      const cart = JSON.parse(localStorage.getItem('tt_cart') || '[]');
+      const key = 'promo-' + prod.id;
+      const existing = cart.find(i => i.key === key);
+      if (existing) { existing.qty += 1; }
+      else { cart.push({ key, id: prod.id, name: prod.name, price: prod.salePrice || prod.price, qty: 1, image: prod.image }); }
+      localStorage.setItem('tt_cart', JSON.stringify(cart));
+      updateCartBadge();
+      btn.textContent = '✓ Đã thêm!';
+      btn.style.background = 'var(--blue)';
+      setTimeout(() => { btn.textContent = 'Thêm vào giỏ'; btn.style.background = ''; }, 1500);
+    } catch(err) {}
+  });
+})();
+
+// Burger
+document.getElementById('ttBurger').addEventListener('click', function() {
+  this.classList.toggle('open');
+  document.getElementById('ttMobNav').classList.toggle('open');
+  document.body.style.overflow = this.classList.contains('open') ? 'hidden' : '';
+});
+
+// Nav search
+document.getElementById('ttNavSearchBtn').addEventListener('click', function() {
+  const panel = document.getElementById('ttNavSearchPanel');
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+  if (panel.style.display === 'block') document.getElementById('ttNavSearchInput').focus();
+});
+document.getElementById('ttNavSearchClose').addEventListener('click', function() {
+  document.getElementById('ttNavSearchPanel').style.display = 'none';
+});
+document.getElementById('ttNavSearchSubmit').addEventListener('click', function() {
+  const q = document.getElementById('ttNavSearchInput').value.trim();
+  if (q) window.location.href = 'index.html?q=' + encodeURIComponent(q);
+});
+document.getElementById('ttNavSearchInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    const q = this.value.trim();
+    if (q) window.location.href = 'index.html?q=' + encodeURIComponent(q);
+  }
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+
+updateCartBadge();
+</script>
+</body>
+</html>

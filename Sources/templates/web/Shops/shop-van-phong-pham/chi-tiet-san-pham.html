@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Chi tiết sản phẩm — OFFICEHUB</title>
+  <meta name="description" content="Xem chi tiết sản phẩm văn phòng phẩm chính hãng tại OFFICEHUB.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Topbar -->
+<div class="vp-topbar" role="status">
+  <div class="vp-container">
+    <span class="vp-topbar-item">Miễn phí ship đơn từ 500K</span>
+    <span class="vp-topbar-sep">·</span>
+    <span class="vp-topbar-item">Đổi hàng trong 30 ngày</span>
+    <span class="vp-topbar-sep">·</span>
+    <span class="vp-topbar-item">Hỗ trợ doanh nghiệp B2B</span>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav id="vp-nav" aria-label="Menu chính">
+  <div class="vp-container">
+    <div class="vp-nav-inner">
+      <a href="index.html" class="vp-logo" aria-label="OFFICEHUB - Trang chủ">
+        <span class="vp-logo-mark">OH</span>
+        <span class="vp-logo-text">OFFICE<span>HUB</span></span>
+      </a>
+      <ul class="vp-nav-links d-none d-lg-flex">
+        <li><a href="index.html">Trang chủ</a></li>
+        <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+        <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+        <li><a href="dich-vu.html">Dịch vụ</a></li>
+        <li><a href="lien-he.html">Liên hệ</a></li>
+      </ul>
+      <div class="vp-nav-actions">
+        <button id="vp-search-btn" class="vp-nav-action-btn" aria-label="Tìm kiếm">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </button>
+        <a href="gio-hang.html" class="vp-cart-link" aria-label="Giỏ hàng">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="vp-cart-count" id="cartCount"></span>
+        </a>
+        <button id="navBurger" class="d-lg-none" aria-label="Mở menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="vp-search-panel" id="vp-search-panel" hidden>
+      <div class="vp-search-form">
+        <input type="search" id="navSearchInput" placeholder="Tìm sản phẩm..." aria-label="Từ khóa">
+        <button id="navSearchSubmit" type="button">Tìm kiếm</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="vp-mob-nav" id="navMob" role="dialog" aria-modal="true" aria-label="Menu">
+  <button class="vp-mob-close" id="navMobClose" aria-label="Đóng menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <ul class="vp-mob-links">
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+    <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+    <li><a href="dich-vu.html">Dịch vụ</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+</div>
+
+<!-- Breadcrumb + Product Detail -->
+<div class="vp-detail-wrap">
+  <div class="vp-container">
+
+    <!-- Breadcrumb -->
+    <nav class="vp-breadcrumb" aria-label="Đường dẫn">
+      <a href="index.html">Trang chủ</a>
+      <span class="vp-breadcrumb-sep" aria-hidden="true">/</span>
+      <span id="breadCat">Sản phẩm</span>
+      <span class="vp-breadcrumb-sep" aria-hidden="true">/</span>
+      <span id="breadName">Đang tải...</span>
+    </nav>
+
+    <!-- Detail grid -->
+    <div class="vp-detail-grid" id="detailGrid" style="display:none">
+
+      <!-- Gallery -->
+      <div class="vp-detail-gallery">
+        <div class="vp-gallery-main">
+          <img id="mainImg" src="" alt="" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'600\' viewBox=\'0 0 600 600\'%3E%3Crect width=\'600\' height=\'600\' fill=\'%23f1f5f9\'/%3E%3C/svg%3E'">
+        </div>
+        <div class="vp-gallery-thumbs" id="thumbsRow"></div>
+      </div>
+
+      <!-- Info -->
+      <div class="vp-detail-info">
+        <div class="vp-detail-brand" id="detailBrand"></div>
+        <h1 class="vp-detail-name" id="detailName"></h1>
+        <div class="vp-detail-rating">
+          <span class="vp-rating-stars" id="detailStars" style="color:#f59e0b"></span>
+          <span id="detailRating"></span>
+        </div>
+        <div class="vp-detail-price">
+          <span class="vp-detail-price-main" id="detailPrice"></span>
+          <span class="vp-detail-price-old" id="detailOldPrice" style="display:none"></span>
+        </div>
+        <p class="vp-detail-desc" id="detailDesc"></p>
+
+        <!-- Quantity -->
+        <div class="vp-detail-option-label">Số lượng</div>
+        <div class="vp-qty-wrap">
+          <button class="vp-qty-btn" id="qtyMinus" aria-label="Giảm số lượng">−</button>
+          <input type="number" id="vp-qty" value="1" min="1" max="99" aria-label="Số lượng">
+          <button class="vp-qty-btn" id="qtyPlus" aria-label="Tăng số lượng">+</button>
+        </div>
+
+        <!-- Trust badges inline -->
+        <div class="vp-trust-strip">
+          <span>Hàng chính hãng</span>
+          <span class="vp-trust-sep">·</span>
+          <span>Bảo hành 12 tháng</span>
+          <span class="vp-trust-sep">·</span>
+          <span>Đổi trả 30 ngày</span>
+        </div>
+
+        <!-- Actions -->
+        <div class="vp-detail-actions" style="margin-top:16px">
+          <button class="vp-btn vp-btn-primary vp-btn-lg" id="btnAddCart">+ Thêm vào giỏ hàng</button>
+          <button class="vp-btn vp-btn-dark vp-btn-lg" id="btnBuyNow">Mua ngay</button>
+        </div>
+
+        <!-- Trust detail -->
+        <div class="vp-detail-trust">
+          <div class="vp-detail-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <span>Giao hàng miễn phí cho đơn từ 500.000₫</span>
+          </div>
+          <div class="vp-detail-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Giao hàng trong ngày tại TP.HCM (đặt trước 14:00)</span>
+          </div>
+          <div class="vp-detail-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>Cam kết hàng chính hãng 100% — hoàn tiền nếu giả</span>
+          </div>
+        </div>
+      </div>
+    </div><!-- /detail-grid -->
+
+    <!-- Tabs -->
+    <div class="vp-detail-tabs" id="detailTabs" style="display:none">
+      <div class="vp-tab-list" role="tablist">
+        <button class="vp-tab-btn active" role="tab" aria-selected="true" data-tab="mo-ta">Mô tả</button>
+        <button class="vp-tab-btn" role="tab" aria-selected="false" data-tab="thong-so">Thông số kỹ thuật</button>
+        <button class="vp-tab-btn" role="tab" aria-selected="false" data-tab="bao-hanh">Bảo hành & đổi trả</button>
+      </div>
+      <div class="vp-tab-panel active" id="tab-mo-ta" role="tabpanel">
+        <p id="tabDesc"></p>
+      </div>
+      <div class="vp-tab-panel" id="tab-thong-so" role="tabpanel">
+        <table class="vp-specs-table" id="specsTable"></table>
+      </div>
+      <div class="vp-tab-panel" id="tab-bao-hanh" role="tabpanel">
+        <h4 style="font-weight:700;margin-bottom:10px">Chính sách bảo hành</h4>
+        <p>Tất cả sản phẩm tại OFFICEHUB được bảo hành <strong>12 tháng</strong> kể từ ngày mua. Trong thời gian bảo hành, chúng tôi hỗ trợ đổi sản phẩm mới cùng loại nếu lỗi do nhà sản xuất.</p>
+        <h4 style="font-weight:700;margin:16px 0 10px">Chính sách đổi trả</h4>
+        <ul style="padding-left:18px;line-height:1.9">
+          <li>Đổi trả trong vòng 30 ngày nếu sản phẩm lỗi hoặc không đúng mô tả</li>
+          <li>Sản phẩm phải còn nguyên tem, nhãn, hộp đầy đủ</li>
+          <li>Liên hệ hotline hoặc Zalo để được hỗ trợ đổi trả nhanh nhất</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Not found -->
+    <div class="vp-empty-state" id="notFound" style="display:none">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <h3>Không tìm thấy sản phẩm</h3>
+      <p>Sản phẩm không tồn tại hoặc đã bị xóa.</p>
+      <a href="index.html" class="vp-btn vp-btn-primary">Về trang chủ</a>
+    </div>
+  </div>
+</div>
+
+<!-- Related products -->
+<section class="vp-related" id="relatedSec" style="display:none" aria-label="Sản phẩm liên quan">
+  <div class="vp-container">
+    <div class="vp-eyebrow">Cùng danh mục</div>
+    <h2 class="vp-sec-title" style="margin-bottom:24px">Sản phẩm liên quan</h2>
+    <div class="vp-prod-grid" id="relatedGrid"></div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="vp-footer" aria-label="Footer">
+  <div class="vp-container">
+    <div class="vp-footer-grid">
+      <div>
+        <div class="vp-footer-logo">
+          <span class="vp-logo-mark">OH</span>
+          <span class="vp-logo-text">OFFICE<span>HUB</span></span>
+        </div>
+        <p class="vp-footer-desc">Văn phòng phẩm chính hãng cho cá nhân, doanh nghiệp và trường học.</p>
+        <div class="vp-footer-social">
+          <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" aria-label="Zalo" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><text y="18" font-size="14" fill="currentColor">Z</text></svg></a>
+        </div>
+      </div>
+      <div><h5>Sản phẩm</h5><ul class="vp-footer-links"><li><a href="index.html?category=but-viet">Bút viết</a></li><li><a href="index.html?category=so-tay">Sổ tay</a></li><li><a href="index.html?category=file-kep">File & kẹp</a></li><li><a href="index.html?category=dung-cu">Dụng cụ VP</a></li><li><a href="index.html?category=balo-tui">Balo & túi</a></li></ul></div>
+      <div><h5>Hỗ trợ</h5><ul class="vp-footer-links"><li><a href="dich-vu.html">Dịch vụ</a></li><li><a href="lien-he.html">Liên hệ</a></li><li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li><li><a href="dieu-khoan.html">Điều khoản</a></li></ul></div>
+      <div><h5>Liên hệ</h5>
+        <div class="vp-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg><span>[SỐ_ĐIỆN_THOẠI]</span></div>
+        <div class="vp-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>[EMAIL]</span></div>
+      </div>
+    </div>
+    <div class="vp-footer-bottom">
+      <p>© 2026 OFFICEHUB. Tất cả quyền được bảo lưu.</p>
+      <div class="vp-footer-bottom-links"><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a><a href="dieu-khoan.html">Điều khoản</a></div>
+    </div>
+  </div>
+</footer>
+
+<div class="vp-zalo-float"><a href="https://zalo.me/[ZALO_NUMBER]" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo"><svg viewBox="0 0 48 48" width="28" height="28"><text y="36" font-size="32" fill="#fff">Z</text></svg></a></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products-data.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  const SVG_FALLBACK = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600' viewBox='0 0 600 600'%3E%3Crect width='600' height='600' fill='%23f1f5f9'/%3E%3C/svg%3E";
+  const CAT_NAMES = { 'but-viet':'Bút viết','so-tay':'Sổ tay & giấy note','file-kep':'File & kẹp tài liệu','dung-cu':'Dụng cụ văn phòng','balo-tui':'Balo & túi laptop' };
+
+  /* Cart */
+  let cart = JSON.parse(localStorage.getItem('vp_cart') || '[]');
+  function saveCart() { localStorage.setItem('vp_cart', JSON.stringify(cart)); }
+  function updateCartCount() {
+    const count = cart.reduce((s, i) => s + i.qty, 0);
+    const el = document.getElementById('cartCount');
+    el.textContent = count || ''; el.style.display = count ? '' : 'none';
+  }
+  updateCartCount();
+
+  function addToCart(p, qty) {
+    const ex = cart.find(x => x.id === p.id);
+    if (ex) ex.qty += qty;
+    else cart.push({ id:p.id, name:p.name, price:p.salePrice||p.price, brand:p.brand, image:p.image, qty });
+    saveCart(); updateCartCount();
+  }
+
+  /* Load product */
+  const params = new URLSearchParams(location.search);
+  const id = parseInt(params.get('id')) || 0;
+  const product = PRODUCTS.find(p => p.id === id);
+
+  if (!product) {
+    document.getElementById('notFound').style.display = '';
+    document.title = 'Không tìm thấy sản phẩm — OFFICEHUB';
+  } else {
+    document.title = product.name + ' — OFFICEHUB';
+    document.querySelector('meta[name="description"]').content = product.name + ' — chính hãng tại OFFICEHUB. ' + (product.salePrice ? 'Giá: ' + (product.salePrice).toLocaleString('vi-VN') + '₫' : '');
+    renderProduct(product);
+    renderRelated(product);
+  }
+
+  function formatPrice(n) { return n.toLocaleString('vi-VN') + '₫'; }
+  function renderStars(r) { return '★'.repeat(Math.floor(r)) + (r%1>=0.5?'☆':'') + '☆'.repeat(5-Math.ceil(r)); }
+
+  function renderProduct(p) {
+    document.getElementById('breadCat').textContent = CAT_NAMES[p.category] || 'Sản phẩm';
+    document.getElementById('breadName').textContent = p.name;
+    document.getElementById('mainImg').src = p.image;
+    document.getElementById('mainImg').alt = p.name;
+
+    // Gallery thumbs (show same image as main + secondary via 1654931800100 verified)
+    const thumbImages = [p.image, 'https://images.unsplash.com/photo-1654931800100-2ecf6eee7c64?w=200&auto=format&fit=crop&q=80'];
+    document.getElementById('thumbsRow').innerHTML = thumbImages.map((img, i) =>
+      `<div class="vp-gallery-thumb ${i===0?'active':''}" data-img="${img}">
+        <img src="${img}" alt="${p.name} - ảnh ${i+1}" loading="lazy" onerror="this.src='${SVG_FALLBACK}'">
+      </div>`
+    ).join('');
+    document.querySelectorAll('.vp-gallery-thumb').forEach(th => {
+      th.addEventListener('click', () => {
+        document.querySelectorAll('.vp-gallery-thumb').forEach(t => t.classList.remove('active'));
+        th.classList.add('active');
+        document.getElementById('mainImg').src = th.dataset.img;
+      });
+    });
+
+    document.getElementById('detailBrand').textContent = p.brand;
+    document.getElementById('detailName').textContent = p.name;
+    document.getElementById('detailStars').textContent = renderStars(p.rating);
+    document.getElementById('detailRating').textContent = `${p.rating}/5 (${p.sold.toLocaleString()} đã bán)`;
+
+    const priceEl = document.getElementById('detailPrice');
+    const oldEl = document.getElementById('detailOldPrice');
+    if (p.salePrice) {
+      priceEl.textContent = formatPrice(p.salePrice);
+      priceEl.className = 'vp-detail-price-main vp-price-sale';
+      oldEl.textContent = formatPrice(p.price);
+      oldEl.style.display = '';
+    } else {
+      priceEl.textContent = formatPrice(p.price);
+      priceEl.className = 'vp-detail-price-main';
+      oldEl.style.display = 'none';
+    }
+
+    document.getElementById('detailDesc').textContent = 'Sản phẩm ' + p.name + ' chính hãng ' + p.brand + ', được phân phối bởi OFFICEHUB với cam kết chất lượng. Phù hợp cho văn phòng, học sinh, sinh viên và nhu cầu sử dụng hàng ngày.';
+    document.getElementById('tabDesc').textContent = 'Sản phẩm ' + p.name + ' được nhập khẩu chính hãng từ ' + p.brand + '. Đây là lựa chọn phổ biến dành cho môi trường văn phòng chuyên nghiệp với chất lượng vượt trội, thiết kế tiện dụng và độ bền cao. Sản phẩm được đóng gói cẩn thận, kèm theo đầy đủ phụ kiện và hướng dẫn sử dụng tiếng Việt.';
+
+    const specs = [
+      ['Thương hiệu', p.brand],
+      ['Danh mục', CAT_NAMES[p.category] || p.category],
+      ['Tình trạng', p.stock ? 'Còn hàng' : 'Hết hàng'],
+      ['Đánh giá', p.rating + '/5'],
+      ['Đã bán', p.sold.toLocaleString() + ' sản phẩm'],
+      ['Bảo hành', '12 tháng chính hãng'],
+    ];
+    document.getElementById('specsTable').innerHTML = specs.map(([k,v]) =>
+      `<tr><td>${k}</td><td>${v}</td></tr>`
+    ).join('');
+
+    document.getElementById('detailGrid').style.display = '';
+    document.getElementById('detailTabs').style.display = '';
+
+    // Tabs
+    document.querySelectorAll('.vp-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.vp-tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+        document.querySelectorAll('.vp-tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Qty controls
+    const qtyInput = document.getElementById('vp-qty');
+    document.getElementById('qtyMinus').addEventListener('click', () => { if(+qtyInput.value > 1) qtyInput.value = +qtyInput.value - 1; });
+    document.getElementById('qtyPlus').addEventListener('click', () => { if(+qtyInput.value < 99) qtyInput.value = +qtyInput.value + 1; });
+
+    // Add to cart
+    document.getElementById('btnAddCart').addEventListener('click', () => {
+      if (!p.stock) return;
+      const qty = parseInt(qtyInput.value) || 1;
+      addToCart(p, qty);
+      const btn = document.getElementById('btnAddCart');
+      const orig = btn.textContent;
+      btn.textContent = '✓ Đã thêm vào giỏ';
+      btn.disabled = true;
+      setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 1500);
+    });
+
+    // Buy now
+    document.getElementById('btnBuyNow').addEventListener('click', () => {
+      if (!p.stock) return;
+      const qty = parseInt(qtyInput.value) || 1;
+      addToCart(p, qty);
+      window.location.href = 'gio-hang.html';
+    });
+  }
+
+  function renderRelated(p) {
+    const related = PRODUCTS.filter(x => x.id !== p.id && x.category === p.category).slice(0, 4);
+    if (related.length === 0) return;
+    const sec = document.getElementById('relatedSec');
+    const grid = document.getElementById('relatedGrid');
+    sec.style.display = '';
+    grid.innerHTML = related.map(r => {
+      const price = r.salePrice ? `<span class="vp-price-main vp-price-sale">${formatPrice(r.salePrice)}</span><span class="vp-price-old">${formatPrice(r.price)}</span>` : `<span class="vp-price-main">${formatPrice(r.price)}</span>`;
+      return `<article class="vp-prod-card">
+        <a href="chi-tiet-san-pham.html?id=${r.id}" class="vp-prod-img" aria-label="${r.name}">
+          <img src="${r.image}" alt="${r.name}" loading="lazy" onerror="this.src='${SVG_FALLBACK}'">
+        </a>
+        <div class="vp-prod-body">
+          <div class="vp-prod-brand">${r.brand}</div>
+          <h3 class="vp-prod-name"><a href="chi-tiet-san-pham.html?id=${r.id}">${r.name}</a></h3>
+          <div class="vp-prod-price">${price}</div>
+          <div class="vp-prod-actions">
+            <button class="vp-btn-add" data-rel-id="${r.id}">+ Thêm vào giỏ</button>
+            <a href="chi-tiet-san-pham.html?id=${r.id}" class="vp-btn-detail">Chi tiết</a>
+          </div>
+        </div>
+      </article>`;
+    }).join('');
+    grid.querySelectorAll('.vp-btn-add').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const rp = PRODUCTS.find(x => x.id === parseInt(btn.dataset.relId));
+        if (rp) addToCart(rp, 1);
+      });
+    });
+  }
+
+  /* Nav */
+  const burger = document.getElementById('navBurger');
+  const mobNav = document.getElementById('navMob');
+  if (burger && mobNav) {
+    burger.addEventListener('click', () => { const o = mobNav.classList.toggle('open'); burger.classList.toggle('open',o); burger.setAttribute('aria-expanded',String(o)); document.body.style.overflow = o?'hidden':''; });
+    document.getElementById('navMobClose').addEventListener('click', () => { mobNav.classList.remove('open'); burger.classList.remove('open'); document.body.style.overflow = ''; });
+    document.addEventListener('keydown', e => { if(e.key==='Escape'){mobNav.classList.remove('open');burger.classList.remove('open');document.body.style.overflow='';} });
+  }
+  const sp = document.getElementById('vp-search-panel');
+  const sb = document.getElementById('vp-search-btn');
+  if(sb)sb.addEventListener('click',()=>{const h=sp.hidden;sp.hidden=!h;sb.setAttribute('aria-expanded',String(h));if(!sp.hidden)document.getElementById('navSearchInput').focus();});
+  const nss = document.getElementById('navSearchSubmit');
+  if(nss)nss.addEventListener('click',()=>{const q=document.getElementById('navSearchInput').value.trim();if(q)window.location.href='index.html?q='+encodeURIComponent(q);});
+
+  const ro = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} }); },{threshold:.08});
+  document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+})();
+</script>
+</body>
+</html>

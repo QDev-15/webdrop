@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dịch vụ doanh nghiệp — OFFICEHUB</title>
+  <meta name="description" content="OFFICEHUB cung cấp dịch vụ văn phòng phẩm B2B toàn diện: cung ứng định kỳ, in logo thương hiệu, giao hàng nhanh, hợp đồng doanh nghiệp linh hoạt.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Topbar -->
+<div class="vp-topbar" role="status">
+  <div class="vp-container">
+    <span class="vp-topbar-item">Miễn phí ship đơn từ 500K</span>
+    <span class="vp-topbar-sep">·</span>
+    <span class="vp-topbar-item">Đổi hàng trong 30 ngày</span>
+    <span class="vp-topbar-sep">·</span>
+    <span class="vp-topbar-item">Hỗ trợ doanh nghiệp B2B</span>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav id="vp-nav" aria-label="Menu chính">
+  <div class="vp-container">
+    <div class="vp-nav-inner">
+      <a href="index.html" class="vp-logo" aria-label="OFFICEHUB - Trang chủ">
+        <span class="vp-logo-mark">OH</span>
+        <span class="vp-logo-text">OFFICE<span>HUB</span></span>
+      </a>
+      <ul class="vp-nav-links d-none d-lg-flex">
+        <li><a href="index.html">Trang chủ</a></li>
+        <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+        <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+        <li><a href="dich-vu.html" class="active">Dịch vụ</a></li>
+        <li><a href="lien-he.html">Liên hệ</a></li>
+      </ul>
+      <div class="vp-nav-actions">
+        <button id="vp-search-btn" class="vp-nav-action-btn" aria-label="Tìm kiếm" aria-expanded="false" aria-controls="vp-search-panel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </button>
+        <a href="gio-hang.html" class="vp-cart-link" aria-label="Giỏ hàng">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="vp-cart-count" id="cartCount"></span>
+        </a>
+        <button id="navBurger" class="d-lg-none" aria-label="Mở menu" aria-expanded="false" aria-controls="navMob">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="vp-search-panel" id="vp-search-panel" hidden>
+      <div class="vp-search-form">
+        <input type="search" id="navSearchInput" placeholder="Tìm bút viết, sổ tay, balo..." aria-label="Từ khóa tìm kiếm">
+        <button id="navSearchSubmit" type="button">Tìm kiếm</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="vp-mob-nav" id="navMob" role="dialog" aria-modal="true" aria-label="Menu">
+  <button class="vp-mob-close" id="navMobClose" aria-label="Đóng menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <ul class="vp-mob-links">
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+    <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+    <li><a href="dich-vu.html" class="active">Dịch vụ</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+</div>
+
+<!-- Hero -->
+<section class="vp-dv-hero" aria-label="Dịch vụ doanh nghiệp OFFICEHUB">
+  <div class="vp-dv-hero-bg">
+    <img src="https://images.unsplash.com/photo-1508873699372-7aeab60b44ab?w=1400&auto=format&fit=crop&q=80"
+         alt="Văn phòng doanh nghiệp hiện đại"
+         loading="eager"
+         onerror="this.style.display='none'">
+    <div class="vp-dv-hero-overlay"></div>
+  </div>
+  <div class="vp-container vp-dv-hero-content">
+    <nav aria-label="Breadcrumb" class="vp-breadcrumb" style="--bc-color:rgba(255,255,255,.6);--bc-sep:rgba(255,255,255,.4)">
+      <a href="index.html" style="color:rgba(255,255,255,.7)">Trang chủ</a>
+      <span style="color:rgba(255,255,255,.4)">›</span>
+      <span aria-current="page" style="color:#fff">Dịch vụ</span>
+    </nav>
+    <h1 class="vp-dv-hero-title">Giải pháp văn phòng<br><em>cho doanh nghiệp</em></h1>
+    <p class="vp-dv-hero-sub">Từ startup nhỏ đến tập đoàn lớn — OFFICEHUB cung ứng văn phòng phẩm định kỳ, in ấn thương hiệu và quản lý đặt hàng toàn diện.</p>
+    <div class="vp-dv-hero-btns">
+      <a href="lien-he.html" class="vp-btn vp-btn-white" id="btnDvHeroCta">Nhận báo giá ngay</a>
+      <a href="#dv-services" class="vp-btn vp-btn-outline-white">Xem dịch vụ ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="vp-section" id="dv-services" aria-labelledby="dv-services-heading">
+  <div class="vp-container">
+    <div class="text-center" style="margin-bottom:48px" data-reveal>
+      <div class="vp-eyebrow">Dịch vụ</div>
+      <h2 class="vp-sec-title" id="dv-services-heading">Những gì chúng tôi <em>cung cấp</em></h2>
+      <p class="vp-sec-sub">Giải pháp văn phòng phẩm toàn diện, linh hoạt theo nhu cầu từng doanh nghiệp</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3" data-reveal>
+        <div class="vp-dv-card">
+          <div class="vp-dv-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M12 12v.01"/><path d="M2 10l10 5 10-5"/></svg>
+          </div>
+          <h3 class="vp-dv-card-title">Cung ứng định kỳ</h3>
+          <p class="vp-dv-card-desc">Đặt lịch giao hàng hàng tuần / hàng tháng. Tự động bổ sung khi hết. Không lo thiếu hàng giữa tháng.</p>
+          <ul class="vp-dv-card-list">
+            <li>Hợp đồng 3 / 6 / 12 tháng</li>
+            <li>Giảm thêm 5–15% theo tần suất</li>
+            <li>Nhắc nhở tự động trước 3 ngày</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-reveal>
+        <div class="vp-dv-card">
+          <div class="vp-dv-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8h.01M11 8h6"/></svg>
+          </div>
+          <h3 class="vp-dv-card-title">In logo thương hiệu</h3>
+          <p class="vp-dv-card-desc">In tên công ty, logo lên bút, sổ tay, balo — quà tặng nội bộ hoặc quà đối tác chuyên nghiệp.</p>
+          <ul class="vp-dv-card-list">
+            <li>In offset / laser / thêu vi tính</li>
+            <li>Số lượng tối thiểu từ 50 chiếc</li>
+            <li>Mẫu thử miễn phí trước khi in</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-reveal>
+        <div class="vp-dv-card">
+          <div class="vp-dv-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/><path d="M3 6h2M3 12h2M3 18h2"/></svg>
+          </div>
+          <h3 class="vp-dv-card-title">Giao hàng ưu tiên</h3>
+          <p class="vp-dv-card-desc">Giao trong 2–4 giờ nội thành TP.HCM. Tỉnh thành khác 24–48 giờ. Có shipper chuyên dụng cho đơn lớn.</p>
+          <ul class="vp-dv-card-list">
+            <li>Giao tận tầng / phòng ban</li>
+            <li>Ký nhận điện tử, tracking thời gian thật</li>
+            <li>Không phụ phí cho đơn từ 1 triệu</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-reveal>
+        <div class="vp-dv-card">
+          <div class="vp-dv-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <h3 class="vp-dv-card-title">Hợp đồng doanh nghiệp</h3>
+          <p class="vp-dv-card-desc">Xuất hóa đơn VAT, thanh toán chuyển khoản 15–30 ngày, báo cáo chi phí văn phòng phẩm theo tháng / quý.</p>
+          <ul class="vp-dv-card-list">
+            <li>Hóa đơn điện tử hợp lệ</li>
+            <li>Công nợ linh hoạt cho đối tác lâu năm</li>
+            <li>Báo cáo tiêu dùng định kỳ</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="vp-section vp-section-warm" aria-labelledby="dv-process-heading">
+  <div class="vp-container">
+    <div class="text-center" style="margin-bottom:48px" data-reveal>
+      <div class="vp-eyebrow">Quy trình</div>
+      <h2 class="vp-sec-title" id="dv-process-heading">Hợp tác <em>đơn giản</em> 4 bước</h2>
+    </div>
+    <div class="vp-process-row">
+      <div class="vp-process-step" data-reveal>
+        <div class="vp-process-num">01</div>
+        <h3>Gửi yêu cầu</h3>
+        <p>Điền form liên hệ hoặc gọi hotline — cho chúng tôi biết quy mô, nhu cầu và ngân sách của doanh nghiệp.</p>
+      </div>
+      <div class="vp-process-arrow" aria-hidden="true">→</div>
+      <div class="vp-process-step" data-reveal>
+        <div class="vp-process-num">02</div>
+        <h3>Nhận báo giá</h3>
+        <p>Chuyên viên tư vấn liên hệ trong vòng 2 giờ. Báo giá chi tiết, rõ ràng — không phụ thu ẩn.</p>
+      </div>
+      <div class="vp-process-arrow" aria-hidden="true">→</div>
+      <div class="vp-process-step" data-reveal>
+        <div class="vp-process-num">03</div>
+        <h3>Ký hợp đồng</h3>
+        <p>Ký số hoặc ký tay. Hợp đồng rõ điều khoản, linh hoạt điều chỉnh số lượng theo từng chu kỳ.</p>
+      </div>
+      <div class="vp-process-arrow" aria-hidden="true">→</div>
+      <div class="vp-process-step" data-reveal>
+        <div class="vp-process-num">04</div>
+        <h3>Giao hàng & quản lý</h3>
+        <p>Giao đúng lịch, xuất hóa đơn tự động, báo cáo định kỳ. Bạn tập trung việc chính — chúng tôi lo phần còn lại.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why choose us -->
+<section class="vp-section" aria-labelledby="dv-why-heading">
+  <div class="vp-container">
+    <div class="text-center" style="margin-bottom:48px" data-reveal>
+      <div class="vp-eyebrow">Vì sao chọn chúng tôi</div>
+      <h2 class="vp-sec-title" id="dv-why-heading">Đối tác <em>đáng tin cậy</em> của hơn 500 doanh nghiệp</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-4" data-reveal>
+        <div class="vp-why-item">
+          <div class="vp-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <h3>Hàng chính hãng 100%</h3>
+          <p>Nhập trực tiếp từ nhà phân phối chính thức. Giấy tờ kiểm định đầy đủ, có thể cung cấp khi cần cho kiểm toán.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4" data-reveal>
+        <div class="vp-why-item">
+          <div class="vp-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <h3>Giao hàng đúng giờ</h3>
+          <p>Tỷ lệ giao đúng giờ 98.6% trong 3 năm qua. Cam kết bồi thường nếu trễ hơn 24 giờ so với lịch đã đặt.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4" data-reveal>
+        <div class="vp-why-item">
+          <div class="vp-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h3>Chính sách đổi trả rõ ràng</h3>
+          <p>Đổi hàng trong 30 ngày nếu lỗi nhà sản xuất. Không câu hỏi — không phụ phí. Hoàn tiền trong 3–5 ngày làm việc.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4" data-reveal>
+        <div class="vp-why-item">
+          <div class="vp-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <h3>Đội ngũ tư vấn tận tâm</h3>
+          <p>Mỗi doanh nghiệp có 1 account manager riêng. Liên hệ qua Zalo, email hoặc điện thoại — phản hồi trong 30 phút.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4" data-reveal>
+        <div class="vp-why-item">
+          <div class="vp-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+          <h3>Giá cạnh tranh nhất thị trường</h3>
+          <p>Cam kết bù giá nếu bạn tìm thấy cùng sản phẩm chính hãng rẻ hơn tại bất kỳ nhà cung cấp nào khác.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4" data-reveal>
+        <div class="vp-why-item">
+          <div class="vp-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
+          <h3>Kho hàng đa dạng 500+ SKU</h3>
+          <p>Luôn sẵn hàng tồn kho tối thiểu 30 ngày. Hiếm khi hết hàng — và khi hết, chúng tôi báo trước ít nhất 7 ngày.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stat bar -->
+<section class="vp-stat-bar" aria-label="Số liệu OFFICEHUB">
+  <div class="vp-container">
+    <div class="vp-stat-row">
+      <div class="vp-stat-item" data-reveal>
+        <div class="vp-stat-num" data-target="500">0<span>+</span></div>
+        <div class="vp-stat-label">Doanh nghiệp tin dùng</div>
+      </div>
+      <div class="vp-stat-item" data-reveal>
+        <div class="vp-stat-num" data-target="8">0<span>+</span></div>
+        <div class="vp-stat-label">Năm kinh nghiệm</div>
+      </div>
+      <div class="vp-stat-item" data-reveal>
+        <div class="vp-stat-num" data-target="98">0<span>%</span></div>
+        <div class="vp-stat-label">Tỷ lệ giao đúng giờ</div>
+      </div>
+      <div class="vp-stat-item" data-reveal>
+        <div class="vp-stat-num" data-target="63">0<span>/63</span></div>
+        <div class="vp-stat-label">Tỉnh thành giao hàng</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="vp-section" aria-labelledby="dv-testimonials-heading">
+  <div class="vp-container">
+    <div class="text-center" style="margin-bottom:48px" data-reveal>
+      <div class="vp-eyebrow">Khách hàng nói gì</div>
+      <h2 class="vp-sec-title" id="dv-testimonials-heading">Doanh nghiệp <em>tin dùng</em></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4" data-reveal>
+        <div class="vp-testimonial-card">
+          <div class="vp-testimonial-stars" aria-label="5 sao">★★★★★</div>
+          <p class="vp-testimonial-text">"OFFICEHUB là nhà cung cấp văn phòng phẩm duy nhất chúng tôi làm việc 4 năm nay. Giao hàng đúng giờ tuyệt đối, chất lượng ổn định, giá hợp lý hơn mua lẻ rất nhiều."</p>
+          <div class="vp-testimonial-author">
+            <div class="vp-testimonial-avatar">TM</div>
+            <div>
+              <div class="vp-testimonial-name">Nguyễn Thanh Minh</div>
+              <div class="vp-testimonial-title">Trưởng phòng Hành chính — Công ty Xây dựng ABC</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal>
+        <div class="vp-testimonial-card">
+          <div class="vp-testimonial-stars" aria-label="5 sao">★★★★★</div>
+          <p class="vp-testimonial-text">"Từ khi ký hợp đồng cung ứng định kỳ, phòng hành chính tiết kiệm được khoảng 3–4 giờ mỗi tuần không cần đi mua lẻ. Hoá đơn VAT rõ ràng, dễ quyết toán."</p>
+          <div class="vp-testimonial-author">
+            <div class="vp-testimonial-avatar">LA</div>
+            <div>
+              <div class="vp-testimonial-name">Lê Thu Anh</div>
+              <div class="vp-testimonial-title">CFO — Startup Fintech NextPay</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-reveal>
+        <div class="vp-testimonial-card">
+          <div class="vp-testimonial-stars" aria-label="5 sao">★★★★★</div>
+          <p class="vp-testimonial-text">"Đặt bút in logo làm quà tặng đối tác — mẫu thử đẹp, in nét, giao đúng hạn trước sự kiện 5 ngày. Đối tác khen ngợi, chúng tôi rất hài lòng."</p>
+          <div class="vp-testimonial-author">
+            <div class="vp-testimonial-avatar">PH</div>
+            <div>
+              <div class="vp-testimonial-name">Phạm Quốc Hùng</div>
+              <div class="vp-testimonial-title">Giám đốc Marketing — Tập đoàn Greenland</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Policy feature row -->
+<section class="vp-section vp-section-dark" aria-label="Chính sách dịch vụ">
+  <div class="vp-container">
+    <div class="vp-policy-row">
+      <div class="vp-policy-item" data-reveal>
+        <div class="vp-policy-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <h3>Giao hàng đúng hẹn</h3>
+        <p>2–4h nội thành · 24–48h toàn quốc</p>
+      </div>
+      <div class="vp-policy-item" data-reveal>
+        <div class="vp-policy-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M2 10l10 5 10-5"/></svg>
+        </div>
+        <h3>Đổi trả 30 ngày</h3>
+        <p>Lỗi sản xuất — đổi miễn phí không câu hỏi</p>
+      </div>
+      <div class="vp-policy-item" data-reveal>
+        <div class="vp-policy-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Hàng chính hãng</h3>
+        <p>Nhập khẩu chính ngạch · Đủ chứng từ kiểm định</p>
+      </div>
+      <div class="vp-policy-item" data-reveal>
+        <div class="vp-policy-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <h3>Hóa đơn VAT</h3>
+        <p>Xuất hóa đơn điện tử · Dễ quyết toán thuế</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="vp-cta-bar" aria-label="Liên hệ hợp tác">
+  <div class="vp-container" style="text-align:center">
+    <h2 style="color:#fff;font-size:clamp(22px,3vw,32px);font-weight:700;margin-bottom:12px">Sẵn sàng bắt đầu hợp tác?</h2>
+    <p style="color:rgba(255,255,255,.8);margin-bottom:28px">Để lại thông tin — chuyên viên sẽ liên hệ trong vòng 2 giờ làm việc</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="lien-he.html" class="vp-btn vp-btn-white" id="btnDvCtaLienhe">Gửi yêu cầu báo giá</a>
+      <a href="index.html" class="vp-btn vp-btn-outline-white" id="btnDvCtaShop">Xem sản phẩm →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="vp-footer" aria-label="Footer">
+  <div class="vp-container">
+    <div class="vp-footer-grid">
+      <div>
+        <div class="vp-footer-logo"><span class="vp-logo-mark">OH</span><span class="vp-logo-text">OFFICE<span>HUB</span></span></div>
+        <p class="vp-footer-desc">Chuyên cung cấp văn phòng phẩm chính hãng cho cá nhân, doanh nghiệp và trường học trên toàn quốc.</p>
+        <div class="vp-footer-social">
+          <a href="#" aria-label="Facebook" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" aria-label="YouTube" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.4 19.54C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 001.94-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg></a>
+        </div>
+      </div>
+      <div><h5>Sản phẩm</h5><ul class="vp-footer-links"><li><a href="index.html?category=but-viet">Bút viết</a></li><li><a href="index.html?category=so-tay">Sổ tay &amp; giấy note</a></li><li><a href="index.html?category=file-kep">File &amp; kẹp tài liệu</a></li><li><a href="index.html?category=dung-cu">Dụng cụ văn phòng</a></li><li><a href="index.html?category=balo-tui">Balo &amp; túi laptop</a></li></ul></div>
+      <div><h5>Hỗ trợ</h5><ul class="vp-footer-links"><li><a href="dich-vu.html">Dịch vụ doanh nghiệp</a></li><li><a href="khuyen-mai.html">Khuyến mãi</a></li><li><a href="bo-suu-tap.html">Bộ sưu tập</a></li><li><a href="lien-he.html">Liên hệ</a></li><li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li><li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li></ul></div>
+      <div><h5>Liên hệ</h5><div class="vp-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>[ĐỊA CHỈ VĂN PHÒNG]</span></div><div class="vp-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg><a href="tel:[SỐ_ĐIỆN_THOẠI]" style="color:inherit">[SỐ_ĐIỆN_THOẠI]</a></div><div class="vp-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:[EMAIL]" style="color:inherit">[EMAIL]</a></div><div class="vp-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>T2–T7: 8:00–18:00</span></div></div>
+    </div>
+    <div class="vp-footer-bottom">
+      <p>© 2026 OFFICEHUB. Tất cả quyền được bảo lưu.</p>
+      <div class="vp-footer-bottom-links"><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a><a href="dieu-khoan.html">Điều khoản</a><a href="lien-he.html">Liên hệ</a></div>
+    </div>
+  </div>
+</footer>
+
+<div class="vp-zalo-float"><a href="https://zalo.me/[ZALO_NUMBER]" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo"><svg viewBox="0 0 48 48" width="28" height="28"><text y="36" font-size="32" fill="#fff">Z</text></svg></a></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function () {
+  'use strict';
+  // Cart count
+  const cart = JSON.parse(localStorage.getItem('vp_cart') || '[]');
+  const count = cart.reduce(function(s,i){ return s+i.qty; }, 0);
+  const countEl = document.getElementById('cartCount');
+  if (countEl) { countEl.textContent = count || ''; countEl.style.display = count ? '' : 'none'; }
+
+  // Nav burger
+  const burger = document.getElementById('navBurger');
+  const mobNav = document.getElementById('navMob');
+  if (burger && mobNav) {
+    burger.addEventListener('click', function(){ const o = mobNav.classList.toggle('open'); burger.classList.toggle('open',o); burger.setAttribute('aria-expanded',String(o)); document.body.style.overflow=o?'hidden':''; });
+    document.getElementById('navMobClose').addEventListener('click', function(){ mobNav.classList.remove('open'); burger.classList.remove('open'); document.body.style.overflow=''; });
+  }
+
+  // Search panel
+  const searchBtn = document.getElementById('vp-search-btn');
+  const searchPanel = document.getElementById('vp-search-panel');
+  const searchInput = document.getElementById('navSearchInput');
+  if (searchBtn && searchPanel) {
+    searchBtn.addEventListener('click', function(){ const o = !searchPanel.hidden; searchPanel.hidden = o; searchBtn.setAttribute('aria-expanded',String(!o)); if(!o) searchInput.focus(); });
+  }
+  function doSearch(){ const q = searchInput.value.trim(); if(q) location.href='index.html?q='+encodeURIComponent(q); }
+  if (document.getElementById('navSearchSubmit')) document.getElementById('navSearchSubmit').addEventListener('click', doSearch);
+  if (searchInput) searchInput.addEventListener('keydown', function(e){ if(e.key==='Enter') doSearch(); });
+
+  // Stat counter animation
+  const statNums = document.querySelectorAll('.vp-stat-num[data-target]');
+  const counterObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.target);
+      const suffix = el.querySelector('span') ? el.querySelector('span').outerHTML : '';
+      const duration = 1400;
+      const step = target / (duration / 16);
+      let current = 0;
+      const timer = setInterval(function(){
+        current = Math.min(current + step, target);
+        el.innerHTML = Math.floor(current) + suffix;
+        if (current >= target) clearInterval(timer);
+      }, 16);
+      counterObs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  statNums.forEach(function(el){ counterObs.observe(el); });
+
+  // Reveal
+  const ro = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); }}); }, { threshold: 0.08 });
+  document.querySelectorAll('[data-reveal]').forEach(function(el){ ro.observe(el); });
+})();
+</script>
+</body>
+</html>

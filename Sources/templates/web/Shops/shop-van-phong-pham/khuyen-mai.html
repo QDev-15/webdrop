@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Khuyến mãi — OFFICEHUB</title>
+  <meta name="description" content="Ưu đãi hôm nay tại OFFICEHUB: giảm giá đến 35% văn phòng phẩm chính hãng, mã giảm giá độc quyền, freeship toàn quốc.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Topbar -->
+<div class="vp-topbar" role="status">
+  <div class="vp-container">
+    <span class="vp-topbar-item">Miễn phí ship đơn từ 500K</span>
+    <span class="vp-topbar-sep">·</span>
+    <span class="vp-topbar-item">Đổi hàng trong 30 ngày</span>
+    <span class="vp-topbar-sep">·</span>
+    <span class="vp-topbar-item">Hỗ trợ doanh nghiệp B2B</span>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav id="vp-nav" aria-label="Menu chính">
+  <div class="vp-container">
+    <div class="vp-nav-inner">
+      <a href="index.html" class="vp-logo" aria-label="OFFICEHUB - Trang chủ">
+        <span class="vp-logo-mark">OH</span>
+        <span class="vp-logo-text">OFFICE<span>HUB</span></span>
+      </a>
+      <ul class="vp-nav-links d-none d-lg-flex">
+        <li><a href="index.html">Trang chủ</a></li>
+        <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+        <li><a href="khuyen-mai.html" class="active">Khuyến mãi</a></li>
+        <li><a href="dich-vu.html">Dịch vụ</a></li>
+        <li><a href="lien-he.html">Liên hệ</a></li>
+      </ul>
+      <div class="vp-nav-actions">
+        <button id="vp-search-btn" class="vp-nav-action-btn" aria-label="Tìm kiếm" aria-expanded="false" aria-controls="vp-search-panel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </button>
+        <a href="gio-hang.html" class="vp-cart-link" aria-label="Giỏ hàng">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="vp-cart-count" id="cartCount"></span>
+        </a>
+        <button id="navBurger" class="d-lg-none" aria-label="Mở menu" aria-expanded="false" aria-controls="navMob">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="vp-search-panel" id="vp-search-panel" hidden>
+      <div class="vp-search-form">
+        <input type="search" id="navSearchInput" placeholder="Tìm bút viết, sổ tay, balo..." aria-label="Từ khóa tìm kiếm">
+        <button id="navSearchSubmit" type="button">Tìm kiếm</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="vp-mob-nav" id="navMob" role="dialog" aria-modal="true" aria-label="Menu">
+  <button class="vp-mob-close" id="navMobClose" aria-label="Đóng menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <ul class="vp-mob-links">
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+    <li><a href="khuyen-mai.html" class="active">Khuyến mãi</a></li>
+    <li><a href="dich-vu.html">Dịch vụ</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+</div>
+
+<!-- Page header -->
+<div class="vp-page-header">
+  <div class="vp-container">
+    <nav aria-label="Breadcrumb" class="vp-breadcrumb">
+      <a href="index.html">Trang chủ</a>
+      <span>›</span>
+      <span aria-current="page">Khuyến mãi</span>
+    </nav>
+    <h1>Khuyến mãi hôm nay</h1>
+    <p>Ưu đãi độc quyền — giảm giá đến 35%, freeship toàn quốc</p>
+  </div>
+</div>
+
+<!-- Countdown + promo codes -->
+<section class="vp-promo-banner-wrap" aria-labelledby="promo-heading">
+  <div class="vp-container">
+    <div class="vp-promo-banner" data-reveal>
+      <div>
+        <div class="vp-eyebrow" style="color:rgba(255,255,255,.7)">Flash Sale kết thúc sau</div>
+        <div class="vp-countdown" id="countdown" aria-live="polite">
+          <div class="vp-countdown-block"><span id="cdHours">00</span><small>GIỜ</small></div>
+          <div class="vp-countdown-sep">:</div>
+          <div class="vp-countdown-block"><span id="cdMins">00</span><small>PHÚT</small></div>
+          <div class="vp-countdown-sep">:</div>
+          <div class="vp-countdown-block"><span id="cdSecs">00</span><small>GIÂY</small></div>
+        </div>
+      </div>
+      <div class="vp-promo-codes-wrap">
+        <div class="vp-promo-code-item">
+          <span class="vp-promo-code-badge">OFFICE10</span>
+          <span class="vp-promo-code-desc">Giảm 10% — không giới hạn đơn tối thiểu</span>
+          <button class="vp-copy-btn" data-code="OFFICE10" aria-label="Sao chép mã OFFICE10">Sao chép</button>
+        </div>
+        <div class="vp-promo-code-item">
+          <span class="vp-promo-code-badge">OFFICEHUB</span>
+          <span class="vp-promo-code-desc">Giảm 15% — đơn từ 300.000₫</span>
+          <button class="vp-copy-btn" data-code="OFFICEHUB" aria-label="Sao chép mã OFFICEHUB">Sao chép</button>
+        </div>
+        <div class="vp-promo-code-item">
+          <span class="vp-promo-code-badge">VPPHAM</span>
+          <span class="vp-promo-code-desc">Giảm 20% — đơn từ 500.000₫</span>
+          <button class="vp-copy-btn" data-code="VPPHAM" aria-label="Sao chép mã VPPHAM">Sao chép</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sale products -->
+<section class="vp-section" aria-labelledby="sale-heading">
+  <div class="vp-container">
+    <div style="margin-bottom:32px" data-reveal>
+      <div class="vp-eyebrow">Đang giảm giá</div>
+      <h2 class="vp-sec-title" id="sale-heading">Sản phẩm <em>Flash Sale</em></h2>
+      <p class="vp-sec-sub">Giá ưu đãi có giới hạn — còn hàng đến khi hết</p>
+    </div>
+    <div class="vp-promo-grid" id="saleGrid"></div>
+    <div style="text-align:center;margin-top:40px" data-reveal>
+      <a href="index.html?sort=price-asc" class="vp-btn vp-btn-outline" id="btnPromoViewAll">Xem tất cả sản phẩm →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="vp-footer" aria-label="Footer">
+  <div class="vp-container">
+    <div class="vp-footer-grid">
+      <div>
+        <div class="vp-footer-logo"><span class="vp-logo-mark">OH</span><span class="vp-logo-text">OFFICE<span>HUB</span></span></div>
+        <p class="vp-footer-desc">Chuyên cung cấp văn phòng phẩm chính hãng cho cá nhân, doanh nghiệp và trường học trên toàn quốc.</p>
+        <div class="vp-footer-social">
+          <a href="#" aria-label="Facebook" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" aria-label="YouTube" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.4 19.54C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 001.94-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg></a>
+        </div>
+      </div>
+      <div><h5>Sản phẩm</h5><ul class="vp-footer-links"><li><a href="index.html?category=but-viet">Bút viết</a></li><li><a href="index.html?category=so-tay">Sổ tay &amp; giấy note</a></li><li><a href="index.html?category=file-kep">File &amp; kẹp tài liệu</a></li><li><a href="index.html?category=dung-cu">Dụng cụ văn phòng</a></li><li><a href="index.html?category=balo-tui">Balo &amp; túi laptop</a></li></ul></div>
+      <div><h5>Hỗ trợ</h5><ul class="vp-footer-links"><li><a href="dich-vu.html">Dịch vụ doanh nghiệp</a></li><li><a href="khuyen-mai.html">Khuyến mãi</a></li><li><a href="bo-suu-tap.html">Bộ sưu tập</a></li><li><a href="lien-he.html">Liên hệ</a></li><li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li><li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li></ul></div>
+      <div><h5>Liên hệ</h5><div class="vp-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>[ĐỊA CHỈ VĂN PHÒNG]</span></div><div class="vp-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg><a href="tel:[SỐ_ĐIỆN_THOẠI]" style="color:inherit">[SỐ_ĐIỆN_THOẠI]</a></div><div class="vp-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:[EMAIL]" style="color:inherit">[EMAIL]</a></div><div class="vp-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>T2–T7: 8:00–18:00</span></div></div>
+    </div>
+    <div class="vp-footer-bottom">
+      <p>© 2026 OFFICEHUB. Tất cả quyền được bảo lưu.</p>
+      <div class="vp-footer-bottom-links"><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a><a href="dieu-khoan.html">Điều khoản</a><a href="lien-he.html">Liên hệ</a></div>
+    </div>
+  </div>
+</footer>
+
+<div class="vp-zalo-float"><a href="https://zalo.me/[ZALO_NUMBER]" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo"><svg viewBox="0 0 48 48" width="28" height="28"><text y="36" font-size="32" fill="#fff">Z</text></svg></a></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products-data.js"></script>
+<script>
+(function () {
+  'use strict';
+  const SVG_FALLBACK = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450' viewBox='0 0 600 450'%3E%3Crect width='600' height='450' fill='%23f1f5f9'/%3E%3C/svg%3E";
+
+  // Cart count
+  const cart = JSON.parse(localStorage.getItem('vp_cart') || '[]');
+  const count = cart.reduce(function(s, i){ return s + i.qty; }, 0);
+  const countEl = document.getElementById('cartCount');
+  if (countEl) { countEl.textContent = count || ''; countEl.style.display = count ? '' : 'none'; }
+
+  // Countdown — 6 hours from page load
+  const endTime = Date.now() + 6 * 60 * 60 * 1000;
+  function tick() {
+    const diff = Math.max(0, endTime - Date.now());
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    const pad = function(n){ return String(n).padStart(2,'0'); };
+    document.getElementById('cdHours').textContent = pad(h);
+    document.getElementById('cdMins').textContent = pad(m);
+    document.getElementById('cdSecs').textContent = pad(s);
+  }
+  tick(); setInterval(tick, 1000);
+
+  // Copy promo codes
+  document.querySelectorAll('.vp-copy-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const code = btn.dataset.code;
+      navigator.clipboard.writeText(code).then(function(){
+        const orig = btn.textContent;
+        btn.textContent = '✓ Đã sao chép';
+        btn.disabled = true;
+        setTimeout(function(){ btn.textContent = orig; btn.disabled = false; }, 2000);
+      }).catch(function(){
+        btn.textContent = code;
+        setTimeout(function(){ btn.textContent = 'Sao chép'; }, 2000);
+      });
+    });
+  });
+
+  // Render sale products
+  function formatPrice(n){ return n.toLocaleString('vi-VN') + '₫'; }
+  const saleProducts = PRODUCTS.filter(function(p){ return p.salePrice && p.stock; });
+  const grid = document.getElementById('saleGrid');
+  if (grid) {
+    grid.innerHTML = saleProducts.map(function(p){
+      const discount = Math.round((1 - p.salePrice / p.price) * 100);
+      return '<article class="vp-prod-card">' +
+        '<a href="chi-tiet-san-pham.html?id=' + p.id + '" class="vp-prod-img" aria-label="' + p.name + '">' +
+          '<img src="' + p.image + '" alt="' + p.name + '" loading="lazy" onerror="this.src=\'' + SVG_FALLBACK + '\'">' +
+          '<span class="vp-prod-badge vp-prod-badge-sale">−' + discount + '%</span>' +
+        '</a>' +
+        '<div class="vp-prod-body">' +
+          '<div class="vp-prod-brand">' + p.brand + '</div>' +
+          '<h3 class="vp-prod-name"><a href="chi-tiet-san-pham.html?id=' + p.id + '">' + p.name + '</a></h3>' +
+          '<div class="vp-prod-price">' +
+            '<span class="vp-price-main vp-price-sale">' + formatPrice(p.salePrice) + '</span>' +
+            '<span class="vp-price-old">' + formatPrice(p.price) + '</span>' +
+          '</div>' +
+          '<div class="vp-prod-actions">' +
+            '<button class="vp-btn-add" data-add-id="' + p.id + '">+ Thêm vào giỏ</button>' +
+            '<a href="chi-tiet-san-pham.html?id=' + p.id + '" class="vp-btn-detail">Chi tiết</a>' +
+          '</div>' +
+        '</div>' +
+      '</article>';
+    }).join('');
+
+    // Add to cart handlers
+    grid.querySelectorAll('.vp-btn-add').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        const pid = parseInt(btn.dataset.addId);
+        const prod = PRODUCTS.find(function(p){ return p.id === pid; });
+        if (!prod) return;
+        const c = JSON.parse(localStorage.getItem('vp_cart') || '[]');
+        const ex = c.find(function(i){ return i.id === pid; });
+        if (ex) ex.qty++; else c.push({ id: prod.id, name: prod.name, brand: prod.brand, price: prod.salePrice || prod.price, image: prod.image, qty: 1 });
+        localStorage.setItem('vp_cart', JSON.stringify(c));
+        btn.textContent = '✓ Đã thêm';
+        setTimeout(function(){ btn.textContent = '+ Thêm vào giỏ'; }, 1500);
+        const cc = c.reduce(function(s,i){ return s+i.qty; }, 0);
+        if (countEl) { countEl.textContent = cc; countEl.style.display = ''; }
+      });
+    });
+  }
+
+  // Nav burger
+  const burger = document.getElementById('navBurger');
+  const mobNav = document.getElementById('navMob');
+  if (burger && mobNav) {
+    burger.addEventListener('click', function(){ const o = mobNav.classList.toggle('open'); burger.classList.toggle('open',o); burger.setAttribute('aria-expanded',String(o)); document.body.style.overflow=o?'hidden':''; });
+    document.getElementById('navMobClose').addEventListener('click', function(){ mobNav.classList.remove('open'); burger.classList.remove('open'); document.body.style.overflow=''; });
+  }
+
+  // Search
+  const searchBtn = document.getElementById('vp-search-btn');
+  const searchPanel = document.getElementById('vp-search-panel');
+  const searchInput = document.getElementById('navSearchInput');
+  if (searchBtn && searchPanel) {
+    searchBtn.addEventListener('click', function(){ const o = !searchPanel.hidden; searchPanel.hidden = o; searchBtn.setAttribute('aria-expanded', String(!o)); if(!o) searchInput.focus(); });
+  }
+  function doSearch(){ const q = searchInput.value.trim(); if(q) location.href = 'index.html?q='+encodeURIComponent(q); }
+  if (document.getElementById('navSearchSubmit')) document.getElementById('navSearchSubmit').addEventListener('click', doSearch);
+  if (searchInput) searchInput.addEventListener('keydown', function(e){ if(e.key==='Enter') doSearch(); });
+
+  // Reveal
+  const ro = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); }}); }, { threshold: 0.08 });
+  document.querySelectorAll('[data-reveal]').forEach(function(el){ ro.observe(el); });
+})();
+</script>
+</body>
+</html>
