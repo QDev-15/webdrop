@@ -19,7 +19,7 @@ function TemplateImage({ src, alt, name, category }: { src: string; alt: string;
   return <img src={src} alt={alt} onError={() => setFailed(true)} />
 }
 
-function WebsiteBadge() {
+export function WebsiteBadge() {
   return (
     <div style={{
       position: 'absolute', top: 10, left: 10, zIndex: 3,

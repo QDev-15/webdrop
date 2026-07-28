@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 import { Suspense } from 'react'
 import HeroSlider from '@/components/site/HeroSlider'
 import HowItWorks from '@/components/site/HowItWorks'
-import TemplateGrid from '@/components/site/TemplateGrid'
+import TemplateShowcase, { type TemplateSection } from '@/components/site/TemplateShowcase'
 import WhyUs from '@/components/site/WhyUs'
 import PricingSection from '@/components/site/PricingSection'
 import Reviews from '@/components/site/Reviews'
@@ -17,7 +17,6 @@ import CTASection from '@/components/site/CTASection'
 import Footer from '@/components/site/Footer'
 import RevealObserver from '@/components/site/RevealObserver'
 import { prisma } from '@/lib/prisma'
-import type { Template } from '@/data/templates'
 import Link from 'next/link'
 
 // ── Helpers ───────────────────────────────────────────────────
@@ -64,10 +63,46 @@ async function getSlides() {
   try { return await prisma.heroSlide.findMany({ where: { status: 'published' }, orderBy: { sortOrder: 'asc' } }) }
   catch { return [] }
 }
-async function getTemplates(): Promise<Template[]> {
+// Gom template theo ngành (industry) — "Shop bán hàng" luôn lên đầu (sản phẩm chủ đạo),
+// các ngành còn lại xếp theo số lượng template giảm dần.
+async function getTemplateSections(): Promise<TemplateSection[]> {
   try {
-    const rows = await prisma.template.findMany({ where: { status: 'published' }, include: { industry: { select: { name: true } } }, orderBy: { salesCount: 'desc' } })
-    return rows.map(t => ({ slug: t.slug, name: t.name, category: t.industry?.name || t.category, price: formatPrice(t.price as Parameters<typeof formatPrice>[0]), image: t.thumbnail || 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80&auto=format&fit=crop', badge: toBadge(t.salesCount, t.createdAt), demoUrl: t.demoUrl || undefined, deployUrl: t.deployUrl || undefined }))
+    const rows = await prisma.template.findMany({
+      where: { status: 'published', category: 'web' },
+      include: { industry: { select: { name: true, slug: true } } },
+      orderBy: { salesCount: 'desc' },
+    })
+
+    type Row = typeof rows[number]
+    const groups = new Map<string, { category: string; rows: Row[] }>()
+    for (const t of rows) {
+      const slug = t.industry?.slug || t.category
+      const category = t.industry?.name || t.category
+      const g = groups.get(slug)
+      if (g) g.rows.push(t)
+      else groups.set(slug, { category, rows: [t] })
+    }
+
+    const ordered = Array.from(groups.entries()).sort(([slugA, a], [slugB, b]) => {
+      if (slugA === 'shop') return -1
+      if (slugB === 'shop') return 1
+      return b.rows.length - a.rows.length
+    })
+
+    return ordered.map(([, g]) => ({
+      category: g.category,
+      templates: g.rows.map(t => ({
+        slug: t.slug,
+        name: t.name,
+        category: g.category,
+        price: formatPrice(t.price as Parameters<typeof formatPrice>[0]),
+        image: t.thumbnail || 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80&auto=format&fit=crop',
+        badge: toBadge(t.salesCount, t.createdAt),
+        demoUrl: t.demoUrl || undefined,
+        deployUrl: t.deployUrl || undefined,
+        hasWebsite: t.hasWebsite,
+      })),
+    }))
   } catch { return [] }
 }
 
@@ -75,7 +110,7 @@ async function getTemplates(): Promise<Template[]> {
 function show(v: string | undefined) { return v !== 'false' }
 
 export default async function HomePage() {
-  const [hp, dbSlides, dbTemplates] = await Promise.all([getSettings(), getSlides(), getTemplates()])
+  const [hp, dbSlides, templateSections] = await Promise.all([getSettings(), getSlides(), getTemplateSections()])
 
   const zalo = (hp['social_zalo'] || hp['site_phone'] || '').replace(/\s/g, '')
 
@@ -149,7 +184,7 @@ export default async function HomePage() {
       <HeroSlider slides={dbSlides} />
 
       {showHiw      && <HowItWorks {...hiwData} />}
-      {showTemplates && <Suspense><TemplateGrid templates={dbTemplates.length > 0 ? dbTemplates : undefined} homepage /></Suspense>}
+      {showTemplates && <Suspense><TemplateShowcase sections={templateSections} /></Suspense>}
       {showWhyUs    && <WhyUs {...whyData} />}
       {showPricing  && <PricingSection />}
       {showReviews  && <Reviews {...reviewData} />}

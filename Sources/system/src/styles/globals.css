@@ -254,6 +254,11 @@ body {
 .btn-more { font-size:14px;background:transparent;color:var(--text);padding:12px 28px;border-radius:9px;border:1px solid var(--border);cursor:pointer;transition:all .2s; }
 .btn-more:hover { background:var(--text);color:#fff; }
 
+/* Live demo preview — iframe scaled 4x down (400% + scale(.25)) để hiển thị đúng bố cục desktop
+   thu nhỏ trong card, thay vì ảnh chụp tĩnh. pointer-events:none để click xuyên qua tới <Link> cha. */
+.tc-iframe-wrap { position:absolute; inset:0; }
+.tc-iframe-wrap iframe { position:absolute; top:0; left:0; width:800%; height:800%; transform:scale(.125); transform-origin:0 0; border:none; pointer-events:none; }
+
 /* ── WHY US ── */
 .why-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.06);border-radius:16px;overflow:hidden; }
 .why-item { background:var(--dark2);padding:34px 28px;transition:background .2s;position:relative; }
