@@ -85,7 +85,7 @@ Xây dựng và bán 3 nhóm sản phẩm chính:
 - [x] Agency / Portfolio / Công ty — **DONE** (6 templates: `Companies/`, `Portfolios/`)
 - [x] Blog / Forum — **DONE** (`Blogs/`, `Forums/`)
 - [x] Nha khoa — **DONE** (10 template: `Dental-Clinics/` — 10 Identity Token khác nhau: LUXE-DARK, FRESH-MINIMAL, BOLD-EDITORIAL, GEOMETRIC-MODERN, SOFT-PASTEL, DARK-ENERGY, CLEAN-CORPORATE, ZEN-MINIMAL, RETRO-BOLD, GLASS-MODERN)
-- [x] Shop bán hàng — **DONE** (16 templates, 11 có WebDeploy đầy đủ — `shop-ban-hang/` ORGANIC-EARTH, `shop-thoi-trang/` BOLD-EDITORIAL, `shop-giay-dep/` DARK-ENERGY, `shop-quan-ao/` SOFT-PASTEL, `shop-rau-xanh/` WARM-ARTISAN, `shop-thuc-pham-sach/` FRESH-MINIMAL, `shop-tui-sach/` LUXE-DARK, `shop-may-tinh/` GLASS-MODERN, `shop-may-anh/` GEOMETRIC-MODERN, `shop-ami-mobile/` RETRO-BOLD, `shop-quan-ao-ami/` ZEN-MINIMAL (WebDeploy build 2026-07-24); 5 template-only từ batch `shop-catalog-builder` 2026-07-27 — `shop-the-thao/` DARK-ENERGY variant Signal Orange, `shop-do-choi/` SOFT-PASTEL variant Sky Blue+Coral, `shop-my-pham/` LUXE-DARK variant Rose Gold, `shop-do-gia-dung/` WARM-ARTISAN variant Terracotta+Sage, `shop-van-phong-pham/` CLEAN-CORPORATE fresh token Steel Blue — xem bảng **WebDeploy Projects**)
+- [x] Shop bán hàng — **DONE** (16 templates, 13 có WebDeploy đầy đủ — `shop-ban-hang/` ORGANIC-EARTH, `shop-thoi-trang/` BOLD-EDITORIAL, `shop-giay-dep/` DARK-ENERGY, `shop-quan-ao/` SOFT-PASTEL, `shop-rau-xanh/` WARM-ARTISAN, `shop-thuc-pham-sach/` FRESH-MINIMAL, `shop-tui-sach/` LUXE-DARK, `shop-may-tinh/` GLASS-MODERN, `shop-may-anh/` GEOMETRIC-MODERN, `shop-ami-mobile/` RETRO-BOLD, `shop-quan-ao-ami/` ZEN-MINIMAL (WebDeploy build 2026-07-24), `shop-my-pham/` LUXE-DARK variant Rose Gold (WebDeploy build 2026-07-28), `shop-do-gia-dung/` WARM-ARTISAN variant Terracotta+Sage (WebDeploy build 2026-07-29); 3 template-only từ batch `shop-catalog-builder` 2026-07-27 — `shop-the-thao/` DARK-ENERGY variant Signal Orange, `shop-do-choi/` SOFT-PASTEL variant Sky Blue+Coral, `shop-van-phong-pham/` CLEAN-CORPORATE fresh token Steel Blue — xem bảng **WebDeploy Projects**)
 - [ ] Landing page sản phẩm / Dịch vụ
 - [ ] CV cá nhân — **PLANNING** (CV Builder SaaS — xem `.claude/plans/cv-template-saas.md`)
 
@@ -216,7 +216,7 @@ webdrop/
 │       │   ├── shop-the-thao/      (DARK-ENERGY variant Signal Orange, template-only, css prefix tt-, shop-catalog-builder)
 │       │   ├── shop-do-choi/       (SOFT-PASTEL variant Sky Blue+Coral, template-only, css prefix dc-, shop-catalog-builder)
 │       │   ├── shop-my-pham/       (LUXE-DARK variant Rose Gold #c98a8a, WebDeploy đầy đủ, css prefix mp-, shop-catalog-builder)
-│       │   ├── shop-do-gia-dung/   (WARM-ARTISAN variant Terracotta+Sage, template-only, css prefix dg-, shop-catalog-builder)
+│       │   ├── shop-do-gia-dung/   (WARM-ARTISAN Terracotta+Sage, WebDeploy đầy đủ, css prefix dg-, shop-catalog-builder 2026-07-29)
 │       │   └── shop-van-phong-pham/ (CLEAN-CORPORATE fresh token Steel Blue, template-only, css prefix vp-, shop-catalog-builder)
 │       └── CVs/                   ← 🔲 PLANNING (5 mẫu: classic, minimal, creative, dark, executive)
 ├── documents/                      ← Prototype UI HTML (tham khảo)
