@@ -1,0 +1,31 @@
+Update schema name:
+
+Bước 1: Rename schema trong Neon
+Chạy SQL trực tiếp trên Neon:
+
+
+ALTER SCHEMA public RENAME TO webdrop;
+Bước 2: Cập nhật Prisma schema
+Mở file Sources/system/prisma/schema.prisma và thêm dòng vào datasource:
+
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  schemas  = ["webdrop"]  // ← Thêm dòng này
+}
+Lưu ý: Cần cập nhật toàn bộ model thêm annotation @@schema("webdrop") nếu sử dụng multiple schemas, hoặc chỉ khai báo ở datasource là đủ nếu dùng 1 schema duy nhất.
+
+Bước 3: Introspect lại Prisma
+
+cd Sources/system
+npx prisma introspect
+Điều này sẽ cập nhật schema Prisma để nhận diện đúng schema mới.
+
+⚠️ Cảnh báo trước khi thực hiện:
+
+Bạn có dữ liệu quan trọng trong DB hiện tại không? (orders, customers, posts, settings...)
+
+CÓ → Nên backup trước: pg_dump -h [neon-host] -U [user] -d [db] > backup_before_rename.sql
+KHÔNG → Làm ngay được
+
