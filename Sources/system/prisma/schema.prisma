@@ -33,6 +33,7 @@ model User {
   cvProfile       CvProfile?
 
   @@map("users")
+  @@schema("webdrop")
 }
 
 enum UserRole {
@@ -60,6 +61,7 @@ model Post {
   author    User?     @relation(fields: [createdBy], references: [id])
 
   @@map("posts")
+  @@schema("webdrop")
 }
 
 enum PostStatus {
@@ -81,6 +83,7 @@ model Category {
   posts    Post[]
 
   @@map("categories")
+  @@schema("webdrop")
 }
 
 model Page {
@@ -99,6 +102,7 @@ model Page {
   author User? @relation(fields: [createdBy], references: [id])
 
   @@map("pages")
+  @@schema("webdrop")
 }
 
 model Media {
@@ -114,6 +118,7 @@ model Media {
   uploader User? @relation(fields: [uploadedBy], references: [id])
 
   @@map("media")
+  @@schema("webdrop")
 }
 
 model Banner {
@@ -128,6 +133,7 @@ model Banner {
   createdAt DateTime     @default(now()) @map("created_at")
 
   @@map("banners")
+  @@schema("webdrop")
 }
 
 enum BannerTarget {
@@ -146,6 +152,7 @@ model Contact {
   createdAt DateTime      @default(now()) @map("created_at")
 
   @@map("contacts")
+  @@schema("webdrop")
 }
 
 enum ContactStatus {
@@ -160,6 +167,7 @@ model Setting {
   group String
 
   @@map("settings")
+  @@schema("webdrop")
 }
 
 model PageView {
@@ -173,6 +181,7 @@ model PageView {
   @@index([createdAt])
   @@index([path])
   @@map("page_views")
+  @@schema("webdrop")
 }
 
 // ============================================================
@@ -191,6 +200,7 @@ model Industry {
   packageIndustries  PackageIndustry[]
 
   @@map("industries")
+  @@schema("webdrop")
 }
 
 model ServicePackage {
@@ -207,6 +217,7 @@ model ServicePackage {
   orders            Order[]
 
   @@map("service_packages")
+  @@schema("webdrop")
 }
 
 model PackageIndustry {
@@ -218,6 +229,7 @@ model PackageIndustry {
 
   @@id([packageId, industryId])
   @@map("package_industries")
+  @@schema("webdrop")
 }
 
 model Template {
@@ -242,6 +254,7 @@ model Template {
   industry Industry? @relation(fields: [industryId], references: [id])
 
   @@map("templates")
+  @@schema("webdrop")
 }
 
 enum TemplateCategory {
@@ -265,6 +278,7 @@ model Customer {
   projects  Project[]
 
   @@map("customers")
+  @@schema("webdrop")
 }
 
 enum CustomerStatus {
@@ -282,6 +296,7 @@ model CustomerContact {
   customer Customer @relation(fields: [customerId], references: [id])
 
   @@map("customer_contacts")
+  @@schema("webdrop")
 }
 
 model Order {
@@ -315,6 +330,7 @@ model Order {
   revenues  Revenue[]
 
   @@map("orders")
+  @@schema("webdrop")
 }
 
 enum OrderType {
@@ -345,6 +361,7 @@ model OrderItem {
   order Order @relation(fields: [orderId], references: [id])
 
   @@map("order_items")
+  @@schema("webdrop")
 }
 
 model Contract {
@@ -357,6 +374,7 @@ model Contract {
   order Order @relation(fields: [orderId], references: [id])
 
   @@map("contracts")
+  @@schema("webdrop")
 }
 
 model Payment {
@@ -373,6 +391,7 @@ model Payment {
   revenues Revenue[]
 
   @@map("payments")
+  @@schema("webdrop")
 }
 
 enum PaymentMethod {
@@ -408,6 +427,7 @@ model Project {
   files      ProjectFile[]
 
   @@map("projects")
+  @@schema("webdrop")
 }
 
 enum ProjectType {
@@ -436,6 +456,7 @@ model ProjectMilestone {
   project Project @relation(fields: [projectId], references: [id])
 
   @@map("project_milestones")
+  @@schema("webdrop")
 }
 
 enum MilestoneStatus {
@@ -454,6 +475,7 @@ model ProjectNote {
   createdByUser User? @relation(fields: [createdBy], references: [id])
 
   @@map("project_notes")
+  @@schema("webdrop")
 }
 
 model ProjectFile {
@@ -469,6 +491,7 @@ model ProjectFile {
   uploadedByUser User? @relation(fields: [uploadedBy], references: [id])
 
   @@map("project_files")
+  @@schema("webdrop")
 }
 
 model Revenue {
@@ -485,6 +508,7 @@ model Revenue {
   payment Payment? @relation(fields: [paymentId], references: [id])
 
   @@map("revenues")
+  @@schema("webdrop")
 }
 
 model Expense {
@@ -497,6 +521,7 @@ model Expense {
   createdAt DateTime @default(now()) @map("created_at")
 
   @@map("expenses")
+  @@schema("webdrop")
 }
 
 model HeroSlide {
@@ -513,6 +538,7 @@ model HeroSlide {
   updatedAt DateTime   @updatedAt @map("updated_at")
 
   @@map("hero_slides")
+  @@schema("webdrop")
 }
 
 enum SlideType {
@@ -556,6 +582,7 @@ model PricingGroup {
   plans PricingPlan[]
 
   @@map("pricing_groups")
+  @@schema("webdrop")
 }
 
 model PricingPlan {
@@ -572,6 +599,7 @@ model PricingPlan {
   group PricingGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
 
   @@map("pricing_plans")
+  @@schema("webdrop")
 }
 
 model PricingFaq {
@@ -582,6 +610,7 @@ model PricingFaq {
   status    PostStatus @default(published)
 
   @@map("pricing_faqs")
+  @@schema("webdrop")
 }
 
 // ── how_it_works_packages ──────────────────────────────────
@@ -604,6 +633,7 @@ model HowItWorksPackage {
   steps HowItWorksStep[]
 
   @@map("how_it_works_packages")
+  @@schema("webdrop")
 }
 
 model HowItWorksStep {
@@ -616,6 +646,7 @@ model HowItWorksStep {
   package HowItWorksPackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
 
   @@map("how_it_works_steps")
+  @@schema("webdrop")
 }
 
 model ActivityLog {
@@ -630,6 +661,7 @@ model ActivityLog {
   admin User? @relation(fields: [adminId], references: [id])
 
   @@map("activity_logs")
+  @@schema("webdrop")
 }
 
 // ============================================================
@@ -649,6 +681,7 @@ model DiscountCode {
   createdAt DateTime     @default(now()) @map("created_at")
 
   @@map("discount_codes")
+  @@schema("webdrop")
 }
 
 enum DiscountType {
@@ -673,6 +706,7 @@ model CvProfile {
   data CvData?
 
   @@map("cv_profiles")
+  @@schema("webdrop")
 }
 
 model CvData {
@@ -702,4 +736,5 @@ model CvData {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("cv_data")
+  @@schema("webdrop")
 }
