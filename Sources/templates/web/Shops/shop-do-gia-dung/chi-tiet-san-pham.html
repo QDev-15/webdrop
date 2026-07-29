@@ -251,33 +251,17 @@
     document.getElementById('dg-bc-name').textContent = product.name;
     document.title = product.name + ' — Nhà Đẹp Store';
 
-    // Gallery
+    // Gallery — mỗi sản phẩm chỉ có đúng 1 ảnh thật, không giả thêm thumbnail phụ
     const mainImg = document.getElementById('dg-main-img');
     const thumbsEl = document.getElementById('dg-thumbs');
-    const images = [product.image]; // single image per product; thumbnail row shows same image at alt crop
-    const altImages = [
-      product.image.replace('w=600', 'w=600') + '&q=85',
-      product.image.replace('w=600', 'w=600') + '&sat=-20',
-      product.image.replace('w=600', 'w=600') + '&bri=5'
-    ];
-    const allImgs = [...images, ...altImages].slice(0,3);
-
     mainImg.src = product.image;
     mainImg.alt = product.name;
-    thumbsEl.innerHTML = allImgs.map((src, i) => `
-      <div class="dg-detail-gallery__thumb ${i===0?'active':''}" data-src="${src}">
-        <img src="${src}" alt="${product.name} ảnh ${i+1}"
+    thumbsEl.innerHTML = `
+      <div class="dg-detail-gallery__thumb active" data-src="${product.image}">
+        <img src="${product.image}" alt="${product.name}"
           onerror="this.src='${PLACEHOLDER}'">
       </div>
-    `).join('');
-
-    thumbsEl.querySelectorAll('.dg-detail-gallery__thumb').forEach(thumb => {
-      thumb.addEventListener('click', function() {
-        thumbsEl.querySelectorAll('.dg-detail-gallery__thumb').forEach(t => t.classList.remove('active'));
-        this.classList.add('active');
-        mainImg.src = this.dataset.src;
-      });
-    });
+    `;
 
     // Info
     document.getElementById('dg-prod-cat').textContent = product.categoryName;

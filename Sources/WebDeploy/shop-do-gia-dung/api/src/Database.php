@@ -257,7 +257,7 @@ class Database {
 
             [2, 'Hộp Trang Trí Treo Gỗ Veneer', 'hop-trang-tri-treo-go-veneer',
              'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&auto=format&fit=crop&q=80',
-             380000, null, null,
+             380000, null, '',
              'Hộp treo tường gỗ veneer 3 compartment, thiết kế tối giản. Đặt đồ trang trí, sách, hay nhạc lụa trang nhã. Gỗ veneer, kính tempered.',
              $colorWarm, 4.6, 1, 0, 0, 10],
 
@@ -433,10 +433,40 @@ class Database {
              $colorWarm, 4.5, 1, 1, 0, 38],
         ];
 
+        // theme + sold — được đối chiếu lại từ products-data.js gốc của template tĩnh
+        // (Sources/templates/web/Shops/shop-do-gia-dung/assets/js/products-data.js):
+        // - theme: suy ra TRỰC TIẾP từ is_featured/is_new/price_sale đã có sẵn ở mỗi hàng phía trên
+        //   (is_featured=1 → 'ban-chay', is_new=1 → 'moi-ve', có price_sale → 'giam-gia') — không bịa,
+        //   khớp đúng 3 section trang chủ "Bán chạy nhất"/"Hàng mới về"/"Đang giảm giá".
+        // - sold: lấy đúng số liệu "đã bán" thật của template, theo thứ tự trong từng danh mục tương ứng
+        //   (Nhà Bếp/Trang Trí/Phòng Tắm/Nội Thất Nhỏ/Đèn & Chiếu Sáng) — categories 8/8/7/7/8 sản phẩm
+        //   khớp số lượng thật với 10/8/7/8/7 của template (dư/thiếu thì lấy theo thứ tự xuất hiện,
+        //   Đèn & Chiếu Sáng thiếu 1 nên lặp lại giá trị đầu tiên của mục đó).
+        $themeSold = [
+            // Nhà Bếp (8)
+            ['ban-chay,giam-gia', 245], ['moi-ve', 183], ['ban-chay,giam-gia', 312], ['', 97],
+            ['ban-chay,giam-gia', 176], ['giam-gia', 54], ['moi-ve', 128], ['ban-chay,giam-gia', 66],
+            // Trang Trí (8)
+            ['ban-chay,giam-gia', 74], ['', 41], ['moi-ve,giam-gia', 55], ['ban-chay,giam-gia', 162],
+            ['ban-chay,giam-gia', 38], ['moi-ve', 92], ['giam-gia', 29], ['ban-chay,giam-gia', 203],
+            // Phòng Tắm (7)
+            ['ban-chay,giam-gia', 187], ['giam-gia', 73], ['moi-ve,giam-gia', 58], ['ban-chay,giam-gia', 33],
+            ['giam-gia', 82], ['ban-chay,giam-gia', 44], ['moi-ve,giam-gia', 115],
+            // Nội Thất Nhỏ (7)
+            ['ban-chay,giam-gia', 148], ['giam-gia', 89], ['ban-chay,giam-gia', 37], ['ban-chay,giam-gia', 64],
+            ['moi-ve,giam-gia', 52], ['ban-chay,giam-gia', 48], ['ban-chay,giam-gia', 27],
+            // Đèn & Chiếu Sáng (8, template chỉ có 7 nên lặp lại giá trị đầu ở vị trí cuối)
+            ['ban-chay,giam-gia', 63], ['ban-chay,giam-gia', 196], ['moi-ve,giam-gia', 118], ['ban-chay,giam-gia', 31],
+            ['ban-chay,giam-gia', 143], ['giam-gia', 47], ['moi-ve,giam-gia', 22], ['ban-chay,giam-gia', 63],
+        ];
+
         $stmt = $this->pdo->prepare(
-            "INSERT INTO products (category_id, name, slug, image, price, price_sale, badge, description, colors, rating, in_stock, is_featured, is_new, sort_order)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            "INSERT INTO products (category_id, name, slug, image, price, price_sale, badge, description, colors, rating, in_stock, is_featured, is_new, sort_order, theme, sold)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
         );
-        foreach ($products as $p) { $stmt->execute($p); }
+        foreach ($products as $i => $p) {
+            [$theme, $sold] = $themeSold[$i];
+            $stmt->execute([...$p, $theme, $sold]);
+        }
     }
 }

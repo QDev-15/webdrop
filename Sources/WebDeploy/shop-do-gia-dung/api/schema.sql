@@ -96,8 +96,10 @@ CREATE TABLE IF NOT EXISTS products (
     status       TEXT NOT NULL DEFAULT 'published',
     sort_order   INTEGER NOT NULL DEFAULT 0,
     created_at   TEXT NOT NULL DEFAULT (datetime('now','localtime')),
-    updated_at   TEXT NOT NULL DEFAULT (datetime('now','localtime'))
+    updated_at   TEXT NOT NULL DEFAULT (datetime('now','localtime')),
     -- ▼ AI thêm cột riêng theo template tại đây (vd: material, brand, gallery, sizes, features, specs, origin, stock_qty)
+    theme        TEXT NOT NULL DEFAULT '',  -- comma-separated: 'ban-chay','moi-ve','giam-gia' — dùng cho 3 section trang chủ
+    sold         INTEGER NOT NULL DEFAULT 0 -- số lượng đã bán, hiển thị trên card + dùng để sort "Bán chạy nhất"
 );
 
 -- Đơn hàng — schema CỐ ĐỊNH, khớp 1-1 với OrderController.php + ShopPublicController.php.

@@ -9,7 +9,9 @@ class PublicController {
     }
 
     public function settings(): void {
-        $settings = $this->db->query("SELECT key, value FROM settings WHERE grp NOT IN ('smtp', 'system', 'cloudinary', 'integrations')");
+        // 'payment' bắt buộc bị loại — nhóm này chứa sepay_webhook_secret, lộ ra /public/settings
+        // sẽ cho phép giả mạo webhook SePay để đánh dấu đơn hàng "đã thanh toán" khống.
+        $settings = $this->db->query("SELECT key, value FROM settings WHERE grp NOT IN ('smtp', 'system', 'cloudinary', 'integrations', 'payment')");
         $data = [];
         foreach ($settings as $s) {
             $data[$s['key']] = $s['value'];

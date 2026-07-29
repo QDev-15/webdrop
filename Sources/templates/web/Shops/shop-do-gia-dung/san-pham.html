@@ -537,12 +537,13 @@
     });
   });
 
-  // Category pills (mobile)
+  // Category pills (mobile) — staged, chỉ commit vào state khi bấm "Xem kết quả"
+  let mobStagedCategory = state.category;
   document.querySelectorAll('#dg-mob-cats .dg-cat-pill').forEach(btn => {
     btn.addEventListener('click', function() {
       document.querySelectorAll('#dg-mob-cats .dg-cat-pill').forEach(b => b.classList.remove('active'));
       this.classList.add('active');
-      state.category = this.dataset.cat;
+      mobStagedCategory = this.dataset.cat;
     });
   });
 
@@ -623,6 +624,10 @@
     offcanvasOverlay.classList.add('open');
     document.body.style.overflow = 'hidden';
     // Sync mobile controls from state
+    mobStagedCategory = state.category;
+    document.querySelectorAll('#dg-mob-cats .dg-cat-pill').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.cat === state.category);
+    });
     document.getElementById('dg-mob-search').value = state.search;
     document.getElementById('dg-mob-price-slider').value = state.maxPrice;
     updatePriceLabel();
@@ -651,7 +656,7 @@
     state.maxPrice = parseInt(document.getElementById('dg-mob-price-slider').value);
     state.colors = [];
     document.querySelectorAll('input[name="mob-color"]:checked').forEach(cb => state.colors.push(cb.value));
-    // category already set via pills
+    state.category = mobStagedCategory;
     state.page = 1;
     closeOffcanvas();
     render();

@@ -58,23 +58,57 @@ export function SiteProvider({ children }: { children: ReactNode }) {
         const settingsResponse = await fetch('/api/public/settings')
         if (settingsResponse.ok) {
           const settingsData = await settingsResponse.json()
-          setSettings(settingsData)
+          // PublicController::settings() trả về { data: {...} } (bọc trong key "data") —
+          // trước đây gán thẳng cả object bọc vào state khiến settings.site_name/... luôn
+          // undefined toàn site (mọi nơi hiển thị đều rơi về fallback mặc định). Unwrap tại đây.
+          setSettings(settingsData.data ?? settingsData)
         } else {
           throw new Error('Failed to fetch settings')
         }
 
         // Fetch products
-        const productsResponse = await fetch('/api/public/products?limit=500')
+        const productsResponse = await fetch('/api/public/products?per_page=500')
         if (productsResponse.ok) {
           const productsData = await productsResponse.json()
-          setProducts(Array.isArray(productsData) ? productsData : productsData.items || [])
+          const rawProducts: any[] = Array.isArray(productsData) ? productsData : productsData.items || []
+          // API PHP trả field snake_case theo đúng cột DB (price_sale, category_slug, category_name...)
+          // — transform 1 chỗ duy nhất ở đây sang camelCase mà toàn bộ page component đang đọc,
+          // thay vì sửa lại từng page (HomePage/ProductsPage/ProductDetailPage/CartPage).
+          const mapped: Product[] = rawProducts.map((p) => ({
+            id: p.id,
+            name: p.name,
+            slug: p.slug,
+            price: Number(p.price) || 0,
+            salePrice: p.price_sale ? Number(p.price_sale) : null,
+            category: p.category_slug || '',
+            categoryName: p.category_name || '',
+            theme: p.theme || '',
+            material: p.material,
+            color: p.colors ? String(p.colors).split('|')[0]?.split(':')[0] : undefined,
+            colorName: p.colors ? String(p.colors).split('|')[0]?.split(':')[0] : undefined,
+            colorHex: p.colors ? String(p.colors).split('|')[0]?.split(':')[1] : undefined,
+            description: p.description,
+            rating: p.rating !== undefined && p.rating !== null ? Number(p.rating) : undefined,
+            sold: p.sold !== undefined && p.sold !== null ? Number(p.sold) : undefined,
+            stock: p.in_stock === undefined ? undefined : Boolean(Number(p.in_stock)),
+            badge: p.badge,
+            image: p.image,
+            gallery: p.gallery,
+            specs: p.specs,
+            brand: p.brand,
+            skin_type: p.skin_type,
+            sizes: p.sizes,
+          }))
+          setProducts(mapped)
         }
 
         // Fetch categories
         const categoriesResponse = await fetch('/api/public/product-categories')
         if (categoriesResponse.ok) {
           const categoriesData = await categoriesResponse.json()
-          setCategories(Array.isArray(categoriesData) ? categoriesData : categoriesData.items || [])
+          // ShopPublicController::categories() trả về { data: [...] } (bọc trong key "data") —
+          // trước đây chỉ check .items nên luôn rơi về [] (categories luôn rỗng toàn site).
+          setCategories(Array.isArray(categoriesData) ? categoriesData : categoriesData.data || categoriesData.items || [])
         }
       } catch (error) {
         // Fallback defaults

@@ -4,7 +4,7 @@ import { useSite } from '../contexts/SiteContext'
 import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function CartPage() {
-  const { items, removeItem } = useCart()
+  const { items, removeItem, subtotal } = useCart()
   const { settings } = useSite()
   const navigate = useNavigate()
 
@@ -13,8 +13,10 @@ export default function CartPage() {
     description: 'Giỏ hàng của bạn',
   })
 
-  const subtotal = items.reduce((sum, item) => sum + ((item.price || 0)), 0)
-  const shippingFee = subtotal >= (settings.free_shipping_threshold as number || 500000) ? 0 : (settings.shipping_fee as number || 30000)
+  // settings.* đến từ API luôn là string (cột TEXT) — "as number" chỉ là ép kiểu compile-time,
+  // KHÔNG chuyển đổi runtime. Thiếu Number() ở đây khiến `subtotal + shippingFee` là phép nối
+  // chuỗi (number + string) thay vì cộng số, hiển thị tổng tiền sai hoàn toàn khi có phí ship.
+  const shippingFee = subtotal >= Number(settings.free_shipping_threshold || 500000) ? 0 : Number(settings.shipping_fee || 30000)
   const total = subtotal + shippingFee
 
   if (items.length === 0) {

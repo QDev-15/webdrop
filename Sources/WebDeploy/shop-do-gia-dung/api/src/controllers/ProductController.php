@@ -12,6 +12,7 @@ class ProductController {
         'name' => 's', 'image' => 's', 'price' => 'i', 'price_sale' => 'i',
         'badge' => 's', 'description' => 's', 'colors' => 's', 'rating' => 'f',
         'in_stock' => 'i', 'is_featured' => 'i', 'is_new' => 'i', 'status' => 's', 'sort_order' => 'i',
+        'theme' => 's', 'sold' => 'i',
     ];
 
     private function cast(string $type, mixed $v): mixed {

@@ -26,11 +26,11 @@ export default function Footer() {
           <div className="dg-footer-section">
             <h4>Sản phẩm</h4>
             <ul>
-              <li><Link to="/san-pham?cat=nha-bep">Nhà bếp</Link></li>
-              <li><Link to="/san-pham?cat=trang-tri">Trang trí</Link></li>
-              <li><Link to="/san-pham?cat=phong-tam">Phòng tắm</Link></li>
-              <li><Link to="/san-pham?cat=noi-that-nho">Nội thất nhỏ</Link></li>
-              <li><Link to="/san-pham?cat=den-chieu-sang">Đèn & Ánh sáng</Link></li>
+              <li><Link to="/san-pham?category=nha-bep">Nhà bếp</Link></li>
+              <li><Link to="/san-pham?category=trang-tri">Trang trí</Link></li>
+              <li><Link to="/san-pham?category=phong-tam">Phòng tắm</Link></li>
+              <li><Link to="/san-pham?category=noi-that-nho">Nội thất nhỏ</Link></li>
+              <li><Link to="/san-pham?category=den-chieu-sang">Đèn & Ánh sáng</Link></li>
             </ul>
           </div>
 

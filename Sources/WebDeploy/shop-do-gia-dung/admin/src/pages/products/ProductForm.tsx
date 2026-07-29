@@ -40,6 +40,8 @@ interface FormData {
   is_new: boolean
   status: string
   sort_order: string
+  theme: string
+  sold: string
   // ▼ AI: thêm field mới vào đây nếu products có thêm cột (brand, sizes, gallery, features, specs, origin...)
   // — nhớ thêm tương ứng vào ProductController.php::BASE_FIELDS
 }
@@ -48,7 +50,7 @@ const EMPTY: FormData = {
   name: '', category_id: '', image: '', price: '', price_sale: '',
   badge: '', description: '', colors: '', rating: '5', in_stock: true,
   is_featured: false, is_new: false,
-  status: 'published', sort_order: '0'
+  status: 'published', sort_order: '0', theme: '', sold: '0'
 }
 
 export default function ProductForm() {
@@ -85,6 +87,8 @@ export default function ProductForm() {
           is_new: Boolean(p.is_new),
           status: String(p.status ?? 'published'),
           sort_order: String(p.sort_order ?? '0'),
+          theme: String(p.theme ?? ''),
+          sold: String(p.sold ?? '0'),
         })
       }
     }).catch(() => setError('Không tải được dữ liệu'))
@@ -111,6 +115,7 @@ export default function ProductForm() {
       rating: Math.max(0, Math.min(5, Number(form.rating) || 5)),
       in_stock: form.in_stock ? 1 : 0,
       sort_order: Number(form.sort_order) || 0,
+      sold: Number(form.sold) || 0,
     }
     try {
       if (isEdit) {
@@ -219,6 +224,20 @@ export default function ProductForm() {
           <div className="form-group" style={{ flex: 1 }}>
             <label>Thứ tự sắp xếp</label>
             <input type="number" value={form.sort_order} onChange={e => set('sort_order', e.target.value)} min={0} />
+          </div>
+        </div>
+
+        <div className="form-row">
+          <div className="form-group" style={{ flex: 1 }}>
+            <label>Chủ đề trang chủ (theme)</label>
+            <input type="text" value={form.theme} onChange={e => set('theme', e.target.value)} placeholder="VD: ban-chay,moi-ve,giam-gia" />
+            <p style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 4 }}>
+              Ghi cách nhau bởi dấu phẩy, chỉ nhận: ban-chay / moi-ve / giam-gia — quyết định sản phẩm này hiện ở section nào trên trang chủ.
+            </p>
+          </div>
+          <div className="form-group" style={{ flex: 1 }}>
+            <label>Đã bán</label>
+            <input type="number" value={form.sold} onChange={e => set('sold', e.target.value)} min={0} />
           </div>
         </div>
 

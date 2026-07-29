@@ -35,7 +35,15 @@ console.log('')
 
 if (existsSync(deploy)) {
   console.log('Xóa thư mục deploy cũ...')
-  rmSync(deploy, { recursive: true, force: true })
+  try {
+    rmSync(deploy, { recursive: true, force: true })
+  } catch (e) {
+    if (e.code === 'EBUSY') {
+      console.log('  ⚠️  Thư mục đang bị lock (EBUSY) — bỏ qua xóa, sẽ ghi đè file trực tiếp.')
+    } else {
+      throw e
+    }
+  }
 }
 
 const run = (cmd, cwd, label) => {
@@ -61,16 +69,10 @@ console.log('')
 console.log('[2/4] Build React apps...')
 run('npm run build', join(root, 'website'), 'Build website')
 run('npm run build', join(root, 'admin'), 'Build admin')
-run('npm run build', join(root, 'admin'), 'Build admin')
 
 // ── Tạo cấu trúc thư mục deploy ──────────────────────────────────────────────
 console.log('')
 console.log('[3/4] Tạo cấu trúc deploy...')
-mkdirSync(join(deploy, 'admin'), { recursive: true })
-mkdirSync(join(deploy, 'api', 'src', 'controllers'), { recursive: true })
-mkdirSync(join(deploy, 'api', 'uploads'), { recursive: true })
-mkdirSync(join(deploy, 'api', 'database'), { recursive: true })
-writeFileSync(join(deploy, 'api', 'uploads', '.gitkeep'), '')
 mkdirSync(join(deploy, 'admin'), { recursive: true })
 mkdirSync(join(deploy, 'api', 'src', 'controllers'), { recursive: true })
 mkdirSync(join(deploy, 'api', 'uploads'), { recursive: true })
@@ -132,8 +134,6 @@ console.log('')
 console.log(`Thư mục deploy đã sẵn sàng: ${deploy}/`)
 console.log('')
 console.log('Các bước tiếp theo:')
-console.log(`  1. Upload toàn bộ nội dung trong ${deploy}/ lên public_html/ của hosting`)
-console.log(`  2. Mở ${deploy}/api/config.php và sửa APP_URL thành URL thực của website`)
 console.log(`  1. Upload toàn bộ nội dung trong ${deploy}/ lên public_html/ của hosting`)
 console.log(`  2. Mở ${deploy}/api/config.php và sửa APP_URL thành URL thực của website`)
 console.log('  3. Kiểm tra: https://yourdomain.com/api/health')

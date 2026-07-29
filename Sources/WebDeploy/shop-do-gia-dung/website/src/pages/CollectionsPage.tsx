@@ -15,7 +15,7 @@ export default function CollectionsPage() {
     { name: 'Trang trí nhà cửa', slug: 'trang-tri', image: 'https://images.unsplash.com/photo-1578500494198-246f612d03b3?w=500&auto=format&fit=crop&q=80' },
     { name: 'Phòng tắm sang trọng', slug: 'phong-tam', image: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=500&auto=format&fit=crop&q=80' },
     { name: 'Nội thất nhỏ tinh tế', slug: 'noi-that-nho', image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&auto=format&fit=crop&q=80' },
-    { name: 'Chiếu sáng thương hiệu', slug: 'den-anh-sang', image: 'https://images.unsplash.com/photo-1565636192335-14e06ba8e600?w=500&auto=format&fit=crop&q=80' },
+    { name: 'Chiếu sáng thương hiệu', slug: 'den-chieu-sang', image: 'https://images.unsplash.com/photo-1565636192335-14e06ba8e600?w=500&auto=format&fit=crop&q=80' },
   ]
 
   return (

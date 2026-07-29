@@ -44,6 +44,7 @@ require_once __DIR__ . '/controllers/ProductController.php';
 require_once __DIR__ . '/controllers/OrderController.php';
 require_once __DIR__ . '/controllers/ShopPublicController.php';
 require_once __DIR__ . '/controllers/ShopSettingsController.php';
+require_once __DIR__ . '/controllers/StatsController.php';
 
 // ─── Routes ───────────────────────────────────────────────────────────────────
 
@@ -133,10 +134,15 @@ $router->add('GET',  '/orders/:id',                [$orders, 'show']);
 $router->add('POST', '/orders/:id/update-status',  [$orders, 'updateStatus']);
 $router->add('POST', '/orders/:id/confirm-payment', [$orders, 'confirmPayment']);
 
-// Shop Settings (admin)
+// Shop Settings (admin) — đồng bộ tài khoản ngân hàng từ SePay, gọi bởi PaymentSettingsTab.tsx
+// (route trước đây trỏ nhầm 'show'/'update' — 2 method không tồn tại trong ShopSettingsController,
+// method thật là syncSepayBankAccounts() ứng với đúng endpoint '/settings/sepay-sync')
 $shopSettings = new ShopSettingsController($db);
-$router->add('GET',  '/shop-settings',        [$shopSettings, 'show']);
-$router->add('POST', '/shop-settings/update', [$shopSettings, 'update']);
+$router->add('POST', '/settings/sepay-sync', [$shopSettings, 'syncSepayBankAccounts']);
+
+// Stats (admin — Dashboard)
+$stats = new StatsController($db);
+$router->add('GET', '/stats', [$stats, 'index']);
 
 // Public (no auth — website calls)
 $pub = new PublicController($db);

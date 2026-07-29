@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { api } from '../api/client'
 import { useCart } from '../contexts/CartContext'
 import { useSite } from '../contexts/SiteContext'
+import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 // Trang thanh toán TĨNH — template gốc KHÔNG có trang này (nút "Thanh toán ngay" chỉ là href="#"),
 // nên tự thiết kế nhất quán bằng CSS riêng (shop-checkout.css) — không phụ thuộc prefix của site.
@@ -27,6 +28,11 @@ interface OrderResult {
 export default function CheckoutPage() {
   const { items, subtotal, clear } = useCart()
   const { settings } = useSite()
+
+  useDocumentMeta({
+    title: 'Thanh toán — ' + String(settings.site_name || ''),
+    description: 'Hoàn tất đơn hàng của bạn',
+  })
 
   const [methods, setMethods] = useState<PaymentMethods | null>(null)
   const [paymentMethod, setPaymentMethod] = useState<'cod' | 'sepay'>('cod')

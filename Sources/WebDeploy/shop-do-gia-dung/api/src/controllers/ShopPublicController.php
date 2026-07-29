@@ -35,6 +35,7 @@ class ShopPublicController {
         $inStockOnly = ($_GET['in_stock'] ?? '') === '1';
         $saleOnly    = ($_GET['sale'] ?? '') === '1';
         $newOnly     = ($_GET['is_new'] ?? '') === '1';
+        $theme       = trim($_GET['theme'] ?? '');
         $sort        = $_GET['sort'] ?? 'default';
         $page        = max(1, (int)($_GET['page'] ?? 1));
         $perPage     = max(1, min(200, (int)($_GET['per_page'] ?? 12)));
@@ -67,14 +68,16 @@ class ShopPublicController {
         if ($inStockOnly) { $where[] = "p.in_stock = 1"; }
         if ($saleOnly) { $where[] = "p.price_sale IS NOT NULL AND p.price_sale > 0 AND p.price_sale < p.price"; }
         if ($newOnly) { $where[] = "p.is_new = 1"; }
+        if ($theme !== '') { $where[] = "p.theme LIKE ?"; $params[] = '%' . $theme . '%'; }
 
         $whereSql = implode(' AND ', $where);
 
         $orderBy = match ($sort) {
             'price-asc'  => 'COALESCE(NULLIF(p.price_sale,0), p.price) ASC',
             'price-desc' => 'COALESCE(NULLIF(p.price_sale,0), p.price) DESC',
-            'new'        => 'p.is_new DESC, p.created_at DESC',
+            'new', 'newest' => 'p.is_new DESC, p.created_at DESC',
             'rating'     => 'p.rating DESC',
+            'sold-desc'  => 'p.sold DESC',
             default      => 'p.sort_order ASC, p.created_at DESC',
         };
 
@@ -281,7 +284,7 @@ class ShopPublicController {
         $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
         $base   = $scheme . '://' . ($_SERVER['HTTP_HOST'] ?? 'localhost');
 
-        $staticRoutes = ['/', '/san-pham', '/lien-he', '/chinh-sach-bao-mat', '/dieu-khoan'];
+        $staticRoutes = ['/', '/san-pham', '/lien-he', '/chinh-sach-bao-mat', '/dieu-khoan', '/bo-suu-tap', '/ve-chung-toi'];
         // ▼ AI thêm route tĩnh riêng của site tại đây, ví dụ: '/ve-chung-toi', '/khuyen-mai'
 
         $urls = [];
