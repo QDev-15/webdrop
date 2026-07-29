@@ -1,9 +1,6 @@
-// This is your Prisma schema file
-// System DB — PostgreSQL
-// Docs: https://pris.ly/d/prisma-schema
-
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
 }
 
 datasource db {
@@ -12,33 +9,23 @@ datasource db {
   schemas  = ["webdrop"]
 }
 
-// ============================================================
-// CORE SCHEMA
-// ============================================================
-
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  password  String
-  role      UserRole @default(user)
-  createdAt DateTime @default(now()) @map("created_at")
-
-  posts           Post[]
-  pages           Page[]
-  media           Media[]
-  projectNotes    ProjectNote[]
-  projectFiles    ProjectFile[]
-  activityLogs    ActivityLog[]
-  cvProfile       CvProfile?
+  id           Int           @id @default(autoincrement())
+  name         String
+  email        String        @unique
+  password     String
+  role         UserRole      @default(user)
+  createdAt    DateTime      @default(now()) @map("created_at")
+  activityLogs ActivityLog[]
+  cvProfile    CvProfile?
+  media        Media[]
+  pages        Page[]
+  posts        Post[]
+  projectFiles ProjectFile[]
+  projectNotes ProjectNote[]
 
   @@map("users")
   @@schema("webdrop")
-}
-
-enum UserRole {
-  superadmin
-  user
 }
 
 model Post {
@@ -56,31 +43,24 @@ model Post {
   createdBy       Int?       @map("created_by")
   createdAt       DateTime   @default(now()) @map("created_at")
   updatedAt       DateTime   @updatedAt @map("updated_at")
-
-  category  Category? @relation(fields: [categoryId], references: [id])
-  author    User?     @relation(fields: [createdBy], references: [id])
+  category        Category?  @relation(fields: [categoryId], references: [id])
+  author          User?      @relation(fields: [createdBy], references: [id])
 
   @@map("posts")
   @@schema("webdrop")
 }
 
-enum PostStatus {
-  draft
-  published
-}
-
 model Category {
-  id          Int      @id @default(autoincrement())
+  id          Int        @id @default(autoincrement())
   name        String
-  slug        String   @unique
+  slug        String     @unique
   description String?
   thumbnail   String?
-  parentId    Int?     @map("parent_id")
-  createdAt   DateTime @default(now()) @map("created_at")
-
-  parent   Category?  @relation("CategoryChildren", fields: [parentId], references: [id])
-  children Category[] @relation("CategoryChildren")
-  posts    Post[]
+  parentId    Int?       @map("parent_id")
+  createdAt   DateTime   @default(now()) @map("created_at")
+  parent      Category?  @relation("CategoryChildren", fields: [parentId], references: [id])
+  children    Category[] @relation("CategoryChildren")
+  posts       Post[]
 
   @@map("categories")
   @@schema("webdrop")
@@ -98,8 +78,7 @@ model Page {
   createdAt       DateTime   @default(now()) @map("created_at")
   updatedAt       DateTime   @updatedAt @map("updated_at")
   createdBy       Int?       @map("created_by")
-
-  author User? @relation(fields: [createdBy], references: [id])
+  author          User?      @relation(fields: [createdBy], references: [id])
 
   @@map("pages")
   @@schema("webdrop")
@@ -114,8 +93,7 @@ model Media {
   altText    String?  @map("alt_text")
   uploadedBy Int?     @map("uploaded_by")
   createdAt  DateTime @default(now()) @map("created_at")
-
-  uploader User? @relation(fields: [uploadedBy], references: [id])
+  uploader   User?    @relation(fields: [uploadedBy], references: [id])
 
   @@map("media")
   @@schema("webdrop")
@@ -136,11 +114,6 @@ model Banner {
   @@schema("webdrop")
 }
 
-enum BannerTarget {
-  blank
-  self
-}
-
 model Contact {
   id        Int           @id @default(autoincrement())
   name      String
@@ -155,14 +128,8 @@ model Contact {
   @@schema("webdrop")
 }
 
-enum ContactStatus {
-  new
-  read
-  replied
-}
-
 model Setting {
-  key   String @id
+  key   String  @id
   value String?
   group String
 
@@ -184,48 +151,41 @@ model PageView {
   @@schema("webdrop")
 }
 
-// ============================================================
-// EXTENSION: AGENCY (System DB — webdrop.store)
-// ============================================================
-
 model Industry {
-  id          Int      @id @default(autoincrement())
-  name        String
-  slug        String   @unique
-  description String?
-  status      PostStatus @default(published)
-  sortOrder   Int      @default(0) @map("sort_order")
-
-  templates          Template[]
-  packageIndustries  PackageIndustry[]
+  id                Int               @id @default(autoincrement())
+  name              String
+  slug              String            @unique
+  description       String?
+  status            PostStatus        @default(published)
+  sortOrder         Int               @default(0) @map("sort_order")
+  packageIndustries PackageIndustry[]
+  templates         Template[]
 
   @@map("industries")
   @@schema("webdrop")
 }
 
 model ServicePackage {
-  id          Int        @id @default(autoincrement())
-  name        String
-  code        String     @unique
-  description String?
-  priceFrom   Decimal?   @map("price_from")
-  priceTo     Decimal?   @map("price_to")
-  status      PostStatus @default(published)
-  sortOrder   Int        @default(0) @map("sort_order")
-
-  packageIndustries PackageIndustry[]
+  id                Int               @id @default(autoincrement())
+  name              String
+  code              String            @unique
+  description       String?
+  priceFrom         Decimal?          @map("price_from")
+  priceTo           Decimal?          @map("price_to")
+  status            PostStatus        @default(published)
+  sortOrder         Int               @default(0) @map("sort_order")
   orders            Order[]
+  packageIndustries PackageIndustry[]
 
   @@map("service_packages")
   @@schema("webdrop")
 }
 
 model PackageIndustry {
-  packageId  Int @map("package_id")
-  industryId Int @map("industry_id")
-
-  package  ServicePackage @relation(fields: [packageId], references: [id])
-  industry Industry       @relation(fields: [industryId], references: [id])
+  packageId  Int            @map("package_id")
+  industryId Int            @map("industry_id")
+  industry   Industry       @relation(fields: [industryId], references: [id])
+  package    ServicePackage @relation(fields: [packageId], references: [id])
 
   @@id([packageId, industryId])
   @@map("package_industries")
@@ -233,46 +193,39 @@ model PackageIndustry {
 }
 
 model Template {
-  id          Int          @id @default(autoincrement())
-  name        String
-  slug        String       @unique
-  description String?
-  thumbnail   String?
-  demoUrl     String?      @map("demo_url")
-  deployUrl   String?      @map("deploy_url")
-  downloadUrl String?      @map("download_url")
+  id           Int              @id @default(autoincrement())
+  name         String
+  slug         String           @unique
+  description  String?
+  thumbnail    String?
+  demoUrl      String?          @map("demo_url")
+  downloadUrl  String?          @map("download_url")
   price        Decimal
-  websitePrice Decimal?     @map("website_price")
-  customPrice  Decimal?     @map("custom_price")
-  category    TemplateCategory
-  industryId  Int?         @map("industry_id")
-  hasWebsite  Boolean      @default(false) @map("has_website")
-  salesCount  Int          @default(0) @map("sales_count")
-  status      PostStatus   @default(draft)
-  createdAt   DateTime     @default(now()) @map("created_at")
-
-  industry Industry? @relation(fields: [industryId], references: [id])
+  category     TemplateCategory
+  industryId   Int?             @map("industry_id")
+  salesCount   Int              @default(0) @map("sales_count")
+  status       PostStatus       @default(draft)
+  createdAt    DateTime         @default(now()) @map("created_at")
+  hasWebsite   Boolean          @default(false) @map("has_website")
+  customPrice  Decimal?         @map("custom_price")
+  websitePrice Decimal?         @map("website_price")
+  deployUrl    String?          @map("deploy_url")
+  industry     Industry?        @relation(fields: [industryId], references: [id])
 
   @@map("templates")
   @@schema("webdrop")
 }
 
-enum TemplateCategory {
-  web
-  admin
-}
-
 model Customer {
-  id        Int            @id @default(autoincrement())
+  id        Int               @id @default(autoincrement())
   name      String
   email     String?
   phone     String?
   company   String?
   address   String?
   note      String?
-  status    CustomerStatus @default(active)
-  createdAt DateTime       @default(now()) @map("created_at")
-
+  status    CustomerStatus    @default(active)
+  createdAt DateTime          @default(now()) @map("created_at")
   contacts  CustomerContact[]
   orders    Order[]
   projects  Project[]
@@ -281,84 +234,61 @@ model Customer {
   @@schema("webdrop")
 }
 
-enum CustomerStatus {
-  active
-  inactive
-}
-
 model CustomerContact {
-  id         Int     @id @default(autoincrement())
-  customerId Int     @map("customer_id")
+  id         Int      @id @default(autoincrement())
+  customerId Int      @map("customer_id")
   type       String
   value      String
   note       String?
-
-  customer Customer @relation(fields: [customerId], references: [id])
+  customer   Customer @relation(fields: [customerId], references: [id])
 
   @@map("customer_contacts")
   @@schema("webdrop")
 }
 
 model Order {
-  id          Int         @id @default(autoincrement())
-  code        String      @unique
-  customerId  Int         @map("customer_id")
-  packageId   Int?        @map("package_id")
-  type        OrderType
-  title       String
-  price       Decimal
-  discount    Decimal     @default(0)
-  total       Decimal
-  status      OrderStatus @default(new)
-  discountCode   String?   @map("discount_code")
+  id             Int             @id @default(autoincrement())
+  code           String          @unique
+  customerId     Int             @map("customer_id")
+  packageId      Int?            @map("package_id")
+  type           OrderType
+  title          String
+  price          Decimal
+  discount       Decimal         @default(0)
+  total          Decimal
+  status         OrderStatus     @default(new)
   note           String?
-  startedAt      DateTime? @map("started_at")
-  deadlineAt     DateTime? @map("deadline_at")
-  completedAt    DateTime? @map("completed_at")
-  paidAt         DateTime? @map("paid_at")
-  downloadToken  String?   @unique @map("download_token")
-  tokenExpiresAt DateTime? @map("token_expires_at")
-  tokenUsedCount Int       @default(0) @map("token_used_count")
-  createdAt      DateTime  @default(now()) @map("created_at")
-
-  customer  Customer        @relation(fields: [customerId], references: [id])
-  package   ServicePackage? @relation(fields: [packageId], references: [id])
-  items     OrderItem[]
-  contracts Contract[]
-  payments  Payment[]
-  project   Project?
-  revenues  Revenue[]
+  startedAt      DateTime?       @map("started_at")
+  deadlineAt     DateTime?       @map("deadline_at")
+  completedAt    DateTime?       @map("completed_at")
+  createdAt      DateTime        @default(now()) @map("created_at")
+  downloadToken  String?         @unique @map("download_token")
+  paidAt         DateTime?       @map("paid_at")
+  tokenExpiresAt DateTime?       @map("token_expires_at")
+  tokenUsedCount Int             @default(0) @map("token_used_count")
+  discountCode   String?         @map("discount_code")
+  contracts      Contract[]
+  items          OrderItem[]
+  customer       Customer        @relation(fields: [customerId], references: [id])
+  package        ServicePackage? @relation(fields: [packageId], references: [id])
+  payments       Payment[]
+  project        Project?
+  revenues       Revenue[]
 
   @@map("orders")
   @@schema("webdrop")
 }
 
-enum OrderType {
-  template
-  website
-  cv
-}
-
-enum OrderStatus {
-  new
-  confirmed
-  in_progress
-  delivered
-  completed
-  cancelled
-}
-
 model OrderItem {
-  id        Int      @id @default(autoincrement())
-  orderId   Int      @map("order_id")
-  itemType  String   @map("item_type")
-  itemName  String   @map("item_name")
-  qty       Int      @default(1)
-  unitPrice Decimal  @map("unit_price")
+  id        Int     @id @default(autoincrement())
+  orderId   Int     @map("order_id")
+  itemType  String  @map("item_type")
+  itemName  String  @map("item_name")
+  qty       Int     @default(1)
+  unitPrice Decimal @map("unit_price")
   subtotal  Decimal
   note      String?
-
-  order Order @relation(fields: [orderId], references: [id])
+  order     Order   @relation(fields: [orderId], references: [id])
 
   @@map("order_items")
   @@schema("webdrop")
@@ -370,78 +300,48 @@ model Contract {
   fileUrl  String?   @map("file_url")
   signedAt DateTime? @map("signed_at")
   note     String?
-
-  order Order @relation(fields: [orderId], references: [id])
+  order    Order     @relation(fields: [orderId], references: [id])
 
   @@map("contracts")
   @@schema("webdrop")
 }
 
 model Payment {
-  id        Int           @id @default(autoincrement())
-  orderId   Int           @map("order_id")
-  amount    Decimal
-  method    PaymentMethod
-  status    PaymentStatus @default(pending)
-  paidAt    DateTime?     @map("paid_at")
-  note      String?
-  receiptUrl String?      @map("receipt_url")
-
-  order    Order     @relation(fields: [orderId], references: [id])
-  revenues Revenue[]
+  id         Int           @id @default(autoincrement())
+  orderId    Int           @map("order_id")
+  amount     Decimal
+  method     PaymentMethod
+  status     PaymentStatus @default(pending)
+  paidAt     DateTime?     @map("paid_at")
+  note       String?
+  receiptUrl String?       @map("receipt_url")
+  order      Order         @relation(fields: [orderId], references: [id])
+  revenues   Revenue[]
 
   @@map("payments")
   @@schema("webdrop")
 }
 
-enum PaymentMethod {
-  cash
-  bank
-  momo
-  vnpay
-}
-
-enum PaymentStatus {
-  pending
-  paid
-  refunded
-}
-
 model Project {
-  id          Int           @id @default(autoincrement())
-  orderId     Int           @unique @map("order_id")
-  customerId  Int           @map("customer_id")
+  id          Int                @id @default(autoincrement())
+  orderId     Int                @unique @map("order_id")
+  customerId  Int                @map("customer_id")
   name        String
   type        ProjectType
-  status      ProjectStatus @default(planning)
-  hostingInfo String?       @map("hosting_info")
+  status      ProjectStatus      @default(planning)
+  hostingInfo String?            @map("hosting_info")
   domain      String?
-  adminUrl    String?       @map("admin_url")
+  adminUrl    String?            @map("admin_url")
   note        String?
-  createdAt   DateTime      @default(now()) @map("created_at")
-
-  order      Order               @relation(fields: [orderId], references: [id])
-  customer   Customer            @relation(fields: [customerId], references: [id])
-  milestones ProjectMilestone[]
-  notes      ProjectNote[]
-  files      ProjectFile[]
+  createdAt   DateTime           @default(now()) @map("created_at")
+  files       ProjectFile[]
+  milestones  ProjectMilestone[]
+  notes       ProjectNote[]
+  customer    Customer           @relation(fields: [customerId], references: [id])
+  order       Order              @relation(fields: [orderId], references: [id])
 
   @@map("projects")
   @@schema("webdrop")
-}
-
-enum ProjectType {
-  goi_b
-  goi_c
-}
-
-enum ProjectStatus {
-  planning
-  designing
-  developing
-  reviewing
-  delivered
-  done
 }
 
 model ProjectMilestone {
@@ -452,43 +352,35 @@ model ProjectMilestone {
   status      MilestoneStatus @default(pending)
   dueAt       DateTime?       @map("due_at")
   completedAt DateTime?       @map("completed_at")
-
-  project Project @relation(fields: [projectId], references: [id])
+  project     Project         @relation(fields: [projectId], references: [id])
 
   @@map("project_milestones")
   @@schema("webdrop")
 }
 
-enum MilestoneStatus {
-  pending
-  done
-}
-
 model ProjectNote {
-  id        Int      @id @default(autoincrement())
-  projectId Int      @map("project_id")
-  content   String
-  createdBy Int?     @map("created_by")
-  createdAt DateTime @default(now()) @map("created_at")
-
-  project   Project @relation(fields: [projectId], references: [id])
-  createdByUser User? @relation(fields: [createdBy], references: [id])
+  id            Int      @id @default(autoincrement())
+  projectId     Int      @map("project_id")
+  content       String
+  createdBy     Int?     @map("created_by")
+  createdAt     DateTime @default(now()) @map("created_at")
+  createdByUser User?    @relation(fields: [createdBy], references: [id])
+  project       Project  @relation(fields: [projectId], references: [id])
 
   @@map("project_notes")
   @@schema("webdrop")
 }
 
 model ProjectFile {
-  id         Int      @id @default(autoincrement())
-  projectId  Int      @map("project_id")
-  filename   String
-  filepath   String
-  type       String
-  uploadedBy Int?     @map("uploaded_by")
-  createdAt  DateTime @default(now()) @map("created_at")
-
-  project    Project @relation(fields: [projectId], references: [id])
-  uploadedByUser User? @relation(fields: [uploadedBy], references: [id])
+  id             Int      @id @default(autoincrement())
+  projectId      Int      @map("project_id")
+  filename       String
+  filepath       String
+  type           String
+  uploadedBy     Int?     @map("uploaded_by")
+  createdAt      DateTime @default(now()) @map("created_at")
+  project        Project  @relation(fields: [projectId], references: [id])
+  uploadedByUser User?    @relation(fields: [uploadedBy], references: [id])
 
   @@map("project_files")
   @@schema("webdrop")
@@ -503,22 +395,21 @@ model Revenue {
   year      Int
   note      String?
   createdAt DateTime @default(now()) @map("created_at")
-
-  order   Order?   @relation(fields: [orderId], references: [id])
-  payment Payment? @relation(fields: [paymentId], references: [id])
+  order     Order?   @relation(fields: [orderId], references: [id])
+  payment   Payment? @relation(fields: [paymentId], references: [id])
 
   @@map("revenues")
   @@schema("webdrop")
 }
 
 model Expense {
-  id     Int      @id @default(autoincrement())
-  type   String
-  title  String
-  amount Decimal
-  paidAt DateTime? @map("paid_at")
-  note   String?
-  createdAt DateTime @default(now()) @map("created_at")
+  id        Int       @id @default(autoincrement())
+  type      String
+  title     String
+  amount    Decimal
+  paidAt    DateTime? @map("paid_at")
+  note      String?
+  createdAt DateTime  @default(now()) @map("created_at")
 
   @@map("expenses")
   @@schema("webdrop")
@@ -541,27 +432,6 @@ model HeroSlide {
   @@schema("webdrop")
 }
 
-enum SlideType {
-  intro
-  features
-  grid
-  pricing
-  testimonial
-}
-
-// ── pricing ───────────────────────────────────────────────
-
-enum PricingGroupType {
-  cards
-  banner
-}
-
-enum PricingBg {
-  light
-  warm
-  dark
-}
-
 model PricingGroup {
   id          Int              @id @default(autoincrement())
   slug        String           @unique
@@ -578,8 +448,7 @@ model PricingGroup {
   ctaHref     String?          @map("cta_href")
   sortOrder   Int              @default(0) @map("sort_order")
   status      PostStatus       @default(published)
-
-  plans PricingPlan[]
+  plans       PricingPlan[]
 
   @@map("pricing_groups")
   @@schema("webdrop")
@@ -595,8 +464,7 @@ model PricingPlan {
   ctaLabel  String?      @map("cta_label")
   ctaHref   String?      @map("cta_href")
   sortOrder Int          @default(0) @map("sort_order")
-
-  group PricingGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  group     PricingGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
 
   @@map("pricing_plans")
   @@schema("webdrop")
@@ -613,37 +481,34 @@ model PricingFaq {
   @@schema("webdrop")
 }
 
-// ── how_it_works_packages ──────────────────────────────────
 model HowItWorksPackage {
-  id        Int        @id @default(autoincrement())
+  id        Int              @id @default(autoincrement())
   name      String
-  slug      String     @unique
+  slug      String           @unique
   tagline   String?
-  icon      String?    @default("📦")
+  icon      String?          @default("📦")
   price     String?
-  hot       Boolean    @default(false)
-  ctaLabel  String?    @map("cta_label")
-  ctaHref   String?    @map("cta_href")
+  hot       Boolean          @default(false)
+  ctaLabel  String?          @map("cta_label")
+  ctaHref   String?          @map("cta_href")
   suitable  String[]
-  sortOrder Int        @default(0) @map("sort_order")
-  status    PostStatus @default(published)
-  createdAt DateTime   @default(now()) @map("created_at")
-  updatedAt DateTime   @updatedAt @map("updated_at")
-
-  steps HowItWorksStep[]
+  sortOrder Int              @default(0) @map("sort_order")
+  status    PostStatus       @default(published)
+  createdAt DateTime         @default(now()) @map("created_at")
+  updatedAt DateTime         @updatedAt @map("updated_at")
+  steps     HowItWorksStep[]
 
   @@map("how_it_works_packages")
   @@schema("webdrop")
 }
 
 model HowItWorksStep {
-  id        Int    @id @default(autoincrement())
-  packageId Int    @map("package_id")
+  id        Int               @id @default(autoincrement())
+  packageId Int               @map("package_id")
   title     String
   desc      String?
-  sortOrder Int    @default(0) @map("sort_order")
-
-  package HowItWorksPackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  sortOrder Int               @default(0) @map("sort_order")
+  package   HowItWorksPackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
 
   @@map("how_it_works_steps")
   @@schema("webdrop")
@@ -657,16 +522,11 @@ model ActivityLog {
   targetId    Int?     @map("target_id")
   description String?
   createdAt   DateTime @default(now()) @map("created_at")
-
-  admin User? @relation(fields: [adminId], references: [id])
+  admin       User?    @relation(fields: [adminId], references: [id])
 
   @@map("activity_logs")
   @@schema("webdrop")
 }
-
-// ============================================================
-// DISCOUNT CODES
-// ============================================================
 
 model DiscountCode {
   id        Int          @id @default(autoincrement())
@@ -684,57 +544,180 @@ model DiscountCode {
   @@schema("webdrop")
 }
 
-enum DiscountType {
-  percent
-  fixed
-}
-
-// ============================================================
-// EXTENSION: CV BUILDER SAAS
-// ============================================================
-
 model CvProfile {
   id           Int      @id @default(autoincrement())
   userId       Int      @unique @map("user_id")
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   templateType String   @default("classic") @map("template_type")
   slug         String   @unique
   isPublic     Boolean  @default(true) @map("is_public")
   createdAt    DateTime @default(now()) @map("created_at")
   updatedAt    DateTime @updatedAt @map("updated_at")
-
-  data CvData?
+  data         CvData?
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("cv_profiles")
   @@schema("webdrop")
 }
 
 model CvData {
-  id    Int       @id @default(autoincrement())
-  cvId  Int       @unique @map("cv_id")
-  cv    CvProfile @relation(fields: [cvId], references: [id], onDelete: Cascade)
-
-  fullName  String? @map("full_name")
-  jobTitle  String? @map("job_title")
-  avatarUrl String? @map("avatar_url")
-  summary   String? @db.Text
-  email     String?
-  phone     String?
-  location  String?
-  website   String?
-  linkedin  String?
-  github    String?
-  twitter   String?
-
+  id             Int       @id @default(autoincrement())
+  cvId           Int       @unique @map("cv_id")
+  fullName       String?   @map("full_name")
+  jobTitle       String?   @map("job_title")
+  avatarUrl      String?   @map("avatar_url")
+  summary        String?
+  email          String?
+  phone          String?
+  location       String?
+  website        String?
+  linkedin       String?
+  github         String?
+  twitter        String?
   experience     Json?
   education      Json?
   skills         Json?
   projects       Json?
   certifications Json?
   languages      Json?
-
-  updatedAt DateTime @updatedAt @map("updated_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+  cv             CvProfile @relation(fields: [cvId], references: [id], onDelete: Cascade)
 
   @@map("cv_data")
+  @@schema("webdrop")
+}
+
+enum UserRole {
+  superadmin
+  user
+
+  @@schema("webdrop")
+}
+
+enum PostStatus {
+  draft
+  published
+
+  @@schema("webdrop")
+}
+
+enum BannerTarget {
+  blank
+  self
+
+  @@schema("webdrop")
+}
+
+enum ContactStatus {
+  new
+  read
+  replied
+
+  @@schema("webdrop")
+}
+
+enum TemplateCategory {
+  web
+  admin
+
+  @@schema("webdrop")
+}
+
+enum CustomerStatus {
+  active
+  inactive
+
+  @@schema("webdrop")
+}
+
+enum OrderType {
+  template
+  website
+  cv
+
+  @@schema("webdrop")
+}
+
+enum OrderStatus {
+  new
+  confirmed
+  in_progress
+  delivered
+  completed
+  cancelled
+
+  @@schema("webdrop")
+}
+
+enum PaymentMethod {
+  cash
+  bank
+  momo
+  vnpay
+
+  @@schema("webdrop")
+}
+
+enum PaymentStatus {
+  pending
+  paid
+  refunded
+
+  @@schema("webdrop")
+}
+
+enum ProjectType {
+  goi_b
+  goi_c
+
+  @@schema("webdrop")
+}
+
+enum ProjectStatus {
+  planning
+  designing
+  developing
+  reviewing
+  delivered
+  done
+
+  @@schema("webdrop")
+}
+
+enum MilestoneStatus {
+  pending
+  done
+
+  @@schema("webdrop")
+}
+
+enum SlideType {
+  intro
+  features
+  grid
+  pricing
+  testimonial
+
+  @@schema("webdrop")
+}
+
+enum PricingGroupType {
+  cards
+  banner
+
+  @@schema("webdrop")
+}
+
+enum PricingBg {
+  light
+  warm
+  dark
+
+  @@schema("webdrop")
+}
+
+enum DiscountType {
+  percent
+  fixed
+
   @@schema("webdrop")
 }
