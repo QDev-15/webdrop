@@ -15,6 +15,29 @@ datasource db {
   schemas  = ["webdrop"]  // ← Thêm dòng này
 }
 Lưu ý: Cần cập nhật toàn bộ model thêm annotation @@schema("webdrop") nếu sử dụng multiple schemas, hoặc chỉ khai báo ở datasource là đủ nếu dùng 1 schema duy nhất.
+Mọi model hay enum, khai báo object phải nói rõ là dùng cho db nào:
+model Category {
+  id          Int        @id @default(autoincrement())
+  name        String
+  slug        String     @unique
+  description String?
+  thumbnail   String?
+  parentId    Int?       @map("parent_id")
+  createdAt   DateTime   @default(now()) @map("created_at")
+  parent      Category?  @relation("CategoryChildren", fields: [parentId], references: [id])
+  children    Category[] @relation("CategoryChildren")
+  posts       Post[]
+
+  @@map("categories")
+  @@schema("webdrop")
+}
+
+enum UserRole {
+  superadmin
+  user
+
+  @@schema("webdrop")
+}
 
 Bước 3: Introspect lại Prisma
 
