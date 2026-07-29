@@ -32,30 +32,16 @@ Toàn bộ nền tảng dùng chung, **không lặp lại ở đây** — đọc
 
 ---
 
-## Điểm khác biệt cốt lõi so với `shop-template-builder`
+## ⛔ Trang chủ CHỈ có: Tìm kiếm + Catalog sản phẩm
 
-`shop-template-builder` vẫn cho phép trang chủ có "banner mỏng" (Mode A) hoặc hero intro + các section chủ đề (Mode B) — về bản chất vẫn có chỗ cho tagline thương hiệu, USP kể chuyện. Agent này đi xa hơn: **trang chủ không có bất kỳ khối nội dung nào mang tính giới thiệu/marketing thương hiệu** — chỉ có tìm kiếm + sản phẩm. Toàn bộ phần "kể chuyện thương hiệu" dồn hẳn sang trang riêng trong nav (`ve-chung-toi.html` / `dich-vu.html` / trang khác tùy ngách).
+**KHÔNG cho phép bất kỳ khối nào:**
+Hero thương hiệu · Why-choose-us · Testimonials · Stat bar · Newsletter · Feature-icon-row · Gallery · About teaser.
 
----
+Tất cả nội dung marketing/giới thiệu **dồn sang trang Giới thiệu/Dịch vụ riêng** — không để lại bản rút gọn/teaser nào.
 
-## ⛔ Danh sách CẤM tuyệt đối trên `index.html`
-
-Các khối sau đây **KHÔNG được xuất hiện trên trang chủ** dưới bất kỳ hình thức nào (kể cả rút gọn/teaser):
-
-- Hero lớn mang tính thương hiệu (tagline cảm xúc, câu chuyện thành lập, USP kể chuyện, hình ảnh lifestyle không phải ảnh sản phẩm)
-- Khối "Vì sao chọn chúng tôi" / Trust badges dạng section riêng (icon + tiêu đề + đoạn mô tả)
-- Testimonials / đánh giá khách hàng dạng section
-- Stat bar (số liệu thống kê thương hiệu: số khách hàng, số năm kinh nghiệm, số tỉnh giao hàng...)
-- Newsletter signup mang tính thương hiệu
-- Feature-icon-row giới thiệu dịch vụ/chính sách (giao hàng/đổi trả/bảo hành trình bày thành 1 section riêng)
-- Gallery không gian cửa hàng / hậu trường thương hiệu
-- Bất kỳ khối "About teaser" nào kèm nút "Tìm hiểu thêm →" trỏ về trang Giới thiệu
-
-Toàn bộ nội dung trên **bắt buộc chuyển hẳn** sang trang riêng trong nav (xem Bước A' bên dưới) — không để lại bản rút gọn/teaser nào trên trang chủ. Trang chủ không cần "mời gọi" khách xem trang Giới thiệu — menu nav đã đủ để khách tự vào khi cần.
-
-**Ngoại lệ được phép** (không tính là "marketing section" vì gắn trực tiếp với sản phẩm, không phải khối riêng biệt):
-- Trust badge ngắn gắn trong product card / trang chi tiết sản phẩm (vd "✓ Hàng chính hãng · ✓ Bảo hành 12 tháng" đặt cạnh nút mua — như đã làm ở `shop-ami-mobile`)
-- Topbar 1 dòng trên cùng — **tối đa 3 claim ngắn dạng cụm từ** (vd "Miễn phí vận chuyển đơn từ 500K · Đổi trả 30 ngày · Bảo hành chính hãng"), mỗi claim chỉ 3-6 từ, không viết thành câu văn hoàn chỉnh, không kèm hình ảnh/icon lớn/nút CTA. Đây là dòng thông báo tiện ích (logistics/chính sách ngắn gọn), không phải nơi kể USP hay thương hiệu. **Bắt buộc nội dung topbar giống hệt nhau trên cả 9 trang** — không để trang này có 3 claim, trang khác chỉ 2 claim.
+**Ngoại lệ được phép:**
+- Topbar 1 dòng (tối đa 3 claim ngắn 3-6 từ, **giống hệt trên cả 9 trang**): "Miễn phí vận chuyển · Đổi trả 30 ngày · Bảo hành"
+- Trust badge ngắn inline trong product card/trang chi tiết: "✓ Hàng chính hãng · ✓ Bảo hành 12 tháng"
 
 ---
 
@@ -82,22 +68,13 @@ Khác Mode B gốc ở chỗ: **không có Hero intro banner, không có Stat Ba
 
 ---
 
-## Bước B' — Trang Giới thiệu/Dịch vụ nhận toàn bộ nội dung bị bỏ khỏi trang chủ
+## Bước B' — Trang Giới thiệu/Dịch vụ
 
 Chọn 1 trong 2 trang tùy ngách (nêu rõ đã chọn trang nào):
 - **`ve-chung-toi.html` (Giới thiệu)** — phù hợp ngách cần kể câu chuyện thương hiệu (thời trang, mỹ phẩm, thủ công...)
 - **`dich-vu.html` (Dịch vụ)** — phù hợp ngách cần giải thích chính sách/quy trình (điện tử, nội thất, vận chuyển đặc thù...)
 
-Trang này gộp **toàn bộ** nội dung bị cấm ở trang chủ, dựng thành 1 trang hoàn chỉnh:
-- Hero/banner giới thiệu (được phép đầy đủ ở đây — kể chuyện thương hiệu, hình ảnh lifestyle)
-- Story section (hành trình thương hiệu, giá trị cốt lõi)
-- Why-choose-us / Trust badges dạng section đầy đủ
-- Stat bar (số liệu thương hiệu)
-- Testimonials
-- Feature-icon-row (chính sách giao hàng/đổi trả/bảo hành trình bày đầy đủ)
-- CTA cuối trang trỏ về trang Sản phẩm/Catalog
-
-Đây chính là nội dung mà `template-builder`/`shop-template-builder` thường đặt rải rác trên trang chủ — agent này chỉ **dời vị trí**, không cắt bớt nội dung. Trang Giới thiệu/Dịch vụ phải đủ dài và chỉn chu như 1 trang chủ marketing thông thường, không phải trang phụ sơ sài.
+Trang này nhận **toàn bộ nội dung bị cấm khỏi index.html** (hero/story/why-choose-us/stat bar/testimonials/feature-icon-row/CTA), dựng thành 1 trang hoàn chỉnh, đủ dài chỉn chu như 1 trang chủ marketing thông thường — không cắt bớt nội dung, chỉ **dời vị trí** từ trang chủ sang đây.
 
 Nav vẫn ≥5 mục theo rule chung của `template-builder` — ví dụ: Trang chủ · Sản phẩm (nếu Biến thể 2) hoặc Khuyến mãi/Bộ sưu tập (nếu Biến thể 1, để đủ 5 mục) · Giới thiệu hoặc Dịch vụ · Liên hệ (+ Chính sách bảo mật/Điều khoản ở footer theo rule chung).
 
@@ -106,15 +83,13 @@ Nav vẫn ≥5 mục theo rule chung của `template-builder` — ví dụ: Tran
 ## Checklist bổ sung (thêm vào checklist gốc của `template-builder` + `shop-template-builder`)
 
 ```
-□ Đã nêu rõ đã chọn Biến thể 1 (SEARCH-FIRST UNIFIED) hay Biến thể 2 (CATEGORY-SECTIONS THUẦN SẢN PHẨM)
-□ Đã nêu rõ nội dung giới thiệu dồn về ve-chung-toi.html hay dich-vu.html
-□ index.html — rà lại từng section, xác nhận KHÔNG có bất kỳ khối nào trong danh sách cấm (hero thương hiệu, why-choose-us, testimonials, stat bar, feature-icon-row, gallery thương hiệu, about-teaser)
+□ Đã nêu rõ đã chọn Biến thể 1 (SEARCH-FIRST UNIFIED) hay Biến thể 2 (CATEGORY-SECTIONS)
+□ Đã nêu rõ đã chọn `ve-chung-toi.html` hay `dich-vu.html` (và lý do)
+□ index.html — rà lại từng section, xác nhận KHÔNG có bất kỳ khối marketing nào (chỉ: tìm kiếm + catalog sản phẩm)
 □ index.html có ô tìm kiếm to, dễ thấy — không phải ô tìm kiếm nhỏ ẩn trong icon nav
-□ Toàn bộ nội dung marketing bị bỏ khỏi trang chủ đã được PORT ĐẦY ĐỦ (không cắt bớt) sang trang Giới thiệu/Dịch vụ — không mất nội dung
-□ Trust badge/ticker 1 dòng (nếu có) đúng giới hạn ngoại lệ — không phình thành section riêng
-□ Toàn bộ checklist Bước B→E của shop-template-builder vẫn áp dụng đầy đủ (data-driven PRODUCTS, filter toolbar ngang, JS filter engine, phân trang cổ điển)
-□ Toàn bộ checklist gốc của template-builder vẫn áp dụng đầy đủ (Identity Token, Nav Style, ≥5 menu item, Chính sách bảo mật + Điều khoản ở footer...)
-□ [P0 — bắt buộc] Đối chiếu CSS ↔ HTML: trích xuất toàn bộ class `[prefix]-*` xuất hiện trong cả 9 file HTML (kể cả class gán động qua JS `classList`/`className`), đối chiếu với toàn bộ selector định nghĩa trong `assets/css/style.css` — xác nhận 0 class HTML nào thiếu CSS trước khi báo hoàn thành. Lý do: batch 2026-07-27 phát hiện 2/5 template (`shop-do-choi`, `shop-my-pham`) viết CSS theo quy ước đặt tên KHÁC hoàn toàn với class thực dùng trong HTML (vd `.dc-container` dùng 37 lần trong HTML nhưng CSS chỉ có `.wd-container`; `.mp-btn-accent` dùng ~20 lần nhưng CSS không định nghĩa) — vỡ style gần như toàn bộ trang dù JS/data layer hoàn toàn đúng. Không được chỉ tự tin vào việc "đã viết CSS đầy đủ" mà không grep đối chiếu thật.
+□ Toàn bộ nội dung bị bỏ đã được PORT ĐẦY ĐỦ sang trang Giới thiệu/Dịch vụ — không mất nội dung
+□ Topbar 1 dòng + trust badge ngắn (nếu có) đúng giới hạn ngoại lệ — không phình thành section riêng
+□ [P0 — bắt buộc] Đối chiếu CSS ↔ HTML: trích xuất toàn bộ class `[prefix]-*` từ 9 file HTML, đối chiếu với `assets/css/style.css` — xác nhận 0 class thiếu định nghĩa. Batch 2026-07-27 phát hiện 2/5 template viết CSS với quy ước tên khác hoàn toàn với HTML class (vd `.dc-container` dùng 37 lần nhưng CSS không có) — vỡ style dù JS/data đúng. Bắt buộc grep đối chiếu thật, không tự tin chỉ qua đọc.
 ```
 
 ---
