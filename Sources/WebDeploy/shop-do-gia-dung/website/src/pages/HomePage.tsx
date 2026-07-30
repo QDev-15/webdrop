@@ -31,7 +31,7 @@ function ProductCard({ product }: ProductCardProps) {
         <div className="dg-card-image">
           <img src={product.image} alt={product.name} onError={e => {
             const img = e.target as HTMLImageElement
-            img.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect fill='%23e8e5df' width='200' height='200'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23999' font-size='14'%3EHình ảnh không có%3C/text%3E%3C/svg%3E`
+            img.src = `https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=600&auto=format&fit=crop&q=80`
           }} />
           {product.badge && <span className="dg-card-badge">{product.badge === 'sale' ? 'Sale' : 'Hot'}</span>}
         </div>
@@ -42,16 +42,20 @@ function ProductCard({ product }: ProductCardProps) {
         <div className="dg-card-price">
           {product.salePrice ? (
             <>
-              <span className="dg-card-price-sale">{(product.salePrice || 0).toLocaleString('vi-VN')}đ</span>
               <span className="dg-card-price-orig">{(product.price).toLocaleString('vi-VN')}đ</span>
+              <span className="dg-card-price-sale">{(product.salePrice || 0).toLocaleString('vi-VN')}đ</span>
             </>
           ) : (
-            <span className="dg-card-price-sale">{(product.price).toLocaleString('vi-VN')}đ</span>
+            <>
+              <span className="dg-card-price-orig"></span>
+              <span className="dg-card-price-sale">{(product.price).toLocaleString('vi-VN')}đ</span>
+            </>
           )}
         </div>
         <div className="dg-card-actions">
-          <button className={`dg-card-btn ${added ? 'added' : ''}`} onClick={handleAddToCart} title="Thêm vào giỏ hàng">
-            {added ? '✓ Đã thêm' : 'Thêm giỏ'}
+          <button className={`dg-card-btn ${added ? 'added' : ''} dg-card-btn-flex-center`} onClick={handleAddToCart} title="Thêm vào giỏ hàng">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path></svg>
+            <span> {added ? '✓ Đã thêm' : 'Thêm giỏ'}</span>
           </button>
           <Link to={`/san-pham/${product.slug}`} className="dg-card-btn-secondary" title="Mua ngay">Mua ngay</Link>
         </div>

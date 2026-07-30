@@ -3,6 +3,9 @@
 /* Tone: Warm-light | Identity: WARM-ARTISAN variant | Prefix: dg- */
 /* Màu: Terracotta #b5651d + Sage #87a06b — KHÁC shop-rau-xanh (#a67a3c + #7d7a4a) */
 
+/* ── Google Fonts Import ── */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500&family=Karla:wght@400;500&display=swap');
+
 /* ── 1. CSS Custom Properties ── */
 :root {
   --bg:            #fdf8f3;
@@ -145,7 +148,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--serif); font-weight: 500; line-heigh
   white-space: nowrap;
 }
 .dg-nav__links a:hover,
-.dg-nav__links a.active { color: var(--accent); background: var(--accent-light); }
+.dg-nav__links a.active { color: var(--accent);}
 .dg-nav__actions {
   display: flex;
   align-items: center;
@@ -473,6 +476,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--serif); font-weight: 500; line-heigh
   border-radius: var(--radius-card);
   border-top: 3px solid var(--border-light);
   overflow: hidden;
+  display: grid;
   transition: transform .25s ease, box-shadow .25s ease, border-top-color .25s ease;
   box-shadow: var(--shadow-card);
 }
@@ -1684,6 +1688,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--serif); font-weight: 500; line-heigh
   line-height: 1.35;
   color: var(--text);
   transition: color .2s;
+  min-height: 40px;
 }
 .dg-card:hover .dg-card-name { color: var(--accent); }
 .dg-card-desc {
@@ -1704,10 +1709,20 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--serif); font-weight: 500; line-heigh
   padding: 0 16px 16px;
   flex-wrap: wrap;
 }
-.dg-card-price { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.dg-card-btn-flex-center {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.dg-card-price { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; width: 100%; justify-content: space-between; }
 .dg-card-price-sale { font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--accent); }
 .dg-card-price-orig { font-size: 13px; font-weight: 400; color: var(--text-3); text-decoration: line-through; }
-.dg-card-actions { display: flex; gap: 8px; }
+@media (max-width: 480px) {
+  .dg-card-price {
+    justify-content: right;
+  }
+}
+.dg-card-actions { display: flex; gap: 8px; width: 100%; flex-wrap: wrap; justify-content: space-between;}
 .dg-card-btn {
   padding: 8px 14px;
   border-radius: var(--radius-btn);

@@ -216,7 +216,7 @@ webdrop/
 │       │   ├── shop-the-thao/      (DARK-ENERGY variant Signal Orange, template-only, css prefix tt-, shop-catalog-builder)
 │       │   ├── shop-do-choi/       (SOFT-PASTEL variant Sky Blue+Coral, template-only, css prefix dc-, shop-catalog-builder)
 │       │   ├── shop-my-pham/       (LUXE-DARK variant Rose Gold #c98a8a, WebDeploy đầy đủ, css prefix mp-, shop-catalog-builder)
-│       │   ├── shop-do-gia-dung/   (WARM-ARTISAN Terracotta+Sage, WebDeploy đầy đủ, css prefix dg-, shop-catalog-builder 2026-07-29)
+│       │   ├── shop-do-gia-dung/   (WARM-ARTISAN Terracotta+Sage, WebDeploy đầy đủ, css prefix dg-, shop-catalog-builder 2026-07-29, styling fixed 2026-07-30)
 │       │   └── shop-van-phong-pham/ (CLEAN-CORPORATE fresh token Steel Blue, template-only, css prefix vp-, shop-catalog-builder)
 │       └── CVs/                   ← 🔲 PLANNING (5 mẫu: classic, minimal, creative, dark, executive)
 ├── documents/                      ← Prototype UI HTML (tham khảo)

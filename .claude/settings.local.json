@@ -29,7 +29,9 @@
       "Skill(claude-api)",
       "Skill(claude-api:*)",
       "Bash(echo \"exit:$?\")",
-      "Bash(grep -oP \"^\\\\| \\\\`shop-[a-z-]+\\\\` \\\\| [^|]+ \\\\| [^|]+ \\\\| [A-Z-]+\" \"/d/Working/project/WebApps/WebDrop/webdrop/.claude/CLAUDE.md\")"
+      "Bash(grep -oP \"^\\\\| \\\\`shop-[a-z-]+\\\\` \\\\| [^|]+ \\\\| [^|]+ \\\\| [A-Z-]+\" \"/d/Working/project/WebApps/WebDrop/webdrop/.claude/CLAUDE.md\")",
+      "Bash(php -S localhost:8081 -t _output-deploy/)",
+      "Bash(curl -s http://localhost:8081/)"
     ],
     "additionalDirectories": [
       "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"
