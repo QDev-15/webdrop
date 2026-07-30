@@ -13,6 +13,7 @@ export interface Product {
   color?: string
   colorName?: string
   colorHex?: string
+  colors?: string
   description?: string
   rating?: number
   sold?: number
@@ -87,6 +88,7 @@ export function SiteProvider({ children }: { children: ReactNode }) {
             color: p.colors ? String(p.colors).split('|')[0]?.split(':')[0] : undefined,
             colorName: p.colors ? String(p.colors).split('|')[0]?.split(':')[0] : undefined,
             colorHex: p.colors ? String(p.colors).split('|')[0]?.split(':')[1] : undefined,
+            colors: p.colors,
             description: p.description,
             rating: p.rating !== undefined && p.rating !== null ? Number(p.rating) : undefined,
             sold: p.sold !== undefined && p.sold !== null ? Number(p.sold) : undefined,

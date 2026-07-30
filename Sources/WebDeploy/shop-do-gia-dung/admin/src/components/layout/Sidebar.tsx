@@ -5,38 +5,75 @@ export default function Sidebar() {
   const location = useLocation()
   const { user, logout } = useAuth()
 
-  const isActive = (path: string) => location.pathname === path
+  const isActive = (path: string) => location.pathname === path || location.pathname.startsWith(path + '/')
 
   return (
     <aside className="admin-sidebar">
       <div className="sidebar-logo">
-        <Link to="/admin">Shop Đồ Gia Dụng</Link>
+        <Link to="/">Shop Đồ Gia Dụng</Link>
       </div>
 
       <nav className="sidebar-nav">
+        <div className="sidebar-section-title">📊 Quản lý</div>
         <Link
-          to="/admin"
-          className={`sidebar-nav-item ${isActive('/admin') ? 'active' : ''}`}
+          to="/"
+          className={`sidebar-nav-item ${isActive('/') && location.pathname === '/' ? 'active' : ''}`}
         >
-          📊 Dashboard
+          Dashboard
+        </Link>
+
+        <div className="sidebar-section-title">📦 Sản phẩm</div>
+        <Link
+          to="/products"
+          className={`sidebar-nav-item ${isActive('/products') ? 'active' : ''}`}
+        >
+          Danh sách Sản phẩm
         </Link>
         <Link
-          to="/admin/products"
-          className={`sidebar-nav-item ${isActive('/admin/products') ? 'active' : ''}`}
+          to="/categories"
+          className={`sidebar-nav-item ${isActive('/categories') ? 'active' : ''}`}
         >
-          📦 Sản phẩm
+          Danh mục
+        </Link>
+
+        <div className="sidebar-section-title">🛒 Đơn hàng</div>
+        <Link
+          to="/orders"
+          className={`sidebar-nav-item ${isActive('/orders') ? 'active' : ''}`}
+        >
+          Đơn hàng
         </Link>
         <Link
-          to="/admin/orders"
-          className={`sidebar-nav-item ${isActive('/admin/orders') ? 'active' : ''}`}
+          to="/contacts"
+          className={`sidebar-nav-item ${isActive('/contacts') ? 'active' : ''}`}
         >
-          🛒 Đơn hàng
+          Liên hệ
+        </Link>
+
+        <div className="sidebar-section-title">⚙️ Hệ thống</div>
+        <Link
+          to="/slides"
+          className={`sidebar-nav-item ${isActive('/slides') ? 'active' : ''}`}
+        >
+          Hero Slides
         </Link>
         <Link
-          to="/admin/settings"
-          className={`sidebar-nav-item ${isActive('/admin/settings') ? 'active' : ''}`}
+          to="/media"
+          className={`sidebar-nav-item ${isActive('/media') ? 'active' : ''}`}
         >
-          ⚙️ Cài đặt
+          Thư viện ảnh
+        </Link>
+        <Link
+          to="/settings"
+          className={`sidebar-nav-item ${isActive('/settings') ? 'active' : ''}`}
+        >
+          Cài đặt
+        </Link>
+        <Link
+          to="/profile"
+          className={`sidebar-nav-item ${isActive('/profile') ? 'active' : ''}`}
+        >
+          Hồ sơ tài khoản
         </Link>
       </nav>
 
