@@ -1,6 +1,7 @@
 ---
 name: web-deploy-builder-checklists
 description: Bước 8 & 9 checklists — Verify trước khi báo xong
+model: claude-sonnet-5
 ---
 
 # Bước 8 — Checklist Cuối (Pre-Ship)

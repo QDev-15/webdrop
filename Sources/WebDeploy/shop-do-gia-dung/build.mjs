@@ -88,6 +88,12 @@ cpSync(join(root, 'website', 'dist'), deploy, { recursive: true })
 console.log('  Copy admin dist...')
 cpSync(join(root, 'admin', 'dist'), join(deploy, 'admin'), { recursive: true })
 
+// admin/public/.htaccess → deploy/admin/ (SPA routing)
+if (existsSync(join(root, 'admin', 'public', '.htaccess'))) {
+  cpSync(join(root, 'admin', 'public', '.htaccess'), join(deploy, 'admin', '.htaccess'))
+  console.log('  Copy admin/.htaccess...')
+}
+
 // Inject APP_KEY và APP_URL vào config.php
 console.log('  Inject APP_KEY + APP_URL vào config.php...')
 const appKey = randomBytes(32).toString('hex')

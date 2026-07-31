@@ -31,7 +31,14 @@
       "Bash(echo \"exit:$?\")",
       "Bash(grep -oP \"^\\\\| \\\\`shop-[a-z-]+\\\\` \\\\| [^|]+ \\\\| [^|]+ \\\\| [A-Z-]+\" \"/d/Working/project/WebApps/WebDrop/webdrop/.claude/CLAUDE.md\")",
       "Bash(php -S localhost:8081 -t _output-deploy/)",
-      "Bash(curl -s http://localhost:8081/)"
+      "Bash(curl -s http://localhost:8081/)",
+      "Bash(php -S localhost:8082)",
+      "Bash(curl -s http://localhost:8082/health)",
+      "Bash(python3 -m http.server 8000)",
+      "Bash(curl -s http://localhost:8000/admin/)",
+      "Bash(python3 -m http.server 8000 --directory \"d:/Data/Projects/AIProject/webdrop/Sources/WebDeploy/_output-deploy\")",
+      "Bash(curl -s \"http://localhost:8000/admin/\")",
+      "Bash(curl -s \"http://localhost:8000/admin/assets/index-\"*)"
     ],
     "additionalDirectories": [
       "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"

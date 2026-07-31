@@ -30,8 +30,8 @@ export default function Sidebar() {
           Danh sách Sản phẩm
         </Link>
         <Link
-          to="/categories"
-          className={`sidebar-nav-item ${isActive('/categories') ? 'active' : ''}`}
+          to="/product-categories"
+          className={`sidebar-nav-item ${isActive('/product-categories') ? 'active' : ''}`}
         >
           Danh mục
         </Link>

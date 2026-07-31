@@ -1,6 +1,7 @@
 ---
 name: web-deploy-builder-shop-rules
 description: Shop-specific rules (22-28b) cho web-deploy-builder — chỉ dùng khi type=shop
+model: claude-sonnet-5
 ---
 
 # 🛍️ Shop-Specific Rules (22-28b) — Load khi `type=shop`
