@@ -97,9 +97,11 @@ CREATE TABLE IF NOT EXISTS products (
     sort_order   INTEGER NOT NULL DEFAULT 0,
     created_at   TEXT NOT NULL DEFAULT (datetime('now','localtime')),
     updated_at   TEXT NOT NULL DEFAULT (datetime('now','localtime')),
-    -- ▼ AI thêm cột riêng theo template tại đây (vd: material, brand, gallery, sizes, features, specs, origin, stock_qty)
+    -- ▼ AI thêm cột riêng theo template tại đây (vd: material, brand, sizes, features, specs, origin, stock_qty)
     theme        TEXT NOT NULL DEFAULT '',  -- comma-separated: 'ban-chay','moi-ve','giam-gia' — dùng cho 3 section trang chủ
-    sold         INTEGER NOT NULL DEFAULT 0 -- số lượng đã bán, hiển thị trên card + dùng để sort "Bán chạy nhất"
+    sold         INTEGER NOT NULL DEFAULT 0, -- số lượng đã bán, hiển thị trên card + dùng để sort "Bán chạy nhất"
+    gallery      TEXT NOT NULL DEFAULT '', -- JSON array: ["url1","url2","url3"] — ảnh mô tả từ nhiều góc
+    video_url    TEXT NOT NULL DEFAULT ''  -- YouTube URL hoặc video demo link
 );
 
 -- Đơn hàng — schema CỐ ĐỊNH, khớp 1-1 với OrderController.php + ShopPublicController.php.

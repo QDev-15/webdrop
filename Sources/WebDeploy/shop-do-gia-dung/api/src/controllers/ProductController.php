@@ -13,6 +13,7 @@ class ProductController {
         'badge' => 's', 'description' => 's', 'colors' => 's', 'rating' => 'f',
         'in_stock' => 'i', 'is_featured' => 'i', 'is_new' => 'i', 'status' => 's', 'sort_order' => 'i',
         'theme' => 's', 'sold' => 'i',
+        'gallery' => 's', 'video_url' => 's',  // JSON array gallery + YouTube URL
     ];
 
     private function cast(string $type, mixed $v): mixed {

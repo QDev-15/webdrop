@@ -4,12 +4,29 @@ import { useDocumentMeta } from '../hooks/useDocumentMeta'
 import { useCart } from '../contexts/CartContext'
 import { useState } from 'react'
 
+function parseGallery(galleryJson: string): string[] {
+  if (!galleryJson) return []
+  try {
+    const parsed = JSON.parse(galleryJson)
+    return Array.isArray(parsed) ? parsed : []
+  } catch {
+    return []
+  }
+}
+
+function extractYouTubeId(url: string): string | null {
+  if (!url) return null
+  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/)
+  return match ? match[1] : null
+}
+
 export default function ProductDetailPage() {
   const { slug } = useParams<{ slug: string }>()
   const { products, settings } = useSite()
   const { addItem } = useCart()
   const navigate = useNavigate()
   const [added, setAdded] = useState(false)
+  const [galleryIndex, setGalleryIndex] = useState(0)
 
   const product = products.find(p => p.slug === slug)
 
@@ -56,12 +73,49 @@ export default function ProductDetailPage() {
       {/* Product Detail */}
       <main className="dg-container" style={{ paddingTop: '60px', paddingBottom: '80px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', marginBottom: '80px' }} className="dg-detail-grid">
-          {/* Image */}
+          {/* Image Gallery */}
           <div className="dg-detail-image-wrap">
-            <img src={product.image} alt={product.name} style={{ width: '100%', borderRadius: '12px', backgroundColor: 'var(--warm)' }} onError={e => {
-              const img = e.target as HTMLImageElement
-              img.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect fill='%23e8e5df' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23999' font-size='20'%3EHình ảnh không có%3C/text%3E%3C/svg%3E`
-            }} />
+            {(() => {
+              const galleryStr = typeof product.gallery === 'string' ? product.gallery : ''
+              const gallery = parseGallery(galleryStr)
+              const hasGallery = gallery.length > 0
+              const images = hasGallery ? gallery : [product.image || '']
+              const currentImg = images[galleryIndex] || product.image
+
+              return (
+                <div>
+                  <img src={currentImg} alt={product.name} style={{ width: '100%', borderRadius: '12px', backgroundColor: 'var(--warm)', marginBottom: '12px' }} onError={e => {
+                    const img = e.target as HTMLImageElement
+                    img.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect fill='%23e8e5df' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23999' font-size='20'%3EHình ảnh không có%3C/text%3E%3C/svg%3E`
+                  }} />
+                  {hasGallery && images.length > 1 && (
+                    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.min(images.length, 5)}, 1fr)`, gap: '8px' }}>
+                      {images.map((img, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setGalleryIndex(idx)}
+                          style={{
+                            padding: 0,
+                            border: idx === galleryIndex ? '2px solid var(--accent)' : '1px solid var(--border)',
+                            borderRadius: '8px',
+                            overflow: 'hidden',
+                            cursor: 'pointer',
+                            background: 'none',
+                            aspectRatio: '1',
+                          }}
+                          title={`Ảnh ${idx + 1}`}
+                        >
+                          <img src={img} alt={`${product.name} ${idx + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={e => {
+                            const i = e.target as HTMLImageElement
+                            i.style.display = 'none'
+                          }} />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )
+            })()}
           </div>
 
           {/* Info */}
@@ -116,6 +170,25 @@ export default function ProductDetailPage() {
             </div>
           </div>
         </div>
+
+        {/* Video Demo */}
+        {(() => {
+          const youtubeId = extractYouTubeId((product.video_url as string) || '')
+          return youtubeId ? (
+            <div style={{ marginBottom: '80px' }}>
+              <h2 style={{ fontSize: '24px', fontWeight: '600', marginBottom: '24px', fontFamily: 'Fraunces' }}>Video mô tả sản phẩm</h2>
+              <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', backgroundColor: 'var(--warm)', borderRadius: '12px', overflow: 'hidden' }}>
+                <iframe
+                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                  src={`https://www.youtube.com/embed/${youtubeId}?rel=0`}
+                  title="Product video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          ) : null
+        })()}
 
         {/* Related Products */}
         <section style={{ marginTop: '80px', borderTop: '1px solid var(--border)', paddingTop: '60px' }}>

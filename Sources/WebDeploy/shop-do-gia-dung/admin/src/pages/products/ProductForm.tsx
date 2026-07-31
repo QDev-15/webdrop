@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '../../api/client'
 import ImageField from '../../components/ImageField'
+import GalleryField from '../../components/GalleryField'
+import VideoField from '../../components/VideoField'
 
 // ▼ AI: đổi bộ màu này khớp với palette thật của template (site nào cũng khác nhau).
 // Phải khớp 100% với COLOR_SWATCHES ở website/src/pages/ProductsPage.tsx —
@@ -42,7 +44,9 @@ interface FormData {
   sort_order: string
   theme: string
   sold: string
-  // ▼ AI: thêm field mới vào đây nếu products có thêm cột (brand, sizes, gallery, features, specs, origin...)
+  gallery: string  // JSON array: ["url1","url2","url3"]
+  video_url: string // YouTube URL
+  // ▼ AI: thêm field mới vào đây nếu products có thêm cột (brand, sizes, features, specs, origin...)
   // — nhớ thêm tương ứng vào ProductController.php::BASE_FIELDS
 }
 
@@ -50,7 +54,8 @@ const EMPTY: FormData = {
   name: '', category_id: '', image: '', price: '', price_sale: '',
   badge: '', description: '', colors: '', rating: '5', in_stock: true,
   is_featured: false, is_new: false,
-  status: 'published', sort_order: '0', theme: '', sold: '0'
+  status: 'published', sort_order: '0', theme: '', sold: '0',
+  gallery: '', video_url: ''
 }
 
 export default function ProductForm() {
@@ -89,6 +94,8 @@ export default function ProductForm() {
           sort_order: String(p.sort_order ?? '0'),
           theme: String(p.theme ?? ''),
           sold: String(p.sold ?? '0'),
+          gallery: String(p.gallery ?? ''),
+          video_url: String(p.video_url ?? ''),
         })
       }
     }).catch(() => setError('Không tải được dữ liệu'))
@@ -254,6 +261,14 @@ export default function ProductForm() {
             <input type="checkbox" checked={form.is_new} onChange={e => set('is_new', e.target.checked)} />
             <span>Sản phẩm mới</span>
           </label>
+        </div>
+
+        <div className="form-group">
+          <GalleryField value={form.gallery} onChange={v => set('gallery', v)} label="Ảnh mô tả sản phẩm (Gallery)" />
+        </div>
+
+        <div className="form-group">
+          <VideoField value={form.video_url} onChange={v => set('video_url', v)} label="Video mô tả sản phẩm (YouTube)" />
         </div>
 
         <div className="form-actions">

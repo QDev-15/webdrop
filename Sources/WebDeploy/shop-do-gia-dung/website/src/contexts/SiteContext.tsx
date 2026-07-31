@@ -20,7 +20,8 @@ export interface Product {
   stock?: boolean
   badge?: string
   image?: string
-  gallery?: string[]
+  gallery?: string // JSON array: ["url1","url2","url3"]
+  video_url?: string // YouTube URL
   specs?: string
   brand?: string
   skin_type?: string
@@ -96,6 +97,7 @@ export function SiteProvider({ children }: { children: ReactNode }) {
             badge: p.badge,
             image: p.image,
             gallery: p.gallery,
+            video_url: p.video_url,
             specs: p.specs,
             brand: p.brand,
             skin_type: p.skin_type,
