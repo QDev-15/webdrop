@@ -265,7 +265,7 @@ export default function ProductsPage() {
             
 
             {/* Result count */}
-            <span className="dg-result-count" id="dg-result-count">40 sản phẩm</span>
+            <span className="dg-result-count" id="dg-result-count">{filtered.length} sản phẩm</span>
           </div>
         </div>
         

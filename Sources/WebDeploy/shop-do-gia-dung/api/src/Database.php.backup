@@ -184,7 +184,7 @@ class Database {
             ['Trang TrÃ­',       'trang-tri',       'https://images.unsplash.com/photo-1578500494198-246f612d3b3d?w=600&auto=format&fit=crop&q=80', 2],
             ['PhÃ²ng Táº¯m',       'phong-tam',       'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&auto=format&fit=crop&q=80', 3],
             ['Ná»™i Tháº¥t Nhá»',    'noi-that-nho',    'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&auto=format&fit=crop&q=80', 4],
-            ['ÄÃ¨n & Chiáº¿u SÃ¡ng','den-chieu-sang',  'https://images.unsplash.com/photo-1565636192335-14c46fa1120d?w=600&auto=format&fit=crop&q=80', 5],
+            ['ÄÃ¨n & Chiáº¿u SÃ¡ng','den-chieu-sang',  'https://images.unsplash.com/photo-1762098801378-26bc46ae6306?w=600&auto=format&fit=crop&q=80', 5],
         ];
         $stmt = $this->pdo->prepare(
             "INSERT INTO product_categories (name, slug, image, sort_order) VALUES (?, ?, ?, ?)"
@@ -201,7 +201,7 @@ class Database {
         $products = [
             // NhÃ  Báº¿p (8 products)
             [1, 'Bá»™ Ná»“i Náº¥u Ä‚n 5 Chiáº¿c', 'bo-noi-nau-an-5-chiec',
-             'https://images.unsplash.com/photo-1584992148147-c8fb7d4c7a94?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1584990347193-6bebebfeaeee?w=800&auto=format&fit=crop&q=80',
              1290000, 1050000, '-19%',
              'Bá»™ ná»“i náº¥u Äƒn 5 chiáº¿c vá»›i Ä‘Ã¡y lÃ²ng cháº£y nhiá»‡t Ä‘á»u Ä‘áº·n, náº¯p kÃ­nh bá»n bá»ng. Tiáº¿t kiá»‡m Ä‘iá»‡n nÄƒng 30% so vá»›i ná»“i thÆ°á»ng.',
              'ThÃ©p khÃ´ng gá»‰, Ä‘Ã¡y tá»«', $colorWarm, 4.8, 1, 1, 0, 1],
@@ -213,19 +213,19 @@ class Database {
              'Gá»— sÆ¡n lÃ³t thiÃªn nhiÃªn', $colorWarm, 4.6, 1, 0, 1, 2],
 
             [1, 'Tá»§ Báº¿p Modular 3 Táº§ng', 'tu-bep-modular-3-tang',
-             'https://images.unsplash.com/photo-1584915201402-38a1b64e6d6a?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1708358977332-84e95c0083a6?w=800&auto=format&fit=crop&q=80',
              2480000, 1990000, '-20%',
              'Tá»§ báº¿p module cÃ³ thá»ƒ ghÃ©p ná»‘i tÃ¹y Ã½, chá»©a tá»›i 60 loáº¡i dá»¥ng cá»¥ náº¥u nÆ°á»›ng. Khung thÃ©p sÆ¡n tÄ©nh Ä‘iá»‡n bá»n bá»‰.',
              'ThÃ©p sÆ¡n tÄ©nh Ä‘iá»‡n, gá»— cÃ´ng nghiá»‡p', $colorWarm, 4.9, 1, 1, 0, 3],
 
             [1, 'GiÃ¡ Äá»ƒ Gia Vá»‹ DÃ¹ng Tá»«', 'gia-de-gia-vi-dung-tu',
-             'https://images.unsplash.com/photo-1578912875537-ffe12655effa?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1715758583410-ca01efec6548?w=800&auto=format&fit=crop&q=80',
              285000, null, null,
              'GiÃ¡ Ä‘á»ƒ gia vá»‹ dÃ¹ng tá»«, cÆ¡ cáº¥u Ä‘Ã³ng má»Ÿ tá»« Ä‘á»™ng. Láº¯p tÆ°á»ng trong 10 phÃºt, khÃ´ng cáº§n khoan.',
              'ThÃ©p máº¡ káº½m + tá»« tÃ­nh', $colorWarm, 4.5, 1, 0, 0, 4],
 
             [1, 'Quáº¡t HÃºt MÃ¹i Báº¿p ThÃ´ng Minh', 'quat-hut-mui-bep-thong-minh',
-             'https://images.unsplash.com/photo-1589939705066-5470d07b8c4b?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1642979430180-e676c2235ce2?w=800&auto=format&fit=crop&q=80',
              1680000, 1380000, '-18%',
              'Quáº¡t hÃºt mÃ¹i thÃ´ng minh tá»± Ä‘á»™ng báº­t/táº¯t theo Ä‘á»™ áº©m, tiáº¿ng á»“n chá»‰ 50dB. Lá»c carbon sáº¡ch sáº½ tá»›i 6 thÃ¡ng.',
              'NhÃ´m anode, motor khÃ´ng chá»•i', $colorWarm, 4.7, 1, 1, 0, 5],
@@ -237,13 +237,13 @@ class Database {
              'Äá»“ng máº¡ nickel, vÃ²i báº±ng thÃ©p', $colorWarm, 4.6, 1, 0, 0, 6],
 
             [1,  
-             'https://images.unsplash.com/photo-1589985643862-8e86dccaf5bc?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1665387075827-81bdc0aa7ca5?w=800&auto=format&fit=crop&q=80',
              195000, null, 'Má»›i',
              'Khay cáº¯t cÆ¡m kÃ©p cÃ³ náº¯p há»™p kÃ­n, giá»¯ thá»±c pháº©m tÆ°Æ¡i sá»‘ng 3 ngÃ y. KhÃ´ng ngáº¥m nÆ°á»›c, dá»… vá»‡ sinh.',
               '', 4.4, 1, 0, 1, 7],
 
             [1, 'Giáº£i PhÃ¡p Cháº·n MÃ¹i ThÃºng RÃ¡c', 'giai-phap-chan-mui-thung-rac',
-             'https://images.unsplash.com/photo-1597421603271-1b80ab9bae5f?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1643213399445-842d8f6b9a45?w=800&auto=format&fit=crop&q=80',
              125000, 89000, '-29%',
              'Bá»™ xá»­ lÃ½ mÃ¹i rÃ¡c tháº£i vá»›i nhÃ¢n hoáº¡t tÃ­nh, cÃ´ng suáº¥t khá»­ mÃ¹i 99%. Láº¯p vÃ o thÃ¹ng rÃ¡c báº¥t ká»³ trong 5 giÃ¢y.',
              'Hoáº¡t tÃ­nh, composite an toÃ n', '', 4.5, 1, 1, 0, 8],
@@ -262,19 +262,19 @@ class Database {
               $colorWarm, 4.6, 1, 0, 0, 10],
 
             [2,  
-             'https://images.unsplash.com/photo-1586024242092-91cabc9266d5?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1602172691871-49e231a20dbc?w=800&auto=format&fit=crop&q=80',
              320000, 259000, '-19%',
              
               $colorWarm, 4.5, 1, 0, 1, 11],
 
             [2, 'BÃ¬nh Gá»‘m Sá»© Cao Cáº¥p Hoa', 'binh-gom-su-cao-cap-hoa',
-             'https://images.unsplash.com/photo-1578716278232-b72f00e3fb5a?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1614175154640-f965c6323d21?w=800&auto=format&fit=crop&q=80',
              285000, 219000, '-23%',
              'BÃ¬nh gá»‘m sá»© cao cáº¥p Ä‘Æ°á»£c náº¡o quáº¿ tuyá»‡t Ä‘áº¹p, phÃ¹ há»£p cáº¯m hoa tÆ°Æ¡i hoáº·c hoa giáº£. Thiáº¿t káº¿ váº¡n nÄƒng.',
              'Gá»‘m sá»© cao cáº¥p', '', 4.4, 1, 1, 0, 12],
 
             [2, 'Chiáº¿c Táº¥m Tháº£m Treo TÆ°á»ng', 'chiec-tam-tham-treo-tuong',
-             'https://images.unsplash.com/photo-1593078615649-ef7293f32e66?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1661034494973-ed878468e23f?w=800&auto=format&fit=crop&q=80',
              520000, 445000, '-14%',
              'Tháº£m treo tÆ°á»ng kÃ­ch thÆ°á»›c 1.5m x 2m, há»a tiáº¿t bohemian Ä‘a sáº¯c. Xá»­ lÃ½ khÃ¡ng khuáº©n tá»± nhiÃªn.',
               $colorWarm, 4.8, 1, 1, 0, 13],
@@ -286,13 +286,13 @@ class Database {
              'SÃ¡p soy thiÃªn nhiÃªn, tinh dáº§u', '', 4.6, 1, 0, 1, 14],
 
             [2, 'ChÃ¢n Äá»ƒ TÆ°á»£ng Trang TrÃ­ Äá»“ng', 'chan-de-tuong-trang-tri-dong',
-             'https://images.unsplash.com/photo-1578716278232-b72f00e3fb5a?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1614175154640-f965c6323d21?w=800&auto=format&fit=crop&q=80',
              240000, 189000, '-21%',
              'ChÃ¢n Ä‘á»ƒ tÆ°á»£ng trang trÃ­ báº±ng Ä‘á»“ng nguyÃªn khá»‘i, cao 30cm. TÄƒng thÃªm sá»± sang trá»ng cho gÃ³c nhÃ  cá»§a báº¡n.',
              'Äá»“ng nguyÃªn khá»‘i, bÃ³ng cao', $colorWarm, 4.5, 1, 0, 0, 15],
 
             [2, 'Khung áº¢nh 4 Khoang Wood Veneer', 'khung-anh-4-khoang-wood-veneer',
-             'https://images.unsplash.com/photo-1578716278232-b72f00e3fb5a?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1614175154640-f965c6323d21?w=800&auto=format&fit=crop&q=80',
              185000, 145000, '-22%',
              'Khung áº£nh gá»— veneer 4 khoang cáº¡nh nhau, chá»©a 4 áº£nh 15x15cm. Láº¯p tÆ°á»ng hoáº·c Ä‘á»ƒ bÃ n Ä‘á»u Ä‘Æ°á»£c.',
              'Gá»— veneer, kÃ­nh cÆ°á»ng lá»±c', '', 4.3, 1, 1, 0, 16],
@@ -385,49 +385,49 @@ class Database {
 
             // ÄÃ¨n & Chiáº¿u SÃ¡ng (8 products)
             [5, 'ÄÃ¨n BÃ n LED TÃ­ch Äiá»‡n', 'den-ban-led-tich-dien',
-             'https://images.unsplash.com/photo-1565636192335-14c46fa1120d?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1762098801378-26bc46ae6306?w=800&auto=format&fit=crop&q=80',
              285000, 225000, '-21%',
              'ÄÃ¨n bÃ n LED tÃ­ch Ä‘iá»‡n 3 má»©c sÃ¡ng, thá»i gian hoáº¡t Ä‘á»™ng 12 giá» má»™t láº§n sáº¡c. Báº£o hÃ nh 2 nÄƒm.',
              'NhÃ´m anode, LED SMD, pin lithium', $colorWarm, 4.8, 1, 1, 0, 31],
 
             [5, 'ÄÃ¨n SÃ n VÃ²ng TrÃ²n Äá»©ng', 'den-san-vong-tron-dung',
-             'https://images.unsplash.com/photo-1565636192335-14c46fa1120d?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1762098801378-26bc46ae6306?w=800&auto=format&fit=crop&q=80',
              890000, 720000, '-19%',
              'ÄÃ¨n sÃ n vÃ²ng trÃ²n LED Ä‘iá»u chá»‰nh Ä‘á»™ sÃ¡ng 0-100%, 5 nhiá»‡t Ä‘á»™ mÃ u tá»« 2700K-6500K. Tiáº¿p kiá»‡m Ä‘iá»‡n 80%.',
              'NhÃ´m Ä‘Ãºc, vÃ²ng LED, Ä‘iá»u khiá»ƒn tá»« xa', $colorWarm, 4.9, 1, 1, 0, 32],
 
             [5, 'BÃ³ng ÄÃ¨n ThÃ´ng Minh WiFi', 'bong-den-thong-minh-wifi',
-             'https://images.unsplash.com/photo-1565636192335-14c46fa1120d?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1762098801378-26bc46ae6306?w=800&auto=format&fit=crop&q=80',
              180000, 145000, '-19%',
              'BÃ³ng Ä‘Ã¨n thÃ´ng minh WiFi 9W, Ä‘iá»u khiá»ƒn qua Ä‘iá»‡n thoáº¡i, 16 triá»‡u mÃ u, tÆ°Æ¡ng thÃ­ch Home App.',
              'LED COB, driver PFC, base E27', '', 4.6, 1, 0, 1, 33],
 
             [5, 'ÄÃ¨n Hang Tháº£ BÃ³ng Vintage', 'den-hang-tha-bong-vintage',
-             'https://images.unsplash.com/photo-1565636192335-14c46fa1120d?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1762098801378-26bc46ae6306?w=800&auto=format&fit=crop&q=80',
              340000, 270000, '-21%',
              'ÄÃ¨n tháº£ bÃ³ng vintage vá»›i cÃ¡p dÃ¹ Ä‘an káº¿t, chiá»u dÃ i dÃ¢y cÃ³ thá»ƒ Ä‘iá»u chá»‰nh. PhÃ¹ há»£p phong cÃ¡ch loft.',
               $colorWarm, 4.5, 1, 1, 0, 34],
 
             [5, 'ÄÃ¨n Treo TÆ°á»ng Cáº§u Kiáº¿n TrÃºc', 'den-treo-tuong-cau-kien-truc',
-             'https://images.unsplash.com/photo-1565636192335-14c46fa1120d?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1762098801378-26bc46ae6306?w=800&auto=format&fit=crop&q=80',
              560000, 450000, '-20%',
              'ÄÃ¨n treo tÆ°á»ng kiáº¿n trÃºc chiá»u dÃ i 50cm, cÃ³ khe Ä‘á»ƒ áº£nh hoáº·c thá»±c váº­t. GiÃ¡ng cÃ¡ch Ä‘á»™ bÃ³ng tá»± nhiÃªn.',
              'ThÃ©p cÃ¡n láº¡nh, kÃ­nh má»', $colorWarm, 4.7, 1, 1, 0, 35],
 
             [5, 'Lampe BÃ n GÃ³c Cong', 'lampe-ban-goc-cong',
-             'https://images.unsplash.com/photo-1565636192335-14c46fa1120d?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1762098801378-26bc46ae6306?w=800&auto=format&fit=crop&q=80',
              420000, 335000, '-20%',
              'Lampe bÃ n cong Ä‘o Ä‘Æ°á»£c gÃ³c phÃ¡t sÃ¡ng 120 Ä‘á»™, chÃ¢n cÃ¢n báº±ng khÃ´ng bá»‹ láº­t. Báº£o hÃ nh 3 nÄƒm motor.',
              'ThÃ©p sÆ¡n, kÃ­nh diffuser, LED', $colorWarm, 4.6, 1, 0, 0, 36],
 
             [5, 'DÃ¢y ÄÃ¨n LED Chá»›p Trang TrÃ­', 'day-den-led-chop-trang-tri',
-             'https://images.unsplash.com/photo-1565636192335-14c46fa1120d?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1762098801378-26bc46ae6306?w=800&auto=format&fit=crop&q=80',
              185000, 145000, '-22%',
              'DÃ¢y Ä‘Ã¨n LED chá»›p trang trÃ­ 10m, cháº¿ Ä‘á»™ chá»›p 8 máº«u, chá»‘ng nÆ°á»›c IP65, tiáº¿t kiá»‡m Ä‘iá»‡n.',
               '', 4.4, 1, 0, 1, 37],
 
             [5, 'ÄÃ¨n XÃ´ng Tinh Dáº§u CÃ³ Ãnh SÃ¡ng', 'den-xong-tinh-dau-co-anh-sang',
-             'https://images.unsplash.com/photo-1565636192335-14c46fa1120d?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1762098801378-26bc46ae6306?w=800&auto=format&fit=crop&q=80',
              240000, 190000, '-21%',
              'ÄÃ¨n xÃ´ng tinh dáº§u cÃ¹ng Ã¡nh sÃ¡ng LED 7 mÃ u, dÃ¹ng sÃ³ng siÃªu Ã¢m 3 cháº¿ Ä‘á»™. Dung tÃ­ch 400ml.',
              'Ceramic phun, LED RGB, motor siÃªu Ã¢m', '', 4.5, 1, 1, 0, 38],

@@ -184,7 +184,7 @@ class Database {
             ['Trang Trí',       'trang-tri',       'https://images.unsplash.com/photo-1578500494198-246f612d3b3d?w=600&auto=format&fit=crop&q=80', 2],
             ['Phòng Tắm',       'phong-tam',       'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&auto=format&fit=crop&q=80', 3],
             ['Nội Thất Nhỏ',    'noi-that-nho',    'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&auto=format&fit=crop&q=80', 4],
-            ['Đèn & Chiếu Sáng','den-chieu-sang',  'https://images.unsplash.com/photo-1565636192335-14c46fa1120d?w=600&auto=format&fit=crop&q=80', 5],
+            ['Đèn & Chiếu Sáng','den-chieu-sang',  'https://images.unsplash.com/photo-1762098801378-26bc46ae6306?w=600&auto=format&fit=crop&q=80', 5],
         ];
         $stmt = $this->pdo->prepare(
             "INSERT INTO product_categories (name, slug, image, sort_order) VALUES (?, ?, ?, ?)"
@@ -201,7 +201,7 @@ class Database {
         $products = [
             // Nhà Bếp (8 products)
             [1, 'Bộ Nồi Nấu Ăn 5 Chiếc', 'bo-noi-nau-an-5-chiec',
-             'https://images.unsplash.com/photo-1584992148147-c8fb7d4c7a94?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1584990347193-6bebebfeaeee?w=800&auto=format&fit=crop&q=80',
              1290000, 1050000, '-19%',
              'Bộ nồi nấu ăn 5 chiếc với đáy lòng chảy nhiệt đều đặn, nắp kính bền bỏng. Tiết kiệm điện năng 30% so với nồi thường. Thép không gỉ, đáy tù.',
              $colorWarm, 4.8, 1, 1, 0, 1],
@@ -213,19 +213,19 @@ class Database {
              $colorWarm, 4.6, 1, 0, 1, 2],
 
             [1, 'Tủ Bếp Modular 3 Tầng', 'tu-bep-modular-3-tang',
-             'https://images.unsplash.com/photo-1584915201402-38a1b64e6d6a?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1708358977332-84e95c0083a6?w=800&auto=format&fit=crop&q=80',
              2480000, 1990000, '-20%',
              'Tủ bếp module có thể ghép nối tùy ý, chứa tới 60 loại dụng cụ nấu nướng. Khung thép sơn tĩnh điện bền bỉ.',
              $colorWarm, 4.9, 1, 1, 0, 3],
 
             [1, 'Giá Để Gia Vị Dùng Tự', 'gia-de-gia-vi-dung-tu',
-             'https://images.unsplash.com/photo-1578912875537-ffe12655effa?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1715758583410-ca01efec6548?w=800&auto=format&fit=crop&q=80',
              285000, null, '',
              'Giá để gia vị dùng tự, cơ cấu đóng mở tự động. Lắp ráp trong 10 phút, không cần khoan. Thép mạ kẽm + tự tính.',
              $colorWarm, 4.5, 1, 0, 0, 4],
 
             [1, 'Quạt Hút Mùi Bếp Thông Minh', 'quat-hut-mui-bep-thong-minh',
-             'https://images.unsplash.com/photo-1589939705066-5470d07b8c4b?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1642979430180-e676c2235ce2?w=800&auto=format&fit=crop&q=80',
              1680000, 1380000, '-18%',
              'Quạt hút mùi thông minh tự động bật/tắt theo độ ẩm, tiếng ồn chỉ 50dB. Lọc carbon sạch sẽ tới 6 tháng. Nhôm anode, motor không chổi.',
              $colorWarm, 4.7, 1, 1, 0, 5],
@@ -237,13 +237,13 @@ class Database {
              $colorWarm, 4.6, 1, 0, 0, 6],
 
             [1, 'Khay Cắt Cơm Kép Có Nắp', 'khay-cat-com-kep-co-nap',
-             'https://images.unsplash.com/photo-1589985643862-8e86dccaf5bc?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1665387075827-81bdc0aa7ca5?w=800&auto=format&fit=crop&q=80',
              195000, null, 'Mới',
              'Khay cắt cơm kép có nắp hộp kín, giữ thực phẩm tươi sống 3 ngày. Không ngấm nước, dễ vệ sinh. Nhựa PP cao cấp.',
              $colorWarm, 4.4, 1, 0, 1, 7],
 
             [1, 'Giải Pháp Chặn Mùi Thùng Rác', 'giai-phap-chan-mui-thung-rac',
-             'https://images.unsplash.com/photo-1597421603271-1b80ab9bae5f?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1643213399445-842d8f6b9a45?w=800&auto=format&fit=crop&q=80',
              125000, 89000, '-29%',
              'Bộ xử lý mùi rác thải với nhân hoạt tính, công suất khử mùi 99%. Lắp vào thùng rác bất kỳ trong 5 giây. Hoạt tính, composite an toàn.',
              $colorWarm, 4.5, 1, 1, 0, 8],
@@ -262,19 +262,19 @@ class Database {
              $colorWarm, 4.6, 1, 0, 0, 10],
 
             [2, 'Tranh Vải Canvas Trang Trí 3 Tấm', 'tranh-vai-canvas-trang-tri-3-tam',
-             'https://images.unsplash.com/photo-1586024242092-91cabc9266d5?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1602172691871-49e231a20dbc?w=800&auto=format&fit=crop&q=80',
              320000, 259000, '-19%',
              'Bộ tranh vải canvas 3 tấm với họa tiết hoa lá tropical, khung gỗ nhẹ. Tạo điểm nhấn cho phòng khách. Vải canvas, khung gỗ plywood.',
              $colorWarm, 4.5, 1, 0, 1, 11],
 
             [2, 'Bình Gốm Sứ Cao Cấp Hoa', 'binh-gom-su-cao-cap-hoa',
-             'https://images.unsplash.com/photo-1578716278232-b72f00e3fb5a?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1614175154640-f965c6323d21?w=800&auto=format&fit=crop&q=80',
              285000, 219000, '-23%',
              'Bình gốm sứ cao cấp được nạo quế tuyệt đẹp, phù hợp cắm hoa tươi hoặc hoa giả. Thiết kế vạn năng. Gốm sứ cao cấp.',
              $colorWarm, 4.4, 1, 1, 0, 12],
 
             [2, 'Chiếc Tấm Thảm Treo Tường', 'chiec-tam-tham-treo-tuong',
-             'https://images.unsplash.com/photo-1593078615649-ef7293f32e66?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1661034494973-ed878468e23f?w=800&auto=format&fit=crop&q=80',
              520000, 445000, '-14%',
              'Thảm treo tường kích thước 1.5m x 2m, họa tiết bohemian đa sắc. Xử lý kháng khuẩn tự nhiên. Vải cotton/polyester blend.',
              $colorWarm, 4.8, 1, 1, 0, 13],
@@ -286,13 +286,13 @@ class Database {
              $colorWarm, 4.6, 1, 0, 1, 14],
 
             [2, 'Chân Để Tường Trang Trí Đồng', 'chan-de-tuong-trang-tri-dong',
-             'https://images.unsplash.com/photo-1578716278232-b72f00e3fb5a?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1614175154640-f965c6323d21?w=800&auto=format&fit=crop&q=80',
              240000, 189000, '-21%',
              'Chân để tường trang trí bằng đồng nguyên khối, cao 30cm. Tăng thêm sự sang trọng cho góc nhà của bạn. Đồng nguyên khối, bóng cao.',
              $colorWarm, 4.5, 1, 0, 0, 15],
 
             [2, 'Khung Ảnh 4 Khoang Wood Veneer', 'khung-anh-4-khoang-wood-veneer',
-             'https://images.unsplash.com/photo-1578716278232-b72f00e3fb5a?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1614175154640-f965c6323d21?w=800&auto=format&fit=crop&q=80',
              185000, 145000, '-22%',
              'Khung ảnh gỗ veneer 4 khoang cạnh nhau, chứa 4 ảnh 15x15cm. Lắp tường hoặc để bàn đều được. Gỗ veneer, kính cường lực.',
              $colorWarm, 4.3, 1, 1, 0, 16],
@@ -385,49 +385,49 @@ class Database {
 
             // Đèn & Chiếu Sáng (8 products)
             [5, 'Đèn Bàn LED Tích Điện', 'den-ban-led-tich-dien',
-             'https://images.unsplash.com/photo-1565636192335-14c46fa1120d?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1762098801378-26bc46ae6306?w=800&auto=format&fit=crop&q=80',
              285000, 225000, '-21%',
              'Đèn bàn LED tích điện 3 mức sáng, thời gian hoạt động 12 giờ một lần sạc. Bảo hành 2 năm. Nhôm anode, LED SMD, pin lithium.',
              $colorWarm, 4.8, 1, 1, 0, 31],
 
             [5, 'Đèn Sán Vòng Tròn Đứng', 'den-san-vong-tron-dung',
-             'https://images.unsplash.com/photo-1565636192335-14c46fa1120d?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1762098801378-26bc46ae6306?w=800&auto=format&fit=crop&q=80',
              890000, 720000, '-19%',
              'Đèn sán vòng tròn LED điều chỉnh độ sáng 0-100%, 5 nhiệt độ màu từ 2700K-6500K. Tiết kiệm điện 80%. Nhôm đúc, vòng LED, điều khiển từ xa.',
              $colorWarm, 4.9, 1, 1, 0, 32],
 
             [5, 'Bóng Đèn Thông Minh WiFi', 'bong-den-thong-minh-wifi',
-             'https://images.unsplash.com/photo-1565636192335-14c46fa1120d?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1762098801378-26bc46ae6306?w=800&auto=format&fit=crop&q=80',
              180000, 145000, '-19%',
              'Bóng đèn thông minh WiFi 9W, điều khiển qua điện thoại, 16 triệu màu, tương thích Home App. LED COB, driver PFC, base E27.',
              $colorWarm, 4.6, 1, 0, 1, 33],
 
             [5, 'Đèn Hang Thả Bóng Vintage', 'den-hang-tha-bong-vintage',
-             'https://images.unsplash.com/photo-1565636192335-14c46fa1120d?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1762098801378-26bc46ae6306?w=800&auto=format&fit=crop&q=80',
              340000, 270000, '-21%',
              'Đèn thả bóng vintage với cáp dù đan kết, chiều dài dây có thể điều chỉnh. Phù hợp phong cách loft. Thép sơn, dây vải, bóng Edison.',
              $colorWarm, 4.5, 1, 1, 0, 34],
 
             [5, 'Đèn Treo Tường Cầu Kiến Trúc', 'den-treo-tuong-cau-kien-truc',
-             'https://images.unsplash.com/photo-1565636192335-14c46fa1120d?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1762098801378-26bc46ae6306?w=800&auto=format&fit=crop&q=80',
              560000, 450000, '-20%',
              'Đèn treo tường kiến trúc chiều dài 50cm, có khe để ảnh hoặc thực vật. Giãng cách độ bóng tự nhiên. Thép cán lạnh, kính mờ.',
              $colorWarm, 4.7, 1, 1, 0, 35],
 
             [5, 'Lampe Bàn Góc Cong', 'lampe-ban-goc-cong',
-             'https://images.unsplash.com/photo-1565636192335-14c46fa1120d?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1762098801378-26bc46ae6306?w=800&auto=format&fit=crop&q=80',
              420000, 335000, '-20%',
              'Lampe bàn cong độ được góc phát sáng 120 độ, chân cân bằng không bị lật. Bảo hành 3 năm motor. Thép sơn, kính diffuser, LED.',
              $colorWarm, 4.6, 1, 0, 0, 36],
 
             [5, 'Dây Đèn LED Chớp Trang Trí', 'day-den-led-chop-trang-tri',
-             'https://images.unsplash.com/photo-1565636192335-14c46fa1120d?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1762098801378-26bc46ae6306?w=800&auto=format&fit=crop&q=80',
              185000, 145000, '-22%',
              'Dây đèn LED chớp trang trí 10m, chế độ chớp 8 màu, chống nước IP65, tiết kiệm điện. Dây PVC, LED SMD, plugin PFC.',
              $colorWarm, 4.4, 1, 0, 1, 37],
 
             [5, 'Đèn Xông Tinh Dầu Có Ánh Sáng', 'den-xong-tinh-dau-co-anh-sang',
-             'https://images.unsplash.com/photo-1565636192335-14c46fa1120d?w=800&auto=format&fit=crop&q=80',
+             'https://images.unsplash.com/photo-1762098801378-26bc46ae6306?w=800&auto=format&fit=crop&q=80',
              240000, 190000, '-21%',
              'Đèn xông tinh dầu cùng ánh sáng LED 7 màu, dùng sóng siêu âm 3 chế độ. Dung tích 400ml. Ceramic phun, LED RGB, motor siêu âm.',
              $colorWarm, 4.5, 1, 1, 0, 38],
