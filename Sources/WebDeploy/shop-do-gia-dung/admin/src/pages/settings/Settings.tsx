@@ -6,17 +6,8 @@ type SettingsMap = Record<string, string>
 
 const TABS = [
   { id: 'general', label: 'Thông tin chung' },
-  { id: 'home', label: 'Trang chủ' },
-  { id: 'stats', label: 'Thống kê' },
   { id: 'seo', label: 'SEO' },
-  { id: 'social', label: 'Mạng xã hội' },
-  { id: 'footer', label: 'Footer' },
-  { id: 'contact', label: 'Liên hệ' },
-  { id: 'shop', label: 'Cửa hàng' },
   { id: 'payment', label: '💳 Thanh toán' },
-  { id: 'smtp', label: 'SMTP' },
-  { id: 'system', label: 'Nâng cao' },
-  { id: 'cloudinary', label: '☁️ Cloudinary' },
   { id: 'integrations', label: '🔌 Tích hợp' },
 ]
 
@@ -33,17 +24,6 @@ function Field({ label, name, value, onChange, type = 'text', placeholder = '' }
         <input type={type} value={value} onChange={e => onChange(name, e.target.value)} placeholder={placeholder} />
       )}
     </div>
-  )
-}
-
-function ToggleField({ label, name, value, onChange }: {
-  label: string; name: string; value: string; onChange: (k: string, v: string) => void
-}) {
-  return (
-    <label className="form-check">
-      <input type="checkbox" checked={value === '1'} onChange={e => onChange(name, e.target.checked ? '1' : '0')} />
-      <span>{label}</span>
-    </label>
   )
 }
 
@@ -109,90 +89,21 @@ export default function Settings() {
           <Field label="Mô tả ngắn" name="site_description" value={val('site_description')} onChange={set} type="textarea" placeholder="Cửa hàng đồ gia dụng chất lượng cao với giá hợp lý..." />
         </>}
 
-        {activeTab === 'home' && <>
-          <p style={{ color: 'var(--text-3)', fontSize: 13, marginBottom: 16 }}>
-            Trang chủ dùng "Search Zone" (tiêu đề lớn + ô tìm kiếm + danh mục chip) thay cho hero ảnh/slider —
-            các mục dưới đây quản lý nội dung liên quan đến khu vực này.
-          </p>
-          <Field label="Mô tả phụ dưới tiêu đề Search Zone" name="hero_subtitle" value={val('hero_subtitle')} onChange={set} placeholder="Tìm trong hơn 40 sản phẩm đồ gia dụng chất lượng cao" />
-          <p style={{ fontWeight: 600, fontSize: 13, margin: '20px 0 8px' }}>Dự phòng cho thiết kế hero khác trong tương lai (hiện chưa hiển thị trên giao diện)</p>
-          <Field label="Nhãn nhỏ (tag)" name="hero_tag" value={val('hero_tag')} onChange={set} placeholder="Thiết Bị Gia Đình Tốt Nhất 2025" />
-          <div className="form-row">
-            <Field label="Tiêu đề phần 1" name="hero_title_part1" value={val('hero_title_part1')} onChange={set} placeholder="Đồ Gia Dụng" />
-            <Field label="Tiêu đề phần 2" name="hero_title_part2" value={val('hero_title_part2')} onChange={set} placeholder="Chất Lượng" />
-          </div>
-          <Field label="Tiêu đề dòng 2" name="hero_title_line2" value={val('hero_title_line2')} onChange={set} placeholder="– Chăm Sóc Gia Đình Bạn" />
-          <Field label="Ghi chú nhỏ" name="hero_note" value={val('hero_note')} onChange={set} placeholder="Giao hàng miễn phí từ 500.000đ · Đảm bảo chất lượng" />
-        </>}
-
-        {activeTab === 'stats' && <>
-          <p style={{ color: 'var(--text-3)', fontSize: 13, marginBottom: 16 }}>Số liệu thương hiệu (hiện chưa hiển thị trên giao diện, dự phòng cho section thống kê).</p>
-          <div className="form-row">
-            <Field label="Số khách hàng" name="stat_customers" value={val('stat_customers')} onChange={set} placeholder="8000" />
-            <Field label="Số sản phẩm" name="stat_products" value={val('stat_products')} onChange={set} placeholder="400" />
-          </div>
-          <div className="form-row">
-            <Field label="Số năm hoạt động" name="stat_years" value={val('stat_years')} onChange={set} placeholder="3" />
-            <Field label="Số tỉnh thành giao hàng" name="stat_provinces" value={val('stat_provinces')} onChange={set} placeholder="63" />
-          </div>
-        </>}
-
         {activeTab === 'seo' && <>
           <Field label="Meta Title" name="meta_title" value={val('meta_title')} onChange={set} placeholder="Shop Đồ Gia Dụng – Chất Lượng & Giá Tốt" />
           <Field label="Meta Description" name="meta_description" value={val('meta_description')} onChange={set} type="textarea" />
         </>}
 
-        {activeTab === 'social' && <>
-          <Field label="Facebook URL" name="facebook" value={val('facebook')} onChange={set} placeholder="https://www.facebook.com/..." />
-          <Field label="Instagram URL" name="instagram" value={val('instagram')} onChange={set} placeholder="https://www.instagram.com/..." />
-          <Field label="TikTok URL" name="tiktok" value={val('tiktok')} onChange={set} placeholder="https://www.tiktok.com/@..." />
-          <Field label="Zalo URL" name="zalo" value={val('zalo')} onChange={set} placeholder="https://zalo.me/..." />
-          <Field label="Số Zalo (không dấu cách)" name="zalo_number" value={val('zalo_number')} onChange={set} placeholder="0900888666" />
-        </>}
-
-        {activeTab === 'footer' && <>
-          <Field label="Mô tả footer" name="footer_desc" value={val('footer_desc')} onChange={set} type="textarea" />
-        </>}
-
-        {activeTab === 'contact' && <>
-          <Field label="Mã nhúng Google Maps (embed URL)" name="map_embed" value={val('map_embed')} onChange={set} type="textarea" placeholder="https://www.google.com/maps/embed?..." />
-          <p style={{ color: 'var(--text-3)', fontSize: 12 }}>Điện thoại / email / địa chỉ / giờ làm việc — chỉnh ở tab "Thông tin chung".</p>
-        </>}
-
-        {activeTab === 'shop' && <>
-          <Field label="Số ngày đổi trả" name="return_days" value={val('return_days')} onChange={set} placeholder="30" />
-          <Field label="Số tháng bảo hành" name="warranty_months" value={val('warranty_months')} onChange={set} placeholder="12" />
-          <p style={{ color: 'var(--text-3)', fontSize: 12, margin: '4px 0 16px' }}>Phí vận chuyển / Miễn phí vận chuyển từ — cấu hình tại tab "💳 Thanh toán".</p>
-        </>}
-
         {activeTab === 'payment' && <PaymentSettingsTab val={val} set={set} />}
 
-        {activeTab === 'smtp' && <>
-          <Field label="SMTP Host" name="smtp_host" value={val('smtp_host')} onChange={set} placeholder="smtp.gmail.com" />
-          <Field label="SMTP Port" name="smtp_port" value={val('smtp_port')} onChange={set} placeholder="587" />
-          <Field label="SMTP Username" name="smtp_user" value={val('smtp_user')} onChange={set} placeholder="you@gmail.com" />
-          <Field label="SMTP Password" name="smtp_pass" value={val('smtp_pass')} onChange={set} type="password" placeholder="••••••••" />
-          <Field label="From Email" name="smtp_from" value={val('smtp_from')} onChange={set} placeholder="no-reply@shopgiadadung.vn" />
-          <Field label="From Name" name="smtp_from_name" value={val('smtp_from_name')} onChange={set} placeholder="Shop Đồ Gia Dụng" />
-        </>}
-
-        {activeTab === 'system' && <>
-          <ToggleField label="Bật chế độ bảo trì (ẩn website, chỉ admin truy cập được)" name="maintenance_mode" value={val('maintenance_mode')} onChange={set} />
-          <Field label="Google Analytics ID" name="google_analytics" value={val('google_analytics')} onChange={set} placeholder="G-XXXXXXXXXX" />
-        </>}
-
-        {activeTab === 'cloudinary' && <>
-          <p style={{ color: 'var(--text-3)', fontSize: 13, marginBottom: 16 }}>Cấu hình Cloudinary để upload và quản lý ảnh sản phẩm.</p>
-          <Field label="Cloud Name" name="cloudinary_cloud_name" value={val('cloudinary_cloud_name')} onChange={set} placeholder="mycloud" />
-          <Field label="API Key" name="cloudinary_api_key" value={val('cloudinary_api_key')} onChange={set} placeholder="123456789012345" />
-          <Field label="API Secret" name="cloudinary_api_secret" value={val('cloudinary_api_secret')} onChange={set} type="password" placeholder="••••••••" />
-        </>}
-
         {activeTab === 'integrations' && <>
-          <p style={{ color: 'var(--text-3)', fontSize: 13, marginBottom: 16 }}>API keys cho các tích hợp bên ngoài.</p>
-          <Field label="Unsplash Access Key" name="unsplash_access_key" value={val('unsplash_access_key')} onChange={set} placeholder="Unsplash Access Key" />
-          <Field label="Facebook Pixel ID" name="fb_pixel_id" value={val('fb_pixel_id')} onChange={set} placeholder="123456789012345" />
-          <Field label="Zalo OA ID" name="zalo_oa_id" value={val('zalo_oa_id')} onChange={set} placeholder="Zalo Official Account ID" />
+          <p style={{ color: 'var(--text-3)', fontSize: 13, marginBottom: 16 }}>
+            🔑 Unsplash API key dùng để upload/select ảnh sản phẩm, danh mục, slides từ Unsplash.
+          </p>
+          <Field label="Unsplash Access Key" name="unsplash_access_key" value={val('unsplash_access_key')} onChange={set} type="password" placeholder="Nhận từ https://unsplash.com/oauth/applications" />
+          <p style={{ color: 'var(--text-3)', fontSize: 12, margin: '8px 0 0' }}>
+            Mặc định: API key của webdrop.store. Để trống để dùng mặc định.
+          </p>
         </>}
 
         <div className="form-actions" style={{ marginTop: 32 }}>

@@ -134,6 +134,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--serif); font-weight: 500; line-heigh
   display: flex;
   align-items: center;
   gap: 4px;
+  margin: 0 !important;
 }
 .dg-nav__links a {
   font-size: 14px;
@@ -145,7 +146,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--serif); font-weight: 500; line-heigh
   white-space: nowrap;
 }
 .dg-nav__links a:hover,
-.dg-nav__links a.active { color: var(--accent); background: var(--accent-light); }
+.dg-nav__links a.active { color: var(--accent); }
 .dg-nav__actions {
   display: flex;
   align-items: center;
