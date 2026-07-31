@@ -140,7 +140,7 @@ class Database {
             // Integrations
             // unsplash_access_key: để trống để dùng fallback $UNSPLASH_API_KEY env var (default từ webdrop.store),
             // hoặc điền thủ công trong admin → Cài đặt → Tích hợp để override
-            ['unsplash_access_key', '', 'integrations'],
+            ['unsplash_access_key', 'BdVQbpMxCxFAU2ijjhhvwC5-t3Y9CqFe65Mf09t11kY', 'integrations'],
             ['fb_pixel_id', '', 'integrations'],
             ['zalo_oa_id',  '', 'integrations'],
         ];

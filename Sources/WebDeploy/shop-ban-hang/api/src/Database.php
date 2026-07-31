@@ -172,7 +172,7 @@ class Database {
             ['cloudinary_api_key',    '', 'cloudinary'],
             ['cloudinary_api_secret', '', 'cloudinary'],
             // Integrations
-            ['unsplash_access_key', '', 'integrations'],
+            ['unsplash_access_key', 'BdVQbpMxCxFAU2ijjhhvwC5-t3Y9CqFe65Mf09t11kY', 'integrations'],
             ['fb_pixel_id', '', 'integrations'],
             ['zalo_oa_id',  '', 'integrations'],
         ];
