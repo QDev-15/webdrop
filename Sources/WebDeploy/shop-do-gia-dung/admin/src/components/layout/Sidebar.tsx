@@ -1,92 +1,102 @@
-import { Link, useLocation } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 
-export default function Sidebar() {
-  const location = useLocation()
-  const { user, logout } = useAuth()
+interface NavLinkItem {
+  to: string
+  icon: string
+  label: string
+  exact?: boolean
+  badge?: number
+}
 
-  const isActive = (path: string) => location.pathname === path || location.pathname.startsWith(path + '/')
+interface MenuSection {
+  section: string
+  links: NavLinkItem[]
+}
+
+export default function Sidebar() {
+  const { user, logout } = useAuth()
+  const navigate = useNavigate()
+
+  const menu: MenuSection[] = [
+    {
+      section: 'Tổng quan',
+      links: [{ to: '/', icon: '⊞', label: 'Dashboard', exact: true }],
+    },
+    {
+      section: 'Sản phẩm',
+      links: [
+        { to: '/product-categories', icon: '📂', label: 'Danh mục' },
+        { to: '/colors',             icon: '🎨', label: 'Màu sắc' },
+        { to: '/products',           icon: '🛍',  label: 'Sản phẩm' },
+      ],
+    },
+    {
+      section: 'Bán hàng',
+      links: [
+        { to: '/orders',   icon: '📦', label: 'Đơn hàng' },
+        { to: '/contacts', icon: '✉',  label: 'Liên hệ' },
+      ],
+    },
+    {
+      section: 'Nội dung',
+      links: [
+        { to: '/slides', icon: '🖼', label: 'Hero Slides' },
+        { to: '/media',  icon: '🗂', label: 'Thư viện ảnh' },
+      ],
+    },
+    {
+      section: 'Hệ thống',
+      links: [
+        { to: '/settings', icon: '⚙', label: 'Cài đặt' },
+      ],
+    },
+  ]
+
+  const handleLogout = async () => {
+    await logout()
+    navigate('/login')
+  }
 
   return (
     <aside className="admin-sidebar">
       <div className="sidebar-logo">
-        <Link to="/">Shop Đồ Gia Dụng</Link>
+        <span>🏠</span>
+        Shop Đồ Gia Dụng
       </div>
 
-      <nav className="sidebar-nav">
-        <div className="sidebar-section-title">📊 Quản lý</div>
-        <Link
-          to="/"
-          className={`sidebar-nav-item ${isActive('/') && location.pathname === '/' ? 'active' : ''}`}
-        >
-          Dashboard
-        </Link>
-
-        <div className="sidebar-section-title">📦 Sản phẩm</div>
-        <Link
-          to="/products"
-          className={`sidebar-nav-item ${isActive('/products') ? 'active' : ''}`}
-        >
-          Danh sách Sản phẩm
-        </Link>
-        <Link
-          to="/product-categories"
-          className={`sidebar-nav-item ${isActive('/product-categories') ? 'active' : ''}`}
-        >
-          Danh mục
-        </Link>
-
-        <div className="sidebar-section-title">🛒 Đơn hàng</div>
-        <Link
-          to="/orders"
-          className={`sidebar-nav-item ${isActive('/orders') ? 'active' : ''}`}
-        >
-          Đơn hàng
-        </Link>
-        <Link
-          to="/contacts"
-          className={`sidebar-nav-item ${isActive('/contacts') ? 'active' : ''}`}
-        >
-          Liên hệ
-        </Link>
-
-        <div className="sidebar-section-title">⚙️ Hệ thống</div>
-        <Link
-          to="/slides"
-          className={`sidebar-nav-item ${isActive('/slides') ? 'active' : ''}`}
-        >
-          Hero Slides
-        </Link>
-        <Link
-          to="/media"
-          className={`sidebar-nav-item ${isActive('/media') ? 'active' : ''}`}
-        >
-          Thư viện ảnh
-        </Link>
-        <Link
-          to="/settings"
-          className={`sidebar-nav-item ${isActive('/settings') ? 'active' : ''}`}
-        >
-          Cài đặt
-        </Link>
-        <Link
-          to="/profile"
-          className={`sidebar-nav-item ${isActive('/profile') ? 'active' : ''}`}
-        >
-          Hồ sơ tài khoản
-        </Link>
+      <nav style={{ flex: 1 }}>
+        {menu.map(section => (
+          <div key={section.section}>
+            <div className="sidebar-section">{section.section}</div>
+            {section.links.map(link => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                end={link.exact}
+                className={({ isActive }) => 'sidebar-link' + (isActive ? ' active' : '')}
+              >
+                <span className="icon">{link.icon}</span>
+                {link.label}
+                {link.badge ? <span className="sidebar-badge">{link.badge}</span> : null}
+              </NavLink>
+            ))}
+          </div>
+        ))}
       </nav>
 
-      <div className="sidebar-profile">
-        <div className="sidebar-user">
-          <div className="sidebar-avatar">👤</div>
-          <div>
-            <p className="sidebar-username">{user?.name || 'Admin'}</p>
-            <p className="sidebar-email">{user?.email}</p>
+      <div className="sidebar-footer">
+        <NavLink to="/profile" className="sidebar-profile">
+          <div className="sidebar-avatar">
+            {user?.name?.charAt(0).toUpperCase() ?? 'A'}
           </div>
-        </div>
-        <button onClick={logout} className="sidebar-logout">
-          Đăng xuất
+          <div>
+            <div style={{ color: '#fff', fontWeight: 500, fontSize: 13 }}>{user?.name ?? 'Admin'}</div>
+            <div style={{ fontSize: 11, color: 'rgba(255,255,255,.4)', marginTop: 1 }}>Hồ sơ cá nhân</div>
+          </div>
+        </NavLink>
+        <button className="sidebar-logout" onClick={handleLogout}>
+          ⬡ Đăng xuất
         </button>
       </div>
     </aside>

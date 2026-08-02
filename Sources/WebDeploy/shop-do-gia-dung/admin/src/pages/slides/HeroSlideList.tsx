@@ -27,20 +27,20 @@ export default function HeroSlideList() {
 
   async function handleDelete(id: number) {
     if (!confirm('Xóa slide này?')) return
-    await api.delete(`/hero-slides/${id}`)
+    await api.post(`/hero-slides/${id}/delete`, {})
     load()
   }
 
-  if (loading) return <div className="admin-loading">Đang tải...</div>
+  if (loading) return <div className="admin-loading-box">Đang tải...</div>
 
   return (
-    <div>
-      <div className="page-header">
+    <div className="admin-page">
+      <div className="admin-page-header">
         <div>
-          <div className="page-title">Hero Slides</div>
-          <div className="page-sub">Quản lý ảnh slider trang chủ ({slides.length} slides)</div>
+          <h1 className="admin-page-title">Hero Slides</h1>
+          <p className="admin-page-sub">Quản lý ảnh slider trang chủ ({slides.length} slides)</p>
         </div>
-        <Link to="/slides/new" className="btn-accent">+ Thêm slide</Link>
+        <Link to="/slides/new" className="btn btn-primary">+ Thêm slide</Link>
       </div>
 
       {slides.length === 0 ? (
@@ -57,16 +57,22 @@ export default function HeroSlideList() {
                   style={{ width: 100, height: 60, objectFit: 'cover', borderRadius: 8, flexShrink: 0, border: '1px solid var(--border)' }} />
               )}
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 4, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{slide.title}</div>
+                <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 4, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {slide.title}
+                </div>
                 {slide.subtitle && (
-                  <div style={{ fontSize: 13, color: 'var(--text-2)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{slide.subtitle}</div>
+                  <div style={{ fontSize: 13, color: 'var(--text-2)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {slide.subtitle}
+                  </div>
                 )}
                 <div style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 4 }}>Thứ tự: {slide.sort_order}</div>
               </div>
               <div style={{ display: 'flex', gap: 8, flexShrink: 0, alignItems: 'center' }}>
-                <span className={`badge badge-${slide.status}`}>{slide.status === 'published' ? 'Đang hiện' : 'Ẩn'}</span>
-                <Link to={`/slides/${slide.id}/edit`} className="btn-ghost btn-sm">Sửa</Link>
-                <button onClick={() => handleDelete(slide.id)} className="btn-danger btn-sm">Xóa</button>
+                <span className={`badge badge-${slide.status}`}>
+                  {slide.status === 'published' ? 'Đang hiển thị' : 'Ẩn'}
+                </span>
+                <Link to={`/slides/${slide.id}/edit`} className="btn btn-sm btn-outline">Sửa</Link>
+                <button onClick={() => handleDelete(slide.id)} className="btn btn-sm btn-danger">Xóa</button>
               </div>
             </div>
           ))}

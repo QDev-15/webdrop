@@ -825,13 +825,17 @@ function formatVND(n) {
 
 /* Render HTML một product card (dùng chung tất cả trang) */
 function renderProductCard(p, opts = {}) {
-  const price = p.salePrice ?? p.price;
   const badgeHtml = p.badge ? `<span class="dg-badge dg-badge--${p.badge}">${p.badge === 'hot' ? 'Hot' : p.badge === 'sale' ? 'Sale' : 'Mới'}</span>` : '';
   const salePriceHtml = p.salePrice
     ? `<span class="dg-price dg-price--sale">${formatVND(p.salePrice)}</span><span class="dg-price dg-price--old">${formatVND(p.price)}</span>`
     : `<span class="dg-price">${formatVND(p.price)}</span>`;
   const stars = '★'.repeat(Math.round(p.rating)) + '☆'.repeat(5 - Math.round(p.rating));
   const SVG_PH = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='480' viewBox='0 0 600 480'%3E%3Crect width='600' height='480' fill='%23f0ede8'/%3E%3C/svg%3E";
+
+  // Color swatches — dùng colorHex & colorName của từng sản phẩm
+  const colorDotHtml = p.colorHex
+    ? `<div class="dg-card__colors"><span class="dg-card__color-dot" style="background:${p.colorHex}" title="${p.colorName || p.color}"></span></div>`
+    : '';
 
   return `
     <article class="dg-card">
@@ -847,6 +851,7 @@ function renderProductCard(p, opts = {}) {
           <span class="dg-card__stars" title="${p.rating}/5">${stars}</span>
           <span class="dg-card__sold">${p.sold} đã bán</span>
         </div>
+        ${colorDotHtml}
         <div class="dg-card__footer">
           <div class="dg-card__prices">${salePriceHtml}</div>
           <button class="dg-btn dg-btn--cart" data-id="${p.id}" title="Thêm vào giỏ hàng" aria-label="Thêm ${p.name} vào giỏ hàng">

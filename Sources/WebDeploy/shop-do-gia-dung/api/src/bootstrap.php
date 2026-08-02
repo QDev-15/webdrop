@@ -39,6 +39,7 @@ require_once __DIR__ . '/controllers/MediaController.php';
 require_once __DIR__ . '/controllers/UnsplashController.php';
 require_once __DIR__ . '/controllers/UploadController.php';
 require_once __DIR__ . '/controllers/PublicController.php';
+require_once __DIR__ . '/controllers/ProductColorController.php';
 require_once __DIR__ . '/controllers/ProductCategoryController.php';
 require_once __DIR__ . '/controllers/ProductController.php';
 require_once __DIR__ . '/controllers/OrderController.php';
@@ -55,7 +56,7 @@ $router->add('POST', '/auth/logout', [$auth, 'logout']);
 $router->add('GET',  '/auth/me',     [$auth, 'me']);
 
 // Health
-$router->add('GET', '/health', function() use ($db) {
+$router->add('GET', '/health', function() {
     Response::json([
         'status'      => 'ok',
         'pdo_sqlite'  => extension_loaded('pdo_sqlite'),
@@ -65,16 +66,16 @@ $router->add('GET', '/health', function() use ($db) {
 });
 
 // Profile
-$router->add('GET',  '/profile',                    [$auth, 'show']);
-$router->add('POST', '/profile/update',             [$auth, 'update']);
-$router->add('POST', '/profile/change-password',    [$auth, 'changePassword']);
+$router->add('GET',  '/profile',                 [$auth, 'show']);
+$router->add('POST', '/profile/update',          [$auth, 'update']);
+$router->add('POST', '/profile/change-password', [$auth, 'changePassword']);
 
 // Users
 $users = new UserController($db);
-$router->add('GET',  '/users',                  [$users, 'index']);
-$router->add('POST', '/users',                  [$users, 'store']);
-$router->add('POST', '/users/:id/update',       [$users, 'update']);
-$router->add('POST', '/users/:id/delete',       [$users, 'destroy']);
+$router->add('GET',  '/users',                     [$users, 'index']);
+$router->add('POST', '/users',                     [$users, 'store']);
+$router->add('POST', '/users/:id/update',          [$users, 'update']);
+$router->add('POST', '/users/:id/delete',          [$users, 'destroy']);
 $router->add('POST', '/users/:id/change-password', [$users, 'changePassword']);
 
 // Settings
@@ -97,19 +98,31 @@ $router->add('GET',  '/contacts/:id',        [$contacts, 'show']);
 $router->add('POST', '/contacts/:id/update', [$contacts, 'update']);
 $router->add('POST', '/contacts/:id/delete', [$contacts, 'destroy']);
 
-// Media
+// Media — 3 routes bắt buộc, /media/upload hay bị bỏ sót (rule 15)
 $media = new MediaController($db);
 $router->add('GET',  '/media',            [$media, 'index']);
-$router->add('POST', '/media/upload', [$media, 'upload']);
+$router->add('POST', '/media/upload',     [$media, 'upload']);
 $router->add('POST', '/media/:id/delete', [$media, 'destroy']);
 
-// Upload
+// Upload cho ImageField — method là 'upload', không phải 'store'
 $upload = new UploadController($db);
-$router->add('POST', '/upload', [$upload, 'store']);
+$router->add('POST', '/upload', [$upload, 'upload']);
 
 // Unsplash
 $unsplash = new UnsplashController($db);
-$router->add('GET', '/unsplash', [$unsplash, 'search']);
+$router->add('GET',  '/unsplash',          [$unsplash, 'search']);
+$router->add('POST', '/unsplash/download', [$unsplash, 'trackDownload']);
+
+// Product Colors (admin)
+$colors = new ProductColorController($db);
+$router->add('GET',  '/product-colors',            [$colors, 'index']);
+$router->add('GET',  '/product-colors/:id',        [$colors, 'show']);
+$router->add('POST', '/product-colors',            [$colors, 'store']);
+$router->add('POST', '/product-colors/:id/update', [$colors, 'update']);
+$router->add('POST', '/product-colors/:id/delete', [$colors, 'destroy']);
+
+// Public: danh sách màu cho website (nếu cần hiển thị bộ lọc từ DB)
+$router->add('GET',  '/public/product-colors', [$colors, 'index']);
 
 // Product Categories (admin)
 $prodCat = new ProductCategoryController($db);
@@ -129,14 +142,12 @@ $router->add('POST', '/products/:id/delete', [$products, 'destroy']);
 
 // Orders (admin)
 $orders = new OrderController($db);
-$router->add('GET',  '/orders',                   [$orders, 'index']);
+$router->add('GET',  '/orders',                    [$orders, 'index']);
 $router->add('GET',  '/orders/:id',                [$orders, 'show']);
 $router->add('POST', '/orders/:id/update-status',  [$orders, 'updateStatus']);
-$router->add('POST', '/orders/:id/confirm-payment', [$orders, 'confirmPayment']);
+$router->add('POST', '/orders/:id/confirm-payment',[$orders, 'confirmPayment']);
 
-// Shop Settings (admin) — đồng bộ tài khoản ngân hàng từ SePay, gọi bởi PaymentSettingsTab.tsx
-// (route trước đây trỏ nhầm 'show'/'update' — 2 method không tồn tại trong ShopSettingsController,
-// method thật là syncSepayBankAccounts() ứng với đúng endpoint '/settings/sepay-sync')
+// Shop Settings (admin) — đồng bộ tài khoản ngân hàng từ SePay
 $shopSettings = new ShopSettingsController($db);
 $router->add('POST', '/settings/sepay-sync', [$shopSettings, 'syncSepayBankAccounts']);
 
@@ -146,13 +157,13 @@ $router->add('GET', '/stats', [$stats, 'index']);
 
 // Public (no auth — website calls)
 $pub = new PublicController($db);
-$router->add('GET',  '/public/settings',            [$pub, 'settings']);
-$router->add('GET',  '/public/hero-slides',         [$pub, 'heroSlides']);
-$router->add('POST', '/public/contact',             [$pub, 'submitContact']);
+$router->add('GET',  '/public/settings',   [$pub, 'settings']);
+$router->add('GET',  '/public/hero-slides',[$pub, 'heroSlides']);
+$router->add('POST', '/public/contact',    [$pub, 'submitContact']);
 
 // Shop Public (no auth — website calls)
 $shopPub = new ShopPublicController($db);
-$router->add('GET',  '/public/product-categories',  [$shopPub, 'categories']);
+$router->add('GET',  '/public/product-categories',  [$shopPub, 'productCategories']);
 $router->add('GET',  '/public/products',            [$shopPub, 'products']);
 $router->add('GET',  '/public/products/:slug',      [$shopPub, 'productBySlug']);
 $router->add('GET',  '/public/payment-methods',     [$shopPub, 'paymentMethods']);

@@ -29,10 +29,7 @@ export default function CheckoutPage() {
   const { items, subtotal, clear } = useCart()
   const { settings } = useSite()
 
-  useDocumentMeta({
-    title: 'Thanh toán — ' + String(settings.site_name || ''),
-    description: 'Hoàn tất đơn hàng của bạn',
-  })
+  useDocumentMeta({ title: 'Thanh toán – Shop Đồ Gia Dụng', description: 'Hoàn tất đơn hàng và chọn phương thức thanh toán phù hợp.' })
 
   const [methods, setMethods] = useState<PaymentMethods | null>(null)
   const [paymentMethod, setPaymentMethod] = useState<'cod' | 'sepay'>('cod')

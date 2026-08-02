@@ -1,66 +1,192 @@
-# Shop Đồ Gia Dụng — Website Deploy (shop-do-gia-dung)
+# Shop Do Gia Dung — Huong Dan Deploy
 
-Website bán đồ gia dụng, nội thất nhỏ và trang trí nhà cửa — React SPA (website + admin) + PHP API + SQLite. Build từ template `Sources/templates/web/Shops/shop-do-gia-dung/` (Identity Token WARM-ARTISAN variant, Terracotta `#b5651d` + Sage `#87a06b`, font Fraunces + Karla).
+Website ban do gia dung. React SPA + PHP backend + SQLite. Identity Token: WARM-ARTISAN Terracotta #b5651d + Sage #87a06b.
 
-## Kiến trúc
+---
+
+## Yeu cau hosting
+
+- PHP 7.4+ (khuyen nghi PHP 8.x)
+- Extension `pdo_sqlite` bat buoc
+- Apache voi `mod_rewrite` (`.htaccess`) HOAC IIS voi URL Rewrite (`web.config`)
+- Thu muc `api/database/` phai co quyen ghi (chmod 755 hoac 777)
+- Thu muc `api/uploads/` phai co quyen ghi (chmod 755 hoac 777)
+
+---
+
+## Buoc deploy
+
+### 1. Upload len hosting
+
+Upload toan bo noi dung trong `_output-deploy/` vao thu muc `public_html/` tren hosting:
 
 ```
-shop-do-gia-dung/
-├── website/     React SPA — trang chính (Vite + React Router)
-├── admin/       React SPA — quản trị (Vite + React Router)
-├── api/         PHP thuần + SQLite
-├── build.mjs    Script build (Windows: build.bat, Linux/Mac: build.sh)
-└── favicon.ico
+public_html/
+├── index.html          <- Trang chu React
+├── assets/             <- JS/CSS build
+├── admin/              <- Admin panel
+├── api/                <- PHP backend
+├── .htaccess           <- Apache rewrite rules
+├── web.config          <- IIS rewrite rules
+└── robots.txt
 ```
 
-## Hướng dẫn deploy lên hosting
+### 2. Cau hinh APP_URL
 
-1. **Build**
-   ```
-   cd Sources/WebDeploy/shop-do-gia-dung
-   node build.mjs      (hoặc build.bat trên Windows / bash build.sh trên Linux/Mac)
-   ```
-   Output: thư mục `_output-deploy/` nằm **cùng cấp** với thư mục `shop-do-gia-dung/` (tức `Sources/WebDeploy/_output-deploy/`).
+Mo file `api/config.php` va sua dong APP_URL:
 
-2. **Upload** toàn bộ nội dung trong `_output-deploy/` lên `public_html/` (hoặc thư mục gốc web) của hosting.
+```php
+define('APP_URL', 'https://yourdomain.com');
+```
 
-3. **Sửa cấu hình** — mở `api/config.php` trên server và sửa:
-   - `APP_URL` → URL thực của website (không có dấu `/` cuối), ví dụ `https://shopgiadadung.vn`
-   - `APP_KEY` đã được tự sinh ngẫu nhiên bởi `build.mjs` — không cần sửa.
+Thay `yourdomain.com` bang domain that cua website.
 
-4. **Kiểm tra**: truy cập `https://yourdomain.com/api/health` — kỳ vọng JSON `{"status":"ok","pdo_sqlite":true,...}`. Nếu `db_dir` báo "not writable", chmod thư mục `api/database/` và `api/uploads/` lên `755` hoặc `775`.
+### 3. Kiem tra suc khoe
 
-5. **Đăng nhập admin**: `https://yourdomain.com/admin`
-   - Email: `sysadmin@admin.com`
-   - Mật khẩu: `123456`
-   - **Đổi mật khẩu ngay sau lần đăng nhập đầu tiên** (menu Hồ sơ).
+Truy cap URL sau de kiem tra:
 
-6. **Bảo mật**: xóa file `api/check-hash.php` khỏi server sau khi deploy xong — đây là file debug chỉ dùng để verify hash lúc phát triển, không được để lộ ra ngoài production.
+```
+https://yourdomain.com/api/health
+```
 
-## Yêu cầu hosting
+Ket qua tra ve JSON nhu sau la thanh cong:
 
-- PHP 8.1+ với extension `pdo_sqlite`
-- Ghi được vào `api/database/` và `api/uploads/`
-- Hỗ trợ `.htaccess` (Apache) hoặc IIS `web.config` (đã có sẵn cả 2)
+```json
+{
+  "status": "ok",
+  "php": "8.x.x",
+  "pdo_sqlite": true,
+  "db_dir": "writable"
+}
+```
 
-## Tài khoản & thanh toán mặc định
+Neu `pdo_sqlite: false` → hosting chua cai extension nay, lien he nha cung cap.
+Neu `db_dir: false` → thu muc database chua co quyen ghi.
 
-- Admin mặc định: `sysadmin@admin.com` / `123456`
-- Thanh toán: COD bật sẵn, SePay (chuyển khoản QR) tắt sẵn — bật + điền tài khoản ngân hàng tại Admin → Cài đặt → tab "💳 Thanh toán" (có nút "🔄 Đồng bộ tài khoản từ SePay" để tự lấy thông tin ngân hàng từ API Access).
-- Phí vận chuyển mặc định: 50.000đ, miễn phí từ đơn 500.000đ.
-- Đổi trả trong 30 ngày, bảo hành 12 tháng (chỉnh tại Admin → Cài đặt → tab "Cửa hàng").
+### 4. Phan quyen thu muc
 
-## Dữ liệu mẫu
+```bash
+chmod 755 api/database/
+chmod 755 api/uploads/
+```
 
-DB tự seed lần đầu khi nhận request đầu tiên — không cần setup thủ công:
-- 5 danh mục: Nhà Bếp, Trang Trí, Phòng Tắm, Nội Thất Nhỏ, Đèn & Chiếu Sáng
-- 38 sản phẩm đồ gia dụng thật (tên/giá/mô tả lấy từ template gốc)
-- 3 hero slide mẫu, toàn bộ nội dung Search Zone/Footer/Liên hệ quản lý được qua Admin → Cài đặt
+Tren Windows hosting (IIS), dam bao IIS_IUSRS co quyen Write vao 2 thu muc tren.
 
-## Đặc điểm kỹ thuật riêng của site này
+### 5. Kiem tra loi
 
-- Trang chủ dùng "Search Zone" (tiêu đề lớn + ô tìm kiếm + category chip) thay cho hero ảnh — đúng theo template gốc (Biến thể 2 CATEGORY-SECTIONS), không có banner/slider ảnh. Component `website/src/components/HeroSlider.tsx` render khối này, đọc mô tả phụ từ setting `hero_subtitle` (tab "Trang chủ" trong Admin → Cài đặt).
-- Trang Sản phẩm dùng filter bar (category pill + khoảng giá + sort) + lưới sản phẩm — đọc dữ liệu qua `GET /public/products`.
-- Module Phiếu giảm giá (coupon) không có trong phạm vi build này.
-- `admin/src/styles/admin.css` đã bổ sung khối "Admin CRUD pages" (class `admin-page-*`, `admin-form`, `btn btn-primary/outline`, `status-badge`, `settings-tab`, sidebar profile/avatar/logout, dashboard `stat-*`) để khớp đúng các trang quản trị đã viết sẵn.
-- `website/src/styles/template.css` copy nguyên vẹn từ template gốc, có bổ sung thêm 1 khối CSS cho các thành phần Header/Footer/ProductCard (dùng class dạng phẳng, không BEM) để khớp đúng markup React thực tế.
+Neu gap 500 error, tat debug PHP (thay doi trong `api/config.php`):
+
+```php
+define('APP_DEBUG', false);  // Tat debug tren production
+```
+
+### 6. Seed du lieu lan dau
+
+Database SQLite tu dong tao va seed khi co request dau tien. Khong can chay lenh nao them. Kiem tra bang cach mo trang chu.
+
+---
+
+## Dang nhap Admin
+
+URL: `https://yourdomain.com/admin`
+
+| Truong | Gia tri |
+|--------|---------|
+| Email | sysadmin@admin.com |
+| Mat khau | 123456 |
+
+**Doi mat khau ngay sau khi dang nhap lan dau** tai trang Profile.
+
+---
+
+## Cau truc Admin
+
+| Menu | Chuc nang |
+|------|-----------|
+| Dashboard | Thong ke doanh thu, don hang, san pham |
+| Hero Slides | Quan ly banner trang chu (Search Zone) |
+| Danh muc SP | Them/sua/xoa danh muc san pham |
+| San pham | CRUD san pham, anh, mau sac, gia |
+| Don hang | Xem va cap nhat trang thai don hang |
+| Lien he | Xem cac lien he gui tu khach hang |
+| Thu vien anh | Upload va quan ly file media |
+| Cai dat | Thong tin chung, SEO, mang xa hoi, thanh toan, SMTP, Cloudinary, Unsplash |
+
+---
+
+## Cai dat thanh toan
+
+### COD (thanh toan khi nhan hang)
+
+Trong Admin → Cai dat → tab "Thanh toan":
+- Bat `COD (Thanh toan khi nhan hang)` → ON
+
+### SePay (chuyen khoan truoc qua QR)
+
+1. Dang ky tai `my.sepay.vn`
+2. Lien ket tai khoan ngan hang
+3. Lay API key
+4. Dien vao Admin → Cai dat → tab "Thanh toan":
+   - Ma ngan hang (vd: `VCB`, `TCB`, `MB`)
+   - So tai khoan
+   - Ten chu tai khoan
+   - SePay Webhook Secret
+5. Tren dashboard SePay, them Webhook URL: `https://yourdomain.com/api/public/sepay-webhook`
+
+---
+
+## Gia van chuyen
+
+Admin → Cai dat → tab "Cua hang":
+- Phi van chuyen mac dinh (vi du: 30000)
+- Nguong mien phi van chuyen (vi du: 500000 — don tu 500k mien phi)
+
+---
+
+## Upload anh qua Cloudinary (tuy chon)
+
+Neu muon luu anh tren Cloudinary (khong gioi han dung luong nhu hosting):
+
+1. Tao tai khoan tai `cloudinary.com`
+2. Lay Cloud Name, API Key, API Secret
+3. Admin → Cai dat → tab "Cloudinary" → dien thong tin → Luu
+
+---
+
+## Unsplash (anh mau mien phi)
+
+Mac dinh da co sẵn Unsplash Access Key de tim anh. De thay key rieng:
+
+Admin → Cai dat → tab "Tich hop" → nhap Unsplash Access Key → Luu.
+
+---
+
+## Bao mat sau deploy
+
+1. **Xoa `api/check-hash.php`** khoi server sau khi deploy xong — day la file debug, khong nen de lai tren production.
+2. Dam bao file `.htaccess` hoac `web.config` da chặn truy cap truc tiep vao `api/database/*.db`.
+3. Doi mat khau admin ngay lap tuc.
+
+---
+
+## Sitemap & SEO
+
+Sitemap tu dong sinh tai: `https://yourdomain.com/api/sitemap.xml`
+
+`robots.txt` da co san, troi `Sitemap:` vao sitemap XML tren. Google va cac bot se tu doc.
+
+---
+
+## Cau truc website
+
+9 trang:
+- `/` — Trang chu (Search Zone + 4 section san pham theo chu de)
+- `/san-pham` — Danh sach san pham + bo loc ngang
+- `/san-pham/:slug` — Chi tiet san pham
+- `/bo-suu-tap` — Bento grid bộ sưu tập theo danh muc
+- `/ve-chung-toi` — Gioi thieu thuong hieu
+- `/gio-hang` — Gio hang
+- `/thanh-toan` — Thanh toan
+- `/lien-he` — Lien he
+- `/chinh-sach-bao-mat` — Chinh sach bao mat
+- `/dieu-khoan` — Dieu khoan su dung

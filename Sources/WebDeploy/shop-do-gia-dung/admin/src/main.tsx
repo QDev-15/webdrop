@@ -5,11 +5,14 @@ import { AuthProvider } from './contexts/AuthContext'
 import './styles/admin.css'
 import App from './App'
 
-const basename = import.meta.env.DEV ? '/' : '/admin'
+// Detect basename dynamically so admin works at both /admin/ (root) and /slug/admin/ (sub-path)
+const _p = window.location.pathname
+const _i = _p.lastIndexOf('/admin')
+const adminBasename = _i >= 0 ? _p.slice(0, _i + '/admin'.length) : '/admin'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter basename={basename}>
+    <BrowserRouter basename={adminBasename}>
       <AuthProvider>
         <App />
       </AuthProvider>

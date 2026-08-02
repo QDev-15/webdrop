@@ -537,6 +537,9 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--serif); font-weight: 500; line-heigh
 }
 .dg-card__stars { color: #e8871e; font-size: 12px; letter-spacing: -1px; }
 .dg-card__sold { font-size: 12px; color: var(--text-3); }
+.dg-card__colors { display: flex; align-items: center; gap: 5px; margin: 8px 0 4px; flex-wrap: wrap; }
+.dg-card__color-dot { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid rgba(0,0,0,.1); display: inline-block; flex-shrink: 0; transition: transform .15s; }
+.dg-card__color-dot:hover { transform: scale(1.3); cursor: default; }
 .dg-card__footer {
   display: flex;
   align-items: center;

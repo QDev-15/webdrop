@@ -2,31 +2,10 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '../../api/client'
 import ImageField from '../../components/ImageField'
-import GalleryField from '../../components/GalleryField'
-import VideoField from '../../components/VideoField'
 
-// ▼ AI: đổi bộ màu này khớp với palette thật của template (site nào cũng khác nhau).
-// Phải khớp 100% với COLOR_SWATCHES ở website/src/pages/ProductsPage.tsx —
-// bộ lọc "Màu sắc" trên site chỉ nhận diện đúng các tên khai báo ở đây.
-const COLOR_SWATCHES = [
-  { name: 'Đen', hex: '#1e1e1e' },
-  { name: 'Trắng', hex: '#ffffff' },
-  { name: 'Be', hex: '#e8dfd0' },
-]
-
-function parseColorNames(colors: string): string[] {
-  return colors.split('|').map(c => c.split(':')[0]).filter(Boolean)
-}
-
-function serializeColors(names: string[]): string {
-  return names
-    .map(name => COLOR_SWATCHES.find(c => c.name === name))
-    .filter((c): c is { name: string; hex: string } => Boolean(c))
-    .map(c => `${c.name}:${c.hex}`)
-    .join('|')
-}
-
+interface ColorSwatch { id: number; name: string; hex: string }
 interface Category { id: number; name: string }
+
 interface FormData {
   name: string
   category_id: string
@@ -42,20 +21,25 @@ interface FormData {
   is_new: boolean
   status: string
   sort_order: string
-  theme: string
-  sold: string
-  gallery: string  // JSON array: ["url1","url2","url3"]
-  video_url: string // YouTube URL
-  // ▼ AI: thêm field mới vào đây nếu products có thêm cột (brand, sizes, features, specs, origin...)
-  // — nhớ thêm tương ứng vào ProductController.php::BASE_FIELDS
 }
 
 const EMPTY: FormData = {
   name: '', category_id: '', image: '', price: '', price_sale: '',
   badge: '', description: '', colors: '', rating: '5', in_stock: true,
   is_featured: false, is_new: false,
-  status: 'published', sort_order: '0', theme: '', sold: '0',
-  gallery: '', video_url: ''
+  status: 'published', sort_order: '0'
+}
+
+function parseColorNames(colors: string): string[] {
+  return colors.split('|').map(c => c.split(':')[0]).filter(Boolean)
+}
+
+function serializeColors(names: string[], swatches: ColorSwatch[]): string {
+  return names
+    .map(name => swatches.find(c => c.name === name))
+    .filter((c): c is ColorSwatch => Boolean(c))
+    .map(c => `${c.name}:${c.hex}`)
+    .join('|')
 }
 
 export default function ProductForm() {
@@ -64,18 +48,21 @@ export default function ProductForm() {
   const isEdit = Boolean(id)
   const [form, setForm] = useState<FormData>(EMPTY)
   const [cats, setCats] = useState<Category[]>([])
+  const [colorSwatches, setColorSwatches] = useState<ColorSwatch[]>([])
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
 
   useEffect(() => {
-    const fetchCats = api.get<Category[]>('/product-categories')
+    const fetchCats    = api.get<Category[]>('/product-categories')
+    const fetchColors  = api.get<ColorSwatch[]>('/product-colors')
     const fetchProduct = isEdit
       ? api.get<Record<string, unknown>>(`/products/${id}`)
       : Promise.resolve(null)
 
-    Promise.all([fetchCats, fetchProduct]).then(([cats, p]) => {
+    Promise.all([fetchCats, fetchColors, fetchProduct]).then(([cats, swatches, p]) => {
       setCats(cats)
+      setColorSwatches(swatches)
       if (p) {
         setForm({
           name: String(p.name ?? ''),
@@ -87,15 +74,11 @@ export default function ProductForm() {
           description: String(p.description ?? ''),
           colors: String(p.colors ?? ''),
           rating: String(p.rating ?? '5'),
-          in_stock: p.in_stock === undefined ? true : Boolean(p.in_stock),
-          is_featured: Boolean(p.is_featured),
-          is_new: Boolean(p.is_new),
+          in_stock: p.in_stock === undefined ? true : Boolean(Number(p.in_stock)),
+          is_featured: Boolean(Number(p.is_featured)),
+          is_new: Boolean(Number(p.is_new)),
           status: String(p.status ?? 'published'),
           sort_order: String(p.sort_order ?? '0'),
-          theme: String(p.theme ?? ''),
-          sold: String(p.sold ?? '0'),
-          gallery: String(p.gallery ?? ''),
-          video_url: String(p.video_url ?? ''),
         })
       }
     }).catch(() => setError('Không tải được dữ liệu'))
@@ -106,8 +89,10 @@ export default function ProductForm() {
 
   const selectedColors = parseColorNames(form.colors)
   const toggleColor = (name: string) => {
-    const next = selectedColors.includes(name) ? selectedColors.filter(c => c !== name) : [...selectedColors, name]
-    set('colors', serializeColors(next))
+    const next = selectedColors.includes(name)
+      ? selectedColors.filter(c => c !== name)
+      : [...selectedColors, name]
+    set('colors', serializeColors(next, colorSwatches))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -121,8 +106,9 @@ export default function ProductForm() {
       price_sale: Number(form.price_sale) || 0,
       rating: Math.max(0, Math.min(5, Number(form.rating) || 5)),
       in_stock: form.in_stock ? 1 : 0,
+      is_featured: form.is_featured ? 1 : 0,
+      is_new: form.is_new ? 1 : 0,
       sort_order: Number(form.sort_order) || 0,
-      sold: Number(form.sold) || 0,
     }
     try {
       if (isEdit) {
@@ -152,7 +138,7 @@ export default function ProductForm() {
         <div className="form-row">
           <div className="form-group" style={{ flex: 2 }}>
             <label>Tên sản phẩm <span className="req">*</span></label>
-            <input type="text" value={form.name} onChange={e => set('name', e.target.value)} placeholder="VD: Túi vải đay thủ công" />
+            <input type="text" value={form.name} onChange={e => set('name', e.target.value)} placeholder="VD: Nồi đất nung cao cấp 2.5L" />
           </div>
           <div className="form-group" style={{ flex: 1 }}>
             <label>Danh mục</label>
@@ -179,7 +165,12 @@ export default function ProductForm() {
           </div>
           <div className="form-group" style={{ flex: 1 }}>
             <label>Badge</label>
-            <input type="text" value={form.badge} onChange={e => set('badge', e.target.value)} placeholder="VD: Bán chạy, Mới, -20%" />
+            <select value={form.badge} onChange={e => set('badge', e.target.value)}>
+              <option value="">-- Không có --</option>
+              <option value="hot">🔥 Hot</option>
+              <option value="new">🆕 Mới</option>
+              <option value="sale">🏷 Sale</option>
+            </select>
           </div>
         </div>
 
@@ -188,31 +179,56 @@ export default function ProductForm() {
           <textarea rows={4} value={form.description} onChange={e => set('description', e.target.value)} placeholder="Mô tả chi tiết sản phẩm..." />
         </div>
 
+        {/* Màu sắc — fetch từ API product-colors */}
         <div className="form-group">
-          <label>Màu sắc (dùng cho bộ lọc "Màu sắc" ở trang Sản phẩm)</label>
-          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 4 }}>
-            {COLOR_SWATCHES.map(c => {
-              const active = selectedColors.includes(c.name)
-              return (
-                <button
-                  key={c.name}
-                  type="button"
-                  onClick={() => toggleColor(c.name)}
-                  title={c.name}
-                  aria-pressed={active}
-                  aria-label={`Màu ${c.name}`}
-                  style={{
-                    width: 30, height: 30, borderRadius: '50%', background: c.hex, padding: 0, cursor: 'pointer',
-                    border: c.hex === '#ffffff' ? '1px solid #ddd' : 'none',
-                    boxShadow: active ? '0 0 0 2px #fff, 0 0 0 4px var(--accent)' : 'none',
-                    transition: 'box-shadow .15s',
-                  }}
-                />
-              )
-            })}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+            <label style={{ margin: 0 }}>Màu sắc sản phẩm</label>
+            <a href="/colors/new" target="_blank" style={{ fontSize: 12, color: 'var(--accent)' }}>
+              + Thêm màu mới
+            </a>
           </div>
+          {colorSwatches.length === 0 ? (
+            <p style={{ fontSize: 13, color: 'var(--text-3)', margin: 0 }}>
+              Chưa có màu nào — <a href="/colors/new" target="_blank" style={{ color: 'var(--accent)' }}>thêm màu sắc</a> trước
+            </p>
+          ) : (
+            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 4 }}>
+              {colorSwatches.map(c => {
+                const active = selectedColors.includes(c.name)
+                const isWhite = c.hex.toLowerCase() === '#ffffff' || c.hex.toLowerCase() === '#fff'
+                return (
+                  <button
+                    key={c.id}
+                    type="button"
+                    onClick={() => toggleColor(c.name)}
+                    title={c.name}
+                    aria-pressed={active}
+                    aria-label={`Màu ${c.name}`}
+                    style={{
+                      width: 32, height: 32, borderRadius: '50%', background: c.hex, padding: 0, cursor: 'pointer',
+                      border: isWhite ? '1px solid #ddd' : 'none',
+                      boxShadow: active
+                        ? '0 0 0 2px #fff, 0 0 0 4px var(--accent)'
+                        : '0 1px 4px rgba(0,0,0,.15)',
+                      transition: 'box-shadow .15s',
+                      position: 'relative',
+                    }}
+                  >
+                    {active && (
+                      <svg style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', pointerEvents: 'none' }}
+                        width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={isWhite ? '#333' : '#fff'} strokeWidth={3}>
+                        <path d="M5 13l4 4L19 7"/>
+                      </svg>
+                    )}
+                  </button>
+                )
+              })}
+            </div>
+          )}
           {selectedColors.length > 0 && (
-            <p style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 8 }}>Đã chọn: {selectedColors.join(', ')}</p>
+            <p style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 8 }}>
+              Đã chọn: {selectedColors.join(', ')}
+            </p>
           )}
         </div>
 
@@ -225,26 +241,12 @@ export default function ProductForm() {
             </select>
           </div>
           <div className="form-group" style={{ flex: 1 }}>
-            <label>Đánh giá (0-5 sao)</label>
+            <label>Đánh giá (0–5 sao)</label>
             <input type="number" value={form.rating} onChange={e => set('rating', e.target.value)} min={0} max={5} step={0.1} />
           </div>
           <div className="form-group" style={{ flex: 1 }}>
             <label>Thứ tự sắp xếp</label>
             <input type="number" value={form.sort_order} onChange={e => set('sort_order', e.target.value)} min={0} />
-          </div>
-        </div>
-
-        <div className="form-row">
-          <div className="form-group" style={{ flex: 1 }}>
-            <label>Chủ đề trang chủ (theme)</label>
-            <input type="text" value={form.theme} onChange={e => set('theme', e.target.value)} placeholder="VD: ban-chay,moi-ve,giam-gia" />
-            <p style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 4 }}>
-              Ghi cách nhau bởi dấu phẩy, chỉ nhận: ban-chay / moi-ve / giam-gia — quyết định sản phẩm này hiện ở section nào trên trang chủ.
-            </p>
-          </div>
-          <div className="form-group" style={{ flex: 1 }}>
-            <label>Đã bán</label>
-            <input type="number" value={form.sold} onChange={e => set('sold', e.target.value)} min={0} />
           </div>
         </div>
 
@@ -261,14 +263,6 @@ export default function ProductForm() {
             <input type="checkbox" checked={form.is_new} onChange={e => set('is_new', e.target.checked)} />
             <span>Sản phẩm mới</span>
           </label>
-        </div>
-
-        <div className="form-group">
-          <GalleryField value={form.gallery} onChange={v => set('gallery', v)} label="Ảnh mô tả sản phẩm (Gallery)" />
-        </div>
-
-        <div className="form-group">
-          <VideoField value={form.video_url} onChange={v => set('video_url', v)} label="Video mô tả sản phẩm (YouTube)" />
         </div>
 
         <div className="form-actions">

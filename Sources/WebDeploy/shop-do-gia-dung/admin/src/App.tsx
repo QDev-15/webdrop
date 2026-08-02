@@ -7,6 +7,8 @@ import ProductList from './pages/products/ProductList'
 import ProductForm from './pages/products/ProductForm'
 import ProductCategoryList from './pages/product-categories/ProductCategoryList'
 import ProductCategoryForm from './pages/product-categories/ProductCategoryForm'
+import ColorList from './pages/colors/ColorList'
+import ColorForm from './pages/colors/ColorForm'
 import OrderList from './pages/orders/OrderList'
 import OrderDetail from './pages/orders/OrderDetail'
 import Settings from './pages/settings/Settings'
@@ -16,13 +18,10 @@ import MediaPage from './pages/media/MediaPage'
 import HeroSlideList from './pages/slides/HeroSlideList'
 import HeroSlideForm from './pages/slides/HeroSlideForm'
 
-// Protected route wrapper
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
-
-  if (loading) return <div style={{padding: '20px'}}>Đang tải...</div>
+  if (loading) return <div style={{ padding: '20px', color: 'var(--text-2)' }}>Đang tải...</div>
   if (!user) return <Navigate to="/login" replace />
-
   return <AdminLayout>{children}</AdminLayout>
 }
 
@@ -37,6 +36,9 @@ export default function App() {
       <Route path="/product-categories" element={<ProtectedRoute><ProductCategoryList /></ProtectedRoute>} />
       <Route path="/product-categories/new" element={<ProtectedRoute><ProductCategoryForm /></ProtectedRoute>} />
       <Route path="/product-categories/:id/edit" element={<ProtectedRoute><ProductCategoryForm /></ProtectedRoute>} />
+      <Route path="/colors" element={<ProtectedRoute><ColorList /></ProtectedRoute>} />
+      <Route path="/colors/new" element={<ProtectedRoute><ColorForm /></ProtectedRoute>} />
+      <Route path="/colors/:id/edit" element={<ProtectedRoute><ColorForm /></ProtectedRoute>} />
       <Route path="/orders" element={<ProtectedRoute><OrderList /></ProtectedRoute>} />
       <Route path="/orders/:id" element={<ProtectedRoute><OrderDetail /></ProtectedRoute>} />
       <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />

@@ -1,7 +1,9 @@
-import { useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { SiteProvider } from './contexts/SiteContext'
 import { CartProvider } from './contexts/CartContext'
+import { useSite } from './contexts/SiteContext'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import HomePage from './pages/HomePage'
@@ -14,12 +16,13 @@ import CollectionsPage from './pages/CollectionsPage'
 import ContactPage from './pages/ContactPage'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 import TermsPage from './pages/TermsPage'
-import { useEffect, useRef } from 'react'
 
+// AppShell phải nằm TRONG SiteProvider để dùng useSite() cho dependency MutationObserver
 function AppShell() {
+  const { settings } = useSite()
   const location = useLocation()
-  const ioRef = useRef<IntersectionObserver | null>(null)
 
+  // Rule 18: IntersectionObserver + MutationObserver — thiếu MO thì F5 / direct URL bị ẩn
   useEffect(() => {
     const io = new IntersectionObserver(
       entries => entries.forEach(e => {
@@ -30,7 +33,6 @@ function AppShell() {
       }),
       { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
     )
-    ioRef.current = io
 
     const observeNew = (root: ParentNode = document) => {
       root.querySelectorAll<Element>('[data-reveal]:not(.visible)').forEach(el => io.observe(el))
@@ -38,8 +40,21 @@ function AppShell() {
 
     const t = setTimeout(() => observeNew(), 0)
 
-    return () => { clearTimeout(t); io.disconnect() }
-  }, [location.pathname])
+    const mo = new MutationObserver(mutations => {
+      mutations.forEach(m => {
+        m.addedNodes.forEach(node => {
+          if (!(node instanceof Element)) return
+          if (node.hasAttribute('data-reveal') && !node.classList.contains('visible')) {
+            io.observe(node)
+          }
+          node.querySelectorAll<Element>('[data-reveal]:not(.visible)').forEach(el => io.observe(el))
+        })
+      })
+    })
+    mo.observe(document.body, { childList: true, subtree: true })
+
+    return () => { clearTimeout(t); io.disconnect(); mo.disconnect() }
+  }, [location.pathname, settings])
 
   return (
     <>

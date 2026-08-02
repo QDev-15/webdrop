@@ -7,11 +7,7 @@ class UnsplashController {
     private function getAccessKey(): ?string {
         $row = $this->db->queryOne("SELECT value FROM settings WHERE key = 'unsplash_access_key' LIMIT 1");
         $v   = trim($row['value'] ?? '');
-        if ($v) return $v;
-
-        // Fallback: try environment variable (default from webdrop.store)
-        $env = getenv('UNSPLASH_API_KEY');
-        return $env ? trim($env) : null;
+        return $v ?: null;
     }
 
     public function search(array $p): void {
