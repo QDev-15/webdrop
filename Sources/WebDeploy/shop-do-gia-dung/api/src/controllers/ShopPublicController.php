@@ -340,7 +340,7 @@ class ShopPublicController {
         $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
         $base   = $scheme . '://' . ($_SERVER['HTTP_HOST'] ?? 'localhost');
 
-        $staticRoutes = ['/', '/san-pham', '/lien-he', '/chinh-sach-bao-mat', '/dieu-khoan'];
+        $staticRoutes = ['/', '/san-pham', '/lien-he', '/chinh-sach-bao-mat', '/dieu-khoan', '/ve-chung-toi', '/bo-suu-tap'];
         // ▼ AI thêm route tĩnh riêng của site tại đây, ví dụ: '/ve-chung-toi', '/khuyen-mai'
 
         $urls = [];

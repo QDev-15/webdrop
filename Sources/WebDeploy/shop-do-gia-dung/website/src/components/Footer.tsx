@@ -9,9 +9,9 @@ export default function Footer() {
   const phone = String(settings.site_phone || '')
   const email = String(settings.site_email || '')
   const address = String(settings.site_address || '')
-  const facebook = String(settings.social_facebook || '')
-  const youtube = String(settings.social_youtube || '')
-  const instagram = String(settings.social_instagram || '')
+  const facebook = String(settings.facebook || '')
+  const youtube = String(settings.youtube || '')
+  const instagram = String(settings.instagram || '')
   const year = new Date().getFullYear()
 
   return (

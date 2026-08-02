@@ -354,6 +354,7 @@ export default function ProductsPage() {
               <option value="name-asc">Tên A–Z</option>
               <option value="newest">Mới nhất</option>
               <option value="sale">Đang giảm giá</option>
+              <option value="bestseller">Bán chạy nhất</option>
             </select>
 
             {/* Result count */}

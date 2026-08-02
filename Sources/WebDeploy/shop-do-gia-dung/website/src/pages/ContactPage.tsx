@@ -65,9 +65,9 @@ export default function ContactPage() {
               <Contact />
 
               {/* Map placeholder */}
-              {settings.contact_map_embed ? (
+              {settings.map_embed ? (
                 <div style={{ marginTop: 24, borderRadius: 'var(--radius-card)', overflow: 'hidden', height: 220 }}
-                  dangerouslySetInnerHTML={{ __html: String(settings.contact_map_embed) }}
+                  dangerouslySetInnerHTML={{ __html: String(settings.map_embed) }}
                 />
               ) : (
                 <div style={{ marginTop: 24, borderRadius: 'var(--radius-card)', overflow: 'hidden', height: 220, background: 'var(--warm)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid var(--border)' }}>

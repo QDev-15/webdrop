@@ -6,6 +6,7 @@ type SettingsMap = Record<string, string>
 
 const TABS = [
   { id: 'general',      label: 'Thông tin chung' },
+  { id: 'hero',         label: '🏠 Trang chủ' },
   { id: 'seo',          label: 'SEO' },
   { id: 'social',       label: 'Mạng xã hội' },
   { id: 'footer',       label: 'Footer' },
@@ -98,6 +99,18 @@ export default function Settings() {
           <Field label="Giờ làm việc" name="working_hours" value={val('working_hours')} onChange={set} placeholder="9:00 – 20:00 · Tất cả các ngày" />
           <Field label="Mô tả ngắn" name="site_description" value={val('site_description')} onChange={set} type="textarea" placeholder="Cửa hàng đồ gia dụng chất lượng cao..." />
           <Field label="Khẩu hiệu (tagline)" name="site_slogan" value={val('site_slogan')} onChange={set} placeholder="Đồ Gia Dụng Chất Lượng Cao" />
+        </>}
+
+        {activeTab === 'hero' && <>
+          <p style={{ color: 'var(--text-3)', fontSize: 13, marginBottom: 8 }}>
+            Nội dung hiển thị trên khu vực hero trang chủ.
+          </p>
+          <Field label="Tag / Label hero" name="hero_tag" value={val('hero_tag')} onChange={set} placeholder="VD: Thiết Bị Gia Đình Tốt Nhất 2025" />
+          <Field label="Tiêu đề phần 1 (chữ bình thường)" name="hero_title_part1" value={val('hero_title_part1')} onChange={set} placeholder="Đồ Gia Dụng" />
+          <Field label="Tiêu đề phần 2 (chữ highlight màu)" name="hero_title_part2" value={val('hero_title_part2')} onChange={set} placeholder="Chất Lượng" />
+          <Field label="Dòng tiêu đề thứ 2" name="hero_title_line2" value={val('hero_title_line2')} onChange={set} placeholder="– Chăm Sóc Gia Đình Bạn" />
+          <Field label="Mô tả hero" name="hero_subtitle" value={val('hero_subtitle')} onChange={set} type="textarea" placeholder="Tất cả những gì bạn cần để tạo một ngôi nhà ấm cúng..." />
+          <Field label="Ghi chú nhỏ dưới nút CTA" name="hero_note" value={val('hero_note')} onChange={set} placeholder="Giao hàng miễn phí từ 500.000đ · Đảm bảo chất lượng" />
         </>}
 
         {activeTab === 'seo' && <>

@@ -211,8 +211,8 @@ export default function ProductForm() {
           <textarea rows={4} value={form.description} onChange={e => set('description', e.target.value)} placeholder="Mô tả chi tiết sản phẩm..." />
         </div>
 
-        <div className="form-row">
-          <div className="form-group" style={{ flex: 2 }}>
+        <div className="form-row" style={{ gridTemplateColumns: '2fr 1fr' }}>
+          <div className="form-group">
             <label>Chất liệu</label>
             <input type="text" value={form.material} onChange={e => set('material', e.target.value)} placeholder="VD: Gốm sứ cao cấp, Tre tự nhiên, Gỗ teak..." />
           </div>

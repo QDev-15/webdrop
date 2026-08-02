@@ -21,6 +21,7 @@ interface Order {
   subtotal: number
   shipping_fee: number
   discount: number
+  coupon_code?: string
   total: number
   payment_method: string
   payment_status: string
@@ -92,7 +93,7 @@ export default function OrderDetail() {
           <div style={{ marginTop: 16, padding: 20, background: 'var(--warm, #f7f5f0)', borderRadius: 12 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}><span>Tạm tính</span><span>{fmt(order.subtotal)}</span></div>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}><span>Phí vận chuyển</span><span>{order.shipping_fee ? fmt(order.shipping_fee) : 'Miễn phí'}</span></div>
-            {order.discount > 0 && <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}><span>Giảm giá</span><span>-{fmt(order.discount)}</span></div>}
+            {order.discount > 0 && <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}><span>Giảm giá{order.coupon_code ? ` (${order.coupon_code})` : ''}</span><span>-{fmt(order.discount)}</span></div>}
             <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600, fontSize: 16, borderTop: '1px solid var(--border, #e8dfd4)', paddingTop: 8 }}><span>Tổng cộng</span><span>{fmt(order.total)}</span></div>
           </div>
         </div>

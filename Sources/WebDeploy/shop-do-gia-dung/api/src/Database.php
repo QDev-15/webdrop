@@ -492,12 +492,12 @@ class Database {
             // Trang Trí (8)
             ['ban-chay,giam-gia', 74], ['', 41], ['moi-ve,giam-gia', 55], ['ban-chay,giam-gia', 162],
             ['ban-chay,giam-gia', 38], ['moi-ve', 92], ['giam-gia', 29], ['ban-chay,giam-gia', 203],
-            // Phòng Tắm (8)
+            // Phòng Tắm (7)
             ['ban-chay,giam-gia', 187], ['giam-gia', 73], ['moi-ve,giam-gia', 58], ['ban-chay,giam-gia', 33],
-            ['giam-gia', 82], ['ban-chay,giam-gia', 44], ['moi-ve,giam-gia', 115], ['giam-gia', 51],
-            // Nội Thất Nhỏ (8)
+            ['giam-gia', 82], ['ban-chay,giam-gia', 44], ['moi-ve,giam-gia', 115],
+            // Nội Thất Nhỏ (7)
             ['ban-chay,giam-gia', 148], ['giam-gia', 89], ['ban-chay,giam-gia', 37], ['ban-chay,giam-gia', 64],
-            ['moi-ve,giam-gia', 52], ['ban-chay,giam-gia', 48], ['ban-chay,giam-gia', 27], ['giam-gia', 71],
+            ['moi-ve,giam-gia', 52], ['ban-chay,giam-gia', 48], ['ban-chay,giam-gia', 27],
             // Đèn & Chiếu Sáng (8)
             ['ban-chay,giam-gia', 63], ['ban-chay,giam-gia', 196], ['moi-ve,giam-gia', 118], ['ban-chay,giam-gia', 31],
             ['ban-chay,giam-gia', 143], ['giam-gia', 47], ['moi-ve,giam-gia', 22], ['ban-chay,giam-gia', 63],
