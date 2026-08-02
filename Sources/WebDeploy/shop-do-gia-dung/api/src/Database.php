@@ -50,7 +50,32 @@ class Database {
         $sql = preg_replace('/^\s*--.*$/m', '', $sql);
         $statements = array_filter(array_map('trim', explode(';', $sql)), fn($s) => $s !== '');
         foreach ($statements as $stmt) { $this->pdo->exec($stmt . ';'); }
+        $this->runMigrations();
         $this->seedData();
+    }
+
+    private function runMigrations(): void {
+        // Thêm cột products mới nếu chưa có (cho DB đã tồn tại trước khi thêm cột)
+        $prodCols = array_column($this->pdo->query("PRAGMA table_info(products)")->fetchAll(), 'name');
+        foreach (["material TEXT NOT NULL DEFAULT ''", "specs TEXT NOT NULL DEFAULT ''"] as $def) {
+            $col = explode(' ', $def)[0];
+            if (!in_array($col, $prodCols)) {
+                $this->pdo->exec("ALTER TABLE products ADD COLUMN $def");
+            }
+        }
+        // Fix badge: '-xx%' / 'Mới' → enum values theo thuộc tính sản phẩm
+        $hasWrong = (int)$this->pdo->query("SELECT COUNT(*) FROM products WHERE badge LIKE '-%' OR badge = 'M\u{1EDB}i'")->fetchColumn();
+        if ($hasWrong > 0) {
+            $this->pdo->exec("UPDATE products SET badge = 'hot' WHERE (badge LIKE '-%' OR badge = 'M\u{1EDB}i') AND is_featured = 1 AND price_sale IS NOT NULL AND price_sale > 0");
+            $this->pdo->exec("UPDATE products SET badge = 'new' WHERE (badge LIKE '-%' OR badge = 'M\u{1EDB}i') AND is_new = 1");
+            $this->pdo->exec("UPDATE products SET badge = 'sale' WHERE badge LIKE '-%' AND is_featured = 0 AND is_new = 0 AND price_sale IS NOT NULL AND price_sale > 0");
+            $this->pdo->exec("UPDATE products SET badge = '' WHERE badge LIKE '-%'");
+        }
+        // Thêm coupon_code vào orders nếu chưa có
+        $orderCols = array_column($this->pdo->query("PRAGMA table_info(orders)")->fetchAll(), 'name');
+        if (!in_array('coupon_code', $orderCols)) {
+            $this->pdo->exec("ALTER TABLE orders ADD COLUMN coupon_code TEXT NOT NULL DEFAULT ''");
+        }
     }
 
     private function seedData(): void {
@@ -60,6 +85,7 @@ class Database {
         $this->seedProductColors();
         $this->seedProductCategories();
         $this->seedProducts();
+        $this->seedCoupons();
     }
 
     private function seedProductColors(): void {
@@ -483,7 +509,27 @@ class Database {
         );
         foreach ($products as $i => $p) {
             [$theme, $sold] = $themeSold[$i];
+            // Tính badge từ thuộc tính sản phẩm — không dùng giá trị hardcode trong mảng
+            // $p[11]=is_featured, $p[12]=is_new, $p[5]=price_sale
+            if ($p[11] == 1 && $p[5] !== null) { $p[6] = 'hot'; }
+            elseif ($p[12] == 1) { $p[6] = 'new'; }
+            elseif ($p[5] !== null) { $p[6] = 'sale'; }
+            else { $p[6] = ''; }
             $stmt->execute([...$p, $theme, $sold]);
         }
+    }
+
+    private function seedCoupons(): void {
+        $count = $this->pdo->query("SELECT COUNT(*) FROM coupons")->fetchColumn();
+        if ($count > 0) return;
+        $coupons = [
+            ['WELCOME10', 'percent', 10,    200000,  0,   null, 1],
+            ['SALE15',    'percent', 15,    500000,  100, null, 1],
+            ['GIAM50K',   'fixed',   50000, 300000,  50,  null, 1],
+        ];
+        $stmt = $this->pdo->prepare(
+            "INSERT INTO coupons (code, type, value, min_order, max_uses, expires_at, is_active) VALUES (?, ?, ?, ?, ?, ?, ?)"
+        );
+        foreach ($coupons as $c) { $stmt->execute($c); }
     }
 }

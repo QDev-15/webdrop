@@ -16,6 +16,9 @@ export default function HeroSlider({ categories }: { categories: Category[] }) {
   const navigate = useNavigate()
   const [q, setQ] = useState('')
 
+  const h1Part1  = String(settings.hero_title_part1 || 'Đồ Gia Dụng')
+  const h1Part2  = String(settings.hero_title_part2 || 'Chất Lượng')
+  const h1Line2  = String(settings.hero_title_line2 || 'Cho Mọi Gia Đình')
   const subtitle = String(settings.site_slogan || 'Đồ gia dụng chất lượng cao cho mọi gia đình')
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -31,7 +34,7 @@ export default function HeroSlider({ categories }: { categories: Category[] }) {
       <div className="dg-container">
         <div className="dg-search-zone__content">
           <h1 className="dg-search-zone__h1">
-            Đồ Gia Dụng <em>Chất Lượng</em><br />Cho Mọi Gia Đình
+            {h1Part1} <em>{h1Part2}</em><br />{h1Line2}
           </h1>
           <p className="dg-search-zone__sub">{subtitle}</p>
 

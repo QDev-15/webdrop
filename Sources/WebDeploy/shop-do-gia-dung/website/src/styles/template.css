@@ -1102,6 +1102,19 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--serif); font-weight: 500; line-heigh
   transition: border-color .2s;
 }
 .dg-coupon-input:focus { border-color: var(--accent); }
+.dg-coupon-btn {
+  height: 40px; padding: 0 16px; white-space: nowrap;
+  background: var(--accent); color: #fff; border: none;
+  border-radius: var(--radius-btn); font-size: 14px; font-weight: 600; cursor: pointer;
+  transition: background .2s;
+}
+.dg-coupon-btn:hover:not(:disabled) { background: var(--accent-h); }
+.dg-coupon-btn:disabled { opacity: .5; cursor: not-allowed; }
+.dg-coupon-error { font-size: 12px; color: var(--danger); margin: 4px 0 0; width: 100%; }
+.dg-coupon-applied {
+  background: var(--accent-light); border: 1px solid var(--accent);
+  border-radius: var(--radius-btn); padding: 10px 14px; margin: 10px 0;
+}
 
 /* ── 15. Collection Page (bo-suu-tap) ── */
 .dg-bento {

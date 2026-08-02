@@ -56,6 +56,8 @@ function AppShell() {
     return () => { clearTimeout(t); io.disconnect(); mo.disconnect() }
   }, [location.pathname, settings])
 
+  const zaloNumber = String(settings.zalo_number || '')
+
   return (
     <>
       <Header />
@@ -74,6 +76,23 @@ function AppShell() {
         </Routes>
       </main>
       <Footer />
+      {zaloNumber && (
+        <a
+          href={`https://zalo.me/${zaloNumber.replace(/\s/g, '')}`}
+          className="dg-zalo-float"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat Zalo"
+        >
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28">
+            <rect width="64" height="64" rx="14" fill="white" fillOpacity="0"/>
+            <path d="M32 4C16.536 4 4 16.536 4 32C4 38.08 5.96 43.7 9.28 48.24L4.8 59.2L16.32 55.04C20.64 57.84 25.64 59.44 31.04 59.92C31.36 59.96 31.68 59.96 32 59.96C47.464 59.96 60 47.424 60 31.96C60 16.536 47.464 4 32 4Z" fill="#0068FF"/>
+            <path d="M18.56 37.36C18.56 37.36 28.8 26.68 34.36 24.76C34.36 24.76 26.88 37.96 24.96 40.28C24.16 41.28 22.92 41.76 21.72 41.32C20.08 40.72 18.56 39.16 18.56 37.36Z" fill="white"/>
+            <path d="M34.76 39.64C34.76 39.64 24.52 28.96 18.96 27.04C18.96 27.04 26.44 40.24 28.36 42.56C29.16 43.56 30.4 44.04 31.6 43.6C33.24 43 34.76 41.44 34.76 39.64Z" fill="white"/>
+            <path d="M45 29.2C45 32.44 42.76 35.08 39.96 35.08C37.16 35.08 34.92 32.44 34.92 29.2C34.92 25.96 37.16 23.32 39.96 23.32C42.76 23.32 45 25.96 45 29.2Z" fill="white"/>
+          </svg>
+        </a>
+      )}
     </>
   )
 }

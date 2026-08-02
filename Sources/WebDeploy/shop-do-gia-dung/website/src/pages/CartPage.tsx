@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useCart } from '../contexts/CartContext'
 import { useSite } from '../contexts/SiteContext'
@@ -6,22 +7,52 @@ import { useDocumentMeta } from '../hooks/useDocumentMeta'
 const FALLBACK = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Crect fill='%23f5ede0' width='160' height='160'/%3E%3C/svg%3E"
 
 export default function CartPage() {
-  const { items, removeItem, updateQty, count } = useCart()
+  const { items, removeItem, updateQty, clear, count, coupon, setCoupon } = useCart()
   const { settings } = useSite()
   const navigate = useNavigate()
+
+  const [couponInput, setCouponInput] = useState(coupon?.code ?? '')
+  const [couponLoading, setCouponLoading] = useState(false)
+  const [couponError, setCouponError] = useState('')
 
   useDocumentMeta({
     title: `Giỏ hàng (${count}) – Shop Đồ Gia Dụng`,
     description: 'Xem lại giỏ hàng của bạn trước khi thanh toán.',
   })
 
-  // Đảm bảo dùng Number() — không dùng "as number" (chỉ là type-assertion, không convert)
-  const shippingFee = Number(settings.shipping_fee || 50000)
-  const freeThreshold = Number(settings.free_shipping_threshold || 500000)
+  const shippingFee    = Number(settings.shipping_fee || 50000)
+  const freeThreshold  = Number(settings.free_shipping_threshold || 500000)
 
-  const subtotal = items.reduce((s, i) => s + i.price * i.qty, 0)
-  const actualShipping = subtotal >= freeThreshold ? 0 : shippingFee
-  const total = subtotal + actualShipping
+  const subtotal       = items.reduce((s, i) => s + i.price * i.qty, 0)
+  const discount       = coupon?.discount ?? 0
+  const actualShipping = subtotal - discount >= freeThreshold ? 0 : shippingFee
+  const total          = subtotal - discount + actualShipping
+
+  const handleApplyCoupon = async () => {
+    const code = couponInput.trim().toUpperCase()
+    if (!code) return
+    setCouponLoading(true); setCouponError('')
+    try {
+      const res = await fetch('/api/public/coupons/validate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code, subtotal }),
+      })
+      const data = await res.json()
+      if (!res.ok) { setCouponError(data.message || 'Mã không hợp lệ'); return }
+      setCoupon({ code, type: data.type, value: data.value, discount: data.discount })
+    } catch {
+      setCouponError('Không thể kiểm tra mã — vui lòng thử lại')
+    } finally {
+      setCouponLoading(false)
+    }
+  }
+
+  const handleRemoveCoupon = () => {
+    setCoupon(null)
+    setCouponInput('')
+    setCouponError('')
+  }
 
   if (items.length === 0) {
     return (
@@ -81,7 +112,7 @@ export default function CartPage() {
                     <td style={{ padding: '16px 12px' }}>
                       <p className="dg-cart-item__name">{item.name}</p>
                       {item.color && <p className="dg-cart-item__cat">Màu: {item.color}</p>}
-                      {item.size && <p className="dg-cart-item__cat">Kích cỡ: {item.size}</p>}
+                      {item.size  && <p className="dg-cart-item__cat">Kích cỡ: {item.size}</p>}
                     </td>
                     <td style={{ fontSize: 15, fontWeight: 600, color: 'var(--accent)', padding: '16px 0', whiteSpace: 'nowrap' }}>
                       {item.price.toLocaleString('vi-VN')}đ
@@ -101,19 +132,22 @@ export default function CartPage() {
                         className="dg-cart-item__remove"
                         onClick={() => removeItem(item.product_id, item.color, item.size)}
                         title="Xóa sản phẩm"
-                      >
-                        ✕
-                      </button>
+                      >✕</button>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
 
-            <div style={{ marginTop: 20 }}>
-              <Link to="/san-pham" className="dg-btn dg-btn--ghost">
-                ← Tiếp tục mua sắm
-              </Link>
+            <div style={{ marginTop: 20, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              <Link to="/san-pham" className="dg-btn dg-btn--ghost">← Tiếp tục mua sắm</Link>
+              <button
+                className="dg-btn dg-btn--ghost"
+                style={{ color: 'var(--danger)', borderColor: 'var(--danger)' }}
+                onClick={clear}
+              >
+                🗑 Xóa tất cả
+              </button>
             </div>
           </div>
 
@@ -127,6 +161,45 @@ export default function CartPage() {
                 <span>{subtotal.toLocaleString('vi-VN')}đ</span>
               </div>
 
+              {/* Coupon */}
+              {coupon ? (
+                <div className="dg-coupon-applied">
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--accent)' }}>
+                      🏷 Mã: <strong>{coupon.code}</strong>
+                    </span>
+                    <button
+                      onClick={handleRemoveCoupon}
+                      style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-3)', fontSize: 18, lineHeight: 1 }}
+                      title="Xóa mã giảm giá"
+                    >✕</button>
+                  </div>
+                  <div className="dg-cart-summary__row" style={{ borderBottom: 'none', paddingTop: 4 }}>
+                    <span style={{ fontSize: 13, color: 'var(--text-2)' }}>Giảm giá</span>
+                    <span style={{ color: 'var(--danger)', fontWeight: 600 }}>−{discount.toLocaleString('vi-VN')}đ</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="dg-coupon-row">
+                  <input
+                    className="dg-coupon-input"
+                    type="text"
+                    placeholder="Nhập mã giảm giá..."
+                    value={couponInput}
+                    onChange={e => { setCouponInput(e.target.value.toUpperCase()); setCouponError('') }}
+                    onKeyDown={e => e.key === 'Enter' && handleApplyCoupon()}
+                  />
+                  <button
+                    className="dg-coupon-btn"
+                    onClick={handleApplyCoupon}
+                    disabled={couponLoading || !couponInput.trim()}
+                  >
+                    {couponLoading ? '...' : 'Áp dụng'}
+                  </button>
+                  {couponError && <p className="dg-coupon-error">{couponError}</p>}
+                </div>
+              )}
+
               <div className="dg-cart-summary__row">
                 <span>Phí vận chuyển</span>
                 <span>
@@ -137,9 +210,9 @@ export default function CartPage() {
                 </span>
               </div>
 
-              {subtotal < freeThreshold && (
+              {subtotal - discount < freeThreshold && (
                 <p style={{ fontSize: 13, color: 'var(--text-3)', padding: '8px 0', borderBottom: '1px solid var(--border-light)' }}>
-                  Mua thêm <strong>{(freeThreshold - subtotal).toLocaleString('vi-VN')}đ</strong> để được miễn phí giao hàng
+                  Mua thêm <strong>{Math.max(0, freeThreshold - subtotal + discount).toLocaleString('vi-VN')}đ</strong> để được miễn phí giao hàng
                 </p>
               )}
 

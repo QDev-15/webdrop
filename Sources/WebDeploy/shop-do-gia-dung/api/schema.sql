@@ -101,7 +101,9 @@ CREATE TABLE IF NOT EXISTS products (
     theme        TEXT NOT NULL DEFAULT '',     -- comma-separated: "ban-chay,moi-ve,giam-gia"
     sold         INTEGER NOT NULL DEFAULT 0,  -- số lượng đã bán (hiển thị trên trang chi tiết)
     gallery      TEXT NOT NULL DEFAULT '',    -- JSON array URLs ảnh phụ
-    video_url    TEXT NOT NULL DEFAULT ''     -- YouTube URL
+    video_url    TEXT NOT NULL DEFAULT '',    -- YouTube URL
+    material     TEXT NOT NULL DEFAULT '',    -- chất liệu sản phẩm
+    specs        TEXT NOT NULL DEFAULT ''     -- JSON object thông số kỹ thuật
 );
 
 -- Đơn hàng — schema CỐ ĐỊNH, khớp 1-1 với OrderController.php + ShopPublicController.php.
@@ -121,6 +123,7 @@ CREATE TABLE IF NOT EXISTS orders (
     payment_method  TEXT NOT NULL DEFAULT 'cod',   -- 'cod' | 'sepay'
     payment_status  TEXT NOT NULL DEFAULT 'unpaid', -- 'unpaid' | 'pending' | 'paid'
     status          TEXT NOT NULL DEFAULT 'pending', -- 'pending'|'processing'|'shipping'|'completed'|'cancelled'
+    coupon_code     TEXT NOT NULL DEFAULT '',
     created_at      TEXT NOT NULL DEFAULT (datetime('now','localtime')),
     updated_at      TEXT NOT NULL DEFAULT (datetime('now','localtime'))
 );
@@ -133,6 +136,20 @@ CREATE TABLE IF NOT EXISTS order_items (
     price        INTEGER NOT NULL DEFAULT 0,
     qty          INTEGER NOT NULL DEFAULT 1,
     subtotal     INTEGER NOT NULL DEFAULT 0
+);
+
+-- Phiếu giảm giá
+CREATE TABLE IF NOT EXISTS coupons (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    code        TEXT    NOT NULL UNIQUE,
+    type        TEXT    NOT NULL DEFAULT 'percent', -- 'percent' | 'fixed'
+    value       INTEGER NOT NULL DEFAULT 0,         -- % hoặc VND
+    min_order   INTEGER NOT NULL DEFAULT 0,
+    max_uses    INTEGER NOT NULL DEFAULT 0,         -- 0 = không giới hạn
+    used_count  INTEGER NOT NULL DEFAULT 0,
+    expires_at  TEXT,                               -- NULL = không hết hạn
+    is_active   INTEGER NOT NULL DEFAULT 1,
+    created_at  TEXT    NOT NULL DEFAULT (datetime('now','localtime'))
 );
 
 -- Màu sắc sản phẩm — admin tự định nghĩa, dùng cho selector trong ProductForm

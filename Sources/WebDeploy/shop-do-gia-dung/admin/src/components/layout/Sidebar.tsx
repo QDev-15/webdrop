@@ -35,6 +35,7 @@ export default function Sidebar() {
       section: 'Bán hàng',
       links: [
         { to: '/orders',   icon: '📦', label: 'Đơn hàng' },
+        { to: '/coupons',  icon: '🏷',  label: 'Phiếu giảm giá' },
         { to: '/contacts', icon: '✉',  label: 'Liên hệ' },
       ],
     },

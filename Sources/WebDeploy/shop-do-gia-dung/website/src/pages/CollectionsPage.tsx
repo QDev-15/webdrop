@@ -88,12 +88,12 @@ export default function CollectionsPage() {
   })
 
   const bestSellers = useMemo(() =>
-    products.filter(p => p.theme?.includes('|ban-chay|')).slice(0, 8),
+    products.filter(p => p.theme?.includes('ban-chay')).slice(0, 8),
     [products]
   )
 
   const newArrivals = useMemo(() =>
-    products.filter(p => p.theme?.includes('|moi-ve|')).slice(0, 8),
+    products.filter(p => p.theme?.includes('moi-ve')).slice(0, 8),
     [products]
   )
 

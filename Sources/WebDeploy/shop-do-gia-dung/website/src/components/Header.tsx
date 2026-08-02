@@ -66,7 +66,7 @@ export default function Header() {
             <NavLink to="/" className={navCls} end>Trang chủ</NavLink>
             <NavLink to="/san-pham" className={navCls}>Sản phẩm</NavLink>
             <NavLink to="/bo-suu-tap" className={navCls}>Bộ sưu tập</NavLink>
-            <NavLink to="/ve-chung-toi" className={navCls}>Về chúng tôi</NavLink>
+            <NavLink to="/ve-chung-toi" className={navCls}>Giới thiệu</NavLink>
             <NavLink to="/lien-he" className={navCls}>Liên hệ</NavLink>
           </div>
 
@@ -134,7 +134,7 @@ export default function Header() {
           <NavLink to="/" className={navCls} end onClick={() => setMobOpen(false)}>Trang chủ</NavLink>
           <NavLink to="/san-pham" className={navCls} onClick={() => setMobOpen(false)}>Sản phẩm</NavLink>
           <NavLink to="/bo-suu-tap" className={navCls} onClick={() => setMobOpen(false)}>Bộ sưu tập</NavLink>
-          <NavLink to="/ve-chung-toi" className={navCls} onClick={() => setMobOpen(false)}>Về chúng tôi</NavLink>
+          <NavLink to="/ve-chung-toi" className={navCls} onClick={() => setMobOpen(false)}>Giới thiệu</NavLink>
           <NavLink to="/lien-he" className={navCls} onClick={() => setMobOpen(false)}>Liên hệ</NavLink>
           <Link to="/chinh-sach-bao-mat" style={{ fontSize: 14, color: 'var(--text-3)', padding: '8px 14px' }} onClick={() => setMobOpen(false)}>Chính sách bảo mật</Link>
           <Link to="/dieu-khoan" style={{ fontSize: 14, color: 'var(--text-3)', padding: '8px 14px' }} onClick={() => setMobOpen(false)}>Điều khoản sử dụng</Link>

@@ -21,13 +21,30 @@ interface FormData {
   is_new: boolean
   status: string
   sort_order: string
+  // Extra fields
+  material: string
+  specs: string
+  theme: string
+  sold: string
+  gallery: string
+  video_url: string
 }
 
 const EMPTY: FormData = {
   name: '', category_id: '', image: '', price: '', price_sale: '',
   badge: '', description: '', colors: '', rating: '5', in_stock: true,
-  is_featured: false, is_new: false,
-  status: 'published', sort_order: '0'
+  is_featured: false, is_new: false, status: 'published', sort_order: '0',
+  material: '', specs: '', theme: '', sold: '0', gallery: '', video_url: '',
+}
+
+const THEME_OPTIONS = [
+  { value: 'ban-chay', label: '🔥 Bán chạy' },
+  { value: 'moi-ve',   label: '🆕 Mới về' },
+  { value: 'giam-gia', label: '🏷 Giảm giá' },
+]
+
+function parseThemes(theme: string): string[] {
+  return theme.split(',').map(t => t.trim()).filter(Boolean)
 }
 
 function parseColorNames(colors: string): string[] {
@@ -79,6 +96,12 @@ export default function ProductForm() {
           is_new: Boolean(Number(p.is_new)),
           status: String(p.status ?? 'published'),
           sort_order: String(p.sort_order ?? '0'),
+          material: String(p.material ?? ''),
+          specs: String(p.specs ?? ''),
+          theme: String(p.theme ?? ''),
+          sold: String(p.sold ?? '0'),
+          gallery: String(p.gallery ?? ''),
+          video_url: String(p.video_url ?? ''),
         })
       }
     }).catch(() => setError('Không tải được dữ liệu'))
@@ -95,6 +118,14 @@ export default function ProductForm() {
     set('colors', serializeColors(next, colorSwatches))
   }
 
+  const selectedThemes = parseThemes(form.theme)
+  const toggleTheme = (val: string) => {
+    const next = selectedThemes.includes(val)
+      ? selectedThemes.filter(t => t !== val)
+      : [...selectedThemes, val]
+    set('theme', next.join(','))
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!form.name.trim()) { setError('Tên sản phẩm không được để trống'); return }
@@ -109,6 +140,7 @@ export default function ProductForm() {
       is_featured: form.is_featured ? 1 : 0,
       is_new: form.is_new ? 1 : 0,
       sort_order: Number(form.sort_order) || 0,
+      sold: Number(form.sold) || 0,
     }
     try {
       if (isEdit) {
@@ -179,6 +211,17 @@ export default function ProductForm() {
           <textarea rows={4} value={form.description} onChange={e => set('description', e.target.value)} placeholder="Mô tả chi tiết sản phẩm..." />
         </div>
 
+        <div className="form-row">
+          <div className="form-group" style={{ flex: 2 }}>
+            <label>Chất liệu</label>
+            <input type="text" value={form.material} onChange={e => set('material', e.target.value)} placeholder="VD: Gốm sứ cao cấp, Tre tự nhiên, Gỗ teak..." />
+          </div>
+          <div className="form-group" style={{ flex: 1 }}>
+            <label>Số lượng đã bán</label>
+            <input type="number" value={form.sold} onChange={e => set('sold', e.target.value)} min={0} placeholder="0" />
+          </div>
+        </div>
+
         {/* Màu sắc — fetch từ API product-colors */}
         <div className="form-group">
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
@@ -232,6 +275,26 @@ export default function ProductForm() {
           )}
         </div>
 
+        {/* Chủ đề hiển thị trên trang chủ */}
+        <div className="form-group">
+          <label>Hiển thị ở section trang chủ</label>
+          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginTop: 6 }}>
+            {THEME_OPTIONS.map(opt => (
+              <label key={opt.value} className="form-check" style={{ margin: 0 }}>
+                <input
+                  type="checkbox"
+                  checked={selectedThemes.includes(opt.value)}
+                  onChange={() => toggleTheme(opt.value)}
+                />
+                <span>{opt.label}</span>
+              </label>
+            ))}
+          </div>
+          <small style={{ color: 'var(--text-3)', fontSize: 11, marginTop: 4, display: 'block' }}>
+            Chọn section(s) sản phẩm này sẽ xuất hiện trên trang chủ
+          </small>
+        </div>
+
         <div className="form-row">
           <div className="form-group" style={{ flex: 1 }}>
             <label>Trạng thái</label>
@@ -263,6 +326,40 @@ export default function ProductForm() {
             <input type="checkbox" checked={form.is_new} onChange={e => set('is_new', e.target.checked)} />
             <span>Sản phẩm mới</span>
           </label>
+        </div>
+
+        {/* Thông tin mở rộng */}
+        <div style={{ borderTop: '1px solid var(--border)', paddingTop: 20, marginTop: 4 }}>
+          <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-2)', marginBottom: 16 }}>Thông tin mở rộng</div>
+
+          <div className="form-group">
+            <label>Ảnh gallery (JSON array URL)</label>
+            <textarea
+              rows={3}
+              value={form.gallery}
+              onChange={e => set('gallery', e.target.value)}
+              placeholder={'["https://images.unsplash.com/photo-xxx?w=800", "https://..."]'}
+              style={{ fontFamily: 'monospace', fontSize: 12 }}
+            />
+            <small style={{ color: 'var(--text-3)', fontSize: 11 }}>JSON array các URL ảnh phụ. Để trống nếu chỉ dùng 1 ảnh chính.</small>
+          </div>
+
+          <div className="form-group">
+            <label>Video URL (YouTube)</label>
+            <input type="url" value={form.video_url} onChange={e => set('video_url', e.target.value)} placeholder="https://www.youtube.com/watch?v=..." />
+          </div>
+
+          <div className="form-group">
+            <label>Thông số kỹ thuật (JSON object)</label>
+            <textarea
+              rows={4}
+              value={form.specs}
+              onChange={e => set('specs', e.target.value)}
+              placeholder={'{"Xuất xứ": "Việt Nam", "Kích thước": "20 x 15 cm", "Trọng lượng": "500g"}'}
+              style={{ fontFamily: 'monospace', fontSize: 12 }}
+            />
+            <small style={{ color: 'var(--text-3)', fontSize: 11 }}>JSON object cặp "Tên thông số": "Giá trị". Để trống nếu không cần hiển thị specs.</small>
+          </div>
         </div>
 
         <div className="form-actions">

@@ -17,6 +17,8 @@ import ContactList from './pages/contacts/ContactList'
 import MediaPage from './pages/media/MediaPage'
 import HeroSlideList from './pages/slides/HeroSlideList'
 import HeroSlideForm from './pages/slides/HeroSlideForm'
+import CouponList from './pages/coupons/CouponList'
+import CouponForm from './pages/coupons/CouponForm'
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
@@ -48,6 +50,9 @@ export default function App() {
       <Route path="/slides" element={<ProtectedRoute><HeroSlideList /></ProtectedRoute>} />
       <Route path="/slides/new" element={<ProtectedRoute><HeroSlideForm /></ProtectedRoute>} />
       <Route path="/slides/:id/edit" element={<ProtectedRoute><HeroSlideForm /></ProtectedRoute>} />
+      <Route path="/coupons" element={<ProtectedRoute><CouponList /></ProtectedRoute>} />
+      <Route path="/coupons/new" element={<ProtectedRoute><CouponForm /></ProtectedRoute>} />
+      <Route path="/coupons/:id/edit" element={<ProtectedRoute><CouponForm /></ProtectedRoute>} />
     </Routes>
   )
 }

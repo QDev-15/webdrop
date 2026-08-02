@@ -91,16 +91,19 @@ function ProductCard({ product }: ProductCardProps) {
 
 interface SectionProps {
   title: string
-  theme: string
+  theme?: string
+  categorySlug?: string
   products: Product[]
   seeAllHref: string
 }
 
-function ProductSection({ title, theme: sectionTheme, products: allProducts, seeAllHref }: SectionProps) {
+function ProductSection({ title, theme: sectionTheme, categorySlug, products: allProducts, seeAllHref }: SectionProps) {
   const [q, setQ] = useState('')
 
   const filtered = useMemo(() => {
-    const base = allProducts.filter(p => p.theme && p.theme.includes(sectionTheme))
+    const base = categorySlug
+      ? allProducts.filter(p => p.category === categorySlug)
+      : allProducts.filter(p => sectionTheme && p.theme && p.theme.includes(sectionTheme))
     if (!q.trim()) return base
     const ql = q.toLowerCase()
     return base.filter(p => p.name.toLowerCase().includes(ql) || (p.categoryName || '').toLowerCase().includes(ql))
@@ -113,7 +116,7 @@ function ProductSection({ title, theme: sectionTheme, products: allProducts, see
       <div className="dg-container">
         <div className="dg-section__head">
           <div>
-            <p className="dg-section__label">{sectionTheme === 'ban-chay' ? '🔥 Nổi bật' : sectionTheme === 'moi-ve' ? '✨ Hàng mới' : '💰 Tiết kiệm'}</p>
+            <p className="dg-section__label">{categorySlug ? '🍳 Danh mục' : sectionTheme === 'ban-chay' ? '🔥 Nổi bật' : sectionTheme === 'moi-ve' ? '✨ Hàng mới' : '💰 Tiết kiệm'}</p>
             <h2 className="dg-section__title">{title}</h2>
           </div>
 
@@ -179,6 +182,13 @@ export default function HomePage() {
         theme="giam-gia"
         products={products}
         seeAllHref="/san-pham?theme=giam-gia"
+      />
+
+      <ProductSection
+        title="Đồ dùng nhà bếp"
+        categorySlug="nha-bep"
+        products={products}
+        seeAllHref="/san-pham?category=nha-bep"
       />
 
       {/* Policy strip */}

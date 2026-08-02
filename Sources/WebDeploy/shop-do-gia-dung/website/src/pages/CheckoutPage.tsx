@@ -26,7 +26,7 @@ interface OrderResult {
 }
 
 export default function CheckoutPage() {
-  const { items, subtotal, clear } = useCart()
+  const { items, subtotal, coupon, clear } = useCart()
   const { settings } = useSite()
 
   useDocumentMeta({ title: 'Thanh toán – Shop Đồ Gia Dụng', description: 'Hoàn tất đơn hàng và chọn phương thức thanh toán phù hợp.' })
@@ -41,10 +41,11 @@ export default function CheckoutPage() {
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   const fmt = (n: number) => n.toLocaleString('vi-VN') + 'đ'
+  const discount = coupon?.discount ?? 0
   const shippingFee = Number(settings['shipping_fee'] || 0)
   const freeShipThreshold = Number(settings['free_shipping_threshold'] || 0)
-  const effectiveShipping = freeShipThreshold > 0 && subtotal >= freeShipThreshold ? 0 : shippingFee
-  const total = subtotal + effectiveShipping
+  const effectiveShipping = freeShipThreshold > 0 && (subtotal - discount) >= freeShipThreshold ? 0 : shippingFee
+  const total = subtotal - discount + effectiveShipping
 
   useEffect(() => {
     api.get<PaymentMethods>('/public/payment-methods')
@@ -84,6 +85,7 @@ export default function CheckoutPage() {
         ...form,
         payment_method: paymentMethod,
         items: items.map(i => ({ product_id: i.product_id, qty: i.qty })),
+        coupon_code: coupon?.code ?? '',
       })
       setResult(order)
       clear()
@@ -239,6 +241,12 @@ export default function CheckoutPage() {
               <div className="shop-checkout-summary-row" style={{ borderTop: '1px solid var(--border, #e5e5e5)', paddingTop: 14, marginTop: 4 }}>
                 <span>Tạm tính</span><span>{fmt(subtotal)}</span>
               </div>
+              {discount > 0 && (
+                <div className="shop-checkout-summary-row" style={{ color: 'var(--accent, #16a34a)' }}>
+                  <span>Giảm giá ({coupon!.code})</span>
+                  <span>-{fmt(discount)}</span>
+                </div>
+              )}
               <div className="shop-checkout-summary-row">
                 <span>Phí vận chuyển</span>
                 <span style={{ color: effectiveShipping === 0 ? 'var(--accent, #16a34a)' : undefined }}>{effectiveShipping === 0 ? 'Miễn phí' : fmt(effectiveShipping)}</span>
