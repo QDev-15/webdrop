@@ -19,6 +19,7 @@ export default function ProductDetailPage() {
   const [qty, setQty] = useState(1)
   const [activeTab, setActiveTab] = useState<TabKey>('desc')
   const [added, setAdded] = useState(false)
+  const [activeImg, setActiveImg] = useState(0)
 
   useEffect(() => {
     if (!slug) return
@@ -27,6 +28,7 @@ export default function ProductDetailPage() {
     setSelectedSize('')
     setQty(1)
     setActiveTab('desc')
+    setActiveImg(0)
     api.get<Product>(`/public/products/${slug}`)
       .then(p => {
         setProduct(p)
@@ -65,6 +67,15 @@ export default function ProductDetailPage() {
   const sizes = parsePadded(product.sizes)
   const effectivePrice = product.price_sale ?? product.price
 
+  const galleryExtra: string[] = (() => {
+    if (!product.gallery?.trim()) return []
+    try {
+      const parsed = JSON.parse(product.gallery)
+      return Array.isArray(parsed) ? (parsed as unknown[]).filter((x): x is string => typeof x === 'string' && x.trim() !== '') : []
+    } catch { return [] }
+  })()
+  const images = [product.image || '', ...galleryExtra].filter(Boolean)
+
   const handleAddToCart = () => {
     addItem({
       product_id: product.id,
@@ -101,14 +112,27 @@ export default function ProductDetailPage() {
           <div className="row g-5">
             <div className="col-lg-6">
               <div className="am-detail-gallery">
-                <div className="am-thumb-list">
-                  <div className="am-thumb active">
-                    <img src={product.image} alt={product.name} onError={onImgError} />
-                  </div>
-                </div>
                 <div className="am-main-img-wrap">
-                  <img src={product.image} alt={product.name} onError={onImgError} />
+                  <img src={images[activeImg] || product.image} alt={product.name} onError={onImgError} />
                 </div>
+                {images.length > 1 && (
+                  <div style={{ display: 'flex', gap: 8, marginTop: 10, flexWrap: 'wrap' }}>
+                    {images.map((url, i) => (
+                      <button key={i} type="button" onClick={() => setActiveImg(i)}
+                        style={{
+                          width: 64, height: 64, padding: 0, cursor: 'pointer', flexShrink: 0,
+                          border: i === activeImg ? '2px solid var(--sage, var(--accent))' : '2px solid var(--border)',
+                          borderRadius: 8, overflow: 'hidden', background: 'var(--warm)',
+                          transition: 'border-color .15s',
+                        }}
+                        aria-label={`Ảnh ${i + 1}`}
+                      >
+                        <img src={url} alt={`Ảnh ${i + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                          onError={e => { (e.target as HTMLImageElement).style.opacity = '0.3' }} />
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 

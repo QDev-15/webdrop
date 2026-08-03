@@ -68,7 +68,14 @@ export default function ProductDetailPage() {
 
   const colorOptions = parseColors(product.colors)
   const sizeOptions = parseSizes(product.sizes)
-  const gallery = [product.image].filter(Boolean)
+  const galleryExtra: string[] = (() => {
+    if (!product.gallery?.trim()) return []
+    try {
+      const p = JSON.parse(product.gallery)
+      return Array.isArray(p) ? (p as unknown[]).filter((x): x is string => typeof x === 'string' && x.trim() !== '') : []
+    } catch { return [] }
+  })()
+  const gallery = [product.image || '', ...galleryExtra].filter(Boolean)
   const related = products.filter(p => p.slug !== slug && p.category_id === product.category_id).slice(0, 4)
   const relatedFallback = products.filter(p => p.slug !== slug).slice(0, 4)
   const relatedItems = related.length > 0 ? related : relatedFallback

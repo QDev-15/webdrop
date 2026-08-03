@@ -29,6 +29,7 @@ interface Product {
   price: number
   price_sale: number
   badge: string
+  gallery?: string
   is_featured: number
   is_new: number
   status: string

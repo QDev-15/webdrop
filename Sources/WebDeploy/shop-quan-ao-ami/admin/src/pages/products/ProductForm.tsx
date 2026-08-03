@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '../../api/client'
 import ImageField from '../../components/ImageField'
+import GalleryField from '../../components/GalleryField'
 
 // ▼ Palette thật của AMI Fashion (khớp COLOR_LABELS/COLOR_HEX trong products-data.js gốc).
 // Phải khớp 100% với COLOR_OPTIONS ở website/src/pages/ProductsPage.tsx —
@@ -63,6 +64,7 @@ interface FormData {
   sizes: string
   theme: string
   sold: string
+  gallery: string
 }
 
 const EMPTY: FormData = {
@@ -70,7 +72,7 @@ const EMPTY: FormData = {
   badge: '', description: '', colors: '', rating: '5', in_stock: true,
   is_featured: false, is_new: false,
   status: 'published', sort_order: '0',
-  sizes: '', theme: '', sold: '0',
+  sizes: '', theme: '', sold: '0', gallery: '',
 }
 
 export default function ProductForm() {
@@ -110,6 +112,7 @@ export default function ProductForm() {
           sizes: String(p.sizes ?? ''),
           theme: String(p.theme ?? ''),
           sold: String(p.sold ?? '0'),
+          gallery: String(p.gallery ?? ''),
         })
       }
     }).catch(() => setError('Không tải được dữ liệu'))
@@ -189,6 +192,11 @@ export default function ProductForm() {
         <div className="form-group">
           <label>Ảnh sản phẩm</label>
           <ImageField value={form.image} onChange={v => set('image', v)} />
+        </div>
+
+        <div className="form-group">
+          <label>Ảnh gallery (ảnh bổ sung hiển thị trong trang chi tiết sản phẩm)</label>
+          <GalleryField value={form.gallery} onChange={v => set('gallery', v)} />
         </div>
 
         <div className="form-row">

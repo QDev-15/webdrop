@@ -50,6 +50,8 @@ class Database {
         $sql = preg_replace('/^\s*--.*$/m', '', $sql);
         $statements = array_filter(array_map('trim', explode(';', $sql)), fn($s) => $s !== '');
         foreach ($statements as $stmt) { $this->pdo->exec($stmt . ';'); }
+        // Backfill migrations for existing databases
+        try { $this->pdo->exec("ALTER TABLE products ADD COLUMN gallery TEXT DEFAULT ''"); } catch (\Throwable $e) { /* column already exists */ }
         $this->seedData();
     }
 
@@ -306,8 +308,8 @@ class Database {
              'Linen 70% / Cotton 30%', $colorEarth, 4.7, 1, 1, 0, 12],
         ];
         $stmt = $this->pdo->prepare(
-            "INSERT INTO products (category_id, name, slug, image, price, price_sale, badge, description, material, colors, rating, in_stock, is_featured, is_new, sort_order)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            "INSERT INTO products (category_id, name, slug, image, price, price_sale, badge, description, material, colors, gallery, rating, in_stock, is_featured, is_new, sort_order)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '', ?, ?, ?, ?, ?)"
         );
         foreach ($products as $p) { $stmt->execute($p); }
     }
@@ -444,8 +446,8 @@ class Database {
              'Gỗ sồi tự nhiên', $colorNeutral, 4.4, 1, 0, 0, 32],
         ];
         $stmt = $this->pdo->prepare(
-            "INSERT OR IGNORE INTO products (category_id, name, slug, image, price, price_sale, badge, description, material, colors, rating, in_stock, is_featured, is_new, sort_order)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            "INSERT OR IGNORE INTO products (category_id, name, slug, image, price, price_sale, badge, description, material, colors, gallery, rating, in_stock, is_featured, is_new, sort_order)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '', ?, ?, ?, ?, ?)"
         );
         foreach ($products as $p) { $stmt->execute($p); }
     }

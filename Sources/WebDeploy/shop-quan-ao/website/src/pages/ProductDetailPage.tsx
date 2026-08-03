@@ -68,7 +68,14 @@ export default function ProductDetailPage() {
 
   const colorOptions = parseColors(product.colors)
   const sizeOptions = parseSizes(product.sizes)
-  const gallery = [product.image].filter(Boolean)
+  const galleryExtra: string[] = (() => {
+    if (!product.gallery?.trim()) return []
+    try {
+      const parsed = JSON.parse(product.gallery)
+      return Array.isArray(parsed) ? (parsed as unknown[]).filter((x): x is string => typeof x === 'string' && x.trim() !== '') : []
+    } catch { return [] }
+  })()
+  const images = [product.image || '', ...galleryExtra].filter(Boolean)
   const related = products.filter(p => p.slug !== slug && p.category_id === product.category_id).slice(0, 4)
   const relatedFallback = products.filter(p => p.slug !== slug).slice(0, 4)
   const relatedItems = related.length > 0 ? related : relatedFallback
@@ -95,11 +102,11 @@ export default function ProductDetailPage() {
         <div className="qa-detail-layout">
           <div data-reveal>
             <div className="qa-gallery-main">
-              <img src={gallery[activeImg] || product.image} alt={product.name} loading="eager" />
+              <img src={images[activeImg]} alt={product.name} loading="eager" />
             </div>
-            {gallery.length > 1 && (
+            {images.length > 1 && (
               <div className="qa-gallery-thumbs">
-                {gallery.map((src, i) => (
+                {images.map((src, i) => (
                   <div key={i} className={`qa-gallery-thumb${activeImg === i ? ' active' : ''}`} onClick={() => setActiveImg(i)}>
                     <img src={src} alt={`${product.name} — ảnh góc ${i + 1}`} loading="lazy" />
                   </div>

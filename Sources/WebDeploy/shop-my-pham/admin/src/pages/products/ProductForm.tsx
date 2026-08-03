@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '../../api/client'
 import ImageField from '../../components/ImageField'
+import GalleryField from '../../components/GalleryField'
 
 // Site này (LUMIÈRE Beauty — mỹ phẩm) không có bộ lọc "Màu sắc" trong template gốc — thay vào đó
 // dùng 2 dimension riêng: "Loại da" (skin_type) + "Chủ đề trang chủ" (theme). Không dùng COLOR_SWATCHES.
@@ -45,6 +46,7 @@ interface FormData {
   skin_type: string
   theme: string
   sold: string
+  gallery: string
 }
 
 const EMPTY: FormData = {
@@ -52,7 +54,7 @@ const EMPTY: FormData = {
   badge: '', description: '', rating: '5', in_stock: true,
   is_featured: false, is_new: false,
   status: 'published', sort_order: '0',
-  brand: '', skin_type: '', theme: '', sold: '0',
+  brand: '', skin_type: '', theme: '', sold: '0', gallery: '',
 }
 
 export default function ProductForm() {
@@ -92,6 +94,7 @@ export default function ProductForm() {
           skin_type: String(p.skin_type ?? ''),
           theme: String(p.theme ?? ''),
           sold: String(p.sold ?? '0'),
+          gallery: String(p.gallery ?? ''),
         })
       }
     }).catch(() => setError('Không tải được dữ liệu'))
@@ -168,6 +171,11 @@ export default function ProductForm() {
         <div className="form-group">
           <label>Ảnh sản phẩm</label>
           <ImageField value={form.image} onChange={v => set('image', v)} />
+        </div>
+
+        <div className="form-group">
+          <label>Ảnh gallery (bổ sung — hiển thị dạng thumbnail trong trang chi tiết)</label>
+          <GalleryField value={form.gallery} onChange={v => set('gallery', v)} />
         </div>
 
         <div className="form-row">

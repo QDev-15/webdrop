@@ -21,6 +21,7 @@ export interface Product {
   skin_type: string
   theme: string
   sold: number
+  gallery?: string
 }
 
 export interface Category {

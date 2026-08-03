@@ -101,7 +101,8 @@ CREATE TABLE IF NOT EXISTS products (
     brand        TEXT NOT NULL DEFAULT '',   -- thương hiệu (The Ordinary, CeraVe, Chanel...) — dùng cho bộ lọc "Thương hiệu"
     skin_type    TEXT NOT NULL DEFAULT '',   -- padded pipe "|da-dau|da-hon-hop|" — dùng cho bộ lọc "Loại da"
     theme        TEXT NOT NULL DEFAULT '',   -- padded pipe "|ban-chay|hang-moi|" — section trang chủ + ?theme= trên san-pham
-    sold         INTEGER NOT NULL DEFAULT 0  -- số lượng đã bán — hiển thị card + sort "Bán chạy nhất"
+    sold         INTEGER NOT NULL DEFAULT 0,  -- số lượng đã bán — hiển thị card + sort "Bán chạy nhất"
+    gallery      TEXT NOT NULL DEFAULT ''     -- JSON array string ảnh bổ sung "[\"url1\",\"url2\"]"
 );
 
 -- Đơn hàng — schema CỐ ĐỊNH, khớp 1-1 với OrderController.php + ShopPublicController.php.

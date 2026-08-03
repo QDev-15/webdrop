@@ -19,6 +19,7 @@ export interface Product {
   in_stock: number
   is_featured: number
   is_new: number
+  gallery?: string
 }
 
 export interface Category {

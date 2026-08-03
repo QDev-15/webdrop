@@ -26,6 +26,7 @@ export default function ProductDetailPage() {
   const [selectedColor, setSelectedColor] = useState('')
   const [selectedSize, setSelectedSize] = useState('')
   const [added, setAdded] = useState(false)
+  const [activeImg, setActiveImg] = useState(0)
 
   useEffect(() => {
     if (!slug) return
@@ -33,6 +34,7 @@ export default function ProductDetailPage() {
     setNotFound(false)
     setActiveTab('desc')
     setQty(1)
+    setActiveImg(0)
     api.get<Product>(`/public/products/${slug}`)
       .then(p => {
         setProduct(p)
@@ -66,6 +68,16 @@ export default function ProductDetailPage() {
 
   const colorOptions = parseColors(product.colors)
   const sizeOptions = parseSizes(product.sizes)
+
+  const galleryExtra: string[] = (() => {
+    if (!product.gallery?.trim()) return []
+    try {
+      const parsed = JSON.parse(product.gallery)
+      return Array.isArray(parsed) ? (parsed as unknown[]).filter((x): x is string => typeof x === 'string' && x.trim() !== '') : []
+    } catch { return [] }
+  })()
+  const images = [product.image || '', ...galleryExtra].filter(Boolean)
+
   const related = products.filter(p => p.slug !== slug && p.category_id === product.category_id).slice(0, 4)
   const relatedFallback = products.filter(p => p.slug !== slug).slice(0, 4)
   const relatedItems = related.length > 0 ? related : relatedFallback
@@ -99,8 +111,26 @@ export default function ProductDetailPage() {
           <div className="ts-pd-layout">
             <div>
               <div className="ts-pd-main-img">
-                <img src={product.image} alt={product.name} loading="eager" />
+                <img src={images[activeImg] || product.image} alt={product.name} loading="eager" />
               </div>
+              {images.length > 1 && (
+                <div style={{ display: 'flex', gap: 8, marginTop: 10, flexWrap: 'wrap' }}>
+                  {images.map((url, i) => (
+                    <button key={i} type="button" onClick={() => setActiveImg(i)}
+                      style={{
+                        width: 64, height: 64, padding: 0, cursor: 'pointer', flexShrink: 0,
+                        border: i === activeImg ? '2px solid var(--gold, #c9a24d)' : '2px solid var(--border)',
+                        borderRadius: 6, overflow: 'hidden', background: 'var(--dark2, #1a1714)',
+                        transition: 'border-color .15s',
+                      }}
+                      aria-label={`Ảnh ${i + 1}`}
+                    >
+                      <img src={url} alt={`Ảnh ${i + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                        onError={e => { (e.target as HTMLImageElement).style.opacity = '0.3' }} />
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             <div className="ts-pd-info">

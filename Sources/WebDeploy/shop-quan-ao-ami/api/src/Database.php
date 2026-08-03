@@ -347,8 +347,8 @@ class Database {
 
         $stmt = $this->pdo->prepare(
             "INSERT INTO products
-                (category_id, name, slug, image, price, price_sale, badge, description, colors, rating, in_stock, is_featured, is_new, sort_order, sizes, theme, sold)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?, ?, ?, ?)"
+                (category_id, name, slug, image, price, price_sale, badge, description, colors, rating, in_stock, is_featured, is_new, sort_order, sizes, theme, sold, gallery)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?, ?, ?, ?, ?)"
         );
 
         $order = 1;
@@ -365,7 +365,7 @@ class Database {
 
             $stmt->execute([
                 $catId[$catSlug], $name, $slug, $image, $price, $priceSale, $badge, $description, $colors, $rating,
-                $isFeatured, $isNew, $order, $sizesCol, $themeCol, $sold,
+                $isFeatured, $isNew, $order, $sizesCol, $themeCol, $sold, '',
             ]);
             $order++;
         }

@@ -248,125 +248,125 @@ class Database {
         $colCyan  = 'Cyan:#00e5ff';
         $colBrown = 'Nâu:#8b6f5e';
 
-        // [category_id, name, slug, image, price, price_sale, badge, description, colors, rating, in_stock, is_featured, is_new, sort_order, sizes]
+        // [category_id, name, slug, image, price, price_sale, badge, description, colors, rating, in_stock, is_featured, is_new, sort_order, sizes, gallery]
         $products = [
             // ── Sneaker (category 1) ──────────────────────────────────────────────
             [1, 'Sneaker Dệt Kỹ Thuật Volt Trim', 'sneaker-det-ky-thuat-volt-trim',
              'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=700&auto=format&fit=crop&q=80',
              2390000, 1890000, 'Bán chạy',
              'Sneaker chất liệu vải dệt kỹ thuật phối da lộn, đế đệm khí êm ái. Form dáng năng động, phù hợp phối cùng streetwear hoặc đi làm hằng ngày.',
-             "$colVolt|$colBlack|$colWhite", 4.9, 1, 1, 0, 1, '39|40|41|42|43|44'],
+             "$colVolt|$colBlack|$colWhite", 4.9, 1, 1, 0, 1, '39|40|41|42|43|44', ''],
 
             [1, 'Sneaker Low-Top Basic Trắng', 'sneaker-low-top-basic-trang',
              'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=700&auto=format&fit=crop&q=80',
              1690000, null, '',
              'Sneaker low-top tối giản, phối được với mọi outfit. Chất liệu da tổng hợp bền bỉ, đế cao su chống trơn trượt.',
-             "$colWhite|$colBlack", 4.6, 1, 0, 0, 2, '38|39|40|41|42|43|44'],
+             "$colWhite|$colBlack", 4.6, 1, 0, 0, 2, '38|39|40|41|42|43|44', ''],
 
             [1, 'Sneaker Canvas Phối Cyan', 'sneaker-canvas-phoi-cyan',
              'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=700&auto=format&fit=crop&q=80',
              1590000, null, 'Mới',
              'Sneaker vải canvas thoáng khí, phối màu cyan nổi bật. Thiết kế trẻ trung, năng lượng, phù hợp mùa hè.',
-             "$colCyan|$colBlack", 4.5, 1, 0, 1, 3, '39|40|41|42|43'],
+             "$colCyan|$colBlack", 4.5, 1, 0, 1, 3, '39|40|41|42|43', ''],
 
             [1, 'Sneaker Retro Basketball High-Top', 'sneaker-retro-basketball-high-top',
              'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=700&auto=format&fit=crop&q=80',
              2490000, null, 'Mới',
              'Sneaker cổ cao phong cách basketball retro, đệm cổ chân dày dặn bảo vệ mắt cá. Đế cao tăng chiều cao nhẹ nhàng.',
-             "$colBlack|$colVolt", 4.8, 1, 1, 1, 4, '40|41|42|43|44'],
+             "$colBlack|$colVolt", 4.8, 1, 1, 1, 4, '40|41|42|43|44', ''],
 
             [1, 'Sneaker Chunky Dad Shoes Trắng-Nâu', 'sneaker-chunky-dad-shoes',
              'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=700&auto=format&fit=crop&q=80',
              1790000, null, '',
              'Sneaker chunky dáng dad-shoes đang thịnh hành, đế dày phối 2 tông màu cá tính. Êm chân khi di chuyển cả ngày.',
-             "$colWhite|$colBrown", 4.4, 1, 0, 0, 5, '38|39|40|41|42'],
+             "$colWhite|$colBrown", 4.4, 1, 0, 0, 5, '38|39|40|41|42', ''],
 
             [1, 'Sneaker Slip-On Tiện Lợi', 'sneaker-slip-on-tien-loi',
              'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=700&auto=format&fit=crop&q=80',
              1250000, null, '',
              'Sneaker slip-on không dây, xỏ nhanh tiện lợi. Chất liệu co giãn nhẹ, phù hợp di chuyển hằng ngày.',
-             "$colWhite|$colVolt", 4.3, 1, 0, 0, 6, '38|39|40|41|42'],
+             "$colWhite|$colVolt", 4.3, 1, 0, 0, 6, '38|39|40|41|42', ''],
 
             // ── Boot (category 2) ──────────────────────────────────────────────────
             [2, 'Boot Cổ Cao Da Lộn Nâu', 'boot-co-cao-da-lon-nau',
              'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700&auto=format&fit=crop&q=80',
              2150000, null, 'Mới',
              'Boot cổ cao da lộn cao cấp, form dáng cứng cáp, phù hợp thời tiết se lạnh hoặc phối phong cách workwear.',
-             "$colBrown|$colBlack", 4.8, 1, 1, 1, 7, '40|41|42|43|44'],
+             "$colBrown|$colBlack", 4.8, 1, 1, 1, 7, '40|41|42|43|44', ''],
 
             [2, 'Boot Combat Dây Buộc Chunky Sole', 'boot-combat-day-buoc-chunky-sole',
              'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700&auto=format&fit=crop&q=80',
              2350000, null, '',
              'Boot combat cá tính với đế chunky dày, dây buộc chắc chắn. Điểm nhấn hoàn hảo cho outfit đường phố.',
-             "$colBlack", 4.6, 1, 0, 0, 8, '39|40|41|42|43'],
+             "$colBlack", 4.6, 1, 0, 0, 8, '39|40|41|42|43', ''],
 
             [2, 'Boot Chelsea Da Trơn Basic', 'boot-chelsea-da-tron-basic',
              'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700&auto=format&fit=crop&q=80',
              1990000, 1690000, '-15%',
              'Boot Chelsea da trơn tối giản, dễ phối đồ. Cổ giày co giãn xỏ nhanh, đế bền bỉ chống trơn.',
-             "$colBlack|$colBrown", 4.5, 1, 0, 0, 9, '40|41|42|43|44'],
+             "$colBlack|$colBrown", 4.5, 1, 0, 0, 9, '40|41|42|43|44', ''],
 
             [2, 'Boot Da Lộn Cổ Thấp Basic', 'boot-da-lon-co-thap-basic',
              'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700&auto=format&fit=crop&q=80',
              1850000, null, '',
              'Boot cổ thấp da lộn basic, linh hoạt phối cùng quần jeans hoặc kaki. Đế cao su bám đường tốt.',
-             "$colBrown", 4.4, 1, 0, 0, 10, '39|40|41|42|43'],
+             "$colBrown", 4.4, 1, 0, 0, 10, '39|40|41|42|43', ''],
 
             // ── Chạy bộ (category 3) ─────────────────────────────────────────────
             [3, 'Giày Chạy Bộ Đệm Khí Responsive', 'giay-chay-bo-dem-khi-responsive',
              'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=700&auto=format&fit=crop&q=80',
              1450000, null, '',
              'Giày chạy bộ công nghệ đệm khí responsive, hoàn hồi năng lượng tốt cho mỗi bước chạy. Upper lưới thoáng khí.',
-             "$colCyan|$colVolt", 4.7, 1, 1, 0, 11, '39|40|41|42|43|44'],
+             "$colCyan|$colVolt", 4.7, 1, 1, 0, 11, '39|40|41|42|43|44', ''],
 
             [3, 'Giày Chạy Bộ Siêu Nhẹ Breathable Mesh', 'giay-chay-bo-sieu-nhe-breathable-mesh',
              'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=700&auto=format&fit=crop&q=80',
              1350000, null, 'Mới',
              'Giày chạy bộ siêu nhẹ với upper mesh thoáng khí tối đa, phù hợp chạy đường dài mùa nóng.',
-             "$colWhite|$colCyan", 4.5, 1, 0, 1, 12, '38|39|40|41|42|43'],
+             "$colWhite|$colCyan", 4.5, 1, 0, 1, 12, '38|39|40|41|42|43', ''],
 
             [3, 'Giày Chạy Bộ Marathon Pro', 'giay-chay-bo-marathon-pro',
              'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=700&auto=format&fit=crop&q=80',
              1950000, null, 'Bán chạy',
              'Giày chạy bộ chuyên marathon, đế giữa carbon-plate hỗ trợ đẩy bước hiệu quả. Dành cho runner nghiêm túc.',
-             "$colBlack|$colVolt", 4.8, 1, 1, 0, 13, '40|41|42|43|44'],
+             "$colBlack|$colVolt", 4.8, 1, 1, 0, 13, '40|41|42|43|44', ''],
 
             [3, 'Giày Chạy Bộ Trail Chống Trơn', 'giay-chay-bo-trail-chong-tron',
              'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=700&auto=format&fit=crop&q=80',
              1690000, null, '',
              'Giày chạy trail với đế gai chống trơn trượt, upper chống nước nhẹ — lý tưởng cho địa hình gồ ghề.',
-             "$colBlack|$colCyan", 4.6, 1, 0, 0, 14, '40|41|42|43|44'],
+             "$colBlack|$colCyan", 4.6, 1, 0, 0, 14, '40|41|42|43|44', ''],
 
             // ── Sandal (category 4) ──────────────────────────────────────────────
             [4, 'Sandal Quai Ngang Thể Thao', 'sandal-quai-ngang-the-thao',
              'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=700&auto=format&fit=crop&q=80',
              930000, 790000, '-15%',
              'Sandal quai ngang thể thao, đế êm chống sốc. Phù hợp đi biển, dạo phố ngày hè.',
-             "$colBlack|$colWhite", 4.3, 1, 0, 0, 15, '38|39|40|41|42|43'],
+             "$colBlack|$colWhite", 4.3, 1, 0, 0, 15, '38|39|40|41|42|43', ''],
 
             [4, 'Sandal Trekking Đế Gai', 'sandal-trekking-de-gai',
              'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=700&auto=format&fit=crop&q=80',
              850000, null, '',
              'Sandal trekking đế gai bám địa hình tốt, quai dán chắc chắn — phù hợp dã ngoại, leo núi nhẹ.',
-             "$colBrown|$colBlack", 4.2, 1, 0, 0, 16, '39|40|41|42|43|44'],
+             "$colBrown|$colBlack", 4.2, 1, 0, 0, 16, '39|40|41|42|43|44', ''],
 
             [4, 'Dép Slide Basic Logo', 'dep-slide-basic-logo',
              'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=700&auto=format&fit=crop&q=80',
              450000, null, 'Mới',
              'Dép slide basic in logo, chất liệu EVA nhẹ êm chân — item không thể thiếu để mang trong nhà hoặc dạo gần.',
-             "$colBlack|$colWhite|$colVolt", 4.4, 1, 0, 1, 17, '38|39|40|41|42|43|44'],
+             "$colBlack|$colWhite|$colVolt", 4.4, 1, 0, 1, 17, '38|39|40|41|42|43|44', ''],
 
             [4, 'Sandal Da Quai Chéo Basic', 'sandal-da-quai-cheo-basic',
              'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=700&auto=format&fit=crop&q=80',
              690000, null, '',
              'Sandal da quai chéo tối giản, khóa cài chắc chắn dễ điều chỉnh. Phù hợp mang hằng ngày.',
-             "$colBrown|$colBlack", 4.1, 1, 0, 0, 18, '38|39|40|41|42'],
+             "$colBrown|$colBlack", 4.1, 1, 0, 0, 18, '38|39|40|41|42', ''],
         ];
 
         $stmt = $this->pdo->prepare(
             "INSERT INTO products
-                (category_id, name, slug, image, price, price_sale, badge, description, colors, rating, in_stock, is_featured, is_new, sort_order, sizes)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+                (category_id, name, slug, image, price, price_sale, badge, description, colors, rating, in_stock, is_featured, is_new, sort_order, sizes, gallery)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
         );
         foreach ($products as $p) { $stmt->execute($p); }
     }

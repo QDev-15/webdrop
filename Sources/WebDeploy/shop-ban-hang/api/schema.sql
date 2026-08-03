@@ -75,6 +75,7 @@ CREATE TABLE IF NOT EXISTS products (
     description  TEXT,
     material     TEXT,
     colors       TEXT,                        -- pipe-separated "Tên:#hex" — vd "Terracotta:#c4603a|Sage:#6b8a7a"
+    gallery      TEXT    DEFAULT '',           -- JSON array of additional image URLs
     rating       REAL    NOT NULL DEFAULT 5,   -- điểm đánh giá trung bình (0-5)
     in_stock     INTEGER NOT NULL DEFAULT 1,   -- 1 = còn hàng, 0 = hết hàng
     is_featured  INTEGER NOT NULL DEFAULT 0,

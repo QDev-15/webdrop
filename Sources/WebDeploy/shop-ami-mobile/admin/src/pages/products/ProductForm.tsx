@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '../../api/client'
 import ImageField from '../../components/ImageField'
+import GalleryField from '../../components/GalleryField'
 
 // ▼ Khớp 100% với bộ lọc "Màu sắc" ở san-pham.html / website/src/pages/ProductsPage.tsx —
 // mỗi sản phẩm chỉ có ĐÚNG 1 màu cố định (không phải chọn nhiều biến thể như site khác),
@@ -61,6 +62,7 @@ interface FormData {
   brand: string
   theme: string[]
   sold: string
+  gallery: string
 }
 
 const EMPTY: FormData = {
@@ -68,7 +70,7 @@ const EMPTY: FormData = {
   badge: '', description: '', colors: 'den', rating: '5', in_stock: true,
   is_featured: false, is_new: false,
   status: 'published', sort_order: '0',
-  brand: '', theme: [], sold: '0',
+  brand: '', theme: [], sold: '0', gallery: '',
 }
 
 export default function ProductForm() {
@@ -108,6 +110,7 @@ export default function ProductForm() {
           brand: String(p.brand ?? ''),
           theme: String(p.theme ?? '').split(',').map(t => t.trim()).filter(Boolean),
           sold: String(p.sold ?? '0'),
+          gallery: String(p.gallery ?? ''),
         })
       }
     }).catch(() => setError('Không tải được dữ liệu'))
@@ -177,6 +180,11 @@ export default function ProductForm() {
         <div className="form-group">
           <label>Ảnh sản phẩm</label>
           <ImageField value={form.image} onChange={v => set('image', v)} />
+        </div>
+
+        <div className="form-group">
+          <label>Gallery ảnh (ảnh bổ sung trong trang chi tiết sản phẩm)</label>
+          <GalleryField value={form.gallery} onChange={v => set('gallery', v)} />
         </div>
 
         <div className="form-row">

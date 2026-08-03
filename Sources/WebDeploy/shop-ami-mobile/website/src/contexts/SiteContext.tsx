@@ -21,6 +21,7 @@ export interface Product {
   is_new: number
   theme: string
   sold: number
+  gallery?: string
 }
 
 export interface Category {

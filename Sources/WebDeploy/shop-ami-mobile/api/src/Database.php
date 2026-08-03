@@ -284,8 +284,8 @@ class Database {
 
         $stmt = $this->pdo->prepare(
             "INSERT INTO products
-                (category_id, name, slug, image, price, price_sale, badge, description, colors, brand, rating, in_stock, is_featured, is_new, sort_order, theme, sold)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?, ?, ?)"
+                (category_id, name, slug, image, price, price_sale, badge, description, colors, brand, rating, in_stock, is_featured, is_new, sort_order, theme, sold, gallery)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?, ?, ?, ?)"
         );
         $order = 1;
         foreach ($raw as $p) {
@@ -295,7 +295,7 @@ class Database {
             $isNew       = $badge === 'new' ? 1 : 0;
             $stmt->execute([
                 $categoryId, $name, $slug, $image, $price, $priceSale, $badge, $description, $color, $brand, $rating,
-                $isFeatured, $isNew, $order, $theme, $sold,
+                $isFeatured, $isNew, $order, $theme, $sold, '',
             ]);
             $order++;
         }

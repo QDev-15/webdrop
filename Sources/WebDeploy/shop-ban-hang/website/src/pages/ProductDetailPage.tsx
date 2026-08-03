@@ -17,6 +17,7 @@ interface Product {
   description: string
   material: string
   colors: string
+  gallery?: string
   rating: number
   in_stock: number
   is_new: number
@@ -32,6 +33,16 @@ export default function ProductDetailPage() {
   const [activeTab, setActiveTab] = useState(0)
   const [selectedColor, setSelectedColor] = useState('')
   const [added, setAdded] = useState(false)
+  const [activeImg, setActiveImg] = useState(0)
+
+  const galleryExtra: string[] = (() => {
+    if (!product?.gallery?.trim()) return []
+    try {
+      const p = JSON.parse(product.gallery)
+      return Array.isArray(p) ? (p as unknown[]).filter((x): x is string => typeof x === 'string' && x.trim() !== '') : []
+    } catch { return [] }
+  })()
+  const images = product ? [product.image || '', ...galleryExtra].filter(Boolean) : []
 
   useDocumentMeta({
     title: product ? `${product.name} — Shop Hữu Cơ` : 'Shop Hữu Cơ',
@@ -101,12 +112,30 @@ export default function ProductDetailPage() {
           <div className="sb-detail-grid">
             <div>
               <div className="sb-gallery-main">
-                {product.image ? (
-                  <img src={product.image} alt={product.name} />
+                {images.length > 0 ? (
+                  <img src={images[activeImg]} alt={product.name} />
                 ) : (
                   <div style={{ width: '100%', height: '100%', background: 'var(--cream-deep)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 64 }}>🛍</div>
                 )}
               </div>
+              {images.length > 1 && (
+                <div style={{ display: 'flex', gap: 8, marginTop: 10, flexWrap: 'wrap' }}>
+                  {images.map((url, i) => (
+                    <button key={i} type="button" onClick={() => setActiveImg(i)}
+                      style={{
+                        width: 64, height: 64, padding: 0, cursor: 'pointer', flexShrink: 0,
+                        border: i === activeImg ? '2px solid var(--accent)' : '2px solid var(--border)',
+                        borderRadius: 8, overflow: 'hidden', background: 'var(--warm)',
+                        transition: 'border-color .15s',
+                      }}
+                      aria-label={`Ảnh ${i + 1}`}
+                    >
+                      <img src={url} alt={`Ảnh ${i + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                        onError={e => { (e.target as HTMLImageElement).style.opacity = '0.3' }} />
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             <div className="sb-detail-info">

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '../../api/client'
+import GalleryField from '../../components/GalleryField'
 
 // Phải khớp 100% với COLOR_SWATCHES ở website/src/pages/ProductsPage.tsx —
 // bộ lọc "Màu sắc" trên site chỉ nhận diện đúng các tên này.
@@ -36,6 +37,7 @@ interface FormData {
   description: string
   material: string
   colors: string
+  gallery: string
   rating: string
   in_stock: boolean
   is_featured: boolean
@@ -46,7 +48,7 @@ interface FormData {
 
 const EMPTY: FormData = {
   name: '', category_id: '', image: '', price: '', price_sale: '',
-  badge: '', description: '', material: '', colors: '', rating: '5', in_stock: true,
+  badge: '', description: '', material: '', colors: '', gallery: '', rating: '5', in_stock: true,
   is_featured: false, is_new: false,
   status: 'published', sort_order: '0'
 }
@@ -80,6 +82,7 @@ export default function ProductForm() {
           description: String(p.description ?? ''),
           material: String(p.material ?? ''),
           colors: String(p.colors ?? ''),
+          gallery: String(p.gallery ?? ''),
           rating: String(p.rating ?? '5'),
           in_stock: p.in_stock === undefined ? true : Boolean(p.in_stock),
           is_featured: Boolean(p.is_featured),
@@ -156,6 +159,12 @@ export default function ProductForm() {
           <label>URL Ảnh</label>
           <input type="text" value={form.image} onChange={e => set('image', e.target.value)} placeholder="https://..." />
           {form.image && <img src={form.image} alt="preview" style={{ marginTop: 8, height: 100, objectFit: 'cover', borderRadius: 8 }} />}
+        </div>
+
+        <div className="form-group">
+          <label>Ảnh gallery</label>
+          <GalleryField value={form.gallery} onChange={v => set('gallery', v)} />
+          <small style={{ color: 'var(--text-3)', fontSize: 11 }}>Ảnh phụ hiển thị trong trang chi tiết sản phẩm.</small>
         </div>
 
         <div className="form-row">

@@ -98,7 +98,8 @@ CREATE TABLE IF NOT EXISTS products (
     created_at   TEXT NOT NULL DEFAULT (datetime('now','localtime')),
     updated_at   TEXT NOT NULL DEFAULT (datetime('now','localtime')),
     -- ▼ Cột riêng theo template (san-pham.html có block filter "Kích thước" S/M/L/XL — pipe-separated "S|M|L")
-    sizes        TEXT NOT NULL DEFAULT ''
+    sizes        TEXT NOT NULL DEFAULT '',
+    gallery      TEXT NOT NULL DEFAULT ''
 );
 
 -- Đơn hàng — schema CỐ ĐỊNH, khớp 1-1 với OrderController.php + ShopPublicController.php.

@@ -101,7 +101,8 @@ CREATE TABLE IF NOT EXISTS products (
     -- 4 section trang chủ + ?theme= trên trang Sản phẩm, sold dùng cho sort "Bán chạy nhất"):
     sizes        TEXT NOT NULL DEFAULT '',   -- padded pipe "|XS|S|M|L|XL|" — tránh substring lệch (vd "S" khớp nhầm "XS")
     theme        TEXT NOT NULL DEFAULT '',   -- padded pipe "|hang-moi|ban-chay|giam-gia|"
-    sold         INTEGER NOT NULL DEFAULT 0
+    sold         INTEGER NOT NULL DEFAULT 0,
+    gallery      TEXT NOT NULL DEFAULT ''    -- JSON array string: '["url1","url2"]' hoặc '' nếu chưa có
 );
 
 -- Đơn hàng — schema CỐ ĐỊNH, khớp 1-1 với OrderController.php + ShopPublicController.php.

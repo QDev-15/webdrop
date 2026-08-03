@@ -15,6 +15,8 @@ class ProductController {
         // ▼ EXTRA FIELDS (shop-quan-ao-ami — AMI Fashion): sizes/theme lưu dạng padded pipe
         // "|XS|S|M|L|XL|" — ProductForm.tsx tự thêm padding khi serialize, không cast ở đây.
         'sizes' => 's', 'theme' => 's', 'sold' => 'i',
+        // gallery lưu JSON array string '["url1","url2"]' hoặc '' — GalleryField.tsx serialize/parse
+        'gallery' => 's',
     ];
 
     private function cast(string $type, mixed $v): mixed {

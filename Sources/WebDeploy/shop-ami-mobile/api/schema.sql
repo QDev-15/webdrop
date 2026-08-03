@@ -101,7 +101,8 @@ CREATE TABLE IF NOT EXISTS products (
     --   + ShopPublicController::products() (lọc brand/theme) + ProductForm.tsx (COLOR_SWATCHES/BRAND/THEME)
     brand        TEXT NOT NULL DEFAULT '',   -- apple|samsung|xiaomi|oppo|sony|jbl|anker — dùng cho bộ lọc "Thương hiệu"
     theme        TEXT NOT NULL DEFAULT '',   -- comma-separated: noi-bat,phu-kien,moi-ve,giam-gia — dùng cho section trang chủ + ?theme=
-    sold         INTEGER NOT NULL DEFAULT 0  -- số lượng đã bán — hiển thị "Đã bán N" + sort bán chạy nhất
+    sold         INTEGER NOT NULL DEFAULT 0, -- số lượng đã bán — hiển thị "Đã bán N" + sort bán chạy nhất
+    gallery      TEXT NOT NULL DEFAULT ''    -- JSON array string các URL ảnh bổ sung trong trang chi tiết sản phẩm
 );
 
 -- Đơn hàng — schema CỐ ĐỊNH, khớp 1-1 với OrderController.php + ShopPublicController.php.
