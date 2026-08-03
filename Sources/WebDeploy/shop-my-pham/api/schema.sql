@@ -136,6 +136,22 @@ CREATE TABLE IF NOT EXISTS order_items (
     subtotal     INTEGER NOT NULL DEFAULT 0
 );
 
+-- Đơn hàng — coupon_code thêm sau cho module phiếu giảm giá.
+-- Nếu DB đã tồn tại, Database.php::migrate() chạy ALTER TABLE để thêm cột này (idempotent qua try/catch).
+
+CREATE TABLE IF NOT EXISTS coupons (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    code        TEXT NOT NULL UNIQUE,
+    type        TEXT NOT NULL DEFAULT 'percent',
+    value       REAL NOT NULL DEFAULT 0,
+    min_order   REAL NOT NULL DEFAULT 0,
+    max_uses    INTEGER NOT NULL DEFAULT 0,
+    used_count  INTEGER NOT NULL DEFAULT 0,
+    expires_at  TEXT,
+    is_active   INTEGER NOT NULL DEFAULT 1,
+    created_at  TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
 -- Settings nhóm 'payment' + 'shop' — seed trong Database.php::seedSettings() (AI viết, xem builder.md rule shop).
 -- Keys bắt buộc: payment_cod_enabled, payment_sepay_enabled, sepay_bank_code, sepay_account_number,
 -- sepay_account_name, sepay_webhook_secret, shipping_fee, free_shipping_threshold

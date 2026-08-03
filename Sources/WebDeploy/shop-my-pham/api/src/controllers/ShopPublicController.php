@@ -142,6 +142,41 @@ class ShopPublicController {
         ]);
     }
 
+    // ── Coupon extension (bảng `coupons` riêng, độc lập với hệ discount của System DB) ──
+    private function lookupCoupon(string $code, int $subtotal): array {
+        $code = strtoupper(trim($code));
+        if ($code === '') return ['ok' => false, 'error' => 'Vui lòng nhập mã giảm giá', 'coupon' => null, 'discount' => 0];
+
+        $coupon = $this->db->queryOne("SELECT * FROM coupons WHERE code = ? AND is_active = 1", [$code]);
+        if (!$coupon) return ['ok' => false, 'error' => 'Mã giảm giá không tồn tại hoặc đã ngừng áp dụng', 'coupon' => null, 'discount' => 0];
+        if ($coupon['expires_at'] && strtotime($coupon['expires_at']) < time()) {
+            return ['ok' => false, 'error' => 'Mã giảm giá đã hết hạn', 'coupon' => null, 'discount' => 0];
+        }
+        if ($coupon['max_uses'] !== null && (int)$coupon['used_count'] >= (int)$coupon['max_uses']) {
+            return ['ok' => false, 'error' => 'Mã giảm giá đã hết lượt sử dụng', 'coupon' => null, 'discount' => 0];
+        }
+        if ($subtotal < (int)$coupon['min_order']) {
+            $min = number_format((int)$coupon['min_order'], 0, ',', '.');
+            return ['ok' => false, 'error' => "Đơn hàng tối thiểu {$min}đ để áp dụng mã này", 'coupon' => null, 'discount' => 0];
+        }
+
+        $discount = $coupon['type'] === 'percent'
+            ? (int)round($subtotal * (int)$coupon['value'] / 100)
+            : (int)$coupon['value'];
+        $discount = min($discount, $subtotal);
+
+        return ['ok' => true, 'error' => null, 'coupon' => $coupon, 'discount' => $discount];
+    }
+
+    public function validateCoupon(): void {
+        $data     = bodyJson();
+        $code     = trim($data['code'] ?? '');
+        $subtotal = max(0, (int)($data['subtotal'] ?? 0));
+        $result   = $this->lookupCoupon($code, $subtotal);
+        if (!$result['ok']) { Response::error($result['error'], 422); return; }
+        Response::json(['code' => $result['coupon']['code'], 'type' => $result['coupon']['type'], 'discount' => $result['discount']]);
+    }
+
     public function createOrder(): void {
         $data          = bodyJson();
         $name          = trim($data['customer_name'] ?? '');
@@ -150,6 +185,7 @@ class ShopPublicController {
         $address       = trim($data['address'] ?? '');
         $note          = trim($data['note'] ?? '');
         $paymentMethod = trim($data['payment_method'] ?? 'cod');
+        $couponCode    = strtoupper(trim($data['coupon_code'] ?? ''));
         $items         = is_array($data['items'] ?? null) ? $data['items'] : [];
 
         if (!$name || !$phone || !$address) {
@@ -201,10 +237,19 @@ class ShopPublicController {
         }
         if (!$orderItems) { Response::error('Giỏ hàng không hợp lệ', 422); return; }
 
+        $discount = 0;
+        $coupon   = null;
+        if ($couponCode !== '') {
+            $result = $this->lookupCoupon($couponCode, $subtotal);
+            if (!$result['ok']) { Response::error($result['error'], 422); return; }
+            $discount = $result['discount'];
+            $coupon   = $result['coupon'];
+        }
+
         $shippingFee = (int)($s['shipping_fee'] ?? 0);
         $threshold   = (int)($s['free_shipping_threshold'] ?? 0);
         if ($threshold > 0 && $subtotal >= $threshold) { $shippingFee = 0; }
-        $total = $subtotal + $shippingFee;
+        $total = max(0, $subtotal + $shippingFee - $discount);
 
         do {
             $orderCode = 'DH' . date('ymd') . strtoupper(substr(bin2hex(random_bytes(3)), 0, 5));
@@ -213,9 +258,9 @@ class ShopPublicController {
         $paymentStatus = $paymentMethod === 'sepay' ? 'pending' : 'unpaid';
 
         $orderId = $this->db->execute(
-            "INSERT INTO orders (order_code, customer_name, phone, email, address, note, subtotal, shipping_fee, discount, total, payment_method, payment_status, status)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?, ?, ?, 'pending')",
-            [$orderCode, $name, $phone, $email, $address, $note, $subtotal, $shippingFee, $total, $paymentMethod, $paymentStatus]
+            "INSERT INTO orders (order_code, customer_name, phone, email, address, note, subtotal, shipping_fee, discount, coupon_code, total, payment_method, payment_status, status)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')",
+            [$orderCode, $name, $phone, $email, $address, $note, $subtotal, $shippingFee, $discount, $coupon ? $coupon['code'] : null, $total, $paymentMethod, $paymentStatus]
         );
 
         foreach ($orderItems as $it) {
@@ -225,10 +270,15 @@ class ShopPublicController {
             );
         }
 
+        if ($coupon) {
+            $this->db->execute("UPDATE coupons SET used_count = used_count + 1 WHERE id = ?", [$coupon['id']]);
+        }
+
         $response = [
             'order_code'     => $orderCode,
             'subtotal'       => $subtotal,
             'shipping_fee'   => $shippingFee,
+            'discount'       => $discount,
             'total'          => $total,
             'payment_method' => $paymentMethod,
             'payment_status' => $paymentStatus,

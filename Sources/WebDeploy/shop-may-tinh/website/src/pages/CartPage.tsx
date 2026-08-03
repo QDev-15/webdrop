@@ -14,20 +14,36 @@ export default function CartPage() {
     description: 'Xem lại giỏ hàng và tiến hành thanh toán các sản phẩm laptop, PC gaming, linh kiện máy tính tại NovaTech.',
   })
 
-  const { items, subtotal, updateQty, removeItem } = useCart()
+  const { items, subtotal, updateQty, removeItem, couponCode, couponDiscount, applyCoupon, clearCoupon } = useCart()
   const { settings, products } = useSite()
   const [couponInput, setCouponInput] = useState('')
-  const [couponMsg, setCouponMsg] = useState('')
+  const [couponMsg, setCouponMsg] = useState<{ text: string; ok: boolean } | null>(null)
+  const [couponLoading, setCouponLoading] = useState(false)
 
   const shippingFee = Number(settings['shipping_fee'] || 0)
   const freeShipThreshold = Number(settings['free_shipping_threshold'] || 0)
   const effectiveShipping = freeShipThreshold > 0 && subtotal >= freeShipThreshold ? 0 : shippingFee
-  const total = subtotal + effectiveShipping
+  const total = Math.max(0, subtotal + effectiveShipping - couponDiscount)
 
-  const applyCoupon = () => {
-    const code = couponInput.trim().toUpperCase()
+  const handleApplyCoupon = async () => {
+    const code = couponInput.trim()
     if (!code) return
-    setCouponMsg(`Mã "${code}" sẽ được áp dụng ở bước thanh toán — vui lòng liên hệ shop nếu cần hỗ trợ mã giảm giá.`)
+    setCouponLoading(true)
+    setCouponMsg(null)
+    const result = await applyCoupon(code)
+    setCouponLoading(false)
+    if (result.ok) {
+      setCouponInput('')
+      setCouponMsg({ text: `Đã áp dụng mã giảm giá thành công!`, ok: true })
+    } else {
+      setCouponMsg({ text: result.error ?? 'Mã giảm giá không hợp lệ', ok: false })
+    }
+  }
+
+  const handleClearCoupon = () => {
+    clearCoupon()
+    setCouponInput('')
+    setCouponMsg(null)
   }
 
   const related = products.filter(p => !items.some(i => i.product_id === p.id)).slice(0, 4)
@@ -120,11 +136,42 @@ export default function CartPage() {
                 <h2 className="mt-summary-title">Tóm tắt đơn hàng</h2>
                 <div className="mt-summary-row"><span>Tạm tính ({items.length} sản phẩm)</span><span>{fmt(subtotal)}</span></div>
                 <div className="mt-summary-row"><span>Phí vận chuyển</span><span style={{ color: effectiveShipping === 0 ? 'var(--accent)' : undefined }}>{effectiveShipping === 0 ? 'Miễn phí' : fmt(effectiveShipping)}</span></div>
-                <div className="mt-coupon-input">
-                  <input type="text" value={couponInput} onChange={e => setCouponInput(e.target.value)} placeholder="Nhập mã giảm giá" aria-label="Mã giảm giá" />
-                  <button type="button" onClick={applyCoupon}>Áp dụng</button>
-                </div>
-                {couponMsg && <p style={{ fontSize: 12, color: 'var(--text-3)', marginTop: -8, marginBottom: 8 }}>{couponMsg}</p>}
+                {couponCode ? (
+                  <div className="mt-summary-row" style={{ color: 'var(--accent)' }}>
+                    <span>
+                      Mã <strong>{couponCode}</strong>
+                      <button
+                        type="button"
+                        onClick={handleClearCoupon}
+                        style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-3)', marginLeft: 6, fontSize: 13, padding: 0 }}
+                        aria-label="Xóa mã giảm giá"
+                      >✕</button>
+                    </span>
+                    <span>−{fmt(couponDiscount)}</span>
+                  </div>
+                ) : (
+                  <>
+                    <div className="mt-coupon-input">
+                      <input
+                        type="text"
+                        value={couponInput}
+                        onChange={e => setCouponInput(e.target.value.toUpperCase())}
+                        onKeyDown={e => e.key === 'Enter' && handleApplyCoupon()}
+                        placeholder="Nhập mã giảm giá"
+                        aria-label="Mã giảm giá"
+                        disabled={couponLoading}
+                      />
+                      <button type="button" onClick={handleApplyCoupon} disabled={couponLoading || !couponInput.trim()}>
+                        {couponLoading ? '...' : 'Áp dụng'}
+                      </button>
+                    </div>
+                    {couponMsg && (
+                      <p style={{ fontSize: 12, color: couponMsg.ok ? 'var(--accent)' : 'var(--danger, #e24b4a)', marginTop: -8, marginBottom: 8 }}>
+                        {couponMsg.text}
+                      </p>
+                    )}
+                  </>
+                )}
                 <div className="mt-summary-row total"><span>Tổng cộng</span><span>{fmt(total)}</span></div>
                 <Link to="/thanh-toan" className="mt-btn-checkout"><i className="bi bi-lock-fill" />Thanh toán ngay</Link>
                 <div className="mt-secure-badges">

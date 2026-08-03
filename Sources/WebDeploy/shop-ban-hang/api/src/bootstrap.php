@@ -45,6 +45,7 @@ require_once __DIR__ . '/controllers/ProductController.php';
 require_once __DIR__ . '/controllers/TestimonialController.php';
 require_once __DIR__ . '/controllers/ProfileController.php';
 require_once __DIR__ . '/controllers/OrderController.php';
+require_once __DIR__ . '/controllers/CouponController.php';
 
 // ─── Routes ───────────────────────────────────────────────────────────────────
 
@@ -147,6 +148,14 @@ $router->add('GET',  '/orders',                   [$orders, 'index']);
 $router->add('GET',  '/orders/:id',                [$orders, 'show']);
 $router->add('POST', '/orders/:id/update-status',  [$orders, 'updateStatus']);
 
+// Coupons (admin)
+$coupons = new CouponController($db);
+$router->add('GET',  '/coupons',            [$coupons, 'index']);
+$router->add('GET',  '/coupons/:id',        [$coupons, 'show']);
+$router->add('POST', '/coupons',            [$coupons, 'store']);
+$router->add('POST', '/coupons/:id/update', [$coupons, 'update']);
+$router->add('POST', '/coupons/:id/delete', [$coupons, 'destroy']);
+
 // Public (no auth — website calls)
 $pub = new PublicController($db);
 $router->add('GET',  '/public/settings',            [$pub, 'settings']);
@@ -160,4 +169,5 @@ $router->add('POST', '/public/orders',              [$pub, 'createOrder']);
 $router->add('GET',  '/public/orders/:code/status', [$pub, 'orderStatus']);
 $router->add('POST', '/public/sepay-webhook',       [$pub, 'sepayWebhook']);
 $router->add('POST', '/public/contact',             [$pub, 'submitContact']);
+$router->add('POST', '/public/coupons/validate',    [$pub, 'validateCoupon']);
 $router->add('GET',  '/sitemap.xml',                [$pub, 'sitemap']);

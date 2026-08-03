@@ -14,17 +14,24 @@ export default function CartPage() {
     description: 'Giỏ hàng của bạn tại PhotoPro — kiểm tra thiết bị, số lượng và thanh toán an toàn.',
   })
 
-  const { items, subtotal, updateQty, removeItem } = useCart()
+  const { items, subtotal, updateQty, removeItem, couponCode, couponDiscount, applyCoupon, clearCoupon } = useCart()
   const { products } = useSite()
   const [couponInput, setCouponInput] = useState('')
-  const [couponMsg, setCouponMsg] = useState('')
+  const [couponError, setCouponError] = useState('')
+  const [couponLoading, setCouponLoading] = useState(false)
 
-  const total = subtotal
-
-  const applyCoupon = () => {
-    const code = couponInput.trim().toUpperCase()
+  const handleApplyCoupon = async () => {
+    const code = couponInput.trim()
     if (!code) return
-    setCouponMsg(`Mã "${code}" sẽ được áp dụng ở bước thanh toán — vui lòng liên hệ shop nếu cần hỗ trợ mã giảm giá.`)
+    setCouponLoading(true)
+    setCouponError('')
+    const result = await applyCoupon(code, subtotal)
+    setCouponLoading(false)
+    if (!result.ok) {
+      setCouponError(result.error ?? 'Mã giảm giá không hợp lệ')
+    } else {
+      setCouponInput('')
+    }
   }
 
   const suggestions = products.filter(p => !items.some(i => i.product_id === p.id)).slice(0, 4)
@@ -114,14 +121,46 @@ export default function CartPage() {
           <div className="ma-summary-row"><span>Phí giao hàng bảo hiểm</span><span>Tính ở bước thanh toán</span></div>
 
           <div className="ma-coupon-row">
-            <input type="text" value={couponInput} onChange={e => setCouponInput(e.target.value)} placeholder="Mã giảm giá" aria-label="Mã giảm giá" />
-            <button type="button" onClick={applyCoupon}>Áp dụng</button>
+            {couponCode ? (
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, flex: 1 }}>
+                <span style={{ flex: 1, fontSize: 13, color: 'var(--accent)' }}>
+                  ✓ Đã áp dụng: <strong>{couponCode}</strong>
+                </span>
+                <button
+                  type="button"
+                  onClick={() => { clearCoupon(); setCouponError('') }}
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-3)', fontSize: 18, lineHeight: 1, padding: '0 4px' }}
+                  aria-label="Xóa mã giảm giá"
+                >×</button>
+              </div>
+            ) : (
+              <>
+                <input
+                  type="text"
+                  value={couponInput}
+                  onChange={e => setCouponInput(e.target.value.toUpperCase())}
+                  onKeyDown={e => e.key === 'Enter' && handleApplyCoupon()}
+                  placeholder="Mã giảm giá"
+                  aria-label="Mã giảm giá"
+                  disabled={couponLoading}
+                />
+                <button type="button" onClick={handleApplyCoupon} disabled={couponLoading}>
+                  {couponLoading ? '...' : 'Áp dụng'}
+                </button>
+              </>
+            )}
           </div>
-          {couponMsg && <p style={{ fontSize: 12, color: 'var(--text-3)', marginTop: -8, marginBottom: 8 }}>{couponMsg}</p>}
+          {couponError && <p style={{ fontSize: 12, color: 'var(--danger)', marginTop: -8, marginBottom: 8 }}>{couponError}</p>}
+
+          {couponDiscount > 0 && (
+            <div className="ma-summary-row" style={{ color: 'var(--accent)' }}>
+              <span>Giảm giá</span><span>-{fmt(couponDiscount)}</span>
+            </div>
+          )}
 
           <div className="ma-summary-total">
             <span className="ma-summary-total-label">Tổng cộng</span>
-            <span className="ma-summary-total-val">{fmt(total)}</span>
+            <span className="ma-summary-total-val">{fmt(Math.max(0, subtotal - couponDiscount))}</span>
           </div>
 
           <Link to="/thanh-toan" className="ma-btn ma-btn-primary ma-btn-full" style={{ marginTop: 20 }}>

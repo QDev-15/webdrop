@@ -52,6 +52,7 @@ class Database {
         foreach ($statements as $stmt) { $this->pdo->exec($stmt . ';'); }
         // Backfill migrations for existing databases
         try { $this->pdo->exec("ALTER TABLE products ADD COLUMN gallery TEXT DEFAULT ''"); } catch (\Throwable $e) { /* column already exists */ }
+        try { $this->pdo->exec("ALTER TABLE orders ADD COLUMN coupon_code TEXT DEFAULT ''"); } catch (\Throwable $e) { /* column already exists */ }
         $this->seedData();
     }
 
@@ -63,6 +64,7 @@ class Database {
         $this->seedProducts();
         $this->seedMoreProducts();
         $this->seedTestimonials();
+        $this->seedCoupons();
     }
 
     private function seedUsers(): void {
@@ -450,6 +452,20 @@ class Database {
              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '', ?, ?, ?, ?, ?)"
         );
         foreach ($products as $p) { $stmt->execute($p); }
+    }
+
+    private function seedCoupons(): void {
+        $count = $this->pdo->query("SELECT COUNT(*) FROM coupons")->fetchColumn();
+        if ($count > 0) return;
+        $coupons = [
+            // [code, type, value, min_order, max_uses, is_active]
+            ['CHAO10',    'percent', 10,    0,      100, 1],
+            ['FREESHIP',  'fixed',   30000, 150000, 50,  1],
+        ];
+        $stmt = $this->pdo->prepare(
+            "INSERT INTO coupons (code, type, value, min_order, max_uses, is_active) VALUES (?, ?, ?, ?, ?, ?)"
+        );
+        foreach ($coupons as $c) { $stmt->execute($c); }
     }
 
     private function seedTestimonials(): void {

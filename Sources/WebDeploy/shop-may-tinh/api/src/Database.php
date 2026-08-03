@@ -54,11 +54,14 @@ class Database {
     }
 
     private function seedData(): void {
+        // Thêm cột coupon_code vào bảng orders nếu chưa có (cho DB đã tồn tại trước khi bổ sung tính năng coupon)
+        try { $this->pdo->exec("ALTER TABLE orders ADD COLUMN coupon_code TEXT NOT NULL DEFAULT ''"); } catch (\Exception $e) {}
         $this->seedUsers();
         $this->seedSettings();
         $this->seedHeroSlides();
         $this->seedProductCategories();
         $this->seedProducts();
+        $this->seedCoupons();
     }
 
     private function seedUsers(): void {
@@ -346,5 +349,20 @@ class Database {
              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
         );
         foreach ($products as $p) { $stmt->execute($p); }
+    }
+
+    private function seedCoupons(): void {
+        $count = $this->pdo->query("SELECT COUNT(*) FROM coupons")->fetchColumn();
+        if ($count > 0) return;
+        $coupons = [
+            // [code, type, value, min_order, max_uses, expires_at, is_active]
+            ['TECH10',   'percent', 10, 2000000, 100, null, 1],
+            ['GIAM100K', 'fixed',   100000, 500000, 50, null, 1],
+        ];
+        $stmt = $this->pdo->prepare(
+            "INSERT INTO coupons (code, type, value, min_order, max_uses, expires_at, is_active)
+             VALUES (?, ?, ?, ?, ?, ?, ?)"
+        );
+        foreach ($coupons as $c) { $stmt->execute($c); }
     }
 }

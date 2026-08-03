@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../contexts/CartContext'
 import { useSite } from '../contexts/SiteContext'
@@ -5,7 +6,7 @@ import { useDocumentMeta } from '../hooks/useDocumentMeta'
 import { fmt } from '../lib/format'
 
 export default function CartPage() {
-  const { items, subtotal, updateQty, removeItem } = useCart()
+  const { items, subtotal, couponCode, couponDiscount, applyCoupon, clearCoupon, updateQty, removeItem } = useCart()
   const { settings } = useSite()
   useDocumentMeta({
     title: `Giỏ hàng — ${settings.site_name || 'AMI Mobile'}`,
@@ -15,7 +16,46 @@ export default function CartPage() {
   const shippingFee = Number(settings.shipping_fee || 0)
   const freeShipThreshold = Number(settings.free_shipping_threshold || 0)
   const effectiveShipping = freeShipThreshold > 0 && subtotal >= freeShipThreshold ? 0 : shippingFee
-  const total = subtotal + effectiveShipping
+  const total = Math.max(0, subtotal + effectiveShipping - couponDiscount)
+
+  // ── Coupon state ──
+  const [couponInput, setCouponInput] = useState(couponCode ?? '')
+  const [couponError, setCouponError] = useState('')
+  const [couponLoading, setCouponLoading] = useState(false)
+  // Track whether we've done the initial auto-revalidation
+  const didAutoValidate = useRef(false)
+
+  // Auto-revalidate on mount if code exists in localStorage but discount was reset (page refresh)
+  useEffect(() => {
+    if (didAutoValidate.current) return
+    didAutoValidate.current = true
+    if (couponCode && couponDiscount === 0) {
+      setCouponLoading(true)
+      applyCoupon(couponCode).then(r => {
+        if (!r.ok) {
+          setCouponError(r.error ?? 'Mã giảm giá không còn hiệu lực')
+          clearCoupon()
+          setCouponInput('')
+        }
+      }).finally(() => setCouponLoading(false))
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const handleApplyCoupon = async () => {
+    if (!couponInput.trim()) { setCouponError('Vui lòng nhập mã giảm giá'); return }
+    setCouponError('')
+    setCouponLoading(true)
+    const r = await applyCoupon(couponInput.trim())
+    if (!r.ok) setCouponError(r.error ?? 'Mã không hợp lệ')
+    setCouponLoading(false)
+  }
+
+  const handleClearCoupon = () => {
+    clearCoupon()
+    setCouponInput('')
+    setCouponError('')
+  }
 
   return (
     <>
@@ -68,6 +108,40 @@ export default function CartPage() {
                     </div>
                   ))}
                 </div>
+
+                {/* ── Coupon section ── */}
+                <div className="mb-cart-coupon">
+                  <div className="mb-cart-coupon-title">Mã giảm giá</div>
+                  {couponCode && couponDiscount > 0 ? (
+                    <div className="mb-cart-coupon-applied">
+                      <span className="mb-cart-coupon-badge">
+                        🎟 <strong>{couponCode}</strong> — Giảm {fmt(couponDiscount)}
+                      </span>
+                      <button className="mb-cart-coupon-remove" onClick={handleClearCoupon}>Xóa</button>
+                    </div>
+                  ) : (
+                    <div className="mb-cart-coupon-row">
+                      <input
+                        type="text"
+                        className="mb-cart-coupon-input"
+                        value={couponInput}
+                        onChange={e => { setCouponInput(e.target.value.toUpperCase()); setCouponError('') }}
+                        placeholder="Nhập mã giảm giá (VD: AMI10)"
+                        onKeyDown={e => e.key === 'Enter' && handleApplyCoupon()}
+                        disabled={couponLoading}
+                      />
+                      <button
+                        className="mb-cart-coupon-btn"
+                        onClick={handleApplyCoupon}
+                        disabled={couponLoading}
+                      >
+                        {couponLoading ? '...' : 'Áp dụng'}
+                      </button>
+                    </div>
+                  )}
+                  {couponError && <p className="mb-cart-coupon-error">{couponError}</p>}
+                </div>
+
                 <div className="mb-cart-continue">
                   <Link to="/san-pham" className="mb-btn mb-btn-outline">← Tiếp tục mua sắm</Link>
                 </div>
@@ -80,6 +154,12 @@ export default function CartPage() {
                     <span>Phí vận chuyển</span>
                     <span>{effectiveShipping === 0 ? 'Miễn phí' : fmt(effectiveShipping)}</span>
                   </div>
+                  {couponDiscount > 0 && (
+                    <div className="mb-cart-summary-row" style={{ color: 'var(--mustard)' }}>
+                      <span>Giảm giá ({couponCode})</span>
+                      <span>−{fmt(couponDiscount)}</span>
+                    </div>
+                  )}
                   <div className="mb-cart-summary-total"><span>Tổng cộng</span><span>{fmt(total)}</span></div>
                   <Link to="/thanh-toan" className="mb-btn" style={{ width: '100%', display: 'block', textAlign: 'center', marginTop: 20 }}>Đặt hàng</Link>
                 </div>

@@ -1,5 +1,6 @@
-import { useMemo } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { api } from '../api/client'
 import { useCart } from '../contexts/CartContext'
 import { useSite } from '../contexts/SiteContext'
 import { useDocumentMeta } from '../hooks/useDocumentMeta'
@@ -7,9 +8,44 @@ import { fmtPrice, parsePadded, onImgError } from '../lib/format'
 import ProductCard from '../components/ProductCard'
 
 export default function CartPage() {
-  const { items, subtotal, updateQty, removeItem } = useCart()
+  const { items, subtotal, couponCode, couponDiscount, applyCoupon, clearCoupon, updateQty, removeItem } = useCart()
   const { settings, products } = useSite()
   const navigate = useNavigate()
+
+  // ── Coupon state ────────────────────────────────────────────────────────────
+  const [couponInput, setCouponInput] = useState(couponCode ?? '')
+  const [couponLoading, setCouponLoading] = useState(false)
+  const [couponError, setCouponError] = useState('')
+  const [couponSuccess, setCouponSuccess] = useState('')
+  const couponInputRef = useRef<HTMLInputElement>(null)
+
+  const handleApplyCoupon = async () => {
+    const code = couponInput.trim().toUpperCase()
+    if (!code) { setCouponError('Vui lòng nhập mã giảm giá'); return }
+    setCouponLoading(true)
+    setCouponError('')
+    setCouponSuccess('')
+    try {
+      const res = await api.post<{ code: string; type: string; discount: number }>(
+        '/public/coupons/validate',
+        { code, subtotal }
+      )
+      applyCoupon(res.code, res.discount)
+      setCouponSuccess(`Áp dụng thành công! Giảm ${fmtPrice(res.discount)}`)
+    } catch (err) {
+      setCouponError(err instanceof Error ? err.message : 'Mã không hợp lệ')
+    } finally {
+      setCouponLoading(false)
+    }
+  }
+
+  const handleClearCoupon = () => {
+    clearCoupon()
+    setCouponInput('')
+    setCouponError('')
+    setCouponSuccess('')
+    couponInputRef.current?.focus()
+  }
 
   useDocumentMeta({
     title: `Giỏ Hàng — ${settings.site_name || 'LUMIÈRE Beauty'}`,
@@ -19,7 +55,7 @@ export default function CartPage() {
   const shippingFee = Number(settings.shipping_fee || 30000)
   const freeShipThreshold = Number(settings.free_shipping_threshold || 500000)
   const shipping = items.length === 0 ? 0 : (freeShipThreshold > 0 && subtotal >= freeShipThreshold ? 0 : shippingFee)
-  const total = subtotal + shipping
+  const total = Math.max(0, subtotal + shipping - couponDiscount)
 
   const cartIds = items.map(i => i.product_id)
   const suggested = useMemo(
@@ -88,6 +124,51 @@ export default function CartPage() {
 
               <aside className="mp-cart-summary" aria-label="Tóm tắt đơn hàng">
                 <h2 className="mp-cart-summary-title">Tóm tắt đơn hàng</h2>
+
+                {/* ── Coupon input ── */}
+                <div className="mp-coupon-wrap" style={{ marginBottom: 16 }}>
+                  <label htmlFor="mp-coupon-input" style={{ fontSize: 13, fontWeight: 600, display: 'block', marginBottom: 6 }}>
+                    Mã giảm giá
+                  </label>
+                  {couponCode ? (
+                    <div className="mp-coupon-applied" style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 12px', borderRadius: 8, background: 'var(--accent-light, #fdf2f2)', border: '1px solid var(--rose-gold, #c98a8a)' }}>
+                      <span style={{ fontSize: 13, color: 'var(--rose-gold, #c98a8a)', fontWeight: 700, flex: 1 }}>
+                        🎫 {couponCode} — Giảm {fmtPrice(couponDiscount)}
+                      </span>
+                      <button
+                        onClick={handleClearCoupon}
+                        aria-label="Xóa mã giảm giá"
+                        style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-2, #888)', fontSize: 16, lineHeight: 1, padding: '0 2px' }}
+                      >✕</button>
+                    </div>
+                  ) : (
+                    <>
+                      <div style={{ display: 'flex', gap: 6 }}>
+                        <input
+                          id="mp-coupon-input"
+                          ref={couponInputRef}
+                          type="text"
+                          value={couponInput}
+                          onChange={e => setCouponInput(e.target.value.toUpperCase())}
+                          onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); handleApplyCoupon() } }}
+                          placeholder="Nhập mã giảm giá"
+                          style={{ flex: 1, padding: '8px 10px', border: '1px solid var(--border, #e8e5df)', borderRadius: 8, fontSize: 13 }}
+                          aria-label="Mã giảm giá"
+                        />
+                        <button
+                          onClick={handleApplyCoupon}
+                          disabled={couponLoading}
+                          style={{ padding: '8px 14px', background: 'var(--rose-gold, #c98a8a)', color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}
+                        >
+                          {couponLoading ? '...' : 'Áp dụng'}
+                        </button>
+                      </div>
+                      {couponError && <p style={{ fontSize: 12, color: 'var(--danger, #e24b4a)', marginTop: 5 }} role="alert">{couponError}</p>}
+                      {couponSuccess && <p style={{ fontSize: 12, color: 'var(--rose-gold, #c98a8a)', marginTop: 5 }}>{couponSuccess}</p>}
+                    </>
+                  )}
+                </div>
+
                 <dl className="mp-cart-totals">
                   <div className="mp-cart-total-row">
                     <dt>Tạm tính</dt>
@@ -97,6 +178,12 @@ export default function CartPage() {
                     <dt>Phí vận chuyển</dt>
                     <dd>{shipping === 0 ? 'Miễn phí' : fmtPrice(shipping)}</dd>
                   </div>
+                  {couponDiscount > 0 && (
+                    <div className="mp-cart-total-row" style={{ color: 'var(--rose-gold, #c98a8a)' }}>
+                      <dt>Giảm giá ({couponCode})</dt>
+                      <dd>−{fmtPrice(couponDiscount)}</dd>
+                    </div>
+                  )}
                   <div className="mp-cart-total-row mp-cart-total-row--grand">
                     <dt>Tổng cộng</dt>
                     <dd>{fmtPrice(total)}</dd>

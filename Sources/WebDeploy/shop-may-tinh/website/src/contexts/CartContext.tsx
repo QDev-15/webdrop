@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react'
+import { api } from '../api/client'
 
 export interface CartItem {
   product_id: number
@@ -15,6 +16,10 @@ interface CartCtx {
   items: CartItem[]
   count: number
   subtotal: number
+  couponCode: string | null
+  couponDiscount: number
+  applyCoupon: (code: string) => Promise<{ ok: boolean; error?: string }>
+  clearCoupon: () => void
   addItem: (item: Omit<CartItem, 'qty'>, qty?: number) => void
   updateQty: (product_id: number, qty: number, color?: string, size?: string) => void
   removeItem: (product_id: number, color?: string, size?: string) => void
@@ -22,6 +27,7 @@ interface CartCtx {
 }
 
 const STORAGE_KEY = 'shop_cart'
+const COUPON_STORAGE_KEY = 'mt_coupon'
 
 // Định danh 1 dòng hàng theo product_id + color + size — mọi thao tác add/update/remove
 // PHẢI dùng cùng khoá này, nếu không 2 biến thể khác nhau của cùng sản phẩm sẽ bị gộp nhầm.
@@ -39,17 +45,65 @@ function readStorage(): CartItem[] {
   }
 }
 
+interface CouponState {
+  code: string
+  discount: number
+}
+
+function readCouponStorage(): CouponState | null {
+  try {
+    const raw = localStorage.getItem(COUPON_STORAGE_KEY)
+    if (!raw) return null
+    const parsed = JSON.parse(raw)
+    if (parsed && typeof parsed.code === 'string' && typeof parsed.discount === 'number') return parsed
+    return null
+  } catch {
+    return null
+  }
+}
+
 const Ctx = createContext<CartCtx>({
-  items: [], count: 0, subtotal: 0,
+  items: [], count: 0, subtotal: 0, couponCode: null, couponDiscount: 0,
+  applyCoupon: async () => ({ ok: false }),
+  clearCoupon: () => {},
   addItem: () => {}, updateQty: () => {}, removeItem: () => {}, clear: () => {},
 })
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>(() => readStorage())
+  const [couponState, setCouponState] = useState<CouponState | null>(() => readCouponStorage())
 
   useEffect(() => {
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(items)) } catch { /* private mode / storage full — bỏ qua, không crash site */ }
   }, [items])
+
+  const persistCoupon = (state: CouponState | null) => {
+    setCouponState(state)
+    try {
+      if (state) localStorage.setItem(COUPON_STORAGE_KEY, JSON.stringify(state))
+      else localStorage.removeItem(COUPON_STORAGE_KEY)
+    } catch { /* ignore */ }
+  }
+
+  const count = items.reduce((s, i) => s + i.qty, 0)
+  const subtotal = items.reduce((s, i) => s + i.qty * i.price, 0)
+
+  const applyCoupon = async (code: string): Promise<{ ok: boolean; error?: string }> => {
+    const trimmed = code.trim().toUpperCase()
+    if (!trimmed) return { ok: false, error: 'Vui lòng nhập mã giảm giá' }
+    try {
+      const res = await api.post<{ code: string; type: string; discount: number }>(
+        '/public/coupons/validate',
+        { code: trimmed, subtotal }
+      )
+      persistCoupon({ code: res.code, discount: res.discount })
+      return { ok: true }
+    } catch (err) {
+      return { ok: false, error: err instanceof Error ? err.message : 'Mã giảm giá không hợp lệ' }
+    }
+  }
+
+  const clearCoupon = () => persistCoupon(null)
 
   const addItem: CartCtx['addItem'] = (item, qty = 1) => {
     setItems(prev => {
@@ -73,13 +127,19 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setItems(prev => prev.filter(i => !sameLine(i, { product_id, color, size })))
   }
 
-  const clear = () => setItems([])
-
-  const count = items.reduce((s, i) => s + i.qty, 0)
-  const subtotal = items.reduce((s, i) => s + i.qty * i.price, 0)
+  const clear = () => {
+    setItems([])
+    persistCoupon(null)
+  }
 
   return (
-    <Ctx.Provider value={{ items, count, subtotal, addItem, updateQty, removeItem, clear }}>
+    <Ctx.Provider value={{
+      items, count, subtotal,
+      couponCode: couponState?.code ?? null,
+      couponDiscount: couponState?.discount ?? 0,
+      applyCoupon, clearCoupon,
+      addItem, updateQty, removeItem, clear,
+    }}>
       {children}
     </Ctx.Provider>
   )

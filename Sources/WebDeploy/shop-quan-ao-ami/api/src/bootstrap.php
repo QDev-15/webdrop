@@ -45,6 +45,7 @@ require_once __DIR__ . '/controllers/ProductController.php';
 require_once __DIR__ . '/controllers/OrderController.php';
 require_once __DIR__ . '/controllers/ShopPublicController.php';
 require_once __DIR__ . '/controllers/ShopSettingsController.php';
+require_once __DIR__ . '/controllers/CouponController.php';
 
 // ─── Routes ───────────────────────────────────────────────────────────────────
 
@@ -134,11 +135,20 @@ $router->add('GET',  '/public/hero-slides', [$pub, 'heroSlides']);
 $router->add('POST', '/public/contact',     [$pub, 'submitContact']);
 
 $shopPub = new ShopPublicController($db);
-$router->add('GET',  '/public/product-categories', [$shopPub, 'productCategories']);
-$router->add('GET',  '/public/products',            [$shopPub, 'products']);
-$router->add('GET',  '/public/products/:slug',      [$shopPub, 'productBySlug']);
-$router->add('GET',  '/public/payment-methods',     [$shopPub, 'paymentMethods']);
-$router->add('POST', '/public/orders',              [$shopPub, 'createOrder']);
-$router->add('GET',  '/public/orders/:code/status', [$shopPub, 'orderStatus']);
-$router->add('POST', '/public/sepay-webhook',       [$shopPub, 'sepayWebhook']);
-$router->add('GET',  '/sitemap.xml',                [$shopPub, 'sitemap']);
+$router->add('GET',  '/public/product-categories',    [$shopPub, 'productCategories']);
+$router->add('GET',  '/public/products',              [$shopPub, 'products']);
+$router->add('GET',  '/public/products/:slug',        [$shopPub, 'productBySlug']);
+$router->add('GET',  '/public/payment-methods',       [$shopPub, 'paymentMethods']);
+$router->add('POST', '/public/orders',                [$shopPub, 'createOrder']);
+$router->add('GET',  '/public/orders/:code/status',   [$shopPub, 'orderStatus']);
+$router->add('POST', '/public/sepay-webhook',         [$shopPub, 'sepayWebhook']);
+$router->add('POST', '/public/coupons/validate',      [$shopPub, 'validateCoupon']);
+$router->add('GET',  '/sitemap.xml',                  [$shopPub, 'sitemap']);
+
+// ─── Admin: Coupons ─────────────────────────────────────────────────────────────
+$coupon = new CouponController($db);
+$router->add('GET',  '/coupons',            [$coupon, 'index']);
+$router->add('GET',  '/coupons/:id',        [$coupon, 'show']);
+$router->add('POST', '/coupons',            [$coupon, 'store']);
+$router->add('POST', '/coupons/:id/update', [$coupon, 'update']);
+$router->add('POST', '/coupons/:id/delete', [$coupon, 'destroy']);

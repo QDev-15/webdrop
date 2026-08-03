@@ -50,6 +50,8 @@ class Database {
         $sql = preg_replace('/^\s*--.*$/m', '', $sql);
         $statements = array_filter(array_map('trim', explode(';', $sql)), fn($s) => $s !== '');
         foreach ($statements as $stmt) { $this->pdo->exec($stmt . ';'); }
+        // ALTER TABLE cho DB đã tạo trước khi thêm cột/bảng mới
+        try { $this->pdo->exec("ALTER TABLE orders ADD COLUMN coupon_code TEXT NOT NULL DEFAULT ''"); } catch (\Exception $e) {}
         $this->seedData();
     }
 
@@ -59,6 +61,7 @@ class Database {
         $this->seedHeroSlides();
         $this->seedProductCategories();
         $this->seedProducts();
+        $this->seedCoupons();
     }
 
     private function seedUsers(): void {
@@ -345,5 +348,19 @@ class Database {
              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
         );
         foreach ($products as $p) { $stmt->execute($p); }
+    }
+
+    private function seedCoupons(): void {
+        $count = $this->pdo->query("SELECT COUNT(*) FROM coupons")->fetchColumn();
+        if ($count > 0) return;
+        $coupons = [
+            // code, type, value, min_order, max_uses, is_active
+            ['PHOTO10', 'percent', 10, 1000000, 100, 1],
+            ['GIAM500K', 'fixed',  500000, 5000000, 50,  1],
+        ];
+        $stmt = $this->pdo->prepare(
+            "INSERT INTO coupons (code, type, value, min_order, max_uses, is_active) VALUES (?, ?, ?, ?, ?, ?)"
+        );
+        foreach ($coupons as $c) { $stmt->execute($c); }
     }
 }

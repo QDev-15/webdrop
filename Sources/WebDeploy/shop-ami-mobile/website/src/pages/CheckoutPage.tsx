@@ -26,7 +26,7 @@ interface OrderResult {
 }
 
 export default function CheckoutPage() {
-  const { items, subtotal, clear } = useCart()
+  const { items, subtotal, couponCode, couponDiscount, clear } = useCart()
   const { settings } = useSite()
   useDocumentMeta({
     title: `Thanh toán — ${settings.site_name || 'AMI Mobile'}`,
@@ -46,7 +46,7 @@ export default function CheckoutPage() {
   const shippingFee = Number(settings['shipping_fee'] || 0)
   const freeShipThreshold = Number(settings['free_shipping_threshold'] || 0)
   const effectiveShipping = freeShipThreshold > 0 && subtotal >= freeShipThreshold ? 0 : shippingFee
-  const total = subtotal + effectiveShipping
+  const total = Math.max(0, subtotal + effectiveShipping - couponDiscount)
 
   useEffect(() => {
     api.get<PaymentMethods>('/public/payment-methods')
@@ -86,6 +86,7 @@ export default function CheckoutPage() {
         ...form,
         payment_method: paymentMethod,
         items: items.map(i => ({ product_id: i.product_id, qty: i.qty })),
+        coupon_code: couponCode ?? '',
       })
       setResult(order)
       clear()
@@ -245,6 +246,12 @@ export default function CheckoutPage() {
                 <span>Phí vận chuyển</span>
                 <span style={{ color: effectiveShipping === 0 ? 'var(--accent, #16a34a)' : undefined }}>{effectiveShipping === 0 ? 'Miễn phí' : fmt(effectiveShipping)}</span>
               </div>
+              {couponDiscount > 0 && (
+                <div className="shop-checkout-summary-row" style={{ color: 'var(--mustard, #c98a1f)' }}>
+                  <span>Giảm giá ({couponCode})</span>
+                  <span>−{fmt(couponDiscount)}</span>
+                </div>
+              )}
               <div className="shop-checkout-summary-row shop-checkout-summary-total">
                 <span>Tổng cộng</span><span>{fmt(total)}</span>
               </div>

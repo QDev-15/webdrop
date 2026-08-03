@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react'
+import { api } from '../api/client'
 
 export interface CartItem {
   product_id: number
@@ -15,6 +16,10 @@ interface CartCtx {
   items: CartItem[]
   count: number
   subtotal: number
+  couponCode: string | null
+  couponDiscount: number
+  applyCoupon: (code: string, subtotal: number) => Promise<{ ok: boolean; error?: string }>
+  clearCoupon: () => void
   addItem: (item: Omit<CartItem, 'qty'>, qty?: number) => void
   updateQty: (product_id: number, qty: number, color?: string, size?: string) => void
   removeItem: (product_id: number, color?: string, size?: string) => void
@@ -22,6 +27,7 @@ interface CartCtx {
 }
 
 const STORAGE_KEY = 'shop_cart'
+const COUPON_KEY  = 'ma_coupon'
 
 // Định danh 1 dòng hàng theo product_id + color + size — mọi thao tác add/update/remove
 // PHẢI dùng cùng khoá này, nếu không 2 biến thể khác nhau của cùng sản phẩm sẽ bị gộp nhầm.
@@ -41,15 +47,45 @@ function readStorage(): CartItem[] {
 
 const Ctx = createContext<CartCtx>({
   items: [], count: 0, subtotal: 0,
+  couponCode: null, couponDiscount: 0,
+  applyCoupon: async () => ({ ok: false }),
+  clearCoupon: () => {},
   addItem: () => {}, updateQty: () => {}, removeItem: () => {}, clear: () => {},
 })
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>(() => readStorage())
+  const [couponCode, setCouponCode] = useState<string | null>(() => {
+    try { return localStorage.getItem(COUPON_KEY) } catch { return null }
+  })
+  const [couponDiscount, setCouponDiscount] = useState(0)
 
   useEffect(() => {
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(items)) } catch { /* private mode / storage full — bỏ qua, không crash site */ }
   }, [items])
+
+  const applyCoupon = async (code: string, subtotal: number): Promise<{ ok: boolean; error?: string }> => {
+    const trimmed = code.trim().toUpperCase()
+    if (!trimmed) return { ok: false, error: 'Vui lòng nhập mã giảm giá' }
+    try {
+      const result = await api.post<{ code: string; type: string; discount: number }>('/public/coupons/validate', {
+        code: trimmed,
+        subtotal,
+      })
+      setCouponCode(result.code)
+      setCouponDiscount(result.discount)
+      try { localStorage.setItem(COUPON_KEY, result.code) } catch { /* ignore */ }
+      return { ok: true }
+    } catch (err) {
+      return { ok: false, error: err instanceof Error ? err.message : 'Mã giảm giá không hợp lệ' }
+    }
+  }
+
+  const clearCoupon = () => {
+    setCouponCode(null)
+    setCouponDiscount(0)
+    try { localStorage.removeItem(COUPON_KEY) } catch { /* ignore */ }
+  }
 
   const addItem: CartCtx['addItem'] = (item, qty = 1) => {
     setItems(prev => {
@@ -73,13 +109,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setItems(prev => prev.filter(i => !sameLine(i, { product_id, color, size })))
   }
 
-  const clear = () => setItems([])
+  const clear = () => {
+    setItems([])
+    clearCoupon()
+  }
 
-  const count = items.reduce((s, i) => s + i.qty, 0)
+  const count    = items.reduce((s, i) => s + i.qty, 0)
   const subtotal = items.reduce((s, i) => s + i.qty * i.price, 0)
 
   return (
-    <Ctx.Provider value={{ items, count, subtotal, addItem, updateQty, removeItem, clear }}>
+    <Ctx.Provider value={{ items, count, subtotal, couponCode, couponDiscount, applyCoupon, clearCoupon, addItem, updateQty, removeItem, clear }}>
       {children}
     </Ctx.Provider>
   )

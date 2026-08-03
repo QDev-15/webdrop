@@ -50,7 +50,14 @@ class Database {
         $sql = preg_replace('/^\s*--.*$/m', '', $sql);
         $statements = array_filter(array_map('trim', explode(';', $sql)), fn($s) => $s !== '');
         foreach ($statements as $stmt) { $this->pdo->exec($stmt . ';'); }
+        $this->migrateAlter();
         $this->seedData();
+    }
+
+    // Áp dụng ALTER TABLE cho các cột thêm sau khi schema.sql đã tồn tại trên DB cũ.
+    // Dùng try/catch vì SQLite ném lỗi nếu cột đã tồn tại — bỏ qua lỗi đó là đúng.
+    private function migrateAlter(): void {
+        try { $this->pdo->exec("ALTER TABLE orders ADD COLUMN coupon_code TEXT DEFAULT ''"); } catch (\Exception $e) {}
     }
 
     private function seedData(): void {
@@ -59,6 +66,7 @@ class Database {
         $this->seedHeroSlides();
         $this->seedProductCategories();
         $this->seedProducts();
+        $this->seedCoupons();
     }
 
     private function seedUsers(): void {
@@ -369,5 +377,20 @@ class Database {
             ]);
             $order++;
         }
+    }
+
+    private function seedCoupons(): void {
+        $count = $this->pdo->query("SELECT COUNT(*) FROM coupons")->fetchColumn();
+        if ($count > 0) return;
+        $coupons = [
+            // code, type, value, min_order, max_uses, expires_at, is_active
+            ['AMI10',   'percent', 10,    0,      null, null, 1],
+            ['GIAM50K', 'fixed',   50000, 300000, null, null, 1],
+        ];
+        $stmt = $this->pdo->prepare(
+            "INSERT INTO coupons (code, type, value, min_order, max_uses, expires_at, is_active)
+             VALUES (?, ?, ?, ?, ?, ?, ?)"
+        );
+        foreach ($coupons as $c) { $stmt->execute($c); }
     }
 }

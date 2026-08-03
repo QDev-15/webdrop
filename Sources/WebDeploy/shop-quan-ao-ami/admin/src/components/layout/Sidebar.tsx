@@ -35,6 +35,7 @@ export default function Sidebar() {
       section: 'Đơn hàng',
       links: [
         { to: '/orders', icon: '🧾', label: 'Đơn hàng', badge: pendingOrders },
+        { to: '/coupons', icon: '🏷', label: 'Phiếu giảm giá' },
       ],
     },
     { section: 'Khách hàng', links: [{ to: '/contacts', icon: '✉', label: 'Liên hệ', badge: newContacts }] },

@@ -50,6 +50,8 @@ class Database {
         $sql = preg_replace('/^\s*--.*$/m', '', $sql);
         $statements = array_filter(array_map('trim', explode(';', $sql)), fn($s) => $s !== '');
         foreach ($statements as $stmt) { $this->pdo->exec($stmt . ';'); }
+        // Thêm cột coupon_code vào bảng orders nếu DB cũ chưa có (idempotent)
+        try { $this->pdo->exec("ALTER TABLE orders ADD COLUMN coupon_code TEXT DEFAULT ''"); } catch (\Exception $e) {}
         $this->seedData();
     }
 
@@ -59,6 +61,7 @@ class Database {
         $this->seedHeroSlides();
         $this->seedProductCategories();
         $this->seedProducts();
+        $this->seedCoupons();
     }
 
     private function seedUsers(): void {
@@ -379,5 +382,15 @@ class Database {
             ]);
             $order++;
         }
+    }
+
+    private function seedCoupons(): void {
+        $count = $this->pdo->query("SELECT COUNT(*) FROM coupons")->fetchColumn();
+        if ($count > 0) return;
+        $stmt = $this->pdo->prepare(
+            "INSERT INTO coupons (code, type, value, min_order, max_uses, is_active) VALUES (?, ?, ?, ?, ?, ?)"
+        );
+        $stmt->execute(['BEAUTY10', 'percent', 10, 300000, 100, 1]);
+        $stmt->execute(['GIAM50K',  'fixed',   50000, 500000, 50,  1]);
     }
 }

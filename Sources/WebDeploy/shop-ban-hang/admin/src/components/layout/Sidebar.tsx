@@ -39,7 +39,10 @@ export default function Sidebar() {
     },
     {
       section: 'Đơn hàng',
-      links: [{ to: '/orders', icon: '🧾', label: 'Đơn hàng', badge: pendingOrders }]
+      links: [
+        { to: '/orders', icon: '🧾', label: 'Đơn hàng', badge: pendingOrders },
+        { to: '/coupons', icon: '🏷', label: 'Phiếu giảm giá' },
+      ]
     },
     {
       section: 'Đánh giá',

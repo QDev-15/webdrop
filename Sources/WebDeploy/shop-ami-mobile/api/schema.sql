@@ -118,12 +118,26 @@ CREATE TABLE IF NOT EXISTS orders (
     subtotal        INTEGER NOT NULL DEFAULT 0,
     shipping_fee    INTEGER NOT NULL DEFAULT 0,
     discount        INTEGER NOT NULL DEFAULT 0,
+    coupon_code     TEXT NOT NULL DEFAULT '',
     total           INTEGER NOT NULL DEFAULT 0,
     payment_method  TEXT NOT NULL DEFAULT 'cod',   -- 'cod' | 'sepay'
     payment_status  TEXT NOT NULL DEFAULT 'unpaid', -- 'unpaid' | 'pending' | 'paid'
     status          TEXT NOT NULL DEFAULT 'pending', -- 'pending'|'processing'|'shipping'|'completed'|'cancelled'
     created_at      TEXT NOT NULL DEFAULT (datetime('now','localtime')),
     updated_at      TEXT NOT NULL DEFAULT (datetime('now','localtime'))
+);
+
+CREATE TABLE IF NOT EXISTS coupons (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    code        TEXT NOT NULL UNIQUE,
+    type        TEXT NOT NULL DEFAULT 'percent',   -- 'percent' | 'fixed'
+    value       REAL NOT NULL DEFAULT 0,
+    min_order   REAL NOT NULL DEFAULT 0,
+    max_uses    INTEGER,                            -- NULL = không giới hạn
+    used_count  INTEGER NOT NULL DEFAULT 0,
+    expires_at  TEXT,                               -- NULL = không giới hạn
+    is_active   INTEGER NOT NULL DEFAULT 1,
+    created_at  TEXT NOT NULL DEFAULT (datetime('now','localtime'))
 );
 
 CREATE TABLE IF NOT EXISTS order_items (

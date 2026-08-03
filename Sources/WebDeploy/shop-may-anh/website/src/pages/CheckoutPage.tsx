@@ -19,6 +19,9 @@ interface PaymentMethods {
 
 interface OrderResult {
   order_code: string
+  subtotal: number
+  shipping_fee: number
+  discount: number
   total: number
   payment_method: string
   payment_status: string
@@ -31,7 +34,7 @@ export default function CheckoutPage() {
     description: 'Hoàn tất đơn hàng máy ảnh, ống kính, phụ kiện nhiếp ảnh tại PhotoPro — thanh toán an toàn, giao hàng nhanh chóng.',
   })
 
-  const { items, subtotal, clear } = useCart()
+  const { items, subtotal, clear, couponCode, couponDiscount } = useCart()
   const { settings } = useSite()
 
   const [methods, setMethods] = useState<PaymentMethods | null>(null)
@@ -47,7 +50,7 @@ export default function CheckoutPage() {
   const shippingFee = Number(settings['shipping_fee'] || 0)
   const freeShipThreshold = Number(settings['free_shipping_threshold'] || 0)
   const effectiveShipping = freeShipThreshold > 0 && subtotal >= freeShipThreshold ? 0 : shippingFee
-  const total = subtotal + effectiveShipping
+  const total = Math.max(0, subtotal + effectiveShipping - couponDiscount)
 
   useEffect(() => {
     api.get<PaymentMethods>('/public/payment-methods')
@@ -86,6 +89,7 @@ export default function CheckoutPage() {
       const order = await api.post<OrderResult>('/public/orders', {
         ...form,
         payment_method: paymentMethod,
+        coupon_code: couponCode ?? '',
         items: items.map(i => ({ product_id: i.product_id, qty: i.qty })),
       })
       setResult(order)
@@ -246,6 +250,12 @@ export default function CheckoutPage() {
                 <span>Phí vận chuyển</span>
                 <span style={{ color: effectiveShipping === 0 ? 'var(--accent, #16a34a)' : undefined }}>{effectiveShipping === 0 ? 'Miễn phí' : fmt(effectiveShipping)}</span>
               </div>
+              {couponDiscount > 0 && (
+                <div className="shop-checkout-summary-row" style={{ color: 'var(--accent, #16a34a)' }}>
+                  <span>Giảm giá{couponCode ? ` (${couponCode})` : ''}</span>
+                  <span>-{fmt(couponDiscount)}</span>
+                </div>
+              )}
               <div className="shop-checkout-summary-row shop-checkout-summary-total">
                 <span>Tổng cộng</span><span>{fmt(total)}</span>
               </div>
