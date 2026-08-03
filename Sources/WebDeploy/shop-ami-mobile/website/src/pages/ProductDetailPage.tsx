@@ -104,7 +104,7 @@ export default function ProductDetailPage() {
           <div className="row g-4 g-lg-5">
             <div className="col-lg-6">
               <div className="mb-detail-img">
-                <img src={images[activeImg] || product.image} alt={product.name} style={{ width: '100%', borderRadius: 4, border: '2px solid var(--border)' }} />
+                <img src={images[activeImg] || product.image} alt={product.name} />
               </div>
               {images.length > 1 && (
                 <div style={{ display: 'flex', gap: 8, marginTop: 10, flexWrap: 'wrap' }}>
