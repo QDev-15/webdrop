@@ -4,7 +4,7 @@ Options -Indexes
     Deny from all
 </FilesMatch>
 RewriteEngine On
-# Force trailing slash on /admin so relative assets (base: './') resolve correctly
+# Canonical redirect: /admin → /admin/ (trailing slash)
 RewriteRule ^admin$ /admin/ [R=301,L]
 RewriteRule ^api/database/ - [F,L]
 RewriteCond %{REQUEST_URI} ^/admin/

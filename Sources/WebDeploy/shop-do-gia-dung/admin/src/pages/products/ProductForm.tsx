@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '../../api/client'
 import ImageField from '../../components/ImageField'
+import GalleryField from '../../components/GalleryField'
 
 interface ColorSwatch { id: number; name: string; hex: string }
 interface Category { id: number; name: string }
@@ -333,15 +334,9 @@ export default function ProductForm() {
           <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-2)', marginBottom: 16 }}>Thông tin mở rộng</div>
 
           <div className="form-group">
-            <label>Ảnh gallery (JSON array URL)</label>
-            <textarea
-              rows={3}
-              value={form.gallery}
-              onChange={e => set('gallery', e.target.value)}
-              placeholder={'["https://images.unsplash.com/photo-xxx?w=800", "https://..."]'}
-              style={{ fontFamily: 'monospace', fontSize: 12 }}
-            />
-            <small style={{ color: 'var(--text-3)', fontSize: 11 }}>JSON array các URL ảnh phụ. Để trống nếu chỉ dùng 1 ảnh chính.</small>
+            <label>Ảnh gallery</label>
+            <GalleryField value={form.gallery} onChange={v => set('gallery', v)} />
+            <small style={{ color: 'var(--text-3)', fontSize: 11 }}>Ảnh phụ hiển thị trong trang chi tiết sản phẩm. Có thể upload hoặc chọn từ Unsplash.</small>
           </div>
 
           <div className="form-group">

@@ -47,6 +47,7 @@ export default function ProductDetailPage() {
 
   const [addedToCart, setAddedToCart] = useState(false)
   const [qty, setQty] = useState(1)
+  const [activeImg, setActiveImg] = useState(0)
 
   // Parse all available colors for this product
   const colorOptions = useMemo(() => {
@@ -75,8 +76,15 @@ export default function ProductDetailPage() {
     )
   }
 
-  // Gallery: chỉ 1 ảnh chính (tránh fake thumbs)
-  const images = [product.image || '']
+  // Gallery: ảnh chính + gallery từ DB
+  const galleryExtra: string[] = (() => {
+    if (!product.gallery?.trim()) return []
+    try {
+      const p = JSON.parse(product.gallery)
+      return Array.isArray(p) ? (p as unknown[]).filter((x): x is string => typeof x === 'string' && x.trim() !== '') : []
+    } catch { return [] }
+  })()
+  const images = [product.image || '', ...galleryExtra].filter(Boolean)
 
   // Video
   const ytId = product.video_url ? getYoutubeId(product.video_url) : null
@@ -129,11 +137,34 @@ export default function ProductDetailPage() {
           <div>
             <div className="dg-detail-gallery__main">
               <img
-                src={images[0] || ''}
+                src={images[activeImg] || ''}
                 alt={product.name}
                 onError={e => { (e.target as HTMLImageElement).src = FALLBACK }}
               />
             </div>
+
+            {/* Thumbnail strip — chỉ hiện khi có ≥2 ảnh */}
+            {images.length > 1 && (
+              <div style={{ display: 'flex', gap: 8, marginTop: 10, flexWrap: 'wrap' }}>
+                {images.map((url, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => setActiveImg(i)}
+                    style={{
+                      width: 64, height: 64, padding: 0, cursor: 'pointer', flexShrink: 0,
+                      border: i === activeImg ? '2px solid var(--terracotta)' : '2px solid var(--border)',
+                      borderRadius: 8, overflow: 'hidden', background: 'var(--warm)',
+                      transition: 'border-color .15s',
+                    }}
+                    aria-label={`Ảnh ${i + 1}`}
+                  >
+                    <img src={url} alt={`Ảnh ${i + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                      onError={e => { (e.target as HTMLImageElement).style.opacity = '0.3' }} />
+                  </button>
+                ))}
+              </div>
+            )}
 
             {/* Video embed */}
             {ytId && (
