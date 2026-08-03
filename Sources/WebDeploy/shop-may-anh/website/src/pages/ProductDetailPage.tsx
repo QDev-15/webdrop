@@ -16,8 +16,8 @@ function parseColors(colors: string): { name: string; hex: string }[] {
   })
 }
 
-function parseList(v: string): string[] {
-  return v.split('|').map(s => s.trim()).filter(Boolean)
+function parseList(v: string | undefined | null): string[] {
+  return v ? v.split('|').map(s => s.trim()).filter(Boolean) : []
 }
 
 function parseSpecs(specs: string): { label: string; value: string }[] {

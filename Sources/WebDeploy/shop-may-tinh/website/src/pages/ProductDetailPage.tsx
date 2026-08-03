@@ -76,7 +76,7 @@ export default function ProductDetailPage() {
     )
   }
 
-  const gallery = [product.image, ...product.gallery.split('|').filter(Boolean)]
+  const gallery = [product.image, ...(product.gallery ? product.gallery.split('|').filter(Boolean) : [])].filter(Boolean)
   const colors = parseColors(product.colors)
   const configs = parseConfigs(product.config_options)
   const specs = parseSpecs(product.specs)
