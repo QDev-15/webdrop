@@ -101,7 +101,8 @@ CREATE TABLE IF NOT EXISTS products (
     --   + ShopPublicController::products() (lọc brand/theme) + ProductForm.tsx (COLOR_SWATCHES/BRAND/THEME)
     brand        TEXT NOT NULL DEFAULT '',   -- apple|samsung|xiaomi|oppo|sony|jbl|anker — dùng cho bộ lọc "Thương hiệu"
     theme        TEXT NOT NULL DEFAULT '',   -- comma-separated: noi-bat,phu-kien,moi-ve,giam-gia — dùng cho section trang chủ + ?theme=
-    sold         INTEGER NOT NULL DEFAULT 0  -- số lượng đã bán — hiển thị "Đã bán N" + sort bán chạy nhất
+    sold         INTEGER NOT NULL DEFAULT 0, -- số lượng đã bán — hiển thị "Đã bán N" + sort bán chạy nhất
+    gallery      TEXT NOT NULL DEFAULT ''    -- JSON array string các URL ảnh bổ sung trong trang chi tiết sản phẩm
 );
 
 -- Đơn hàng — schema CỐ ĐỊNH, khớp 1-1 với OrderController.php + ShopPublicController.php.
@@ -117,12 +118,26 @@ CREATE TABLE IF NOT EXISTS orders (
     subtotal        INTEGER NOT NULL DEFAULT 0,
     shipping_fee    INTEGER NOT NULL DEFAULT 0,
     discount        INTEGER NOT NULL DEFAULT 0,
+    coupon_code     TEXT NOT NULL DEFAULT '',
     total           INTEGER NOT NULL DEFAULT 0,
     payment_method  TEXT NOT NULL DEFAULT 'cod',   -- 'cod' | 'sepay'
     payment_status  TEXT NOT NULL DEFAULT 'unpaid', -- 'unpaid' | 'pending' | 'paid'
     status          TEXT NOT NULL DEFAULT 'pending', -- 'pending'|'processing'|'shipping'|'completed'|'cancelled'
     created_at      TEXT NOT NULL DEFAULT (datetime('now','localtime')),
     updated_at      TEXT NOT NULL DEFAULT (datetime('now','localtime'))
+);
+
+CREATE TABLE IF NOT EXISTS coupons (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    code        TEXT NOT NULL UNIQUE,
+    type        TEXT NOT NULL DEFAULT 'percent',   -- 'percent' | 'fixed'
+    value       REAL NOT NULL DEFAULT 0,
+    min_order   REAL NOT NULL DEFAULT 0,
+    max_uses    INTEGER,                            -- NULL = không giới hạn
+    used_count  INTEGER NOT NULL DEFAULT 0,
+    expires_at  TEXT,                               -- NULL = không giới hạn
+    is_active   INTEGER NOT NULL DEFAULT 1,
+    created_at  TEXT NOT NULL DEFAULT (datetime('now','localtime'))
 );
 
 CREATE TABLE IF NOT EXISTS order_items (

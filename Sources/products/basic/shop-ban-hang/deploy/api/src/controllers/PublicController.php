@@ -139,6 +139,41 @@ class PublicController {
         ]);
     }
 
+    private function lookupCoupon(string $code, float $orderTotal): ?array {
+        if ($code === '') return null;
+        $code   = strtoupper(trim($code));
+        $coupon = $this->db->queryOne(
+            "SELECT * FROM coupons WHERE code = ? AND is_active = 1",
+            [$code]
+        );
+        if (!$coupon) return null;
+        if ($coupon['expires_at'] && strtotime($coupon['expires_at']) < time()) return null;
+        if ($coupon['max_uses'] !== null && (int)$coupon['used_count'] >= (int)$coupon['max_uses']) return null;
+        if ((float)$coupon['min_order'] > 0 && $orderTotal < (float)$coupon['min_order']) return null;
+        $discount = $coupon['type'] === 'percent'
+            ? (int)round($orderTotal * (float)$coupon['value'] / 100)
+            : (int)min((float)$coupon['value'], $orderTotal);
+        return ['coupon' => $coupon, 'discount' => $discount];
+    }
+
+    public function validateCoupon(): void {
+        $data       = bodyJson();
+        $code       = strtoupper(trim($data['code'] ?? ''));
+        $orderTotal = (float)($data['order_total'] ?? 0);
+        if (!$code) { Response::error('Mã giảm giá không được để trống', 422); return; }
+        $result = $this->lookupCoupon($code, $orderTotal);
+        if (!$result) {
+            Response::error('Mã giảm giá không hợp lệ hoặc không đủ điều kiện áp dụng', 422);
+            return;
+        }
+        Response::json([
+            'code'     => $result['coupon']['code'],
+            'type'     => $result['coupon']['type'],
+            'value'    => $result['coupon']['value'],
+            'discount' => $result['discount'],
+        ]);
+    }
+
     public function createOrder(): void {
         $data          = bodyJson();
         $name          = trim($data['customer_name'] ?? '');
@@ -147,6 +182,7 @@ class PublicController {
         $address       = trim($data['address'] ?? '');
         $note          = trim($data['note'] ?? '');
         $paymentMethod = trim($data['payment_method'] ?? 'cod');
+        $couponCodeRaw = strtoupper(trim($data['coupon_code'] ?? ''));
         $items         = is_array($data['items'] ?? null) ? $data['items'] : [];
 
         if (!$name || !$phone || !$address) {
@@ -201,7 +237,17 @@ class PublicController {
         $shippingFee = (int)($s['shipping_fee'] ?? 0);
         $threshold   = (int)($s['free_shipping_threshold'] ?? 0);
         if ($threshold > 0 && $subtotal >= $threshold) { $shippingFee = 0; }
-        $total = $subtotal + $shippingFee;
+
+        // Áp mã giảm giá (nếu có) — tính lại sau khi đã biết subtotal thật từ DB
+        $discount    = 0;
+        $couponCode  = '';
+        $couponResult = $this->lookupCoupon($couponCodeRaw, (float)$subtotal);
+        if ($couponResult) {
+            $discount   = $couponResult['discount'];
+            $couponCode = $couponResult['coupon']['code'];
+        }
+
+        $total = max(0, $subtotal + $shippingFee - $discount);
 
         do {
             $orderCode = 'DH' . date('ymd') . strtoupper(substr(bin2hex(random_bytes(3)), 0, 5));
@@ -210,10 +256,18 @@ class PublicController {
         $paymentStatus = $paymentMethod === 'sepay' ? 'pending' : 'unpaid';
 
         $orderId = $this->db->execute(
-            "INSERT INTO orders (order_code, customer_name, phone, email, address, note, subtotal, shipping_fee, discount, total, payment_method, payment_status, status)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?, ?, ?, 'pending')",
-            [$orderCode, $name, $phone, $email, $address, $note, $subtotal, $shippingFee, $total, $paymentMethod, $paymentStatus]
+            "INSERT INTO orders (order_code, customer_name, phone, email, address, note, subtotal, shipping_fee, discount, coupon_code, total, payment_method, payment_status, status)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')",
+            [$orderCode, $name, $phone, $email, $address, $note, $subtotal, $shippingFee, $discount, $couponCode, $total, $paymentMethod, $paymentStatus]
         );
+
+        // Tăng lượt sử dụng mã giảm giá
+        if ($couponResult) {
+            $this->db->execute(
+                "UPDATE coupons SET used_count = used_count + 1 WHERE code = ?",
+                [$couponCode]
+            );
+        }
 
         foreach ($orderItems as $it) {
             $this->db->execute(
@@ -226,6 +280,8 @@ class PublicController {
             'order_code'     => $orderCode,
             'subtotal'       => $subtotal,
             'shipping_fee'   => $shippingFee,
+            'discount'       => $discount,
+            'coupon_code'    => $couponCode,
             'total'          => $total,
             'payment_method' => $paymentMethod,
             'payment_status' => $paymentStatus,

@@ -94,4 +94,11 @@ console.log(`  2. Mở ${deploy}/api/config.php và sửa APP_URL thành URL th�
 console.log(`  1. Upload toàn bộ nội dung trong ${deploy}/ lên public_html/`)
 console.log(`  2. Mở ${deploy}/api/config.php và sửa APP_URL thành URL thực của website`)
 console.log('  3. Truy cập website.vn/admin để đăng nhập')
+
+// huong-dan-cai-dat.html → deploy/
+if (existsSync(join(root, 'huong-dan-cai-dat.html'))) {
+  cpSync(join(root, 'huong-dan-cai-dat.html'), join(deploy, 'huong-dan-cai-dat.html'))
+  console.log('  Copy huong-dan-cai-dat.html...')
+}
+
 console.log('  4. Tài khoản mặc định: sysadmin@admin.com / 123456')

@@ -121,4 +121,11 @@ console.log('\nHuong dan deploy:')
 console.log('  1. Upload toan bo noi dung trong deploy/ len public_html/')
 console.log('  2. Mo api/config.php, sua APP_URL thanh URL that')
 console.log('  3. Kiem tra: https://yoursite.com/api/health')
+
+// huong-dan-cai-dat.html → deploy/
+if (existsSync(join(root, 'huong-dan-cai-dat.html'))) {
+  cpSync(join(root, 'huong-dan-cai-dat.html'), join(deploy, 'huong-dan-cai-dat.html'))
+  console.log('  Copy huong-dan-cai-dat.html...')
+}
+
 console.log('  4. Dang nhap admin: /admin | sysadmin@admin.com / 123456')

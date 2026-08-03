@@ -99,4 +99,11 @@ console.log('  1. Upload tat ca file trong deploy/ len public_html/')
 console.log('  2. Mo api/config.php va sua APP_URL thanh URL thuc cua website')
 console.log('  3. Kiem tra: https://your-domain.com/api/health')
 console.log('  4. Dang nhap admin: https://your-domain.com/admin')
+
+// huong-dan-cai-dat.html → deploy/
+if (existsSync(join(root, 'huong-dan-cai-dat.html'))) {
+  cpSync(join(root, 'huong-dan-cai-dat.html'), join(deploy, 'huong-dan-cai-dat.html'))
+  console.log('  Copy huong-dan-cai-dat.html...')
+}
+
 console.log('     Xem README.md de biet thong tin dang nhap mac dinh.')

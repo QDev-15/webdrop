@@ -99,4 +99,11 @@ console.log(`2. Mở ${deploy}/api/config.php và sửa APP_URL thành URL thự
 console.log(`1. Upload toàn bộ nội dung trong ${deploy}/ lên public_html/`)
 console.log(`2. Mở ${deploy}/api/config.php và sửa APP_URL thành URL thực của website`)
 console.log('3. Truy cập https://yoursite.com/api/health để kiểm tra')
+
+// huong-dan-cai-dat.html → deploy/
+if (existsSync(join(root, 'huong-dan-cai-dat.html'))) {
+  cpSync(join(root, 'huong-dan-cai-dat.html'), join(deploy, 'huong-dan-cai-dat.html'))
+  console.log('  Copy huong-dan-cai-dat.html...')
+}
+
 console.log('4. Đăng nhập admin: /admin  |  sysadmin@admin.com  |  123456')

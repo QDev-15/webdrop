@@ -50,6 +50,8 @@ class Database {
         $sql = preg_replace('/^\s*--.*$/m', '', $sql);
         $statements = array_filter(array_map('trim', explode(';', $sql)), fn($s) => $s !== '');
         foreach ($statements as $stmt) { $this->pdo->exec($stmt . ';'); }
+        // Thêm cột coupon_code vào orders cho DB cũ (schema.sql đã có cho DB mới — lệnh này fail silently nếu cột đã tồn tại)
+        try { $this->pdo->exec("ALTER TABLE orders ADD COLUMN coupon_code TEXT NOT NULL DEFAULT ''"); } catch(\Exception $e) {}
         $this->seedData();
     }
 
@@ -59,6 +61,7 @@ class Database {
         $this->seedHeroSlides();
         $this->seedProductCategories();
         $this->seedProducts();
+        $this->seedCoupons();
     }
 
     private function seedUsers(): void {
@@ -284,8 +287,8 @@ class Database {
 
         $stmt = $this->pdo->prepare(
             "INSERT INTO products
-                (category_id, name, slug, image, price, price_sale, badge, description, colors, brand, rating, in_stock, is_featured, is_new, sort_order, theme, sold)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?, ?, ?)"
+                (category_id, name, slug, image, price, price_sale, badge, description, colors, brand, rating, in_stock, is_featured, is_new, sort_order, theme, sold, gallery)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?, ?, ?, ?)"
         );
         $order = 1;
         foreach ($raw as $p) {
@@ -295,9 +298,24 @@ class Database {
             $isNew       = $badge === 'new' ? 1 : 0;
             $stmt->execute([
                 $categoryId, $name, $slug, $image, $price, $priceSale, $badge, $description, $color, $brand, $rating,
-                $isFeatured, $isNew, $order, $theme, $sold,
+                $isFeatured, $isNew, $order, $theme, $sold, '',
             ]);
             $order++;
         }
+    }
+
+    private function seedCoupons(): void {
+        $count = $this->pdo->query("SELECT COUNT(*) FROM coupons")->fetchColumn();
+        if ($count > 0) return;
+        // 2 mã mẫu: AMI10 (giảm 10%), GIAM50K (giảm 50.000đ cho đơn từ 300.000đ)
+        $coupons = [
+            ['AMI10',   'percent', 10,    0,      100, null, 1],
+            ['GIAM50K', 'fixed',   50000, 300000, 50,  null, 1],
+        ];
+        $stmt = $this->pdo->prepare(
+            "INSERT INTO coupons (code, type, value, min_order, max_uses, expires_at, is_active)
+             VALUES (?, ?, ?, ?, ?, ?, ?)"
+        );
+        foreach ($coupons as $c) { $stmt->execute($c); }
     }
 }

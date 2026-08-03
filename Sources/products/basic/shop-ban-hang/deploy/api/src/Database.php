@@ -50,6 +50,9 @@ class Database {
         $sql = preg_replace('/^\s*--.*$/m', '', $sql);
         $statements = array_filter(array_map('trim', explode(';', $sql)), fn($s) => $s !== '');
         foreach ($statements as $stmt) { $this->pdo->exec($stmt . ';'); }
+        // Backfill migrations for existing databases
+        try { $this->pdo->exec("ALTER TABLE products ADD COLUMN gallery TEXT DEFAULT ''"); } catch (\Throwable $e) { /* column already exists */ }
+        try { $this->pdo->exec("ALTER TABLE orders ADD COLUMN coupon_code TEXT DEFAULT ''"); } catch (\Throwable $e) { /* column already exists */ }
         $this->seedData();
     }
 
@@ -61,6 +64,7 @@ class Database {
         $this->seedProducts();
         $this->seedMoreProducts();
         $this->seedTestimonials();
+        $this->seedCoupons();
     }
 
     private function seedUsers(): void {
@@ -172,7 +176,7 @@ class Database {
             ['cloudinary_api_key',    '', 'cloudinary'],
             ['cloudinary_api_secret', '', 'cloudinary'],
             // Integrations
-            ['unsplash_access_key', '', 'integrations'],
+            ['unsplash_access_key', 'BdVQbpMxCxFAU2ijjhhvwC5-t3Y9CqFe65Mf09t11kY', 'integrations'],
             ['fb_pixel_id', '', 'integrations'],
             ['zalo_oa_id',  '', 'integrations'],
         ];
@@ -306,8 +310,8 @@ class Database {
              'Linen 70% / Cotton 30%', $colorEarth, 4.7, 1, 1, 0, 12],
         ];
         $stmt = $this->pdo->prepare(
-            "INSERT INTO products (category_id, name, slug, image, price, price_sale, badge, description, material, colors, rating, in_stock, is_featured, is_new, sort_order)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            "INSERT INTO products (category_id, name, slug, image, price, price_sale, badge, description, material, colors, gallery, rating, in_stock, is_featured, is_new, sort_order)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '', ?, ?, ?, ?, ?)"
         );
         foreach ($products as $p) { $stmt->execute($p); }
     }
@@ -444,10 +448,24 @@ class Database {
              'Gỗ sồi tự nhiên', $colorNeutral, 4.4, 1, 0, 0, 32],
         ];
         $stmt = $this->pdo->prepare(
-            "INSERT OR IGNORE INTO products (category_id, name, slug, image, price, price_sale, badge, description, material, colors, rating, in_stock, is_featured, is_new, sort_order)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            "INSERT OR IGNORE INTO products (category_id, name, slug, image, price, price_sale, badge, description, material, colors, gallery, rating, in_stock, is_featured, is_new, sort_order)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '', ?, ?, ?, ?, ?)"
         );
         foreach ($products as $p) { $stmt->execute($p); }
+    }
+
+    private function seedCoupons(): void {
+        $count = $this->pdo->query("SELECT COUNT(*) FROM coupons")->fetchColumn();
+        if ($count > 0) return;
+        $coupons = [
+            // [code, type, value, min_order, max_uses, is_active]
+            ['CHAO10',    'percent', 10,    0,      100, 1],
+            ['FREESHIP',  'fixed',   30000, 150000, 50,  1],
+        ];
+        $stmt = $this->pdo->prepare(
+            "INSERT INTO coupons (code, type, value, min_order, max_uses, is_active) VALUES (?, ?, ?, ?, ?, ?)"
+        );
+        foreach ($coupons as $c) { $stmt->execute($c); }
     }
 
     private function seedTestimonials(): void {

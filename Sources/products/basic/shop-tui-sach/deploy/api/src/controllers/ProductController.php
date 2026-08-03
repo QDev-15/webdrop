@@ -14,6 +14,7 @@ class ProductController {
         'in_stock' => 'i', 'is_featured' => 'i', 'is_new' => 'i', 'status' => 's', 'sort_order' => 'i',
         // ▼ Field riêng theo template (san-pham.html có block filter "Kích thước")
         'sizes' => 's',
+        'gallery' => 's',
     ];
 
     private function cast(string $type, mixed $v): mixed {

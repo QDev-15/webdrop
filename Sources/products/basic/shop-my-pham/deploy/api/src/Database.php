@@ -50,6 +50,8 @@ class Database {
         $sql = preg_replace('/^\s*--.*$/m', '', $sql);
         $statements = array_filter(array_map('trim', explode(';', $sql)), fn($s) => $s !== '');
         foreach ($statements as $stmt) { $this->pdo->exec($stmt . ';'); }
+        // Thêm cột coupon_code vào bảng orders nếu DB cũ chưa có (idempotent)
+        try { $this->pdo->exec("ALTER TABLE orders ADD COLUMN coupon_code TEXT DEFAULT ''"); } catch (\Exception $e) {}
         $this->seedData();
     }
 
@@ -59,6 +61,7 @@ class Database {
         $this->seedHeroSlides();
         $this->seedProductCategories();
         $this->seedProducts();
+        $this->seedCoupons();
     }
 
     private function seedUsers(): void {
@@ -359,8 +362,8 @@ class Database {
 
         $stmt = $this->pdo->prepare(
             "INSERT INTO products
-                (category_id, name, slug, image, price, price_sale, badge, description, rating, in_stock, is_featured, is_new, sort_order, brand, skin_type, theme, sold)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?, ?, ?, ?, ?)"
+                (category_id, name, slug, image, price, price_sale, badge, description, rating, in_stock, is_featured, is_new, sort_order, brand, skin_type, theme, sold, gallery)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?, ?, ?, ?, ?, ?)"
         );
 
         $order = 1;
@@ -375,9 +378,19 @@ class Database {
 
             $stmt->execute([
                 $catId[$catSlug], $name, $slug, $image, $price, $priceSale, $badge, $description, $rating,
-                $isFeatured, $isNew, $order, $brand, $skinTypeCol, $themeCol, $sold,
+                $isFeatured, $isNew, $order, $brand, $skinTypeCol, $themeCol, $sold, '',
             ]);
             $order++;
         }
+    }
+
+    private function seedCoupons(): void {
+        $count = $this->pdo->query("SELECT COUNT(*) FROM coupons")->fetchColumn();
+        if ($count > 0) return;
+        $stmt = $this->pdo->prepare(
+            "INSERT INTO coupons (code, type, value, min_order, max_uses, is_active) VALUES (?, ?, ?, ?, ?, ?)"
+        );
+        $stmt->execute(['BEAUTY10', 'percent', 10, 300000, 100, 1]);
+        $stmt->execute(['GIAM50K',  'fixed',   50000, 500000, 50,  1]);
     }
 }

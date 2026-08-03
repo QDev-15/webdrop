@@ -251,7 +251,7 @@ class Database {
         $sizesApparel = 'XS|S|M|L|XL';
         $sizesOne     = 'One Size';
 
-        // [category_id, name, slug, image, price, price_sale, badge, description, colors, rating, in_stock, is_featured, is_new, sort_order, sizes]
+        // [category_id, name, slug, image, price, price_sale, badge, description, colors, rating, in_stock, is_featured, is_new, sort_order, sizes] (gallery='' appended in execute)
         $products = [
             // ── Váy đầm (category 1) ──────────────────────────────────────────────
             [1, 'Đầm Suông Linen Cổ Tim', 'dam-suong-linen-co-tim',
@@ -368,10 +368,10 @@ class Database {
 
         $stmt = $this->pdo->prepare(
             "INSERT INTO products
-                (category_id, name, slug, image, price, price_sale, badge, description, colors, rating, in_stock, is_featured, is_new, sort_order, sizes)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+                (category_id, name, slug, image, price, price_sale, badge, description, colors, rating, in_stock, is_featured, is_new, sort_order, sizes, gallery)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
         );
-        foreach ($products as $p) { $stmt->execute($p); }
+        foreach ($products as $p) { $stmt->execute([...$p, '']); }
     }
 
     private function seedCoupons(): void {

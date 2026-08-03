@@ -1,0 +1,251 @@
+[01:41:46] === BUILD ALL WEBDEPLOY ===
+[01:41:46] Tổng: 55 site | Log: D:\Working\project\WebApps\WebDrop\webdrop\Sources\WebDeploy\build-all-20260804-0141.log
+[01:41:46] 
+[01:41:46] [1/55] _scaffold ...
+[01:42:17]   ❌ FAIL (exit 1)
+    === {{SLUG}} G�� Build Script ===
+    
+    [1/4] Ki�+�m tra dependencies...
+      C+�i -�ߦ+t dependencies website...
+    
+    added 71 packages, and audited 72 packages in 14s
+    
+    7 packages are looking for funding
+      run `npm fund` for details
+    
+    4 vulnerabilities (3 moderate, 1 high)
+    
+    To address issues that do not require attention, run:
+      npm audit fix
+    
+    To address all issues (including breaking changes), run:
+      npm audit fix --force
+    
+    Run `npm audit` for details.
+      C+�i -�ߦ+t dependencies admin...
+    
+    added 71 packages, and audited 72 packages in 11s
+    
+    7 packages are looking for funding
+      run `npm fund` for details
+    
+    4 vulnerabilities (3 moderate, 1 high)
+    
+    To address issues that do not require attention, run:
+      npm audit fix
+    
+    To address all issues (including breaking changes), run:
+      npm audit fix --force
+    
+    Run `npm audit` for details.
+    
+    [2/4] Build React apps...
+      Build website...
+    
+    > {{SLUG}}-website@1.0.0 build
+    > tsc -b && vite build
+    
+    [33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+    [36mvite v5.4.21 [32mbuilding for production...[36m[39m
+    [32mG��[39m 0 modules transformed.
+    [31mx[39m Build failed in 21ms
+    [31merror during build:
+    [31mCould not resolve entry module "index.html".[31m
+        at getRollupError (file:///D:/Working/project/WebApps/WebDrop/webdrop/Sources/WebDeploy/_scaffold/website/node_modules/rollup/dist/es/shared/parseAst.js:317:41)
+        at error (file:///D:/Working/project/WebApps/WebDrop/webdrop/Sources/WebDeploy/_scaffold/website/node_modules/rollup/dist/es/shared/parseAst.js:313:42)
+        at ModuleLoader.loadEntryModule (file:///D:/Working/project/WebApps/WebDrop/webdrop/Sources/WebDeploy/_scaffold/website/node_modules/rollup/dist/es/shared/node-entry.js:21949:20)
+        at async Promise.all (index 0)[39m
+    node:internal/errors:983
+      const err = new Error(message);
+                  ^
+    System.Management.Automation.RemoteException
+    Error: Command failed: npm run build
+        at genericNodeError (node:internal/errors:983:15)
+        at wrappedFn (node:internal/errors:537:14)
+        at checkExecSyncError (node:child_process:882:11)
+        at execSync (node:child_process:954:15)
+        at run (file:///D:/Working/project/WebApps/WebDrop/webdrop/Sources/WebDeploy/_scaffold/build.mjs:43:3)
+        at file:///D:/Working/project/WebApps/WebDrop/webdrop/Sources/WebDeploy/_scaffold/build.mjs:62:1
+        at ModuleJob.run (node:internal/modules/esm/module_job:271:25)
+        at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:547:26)
+        at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5) {
+      status: 1,
+      signal: null,
+      output: [ null, null, null ],
+      pid: 12132,
+      stdout: null,
+      stderr: null
+    }
+    System.Management.Automation.RemoteException
+    Node.js v22.12.0
+[01:42:17] 
+[01:42:17] [2/55] agency-sang-tao ...
+[01:42:56]   ✅ PASS
+[01:42:56] 
+[01:42:56] [3/55] agency-web ...
+[01:43:40]   ✅ PASS
+[01:43:40] 
+[01:43:40] [4/55] am-thuc ...
+[01:44:17]   ✅ PASS
+[01:44:17] 
+[01:44:17] [5/55] beauty-studio ...
+[01:45:02]   ✅ PASS
+[01:45:02] 
+[01:45:02] [6/55] blog-ca-nhan ...
+[01:45:36]   ✅ PASS
+[01:45:36] 
+[01:45:36] [7/55] cafe-thoi-gian ...
+[01:46:09]   ✅ PASS
+[01:46:09] 
+[01:46:09] [8/55] cham-soc-da ...
+[01:46:50]   ✅ PASS
+[01:46:50] 
+[01:46:50] [9/55] cong-ty-xay-dung ...
+[01:47:25]   ✅ PASS
+[01:47:25] 
+[01:47:25] [10/55] forum-cong-dong ...
+[01:48:01]   ✅ PASS
+[01:48:01] 
+[01:48:01] [11/55] luat-van-phong ...
+[01:48:38]   ✅ PASS
+[01:48:38] 
+[01:48:38] [12/55] massage-tri-lieu ...
+[01:49:22]   ✅ PASS
+[01:49:22] 
+[01:49:22] [13/55] nail-salon ...
+[01:50:09]   ✅ PASS
+[01:50:09] 
+[01:50:09] [14/55] nha-hang-cao-cap ...
+[01:50:53]   ✅ PASS
+[01:50:53] 
+[01:50:53] [15/55] nha-hang-chay-organic ...
+[01:51:30]   ✅ PASS
+[01:51:30] 
+[01:51:30] [16/55] nha-hang-hai-san ...
+[01:52:06]   ✅ PASS
+[01:52:06] 
+[01:52:06] [17/55] nha-hang-nhat-ban ...
+[01:52:42]   ✅ PASS
+[01:52:42] 
+[01:52:42] [18/55] nha-hang-phap ...
+[01:53:25]   ✅ PASS
+[01:53:25] 
+[01:53:25] [19/55] nha-hang-truyen-thong ...
+[01:54:00]   ✅ PASS
+[01:54:00] 
+[01:54:00] [20/55] nha-khoa-chinh-nha-saigon ...
+[01:54:28]   ✅ PASS
+[01:54:28] 
+[01:54:28] [21/55] nha-khoa-chinh-nha-saigon-green ...
+[01:54:58]   ✅ PASS
+[01:54:58] 
+[01:54:58] [22/55] nha-khoa-cong-nghe-smiletech ...
+[01:55:28]   ✅ PASS
+[01:55:28] 
+[01:55:28] [23/55] nha-khoa-dong-do ...
+[01:55:51]   ✅ PASS
+[01:55:51] 
+[01:55:51] [24/55] nha-khoa-gia-dinh-sunrise ...
+[01:56:22]   ✅ PASS
+[01:56:22] 
+[01:56:22] [25/55] nha-khoa-implant-future ...
+[01:56:50]   ✅ PASS
+[01:56:50] 
+[01:56:50] [26/55] nha-khoa-nu-cuoi-xua ...
+[01:57:18]   ✅ PASS
+[01:57:18] 
+[01:57:18] [27/55] nha-khoa-quoc-te-vietduc ...
+[01:57:42]   ✅ PASS
+[01:57:42] 
+[01:57:42] [28/55] nha-khoa-tham-my-luxdental ...
+[01:58:12]   ✅ PASS
+[01:58:12] 
+[01:58:12] [29/55] nha-khoa-tong-quat-antam ...
+[01:58:39]   ✅ PASS
+[01:58:39] 
+[01:58:39] [30/55] nha-khoa-tre-em-kidsmile ...
+[01:59:07]   ✅ PASS
+[01:59:07] 
+[01:59:07] [31/55] pilates-studio ...
+[01:59:54]   ✅ PASS
+[01:59:54] 
+[01:59:54] [32/55] portfolio-toi ...
+[02:00:32]   ✅ PASS
+[02:00:32] 
+[02:00:32] [33/55] quan-an-pho-bien ...
+[02:01:17]   ✅ PASS
+[02:01:17] 
+[02:01:17] [34/55] quan-bbq-lua ...
+[02:02:00]   ✅ PASS
+[02:02:00] 
+[02:02:00] [35/55] shop-ami-mobile ...
+[02:02:23]   ✅ PASS
+[02:02:24] 
+[02:02:24] [36/55] shop-ban-hang ...
+[02:02:46]   ✅ PASS
+[02:02:46] 
+[02:02:46] [37/55] shop-do-choi ...
+[02:03:26]   ✅ PASS
+[02:03:26] 
+[02:03:26] [38/55] shop-do-gia-dung ...
+[02:03:48]   ✅ PASS
+[02:03:48] 
+[02:03:48] [39/55] shop-giay-dep ...
+[02:04:10]   ✅ PASS
+[02:04:10] 
+[02:04:10] [40/55] shop-may-anh ...
+[02:04:32]   ✅ PASS
+[02:04:32] 
+[02:04:32] [41/55] shop-may-tinh ...
+[02:04:54]   ✅ PASS
+[02:04:54] 
+[02:04:54] [42/55] shop-my-pham ...
+[02:05:16]   ✅ PASS
+[02:05:16] 
+[02:05:16] [43/55] shop-quan-ao ...
+[02:05:38]   ✅ PASS
+[02:05:38] 
+[02:05:38] [44/55] shop-quan-ao-ami ...
+[02:06:00]   ✅ PASS
+[02:06:00] 
+[02:06:00] [45/55] shop-rau-xanh ...
+[02:06:35]   ✅ PASS
+[02:06:35] 
+[02:06:35] [46/55] shop-thoi-trang ...
+[02:07:12]   ✅ PASS
+[02:07:12] 
+[02:07:12] [47/55] shop-thuc-pham-sach ...
+[02:07:43]   ✅ PASS
+[02:07:43] 
+[02:07:43] [48/55] shop-tui-sach ...
+[02:08:05]   ✅ PASS
+[02:08:05] 
+[02:08:05] [49/55] spa-beauty ...
+[02:08:25]   ✅ PASS
+[02:08:25] 
+[02:08:25] [50/55] spa-luxury ...
+[02:08:49]   ✅ PASS
+[02:08:49] 
+[02:08:49] [51/55] startup-cong-nghe ...
+[02:09:33]   ✅ PASS
+[02:09:33] 
+[02:09:33] [52/55] tham-my-vien ...
+[02:10:02]   ✅ PASS
+[02:10:02] 
+[02:10:03] [53/55] tiem-banh-ngot ...
+[02:10:45]   ✅ PASS
+[02:10:45] 
+[02:10:45] [54/55] tiem-toc-barber ...
+[02:11:26]   ✅ PASS
+[02:11:26] 
+[02:11:26] [55/55] tu-van-tai-chinh ...
+[02:12:01]   ✅ PASS
+[02:12:01] 
+[02:12:01] === KẾT QUẢ ===
+[02:12:01] ✅ Pass: 54 / 55
+[02:12:01] ❌ Fail: 1 / 55
+[02:12:01] 
+[02:12:01] Danh sách FAIL:
+[02:12:01]   - _scaffold
+[02:12:01] 
+[02:12:01] Hoàn thành lúc 02:12:01 04/08/2026

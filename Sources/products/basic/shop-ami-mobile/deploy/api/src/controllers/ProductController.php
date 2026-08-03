@@ -9,11 +9,12 @@ class ProductController {
 
     // ▼ Mở rộng tại đây nếu products có thêm cột — mỗi field: 'key' => kiểu ép ('s'=string,'i'=int,'f'=float)
     // brand/theme/sold: mở rộng riêng cho shop-ami-mobile (xem schema.sql comment) — khớp COLOR_SWATCHES/BRAND_OPTIONS/THEME_OPTIONS trong ProductForm.tsx
+    // gallery: JSON array string các URL ảnh bổ sung — quản lý qua GalleryField.tsx trong admin
     private const BASE_FIELDS = [
         'name' => 's', 'image' => 's', 'price' => 'i', 'price_sale' => 'i',
         'badge' => 's', 'description' => 's', 'colors' => 's', 'rating' => 'f',
         'in_stock' => 'i', 'is_featured' => 'i', 'is_new' => 'i', 'status' => 's', 'sort_order' => 'i',
-        'brand' => 's', 'theme' => 's', 'sold' => 'i',
+        'brand' => 's', 'theme' => 's', 'sold' => 'i', 'gallery' => 's',
     ];
 
     private function cast(string $type, mixed $v): mixed {

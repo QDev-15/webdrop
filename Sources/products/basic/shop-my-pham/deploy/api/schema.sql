@@ -101,7 +101,8 @@ CREATE TABLE IF NOT EXISTS products (
     brand        TEXT NOT NULL DEFAULT '',   -- thương hiệu (The Ordinary, CeraVe, Chanel...) — dùng cho bộ lọc "Thương hiệu"
     skin_type    TEXT NOT NULL DEFAULT '',   -- padded pipe "|da-dau|da-hon-hop|" — dùng cho bộ lọc "Loại da"
     theme        TEXT NOT NULL DEFAULT '',   -- padded pipe "|ban-chay|hang-moi|" — section trang chủ + ?theme= trên san-pham
-    sold         INTEGER NOT NULL DEFAULT 0  -- số lượng đã bán — hiển thị card + sort "Bán chạy nhất"
+    sold         INTEGER NOT NULL DEFAULT 0,  -- số lượng đã bán — hiển thị card + sort "Bán chạy nhất"
+    gallery      TEXT NOT NULL DEFAULT ''     -- JSON array string ảnh bổ sung "[\"url1\",\"url2\"]"
 );
 
 -- Đơn hàng — schema CỐ ĐỊNH, khớp 1-1 với OrderController.php + ShopPublicController.php.
@@ -133,6 +134,22 @@ CREATE TABLE IF NOT EXISTS order_items (
     price        INTEGER NOT NULL DEFAULT 0,
     qty          INTEGER NOT NULL DEFAULT 1,
     subtotal     INTEGER NOT NULL DEFAULT 0
+);
+
+-- Đơn hàng — coupon_code thêm sau cho module phiếu giảm giá.
+-- Nếu DB đã tồn tại, Database.php::migrate() chạy ALTER TABLE để thêm cột này (idempotent qua try/catch).
+
+CREATE TABLE IF NOT EXISTS coupons (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    code        TEXT NOT NULL UNIQUE,
+    type        TEXT NOT NULL DEFAULT 'percent',
+    value       REAL NOT NULL DEFAULT 0,
+    min_order   REAL NOT NULL DEFAULT 0,
+    max_uses    INTEGER NOT NULL DEFAULT 0,
+    used_count  INTEGER NOT NULL DEFAULT 0,
+    expires_at  TEXT,
+    is_active   INTEGER NOT NULL DEFAULT 1,
+    created_at  TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
 -- Settings nhóm 'payment' + 'shop' — seed trong Database.php::seedSettings() (AI viết, xem builder.md rule shop).

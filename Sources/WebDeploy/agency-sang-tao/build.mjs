@@ -83,6 +83,11 @@ if (existsSync(join(root, 'README.md'))) {
   cpSync(join(root, 'README.md'), join(deploy, 'README.md'))
   console.log('  Copy README.md...')
 }
+// huong-dan-cai-dat.html → deploy/ (hướng dẫn cài đặt cho khách, mở thẳng bằng trình duyệt)
+if (existsSync(join(root, 'huong-dan-cai-dat.html'))) {
+  cpSync(join(root, 'huong-dan-cai-dat.html'), join(deploy, 'huong-dan-cai-dat.html'))
+  console.log('  Copy huong-dan-cai-dat.html...')
+}
 
 console.log('\n=== Build hoan thanh! ===')
 console.log(`Deploy folder: ${deploy}`)

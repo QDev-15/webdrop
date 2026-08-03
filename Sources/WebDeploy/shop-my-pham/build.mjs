@@ -21,7 +21,7 @@ function stripBomDir(dir) {
 }
 
 const root = dirname(fileURLToPath(import.meta.url))
-let isTest = false
+let isTest = true
 const productDir = join(root, '..', '..', 'products', 'basic', basename(root), 'deploy')
 const test = join(dirname(root), `_output-deploy`)
 
@@ -121,6 +121,13 @@ if (existsSync(join(root, 'README.md'))) {
 
 // ── Hoàn thành ────────────────────────────────────────────────────────────────
 console.log('')
+
+// huong-dan-cai-dat.html → deploy/
+if (existsSync(join(root, 'huong-dan-cai-dat.html'))) {
+  cpSync(join(root, 'huong-dan-cai-dat.html'), join(deploy, 'huong-dan-cai-dat.html'))
+  console.log('  Copy huong-dan-cai-dat.html...')
+}
+
 console.log('[4/4] Hoàn thành!')
 console.log('')
 console.log(`Thư mục deploy đã sẵn sàng: ${deploy}/`)

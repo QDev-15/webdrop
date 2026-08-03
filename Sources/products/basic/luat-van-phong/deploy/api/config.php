@@ -25,7 +25,7 @@ define('DB_PASS', 'mat_khau');
 
 define('APP_URL', 'http://localhost:8081');
 define('APP_ENV', 'production');
-define('APP_KEY', '6db8492759702ee38b4913481ee165235b1c9332129cfff80ff3ed13b01ec90e');
+define('APP_KEY', '6385e0871bd8150ec754c74ca43fa34c9243c72bc1bf8b259b22672617944d26');
 
 // ─────────────────────────────────────────────────────────
 // UPLOAD — Lưu ảnh upload

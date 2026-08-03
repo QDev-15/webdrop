@@ -117,6 +117,7 @@ CREATE TABLE IF NOT EXISTS orders (
     subtotal        INTEGER NOT NULL DEFAULT 0,
     shipping_fee    INTEGER NOT NULL DEFAULT 0,
     discount        INTEGER NOT NULL DEFAULT 0,
+    coupon_code     TEXT NOT NULL DEFAULT '',
     total           INTEGER NOT NULL DEFAULT 0,
     payment_method  TEXT NOT NULL DEFAULT 'cod',   -- 'cod' | 'sepay'
     payment_status  TEXT NOT NULL DEFAULT 'unpaid', -- 'unpaid' | 'pending' | 'paid'
@@ -138,3 +139,16 @@ CREATE TABLE IF NOT EXISTS order_items (
 -- Settings nhóm 'payment' + 'shop' — seed trong Database.php::seedSettings() (AI viết, xem builder.md rule shop).
 -- Keys bắt buộc: payment_cod_enabled, payment_sepay_enabled, sepay_bank_code, sepay_account_number,
 -- sepay_account_name, sepay_webhook_secret, shipping_fee, free_shipping_threshold
+
+CREATE TABLE IF NOT EXISTS coupons (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    code        TEXT NOT NULL UNIQUE,
+    type        TEXT NOT NULL DEFAULT 'percent',  -- 'percent' | 'fixed'
+    value       REAL NOT NULL DEFAULT 0,
+    min_order   REAL NOT NULL DEFAULT 0,
+    max_uses    INTEGER NOT NULL DEFAULT 0,
+    used_count  INTEGER NOT NULL DEFAULT 0,
+    expires_at  TEXT,
+    is_active   INTEGER NOT NULL DEFAULT 1,
+    created_at  TEXT NOT NULL DEFAULT (datetime('now','localtime'))
+);
