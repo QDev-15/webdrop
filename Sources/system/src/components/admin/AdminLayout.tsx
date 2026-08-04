@@ -11,7 +11,7 @@ const navItems = [
   { href: '/admin/templates', icon: '🎨', label: 'Templates' },
   { href: '/admin/homepage', icon: '🏠', label: 'Trang Chủ' },
   { href: '/admin/slides', icon: '🖼️', label: 'Hero Slides' },
-  { href: '/admin/how-it-works', icon: '🔧', label: 'Quy Trình' },
+  { href: '/admin/help', icon: '❓', label: 'Hướng dẫn' },
   { href: '/admin/pricing', icon: '💰', label: 'Bảng Giá' },
   { href: '/admin/posts', icon: '📝', label: 'Blog' },
   { href: '/admin/contacts', icon: '💬', label: 'Liên hệ' },

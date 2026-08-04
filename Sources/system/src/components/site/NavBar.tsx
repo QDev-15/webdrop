@@ -9,7 +9,7 @@ const navLinks: { href: string; label: string; highlight?: boolean }[] = [
   { href: '/cvs',         label: 'CV Online' },
   { href: '/blog',        label: 'Blog' },
   { href: '/pricing',     label: 'Bảng giá' },
-  { href: '/how-it-works', label: 'Quy trình' },
+  { href: '/help',        label: 'Hướng dẫn' },
   // { href: '/lich-bong-da', label: '⚽ WC 2026', highlight: true },
   { href: '/about',       label: 'Về chúng tôi' },
 ]

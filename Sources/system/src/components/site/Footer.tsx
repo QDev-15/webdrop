@@ -20,7 +20,7 @@ const DEFAULT_SERVICES = [
   { label: 'Gói Template', href: '/pricing#goi-template' },
   { label: 'Gói Web cơ bản', href: '/pricing#goi-web-co-ban' },
   { label: 'Gói Theo Yêu cầu', href: '/pricing#goi-theo-yeu-cau' },
-  { label: 'Quy trình làm việc', href: '/how-it-works' },
+  { label: 'Hướng dẫn', href: '/help' },
 ]
 const DEFAULT_RESOURCES = [
   { label: 'Hướng dẫn chọn mẫu', href: '/faq' },
