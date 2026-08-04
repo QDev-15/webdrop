@@ -35,39 +35,81 @@ export function AddToCartButton({ t }: { t: Template }) {
       onClick={handleClick}
       disabled={inCart}
       className="tc-action-btn tc-action-primary"
-      style={inCart ? { background: 'var(--accent)', color: '#fff', borderColor: 'var(--accent)' } : undefined}
+      title={inCart ? 'Đã thêm vào giỏ' : 'Thêm vào giỏ hàng'}
+      style={{
+        width: 44,
+        height: 44,
+        padding: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: 20,
+        borderRadius: '50%',
+        background: inCart ? 'var(--accent)' : 'var(--accent)',
+        color: '#fff',
+        border: 'none',
+        cursor: inCart ? 'default' : 'pointer',
+        boxShadow: '0 4px 12px rgba(26, 107, 82, 0.3)',
+        transition: 'all 0.2s ease',
+      }}
     >
-      {inCart ? '✓ Đã thêm' : '🛒 Thêm giỏ hàng'}
+      {inCart ? '✓' : '🛒'}
     </button>
   )
 }
 
-export function DemoActionButton({ href }: { href?: string }) {
+export function DemoActionButton({ href, label = 'Demo' }: { href?: string; label?: string }) {
   function handleClick(e: React.SyntheticEvent) {
     e.preventDefault()
     e.stopPropagation()
     if (href) window.open(href, '_blank', 'noopener,noreferrer')
   }
+
+  const isProduction = label === 'Production'
+  const bgColor = isProduction ? '#1a6b52' : '#6b6760'
+  const hoverColor = isProduction ? '#155a44' : '#5a5650'
+
   return (
-    <button onClick={handleClick} disabled={!href} className="tc-action-btn">
-      Demo
+    <button
+      onClick={handleClick}
+      disabled={!href}
+      className="tc-action-btn"
+      style={{
+        width: '100%',
+        flex: 1,
+        background: bgColor,
+        color: '#fff',
+        border: 'none',
+        cursor: href ? 'pointer' : 'not-allowed',
+        opacity: href ? 1 : 0.5,
+        transition: 'background 0.2s ease',
+      }}
+      onMouseEnter={(e) => {
+        if (href) (e.target as HTMLButtonElement).style.background = hoverColor
+      }}
+      onMouseLeave={(e) => {
+        (e.target as HTMLButtonElement).style.background = bgColor
+      }}
+    >
+      {label}
     </button>
   )
 }
 
 function TemplateCard({ t, index }: { t: Template; index: number }) {
-  const demoLink = t.deployUrl || t.demoUrl
   let colClass = 'col-12 col-sm-6 col-lg-4'
   if (index >= 8) colClass += ' d-none d-lg-block'
   else if (index >= 4) colClass += ' d-none d-sm-block'
 
+  const previewLink = t.demoUrl
+
   return (
     <div className={colClass}>
       <div className={`tc reveal reveal-d${(index % 3) + 1}`} style={{ cursor: 'default' }}>
-        <Link href={`/templates/${t.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
+        <Link href={`/templates/${t.slug}`} style={{ textDecoration: 'none', display: 'block', position: 'relative' }}>
           <div className="tc-thumb tc-thumb-tall">
             <img src={t.image} alt={t.name} loading="lazy" />
-            {demoLink && <DemoIframePreview src={demoLink} title={t.name} />}
+            {previewLink && <DemoIframePreview src={previewLink} title={t.name} />}
             <span style={{
               position: 'absolute', top: 10, left: 10, zIndex: 4,
               fontSize: 11, padding: '3px 9px', borderRadius: 4, fontWeight: 600,
@@ -77,6 +119,9 @@ function TemplateCard({ t, index }: { t: Template; index: number }) {
             }}>
               {t.hasWebsite ? '🌐 Website + Admin' : '📦 Chỉ template'}
             </span>
+            <div style={{ position: 'absolute', bottom: 12, right: 12, zIndex: 5 }}>
+              <AddToCartButton t={t} />
+            </div>
           </div>
         </Link>
         <div className="tc-body">
@@ -87,9 +132,17 @@ function TemplateCard({ t, index }: { t: Template; index: number }) {
             <span className="tc-cat">{t.category}</span>
             <span className="tc-price">{t.price}</span>
           </div>
-          <div className="tc-actions">
-            <AddToCartButton t={t} />
-            <DemoActionButton href={demoLink} />
+          <div className="tc-actions" style={{ display: 'flex', gap: 8 }}>
+            {t.deployUrl && t.demoUrl ? (
+              <>
+                <DemoActionButton href={t.deployUrl} label="Production" />
+                <DemoActionButton href={t.demoUrl} label="Template" />
+              </>
+            ) : t.deployUrl ? (
+              <DemoActionButton href={t.deployUrl} label="Production" />
+            ) : t.demoUrl ? (
+              <DemoActionButton href={t.demoUrl} label="Template" />
+            ) : null}
           </div>
         </div>
       </div>

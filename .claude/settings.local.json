@@ -38,7 +38,9 @@
       "Bash(curl -s http://localhost:8000/admin/)",
       "Bash(python3 -m http.server 8000 --directory \"d:/Data/Projects/AIProject/webdrop/Sources/WebDeploy/_output-deploy\")",
       "Bash(curl -s \"http://localhost:8000/admin/\")",
-      "Bash(curl -s \"http://localhost:8000/admin/assets/index-\"*)"
+      "Bash(curl -s \"http://localhost:8000/admin/assets/index-\"*)",
+      "Bash(rm -rf .next)",
+      "Bash(rm -rf node_modules/.cache)"
     ],
     "additionalDirectories": [
       "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"

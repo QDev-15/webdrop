@@ -282,11 +282,11 @@ export default function TemplateGrid({ templates: propTemplates, homepage, pageT
         ) : (
           <div className="row g-3">
             {paginated.map(t => {
-              const demoLink = t.deployUrl || t.demoUrl
+              const demoLink = t.demoUrl
               return (
                 <div key={t.slug} className="col-md-4">
                   <div className="tc">
-                    <Link href={`/templates/${t.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
+                    <Link href={`/templates/${t.slug}`} style={{ textDecoration: 'none', display: 'block', position: 'relative' }}>
                       <div className="tc-thumb tc-thumb-tall">
                         <TemplateImage src={t.image} alt={t.name} name={t.name} category={t.category} />
                         {demoLink && <DemoIframePreview src={demoLink} title={t.name} />}
@@ -301,6 +301,9 @@ export default function TemplateGrid({ templates: propTemplates, homepage, pageT
                             {t.hasWebsite ? '🌐 Website + Admin' : '📦 Chỉ template'}
                           </span>
                         )}
+                        <div style={{ position: 'absolute', bottom: 12, right: 12, zIndex: 5 }}>
+                          <AddToCartButton t={t} />
+                        </div>
                       </div>
                     </Link>
                     <div className="tc-body">
@@ -311,9 +314,17 @@ export default function TemplateGrid({ templates: propTemplates, homepage, pageT
                         <span className="tc-cat">{t.category}</span>
                         <span className="tc-price">{t.price}</span>
                       </div>
-                      <div className="tc-actions">
-                        <AddToCartButton t={t} />
-                        <DemoActionButton href={demoLink} />
+                      <div className="tc-actions" style={{ display: 'grid', gridTemplateColumns: t.deployUrl && t.demoUrl ? '1fr 1fr' : '1fr', gap: 8, alignItems: 'stretch' }}>
+                        {t.deployUrl && t.demoUrl ? (
+                          <>
+                            <DemoActionButton href={t.deployUrl} label="Production" />
+                            <DemoActionButton href={t.demoUrl} label="Template" />
+                          </>
+                        ) : t.deployUrl ? (
+                          <DemoActionButton href={t.deployUrl} label="Production" />
+                        ) : t.demoUrl ? (
+                          <DemoActionButton href={t.demoUrl} label="Template" />
+                        ) : null}
                       </div>
                     </div>
                   </div>
