@@ -946,11 +946,11 @@ input, select, textarea { font-family: var(--sans); }
   align-items: start;
 }
 .mp-detail-gallery { position: sticky; top: calc(var(--offset) + 24px); }
-.mp-gallery-main { margin-bottom: 12px; }
+.mp-gallery-main { margin-bottom: 12px; aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center; }
 .mp-gallery-main-img {
   width: 100%;
-  aspect-ratio: 3/4;
-  object-fit: cover;
+  height: 100%;
+  object-fit: contain;
   border-radius: var(--radius-lg);
   background: var(--accent-light);
 }

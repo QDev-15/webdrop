@@ -359,8 +359,8 @@ ul { list-style: none; }
 /* ── PRODUCT DETAIL PAGE ── */
 .sb-product-detail-wrap { padding: 100px 0 80px; }
 .sb-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
-.sb-gallery-main { aspect-ratio: 1; border-radius: 20px; overflow: hidden; background: var(--cream-deep); margin-bottom: 14px; }
-.sb-gallery-main img { width: 100%; height: 100%; object-fit: cover; }
+.sb-gallery-main { aspect-ratio: 1; border-radius: 20px; overflow: hidden; background: var(--cream-deep); margin-bottom: 14px; display: flex; align-items: center; justify-content: center; }
+.sb-gallery-main img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .sb-gallery-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 .sb-thumb { aspect-ratio: 1; border-radius: 10px; overflow: hidden; background: var(--cream-deep); cursor: pointer; border: 2px solid transparent; transition: border-color .2s; }
 .sb-thumb.active, .sb-thumb:hover { border-color: var(--accent); }

@@ -51,7 +51,7 @@ export default function ProductDetailPage() {
           {/* Image */}
           <div>
             <div style={{ position: 'relative', paddingBottom: '100%', overflow: 'hidden', background: '#f5f5f5', borderRadius: 12 }}>
-              <img src={product.image} alt={product.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src={product.image} alt={product.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain' }} />
               {product.price_sale && (
                 <span style={{ position: 'absolute', top: 16, right: 16, background: '#e24b4a', color: 'white', padding: '8px 16px', borderRadius: 8, fontSize: 16, fontWeight: 600 }}>
                   -{Math.round((1 - (product.price_sale / product.price)) * 100)}%

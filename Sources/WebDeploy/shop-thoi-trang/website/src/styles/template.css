@@ -1203,8 +1203,11 @@ input, textarea, select { font-family: var(--sans); }
   margin-bottom: 8px;
   cursor: zoom-in;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.st-gallery-main img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.st-gallery-main img { width: 100%; height: 100%; object-fit: contain; display: block; transition: transform .4s; }
 .st-gallery-main:hover img { transform: scale(1.05); }
 .st-gallery-thumbs {
   display: grid;

@@ -403,8 +403,8 @@ h1, h2, h3, h4 { font-weight: 700; line-height: 1.18; letter-spacing: -0.01em; }
 /* ---------- Product detail — chi-tiet-san-pham.html ---------- */
 .ma-detail-wrap { padding: 148px 0 0; }
 .ma-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; margin-bottom: 64px; }
-.ma-gallery-main { border-radius: var(--radius-card); overflow: hidden; border-top: 4px solid var(--accent); aspect-ratio: 1/1; background: var(--surface); }
-.ma-gallery-main img { width: 100%; height: 100%; object-fit: cover; }
+.ma-gallery-main { border-radius: var(--radius-card); overflow: hidden; border-top: 4px solid var(--accent); aspect-ratio: 1/1; background: var(--surface); display: flex; align-items: center; justify-content: center; }
+.ma-gallery-main img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .ma-gallery-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 14px; }
 .ma-thumb { border-radius: var(--radius-btn); overflow: hidden; border: 2px solid var(--border); aspect-ratio: 1/1; padding: 0; background: none; transition: border-color .2s; }
 .ma-thumb.ma-active, .ma-thumb:hover { border-color: var(--accent); }

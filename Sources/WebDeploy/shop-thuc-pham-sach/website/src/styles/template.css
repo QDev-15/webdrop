@@ -1096,8 +1096,11 @@ input, textarea, select { font-family: var(--sans); }
   overflow: hidden;
   background: var(--accent-light);
   margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.tp-gallery-main img { width: 100%; height: 100%; object-fit: cover; }
+.tp-gallery-main img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .tp-gallery-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 .tp-thumb {
   aspect-ratio: 1;

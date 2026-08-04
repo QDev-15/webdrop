@@ -1620,12 +1620,16 @@ h6 {
   overflow: hidden;
   background: var(--surface);
   margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ts-pd-main-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  display: block;
 }
 
 .ts-pd-thumbs {

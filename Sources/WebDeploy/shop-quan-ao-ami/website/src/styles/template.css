@@ -924,8 +924,11 @@ input, select, textarea { font-family: var(--sans); }
   aspect-ratio: 3 / 4;
   overflow: hidden;
   background: var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.am-main-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.am-main-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
 /* Detail info */
 .am-detail-info { padding-left: 40px; }

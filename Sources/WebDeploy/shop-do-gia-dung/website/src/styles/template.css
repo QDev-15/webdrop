@@ -960,8 +960,11 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--serif); font-weight: 500; line-heigh
   overflow: hidden;
   aspect-ratio: 1;
   background: var(--warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.dg-detail-gallery__main img { width: 100%; height: 100%; object-fit: cover; }
+.dg-detail-gallery__main img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .dg-detail-gallery__thumbs { display: flex; gap: 8px; margin-top: 10px; }
 .dg-detail-gallery__thumb {
   width: 68px; height: 68px;
