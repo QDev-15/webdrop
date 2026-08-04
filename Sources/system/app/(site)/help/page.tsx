@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
 import HelpPageClient from './HelpPageClient'
+import ArticleCard from './ArticleCard'
 
 async function getHelpData() {
   try {
@@ -76,75 +77,7 @@ export default async function HelpPage() {
               gap: 24,
             }}>
               {featuredArticles.map(article => (
-                <Link
-                  key={article.id}
-                  href={`/help/articles/${article.slug}`}
-                  style={{ textDecoration: 'none' }}
-                >
-                  <div style={{
-                    border: '1px solid var(--border)',
-                    borderRadius: 12,
-                    padding: 20,
-                    background: 'var(--surface)',
-                    cursor: 'pointer',
-                    transition: 'all .2s',
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                  }}
-                  onMouseEnter={e => {
-                    e.currentTarget.style.transform = 'translateY(-4px)'
-                    e.currentTarget.style.boxShadow = '0 10px 32px rgba(0,0,0,.07)'
-                    e.currentTarget.style.borderColor = 'var(--accent-mid)'
-                  }}
-                  onMouseLeave={e => {
-                    e.currentTarget.style.transform = 'none'
-                    e.currentTarget.style.boxShadow = 'none'
-                    e.currentTarget.style.borderColor = 'var(--border)'
-                  }}
-                  >
-                    <span style={{
-                      display: 'inline-block',
-                      fontSize: 11,
-                      fontWeight: 600,
-                      background: 'var(--accent-light)',
-                      color: 'var(--accent)',
-                      padding: '4px 10px',
-                      borderRadius: 4,
-                      marginBottom: 12,
-                      width: 'fit-content',
-                    }}>
-                      {article.category.name}
-                    </span>
-                    <h3 style={{
-                      fontSize: 16,
-                      fontWeight: 600,
-                      color: 'var(--text)',
-                      marginBottom: 8,
-                      flex: 1,
-                    }}>
-                      {article.title}
-                    </h3>
-                    {article.excerpt && (
-                      <p style={{
-                        fontSize: 13,
-                        color: 'var(--text-2)',
-                        lineHeight: 1.6,
-                        marginBottom: 12,
-                        flex: 1,
-                      }}>
-                        {article.excerpt}
-                      </p>
-                    )}
-                    <div style={{
-                      fontSize: 12,
-                      color: 'var(--accent)',
-                      fontWeight: 500,
-                    }}>
-                      Đọc thêm →
-                    </div>
-                  </div>
-                </Link>
+                <ArticleCard key={article.id} article={article} />
               ))}
             </div>
           </section>
