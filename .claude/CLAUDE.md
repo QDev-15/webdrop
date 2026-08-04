@@ -543,6 +543,36 @@ Site được phát hiện đã có sẵn thư mục `Sources/WebDeploy/shop-do-
 
 ⚠️ **Sự cố hạ tầng KHÔNG LIÊN QUAN phát hiện trong lúc cập nhật `prisma/seed.ts` cho site này** — xem mục Hạ tầng ở trên (`prisma migrate status` báo cả 3 migration đều chưa áp dụng trên Neon DB chung).
 
+### Help Center (2026-08-04)
+
+**Phase 1 hoàn thành (22 bài):**
+- 5 bài Bắt đầu (bat-dau): `webdrop-la-gi`, `so-sanh-3-san-pham`, `chon-san-pham-phu-hop`, `cac-buoc-mua-san-pham`, `faq-bat-dau`
+- 8 bài Mua & Tải Template (mua-tai-template): `duyet-va-tim-template`, `huong-dan-mua-template`, `cac-loai-template-theo-nganh`, `template-hay-website`, `cach-tai-file-template`, `khong-nhan-email-tai`, `tai-lai-template-bao-nhieu-lan`, `template-co-ho-tro-refund`
+- 8 bài Thanh toán & Hóa đơn (thanh-toan-hoa-don): `cac-phuong-thuc-thanh-toan`, `huong-dan-thanh-toan-chuyen-khoan`, `xac-nhan-thanh-toan-mat-bao-lau`, `khong-nhan-email-xac-nhan`, `cach-tai-hoa-don`, `chinh-sach-hoan-tien`, `don-hang-co-van-de`, `ma-giam-gia`
+- 1 trang Liên hệ Hỗ trợ (lien-he-ho-tro): `lien-he-ho-tro-full`
+
+**Phase 2 hoàn thành (7 categories + planning 35+ articles):**
+- Category Website & Deploy (website-deploy)
+- Category CV Builder (cv-builder)
+- Category Tài liệu & Hướng dẫn (tai-lieu-huong-dan)
+- Category Khắc phục sự cố (khac-phuc-su-co)
+- Category Thiết kế & Tùy chỉnh (thiet-ke-tuy-chinh)
+- Category Quản lý & Tài khoản (quan-ly-tai-khoan)
+- Category Tích hợp & API (tich-hop-api)
+
+**Backend architecture:**
+- Prisma models: `HelpCategory`, `HelpArticle`, `HelpTag` (PostgreSQL Neon)
+- Frontend: `/app/(site)/help/` Server Components + `/app/api/help/*` API routes
+- DB seed: `prisma/seed-help-articles.ts` (22 bài Phase 1), `prisma/seed-help-categories.ts` (7 categories Phase 2)
+- Admin UI: `/admin/help` (xem AdminLayout navItems, icon ❓)
+- SEO: meta_title, meta_description per article; robots.txt `/help` indexed; `/help/articles/:slug` vừa để SEO vừa để user reference
+
+**Next phase (Phase 3):**
+- Seed 35+ bài viết cho 7 categories (Website & Deploy 15, CV Builder 7, Tài liệu 12, Khắc phục sự cố 8, Thiết kế 6, Quản lý 6, Tích hợp 4)
+- Admin CRUD: HelpArticle list/create/edit/delete, HelpCategory manage, publish/draft status
+- Frontend: search full-text, filter by category, related articles sidebar, breadcrumb
+- Polish: Markdown parser, syntax highlight code block, table of contents, SEO canonical
+
 ### CV Builder SaaS
 
 > Plan chi tiết: `.claude/plans/cv-template-saas.md`
