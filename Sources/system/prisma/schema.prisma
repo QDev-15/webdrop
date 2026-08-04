@@ -22,6 +22,7 @@ model User {
   media        Media[]
   pages        Page[]
   posts        Post[]
+  helpArticles HelpArticle[] @relation("helpArticles")
   projectFiles ProjectFile[]
   projectNotes ProjectNote[]
 
@@ -584,6 +585,57 @@ model CvData {
   cv             CvProfile @relation(fields: [cvId], references: [id], onDelete: Cascade)
 
   @@map("cv_data")
+  @@schema("webdrop")
+}
+
+model HelpCategory {
+  id          Int           @id @default(autoincrement())
+  name        String
+  slug        String        @unique
+  description String?
+  icon        String?
+  sortOrder   Int           @default(0) @map("sort_order")
+  status      PostStatus    @default(published)
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+  articles    HelpArticle[]
+
+  @@map("help_categories")
+  @@schema("webdrop")
+}
+
+model HelpArticle {
+  id              Int          @id @default(autoincrement())
+  title           String
+  slug            String       @unique
+  content         String       @db.Text
+  excerpt         String?
+  metaTitle       String?      @map("meta_title")
+  metaDescription String?      @map("meta_description")
+  categoryId      Int          @map("category_id")
+  status          PostStatus   @default(published)
+  sortOrder       Int          @default(0) @map("sort_order")
+  createdBy       Int?         @map("created_by")
+  createdAt       DateTime     @default(now()) @map("created_at")
+  updatedAt       DateTime     @updatedAt @map("updated_at")
+  category        HelpCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  author          User?        @relation("helpArticles", fields: [createdBy], references: [id])
+  tags            HelpTag[]
+
+  @@index([categoryId])
+  @@index([slug])
+  @@index([status])
+  @@map("help_articles")
+  @@schema("webdrop")
+}
+
+model HelpTag {
+  id       Int           @id @default(autoincrement())
+  name     String
+  slug     String        @unique
+  articles HelpArticle[]
+
+  @@map("help_tags")
   @@schema("webdrop")
 }
 
