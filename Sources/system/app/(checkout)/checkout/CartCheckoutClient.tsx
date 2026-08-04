@@ -8,10 +8,6 @@ interface FormData {
   name: string; email: string; phone: string; note: string
 }
 
-interface DiscountResult {
-  type: string; value: number; discountAmount: number; finalPrice: number; isFree: boolean
-}
-
 function fmtPrice(n: number) { return n.toLocaleString('vi-VN') + 'đ' }
 
 export default function CartCheckoutClient() {
@@ -24,36 +20,12 @@ export default function CartCheckoutClient() {
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState('')
 
-  const [discountInput, setDiscountInput]     = useState('')
-  const [appliedCode, setAppliedCode]         = useState<string | null>(null)
-  const [discountInfo, setDiscountInfo]       = useState<DiscountResult | null>(null)
-  const [discountError, setDiscountError]     = useState('')
-  const [discountChecking, setDiscountChecking] = useState(false)
-
   const basePrice = cart.subtotal
+  const appliedCode = cart.appliedCode
+  const discountInfo = cart.discountInfo
   const price   = discountInfo?.finalPrice ?? basePrice
   const isFree  = discountInfo?.isFree ?? false
 
-  async function applyDiscount() {
-    if (!discountInput.trim()) return
-    setDiscountChecking(true); setDiscountError('')
-    try {
-      const res = await fetch('/api/discounts/validate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code: discountInput.trim().toUpperCase(), price: basePrice }),
-      })
-      const data = await res.json()
-      if (!res.ok) { setDiscountError(data.error || 'Mã không hợp lệ'); return }
-      setAppliedCode(discountInput.trim().toUpperCase())
-      setDiscountInfo(data)
-    } catch { setDiscountError('Lỗi kết nối, vui lòng thử lại') }
-    finally { setDiscountChecking(false) }
-  }
-
-  function clearDiscount() {
-    setDiscountInput(''); setAppliedCode(null); setDiscountInfo(null); setDiscountError('')
-  }
 
   const validate = () => {
     const e: Partial<FormData> = {}
@@ -179,40 +151,6 @@ export default function CartCheckoutClient() {
                   <span className="panel-edit" onClick={() => setStep(1)}>← Sửa thông tin</span>
                 </div>
                 <div className="panel-body">
-
-                  <div style={{ marginBottom: 20 }}>
-                    <div style={{ fontSize: 13, fontWeight: 500, color: 'var(--text)', marginBottom: 8 }}>🏷️ Mã khuyến mại (nếu có)</div>
-                    {!appliedCode ? (
-                      <div style={{ display: 'flex', gap: 8 }}>
-                        <input
-                          value={discountInput}
-                          onChange={e => setDiscountInput(e.target.value.toUpperCase())}
-                          onKeyDown={e => e.key === 'Enter' && applyDiscount()}
-                          placeholder="Nhập mã giảm giá"
-                          style={{ flex: 1, padding: '10px 13px', border: '1px solid var(--border)', borderRadius: 8, fontSize: 13, fontFamily: 'inherit', outline: 'none', letterSpacing: 1 }}
-                        />
-                        <button
-                          onClick={applyDiscount}
-                          disabled={discountChecking || !discountInput.trim()}
-                          style={{ padding: '10px 16px', background: 'var(--text)', color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', opacity: discountChecking ? .6 : 1, whiteSpace: 'nowrap' }}
-                        >
-                          {discountChecking ? '...' : 'Áp dụng'}
-                        </button>
-                      </div>
-                    ) : (
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'var(--accent-light)', border: '1px solid var(--accent-mid)', borderRadius: 8, padding: '10px 14px' }}>
-                        <div>
-                          <span style={{ fontWeight: 700, color: 'var(--accent)', letterSpacing: 1 }}>{appliedCode}</span>
-                          <span style={{ fontSize: 12, color: 'var(--accent)', marginLeft: 10 }}>
-                            −{fmtPrice(discountInfo!.discountAmount)}
-                            {discountInfo!.isFree && <strong style={{ marginLeft: 6 }}>🎁 MIỄN PHÍ</strong>}
-                          </span>
-                        </div>
-                        <button onClick={clearDiscount} style={{ background: 'none', border: 'none', color: 'var(--text-3)', cursor: 'pointer', fontSize: 13, fontFamily: 'inherit' }}>✕ Xóa</button>
-                      </div>
-                    )}
-                    {discountError && <div style={{ fontSize: 12, color: 'var(--danger)', marginTop: 6 }}>{discountError}</div>}
-                  </div>
 
                   {!isFree && (
                     <div style={{ background: 'var(--warm)', border: '1px solid var(--border)', borderRadius: 10, padding: '14px 16px', marginBottom: 18, fontSize: 13, color: 'var(--text-2)', lineHeight: 1.75 }}>

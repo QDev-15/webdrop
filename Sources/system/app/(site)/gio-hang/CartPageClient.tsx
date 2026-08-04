@@ -1,4 +1,5 @@
 'use client'
+import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useCart, type PurchaseType } from '@/contexts/CartContext'
@@ -6,8 +7,47 @@ import { useCart, type PurchaseType } from '@/contexts/CartContext'
 function fmtPrice(n: number) { return n.toLocaleString('vi-VN') + 'đ' }
 
 export default function CartPageClient() {
-  const { items, subtotal, removeItem, setPurchaseType, hydrated } = useCart()
+  const { items, subtotal, removeItem, setPurchaseType, hydrated, appliedCode, discountInfo, setDiscountInfo } = useCart()
   const router = useRouter()
+
+  const [discountInput, setDiscountInput] = useState('')
+  const [discountError, setDiscountError] = useState('')
+  const [discountChecking, setDiscountChecking] = useState(false)
+
+  const basePrice = subtotal
+  const price = discountInfo?.finalPrice ?? basePrice
+  const isFree = discountInfo?.isFree ?? false
+
+  async function applyDiscount() {
+    if (!discountInput.trim()) return
+    setDiscountChecking(true)
+    setDiscountError('')
+    try {
+      const res = await fetch('/api/discounts/validate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: discountInput.trim().toUpperCase(), price: basePrice }),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setDiscountError(data.error || 'Mã không hợp lệ')
+        return
+      }
+      const code = discountInput.trim().toUpperCase()
+      setDiscountInput('')
+      setDiscountInfo(code, data)
+    } catch {
+      setDiscountError('Lỗi kết nối, vui lòng thử lại')
+    } finally {
+      setDiscountChecking(false)
+    }
+  }
+
+  function clearDiscount() {
+    setDiscountInput('')
+    setDiscountError('')
+    setDiscountInfo(null, null)
+  }
 
   return (
     <div style={{ paddingTop: 62 }}>
@@ -83,13 +123,56 @@ export default function CartPageClient() {
                 <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)', marginBottom: 14 }}>Tóm tắt đơn hàng</div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, color: 'var(--text-2)', marginBottom: 8 }}>
                   <span>{items.length} sản phẩm</span>
-                  <span>{fmtPrice(subtotal)}</span>
+                  <span style={{ textDecoration: discountInfo ? 'line-through' : 'none', color: discountInfo ? 'var(--text-3)' : undefined }}>{fmtPrice(subtotal)}</span>
                 </div>
-                <hr style={{ borderColor: 'var(--border-light)', margin: '12px 0' }} />
+
+                {/* Coupon section */}
+                <div style={{ marginBottom: 14, marginTop: 14, paddingBottom: 14, borderBottom: '1px solid var(--border-light)' }}>
+                  <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--text)', marginBottom: 8 }}>🏷️ Mã khuyến mại</div>
+                  {!appliedCode ? (
+                    <div style={{ display: 'flex', gap: 6 }}>
+                      <input
+                        value={discountInput}
+                        onChange={e => setDiscountInput(e.target.value.toUpperCase())}
+                        onKeyDown={e => e.key === 'Enter' && applyDiscount()}
+                        placeholder="Nhập mã"
+                        style={{ flex: 1, padding: '8px 11px', border: '1px solid var(--border)', borderRadius: 6, fontSize: 12, fontFamily: 'inherit', outline: 'none', letterSpacing: 0.5 }}
+                      />
+                      <button
+                        onClick={applyDiscount}
+                        disabled={discountChecking || !discountInput.trim()}
+                        style={{ padding: '8px 12px', background: 'var(--text)', color: '#fff', border: 'none', borderRadius: 6, fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', opacity: discountChecking ? .6 : 1, whiteSpace: 'nowrap' }}
+                      >
+                        {discountChecking ? '...' : 'Áp dụng'}
+                      </button>
+                    </div>
+                  ) : (
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'var(--accent-light)', border: '1px solid var(--accent-mid)', borderRadius: 6, padding: '8px 10px', fontSize: 12 }}>
+                      <div>
+                        <span style={{ fontWeight: 700, color: 'var(--accent)', letterSpacing: 0.5 }}>{appliedCode}</span>
+                        <span style={{ fontSize: 11, color: 'var(--accent)', marginLeft: 8 }}>
+                          −{fmtPrice(discountInfo!.discountAmount)}
+                          {discountInfo!.isFree && <strong style={{ marginLeft: 4 }}>🎁</strong>}
+                        </span>
+                      </div>
+                      <button onClick={clearDiscount} style={{ background: 'none', border: 'none', color: 'var(--text-3)', cursor: 'pointer', fontSize: 11, fontFamily: 'inherit' }}>✕</button>
+                    </div>
+                  )}
+                  {discountError && <div style={{ fontSize: 11, color: 'var(--danger)', marginTop: 4 }}>{discountError}</div>}
+                </div>
+
+                {discountInfo && (
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: 'var(--accent)', marginBottom: 8 }}>
+                    <span>Giảm giá</span>
+                    <span>−{fmtPrice(discountInfo.discountAmount)}</span>
+                  </div>
+                )}
+
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 16, fontWeight: 700, color: 'var(--text)', marginBottom: 18 }}>
                   <span>Tổng cộng</span>
-                  <span>{fmtPrice(subtotal)}</span>
+                  <span style={{ color: isFree ? 'var(--accent)' : undefined }}>{isFree ? 'Miễn phí 🎁' : fmtPrice(price)}</span>
                 </div>
+
                 <button
                   className="btn-primary-wd"
                   style={{ width: '100%', padding: 13, fontSize: 14 }}

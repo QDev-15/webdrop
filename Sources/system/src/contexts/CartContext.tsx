@@ -13,6 +13,14 @@ export interface CartItem {
   purchaseType: PurchaseType
 }
 
+export interface DiscountResult {
+  type: string
+  value: number
+  discountAmount: number
+  finalPrice: number
+  isFree: boolean
+}
+
 interface CartContextValue {
   items: CartItem[]
   itemCount: number
@@ -23,11 +31,15 @@ interface CartContextValue {
   clearCart: () => void
   isInCart: (slug: string) => boolean
   hydrated: boolean
+  appliedCode: string | null
+  discountInfo: DiscountResult | null
+  setDiscountInfo: (code: string | null, info: DiscountResult | null) => void
 }
 
 const CartContext = createContext<CartContextValue | null>(null)
 
 const STORAGE_KEY = 'wd_cart_v1'
+const DISCOUNT_STORAGE_KEY = 'wd_discount_v1'
 
 function readStorage(): CartItem[] {
   if (typeof window === 'undefined') return []
@@ -39,13 +51,28 @@ function readStorage(): CartItem[] {
   } catch { return [] }
 }
 
+function readDiscountStorage(): { code: string | null; info: DiscountResult | null } {
+  if (typeof window === 'undefined') return { code: null, info: null }
+  try {
+    const raw = window.localStorage.getItem(DISCOUNT_STORAGE_KEY)
+    if (!raw) return { code: null, info: null }
+    const parsed = JSON.parse(raw)
+    return { code: parsed.code ?? null, info: parsed.info ?? null }
+  } catch { return { code: null, info: null } }
+}
+
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([])
+  const [appliedCode, setAppliedCode] = useState<string | null>(null)
+  const [discountInfo, setDiscountInfo] = useState<DiscountResult | null>(null)
   const [hydrated, setHydrated] = useState(false)
 
   // Hydrate từ localStorage sau mount (tránh SSR mismatch)
   useEffect(() => {
     setItems(readStorage())
+    const { code, info } = readDiscountStorage()
+    setAppliedCode(code)
+    setDiscountInfo(info)
     setHydrated(true)
   }, [])
 
@@ -54,6 +81,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     if (!hydrated) return
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items))
   }, [items, hydrated])
+
+  // Đồng bộ discount localStorage
+  useEffect(() => {
+    if (!hydrated) return
+    window.localStorage.setItem(DISCOUNT_STORAGE_KEY, JSON.stringify({ code: appliedCode, info: discountInfo }))
+  }, [appliedCode, discountInfo, hydrated])
 
   const addItem = useCallback((item: Omit<CartItem, 'purchaseType'> & { purchaseType?: PurchaseType }) => {
     setItems(prev => {
@@ -75,6 +108,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const isInCart = useCallback((slug: string) => items.some(i => i.slug === slug), [items])
 
+  const setDiscountInfoHandler = useCallback((code: string | null, info: DiscountResult | null) => {
+    setAppliedCode(code)
+    setDiscountInfo(info)
+  }, [])
+
   const itemCount = items.length
   const subtotal = useMemo(
     () => items.reduce((sum, i) => sum + (i.purchaseType === 'website' && i.websitePrice ? i.websitePrice : i.price), 0),
@@ -82,8 +120,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   )
 
   const value = useMemo(
-    () => ({ items, itemCount, subtotal, addItem, removeItem, setPurchaseType, clearCart, isInCart, hydrated }),
-    [items, itemCount, subtotal, addItem, removeItem, setPurchaseType, clearCart, isInCart, hydrated]
+    () => ({ items, itemCount, subtotal, addItem, removeItem, setPurchaseType, clearCart, isInCart, hydrated, appliedCode, discountInfo, setDiscountInfo: setDiscountInfoHandler }),
+    [items, itemCount, subtotal, addItem, removeItem, setPurchaseType, clearCart, isInCart, hydrated, appliedCode, discountInfo, setDiscountInfoHandler]
   )
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
