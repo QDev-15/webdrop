@@ -567,11 +567,24 @@ Site được phát hiện đã có sẵn thư mục `Sources/WebDeploy/shop-do-
 - Admin UI: `/admin/help` (xem AdminLayout navItems, icon ❓)
 - SEO: meta_title, meta_description per article; robots.txt `/help` indexed; `/help/articles/:slug` vừa để SEO vừa để user reference
 
-**Next phase (Phase 3):**
-- Seed 35+ bài viết cho 7 categories (Website & Deploy 15, CV Builder 7, Tài liệu 12, Khắc phục sự cố 8, Thiết kế 6, Quản lý 6, Tích hợp 4)
+**Phase 3 status (2026-08-04):**
+- ✅ Seeded 58 advanced help articles (all 7 categories populated)
+  - Website & Deploy: 15 bài
+  - CV Builder: 7 bài
+  - Tài liệu & Hướng dẫn: 12 bài
+  - Khắc phục sự cố: 8 bài
+  - Thiết kế & Tùy chỉnh: 6 bài
+  - Quản lý & Tài khoản: 6 bài
+  - Tích hợp & API: 4 bài
+- **Tổng Help Center: 80 bài viết** (22 Phase 1 + 58 Phase 2)
+- Scripts: `seed-help-articles.ts`, `seed-help-categories.ts`, `seed-help-articles-advanced.ts`
+- Fix: `ArticleCard.tsx` Client Component để xử lý event handlers
+
+**Next (Phase 4):**
 - Admin CRUD: HelpArticle list/create/edit/delete, HelpCategory manage, publish/draft status
 - Frontend: search full-text, filter by category, related articles sidebar, breadcrumb
 - Polish: Markdown parser, syntax highlight code block, table of contents, SEO canonical
+- Launch: Help Center production-ready
 
 ### CV Builder SaaS
 

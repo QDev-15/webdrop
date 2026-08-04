@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 interface Category {
   id: number
@@ -34,6 +35,7 @@ interface PaginationData {
 }
 
 export default function HelpPageClient({ categories }: { categories: Category[] }) {
+  const router = useRouter()
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [articles, setArticles] = useState<Article[]>([])
@@ -141,8 +143,16 @@ export default function HelpPageClient({ categories }: { categories: Category[] 
                 fontWeight: 500,
                 transition: 'all .2s',
               }}
-              onMouseEnter={e => !selectedCategory?.includes(cat.slug) && (e.currentTarget.style.borderColor = 'var(--accent)')}
-              onMouseLeave={e => !selectedCategory?.includes(cat.slug) && (e.currentTarget.style.borderColor = 'var(--border)')}
+              onMouseEnter={e => {
+                if (selectedCategory !== cat.slug) {
+                  e.currentTarget.style.borderColor = 'var(--accent)'
+                }
+              }}
+              onMouseLeave={e => {
+                if (selectedCategory !== cat.slug) {
+                  e.currentTarget.style.borderColor = 'var(--border)'
+                }
+              }}
             >
               {cat.name} ({cat.articleCount})
             </button>
@@ -160,12 +170,9 @@ export default function HelpPageClient({ categories }: { categories: Category[] 
             marginBottom: 40,
           }}>
             {articles.map(article => (
-              <Link
+              <div
                 key={article.id}
-                href={`/help/articles/${article.slug}`}
-                style={{ textDecoration: 'none' }}
-              >
-                <div style={{
+                style={{
                   border: '1px solid var(--border)',
                   borderRadius: 12,
                   padding: 18,
@@ -176,6 +183,7 @@ export default function HelpPageClient({ categories }: { categories: Category[] 
                   display: 'flex',
                   flexDirection: 'column',
                 }}
+                onClick={() => router.push(`/help/articles/${article.slug}`)}
                 onMouseEnter={e => {
                   e.currentTarget.style.transform = 'translateY(-3px)'
                   e.currentTarget.style.borderColor = 'var(--accent-mid)'
@@ -186,7 +194,7 @@ export default function HelpPageClient({ categories }: { categories: Category[] 
                   e.currentTarget.style.borderColor = 'var(--border)'
                   e.currentTarget.style.boxShadow = 'none'
                 }}
-                >
+              >
                   <span style={{
                     display: 'inline-block',
                     fontSize: 10,
@@ -228,8 +236,7 @@ export default function HelpPageClient({ categories }: { categories: Category[] 
                   }}>
                     Đọc →
                   </div>
-                </div>
-              </Link>
+              </div>
             ))}
           </div>
 
