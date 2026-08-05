@@ -131,6 +131,23 @@ CREATE TABLE IF NOT EXISTS order_items (
     subtotal     INTEGER NOT NULL DEFAULT 0
 );
 
+-- ▼ Coupon — thêm ngoài scaffold chuẩn (không có trong scaffolder.mjs)
+CREATE TABLE IF NOT EXISTS coupons (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    code       TEXT    NOT NULL UNIQUE,
+    type       TEXT    NOT NULL DEFAULT 'percent',  -- 'percent' | 'fixed'
+    value      INTEGER NOT NULL DEFAULT 0,
+    min_order  INTEGER NOT NULL DEFAULT 0,
+    max_uses   INTEGER NOT NULL DEFAULT 0,           -- 0 = không giới hạn
+    used_count INTEGER NOT NULL DEFAULT 0,
+    expires_at TEXT,
+    is_active  INTEGER NOT NULL DEFAULT 1,
+    created_at TEXT    NOT NULL DEFAULT (datetime('now','localtime'))
+);
+
+-- coupon_code lưu mã đã dùng cho đơn hàng (thêm cuối bảng orders, không đổi cột cũ)
+ALTER TABLE orders ADD COLUMN coupon_code TEXT NOT NULL DEFAULT '';
+
 -- Settings nhóm 'payment' + 'shop' — seed trong Database.php::seedSettings() (AI viết, xem builder.md rule shop).
 -- Keys bắt buộc: payment_cod_enabled, payment_sepay_enabled, sepay_bank_code, sepay_account_number,
 -- sepay_account_name, sepay_webhook_secret, shipping_fee, free_shipping_threshold

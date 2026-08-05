@@ -46,6 +46,9 @@ export default function Sidebar() {
           <Link to="/orders" className={`sidebar-link ${isActive('/orders') ? 'active' : ''}`}>
             Đơn hàng
           </Link>
+          <Link to="/coupons" className={`sidebar-link ${isActive('/coupons') ? 'active' : ''}`}>
+            Phiếu giảm giá
+          </Link>
           <Link to="/contacts" className={`sidebar-link ${isActive('/contacts') ? 'active' : ''}`}>
             Tin nhắn liên hệ
           </Link>

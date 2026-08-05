@@ -1,18 +1,49 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { api } from '../api/client'
 import { useCart } from '../contexts/CartContext'
 import { useSite } from '../contexts/SiteContext'
 import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function CartPage() {
-  const { items, subtotal, updateQty, removeItem } = useCart()
+  const { items, subtotal, couponInfo, setCouponInfo, updateQty, removeItem } = useCart()
   const { settings } = useSite()
   useDocumentMeta({ title: 'Giỏ hàng — KidZone' })
 
+  const [couponInput, setCouponInput] = useState(couponInfo?.code ?? '')
+  const [couponLoading, setCouponLoading] = useState(false)
+  const [couponError, setCouponError]   = useState('')
+
   const fmt = (n: number) => n.toLocaleString('vi-VN') + 'đ'
-  const shippingFee = Number(settings['shipping_fee'] || 0)
+  const shippingFee       = Number(settings['shipping_fee'] || 0)
   const freeShipThreshold = Number(settings['free_shipping_threshold'] || 0)
   const effectiveShipping = freeShipThreshold > 0 && subtotal >= freeShipThreshold ? 0 : shippingFee
-  const total = subtotal + effectiveShipping
+  const discount          = couponInfo?.discount ?? 0
+  const total             = subtotal + effectiveShipping - discount
+
+  const handleApplyCoupon = async () => {
+    const code = couponInput.trim().toUpperCase()
+    if (!code) { setCouponError('Vui lòng nhập mã giảm giá'); return }
+    setCouponLoading(true); setCouponError('')
+    try {
+      const result = await api.post<{ code: string; type: 'percent' | 'fixed'; value: number; discount: number }>(
+        '/public/coupons/validate',
+        { code, subtotal }
+      )
+      setCouponInfo(result)
+    } catch (err) {
+      setCouponError(err instanceof Error ? err.message : 'Mã không hợp lệ')
+      setCouponInfo(null)
+    } finally {
+      setCouponLoading(false)
+    }
+  }
+
+  const handleRemoveCoupon = () => {
+    setCouponInfo(null)
+    setCouponInput('')
+    setCouponError('')
+  }
 
   if (items.length === 0) {
     return (
@@ -81,6 +112,41 @@ export default function CartPage() {
             <div>
               <div style={{ padding: 24, border: '1px solid var(--border)', borderRadius: 8, position: 'sticky', top: 80 }}>
                 <h2 style={{ fontSize: 18, marginBottom: 20, borderBottom: '1px solid var(--border)', paddingBottom: 16 }}>Tóm tắt đơn hàng</h2>
+
+                {/* Coupon input */}
+                {couponInfo ? (
+                  <div style={{ marginBottom: 16, padding: '10px 14px', background: 'var(--accent-light, #e8f4ef)', borderRadius: 8, border: '1px solid var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+                    <div>
+                      <span style={{ fontWeight: 600, color: 'var(--accent)', fontSize: 13 }}>🎉 {couponInfo.code}</span>
+                      <span style={{ fontSize: 12, color: 'var(--text-2)', marginLeft: 8 }}>
+                        {couponInfo.type === 'percent' ? `−${couponInfo.value}%` : `−${fmt(couponInfo.value)}`}
+                      </span>
+                    </div>
+                    <button onClick={handleRemoveCoupon} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-3)', fontSize: 16, lineHeight: 1 }}>✕</button>
+                  </div>
+                ) : (
+                  <div style={{ marginBottom: 16 }}>
+                    <div style={{ display: 'flex', gap: 8 }}>
+                      <input
+                        type="text"
+                        value={couponInput}
+                        onChange={e => { setCouponInput(e.target.value.toUpperCase()); setCouponError('') }}
+                        onKeyDown={e => e.key === 'Enter' && handleApplyCoupon()}
+                        placeholder="Nhập mã giảm giá"
+                        style={{ flex: 1, padding: '8px 12px', border: '1px solid var(--border)', borderRadius: 8, fontSize: 13, fontFamily: 'monospace', letterSpacing: 0.5, outline: 'none' }}
+                      />
+                      <button
+                        onClick={handleApplyCoupon}
+                        disabled={couponLoading}
+                        style={{ padding: '8px 16px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: 8, fontWeight: 600, fontSize: 13, cursor: 'pointer', whiteSpace: 'nowrap' }}
+                      >
+                        {couponLoading ? '...' : 'Áp dụng'}
+                      </button>
+                    </div>
+                    {couponError && <p style={{ fontSize: 12, color: '#dc2626', marginTop: 6 }}>{couponError}</p>}
+                  </div>
+                )}
+
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12 }}>
                   <span>Tạm tính</span>
                   <span>{fmt(subtotal)}</span>
@@ -91,6 +157,12 @@ export default function CartPage() {
                     {effectiveShipping === 0 ? '🎉 Miễn phí' : fmt(effectiveShipping)}
                   </span>
                 </div>
+                {couponInfo && discount > 0 && (
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12, color: 'var(--accent)' }}>
+                    <span>Giảm giá ({couponInfo.code})</span>
+                    <span>−{fmt(discount)}</span>
+                  </div>
+                )}
                 {effectiveShipping === 0 && freeShipThreshold > 0 && (
                   <p style={{ fontSize: 12, color: 'var(--accent)', marginBottom: 16 }}>✓ Bạn được miễn phí vận chuyển!</p>
                 )}

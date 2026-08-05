@@ -28,7 +28,7 @@ interface OrderResult {
 export default function CheckoutPage() {
   useDocumentMeta({ title: 'Thanh toán — KidZone Shop Đồ Chơi' })
 
-  const { items, subtotal, clear } = useCart()
+  const { items, subtotal, couponInfo, clear } = useCart()
   const { settings } = useSite()
 
   const [methods, setMethods] = useState<PaymentMethods | null>(null)
@@ -41,10 +41,11 @@ export default function CheckoutPage() {
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   const fmt = (n: number) => n.toLocaleString('vi-VN') + 'đ'
-  const shippingFee = Number(settings['shipping_fee'] || 0)
+  const shippingFee       = Number(settings['shipping_fee'] || 0)
   const freeShipThreshold = Number(settings['free_shipping_threshold'] || 0)
   const effectiveShipping = freeShipThreshold > 0 && subtotal >= freeShipThreshold ? 0 : shippingFee
-  const total = subtotal + effectiveShipping
+  const discount          = couponInfo?.discount ?? 0
+  const total             = subtotal + effectiveShipping - discount
 
   useEffect(() => {
     api.get<PaymentMethods>('/public/payment-methods')
@@ -83,6 +84,7 @@ export default function CheckoutPage() {
       const order = await api.post<OrderResult>('/public/orders', {
         ...form,
         payment_method: paymentMethod,
+        coupon_code: couponInfo?.code ?? '',
         items: items.map(i => ({ product_id: i.product_id, qty: i.qty })),
       })
       setResult(order)
@@ -243,6 +245,12 @@ export default function CheckoutPage() {
                 <span>Phí vận chuyển</span>
                 <span style={{ color: effectiveShipping === 0 ? 'var(--accent, #16a34a)' : undefined }}>{effectiveShipping === 0 ? 'Miễn phí' : fmt(effectiveShipping)}</span>
               </div>
+              {couponInfo && discount > 0 && (
+                <div className="shop-checkout-summary-row" style={{ color: 'var(--accent, #16a34a)' }}>
+                  <span>Giảm giá ({couponInfo.code})</span>
+                  <span>−{fmt(discount)}</span>
+                </div>
+              )}
               <div className="shop-checkout-summary-row shop-checkout-summary-total">
                 <span>Tổng cộng</span><span>{fmt(total)}</span>
               </div>

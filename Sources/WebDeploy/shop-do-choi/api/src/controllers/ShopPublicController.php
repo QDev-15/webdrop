@@ -185,7 +185,21 @@ class ShopPublicController {
         $shippingFee = (int)($s['shipping_fee'] ?? 0);
         $threshold   = (int)($s['free_shipping_threshold'] ?? 0);
         if ($threshold > 0 && $subtotal >= $threshold) { $shippingFee = 0; }
-        $total = $subtotal + $shippingFee;
+
+        // Áp dụng coupon
+        $couponCode = strtoupper(trim($data['coupon_code'] ?? ''));
+        $discount   = 0;
+        if ($couponCode !== '') {
+            $coupon = $this->lookupCoupon($couponCode, $subtotal);
+            if ($coupon !== null) {
+                $discount = $coupon['type'] === 'percent'
+                    ? (int)round($subtotal * $coupon['value'] / 100)
+                    : (int)$coupon['value'];
+                $discount = min($discount, $subtotal);
+            }
+        }
+
+        $total = $subtotal + $shippingFee - $discount;
 
         do {
             $orderCode = 'DH' . date('ymd') . strtoupper(substr(bin2hex(random_bytes(3)), 0, 5));
@@ -194,10 +208,15 @@ class ShopPublicController {
         $paymentStatus = $paymentMethod === 'sepay' ? 'pending' : 'unpaid';
 
         $orderId = $this->db->execute(
-            "INSERT INTO orders (order_code, customer_name, phone, email, address, note, subtotal, shipping_fee, discount, total, payment_method, payment_status, status)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?, ?, ?, 'pending')",
-            [$orderCode, $name, $phone, $email, $address, $note, $subtotal, $shippingFee, $total, $paymentMethod, $paymentStatus]
+            "INSERT INTO orders (order_code, customer_name, phone, email, address, note, subtotal, shipping_fee, discount, total, payment_method, payment_status, status, coupon_code)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?)",
+            [$orderCode, $name, $phone, $email, $address, $note, $subtotal, $shippingFee, $discount, $total, $paymentMethod, $paymentStatus, $couponCode]
         );
+
+        // Tăng used_count nếu dùng coupon
+        if ($couponCode !== '' && $discount > 0) {
+            $this->db->execute("UPDATE coupons SET used_count = used_count + 1 WHERE code = ?", [$couponCode]);
+        }
 
         foreach ($orderItems as $it) {
             $this->db->execute(
@@ -210,6 +229,7 @@ class ShopPublicController {
             'order_code'     => $orderCode,
             'subtotal'       => $subtotal,
             'shipping_fee'   => $shippingFee,
+            'discount'       => $discount,
             'total'          => $total,
             'payment_method' => $paymentMethod,
             'payment_status' => $paymentStatus,
@@ -224,6 +244,37 @@ class ShopPublicController {
             ];
         }
         Response::json($response, 201);
+    }
+
+    private function lookupCoupon(string $code, int $subtotal): ?array {
+        $c = $this->db->queryOne(
+            "SELECT * FROM coupons WHERE code = ? AND is_active = 1
+             AND (expires_at IS NULL OR expires_at >= date('now'))
+             AND (max_uses = 0 OR used_count < max_uses)",
+            [$code]
+        );
+        if (!$c) return null;
+        if ((int)$c['min_order'] > 0 && $subtotal < (int)$c['min_order']) return null;
+        return $c;
+    }
+
+    public function validateCoupon(): void {
+        $data     = bodyJson();
+        $code     = strtoupper(trim($data['code'] ?? ''));
+        $subtotal = (int)($data['subtotal'] ?? 0);
+        if (!$code) { Response::error('Vui lòng nhập mã giảm giá', 422); return; }
+        $coupon = $this->lookupCoupon($code, $subtotal);
+        if (!$coupon) { Response::error('Mã giảm giá không hợp lệ hoặc đã hết hạn', 422); return; }
+        $discount = $coupon['type'] === 'percent'
+            ? (int)round($subtotal * $coupon['value'] / 100)
+            : (int)$coupon['value'];
+        $discount = min($discount, $subtotal);
+        Response::json([
+            'code'     => $coupon['code'],
+            'type'     => $coupon['type'],
+            'value'    => $coupon['value'],
+            'discount' => $discount,
+        ]);
     }
 
     public function orderStatus(array $params): void {

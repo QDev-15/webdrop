@@ -16,6 +16,8 @@ import ContactList from './pages/contacts/ContactList'
 import MediaPage from './pages/media/MediaPage'
 import HeroSlideList from './pages/slides/HeroSlideList'
 import HeroSlideForm from './pages/slides/HeroSlideForm'
+import CouponList from './pages/coupons/CouponList'
+import CouponForm from './pages/coupons/CouponForm'
 
 function ProtectedRoutes() {
   const { user, loading } = useAuth()
@@ -48,6 +50,9 @@ function ProtectedRoutes() {
         <Route path="/product-categories/:id/edit" element={<ProductCategoryForm />} />
         <Route path="/orders" element={<OrderList />} />
         <Route path="/orders/:code" element={<OrderDetail />} />
+        <Route path="/coupons" element={<CouponList />} />
+        <Route path="/coupons/new" element={<CouponForm />} />
+        <Route path="/coupons/:id/edit" element={<CouponForm />} />
         <Route path="/contacts" element={<ContactList />} />
         <Route path="/media" element={<MediaPage />} />
         <Route path="/slides" element={<HeroSlideList />} />
