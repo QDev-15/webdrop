@@ -543,7 +543,7 @@ Site được phát hiện đã có sẵn thư mục `Sources/WebDeploy/shop-do-
 
 ⚠️ **Sự cố hạ tầng KHÔNG LIÊN QUAN phát hiện trong lúc cập nhật `prisma/seed.ts` cho site này** — xem mục Hạ tầng ở trên (`prisma migrate status` báo cả 3 migration đều chưa áp dụng trên Neon DB chung).
 
-### Help Center (2026-08-04)
+### Help Center — ✅ COMPLETE (2026-08-04 to 2026-08-05, 80 articles + Admin UI)
 
 **Phase 1 hoàn thành (22 bài):**
 - 5 bài Bắt đầu (bat-dau): `webdrop-la-gi`, `so-sanh-3-san-pham`, `chon-san-pham-phu-hop`, `cac-buoc-mua-san-pham`, `faq-bat-dau`
@@ -592,9 +592,12 @@ Site được phát hiện đã có sẵn thư mục `Sources/WebDeploy/shop-do-
 - ✅ SEO: meta_title, meta_description per article; robots.txt disallow /help/* from search; breadcrumb navigation
 - ✅ Markdown: inline bold, headings auto-anchored with scroll-to-top support, code blocks
 
-**Phase 3B Admin (Deferred):**
-- Reason: TypeScript cache complexity during concurrent builds
-- Can be added later without blocking frontend production
+**Phase 3B Admin — ✅ COMPLETE (2026-08-05):**
+- ✅ Main dashboard: `/admin/help` with stats, categories table, articles table
+- ✅ Categories CRUD: Create/edit/delete category pages + API routes
+- ✅ Articles CRUD: Create/edit/delete article pages + API routes with SEO fields
+- ✅ Form validation: Required fields, proper TypeScript typing
+- ✅ Admin UI: Matches existing design system, responsive layout
 
 **Phase 4 Launch — ✅ COMPLETE:**
 - ✅ Nav link migration: `/help` ready in NavBar (no longer `/how-it-works`)
