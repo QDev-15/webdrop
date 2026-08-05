@@ -1,6 +1,7 @@
 export const dynamic = 'force-dynamic'
 
 import AdminLayout from '@/components/admin/AdminLayout'
+import { DeleteCategoryForm, DeleteArticleForm } from './DeleteCategoryForm'
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 
@@ -74,15 +75,10 @@ export default async function HelpPage() {
                       <td style={{ padding: 12, fontSize: 13, color: 'var(--text)' }}>{cat.name}</td>
                       <td style={{ padding: 12, fontSize: 13, color: 'var(--text-2)' }}>{cat.slug}</td>
                       <td style={{ padding: 12, textAlign: 'center' }}>
-                        <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
+                        <div style={{ display: 'flex', gap: 8, justifyContent: 'center', alignItems: 'center' }}>
                           <Link href={`/admin/help/categories/${cat.id}`}
-                            style={{ fontSize: 12, color: 'var(--accent)', textDecoration: 'none' }}>Sửa</Link>
-                          <form method="POST" action={`/api/admin/help/categories/${cat.id}/delete`} style={{ display: 'inline' }}>
-                            <button type="submit" onClick={e => { if (!confirm('Xóa danh mục này?')) e.preventDefault() }}
-                              style={{ fontSize: 12, color: '#dc2626', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
-                              Xóa
-                            </button>
-                          </form>
+                            style={{ fontSize: 12, color: 'var(--accent)', textDecoration: 'none', marginTop: 1 }}>Sửa</Link>
+                          <DeleteCategoryForm catId={cat.id} />
                         </div>
                       </td>
                     </tr>
@@ -141,15 +137,10 @@ export default async function HelpPage() {
                         {new Date(article.createdAt).toLocaleDateString('vi-VN')}
                       </td>
                       <td style={{ padding: 12, textAlign: 'center' }}>
-                        <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
+                        <div style={{ display: 'flex', gap: 8, justifyContent: 'center', alignItems: 'center' }}>
                           <Link href={`/admin/help/articles/${article.id}`}
-                            style={{ fontSize: 12, color: 'var(--accent)', textDecoration: 'none' }}>Sửa</Link>
-                          <form method="POST" action={`/api/admin/help/articles/${article.id}/delete`} style={{ display: 'inline' }}>
-                            <button type="submit" onClick={e => { if (!confirm('Xóa bài viết này?')) e.preventDefault() }}
-                              style={{ fontSize: 12, color: '#dc2626', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
-                              Xóa
-                            </button>
-                          </form>
+                            style={{ fontSize: 12, color: 'var(--accent)', textDecoration: 'none', marginTop: 1 }}>Sửa</Link>
+                          <DeleteArticleForm artId={article.id} />
                         </div>
                       </td>
                     </tr>
