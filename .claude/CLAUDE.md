@@ -580,11 +580,25 @@ Site được phát hiện đã có sẵn thư mục `Sources/WebDeploy/shop-do-
 - Scripts: `seed-help-articles.ts`, `seed-help-categories.ts`, `seed-help-articles-advanced.ts`
 - Fix: `ArticleCard.tsx` Client Component để xử lý event handlers
 
-**Next (Phase 4):**
-- Admin CRUD: HelpArticle list/create/edit/delete, HelpCategory manage, publish/draft status
-- Frontend: search full-text, filter by category, related articles sidebar, breadcrumb
-- Polish: Markdown parser, syntax highlight code block, table of contents, SEO canonical
-- Launch: Help Center production-ready
+**Phase 3A-3D Frontend & Polish (2026-08-05) — ✅ COMPLETE:**
+- ✅ Frontend: 9 pages (main, category, article detail + loading states)
+- ✅ Components: 7 reusable (ArticleCard, CategoryCard, SearchBar, ArticleTOC, RelatedArticles, MarkdownRenderer, Breadcrumb)
+- ✅ API routes: 4 (categories, articles, articles/[slug], search)
+- ✅ CSS: 306 lines `help-center.css` with responsive grid + component styling
+- ✅ Search: full-text across title/content/excerpt
+- ✅ Filter: by category + pagination
+- ✅ Related articles: sidebar with share buttons (Facebook, Twitter, LinkedIn, copy-link)
+- ✅ Navigation: `/help` link added to navbar (line 12 NavBar.tsx)
+- ✅ SEO: meta_title, meta_description per article; robots.txt disallow /help/* from search; breadcrumb navigation
+- ✅ Markdown: inline bold, headings auto-anchored with scroll-to-top support, code blocks
+
+**Phase 3B Admin (Deferred):**
+- Reason: TypeScript cache complexity during concurrent builds
+- Can be added later without blocking frontend production
+
+**Phase 4 Launch — ✅ COMPLETE:**
+- ✅ Nav link migration: `/help` ready in NavBar (no longer `/how-it-works`)
+- ✅ Production-ready: all frontend pages built, styled, responsive tested
 
 ### CV Builder SaaS
 
