@@ -35,7 +35,24 @@ console.log('')
 
 if (existsSync(deploy)) {
   console.log('Xóa thư mục deploy cũ...')
-  rmSync(deploy, { recursive: true, force: true })
+  try {
+    rmSync(deploy, { recursive: true, force: true })
+  } catch (e) {
+    console.log(`  ⚠️  Không thể xóa thư mục (${e.code}), tiếp tục...`)
+    // Xóa từng file/folder con thay vì folder chính
+    try {
+      for (const item of readdirSync(deploy)) {
+        const full = join(deploy, item)
+        if (statSync(full).isDirectory()) {
+          rmSync(full, { recursive: true, force: true })
+        } else {
+          rmSync(full, { force: true })
+        }
+      }
+    } catch (e2) {
+      console.log(`  ⚠️  Một số file vẫn bị lock, sẽ overwrite...`)
+    }
+  }
 }
 
 const run = (cmd, cwd, label) => {
