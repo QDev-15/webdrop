@@ -214,6 +214,10 @@ model Template {
   deployUrl    String?          @map("deploy_url")
   industry     Industry?        @relation(fields: [industryId], references: [id])
 
+  @@index([status])
+  @@index([category])
+  @@index([salesCount])
+  @@index([industryId])
   @@map("templates")
   @@schema("webdrop")
 }

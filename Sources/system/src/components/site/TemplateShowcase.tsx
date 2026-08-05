@@ -66,8 +66,8 @@ export function DemoActionButton({ href, label = 'Demo' }: { href?: string; labe
   }
 
   const isProduction = label === 'Production'
-  const bgColor = isProduction ? '#1a6b52' : '#6b6760'
-  const hoverColor = isProduction ? '#155a44' : '#5a5650'
+  const bgColor = isProduction ? '#1a6b52' : '#f8ae2eff'
+  const hoverColor = isProduction ? '#155a44' : '#c9840dff'
 
   return (
     <button
@@ -97,6 +97,7 @@ export function DemoActionButton({ href, label = 'Demo' }: { href?: string; labe
 }
 
 function TemplateCard({ t, index }: { t: Template; index: number }) {
+  const [imageLoaded, setImageLoaded] = useState(false)
   let colClass = 'col-12 col-sm-6 col-lg-4'
   if (index >= 8) colClass += ' d-none d-lg-block'
   else if (index >= 4) colClass += ' d-none d-sm-block'
@@ -107,8 +108,14 @@ function TemplateCard({ t, index }: { t: Template; index: number }) {
     <div className={colClass}>
       <div className={`tc reveal reveal-d${(index % 3) + 1}`} style={{ cursor: 'default' }}>
         <Link href={`/templates/${t.slug}`} style={{ textDecoration: 'none', display: 'block', position: 'relative' }}>
-          <div className="tc-thumb tc-thumb-tall">
-            <img src={t.image} alt={t.name} loading="lazy" />
+          <div className="tc-thumb tc-thumb-tall" style={{ background: 'var(--border-light)' }}>
+            <img
+              src={t.image}
+              alt={t.name}
+              loading="lazy"
+              onLoad={() => setImageLoaded(true)}
+              style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.3s' }}
+            />
             {previewLink && <DemoIframePreview src={previewLink} title={t.name} />}
             <span style={{
               position: 'absolute', top: 10, left: 10, zIndex: 4,

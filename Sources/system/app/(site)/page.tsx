@@ -69,7 +69,21 @@ async function getTemplateSections(): Promise<TemplateSection[]> {
   try {
     const rows = await prisma.template.findMany({
       where: { status: 'published', category: 'web' },
-      include: { industry: { select: { name: true, slug: true } } },
+      select: {
+        id: true,
+        slug: true,
+        name: true,
+        thumbnail: true,
+        price: true,
+        websitePrice: true,
+        hasWebsite: true,
+        demoUrl: true,
+        deployUrl: true,
+        salesCount: true,
+        createdAt: true,
+        category: true,
+        industry: { select: { name: true, slug: true } },
+      },
       orderBy: { salesCount: 'desc' },
     })
 
@@ -110,6 +124,36 @@ async function getTemplateSections(): Promise<TemplateSection[]> {
 
 // show helper — undefined / empty / "true" → show; "false" → hide
 function show(v: string | undefined) { return v !== 'false' }
+
+// Loading skeleton cho TemplateShowcase
+function TemplateShowcaseSkeleton() {
+  return (
+    <div style={{ paddingTop: 40, paddingBottom: 60 }}>
+      {[0, 1, 2].map(si => (
+        <section key={si} style={{ padding: 'clamp(40px, 8vw, 80px) 0', background: si % 2 === 0 ? 'var(--bg)' : 'var(--surface)' }}>
+          <div className="wd-container">
+            <div style={{ textAlign: 'center', marginBottom: 40 }}>
+              <div style={{ height: 14, background: 'var(--border)', borderRadius: 4, maxWidth: 100, margin: '0 auto 12px' }} />
+              <div style={{ height: 32, background: 'var(--border)', borderRadius: 8, maxWidth: 300, margin: '0 auto 16px' }} />
+              <div style={{ height: 18, background: 'var(--border-light)', borderRadius: 4, maxWidth: 400, margin: '0 auto' }} />
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: 20, marginBottom: 20 }}>
+              {[0, 1, 2, 3, 4, 5].map(i => (
+                <div key={i} style={{ borderRadius: 12, background: 'var(--surface)', border: '1px solid var(--border)', height: 320, animation: 'pulse 2s infinite' }} />
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 0.6 }
+          50% { opacity: 0.3 }
+        }
+      `}</style>
+    </div>
+  )
+}
 
 export default async function HomePage() {
   const [hp, dbSlides, templateSections] = await Promise.all([getSettings(), getSlides(), getTemplateSections()])
@@ -186,7 +230,11 @@ export default async function HomePage() {
       <HeroSlider slides={dbSlides} />
 
       {showHiw      && <HowItWorks {...hiwData} />}
-      {showTemplates && <Suspense><TemplateShowcase sections={templateSections} /></Suspense>}
+      {showTemplates && (
+        <Suspense fallback={<TemplateShowcaseSkeleton />}>
+          <TemplateShowcase sections={templateSections} />
+        </Suspense>
+      )}
       {showWhyUs    && <WhyUs {...whyData} />}
       {showPricing  && <PricingSection />}
       {showReviews  && <Reviews {...reviewData} />}
