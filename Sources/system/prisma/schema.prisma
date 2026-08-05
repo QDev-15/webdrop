@@ -126,6 +126,8 @@ model Contact {
   status    ContactStatus @default(new)
   createdAt DateTime      @default(now()) @map("created_at")
 
+  @@index([status])
+  @@index([createdAt])
   @@map("contacts")
   @@schema("webdrop")
 }
@@ -236,6 +238,8 @@ model Customer {
   orders    Order[]
   projects  Project[]
 
+  @@index([email])
+  @@index([status])
   @@map("customers")
   @@schema("webdrop")
 }
@@ -248,6 +252,7 @@ model CustomerContact {
   note       String?
   customer   Customer @relation(fields: [customerId], references: [id])
 
+  @@index([customerId])
   @@map("customer_contacts")
   @@schema("webdrop")
 }
@@ -281,6 +286,9 @@ model Order {
   project        Project?
   revenues       Revenue[]
 
+  @@index([customerId])
+  @@index([status])
+  @@index([createdAt])
   @@map("orders")
   @@schema("webdrop")
 }
@@ -296,6 +304,7 @@ model OrderItem {
   note      String?
   order     Order   @relation(fields: [orderId], references: [id])
 
+  @@index([orderId])
   @@map("order_items")
   @@schema("webdrop")
 }
@@ -308,6 +317,7 @@ model Contract {
   note     String?
   order    Order     @relation(fields: [orderId], references: [id])
 
+  @@index([orderId])
   @@map("contracts")
   @@schema("webdrop")
 }
@@ -324,6 +334,8 @@ model Payment {
   order      Order         @relation(fields: [orderId], references: [id])
   revenues   Revenue[]
 
+  @@index([orderId])
+  @@index([status])
   @@map("payments")
   @@schema("webdrop")
 }
@@ -346,6 +358,8 @@ model Project {
   customer    Customer           @relation(fields: [customerId], references: [id])
   order       Order              @relation(fields: [orderId], references: [id])
 
+  @@index([customerId])
+  @@index([status])
   @@map("projects")
   @@schema("webdrop")
 }
@@ -360,6 +374,7 @@ model ProjectMilestone {
   completedAt DateTime?       @map("completed_at")
   project     Project         @relation(fields: [projectId], references: [id])
 
+  @@index([projectId])
   @@map("project_milestones")
   @@schema("webdrop")
 }
@@ -373,6 +388,7 @@ model ProjectNote {
   createdByUser User?    @relation(fields: [createdBy], references: [id])
   project       Project  @relation(fields: [projectId], references: [id])
 
+  @@index([projectId])
   @@map("project_notes")
   @@schema("webdrop")
 }
@@ -388,6 +404,7 @@ model ProjectFile {
   project        Project  @relation(fields: [projectId], references: [id])
   uploadedByUser User?    @relation(fields: [uploadedBy], references: [id])
 
+  @@index([projectId])
   @@map("project_files")
   @@schema("webdrop")
 }
@@ -404,6 +421,10 @@ model Revenue {
   order     Order?   @relation(fields: [orderId], references: [id])
   payment   Payment? @relation(fields: [paymentId], references: [id])
 
+  @@index([month])
+  @@index([year])
+  @@index([orderId])
+  @@index([paymentId])
   @@map("revenues")
   @@schema("webdrop")
 }
@@ -530,6 +551,10 @@ model ActivityLog {
   createdAt   DateTime @default(now()) @map("created_at")
   admin       User?    @relation(fields: [adminId], references: [id])
 
+  @@index([adminId])
+  @@index([targetType])
+  @@index([targetId])
+  @@index([createdAt])
   @@map("activity_logs")
   @@schema("webdrop")
 }
@@ -546,6 +571,8 @@ model DiscountCode {
   note      String?
   createdAt DateTime     @default(now()) @map("created_at")
 
+  @@index([expiresAt])
+  @@index([isActive])
   @@map("discount_codes")
   @@schema("webdrop")
 }

@@ -1,7 +1,7 @@
 ﻿import type { Metadata, Viewport } from 'next'
 import { DM_Sans } from 'next/font/google'
 import Script from 'next/script'
-import { prisma } from '@/lib/prisma'
+import { getLayoutSettings } from '@/lib/getLayoutSettings'
 import { CartProvider } from '@/contexts/CartContext'
 import '../src/styles/globals.css'
 import '../src/styles/help-center.css'
@@ -29,13 +29,10 @@ export async function generateMetadata(): Promise<Metadata> {
   let title = DEFAULT_TITLE
   let desc  = DEFAULT_DESC
   try {
-    const rows = await prisma.setting.findMany({
-      where: { key: { in: ['site_favicon', 'meta_title', 'meta_description'] } },
-    })
-    const map = Object.fromEntries(rows.map(r => [r.key, r.value?.trim() || '']))
-    faviconUrl = map['site_favicon'] || undefined
-    if (map['meta_title'])       title = map['meta_title']
-    if (map['meta_description']) desc  = map['meta_description']
+    const settings = await getLayoutSettings()
+    faviconUrl = settings['site_favicon'] || undefined
+    if (settings['meta_title'])       title = settings['meta_title']
+    if (settings['meta_description']) desc  = settings['meta_description']
   } catch { /* use defaults */ }
 
   return {
@@ -87,14 +84,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   let zaloOaId: string | null = null
   let zaloChatEnabled = false
   try {
-    const rows = await prisma.setting.findMany({
-      where: { key: { in: ['google_analytics_id', 'gtm_id', 'zalo_oa_id', 'zalo_chat_enabled'] } },
-    })
-    const map = Object.fromEntries(rows.map(r => [r.key, r.value?.trim() || '']))
-    gaId  = map['google_analytics_id'] || null
-    gtmId = map['gtm_id'] || null
-    zaloOaId        = map['zalo_oa_id'] || null
-    zaloChatEnabled = map['zalo_chat_enabled'] === 'true'
+    const settings = await getLayoutSettings()
+    gaId  = settings['google_analytics_id'] || null
+    gtmId = settings['gtm_id'] || null
+    zaloOaId        = settings['zalo_oa_id'] || null
+    zaloChatEnabled = settings['zalo_chat_enabled'] === 'true'
   } catch { /* skip if DB unavailable */ }
 
   const showZaloWidget = zaloChatEnabled && !!zaloOaId
