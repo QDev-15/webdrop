@@ -277,14 +277,15 @@
 .article-toc {
   background: var(--warm);
   border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 40px;
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 24px;
 }
 
 .toc-title {
   font-weight: 600;
-  margin-bottom: 12px;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
 }
 
 .toc-list {
@@ -294,16 +295,17 @@
 }
 
 .toc-item {
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 
 .toc-item a {
   color: var(--accent);
   text-decoration: none;
+  font-size: 0.9rem;
 }
 
 .toc-level-3 {
-  margin-left: 20px;
+  margin-left: 16px;
 }
 
 /* Article Detail Page */
@@ -316,6 +318,7 @@
   border-bottom: 3px solid var(--accent);
   padding: 32px 0 24px;
   margin: 24px 0;
+  margin-top: 60px;
   position: relative;
   overflow: hidden;
 }
@@ -561,15 +564,15 @@
 
 .markdown-content blockquote {
   border-left: 4px solid var(--accent);
-  padding: 16px;
-  padding-left: 20px;
-  margin: 28px 0;
+  padding: 12px;
+  padding-left: 16px;
+  margin: 16px 0;
   background: var(--warm);
-  border-radius: 6px;
+  border-radius: 5px;
   color: var(--text-2);
   font-style: italic;
-  font-size: 1.05rem;
-  line-height: 1.8;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .markdown-content blockquote p {
@@ -578,14 +581,14 @@
 
 .markdown-code {
   font-family: 'Monaco', 'Courier New', monospace;
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: 0.85rem;
+  line-height: 1.5;
   background: var(--dark2);
   color: #e1e4e8;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 14px;
+  border-radius: 8px;
   overflow-x: auto;
-  margin: 28px 0;
+  margin: 16px 0;
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
@@ -597,10 +600,10 @@
 .markdown-content code:not(.markdown-code code) {
   background: var(--dark2);
   color: #a1e8ff;
-  padding: 4px 8px;
-  border-radius: 4px;
+  padding: 3px 6px;
+  border-radius: 3px;
   font-family: 'Monaco', 'Courier New', monospace;
-  font-size: 0.85em;
+  font-size: 0.8em;
 }
 
 /* Related Articles */
@@ -758,7 +761,7 @@
 @media (max-width: 1024px) {
   .help-art-layout {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 20px;
   }
 
   .help-art-sidebar {
@@ -775,22 +778,22 @@
   }
 
   .help-art-header {
-    padding: 40px 0 30px;
-    margin-bottom: 30px;
+    padding: 28px 0 20px;
+    margin-bottom: 20px;
   }
 
   .hah-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
 
   .hah-meta {
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 8px;
   }
 
   .help-art-layout {
-    margin-bottom: 40px;
+    margin-bottom: 28px;
   }
 
   .hsw-share-buttons {
@@ -798,21 +801,21 @@
   }
 
   .markdown-h2 {
-    font-size: 1.5rem;
-    margin: 30px 0 16px;
+    font-size: 1.3rem;
+    margin: 18px 0 10px;
   }
 
   .markdown-h3 {
-    font-size: 1.1rem;
-    margin: 20px 0 12px;
+    font-size: 1rem;
+    margin: 14px 0 8px;
   }
 
   .help-art-related {
-    margin-top: 50px;
-    padding-top: 40px;
+    margin-top: 30px;
+    padding-top: 30px;
   }
 
   .help-art-related h2 {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 }
