@@ -20,7 +20,6 @@ export async function generateMetadata(
   return {
     title: `${article.title} | WC 2026 — webdrop.store`,
     description: article.excerpt,
-    alternates: { canonical: `${BASE}/lich-bong-da/${article.slug}` },
     openGraph: {
       title: article.title,
       description: article.excerpt,

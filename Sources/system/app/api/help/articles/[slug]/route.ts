@@ -1,49 +1,54 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
 
 export async function GET(
-  req: NextRequest,
+  request: Request,
   { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const { slug } = await params
-
+    const { slug } = await params;
     const article = await prisma.helpArticle.findUnique({
-      where: { slug },
+      where: { slug, status: 'published' },
       include: {
-        category: { select: { id: true, name: true, slug: true } },
-        author: { select: { id: true, name: true } },
-        tags: { select: { id: true, name: true, slug: true } },
+        category: { select: { name: true, slug: true } },
+        author: { select: { name: true } },
+        tags: { select: { name: true, slug: true } },
       },
-    })
+    });
 
     if (!article) {
-      return NextResponse.json({ error: 'Article not found' }, { status: 404 })
+      return NextResponse.json(
+        { error: 'Bài viết không tồn tại' },
+        { status: 404 }
+      );
     }
 
-    // Get related articles (same category, exclude current)
-    const related = await prisma.helpArticle.findMany({
+    const relatedArticles = await prisma.helpArticle.findMany({
       where: {
         categoryId: article.categoryId,
-        slug: { not: slug },
+        slug: { not: article.slug },
         status: 'published',
       },
       select: {
-        id: true,
-        title: true,
         slug: true,
+        title: true,
         excerpt: true,
+        createdAt: true,
+        category: { select: { name: true } },
       },
-      take: 4,
-      orderBy: { sortOrder: 'asc' },
-    })
+      orderBy: [{ sortOrder: 'asc' }, { createdAt: 'desc' }],
+      take: 3,
+    });
 
     return NextResponse.json({
-      ...article,
-      related,
-    })
-  } catch (err) {
-    console.error('Error fetching help article:', err)
-    return NextResponse.json({ error: 'Failed to fetch article' }, { status: 500 })
+      article,
+      relatedArticles,
+    });
+  } catch (error) {
+    console.error('Error fetching help article:', error);
+    return NextResponse.json(
+      { error: 'Không thể tải bài viết' },
+      { status: 500 }
+    );
   }
 }

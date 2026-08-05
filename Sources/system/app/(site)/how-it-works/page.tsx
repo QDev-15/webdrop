@@ -2,7 +2,6 @@
 export const metadata: Metadata = {
   title:      'Quy trình làm website tại webdrop.store',
   description: 'Chỉ 4 bước đơn giản: Chọn mẫu → Thanh toán → Cung cấp nội dung → Nhận website hoàn chỉnh. Bàn giao trong 3–5 ngày làm việc.',
-  alternates: { canonical: `${process.env.NEXT_PUBLIC_URL || 'https://webdrop.store'}/how-it-works` },
 }
 
 import Link from 'next/link'

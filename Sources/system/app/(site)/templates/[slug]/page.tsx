@@ -26,7 +26,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       return {
         title,
         description: desc,
-        alternates: { canonical: `${BASE}/templates/${slug}` },
         openGraph: { title, description: desc, images: [{ url: img, width: 1200, height: 630 }], type: 'website' },
         twitter:   { card: 'summary_large_image', title, description: desc, images: [img] },
       }
@@ -36,7 +35,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const name = mock?.name || 'Template website'
   return {
     title: `${name} — webdrop.store`,
-    alternates: { canonical: `${BASE}/templates/${slug}` },
   }
 }
 

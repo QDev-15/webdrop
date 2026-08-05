@@ -5,7 +5,6 @@ import Link from 'next/link'
 export const metadata = {
   title:      'Về chúng tôi — webdrop.store',
   description: 'Tìm hiểu về webdrop.store — đội ngũ chuyên cung cấp mẫu website đẹp và dịch vụ triển khai website trọn gói cho doanh nghiệp Việt Nam.',
-  alternates: { canonical: `${process.env.NEXT_PUBLIC_URL || 'https://webdrop.store'}/about` },
 }
 
 const team = [

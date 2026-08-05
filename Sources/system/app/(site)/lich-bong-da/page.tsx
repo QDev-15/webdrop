@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   title: 'Lịch thi đấu World Cup 2026 | Tỉ số trực tiếp',
   description: 'Lịch thi đấu World Cup 2026 cập nhật realtime. Xem tỉ số trực tiếp, kết quả trận đấu, bảng xếp hạng FIFA World Cup 2026 tại Mỹ, Canada, Mexico.',
   keywords: ['lịch World Cup 2026', 'tỉ số WC 2026', 'kết quả bóng đá', 'world cup 2026 lịch thi đấu', 'xem bóng đá trực tiếp'],
-  alternates: { canonical: `${BASE}/lich-bong-da` },
   openGraph: {
     title:       'Lịch thi đấu World Cup 2026 — Tỉ số trực tiếp',
     description: 'Lịch thi đấu World Cup 2026 cập nhật realtime. Xem tỉ số trực tiếp, kết quả, bảng xếp hạng.',
