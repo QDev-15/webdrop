@@ -13,9 +13,9 @@ export async function GET(request: NextRequest) {
       where: {
         status: 'published',
         OR: [
-          { title: { contains: q, mode: 'insensitive' } },
-          { content: { contains: q, mode: 'insensitive' } },
-          { excerpt: { contains: q, mode: 'insensitive' } },
+          { title: { contains: q } },
+          { content: { contains: q } },
+          { excerpt: { contains: q } },
         ],
       },
       select: {

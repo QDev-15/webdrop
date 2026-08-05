@@ -4,6 +4,7 @@ import Script from 'next/script'
 import { prisma } from '@/lib/prisma'
 import { CartProvider } from '@/contexts/CartContext'
 import '../src/styles/globals.css'
+import '../src/styles/help-center.css'
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
