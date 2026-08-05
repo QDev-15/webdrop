@@ -5,21 +5,37 @@ import { DeleteCategoryForm, DeleteArticleForm } from './DeleteCategoryForm'
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 
-export default async function HelpPage() {
+const PER_PAGE = 10
+
+export default async function HelpPage({
+  searchParams
+}: {
+  searchParams: Promise<{ page?: string }>
+}) {
+  const params = await searchParams
+  const page = Math.max(1, parseInt(params.page || '1'))
+  const skip = (page - 1) * PER_PAGE
+
   let categories: any[] = []
   let articles: any[] = []
+  let totalArticles = 0
 
   try {
-    [categories, articles] = await Promise.all([
+    [categories, articles, totalArticles] = await Promise.all([
       prisma.helpCategory.findMany({ orderBy: { name: 'asc' } }),
       prisma.helpArticle.findMany({
         include: { category: true },
         orderBy: { createdAt: 'desc' },
+        skip,
+        take: PER_PAGE,
       }),
+      prisma.helpArticle.count(),
     ])
   } catch (e) {
     console.error('DB error:', e)
   }
+
+  const totalPages = Math.ceil(totalArticles / PER_PAGE)
 
   return (
     <AdminLayout title="Hướng dẫn & Hỗ trợ (Help Center)">
@@ -31,7 +47,7 @@ export default async function HelpPage() {
         </div>
         <div style={{ padding: 12, borderRadius: 8, background: 'var(--surface)', border: '1px solid var(--border)', flex: 1, minWidth: 150 }}>
           <div style={{ fontSize: 12, color: 'var(--text-3)', marginBottom: 4 }}>Tổng bài viết</div>
-          <div style={{ fontSize: 20, fontWeight: 600, color: 'var(--accent)' }}>{articles.length}</div>
+          <div style={{ fontSize: 20, fontWeight: 600, color: 'var(--accent)' }}>{totalArticles}</div>
         </div>
       </div>
 
@@ -147,6 +163,66 @@ export default async function HelpPage() {
                   ))}
                 </tbody>
               </table>
+            </div>
+          )}
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div style={{ display: 'flex', gap: 8, justifyContent: 'center', alignItems: 'center', marginTop: 20, padding: '16px 0' }}>
+              {page > 1 && (
+                <Link href={`/admin/help?page=${page - 1}`}
+                  style={{
+                    padding: '6px 12px',
+                    fontSize: 12,
+                    borderRadius: 6,
+                    border: '1px solid var(--border)',
+                    textDecoration: 'none',
+                    color: 'var(--accent)',
+                  }}>
+                  ← Trước
+                </Link>
+              )}
+
+              <div style={{ display: 'flex', gap: 4 }}>
+                {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                  const pageNum = page > 3 ? page - 2 + i : i + 1
+                  if (pageNum > totalPages) return null
+                  return (
+                    <Link key={pageNum}
+                      href={`/admin/help?page=${pageNum}`}
+                      style={{
+                        padding: '6px 10px',
+                        fontSize: 12,
+                        borderRadius: 6,
+                        border: pageNum === page ? '1px solid var(--accent)' : '1px solid var(--border)',
+                        backgroundColor: pageNum === page ? 'var(--accent-light)' : 'transparent',
+                        color: pageNum === page ? 'var(--accent)' : 'var(--text-2)',
+                        textDecoration: 'none',
+                        fontWeight: pageNum === page ? 600 : 400,
+                      }}>
+                      {pageNum}
+                    </Link>
+                  )
+                })}
+              </div>
+
+              {page < totalPages && (
+                <Link href={`/admin/help?page=${page + 1}`}
+                  style={{
+                    padding: '6px 12px',
+                    fontSize: 12,
+                    borderRadius: 6,
+                    border: '1px solid var(--border)',
+                    textDecoration: 'none',
+                    color: 'var(--accent)',
+                  }}>
+                  Sau →
+                </Link>
+              )}
+
+              <div style={{ marginLeft: 16, fontSize: 12, color: 'var(--text-3)' }}>
+                Trang {page}/{totalPages} • {totalArticles} bài
+              </div>
             </div>
           )}
         </div>
