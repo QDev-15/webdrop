@@ -156,11 +156,11 @@ class Database {
             ['return_days',             '14',     'shop'],
             // Payment methods — cấu hình bật/tắt tại tab "💳 Thanh toán"
             ['payment_cod_enabled',   '1', 'payment'],
-            ['payment_sepay_enabled', '0', 'payment'],
-            ['sepay_bank_code',       '',  'payment'],
-            ['sepay_account_number',  '',  'payment'],
-            ['sepay_account_name',    '',  'payment'],
-            ['sepay_webhook_secret',  '',  'payment'],
+            ['payment_sepay_enabled',    '1', 'payment'],
+            ['sepay_bank_code',          'MB',  'payment'],
+            ['sepay_account_number',     '0099001122334',  'payment'],
+            ['sepay_account_name',       'WEBDROP STORE TEST',  'payment'],
+            ['sepay_webhook_secret',     'TEST_SEPAY_API_2026',  'payment'],
             // SMTP
             ['smtp_host',      '', 'smtp'],
             ['smtp_port',      '587', 'smtp'],

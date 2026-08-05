@@ -156,11 +156,11 @@ class Database {
             ['stat_reviews',           '99%',    'shop'],
             // Payment methods — cấu hình bật/tắt tại tab "💳 Thanh toán"
             ['payment_cod_enabled',    '1', 'payment'],
-            ['payment_sepay_enabled',  '0', 'payment'],
-            ['sepay_bank_code',        '',  'payment'],  // vd: MB, VCB, TCB — mã ngân hàng theo chuẩn SePay/VietQR
-            ['sepay_account_number',   '',  'payment'],
-            ['sepay_account_name',     '',  'payment'],
-            ['sepay_webhook_secret',   '',  'payment'],  // API Access token từ my.sepay.vn — dùng để xác thực webhook gửi tới /public/sepay-webhook
+            ['payment_sepay_enabled',    '1', 'payment'],
+            ['sepay_bank_code',          'MB',  'payment'],  // vd: MB, VCB, TCB — mã ngân hàng theo chuẩn SePay/VietQR
+            ['sepay_account_number',     '0099001122334',  'payment'],
+            ['sepay_account_name',       'WEBDROP STORE TEST',  'payment'],
+            ['sepay_webhook_secret',     'TEST_SEPAY_API_2026',  'payment'],  // API Access token từ my.sepay.vn — dùng để xác thực webhook gửi tới /public/sepay-webhook
             // SMTP
             ['smtp_host',     '', 'smtp'],
             ['smtp_port',     '587', 'smtp'],
