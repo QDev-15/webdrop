@@ -117,6 +117,7 @@ CREATE TABLE IF NOT EXISTS orders (
     payment_method  TEXT NOT NULL DEFAULT 'cod',   -- 'cod' | 'sepay'
     payment_status  TEXT NOT NULL DEFAULT 'unpaid', -- 'unpaid' | 'pending' | 'paid'
     status          TEXT NOT NULL DEFAULT 'pending', -- 'pending'|'processing'|'shipping'|'completed'|'cancelled'
+    coupon_code     TEXT NOT NULL DEFAULT '',
     created_at      TEXT NOT NULL DEFAULT (datetime('now','localtime')),
     updated_at      TEXT NOT NULL DEFAULT (datetime('now','localtime'))
 );
@@ -144,9 +145,6 @@ CREATE TABLE IF NOT EXISTS coupons (
     is_active  INTEGER NOT NULL DEFAULT 1,
     created_at TEXT    NOT NULL DEFAULT (datetime('now','localtime'))
 );
-
--- coupon_code lưu mã đã dùng cho đơn hàng (thêm cuối bảng orders, không đổi cột cũ)
-ALTER TABLE orders ADD COLUMN coupon_code TEXT NOT NULL DEFAULT '';
 
 -- Settings nhóm 'payment' + 'shop' — seed trong Database.php::seedSettings() (AI viết, xem builder.md rule shop).
 -- Keys bắt buộc: payment_cod_enabled, payment_sepay_enabled, sepay_bank_code, sepay_account_number,
