@@ -47,8 +47,8 @@ export default function Header() {
           <ul className="dc-nav-links" role="list">
             <li><Link to="/" className={isActive('/')}>Trang chủ</Link></li>
             <li><Link to="/san-pham" className={isActive('/san-pham')}>Sản phẩm</Link></li>
-            <li><a href="#" onClick={e => { e.preventDefault(); navigate('/bo-suu-tap') }}>Bộ sưu tập</a></li>
-            <li><a href="#" onClick={e => { e.preventDefault(); navigate('/ve-chung-toi') }}>Giới thiệu</a></li>
+            <li><Link to="/bo-suu-tap" className={isActive('/bo-suu-tap')}>Bộ sưu tập</Link></li>
+            <li><Link to="/ve-chung-toi" className={isActive('/ve-chung-toi')}>Giới thiệu</Link></li>
             <li><Link to="/lien-he" className={isActive('/lien-he')}>Liên hệ</Link></li>
           </ul>
           <div className="dc-nav-actions">
@@ -106,8 +106,8 @@ export default function Header() {
           <ul role="list">
             <li><Link to="/" onClick={() => setMobileMenuOpen(false)}>Trang chủ</Link></li>
             <li><Link to="/san-pham" onClick={() => setMobileMenuOpen(false)}>Sản phẩm</Link></li>
-            <li><a href="#" onClick={e => { e.preventDefault(); navigate('/bo-suu-tap'); setMobileMenuOpen(false) }}>Bộ sưu tập</a></li>
-            <li><a href="#" onClick={e => { e.preventDefault(); navigate('/ve-chung-toi'); setMobileMenuOpen(false) }}>Giới thiệu</a></li>
+            <li><Link to="/bo-suu-tap" onClick={() => setMobileMenuOpen(false)}>Bộ sưu tập</Link></li>
+            <li><Link to="/ve-chung-toi" onClick={() => setMobileMenuOpen(false)}>Giới thiệu</Link></li>
             <li><Link to="/lien-he" onClick={() => setMobileMenuOpen(false)}>Liên hệ</Link></li>
           </ul>
         </div>

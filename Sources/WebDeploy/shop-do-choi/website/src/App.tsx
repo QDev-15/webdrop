@@ -12,6 +12,8 @@ import CartPage from './pages/CartPage'
 import CheckoutPage from './pages/CheckoutPage'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 import TermsPage from './pages/TermsPage'
+import CollectionPage from './pages/CollectionPage'
+import AboutPage from './pages/AboutPage'
 
 function AppShell() {
   const { settings } = useSite()
@@ -57,6 +59,8 @@ function AppShell() {
         <Route path="/" element={<HomePage />} />
         <Route path="/san-pham" element={<ProductsPage />} />
         <Route path="/san-pham/:slug" element={<ProductDetailPage />} />
+        <Route path="/bo-suu-tap" element={<CollectionPage />} />
+        <Route path="/ve-chung-toi" element={<AboutPage />} />
         <Route path="/gio-hang" element={<CartPage />} />
         <Route path="/thanh-toan" element={<CheckoutPage />} />
         <Route path="/lien-he" element={<Contact />} />

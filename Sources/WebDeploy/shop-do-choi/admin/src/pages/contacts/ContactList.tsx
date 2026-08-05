@@ -13,9 +13,9 @@ interface Contact {
 }
 
 const STATUS_LABELS: Record<string, string> = {
-  new: 'Moi',
-  read: 'Da doc',
-  replied: 'Da tra loi',
+  new: 'Mới',
+  read: 'Đã đọc',
+  replied: 'Đã trả lời',
 }
 
 export default function ContactList() {
@@ -47,7 +47,7 @@ export default function ContactList() {
   }
 
   async function handleDelete(id: number) {
-    if (!confirm('Xoa tin nhan nay?')) return
+    if (!confirm('Xóa tin nhắn này?')) return
     await api.delete(`/contacts/${id}`)
     setDetail(null); load()
   }
