@@ -9,12 +9,12 @@ interface Category {
   name: string
   slug: string
   icon?: string | null
-  articleCount: number
   description?: string | null
   sortOrder?: number
   status?: string
   createdAt?: Date
   updatedAt?: Date
+  _count?: { articles: number }
 }
 
 interface Article {
@@ -30,8 +30,11 @@ interface Article {
 }
 
 interface PaginationData {
-  data: Article[]
-  pagination: { total: number; page: number; limit: number; pages: number }
+  articles: Article[]
+  total: number
+  page: number
+  limit: number
+  pages: number
 }
 
 export default function HelpPageClient({ categories }: { categories: Category[] }) {
@@ -55,9 +58,15 @@ export default function HelpPageClient({ categories }: { categories: Category[] 
       params.append('limit', '12')
 
       const res = await fetch(`/api/help/articles?${params}`)
+      if (!res.ok) throw new Error('Failed to fetch articles')
       const data: PaginationData = await res.json()
-      setArticles(data.data)
-      setPagination(data.pagination)
+      setArticles(data.articles || [])
+      setPagination({
+        total: data.total || 0,
+        page: data.page || 1,
+        limit: data.limit || 12,
+        pages: data.pages || 1,
+      })
     } catch (err) {
       console.error('Error fetching articles:', err)
     } finally {
@@ -154,14 +163,14 @@ export default function HelpPageClient({ categories }: { categories: Category[] 
                 }
               }}
             >
-              {cat.name} ({cat.articleCount})
+              {cat.name} ({cat._count?.articles || 0})
             </button>
           ))}
         </div>
       </div>
 
       {/* Articles Grid */}
-      {articles.length > 0 ? (
+      {articles && articles.length > 0 ? (
         <>
           <div style={{
             display: 'grid',

@@ -22,7 +22,7 @@ export async function generateMetadata({
   return {
     title: article.metaTitle || article.title,
     description: article.metaDescription || article.excerpt || '',
-    robots: { index: false, follow: true },
+    robots: { index: true, follow: true },
   };
 }
 

@@ -11,12 +11,27 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
     let inCodeBlock = false;
     let codeContent = '';
     let codeLanguage = '';
+    let inList = false;
+    let listItems: React.ReactNode[] = [];
+
+    const flushList = () => {
+      if (inList && listItems.length > 0) {
+        elements.push(
+          <ul key={`list-${elements.length}`} className="markdown-ul">
+            {listItems}
+          </ul>
+        );
+        listItems = [];
+        inList = false;
+      }
+    };
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
 
       // Code block
       if (line.startsWith('```')) {
+        flushList();
         if (inCodeBlock) {
           elements.push(
             <pre key={`code-${i}`} className="markdown-code">
@@ -41,6 +56,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
 
       // Headings
       if (line.match(/^##\s+/)) {
+        flushList();
         const id = line
           .replace(/^##\s+/, '')
           .toLowerCase()
@@ -55,8 +71,14 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
       }
 
       if (line.match(/^###\s+/)) {
+        flushList();
+        const id = line
+          .replace(/^###\s+/, '')
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, '')
+          .replace(/\s+/g, '-');
         elements.push(
-          <h3 key={`h3-${i}`} className="markdown-h3">
+          <h3 key={`h3-${i}`} id={id} className="markdown-h3">
             {line.replace(/^###\s+/, '')}
           </h3>
         );
@@ -65,6 +87,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
 
       // Blockquote
       if (line.startsWith('> ')) {
+        flushList();
         elements.push(
           <blockquote key={`bq-${i}`} className="markdown-blockquote">
             {line.replace(/^> /, '')}
@@ -75,7 +98,8 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
 
       // List items
       if (line.match(/^[-*]\s+/)) {
-        elements.push(
+        inList = true;
+        listItems.push(
           <li key={`li-${i}`} className="markdown-li">
             {renderInline(line.replace(/^[-*]\s+/, ''))}
           </li>
@@ -85,14 +109,19 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
 
       // Paragraphs
       if (line.trim()) {
+        flushList();
         elements.push(
           <p key={`p-${i}`} className="markdown-p">
             {renderInline(line)}
           </p>
         );
+      } else {
+        // Empty line ends list
+        flushList();
       }
     }
 
+    flushList();
     return elements;
   };
 

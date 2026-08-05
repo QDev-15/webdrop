@@ -30,7 +30,6 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ results });
   } catch (error) {
-    console.error('Error searching help articles:', error);
     return NextResponse.json(
       { error: 'Lỗi tìm kiếm', results: [] },
       { status: 500 }

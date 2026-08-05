@@ -42,29 +42,35 @@ export default async function CategoryPage({
 
   const category = await prisma.helpCategory.findUnique({
     where: { slug, status: 'published' },
-    include: {
-      articles: {
-        where: { status: 'published' },
-        select: {
-          id: true,
-          slug: true,
-          title: true,
-          excerpt: true,
-          sortOrder: true,
-          createdAt: true,
-        },
-        orderBy: [{ sortOrder: 'asc' }, { createdAt: 'desc' }],
-      },
-    },
   });
 
   if (!category) notFound();
 
   const page = Math.max(1, parseInt(pageParam || '1'));
   const limit = 12;
-  const start = (page - 1) * limit;
-  const paginatedArticles = category.articles.slice(start, start + limit);
-  const totalPages = Math.ceil(category.articles.length / limit);
+  const skip = (page - 1) * limit;
+
+  const [paginatedArticles, totalArticles] = await Promise.all([
+    prisma.helpArticle.findMany({
+      where: { categoryId: category.id, status: 'published' },
+      select: {
+        id: true,
+        slug: true,
+        title: true,
+        excerpt: true,
+        sortOrder: true,
+        createdAt: true,
+      },
+      orderBy: [{ sortOrder: 'asc' }, { createdAt: 'desc' }],
+      skip,
+      take: limit,
+    }),
+    prisma.helpArticle.count({
+      where: { categoryId: category.id, status: 'published' },
+    }),
+  ]);
+
+  const totalPages = Math.ceil(totalArticles / limit);
 
   return (
     <main className="wd-help-category-page">
@@ -89,7 +95,7 @@ export default async function CategoryPage({
           </div>
 
           <div className="hch-stats">
-            <span>{category.articles.length} bài viết</span>
+            <span>{totalArticles} bài viết</span>
           </div>
         </div>
       </div>

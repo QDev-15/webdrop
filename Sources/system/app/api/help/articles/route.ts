@@ -59,7 +59,6 @@ export async function GET(request: NextRequest) {
       pages: Math.ceil(total / limit),
     });
   } catch (error) {
-    console.error('Error fetching help articles:', error);
     return NextResponse.json(
       { error: 'Không thể tải bài viết' },
       { status: 500 }

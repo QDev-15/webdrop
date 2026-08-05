@@ -8,7 +8,15 @@ async function getHelpData() {
     const [categories, featuredArticles] = await Promise.all([
       prisma.helpCategory.findMany({
         where: { status: 'published' },
-        include: { _count: { select: { articles: true } } },
+        select: {
+          id: true,
+          slug: true,
+          name: true,
+          description: true,
+          icon: true,
+          status: true,
+          sortOrder: true,
+        },
         orderBy: { sortOrder: 'asc' },
       }),
       prisma.helpArticle.findMany({
@@ -21,15 +29,23 @@ async function getHelpData() {
       }),
     ])
 
-    return {
-      categories: categories.map(cat => ({
+    const categoriesWithCounts = await Promise.all(
+      categories.map(async (cat) => ({
         ...cat,
-        articleCount: cat._count.articles,
-      })),
+        _count: {
+          articles: await prisma.helpArticle.count({
+            where: { categoryId: cat.id, status: 'published' },
+          }),
+        },
+      }))
+    )
+
+    return {
+      categories: categoriesWithCounts as any,
       featuredArticles,
     }
   } catch (err) {
-    console.error('Error fetching help data:', err)
+    console.error('[Help Page] Error fetching data:', err)
     return { categories: [], featuredArticles: [] }
   }
 }
@@ -57,7 +73,14 @@ export default async function HelpPage() {
       {/* Main Content */}
       <div className="wd-container" style={{ marginBottom: 'clamp(60px, 10vw, 100px)' }}>
         {/* Search & Filter */}
-        <HelpPageClient categories={categories} />
+        <HelpPageClient categories={categories.map((cat: any) => ({
+          id: cat.id,
+          slug: cat.slug,
+          name: cat.name,
+          description: cat.description,
+          icon: cat.icon,
+          _count: { articles: cat._count.articles },
+        }))} />
 
         {/* Featured Articles Grid */}
         {featuredArticles.length > 0 && (
