@@ -251,8 +251,10 @@ body {
 .pill { font-size:12.5px;font-weight:400;padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:var(--surface);color:var(--text-2);cursor:pointer;transition:all .15s; }
 .pill.active { background:var(--text);color:#fff;border-color:var(--text); }
 .pill:hover:not(.active) { border-color:var(--text-3);color:var(--text); }
-.tc { background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .28s cubic-bezier(.16,1,.3,1),box-shadow .28s,border-color .2s; }
+.tc { background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:box-shadow .28s,border-color .2s; }
 .tc:hover { box-shadow:0 20px 52px rgba(0,0,0,.1);border-color:transparent; }
+.tc-thumb { transition:transform .28s cubic-bezier(.16,1,.3,1); }
+/* .tc:hover .tc-thumb { transform:scale(1.04); } */
 .tc:hover .tc-thumb img { transform:scale(1.06); }
 .tc-thumb { aspect-ratio:16/10;position:relative;overflow:hidden; }
 .tc-thumb img { width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease; }
@@ -271,11 +273,12 @@ body {
 /* Live demo preview — iframe scaled 4x down (400% + scale(.25)) để hiển thị đúng bố cục desktop
    thu nhỏ trong card, thay vì ảnh chụp tĩnh. pointer-events:none để click xuyên qua tới <Link> cha. */
 .tc-iframe-wrap { position:absolute; inset:0; }
-.tc-iframe-wrap:hover {
-  transform: translateY(-5px);
-  border-radius: 10px;
+
+.tc-iframe-wrap iframe {
+  position:absolute; top:0; left:0; width:800%; height:800%; transform:scale(.125); transform-origin:0 0;
+  border:none; pointer-events:none; opacity:0; transition:opacity .45s cubic-bezier(.16,1,.3,1);
 }
-.tc-iframe-wrap iframe { position:absolute; top:0; left:0; width:800%; height:800%; transform:scale(.125); transform-origin:0 0; border:none; pointer-events:none; }
+.tc-iframe-wrap.loaded iframe { opacity:1; }
 
 /* Card trang chủ — tỉ lệ dọc 3:4 để hiện được nhiều nội dung website hơn trong live preview */
 .tc-thumb-tall { aspect-ratio: 5/5; }

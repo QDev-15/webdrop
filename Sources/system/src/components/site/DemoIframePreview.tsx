@@ -7,6 +7,7 @@ export default function DemoIframePreview({ src, title }: { src: string; title: 
   const ref = useRef<HTMLDivElement>(null)
   const [inView, setInView] = useState(false)
   const [failed, setFailed] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
     const el = ref.current
@@ -22,7 +23,7 @@ export default function DemoIframePreview({ src, title }: { src: string; title: 
   if (failed) return null
 
   return (
-    <div ref={ref} className="tc-iframe-wrap">
+    <div ref={ref} className={`tc-iframe-wrap ${isLoaded ? 'loaded' : ''}`}>
       {inView && (
         <iframe
           src={src}
@@ -30,6 +31,7 @@ export default function DemoIframePreview({ src, title }: { src: string; title: 
           loading="lazy"
           sandbox="allow-scripts allow-same-origin"
           onError={() => setFailed(true)}
+          onLoad={() => setIsLoaded(true)}
         />
       )}
     </div>
