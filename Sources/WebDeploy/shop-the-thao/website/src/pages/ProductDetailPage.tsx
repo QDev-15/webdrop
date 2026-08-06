@@ -87,11 +87,11 @@ export default function ProductDetailPage() {
             </div>
 
             {/* Size options */}
-            {product.sizes && product.sizes.length > 0 && (
+            {product.sizes && (
               <div style={{ marginBottom: 24 }}>
                 <label style={{ display: 'block', marginBottom: 12, fontWeight: 600 }}>Size</label>
                 <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-                  {product.sizes.map((size: string) => (
+                  {product.sizes.split('|').filter(Boolean).map((size: string) => (
                     <button
                       key={size}
                       style={{

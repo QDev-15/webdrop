@@ -42,9 +42,23 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển �
       }
       ```
       **schema.sql chỉ chứa CREATE TABLE** — không INSERT INTO users. Seed hoàn toàn qua PHP.
+    - **Database path PHẢI dùng constant `DB_FILE` từ `config.php`** — KHÔNG hardcode path trong Database.php class. **Mẫu bắt buộc**:
+      ```php
+      // api/config.php
+      define('DB_FILE', __DIR__ . '/database/[slug].db');
+      ```
+      ```php
+      // api/src/Database.php — PHẢI dùng DB_FILE, không tạo field $db_path
+      private function __construct() {
+          $this->pdo = new PDO('sqlite:' . DB_FILE, null, null, [...]);
+      }
+      ```
+      **Sai cách (shop-the-thao trước fix)**: `$this->db_path = __DIR__ . '/../../api.db'` → tạo file ở sai vị trí, `.htaccess` chặn không được. **Kiểm tra verify**: `_output-deploy/api/database/[slug].db` tồn tại, KHÔNG có `_output-deploy/api.db` hoặc file `.db` nào ở root deploy folder.
+
 6. **Test loop bắt buộc** — sau khi xong: PHP syntax check + TS build cho cả website/ và admin/. Fix → chạy lại → lặp đến 0 error.
-7. **`build.mjs` — 2 yêu cầu robustness (đã có sẵn trong scaffold, không tự ý bỏ khi chỉnh sửa):**
+7. **`build.mjs` — 3 yêu cầu robustness (đã có sẵn trong scaffold, không tự ý bỏ khi chỉnh sửa):**
     - Phải check `node_modules` tồn tại trước khi build — `tsc` chỉ có trong local `node_modules/.bin/`.
+    - **Phải tự động copy `.htaccess` + `web.config` từ `website/public/` sang deploy root** — SPA routing phụ thuộc vào 2 file này để rewrite URL về `index.html`. Nếu bỏ sót → homepage + mọi trang khác trả về 404 trên production. Scaffold đã tích hợp logic này (check + copy sau dòng copy `website/dist`), AI chỉ cần verify `website/public/` có đủ 2 file, không được xóa khi chỉnh sửa build script.
     - Phải strip BOM khỏi PHP files khi copy vào `_output-deploy/api/`.
 
     **⚡ BOM trong PHP file SOURCE = 500 im lặng trên MỌI endpoint** — LLM hay editor Windows thường lưu UTF-8 with BOM. Sau khi viết xong toàn bộ PHP, chạy ngay lệnh strip BOM dưới đây (cũng chính là Bước 7a của Test Loop). Đây là lỗi tái phát nhiều lần, không được bỏ qua:
@@ -282,6 +296,23 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển �
 29. **Nhắc lại Rule 5 (CLAUDE.md) áp dụng cho các rule 22-28b:** khi fix site shop theo các rule trên, CHỈ sửa trong `Sources/WebDeploy/[slug]/`. Các rule 22-28b chỉ áp dụng cho site có type `shop`/e-commerce — không áp dụng ngược cho site `company`/`restaurant`/... đã build trước đó.
 
 30. **[BẮT BUỘC — SEO cơ bản, áp dụng MỌI type, thêm 2026-07-18]** Site React SPA thuần (không SSR) nên bot không chạy JS (Bing, Zalo/Facebook preview) chỉ thấy đúng nội dung tĩnh trong `index.html` — 4 việc bắt buộc:
+    - **`website/index.html` — KIỂM TRA TRƯỚC KHI VIẾT CODE** — file PHẢI là HTML template đầy đủ (có `<div id="root">` + `<script type="module" src="/src/main.tsx">`), KHÔNG phải TODO comment. Nếu file chỉ có TODO → tạo template đúng trước khi thực hiện bất kỳ bước khác. Scaffold không tự sinh file này — AI phải tạo. Lỗi này gây 404 trên production (homepage không load được React app):
+      ```html
+      <!doctype html>
+      <html lang="vi">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>[Tên site thật]</title>
+          <meta name="description" content="[Mô tả ngắn từ template]" />
+          <!-- OG tags ở dưới -->
+        </head>
+        <body>
+          <div id="root"></div>
+          <script type="module" src="/src/main.tsx"></script>
+        </body>
+      </html>
+      ```
     - **`website/index.html`** — viết `<title>`, `<meta name="description">` bằng nội dung THẬT của site (tên + tagline/mô tả ngắn từ template, không placeholder chung chung), cộng thêm OG/Twitter tĩnh:
       ```html
       <meta property="og:type" content="website">
@@ -631,10 +662,10 @@ cd Sources/WebDeploy/[slug]/admin  && npm install && npm run build
 ## Bước 8 — Checklist cuối
 
 **Files:**
-- [ ] `api/config.php` có CORS_ORIGINS + comment hướng dẫn APP_URL
+- [ ] `api/config.php` có `define('DB_FILE', __DIR__ . '/database/[slug].db')` + CORS_ORIGINS + comment APP_URL
 - [ ] `api/index.php` có health endpoint `/health`
 - [ ] `api/schema.sql` có `PRAGMA foreign_keys = ON` + seed data thực từ template
-- [ ] `api/src/Database.php` — `migrate()` check `file_get_contents` false; `seedTemplateData()` chỉ chạy khi table rỗng
+- [ ] `api/src/Database.php` — dùng constant `DB_FILE` từ config.php (KHÔNG hardcode path); `migrate()` check `file_get_contents` false; `seedTemplateData()` chỉ chạy khi table rỗng; **verify: `_output-deploy/api/database/[slug].db` tồn tại KHÔNG có `_output-deploy/api.db`**
 - [ ] `api/src/bootstrap.php` có helpers + `Auth::start()` trước `Database::getInstance()` + đủ routes — **grep riêng `/media/upload`** trong file (rule 15, lỗi hay bị bỏ sót nhất, `php -l` không phát hiện được)
 - [ ] `admin/src/components/layout/Sidebar.tsx` — menu khớp nav; outer div `admin-sidebar`; section `sidebar-section`; footer NavLink → `/profile`
 - [ ] `admin/src/main.tsx` có dynamic basename + `AuthProvider` (scaffold — không ghi đè)

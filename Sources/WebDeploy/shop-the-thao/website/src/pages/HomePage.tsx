@@ -43,7 +43,7 @@ export default function HomePage() {
       if (filter.categories.length && !filter.categories.includes(p.category_slug || '')) return false
       const price = p.price_sale || p.price
       if (price > filter.priceMax) return false
-      if (filter.sizes.length && !p.sizes?.some((s: string) => filter.sizes.includes(s))) return false
+      if (filter.sizes.length && (!p.sizes || !p.sizes.split('|').some((s: string) => filter.sizes.includes(s)))) return false
       if (filter.colors.length && p.color && !filter.colors.includes(p.color)) return false
       if (filter.brands.length && p.brand && !filter.brands.includes(p.brand)) return false
       return true
@@ -68,7 +68,11 @@ export default function HomePage() {
   // Extract unique values for filters
   const allSizes = useMemo(() => {
     const sizes = new Set<string>()
-    products.forEach(p => p.sizes?.forEach((s: string) => sizes.add(s)))
+    products.forEach(p => {
+      if (p.sizes) {
+        p.sizes.split('|').filter(Boolean).forEach((s: string) => sizes.add(s))
+      }
+    })
     return Array.from(sizes).sort()
   }, [products])
 

@@ -30,8 +30,8 @@ $router->post('/public/orders', fn() => $shop->createOrder());
 $router->get('/public/orders/:code/status', fn($p) => $shop->orderStatus($p['code']));
 $router->post('/api/webhooks/sepay', fn() => $shop->sepayWebhook());
 $router->get('/public/products', fn() => $shop->products());
-$router->get('/public/products/:slug', fn($p) => $shop->productDetail($p['slug']));
-$router->get('/public/categories', fn() => $shop->categories());
+$router->get('/public/products/:slug', fn($p) => $shop->productBySlug($p));
+$router->get('/public/categories', fn() => $shop->productCategories());
 $router->get('/sitemap.xml', fn() => $shop->sitemap());
 
 // Admin routes (protected)

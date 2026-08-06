@@ -82,6 +82,14 @@ writeFileSync(join(deploy, 'api', 'database', '.gitkeep'), '')
 console.log('  Copy website dist...')
 cpSync(join(root, 'website', 'dist'), deploy, { recursive: true })
 
+// Copy .htaccess + web.config từ website/public/ (cần thiết cho SPA routing)
+if (existsSync(join(root, 'website', 'public', '.htaccess'))) {
+  cpSync(join(root, 'website', 'public', '.htaccess'), join(deploy, '.htaccess'))
+}
+if (existsSync(join(root, 'website', 'public', 'web.config'))) {
+  cpSync(join(root, 'website', 'public', 'web.config'), join(deploy, 'web.config'))
+}
+
 // admin/dist → deploy/admin/
 console.log('  Copy admin dist...')
 cpSync(join(root, 'admin', 'dist'), join(deploy, 'admin'), { recursive: true })

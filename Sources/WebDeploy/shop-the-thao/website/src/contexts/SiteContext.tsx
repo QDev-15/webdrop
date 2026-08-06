@@ -11,7 +11,7 @@ export interface Product {
   price: number
   price_sale: number | null
   color?: string
-  sizes?: string[]
+  sizes?: string
   brand?: string
   review_count?: number
   sold_count?: number
@@ -47,11 +47,12 @@ export function SiteProvider({ children }: { children: ReactNode }) {
     Promise.all([
       api.get<Settings>('/public/settings'),
       api.get<Product[]>('/public/products?per_page=200'),
-      api.get<Category[]>('/public/product-categories'),
+      api.get<Category[]>('/public/categories'),
     ]).then(([s, p, c]) => {
+      console.log('Site data loaded:', { s, p: p?.length, c: c?.length })
       setSettings(s)
-      setProducts(p)
-      setCategories(c)
+      setProducts(Array.isArray(p) ? p : [])
+      setCategories(Array.isArray(c) ? c : [])
     }).catch(err => {
       console.error('Failed to fetch site data:', err)
     }).finally(() => {

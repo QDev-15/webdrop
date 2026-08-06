@@ -96,8 +96,11 @@ CREATE TABLE IF NOT EXISTS products (
     status       TEXT NOT NULL DEFAULT 'published',
     sort_order   INTEGER NOT NULL DEFAULT 0,
     created_at   TEXT NOT NULL DEFAULT (datetime('now','localtime')),
-    updated_at   TEXT NOT NULL DEFAULT (datetime('now','localtime'))
-    -- ▼ AI thêm cột riêng theo template tại đây (vd: material, brand, gallery, sizes, features, specs, origin, stock_qty)
+    updated_at   TEXT NOT NULL DEFAULT (datetime('now','localtime')),
+    brand        TEXT NOT NULL DEFAULT '',       -- thương hiệu (vd: SportPro, FlexFit)
+    sizes        TEXT NOT NULL DEFAULT '',       -- padded-pipe sizes: |S|M|L|XL|
+    theme        TEXT NOT NULL DEFAULT '',       -- padded-pipe themes: |ban-chay|giam-gia|
+    sold         INTEGER NOT NULL DEFAULT 0      -- số lượng đã bán (dùng để sort/filter)
 );
 
 -- Đơn hàng — schema CỐ ĐỊNH, khớp 1-1 với OrderController.php + ShopPublicController.php.
