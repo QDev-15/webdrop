@@ -1,9 +1,7 @@
 import { Link } from 'react-router-dom'
-import { useSite } from '../contexts/SiteContext'
 import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function CollectionsPage() {
-  const { categories } = useSite()
   useDocumentMeta({
     title: 'Bộ sưu tập',
     description: 'Khám phá các bộ sưu tập sản phẩm thể thao được lựa chọn kỹ lưỡng'
@@ -45,8 +43,7 @@ export default function CollectionsPage() {
                   color: 'white',
                   transition: 'all .3s',
                   cursor: 'pointer',
-                  group: 'collection'
-                }}
+                } as React.CSSProperties}
                 onMouseEnter={e => {
                   const img = e.currentTarget.querySelector('img') as HTMLImageElement
                   if (img) img.style.transform = 'scale(1.08)'

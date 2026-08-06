@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { useSite } from '../contexts/SiteContext'
 import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function ServicesPage() {
-  const { settings } = useSite()
   const [stats, setStats] = useState({ customers: 12000, products: 40, years: 7, provinces: 63 })
 
   useDocumentMeta({

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useSite } from '../contexts/SiteContext'
 import { useCart } from '../contexts/CartContext'
@@ -7,7 +7,6 @@ import { useDocumentMeta } from '../hooks/useDocumentMeta'
 export default function PromotionsPage() {
   const { products, categories } = useSite()
   const { addItem } = useCart()
-  const navigate = useNavigate()
 
   const [hours, setHours] = useState(0)
   const [mins, setMins] = useState(0)
