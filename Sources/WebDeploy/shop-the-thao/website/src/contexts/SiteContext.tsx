@@ -49,12 +49,11 @@ export function SiteProvider({ children }: { children: ReactNode }) {
       api.get<Product[]>('/public/products?per_page=200'),
       api.get<Category[]>('/public/categories'),
     ]).then(([s, p, c]) => {
-      console.log('Site data loaded:', { s, p: p?.length, c: c?.length })
       setSettings(s)
       setProducts(Array.isArray(p) ? p : [])
       setCategories(Array.isArray(c) ? c : [])
-    }).catch(err => {
-      console.error('Failed to fetch site data:', err)
+    }).catch(() => {
+      // Giữ nguyên state rỗng — các trang tự xử lý fallback khi settings/products/categories trống
     }).finally(() => {
       setLoading(false)
     })

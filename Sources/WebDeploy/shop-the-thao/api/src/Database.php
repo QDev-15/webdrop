@@ -56,13 +56,42 @@ class Database {
             ['key' => 'meta_description', 'value' => 'Mua quần áo gym, dụng cụ tập luyện & phụ kiện thể thao chính hãng với giá tốt. Miễn phí ship, đổi size miễn phí, bảo hành 12 tháng.', 'group' => 'seo'],
             ['key' => 'shipping_fee', 'value' => '25000', 'group' => 'shop'],
             ['key' => 'free_shipping_threshold', 'value' => '500000', 'group' => 'shop'],
+            // Payment — payment_cod_enabled/payment_sepay_enabled/sepay_webhook_secret là 3 key BẮT BUỘC
+            // cho luồng thanh toán COD+SePay (xem ShopPublicController::paymentMethods()/createOrder()/sepayWebhook()).
+            ['key' => 'payment_cod_enabled', 'value' => '1', 'group' => 'payment'],
+            ['key' => 'payment_sepay_enabled', 'value' => '0', 'group' => 'payment'],
+            ['key' => 'sepay_webhook_secret', 'value' => '', 'group' => 'payment'],
             ['key' => 'sepay_bank_name', 'value' => 'VPBank', 'group' => 'payment'],
             ['key' => 'sepay_bank_code', 'value' => 'VPB', 'group' => 'payment'],
-            ['key' => 'sepay_account_no', 'value' => '123456789', 'group' => 'payment'],
+            // Tên cột đúng phải là sepay_account_number (khớp ShopPublicController.php + PaymentSettingsTab.tsx)
+            ['key' => 'sepay_account_number', 'value' => '123456789', 'group' => 'payment'],
             ['key' => 'sepay_account_name', 'value' => 'CONG TY CO PHAN SPORT THE THAO', 'group' => 'payment'],
             ['key' => 'hero_topbar_1', 'value' => 'Miễn phí ship đơn từ 500K', 'group' => 'hero'],
             ['key' => 'hero_topbar_2', 'value' => 'Đổi size miễn phí', 'group' => 'hero'],
             ['key' => 'hero_topbar_3', 'value' => 'Bảo hành 12 tháng', 'group' => 'hero'],
+            // Social
+            ['key' => 'facebook', 'value' => '', 'group' => 'social'],
+            ['key' => 'instagram', 'value' => '', 'group' => 'social'],
+            ['key' => 'youtube', 'value' => '', 'group' => 'social'],
+            ['key' => 'tiktok', 'value' => '', 'group' => 'social'],
+            // Footer
+            ['key' => 'footer_about', 'value' => 'Chuyên cung cấp đồ thể thao & gym chính hãng. Tất cả sản phẩm có bảo hành, đổi size miễn phí trong 30 ngày.', 'group' => 'footer'],
+            // SMTP
+            ['key' => 'smtp_host', 'value' => '', 'group' => 'smtp'],
+            ['key' => 'smtp_port', 'value' => '587', 'group' => 'smtp'],
+            ['key' => 'smtp_user', 'value' => '', 'group' => 'smtp'],
+            ['key' => 'smtp_pass', 'value' => '', 'group' => 'smtp'],
+            ['key' => 'smtp_from', 'value' => '', 'group' => 'smtp'],
+            ['key' => 'smtp_from_name', 'value' => 'SPORT THE THAO', 'group' => 'smtp'],
+            // System
+            ['key' => 'maintenance_mode', 'value' => '0', 'group' => 'system'],
+            // Cloudinary (tùy chọn — không điền vẫn upload local bình thường)
+            ['key' => 'cloudinary_cloud_name', 'value' => '', 'group' => 'cloudinary'],
+            ['key' => 'cloudinary_api_key', 'value' => '', 'group' => 'cloudinary'],
+            ['key' => 'cloudinary_api_secret', 'value' => '', 'group' => 'cloudinary'],
+            ['key' => 'cloudinary_folder', 'value' => 'shop-the-thao', 'group' => 'cloudinary'],
+            // Integrations
+            ['key' => 'unsplash_access_key', 'value' => 'BdVQbpMxCxFAU2ijjhhvwC5-t3Y9CqFe65Mf09t11kY', 'group' => 'integrations'],
         ];
         $stmt = $this->pdo->prepare("INSERT INTO settings (key, value, grp) VALUES (?, ?, ?)");
         foreach ($settings as $s) {
@@ -166,6 +195,18 @@ class Database {
     public function exec(string $sql, array $params = []): int {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($params);
+        return $stmt->rowCount();
+    }
+
+    // Alias — toàn bộ controller trong site này gọi $this->db->execute(...) cho INSERT/UPDATE/DELETE,
+    // trả về lastInsertId() cho INSERT (khớp với cách ProductController/HeroSlideController... đang dùng
+    // giá trị trả về làm $id), rowCount() nếu không phải INSERT.
+    public function execute(string $sql, array $params = []): int {
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($params);
+        if (stripos(ltrim($sql), 'INSERT') === 0) {
+            return (int)$this->pdo->lastInsertId();
+        }
         return $stmt->rowCount();
     }
 

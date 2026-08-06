@@ -14,7 +14,7 @@ export default function Footer() {
             <div className="tt-footer-social">
               <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer">f</a>
               <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">ig</a>
-              <a href={`https://zalo.me/${settings.contact_phone || '[ZALO_NUMBER]'}`} aria-label="Zalo" target="_blank" rel="noopener noreferrer">z</a>
+              <a href={`https://zalo.me/${settings.site_phone || '[ZALO_NUMBER]'}`} aria-label="Zalo" target="_blank" rel="noopener noreferrer">z</a>
             </div>
           </div>
           <div className="tt-footer-col">
@@ -40,9 +40,9 @@ export default function Footer() {
           <div className="tt-footer-col">
             <h4>Liên hệ</h4>
             <div className="tt-footer-contact-items">
-              <p>📍 {settings.contact_address || '[ĐỊA CHỈ CỬA HÀNG]'}</p>
-              <p>📞 <a href={`tel:${settings.contact_phone || '[SỐ_ĐIỆN_THOẠI]'}`} style={{ color: 'inherit' }}>{settings.contact_phone || '[SỐ_ĐIỆN_THOẠI]'}</a></p>
-              <p>✉️ <a href={`mailto:${settings.contact_email || '[EMAIL@SPORTTHETAO.VN]'}`} style={{ color: 'inherit' }}>{settings.contact_email || '[EMAIL@SPORTTHETAO.VN]'}</a></p>
+              <p>📍 {settings.site_address || '[ĐỊA CHỈ CỬA HÀNG]'}</p>
+              <p>📞 <a href={`tel:${settings.site_phone || '[SỐ_ĐIỆN_THOẠI]'}`} style={{ color: 'inherit' }}>{settings.site_phone || '[SỐ_ĐIỆN_THOẠI]'}</a></p>
+              <p>✉️ <a href={`mailto:${settings.site_email || '[EMAIL@SPORTTHETAO.VN]'}`} style={{ color: 'inherit' }}>{settings.site_email || '[EMAIL@SPORTTHETAO.VN]'}</a></p>
               <p>🕐 {settings.working_hours || 'T2–T7: 8:00–21:00 | CN: 9:00–18:00'}</p>
             </div>
           </div>
@@ -57,7 +57,7 @@ export default function Footer() {
       </div>
 
       {/* Zalo float button */}
-      <a href={`https://zalo.me/${settings.contact_phone || '[ZALO_NUMBER]'}`} className="tt-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+      <a href={`https://zalo.me/${settings.site_phone || '[ZALO_NUMBER]'}`} className="tt-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
         <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.17.7 4.18 1.88 5.81L2.5 21.5l3.8-1.35A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a7.95 7.95 0 01-4.13-1.15l-.29-.18-3.04 1.08 1.09-2.97-.2-.31A8 8 0 1112 20zm4.51-5.95c-.24-.12-1.43-.71-1.65-.79-.22-.08-.38-.12-.54.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.19-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.1-.49.1-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.47-.39-.4-.54-.41-.14 0-.3-.01-.46-.01s-.42.06-.64.3c-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.09 3.62.57.25 1.02.4 1.37.5.57.18 1.1.16 1.51.1.46-.07 1.43-.59 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg>
       </a>
     </footer>

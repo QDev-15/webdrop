@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import HomePage from './pages/HomePage'
 import ProductDetailPage from './pages/ProductDetailPage'
 import CartPage from './pages/CartPage'
+import CheckoutPage from './pages/CheckoutPage'
 import CollectionsPage from './pages/CollectionsPage'
 import PromotionsPage from './pages/PromotionsPage'
 import ServicesPage from './pages/ServicesPage'
@@ -32,6 +33,7 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/san-pham/:slug" element={<ProductDetailPage />} />
             <Route path="/gio-hang" element={<CartPage />} />
+            <Route path="/thanh-toan" element={<CheckoutPage />} />
             <Route path="/bo-suu-tap" element={<CollectionsPage />} />
             <Route path="/khuyen-mai" element={<PromotionsPage />} />
             <Route path="/dich-vu" element={<ServicesPage />} />

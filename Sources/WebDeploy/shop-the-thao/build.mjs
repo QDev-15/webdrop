@@ -61,7 +61,6 @@ console.log('')
 console.log('[2/4] Build React apps...')
 run('npm run build', join(root, 'website'), 'Build website')
 run('npm run build', join(root, 'admin'), 'Build admin')
-run('npm run build', join(root, 'admin'), 'Build admin')
 
 // ── Tạo cấu trúc thư mục deploy ──────────────────────────────────────────────
 console.log('')
