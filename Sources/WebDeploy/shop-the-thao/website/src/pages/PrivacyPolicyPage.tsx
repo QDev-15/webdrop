@@ -5,8 +5,14 @@ export default function PrivacyPolicyPage() {
 
   return (
     <div className="tt-page-wrap">
+      <div className="tt-page-hero">
+        <div className="tt-container">
+          <h1>Chính sách bảo mật</h1>
+          <p>Bảo vệ thông tin cá nhân của bạn là ưu tiên hàng đầu của chúng tôi</p>
+        </div>
+      </div>
+
       <div className="tt-container" style={{ padding: '60px 0', maxWidth: 800 }}>
-        <h1 style={{ marginBottom: 24 }}>Chính sách bảo mật</h1>
         <div style={{ fontSize: 14, color: 'var(--text-2)', lineHeight: 1.8 }}>
           <h2 style={{ fontSize: 18, fontWeight: 600, marginTop: 32, marginBottom: 12 }}>1. Thông tin chúng tôi thu thập</h2>
           <p>Chúng tôi thu thập thông tin cá nhân của bạn khi bạn đặt hàng, gồm có:</p>

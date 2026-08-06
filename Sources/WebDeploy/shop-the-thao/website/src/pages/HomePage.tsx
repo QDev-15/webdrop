@@ -391,6 +391,11 @@ export default function HomePage() {
                   <div key={product.id} className="tt-prod-card">
                     <Link to={`/san-pham/${product.slug}`} className="tt-prod-img-wrap">
                       <img src={product.image} alt={product.name} loading="lazy" />
+                      {product.badge && (
+                        <div className={`tt-badge tt-badge-${product.badge?.toLowerCase() || 'new'}`}>
+                          {product.badge === 'sale' ? 'Sale' : product.badge === 'new' ? 'Mới' : product.badge === 'hot' ? 'Hot' : product.badge}
+                        </div>
+                      )}
                     </Link>
                     <div className="tt-prod-body">
                       <div className="tt-prod-cat">{categoryLabels[product.category_slug || ''] || product.category_slug}</div>
@@ -408,14 +413,24 @@ export default function HomePage() {
                         </span>
                         {product.price_sale && <span className="tt-price-orig">{fmt(product.price)}</span>}
                       </div>
+                      <div className="tt-trust-mini">✓ Hàng chính hãng · ✓ Đổi size miễn phí</div>
+                      <div className="tt-prod-actions">
+                        <button
+                          className="tt-btn-cart"
+                          onClick={() => handleAddCart(product)}
+                          title="Thêm vào giỏ hàng"
+                        >
+                          Thêm vào giỏ
+                        </button>
+                        <Link
+                          to={`/san-pham/${product.slug}`}
+                          className="tt-btn-detail"
+                          title="Xem chi tiết"
+                        >
+                          Chi tiết
+                        </Link>
+                      </div>
                     </div>
-                    <button
-                      className="tt-prod-add-btn"
-                      onClick={() => handleAddCart(product)}
-                      title="Thêm vào giỏ hàng"
-                    >
-                      Thêm vào giỏ
-                    </button>
                   </div>
                 ))}
               </div>

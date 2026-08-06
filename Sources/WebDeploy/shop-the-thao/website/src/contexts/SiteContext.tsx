@@ -13,6 +13,7 @@ export interface Product {
   color?: string
   sizes?: string
   brand?: string
+  badge?: string | null
   review_count?: number
   sold_count?: number
 }

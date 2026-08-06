@@ -5,8 +5,14 @@ export default function TermsPage() {
 
   return (
     <div className="tt-page-wrap">
+      <div className="tt-page-hero">
+        <div className="tt-container">
+          <h1>Điều khoản sử dụng</h1>
+          <p>Vui lòng đọc kỹ các điều khoản trước khi sử dụng dịch vụ của chúng tôi</p>
+        </div>
+      </div>
+
       <div className="tt-container" style={{ padding: '60px 0', maxWidth: 800 }}>
-        <h1 style={{ marginBottom: 24 }}>Điều khoản sử dụng</h1>
         <div style={{ fontSize: 14, color: 'var(--text-2)', lineHeight: 1.8 }}>
           <h2 style={{ fontSize: 18, fontWeight: 600, marginTop: 32, marginBottom: 12 }}>1. Điều kiện sử dụng</h2>
           <p>Bằng cách truy cập và sử dụng trang web này, bạn đồng ý bị ràng buộc bởi các điều khoản và điều kiện sử dụng này. Nếu bạn không đồng ý với bất kỳ phần nào, vui lòng không sử dụng trang web này.</p>

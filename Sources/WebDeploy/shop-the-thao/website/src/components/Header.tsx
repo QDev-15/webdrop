@@ -91,7 +91,6 @@ export default function Header() {
               className="tt-burger"
               aria-label="Menu"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              style={{ display: 'none' }}
             >
               <span></span>
               <span></span>
