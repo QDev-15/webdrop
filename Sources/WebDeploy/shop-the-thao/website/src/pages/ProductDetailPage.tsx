@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
-import { useState } from 'react'
-import { useSite } from '../contexts/SiteContext'
+import { useState, useEffect } from 'react'
+import { useSite, parseColorPairs } from '../contexts/SiteContext'
 import { useCart } from '../contexts/CartContext'
 import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
@@ -10,11 +10,20 @@ export default function ProductDetailPage() {
   const { addItem } = useCart()
 
   const product = products.find((p: typeof products[0]) => p.slug === slug)
+  const productColors = parseColorPairs(product?.colors)
   const [selectedSize, setSelectedSize] = useState<string>('')
-  const [selectedColor, setSelectedColor] = useState<string>('Đen')
+  const [selectedColor, setSelectedColor] = useState<string>('')
   const [qty, setQty] = useState(1)
   const [mainImg, setMainImg] = useState(product?.image || '')
   const [added, setAdded] = useState(false)
+
+  // Mặc định chọn màu đầu tiên khi dữ liệu sản phẩm tải xong (products fetch async trong SiteContext)
+  useEffect(() => {
+    if (productColors.length && !selectedColor) {
+      setSelectedColor(productColors[0].name)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product?.slug, productColors.length])
 
   useDocumentMeta({
     title: product?.name || 'Chi tiết sản phẩm',
@@ -38,19 +47,19 @@ export default function ProductDetailPage() {
   const discount = product.price_sale ? Math.round((1 - product.price_sale / product.price) * 100) : 0
 
   const handleAddCart = () => {
-    if (!selectedSize) {
+    if (product.sizes && !selectedSize) {
       alert('Vui lòng chọn size')
       return
     }
-    for (let i = 0; i < qty; i++) {
-      addItem({
-        product_id: product.id,
-        name: product.name,
-        slug: product.slug,
-        image: product.image,
-        price: price,
-      })
-    }
+    addItem({
+      product_id: product.id,
+      name: product.name,
+      slug: product.slug,
+      image: product.image,
+      price: price,
+      color: selectedColor || undefined,
+      size: selectedSize || undefined,
+    }, qty)
     setAdded(true)
     setTimeout(() => setAdded(false), 2000)
   }
@@ -97,8 +106,8 @@ export default function ProductDetailPage() {
               <h1 className="tt-pd-title">{product.name}</h1>
 
               <div className="tt-pd-rating-row">
-                <span className="tt-stars">★★★★★</span>
-                <span style={{ color: 'var(--text-2)', fontSize: 13 }}>4.7 · 189 đánh giá · 312 đã bán</span>
+                <span className="tt-stars">{'★'.repeat(Math.round(product.rating || 0))}</span>
+                <span style={{ color: 'var(--text-2)', fontSize: 13 }}>{(product.rating || 0).toFixed(1)} · {product.sold || 0} đã bán</span>
               </div>
 
               <div className="tt-pd-price-row">
@@ -152,35 +161,26 @@ export default function ProductDetailPage() {
               )}
 
               {/* Color selector */}
-              <div className="tt-pd-option-group">
-                <div className="tt-pd-option-label">
-                  Màu sắc <span style={{ color: 'var(--accent)', fontSize: 13 }} id="ttSelectedColor">— Đen</span>
+              {productColors.length > 0 && (
+                <div className="tt-pd-option-group">
+                  <div className="tt-pd-option-label">
+                    Màu sắc <span style={{ color: 'var(--accent)', fontSize: 13 }}>{selectedColor ? `— ${selectedColor}` : '— Chưa chọn'}</span>
+                  </div>
+                  <div className="tt-pd-color-row">
+                    {productColors.map(c => (
+                      <button
+                        key={c.name}
+                        className={`tt-color-dot${selectedColor === c.name ? ' active' : ''}`}
+                        data-color={c.name}
+                        onClick={() => setSelectedColor(c.name)}
+                        style={{ background: c.hex }}
+                        title={c.name}
+                        aria-label={c.name}
+                      />
+                    ))}
+                  </div>
                 </div>
-                <div className="tt-pd-color-row">
-                  {['Đen', 'Trắng', 'Cam'].map(color => (
-                    <button
-                      key={color}
-                      className={`tt-color-dot${selectedColor === color ? ' active' : ''}`}
-                      data-color={color}
-                      onClick={() => {
-                        setSelectedColor(color)
-                        document.getElementById('ttSelectedColor')!.textContent = '— ' + color
-                      }}
-                      style={{
-                        width: 40,
-                        height: 40,
-                        borderRadius: '50%',
-                        border: `3px solid ${selectedColor === color ? 'var(--accent)' : '#ddd'}`,
-                        background: color === 'Đen' ? '#111' : color === 'Trắng' ? '#eee' : '#ff4d29',
-                        cursor: 'pointer',
-                        transition: 'all .2s',
-                      }}
-                      title={color}
-                      aria-label={color}
-                    />
-                  ))}
-                </div>
-              </div>
+              )}
 
               {/* Qty and buttons */}
               <div className="tt-pd-qty-row">

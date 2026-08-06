@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { useSite } from '../contexts/SiteContext'
+import { useSite, parseColorNames } from '../contexts/SiteContext'
 import { useCart } from '../contexts/CartContext'
 import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
@@ -44,7 +44,10 @@ export default function HomePage() {
       const price = p.price_sale || p.price
       if (price > filter.priceMax) return false
       if (filter.sizes.length && (!p.sizes || !p.sizes.split('|').some((s: string) => filter.sizes.includes(s)))) return false
-      if (filter.colors.length && p.color && !filter.colors.includes(p.color)) return false
+      if (filter.colors.length) {
+        const productColors = parseColorNames(p.colors)
+        if (!productColors.some(c => filter.colors.includes(c))) return false
+      }
       if (filter.brands.length && p.brand && !filter.brands.includes(p.brand)) return false
       return true
     })
@@ -55,8 +58,8 @@ export default function HomePage() {
     const arr = [...filtered]
     if (filter.sort === 'price-asc') arr.sort((a: typeof products[0], b: typeof products[0]) => (a.price_sale || a.price) - (b.price_sale || b.price))
     else if (filter.sort === 'price-desc') arr.sort((a: typeof products[0], b: typeof products[0]) => (b.price_sale || b.price) - (a.price_sale || a.price))
-    else if (filter.sort === 'rating') arr.sort((a: typeof products[0], b: typeof products[0]) => (b.review_count || 0) - (a.review_count || 0))
-    else if (filter.sort === 'bestseller') arr.sort((a: typeof products[0], b: typeof products[0]) => (b.sold_count || 0) - (a.sold_count || 0))
+    else if (filter.sort === 'rating') arr.sort((a: typeof products[0], b: typeof products[0]) => (b.rating || 0) - (a.rating || 0))
+    else if (filter.sort === 'bestseller') arr.sort((a: typeof products[0], b: typeof products[0]) => (b.sold || 0) - (a.sold || 0))
     else arr.sort((a, b) => b.id - a.id) // newest
     return arr
   }, [filtered, filter.sort])
@@ -78,7 +81,7 @@ export default function HomePage() {
 
   const allColors = useMemo(() => {
     const colors = new Set<string>()
-    products.forEach(p => p.color && colors.add(p.color))
+    products.forEach(p => parseColorNames(p.colors).forEach(c => colors.add(c)))
     return Array.from(colors).sort()
   }, [products])
 
@@ -403,9 +406,9 @@ export default function HomePage() {
                         <Link to={`/san-pham/${product.slug}`}>{product.name}</Link>
                       </h3>
                       <div className="tt-prod-rating">
-                        <span className="tt-stars">{'★'.repeat(Math.floor(product.review_count || 0))}</span>
-                        <span>{product.review_count || 0}</span>
-                        <span>({product.sold_count || 0} đã bán)</span>
+                        <span className="tt-stars">{'★'.repeat(Math.round(product.rating || 0))}</span>
+                        <span>{(product.rating || 0).toFixed(1)}</span>
+                        <span>({product.sold || 0} đã bán)</span>
                       </div>
                       <div className="tt-prod-price">
                         <span className={`tt-price${product.price_sale ? ' sale' : ''}`}>
@@ -440,10 +443,10 @@ export default function HomePage() {
                 <nav aria-label="Phân trang" style={{ marginTop: 48, textAlign: 'center' }}>
                   <ul className="tt-pagination">
                     {Array.from({ length: totalPages }, (_, i) => (
-                      <li key={i + 1}>
+                      <li key={i + 1} className={filter.page === i + 1 ? 'page-item active' : 'page-item'}>
                         <button
                           onClick={() => setFilter(f => ({ ...f, page: i + 1 }))}
-                          className={filter.page === i + 1 ? 'active' : ''}
+                          className="page-link"
                         >
                           {i + 1}
                         </button>

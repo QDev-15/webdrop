@@ -3,14 +3,37 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '../../api/client'
 import ImageField from '../../components/ImageField'
 
-// ▼ AI: đổi bộ màu này khớp với palette thật của template (site nào cũng khác nhau).
-// Phải khớp 100% với COLOR_SWATCHES ở website/src/pages/ProductsPage.tsx —
-// bộ lọc "Màu sắc" trên site chỉ nhận diện đúng các tên khai báo ở đây.
+// ▼ Bộ màu khớp với dữ liệu seed thật (api/src/Database.php::getProducts()) — website tự suy ra
+// danh sách "Màu sắc" từ cột colors của từng sản phẩm (không có whitelist cố định phía website),
+// nên danh sách này chỉ cần đủ các màu admin có thể chọn khi thêm/sửa sản phẩm.
 const COLOR_SWATCHES = [
-  { name: 'Đen', hex: '#1e1e1e' },
+  { name: 'Đen', hex: '#000000' },
   { name: 'Trắng', hex: '#ffffff' },
-  { name: 'Be', hex: '#e8dfd0' },
+  { name: 'Xám', hex: '#8b8b8b' },
+  { name: 'Xanh navy', hex: '#1f4788' },
+  { name: 'Xanh lá', hex: '#22c55e' },
+  { name: 'Hồng', hex: '#ff69b4' },
+  { name: 'Tím', hex: '#a855f7' },
+  { name: 'Đỏ', hex: '#ff0000' },
+  { name: 'Nâu', hex: '#8b4513' },
+  { name: 'Đa sắc', hex: '#ff0000' },
 ]
+
+// Danh sách gợi ý cho ô "Nhãn nổi bật" (theme, padded-pipe) — khớp giá trị website đọc để
+// chia sản phẩm vào các khối trên trang chủ/khuyến mãi.
+const THEME_OPTIONS = [
+  { value: 'ban-chay', label: 'Bán chạy' },
+  { value: 'giam-gia', label: 'Đang giảm giá' },
+  { value: 'moi-ve', label: 'Mới về' },
+]
+
+function parseTags(v: string): string[] {
+  return v.split('|').map(s => s.trim()).filter(Boolean)
+}
+
+function serializeTags(tags: string[]): string {
+  return tags.length ? `|${tags.join('|')}|` : ''
+}
 
 function parseColorNames(colors: string): string[] {
   return colors.split('|').map(c => c.split(':')[0]).filter(Boolean)
@@ -40,15 +63,19 @@ interface FormData {
   is_new: boolean
   status: string
   sort_order: string
-  // ▼ AI: thêm field mới vào đây nếu products có thêm cột (brand, sizes, gallery, features, specs, origin...)
-  // — nhớ thêm tương ứng vào ProductController.php::BASE_FIELDS
+  // ▼ Cột mở rộng riêng của site này (xem api/schema.sql + ProductController.php::BASE_FIELDS)
+  brand: string
+  sizes: string
+  theme: string
+  sold: string
 }
 
 const EMPTY: FormData = {
   name: '', category_id: '', image: '', price: '', price_sale: '',
   badge: '', description: '', colors: '', rating: '5', in_stock: true,
   is_featured: false, is_new: false,
-  status: 'published', sort_order: '0'
+  status: 'published', sort_order: '0',
+  brand: '', sizes: '', theme: '', sold: '0',
 }
 
 export default function ProductForm() {
@@ -85,6 +112,10 @@ export default function ProductForm() {
           is_new: Boolean(p.is_new),
           status: String(p.status ?? 'published'),
           sort_order: String(p.sort_order ?? '0'),
+          brand: String(p.brand ?? ''),
+          sizes: parseTags(String(p.sizes ?? '')).join(', '),
+          theme: String(p.theme ?? ''),
+          sold: String(p.sold ?? '0'),
         })
       }
     }).catch(() => setError('Không tải được dữ liệu'))
@@ -99,6 +130,12 @@ export default function ProductForm() {
     set('colors', serializeColors(next))
   }
 
+  const selectedThemes = parseTags(form.theme)
+  const toggleTheme = (value: string) => {
+    const next = selectedThemes.includes(value) ? selectedThemes.filter(t => t !== value) : [...selectedThemes, value]
+    set('theme', serializeTags(next))
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!form.name.trim()) { setError('Tên sản phẩm không được để trống'); return }
@@ -111,6 +148,8 @@ export default function ProductForm() {
       rating: Math.max(0, Math.min(5, Number(form.rating) || 5)),
       in_stock: form.in_stock ? 1 : 0,
       sort_order: Number(form.sort_order) || 0,
+      sizes: serializeTags(form.sizes.split(',').map(s => s.trim()).filter(Boolean)),
+      sold: Number(form.sold) || 0,
     }
     try {
       if (isEdit) {
@@ -202,6 +241,33 @@ export default function ProductForm() {
           {selectedColors.length > 0 && (
             <p style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 8 }}>Đã chọn: {selectedColors.join(', ')}</p>
           )}
+        </div>
+
+        <div className="form-row">
+          <div className="form-group" style={{ flex: 1 }}>
+            <label>Thương hiệu</label>
+            <input type="text" value={form.brand} onChange={e => set('brand', e.target.value)} placeholder="VD: SportPro, FlexFit" />
+          </div>
+          <div className="form-group" style={{ flex: 1 }}>
+            <label>Kích thước (cách nhau bởi dấu phẩy)</label>
+            <input type="text" value={form.sizes} onChange={e => set('sizes', e.target.value)} placeholder="VD: S, M, L, XL hoặc Freesize" />
+          </div>
+          <div className="form-group" style={{ flex: 1 }}>
+            <label>Đã bán</label>
+            <input type="number" value={form.sold} onChange={e => set('sold', e.target.value)} min={0} placeholder="0" />
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label>Nhãn nổi bật (dùng để hiển thị ở các khối trang chủ/khuyến mãi)</label>
+          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginTop: 4 }}>
+            {THEME_OPTIONS.map(t => (
+              <label key={t.value} className="form-check">
+                <input type="checkbox" checked={selectedThemes.includes(t.value)} onChange={() => toggleTheme(t.value)} />
+                <span>{t.label}</span>
+              </label>
+            ))}
+          </div>
         </div>
 
         <div className="form-row">

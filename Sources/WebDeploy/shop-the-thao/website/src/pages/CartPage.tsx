@@ -1,15 +1,17 @@
 import { Link } from 'react-router-dom'
 import { useCart } from '../contexts/CartContext'
+import { useSite } from '../contexts/SiteContext'
 import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function CartPage() {
-  const { items, subtotal, removeItem } = useCart()
+  const { items, subtotal, updateQty, removeItem } = useCart()
+  const { settings } = useSite()
   useDocumentMeta({ title: 'Giỏ hàng', description: 'Quản lý giỏ hàng của bạn' })
 
   const fmt = (n: number) => n.toLocaleString('vi-VN') + 'đ'
-  const FREE_SHIP_THRESHOLD = 500000
-  const SHIP_FEE = 30000
-  const shipping = subtotal >= FREE_SHIP_THRESHOLD ? 0 : SHIP_FEE
+  const FREE_SHIP_THRESHOLD = Number(settings['free_shipping_threshold'] || 500000)
+  const SHIP_FEE = Number(settings['shipping_fee'] || 30000)
+  const shipping = FREE_SHIP_THRESHOLD > 0 && subtotal >= FREE_SHIP_THRESHOLD ? 0 : SHIP_FEE
   const total = subtotal + shipping
 
   if (items.length === 0) {
@@ -75,11 +77,10 @@ export default function CartPage() {
             {/* Items column */}
             <div className="tt-cart-items-col">
               <div id="ttCartItems">
-                {items.map((item, idx) => (
+                {items.map((item) => (
                   <div
-                    key={idx}
+                    key={`${item.product_id}-${item.color ?? ''}-${item.size ?? ''}`}
                     className="tt-cart-item"
-                    data-idx={idx}
                     style={{
                       display: 'grid',
                       gridTemplateColumns: '100px 1fr auto auto',
@@ -119,6 +120,11 @@ export default function CartPage() {
                       >
                         {item.name}
                       </Link>
+                      {(item.color || item.size) && (
+                        <div style={{ fontSize: 12, color: 'var(--text-2)', marginBottom: 4 }}>
+                          {item.color}{item.color && item.size ? ' · ' : ''}{item.size ? `Size ${item.size}` : ''}
+                        </div>
+                      )}
                       <div className="tt-cart-item-price" style={{ fontSize: 14, fontWeight: 600, color: 'var(--accent)' }}>
                         {fmt(item.price)}
                       </div>
@@ -127,14 +133,8 @@ export default function CartPage() {
                     <div className="tt-cart-item-qty" style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
                       <button
                         className="tt-qty-sm"
-                        onClick={() => {
-                          const newQty = (item.qty || 1) - 1
-                          if (newQty > 0) {
-                            const updatedItems = [...items]
-                            updatedItems[idx] = { ...item, qty: newQty }
-                            // This would normally update cart context
-                          }
-                        }}
+                        onClick={() => updateQty(item.product_id, (item.qty || 1) - 1, item.color, item.size)}
+                        disabled={(item.qty || 1) <= 1}
                         aria-label="Giảm"
                         style={{
                           padding: '4px 8px',
@@ -151,11 +151,7 @@ export default function CartPage() {
                       </span>
                       <button
                         className="tt-qty-sm"
-                        onClick={() => {
-                          const updatedItems = [...items]
-                          updatedItems[idx] = { ...item, qty: (item.qty || 1) + 1 }
-                          // This would normally update cart context
-                        }}
+                        onClick={() => updateQty(item.product_id, (item.qty || 1) + 1, item.color, item.size)}
                         aria-label="Tăng"
                         style={{
                           padding: '4px 8px',
@@ -175,7 +171,7 @@ export default function CartPage() {
                       </div>
                       <button
                         className="tt-cart-item-remove"
-                        onClick={() => removeItem(idx)}
+                        onClick={() => removeItem(item.product_id, item.color, item.size)}
                         aria-label="Xóa sản phẩm"
                         style={{
                           padding: '4px 8px',
@@ -228,9 +224,9 @@ export default function CartPage() {
                 <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 20 }}>Tóm tắt đơn hàng</h3>
 
                 <div style={{ marginBottom: 20 }}>
-                  {items.map((item, idx) => (
+                  {items.map((item) => (
                     <div
-                      key={idx}
+                      key={`${item.product_id}-${item.color ?? ''}-${item.size ?? ''}`}
                       style={{
                         display: 'flex',
                         justifyContent: 'space-between',

@@ -12,8 +12,8 @@ export default function Footer() {
             <div className="tt-footer-logo">SPORT<span>THE THAO</span></div>
             <p className="tt-footer-desc">Chuyên cung cấp đồ thể thao & gym chính hãng. Tất cả sản phẩm có bảo hành, đổi size miễn phí trong 30 ngày.</p>
             <div className="tt-footer-social">
-              <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer">f</a>
-              <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">ig</a>
+              {settings.facebook && <a href={settings.facebook} aria-label="Facebook" target="_blank" rel="noopener noreferrer">f</a>}
+              {settings.instagram && <a href={settings.instagram} aria-label="Instagram" target="_blank" rel="noopener noreferrer">ig</a>}
               <a href={`https://zalo.me/${settings.site_phone || '[ZALO_NUMBER]'}`} aria-label="Zalo" target="_blank" rel="noopener noreferrer">z</a>
             </div>
           </div>
@@ -48,7 +48,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="tt-footer-bottom">
-          <p>© 2025 {settings.site_name || '[TÊN SHOP]'}. Tất cả quyền được bảo lưu.</p>
+          <p>© {new Date().getFullYear()} {settings.site_name || '[TÊN SHOP]'}. Tất cả quyền được bảo lưu.</p>
           <div className="tt-footer-bottom-links">
             <Link to="/chinh-sach-bao-mat">Chính sách bảo mật</Link>
             <Link to="/dieu-khoan">Điều khoản</Link>

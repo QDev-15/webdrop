@@ -124,7 +124,7 @@ export default function ContactPage() {
               {/* Social buttons */}
               <div className="tt-contact-socials" style={{ marginTop: 32, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
                 <a
-                  href="#"
+                  href={settings?.facebook || '#'}
                   className="tt-contact-social-btn"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -182,7 +182,7 @@ export default function ContactPage() {
                   Chat Zalo
                 </a>
                 <a
-                  href="#"
+                  href={settings?.instagram || '#'}
                   className="tt-contact-social-btn"
                   target="_blank"
                   rel="noopener noreferrer"

@@ -31,8 +31,8 @@ shop-the-thao/
 4. **Kiểm tra**: truy cập `https://yourdomain.com/api/health` — kỳ vọng JSON `{"status":"ok","pdo_sqlite":true,...}`. Nếu `db_dir` báo "not writable", chmod thư mục `api/database/` và `api/uploads/` lên `755` hoặc `775`.
 
 5. **Đăng nhập admin**: `https://yourdomain.com/admin`
-   - Email: `admin@example.com`
-   - Mật khẩu: `admin123`
+   - Email: `sysadmin@admin.com`
+   - Mật khẩu: `123456`
    - **Đổi mật khẩu ngay sau lần đăng nhập đầu tiên** (menu Hồ sơ).
 
 6. **Bảo mật**: xóa file `api/check-hash.php` khỏi server sau khi deploy xong — đây là file debug chỉ dùng để verify hash lúc phát triển.
@@ -45,7 +45,7 @@ shop-the-thao/
 
 ## Tài khoản & thanh toán mặc định
 
-- Admin mặc định: `admin@example.com` / `admin123`
+- Admin mặc định: `sysadmin@admin.com` / `123456`
 - Thanh toán: COD bật sẵn. SePay (chuyển khoản QR) **tắt sẵn** — vào Admin → Cài đặt → tab "💳 Thanh toán" để bật + điền tài khoản ngân hàng thật + SePay API Access trước khi vận hành thật.
 - Phí vận chuyển mặc định: 25.000đ, miễn phí từ đơn 500.000đ.
 

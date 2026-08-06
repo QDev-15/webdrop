@@ -33,7 +33,11 @@ export default function PromotionsPage() {
     return () => clearInterval(timer)
   }, [])
 
-  const saleProducts = products.filter((p: any) => p.price_sale && p.price_sale < p.price).slice(0, 8)
+  // Sản phẩm giảm giá = có price_sale thật HOẶC admin gắn nhãn "Đang giảm giá" (theme=giam-gia)
+  // qua trang quản trị — khớp đúng ý nghĩa checkbox "Nhãn nổi bật" trong ProductForm.tsx.
+  const saleProducts = products
+    .filter((p: any) => (p.price_sale && p.price_sale < p.price) || (p.theme || '').includes('|giam-gia|'))
+    .slice(0, 8)
   const fmt = (n: number) => n.toLocaleString('vi-VN') + 'đ'
 
   const handleQuickAdd = (product: any) => {
@@ -59,7 +63,7 @@ export default function PromotionsPage() {
               Giảm đến <span style={{ fontSize: '1.2em', fontWeight: 700 }}>40%</span><br />đồ thể thao chính hãng
             </h1>
             <p className="tt-promo-sub" style={{ fontSize: 16, opacity: 0.9, marginBottom: 28 }}>
-              Cập nhật hàng tuần · Số lượng có hạn · Áp dụng đến hết ngày 31/12/2025
+              Cập nhật hàng tuần · Số lượng có hạn · Nhanh tay trước khi hết deal
             </p>
             <Link
               to="/"
@@ -115,7 +119,7 @@ export default function PromotionsPage() {
           <div className="tt-promo-strips" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 }}>
             {[
               { pct: '-25%', title: 'Giày chạy bộ', desc: 'Toàn bộ dòng giày chạy bộ — áp dụng tự động khi thêm vào giỏ', color: 'var(--accent)' },
-              { pct: '-30%', title: 'Dụng cụ gym', desc: 'Tạ tay, dây kháng lực, thảm tập — số lượng có hạn', color: '#3b82f6' },
+              { pct: '-30%', title: 'Dụng cụ gym', desc: 'Tạ tay, dây kháng lực, thảm tập — số lượng có hạn', color: 'var(--blue)' },
               { pct: '-40%', title: 'Quần áo thể thao', desc: 'Chỉ áp dụng cho sản phẩm có nhãn Sale · hết hàng là hết deal', color: '#4ade80' },
             ].map((strip, i) => (
               <div
@@ -124,8 +128,6 @@ export default function PromotionsPage() {
                 style={{
                   padding: '20px',
                   borderLeft: `4px solid ${strip.color}`,
-                  background: 'white',
-                  borderRadius: 6,
                   display: 'flex',
                   gap: 16,
                   alignItems: 'center',

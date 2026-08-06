@@ -1,21 +1,45 @@
 import { createContext, useContext, ReactNode, useEffect, useState } from 'react'
 import { api } from '../api/client'
 
+// Khớp 1-1 với response thật của GET /public/products (ShopPublicController::products())
+// — cột "colors" là chuỗi pipe-separated "Tên:#hex|Tên2:#hex2", "sizes"/"theme" là padded-pipe
+// "|S|M|L|", KHÔNG có field "color"/"review_count"/"sold_count" nào ở tầng API — dùng
+// parseColorNames()/rating/sold bên dưới thay vì đọc field ảo không tồn tại.
 export interface Product {
   id: number
   category_id: number | null
   category_slug: string
+  category_name?: string
   name: string
   slug: string
   image: string
   price: number
   price_sale: number | null
-  color?: string
+  colors?: string
   sizes?: string
+  theme?: string
   brand?: string
   badge?: string | null
-  review_count?: number
-  sold_count?: number
+  rating?: number
+  sold?: number
+  in_stock?: number
+  is_featured?: number
+  is_new?: number
+}
+
+// "Xám:#8b8b8b|Đen:#000000" → ['Xám', 'Đen']
+export function parseColorNames(colors?: string): string[] {
+  if (!colors) return []
+  return colors.split('|').map(c => c.split(':')[0].trim()).filter(Boolean)
+}
+
+// "Xám:#8b8b8b|Đen:#000000" → [{ name: 'Xám', hex: '#8b8b8b' }, { name: 'Đen', hex: '#000000' }]
+export function parseColorPairs(colors?: string): { name: string; hex: string }[] {
+  if (!colors) return []
+  return colors.split('|').filter(Boolean).map(c => {
+    const [name, hex] = c.split(':')
+    return { name: (name ?? '').trim(), hex: (hex ?? '#ccc').trim() }
+  }).filter(c => c.name)
 }
 
 export interface Category {

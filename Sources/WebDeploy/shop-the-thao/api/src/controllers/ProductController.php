@@ -12,6 +12,8 @@ class ProductController {
         'name' => 's', 'image' => 's', 'price' => 'i', 'price_sale' => 'i',
         'badge' => 's', 'description' => 's', 'colors' => 's', 'rating' => 'f',
         'in_stock' => 'i', 'is_featured' => 'i', 'is_new' => 'i', 'status' => 's', 'sort_order' => 'i',
+        // AI thêm cột riêng — schema.sql có thêm brand/sizes/theme/sold cho site này
+        'brand' => 's', 'sizes' => 's', 'theme' => 's', 'sold' => 'i',
     ];
 
     private function cast(string $type, mixed $v): mixed {
@@ -24,12 +26,21 @@ class ProductController {
 
     public function index(): void {
         Auth::require();
-        $rows = $this->db->query(
+        $page    = max(1, (int)($_GET['page'] ?? 1));
+        $perPage = max(1, min(200, (int)($_GET['per_page'] ?? 20)));
+        $offset  = ($page - 1) * $perPage;
+
+        $total = (int)($this->db->queryOne("SELECT COUNT(*) as c FROM products")['c'] ?? 0);
+        $rows  = $this->db->query(
             "SELECT p.*, pc.name as category_name
              FROM products p
              LEFT JOIN product_categories pc ON pc.id = p.category_id
-             ORDER BY p.sort_order ASC, p.created_at DESC"
+             ORDER BY p.sort_order ASC, p.created_at DESC
+             LIMIT ? OFFSET ?",
+            [$perPage, $offset]
         );
+
+        header('X-Total-Count: ' . $total);
         Response::json($rows);
     }
 

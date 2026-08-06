@@ -170,6 +170,7 @@ body { padding-top: 99px; } /* topbar(35) + nav(61) + border(3) */
   align-items: center;
   gap: 4px;
   flex: 1;
+  justify-content: center;
 }
 .tt-nav-links a {
   font-size: 13px;
@@ -339,7 +340,6 @@ body { padding-top: 99px; } /* topbar(35) + nav(61) + border(3) */
 .tt-search-main {
   display: flex;
   gap: 0;
-  max-width: 640px;
   border-radius: var(--radius);
   overflow: hidden;
   border: 2px solid var(--border);
@@ -486,6 +486,7 @@ body { padding-top: 99px; } /* topbar(35) + nav(61) + border(3) */
   appearance: none;
   -webkit-appearance: none;
   position: relative;
+  margin: 0;
 }
 .tt-dropdown .form-check-input:checked {
   background: var(--accent);
