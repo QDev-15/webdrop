@@ -15,13 +15,31 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển �
 
 > **Scaffold đã cung cấp ~55% code**: Router, Auth, Database, Response, 8 controllers lõi, admin.css, client.ts, AuthContext, AdminLayout, Sidebar skeleton, ImageField, UnsplashPicker, LoginPage, ProfilePage, MediaPage, build scripts, .htaccess, web.config, `website/public/robots.txt`, `website/src/hooks/useDocumentMeta.ts` (xem rule 30). **AI chỉ fill phần còn lại.**
 
+> **⚠️ AFTER BUILD — BẮTBUỘC gọi reviewer + qa-tester** (Bước 8.5): Sau khi hoàn thành Bước 8 checklist, PHẢI gọi agent reviewer kiểm tra logic/security, rồi qa-tester kiểm tra design system/responsive, fix loop cho đến khi cả 2 PASS — mới tạo `_output-deploy` và commit. Bỏ qua bước này dẫn đến lỗi phát hiện sau deploy (security leak, CSS mismatch, data type bug, field-name drift).
+
 ---
 
 ## ⚠️ QUY TẮC BẮT BUỘC
 
 > Đã gom nhóm từ 46 rule xuống 30 rule (2026-07-13) — các rule cùng chủ đề/trùng nội dung được hợp nhất thành 1 rule có sub-bullet, không rút bớt bất kỳ nội dung/code block/cảnh báo nào so với bản gốc.
+>
+> **🔴 QUY TẮC VÀNG: Rule 1 (Template Fidelity) — "Làm đúng template" là BẮT BUỘC nhất.** AI có thể suy diễn & cải tiến implementation, nhưng UI structure + behavior TUYỆT ĐỐI KHÔNG được thay đổi. Tất cả quyết định thêm/bỏ field phải so sánh lại Template Analysis Document trước khi viết code.
 
 1. **Đọc template trước khi viết bất kỳ code nào, và mọi nội dung phải đến từ template thực** — không được bịa nội dung. Áp dụng cho cả DB seed data (tên/giá/mô tả món/dịch vụ, nội dung slide, testimonial...) lẫn text hiển thị trên trang — không Lorem ipsum.
+   - **1a. Template Fidelity — LOCKED vs FREE**
+     - **LOCKED (bắt buộc 100% khớp template):** UI structure (layout, grid, spacing, # items), behavior (click/hover logic, filter/search), responsive breakpoints
+     - **FREE (AI có thể suy diễn & cải tiến):** animation technique (easing, duration, GPU), performance optimization, code architecture, accessibility, bug fixes (không change output)
+     - **CẤMMM:** rút gọn UI (4-col → 3-col), đổi component type (checkbox → radio), thay behavior (tức thì → Apply button), đổi # items/blocks trong nav/sidebar/filter
+   - **1b. Bắt buộc sinh Template Analysis Document** — trước khi viết code, phải tạo 1 document chi tiết:
+     - Navigation items (số lượng + tên, ref line)
+     - Database fields per entity (list tất cả field nhìn thấy trong HTML, ref line)
+     - UI components (card, button, form type, ref line)
+     - Layout structure (grid cols, sidebar width, hero aspect, ref line)
+     - Behavior (click → gì?, filter → kết quả?, dropdown hay modal?, ref line)
+     - Animation (type, duration, ref line)
+     - Seed data (nội dung thực từ template, NO Lorem ipsum)
+     - Validation checklist (để verify code sau này)
+   - Document này là **"source of truth"** cho Bước 4-6 (viết code), KHÔNG được thêm/bỏ/thay đổi field ngoài document này
 2. **Admin menu phải khớp template nav** — mỗi mục nav → một section trong sidebar.
 3. **Mọi text admin dùng tiếng Việt CÓ DẤU** — "Đăng nhập" không phải "Dang nhap". Áp dụng cho mọi label, placeholder, button, thông báo trong mọi file.
 4. **Mọi text/image trên trang chính phải quản lý được** qua admin settings hoặc CRUD module.
@@ -364,9 +382,22 @@ Scaffolder copy ~40 core files từ `_scaffold/` và in ra danh sách TODO files
 
 ---
 
-## Bước 1 — Phân tích template
+## Bước 1 — Phân tích template & sinh Template Analysis Document
 
 Đọc tất cả HTML files + `assets/css/style.css` trong BASE_PATH.
+
+**BẮTBUỘC: Sinh Template Analysis Document** (markdown file trong scratchpad, ref ở Bước 8 checklist)
+- Document này là "source of truth" cho toàn bộ Bước 4-6
+- Nếu không có document → KHÔNG được bắt đầu viết code
+- Format tham khảo Rule 1b ở trên, bao gồm:
+  - Navigation items (số lượng + tên, line ref)
+  - DB fields per entity (list CHỈ những field có trong template)
+  - UI components (card, button, form, filter block, line ref)
+  - Layout structure (grid, sidebar, responsive, line ref)
+  - **Behavior (LOCKED):** click→?, filter→?, dropdown hay modal?, line ref
+  - **Animation (FREE to optimize):** type, duration, optimization opportunity
+  - Seed data examples (copy thực từ HTML, KHÔNG Lorem ipsum)
+  - ✅ Validation checklist (để verify code sau này)
 
 **1a. Xác định nav + sections → tables:**
 ```
@@ -381,7 +412,7 @@ Liên hệ  → contacts + settings (map embed, hours)
 
 **1b. Extract fields per entity — ĐÂY LÀ BƯỚC QUAN TRỌNG NHẤT:**
 
-Với mỗi entity, đọc HTML template và liệt kê **tất cả fields hiển thị trong UI** — card, form, list, detail. Những fields đó = columns trong DB. Không thêm cột không có trong template, không bỏ cột có trong template.
+Với mỗi entity, đọc HTML template và liệt kê **tất cả fields hiển thị trong UI** — card, form, list, detail. Những fields đó = columns trong DB. **TUYỆT ĐỐI không thêm cột không có trong template, không bỏ cột có trong template.** Tất cả quyết định thêm field phải ask user, KHÔNG tự ý thêm.
 
 Ví dụ quy trình cho restaurant:
 ```
@@ -438,15 +469,18 @@ Ngoài ra, seed thêm settings theo từng ngành (ví dụ group `about`, `rese
 
 ## Bước 3 — Files AI phải viết
 
+**Trước tiên (Bước 1 output):**
+- ✅ **Template Analysis Document** (markdown) — chi tiết template structure, behavior, animation, fields. Document này là "source of truth" cho bước 4-6, lưu ở scratchpad để ref
+
 **PHP (`api/`):**
-- `schema.sql` — core tables + extension tables (columns từ Bước 1b)
+- `schema.sql` — core tables + extension tables (columns từ Bước 1b, verify lại Template Analysis Document)
 - `src/Database.php` — migrate() + seedData() với **nội dung thực từ template** (không Lorem ipsum)
 - `src/bootstrap.php` — thêm routes cho entity của template (scaffold có skeleton)
 - `src/controllers/PublicController.php` — GET endpoints không cần auth
 - `src/controllers/[Entity]Controller.php` — CRUD cho mỗi entity
 
 **Admin (`admin/src/`):**
-- `components/layout/Sidebar.tsx` — điền menu từ template nav (scaffold có skeleton)
+- `components/layout/Sidebar.tsx` — điền menu từ template nav (scaffold có skeleton), verify số lượng item khớp Template Analysis Document
 - `App.tsx` — routes cho mọi page
 - `pages/dashboard/Dashboard.tsx` — stats cards
 - `pages/[module]/[Module]List.tsx` — list + delete
@@ -456,9 +490,11 @@ Ngoài ra, seed thêm settings theo từng ngành (ví dụ group `about`, `rese
 **Website (`website/src/`):**
 - `App.tsx` + `contexts/SiteContext.tsx`
 - `components/Header.tsx`, `Footer.tsx`, `HeroSlider.tsx`
-- `components/[Section].tsx` — mỗi section 1 component
+- `components/[Section].tsx` — mỗi section 1 component, **verify UI khớp Template Analysis Document**
 - `pages/[Page].tsx` — các trang con
 - `styles/template.css` (copy nguyên từ template) + `styles/site.css`
+
+**Note:** Mọi file React/PHP đều phải tuân theo Template Analysis Document về structure, fields, behavior, layout
 
 ---
 
@@ -500,6 +536,68 @@ private function seedData(): void {
 ```
 
 Seed phải đủ để khách thấy website hoạt động đẹp ngay sau deploy — ít nhất 3–5 items mỗi entity, nội dung phản ánh đúng ngành nghề của template.
+
+**Template Analysis Document — Ví dụ cụ thể:**
+
+```markdown
+# Template Analysis: shop-the-thao
+
+## 1. Navigation Items
+- Count: 5 items
+- Items: [Trang Chủ, Sản Phẩm, Bộ Sưu Tập, Dịch Vụ, Liên Hệ]
+- Ref: index.html line 45-60
+
+## 2. Database Fields
+
+### products
+- name: "Áo thể thao..." (nhìn trong product card)
+- price: 299000 (giá hiển thị trong card)
+- image: URL ảnh (hero card)
+- category: "quan-ao" (filter sidebar)
+- theme: "ban-chay" (thẻ section)
+- sold: 45 (số bán, ảnh hưởng sort "Bán chạy")
+Ref: san-pham.html line 120-150
+
+### product_categories
+- name: "Quần áo", "Giày", "Phụ kiện"
+- slug: "quan-ao", "giay", "phu-kien"
+- count: (tính realtime từ DB, KHÔNG lưu cột)
+Ref: san-pham.html line 80-95
+
+## 3. UI Components & Layout
+
+### Filter Sidebar
+- 4 blocks: [Category pill, Price range slider, Size checkbox, Color swatch]
+- KHÔNG có block "Đánh giá" (khác blueprint 5-block chung)
+- Width: 280px
+- Behavior: click filter → tức thì (NOT cần Apply button)
+Ref: san-pham.html line 60-200
+
+### Product Grid
+- Columns: 4 cols (desktop 1200px+), 2 cols (768px), 1 col (mobile)
+- Card aspect: 3:4 (vertical)
+- Fields: [image, name, price]
+Ref: san-pham.html line 210-250
+
+## 4. Seed Data Examples
+- Product 1: "Áo Bóng Rổ Nike Team" - 499.000đ
+- Product 2: "Giày Chạy Bộ Adidas Ultra Boost" - 1.299.000đ
+(copy thực từ template HTML, KHÔNG "Product A", "Product B")
+
+## 5. Animation
+- Hero: Fade transition 300ms between images
+- Filter panel: SlideDown when opened, optimize with GPU
+- Product card: Scale(1.03) on hover
+
+## ✅ Validation Checklist
+- [ ] products table: có ĐÚNG 6 fields? (name, price, image, category, theme, sold)
+- [ ] Filter sidebar: 4 blocks? (không 5, không 3)
+- [ ] Grid: 4 cols desktop? (không 3-col rút gọn)
+- [ ] Behavior: filter tức thì hay Apply button? (must be tức thì per template)
+- [ ] Seed data: là giá trị thực từ template? (KHÔNG Lorem ipsum)
+```
+
+**Lưu ý:** Nếu phát hiện template thiếu field cần thiết (vd: cần `rating` nhưng template KHÔNG hiển thị) → ASK user, KHÔNG tự thêm vào. Tất cả field phải từ template.
 
 ### bootstrap.php — Route pattern
 
@@ -659,6 +757,47 @@ cd Sources/WebDeploy/[slug]/admin  && npm install && npm run build
 
 ---
 
+## Bước 7.5 — Template Fidelity Validation (TRƯỚC Bước 8)
+
+**BẮTBUỘC** kiểm tra code match template trước khi tạo `_output-deploy`:
+
+```bash
+✅ UI Structure (so sánh với Template Analysis Document):
+  - [ ] Navigation items: đúng số lượng + tên từ document?
+  - [ ] Grid layout: đúng số cột desktop/tablet/mobile từ document?
+  - [ ] Sidebar: đúng width + đúng số filter block từ document?
+  - [ ] Card: đúng aspect ratio + đúng fields displayed từ document?
+  - [ ] Component type: checkbox/radio/button/link khớp document?
+  - [ ] Spacing/gap: đúng template (không rút gọn)?
+
+✅ Behavior (so sánh với Template Analysis Document):
+  - [ ] Filter: tức thì hay Apply button? (match document)
+  - [ ] Dropdown/modal: loại nào? (match document)
+  - [ ] Click: navigate hay action nào? (match document)
+  - [ ] Search: có debounce? Duration? (match document)
+  - [ ] Pagination: style nào? (infinite vs page numbers, match document)
+
+✅ Animation (từ Template Analysis Document):
+  - [ ] Có animation không? Type nào? (match document)
+  - [ ] Performance: smooth 60fps, GPU accelerated?
+  - [ ] Accessibility: ARIA labels có không?
+
+✅ Browser Demo Test (gần nhất như template):
+  - [ ] Desktop (1200px+): layout khớp template visual?
+  - [ ] Tablet (768px): responsive khớp template breakpoint?
+  - [ ] Mobile (375px): responsive khớp template mobile layout?
+  - [ ] Interaction: click/hover/scroll như template?
+  - [ ] No regressions: các feature khác vẫn OK?
+
+❌ Nếu bất kỳ item nào KHÔNG match:
+  - DỪNG ngay, KHÔNG tạo `_output-deploy`
+  - Fix code để match template
+  - Retest Browser Demo
+  - Khi tất cả GREEN → mới tiếp tục Bước 8
+```
+
+---
+
 ## Bước 8 — Checklist cuối
 
 **Files:**
@@ -676,6 +815,7 @@ cd Sources/WebDeploy/[slug]/admin  && npm install && npm run build
 - [ ] Mọi page trong `website/src/pages/` đều gọi `useDocumentMeta` (rule 30) — grep `useDocumentMeta` phải ra số dòng ≥ số file page
 - [ ] Route `GET /sitemap.xml` đã đăng ký trong `bootstrap.php`, trả `Content-Type: application/xml` (rule 30)
 - [ ] `website/src/styles/template.css` là bản copy từ template
+- [ ] **Template Analysis Document tồn tại** (sinh từ Bước 1, ref ở scratchpad)
 - [ ] `README.md` có hướng dẫn deploy
 
 **Logic:**
@@ -687,11 +827,69 @@ cd Sources/WebDeploy/[slug]/admin  && npm install && npm run build
 - [ ] Public endpoints trả array (không phải object bọc)
 - [ ] `unsplash_access_key` seed với key mặc định
 
+**Template Fidelity (verify lần cuối):**
+- [ ] Database fields: match Template Analysis Document (KHÔNG thêm, KHÔNG bỏ)?
+- [ ] UI components: số lượng + type match document?
+- [ ] Navigation: khớp nav template?
+- [ ] Behavior: match document (tức thì hay Apply, dropdown hay modal)?
+
+**⚠️ Sau khi checklist PASS:**
+- [ ] **Tiếp tục Bước 8.5** — gọi agent reviewer + qa-tester TRƯỚC khi tạo `_output-deploy`
+- [ ] Không skip bước này dù checklist đã pass — các lỗi sâu (security, data type, CSS class) không thể tự kiểm tra được
+
+---
+
+## Bước 8.5 — Gọi Reviewer + QA-Tester
+
+**BẮTBUỘC** sau khi hoàn thành Bước 8 checklist — gọi 2 agent để xác nhận trước khi tạo `_output-deploy`:
+
+### Flow
+
+```
+Bước 8 Checklist PASS
+    ↓
+Gọi Agent Reviewer (code logic + security + PHP/JS correctness)
+    ↓ (Nếu có P0/P1 issues)
+Fix code → Reviewer lại
+    ↓ (Reviewer PASS)
+Gọi Agent QA-Tester (design system + responsive + HTML structure)
+    ↓ (Nếu có FAIL items)
+Fix code → QA-Tester lại
+    ↓ (QA-Tester PASS)
+Tiếp tục Bước 9 (tạo _output-deploy + commit)
+```
+
+### Chi tiết
+
+**1. Gọi Reviewer**
+- Prompt: "Review code của site [slug] vừa build từ template [template-name]. Kiểm tra: SQL injection, XSS, logic bugs, null reference, security leaks (hardcode credential, expose config), bcrypt password, prepared statement, PRAGMA foreign_keys, form validation, async race condition."
+- Scope: toàn bộ `api/src/`, `admin/src/`, `website/src/`
+- Stop when: Reviewer báo 0 P0 BLOCKER + tối đa X P1 issues (fix xong rồi reviewer lại)
+- Nếu có P0 → **DỪNG ngay, fix → reviewer lại**, không tiếp tục qa-tester
+
+**2. Gọi QA-Tester**
+- Prompt: "QA test site [slug]. Kiểm tra: Bootstrap 5.3.3 compliance, design system vars, responsive (320px/576px/768px/1200px), HTML semantic, accessibility (aria labels), CSS class (có hardcode màu ngoài palette không?), form UX, JavaScript (var/let/const, console.log), brand consistency (logo, buttons, colors)."
+- Scope: toàn bộ `website/src/` + `admin/src/` components
+- Stop when: QA báo 0 FAIL items (có WARNING/SUGGESTION OK)
+- Nếu có FAIL → fix → qa-tester lại
+
+**3. Khi cả 2 agent PASS**
+- Reviewer: Verdict = **SHIP** (hoặc 0 P0, P1 xử lý được)
+- QA-Tester: Verdict = **READY TO SHIP**
+- → Mới tiếp tục Bước 9
+
+**⚠️ Nếu bỏ qua bước này:**
+- Rủi ro cao phát hiện lỗi sau deploy (security, CSS mismatch, data type mismatch, field-name drift)
+- Precedent: `shop-the-thao` (data type), `shop-do-choi`/`shop-my-pham` (CSS class), `shop-do-gia-dung` (field-name + security leak), `shop-van-phong-pham` (aria logic, CSS selector)
+- Thời gian fix sau là **2-3x** thời gian fix trước deploy
+
 ---
 
 ## Bước 9 — README.md
 
 Hướng dẫn: upload `_output-deploy/` (nằm cạnh thư mục source) → sửa `APP_URL` trong `api/config.php` → kiểm tra `https://domain.vn/api/health` (pdo_sqlite=true, db_dir=writable) → chmod `api/database/` và `api/uploads/` → đăng nhập admin `sysadmin@admin.com` / `123456` → đổi mật khẩu ngay.
+
+**Note:** Template Analysis Document (tạo trong Bước 1) là reference nội bộ cho team dev, không cần gửi khách. Nó ghi rõ UI structure, fields, behavior để ensure tính nhất quán giữa template design và code implementation.
 
 ---
 
