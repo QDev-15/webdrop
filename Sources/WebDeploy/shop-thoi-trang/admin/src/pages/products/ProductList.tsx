@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../../api/client'
 
@@ -18,24 +18,45 @@ interface Product {
   sort_order: number
 }
 
+const PER_PAGE = 20
+
 export default function ProductList() {
   const [products, setProducts] = useState<Product[]>([])
+  const [total, setTotal] = useState(0)
+  const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(true)
+  const [searchInput, setSearchInput] = useState('')
+  const [search, setSearch] = useState('')
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  const load = () => {
-    api.get<Product[]>('/products')
-      .then(setProducts)
+  const load = (p: number, q: string) => {
+    setLoading(true)
+    api.getPaged<Product[]>(`/products?page=${p}&per_page=${PER_PAGE}&q=${encodeURIComponent(q)}`)
+      .then(({ data, total }) => { setProducts(data); setTotal(total) })
       .catch(() => {})
       .finally(() => setLoading(false))
   }
 
-  useEffect(() => { load() }, [])
+  useEffect(() => { load(page, search) }, [page, search])
+
+  useEffect(() => {
+    if (debounceRef.current) clearTimeout(debounceRef.current)
+    debounceRef.current = setTimeout(() => {
+      setPage(1)
+      setSearch(searchInput.trim())
+    }, 400)
+    return () => { if (debounceRef.current) clearTimeout(debounceRef.current) }
+  }, [searchInput])
 
   const handleDelete = async (id: number, name: string) => {
     if (!confirm(`Xóa sản phẩm "${name}"?`)) return
     await api.post(`/products/${id}/delete`, {})
-    load()
+    if (products.length === 1 && page > 1) setPage(page - 1)
+    else load(page, search)
   }
+
+  const totalPages = Math.max(1, Math.ceil(total / PER_PAGE))
+  const startIdx = total === 0 ? 0 : (page - 1) * PER_PAGE + 1
 
   const fmt = (n: number) => n ? n.toLocaleString('vi-VN') + 'đ' : '—'
 
@@ -47,6 +68,17 @@ export default function ProductList() {
           <p className="admin-page-sub">Quản lý danh sách sản phẩm của cửa hàng</p>
         </div>
         <Link to="/products/new" className="btn btn-primary">+ Thêm sản phẩm</Link>
+      </div>
+
+      <div style={{ marginBottom: 16 }}>
+        <input
+          type="search"
+          className="form-control"
+          placeholder="Tìm kiếm theo tên hoặc mô tả sản phẩm..."
+          value={searchInput}
+          onChange={e => setSearchInput(e.target.value)}
+          style={{ maxWidth: 360 }}
+        />
       </div>
 
       {loading ? <div className="admin-loading-box">Đang tải...</div> : (
@@ -66,7 +98,11 @@ export default function ProductList() {
             </thead>
             <tbody>
               {products.length === 0 ? (
-                <tr><td colSpan={8} style={{ textAlign: 'center', color: '#aaa' }}>Chưa có sản phẩm nào</td></tr>
+                <tr>
+                  <td colSpan={8} style={{ textAlign: 'center', color: '#aaa' }}>
+                    {search ? `Không tìm thấy sản phẩm nào khớp "${search}"` : 'Chưa có sản phẩm nào'}
+                  </td>
+                </tr>
               ) : products.map(p => (
                 <tr key={p.id}>
                   <td>
@@ -106,6 +142,26 @@ export default function ProductList() {
             </tbody>
           </table>
         </div>
+      )}
+
+      {!loading && totalPages > 1 && (
+        <>
+          <nav className="admin-pagination" aria-label="Phân trang sản phẩm">
+            <button className="admin-page-btn" disabled={page === 1} onClick={() => setPage(p => p - 1)} aria-label="Trang trước">‹</button>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map(n => (
+              <button
+                key={n}
+                className={`admin-page-btn${n === page ? ' active' : ''}`}
+                onClick={() => setPage(n)}
+                aria-current={n === page ? 'page' : undefined}
+              >
+                {n}
+              </button>
+            ))}
+            <button className="admin-page-btn" disabled={page === totalPages} onClick={() => setPage(p => p + 1)} aria-label="Trang sau">›</button>
+          </nav>
+          <div className="admin-pagination-info">Hiển thị {startIdx}–{Math.min(page * PER_PAGE, total)} trong số {total} sản phẩm</div>
+        </>
       )}
     </div>
   )

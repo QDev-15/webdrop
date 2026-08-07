@@ -6,12 +6,30 @@ class ProductController {
 
     public function index(): void {
         Auth::require();
-        $rows = $this->db->query(
+        $page    = max(1, (int)($_GET['page'] ?? 1));
+        $perPage = max(1, min(200, (int)($_GET['per_page'] ?? 20)));
+        $offset  = ($page - 1) * $perPage;
+        $search  = trim($_GET['q'] ?? '');
+
+        $whereSql = '1=1';
+        $params   = [];
+        if ($search !== '') {
+            $whereSql = '(p.name LIKE ? OR p.description LIKE ?)';
+            $needle   = '%' . substr($search, 0, 100) . '%';
+            $params   = [$needle, $needle];
+        }
+
+        $total = (int)($this->db->queryOne("SELECT COUNT(*) as c FROM products p WHERE $whereSql", $params)['c'] ?? 0);
+        $rows  = $this->db->query(
             "SELECT p.*, pc.name as category_name
              FROM products p
              LEFT JOIN product_categories pc ON pc.id = p.category_id
-             ORDER BY p.sort_order ASC, p.created_at DESC"
+             WHERE $whereSql
+             ORDER BY p.sort_order ASC, p.created_at DESC
+             LIMIT ? OFFSET ?",
+            [...$params, $perPage, $offset]
         );
+        header('X-Total-Count: ' . $total);
         Response::json($rows);
     }
 

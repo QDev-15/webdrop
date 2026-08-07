@@ -30,4 +30,16 @@ export const api = {
   put:    <T>(path: string, body: unknown) => request<T>('POST', `${path}/update`, body),
   delete: <T>(path: string) => request<T>('POST', `${path}/delete`),
   upload: <T>(path: string, formData: FormData) => request<T>('POST', path, formData),
+  // Dùng cho danh sách có phân trang — đọc header X-Total-Count thay vì bọc { items, total } trong body
+  // (giữ nguyên rule "endpoint trả array thuần"). Dùng cho GET /products?page=...
+  getPaged: async <T>(path: string): Promise<{ data: T; total: number }> => {
+    const res = await fetch(BASE + path, { credentials: 'include' })
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ error: 'Lỗi không xác định' }))
+      throw new Error((err as { error?: string }).error || 'Request failed')
+    }
+    const total = Number(res.headers.get('X-Total-Count') || '0')
+    const data = await res.json() as T
+    return { data, total }
+  },
 }
