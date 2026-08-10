@@ -41,7 +41,8 @@
       "Bash(curl -s \"http://localhost:8000/admin/assets/index-\"*)",
       "Bash(rm -rf .next)",
       "Bash(rm -rf node_modules/.cache)",
-      "Bash(node scaffolder.mjs shop-the-thao shop)"
+      "Bash(node scaffolder.mjs shop-the-thao shop)",
+      "Bash(dir \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\" -Exclude node_modules)"
     ],
     "additionalDirectories": [
       "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"
