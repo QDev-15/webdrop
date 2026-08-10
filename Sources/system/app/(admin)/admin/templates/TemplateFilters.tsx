@@ -17,6 +17,7 @@ export default function TemplateFilters({ industries, total, withWebsite }: Prop
   const status   = searchParams.get('status')   ?? ''
   const industry = searchParams.get('industry') ?? ''
   const website  = searchParams.get('website')  ?? ''
+  const limit    = searchParams.get('limit')    ?? '10'
 
   const update = useCallback((key: string, value: string) => {
     const params = new URLSearchParams(searchParams.toString())
@@ -71,6 +72,14 @@ export default function TemplateFilters({ industries, total, withWebsite }: Prop
         <option value="">Tất cả gói</option>
         <option value="yes">🌐 Có Gói B ({withWebsite})</option>
         <option value="no">Template only ({total - withWebsite})</option>
+      </select>
+
+      {/* Page size */}
+      <select value={limit} onChange={e => update('limit', e.target.value)} style={selectStyle}>
+        <option value="10">Hiển thị 10/trang</option>
+        <option value="20">Hiển thị 20/trang</option>
+        <option value="50">Hiển thị 50/trang</option>
+        <option value="100">Hiển thị 100/trang</option>
       </select>
 
       {/* Clear */}

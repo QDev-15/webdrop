@@ -22,7 +22,7 @@ const statusColor: Record<string, string> = { published: 'var(--accent)', draft:
 export default async function AdminTemplatesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; category?: string; status?: string; industry?: string; website?: string; page?: string }>
+  searchParams: Promise<{ q?: string; category?: string; status?: string; industry?: string; website?: string; page?: string; limit?: string }>
 }) {
   const sp       = await searchParams
   const q        = sp.q?.trim() ?? ''
@@ -31,7 +31,7 @@ export default async function AdminTemplatesPage({
   const industry = sp.industry ?? ''
   const website  = sp.website  ?? ''
   const page     = Math.max(1, parseInt(sp.page ?? '1'))
-  const perPage  = 10
+  const perPage  = Math.min(100, Math.max(10, parseInt(sp.limit ?? '10')))
 
   const where: Prisma.TemplateWhereInput = {
     ...(q        && { name: { contains: q, mode: 'insensitive' } }),
@@ -41,6 +41,14 @@ export default async function AdminTemplatesPage({
     ...(website === 'yes' && { hasWebsite: true }),
     ...(website === 'no'  && { hasWebsite: false }),
   }
+
+  const whereNoStatus = {
+    ...(q        && { name: { contains: q, mode: 'insensitive' } }),
+    ...(category && { category: category as 'web' | 'admin' }),
+    ...(industry && { industry: { slug: industry } }),
+    ...(website === 'yes' && { hasWebsite: true }),
+    ...(website === 'no'  && { hasWebsite: false }),
+  } as Prisma.TemplateWhereInput
 
   let templates: TemplateWithIndustry[] = []
   let industries: { slug: string; name: string }[] = []
@@ -59,8 +67,8 @@ export default async function AdminTemplatesPage({
       }),
       prisma.industry.findMany({ orderBy: { sortOrder: 'asc' }, select: { slug: true, name: true } }),
       prisma.template.count({ where }),
-      prisma.template.count({ where: { ...where, status: 'published' } }),
-      prisma.template.count({ where: { ...where, status: 'draft' } }),
+      prisma.template.count({ where: { ...whereNoStatus, status: 'published' } }),
+      prisma.template.count({ where: { ...whereNoStatus, status: 'draft' } }),
     ])
   } catch { /* DB chưa kết nối */ }
 
