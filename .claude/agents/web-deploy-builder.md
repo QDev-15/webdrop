@@ -834,12 +834,12 @@ cd Sources/WebDeploy/[slug]/admin  && npm install && npm run build
 - [ ] Behavior: match document (tức thì hay Apply, dropdown hay modal)?
 
 **⚠️ Sau khi checklist PASS:**
-- [ ] **Tiếp tục Bước 8.5** — gọi agent reviewer + qa-tester TRƯỚC khi tạo `_output-deploy`
+- [ ] **Tiếp tục Bước 8.5** — gọi agent reviewer + qa-tester + web-deploy-fix TRƯỚC khi tạo `_output-deploy`
 - [ ] Không skip bước này dù checklist đã pass — các lỗi sâu (security, data type, CSS class) không thể tự kiểm tra được
 
 ---
 
-## Bước 8.5 — Gọi Reviewer + QA-Tester
+## Bước 8.5 — Gọi Reviewer + QA-Tester + web-deploy-fix
 
 **BẮTBUỘC** sau khi hoàn thành Bước 8 checklist — gọi 2 agent để xác nhận trước khi tạo `_output-deploy`:
 
@@ -856,6 +856,8 @@ Gọi Agent QA-Tester (design system + responsive + HTML structure)
     ↓ (Nếu có FAIL items)
 Fix code → QA-Tester lại
     ↓ (QA-Tester PASS)
+Gọi Agent fix bug
+    ↓ (Fix xong)
 Tiếp tục Bước 9 (tạo _output-deploy + commit)
 ```
 
@@ -873,7 +875,10 @@ Tiếp tục Bước 9 (tạo _output-deploy + commit)
 - Stop when: QA báo 0 FAIL items (có WARNING/SUGGESTION OK)
 - Nếu có FAIL → fix → qa-tester lại
 
-**3. Khi cả 2 agent PASS**
+**3. Gọi Web-Deploy-Fix**
+-  Prompt: "@web-deploy-fix fix [slug]"
+
+**4. Khi cả 3 agent PASS**
 - Reviewer: Verdict = **SHIP** (hoặc 0 P0, P1 xử lý được)
 - QA-Tester: Verdict = **READY TO SHIP**
 - → Mới tiếp tục Bước 9
