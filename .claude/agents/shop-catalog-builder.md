@@ -25,7 +25,8 @@ Toàn bộ nền tảng dùng chung, **không lặp lại ở đây** — đọc
 - Bước B — kiến trúc dữ liệu sản phẩm (`PRODUCTS` array, `products-data.js`)
 - Bước C — Filter Toolbar (dropdown ngang, không sidebar, không nút Áp dụng)
 - Bước D — JS Filter Engine (vanilla, state + render + URL sync)
-- Bước E — Phân trang số trang cổ điển
+- Bước E — Phân trang số trang hiện đại có default mỗi trang là 10 sản phẩm và có thể tăng size [10, 20, 50]
+- Bước F -- Có thể search
 - Checklist gốc của `template-builder` + checklist bổ sung của `shop-template-builder` — áp dụng đầy đủ, cộng thêm checklist riêng ở cuối file này
 
 **Chỉ có Bước A (Homepage Layout Mode) của `shop-template-builder` là KHÔNG áp dụng** — agent này thay thế hoàn toàn bằng Bước A' bên dưới.
