@@ -888,6 +888,12 @@ async function main() {
     { key: 'site_phone', value: '0900 000 000', group: 'general' },
     { key: 'social_facebook', value: 'https://facebook.com/webdrop.store', group: 'social' },
     { key: 'social_zalo', value: '0900000000', group: 'social' },
+    // Email Templates
+    { key: 'email_subject_download', value: '[webdrop.store] Link tải file — Đơn hàng {orderCode}', group: 'email_templates' },
+    { key: 'email_text_website_zip', value: '↓ Tải web.zip — Website public', group: 'email_templates' },
+    { key: 'email_text_admin_zip', value: '↓ Tải admin.zip — Trang quản trị', group: 'email_templates' },
+    { key: 'email_text_expiry', value: 'Link có hiệu lực <strong>72 giờ</strong> và dùng được tối đa <strong>5 lần</strong>.', group: 'email_templates' },
+    { key: 'email_logo_text', value: 'webdrop<span style="color:#4ade80">.</span>store', group: 'email_templates' },
   ]
 
   for (const s of settingsData) {
@@ -896,7 +902,110 @@ async function main() {
   console.log('✅ Settings:', settingsData.length)
 
   // ── Hero Slides ────────────────────────────────────────────────────────
-  const { slides } = await import('../src/data/slides.config')
+  const slides = [
+    {
+      type: 'intro',
+      bg: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=1400&q=60&auto=format&fit=crop',
+      badge: 'Website chuyên nghiệp · Triển khai trọn gói',
+      title: [
+        { text: 'Chọn mẫu đẹp,' },
+        { br: true },
+        { text: 'tôi ' },
+        { text: 'cài đặt', variant: 'em' },
+        { text: 'cho bạn.', variant: 'muted' },
+      ],
+      subtitle: 'Hơn 30 mẫu thiết kế hiện đại cho mọi ngành nghề. Thanh toán xong — website hoàn chỉnh trong 3–5 ngày làm việc, không cần biết kỹ thuật.',
+      stats: [
+        { value: '127+', label: 'Khách hàng' },
+        { value: '30+',  label: 'Mẫu thiết kế' },
+        { value: '3–5',  label: 'Ngày bàn giao' },
+        { value: '4.9 ★', label: 'Đánh giá trung bình' },
+      ],
+      buttons: [
+        { label: 'Xem mẫu thiết kế →', variant: 'primary', action: { type: 'scroll', target: 'templates' } },
+        { label: 'Cách hoạt động',      variant: 'outline', action: { type: 'scroll', target: 'how' } },
+      ],
+    },
+    {
+      type: 'features',
+      bg: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=60&auto=format&fit=crop',
+      badge: 'Tại sao chọn webdrop.store',
+      title: [
+        { text: 'Không chỉ là' },
+        { br: true },
+        { text: 'template', variant: 'em' },
+        { text: '— là dịch vụ.', variant: 'muted' },
+      ],
+      features: [
+        { icon: '⚡', text: 'Bàn giao trong', highlight: '3–5 ngày làm việc', },
+        { icon: '🎨', text: 'Hơn 30 mẫu hiện đại,',  highlight: 'responsive' },
+        { icon: '🔧', text: 'Hosting, domain, SSL —', highlight: 'tất cả trong một gói' },
+      ],
+      tags: ['SEO chuẩn', 'PageSpeed 90+', 'Hỗ trợ tiếng Việt', 'Gói duy trì hàng tháng'],
+      buttons: [
+        { label: 'Xem quy trình →', variant: 'primary', action: { type: 'scroll', target: 'how' } },
+        { label: 'Xem bảng giá',    variant: 'outline', action: { type: 'scroll', target: 'pricing' } },
+      ],
+    },
+    {
+      type: 'grid',
+      bg: 'https://images.unsplash.com/photo-1558655146-d09347e92766?w=1400&q=60&auto=format&fit=crop',
+      badge: '30+ mẫu thiết kế sẵn có',
+      title: [
+        { text: 'Mẫu cho' },
+        { br: true },
+        { text: 'mọi ngành', variant: 'em' },
+        { text: 'nghề.', variant: 'muted' },
+      ],
+      items: [
+        { icon: '🏢', label: 'Giới thiệu công ty',  desc: 'Chuyên nghiệp, tối ưu chuyển đổi' },
+        { icon: '💼', label: 'Portfolio cá nhân',   desc: 'Showcase công việc ấn tượng' },
+        { icon: '🍜', label: 'Nhà hàng & F&B',      desc: 'Menu, đặt bàn, địa chỉ' },
+        { icon: '✍️', label: 'Blog cá nhân',        desc: 'Viết bài, phân loại, SEO' },
+        { icon: '💆', label: 'Spa & Làm đẹp',       desc: 'Dịch vụ, đặt lịch, đội ngũ' },
+        { icon: '💬', label: 'Forum & Community',   desc: 'Q&A, thảo luận, thành viên' },
+      ],
+      buttons: [
+        { label: 'Xem tất cả mẫu →', variant: 'primary', action: { type: 'scroll', target: 'templates' } },
+      ],
+    },
+    {
+      type: 'pricing',
+      bg: 'https://images.unsplash.com/photo-1553484771-371a605b060b?w=1400&q=60&auto=format&fit=crop',
+      badge: 'Giá minh bạch, không phát sinh',
+      title: [
+        { text: 'Phù hợp với' },
+        { br: true },
+        { text: 'mọi ngân sách', variant: 'em' },
+        { text: '.', variant: 'muted' },
+      ],
+      plans: [
+        { name: 'Starter',  price: '1.200.000đ', desc: 'Mẫu + source code, tự cài theo hướng dẫn' },
+        { name: 'Standard', price: '2.500.000đ', desc: 'Cài đặt trọn gói · Hosting · Domain · Nội dung', hot: true },
+        { name: 'Premium',  price: '12.000.000đ', desc: 'Thiết kế custom độc quyền theo yêu cầu' },
+      ],
+      tags: ['Hosting 1 năm included', 'Hoàn tiền 7 ngày', 'Hỗ trợ 30 ngày'],
+      buttons: [
+        { label: 'Xem chi tiết bảng giá →', variant: 'primary', action: { type: 'scroll', target: 'pricing' } },
+        { label: 'Xem mẫu trước',           variant: 'outline', action: { type: 'scroll', target: 'templates' } },
+      ],
+    },
+    {
+      type: 'testimonial',
+      bg: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1400&q=60&auto=format&fit=crop',
+      badge: '127 khách hàng đã tin tưởng',
+      quote: 'Tôi không biết gì về website nhưng chỉ cần điền form brief là xong. 4 ngày sau có website đẹp hơn tôi tưởng tượng. Khách hàng hỏi "ai làm web cho bạn vậy?"',
+      author: {
+        name:   'Nguyễn Lan Anh',
+        role:   'Chủ Spa Lavender · Hà Nội · Gói Standard',
+        avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80&auto=format&fit=crop&crop=face',
+      },
+      buttons: [
+        { label: 'Đặt hàng ngay →',    variant: 'primary', action: { type: 'scroll', target: 'templates' } },
+        { label: 'Xem thêm đánh giá', variant: 'outline', action: { type: 'scroll', target: 'reviews' } },
+      ],
+    },
+  ]
   const existing = await prisma.heroSlide.count()
   if (existing === 0) {
     for (let i = 0; i < slides.length; i++) {
@@ -1334,6 +1443,288 @@ Website agency tốt không phải là nơi khoe nhiều dự án nhất, mà l�
     })
   }
   console.log('✅ Blog posts:', blogPosts.length)
+
+  // ── FAQ Items ──────────────────────────────────────────────────────────
+  const faqItems = [
+    // Gói Template (6 items)
+    {
+      groupKey: 'goi-template',
+      question: 'Gói Template là gì?',
+      answer: 'Gói Template là file HTML/CSS/JS thuần dùng Bootstrap 5.3. Bạn nhận file ZIP, mở thẳng trên trình duyệt là chạy — không cần server, không cần build, không cần kỹ thuật.',
+      sortOrder: 1,
+    },
+    {
+      groupKey: 'goi-template',
+      question: 'Có demo trước khi mua không?',
+      answer: 'Có. Tất cả 31+ template đều có link demo live. Xem thử trên máy và điện thoại trước khi quyết định.',
+      sortOrder: 2,
+    },
+    {
+      groupKey: 'goi-template',
+      question: 'Template có responsive không?',
+      answer: 'Có. Tất cả template đều responsive từ 320px (điện thoại nhỏ) đến 4K màn hình lớn. Test kỹ trên Chrome, Safari, Firefox.',
+      sortOrder: 3,
+    },
+    {
+      groupKey: 'goi-template',
+      question: 'Tôi có thể chỉnh màu sắc, font chữ không?',
+      answer: 'Dễ dàng. Mọi template dùng CSS Custom Properties (biến CSS) — chỉ cần thay giá trị trong :root là đổi toàn bộ giao diện. Có hướng dẫn chi tiết đính kèm.',
+      sortOrder: 4,
+    },
+    {
+      groupKey: 'goi-template',
+      question: 'Mua xong nhận được gì?',
+      answer: 'File ZIP gồm: tất cả file HTML/CSS/JS, thư mục assets (ảnh, icon), và hướng dẫn chỉnh nội dung. Download ngay sau khi thanh toán được xác nhận.',
+      sortOrder: 5,
+    },
+    {
+      groupKey: 'goi-template',
+      question: 'Giá template bao nhiêu?',
+      answer: 'Template 1 trang: 199.000–499.000đ. Template multi-page (4–6 trang): 499.000–999.000đ. Admin template: 699.000–1.499.000đ. Bundle 5 template tiết kiệm 30–40%.',
+      sortOrder: 6,
+    },
+
+    // Gói Web cơ bản (6 items)
+    {
+      groupKey: 'goi-web-co-ban',
+      question: 'Gói Web cơ bản khác Gói Template thế nào?',
+      answer: 'Gói Web cơ bản là website đầy đủ: giao diện React đẹp + backend PHP + cơ sở dữ liệu SQLite + trang quản trị admin. Chúng tôi cài đặt, điền nội dung, setup hosting trọn gói — bạn nhận website hoàn chỉnh sau 3–5 ngày.',
+      sortOrder: 1,
+    },
+    {
+      groupKey: 'goi-web-co-ban',
+      question: 'Hosting yêu cầu gì?',
+      answer: 'PHP (khuyến nghị 8.0+) và SQLite (pdo_sqlite extension). Hỗ trợ cả Linux hosting (cPanel/Apache) và Windows hosting (Plesk/IIS). Nếu chưa có hosting, chúng tôi tư vấn gói phù hợp.',
+      sortOrder: 2,
+    },
+    {
+      groupKey: 'goi-web-co-ban',
+      question: 'Tự deploy được không?',
+      answer: 'Được. Nhận file deploy.zip → giải nén → upload lên public_html → sửa config.php (2 dòng) → xong. Database tự tạo lần đầu khi truy cập. Có hướng dẫn cài đặt chi tiết kèm theo.',
+      sortOrder: 3,
+    },
+    {
+      groupKey: 'goi-web-co-ban',
+      question: 'Quản lý nội dung website như thế nào?',
+      answer: 'Trang quản trị tại yoursite.com/admin — quản lý bài viết, trang, banner, form liên hệ, và cài đặt chung (tên site, logo, mạng xã hội, SMTP...) không cần chỉnh code.',
+      sortOrder: 4,
+    },
+    {
+      groupKey: 'goi-web-co-ban',
+      question: 'Có thể đổi sang MySQL không?',
+      answer: 'Có. Chỉ đổi 1 dòng DB_TYPE trong config.php và điền thông tin kết nối. File schema.sql đi kèm để tạo bảng trên MySQL hoặc PostgreSQL.',
+      sortOrder: 5,
+    },
+    {
+      groupKey: 'goi-web-co-ban',
+      question: 'Giá Gói Web cơ bản bao nhiêu?',
+      answer: 'Từ 3.000.000đ. Xem bảng giá chi tiết tại trang /pricing. Cài đặt hosting + domain tính riêng 500.000–1.000.000đ (1 lần).',
+      sortOrder: 6,
+    },
+    {
+      groupKey: 'goi-web-co-ban',
+      question: 'Có hỗ trợ cấp người dùng (user account) không?',
+      answer: 'Có. Gói Web cơ bản có hỗ trợ đơn giản với tài khoản admin. Nếu cần phân quyền người dùng chi tiết (guest/editor/viewer), thuộc phạm vi Gói Theo Yêu cầu hoặc yêu cầu tính năng thêm.',
+      sortOrder: 7,
+    },
+
+    // Gói Theo Yêu cầu (6 items)
+    {
+      groupKey: 'goi-theo-yeu-cau',
+      question: 'Gói Theo Yêu cầu phù hợp với ai?',
+      answer: 'Doanh nghiệp cần thiết kế riêng biệt, tính năng đặc thù theo nghiệp vụ, hoặc dự án quy mô lớn. Không dùng mẫu có sẵn — thiết kế độc quyền từ đầu theo brief của bạn.',
+      sortOrder: 1,
+    },
+    {
+      groupKey: 'goi-theo-yeu-cau',
+      question: 'Quy trình làm việc ra sao?',
+      answer: 'Phase 1: Trao đổi brief → Wireframe → Thiết kế UI → Khách duyệt (có thể chỉnh đến khi ưng). Phase 2: Lập trình → Test → Deploy → Bàn giao. Ký checklist scope trước khi bắt đầu để tránh phát sinh.',
+      sortOrder: 2,
+    },
+    {
+      groupKey: 'goi-theo-yeu-cau',
+      question: 'Thời gian hoàn thành bao lâu?',
+      answer: 'Landing page custom: 5–7 ngày. Website 5–10 trang: 2–4 tuần. Hệ thống phức tạp (đặt hàng, CRM nhỏ...): 1–3 tháng. Thời gian xác nhận sau khi trao đổi scope.',
+      sortOrder: 3,
+    },
+    {
+      groupKey: 'goi-theo-yeu-cau',
+      question: 'Có bàn giao source code không?',
+      answer: 'Có, nếu muốn. Source code tính thêm 20–30% giá trị dự án. Mặc định bàn giao bản build deploy sẵn (không cần build tool để chạy).',
+      sortOrder: 4,
+    },
+    {
+      groupKey: 'goi-theo-yeu-cau',
+      question: 'Giá khởi điểm bao nhiêu?',
+      answer: 'Từ 20.000.000đ tùy scope. Website brochure custom UI: 20–40 triệu. Website + hệ thống quản lý: 40–80 triệu. Hệ thống phức tạp: 80 triệu+. Liên hệ để nhận báo giá chính xác.',
+      sortOrder: 5,
+    },
+    {
+      groupKey: 'goi-theo-yeu-cau',
+      question: 'Có cam kết deadline không?',
+      answer: 'Có. Deadline xác nhận rõ ràng trong hợp đồng. Nếu chậm do phía chúng tôi, sẽ có điều khoản bồi thường hoặc giảm giá tùy theo hợp đồng đã ký.',
+      sortOrder: 6,
+    },
+
+    // Thanh toán & Bảo hành (4 items)
+    {
+      groupKey: 'thanh-toan-bao-hanh',
+      question: 'Thanh toán như thế nào?',
+      answer: 'Chuyển khoản ngân hàng. Sau khi chuyển khoản, gửi ảnh xác nhận qua Zalo — xác nhận và xử lý trong 2 giờ làm việc (8:00–18:00, Thứ 2–Thứ 7).',
+      sortOrder: 1,
+    },
+    {
+      groupKey: 'thanh-toan-bao-hanh',
+      question: 'Chính sách hoàn tiền?',
+      answer: 'Hoàn tiền 100% trong 7 ngày nếu sản phẩm không đúng mô tả hoặc có lỗi nghiêm trọng không thể fix. Không áp dụng nếu bạn đã tải về và chỉnh sửa file.',
+      sortOrder: 2,
+    },
+    {
+      groupKey: 'thanh-toan-bao-hanh',
+      question: 'Có hỗ trợ sau bàn giao không?',
+      answer: 'Gói Template: hỗ trợ qua chat 7 ngày. Gói Web cơ bản: hỗ trợ kỹ thuật miễn phí 30 ngày. Gói Theo Yêu cầu: hỗ trợ 90 ngày. Sau đó có gói bảo trì tháng từ 1.000.000đ.',
+      sortOrder: 3,
+    },
+    {
+      groupKey: 'thanh-toan-bao-hanh',
+      question: 'Liên hệ hỗ trợ qua đâu?',
+      answer: 'Zalo là nhanh nhất — phản hồi trong giờ làm việc. Số Zalo và email xem trong phần Liên hệ ở cuối trang. Giờ hỗ trợ: 8:00–18:00, Thứ 2–Thứ 7.',
+      sortOrder: 4,
+    },
+    {
+      groupKey: 'thanh-toan-bao-hanh',
+      question: 'Có chính sách bảo hành lâu dài không?',
+      answer: 'Gói Template: bảo hành 7 ngày. Gói Web cơ bản: bảo hành 30 ngày. Gói Theo Yêu cầu: bảo hành 90 ngày. Sau giai đoạn bảo hành, có gói bảo trì/hỗ trợ kỹ thuật từ 1.000.000đ/tháng.',
+      sortOrder: 5,
+    },
+  ]
+
+  for (const item of faqItems) {
+    await prisma.faqItem.upsert({
+      where: {
+        id: faqItems.indexOf(item) + 1,
+      },
+      update: {},
+      create: {
+        question: item.question,
+        answer: item.answer,
+        groupKey: item.groupKey,
+        sortOrder: item.sortOrder,
+      },
+    })
+  }
+  console.log('✅ FAQ items:', faqItems.length)
+
+  // ── About Page: Team Members ───────────────────────────────────────────
+  const teamMembers = [
+    {
+      name: 'Nguyễn Hữu Quỳnh',
+      title: 'Founder & Developer',
+      bio: 'Người sáng lập webdrop.store, chuyên gia về frontend development và thiết kế hệ thống website. Có 5+ năm kinh nghiệm xây dựng web applications.',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&q=80&fit=crop&crop=face',
+      sortOrder: 1,
+    },
+    {
+      name: 'Trần Minh Anh',
+      title: 'UI/UX Designer',
+      bio: 'Chuyên gia thiết kế giao diện người dùng với 4+ năm kinh nghiệm. Tạo ra các template đẹp mắt, responsive và phù hợp với nhiều ngành kinh doanh khác nhau.',
+      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&q=80&fit=crop&crop=face',
+      sortOrder: 2,
+    },
+    {
+      name: 'Lê Văn Đức',
+      title: 'Frontend Developer',
+      bio: 'Developer frontend giàu kinh nghiệm, chuyên về React và vanilla JavaScript. Đảm bảo mỗi template hoạt động mượt mà, tối ưu performance và chuẩn mực code.',
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&q=80&fit=crop&crop=face',
+      sortOrder: 3,
+    },
+  ]
+
+  for (const member of teamMembers) {
+    await prisma.teamMember.upsert({
+      where: { id: teamMembers.indexOf(member) + 1 },
+      update: {
+        name: member.name,
+        title: member.title,
+        bio: member.bio,
+        image: member.image,
+        sortOrder: member.sortOrder,
+      },
+      create: {
+        name: member.name,
+        title: member.title,
+        bio: member.bio,
+        image: member.image,
+        sortOrder: member.sortOrder,
+      },
+    })
+  }
+  console.log('✅ Team members:', teamMembers.length)
+
+  // ── About Page: Company Values ─────────────────────────────────────────
+  const companyValues = [
+    {
+      icon: '⚡',
+      title: 'Nhanh chóng',
+      description: 'Từ lúc đặt hàng đến khi có website chạy được, chỉ 3–5 ngày làm việc. Quy trình tối ưu, không phí thời gian.',
+      sortOrder: 1,
+    },
+    {
+      icon: '✨',
+      title: 'Chất lượng cao',
+      description: 'Mọi template đều đạt PageSpeed 90+, responsive hoàn hảo từ mobile đến 4K. Không chứa lỗi, code sạch sẽ.',
+      sortOrder: 2,
+    },
+    {
+      icon: '💪',
+      title: 'Hỗ trợ tận tâm',
+      description: 'Hỗ trợ miễn phí 30 ngày sau bàn giao, không bỏ rơi khách. Phản hồi nhanh qua Zalo trong giờ làm việc.',
+      sortOrder: 3,
+    },
+    {
+      icon: '🤝',
+      title: 'Đồng hành lâu dài',
+      description: 'Sau giai đoạn bảo hành, có gói bảo trì tháng để website luôn an toàn, cập nhật, và hoạt động tối ưu.',
+      sortOrder: 4,
+    },
+  ]
+
+  for (const value of companyValues) {
+    await prisma.companyValue.upsert({
+      where: { id: companyValues.indexOf(value) + 1 },
+      update: {
+        title: value.title,
+        description: value.description,
+        icon: value.icon,
+        sortOrder: value.sortOrder,
+      },
+      create: {
+        title: value.title,
+        description: value.description,
+        icon: value.icon,
+        sortOrder: value.sortOrder,
+      },
+    })
+  }
+  console.log('✅ Company values:', companyValues.length)
+
+  // ── About Page Settings ────────────────────────────────────────────────
+  const aboutSettings = [
+    { key: 'about_hero_title', value: 'Chúng tôi xây website đẹp, bạn tập trung vào kinh doanh', group: 'about' },
+    { key: 'about_hero_subtitle', value: 'Hơn 127 khách hàng hài lòng. Từ nhà hàng, spa, agency đến công ty luật, webdrop.store cam kết chất lượng và tốc độ.', group: 'about' },
+    { key: 'company_story_p1', value: 'webdrop.store ra đời từ 2024 với sứ mệnh giúp doanh nghiệp Việt Nam có website chuyên nghiệp với chi phí và thời gian tối thiểu. Chúng tôi nhận ra rằng hầu hết doanh nghiệp phải chờ đợi 2–3 tháng và trả hàng chục triệu cho một website cơ bản.', group: 'about' },
+    { key: 'company_story_p2', value: 'Chúng tôi quyết định thay đổi điều đó: xây dựng thư viện template chất lượng cao, đạt PageSpeed 90+, responsive hoàn hảo, có thể deploy ngay trong vài ngày với chi phí hợp lý. Không phí thời gian, không phí tiền.', group: 'about' },
+    { key: 'company_story_p3', value: 'Đến nay, chúng tôi đã giúp hơn 127 doanh nghiệp từ nhà hàng, spa, agency đến công ty luật có được website đẹp và chuyên nghiệp. Mỗi template đều trải qua kiểm thử kỹ lưỡng, không bugs, code sạch sẽ, dễ chỉnh sửa.', group: 'about' },
+  ]
+
+  for (const setting of aboutSettings) {
+    await prisma.setting.upsert({
+      where: { key: setting.key },
+      update: { value: setting.value },
+      create: { key: setting.key, value: setting.value, group: setting.group },
+    })
+  }
+  console.log('✅ About settings:', aboutSettings.length)
 
   console.log('\n🎉 Seed complete!')
   console.log(`   Templates  : ${templateData.length} (${templateData.filter(t => t.category === 'web').length} web + ${templateData.filter(t => t.category === 'admin').length} admin)`)

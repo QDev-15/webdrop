@@ -9,6 +9,22 @@ async function getSmtpConfig() {
   return cfg
 }
 
+async function getEmailSettings() {
+  const keys = ['email_subject_download', 'email_text_website_zip', 'email_text_admin_zip', 'email_text_expiry', 'email_logo_text']
+  const rows = await prisma.setting.findMany({ where: { key: { in: keys } } })
+  const settings: Record<string, string> = {}
+  for (const r of rows) settings[r.key] = r.value ?? ''
+
+  // Fallback defaults if settings not configured
+  return {
+    email_subject_download: settings.email_subject_download || '[webdrop.store] Link tải file — Đơn hàng {orderCode}',
+    email_text_website_zip: settings.email_text_website_zip || '↓ Tải web.zip — Website public',
+    email_text_admin_zip: settings.email_text_admin_zip || '↓ Tải admin.zip — Trang quản trị',
+    email_text_expiry: settings.email_text_expiry || 'Link có hiệu lực <strong>72 giờ</strong> và dùng được tối đa <strong>5 lần</strong>.',
+    email_logo_text: settings.email_logo_text || 'webdrop<span style="color:#4ade80">.</span>store',
+  }
+}
+
 export async function sendDownloadEmail(opts: {
   to: string
   customerName: string
@@ -19,10 +35,12 @@ export async function sendDownloadEmail(opts: {
   amount: number
 }) {
   let cfg: Record<string, string>
+  let emailSettings: Record<string, string>
   try {
     cfg = await getSmtpConfig()
+    emailSettings = await getEmailSettings()
   } catch {
-    console.error('[email] Không lấy được SMTP config')
+    console.error('[email] Không lấy được cấu hình email')
     return
   }
 
@@ -44,10 +62,10 @@ export async function sendDownloadEmail(opts: {
   const downloadLinks = opts.type === 'website'
     ? `
       <a href="${baseUrl}/api/download?token=${tokenParam}&file=web" style="display:block;margin:8px 0;padding:12px 18px;background:#1a6b52;color:#fff;border-radius:8px;text-decoration:none;font-weight:600">
-        ↓ Tải web.zip — Website public
+        ${emailSettings.email_text_website_zip}
       </a>
       <a href="${baseUrl}/api/download?token=${tokenParam}&file=admin" style="display:block;margin:8px 0;padding:12px 18px;background:#1a6b52;color:#fff;border-radius:8px;text-decoration:none;font-weight:600">
-        ↓ Tải admin.zip — Trang quản trị
+        ${emailSettings.email_text_admin_zip}
       </a>`
     : `
       <a href="${baseUrl}/api/download?token=${tokenParam}&file=template" style="display:block;margin:8px 0;padding:12px 18px;background:#1a6b52;color:#fff;border-radius:8px;text-decoration:none;font-weight:600">
@@ -61,7 +79,7 @@ export async function sendDownloadEmail(opts: {
 <body style="margin:0;padding:0;background:#faf9f7;font-family:'DM Sans',Arial,sans-serif">
   <div style="max-width:520px;margin:40px auto;background:#fff;border-radius:14px;border:1px solid #e8e5df;overflow:hidden">
     <div style="background:#0c0b09;padding:24px 32px">
-      <div style="font-size:18px;font-weight:700;color:#fff">webdrop<span style="color:#4ade80">.</span>vn</div>
+      <div style="font-size:18px;font-weight:700;color:#fff">${emailSettings.email_logo_text}</div>
     </div>
     <div style="padding:32px">
       <h1 style="font-size:20px;font-weight:700;margin:0 0 8px;color:#1a1917">Thanh toán thành công! 🎉</h1>
@@ -70,7 +88,7 @@ export async function sendDownloadEmail(opts: {
       <div style="background:#e8f4ef;border:1px solid #2d9b73;border-radius:10px;padding:16px 18px;margin-bottom:24px">
         <div style="font-size:12px;font-weight:600;color:#1a6b52;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px">Tải xuống ngay</div>
         ${downloadLinks}
-        <p style="font-size:12px;color:#6b6760;margin:12px 0 0">Link có hiệu lực <strong>72 giờ</strong> và dùng được tối đa <strong>5 lần</strong>.</p>
+        <p style="font-size:12px;color:#6b6760;margin:12px 0 0">${emailSettings.email_text_expiry}</p>
       </div>
 
       <p style="font-size:13px;color:#6b6760;line-height:1.7;margin:0 0 16px">
@@ -85,11 +103,13 @@ export async function sendDownloadEmail(opts: {
 </body>
 </html>`
 
+  const subject = emailSettings.email_subject_download.replace('{orderCode}', opts.orderCode)
+
   try {
     await transporter.sendMail({
       from: `"${cfg.smtp_from_name || 'webdrop.store'}" <${cfg.smtp_from_email || cfg.smtp_user}>`,
       to: opts.to,
-      subject: `[webdrop.store] Link tải file — Đơn hàng ${opts.orderCode}`,
+      subject,
       html,
     })
     console.log('[email] Đã gửi download email tới', opts.to)
@@ -106,10 +126,12 @@ export async function sendCvCredentialsEmail(opts: {
   orderCode: string
 }) {
   let cfg: Record<string, string>
+  let emailSettings: Record<string, string>
   try {
     cfg = await getSmtpConfig()
+    emailSettings = await getEmailSettings()
   } catch {
-    console.error('[email] Không lấy được SMTP config')
+    console.error('[email] Không lấy được cấu hình email')
     return
   }
 
@@ -135,7 +157,7 @@ export async function sendCvCredentialsEmail(opts: {
 <body style="margin:0;padding:0;background:#faf9f7;font-family:'DM Sans',Arial,sans-serif">
   <div style="max-width:520px;margin:40px auto;background:#fff;border-radius:14px;border:1px solid #e8e5df;overflow:hidden">
     <div style="background:#0c0b09;padding:24px 32px">
-      <div style="font-size:18px;font-weight:700;color:#fff">webdrop<span style="color:#4ade80">.</span>store</div>
+      <div style="font-size:18px;font-weight:700;color:#fff">${emailSettings.email_logo_text}</div>
     </div>
     <div style="padding:32px">
       <h1 style="font-size:20px;font-weight:700;margin:0 0 8px;color:#1a1917">Tài khoản CV của bạn đã sẵn sàng! 🎉</h1>

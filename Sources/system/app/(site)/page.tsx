@@ -59,10 +59,6 @@ async function getSettings(): Promise<Record<string, string>> {
     return Object.fromEntries(rows.map(r => [r.key, r.value ?? '']))
   } catch { return {} }
 }
-async function getSlides() {
-  try { return await prisma.heroSlide.findMany({ where: { status: 'published' }, orderBy: { sortOrder: 'asc' } }) }
-  catch { return [] }
-}
 // Gom template theo ngành (industry) — "Shop bán hàng" luôn lên đầu (sản phẩm chủ đạo),
 // các ngành còn lại xếp theo số lượng template giảm dần.
 async function getTemplateSections(): Promise<TemplateSection[]> {
@@ -156,7 +152,7 @@ function TemplateShowcaseSkeleton() {
 }
 
 export default async function HomePage() {
-  const [hp, dbSlides, templateSections] = await Promise.all([getSettings(), getSlides(), getTemplateSections()])
+  const [hp, templateSections] = await Promise.all([getSettings(), getTemplateSections()])
 
   const zalo = (hp['social_zalo'] || hp['site_phone'] || '').replace(/\s/g, '')
 
@@ -227,7 +223,7 @@ export default async function HomePage() {
   return (
     <>
       <RevealObserver />
-      <HeroSlider slides={dbSlides} />
+      <HeroSlider />
 
       {showHiw      && <HowItWorks {...hiwData} />}
       {showTemplates && (

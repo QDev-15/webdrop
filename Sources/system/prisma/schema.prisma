@@ -670,6 +670,46 @@ model HelpTag {
   @@schema("webdrop")
 }
 
+model FaqItem {
+  id        Int      @id @default(autoincrement())
+  question  String
+  answer    String   @db.Text
+  groupKey  String   @map("group_key")
+  sortOrder Int      @default(0) @map("sort_order")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([groupKey])
+  @@map("faq_items")
+  @@schema("webdrop")
+}
+
+model TeamMember {
+  id        Int      @id @default(autoincrement())
+  name      String
+  title     String
+  bio       String   @db.Text
+  image     String?
+  sortOrder Int      @default(0) @map("sort_order")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([sortOrder])
+  @@map("team_members")
+  @@schema("webdrop")
+}
+
+model CompanyValue {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String   @db.Text
+  icon        String?
+  sortOrder   Int      @default(0) @map("sort_order")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@index([sortOrder])
+  @@map("company_values")
+  @@schema("webdrop")
+}
+
 enum UserRole {
   superadmin
   user

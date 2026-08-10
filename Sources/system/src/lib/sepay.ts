@@ -1,12 +1,5 @@
 import { prisma } from '@/lib/prisma'
 
-const DEFAULT_BANK = {
-  bankName:    'MB Bank',
-  bankCode:    'MB',
-  accountNo:   '0988632841',
-  accountName: 'NGUYEN HUU QUYNH',
-}
-
 const BANK_INFO_KEYS = ['sepay_bank_name', 'sepay_bank_code', 'sepay_account_no', 'sepay_account_name'] as const
 
 export interface SepayBankInfo {
@@ -21,7 +14,7 @@ export async function getSepayApiKey(): Promise<string> {
   return row?.value || process.env.SEPAY_API_KEY || ''
 }
 
-export async function getSepayBankInfo(): Promise<SepayBankInfo> {
+export async function getSepayBankInfo(): Promise<SepayBankInfo | null> {
   const rows = await prisma.setting.findMany({ where: { key: { in: [...BANK_INFO_KEYS] } } })
   const map = Object.fromEntries(rows.map(r => [r.key, r.value || '']))
   const configured = {
@@ -30,10 +23,9 @@ export async function getSepayBankInfo(): Promise<SepayBankInfo> {
     accountNo:   map.sepay_account_no   || '',
     accountName: map.sepay_account_name || '',
   }
-  // Chỉ dùng cấu hình trong DB khi ĐỦ cả 4 trường — tránh trộn lẫn 1 phần
-  // giá trị mới với default cũ (VD: đổi bank_code nhưng quên đổi account_no).
+  // Require ALL 4 fields — return null if incomplete (no hardcoded fallback)
   const isFullyConfigured = Object.values(configured).every(v => v !== '')
-  return isFullyConfigured ? configured : { ...DEFAULT_BANK }
+  return isFullyConfigured ? configured : null
 }
 
 interface SepayBankAccount {
