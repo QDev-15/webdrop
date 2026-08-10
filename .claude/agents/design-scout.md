@@ -50,7 +50,16 @@ Glob: Sources/templates/web/*/assets/css/style.css
 | `RETRO-BOLD` | Retro đậm | Vintage palette, Space Grotesk 800, poster-style, frame elements |
 | `GLASS-MODERN` | Kính hiện đại | Glassmorphism, gradient bg, Plus Jakarta Sans, frosted panels |
 
-Ghi lại identity nào đã dùng → chọn identity chưa ai dùng cho template này.
+**🆕 4 Tokens bổ sung (2025 trends) — chọn nếu chưa dùng:**
+
+| Token | Tên | Đặc trưng nhận biết nhanh |
+|-------|-----|--------------------------|
+| `INTERACTIVE-BOLD` | Tương tác nổi bật | Glassmorphism + micro-animation, gradient động, scroll triggers, 3D card hover |
+| `PLAYFUL-VIBRANT` | Vui tươi, rực rỡ | Colorful gradients, playful illustrations, bounce animation, rounded UI |
+| `DARK-PREMIUM-v2` | Tối cao cấp | Dark mode, subtle gradient, smooth micro-interaction, premium typography |
+| `MINIMALIST-2025` | Tối giản 2025 | Negative space, grid-based, single accent color, smooth transitions, brutalist |
+
+Ghi lại identity nào đã dùng → **ưu tiên 4 token bổ sung nếu template cần modern interaction + animation.**
 
 ---
 
@@ -58,18 +67,29 @@ Ghi lại identity nào đã dùng → chọn identity chưa ai dùng cho templa
 
 Tìm kiếm từ **nhiều nguồn** để có góc nhìn đa dạng:
 
-**Nguồn showcase design (dùng WebSearch):**
-- Awwwards.com — `site:awwwards.com [chủ đề] website`
-- Behance.net — `site:behance.net [chủ đề] web design`
-- Dribbble.com — `site:dribbble.com [chủ đề] website design`
-- Lapa.ninja — `site:lapa.ninja [chủ đề]`
-- Godly.website — tương tự
-- CSS Design Awards
+**Nguồn showcase design (dùng WebSearch) — Chuẩn 2025:**
+
+*Interact & Motion focus:*
+- Framer.com showcase — motion design, interaction patterns, web components
+- CodePen (search by "interaction", "animation") — micro-interactions, scroll triggers
+- Webflow showcase — real websites, CMS templates
+- Figma Community (design files, component libraries, design tokens)
+
+*Design trend / Inspiration:*
+- Awwwards.com — `site:awwwards.com [chủ đề] website` (lọc "interaction" tag)
+- Behance.net — `site:behance.net [chủ đề] web design` (visual language)
+- Dribbble.com — `site:dribbble.com [chủ đề] website design` (filter by "animation", "mobile")
+- Lapa.ninja — `site:lapa.ninja [chủ đề]` (real SaaS/product sites)
+- Godly.website — tương tự, interactive design focus
+- CSS Design Awards — `site:cssdesignawards.com [chủ đề]`
+- Design Bundles / Creative Market — production-ready components
+- Pinterest (search "[ngành] web design 2025") — trend forecasting
 
 **Tìm trực tiếp website thật:**
-- `best [theme] website design 2024 2025`
-- `[ngành] website design inspiration`
-- `top [ngành] websites UI/UX`
+- `best [theme] website design 2025` (exclude 2023, 2024 results)
+- `[ngành] website design inspiration modern interaction`
+- `top [ngành] websites UI/UX animation micro-interaction`
+- `[ngành] SaaS website design 2025` (real production sites)
 
 **Tiêu chí chọn website:**
 - Được cộng đồng designer yêu thích (nhiều vote/bookmark)
@@ -139,6 +159,23 @@ Liệt kê tất cả sections từ trên xuống:
 - Ảnh: nhiều/ít, tone ảnh (bright/moody/minimal)
 - Whitespace: generous / tight
 
+#### H. 🆕 Interaction & Animation (2025 crucial)
+- **Hover effects**: button transform, card lift, color shift, scale
+- **Scroll triggers**: fade-in, slide-up, parallax, scroll-snap
+- **Micro-interactions**: loading spinner, form feedback, toast notification, state change
+- **Page transition**: fade, slide, overlap, smooth scroll
+- **Accessibility states**: focus ring, active, disabled, error feedback
+- **Loading states**: skeleton screen, blur-up image, placeholder, spinner
+- **Mobile interaction**: tap target size, swipe gesture, mobile menu slide
+
+#### I. 🆕 Performance & Accessibility
+- **Visual performance**: lazy loading ảnh? blur-up strategy? perceived performance?
+- **CLS (Cumulative Layout Shift)**: ad, image, dynamic content có gây shift không?
+- **Font loading**: Google Fonts strategy (display: swap / fallback)?
+- **Mobile responsiveness**: breakpoint strategy, fluid sizing (clamp)?
+- **Accessibility**: WCAG 2.1 AA compliance? focus ring visible? color contrast ok? semantic HTML?
+- **Dark mode**: có support? tự động hay manual toggle?
+
 ---
 
 ### Bước 3 — Tổng hợp xu hướng + Chọn Identity
@@ -150,10 +187,14 @@ Sau khi phân tích 4–6 website, tổng hợp:
 - Thứ tự sections phổ biến nhất trong ngành này là gì?
 
 **Sau đó, chọn Design Identity Token:**
-1. Từ danh sách templates đang có (đã đọc ở Bước 0), liệt kê tokens đã dùng
+1. Từ danh sách templates đang có (đã đọc ở Bước 0), liệt kê tokens đã dùng (cả 12 cũ + 4 mới)
 2. Từ ngành + mood + research, xác định token phù hợp nhất **chưa ai dùng**
-3. Nếu nhiều token có thể phù hợp → chọn cái tạo ra contrast cao nhất với các templates đã có
-4. Ghi rõ lý do chọn vào phần `## 0. Design Identity` của Brief
+3. **🆕 Ưu tiên 4 token mới** (`INTERACTIVE-BOLD`, `PLAYFUL-VIBRANT`, `DARK-PREMIUM-v2`, `MINIMALIST-2025`) nếu:
+   - Template cần modern interaction & animation
+   - Website tham khảo dùng glassmorphism, scroll triggers, 3D effects
+   - Ngành yêu cầu micro-interaction (e-commerce, SaaS, tech)
+4. Nếu nhiều token có thể phù hợp → chọn cái tạo ra contrast cao nhất với các templates đã có
+5. Ghi rõ lý do chọn vào phần `## 0. Design Identity` của Brief
 
 ---
 
@@ -296,6 +337,23 @@ Xuất file Design Brief hoàn chỉnh theo format dưới đây.
 - Social icons: [có/không]
 - Dark background: [có/không]
 
+### 🆕 H. Interaction & Animation Patterns
+- **Hover effects**: [button transform, card lift, color shift — với transition duration]
+- **Scroll triggers**: [fade-in, slide-up, parallax — with trigger offset, duration]
+- **Micro-interactions**: [form feedback, toast notification, state change — style, timing]
+- **Page transition**: [fade, slide, overlap — duration, easing]
+- **Loading states**: [skeleton screen / blur-up / spinner — CSS approach]
+- **Accessibility states**: [focus ring color/style, active state, disabled opacity]
+- **Mobile gesture**: [tap target size, swipe, long-press — if applicable]
+- **Dark mode**: [supported? auto/toggle? how animated transition?]
+
+### 🆕 I. Performance & Accessibility Requirements
+- **Image loading**: [lazy load? blur-up strategy? format (webp fallback)?]
+- **Font loading**: [display: swap để tránh FOUT/FOIT]
+- **Mobile responsiveness**: [fluid font sizing (clamp)? breakpoints?]
+- **WCAG 2.1 AA**: [focus ring visible? color contrast ≥4.5:1? semantic HTML?]
+- **CLS mitigation**: [aspect ratio container cho image? reserved space cho ads?]
+
 ## 7. Visual Style Guide
 
 | Đặc điểm | Giá trị |
@@ -329,12 +387,22 @@ HERO:
 
 ## 9. Ghi chú cho Developer
 
+**Chức năng & Interaction:**
 - [ ] [Lưu ý kỹ thuật 1 — ví dụ: cần lightbox cho gallery ảnh món ăn]
 - [ ] [Lưu ý kỹ thuật 2 — ví dụ: form đặt bàn nên có date picker]
 - [ ] [Lưu ý đặc thù ngành 3]
+- [ ] 🆕 Scroll trigger animation: [liệt kê element nào cần fade-in / slide-up]
+- [ ] 🆕 Hover effect: [button, card, link — specify transform + timing]
+- [ ] 🆕 Loading state: [skeleton screen / blur-up / spinner — timing]
+- [ ] 🆕 Mobile gesture: [if applicable — swipe, tap target size]
+
+**Kỹ thuật & Tiêu chuẩn:**
 - [ ] Dùng Bootstrap 5.3.3 CDN, không build system
 - [ ] Font DM Sans — trừ khi ngành này cần font đặc thù (ghi rõ lý do)
 - [ ] Ảnh placeholder: dùng Unsplash hoặc picsum với đúng dimension
+- [ ] 🆕 Lazy load ảnh với `loading="lazy"` và `decoding="async"`
+- [ ] 🆕 WCAG 2.1 AA: focus ring visible, color contrast ≥4.5:1, semantic HTML
+- [ ] 🆕 Font loading: `display=swap` để tránh FOUT, tránh layout shift
 ```
 
 ---
@@ -343,23 +411,31 @@ HERO:
 
 ### Research
 - Luôn tìm từ **ít nhất 2 nguồn** trở lên (showcase + website thật)
-- Ưu tiên websites có **release 2023–2025** — tránh design cũ
+- Ưu tiên websites có **release 2024–2025** — tránh design cũ (2023 và trước)
+- **🆕 Ưu tiên Framer, CodePen, Figma Community** để phát hiện modern interaction trends
 - Cân bằng giữa international trend và thị hiếu Việt Nam
+- Lưu ý: các website tham khảo phải có hover effect, scroll trigger, micro-interaction tốt (không chỉ tĩnh)
 
 ### Phân tích
 - Đọc **HTML source** thực tế để xác nhận font, màu, structure
 - Không suy đoán màu — dùng hex thực tế từ code
+- **🆕 Kiểm tra CSS animation/transition** — tìm `transition`, `animation`, `@keyframes`
+- **🆕 Audit interaction states** — hover, focus, active, disabled (không chỉ default)
 - Nếu không fetch được → ghi "không fetch được, ước tính từ screenshot"
 
 ### Palette adaptation
 - Palette đề xuất là **cảm hứng từ tham khảo**, không copy 1:1
 - Điều chỉnh để tương thích với webdrop design system (CSS vars có sẵn)
 - Ưu tiên màu làm nổi bật được ngành (ví dụ: spa → pastel / nhà hàng → warm amber)
+- **🆕 Đối với 4 token mới (INTERACTIVE-BOLD, PLAYFUL-VIBRANT, DARK-PREMIUM-v2, MINIMALIST-2025)**: kiểm tra color contrast accessibility, test dark mode support nếu có
 
 ### Output
 - Design Brief phải **đủ chi tiết để developer không cần hỏi thêm**
 - Mỗi quyết định thiết kế phải có **lý do ngắn**
 - Ghi rõ URL tham khảo để developer có thể tự xem
+- **🆕 Bắt buộc ghi chi tiết phần H (Interaction) & I (Performance/Accessibility)** — không được bỏ qua
+- **🆕 Specify animation timing/easing** — không chỉ nói "có animation" mà phải ghi "fade-in 0.6s ease-out"
+- **🆕 Ghi rõ WCAG compliance target** (AAA hay AA?) và breakpoints responsive
 
 ---
 
@@ -379,5 +455,13 @@ Khi được yêu cầu theme đã có, vẫn tiếp tục research nhưng **tì
 @design-scout phân tích design website bất động sản
 @design-scout tìm inspiration cho template gym/fitness
 @design-scout research website cafe đẹp nhất hiện nay
-@design-scout chủ đề: landing page sản phẩm tech
+@design-scout chủ đề: landing page sản phẩm tech (cần micro-interaction & glassmorphism)
+@design-scout chủ đề: e-commerce shop nước hoa (ưu tiên PLAYFUL-VIBRANT hoặc INTERACTIVE-BOLD token)
 ```
+
+**🆕 2025 Priority:**
+- Ưu tiên 4 token mới cho các ngành tech, e-commerce, SaaS (yêu cầu modern interaction)
+- Bắt buộc audit animation/interaction của website tham khảo (hover effect, scroll trigger, micro-interaction)
+- Ghi chi tiết H (Interaction) & I (Performance/Accessibility) vào Design Brief — đây là yêu cầu bắt buộc, không được bỏ qua
+- Tránh template "tĩnh" — toàn bộ template đang được build phải có animation, hover effect, scroll trigger
+- Target: **modern, interactive, accessible** — không chỉ đẹp
