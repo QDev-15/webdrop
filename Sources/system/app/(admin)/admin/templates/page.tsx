@@ -95,7 +95,7 @@ export default async function AdminTemplatesPage({
 
       {/* Filters */}
       <Suspense>
-        <TemplateFilters industries={industries} total={total} withWebsite={templates.filter(t => t.hasWebsite).length} />
+        <TemplateFilters industries={industries} total={total} />
       </Suspense>
 
       {/* Grid */}

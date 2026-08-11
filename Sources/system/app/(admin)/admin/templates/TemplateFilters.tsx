@@ -5,10 +5,9 @@ import { useCallback } from 'react'
 interface Props {
   industries: { slug: string; name: string }[]
   total: number
-  withWebsite: number
 }
 
-export default function TemplateFilters({ industries, total, withWebsite }: Props) {
+export default function TemplateFilters({ industries, total }: Props) {
   const router       = useRouter()
   const searchParams = useSearchParams()
 
@@ -70,8 +69,8 @@ export default function TemplateFilters({ industries, total, withWebsite }: Prop
       <select value={website} onChange={e => update('website', e.target.value)}
         style={{ ...selectStyle, borderColor: website ? 'var(--accent)' : 'var(--border)', color: website ? 'var(--accent)' : 'inherit' }}>
         <option value="">Tất cả gói</option>
-        <option value="yes">🌐 Có Gói B ({withWebsite})</option>
-        <option value="no">Template only ({total - withWebsite})</option>
+        <option value="yes">🌐 Có Gói B</option>
+        <option value="no">Template only</option>
       </select>
 
       {/* Page size */}
