@@ -42,7 +42,8 @@
       "Bash(rm -rf .next)",
       "Bash(rm -rf node_modules/.cache)",
       "Bash(node scaffolder.mjs shop-the-thao shop)",
-      "Bash(dir \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\" -Exclude node_modules)"
+      "Bash(dir \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\" -Exclude node_modules)",
+      "Bash(node scaffolder.mjs yoga-wellness spa-service)"
     ],
     "additionalDirectories": [
       "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"
