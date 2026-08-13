@@ -13,7 +13,7 @@ export default function Footer() {
               <a href="#" className="yw-ft-soc" rel="noopener noreferrer">zl</a>
             </div>
           </div>
-          <div className="col" data-reveal className="rd1">
+          <div className="col rd1" data-reveal>
             <div className="yw-ft-col-title">Các lớp học</div>
             <div className="yw-ft-links">
               <a href="/dich-vu">Hatha Yoga</a>
@@ -22,7 +22,7 @@ export default function Footer() {
               <a href="/dich-vu">Prenatal Yoga</a>
             </div>
           </div>
-          <div className="col" data-reveal className="rd2">
+          <div className="col rd2" data-reveal>
             <div className="yw-ft-col-title">Thông tin</div>
             <div className="yw-ft-links">
               <a href="/dat-lich">Đăng ký lớp</a>
@@ -31,7 +31,7 @@ export default function Footer() {
               <a href="/">Lịch học tuần</a>
             </div>
           </div>
-          <div className="col" data-reveal className="rd3">
+          <div className="col rd3" data-reveal>
             <div className="yw-ft-col-title">Liên hệ</div>
             <div className="yw-ft-links">
               <a href="tel:0901234567">📱 0901 234 567</a>

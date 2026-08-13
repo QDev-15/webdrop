@@ -38,4 +38,5 @@ export const api = {
     const data = await res.json() as T
     return { data, total }
   },
+  upload: <T>(path: string, formData: FormData) => request<T>('POST', path, formData),
 }

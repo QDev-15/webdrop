@@ -1,1 +1,3 @@
-// TODO: AI-generated — admin/src/pages/settings/Settings.tsx
+export default function Settings() {
+  return <div className="admin-page"><h1>Cài đặt</h1></div>
+}
