@@ -43,7 +43,7 @@ export default function ServiceForm() {
       } else {
         await api.post('/services', form)
       }
-      navigate('/admin/services')
+      navigate('/services')
     } catch (err) {
       setError((err as Error).message)
     }
@@ -54,7 +54,7 @@ export default function ServiceForm() {
   return (
     <>
       <div style={{ marginBottom: '24px' }}>
-        <button onClick={() => navigate('/admin/services')} style={{ cursor: 'pointer', background: 'none', border: 'none', color: 'var(--accent)', fontSize: '14px' }}>← Quay lại</button>
+        <button onClick={() => navigate('/services')} style={{ cursor: 'pointer', background: 'none', border: 'none', color: 'var(--accent)', fontSize: '14px' }}>← Quay lại</button>
       </div>
 
       <div className="form-card">
@@ -105,7 +105,7 @@ export default function ServiceForm() {
 
           <div style={{ display: 'flex', gap: '12px', marginTop: '12px' }}>
             <button type="submit" className="btn-accent">Lưu</button>
-            <button type="button" onClick={() => navigate('/admin/services')} className="btn-ghost">Hủy</button>
+            <button type="button" onClick={() => navigate('/services')} className="btn-ghost">Hủy</button>
           </div>
         </form>
       </div>

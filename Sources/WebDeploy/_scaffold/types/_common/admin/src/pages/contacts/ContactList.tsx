@@ -13,9 +13,9 @@ interface Contact {
 }
 
 const STATUS_LABELS: Record<string, string> = {
-  new: 'Moi',
-  read: 'Da doc',
-  replied: 'Da tra loi',
+  new: 'Mới',
+  read: 'Đã đọc',
+  replied: 'Đã trả lời',
 }
 
 export default function ContactList() {
@@ -47,7 +47,7 @@ export default function ContactList() {
   }
 
   async function handleDelete(id: number) {
-    if (!confirm('Xoa tin nhan nay?')) return
+    if (!confirm('Xóa tin nhắn này?')) return
     await api.delete(`/contacts/${id}`)
     setDetail(null); load()
   }
@@ -58,21 +58,21 @@ export default function ContactList() {
       : (i.name.toLowerCase().includes(filter.toLowerCase()) || (i.email ?? '').toLowerCase().includes(filter.toLowerCase()))
   )
 
-  if (loading) return <div className="admin-loading">Dang tai...</div>
+  if (loading) return <div className="admin-loading">Đang tải...</div>
 
   return (
     <div>
       <div className="page-header">
         <div>
-          <div className="page-title">Lien he</div>
-          <div className="page-sub">{items.filter(i => i.status === 'new').length} tin nhan moi · {items.length} tong</div>
+          <div className="page-title">Liên hệ</div>
+          <div className="page-sub">{items.filter(i => i.status === 'new').length} tin nhắn mới · {items.length} tổng</div>
         </div>
       </div>
 
       <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
         {['', 'new', 'read', 'replied'].map(s => (
           <button key={s} onClick={() => setFilter(s)} className={filter === s ? 'btn-accent btn-sm' : 'btn-ghost btn-sm'}>
-            {s === '' ? 'Tat ca' : STATUS_LABELS[s]}
+            {s === '' ? 'Tất cả' : STATUS_LABELS[s]}
             <span style={{ marginLeft: 4, opacity: .7 }}>({items.filter(i => s === '' || i.status === s).length})</span>
           </button>
         ))}
@@ -83,11 +83,11 @@ export default function ContactList() {
           <table>
             <thead>
               <tr>
-                <th>Nguoi gui</th>
-                <th>Chu de</th>
-                <th>Trang thai</th>
-                <th>Ngay gui</th>
-                <th>Thao tac</th>
+                <th>Người gửi</th>
+                <th>Chủ đề</th>
+                <th>Trạng thái</th>
+                <th>Ngày gửi</th>
+                <th>Thao tác</th>
               </tr>
             </thead>
             <tbody>
@@ -102,28 +102,28 @@ export default function ContactList() {
                   <td><span className={`badge badge-${c.status}`}>{STATUS_LABELS[c.status] ?? c.status}</span></td>
                   <td style={{ fontSize: 12, color: 'var(--text-3)' }}>{new Date(c.created_at).toLocaleDateString('vi-VN')}</td>
                   <td onClick={e => e.stopPropagation()}>
-                    <button onClick={() => handleDelete(c.id)} className="btn-ghost btn-sm">Xoa</button>
+                    <button onClick={() => handleDelete(c.id)} className="btn-ghost btn-sm">Xóa</button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          {filtered.length === 0 && <div className="empty-state"><div className="empty-state-icon">✉</div><div className="empty-state-text">Khong co tin nhan nao.</div></div>}
+          {filtered.length === 0 && <div className="empty-state"><div className="empty-state-icon">✉</div><div className="empty-state-text">Không có tin nhắn nào.</div></div>}
         </div>
 
         {detail && (
           <div className="card" style={{ alignSelf: 'start', position: 'sticky', top: 20 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
-              <div style={{ fontWeight: 600, fontSize: 15 }}>Chi tiet tin nhan</div>
+              <div style={{ fontWeight: 600, fontSize: 15 }}>Chi tiết tin nhắn</div>
               <button onClick={() => setDetail(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 18 }}>×</button>
             </div>
             {[
-              ['Ho ten', detail.name],
+              ['Họ tên', detail.name],
               ['Email', detail.email || '—'],
-              ['Dien thoai', detail.phone || '—'],
-              ['Chu de', detail.subject || '—'],
-              ['Trang thai', STATUS_LABELS[detail.status] ?? detail.status],
-              ['Ngay gui', new Date(detail.created_at).toLocaleDateString('vi-VN')],
+              ['Điện thoại', detail.phone || '—'],
+              ['Chủ đề', detail.subject || '—'],
+              ['Trạng thái', STATUS_LABELS[detail.status] ?? detail.status],
+              ['Ngày gửi', new Date(detail.created_at).toLocaleDateString('vi-VN')],
             ].map(([label, value]) => (
               <div key={label} style={{ display: 'flex', gap: 8, padding: '8px 0', borderBottom: '1px solid var(--border-light)' }}>
                 <div style={{ fontSize: 12, color: 'var(--text-3)', width: 100, flexShrink: 0 }}>{label}</div>
@@ -135,9 +135,9 @@ export default function ContactList() {
             </div>
             <div style={{ display: 'flex', gap: 8, marginTop: 14 }}>
               {detail.status !== 'replied' && (
-                <button onClick={() => markReplied(detail.id)} className="btn-accent btn-sm">Danh dau da tra loi</button>
+                <button onClick={() => markReplied(detail.id)} className="btn-accent btn-sm">Đánh dấu đã trả lời</button>
               )}
-              <button onClick={() => handleDelete(detail.id)} className="btn-ghost btn-sm">Xoa</button>
+              <button onClick={() => handleDelete(detail.id)} className="btn-ghost btn-sm">Xóa</button>
             </div>
           </div>
         )}

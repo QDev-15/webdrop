@@ -50,7 +50,7 @@ export default function TestimonialList() {
           <div className="page-title">Bình luận khách</div>
           <div className="page-sub">Quản lý đánh giá và bình luận từ khách hàng</div>
         </div>
-        <Link to="/admin/testimonials/new" className="btn-accent">+ Thêm bình luận</Link>
+        <Link to="/testimonials/new" className="btn-accent">+ Thêm bình luận</Link>
       </div>
 
       {error && <div style={{ color: 'var(--danger)', padding: '12px', background: '#ffe4e4', borderRadius: '8px', marginBottom: '16px' }}>{error}</div>}

@@ -42,7 +42,7 @@ export default function TeamForm() {
       } else {
         await api.post('/team', form)
       }
-      navigate('/admin/team')
+      navigate('/team')
     } catch (err) {
       setError((err as Error).message)
     }
@@ -53,7 +53,7 @@ export default function TeamForm() {
   return (
     <>
       <div style={{ marginBottom: '24px' }}>
-        <button onClick={() => navigate('/admin/team')} style={{ cursor: 'pointer', background: 'none', border: 'none', color: 'var(--accent)', fontSize: '14px' }}>← Quay lại</button>
+        <button onClick={() => navigate('/team')} style={{ cursor: 'pointer', background: 'none', border: 'none', color: 'var(--accent)', fontSize: '14px' }}>← Quay lại</button>
       </div>
 
       <div className="form-card">
@@ -94,7 +94,7 @@ export default function TeamForm() {
 
           <div style={{ display: 'flex', gap: '12px', marginTop: '12px' }}>
             <button type="submit" className="btn-accent">Lưu</button>
-            <button type="button" onClick={() => navigate('/admin/team')} className="btn-ghost">Hủy</button>
+            <button type="button" onClick={() => navigate('/team')} className="btn-ghost">Hủy</button>
           </div>
         </form>
       </div>

@@ -160,3 +160,65 @@ textarea.form-control { resize: vertical; min-height: 80px; }
 .btn-outline-secondary { background: var(--surface); color: var(--text-2); border: 1px solid var(--border); border-left: none; border-radius: 0 8px 8px 0; padding: 6px 10px; font-size: 13px; }
 .btn-outline-secondary:hover { background: var(--warm); }
 .btn-outline-secondary:disabled { opacity: .5; cursor: not-allowed; }
+
+/* ── Admin CRUD Pages ── */
+.admin-page { display: flex; flex-direction: column; gap: 24px; }
+.admin-page-title { font-size: 22px; font-weight: 600; color: var(--text); }
+.admin-page-subtitle { font-size: 14px; color: var(--text-2); margin-top: 4px; }
+.admin-page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.admin-page-actions { display: flex; gap: 12px; align-items: center; }
+
+/* ── Admin Form ── */
+.admin-form { display: flex; flex-direction: column; gap: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+.admin-form .form-group { margin-bottom: 0; }
+.admin-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.admin-form .form-row.wide { grid-template-columns: 1fr; }
+.admin-form .form-actions { display: flex; gap: 12px; justify-content: flex-end; padding-top: 20px; border-top: 1px solid var(--border-light); margin-top: 8px; }
+
+/* ── Form Control Variants ── */
+.form-check { display: flex; align-items: center; gap: 8px; }
+.form-check input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; accent-color: var(--accent); }
+.form-check label { font-size: 13.5px; color: var(--text); cursor: pointer; }
+
+/* ── Form Messages ── */
+.form-error-banner { background: #fff0f0; color: var(--danger); border: 1px solid #fdd; padding: 12px 16px; border-radius: 8px; font-size: 13px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.form-error-banner::before { content: '⚠'; font-weight: 600; }
+.form-success-banner { background: var(--accent-light); color: var(--accent); border: 1px solid #c0ddd2; padding: 12px 16px; border-radius: 8px; font-size: 13px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.form-success-banner::before { content: '✓'; font-weight: 600; }
+
+/* ── Admin Table Wrapper ── */
+.admin-table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.admin-table-wrap table { width: 100%; border-collapse: collapse; }
+.admin-table-wrap thead th { font-size: 11px; font-weight: 600; color: var(--text-3); text-transform: uppercase; letter-spacing: .8px; padding: 12px 16px; background: var(--bg); border-bottom: 1px solid var(--border); text-align: left; }
+.admin-table-wrap tbody td { padding: 12px 16px; font-size: 13.5px; color: var(--text); border-bottom: 1px solid var(--border-light); vertical-align: middle; }
+.admin-table-wrap tbody tr:hover { background: var(--bg); }
+.admin-table-wrap tbody tr:last-child td { border-bottom: none; }
+
+/* ── Admin Loading Box ── */
+.admin-loading-box { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 20px; color: var(--text-3); text-align: center; }
+.admin-loading-box-icon { font-size: 32px; margin-bottom: 12px; }
+.admin-loading-box-text { font-size: 14px; }
+
+/* ── Status Badge Extended ── */
+.status-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11.5px; font-weight: 500; padding: 3px 10px; border-radius: 20px; }
+.status-badge.new { background: #eff6ff; color: #1d4ed8; }
+.status-badge.pending { background: #fffbeb; color: #92400e; }
+.status-badge.published { background: var(--accent-light); color: var(--accent); }
+.status-badge.draft { background: var(--warm); color: var(--text-2); }
+.status-badge.confirmed { background: var(--accent-light); color: var(--accent); }
+.status-badge.cancelled { background: #fff0f0; color: var(--danger); }
+
+/* ── Settings Tabs ── */
+.settings-tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 24px; gap: 0; }
+.settings-tab { padding: 12px 20px; font-size: 13.5px; color: var(--text-2); cursor: pointer; border-bottom: 2px solid transparent; transition: all .15s; }
+.settings-tab:hover { color: var(--text); }
+.settings-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ── Sidebar Profile Section ── */
+.sidebar-profile { display: flex; align-items: center; gap: 12px; padding: 12px; color: #fff; }
+.sidebar-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.sidebar-profile-info { flex: 1; min-width: 0; }
+.sidebar-profile-name { font-size: 12.5px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #fff; }
+.sidebar-profile-role { font-size: 10px; color: rgba(255,255,255,.5); margin-top: 1px; }
+.sidebar-logout { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; transition: all .15s; color: rgba(255,255,255,.5); }
+.sidebar-logout:hover { background: rgba(255,255,255,.1); color: rgba(255,255,255,.85); }

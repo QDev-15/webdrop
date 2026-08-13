@@ -54,7 +54,7 @@ export default function TestimonialForm() {
       } else {
         await api.post('/testimonials', form)
       }
-      navigate('/admin/testimonials')
+      navigate('/testimonials')
     } catch (err) {
       setError((err as Error).message)
     }
@@ -65,7 +65,7 @@ export default function TestimonialForm() {
   return (
     <>
       <div style={{ marginBottom: '24px' }}>
-        <button onClick={() => navigate('/admin/testimonials')} style={{ cursor: 'pointer', background: 'none', border: 'none', color: 'var(--accent)', fontSize: '14px' }}>← Quay lại</button>
+        <button onClick={() => navigate('/testimonials')} style={{ cursor: 'pointer', background: 'none', border: 'none', color: 'var(--accent)', fontSize: '14px' }}>← Quay lại</button>
       </div>
 
       <div className="form-card">
@@ -128,7 +128,7 @@ export default function TestimonialForm() {
 
           <div style={{ display: 'flex', gap: '12px', marginTop: '12px' }}>
             <button type="submit" className="btn-accent">Lưu</button>
-            <button type="button" onClick={() => navigate('/admin/testimonials')} className="btn-ghost">Hủy</button>
+            <button type="button" onClick={() => navigate('/testimonials')} className="btn-ghost">Hủy</button>
           </div>
         </form>
       </div>

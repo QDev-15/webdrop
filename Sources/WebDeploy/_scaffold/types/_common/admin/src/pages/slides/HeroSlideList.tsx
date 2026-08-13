@@ -26,27 +26,27 @@ export default function HeroSlideList() {
   }
 
   async function handleDelete(id: number) {
-    if (!confirm('Xoa slide nay?')) return
+    if (!confirm('Xóa slide này?')) return
     await api.delete(`/hero-slides/${id}`)
     load()
   }
 
-  if (loading) return <div className="admin-loading">Dang tai...</div>
+  if (loading) return <div className="admin-loading">Đang tải...</div>
 
   return (
     <div>
       <div className="page-header">
         <div>
           <div className="page-title">Hero Slides</div>
-          <div className="page-sub">Quan ly anh slider trang chu ({slides.length} slides)</div>
+          <div className="page-sub">Quản lý ảnh slider trang chủ ({slides.length} slides)</div>
         </div>
-        <Link to="/slides/new" className="btn-accent">+ Them slide</Link>
+        <Link to="/slides/new" className="btn-accent">+ Thêm slide</Link>
       </div>
 
       {slides.length === 0 ? (
         <div className="empty-state">
           <div className="empty-state-icon">🖼</div>
-          <div className="empty-state-text">Chua co slide nao. Them slide dau tien!</div>
+          <div className="empty-state-text">Chưa có slide nào. Thêm slide đầu tiên!</div>
         </div>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -61,12 +61,12 @@ export default function HeroSlideList() {
                 {slide.subtitle && (
                   <div style={{ fontSize: 13, color: 'var(--text-2)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{slide.subtitle}</div>
                 )}
-                <div style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 4 }}>Thu tu: {slide.sort_order}</div>
+                <div style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 4 }}>Thứ tự: {slide.sort_order}</div>
               </div>
               <div style={{ display: 'flex', gap: 8, flexShrink: 0, alignItems: 'center' }}>
-                <span className={`badge badge-${slide.status}`}>{slide.status === 'published' ? 'Dang hien' : 'An'}</span>
-                <Link to={`/slides/${slide.id}/edit`} className="btn-ghost btn-sm">Sua</Link>
-                <button onClick={() => handleDelete(slide.id)} className="btn-danger btn-sm">Xoa</button>
+                <span className={`badge badge-${slide.status}`}>{slide.status === 'published' ? 'Đang hiện' : 'Ẩn'}</span>
+                <Link to={`/slides/${slide.id}/edit`} className="btn-ghost btn-sm">Sửa</Link>
+                <button onClick={() => handleDelete(slide.id)} className="btn-danger btn-sm">Xóa</button>
               </div>
             </div>
           ))}

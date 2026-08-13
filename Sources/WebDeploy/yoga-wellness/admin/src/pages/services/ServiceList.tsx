@@ -50,7 +50,7 @@ export default function ServiceList() {
           <div className="page-title">Dịch vụ yoga</div>
           <div className="page-sub">Quản lý các lớp học yoga</div>
         </div>
-        <Link to="/admin/services/new" className="btn-accent">+ Thêm dịch vụ</Link>
+        <Link to="/services/new" className="btn-accent">+ Thêm dịch vụ</Link>
       </div>
 
       {error && <div style={{ color: 'var(--danger)', padding: '12px', background: '#ffe4e4', borderRadius: '8px', marginBottom: '16px' }}>{error}</div>}

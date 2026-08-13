@@ -49,7 +49,7 @@ export default function TeamList() {
           <div className="page-title">Đội ngũ</div>
           <div className="page-sub">Quản lý giảng viên và nhân viên</div>
         </div>
-        <Link to="/admin/team/new" className="btn-accent">+ Thêm thành viên</Link>
+        <Link to="/team/new" className="btn-accent">+ Thêm thành viên</Link>
       </div>
 
       {error && <div style={{ color: 'var(--danger)', padding: '12px', background: '#ffe4e4', borderRadius: '8px', marginBottom: '16px' }}>{error}</div>}

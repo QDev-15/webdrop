@@ -9,15 +9,15 @@ interface NavLinkItem {
 }
 
 const navLinks: NavLinkItem[] = [
-  { to: '/admin', icon: '📊', label: 'Bảng điều khiển', exact: true },
-  { to: '/admin/services', icon: '🧘', label: 'Dịch vụ' },
-  { to: '/admin/team', icon: '👥', label: 'Đội ngũ' },
-  { to: '/admin/testimonials', icon: '⭐', label: 'Bình luận khách' },
-  { to: '/admin/bookings', icon: '📅', label: 'Đặt lịch' },
-  { to: '/admin/contacts', icon: '💬', label: 'Liên hệ' },
-  { to: '/admin/slides', icon: '🖼️', label: 'Hình ảnh banner' },
-  { to: '/admin/media', icon: '🗂️', label: 'Thư viện ảnh' },
-  { to: '/admin/settings', icon: '⚙️', label: 'Cài đặt' },
+  { to: '/', icon: '📊', label: 'Bảng điều khiển', exact: true },
+  { to: '/services', icon: '🧘', label: 'Dịch vụ' },
+  { to: '/team', icon: '👥', label: 'Đội ngũ' },
+  { to: '/testimonials', icon: '⭐', label: 'Bình luận khách' },
+  { to: '/bookings', icon: '📅', label: 'Đặt lịch' },
+  { to: '/contacts', icon: '💬', label: 'Liên hệ' },
+  { to: '/slides', icon: '🖼️', label: 'Hình ảnh banner' },
+  { to: '/media', icon: '🗂️', label: 'Thư viện ảnh' },
+  { to: '/settings', icon: '⚙️', label: 'Cài đặt' },
 ]
 
 export default function Sidebar() {
@@ -55,7 +55,7 @@ export default function Sidebar() {
       </nav>
 
       <div className="sidebar-footer">
-        <Link to="/admin/profile" className="sidebar-link">
+        <Link to="/profile" className="sidebar-link">
           <span className="icon">👤</span>
           Tài khoản
         </Link>
