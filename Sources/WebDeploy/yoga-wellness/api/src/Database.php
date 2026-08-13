@@ -36,6 +36,9 @@ class Database {
     $this->seedSettings();
     $this->seedHeroSlides();
     $this->seedServices();
+    $this->seedTeamMembers();
+    $this->seedTestimonials();
+    $this->seedBookings();
   }
 
   private function seedUsers(): void {
@@ -101,6 +104,41 @@ class Database {
     }
   }
 
+  private function seedTeamMembers(): void {
+    $count = (int)$this->pdo->query('SELECT COUNT(*) FROM team_members')->fetchColumn();
+    if ($count > 0) return;
+    $teamMembers = [
+      ['Yoga Master Hana', 'Founder & Lead Instructor', 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&auto=format&fit=crop', 'Chuyên gia yoga với 15 năm kinh nghiệm'],
+      ['Wellness Coach Linh', 'Wellness Coach', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&auto=format&fit=crop', 'Hỗ trợ khách hàng đạt mục tiêu wellness'],
+      ['Therapist Mai', 'Massage Therapist', 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&auto=format&fit=crop', 'Chuyên trị liệu massage thư giãn'],
+      ['Instructor Tuấn', 'Pilates Instructor', 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&auto=format&fit=crop', 'Giảng dạy Pilates nâng cao'],
+      ['Nutritionist Vy', 'Nutritionist', 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&auto=format&fit=crop', 'Tư vấn dinh dưỡng toàn bộ'],
+    ];
+    $stmt = $this->pdo->prepare('INSERT INTO team_members (name, role, image, experience) VALUES (?, ?, ?, ?)');
+    foreach ($teamMembers as $member) {
+      $stmt->execute($member);
+    }
+  }
+
+  private function seedTestimonials(): void {
+    $count = (int)$this->pdo->query('SELECT COUNT(*) FROM testimonials')->fetchColumn();
+    if ($count > 0) return;
+    $testimonials = [
+      ['Anh Nguyễn', 'Yoga tại đây thay đổi cuộc sống tôi. Cảm thấy bình tĩnh và khỏe mạnh hơn!', 'Student', 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&auto=format&fit=crop', 5.0, 1, 'published'],
+      ['Chị Hương', 'Các instructor rất tận tâm. Lớp Pilates giúp tôi cải thiện tư thế lâu năm.', 'Working Professional', 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&auto=format&fit=crop', 5.0, 1, 'published'],
+      ['Anh Minh', 'Môi trường yên tĩnh, thoải mái. Đó là nơi tôi tìm được sự bình yên.', 'Executive', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&auto=format&fit=crop', 4.0, 1, 'published'],
+      ['Chị Hoa', 'Dịch vụ massage thư giãn tuyệt vời. Cơ thể và tâm trí đều được chăm sóc.', 'Freelancer', 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&auto=format&fit=crop', 5.0, 1, 'published'],
+    ];
+    $stmt = $this->pdo->prepare('INSERT INTO testimonials (author_name, content, author_role, author_avatar, rating, featured, status) VALUES (?, ?, ?, ?, ?, ?, ?)');
+    foreach ($testimonials as $test) {
+      $stmt->execute($test);
+    }
+  }
+
+  private function seedBookings(): void {
+    // Placeholder — bookings are created when users submit via frontend form
+  }
+
   public function query(string $sql): PDOStatement {
     return $this->pdo->query($sql);
   }
@@ -111,6 +149,28 @@ class Database {
 
   public function exec(string $sql): int {
     return $this->pdo->exec($sql);
+  }
+
+  public function execute(string $sql, array $params = []): int {
+    $stmt = $this->prepare($sql);
+    $stmt->execute($params);
+    if (stripos(trim($sql), 'INSERT') === 0) {
+      return (int)$this->pdo->lastInsertId();
+    }
+    return $stmt->rowCount();
+  }
+
+  public function queryOne(string $sql, array $params = []): ?array {
+    $stmt = $this->prepare($sql);
+    $stmt->execute($params);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result ?: null;
+  }
+
+  public function queryAll(string $sql, array $params = []): array {
+    $stmt = $this->prepare($sql);
+    $stmt->execute($params);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 }
 ?>

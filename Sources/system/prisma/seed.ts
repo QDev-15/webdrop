@@ -378,12 +378,14 @@ async function main() {
       {
         slug: 'yoga-wellness',
         name: 'Yoga & Wellness',
-        description: 'Template trung tâm yoga & wellness. Lịch lớp học, giáo viên, gói thành viên.',
+        description: 'Template trung tâm yoga & wellness. Lịch lớp học, giáo viên, gói thành viên. Bao gồm admin đầy đủ.',
         thumbnail: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80&auto=format&fit=crop',
         demoUrl: `${DEMO_BASE}/Spa-Services/yoga-wellness/`,
+        deployUrl: undefined, // Will be set when deployed live
         price: 99000,
         category: 'web',
         industrySlug: 'spa-beauty',
+        hasWebsite: true,
         salesCount: 19,
         status: 'published',
       },

@@ -16,6 +16,23 @@ require_once __DIR__ . '/Router.php';
 require_once __DIR__ . '/Auth.php';
 require_once __DIR__ . '/Database.php';
 
+// Controllers
+require_once __DIR__ . '/controllers/SettingsController.php';
+require_once __DIR__ . '/controllers/HeroSlideController.php';
+require_once __DIR__ . '/controllers/ContactController.php';
+require_once __DIR__ . '/controllers/MediaController.php';
+require_once __DIR__ . '/controllers/UploadController.php';
+require_once __DIR__ . '/controllers/UnsplashController.php';
+require_once __DIR__ . '/controllers/ServiceController.php';
+require_once __DIR__ . '/controllers/ServiceCategoryController.php';
+require_once __DIR__ . '/controllers/BookingController.php';
+require_once __DIR__ . '/controllers/TestimonialController.php';
+require_once __DIR__ . '/controllers/TeamController.php';
+require_once __DIR__ . '/controllers/StatsController.php';
+require_once __DIR__ . '/controllers/PublicController.php';
+require_once __DIR__ . '/controllers/UserController.php';
+require_once __DIR__ . '/controllers/AuthController.php';
+
 Auth::start();
 $db = Database::getInstance();
 $router = new Router();
@@ -86,6 +103,20 @@ $router->add('POST', '/team',            [$team, 'store']);
 $router->add('POST', '/team/:id/update', [$team, 'update']);
 $router->add('POST', '/team/:id/delete', [$team, 'destroy']);
 
+// ─── Auth ─────────────────────────────────────────────
+$auth = new AuthController($db);
+$router->add('POST', '/auth/login', [$auth, 'login']);
+$router->add('POST', '/auth/logout', [$auth, 'logout']);
+$router->add('GET', '/auth/me', [$auth, 'me']);
+
+// Users
+$user = new UserController($db);
+$router->add('GET', '/users', [$user, 'index']);
+$router->add('POST', '/users', [$user, 'store']);
+$router->add('POST', '/users/:id/update', [$user, 'update']);
+$router->add('POST', '/users/:id/delete', [$user, 'destroy']);
+$router->add('POST', '/users/:id/change-password', [$user, 'changePassword']);
+
 // ─── Admin ────────────────────────────────────────────
 $stats = new StatsController($db);
 $router->add('GET', '/stats', [$stats, 'index']);
@@ -101,6 +132,4 @@ $router->add('GET',  '/public/testimonials',[$pub, 'testimonials']);
 $router->add('POST', '/public/bookings',    [$pub, 'submitBooking']);
 $router->add('POST', '/public/contact',     [$pub, 'submitContact']);
 $router->add('GET',  '/sitemap.xml',        [$pub, 'sitemap']);
-
-$router->dispatch();
 ?>

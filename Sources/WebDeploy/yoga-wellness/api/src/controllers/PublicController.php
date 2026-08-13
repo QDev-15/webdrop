@@ -19,10 +19,10 @@ class PublicController {
     Response::json($services);
   }
 
-  public function serviceBySlug() {
-    $slug = Router::param('slug');
-    $service = $this->db->prepare("SELECT id, name, description, duration, level, image, max_capacity FROM services WHERE LOWER(REPLACE(name, ' ', '-'))=? AND status='published' LIMIT 1")->execute([$slug])->fetch();
-    if (!$service) Response::json(['error' => 'Not found'], 404);
+  public function serviceBySlug(array $p): void {
+    $slug = $p['slug'] ?? '';
+    $service = $this->db->queryOne("SELECT id, name, description, duration, level, image, max_capacity FROM services WHERE LOWER(REPLACE(name, ' ', '-'))=? AND status='published' LIMIT 1", [$slug]);
+    if (!$service) { Response::error('Không tìm thấy.', 404); return; }
     Response::json($service);
   }
 
@@ -38,16 +38,20 @@ class PublicController {
 
   public function submitBooking() {
     $body = bodyJson();
-    $stmt = $this->db->prepare("INSERT INTO bookings (name, email, phone, service_id, experience_level, preferred_time, start_date, package, health_note, goal, how_know, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'new')");
-    $stmt->execute([$body['name'] ?? '', $body['email'] ?? '', $body['phone'] ?? '', $body['service_id'] ?? 1, $body['level'] ?? '', $body['time'] ?? '', $body['date'] ?? '', $body['package'] ?? '', $body['health_note'] ?? '', $body['goal'] ?? '', $body['how_know'] ?? '']);
-    Response::json(['id' => $this->db->prepare("SELECT last_insert_rowid()")->query()->fetchColumn()], 201);
+    $id = $this->db->execute(
+      "INSERT INTO bookings (name, email, phone, service_id, experience_level, preferred_time, start_date, package, health_note, goal, how_know, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'new')",
+      [$body['name'] ?? '', $body['email'] ?? '', $body['phone'] ?? '', $body['service_id'] ?? 1, $body['level'] ?? '', $body['time'] ?? '', $body['date'] ?? '', $body['package'] ?? '', $body['health_note'] ?? '', $body['goal'] ?? '', $body['how_know'] ?? '']
+    );
+    Response::json(['id' => $id], 201);
   }
 
   public function submitContact() {
     $body = bodyJson();
-    $stmt = $this->db->prepare("INSERT INTO contacts (name, email, phone, subject, message, status) VALUES (?, ?, ?, ?, ?, 'new')");
-    $stmt->execute([$body['name'] ?? '', $body['email'] ?? '', $body['phone'] ?? '', $body['subject'] ?? '', $body['message'] ?? '']);
-    Response::json(['id' => $this->db->prepare("SELECT last_insert_rowid()")->query()->fetchColumn()], 201);
+    $id = $this->db->execute(
+      "INSERT INTO contacts (name, email, phone, subject, message, status) VALUES (?, ?, ?, ?, ?, 'new')",
+      [$body['name'] ?? '', $body['email'] ?? '', $body['phone'] ?? '', $body['subject'] ?? '', $body['message'] ?? '']
+    );
+    Response::json(['id' => $id], 201);
   }
 
   public function sitemap() {

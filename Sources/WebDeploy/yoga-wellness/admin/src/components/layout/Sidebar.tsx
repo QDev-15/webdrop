@@ -22,7 +22,7 @@ const navLinks: NavLinkItem[] = [
 ]
 
 export default function Sidebar() {
-  const { user, logout } = useAuth()
+  const { logout } = useAuth()
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -38,43 +38,31 @@ export default function Sidebar() {
 
   return (
     <aside className="admin-sidebar">
-      <div className="sidebar-header">
-        <div className="sidebar-logo">
-          <span>🧘‍♀️</span>
-        </div>
-        <h2>Yoga Admin</h2>
+      <div className="sidebar-logo">
+        <span>🧘‍♀️</span> Yoga Admin
       </div>
 
-      <nav className="sidebar-nav">
+      <nav>
         {navLinks.map(link => (
           <Link
             key={link.to}
             to={link.to}
-            className={`sidebar-nav-link ${isActive(link.to, link.exact) ? 'active' : ''}`}
+            className={`sidebar-link ${isActive(link.to, link.exact) ? 'active' : ''}`}
           >
-            <span className="nav-icon">{link.icon}</span>
-            <span className="nav-label">{link.label}</span>
+            <span className="icon">{link.icon}</span>
+            {link.label}
           </Link>
         ))}
       </nav>
 
       <div className="sidebar-footer">
-        <div className="sidebar-profile">
-          <div className="sidebar-avatar">
-            {user?.name.charAt(0).toUpperCase() || 'A'}
-          </div>
-          <div className="sidebar-user-info">
-            <div className="sidebar-user-name">{user?.name || 'Admin'}</div>
-            <div className="sidebar-user-email">{user?.email || 'admin@example.com'}</div>
-          </div>
-        </div>
-        <Link to="/admin/profile" className="sidebar-nav-link">
-          <span className="nav-icon">👤</span>
-          <span className="nav-label">Tài khoản</span>
+        <Link to="/admin/profile" className="sidebar-link">
+          <span className="icon">👤</span>
+          Tài khoản
         </Link>
-        <button onClick={handleLogout} className="sidebar-logout">
-          <span className="nav-icon">🚪</span>
-          <span className="nav-label">Đăng xuất</span>
+        <button onClick={handleLogout} className="sidebar-link" style={{width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '8px 12px', margin: '1px 8px', cursor: 'pointer'}}>
+          <span className="icon">🚪</span>
+          Đăng xuất
         </button>
       </div>
     </aside>
