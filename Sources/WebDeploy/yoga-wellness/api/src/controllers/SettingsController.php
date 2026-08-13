@@ -6,31 +6,39 @@ class SettingsController {
 
     public function index(array $p): void {
         Auth::require();
-        $rows = $this->db->query("SELECT key, value FROM settings");
-        $result = [];
-        foreach ($rows as $r) {
-            $result[$r['key']] = $r['value'];
-        }
-        Response::json($result);
+        $rows = $this->db->queryAll("SELECT grp, key, value FROM settings ORDER BY grp, key");
+        Response::json($rows);
     }
 
     public function update(array $p): void {
         Auth::require();
         $b = bodyJson();
-        $stmt = $this->db->query("SELECT key, grp FROM settings");
-        $groupMap = [];
-        foreach ($stmt as $r) { $groupMap[$r['key']] = $r['grp']; }
 
-        // Chỉ cho phép update các key đã tồn tại trong DB — không tạo key tùy ý
-        foreach ($b as $key => $value) {
-            if (!is_string($key)) continue;
-            if (!array_key_exists($key, $groupMap)) continue; // bỏ qua key không có trong settings
-            $group = $groupMap[$key];
-            $this->db->execute(
-                "INSERT INTO settings (key, value, grp) VALUES (?, ?, ?)
-                 ON CONFLICT(key) DO UPDATE SET value = excluded.value",
-                [$key, (string)$value, $group]
-            );
+        // Handle array of {grp, key, value} objects from admin
+        if (is_array($b) && isset($b[0]['grp'])) {
+            foreach ($b as $item) {
+                if (isset($item['grp'], $item['key'], $item['value'])) {
+                    $this->db->execute(
+                        "UPDATE settings SET value = ? WHERE grp = ? AND key = ?",
+                        [(string)$item['value'], $item['grp'], $item['key']]
+                    );
+                }
+            }
+        } else {
+            // Handle flat key-value object for backward compatibility
+            $stmt = $this->db->query("SELECT key, grp FROM settings");
+            $groupMap = [];
+            foreach ($stmt as $r) { $groupMap[$r['key']] = $r['grp']; }
+
+            foreach ($b as $key => $value) {
+                if (!is_string($key)) continue;
+                if (!array_key_exists($key, $groupMap)) continue;
+                $group = $groupMap[$key];
+                $this->db->execute(
+                    "UPDATE settings SET value = ? WHERE grp = ? AND key = ?",
+                    [(string)$value, $group, $key]
+                );
+            }
         }
         Response::json(['ok' => true]);
     }

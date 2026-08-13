@@ -11,7 +11,6 @@ interface NavLinkItem {
 const navLinks: NavLinkItem[] = [
   { to: '/admin', icon: '📊', label: 'Bảng điều khiển', exact: true },
   { to: '/admin/services', icon: '🧘', label: 'Dịch vụ' },
-  { to: '/admin/service-categories', icon: '📂', label: 'Danh mục dịch vụ' },
   { to: '/admin/team', icon: '👥', label: 'Đội ngũ' },
   { to: '/admin/testimonials', icon: '⭐', label: 'Bình luận khách' },
   { to: '/admin/bookings', icon: '📅', label: 'Đặt lịch' },

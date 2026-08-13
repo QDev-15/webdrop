@@ -4,7 +4,6 @@ import AdminLayout from './components/layout/AdminLayout'
 import LoginPage from './pages/login/LoginPage'
 import Dashboard from './pages/dashboard/Dashboard'
 import ProfilePage from './pages/profile/ProfilePage'
-import ServiceCategoryList from './pages/services/ServiceCategoryList'
 import ServiceList from './pages/services/ServiceList'
 import ServiceForm from './pages/services/ServiceForm'
 import TeamList from './pages/team/TeamList'
@@ -37,7 +36,6 @@ function ProtectedRoutes() {
         <Route path="/services" element={<ServiceList />} />
         <Route path="/services/new" element={<ServiceForm />} />
         <Route path="/services/:id" element={<ServiceForm />} />
-        <Route path="/service-categories" element={<ServiceCategoryList />} />
         <Route path="/team" element={<TeamList />} />
         <Route path="/team/new" element={<TeamForm />} />
         <Route path="/team/:id" element={<TeamForm />} />
