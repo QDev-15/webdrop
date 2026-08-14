@@ -6,7 +6,7 @@ class MediaController {
 
     public function index(array $p): void {
         Auth::require();
-        $items = $this->db->queryAll("SELECT * FROM media ORDER BY created_at DESC");
+        $items = $this->db->query("SELECT * FROM media ORDER BY created_at DESC");
         Response::json($items);
     }
 

@@ -10,9 +10,7 @@ interface NavLinkItem {
 
 const navLinks: NavLinkItem[] = [
   { to: '/', icon: '📊', label: 'Bảng điều khiển', exact: true },
-  { to: '/services', icon: '🧘', label: 'Dịch vụ' },
-  { to: '/team', icon: '👥', label: 'Đội ngũ' },
-  { to: '/testimonials', icon: '⭐', label: 'Bình luận khách' },
+  { to: '/services', icon: '🧘', label: 'Các lớp học' },
   { to: '/bookings', icon: '📅', label: 'Đặt lịch' },
   { to: '/contacts', icon: '💬', label: 'Liên hệ' },
   { to: '/slides', icon: '🖼️', label: 'Hình ảnh banner' },

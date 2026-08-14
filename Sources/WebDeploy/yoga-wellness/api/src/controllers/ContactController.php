@@ -6,7 +6,7 @@ class ContactController {
 
     public function index(array $p): void {
         Auth::require();
-        $contacts = $this->db->queryAll("SELECT * FROM contacts ORDER BY created_at DESC");
+        $contacts = $this->db->query("SELECT * FROM contacts ORDER BY created_at DESC");
         Response::json($contacts);
     }
 

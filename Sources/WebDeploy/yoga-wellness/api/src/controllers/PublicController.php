@@ -3,19 +3,19 @@ class PublicController {
   public function __construct(private Database $db) {}
 
   public function settings() {
-    $rows = $this->db->query("SELECT key, value FROM settings WHERE grp NOT IN ('smtp','cloudinary','integrations','payment')")->fetchAll();
+    $rows = $this->db->query("SELECT key, value FROM settings WHERE grp NOT IN ('smtp','cloudinary','integrations','payment')");
     $result = [];
     foreach ($rows as $r) $result[$r['key']] = $r['value'];
     Response::json($result);
   }
 
   public function heroSlides() {
-    $slides = $this->db->query("SELECT id, title, subtitle, image, button_text, button_link FROM hero_slides WHERE status='published' ORDER BY id")->fetchAll();
+    $slides = $this->db->query("SELECT id, title, subtitle, image, button_text, button_link FROM hero_slides WHERE status='published' ORDER BY id");
     Response::json($slides);
   }
 
   public function services() {
-    $services = $this->db->query("SELECT id, name, description, duration, level, image, max_capacity FROM services WHERE status='published' ORDER BY id")->fetchAll();
+    $services = $this->db->query("SELECT id, name, description, duration, level, image, max_capacity FROM services WHERE status='published' ORDER BY id");
     Response::json($services);
   }
 
@@ -27,12 +27,12 @@ class PublicController {
   }
 
   public function team() {
-    $team = $this->db->query("SELECT id, name, role, image, experience, cert, specialties FROM team_members ORDER BY id")->fetchAll();
+    $team = $this->db->query("SELECT id, name, role, image, experience, cert, specialties FROM team_members ORDER BY id");
     Response::json($team);
   }
 
   public function testimonials() {
-    $tests = $this->db->query("SELECT id, author_name, author_role, author_avatar, rating, content FROM testimonials WHERE status='published' ORDER BY id DESC")->fetchAll();
+    $tests = $this->db->query("SELECT id, author_name, author_role, author_avatar, rating, content FROM testimonials WHERE status='published' ORDER BY id DESC");
     Response::json($tests);
   }
 

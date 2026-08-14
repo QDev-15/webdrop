@@ -6,7 +6,7 @@ class TeamController {
 
   public function index(): void {
     Auth::require();
-    $members = $this->db->queryAll("SELECT * FROM team_members ORDER BY id");
+    $members = $this->db->query("SELECT * FROM team_members ORDER BY id");
     Response::json($members);
   }
 

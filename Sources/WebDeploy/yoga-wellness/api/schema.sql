@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS hero_slides (
   image TEXT,
   button_text TEXT,
   button_link TEXT,
+  sort_order INTEGER DEFAULT 0,
   status TEXT DEFAULT 'draft',
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );

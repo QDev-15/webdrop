@@ -118,6 +118,13 @@ if (type === 'shop') {
   } else {
     console.log('    ⚠ Không tìm thấy shop-schema-fragment.sql hoặc api/schema.sql — kiểm tra lại scaffold')
   }
+  // Type "shop": copy Database.php riêng với seedExtensions() hook
+  const shopDatabaseFile = join(root, '_scaffold', 'types', 'shop', 'api', 'src', 'Database.php')
+  const outputDatabaseFile = join(outputDir, 'api', 'src', 'Database.php')
+  if (existsSync(shopDatabaseFile)) {
+    writeFileSync(outputDatabaseFile, readFileSync(shopDatabaseFile, 'utf8'))
+    console.log('    ✓ Using shop-specific Database.php with seedExtensions() hook for product/coupon seeds')
+  }
 }
 
 // ── Step 5: Create AI placeholder files ──────────────────────────────────────
@@ -125,11 +132,12 @@ console.log('[5/5] Creating placeholder files for AI to fill...')
 
 // Files AI must generate (common to all types)
 // Note: HeroSlideList, HeroSlideForm, ContactList are now scaffolded — removed from AI list
+// Note: Database.php is now scaffolded with query/queryOne/scalar/execute standard — AI only extends seedData()
 const AI_COMMON = [
   // 'api/schema.sql' — KHÔNG còn ở đây: file này giờ có sẵn trong _scaffold/api/
   // với 5 bảng core tĩnh (users/settings/hero_slides/contacts/media). AI chỉ
   // APPEND bảng extension vào cuối file, không viết lại từ đầu.
-  'api/src/Database.php',
+  // 'api/src/Database.php' — KHÔNG còn ở đây: template chuẩn có sẵn trong _scaffold/api/src/
   'api/src/bootstrap.php',
   'api/src/controllers/PublicController.php',
   'api/src/controllers/StatsController.php',

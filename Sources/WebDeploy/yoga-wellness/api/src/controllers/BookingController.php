@@ -6,7 +6,7 @@ class BookingController {
 
   public function index(): void {
     Auth::require();
-    $bookings = $this->db->queryAll(
+    $bookings = $this->db->query(
       "SELECT b.*, s.name as service_name FROM bookings b LEFT JOIN services s ON b.service_id = s.id ORDER BY b.created_at DESC"
     );
     Response::json($bookings);

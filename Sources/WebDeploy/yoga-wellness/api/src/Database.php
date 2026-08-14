@@ -139,8 +139,10 @@ class Database {
     // Placeholder — bookings are created when users submit via frontend form
   }
 
-  public function query(string $sql): PDOStatement {
-    return $this->pdo->query($sql);
+  public function query(string $sql, array $params = []): array {
+    $stmt = $this->prepare($sql);
+    $stmt->execute($params);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
   public function prepare(string $sql): PDOStatement {
@@ -171,6 +173,12 @@ class Database {
     $stmt = $this->prepare($sql);
     $stmt->execute($params);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function scalar(string $sql, array $params = []): mixed {
+    $stmt = $this->prepare($sql);
+    $stmt->execute($params);
+    return $stmt->fetchColumn();
   }
 }
 ?>

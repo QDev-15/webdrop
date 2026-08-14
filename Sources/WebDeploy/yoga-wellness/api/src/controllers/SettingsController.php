@@ -6,7 +6,7 @@ class SettingsController {
 
     public function index(array $p): void {
         Auth::require();
-        $rows = $this->db->queryAll("SELECT grp, key, value FROM settings ORDER BY grp, key");
+        $rows = $this->db->query("SELECT grp, key, value FROM settings ORDER BY grp, key");
         Response::json($rows);
     }
 

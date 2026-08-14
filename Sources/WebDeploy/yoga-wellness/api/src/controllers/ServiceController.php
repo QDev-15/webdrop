@@ -6,7 +6,7 @@ class ServiceController {
 
   public function index(): void {
     Auth::require();
-    $services = $this->db->queryAll("SELECT * FROM services ORDER BY id");
+    $services = $this->db->query("SELECT * FROM services ORDER BY id");
     Response::json($services);
   }
 

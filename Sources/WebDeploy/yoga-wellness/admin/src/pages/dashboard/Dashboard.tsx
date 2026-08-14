@@ -4,8 +4,6 @@ import { api } from '../../api/client'
 interface Stats {
   services: number
   bookings: number
-  team: number
-  testimonials: number
   newContacts: number
 }
 
@@ -39,10 +37,8 @@ export default function Dashboard() {
         <div style={{ padding: '48px', textAlign: 'center', color: 'var(--text-3)' }}>Đang tải...</div>
       ) : stats ? (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
-          <StatCard icon="🧘" label="Dịch vụ" value={stats.services} />
+          <StatCard icon="🧘" label="Các lớp học" value={stats.services} />
           <StatCard icon="📅" label="Đặt lịch" value={stats.bookings} />
-          <StatCard icon="👥" label="Đội ngũ" value={stats.team} />
-          <StatCard icon="⭐" label="Bình luận" value={stats.testimonials} />
           <StatCard icon="💬" label="Liên hệ mới" value={stats.newContacts} />
         </div>
       ) : null}

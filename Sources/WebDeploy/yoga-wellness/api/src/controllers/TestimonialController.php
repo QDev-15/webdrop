@@ -6,7 +6,7 @@ class TestimonialController {
 
   public function index(): void {
     Auth::require();
-    $testimonials = $this->db->queryAll("SELECT * FROM testimonials ORDER BY id DESC");
+    $testimonials = $this->db->query("SELECT * FROM testimonials ORDER BY id DESC");
     Response::json($testimonials);
   }
 
