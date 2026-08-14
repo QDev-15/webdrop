@@ -75,6 +75,26 @@ JS:  https://cdn.jsdelivr.net/npm/bootstrap@{VERSION}/dist/js/bootstrap.bundle.m
 
 ---
 
+## ⚠️ CAROUSEL HERO - BẮT BUỘC (SECTION ĐẦU TIÊN)
+
+**Mỗi template PHẢI có Carousel Hero Fullscreen làm section ĐẦU TIÊN (ngay sau nav):**
+- **Vị trí:** SECTION ĐẦU TIÊN của trang (thay thế static hero)
+- **Slides:** MẶC ĐỊNH 4 slides, mỗi slide có:
+  - Gradient background riêng (phù hợp identity token)
+  - Heading lớn (clamp 36px-56px)
+  - Subheading (15-18px, weight 300)
+  - 2 CTA buttons
+  - Label trên tiêu đề (uppercase, 13px)
+- **Hiển thị:** Fullscreen (100vh, min-height 600px)
+- **Navigation:** Prev/Next buttons (52px diameter, frosted glass style) + Dot indicators dưới
+- **Auto-play:** 5 giây/slide, fade transition (0.8s)
+- **Responsive:** 90vh trên mobile, padding điều chỉnh
+- **Menu:** Nổi trên carousel (position: fixed/absolute)
+- **CSS class:** `{prefix}-carousel-hero`, `{prefix}-carousel-slide`, v.v.
+- **JS:** Vanilla JS, không Bootstrap Carousel
+
+---
+
 ## Bước 2 — Đọc Design Brief
 
 ```
@@ -256,7 +276,20 @@ GLASS-MODERN:   Glassmorphism bg, border rgba, hover brighten
 
 ---
 
-### F. Footer Style
+### F. Footer Style & Maps
+
+**⚠️ BẮT BUỘC: Mỗi template PHẢI có Google Maps embed ở footer**
+
+Maps section được đặt trong footer, trên footer-bottom (copyright + social), với:
+- Height: 300px
+- Border-radius: 12px
+- Box-shadow: 0 4px 16px rgba(0, 0, 0, .1)
+- Google Maps embed URL: `https://maps.google.com/maps?q=[LAT],[LNG]&hl=vi&z=15&output=embed`
+  - Chọn tọa độ phù hợp với chủ đề template (TP.HCM, Hà Nội, hoặc vị trí khác)
+  - Format: `10.7769,106.7009` (TP.HCM) hoặc `21.0285,105.8542` (Hà Nội)
+- CSS class: `{prefix}-footer-maps` (vd: `mc-footer-maps`, `di-footer-maps`, `sc-footer-maps`)
+
+**Footer Style theo Identity Token:**
 
 | Token | Footer Style |
 |-------|-------------|
@@ -402,9 +435,12 @@ Pages theo ngành:
 □ Không có console.log
 □ target="_blank" có rel="noopener noreferrer"
 □ Mọi img có alt text
-□ Mobile hamburger hoạt động
+□ Carousel Hero fullscreen thay thế static hero
+□ Mobile hamburger hoạt động + nổi trên carousel
+□ Carousel auto-play 5s, prev/next buttons, dot indicators
 □ Reveal animation trigger đúng
 □ Zalo float button trên mọi trang
+□ Maps Google embed ở footer (300px height, proper coordinates)
 □ Placeholder text trong [NGOẶC VUÔNG]
 ```
 

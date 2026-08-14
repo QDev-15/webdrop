@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liên hệ — Marketing Consultancy</title>
+  <meta name="description" content="Liên hệ với Markco để nhận tư vấn marketing miễn phí.">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wd-container">
+    <div class="mc-nav-inner">
+      <a href="index.html" class="mc-logo">Mark<span>co</span></a>
+      <div class="mc-nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="about.html">Về chúng tôi</a>
+        <a href="services.html">Dịch vụ</a>
+        <a href="team.html">Đội ngũ</a>
+        <a href="contact.html" class="active">Liên hệ</a>
+      </div>
+      <a href="contact.html" class="mc-nav-cta">Tư vấn miễn phí</a>
+      <button class="mc-nav-hamburger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mc-nav-mobile" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="about.html">Về chúng tôi</a>
+  <a href="services.html">Dịch vụ</a>
+  <a href="team.html">Đội ngũ</a>
+  <a href="contact.html">Liên hệ</a>
+  <a href="contact.html" class="nm-cta">Tư vấn miễn phí</a>
+</div>
+
+<section class="page-hero">
+  <div class="wd-container">
+    <div class="ph-eyebrow">Hãy liên hệ</div>
+    <h1 class="ph-title">Chúng tôi sẵn sàng <em>giúp bạn</em></h1>
+    <p class="ph-sub">Gửi tin nhắn cho chúng tôi và chúng tôi sẽ liên lạc lại trong 24h.</p>
+  </div>
+</section>
+
+<section class="mc-sec-pad">
+  <div class="wd-container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h3 style="font-size: 24px; font-weight: 600; color: var(--text); margin-bottom: 28px;">Gửi tin nhắn cho chúng tôi</h3>
+        <form style="max-width: 500px;">
+          <div class="mb-4">
+            <label for="name" style="font-size: 13px; font-weight: 600; color: var(--text); display: block; margin-bottom: 8px;">Tên của bạn</label>
+            <input type="text" id="name" placeholder="Nhập tên của bạn" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 9px; font-family: var(--sans); font-size: 14px;">
+          </div>
+
+          <div class="mb-4">
+            <label for="email" style="font-size: 13px; font-weight: 600; color: var(--text); display: block; margin-bottom: 8px;">Email</label>
+            <input type="email" id="email" placeholder="your@email.com" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 9px; font-family: var(--sans); font-size: 14px;">
+          </div>
+
+          <div class="mb-4">
+            <label for="phone" style="font-size: 13px; font-weight: 600; color: var(--text); display: block; margin-bottom: 8px;">Số điện thoại</label>
+            <input type="tel" id="phone" placeholder="0123456789" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 9px; font-family: var(--sans); font-size: 14px;">
+          </div>
+
+          <div class="mb-4">
+            <label for="subject" style="font-size: 13px; font-weight: 600; color: var(--text); display: block; margin-bottom: 8px;">Chủ đề</label>
+            <input type="text" id="subject" placeholder="Chủ đề liên hệ" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 9px; font-family: var(--sans); font-size: 14px;">
+          </div>
+
+          <div class="mb-4">
+            <label for="message" style="font-size: 13px; font-weight: 600; color: var(--text); display: block; margin-bottom: 8px;">Tin nhắn</label>
+            <textarea id="message" placeholder="Viết tin nhắn của bạn..." rows="6" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 9px; font-family: var(--sans); font-size: 14px; resize: vertical;"></textarea>
+          </div>
+
+          <button type="submit" class="btn-mc-primary">Gửi tin nhắn</button>
+        </form>
+      </div>
+
+      <div class="col-lg-6">
+        <h3 style="font-size: 24px; font-weight: 600; color: var(--text); margin-bottom: 28px;">Thông tin liên lạc</h3>
+
+        <div style="margin-bottom: 32px;">
+          <h4 style="font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 8px;">📍 Địa chỉ</h4>
+          <p style="font-size: 14px; color: var(--text-2); line-height: 1.7;">Tòa nhà A, Tầng 10<br>Số 123 Đường Nguyễn Huệ<br>Quận 1, TP.HCM, Việt Nam</p>
+        </div>
+
+        <div style="margin-bottom: 32px;">
+          <h4 style="font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 8px;">📞 Điện thoại</h4>
+          <p style="font-size: 14px; color: var(--text-2);"><a href="tel:+84123456789" style="color: var(--accent); text-decoration: none;">+84 (123) 456-789</a></p>
+        </div>
+
+        <div style="margin-bottom: 32px;">
+          <h4 style="font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 8px;">✉️ Email</h4>
+          <p style="font-size: 14px; color: var(--text-2);"><a href="mailto:hello@markco.vn" style="color: var(--accent); text-decoration: none;">hello@markco.vn</a></p>
+        </div>
+
+        <div style="margin-bottom: 32px;">
+          <h4 style="font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 8px;">💬 Zalo</h4>
+          <p style="font-size: 14px; color: var(--text-2);"><a href="https://zalo.me/0123456789" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none;">Chat với chúng tôi trên Zalo</a></p>
+        </div>
+
+        <div style="margin-bottom: 32px;">
+          <h4 style="font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 8px;">🕐 Giờ làm việc</h4>
+          <p style="font-size: 14px; color: var(--text-2);">Thứ Hai — Thứ Sáu: 8:00 — 18:00<br>Thứ Bảy: 9:00 — 12:00<br>Chủ Nhật: Nghỉ</p>
+        </div>
+
+        <div style="background: linear-gradient(135deg, var(--accent-light), var(--mint-light)); padding: 24px; border-radius: 14px;">
+          <h4 style="font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 8px;">🎁 Tư vấn miễn phí</h4>
+          <p style="font-size: 13px; color: var(--text-2); line-height: 1.6; margin-bottom: 12px;">Liên hệ với chúng tôi hôm nay để nhận buổi tư vấn marketing miễn phí trị giá 5 triệu đồng.</p>
+          <a href="#" style="color: var(--accent); font-weight: 600; text-decoration: none;">Đặt lịch ngay →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wd-container">
+    <div class="mc-footer-content">
+      <div class="mc-footer-brand">
+        <h3>Markco</h3>
+        <p>Công ty tư vấn marketing toàn diện, giúp doanh nghiệp tăng trưởng bền vững.</p>
+      </div>
+      <div class="mc-footer-links">
+        <h4>Công ty</h4>
+        <ul>
+          <li><a href="about.html">Về chúng tôi</a></li>
+          <li><a href="services.html">Dịch vụ</a></li>
+          <li><a href="team.html">Đội ngũ</a></li>
+          <li><a href="contact.html">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div class="mc-footer-links">
+        <h4>Tài nguyên</h4>
+        <ul>
+          <li><a href="index.html">Blog</a></li>
+          <li><a href="index.html">Case Study</a></li>
+          <li><a href="index.html">Hướng dẫn</a></li>
+        </ul>
+      </div>
+      <div class="mc-footer-links">
+        <h4>Pháp lý</h4>
+        <ul>
+          <li><a href="privacy.html">Chính sách bảo mật</a></li>
+          <li><a href="terms.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mc-footer-bottom">
+      <div class="mc-copyright">&copy; 2024 Marketing Consultancy. All rights reserved.</div>
+      <div class="mc-social-links">
+        <a href="#" class="mc-social-link">f</a>
+        <a href="#" class="mc-social-link">𝕏</a>
+        <a href="#" class="mc-social-link">in</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/0123456789" target="_blank" rel="noopener noreferrer" class="zalo-float" title="Chat Zalo">
+  <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#fff" d="M24 2C12.97 2 4 10.97 4 22c0 5.05 1.78 9.69 4.73 13.37l-2.46 8.85 9.03-4.97c2.92.68 6.02 1.06 9.7 1.06 11.03 0 20-8.97 20-20S35.03 2 24 2z"/>
+  </svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }});
+}, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+const burger = document.getElementById('navBurger');
+const navMob = document.getElementById('navMob');
+if(burger && navMob) {
+  burger.addEventListener('click', () => {
+    const isOpen = navMob.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  navMob.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navMob.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+}
+
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape' && navMob?.classList.contains('open')) {
+    navMob.classList.remove('open');
+    burger.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+</script>
+</body>
+</html>
