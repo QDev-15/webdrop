@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function Footer() {
   return (
     <footer>
@@ -16,19 +18,19 @@ export default function Footer() {
           <div className="col rd1" data-reveal>
             <div className="yw-ft-col-title">Các lớp học</div>
             <div className="yw-ft-links">
-              <a href="/dich-vu">Hatha Yoga</a>
-              <a href="/dich-vu">Vinyasa Flow</a>
-              <a href="/dich-vu">Thiền Định</a>
-              <a href="/dich-vu">Prenatal Yoga</a>
+              <Link to="/dich-vu">Hatha Yoga</Link>
+              <Link to="/dich-vu">Vinyasa Flow</Link>
+              <Link to="/dich-vu">Thiền Định</Link>
+              <Link to="/dich-vu">Prenatal Yoga</Link>
             </div>
           </div>
           <div className="col rd2" data-reveal>
             <div className="yw-ft-col-title">Thông tin</div>
             <div className="yw-ft-links">
-              <a href="/dat-lich">Đăng ký lớp</a>
-              <a href="/lien-he">Liên hệ</a>
-              <a href="/">Gói thành viên</a>
-              <a href="/">Lịch học tuần</a>
+              <Link to="/dat-lich">Đăng ký lớp</Link>
+              <Link to="/lien-he">Liên hệ</Link>
+              <Link to="/">Gói thành viên</Link>
+              <Link to="/">Lịch học tuần</Link>
             </div>
           </div>
           <div className="col rd3" data-reveal>

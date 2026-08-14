@@ -83,7 +83,7 @@ export default function ServiceList() {
                   <td>{item.max_capacity} người</td>
                   <td>{item.status === 'published' ? '✓ Hiển thị' : '○ Ẩn'}</td>
                   <td style={{ display: 'flex', gap: '8px' }}>
-                    <Link to={`/admin/services/${item.id}`} className="btn-ghost btn-sm">Sửa</Link>
+                    <Link to={`/services/${item.id}`} className="btn-ghost btn-sm">Sửa</Link>
                     <button onClick={() => handleDelete(item.id)} className="btn-danger btn-sm">Xóa</button>
                   </td>
                 </tr>

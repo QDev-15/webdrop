@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { api } from '../api/client'
 
 interface Settings {
@@ -55,7 +56,7 @@ export default function About() {
               </ul>
             </div>
 
-            <a href="/dat-lich" className="yw-btn">Đăng ký lớp học hôm nay</a>
+            <Link to="/dat-lich" className="yw-btn">Đăng ký lớp học hôm nay</Link>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 
 interface NavLinkItem {
@@ -6,31 +6,46 @@ interface NavLinkItem {
   icon: string
   label: string
   exact?: boolean
+  badge?: number
 }
 
-const navLinks: NavLinkItem[] = [
-  { to: '/', icon: '📊', label: 'Bảng điều khiển', exact: true },
-  { to: '/services', icon: '🧘', label: 'Các lớp học' },
-  { to: '/bookings', icon: '📅', label: 'Đặt lịch' },
-  { to: '/contacts', icon: '💬', label: 'Liên hệ' },
-  { to: '/slides', icon: '🖼️', label: 'Hình ảnh banner' },
-  { to: '/media', icon: '🗂️', label: 'Thư viện ảnh' },
-  { to: '/settings', icon: '⚙️', label: 'Cài đặt' },
-]
+interface MenuSection {
+  section: string
+  links: NavLinkItem[]
+}
 
-export default function Sidebar() {
-  const { logout } = useAuth()
-  const location = useLocation()
+interface Props {
+  newBookings?: number
+  newContacts?: number
+}
+
+export default function Sidebar({ newBookings = 0, newContacts = 0 }: Props) {
+  const { user, logout } = useAuth()
   const navigate = useNavigate()
 
-  const isActive = (to: string, exact?: boolean) => {
-    if (exact) return location.pathname === to
-    return location.pathname.startsWith(to)
-  }
+  const menuStructure: MenuSection[] = [
+    { section: 'Tổng quan', links: [
+      { to: '/', icon: '📊', label: 'Bảng điều khiển', exact: true },
+    ]},
+    { section: 'Nội dung', links: [
+      { to: '/services', icon: '🧘', label: 'Các lớp học' },
+      { to: '/team', icon: '👥', label: 'Đội ngũ' },
+      { to: '/testimonials', icon: '⭐', label: 'Đánh giá' },
+      { to: '/slides', icon: '🖼️', label: 'Hình ảnh banner' },
+    ]},
+    { section: 'Vận hành', links: [
+      { to: '/bookings', icon: '📅', label: 'Đặt lịch', badge: newBookings },
+      { to: '/contacts', icon: '💬', label: 'Liên hệ', badge: newContacts },
+      { to: '/media', icon: '🗂️', label: 'Thư viện ảnh' },
+    ]},
+    { section: 'Hệ thống', links: [
+      { to: '/settings', icon: '⚙️', label: 'Cài đặt' },
+    ]},
+  ]
 
   const handleLogout = async () => {
     await logout()
-    navigate('/admin/login')
+    navigate('/login')
   }
 
   return (
@@ -40,24 +55,31 @@ export default function Sidebar() {
       </div>
 
       <nav>
-        {navLinks.map(link => (
-          <Link
-            key={link.to}
-            to={link.to}
-            className={`sidebar-link ${isActive(link.to, link.exact) ? 'active' : ''}`}
-          >
-            <span className="icon">{link.icon}</span>
-            {link.label}
-          </Link>
+        {menuStructure.map(sec => (
+          <div key={sec.section}>
+            <div className="sidebar-section">{sec.section}</div>
+            {sec.links.map(link => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                end={link.exact}
+                className={({ isActive }) => 'sidebar-link' + (isActive ? ' active' : '')}
+              >
+                <span className="icon">{link.icon}</span>
+                {link.label}
+                {!!link.badge && <span className="sidebar-badge">{link.badge}</span>}
+              </NavLink>
+            ))}
+          </div>
         ))}
       </nav>
 
       <div className="sidebar-footer">
-        <Link to="/profile" className="sidebar-link">
+        <NavLink to="/profile" className={({ isActive }) => 'sidebar-link' + (isActive ? ' active' : '')}>
           <span className="icon">👤</span>
-          Tài khoản
-        </Link>
-        <button onClick={handleLogout} className="sidebar-link" style={{width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '8px 12px', margin: '1px 8px', cursor: 'pointer'}}>
+          {user?.name ?? 'Tài khoản'}
+        </NavLink>
+        <button onClick={handleLogout} className="sidebar-link" style={{ width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '8px 12px', margin: '1px 8px', cursor: 'pointer' }}>
           <span className="icon">🚪</span>
           Đăng xuất
         </button>

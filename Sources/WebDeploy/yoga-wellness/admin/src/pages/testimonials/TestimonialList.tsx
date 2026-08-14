@@ -81,7 +81,7 @@ export default function TestimonialList() {
                   <td style={{ maxWidth: '300px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.content}</td>
                   <td>{item.status === 'published' ? '✓ Hiển thị' : '○ Ẩn'}</td>
                   <td style={{ display: 'flex', gap: '8px' }}>
-                    <Link to={`/admin/testimonials/${item.id}`} className="btn-ghost btn-sm">Sửa</Link>
+                    <Link to={`/testimonials/${item.id}`} className="btn-ghost btn-sm">Sửa</Link>
                     <button onClick={() => handleDelete(item.id)} className="btn-danger btn-sm">Xóa</button>
                   </td>
                 </tr>

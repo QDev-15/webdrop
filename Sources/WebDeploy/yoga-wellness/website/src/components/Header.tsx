@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 export default function Header() {
   const location = useLocation()
@@ -42,26 +42,26 @@ export default function Header() {
       <div className="yw-nav-bar"></div>
       <div className="wd-container">
         <div className="nav-inner">
-          <a className="yw-logo" href="/">
+          <Link className="yw-logo" to="/">
             <div className="yw-logo-mark">🌿</div>
             <div className="yw-logo-text">Yoga<span> Wellness</span></div>
-          </a>
+          </Link>
           <div className="nav-links">
-            <a href="/" className={location.pathname === '/' ? 'active' : ''}>Trang chủ</a>
-            <a href="/dich-vu" className={location.pathname === '/dich-vu' ? 'active' : ''}>Các lớp học</a>
-            <a href="/dat-lich" className={location.pathname === '/dat-lich' ? 'active' : ''}>Đăng ký</a>
-            <a href="/lien-he" className={location.pathname === '/lien-he' ? 'active' : ''}>Liên hệ</a>
+            <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Trang chủ</Link>
+            <Link to="/dich-vu" className={location.pathname === '/dich-vu' ? 'active' : ''}>Các lớp học</Link>
+            <Link to="/dat-lich" className={location.pathname === '/dat-lich' ? 'active' : ''}>Đăng ký</Link>
+            <Link to="/lien-he" className={location.pathname === '/lien-he' ? 'active' : ''}>Liên hệ</Link>
           </div>
-          <a href="/dat-lich" className="yw-nav-cta">Đăng ký lớp học</a>
+          <Link to="/dat-lich" className="yw-nav-cta">Đăng ký lớp học</Link>
           <button className="nav-hamburger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
         </div>
       </div>
       <div className="nav-mobile" id="navMob">
-        <a href="/">Trang chủ</a>
-        <a href="/dich-vu">Các lớp học</a>
-        <a href="/dat-lich">Đăng ký</a>
-        <a href="/lien-he">Liên hệ</a>
-        <a href="/dat-lich" className="nm-cta">Đăng ký lớp học</a>
+        <Link to="/">Trang chủ</Link>
+        <Link to="/dich-vu">Các lớp học</Link>
+        <Link to="/dat-lich">Đăng ký</Link>
+        <Link to="/lien-he">Liên hệ</Link>
+        <Link to="/dat-lich" className="nm-cta">Đăng ký lớp học</Link>
       </div>
     </nav>
   )

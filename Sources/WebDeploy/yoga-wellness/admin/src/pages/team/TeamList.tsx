@@ -78,7 +78,7 @@ export default function TeamList() {
                   <td>{item.role}</td>
                   <td>{item.experience || '—'}</td>
                   <td style={{ display: 'flex', gap: '8px' }}>
-                    <Link to={`/admin/team/${item.id}`} className="btn-ghost btn-sm">Sửa</Link>
+                    <Link to={`/team/${item.id}`} className="btn-ghost btn-sm">Sửa</Link>
                     <button onClick={() => handleDelete(item.id)} className="btn-danger btn-sm">Xóa</button>
                   </td>
                 </tr>
