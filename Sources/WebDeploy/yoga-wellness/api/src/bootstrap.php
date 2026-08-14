@@ -59,6 +59,7 @@ $router->add('POST', '/hero-slides/:id/delete', [$slides, 'destroy']);
 // Contacts
 $contact = new ContactController($db);
 $router->add('GET',  '/contacts',            [$contact, 'index']);
+$router->add('GET',  '/contacts/:id',        [$contact, 'show']);
 $router->add('POST', '/contacts/:id/update', [$contact, 'update']);
 $router->add('POST', '/contacts/:id/delete', [$contact, 'destroy']);
 
