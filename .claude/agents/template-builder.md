@@ -419,6 +419,32 @@ Pages theo ngành:
 
 ---
 
+## F. Stats Section (Nếu có)
+
+**Grid layout bắt buộc: 4 cột trên desktop, responsive trên mobile**
+```css
+.{prefix}-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);  /* 4 cột — 1 hàng */
+  gap: clamp(40px, 8vw, 80px);
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .{prefix}-stats-grid {
+    grid-template-columns: repeat(2, 1fr);  /* 2x2 trên tablet */
+  }
+}
+
+@media (max-width: 640px) {
+  .{prefix}-stats-grid {
+    grid-template-columns: 1fr;  /* 1 cột trên mobile */
+  }
+}
+```
+
+---
+
 ## Checklist trước khi hoàn thành
 
 ```
@@ -440,6 +466,7 @@ Pages theo ngành:
 □ Carousel auto-play 5s, prev/next buttons, dot indicators
 □ Reveal animation trigger đúng
 □ Zalo float button trên mọi trang
+□ Stats section (nếu có): 4 cột trên desktop, 2 cột tablet, 1 cột mobile
 □ Maps Google embed ở footer (300px height, proper coordinates)
 □ Placeholder text trong [NGOẶC VUÔNG]
 ```
