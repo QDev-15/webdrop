@@ -9,22 +9,24 @@
 :root {
   --bg: #faf9fc;
   --surface: #fff;
-  --dark: #1a1820;
-  --dark2: #2a2635;
-  --border: #e8e0f0;
-  --border-light: #f3eff8;
-  --text: #2d2540;
-  --text-2: #6b5f7f;
-  --text-3: #a8a0b5;
-  --accent: #9b7ef0;
-  --accent-h: #8566d9;
-  --accent-light: #f3ebff;
-  --accent-mid: #b8a1ff;
-  --mint: #34c98e;
-  --mint-light: #e8f9f3;
+  --dark: #0f0c12;
+  --dark2: #1a1820;
+  --border: #ddd0e6;
+  --border-light: #ede6f5;
+  --text: #1d1528;
+  --text-2: #4a3f5f;
+  --text-3: #9089b0;
+  --accent: #8860d9;
+  --accent-h: #7449c5;
+  --accent-light: #f0e6ff;
+  --accent-mid: #a88aff;
+  --mint: #2ebc7f;
+  --mint-light: #e0f5ec;
   --warm: #f5f2fa;
   --warm2: #ede5f5;
   --danger: #e24b4a;
+  --shadow-sm: 0 2px 8px rgba(136, 96, 217, .1);
+  --shadow-md: 0 8px 24px rgba(136, 96, 217, .18);
   --sans: 'Plus Jakarta Sans', sans-serif;
   --bs-body-font-family: var(--sans);
   --bs-body-bg: var(--bg);
@@ -425,34 +427,46 @@ a {
 .btn-mc-primary {
   font-size: 14px;
   font-weight: 600;
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent), var(--accent-h));
   color: #fff;
-  padding: 13px 32px;
+  padding: 13px 36px;
   border-radius: 24px;
   border: none;
   cursor: pointer;
   font-family: var(--sans);
-  transition: all .2s;
+  transition: all .3s cubic-bezier(.16, 1, .3, 1);
   text-decoration: none;
   display: inline-block;
+  box-shadow: 0 4px 12px rgba(136, 96, 217, .25);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-mc-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.2), transparent);
+  pointer-events: none;
 }
 
 .btn-mc-primary:hover {
-  background: var(--accent-h);
+  background: linear-gradient(135deg, var(--accent-h), #6a40c5);
+  box-shadow: 0 8px 20px rgba(136, 96, 217, .4);
   transform: translateY(-2px);
 }
 
 .btn-mc-secondary {
   font-size: 14px;
   font-weight: 600;
-  background: transparent;
+  background: rgba(136, 96, 217, .08);
   color: var(--accent);
-  padding: 13px 32px;
+  padding: 13px 36px;
   border-radius: 24px;
   border: 2px solid var(--accent);
   cursor: pointer;
   font-family: var(--sans);
-  transition: all .2s;
+  transition: all .3s cubic-bezier(.16, 1, .3, 1);
   text-decoration: none;
   display: inline-block;
 }
@@ -460,6 +474,8 @@ a {
 .btn-mc-secondary:hover {
   background: var(--accent-light);
   color: var(--accent-h);
+  box-shadow: 0 4px 12px rgba(136, 96, 217, .2);
+  transform: translateY(-2px);
 }
 
 .btn-mc-ghost {
@@ -494,18 +510,30 @@ a {
 }
 
 .mc-feature-card {
-  background: var(--surface);
+  background: linear-gradient(135deg, rgba(255,255,255,.8), rgba(240,230,255,.3));
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 32px 24px;
   text-align: center;
   transition: all .3s cubic-bezier(.16, 1, .3, 1);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.mc-feature-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.3), transparent);
+  pointer-events: none;
 }
 
 .mc-feature-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 16px 48px rgba(155, 126, 240, .15);
+  box-shadow: var(--shadow-md);
   border-color: var(--accent);
+  background: linear-gradient(135deg, rgba(255,255,255,.95), rgba(240,230,255,.5));
 }
 
 .mc-feature-icon {
@@ -973,6 +1001,7 @@ footer {
   left: 0;
   width: 100%;
   height: 100%;
+  background: linear-gradient(180deg, rgba(255,255,255,.12) 0%, rgba(0,0,0,.05) 100%) !important;
   z-index: 0;
 }
 
