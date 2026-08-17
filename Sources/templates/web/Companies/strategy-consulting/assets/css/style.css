@@ -107,7 +107,8 @@ a { text-decoration: none; color: inherit; }
   background: var(--surface);
   border-bottom: none;
   padding: 0;
-  transition: all .3s;
+  opacity: 0.5;
+  transition: opacity .3s ease-out;
 }
 
 .sc-nav-inner {
@@ -603,12 +604,56 @@ footer {
   width: 100%;
   height: 100%;
   z-index: 0;
-  background: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.06) 100%) !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Dark overlay for text readability */
+.sc-carousel-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, .35) 0%, rgba(0, 0, 0, .15) 100%);
+  z-index: 1;
+}
+
+/* Slide 1: Strategy - Business Meeting Planning */
+.sc-carousel-slide:nth-child(1) .sc-carousel-bg {
+  background:
+    repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(107, 128, 103, .05) 35px, rgba(107, 128, 103, .05) 70px),
+    radial-gradient(circle at 20% 50%, rgba(107, 128, 103, .15) 0%, transparent 50%),
+    linear-gradient(135deg, #1a1820 0%, #0f1114 100%);
+}
+
+/* Slide 2: Restructuring - Construction/Building Transformation */
+.sc-carousel-slide:nth-child(2) .sc-carousel-bg {
+  background:
+    radial-gradient(circle at 75% 25%, rgba(139, 169, 135, .2) 0%, transparent 50%),
+    radial-gradient(circle at 25% 75%, rgba(107, 128, 103, .1) 0%, transparent 50%),
+    linear-gradient(135deg, #0f1114 0%, #1a1820 100%);
+  background-position: center 40%;
+}
+
+/* Slide 3: M&A - Partnership Handshake Collaboration */
+.sc-carousel-slide:nth-child(3) .sc-carousel-bg {
+  background:
+    repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(107, 128, 103, .08) 40px, rgba(107, 128, 103, .08) 80px),
+    radial-gradient(circle at 50% 50%, rgba(143, 168, 140, .12) 0%, transparent 50%),
+    linear-gradient(135deg, #1a1820 0%, #0f1114 100%);
+}
+
+/* Slide 4: Growth - Chart Success Growth Analytics */
+.sc-carousel-slide:nth-child(4) .sc-carousel-bg {
+  background:
+    radial-gradient(circle at 40% 60%, rgba(139, 169, 135, .16) 0%, transparent 50%),
+    radial-gradient(circle at 60% 40%, rgba(107, 128, 103, .1) 0%, transparent 50%),
+    linear-gradient(to bottom, #1a1820 0%, #0f1114 100%);
 }
 
 .sc-carousel-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   max-width: 600px;
   color: #fff;
   padding: calc(56px + 60px) 0 60px;
@@ -621,6 +666,7 @@ footer {
   letter-spacing: 2px;
   color: var(--accent-mid);
   margin-bottom: 20px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, .2);
 }
 
 .sc-carousel-title {
@@ -631,20 +677,23 @@ footer {
   margin-bottom: 24px;
   color: #fff;
   font-style: italic;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, .4), 0 2px 8px rgba(0, 0, 0, .3);
 }
 
 .sc-carousel-title em {
   font-style: normal;
   font-weight: 400;
   color: var(--accent-mid);
+  text-shadow: 0 2px 8px rgba(107, 128, 103, .3);
 }
 
 .sc-carousel-sub {
   font-size: clamp(15px, 1.6vw, 18px);
   font-weight: 300;
-  color: rgba(255, 255, 255, .75);
+  color: rgba(255, 255, 255, .85);
   line-height: 1.7;
   margin-bottom: 32px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, .3);
 }
 
 .sc-carousel-cta {

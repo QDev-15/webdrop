@@ -123,12 +123,13 @@ a { text-decoration: none; color: inherit; }
   backdrop-filter: blur(24px);
   border: 1px solid rgba(192, 38, 211, .2);
   border-radius: 16px;
-  transition: all .3s;
   padding: 0 24px;
   height: 62px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  opacity: 0.5;
+  transition: opacity .3s ease-out;
 }
 
 .di-logo {
@@ -722,12 +723,57 @@ footer {
   width: 100%;
   height: 100%;
   z-index: 0;
-  background: linear-gradient(180deg, rgba(217, 70, 239, .1) 0%, rgba(0, 0, 0, .3) 100%) !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Dark overlay for text readability */
+.di-carousel-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, .3) 0%, rgba(0, 0, 0, .15) 100%);
+  z-index: 1;
+}
+
+/* Slide 1: AI Transformation */
+.di-carousel-slide:nth-child(1) .di-carousel-bg {
+  background:
+    radial-gradient(circle at 15% 35%, rgba(217, 70, 239, .2) 0%, transparent 50%),
+    radial-gradient(circle at 85% 65%, rgba(244, 114, 182, .1) 0%, transparent 50%),
+    linear-gradient(135deg, #1a1820 0%, #2a2635 100%);
+}
+
+/* Slide 2: Marketing Automation */
+.di-carousel-slide:nth-child(2) .di-carousel-bg {
+  background:
+    repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(217, 70, 239, .08) 40px, rgba(217, 70, 239, .08) 80px),
+    radial-gradient(circle at 75% 25%, rgba(232, 71, 239, .15) 0%, transparent 50%),
+    linear-gradient(135deg, #2a2635 0%, #1f2a35 100%);
+}
+
+/* Slide 3: Data Analytics */
+.di-carousel-slide:nth-child(3) .di-carousel-bg {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(217, 70, 239, .12) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(244, 114, 182, .1) 0%, transparent 50%),
+    repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(217, 70, 239, .04) 35px, rgba(217, 70, 239, .04) 70px),
+    linear-gradient(135deg, #1f2a35 0%, #1a1820 100%);
+}
+
+/* Slide 4: Cloud Infrastructure */
+.di-carousel-slide:nth-child(4) .di-carousel-bg {
+  background:
+    radial-gradient(circle at 40% 60%, rgba(232, 71, 239, .16) 0%, transparent 50%),
+    radial-gradient(circle at 60% 40%, rgba(217, 70, 239, .08) 0%, transparent 50%),
+    repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(217, 70, 239, .06) 50px, rgba(217, 70, 239, .06) 100px),
+    linear-gradient(to bottom, #1a1820 0%, #0f1114 100%);
 }
 
 .di-carousel-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   max-width: 600px;
   color: #fff;
   padding: calc(56px + 60px) 0 60px;

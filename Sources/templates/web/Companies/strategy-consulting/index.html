@@ -40,7 +40,7 @@
 <section class="sc-carousel-hero">
   <div class="sc-carousel-inner">
     <div class="sc-carousel-slide active">
-      <div class="sc-carousel-bg" style="background: linear-gradient(135deg, #1a1820 0%, #0f1114 100%);"></div>
+      <div class="sc-carousel-bg" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=800&fit=crop'); background-size: cover; background-position: center; background-repeat: no-repeat; background-color: #1a1820;"></div>
       <div class="wd-container">
         <div class="sc-carousel-content">
           <div class="sc-carousel-label">Tư vấn Chiến lược</div>
@@ -55,7 +55,7 @@
     </div>
 
     <div class="sc-carousel-slide">
-      <div class="sc-carousel-bg" style="background: linear-gradient(135deg, #0f1114 0%, #1a1820 100%);"></div>
+      <div class="sc-carousel-bg" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=800&fit=crop'); background-size: cover; background-position: center; background-repeat: no-repeat; background-color: #0f1114;"></div>
       <div class="wd-container">
         <div class="sc-carousel-content">
           <div class="sc-carousel-label">Tái Cấu Trúc</div>
@@ -70,12 +70,12 @@
     </div>
 
     <div class="sc-carousel-slide">
-      <div class="sc-carousel-bg" style="background: linear-gradient(135deg, #1a1820 0%, #0f1114 100%);"></div>
+      <div class="sc-carousel-bg" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=800&fit=crop'); background-size: cover; background-position: center; background-repeat: no-repeat; background-color: #1a1820;"></div>
       <div class="wd-container">
         <div class="sc-carousel-content">
           <div class="sc-carousel-label">M&A Strategy</div>
           <h1 class="sc-carousel-title">Làm chủ Phát triển <em>Bền vững</em></h1>
-          <p class="sc-carousel-sub">Từ xác định target tới integration, chúng tôi giúp захап $100M deal và $25M synergies thực tế.</p>
+          <p class="sc-carousel-sub">Từ xác định target tới integration, chúng tôi giúp bạn tạo $100M deal và $25M synergies thực tế.</p>
           <div class="sc-carousel-cta">
             <a href="contact.html" class="btn-sc">Yêu cầu tư vấn</a>
             <a href="about.html" class="btn-sc" style="background: transparent; color: rgba(255,255,255,.7); border: 1px solid rgba(255,255,255,.2);">Chi tiết</a>
@@ -85,7 +85,7 @@
     </div>
 
     <div class="sc-carousel-slide">
-      <div class="sc-carousel-bg" style="background: linear-gradient(135deg, #0f1114 0%, #1a1820 100%);"></div>
+      <div class="sc-carousel-bg" style="background-image: url('https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&h=800&fit=crop'); background-size: cover; background-position: center; background-repeat: no-repeat; background-color: #0f1114;"></div>
       <div class="wd-container">
         <div class="sc-carousel-content">
           <div class="sc-carousel-label">Growth Strategy</div>
@@ -330,6 +330,21 @@ if(carousel) {
 
   autoSlideTimer = setTimeout(nextSlide, 5000);
 }
+
+// Navbar scroll transparency effect
+const nav = document.getElementById('nav');
+const scrollThreshold = 100;
+
+function updateNavOpacity() {
+  if (window.scrollY > scrollThreshold) {
+    nav.style.opacity = '1';
+  } else {
+    nav.style.opacity = '0.5';
+  }
+}
+
+window.addEventListener('scroll', updateNavOpacity, {passive: true});
+updateNavOpacity();
 </script>
 </body>
 </html>
