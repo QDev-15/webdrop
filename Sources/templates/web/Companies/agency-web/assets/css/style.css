@@ -94,7 +94,7 @@ img { display:block; }
 .svc-link:hover { color:var(--accent-h); }
 
 /* Portfolio card */
-.pf-card { border-radius:14px;overflow:hidden;position:relative;cursor:pointer;background:var(--dark2); }
+.pf-card { display:block;text-decoration:none;color:inherit;border-radius:14px;overflow:hidden;position:relative;cursor:pointer;background:var(--dark2); }
 .pf-img { width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .5s ease; }
 .pf-card:hover .pf-img { transform:scale(1.07); }
 .pf-overlay { position:absolute;inset:0;background:linear-gradient(to top,rgba(12,11,9,.85) 0%,transparent 55%);opacity:0;transition:opacity .3s; }

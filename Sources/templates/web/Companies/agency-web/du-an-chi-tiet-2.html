@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nền tảng học trực tuyến EduViet — Case Study | [TÊN CÔNG TY]</title>
+<meta name="description" content="Case study: [TÊN CÔNG TY] xây dựng nền tảng học trực tuyến Website + App cho EduViet — bối cảnh, giải pháp và kết quả đạt được.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<style>
+.cs-back { font-size:13px;font-weight:500;color:rgba(255,255,255,.5);text-decoration:none;display:inline-block;margin-bottom:22px;transition:color .2s; }
+.cs-back:hover { color:#fff; }
+.cs-meta-row { display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:22px; }
+.cs-tag-pill { font-size:12px;font-weight:500;color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.14);padding:6px 14px;border-radius:20px; }
+.cs-overview { background:var(--surface);border-bottom:1px solid var(--border); }
+.cs-overview-inner { display:flex;flex-wrap:wrap;gap:28px;padding:28px 0; }
+.cs-overview-item { flex:1;min-width:160px; }
+.cs-overview-label { font-size:11px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px; }
+.cs-overview-value { font-size:15px;font-weight:600;color:var(--text);letter-spacing:-.2px; }
+.cs-label { font-size:11px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:1.4px;margin-bottom:10px; }
+.cs-heading { font-size:clamp(24px,3vw,34px);font-weight:600;color:var(--text);letter-spacing:-.6px; }
+.cs-body p { font-size:14.5px;font-weight:300;color:var(--text-2);line-height:1.85;margin-bottom:16px; }
+.cs-body ul { padding-left:0;list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:8px; }
+.cs-body ul li { font-size:14px;font-weight:300;color:var(--text-2);line-height:1.7;padding-left:24px;position:relative; }
+.cs-body ul li::before { content:'';position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:2px;background:var(--accent); }
+.cs-body ul li strong { color:var(--text);font-weight:500; }
+.cs-gallery { display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:1fr 1fr;gap:12px; }
+.cs-gallery img:first-child { grid-row:1 / 3;aspect-ratio:4/5; }
+.cs-gallery img { width:100%;height:100%;object-fit:cover;border-radius:14px;aspect-ratio:4/3; }
+@media(max-width:768px) { .cs-gallery { grid-template-columns:1fr;grid-template-rows:auto; } .cs-gallery img:first-child { aspect-ratio:4/3; } }
+.cs-quote-wrap { max-width:740px;margin:0 auto;text-align:center; }
+.cs-quote-mark { font-size:56px;color:var(--accent-mid);opacity:.35;line-height:1;font-family:Georgia,serif;display:block;margin-bottom:6px; }
+.cs-quote-text { font-size:clamp(17px,2.2vw,22px);font-weight:400;color:var(--text);line-height:1.55;letter-spacing:-.2px;font-style:italic;margin-bottom:24px; }
+.cs-quote-source { display:flex;align-items:center;justify-content:center;gap:12px; }
+.cs-quote-av { width:44px;height:44px;border-radius:50%;object-fit:cover; }
+.cs-quote-name { font-size:14px;font-weight:600;color:var(--text);text-align:left; }
+.cs-quote-role { font-size:12.5px;color:var(--text-3);font-weight:300;text-align:left; }
+.pf-card-full { display:block;text-decoration:none;color:inherit;border-radius:16px;overflow:hidden;background:var(--surface);border:1px solid var(--border);transition:transform .28s cubic-bezier(.16,1,.3,1),box-shadow .28s; }
+.pf-card-full:hover { transform:translateY(-6px);box-shadow:0 20px 52px rgba(0,0,0,.1); }
+.pf-card-full:hover .pf-img { transform:scale(1.05); }
+.pf-card-full .pf-img { width:100%;aspect-ratio:16/10;object-fit:cover;display:block;transition:transform .5s ease; }
+.pf-body { padding:20px; }
+.pf-tags { display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px; }
+.pf-tag { font-size:11px;font-weight:500;padding:3px 9px;border-radius:6px;background:var(--accent-light);color:var(--accent); }
+.pf-tag.grey { background:var(--warm);color:var(--text-3);font-weight:400; }
+.pf-title { font-size:15px;font-weight:600;color:var(--text);letter-spacing:-.3px;margin-bottom:6px; }
+.pf-desc { font-size:13px;font-weight:300;color:var(--text-2);line-height:1.65;margin-bottom:14px; }
+.pf-link { font-size:12.5px;font-weight:500;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:4px; }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wd-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">[TÊN]<span>CÔNG TY</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="dich-vu.html">Dịch vụ</a>
+        <a href="du-an.html" class="active">Dự án</a>
+        <a href="ve-chung-toi.html">Về chúng tôi</a>
+      </div>
+      <a href="lien-he.html" class="nav-cta">Liên hệ ngay</a>
+      <button class="nav-hamburger" id="navHamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a><a href="dich-vu.html">Dịch vụ</a><a href="du-an.html">Dự án</a><a href="ve-chung-toi.html">Về chúng tôi</a>
+  <a href="lien-he.html" class="nm-cta">Liên hệ ngay</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="wd-container">
+    <a href="du-an.html" class="cs-back reveal">← Tất cả dự án</a>
+    <div class="ph-eyebrow reveal">Case Study · Website + App Giáo dục</div>
+    <h1 class="ph-title reveal">Nền tảng học trực tuyến <em>EduViet</em></h1>
+    <p class="ph-sub reveal">Xây dựng nền tảng học online mới hoàn toàn — 500+ khóa học, live stream, thi trực tuyến và app di động — thay thế hệ thống LMS cũ đã lỗi thời.</p>
+    <div class="cs-meta-row reveal">
+      <span class="cs-tag-pill">Khách hàng: EduViet</span>
+      <span class="cs-tag-pill">Năm: 2025</span>
+      <span class="cs-tag-pill">Ngành: Giáo dục</span>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW BAR -->
+<div class="cs-overview">
+  <div class="wd-container">
+    <div class="cs-overview-inner reveal">
+      <div class="cs-overview-item"><div class="cs-overview-label">Ngành</div><div class="cs-overview-value">Giáo dục trực tuyến</div></div>
+      <div class="cs-overview-item"><div class="cs-overview-label">Thời gian thực hiện</div><div class="cs-overview-value">14 tuần</div></div>
+      <div class="cs-overview-item"><div class="cs-overview-label">Dịch vụ cung cấp</div><div class="cs-overview-value">Web Platform, App iOS/Android, Payment Gateway</div></div>
+      <div class="cs-overview-item"><div class="cs-overview-label">Kết quả chính</div><div class="cs-overview-value">500+ khóa học trong tháng đầu</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CHALLENGE -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="row g-5">
+      <div class="col-lg-4 reveal">
+        <div class="cs-label">Bối cảnh</div>
+        <h2 class="cs-heading">Thách thức</h2>
+      </div>
+      <div class="col-lg-8 cs-body reveal reveal-d1">
+        <p>EduViet vận hành một hệ thống LMS xây dựng từ 6 năm trước, chỉ hỗ trợ khóa học dạng bài giảng văn bản và video upload sẵn — không có tính năng live stream, không có app di động. Học viên phải học hoàn toàn trên trình duyệt desktop, trong khi hơn 60% lượt truy cập của EduViet đến từ điện thoại.</p>
+        <p>Quy trình thanh toán chỉ chấp nhận chuyển khoản ngân hàng thủ công, nhân viên phải xác nhận từng giao dịch trước khi cấp quyền truy cập khóa học — thời gian chờ trung bình 4–6 giờ khiến nhiều học viên bỏ ngang giữa chừng quá trình đăng ký.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="sec-pad" style="background:var(--surface)">
+  <div class="wd-container">
+    <div class="row g-5">
+      <div class="col-lg-4 reveal">
+        <div class="cs-label">Cách tiếp cận</div>
+        <h2 class="cs-heading">Giải pháp</h2>
+      </div>
+      <div class="col-lg-8 cs-body reveal reveal-d1">
+        <p>Chúng tôi xây dựng lại toàn bộ nền tảng theo hướng mobile-first, ưu tiên rút ngắn thời gian từ lúc học viên quyết định đăng ký đến lúc được vào học.</p>
+        <ul>
+          <li><strong>UX Research</strong> — phỏng vấn học viên và giảng viên hiện tại để xác định đúng điểm nghẽn trong hành trình học và giảng dạy</li>
+          <li><strong>Kiến trúc nền tảng</strong> — thiết kế hệ thống hỗ trợ song song khóa học live stream và khóa học thu sẵn (on-demand), tách riêng luồng thi trực tuyến có giám sát</li>
+          <li><strong>Phát triển App di động</strong> — app iOS & Android với tính năng tải video offline, đồng bộ tiến độ học real-time giữa web và app</li>
+          <li><strong>Tích hợp thanh toán tự động</strong> — kết nối VNPay & Momo, cấp quyền truy cập khóa học tức thì ngay sau khi thanh toán thành công</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="sec-pad" style="background:var(--bg);padding-top:0">
+  <div class="wd-container">
+    <div class="cs-gallery reveal">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900&q=80&auto=format&fit=crop" alt="Giao diện trang chủ nền tảng học trực tuyến EduViet" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=700&q=80&auto=format&fit=crop" alt="Giao diện app di động EduViet với danh sách khóa học" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1584697964358-3e14ca57658b?w=700&q=80&auto=format&fit=crop" alt="Giao diện phòng học live stream trên EduViet" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- RESULT -->
+<section class="sec-pad" style="background:var(--dark2)">
+  <div class="wd-container">
+    <div class="text-center sec-dark reveal mb-5">
+      <div class="eyebrow">Kết quả</div>
+      <h2 class="sec-title">Số liệu <em>thực tế</em></h2>
+    </div>
+    <div class="row g-4 text-center">
+      <div class="col-6 col-md-3 reveal"><div class="stat-num" style="color:#fff" data-counter="500" data-suffix="+">0</div><div class="stat-label" style="color:rgba(255,255,255,.35)">Khóa học trong tháng đầu</div></div>
+      <div class="col-6 col-md-3 reveal reveal-d1"><div class="stat-num" style="color:#fff" data-counter="20000" data-suffix="+">0</div><div class="stat-label" style="color:rgba(255,255,255,.35)">Học viên onboard sau 3 tháng</div></div>
+      <div class="col-6 col-md-3 reveal reveal-d2"><div class="stat-num" style="color:#fff" data-counter="4" data-suffix=".7★">0</div><div class="stat-label" style="color:rgba(255,255,255,.35)">Đánh giá app trên store</div></div>
+      <div class="col-6 col-md-3 reveal reveal-d3"><div class="stat-num" style="color:#fff" data-counter="14" data-suffix=" tuần">0</div><div class="stat-label" style="color:rgba(255,255,255,.35)">Thời gian hoàn thành</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="sec-pad" style="background:var(--surface)">
+  <div class="wd-container">
+    <div class="cs-quote-wrap reveal">
+      <span class="cs-quote-mark" aria-hidden="true">"</span>
+      <p class="cs-quote-text">Điều chúng tôi ấn tượng nhất không phải giao diện đẹp — mà là tốc độ. Học viên đăng ký và thanh toán xong là vào học ngay, không còn cảnh chờ xác nhận chuyển khoản. App di động cũng giúp học viên ở tỉnh học đều đặn hơn hẳn so với trước.</p>
+      <div class="cs-quote-source">
+        <img class="cs-quote-av" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&q=80&auto=format&fit=crop&crop=face" alt="Vũ Đình Nam">
+        <div>
+          <div class="cs-quote-name">Vũ Đình Nam</div>
+          <div class="cs-quote-role">Nhà sáng lập · EduViet</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RELATED PROJECTS -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="wd-container">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4 reveal">
+      <h2 class="sec-title mb-0">Dự án <em>liên quan</em></h2>
+      <a href="du-an.html" class="btn-ghost">Xem tất cả →</a>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-6 reveal">
+        <a class="pf-card-full" href="du-an-chi-tiet-1.html">
+          <img class="pf-img" src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80&auto=format&fit=crop" alt="Hệ thống Website BĐS VinGroup" loading="lazy">
+          <div class="pf-body">
+            <div class="pf-tags"><span class="pf-tag">Website</span><span class="pf-tag grey">Bất động sản</span></div>
+            <div class="pf-title">Hệ thống Website BĐS — VinGroup</div>
+            <div class="pf-desc">Portal bất động sản 10.000+ sản phẩm, tích hợp bản đồ, tìm kiếm nâng cao, CMS quản lý nội dung.</div>
+            <span class="pf-link">Xem case study →</span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6 reveal reveal-d1">
+        <a class="pf-card-full" href="du-an.html">
+          <img class="pf-img" src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&q=80&auto=format&fit=crop" alt="Brand Identity TechStartupX" loading="lazy">
+          <div class="pf-body">
+            <div class="pf-tags"><span class="pf-tag">Thương hiệu</span><span class="pf-tag grey">Startup</span></div>
+            <div class="pf-title">Brand Identity — TechStartupX</div>
+            <div class="pf-desc">Logo, brand guideline, bộ ấn phẩm, pitch deck cho vòng gọi vốn Series A.</div>
+            <span class="pf-link">Xem trong Dự án →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="wd-container reveal">
+    <h2 class="cta-title">Bạn cũng muốn kết quả như vậy?</h2>
+    <p class="cta-sub">Tư vấn miễn phí. Báo giá trong 24 giờ. Không ràng buộc.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap position-relative">
+      <a href="lien-he.html" class="btn-white">Nhận báo giá miễn phí →</a>
+      <a href="du-an.html" class="btn-outline-white">Xem thêm dự án</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wd-container"><div class="row g-4 py-5">
+    <div class="col-md-4 reveal"><div class="ft-logo">[TÊN]<span>CÔNG TY</span></div><p class="ft-desc">Đối tác thiết kế web và dịch vụ số đáng tin cậy.</p><div class="ft-socials"><a href="#" class="ft-soc">fb</a><a href="#" class="ft-soc">zl</a><a href="#" class="ft-soc">in</a><a href="#" class="ft-soc">yt</a></div></div>
+    <div class="col reveal reveal-d1"><div class="ft-col-title">Dịch vụ</div><div class="ft-links"><a href="dich-vu.html">Thiết kế Website</a><a href="dich-vu.html">Ứng dụng Di động</a><a href="dich-vu.html">Marketing Số</a></div></div>
+    <div class="col reveal reveal-d2"><div class="ft-col-title">Công ty</div><div class="ft-links"><a href="ve-chung-toi.html">Về chúng tôi</a><a href="du-an.html">Dự án</a><a href="lien-he.html">Liên hệ</a></div></div>
+    <div class="col reveal reveal-d3"><div class="ft-col-title">Liên hệ</div><div class="ft-links"><a href="tel:0901234567">📱 0901 234 567</a><a href="mailto:hello@company.vn">✉️ hello@company.vn</a></div></div>
+  </div></div>
+  <div class="ft-bottom"><div class="wd-container"><div class="d-flex justify-content-between align-items-center py-3"><div class="ft-copy">© 2026 [TÊN CÔNG TY] · Made in Vietnam 🇻🇳</div></div></div></div>
+</footer>
+<div class="zf"><div class="zf-tip">Chat Zalo ngay</div><button class="zf-btn">💬</button></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} }); },{threshold:.08,rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+const hamburger=document.getElementById('navHamburger'),mobile=document.getElementById('navMobile');
+hamburger.addEventListener('click',()=>{ const o=mobile.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){mobile.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+
+document.querySelectorAll('[data-counter]').forEach(el => {
+  const cro = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      const target = +el.dataset.counter, suffix = el.dataset.suffix || '';
+      let cur = 0; const step = Math.max(1, Math.ceil(target / 60));
+      const t = setInterval(() => { cur = Math.min(cur + step, target); el.textContent = cur.toLocaleString('vi-VN') + suffix; if (cur >= target) clearInterval(t); }, 25);
+      cro.disconnect();
+    }
+  }, {threshold:.5});
+  cro.observe(el);
+});
+</script>
+</body>
+</html>

@@ -506,48 +506,54 @@
       filter: grayscale(.15) contrast(1.05);
     }
 
-    /* FAQ */
-    .faq-item {
-      border-bottom: 1px solid var(--border-light);
-    }
-
-    .faq-q {
-      padding: 16px 0;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
+    /* FAQ TEASER — FAQ đầy đủ nằm ở dich-vu.html#faq, không lặp lại ở đây */
+    .faq-teaser {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px clamp(20px, 4vw, 36px);
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
     }
 
-    .faq-q:hover {
+    .faq-teaser-label {
+      font-size: 11px;
+      font-weight: 500;
       color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 6px;
     }
 
-    .faq-arrow {
-      font-size: 12px;
-      color: var(--text-3);
-      transition: transform .25s;
+    .faq-teaser-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-2);
+      margin: 0;
+    }
+
+    .faq-teaser-btn {
+      font-family: var(--sans);
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 11px 22px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all .2s;
       flex-shrink: 0;
     }
 
-    .faq-a {
-      font-size: 13.5px;
-      font-weight: 300;
-      color: var(--text-2);
-      line-height: 1.75;
-      padding-bottom: 16px;
-      display: none;
-    }
-
-    .faq-item.open .faq-arrow {
-      transform: rotate(180deg);
-    }
-
-    .faq-item.open .faq-a {
-      display: block;
+    .faq-teaser-btn:hover {
+      background: var(--warm);
+      border-color: var(--accent);
+      color: var(--accent);
     }
 
     /* SECTION HEADER */
@@ -857,38 +863,15 @@
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- FAQ TEASER — FAQ đầy đủ nằm ở dich-vu.html#faq, không lặp lại ở đây -->
   <section style="padding:0 0 clamp(72px,10vw,128px)">
-    <div class="wd-container" style="max-width:720px">
-      <div class="text-center reveal" style="margin-bottom:40px">
-        <div class="sec-eyebrow" style="justify-content:center">Câu hỏi thường gặp</div>
-        <h2 class="sec-title">Giải đáp <em>thắc mắc</em></h2>
-      </div>
-      <div class="reveal">
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">Thời gian hoàn thành một dự án là bao lâu? <span
-              class="faq-arrow">▾</span></div>
-          <div class="faq-a">Tùy theo quy mô, thông thường từ 3–7 ngày làm việc với landing page đơn giản, và 2–4 tuần
-            với website nhiều trang. Chúng tôi sẽ cung cấp timeline cụ thể sau khi trao đổi yêu cầu.</div>
+    <div class="wd-container">
+      <div class="faq-teaser reveal">
+        <div>
+          <div class="faq-teaser-label">Còn thắc mắc?</div>
+          <p class="faq-teaser-desc">Xem chi phí, quy trình làm việc, thời gian thực hiện, bảo hành và các câu hỏi thường gặp khác.</p>
         </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">Chi phí thiết kế website bao nhiêu? <span
-              class="faq-arrow">▾</span></div>
-          <div class="faq-a">Chi phí phụ thuộc vào số trang, tính năng và mức độ tùy chỉnh. Liên hệ để nhận báo giá miễn
-            phí — chúng tôi có nhiều gói phù hợp với mọi ngân sách.</div><!-- SỬA theo bảng giá của bạn -->
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">Tôi có thể tự chỉnh nội dung sau khi bàn giao không? <span
-              class="faq-arrow">▾</span></div>
-          <div class="faq-a">Có. Mọi dự án đều đi kèm hướng dẫn chỉnh nội dung cơ bản. Nếu cần, chúng tôi cũng hỗ trợ
-            gói bảo trì hàng tháng.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">Có hỗ trợ sau khi bàn giao không? <span
-              class="faq-arrow">▾</span></div>
-          <div class="faq-a">Có. Tất cả dự án đều được hỗ trợ miễn phí trong 30 ngày đầu. Sau đó có thể đăng ký gói bảo
-            trì tháng nếu cần.</div>
-        </div>
+        <a href="dich-vu.html#faq" class="faq-teaser-btn">Xem FAQ đầy đủ →</a>
       </div>
     </div>
   </section>
@@ -963,14 +946,6 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
     }, { threshold: .1 });
     document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
-
-    /* FAQ */
-    function toggleFaq(el) {
-      const item = el.parentElement;
-      const wasOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!wasOpen) item.classList.add('open');
-    }
 
     /* FORM */
     document.getElementById('contactForm').addEventListener('submit', function (e) {

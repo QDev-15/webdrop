@@ -253,8 +253,8 @@
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="sec-pad" style="background:var(--bg);" aria-labelledby="faq-heading">
+<!-- FAQ — Accordion thật (details/summary, không cần JS) -->
+<section class="sec-pad" style="background:var(--bg);" id="faq" aria-labelledby="faq-heading">
   <div class="wd-container">
     <div class="row">
       <div class="col-lg-4 mb-5 mb-lg-0" data-reveal>
@@ -270,60 +270,78 @@
         <a href="lien-he.html" class="st-btn-primary">Liên hệ hỗ trợ</a>
       </div>
       <div class="col-lg-8" data-reveal data-reveal-d1>
-        <div class="st-faq-item">
-          <div class="st-faq-q">
+        <details class="st-faq-item">
+          <summary class="st-faq-q">
             Tôi có thể dùng thử miễn phí bao lâu?
             <span class="st-faq-icon" aria-hidden="true">+</span>
-          </div>
-          <div class="st-faq-a">
+          </summary>
+          <p class="st-faq-a">
             Bạn có thể dùng thử gói Professional đầy đủ tính năng trong 14 ngày hoàn toàn miễn phí, không cần thẻ tín dụng. Sau 14 ngày, nếu không nâng cấp, tài khoản sẽ tự động chuyển về gói Starter miễn phí và bạn vẫn giữ được dữ liệu đã tạo.
-          </div>
-        </div>
-        <div class="st-faq-item">
-          <div class="st-faq-q">
-            Tôi có thể thay đổi gói sau khi đăng ký không?
+          </p>
+        </details>
+        <details class="st-faq-item">
+          <summary class="st-faq-q">
+            Chính sách hoàn tiền như thế nào nếu tôi không hài lòng?
             <span class="st-faq-icon" aria-hidden="true">+</span>
-          </div>
-          <div class="st-faq-a">
-            Có, bạn có thể nâng cấp hoặc hạ cấp gói bất cứ lúc nào. Khi nâng cấp, bạn chỉ trả thêm phần chênh lệch tính theo ngày còn lại trong chu kỳ hiện tại. Khi hạ cấp, thay đổi sẽ có hiệu lực vào đầu chu kỳ thanh toán tiếp theo.
-          </div>
-        </div>
-        <div class="st-faq-item">
-          <div class="st-faq-q">
+          </summary>
+          <p class="st-faq-a">
+            Với mọi gói trả phí, nếu bạn không hài lòng trong 30 ngày đầu sử dụng, chúng tôi hoàn 100% chi phí đã thanh toán — không cần lý do phức tạp, chỉ cần liên hệ đội hỗ trợ qua email hoặc Zalo.
+          </p>
+        </details>
+        <details class="st-faq-item">
+          <summary class="st-faq-q">
+            Nền tảng có tích hợp được với hệ thống tôi đang dùng không?
+            <span class="st-faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <p class="st-faq-a">
+            Có — [Tên Startup] kết nối sẵn với [N]+ ứng dụng phổ biến (CRM, ERP, kế toán, kênh bán hàng, mạng xã hội...) và cung cấp API RESTful + Webhook để tự tích hợp. Gói Enterprise còn hỗ trợ tích hợp tùy chỉnh riêng theo hệ thống nội bộ của doanh nghiệp.
+          </p>
+        </details>
+        <details class="st-faq-item">
+          <summary class="st-faq-q">
             Dữ liệu của tôi có được bảo mật không?
             <span class="st-faq-icon" aria-hidden="true">+</span>
-          </div>
-          <div class="st-faq-a">
+          </summary>
+          <p class="st-faq-a">
             Tất cả dữ liệu được mã hóa AES-256 khi lưu trữ và SSL/TLS khi truyền tải. Chúng tôi tuân thủ tiêu chuẩn ISO 27001 và không bao giờ chia sẻ dữ liệu của bạn với bên thứ ba. Backup tự động mỗi 6 giờ, lưu trữ tối thiểu 90 ngày.
-          </div>
-        </div>
-        <div class="st-faq-item">
-          <div class="st-faq-q">
+          </p>
+        </details>
+        <details class="st-faq-item">
+          <summary class="st-faq-q">
+            Đội hỗ trợ kỹ thuật làm việc 24/7 hay theo giờ hành chính?
+            <span class="st-faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <p class="st-faq-a">
+            Gói Starter và Professional được hỗ trợ qua email và Zalo trong giờ hành chính (Thứ 2 – Thứ 6, 8:00 – 18:00), phản hồi ưu tiên trong vài giờ làm việc. Gói Enterprise có dedicated account manager riêng và hỗ trợ kỹ thuật 24/7, đảm bảo xử lý sự cố khẩn cấp bất kỳ lúc nào theo SLA đã cam kết.
+          </p>
+        </details>
+        <details class="st-faq-item">
+          <summary class="st-faq-q">
+            Tôi có thể nâng cấp hoặc hạ cấp gói giữa chừng không?
+            <span class="st-faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <p class="st-faq-a">
+            Có, bạn có thể nâng cấp hoặc hạ cấp gói bất cứ lúc nào. Khi nâng cấp, bạn chỉ trả thêm phần chênh lệch tính theo ngày còn lại trong chu kỳ hiện tại. Khi hạ cấp, thay đổi sẽ có hiệu lực vào đầu chu kỳ thanh toán tiếp theo.
+          </p>
+        </details>
+        <details class="st-faq-item">
+          <summary class="st-faq-q">
             Tôi có thể xuất dữ liệu không nếu muốn chuyển đi?
             <span class="st-faq-icon" aria-hidden="true">+</span>
-          </div>
-          <div class="st-faq-a">
+          </summary>
+          <p class="st-faq-a">
             Hoàn toàn có thể. Bạn có thể xuất toàn bộ dữ liệu ở định dạng CSV, JSON hoặc Excel bất cứ lúc nào. Chúng tôi cam kết không giữ dữ liệu làm con tin — dữ liệu của bạn luôn là của bạn.
-          </div>
-        </div>
-        <div class="st-faq-item">
-          <div class="st-faq-q">
-            Gói Enterprise có thể triển khai tại máy chủ riêng không?
-            <span class="st-faq-icon" aria-hidden="true">+</span>
-          </div>
-          <div class="st-faq-a">
-            Có, gói Enterprise hỗ trợ triển khai on-premise trên hạ tầng của doanh nghiệp bạn hoặc private cloud riêng. Đội kỹ thuật của chúng tôi sẽ hỗ trợ toàn bộ quá trình cài đặt, cấu hình và bàn giao vận hành.
-          </div>
-        </div>
-        <div class="st-faq-item">
-          <div class="st-faq-q">
+          </p>
+        </details>
+        <details class="st-faq-item">
+          <summary class="st-faq-q">
             Có hỗ trợ thanh toán bằng chuyển khoản ngân hàng không?
             <span class="st-faq-icon" aria-hidden="true">+</span>
-          </div>
-          <div class="st-faq-a">
+          </summary>
+          <p class="st-faq-a">
             Có, chúng tôi hỗ trợ thanh toán qua chuyển khoản ngân hàng, MoMo, VNPay và thẻ Visa/Mastercard. Doanh nghiệp có thể xuất hóa đơn VAT theo yêu cầu cho mọi giao dịch.
-          </div>
-        </div>
+          </p>
+        </details>
       </div>
     </div>
   </div>

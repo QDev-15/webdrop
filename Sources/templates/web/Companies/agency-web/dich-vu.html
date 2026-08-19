@@ -32,6 +32,12 @@
 .pc-btn:hover { background:var(--warm); }
 .price-card.hot .pc-btn { background:var(--accent);color:#fff;border-color:var(--accent); }
 .price-card.hot .pc-btn:hover { background:var(--accent-h); }
+.svc-faq-item { border-bottom:1px solid var(--border-light); }
+.svc-faq-item summary { list-style:none;cursor:pointer;padding:20px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;font-family:var(--sans);font-size:14.5px;font-weight:500;color:var(--text); }
+.svc-faq-item summary::-webkit-details-marker { display:none; }
+.svc-faq-icon { flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--accent-light);color:var(--accent);font-weight:600;font-size:14px;text-align:center;line-height:22px;transition:transform .25s; }
+.svc-faq-item[open] .svc-faq-icon { transform:rotate(45deg); }
+.svc-faq-a { font-size:13.5px;font-weight:300;color:var(--text-2);line-height:1.75;padding-bottom:20px;max-width:760px; }
 </style>
 </head>
 <body>
@@ -177,6 +183,43 @@
         <ul class="pc-list"><li>Phân tích chuyên sâu</li><li>Kiến trúc hệ thống riêng</li><li>Tích hợp bên thứ 3</li><li>Bàn giao source code</li><li>Bảo trì dài hạn</li></ul>
         <button class="pc-btn" onclick="location.href='lien-he.html'">Liên hệ tư vấn</button>
       </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec-pad" style="background:var(--surface)" id="faq">
+  <div class="wd-container" style="max-width:760px">
+    <div class="text-center reveal mb-5">
+      <div class="eyebrow">Câu hỏi thường gặp</div>
+      <h2 class="sec-title">Giải đáp <em>thắc mắc</em></h2>
+      <p class="sec-sub">Những câu hỏi khách hàng thường hỏi trước khi bắt đầu dự án cùng chúng tôi.</p>
+    </div>
+    <div class="reveal">
+      <details class="svc-faq-item">
+        <summary>Chi phí một dự án website là bao nhiêu? <span class="svc-faq-icon">+</span></summary>
+        <p class="svc-faq-a">Chi phí phụ thuộc vào số trang, tính năng và mức độ tùy chỉnh — dao động từ 15 triệu (Starter) đến trên 35 triệu (Professional), xem chi tiết ở bảng giá phía trên. Với hệ thống phức tạp (Enterprise), chúng tôi khảo sát yêu cầu rồi báo giá cụ thể trong 24 giờ.</p>
+      </details>
+      <details class="svc-faq-item">
+        <summary>Quy trình làm việc diễn ra như thế nào? <span class="svc-faq-icon">+</span></summary>
+        <p class="svc-faq-a">4 bước rõ ràng: Tư vấn & phân tích yêu cầu → Thiết kế & duyệt giao diện (2 vòng revision) → Phát triển & kiểm thử → Bàn giao & hỗ trợ. Xem chi tiết ở mục "Quy trình" phía trên — mỗi bước đều có milestone xác nhận, cập nhật tiến độ hàng ngày qua Zalo.</p>
+      </details>
+      <details class="svc-faq-item">
+        <summary>Thời gian hoàn thành một dự án mất bao lâu? <span class="svc-faq-icon">+</span></summary>
+        <p class="svc-faq-a">Landing page đơn giản: 1–2 tuần. Website nhiều trang có CMS: 3–6 tuần. Hệ thống phức tạp (app, tích hợp API, nền tảng riêng): 8–16 tuần tùy phạm vi. Timeline cụ thể được thống nhất bằng văn bản trước khi bắt đầu.</p>
+      </details>
+      <details class="svc-faq-item">
+        <summary>Có bảo hành hay cam kết gì sau khi bàn giao không? <span class="svc-faq-icon">+</span></summary>
+        <p class="svc-faq-a">Mọi dự án đều được bảo hành lỗi kỹ thuật miễn phí trong 30 ngày kể từ ngày bàn giao. Với gói Professional trở lên, thời gian hỗ trợ kéo dài đến 3 tháng. Sau thời gian bảo hành, bạn có thể đăng ký gói bảo trì hàng tháng.</p>
+      </details>
+      <details class="svc-faq-item">
+        <summary>Hình thức thanh toán như thế nào? <span class="svc-faq-icon">+</span></summary>
+        <p class="svc-faq-a">Thông thường chia làm 2–3 đợt: 50% đặt cọc khi ký hợp đồng, 50% còn lại khi bàn giao. Với dự án lớn (Enterprise) có thể chia thêm đợt giữa theo từng milestone — chi tiết được ghi rõ trong hợp đồng trước khi triển khai.</p>
+      </details>
+      <details class="svc-faq-item">
+        <summary>Sau khi bàn giao, có hỗ trợ kỹ thuật không? <span class="svc-faq-icon">+</span></summary>
+        <p class="svc-faq-a">Có. Ngoài 30 ngày bảo hành miễn phí, chúng tôi có gói bảo trì hàng tháng bao gồm cập nhật nội dung, giám sát uptime, vá bảo mật và hỗ trợ kỹ thuật khi có sự cố phát sinh.</p>
+      </details>
     </div>
   </div>
 </section>
