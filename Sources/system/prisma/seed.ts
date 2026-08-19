@@ -69,6 +69,7 @@ async function main() {
     description: string
     thumbnail: string
     demoUrl: string | null
+    deployUrl?: string | null | undefined
     price: number
     category: 'web' | 'admin'
     industrySlug: string | null
