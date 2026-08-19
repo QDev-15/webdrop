@@ -40,6 +40,7 @@ Glob: Sources/templates/web/*/assets/css/style.css
 2. Mỗi template có **Design Identity Token** riêng (xem mục bên dưới)
 3. Chứng minh sự khác biệt ở ít nhất 6 điểm: nav / hero / typography / màu / layout sections / components
 4. Mỗi template có ít nhất 5 item menu khác nhau (Trang chủ, Giới thiệu | Về chúng tôi, liên hệ, chính sách bảo mật, điều khoản) tương ứng với ít nhất 5 page khác nhau, tùy từng shop mà add thêm các menu khác.
+5. **Chiều sâu nội dung (áp dụng cho ngách company/agency/portfolio/tư vấn — xem mục G, H bên dưới):** trang Dự án/Portfolio phải có card bấm được dẫn tới trang case-study chi tiết thật, không phải grid tĩnh không link. Phải có FAQ accordion thật (không phải vài câu rải rác trên trang liên hệ).
 ---
 
 ## Bước 1 — Kiểm tra Bootstrap & Chọn Design Identity
@@ -306,6 +307,39 @@ Maps section được đặt trong footer, trên footer-bottom (copyright + soci
 | `RETRO-BOLD` | Dark retro, poster-style layout |
 | `GLASS-MODERN` | Dark gradient, glass effect panel |
 
+### G. Case Study Detail Page — BẮT BUỘC khi template có trang Dự án/Portfolio
+
+**Lý do:** grid dự án tĩnh (ảnh + 2 dòng mô tả, không bấm được) khiến khách xem template thấy thiếu chiều sâu — không chứng minh được năng lực thực sự. Site agency/tư vấn/BĐS uy tín luôn có trang case-study riêng cho từng dự án (challenge → giải pháp → kết quả).
+
+**Yêu cầu:**
+1. Tạo **ít nhất 2 trang case-study chi tiết riêng biệt** (file HTML riêng, không phải modal/popup) — vd `du-an-chi-tiet-1.html`, `du-an-chi-tiet-2.html` (đặt tên theo prefix ngành).
+2. Trong trang danh sách (`du-an.html`/`portfolio.html`), MỌI project card phải là thẻ `<a>` bấm được (không phải `<article>` tĩnh, không `href="#"`) — các card round-robin link vào 2+ trang chi tiết đã tạo.
+3. Cấu trúc bắt buộc của mỗi trang case-study chi tiết:
+   - Page hero: tên dự án, category tag, [Khách hàng], [Năm thực hiện]
+   - Overview bar: 3–4 info ngắn (Ngành, Thời gian thực hiện, Dịch vụ cung cấp, Kết quả chính)
+   - **Bối cảnh & Thách thức** — đoạn văn cụ thể theo tình huống dự án, không viết chung chung kiểu "khách hàng cần một website đẹp"
+   - **Giải pháp/Cách tiếp cận** — chia bước hoặc bullet cụ thể
+   - Gallery — tối thiểu 3 ảnh lớn
+   - **Kết quả** — số liệu định lượng (dùng `data-counter` nếu phù hợp) hoặc bullet có con số cụ thể
+   - Testimonial — quote riêng của khách hàng dự án đó (tên, chức danh, công ty — không dùng chung testimonial trang chủ)
+   - Dự án liên quan (2–3 card) + CTA cuối trang
+4. Áp dụng cho: Agency/Company, Portfolio, BĐS (đã có sẵn `chi-tiet-bds.html` — giữ nguyên pattern, bổ sung đủ 7 mục trên nếu thiếu). Ngành không có "dự án" (nhà hàng, spa, cafe...) thì bỏ qua mục này.
+
+### H. FAQ Section — BẮT BUỘC
+
+**Yêu cầu:**
+1. Accordion FAQ thật (Bootstrap accordion hoặc custom accordion theo identity token) — tối thiểu **6 câu hỏi** sát với ngành thực tế: giá cả/chi phí, quy trình làm việc, thời gian thực hiện, bảo hành/cam kết, hình thức thanh toán, hỗ trợ sau bàn giao.
+2. Đặt thành 1 section riêng trên trang phù hợp nhất (thường là `dich-vu.html` hoặc trang chủ) — KHÔNG rải rác 2-3 câu lẻ tẻ trên trang liên hệ.
+3. Style accordion theo identity token đã chọn (màu, border-radius, icon mở/đóng) — không copy 1 kiểu accordion dùng chung cho mọi token.
+
+### I. Bảng giá — BẮT BUỘC khi ngành có gói dịch vụ phân tầng
+
+Áp dụng cho: agency, tư vấn (luật, tài chính, marketing), thiết kế, công nghệ/SaaS — mọi ngành có thể chia gói dịch vụ theo tier.
+
+- Tối thiểu so sánh **3 gói** (vd Basic/Standard/Premium hoặc tên riêng theo ngành) — mỗi gói có: tên, giá/khoảng giá, danh sách tính năng/hạng mục kèm theo, CTA riêng.
+- Có thể làm section riêng trên `dich-vu.html` hoặc trang riêng `bang-gia.html` tùy độ phức tạp — ngành có nhiều gói (>3) hoặc cần so sánh chi tiết nên tách trang riêng.
+- Ngành không có gói phân tầng rõ ràng (nhà hàng, cafe, spa dịch vụ lẻ...) thì bỏ qua, không ép buộc.
+
 ---
 
 ## Bước 4 — Viết CSS từ đầu
@@ -410,8 +444,9 @@ Sources/templates/web/[slug]/
 Pages theo ngành:
 - Nhà hàng: index, thuc-don, dat-ban, lien-he
 - Spa: index, dich-vu, dat-lich, lien-he
-- Agency: index, dich-vu, du-an, ve-chung-toi, lien-he
-- BĐS: index, bat-dong-san, chi-tiet-bds, lien-he
+- Agency/Company: index, dich-vu (kèm FAQ accordion, kèm bảng giá nếu ngành phù hợp — xem mục H, I), du-an, du-an-chi-tiet-1, du-an-chi-tiet-2 (xem mục G), ve-chung-toi, lien-he
+- Portfolio cá nhân: index (single-page scroll) + ít nhất 2 case-study đào sâu ngay trong trang (không chỉ thumbnail) — hoặc tách trang case-study riêng nếu nội dung dài
+- BĐS: index, bat-dong-san, chi-tiet-bds (đủ 7 mục case-study — xem mục G), lien-he
 - Gym: index, dich-vu, bang-gia, lien-he
 - Cafe: index, menu, khong-gian, lien-he
 - Nha khoa: index, dich-vu, bac-si, dat-lich, lien-he
@@ -469,6 +504,9 @@ Pages theo ngành:
 □ Stats section (nếu có): 4 cột trên desktop, 2 cột tablet, 1 cột mobile
 □ Maps Google embed ở footer (300px height, proper coordinates)
 □ Placeholder text trong [NGOẶC VUÔNG]
+□ Trang Dự án/Portfolio (nếu có): mọi card là <a> bấm được, không href="#", dẫn tới ≥2 trang case-study chi tiết đủ 7 mục (mục G)
+□ FAQ accordion ≥6 câu, đặt thành section riêng đúng trang — không rải rác trên trang liên hệ (mục H)
+□ Ngành có gói dịch vụ phân tầng → có trang/section Bảng giá so sánh ≥3 gói (mục I)
 ```
 
 ---
