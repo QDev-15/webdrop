@@ -1154,13 +1154,17 @@ a { text-decoration: none; }
    CASES PAGE — case detail cards
 ══════════════════════════════════════ */
 .lv-case-card {
+  display: block;
   background: var(--surface);
   border: 1px solid var(--border);
   padding: 36px;
   margin-bottom: 24px;
-  transition: border-color .3s;
+  transition: border-color .3s, box-shadow .3s;
   position: relative;
   overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
 }
 .lv-case-card::before {
   content: '';
@@ -1170,7 +1174,7 @@ a { text-decoration: none; }
   background: var(--border);
   transition: background .3s;
 }
-.lv-case-card:hover { border-color: rgba(139,105,20,.25); }
+.lv-case-card:hover { border-color: rgba(139,105,20,.25); box-shadow: 0 16px 40px rgba(12,10,7,.08); }
 .lv-case-card:hover::before { background: var(--accent); }
 .lv-case-meta {
   display: flex;

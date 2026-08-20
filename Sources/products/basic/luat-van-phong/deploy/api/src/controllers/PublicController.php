@@ -58,9 +58,34 @@ class PublicController {
         Response::json($items);
     }
 
+    public function caseBySlug(array $p): void {
+        $item = $this->db->queryOne(
+            "SELECT * FROM cases WHERE slug=? AND status='published'",
+            [$p['slug']]
+        );
+        if (!$item) { Response::error('Không tìm thấy vụ việc.', 404); return; }
+        Response::json($item);
+    }
+
     public function testimonials(array $p): void {
         $items = $this->db->query(
             "SELECT * FROM testimonials WHERE status='published' ORDER BY sort_order, id"
+        );
+        Response::json($items);
+    }
+
+    public function faqs(array $p): void {
+        $page = $_GET['page'] ?? 'dich-vu';
+        $items = $this->db->query(
+            "SELECT * FROM faqs WHERE status='published' AND page=? ORDER BY sort_order, id",
+            [$page]
+        );
+        Response::json($items);
+    }
+
+    public function pricingPlans(array $p): void {
+        $items = $this->db->query(
+            "SELECT * FROM pricing_plans WHERE status='published' ORDER BY sort_order, id"
         );
         Response::json($items);
     }
@@ -111,13 +136,19 @@ class PublicController {
         $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
         $base   = $scheme . '://' . ($_SERVER['HTTP_HOST'] ?? 'localhost');
 
-        // Site này không có trang chi tiết động — chỉ route tĩnh
         $staticRoutes = ['/', '/dich-vu', '/luat-su', '/du-an', '/lien-he'];
 
         echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
         echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
         foreach ($staticRoutes as $route) {
             echo '  <url><loc>' . htmlspecialchars($base . $route, ENT_XML1) . '</loc></url>' . "\n";
+        }
+        // Trang chi tiết vụ việc động — /vu-viec/:slug
+        $caseSlugs = $this->db->query(
+            "SELECT slug FROM cases WHERE status='published' AND slug IS NOT NULL AND slug != ''"
+        );
+        foreach ($caseSlugs as $row) {
+            echo '  <url><loc>' . htmlspecialchars($base . '/vu-viec/' . $row['slug'], ENT_XML1) . '</loc></url>' . "\n";
         }
         echo '</urlset>';
     }
