@@ -43,6 +43,13 @@ class Auth {
         self::$currentUser = null;
     }
 
+    // Cập nhật tên hiển thị trong session sau khi user đổi tên ở trang Profile
+    public static function updateName(string $name): void {
+        self::start();
+        $_SESSION['user_name'] = $name;
+        if (self::$currentUser !== null) { self::$currentUser['name'] = $name; }
+    }
+
     public static function user(): ?array {
         self::start();
         if (empty($_SESSION['user_id'])) return null;

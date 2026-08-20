@@ -20,7 +20,7 @@ class ProjectController {
         Auth::require();
         $b  = bodyJson();
         $id = $this->db->execute(
-            "INSERT INTO projects (title, slug, description, image, client, category, tags, link, featured, sort_order, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO projects (title, slug, description, image, client, category, tags, link, featured, sort_order, status, year, duration, scope_text, result_summary, challenge, solution, gallery_images, stats, testimonial_content, testimonial_author, testimonial_title, testimonial_avatar) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             [
                 $b['title']       ?? '',
                 slugify($b['title'] ?? ''),
@@ -33,6 +33,18 @@ class ProjectController {
                 (int)($b['featured']   ?? 0),
                 (int)($b['sort_order'] ?? 0),
                 $b['status']      ?? 'published',
+                $b['year']                 ?? '',
+                $b['duration']              ?? '',
+                $b['scope_text']            ?? '',
+                $b['result_summary']        ?? '',
+                $b['challenge']             ?? '',
+                $b['solution']              ?? '',
+                $b['gallery_images']        ?? '',
+                $b['stats']                 ?? '',
+                $b['testimonial_content']   ?? '',
+                $b['testimonial_author']    ?? '',
+                $b['testimonial_title']     ?? '',
+                $b['testimonial_avatar']    ?? '',
             ]
         );
         Response::json(['id' => $id], 201);
@@ -42,7 +54,7 @@ class ProjectController {
         Auth::require();
         $b = bodyJson();
         $this->db->execute(
-            "UPDATE projects SET title=?, description=?, image=?, client=?, category=?, tags=?, link=?, featured=?, sort_order=?, status=? WHERE id=?",
+            "UPDATE projects SET title=?, description=?, image=?, client=?, category=?, tags=?, link=?, featured=?, sort_order=?, status=?, year=?, duration=?, scope_text=?, result_summary=?, challenge=?, solution=?, gallery_images=?, stats=?, testimonial_content=?, testimonial_author=?, testimonial_title=?, testimonial_avatar=? WHERE id=?",
             [
                 $b['title']       ?? '',
                 $b['description'] ?? '',
@@ -54,6 +66,18 @@ class ProjectController {
                 (int)($b['featured']   ?? 0),
                 (int)($b['sort_order'] ?? 0),
                 $b['status']      ?? 'published',
+                $b['year']                 ?? '',
+                $b['duration']              ?? '',
+                $b['scope_text']            ?? '',
+                $b['result_summary']        ?? '',
+                $b['challenge']             ?? '',
+                $b['solution']              ?? '',
+                $b['gallery_images']        ?? '',
+                $b['stats']                 ?? '',
+                $b['testimonial_content']   ?? '',
+                $b['testimonial_author']    ?? '',
+                $b['testimonial_title']     ?? '',
+                $b['testimonial_avatar']    ?? '',
                 $p['id'],
             ]
         );

@@ -14,10 +14,26 @@ interface ProjForm {
   featured: number
   sort_order: number
   status: string
+  year: string
+  duration: string
+  scope_text: string
+  result_summary: string
+  challenge: string
+  solution: string
+  gallery_images: string
+  stats: string
+  testimonial_content: string
+  testimonial_author: string
+  testimonial_title: string
+  testimonial_avatar: string
 }
 
 const CATS = ['Brand Identity', 'Digital Design', 'Campaign', 'Social Media', 'Event Branding', 'Digital Marketing']
-const INIT: ProjForm = { title: '', category: 'Brand Identity', description: '', image: '', tags: '', client_name: '', featured: 0, sort_order: 0, status: 'published' }
+const INIT: ProjForm = {
+  title: '', category: 'Brand Identity', description: '', image: '', tags: '', client_name: '', featured: 0, sort_order: 0, status: 'published',
+  year: '', duration: '', scope_text: '', result_summary: '', challenge: '', solution: '', gallery_images: '', stats: '',
+  testimonial_content: '', testimonial_author: '', testimonial_title: '', testimonial_avatar: '',
+}
 
 export default function ProjectForm() {
   const { id } = useParams()
@@ -30,7 +46,12 @@ export default function ProjectForm() {
   useEffect(() => {
     if (isEdit) {
       api.get<ProjForm & { id: number }>(`/projects/${id}`)
-        .then(d => setForm({ title: d.title, category: d.category || '', description: d.description || '', image: d.image || '', tags: d.tags || '', client_name: d.client_name || '', featured: d.featured, sort_order: d.sort_order, status: d.status }))
+        .then(d => setForm({
+          title: d.title, category: d.category || '', description: d.description || '', image: d.image || '', tags: d.tags || '', client_name: d.client_name || '', featured: d.featured, sort_order: d.sort_order, status: d.status,
+          year: d.year || '', duration: d.duration || '', scope_text: d.scope_text || '', result_summary: d.result_summary || '', challenge: d.challenge || '', solution: d.solution || '',
+          gallery_images: d.gallery_images || '', stats: d.stats || '',
+          testimonial_content: d.testimonial_content || '', testimonial_author: d.testimonial_author || '', testimonial_title: d.testimonial_title || '', testimonial_avatar: d.testimonial_avatar || '',
+        }))
         .catch(() => setError('Không tìm thấy dự án.'))
     }
   }, [id, isEdit])
@@ -106,6 +127,65 @@ export default function ProjectForm() {
               </select>
             </div>
           </div>
+          <hr style={{ border: 'none', borderTop: '1px solid var(--border)', margin: '8px 0' }} />
+          <h3 style={{ fontSize: 15, fontWeight: 700, margin: 0 }}>Case Study — Trang chi tiết dự án</h3>
+          <p style={{ fontSize: 12.5, color: 'var(--text-3)', margin: '-8px 0 0' }}>
+            Điền các mục dưới đây để trang chi tiết dự án (bấm vào card ở trang Dự án) hiển thị đầy đủ case study — bỏ trống thì trang chi tiết chỉ hiển thị overview cơ bản.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            <div className="form-group">
+              <label className="form-label">Năm thực hiện</label>
+              <input className="form-control" value={form.year} onChange={e => set('year', e.target.value)} placeholder="2024" />
+            </div>
+            <div className="form-group">
+              <label className="form-label">Thời gian thực hiện</label>
+              <input className="form-control" value={form.duration} onChange={e => set('duration', e.target.value)} placeholder="6 tuần" />
+            </div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            <div className="form-group">
+              <label className="form-label">Dịch vụ cung cấp (overview bar)</label>
+              <input className="form-control" value={form.scope_text} onChange={e => set('scope_text', e.target.value)} placeholder="Brand Strategy, Logo, Guidelines" />
+            </div>
+            <div className="form-group">
+              <label className="form-label">Kết quả chính (overview bar)</label>
+              <input className="form-control" value={form.result_summary} onChange={e => set('result_summary', e.target.value)} placeholder="+40% nhận diện thương hiệu" />
+            </div>
+          </div>
+          <div className="form-group">
+            <label className="form-label">Bối cảnh &amp; Thách thức</label>
+            <textarea className="form-control" value={form.challenge} onChange={e => set('challenge', e.target.value)} rows={4} placeholder="Đoạn văn mô tả tình huống thực tế của khách hàng trước khi hợp tác..." />
+          </div>
+          <div className="form-group">
+            <label className="form-label">Giải pháp / Cách tiếp cận</label>
+            <textarea className="form-control" value={form.solution} onChange={e => set('solution', e.target.value)} rows={5} placeholder={'Đoạn mô tả chung...\n\n- Bước 1: ...\n- Bước 2: ...\n(mỗi đoạn cách nhau 1 dòng trống; đoạn toàn dòng bắt đầu bằng "-" sẽ hiển thị dạng danh sách)'} />
+          </div>
+          <div className="form-group">
+            <label className="form-label">Ảnh gallery (mỗi dòng 1 link ảnh, tối thiểu 3 ảnh)</label>
+            <textarea className="form-control" value={form.gallery_images} onChange={e => set('gallery_images', e.target.value)} rows={3} placeholder={'https://...anh-1.jpg\nhttps://...anh-2.jpg\nhttps://...anh-3.jpg'} />
+          </div>
+          <div className="form-group">
+            <label className="form-label">Số liệu kết quả (mỗi dòng: giá trị|hậu tố|nhãn)</label>
+            <textarea className="form-control" value={form.stats} onChange={e => set('stats', e.target.value)} rows={4} placeholder={'40|%|Tăng nhận diện thương hiệu\n120|+|Ấn phẩm được chuẩn hóa\n6| tuần|Thời gian hoàn thành'} />
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            <div className="form-group">
+              <label className="form-label">Testimonial — Tên khách hàng</label>
+              <input className="form-control" value={form.testimonial_author} onChange={e => set('testimonial_author', e.target.value)} placeholder="Nguyễn Văn A" />
+            </div>
+            <div className="form-group">
+              <label className="form-label">Testimonial — Chức danh · Công ty</label>
+              <input className="form-control" value={form.testimonial_title} onChange={e => set('testimonial_title', e.target.value)} placeholder="CEO · Công ty ABC" />
+            </div>
+          </div>
+          <div className="form-group">
+            <ImageField label="Testimonial — Ảnh đại diện" value={form.testimonial_avatar} onChange={v => set('testimonial_avatar', v)} />
+          </div>
+          <div className="form-group">
+            <label className="form-label">Testimonial — Nội dung</label>
+            <textarea className="form-control" value={form.testimonial_content} onChange={e => set('testimonial_content', e.target.value)} rows={3} placeholder="Trích dẫn đánh giá riêng của khách hàng dự án này..." />
+          </div>
+
           <div className="d-flex gap-2 mt-2">
             <button type="submit" className="btn-accent" disabled={saving}>{saving ? 'Đang lưu...' : (isEdit ? 'Cập nhật' : 'Thêm mới')}</button>
             <button type="button" className="btn-ghost" onClick={() => navigate('/projects')}>Hủy</button>

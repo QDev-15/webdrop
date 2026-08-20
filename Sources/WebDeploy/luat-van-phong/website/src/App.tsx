@@ -6,6 +6,7 @@ import HomePage from './components/pages/HomePage'
 import ServicesPage from './components/pages/ServicesPage'
 import LawyersPage from './components/pages/LawyersPage'
 import CasesPage from './components/pages/CasesPage'
+import CaseDetailPage from './components/pages/CaseDetailPage'
 import ContactPage from './components/pages/ContactPage'
 
 export default function App() {
@@ -13,11 +14,12 @@ export default function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/"          element={<HomePage />} />
-        <Route path="/dich-vu"   element={<ServicesPage />} />
-        <Route path="/luat-su"   element={<LawyersPage />} />
-        <Route path="/du-an"     element={<CasesPage />} />
-        <Route path="/lien-he"   element={<ContactPage />} />
+        <Route path="/"              element={<HomePage />} />
+        <Route path="/dich-vu"       element={<ServicesPage />} />
+        <Route path="/luat-su"       element={<LawyersPage />} />
+        <Route path="/du-an"         element={<CasesPage />} />
+        <Route path="/vu-viec/:slug" element={<CaseDetailPage />} />
+        <Route path="/lien-he"       element={<ContactPage />} />
       </Routes>
       <Footer />
       <ZaloFloat />

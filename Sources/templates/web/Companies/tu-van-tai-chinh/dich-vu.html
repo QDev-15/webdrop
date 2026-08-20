@@ -237,7 +237,7 @@
         <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:32px;height:100%;">
           <div style="font-size:12px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;">Cơ Bản</div>
           <div style="font-size:36px;font-weight:700;color:var(--text);margin-bottom:4px;">5 triệu <span style="font-size:16px;color:var(--text-3);font-weight:400;">/tháng</span></div>
-          <p style="font-size:13px;color:var(--text-2);margin-bottom:24px;">Dành cho cá nhân mới bắt đầu đầu tư, tài sản dưới 1 tỷ đồng.</p>
+          <p style="font-size:13px;color:var(--text-2);margin-bottom:24px;">Dành cho cá nhân mới bắt đầu đầu tư, tài sản dưới 500 triệu đồng.</p>
           <ul style="list-style:none;padding:0;margin:0 0 28px;display:flex;flex-direction:column;gap:10px;">
             <li style="font-size:13px;color:var(--text-2);display:flex;align-items:center;gap:8px;"><svg width="16" height="16" fill="var(--accent)" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Tư vấn hoạch định tài chính cơ bản</li>
             <li style="font-size:13px;color:var(--text-2);display:flex;align-items:center;gap:8px;"><svg width="16" height="16" fill="var(--accent)" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Báo cáo hàng quý</li>
@@ -255,7 +255,7 @@
           <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#fff;color:var(--accent);font-size:11px;font-weight:700;padding:5px 16px;border-radius:20px;white-space:nowrap;letter-spacing:1px;">PHỔ BIẾN NHẤT</div>
           <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;">Chuyên Nghiệp</div>
           <div style="font-size:36px;font-weight:700;color:#fff;margin-bottom:4px;">15 triệu <span style="font-size:16px;color:rgba(255,255,255,.6);font-weight:400;">/tháng</span></div>
-          <p style="font-size:13px;color:rgba(255,255,255,.7);margin-bottom:24px;">Dành cho nhà đầu tư có kinh nghiệm, tài sản từ 1–10 tỷ đồng.</p>
+          <p style="font-size:13px;color:rgba(255,255,255,.7);margin-bottom:24px;">Dành cho nhà đầu tư có kinh nghiệm, tài sản từ 500 triệu – 5 tỷ đồng.</p>
           <ul style="list-style:none;padding:0;margin:0 0 28px;display:flex;flex-direction:column;gap:10px;">
             <li style="font-size:13px;color:rgba(255,255,255,.9);display:flex;align-items:center;gap:8px;"><svg width="16" height="16" fill="#fff" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Tất cả tính năng gói Cơ bản</li>
             <li style="font-size:13px;color:rgba(255,255,255,.9);display:flex;align-items:center;gap:8px;"><svg width="16" height="16" fill="#fff" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Quản lý danh mục đầu tư chủ động</li>
@@ -273,7 +273,7 @@
         <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:32px;height:100%;">
           <div style="font-size:12px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;">Cao Cấp</div>
           <div style="font-size:36px;font-weight:700;color:var(--text);margin-bottom:4px;">Liên hệ <span style="font-size:16px;color:var(--text-3);font-weight:400;">/tháng</span></div>
-          <p style="font-size:13px;color:var(--text-2);margin-bottom:24px;">Dành cho UHNW và doanh nghiệp, tài sản trên 10 tỷ đồng.</p>
+          <p style="font-size:13px;color:var(--text-2);margin-bottom:24px;">Dành cho UHNW và doanh nghiệp, tài sản trên 5 tỷ đồng.</p>
           <ul style="list-style:none;padding:0;margin:0 0 28px;display:flex;flex-direction:column;gap:10px;">
             <li style="font-size:13px;color:var(--text-2);display:flex;align-items:center;gap:8px;"><svg width="16" height="16" fill="var(--accent)" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Tất cả tính năng gói Chuyên nghiệp</li>
             <li style="font-size:13px;color:var(--text-2);display:flex;align-items:center;gap:8px;"><svg width="16" height="16" fill="var(--accent)" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Chiến lược đầu tư độc quyền</li>
@@ -293,69 +293,61 @@
   </div>
 </section>
 
-<!-- ══ FAQ ══ -->
-<section class="tc-sec-pad" style="background:var(--surface);">
+<!-- ══ FAQ — Accordion thật (details/summary, không cần JS) ══ -->
+<section class="tc-sec-pad" style="background:var(--surface);" id="faq">
   <div class="wd-container">
     <div class="text-center mb-5" data-reveal>
-      <div class="tc-label">Câu hỏi thường gặp</div>
+      <div class="tc-label" style="margin-left:auto;margin-right:auto;">Câu hỏi thường gặp</div>
       <h2 class="tc-title">Bạn muốn <span>tìm hiểu</span> thêm?</h2>
+      <p class="tc-sub tc-sub-center">Những thắc mắc phổ biến nhất về phí dịch vụ, tính pháp lý và cam kết đầu tư — nếu chưa tìm thấy câu trả lời, hãy <a href="lien-he.html" style="color:var(--accent);">liên hệ trực tiếp</a> với chuyên gia của chúng tôi.</p>
     </div>
 
     <div class="row justify-content-center">
       <div class="col-lg-8">
-        <div class="accordion" id="faqAccordion">
-          <div class="accordion-item" style="border:1px solid var(--border);border-radius:8px;margin-bottom:8px;overflow:hidden;" data-reveal>
-            <h2 class="accordion-header">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1"
-                style="font-family:var(--sans);font-size:14px;font-weight:600;color:var(--text);background:var(--surface);">
-                Tôi cần chuẩn bị gì cho buổi tư vấn đầu tiên?
-              </button>
-            </h2>
-            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-              <div class="accordion-body" style="font-size:14px;color:var(--text-2);font-weight:300;line-height:1.75;">
-                Buổi tư vấn đầu tiên hoàn toàn miễn phí và không đòi hỏi chuẩn bị phức tạp. Bạn chỉ cần có sẵn thông tin cơ bản về tình hình tài chính hiện tại (thu nhập, chi tiêu, tài sản, nợ) và các mục tiêu tài chính muốn đạt được. Chuyên gia sẽ hỗ trợ bạn trong suốt quá trình.
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item" style="border:1px solid var(--border);border-radius:8px;margin-bottom:8px;overflow:hidden;" data-reveal>
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2"
-                style="font-family:var(--sans);font-size:14px;font-weight:600;color:var(--text);background:var(--surface);">
-                Thông tin tài chính của tôi có được bảo mật không?
-              </button>
-            </h2>
-            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-              <div class="accordion-body" style="font-size:14px;color:var(--text-2);font-weight:300;line-height:1.75;">
-                Hoàn toàn có. Chúng tôi cam kết bảo mật tuyệt đối mọi thông tin cá nhân và tài chính của khách hàng theo Luật Bảo vệ dữ liệu cá nhân. Toàn bộ dữ liệu được mã hóa và chỉ nhân viên phụ trách trực tiếp mới có quyền truy cập.
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item" style="border:1px solid var(--border);border-radius:8px;margin-bottom:8px;overflow:hidden;" data-reveal>
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3"
-                style="font-family:var(--sans);font-size:14px;font-weight:600;color:var(--text);background:var(--surface);">
-                Tôi có thể thay đổi gói dịch vụ sau khi đăng ký không?
-              </button>
-            </h2>
-            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-              <div class="accordion-body" style="font-size:14px;color:var(--text-2);font-weight:300;line-height:1.75;">
-                Có, bạn có thể nâng cấp hoặc điều chỉnh gói dịch vụ bất kỳ lúc nào. Chúng tôi hiểu rằng nhu cầu tài chính thay đổi theo thời gian, vì vậy các gói dịch vụ đều linh hoạt để phù hợp với từng giai đoạn cuộc sống của bạn.
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item" style="border:1px solid var(--border);border-radius:8px;overflow:hidden;" data-reveal>
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4"
-                style="font-family:var(--sans);font-size:14px;font-weight:600;color:var(--text);background:var(--surface);">
-                Hiệu suất đầu tư trung bình của danh mục do các bạn quản lý là bao nhiêu?
-              </button>
-            </h2>
-            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-              <div class="accordion-body" style="font-size:14px;color:var(--text-2);font-weight:300;line-height:1.75;">
-                Trong 5 năm qua, các danh mục chúng tôi quản lý đạt trung bình 14–18%/năm tùy theo mức độ rủi ro chấp nhận. Tuy nhiên, hiệu suất quá khứ không đảm bảo cho tương lai và kết quả thực tế phụ thuộc vào điều kiện thị trường và chiến lược cụ thể của từng khách hàng.
-              </div>
-            </div>
-          </div>
+
+        <details class="tc-faq-item" data-reveal>
+          <summary>Tôi cần chuẩn bị gì cho buổi tư vấn đầu tiên? <span class="tc-faq-icon" aria-hidden="true">+</span></summary>
+          <p class="tc-faq-a">Buổi tư vấn đầu tiên hoàn toàn miễn phí và không đòi hỏi chuẩn bị phức tạp. Bạn chỉ cần có sẵn thông tin cơ bản về tình hình tài chính hiện tại (thu nhập, chi tiêu, tài sản, nợ) và các mục tiêu tài chính muốn đạt được. Chuyên gia sẽ hỗ trợ bạn trong suốt quá trình.</p>
+        </details>
+
+        <details class="tc-faq-item" data-reveal>
+          <summary>Mức phí quản lý tài sản (AUM) được tính như thế nào? <span class="tc-faq-icon" aria-hidden="true">+</span></summary>
+          <p class="tc-faq-a">Phí quản lý được tính theo tỷ lệ % trên tổng tài sản đang quản lý (AUM) mỗi năm, thu định kỳ hàng tháng hoặc hàng quý tùy gói dịch vụ — mức phí cụ thể giảm dần khi quy mô tài sản tăng. Với các gói có phí cố định (ví dụ tư vấn thuế), chi phí được báo rõ trước khi ký hợp đồng, không phát sinh phí ẩn.</p>
+        </details>
+
+        <details class="tc-faq-item" data-reveal>
+          <summary>Tài sản tối thiểu để bắt đầu sử dụng dịch vụ là bao nhiêu? <span class="tc-faq-icon" aria-hidden="true">+</span></summary>
+          <p class="tc-faq-a">Không có mức sàn bắt buộc cho dịch vụ hoạch định tài chính cá nhân — buổi tư vấn đầu tiên luôn miễn phí dù bạn mới bắt đầu tích lũy. Với dịch vụ Quản lý Đầu tư chuyên sâu, tài sản tối thiểu tham khảo từ 500 triệu đồng; khách hàng dưới mức này sẽ được tư vấn định hướng tích lũy trước khi chuyển sang quản lý danh mục chủ động.</p>
+        </details>
+
+        <details class="tc-faq-item" data-reveal>
+          <summary>[TÊN CÔNG TY] có giấy phép hoạt động của UBCKNN không? <span class="tc-faq-icon" aria-hidden="true">+</span></summary>
+          <p class="tc-faq-a">Có. Công ty hoạt động theo giấy phép số [XXXX/UBCKNN] do Ủy ban Chứng khoán Nhà nước cấp cho hoạt động tư vấn đầu tư chứng khoán, cùng các chứng chỉ hành nghề CFA/ACCA của đội ngũ chuyên gia trực tiếp phụ trách khách hàng. Thông tin giấy phép được công khai tại chân trang website.</p>
+        </details>
+
+        <details class="tc-faq-item" data-reveal>
+          <summary>Thông tin tài chính cá nhân của tôi được bảo mật ở mức độ nào? <span class="tc-faq-icon" aria-hidden="true">+</span></summary>
+          <p class="tc-faq-a">Chúng tôi cam kết bảo mật tuyệt đối mọi thông tin cá nhân và tài chính của khách hàng theo Luật Bảo vệ dữ liệu cá nhân. Toàn bộ dữ liệu được mã hóa khi lưu trữ và truyền tải, chỉ chuyên gia phụ trách trực tiếp mới có quyền truy cập hồ sơ của bạn, và không chia sẻ cho bên thứ ba khi chưa có sự đồng ý bằng văn bản.</p>
+        </details>
+
+        <details class="tc-faq-item" data-reveal>
+          <summary>Tôi nhận được báo cáo hiệu suất đầu tư bao lâu một lần? <span class="tc-faq-icon" aria-hidden="true">+</span></summary>
+          <p class="tc-faq-a">Tần suất báo cáo phụ thuộc vào gói dịch vụ: gói Cơ Bản nhận báo cáo hàng quý, gói Chuyên Nghiệp và Cao Cấp nhận báo cáo chi tiết hàng tháng kèm buổi họp đánh giá cùng chuyên gia phụ trách. Ngoài ra bạn có thể theo dõi diễn biến danh mục bất kỳ lúc nào qua kênh hỗ trợ trực tiếp.</p>
+        </details>
+
+        <details class="tc-faq-item" data-reveal>
+          <summary>Công ty có cam kết lợi nhuận cố định cho danh mục đầu tư không? <span class="tc-faq-icon" aria-hidden="true">+</span></summary>
+          <p class="tc-faq-a">Không. Theo đúng quy định pháp luật về hoạt động tư vấn đầu tư, chúng tôi <strong>không cam kết bất kỳ mức lợi nhuận cố định nào</strong> — mọi hoạt động đầu tư đều tiềm ẩn rủi ro và hiệu suất trong quá khứ không đảm bảo cho kết quả tương lai. Vai trò của chúng tôi là xây dựng chiến lược phù hợp với khẩu vị rủi ro của bạn và quản lý rủi ro một cách chuyên nghiệp, minh bạch.</p>
+        </details>
+
+        <details class="tc-faq-item" data-reveal>
+          <summary>Tôi có thể thay đổi gói dịch vụ sau khi đăng ký không? <span class="tc-faq-icon" aria-hidden="true">+</span></summary>
+          <p class="tc-faq-a">Có, bạn có thể nâng cấp hoặc điều chỉnh gói dịch vụ bất kỳ lúc nào. Chúng tôi hiểu rằng nhu cầu tài chính thay đổi theo thời gian, vì vậy các gói dịch vụ đều linh hoạt để phù hợp với từng giai đoạn cuộc sống của bạn.</p>
+        </details>
+
+        <div class="tc-faq-disclaimer" data-reveal>
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+          <p>Đầu tư có rủi ro. Mọi thông tin, số liệu hiệu suất trên trang này chỉ mang tính tham khảo và không cấu thành cam kết hay lời khuyên đầu tư đảm bảo lợi nhuận.</p>
         </div>
       </div>
     </div>

@@ -114,6 +114,43 @@ const SETTING_GROUPS: SettingGroup[] = [
     ],
   },
   {
+    label: 'Email Templates', key: 'email_templates', icon: '✉️',
+    fields: [
+      {
+        key: 'email_subject_download',
+        label: 'Tiêu đề email tải file',
+        placeholder: '[webdrop.store] Link tải file — Đơn hàng {orderCode}',
+        hint: 'Dùng {orderCode} để chèn mã đơn hàng. Ví dụ: "[webdrop.store] Link tải file — Đơn hàng ABC123"',
+      },
+      {
+        key: 'email_text_website_zip',
+        label: 'Văn bản nút "Tải web.zip"',
+        placeholder: '↓ Tải web.zip — Website public',
+      },
+      {
+        key: 'email_text_admin_zip',
+        label: 'Văn bản nút "Tải admin.zip"',
+        placeholder: '↓ Tải admin.zip — Trang quản trị',
+      },
+      {
+        key: 'email_text_expiry',
+        label: 'Văn bản hạn hữu dụng của link',
+        type: 'textarea',
+        rows: 2,
+        placeholder: 'Link có hiệu lực <strong>72 giờ</strong> và dùng được tối đa <strong>5 lần</strong>.',
+        hint: 'Có thể dùng thẻ HTML như <strong>, <em>, v.v.',
+      },
+      {
+        key: 'email_logo_text',
+        label: 'Logo text trong email',
+        type: 'textarea',
+        rows: 2,
+        placeholder: 'webdrop<span style="color:#4ade80">.</span>store',
+        hint: 'Có thể dùng thẻ HTML để styling. Mặc định: webdrop với dấu chấm màu xanh + store',
+      },
+    ],
+  },
+  {
     label: 'Cloudinary', key: 'cloudinary', icon: '☁️',
     fields: [
       {

@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import HomePage from './components/pages/HomePage'
 import ServicePage from './components/pages/ServicePage'
 import ProjectPage from './components/pages/ProjectPage'
+import ProjectDetailPage from './components/pages/ProjectDetailPage'
 import ContactPage from './components/pages/ContactPage'
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/dich-vu" element={<ServicePage />} />
           <Route path="/du-an" element={<ProjectPage />} />
+          <Route path="/du-an/:slug" element={<ProjectDetailPage />} />
           <Route path="/lien-he" element={<ContactPage />} />
           <Route path="*" element={<HomePage />} />
         </Routes>

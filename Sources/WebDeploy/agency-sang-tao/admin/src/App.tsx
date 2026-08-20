@@ -13,6 +13,10 @@ import TeamList from './pages/team/TeamList'
 import TeamForm from './pages/team/TeamForm'
 import TestimonialsList from './pages/testimonials/TestimonialsList'
 import TestimonialsForm from './pages/testimonials/TestimonialsForm'
+import FaqsList from './pages/faqs/FaqsList'
+import FaqForm from './pages/faqs/FaqForm'
+import PricingList from './pages/pricing/PricingList'
+import PricingForm from './pages/pricing/PricingForm'
 import ContactsList from './pages/contacts/ContactsList'
 import ContactDetail from './pages/contacts/ContactDetail'
 import MediaPage from './pages/media/MediaPage'
@@ -50,6 +54,12 @@ function AppRoutes() {
       <Route path="/testimonials" element={<PrivateRoute><TestimonialsList /></PrivateRoute>} />
       <Route path="/testimonials/new" element={<PrivateRoute><TestimonialsForm /></PrivateRoute>} />
       <Route path="/testimonials/:id/edit" element={<PrivateRoute><TestimonialsForm /></PrivateRoute>} />
+      <Route path="/faqs" element={<PrivateRoute><FaqsList /></PrivateRoute>} />
+      <Route path="/faqs/new" element={<PrivateRoute><FaqForm /></PrivateRoute>} />
+      <Route path="/faqs/:id/edit" element={<PrivateRoute><FaqForm /></PrivateRoute>} />
+      <Route path="/pricing" element={<PrivateRoute><PricingList /></PrivateRoute>} />
+      <Route path="/pricing/new" element={<PrivateRoute><PricingForm /></PrivateRoute>} />
+      <Route path="/pricing/:id/edit" element={<PrivateRoute><PricingForm /></PrivateRoute>} />
       <Route path="/contacts" element={<PrivateRoute><ContactsList /></PrivateRoute>} />
       <Route path="/contacts/:id" element={<PrivateRoute><ContactDetail /></PrivateRoute>} />
       <Route path="/media" element={<PrivateRoute><MediaPage /></PrivateRoute>} />

@@ -79,19 +79,21 @@ export default function ProjectPage() {
             <div className="row g-4">
               {filtered.map((p, i) => (
                 <div key={p.id} className="col-12 col-md-6 col-lg-4" data-reveal data-delay={(i % 3).toString()}>
-                  <div className="xd-project-card-full">
-                    <img src={p.image} alt={p.name} loading="lazy" />
-                    <div className="xd-project-card-overlay">
-                      <div className="xd-proj-tag">{CATEGORY_LABELS[p.category] || p.category}</div>
-                      <div className="xd-proj-title-card">{p.name}</div>
-                      <div className="xd-proj-meta">{p.location} · {p.year_completed}</div>
+                  <Link to={`/du-an/${p.slug}`} style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>
+                    <div className="xd-project-card-full">
+                      <img src={p.image} alt={p.name} loading="lazy" />
+                      <div className="xd-project-card-overlay">
+                        <div className="xd-proj-tag">{CATEGORY_LABELS[p.category] || p.category}</div>
+                        <div className="xd-proj-title-card">{p.name}</div>
+                        <div className="xd-proj-meta">{p.location} · {p.year_completed}</div>
+                      </div>
                     </div>
-                  </div>
-                  <div style={{ padding: '12px 4px' }}>
-                    <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 4 }}>{p.name}</div>
-                    <div style={{ fontSize: 13, color: 'var(--text-2)' }}>{p.description?.substring(0, 100)}...</div>
-                    {p.area && <div style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 6 }}>Diện tích: {p.area} · Thời gian: {p.duration}</div>}
-                  </div>
+                    <div style={{ padding: '12px 4px' }}>
+                      <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 4 }}>{p.name}</div>
+                      <div style={{ fontSize: 13, color: 'var(--text-2)' }}>{p.description?.substring(0, 100)}...</div>
+                      {p.area && <div style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 6 }}>Diện tích: {p.area} · Thời gian: {p.duration}</div>}
+                    </div>
+                  </Link>
                 </div>
               ))}
             </div>

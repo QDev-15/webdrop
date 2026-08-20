@@ -40,6 +40,9 @@ class Database {
         $this->seedServices();
         $this->seedProjects();
         $this->seedTestimonials();
+        $this->seedFaqs();
+        $this->seedPricingPlans();
+        $this->backfillProjectCaseStudy();
     }
 
     private function seedUsers(): void {
@@ -192,6 +195,106 @@ class Database {
             $this->execute(
                 "INSERT INTO testimonials (author_name, author_title, author_avatar, content, rating, sort_order) VALUES (?, ?, ?, ?, ?, ?)",
                 [$name, $title, $avatar, $content, $rating, $sort]
+            );
+        }
+    }
+
+    private function seedFaqs(): void {
+        if ($this->scalar("SELECT COUNT(*) FROM faqs") > 0) return;
+        $faqs = [
+            ['Thời gian thi công một căn nhà ở dân dụng mất bao lâu?', 'Tùy quy mô công trình. Nhà phố 1 trệt 2 lầu thường mất 4–6 tháng, biệt thự lớn hoặc nhà xưởng công nghiệp có thể từ 8–14 tháng. Chúng tôi luôn cam kết mốc tiến độ cụ thể trong hợp đồng trước khi khởi công.'],
+            ['Chi phí phát sinh trong quá trình thi công được xử lý như thế nào?', 'Trước khi thi công, chúng tôi lập dự toán chi tiết dựa trên khảo sát thực tế để hạn chế tối đa phát sinh. Nếu có thay đổi ngoài dự toán (do yêu cầu điều chỉnh thiết kế từ chủ nhà, hoặc điều kiện địa chất khác khảo sát ban đầu), chúng tôi báo giá và xin xác nhận bằng văn bản trước khi thực hiện — không tự ý phát sinh chi phí.'],
+            ['Công trình được bảo hành trong bao lâu?', 'Phần kết cấu (móng, cột, dầm, sàn) bảo hành tối thiểu 5 năm. Phần hoàn thiện (sơn nước, ốp lát, chống thấm) bảo hành 1–2 năm tùy hạng mục. Điều khoản bảo hành cụ thể được ghi rõ trong hợp đồng thi công.'],
+            ['Quy trình giám sát thi công diễn ra như thế nào?', 'Mỗi công trình có kỹ sư giám sát hiện trường theo dõi hàng ngày, kiểm tra vật liệu đầu vào, quy trình đổ bê tông, lắp đặt kết cấu theo đúng bản vẽ. Chủ đầu tư nhận báo cáo tiến độ kèm hình ảnh định kỳ và có thể giám sát trực tiếp bất kỳ lúc nào.'],
+            ['Hình thức thanh toán theo giai đoạn cụ thể ra sao?', 'Thông thường chia 4–5 đợt theo mốc nghiệm thu: tạm ứng khi ký hợp đồng, thanh toán khi hoàn thành phần móng, phần thô, phần hoàn thiện và đợt cuối khi bàn giao nghiệm thu. Tỷ lệ mỗi đợt được thống nhất rõ trong hợp đồng.'],
+            ['Ai chịu trách nhiệm xin giấy phép xây dựng?', 'Với gói Thiết Kế Kiến Trúc và Thi Công trọn gói, chúng tôi hỗ trợ toàn bộ thủ tục xin cấp phép xây dựng, giải trình kỹ thuật với cơ quan nhà nước. Với khách hàng đã có giấy phép sẵn, chúng tôi tiếp nhận hồ sơ và triển khai thi công ngay.'],
+            ['Tôi có thể thay đổi thiết kế trong lúc đang thi công không?', 'Có thể, nhưng nên hạn chế thay đổi sau khi đã đổ móng và dựng khung kết cấu vì ảnh hưởng tiến độ và chi phí. Với các thay đổi về hoàn thiện (gạch, sơn, thiết bị vệ sinh...) hoàn toàn có thể điều chỉnh linh hoạt cho đến trước giai đoạn thi công hạng mục đó.'],
+        ];
+        $order = 1;
+        foreach ($faqs as [$q, $a]) {
+            $this->execute(
+                "INSERT INTO faqs (question, answer, page, sort_order) VALUES (?, ?, 'dich-vu', ?)",
+                [$q, $a, $order++]
+            );
+        }
+    }
+
+    private function seedPricingPlans(): void {
+        if ($this->scalar("SELECT COUNT(*) FROM pricing_plans") > 0) return;
+        $plans = [
+            [
+                'name' => 'Gói Cơ Bản',
+                'price' => 'Từ 3.500.000đ/m²',
+                'description' => 'Thi công phần thô, bàn giao để khách tự hoàn thiện.',
+                'features' => "Thi công phần thô (móng, cột, dầm, sàn, mái)\nXây tường, trát, láng nền cơ bản\nHệ thống điện âm tường đơn giản\nCấp thoát nước cơ bản\nBàn giao thô để khách tự hoàn thiện",
+                'is_featured' => 0, 'cta_text' => 'Nhận báo giá', 'sort_order' => 1,
+            ],
+            [
+                'name' => 'Gói Tiêu Chuẩn',
+                'price' => 'Từ 5.800.000đ/m²',
+                'description' => 'Hoàn thiện đầy đủ, dọn vào ở được ngay, bảo hành 5 năm.',
+                'features' => "Tất cả hạng mục gói Cơ Bản\nHoàn thiện sơn nước, ốp lát gạch tiêu chuẩn\nCửa nhôm kính, cửa nhựa lõi thép\nĐiện, nước đầy đủ theo tiêu chuẩn\nBàn giao hoàn thiện, dọn vào ở được\nBảo hành công trình 5 năm",
+                'is_featured' => 1, 'cta_text' => 'Nhận báo giá', 'sort_order' => 2,
+            ],
+            [
+                'name' => 'Gói Cao Cấp',
+                'price' => 'Từ 8.500.000đ/m²',
+                'description' => 'Vật liệu cao cấp, smart home cơ bản, bảo hành 10 năm.',
+                'features' => "Tất cả hạng mục gói Tiêu Chuẩn\nVật liệu cao cấp: gạch nhập, sơn Dulux/Jotun\nCửa nhôm xingfa, cửa gỗ tự nhiên\nThiết kế nội thất theo yêu cầu\nSmart home cơ bản: đèn, điều hòa, camera\nBảo hành công trình 10 năm + bảo trì định kỳ",
+                'is_featured' => 0, 'cta_text' => 'Nhận báo giá', 'sort_order' => 3,
+            ],
+        ];
+        foreach ($plans as $pl) {
+            $this->execute(
+                "INSERT INTO pricing_plans (name, price, description, features, is_featured, cta_text, cta_link, sort_order) VALUES (?, ?, ?, ?, ?, ?, '/lien-he', ?)",
+                [$pl['name'], $pl['price'], $pl['description'], $pl['features'], $pl['is_featured'], $pl['cta_text'], $pl['sort_order']]
+            );
+        }
+    }
+
+    // ⚠️ Chạy độc lập với seedProjects() (không có guard COUNT>0) — đảm bảo 2 công trình
+    // đã seed từ trước (trước khi có cột case-study) vẫn được điền dữ liệu mẫu cho trang
+    // chi tiết /du-an/:slug. Chỉ điền khi investor_name còn NULL — không ghi đè nội dung
+    // khách đã tự chỉnh qua admin. Nội dung lấy từ 2 case study tĩnh đã retrofit trước đó
+    // tại Sources/templates/web/Companies/cong-ty-xay-dung/du-an-chi-tiet-{1,2}.html, điều
+    // chỉnh nhẹ số liệu (diện tích, số tầng, thời gian thi công, chủ đầu tư) cho khớp với
+    // dữ liệu đã seed sẵn của đúng 2 slug 'sunrise-tower' và 'biet-thu-verdana' — tránh mâu
+    // thuẫn với các cột year_completed/location/area/floors/duration đã có sẵn.
+    private function backfillProjectCaseStudy(): void {
+        $cases = [
+            'sunrise-tower' => [
+                'investor_name' => 'Công ty CP Đầu Tư Sunrise Group',
+                'project_type_label' => 'Văn phòng cho thuê hạng A 22 tầng',
+                'scale_text' => '18.500 m² sàn xây dựng',
+                'result_summary' => 'Tiết kiệm 8% chi phí đầu tư',
+                'challenge' => "Sunrise Group đã ký hợp đồng cho thuê văn phòng với 3 khách thuê lớn trước cả khi khởi công — đồng nghĩa mọi trễ hạn đều kéo theo thiệt hại tài chính trực tiếp cho chủ đầu tư. Bài toán tiến độ vì vậy trở thành ưu tiên số một, trong khi khu đất thi công tòa nhà 22 tầng lại nằm giữa khu trung tâm Quận 1 đông đúc, mặt bằng tập kết vật tư chỉ rộng chưa đến 200m², không có chỗ cho xe cẩu tháp cỡ lớn hoạt động tự do.\n\nThêm vào đó, ngân sách đầu tư được chủ đầu tư khống chế chặt từ đầu, buộc phương án kết cấu phải vừa đảm bảo an toàn cho công trình cao tầng, vừa tối ưu chi phí móng và vật liệu — đồng thời phải kiểm soát tiếng ồn, bụi thi công nghiêm ngặt để không ảnh hưởng đến khu vực xung quanh trong suốt 18 tháng thi công.",
+                'solution' => "Để giải quyết đồng thời bài toán tiến độ, ngân sách và mặt bằng hạn chế, chúng tôi triển khai quy trình thi công theo pha với 4 trọng tâm sau:\n\n- Lập kế hoạch logistics vật tư chi tiết theo khung giờ — phối hợp chính quyền địa phương để hạn chế ảnh hưởng giao thông và tiếng ồn khu trung tâm\n- Áp dụng kết cấu khung thép kết hợp sàn bê tông nhẹ (composite deck) — giảm tải trọng công trình, tối ưu kích thước móng và tiết kiệm chi phí phần thô\n- Giám sát an toàn lao động và độ ồn nghiêm ngặt theo khung giờ quy định — chỉ thi công hạng mục gây ồn lớn trong giờ hành chính\n- Nghiệm thu theo từng tầng, triển khai song song hoàn thiện M&E ngay khi phần thô mỗi tầng đạt chuẩn — rút ngắn đáng kể tổng thời gian bàn giao",
+                'gallery_images' => "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=900&q=80&auto=format&fit=crop\nhttps://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=80&auto=format&fit=crop\nhttps://images.unsplash.com/photo-1497366811353-6870744d04b2?w=700&q=80&auto=format&fit=crop",
+                'stats' => "18| tháng|Hoàn thành đúng hạn\n18500|m²|Sàn xây dựng\n8|%|Tiết kiệm chi phí đầu tư\n100|%|Nghiệm thu đạt chuẩn lần đầu",
+                'testimonial_content' => 'Với hợp đồng cho thuê đã ký sẵn, chậm tiến độ dù chỉ 1 tuần cũng gây thiệt hại lớn cho chúng tôi. Hoàng Gia không chỉ bàn giao đúng hạn mà còn chủ động đề xuất phương án kết cấu giúp tiết kiệm gần 8% ngân sách ban đầu — điều chúng tôi không hề kỳ vọng khi bắt đầu dự án.',
+                'testimonial_author' => 'Đại diện Ban Đầu Tư',
+                'testimonial_title' => 'Công ty CP Đầu Tư Sunrise Group',
+            ],
+            'biet-thu-verdana' => [
+                'investor_name' => 'Công ty TNHH Đầu Tư Verdana',
+                'project_type_label' => 'Khu biệt thự cao cấp 15 căn ven sông',
+                'scale_text' => '6.200 m² đất dự án · 3 tầng mỗi căn',
+                'result_summary' => 'Bàn giao sớm 3 tuần',
+                'challenge' => "Công ty TNHH Đầu Tư Verdana tìm đến chúng tôi với mục tiêu xây dựng một khu biệt thự nghỉ dưỡng ven sông gồm 15 căn theo kiến trúc Châu Âu, kịp bàn giao trước mùa mưa để mở bán đúng kế hoạch tài chính đã cam kết với khách hàng. Yêu cầu đặt ra không đơn giản: toàn bộ khu đất nằm sát bờ sông có nền địa chất yếu, mực nước ngầm cao — nếu xử lý móng không đúng kỹ thuật, các căn biệt thự dễ lún nứt và thấm ẩm về lâu dài, ảnh hưởng trực tiếp đến uy tín chủ đầu tư khi bàn giao cho khách mua.\n\nBên cạnh bài toán kỹ thuật, chủ đầu tư còn đặt mục tiêu rút ngắn tiến độ để kịp mùa cao điểm bất động sản — khoảng 15% thời gian so với tiến độ thi công khu biệt thự thông thường cùng quy mô 15 căn, trong khi vẫn phải đảm bảo chất lượng chống thấm và kết cấu tuyệt đối an toàn cho từng căn.",
+                'solution' => "Đội ngũ kỹ sư của chúng tôi triển khai phương án thi công theo 4 bước trọng tâm, ưu tiên xử lý triệt để nền móng trước khi tăng tốc các hạng mục còn lại:\n\n- Khảo sát địa chất chi tiết toàn khu đất và thiết kế phương án móng cọc ép — giải pháp phù hợp với nền đất yếu ven sông, đảm bảo khả năng chịu tải lâu dài cho cả 15 căn\n- Rút ngắn giai đoạn duyệt thiết kế kiến trúc 3D mẫu nhà xuống còn 2 tuần nhờ trao đổi trực tiếp và điều chỉnh nhanh cùng chủ đầu tư\n- Bố trí song song nhiều tổ đội thi công các cụm biệt thự độc lập (kết cấu, điện nước, hoàn thiện) để tối ưu tiến độ toàn dự án mà không ảnh hưởng chất lượng\n- Giám sát nghiêm ngặt khâu chống thấm tầng hầm và móng từng căn — kiểm tra độ kín nước từng lớp trước khi nghiệm thu chuyển bước",
+                'gallery_images' => "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=900&q=80&auto=format&fit=crop\nhttps://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=700&q=80&auto=format&fit=crop\nhttps://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&q=80&auto=format&fit=crop",
+                'stats' => "100|%|Đúng & vượt tiến độ\n6200|m²|Diện tích đất dự án\n0| sự cố|Thấm sau 1 năm bàn giao\n18| tháng|Thời gian hoàn thành",
+                'testimonial_content' => 'Hoàng Gia không chỉ thi công đúng tiến độ mà còn chủ động cảnh báo và xử lý triệt để vấn đề nền đất yếu ngay từ đầu — thứ mà 2 nhà thầu trước đó chúng tôi tư vấn đều bỏ qua. Sau hơn 1 năm bàn giao, toàn bộ 15 căn hoàn toàn không có dấu hiệu thấm hay lún nứt.',
+                'testimonial_author' => 'Đại diện Chủ Đầu Tư',
+                'testimonial_title' => 'Công ty TNHH Đầu Tư Verdana',
+            ],
+        ];
+        foreach ($cases as $slug => $c) {
+            $row = $this->queryOne("SELECT id, investor_name FROM projects WHERE slug=?", [$slug]);
+            if (!$row || $row['investor_name'] !== null) continue;
+            $this->execute(
+                "UPDATE projects SET investor_name=?, project_type_label=?, scale_text=?, result_summary=?, challenge=?, solution=?, gallery_images=?, stats=?, testimonial_content=?, testimonial_author=?, testimonial_title=? WHERE id=?",
+                [$c['investor_name'], $c['project_type_label'], $c['scale_text'], $c['result_summary'], $c['challenge'], $c['solution'], $c['gallery_images'], $c['stats'], $c['testimonial_content'], $c['testimonial_author'], $c['testimonial_title'], $row['id']]
             );
         }
     }

@@ -8,7 +8,7 @@ interface Service {
   id: number; name: string; description: string; icon: string; featured: number; status: string
 }
 interface Project {
-  id: number; title: string; description: string; image: string; category: string; featured: number; client: string
+  id: number; title: string; slug: string; description: string; image: string; category: string; featured: number; client: string
 }
 interface Testimonial {
   id: number; author_name: string; author_title: string; author_avatar: string; content: string; rating: number
@@ -198,36 +198,36 @@ export default function HomePage() {
             <div className="row g-3">
               {displayProjects[0] && (
                 <div className="col-md-7">
-                  <div className="pf-card" data-reveal>
+                  <Link to={`/du-an/${displayProjects[0].slug}`} className="pf-card" data-reveal>
                     <img className="pf-img" src={displayProjects[0].image} alt={displayProjects[0].title} loading="lazy" />
                     <div className="pf-overlay" />
                     <div className="pf-info">
                       <div className="pf-cat">{displayProjects[0].category}</div>
                       <div className="pf-name">{displayProjects[0].title}</div>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               )}
               <div className="col-md-5">
                 {displayProjects[1] && (
-                  <div className="pf-card" style={{ marginBottom: '12px' }} data-reveal>
+                  <Link to={`/du-an/${displayProjects[1].slug}`} className="pf-card" style={{ marginBottom: '12px' }} data-reveal>
                     <img className="pf-img" src={displayProjects[1].image} alt={displayProjects[1].title} loading="lazy" />
                     <div className="pf-overlay" />
                     <div className="pf-info">
                       <div className="pf-cat">{displayProjects[1].category}</div>
                       <div className="pf-name">{displayProjects[1].title}</div>
                     </div>
-                  </div>
+                  </Link>
                 )}
                 {displayProjects[2] && (
-                  <div className="pf-card" data-reveal>
+                  <Link to={`/du-an/${displayProjects[2].slug}`} className="pf-card" data-reveal>
                     <img className="pf-img" src={displayProjects[2].image} alt={displayProjects[2].title} loading="lazy" />
                     <div className="pf-overlay" />
                     <div className="pf-info">
                       <div className="pf-cat">{displayProjects[2].category}</div>
                       <div className="pf-name">{displayProjects[2].title}</div>
                     </div>
-                  </div>
+                  </Link>
                 )}
               </div>
             </div>

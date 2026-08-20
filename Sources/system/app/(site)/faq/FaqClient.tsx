@@ -1,8 +1,13 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
-const faqGroups = [
+interface FaqGroup {
+  group: string
+  items: Array<{ q: string; a: string }>
+}
+
+const FALLBACK_GROUPS: FaqGroup[] = [
   {
     group: 'Gói Template',
     items: [
@@ -47,7 +52,22 @@ const faqGroups = [
 ]
 
 export default function FaqClient() {
+  const [faqGroups, setFaqGroups] = useState<FaqGroup[]>(FALLBACK_GROUPS)
   const [openItem, setOpenItem] = useState<string | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetch('/api/faq')
+      .then(res => res.json())
+      .then(data => {
+        setFaqGroups(data)
+        setLoading(false)
+      })
+      .catch(err => {
+        console.error('Failed to fetch FAQ:', err)
+        setLoading(false)
+      })
+  }, [])
 
   return (
     <section className="sec-pad">

@@ -6,6 +6,7 @@ require_once __DIR__ . '/Response.php';
 require_once __DIR__ . '/Auth.php';
 require_once __DIR__ . '/Router.php';
 require_once __DIR__ . '/controllers/AuthController.php';
+require_once __DIR__ . '/controllers/UserController.php';
 require_once __DIR__ . '/controllers/PublicController.php';
 require_once __DIR__ . '/controllers/StatsController.php';
 require_once __DIR__ . '/controllers/SettingsController.php';
@@ -69,6 +70,11 @@ $auth = new AuthController($db);
 $router->add('POST', '/auth/login',  [$auth, 'login']);
 $router->add('POST', '/auth/logout', [$auth, 'logout']);
 $router->add('GET',  '/auth/me',     [$auth, 'me']);
+
+// â”€â”€ Profile (tÃ i khoáº£n Ä‘ang Ä‘Äƒng nháº­p) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+$profile = new UserController($db);
+$router->add('POST', '/profile/update',          [$profile, 'updateProfile']);
+$router->add('POST', '/profile/change-password', [$profile, 'changePassword']);
 
 // â”€â”€ Stats â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 $stats = new StatsController($db);

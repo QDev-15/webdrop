@@ -51,6 +51,8 @@ class Database {
         $this->seedServices();
         $this->seedTeamMembers();
         $this->seedTestimonials();
+        $this->seedFaqs();
+        $this->seedPricingPlans();
     }
 
     private function seedUsers(): void {
@@ -312,6 +314,60 @@ class Database {
         );
         foreach ($testimonials as $t) {
             $stmt->execute([$t[0], $t[1], $t[2], $t[3], $t[4], $t[5]]);
+        }
+    }
+
+    private function seedFaqs(): void {
+        if ($this->scalar("SELECT COUNT(*) FROM faqs") > 0) return;
+        $faqs = [
+            ['Tôi cần chuẩn bị gì cho buổi tư vấn đầu tiên?', 'Buổi tư vấn đầu tiên hoàn toàn miễn phí và không đòi hỏi chuẩn bị phức tạp. Bạn chỉ cần có sẵn thông tin cơ bản về tình hình tài chính hiện tại (thu nhập, chi tiêu, tài sản, nợ) và các mục tiêu tài chính muốn đạt được. Chuyên gia sẽ hỗ trợ bạn trong suốt quá trình.'],
+            ['Mức phí quản lý tài sản (AUM) được tính như thế nào?', 'Phí quản lý được tính theo tỷ lệ % trên tổng tài sản đang quản lý (AUM) mỗi năm, thu định kỳ hàng tháng hoặc hàng quý tùy gói dịch vụ — mức phí cụ thể giảm dần khi quy mô tài sản tăng. Với các gói có phí cố định (ví dụ tư vấn thuế), chi phí được báo rõ trước khi ký hợp đồng, không phát sinh phí ẩn.'],
+            ['Tài sản tối thiểu để bắt đầu sử dụng dịch vụ là bao nhiêu?', 'Không có mức sàn bắt buộc cho dịch vụ hoạch định tài chính cá nhân — buổi tư vấn đầu tiên luôn miễn phí dù bạn mới bắt đầu tích lũy. Với dịch vụ Quản lý Đầu tư chuyên sâu, tài sản tối thiểu tham khảo từ 500 triệu đồng; khách hàng dưới mức này sẽ được tư vấn định hướng tích lũy trước khi chuyển sang quản lý danh mục chủ động.'],
+            ['VietFinance có giấy phép hoạt động của UBCKNN không?', 'Có. Công ty hoạt động theo giấy phép số XXXX/UBCKNN do Ủy ban Chứng khoán Nhà nước cấp cho hoạt động tư vấn đầu tư chứng khoán, cùng các chứng chỉ hành nghề CFA/ACCA của đội ngũ chuyên gia trực tiếp phụ trách khách hàng. Thông tin giấy phép được công khai tại chân trang website.'],
+            ['Thông tin tài chính cá nhân của tôi được bảo mật ở mức độ nào?', 'Chúng tôi cam kết bảo mật tuyệt đối mọi thông tin cá nhân và tài chính của khách hàng theo Luật Bảo vệ dữ liệu cá nhân. Toàn bộ dữ liệu được mã hóa khi lưu trữ và truyền tải, chỉ chuyên gia phụ trách trực tiếp mới có quyền truy cập hồ sơ của bạn, và không chia sẻ cho bên thứ ba khi chưa có sự đồng ý bằng văn bản.'],
+            ['Tôi nhận được báo cáo hiệu suất đầu tư bao lâu một lần?', 'Tần suất báo cáo phụ thuộc vào gói dịch vụ: gói Cơ Bản nhận báo cáo hàng quý, gói Chuyên Nghiệp và Cao Cấp nhận báo cáo chi tiết hàng tháng kèm buổi họp đánh giá cùng chuyên gia phụ trách. Ngoài ra bạn có thể theo dõi diễn biến danh mục bất kỳ lúc nào qua kênh hỗ trợ trực tiếp.'],
+            ['Công ty có cam kết lợi nhuận cố định cho danh mục đầu tư không?', 'Không. Theo đúng quy định pháp luật về hoạt động tư vấn đầu tư, chúng tôi không cam kết bất kỳ mức lợi nhuận cố định nào — mọi hoạt động đầu tư đều tiềm ẩn rủi ro và hiệu suất trong quá khứ không đảm bảo cho kết quả tương lai. Vai trò của chúng tôi là xây dựng chiến lược phù hợp với khẩu vị rủi ro của bạn và quản lý rủi ro một cách chuyên nghiệp, minh bạch.'],
+            ['Tôi có thể thay đổi gói dịch vụ sau khi đăng ký không?', 'Có, bạn có thể nâng cấp hoặc điều chỉnh gói dịch vụ bất kỳ lúc nào. Chúng tôi hiểu rằng nhu cầu tài chính thay đổi theo thời gian, vì vậy các gói dịch vụ đều linh hoạt để phù hợp với từng giai đoạn cuộc sống của bạn.'],
+        ];
+        $order = 1;
+        foreach ($faqs as [$q, $a]) {
+            $this->execute(
+                "INSERT INTO faqs (question, answer, page, sort_order, status) VALUES (?, ?, 'dich-vu', ?, 'published')",
+                [$q, $a, $order++]
+            );
+        }
+    }
+
+    private function seedPricingPlans(): void {
+        if ($this->scalar("SELECT COUNT(*) FROM pricing_plans") > 0) return;
+        $plans = [
+            [
+                'name' => 'Cơ Bản',
+                'price' => '5 triệu/tháng',
+                'description' => 'Dành cho cá nhân mới bắt đầu đầu tư, tài sản dưới 500 triệu đồng.',
+                'features' => "Tư vấn hoạch định tài chính cơ bản\nBáo cáo hàng quý\nHỗ trợ email & điện thoại\n1 cuộc họp đánh giá/quý",
+                'is_featured' => 0, 'cta_text' => 'Bắt đầu ngay', 'sort_order' => 1,
+            ],
+            [
+                'name' => 'Chuyên Nghiệp',
+                'price' => '15 triệu/tháng',
+                'description' => 'Dành cho nhà đầu tư có kinh nghiệm, tài sản từ 500 triệu – 5 tỷ đồng.',
+                'features' => "Tất cả tính năng gói Cơ bản\nQuản lý danh mục đầu tư chủ động\nBáo cáo hàng tháng chi tiết\nTư vấn thuế cơ bản\nChuyên gia riêng phụ trách\nHọp đánh giá hàng tháng",
+                'is_featured' => 1, 'cta_text' => 'Đăng ký ngay', 'sort_order' => 2,
+            ],
+            [
+                'name' => 'Cao Cấp',
+                'price' => 'Liên hệ',
+                'description' => 'Dành cho UHNW và doanh nghiệp, tài sản trên 5 tỷ đồng.',
+                'features' => "Tất cả tính năng gói Chuyên nghiệp\nChiến lược đầu tư độc quyền\nTư vấn thuế doanh nghiệp đầy đủ\nKế hoạch di sản & thừa kế\nTiếp cận cơ hội đầu tư riêng\nHotline riêng 24/7",
+                'is_featured' => 0, 'cta_text' => 'Liên hệ tư vấn', 'sort_order' => 3,
+            ],
+        ];
+        foreach ($plans as $pl) {
+            $this->execute(
+                "INSERT INTO pricing_plans (name, price, description, features, is_featured, cta_text, cta_link, sort_order, status) VALUES (?, ?, ?, ?, ?, ?, '/lien-he', ?, 'published')",
+                [$pl['name'], $pl['price'], $pl['description'], $pl['features'], $pl['is_featured'], $pl['cta_text'], $pl['sort_order']]
+            );
         }
     }
 

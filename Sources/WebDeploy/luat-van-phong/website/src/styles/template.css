@@ -701,8 +701,10 @@ a { text-decoration: none; }
   gap: 24px;
   padding: 28px 0;
   border-bottom: 1px solid rgba(255,255,255,.07);
+  text-decoration: none;
+  color: inherit;
   transition: padding-left .3s;
-  cursor: default;
+  cursor: pointer;
 }
 .lv-case:last-child { border-bottom: none; }
 .lv-case:hover { padding-left: 8px; }
@@ -1152,13 +1154,17 @@ a { text-decoration: none; }
    CASES PAGE — case detail cards
 ══════════════════════════════════════ */
 .lv-case-card {
+  display: block;
   background: var(--surface);
   border: 1px solid var(--border);
   padding: 36px;
   margin-bottom: 24px;
-  transition: border-color .3s;
+  transition: border-color .3s, box-shadow .3s;
   position: relative;
   overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
 }
 .lv-case-card::before {
   content: '';
@@ -1168,7 +1174,7 @@ a { text-decoration: none; }
   background: var(--border);
   transition: background .3s;
 }
-.lv-case-card:hover { border-color: rgba(139,105,20,.25); }
+.lv-case-card:hover { border-color: rgba(139,105,20,.25); box-shadow: 0 16px 40px rgba(12,10,7,.08); }
 .lv-case-card:hover::before { background: var(--accent); }
 .lv-case-meta {
   display: flex;
@@ -1408,6 +1414,268 @@ a { text-decoration: none; }
   font-weight: 300;
   color: var(--text-2);
   line-height: 1.8;
+}
+
+/* ══════════════════════════════════════
+   CASE STUDY DETAIL — /vu-viec/:slug
+══════════════════════════════════════ */
+.lv-case-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  font-family: var(--body-font);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: gap .25s;
+}
+.lv-case-card-link::after { content: '→'; }
+.lv-case-card:hover .lv-case-card-link { gap: 14px; }
+
+.lv-view-all {
+  font-family: var(--body-font);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+  transition: color .2s;
+}
+.lv-view-all:hover { color: var(--accent-mid); }
+.lv-view-all.on-light { color: var(--text-2); }
+.lv-view-all.on-light:hover { color: var(--accent); }
+
+.lv-cs-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+  position: relative;
+}
+
+.lv-cs-overview {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.lv-cs-overview-inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.lv-cs-overview-item {
+  padding: 30px 28px;
+  border-right: 1px solid var(--border);
+  text-align: center;
+}
+.lv-cs-overview-item:last-child { border-right: none; }
+.lv-cs-overview-label {
+  font-family: var(--body-font);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 10px;
+}
+.lv-cs-overview-value {
+  font-family: var(--heading-font);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.3;
+}
+@media (max-width: 900px) {
+  .lv-cs-overview-inner { grid-template-columns: repeat(2, 1fr); }
+  .lv-cs-overview-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .lv-cs-overview-item:nth-child(2n) { border-right: none; }
+}
+
+.lv-cs-body p {
+  font-family: var(--body-font);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--text-2);
+  line-height: 1.9;
+  margin-bottom: 18px;
+}
+.lv-cs-body ul { list-style: none; padding: 0; margin: 0; }
+.lv-cs-body ul li {
+  font-family: var(--body-font);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-2);
+  line-height: 1.8;
+  padding-left: 26px;
+  position: relative;
+  margin-bottom: 12px;
+}
+.lv-cs-body ul li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 9px;
+  width: 8px; height: 8px;
+  background: var(--accent-mid);
+}
+
+.lv-cs-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+.lv-cs-gallery img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  filter: grayscale(.2) sepia(.06);
+}
+@media (max-width: 768px) {
+  .lv-cs-gallery { grid-template-columns: 1fr; }
+  .lv-cs-gallery img { height: 220px; }
+}
+
+.lv-cs-quote-wrap {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ══════════════════════════════════════
+   FAQ ACCORDION — details/summary (dich-vu)
+══════════════════════════════════════ */
+.lv-faq-item {
+  border-bottom: 1px solid var(--border);
+}
+.lv-faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 24px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font-family: var(--heading-font);
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--text);
+}
+.lv-faq-item summary::-webkit-details-marker { display: none; }
+.lv-faq-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: var(--accent);
+  font-family: var(--heading-font);
+  font-weight: 300;
+  font-size: 22px;
+  text-align: center;
+  line-height: 1;
+  transition: transform .3s;
+}
+.lv-faq-item[open] .lv-faq-icon { transform: rotate(45deg); }
+.lv-faq-a {
+  font-family: var(--body-font);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-2);
+  line-height: 1.85;
+  padding-bottom: 26px;
+  max-width: 760px;
+}
+
+/* ══════════════════════════════════════
+   PRICING — Gói dịch vụ (dich-vu)
+══════════════════════════════════════ */
+.lv-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+}
+.lv-price-card {
+  background: var(--surface);
+  padding: 44px 32px 36px;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+.lv-price-card:last-child { border-right: none; }
+.lv-price-card.featured { background: var(--dark2); }
+.lv-price-badge {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--body-font);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--dark);
+  background: var(--accent-mid);
+  padding: 5px 16px;
+  white-space: nowrap;
+}
+.lv-price-tier {
+  font-family: var(--body-font);
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.lv-price-card.featured .lv-price-tier { color: var(--accent-mid); }
+.lv-price-name {
+  font-family: var(--heading-font);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.lv-price-card.featured .lv-price-name { color: #fff; }
+.lv-price-value {
+  font-family: var(--heading-font);
+  font-size: 21px;
+  font-weight: 400;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+.lv-price-card.featured .lv-price-value { color: var(--accent-mid); }
+.lv-price-desc {
+  font-family: var(--body-font);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-2);
+  line-height: 1.7;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-light);
+}
+.lv-price-card.featured .lv-price-desc { color: rgba(255,255,255,.4); border-bottom-color: rgba(255,255,255,.08); }
+.lv-price-list { list-style: none; padding: 0; margin: 0 0 28px; }
+.lv-price-list li {
+  font-family: var(--body-font);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-2);
+  padding: 7px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.5;
+}
+.lv-price-card.featured .lv-price-list li { color: rgba(255,255,255,.55); }
+.lv-price-list li::before {
+  content: '✓';
+  color: var(--accent-mid);
+  flex-shrink: 0;
+  font-weight: 500;
+}
+@media (max-width: 860px) {
+  .lv-pricing-grid { grid-template-columns: 1fr; }
+  .lv-price-card { border-right: none; border-bottom: 1px solid var(--border); }
+  .lv-price-card:last-child { border-bottom: none; }
 }
 
 /* ══════════════════════════════════════

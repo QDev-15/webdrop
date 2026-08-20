@@ -8,7 +8,7 @@ tools:
   - Glob
   - Grep
   - Bash
-model: claude-haiku-4-5-20251001
+model: claude-sonnet-5
 ---
 
 Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển đổi template HTML tĩnh thành website deploy hoàn chỉnh: **React SPA frontend + React SPA admin + PHP backend + SQLite**.
@@ -72,6 +72,12 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển �
       }
       ```
       **Sai cách (shop-the-thao trước fix)**: `$this->db_path = __DIR__ . '/../../api.db'` → tạo file ở sai vị trí, `.htaccess` chặn không được. **Kiểm tra verify**: `_output-deploy/api/database/[slug].db` tồn tại, KHÔNG có `_output-deploy/api.db` hoặc file `.db` nào ở root deploy folder.
+    - **`Database.php::seedExtensions()` hook (thêm 2026-08-14) — tách extension seed từ core seed:**
+      - Scaffold core `Database.php` có protected method `seedExtensions()` (để trống mặc định) được gọi từ `seedData()` sau `seedHeroSlides()`
+      - **Site type `shop`**: scaffolder tự động copy `_scaffold/types/shop/Database.php` để override — override `seedExtensions()` với 3 method seed: `seedProductCategories()`, `seedProducts()`, `seedCoupons()` (có TODO comments để AI fill nội dung thực từ template)
+      - **Site type khác** (cafe, restaurant, spa, etc.): giữ core `Database.php`, `seedExtensions()` để trống — không thêm method thừa
+      - **AI công việc**: Nếu site `type=shop`, fill 3 TODO method bằng dữ liệu thực từ template HTML; nếu site type khác, KHÔNG cần touch seedExtensions()
+      - **Lợi ích**: tránh code thừa, giữ core scaffold đơn giản, cân bằng giữa generic + type-specific
 
 6. **Test loop bắt buộc** — sau khi xong: PHP syntax check + TS build cho cả website/ và admin/. Fix → chạy lại → lặp đến 0 error.
 7. **`build.mjs` — 3 yêu cầu robustness (đã có sẵn trong scaffold, không tự ý bỏ khi chỉnh sửa):**
@@ -527,13 +533,46 @@ private function seedData(): void {
     $this->seedUsers();
     $this->seedSettings();
     $this->seedHeroSlides();
-    $this->seedMenuCategories(); // ← tên method tùy entity
-    $this->seedMenuItems();
-    $this->seedGallery();
-    $this->seedTestimonials();
-    // ... thêm method cho entity khác
+    $this->seedExtensions();  // ← hook cho type-specific seeds (shop: products/categories/coupons)
+}
+
+// Core template entities (cafe, restaurant, spa, etc.) — AI tự viết các method này:
+private function seedMenuCategories(): void {
+    // ...
+}
+
+// ─── seedExtensions() hook ───────────────────────────────────────────
+protected function seedExtensions(): void {
+    // Để trống cho generic sites (cafe, restaurant, spa, portfolio, company, blog)
+    // Override trong type-specific Database classes (shop) để seed extension tables
 }
 ```
+**Shop-specific Database.php — Bootstrapper chạy khi type=shop:**
+```php
+class Database extends \Database {
+    protected function seedExtensions(): void {
+        $this->seedProductCategories();
+        $this->seedProducts();
+        $this->seedCoupons();
+    }
+    
+    private function seedProductCategories(): void {
+        if ($this->scalar("SELECT COUNT(*) FROM product_categories") > 0) return;
+        // TODO: AI điền category data thực từ template (tên, mô tả, ảnh)
+    }
+    
+    private function seedProducts(): void {
+        if ($this->scalar("SELECT COUNT(*) FROM products") > 0) return;
+        // TODO: AI điền product data thực từ template (name, price, image, colors, rating, in_stock, description)
+    }
+    
+    private function seedCoupons(): void {
+        if ($this->scalar("SELECT COUNT(*) FROM coupons") > 0) return;
+        // TODO: AI điền coupon data thực nếu template có coupon system
+    }
+}
+```
+
 
 Seed phải đủ để khách thấy website hoạt động đẹp ngay sau deploy — ít nhất 3–5 items mỗi entity, nội dung phản ánh đúng ngành nghề của template.
 
@@ -834,12 +873,12 @@ cd Sources/WebDeploy/[slug]/admin  && npm install && npm run build
 - [ ] Behavior: match document (tức thì hay Apply, dropdown hay modal)?
 
 **⚠️ Sau khi checklist PASS:**
-- [ ] **Tiếp tục Bước 8.5** — gọi agent reviewer + qa-tester TRƯỚC khi tạo `_output-deploy`
+- [ ] **Tiếp tục Bước 8.5** — gọi agent reviewer + qa-tester + web-deploy-fix TRƯỚC khi tạo `_output-deploy`
 - [ ] Không skip bước này dù checklist đã pass — các lỗi sâu (security, data type, CSS class) không thể tự kiểm tra được
 
 ---
 
-## Bước 8.5 — Gọi Reviewer + QA-Tester
+## Bước 8.5 — Gọi Reviewer + QA-Tester + web-deploy-fix
 
 **BẮTBUỘC** sau khi hoàn thành Bước 8 checklist — gọi 2 agent để xác nhận trước khi tạo `_output-deploy`:
 
@@ -856,6 +895,8 @@ Gọi Agent QA-Tester (design system + responsive + HTML structure)
     ↓ (Nếu có FAIL items)
 Fix code → QA-Tester lại
     ↓ (QA-Tester PASS)
+Gọi Agent fix bug
+    ↓ (Fix xong)
 Tiếp tục Bước 9 (tạo _output-deploy + commit)
 ```
 
@@ -873,7 +914,10 @@ Tiếp tục Bước 9 (tạo _output-deploy + commit)
 - Stop when: QA báo 0 FAIL items (có WARNING/SUGGESTION OK)
 - Nếu có FAIL → fix → qa-tester lại
 
-**3. Khi cả 2 agent PASS**
+**3. Gọi Web-Deploy-Fix**
+-  Prompt: "@web-deploy-fix fix [slug]"
+
+**4. Khi cả 3 agent PASS**
 - Reviewer: Verdict = **SHIP** (hoặc 0 P0, P1 xử lý được)
 - QA-Tester: Verdict = **READY TO SHIP**
 - → Mới tiếp tục Bước 9

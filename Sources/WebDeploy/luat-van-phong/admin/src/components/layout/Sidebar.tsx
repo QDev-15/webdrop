@@ -44,8 +44,10 @@ export default function Sidebar({ stats }: Props) {
     {
       section: 'Nội dung',
       links: [
-        { to: '/testimonials', icon: '💬', label: 'Đánh giá thân chủ' },
-        { to: '/media',        icon: '📸', label: 'Media' },
+        { to: '/testimonials',  icon: '💬', label: 'Đánh giá thân chủ' },
+        { to: '/faqs',          icon: '❓', label: 'Câu hỏi thường gặp' },
+        { to: '/pricing-plans', icon: '💰', label: 'Bảng giá dịch vụ' },
+        { to: '/media',         icon: '📸', label: 'Media' },
       ],
     },
     {

@@ -2,8 +2,23 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import type { HeroSlide } from '@prisma/client'
-import type { Slide, TitlePart, SlideButton } from '@/data/slides.config'
 import ImageField from '@/components/admin/ImageField'
+
+type TitlePart =
+  | { text: string; variant?: 'normal' }
+  | { text: string; variant: 'em' }
+  | { text: string; variant: 'muted' }
+  | { br: true }
+
+type ButtonAction =
+  | { type: 'scroll'; target: string }
+  | { type: 'link';   href: string }
+
+interface SlideButton {
+  label:   string
+  action:  ButtonAction
+  variant: 'primary' | 'outline'
+}
 
 const TYPES = [
   { value: 'intro',       label: 'Giới thiệu — Tiêu đề + stats + buttons' },

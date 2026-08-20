@@ -10,6 +10,10 @@ import ServiceList from './pages/services/ServiceList'
 import ServiceForm from './pages/services/ServiceForm'
 import ProjectList from './pages/projects/ProjectList'
 import ProjectForm from './pages/projects/ProjectForm'
+import FaqList from './pages/faqs/FaqList'
+import FaqForm from './pages/faqs/FaqForm'
+import PricingList from './pages/pricing/PricingList'
+import PricingForm from './pages/pricing/PricingForm'
 import TestimonialList from './pages/testimonials/TestimonialList'
 import TestimonialForm from './pages/testimonials/TestimonialForm'
 import ContactList from './pages/contacts/ContactList'
@@ -45,6 +49,12 @@ export default function App() {
           <Route path="/projects" element={<ProjectList />} />
           <Route path="/projects/new" element={<ProjectForm />} />
           <Route path="/projects/:id" element={<ProjectForm />} />
+          <Route path="/faqs" element={<FaqList />} />
+          <Route path="/faqs/new" element={<FaqForm />} />
+          <Route path="/faqs/:id" element={<FaqForm />} />
+          <Route path="/pricing" element={<PricingList />} />
+          <Route path="/pricing/new" element={<PricingForm />} />
+          <Route path="/pricing/:id" element={<PricingForm />} />
           <Route path="/testimonials" element={<TestimonialList />} />
           <Route path="/testimonials/new" element={<TestimonialForm />} />
           <Route path="/testimonials/:id" element={<TestimonialForm />} />

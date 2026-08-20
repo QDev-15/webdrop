@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
 
 export default function Header() {
   const { settings } = useSite()
+  const location = useLocation()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -36,10 +37,10 @@ export default function Header() {
             </Link>
 
             <nav className="xd-nav-links">
-              <Link to="/" className="active">Trang chủ</Link>
-              <Link to="/dich-vu">Dịch vụ</Link>
-              <Link to="/du-an">Dự án</Link>
-              <Link to="/lien-he">Liên hệ</Link>
+              <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Trang chủ</Link>
+              <Link to="/dich-vu" className={location.pathname === '/dich-vu' ? 'active' : ''}>Dịch vụ</Link>
+              <Link to="/du-an" className={location.pathname === '/du-an' ? 'active' : ''}>Dự án</Link>
+              <Link to="/lien-he" className={location.pathname === '/lien-he' ? 'active' : ''}>Liên hệ</Link>
             </nav>
 
             {phone && (

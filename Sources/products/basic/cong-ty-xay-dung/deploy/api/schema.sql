@@ -112,3 +112,45 @@ CREATE TABLE IF NOT EXISTS team_members (
   sort_order INTEGER DEFAULT 0,
   status TEXT DEFAULT 'published'
 );
+
+-- ─── CASE STUDY EXTENSION (projects) ─────────────────────────────────────────
+-- Cột mở rộng cho trang chi tiết công trình (/du-an/:slug). ALTER TABLE ADD COLUMN
+-- lỗi "duplicate column" ở lần chạy sau sẽ bị Database::migrate() bắt và bỏ qua
+-- (xem catch trong migrate()) — an toàn để chạy lại nhiều lần.
+-- Ghi chú: year_completed, location, duration đã có sẵn trong bảng projects —
+-- tái dùng cho case study, KHÔNG tạo cột trùng.
+ALTER TABLE projects ADD COLUMN investor_name TEXT;
+ALTER TABLE projects ADD COLUMN project_type_label TEXT;
+ALTER TABLE projects ADD COLUMN scale_text TEXT;
+ALTER TABLE projects ADD COLUMN result_summary TEXT;
+ALTER TABLE projects ADD COLUMN challenge TEXT;
+ALTER TABLE projects ADD COLUMN solution TEXT;
+ALTER TABLE projects ADD COLUMN gallery_images TEXT;
+ALTER TABLE projects ADD COLUMN stats TEXT;
+ALTER TABLE projects ADD COLUMN testimonial_content TEXT;
+ALTER TABLE projects ADD COLUMN testimonial_author TEXT;
+ALTER TABLE projects ADD COLUMN testimonial_title TEXT;
+
+-- ─── FAQ ──────────────────────────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS faqs (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  question TEXT NOT NULL,
+  answer TEXT NOT NULL,
+  page TEXT DEFAULT 'dich-vu',
+  sort_order INTEGER DEFAULT 0,
+  status TEXT DEFAULT 'published'
+);
+
+-- ─── PRICING PLANS ────────────────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS pricing_plans (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  price TEXT NOT NULL,
+  description TEXT,
+  features TEXT,
+  is_featured INTEGER DEFAULT 0,
+  cta_text TEXT DEFAULT 'Nhận báo giá',
+  cta_link TEXT DEFAULT '/lien-he',
+  sort_order INTEGER DEFAULT 0,
+  status TEXT DEFAULT 'published'
+);

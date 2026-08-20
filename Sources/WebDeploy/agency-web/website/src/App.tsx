@@ -7,6 +7,7 @@ import ZaloFloat from './components/ZaloFloat'
 import HomePage from './components/pages/HomePage'
 import ServicesPage from './components/pages/ServicesPage'
 import ProjectsPage from './components/pages/ProjectsPage'
+import ProjectDetailPage from './components/pages/ProjectDetailPage'
 import AboutPage from './components/pages/AboutPage'
 import ContactPage from './components/pages/ContactPage'
 
@@ -49,6 +50,7 @@ export default function App() {
           <Route path="/" element={<Layout><HomePage /></Layout>} />
           <Route path="/dich-vu" element={<Layout><ServicesPage /></Layout>} />
           <Route path="/du-an" element={<Layout><ProjectsPage /></Layout>} />
+          <Route path="/du-an/:slug" element={<Layout><ProjectDetailPage /></Layout>} />
           <Route path="/ve-chung-toi" element={<Layout><AboutPage /></Layout>} />
           <Route path="/lien-he" element={<Layout><ContactPage /></Layout>} />
         </Routes>

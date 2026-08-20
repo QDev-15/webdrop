@@ -7,7 +7,7 @@ import { usePageTitle } from '../../hooks/usePageTitle'
 const romanNumerals = ['I.', 'II.', 'III.', 'IV.', 'V.', 'VI.']
 
 export default function ServicesPage() {
-  const { settings, services } = useSite()
+  const { settings, services, faqs, pricingPlans } = useSite()
   usePageTitle('Lĩnh vực tư vấn', `Các lĩnh vực tư vấn pháp lý của ${settings.site_name || 'chúng tôi'}.`)
   const phone = settings.site_phone || '0900 000 000'
 
@@ -138,6 +138,80 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      {/* BẢNG GIÁ */}
+      {pricingPlans.length > 0 && (
+        <section className="lv-sec-pad" style={{ background: 'var(--surface)' }} aria-labelledby="pricing-heading">
+          <div className="wd-container">
+            <Reveal className="text-center" style={{ marginBottom: 'clamp(40px,5vw,60px)' }}>
+              <span className="lv-section-label">Bảng giá dịch vụ</span>
+              <h2 className="lv-section-title" id="pricing-heading">Gói dịch vụ <em>phù hợp với bạn.</em></h2>
+              <p className="lv-section-sub" style={{ margin: '0 auto' }}>Chi phí minh bạch, không phát sinh ẩn — chọn gói phù hợp với quy mô và tính chất vụ việc của bạn.</p>
+            </Reveal>
+
+            <Reveal delay={1} className="lv-pricing-grid">
+              {pricingPlans.map(plan => (
+                <div key={plan.id} className={`lv-price-card${plan.is_featured ? ' featured' : ''}`}>
+                  {Number(plan.is_featured) === 1 && <span className="lv-price-badge">Phổ Biến Nhất</span>}
+                  <div className="lv-price-tier">{Number(plan.is_featured) === 1 ? 'Đồng hành' : 'Linh hoạt'}</div>
+                  <h3 className="lv-price-name">{plan.name}</h3>
+                  <div className="lv-price-value">{plan.price}</div>
+                  <p className="lv-price-desc">{plan.description}</p>
+                  {plan.features && (
+                    <ul className="lv-price-list">
+                      {plan.features.split(/\r?\n/).map(f => f.trim()).filter(Boolean).map((f, i) => (
+                        <li key={i}>{f}</li>
+                      ))}
+                    </ul>
+                  )}
+                  <Link
+                    to={plan.cta_link || '/lien-he'}
+                    className={Number(plan.is_featured) === 1 ? 'lv-btn-gold' : 'lv-btn-outline-dark'}
+                    style={{ width: '100%', textAlign: 'center' }}
+                  >
+                    {plan.cta_text || 'Nhận Báo Giá'}
+                  </Link>
+                </div>
+              ))}
+            </Reveal>
+
+            <Reveal delay={2}>
+              <p style={{ fontFamily: 'var(--body-font)', fontSize: '12px', fontWeight: 300, color: 'var(--text-3)', textAlign: 'center', marginTop: '24px' }}>
+                * Giá tham khảo — mức phí chính xác được xác định sau buổi tư vấn ban đầu miễn phí, tùy theo tính chất và độ phức tạp của vụ việc.
+              </p>
+            </Reveal>
+          </div>
+        </section>
+      )}
+
+      {/* FAQ */}
+      {faqs.length > 0 && (
+        <section className="lv-sec-pad" style={{ background: 'var(--bg)' }} id="faq" aria-labelledby="faq-services-heading">
+          <div className="wd-container">
+            <div className="row g-5">
+              <div className="col-lg-4">
+                <Reveal>
+                  <span className="lv-section-label">Câu hỏi thường gặp</span>
+                  <h2 className="lv-section-title" id="faq-services-heading">Những điều<br/><em>bạn cần biết.</em></h2>
+                  <p style={{ fontFamily: 'var(--body-font)', fontSize: '13px', fontWeight: 300, color: 'var(--text-2)', lineHeight: 1.8, marginTop: '16px' }}>
+                    Không tìm thấy câu trả lời bạn cần? <Link to="/lien-he" style={{ color: 'var(--accent)' }}>Liên hệ trực tiếp</Link> — chúng tôi phản hồi trong 24 giờ.
+                  </p>
+                </Reveal>
+              </div>
+              <div className="col-lg-8">
+                <Reveal delay={1}>
+                  {faqs.map(f => (
+                    <details key={f.id} className="lv-faq-item">
+                      <summary>{f.question} <span className="lv-faq-icon">+</span></summary>
+                      <p className="lv-faq-a">{f.answer}</p>
+                    </details>
+                  ))}
+                </Reveal>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       <CtaForm
         heading="Vụ việc của bạn<br/><em>cần được xử lý ngay.</em>"

@@ -55,6 +55,9 @@ class Database {
         $this->seedProjects();
         $this->seedTeam();
         $this->seedTestimonials();
+        $this->seedFaqs();
+        $this->seedPricingPlans();
+        $this->backfillProjectCaseStudy();
     }
 
     private function seedUsers(): void {
@@ -245,6 +248,84 @@ class Database {
         );
         foreach ($testimonials as $t) {
             $stmt->execute($t);
+        }
+    }
+
+    private function seedFaqs(): void {
+        if ($this->scalar("SELECT COUNT(*) FROM faqs") > 0) return;
+        $faqs = [
+            ['Chi phí một dự án website là bao nhiêu?', 'Chi phí phụ thuộc vào số trang, tính năng và mức độ tùy chỉnh — dao động từ 15 triệu (Starter) đến trên 35 triệu (Professional), xem chi tiết ở bảng giá phía trên. Với hệ thống phức tạp (Enterprise), chúng tôi khảo sát yêu cầu rồi báo giá cụ thể trong 24 giờ.'],
+            ['Quy trình làm việc diễn ra như thế nào?', '4 bước rõ ràng: Tư vấn & phân tích yêu cầu → Thiết kế & duyệt giao diện (2 vòng revision) → Phát triển & kiểm thử → Bàn giao & hỗ trợ. Xem chi tiết ở mục "Quy trình" phía trên — mỗi bước đều có milestone xác nhận, cập nhật tiến độ hàng ngày qua Zalo.'],
+            ['Thời gian hoàn thành một dự án mất bao lâu?', 'Landing page đơn giản: 1–2 tuần. Website nhiều trang có CMS: 3–6 tuần. Hệ thống phức tạp (app, tích hợp API, nền tảng riêng): 8–16 tuần tùy phạm vi. Timeline cụ thể được thống nhất bằng văn bản trước khi bắt đầu.'],
+            ['Có bảo hành hay cam kết gì sau khi bàn giao không?', 'Mọi dự án đều được bảo hành lỗi kỹ thuật miễn phí trong 30 ngày kể từ ngày bàn giao. Với gói Professional trở lên, thời gian hỗ trợ kéo dài đến 3 tháng. Sau thời gian bảo hành, bạn có thể đăng ký gói bảo trì hàng tháng.'],
+            ['Hình thức thanh toán như thế nào?', 'Thông thường chia làm 2–3 đợt: 50% đặt cọc khi ký hợp đồng, 50% còn lại khi bàn giao. Với dự án lớn (Enterprise) có thể chia thêm đợt giữa theo từng milestone — chi tiết được ghi rõ trong hợp đồng trước khi triển khai.'],
+            ['Sau khi bàn giao, có hỗ trợ kỹ thuật không?', 'Có. Ngoài 30 ngày bảo hành miễn phí, chúng tôi có gói bảo trì hàng tháng bao gồm cập nhật nội dung, giám sát uptime, vá bảo mật và hỗ trợ kỹ thuật khi có sự cố phát sinh.'],
+        ];
+        $stmt = $this->pdo->prepare("INSERT INTO faqs (question, answer, page, sort_order) VALUES (?, ?, 'dich-vu', ?)");
+        $order = 1;
+        foreach ($faqs as [$q, $a]) {
+            $stmt->execute([$q, $a, $order++]);
+        }
+    }
+
+    private function seedPricingPlans(): void {
+        if ($this->scalar("SELECT COUNT(*) FROM pricing_plans") > 0) return;
+        $plans = [
+            ['name' => 'Starter', 'price' => '15.000.000đ', 'description' => 'Website landing page đơn giản, responsive, deploy lên hosting.', 'features' => "Tối đa 5 trang\nThiết kế theo mẫu có sẵn\nResponsive mobile\nHỗ trợ 1 tháng", 'is_featured' => 0, 'cta_text' => 'Yêu cầu báo giá', 'sort_order' => 1],
+            ['name' => 'Professional', 'price' => '35.000.000đ', 'description' => 'Website đầy đủ tính năng, CMS admin, SEO cơ bản, 1 năm hosting.', 'features' => "Không giới hạn trang\nThiết kế riêng theo brand\nCMS quản lý nội dung\nSEO on-page cơ bản\nHỗ trợ 3 tháng", 'is_featured' => 1, 'cta_text' => 'Yêu cầu báo giá', 'sort_order' => 2],
+            ['name' => 'Enterprise', 'price' => 'Liên hệ', 'description' => 'Hệ thống phức tạp, tích hợp API, custom logic theo yêu cầu doanh nghiệp.', 'features' => "Phân tích chuyên sâu\nKiến trúc hệ thống riêng\nTích hợp bên thứ 3\nBàn giao source code\nBảo trì dài hạn", 'is_featured' => 0, 'cta_text' => 'Liên hệ tư vấn', 'sort_order' => 3],
+        ];
+        $stmt = $this->pdo->prepare(
+            "INSERT INTO pricing_plans (name, price, description, features, is_featured, cta_text, cta_link, sort_order) VALUES (?, ?, ?, ?, ?, ?, '/lien-he', ?)"
+        );
+        foreach ($plans as $pl) {
+            $stmt->execute([$pl['name'], $pl['price'], $pl['description'], $pl['features'], $pl['is_featured'], $pl['cta_text'], $pl['sort_order']]);
+        }
+    }
+
+    // ⚠️ Chạy độc lập với seedProjects() (không có guard COUNT>0) — đảm bảo các dự án
+    // đã seed từ trước (trước khi có cột case-study) vẫn được điền dữ liệu mẫu cho
+    // trang chi tiết /du-an/:slug. Chỉ điền khi year còn NULL — không ghi đè nội dung
+    // khách đã tự chỉnh qua admin. Nội dung lấy từ 2 case study tĩnh đã retrofit trước
+    // đó tại Sources/templates/web/Companies/agency-web/du-an-chi-tiet-{1,2}.html
+    private function backfillProjectCaseStudy(): void {
+        $cases = [
+            'bds-vingroup' => [
+                'year' => '2025',
+                'duration' => '10 tuần',
+                'scope_text' => 'Web Portal, CMS, Tích hợp bản đồ',
+                'result_summary' => '+85% lượt truy cập tự nhiên',
+                'challenge' => "Khối Bất động sản của VinGroup vận hành một portal cũ chỉ quản lý được khoảng 2.000 sản phẩm, bộ lọc tìm kiếm giới hạn ở 3 tiêu chí cơ bản (khu vực, giá, loại hình), không có bản đồ tương tác. Thời gian tải trang trên di động thường xuyên vượt 6 giây, trong khi hơn 70% khách hàng tra cứu bất động sản qua điện thoại.\n\nĐội sale phải gửi email cho bộ phận IT mỗi khi cần cập nhật một dự án mới hoặc thay đổi giá bán — trung bình mất 2–3 ngày cho một thay đổi nhỏ, khiến thông tin trên website thường xuyên lệch so với thực tế bán hàng và ảnh hưởng trực tiếp đến tỷ lệ chốt deal.",
+                'solution' => "Chúng tôi triển khai theo 4 giai đoạn, ưu tiên giải quyết đúng điểm nghẽn về tốc độ, khả năng tìm kiếm và quy trình vận hành nội bộ trước khi mở rộng tính năng.\n\n- Audit & Discovery — phân tích hiệu năng portal cũ, phỏng vấn đội sale và khảo sát hành vi tìm kiếm của khách hàng thực tế\n- Kiến trúc thông tin mới — thiết kế lại cấu trúc dữ liệu cho 10.000+ sản phẩm, hỗ trợ bộ lọc đa tiêu chí (giá, khu vực, diện tích, loại hình, tình trạng pháp lý)\n- Tích hợp bản đồ & tìm kiếm nâng cao — bản đồ tương tác hiển thị dự án theo khu vực, tìm kiếm theo bán kính và gợi ý dự án tương tự\n- CMS tự phục vụ cho đội sale — giao diện quản trị cho phép sale tự cập nhật dự án, giá bán và tình trạng mà không cần chờ IT can thiệp",
+                'gallery_images' => "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=900&q=80&auto=format&fit=crop\nhttps://images.unsplash.com/photo-1560518883-ce09059eeffa?w=700&q=80&auto=format&fit=crop\nhttps://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=700&q=80&auto=format&fit=crop",
+                'stats' => "10000|+|Sản phẩm được quản lý\n85|%|Tăng truy cập tự nhiên\n3|x|Tỷ lệ chuyển đổi khách hàng tiềm năng\n10| tuần|Thời gian hoàn thành",
+                'testimonial_content' => 'Portal mới không chỉ đẹp hơn — nó giải quyết đúng vấn đề vận hành mà chúng tôi gặp phải suốt 2 năm. Đội sale giờ tự cập nhật sản phẩm trong vài phút thay vì chờ IT vài ngày, và lượng khách hàng để lại thông tin liên hệ qua website tăng rõ rệt.',
+                'testimonial_author' => 'Đỗ Thị Quỳnh Anh',
+                'testimonial_title' => 'Trưởng phòng Digital · VinGroup Real Estate',
+                'testimonial_avatar' => 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&q=80&auto=format&fit=crop&crop=face',
+            ],
+            'eduviet' => [
+                'year' => '2025',
+                'duration' => '14 tuần',
+                'scope_text' => 'Web Platform, App iOS/Android, Payment Gateway',
+                'result_summary' => '500+ khóa học trong tháng đầu',
+                'challenge' => "EduViet vận hành một hệ thống LMS xây dựng từ 6 năm trước, chỉ hỗ trợ khóa học dạng bài giảng văn bản và video upload sẵn — không có tính năng live stream, không có app di động. Học viên phải học hoàn toàn trên trình duyệt desktop, trong khi hơn 60% lượt truy cập của EduViet đến từ điện thoại.\n\nQuy trình thanh toán chỉ chấp nhận chuyển khoản ngân hàng thủ công, nhân viên phải xác nhận từng giao dịch trước khi cấp quyền truy cập khóa học — thời gian chờ trung bình 4–6 giờ khiến nhiều học viên bỏ ngang giữa chừng quá trình đăng ký.",
+                'solution' => "Chúng tôi xây dựng lại toàn bộ nền tảng theo hướng mobile-first, ưu tiên rút ngắn thời gian từ lúc học viên quyết định đăng ký đến lúc được vào học.\n\n- UX Research — phỏng vấn học viên và giảng viên hiện tại để xác định đúng điểm nghẽn trong hành trình học và giảng dạy\n- Kiến trúc nền tảng — thiết kế hệ thống hỗ trợ song song khóa học live stream và khóa học thu sẵn (on-demand), tách riêng luồng thi trực tuyến có giám sát\n- Phát triển App di động — app iOS & Android với tính năng tải video offline, đồng bộ tiến độ học real-time giữa web và app\n- Tích hợp thanh toán tự động — kết nối VNPay & Momo, cấp quyền truy cập khóa học tức thì ngay sau khi thanh toán thành công",
+                'gallery_images' => "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900&q=80&auto=format&fit=crop\nhttps://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=700&q=80&auto=format&fit=crop\nhttps://images.unsplash.com/photo-1584697964358-3e14ca57658b?w=700&q=80&auto=format&fit=crop",
+                'stats' => "500|+|Khóa học trong tháng đầu\n20000|+|Học viên onboard sau 3 tháng\n4|.7★|Đánh giá app trên store\n14| tuần|Thời gian hoàn thành",
+                'testimonial_content' => 'Điều chúng tôi ấn tượng nhất không phải giao diện đẹp — mà là tốc độ. Học viên đăng ký và thanh toán xong là vào học ngay, không còn cảnh chờ xác nhận chuyển khoản. App di động cũng giúp học viên ở tỉnh học đều đặn hơn hẳn so với trước.',
+                'testimonial_author' => 'Vũ Đình Nam',
+                'testimonial_title' => 'Nhà sáng lập · EduViet',
+                'testimonial_avatar' => 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&q=80&auto=format&fit=crop&crop=face',
+            ],
+        ];
+        foreach ($cases as $slug => $c) {
+            $row = $this->queryOne("SELECT id, year FROM projects WHERE slug=?", [$slug]);
+            if (!$row || $row['year'] !== null) continue;
+            $this->execute(
+                "UPDATE projects SET year=?, duration=?, scope_text=?, result_summary=?, challenge=?, solution=?, gallery_images=?, stats=?, testimonial_content=?, testimonial_author=?, testimonial_title=?, testimonial_avatar=? WHERE id=?",
+                [$c['year'], $c['duration'], $c['scope_text'], $c['result_summary'], $c['challenge'], $c['solution'], $c['gallery_images'], $c['stats'], $c['testimonial_content'], $c['testimonial_author'], $c['testimonial_title'], $c['testimonial_avatar'], $row['id']]
+            );
         }
     }
 

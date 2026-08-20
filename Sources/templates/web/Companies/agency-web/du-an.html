@@ -15,7 +15,7 @@
 .filter-btn { font-size:12.5px;padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:var(--surface);color:var(--text-2);cursor:pointer;transition:all .15s;font-family:var(--sans); }
 .filter-btn.active { background:var(--text);color:#fff;border-color:var(--text); }
 .filter-btn:hover:not(.active) { border-color:var(--text-3);color:var(--text); }
-.pf-card-full { border-radius:16px;overflow:hidden;background:var(--surface);border:1px solid var(--border);transition:transform .28s cubic-bezier(.16,1,.3,1),box-shadow .28s; }
+.pf-card-full { display:block;text-decoration:none;color:inherit;border-radius:16px;overflow:hidden;background:var(--surface);border:1px solid var(--border);transition:transform .28s cubic-bezier(.16,1,.3,1),box-shadow .28s; }
 .pf-card-full:hover { transform:translateY(-6px);box-shadow:0 20px 52px rgba(0,0,0,.1); }
 .pf-card-full:hover .pf-img { transform:scale(1.05); }
 .pf-card-full .pf-img { width:100%;aspect-ratio:16/10;object-fit:cover;display:block;transition:transform .5s ease; }
@@ -73,75 +73,75 @@
     </div>
 
     <div class="row g-3" id="projectGrid">
-      <div class="col-md-6" data-cat="web"><div class="pf-card-full reveal">
+      <div class="col-md-6" data-cat="web"><a class="pf-card-full reveal" href="du-an-chi-tiet-1.html">
         <img class="pf-img" src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80&auto=format&fit=crop" alt="BĐS" loading="lazy">
         <div class="pf-body">
           <div class="pf-tags"><span class="pf-tag">Website</span><span class="pf-tag grey">Bất động sản</span></div>
           <div class="pf-title">Hệ thống Website BĐS — VinGroup</div>
           <div class="pf-desc">Portal bất động sản với hơn 10.000 sản phẩm, tích hợp bản đồ, tìm kiếm nâng cao, CMS quản lý nội dung.</div>
-          <a href="#" class="pf-link">Xem chi tiết →</a>
+          <span class="pf-link">Xem chi tiết →</span>
         </div>
-      </div></div>
+      </a></div>
 
-      <div class="col-md-6" data-cat="app"><div class="pf-card-full reveal reveal-d1">
+      <div class="col-md-6" data-cat="app"><a class="pf-card-full reveal reveal-d1" href="du-an-chi-tiet-2.html">
         <img class="pf-img" src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80&auto=format&fit=crop" alt="App" loading="lazy">
         <div class="pf-body">
           <div class="pf-tags"><span class="pf-tag">Mobile App</span><span class="pf-tag grey">F&B</span></div>
           <div class="pf-title">App đặt bàn & delivery — Nhà hàng Sen</div>
           <div class="pf-desc">App iOS & Android với tính năng đặt bàn online, gọi món, tracking đơn hàng. 10.000+ downloads tháng đầu.</div>
-          <a href="#" class="pf-link">Xem chi tiết →</a>
+          <span class="pf-link">Xem chi tiết →</span>
         </div>
-      </div></div>
+      </a></div>
 
-      <div class="col-md-4" data-cat="web"><div class="pf-card-full reveal">
+      <div class="col-md-4" data-cat="web"><a class="pf-card-full reveal" href="du-an-chi-tiet-1.html">
         <img class="pf-img" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80&auto=format&fit=crop" alt="Spa" loading="lazy">
         <div class="pf-body">
           <div class="pf-tags"><span class="pf-tag">Website</span><span class="pf-tag grey">Beauty</span></div>
           <div class="pf-title">Website Spa Lavender</div>
           <div class="pf-desc">Landing page đặt lịch online, gallery dịch vụ, tích hợp Zalo OA.</div>
-          <a href="#" class="pf-link">Xem →</a>
+          <span class="pf-link">Xem →</span>
         </div>
-      </div></div>
+      </a></div>
 
-      <div class="col-md-4" data-cat="brand"><div class="pf-card-full reveal reveal-d1">
+      <div class="col-md-4" data-cat="brand"><a class="pf-card-full reveal reveal-d1" href="du-an-chi-tiet-2.html">
         <img class="pf-img" src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=600&q=80&auto=format&fit=crop" alt="Brand" loading="lazy">
         <div class="pf-body">
           <div class="pf-tags"><span class="pf-tag">Thương hiệu</span><span class="pf-tag grey">Startup</span></div>
           <div class="pf-title">Brand Identity — TechStartupX</div>
           <div class="pf-desc">Logo, brand guideline, bộ ấn phẩm, pitch deck cho vòng gọi vốn Series A.</div>
-          <a href="#" class="pf-link">Xem →</a>
+          <span class="pf-link">Xem →</span>
         </div>
-      </div></div>
+      </a></div>
 
-      <div class="col-md-4" data-cat="web"><div class="pf-card-full reveal reveal-d2">
+      <div class="col-md-4" data-cat="web"><a class="pf-card-full reveal reveal-d2" href="du-an-chi-tiet-1.html">
         <img class="pf-img" src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=80&auto=format&fit=crop" alt="Blog" loading="lazy">
         <div class="pf-body">
           <div class="pf-tags"><span class="pf-tag">Website</span><span class="pf-tag grey">Blog / Media</span></div>
           <div class="pf-title">Trang tin tức TechDaily.vn</div>
           <div class="pf-desc">News portal 50.000+ bài viết, CMS tùy chỉnh, tốc độ tải < 1.5s.</div>
-          <a href="#" class="pf-link">Xem →</a>
+          <span class="pf-link">Xem →</span>
         </div>
-      </div></div>
+      </a></div>
 
-      <div class="col-md-6" data-cat="web"><div class="pf-card-full reveal">
+      <div class="col-md-6" data-cat="web"><a class="pf-card-full reveal" href="du-an-chi-tiet-2.html">
         <img class="pf-img" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80&auto=format&fit=crop" alt="Edu" loading="lazy">
         <div class="pf-body">
           <div class="pf-tags"><span class="pf-tag">Website + App</span><span class="pf-tag grey">Giáo dục</span></div>
           <div class="pf-title">Nền tảng học trực tuyến EduViet</div>
           <div class="pf-desc">Website + App học online với 500+ khóa học, live stream, thi trực tuyến, payment gateway VNPay & Momo.</div>
-          <a href="#" class="pf-link">Xem chi tiết →</a>
+          <span class="pf-link">Xem chi tiết →</span>
         </div>
-      </div></div>
+      </a></div>
 
-      <div class="col-md-6" data-cat="app"><div class="pf-card-full reveal reveal-d1">
+      <div class="col-md-6" data-cat="app"><a class="pf-card-full reveal reveal-d1" href="du-an-chi-tiet-1.html">
         <img class="pf-img" src="https://images.unsplash.com/photo-1553484771-371a605b060b?w=800&q=80&auto=format&fit=crop" alt="Logistics" loading="lazy">
         <div class="pf-body">
           <div class="pf-tags"><span class="pf-tag">Mobile App</span><span class="pf-tag grey">Logistics</span></div>
           <div class="pf-title">App quản lý vận tải — FastShip</div>
           <div class="pf-desc">App tài xế + khách hàng + dispatcher. Real-time tracking, route optimization, hóa đơn tự động.</div>
-          <a href="#" class="pf-link">Xem chi tiết →</a>
+          <span class="pf-link">Xem chi tiết →</span>
         </div>
-      </div></div>
+      </a></div>
     </div>
   </div>
 </section>

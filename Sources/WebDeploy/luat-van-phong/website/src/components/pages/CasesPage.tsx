@@ -84,20 +84,19 @@ export default function CasesPage() {
             </div>
           </Reveal>
 
-          {filtered.map((c, i) => (
-            <Reveal key={c.id}>
-              <div className="lv-case-card">
-                <div className="lv-case-meta">
-                  <span className="lv-case-badge">{c.category}</span>
-                  <span className="lv-case-date">{c.year} · {c.location}</span>
-                </div>
-                <h3 className="lv-case-card-title">{c.title}</h3>
-                <p className="lv-case-summary">{c.summary}</p>
-                <div className="lv-case-outcome">
-                  <span className="lv-case-outcome-label">Kết quả</span>
-                  <span className="lv-case-outcome-text">{c.outcome}</span>
-                </div>
+          {filtered.map((c) => (
+            <Reveal key={c.id} to={c.slug ? `/vu-viec/${c.slug}` : undefined} className="lv-case-card">
+              <div className="lv-case-meta">
+                <span className="lv-case-badge">{c.category}</span>
+                <span className="lv-case-date">{c.year} · {c.location}</span>
               </div>
+              <h3 className="lv-case-card-title">{c.title}</h3>
+              <p className="lv-case-summary">{c.summary}</p>
+              <div className="lv-case-outcome">
+                <span className="lv-case-outcome-label">Kết quả</span>
+                <span className="lv-case-outcome-text">{c.outcome}</span>
+              </div>
+              {c.slug && <span className="lv-case-card-link">Xem chi tiết vụ việc</span>}
             </Reveal>
           ))}
 

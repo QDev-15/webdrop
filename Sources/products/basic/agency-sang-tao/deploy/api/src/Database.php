@@ -58,6 +58,9 @@ class Database {
         $this->seedProjects();
         $this->seedTeamMembers();
         $this->seedTestimonials();
+        $this->seedFaqs();
+        $this->seedPricingPlans();
+        $this->backfillProjectCaseStudy();
     }
 
     private function seedUsers(): void {
@@ -308,6 +311,86 @@ class Database {
             $this->execute(
                 "INSERT INTO projects (title, slug, category, description, image, tags, client_name, featured, sort_order) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 [$p['title'], $p['slug'], $p['category'], $p['description'], $p['image'], $p['tags'], $p['client_name'], $p['featured'], $p['sort_order']]
+            );
+        }
+    }
+
+    // ⚠️ Chạy độc lập với seedProjects() (không có guard COUNT>0) — đảm bảo các dự án
+    // đã seed từ trước (trước khi có cột case-study) vẫn được điền dữ liệu mẫu cho
+    // trang chi tiết /du-an/:slug. Chỉ điền khi year còn NULL — không ghi đè nội dung
+    // khách đã tự chỉnh qua admin.
+    private function backfillProjectCaseStudy(): void {
+        $cases = [
+            'rebrand-nha-hang-fusion' => [
+                'year' => '2024',
+                'duration' => '6 tuần',
+                'scope_text' => 'Brand Strategy, Logo, Guidelines',
+                'result_summary' => '+40% nhận diện thương hiệu',
+                'challenge' => "Fusion Dining Group tìm đến chúng tôi sau 3 năm hoạt động với bộ nhận diện cũ không còn phản ánh đúng định vị và tham vọng mở rộng chuỗi nhà hàng. Logo thiếu tính nhận diện, bộ màu sử dụng không nhất quán giữa các chi nhánh, khiến khách hàng khó ghi nhớ thương hiệu giữa hàng loạt đối thủ F&B cùng phân khúc.\n\nBài toán đặt ra không chỉ là \"làm đẹp hơn\" — mà là xây dựng một hệ thống nhận diện đủ linh hoạt để nhân rộng sang các chi nhánh mới trong 3-5 năm tới, đồng thời giữ được sự liên kết với tệp khách hàng trung thành đã quen thuộc với thương hiệu cũ.",
+                'solution' => "Chúng tôi triển khai theo quy trình 4 bước: audit toàn bộ tài sản thương hiệu hiện có, workshop chiến lược cùng ban lãnh đạo, phát triển 3 hướng concept song song, và tinh chỉnh dựa trên feedback trước khi hoàn thiện bộ guideline đầy đủ.\n\n- Audit & Discovery — đánh giá toàn bộ điểm chạm thương hiệu hiện tại, phỏng vấn đội ngũ nội bộ và khảo sát nhanh khách hàng thân thiết\n- Brand Strategy Workshop — thống nhất định vị, giá trị cốt lõi và tông giọng thương hiệu mới cùng ban lãnh đạo\n- Design Exploration — phát triển 3 hướng concept logo & màu sắc khác biệt, trình bày và lấy feedback\n- Refine & Rollout — hoàn thiện concept được chọn, xây dựng brand guideline chi tiết và bộ ấn phẩm triển khai thực tế cho từng chi nhánh",
+                'gallery_images' => "https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&q=80&auto=format&fit=crop\nhttps://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80&auto=format&fit=crop\nhttps://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80&auto=format&fit=crop",
+                'stats' => "40|%|Tăng nhận diện thương hiệu\n65|%|Tăng tương tác social\n120|+|Ấn phẩm được chuẩn hóa\n6| tuần|Thời gian hoàn thành",
+                'testimonial_content' => 'Agency Sáng Tạo không chỉ mang đến một bộ logo đẹp — họ giúp chúng tôi hiểu rõ hơn về chính thương hiệu của mình. Bộ nhận diện mới đã trở thành nền tảng cho mọi hoạt động marketing sau này.',
+                'testimonial_author' => 'Phạm Anh Tuấn',
+                'testimonial_title' => 'CEO · Fusion Dining Group',
+                'testimonial_avatar' => 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&q=80&auto=format&fit=crop',
+            ],
+            'website-app-design-fintech' => [
+                'year' => '2024',
+                'duration' => '8 tuần',
+                'scope_text' => 'UX Research, UI Design, Prototype',
+                'result_summary' => '+55% tỷ lệ chuyển đổi',
+                'challenge' => "Website cũ của PayFlow Vietnam được xây dựng đã hơn 5 năm, giao diện lỗi thời và không tối ưu trên di động — trong khi hơn 65% lượt truy cập đến từ điện thoại. Tỷ lệ khách rời trang ngay ở bước đầu (bounce rate) cao bất thường, và luồng thao tác từ trang sản phẩm đến bước đăng ký quá nhiều bước gây mất khách giữa chừng.\n\nĐội ngũ nội bộ của PayFlow cũng gặp khó khi cập nhật nội dung — mọi thay đổi nhỏ đều phải nhờ bên thứ ba can thiệp code, khiến chi phí vận hành website tăng cao theo thời gian.",
+                'solution' => "Chúng tôi bắt đầu bằng UX audit và phỏng vấn người dùng thực tế để xác định đúng điểm nghẽn trong hành trình đăng ký, trước khi thiết kế lại toàn bộ information architecture và giao diện mobile-first.\n\n- UX Research & Audit — phân tích heatmap, phỏng vấn 12 người dùng thực tế và benchmark đối thủ cùng ngành fintech\n- Information Architecture — rút gọn luồng từ trang sản phẩm đến đăng ký từ 5 bước xuống còn 2 bước\n- UI Design — thiết kế mobile-first, xây dựng design system component tái sử dụng cho toàn bộ site\n- Prototype & Handoff — bàn giao prototype tương tác đầy đủ kèm tài liệu specs cho đội dev",
+                'gallery_images' => "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80&auto=format&fit=crop\nhttps://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80&auto=format&fit=crop\nhttps://images.unsplash.com/photo-1559028006-448665bd7c7f?w=800&q=80&auto=format&fit=crop",
+                'stats' => "55|%|Tăng tỷ lệ chuyển đổi\n42|%|Giảm tỷ lệ rời trang\n3|x|Tốc độ tải trang nhanh hơn\n8| tuần|Thời gian hoàn thành",
+                'testimonial_content' => 'Đội ngũ Agency Sáng Tạo không chỉ làm đẹp giao diện — họ giúp chúng tôi hiểu được người dùng thực sự cần gì. Website mới giúp đội sale của chúng tôi chốt đơn nhanh hơn hẳn.',
+                'testimonial_author' => 'Nguyễn Thu Hà',
+                'testimonial_title' => 'CMO · PayFlow Vietnam',
+                'testimonial_avatar' => 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80&auto=format&fit=crop',
+            ],
+        ];
+        foreach ($cases as $slug => $c) {
+            $row = $this->queryOne("SELECT id, year FROM projects WHERE slug=?", [$slug]);
+            if (!$row || $row['year'] !== null) continue;
+            $this->execute(
+                "UPDATE projects SET year=?, duration=?, scope_text=?, result_summary=?, challenge=?, solution=?, gallery_images=?, stats=?, testimonial_content=?, testimonial_author=?, testimonial_title=?, testimonial_avatar=? WHERE id=?",
+                [$c['year'], $c['duration'], $c['scope_text'], $c['result_summary'], $c['challenge'], $c['solution'], $c['gallery_images'], $c['stats'], $c['testimonial_content'], $c['testimonial_author'], $c['testimonial_title'], $c['testimonial_avatar'], $row['id']]
+            );
+        }
+    }
+
+    private function seedFaqs(): void {
+        if ($this->scalar("SELECT COUNT(*) FROM faqs") > 0) return;
+        $faqs = [
+            ['Thời gian thực hiện một dự án brand identity là bao lâu?', 'Tùy thuộc vào scope của dự án. Một brand starter pack thường mất 2–3 tuần. Full brand identity mất 4–8 tuần. Chúng tôi luôn thống nhất timeline cụ thể trước khi bắt đầu.'],
+            ['Quy trình thanh toán như thế nào?', 'Chúng tôi chia thanh toán thành 2–3 đợt: 50% khi ký hợp đồng, 50% còn lại khi bàn giao. Với dự án lớn có thể chia thêm đợt giữa theo milestone.'],
+            ['Tôi có thể yêu cầu sửa đổi bao nhiêu lần?', 'Mỗi phase thiết kế bao gồm 2–3 vòng feedback/revision. Revision thêm ngoài phạm vi sẽ được tính phí theo giờ, đã thông báo rõ trong hợp đồng.'],
+            ['Tôi có được nhận file gốc (source file) không?', 'Có — chúng tôi bàn giao đầy đủ file gốc (AI, PSD, Figma...) cùng file xuất (PDF, PNG, SVG) ở mọi kích thước cần thiết.'],
+            ['Agency có hỗ trợ sau khi bàn giao dự án không?', 'Có — chúng tôi hỗ trợ miễn phí trong 30 ngày sau bàn giao cho các điều chỉnh nhỏ. Với nhu cầu dài hạn, chúng tôi có gói retainer hàng tháng.'],
+            ['Tôi có thể chỉ thuê một phần dịch vụ, không cần trọn gói?', 'Có — chúng tôi nhận cả dự án lẻ (chỉ logo, chỉ website...) lẫn gói toàn diện. Báo giá sẽ được điều chỉnh theo đúng scope thực tế bạn cần.'],
+            ['Agency có nhận dự án ở tỉnh khác hoặc khách hàng quốc tế không?', 'Có — phần lớn quy trình làm việc qua online (call, Figma, Google Meet) nên không giới hạn địa lý. Với khách tại TP.HCM chúng tôi luôn sẵn sàng gặp trực tiếp khi cần.'],
+        ];
+        $order = 1;
+        foreach ($faqs as [$q, $a]) {
+            $this->execute(
+                "INSERT INTO faqs (question, answer, page, sort_order) VALUES (?, ?, 'dich-vu', ?)",
+                [$q, $a, $order++]
+            );
+        }
+    }
+
+    private function seedPricingPlans(): void {
+        if ($this->scalar("SELECT COUNT(*) FROM pricing_plans") > 0) return;
+        $plans = [
+            ['name' => 'Brand Starter Pack', 'price' => 'Từ 15 triệu', 'description' => 'Logo + màu sắc + font + name card. Phù hợp cho startup mới bắt đầu.', 'features' => "Logo design (primary + variations)\nColor palette & typography\nBusiness card & stationery\n1 vòng revision", 'is_featured' => 0, 'cta_text' => 'Tư vấn', 'sort_order' => 1],
+            ['name' => 'Full Brand Identity', 'price' => 'Từ 45 triệu', 'description' => 'Bộ nhận diện đầy đủ + brand guideline + bộ ấn phẩm cơ bản. Dành cho SME.', 'features' => "Toàn bộ hạng mục gói Starter\nBrand strategy & positioning\nBrand guideline chi tiết\nBộ ấn phẩm marketing cơ bản\n3 vòng revision", 'is_featured' => 1, 'cta_text' => 'Tư vấn ngay', 'sort_order' => 2],
+            ['name' => 'Brand + Digital + Campaign', 'price' => 'Liên hệ', 'description' => 'Giải pháp toàn diện — brand identity, website, campaign và nội dung. Dành cho doanh nghiệp.', 'features' => "Toàn bộ hạng mục gói Full Brand\nThiết kế & phát triển website\nChiến dịch ra mắt thương hiệu\nContent strategy 3 tháng đầu", 'is_featured' => 0, 'cta_text' => 'Tư vấn', 'sort_order' => 3],
+        ];
+        foreach ($plans as $pl) {
+            $this->execute(
+                "INSERT INTO pricing_plans (name, price, description, features, is_featured, cta_text, sort_order) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                [$pl['name'], $pl['price'], $pl['description'], $pl['features'], $pl['is_featured'], $pl['cta_text'], $pl['sort_order']]
             );
         }
     }

@@ -1467,22 +1467,24 @@ textarea.st-form-control { resize: vertical; min-height: 120px; }
   .st-feature-detail.reverse { direction: ltr; }
 }
 
-/* ══ PRICING PAGE EXTRAS ══ */
+/* ══ PRICING PAGE EXTRAS — FAQ accordion thật (details/summary, không cần JS) ══ */
 .st-faq-item {
   border-bottom: 1px solid var(--border-light);
-  padding: 24px 0;
 }
 .st-faq-q {
   font-size: 16px;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  padding: 24px 0;
   cursor: pointer;
+  list-style: none;
 }
+.st-faq-q::-webkit-details-marker { display: none; }
+.st-faq-q::marker { content: ''; }
 .st-faq-icon {
   width: 24px;
   height: 24px;
@@ -1495,12 +1497,22 @@ textarea.st-form-control { resize: vertical; min-height: 120px; }
   font-size: 14px;
   color: var(--accent-mid);
   flex-shrink: 0;
+  transition: transform .25s, background .25s;
+}
+.st-faq-item[open] .st-faq-icon {
+  transform: rotate(45deg);
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
 }
 .st-faq-a {
   font-size: 14px;
   font-weight: 300;
   color: var(--text-2);
   line-height: 1.75;
+  margin: 0;
+  padding: 0 0 24px;
+  max-width: 720px;
 }
 
 /* ══ COMPARISON TABLE ══ */

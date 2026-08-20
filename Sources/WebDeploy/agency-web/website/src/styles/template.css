@@ -109,7 +109,7 @@ a { text-decoration: none; }
 .svc-link:hover { color: var(--accent-h); }
 
 /* Portfolio card */
-.pf-card { border-radius: 14px; overflow: hidden; position: relative; cursor: pointer; background: var(--dark2); }
+.pf-card { display: block; border-radius: 14px; overflow: hidden; position: relative; cursor: pointer; background: var(--dark2); text-decoration: none; color: inherit; }
 .pf-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform .5s ease; }
 .pf-card:hover .pf-img { transform: scale(1.07); }
 .pf-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(12,11,9,.85) 0%, transparent 55%); opacity: 0; transition: opacity .3s; }
@@ -231,3 +231,71 @@ textarea.form-control { resize: vertical; min-height: 110px; }
 .mb-0 { margin-bottom: 0; }
 .position-relative { position: relative; }
 .w-100 { width: 100%; }
+
+/* ══ Case study detail page (/du-an/:slug) ══ */
+.cs-back { font-size: 13px; font-weight: 500; color: rgba(255,255,255,.5); text-decoration: none; display: inline-block; margin-bottom: 22px; transition: color .2s; }
+.cs-back:hover { color: #fff; }
+.cs-meta-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 22px; }
+.cs-tag-pill { font-size: 12px; font-weight: 500; color: rgba(255,255,255,.65); border: 1px solid rgba(255,255,255,.14); padding: 6px 14px; border-radius: 20px; }
+.cs-overview { background: var(--surface); border-bottom: 1px solid var(--border); }
+.cs-overview-inner { display: flex; flex-wrap: wrap; gap: 28px; padding: 28px 0; }
+.cs-overview-item { flex: 1; min-width: 160px; }
+.cs-overview-label { font-size: 11px; font-weight: 500; color: var(--text-3); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 6px; }
+.cs-overview-value { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -.2px; }
+.cs-label { font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 1.4px; margin-bottom: 10px; }
+.cs-heading { font-size: clamp(24px,3vw,34px); font-weight: 600; color: var(--text); letter-spacing: -.6px; }
+.cs-body p { font-size: 14.5px; font-weight: 300; color: var(--text-2); line-height: 1.85; margin-bottom: 16px; }
+.cs-body ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+.cs-body ul li { font-size: 14px; font-weight: 300; color: var(--text-2); line-height: 1.7; padding-left: 24px; position: relative; }
+.cs-body ul li::before { content: ''; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 2px; background: var(--accent); }
+.cs-body ul li strong { color: var(--text); font-weight: 500; }
+.cs-gallery { display: grid; grid-template-columns: 1.4fr 1fr; grid-template-rows: 1fr 1fr; gap: 12px; }
+.cs-gallery img:first-child { grid-row: 1 / 3; aspect-ratio: 4/5; }
+.cs-gallery img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; aspect-ratio: 4/3; }
+@media (max-width: 768px) { .cs-gallery { grid-template-columns: 1fr; grid-template-rows: auto; } .cs-gallery img:first-child { aspect-ratio: 4/3; } }
+.cs-quote-wrap { max-width: 740px; margin: 0 auto; text-align: center; }
+.cs-quote-mark { font-size: 56px; color: var(--accent-mid); opacity: .35; line-height: 1; font-family: Georgia,serif; display: block; margin-bottom: 6px; }
+.cs-quote-text { font-size: clamp(17px,2.2vw,22px); font-weight: 400; color: var(--text); line-height: 1.55; letter-spacing: -.2px; font-style: italic; margin-bottom: 24px; }
+.cs-quote-source { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.cs-quote-av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+.cs-quote-name { font-size: 14px; font-weight: 600; color: var(--text); text-align: left; }
+.cs-quote-role { font-size: 12.5px; color: var(--text-3); font-weight: 300; text-align: left; }
+
+/* Full-info project card — dùng ở "Dự án liên quan" trong trang chi tiết case study */
+.pf-card-full { display: block; text-decoration: none; color: inherit; border-radius: 16px; overflow: hidden; background: var(--surface); border: 1px solid var(--border); transition: transform .28s cubic-bezier(.16,1,.3,1), box-shadow .28s; }
+.pf-card-full:hover { transform: translateY(-6px); box-shadow: 0 20px 52px rgba(0,0,0,.1); }
+.pf-card-full:hover .pf-img { transform: scale(1.05); }
+.pf-card-full .pf-img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; transition: transform .5s ease; }
+.pf-body { padding: 20px; }
+.pf-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.pf-tag { font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 6px; background: var(--accent-light); color: var(--accent); }
+.pf-tag.grey { background: var(--warm); color: var(--text-3); font-weight: 400; }
+.pf-title { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -.3px; margin-bottom: 6px; }
+.pf-desc { font-size: 13px; font-weight: 300; color: var(--text-2); line-height: 1.65; margin-bottom: 14px; }
+.pf-link { font-size: 12.5px; font-weight: 500; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+
+/* ══ Pricing cards (trang Dịch vụ) ══ */
+.price-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px; transition: transform .25s, box-shadow .25s; height: 100%; }
+.price-card:hover { transform: translateY(-5px); box-shadow: 0 14px 44px rgba(0,0,0,.08); }
+.price-card.hot { border-color: var(--accent-mid); background: linear-gradient(160deg,var(--accent-light) 0%,#fff 60%); }
+.pc-hot-tag { position: absolute; top: -11px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; font-size: 11px; font-weight: 600; padding: 4px 14px; border-radius: 20px; white-space: nowrap; }
+.pc-tier { font-size: 11px; font-weight: 600; color: var(--text-3); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 10px; }
+.price-card.hot .pc-tier { color: var(--accent); }
+.pc-price { font-size: clamp(24px,3vw,34px); font-weight: 600; color: var(--text); letter-spacing: -.8px; margin-bottom: 6px; line-height: 1; }
+.pc-price sub { font-size: 13px; font-weight: 400; color: var(--text-2); }
+.pc-desc { font-size: 13px; font-weight: 300; color: var(--text-2); margin-bottom: 18px; line-height: 1.6; }
+.pc-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; }
+.pc-list li { font-size: 13px; color: var(--text-2); display: flex; gap: 8px; align-items: flex-start; }
+.pc-list li::before { content: '✓'; color: var(--accent); font-weight: 600; font-size: 11.5px; flex-shrink: 0; margin-top: 1px; }
+.pc-btn { width: 100%; padding: 11px; border-radius: 9px; font-size: 13.5px; font-weight: 500; cursor: pointer; transition: all .2s; border: 1px solid var(--border); background: transparent; color: var(--text); font-family: var(--sans); }
+.pc-btn:hover { background: var(--warm); }
+.price-card.hot .pc-btn { background: var(--accent); color: #fff; border-color: var(--accent); }
+.price-card.hot .pc-btn:hover { background: var(--accent-h); }
+
+/* ══ FAQ accordion (trang Dịch vụ) ══ */
+.svc-faq-item { border-bottom: 1px solid var(--border-light); }
+.svc-faq-item summary { list-style: none; cursor: pointer; padding: 20px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: var(--sans); font-size: 14.5px; font-weight: 500; color: var(--text); }
+.svc-faq-item summary::-webkit-details-marker { display: none; }
+.svc-faq-icon { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--accent-light); color: var(--accent); font-weight: 600; font-size: 14px; text-align: center; line-height: 22px; transition: transform .25s; }
+.svc-faq-item[open] .svc-faq-icon { transform: rotate(45deg); }
+.svc-faq-a { font-size: 13.5px; font-weight: 300; color: var(--text-2); line-height: 1.75; padding-bottom: 20px; max-width: 760px; }

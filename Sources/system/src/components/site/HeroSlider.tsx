@@ -1,8 +1,29 @@
 'use client'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { HeroSlide as DBSlide } from '@prisma/client'
-import type { Slide, TitlePart, SlideButton } from '@/data/slides.config'
-import { slides as fallbackSlides } from '@/data/slides.config'
+
+type TitlePart =
+  | { text: string; variant?: 'normal' }
+  | { text: string; variant: 'em' }
+  | { text: string; variant: 'muted' }
+  | { br: true }
+
+type ButtonAction =
+  | { type: 'scroll'; target: string }
+  | { type: 'link';   href: string }
+
+interface SlideButton {
+  label:   string
+  action:  ButtonAction
+  variant: 'primary' | 'outline'
+}
+
+type Slide =
+  | { type: 'intro'; bg: string; badge: string; title: TitlePart[]; subtitle: string; stats: { value: string; label: string }[]; buttons: SlideButton[] }
+  | { type: 'features'; bg: string; badge: string; title: TitlePart[]; features: { icon: string; text: string; highlight?: string }[]; tags?: string[]; buttons: SlideButton[] }
+  | { type: 'grid'; bg: string; badge: string; title: TitlePart[]; items: { icon: string; label: string; desc: string }[]; buttons: SlideButton[] }
+  | { type: 'pricing'; bg: string; badge: string; title: TitlePart[]; plans: { name: string; price: string; desc: string; hot?: boolean }[]; tags?: string[]; buttons: SlideButton[] }
+  | { type: 'testimonial'; bg: string; badge: string; quote: string; author: { name: string; role: string; avatar: string }; buttons: SlideButton[] }
 
 const AUTO_MS = 5000
 
@@ -172,12 +193,41 @@ function renderSlide(s: Slide) {
 
 // ── Main component ────────────────────────────────────────────────────────────
 
-export default function HeroSlider({ slides: dbSlides }: { slides?: DBSlide[] }) {
-  const slides = dbSlides && dbSlides.length > 0 ? dbSlides.map(toSlide) : fallbackSlides
+export default function HeroSlider() {
+  const [slides, setSlides] = useState<Slide[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const total = slides.length
   const [cur, setCur]   = useState(0)
   const [anim, setAnim] = useState<{ [key: number]: string }>({ 0: 'active' })
   const timerRef        = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  // Fetch slides from API
+  useEffect(() => {
+    async function fetchSlides() {
+      try {
+        setLoading(true)
+        setError(null)
+        const res = await fetch('/api/slides')
+        if (!res.ok) {
+          throw new Error('Failed to fetch slides')
+        }
+        const data: DBSlide[] = await res.json()
+        if (data && data.length > 0) {
+          setSlides(data.map(toSlide))
+        } else {
+          setError('No slides found')
+        }
+      } catch (err) {
+        const message = err instanceof Error ? err.message : 'Unknown error'
+        setError(message)
+        console.error('Failed to load hero slides:', err)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchSlides()
+  }, [])
 
   const goSlide = useCallback((next: number, dir?: 'next' | 'prev') => {
     setCur(prev => {
@@ -209,6 +259,29 @@ export default function HeroSlider({ slides: dbSlides }: { slides?: DBSlide[] })
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
   }, [cur, goSlide, resetAuto, total])
+
+  // Show error state if slides failed to load
+  if (error && !loading) {
+    return (
+      <div className="hero" id="hero" style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="wd-container text-center" style={{ padding: '40px 20px' }}>
+          <h2 style={{ color: 'var(--text)', marginBottom: '12px' }}>Unable to load hero content</h2>
+          <p style={{ color: 'var(--text-2)' }}>Please try refreshing the page.</p>
+        </div>
+      </div>
+    )
+  }
+
+  // Show loading state
+  if (loading || slides.length === 0) {
+    return (
+      <div className="hero" id="hero" style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg)' }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: 18, color: 'var(--text-2)' }}>Loading...</div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="hero" id="hero">

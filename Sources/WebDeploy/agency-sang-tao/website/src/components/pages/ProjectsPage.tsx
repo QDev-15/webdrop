@@ -7,6 +7,7 @@ import { useDocumentMeta } from '../../hooks/useDocumentMeta'
 interface Project {
   id: number
   title: string
+  slug: string
   category: string
   description: string
   image: string
@@ -94,7 +95,7 @@ export default function ProjectsPage() {
             <div className="row g-4">
               {filtered.map((proj) => (
                 <div key={proj.id} className="col-lg-6 col-md-6" data-reveal>
-                  <article className="ag-project-card">
+                  <Link to={`/du-an/${proj.slug}`} className="ag-project-card">
                     {proj.image && (
                       <div style={{ overflow: 'hidden' }}>
                         <img className="ag-project-thumb" src={proj.image} alt={proj.title} loading="lazy" />
@@ -111,8 +112,9 @@ export default function ProjectsPage() {
                           ))}
                         </div>
                       )}
+                      <span className="ag-project-link">Xem case study &rarr;</span>
                     </div>
-                  </article>
+                  </Link>
                 </div>
               ))}
               {filtered.length === 0 && (
@@ -131,7 +133,7 @@ export default function ProjectsPage() {
           <div className="d-flex align-items-center justify-content-between flex-wrap gap-4" data-reveal>
             <div>
               <div style={{ fontFamily: 'var(--sans)', fontSize: '11px', fontWeight: 600, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '12px' }}>Bắt đầu ngay hôm nay</div>
-              <h2 style={{ fontFamily: 'var(--sans)', fontSize: 'clamp(28px,4vw,48px)', fontWeight: 800, color: '#fff', textTransform: 'uppercase', letterSpacing: '-2px', margin: 0, lineHeight: '.95' }}>
+              <h2 style={{ fontFamily: 'var(--heading)', fontSize: 'clamp(28px,4vw,48px)', fontWeight: 800, color: '#fff', textTransform: 'uppercase', letterSpacing: '-1px', margin: 0, lineHeight: '.95' }}>
                 Dự án tiếp theo của bạn<br/>xứng đáng được làm tốt nhất
               </h2>
             </div>

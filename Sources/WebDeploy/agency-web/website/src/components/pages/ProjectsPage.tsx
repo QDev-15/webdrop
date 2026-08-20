@@ -5,7 +5,7 @@ import { api } from '../../api/client'
 import { usePageTitle } from '../../hooks/usePageTitle'
 
 interface Project {
-  id: number; title: string; description: string; image: string; category: string; client: string; featured: number; tags: string; link: string
+  id: number; title: string; slug: string; description: string; image: string; category: string; client: string; featured: number; tags: string; link: string
 }
 
 export default function ProjectsPage() {
@@ -66,9 +66,9 @@ export default function ProjectsPage() {
             <div className="row g-3">
               {filtered.map((p, i) => (
                 <div key={p.id} className={`col-md-${i === 0 || i === 4 ? '6' : '4'}`}>
-                  <div className={`reveal${i % 3 === 1 ? ' reveal-d1' : i % 3 === 2 ? ' reveal-d2' : ''}`} data-reveal style={{ borderRadius: '16px', overflow: 'hidden', background: 'var(--surface)', border: '1px solid var(--border)', transition: 'transform .28s cubic-bezier(.16,1,.3,1),box-shadow .28s', cursor: 'pointer' }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-6px)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 20px 52px rgba(0,0,0,.1)' }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.transform = ''; (e.currentTarget as HTMLDivElement).style.boxShadow = '' }}>
+                  <Link to={`/du-an/${p.slug}`} className={`reveal${i % 3 === 1 ? ' reveal-d1' : i % 3 === 2 ? ' reveal-d2' : ''}`} data-reveal style={{ display: 'block', borderRadius: '16px', overflow: 'hidden', background: 'var(--surface)', border: '1px solid var(--border)', transition: 'transform .28s cubic-bezier(.16,1,.3,1),box-shadow .28s', cursor: 'pointer', color: 'inherit', textDecoration: 'none' }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-6px)'; (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 20px 52px rgba(0,0,0,.1)' }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.transform = ''; (e.currentTarget as HTMLAnchorElement).style.boxShadow = '' }}>
                     <img src={p.image} alt={p.title} style={{ width: '100%', aspectRatio: '16/10', objectFit: 'cover', display: 'block' }} loading="lazy" />
                     <div style={{ padding: '20px' }}>
                       <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: '10px' }}>
@@ -78,7 +78,7 @@ export default function ProjectsPage() {
                       <div style={{ fontSize: '15px', fontWeight: 600, color: 'var(--text)', letterSpacing: '-.3px', marginBottom: '6px' }}>{p.title}</div>
                       <div style={{ fontSize: '13px', fontWeight: 300, color: 'var(--text-2)', lineHeight: 1.65 }}>{p.description}</div>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               ))}
             </div>

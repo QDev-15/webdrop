@@ -129,7 +129,7 @@ export default function AboutPage() {
           <div className="d-flex align-items-center justify-content-between flex-wrap gap-4" data-reveal>
             <div>
               <div style={{ fontFamily: 'var(--sans)', fontSize: '11px', fontWeight: 600, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '12px' }}>Làm việc cùng chúng tôi</div>
-              <h2 style={{ fontFamily: 'var(--sans)', fontSize: 'clamp(28px,4vw,48px)', fontWeight: 800, color: '#fff', textTransform: 'uppercase', letterSpacing: '-2px', margin: 0, lineHeight: '.95' }}>
+              <h2 style={{ fontFamily: 'var(--heading)', fontSize: 'clamp(28px,4vw,48px)', fontWeight: 800, color: '#fff', textTransform: 'uppercase', letterSpacing: '-1px', margin: 0, lineHeight: '.95' }}>
                 Bắt đầu dự án<br/>của bạn ngay hôm nay
               </h2>
             </div>

@@ -22,7 +22,7 @@ const statusColor: Record<string, string> = { published: 'var(--accent)', draft:
 export default async function AdminTemplatesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; category?: string; status?: string; industry?: string; website?: string }>
+  searchParams: Promise<{ q?: string; category?: string; status?: string; industry?: string; website?: string; page?: string; limit?: string }>
 }) {
   const sp       = await searchParams
   const q        = sp.q?.trim() ?? ''
@@ -30,6 +30,8 @@ export default async function AdminTemplatesPage({
   const status   = sp.status   ?? ''
   const industry = sp.industry ?? ''
   const website  = sp.website  ?? ''
+  const page     = Math.max(1, parseInt(sp.page ?? '1'))
+  const perPage  = Math.min(100, Math.max(10, parseInt(sp.limit ?? '10')))
 
   const where: Prisma.TemplateWhereInput = {
     ...(q        && { name: { contains: q, mode: 'insensitive' } }),
@@ -40,23 +42,40 @@ export default async function AdminTemplatesPage({
     ...(website === 'no'  && { hasWebsite: false }),
   }
 
+  const whereNoStatus = {
+    ...(q        && { name: { contains: q, mode: 'insensitive' } }),
+    ...(category && { category: category as 'web' | 'admin' }),
+    ...(industry && { industry: { slug: industry } }),
+    ...(website === 'yes' && { hasWebsite: true }),
+    ...(website === 'no'  && { hasWebsite: false }),
+  } as Prisma.TemplateWhereInput
+
   let templates: TemplateWithIndustry[] = []
   let industries: { slug: string; name: string }[] = []
+  let totalCount = 0
+  let publishedCount = 0
+  let draftCount = 0
 
   try {
-    ;[templates, industries] = await Promise.all([
+    ;[templates, industries, totalCount, publishedCount, draftCount] = await Promise.all([
       prisma.template.findMany({
         where,
         include: { industry: { select: { name: true, slug: true } } },
         orderBy: { createdAt: 'desc' },
+        skip: (page - 1) * perPage,
+        take: perPage,
       }),
       prisma.industry.findMany({ orderBy: { sortOrder: 'asc' }, select: { slug: true, name: true } }),
+      prisma.template.count({ where }),
+      prisma.template.count({ where: { ...whereNoStatus, status: 'published' } }),
+      prisma.template.count({ where: { ...whereNoStatus, status: 'draft' } }),
     ])
   } catch { /* DB chưa kết nối */ }
 
-  const total     = templates.length
-  const published = templates.filter(t => t.status === 'published').length
-  const draft     = templates.filter(t => t.status === 'draft').length
+  const total       = totalCount
+  const published   = publishedCount
+  const draft       = draftCount
+  const totalPages  = Math.ceil(total / perPage)
 
   return (
     <AdminLayout title="Quản lý Template">
@@ -76,7 +95,7 @@ export default async function AdminTemplatesPage({
 
       {/* Filters */}
       <Suspense>
-        <TemplateFilters industries={industries} total={total} withWebsite={templates.filter(t => t.hasWebsite).length} />
+        <TemplateFilters industries={industries} total={total} />
       </Suspense>
 
       {/* Grid */}
@@ -88,45 +107,82 @@ export default async function AdminTemplatesPage({
           }
         </div>
       ) : (
-        <div className="row g-3">
-          {templates.map(t => (
-            <div key={t.id} className="col-lg-4 col-md-6">
-              <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden' }}>
-                {t.thumbnail && (
-                  <div style={{ height: 160, overflow: 'hidden', background: 'var(--warm)' }}>
-                    <img src={t.thumbnail} alt={t.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
-                  </div>
-                )}
-                <div style={{ padding: '14px 16px' }}>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 6 }}>
-                    <div style={{ fontSize: 14, fontWeight: 500, color: 'var(--text)' }}>{t.name}</div>
-                    <span style={{ fontSize: 11, color: statusColor[t.status], background: t.status === 'published' ? 'var(--accent-light)' : 'var(--warm)', borderRadius: 5, padding: '2px 8px', flexShrink: 0, marginLeft: 8 }}>
-                      {statusLabel[t.status]}
-                    </span>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
-                    <span style={{ fontSize: 12, color: 'var(--text-3)' }}>{t.industry?.name || t.category} · {t.salesCount} lượt mua</span>
-                    {t.hasWebsite
-                      ? <span style={{ fontSize: 10, fontWeight: 600, padding: '2px 6px', borderRadius: 4, background: '#e8f4ef', color: 'var(--accent)', flexShrink: 0 }}>🌐 Gói B</span>
-                      : <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 4, background: 'var(--warm)', color: 'var(--text-3)', flexShrink: 0 }}>Template only</span>
-                    }
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--accent)' }}>{formatPrice(t.price)}</div>
-                    <div style={{ display: 'flex', gap: 8 }}>
-                      {(t.deployUrl || t.demoUrl) && (
-                        <a href={t.deployUrl || t.demoUrl!} target="_blank" rel="noopener noreferrer"
-                          style={{ fontSize: 12, color: 'var(--text-2)', textDecoration: 'none' }}>Demo ↗</a>
-                      )}
-                      <Link href={`/admin/templates/${t.id}/edit`}
-                        style={{ fontSize: 12, color: 'var(--accent)', textDecoration: 'none' }}>Sửa</Link>
+        <>
+          <div className="row g-3">
+            {templates.map(t => (
+              <div key={t.id} className="col-lg-4 col-md-6">
+                <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden' }}>
+                  {t.thumbnail && (
+                    <div style={{ height: 160, overflow: 'hidden', background: 'var(--warm)' }}>
+                      <img src={t.thumbnail} alt={t.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+                    </div>
+                  )}
+                  <div style={{ padding: '14px 16px' }}>
+                    <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 6 }}>
+                      <div style={{ fontSize: 14, fontWeight: 500, color: 'var(--text)' }}>{t.name}</div>
+                      <span style={{ fontSize: 11, color: statusColor[t.status], background: t.status === 'published' ? 'var(--accent-light)' : 'var(--warm)', borderRadius: 5, padding: '2px 8px', flexShrink: 0, marginLeft: 8 }}>
+                        {statusLabel[t.status]}
+                      </span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
+                      <span style={{ fontSize: 12, color: 'var(--text-3)' }}>{t.industry?.name || t.category} · {t.salesCount} lượt mua</span>
+                      {t.hasWebsite
+                        ? <span style={{ fontSize: 10, fontWeight: 600, padding: '2px 6px', borderRadius: 4, background: '#e8f4ef', color: 'var(--accent)', flexShrink: 0 }}>🌐 Gói B</span>
+                        : <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 4, background: 'var(--warm)', color: 'var(--text-3)', flexShrink: 0 }}>Template only</span>
+                      }
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--accent)' }}>{formatPrice(t.price)}</div>
+                      <div style={{ display: 'flex', gap: 8 }}>
+                        {(t.deployUrl || t.demoUrl) && (
+                          <a href={t.deployUrl || t.demoUrl!} target="_blank" rel="noopener noreferrer"
+                            style={{ fontSize: 12, color: 'var(--text-2)', textDecoration: 'none' }}>Demo ↗</a>
+                        )}
+                        <Link href={`/admin/templates/${t.id}/edit`}
+                          style={{ fontSize: 12, color: 'var(--accent)', textDecoration: 'none' }}>Sửa</Link>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (() => {
+            const params = new URLSearchParams()
+            if (q) params.set('q', q)
+            if (category) params.set('category', category)
+            if (status) params.set('status', status)
+            if (industry) params.set('industry', industry)
+            if (website) params.set('website', website)
+
+            const prevParams = new URLSearchParams(params.toString())
+            prevParams.set('page', String(page - 1))
+            const nextParams = new URLSearchParams(params.toString())
+            nextParams.set('page', String(page + 1))
+
+            return (
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 8, marginTop: 32, paddingBottom: 20 }}>
+                {page > 1 && (
+                  <Link href={`?${prevParams.toString()}`}
+                    style={{ padding: '8px 12px', borderRadius: 6, border: '1px solid var(--border)', color: 'var(--text-2)', textDecoration: 'none', fontSize: 13 }}>
+                    ← Trước
+                  </Link>
+                )}
+                <div style={{ fontSize: 13, color: 'var(--text-2)' }}>
+                  Trang {page} / {totalPages}
+                </div>
+                {page < totalPages && (
+                  <Link href={`?${nextParams.toString()}`}
+                    style={{ padding: '8px 12px', borderRadius: 6, border: '1px solid var(--border)', color: 'var(--text-2)', textDecoration: 'none', fontSize: 13 }}>
+                    Sau →
+                  </Link>
+                )}
+              </div>
+            )
+          })()}
+        </>
       )}
     </AdminLayout>
   )

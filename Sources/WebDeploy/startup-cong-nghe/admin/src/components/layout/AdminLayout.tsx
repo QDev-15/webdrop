@@ -14,6 +14,7 @@ const pageTitles: Record<string, string> = {
   '/demos':       'Đặt lịch demo',
   '/media':       'Thư viện media',
   '/settings':    'Cài đặt',
+  '/profile':     'Tài khoản',
 }
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
