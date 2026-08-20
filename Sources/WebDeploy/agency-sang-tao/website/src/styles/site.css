@@ -42,3 +42,67 @@ body { margin: 0; }
 @media (max-width: 480px) {
   .ag-work-grid-react { grid-template-columns: 1fr; grid-auto-rows: 240px; }
 }
+
+/* ══════════════════════════════════════
+   CASE STUDY (/du-an/:slug) + FAQ/Pricing on ServicesPage — thêm khi retrofit
+   mục G/H/I. .ag-work-item và .ag-project-card giờ là <Link> (thẻ <a>) thay vì
+   <article> tĩnh nên cần display:block để không bị vỡ layout grid/card.
+══════════════════════════════════════ */
+.ag-work-item, .ag-project-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.ag-project-link {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 16px;
+  transition: transform .25s;
+}
+.ag-project-card:hover .ag-project-link { transform: translateX(4px); }
+
+.ag-cs-meta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+
+.ag-cs-overview { background: var(--surface); border-bottom: 1px solid var(--border); }
+.ag-cs-overview-inner { display: grid; grid-template-columns: repeat(4, 1fr); }
+.ag-cs-overview-item { padding: 28px 32px; border-right: 1px solid var(--border); }
+.ag-cs-overview-item:last-child { border-right: none; }
+.ag-cs-overview-label { font-family: var(--sans); font-size: 10px; font-weight: 600; color: var(--text-3); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+.ag-cs-overview-value { font-family: var(--sans); font-size: 15px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+@media (max-width: 900px) {
+  .ag-cs-overview-inner { grid-template-columns: repeat(2, 1fr); }
+  .ag-cs-overview-item { border-right: none; border-bottom: 1px solid var(--border); }
+}
+
+.ag-cs-body p { font-family: var(--sans); font-size: 15px; font-weight: 400; color: var(--text-2); line-height: 1.85; margin-bottom: 16px; }
+.ag-cs-body ul { list-style: none; padding: 0; margin: 0 0 16px; }
+.ag-cs-body ul li { font-family: var(--sans); font-size: 14px; color: var(--text-2); line-height: 1.8; padding-left: 24px; position: relative; margin-bottom: 10px; }
+.ag-cs-body ul li::before { content: ''; position: absolute; left: 0; top: 9px; width: 8px; height: 8px; background: var(--accent); }
+
+.ag-cs-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+.ag-cs-gallery img { width: 100%; height: 280px; object-fit: cover; }
+@media (max-width: 768px) {
+  .ag-cs-gallery { grid-template-columns: 1fr; }
+  .ag-cs-gallery img { height: 220px; }
+}
+
+.ag-cs-related-quote { border-left: none !important; max-width: 720px; margin: 0 auto; text-align: left; }
+
+/* FAQ accordion — details/summary thật, không cần JS */
+.ag-faq-item { border-bottom: 1px solid var(--border); }
+.ag-faq-item summary {
+  list-style: none; cursor: pointer; padding: 22px 0;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  font-family: var(--sans); font-size: 15px; font-weight: 700; color: var(--text);
+  text-transform: uppercase; letter-spacing: -0.3px;
+}
+.ag-faq-item summary::-webkit-details-marker { display: none; }
+.ag-faq-icon { flex-shrink: 0; width: 22px; height: 22px; color: var(--accent); font-weight: 700; font-size: 18px; text-align: center; transition: transform .25s; }
+.ag-faq-item[open] .ag-faq-icon { transform: rotate(45deg); }
+.ag-faq-a { font-family: var(--sans); font-size: 13.5px; font-weight: 400; color: var(--text-2); line-height: 1.8; padding-bottom: 24px; max-width: 760px; }

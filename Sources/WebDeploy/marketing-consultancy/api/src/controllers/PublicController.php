@@ -39,6 +39,28 @@ class PublicController {
         Response::json($testimonials);
     }
 
+    public function faqs(array $p): void {
+        $page = trim((string)($_GET['page'] ?? ''));
+        if ($page !== '') {
+            $faqs = $this->db->query(
+                "SELECT id, question, answer, page, sort_order FROM faqs WHERE status='published' AND page=? ORDER BY sort_order, id",
+                [$page]
+            );
+        } else {
+            $faqs = $this->db->query(
+                "SELECT id, question, answer, page, sort_order FROM faqs WHERE status='published' ORDER BY sort_order, id"
+            );
+        }
+        Response::json($faqs);
+    }
+
+    public function pricingPlans(array $p): void {
+        $plans = $this->db->query(
+            "SELECT id, name, price, description, features, is_featured, cta_text, cta_link, sort_order FROM pricing_plans WHERE status='published' ORDER BY sort_order, id"
+        );
+        Response::json($plans);
+    }
+
     public function submitContact(array $p): void {
         $b = bodyJson();
         if (empty($b['name']) || empty($b['message'])) {

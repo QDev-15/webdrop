@@ -91,6 +91,30 @@ CREATE TABLE IF NOT EXISTS testimonials (
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+-- faqs: câu hỏi thường gặp (trang dịch vụ)
+CREATE TABLE IF NOT EXISTS faqs (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  question TEXT NOT NULL,
+  answer TEXT NOT NULL,
+  page TEXT DEFAULT 'dich-vu',
+  sort_order INTEGER DEFAULT 0,
+  status TEXT DEFAULT 'published'
+);
+
+-- pricing_plans: bảng giá gói dịch vụ
+CREATE TABLE IF NOT EXISTS pricing_plans (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  price TEXT NOT NULL,
+  description TEXT,
+  features TEXT,
+  is_featured INTEGER DEFAULT 0,
+  cta_text TEXT DEFAULT 'Nhận báo giá',
+  cta_link TEXT DEFAULT '/lien-he',
+  sort_order INTEGER DEFAULT 0,
+  status TEXT DEFAULT 'published'
+);
+
 -- media: file upload
 CREATE TABLE IF NOT EXISTS media (
   id INTEGER PRIMARY KEY AUTOINCREMENT,

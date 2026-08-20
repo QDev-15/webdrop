@@ -1,15 +1,19 @@
 import { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 
 interface Props {
   children: React.ReactNode
   delay?: number
   className?: string
   style?: React.CSSProperties
-  tag?: 'div' | 'section' | 'article' | 'span'
+  tag?: 'div' | 'section' | 'article' | 'span' | 'h1' | 'h2' | 'p'
+  // Khi truyền `to`, Reveal render dưới dạng <Link> thay vì `tag` — dùng cho card có thể bấm
+  // vào (vd case card trỏ tới trang chi tiết vụ việc) mà vẫn giữ nguyên hiệu ứng reveal.
+  to?: string
 }
 
-export default function Reveal({ children, delay = 0, className = '', style, tag: Tag = 'div' }: Props) {
-  const ref = useRef<HTMLDivElement>(null)
+export default function Reveal({ children, delay = 0, className = '', style, tag: Tag = 'div', to }: Props) {
+  const ref = useRef<HTMLAnchorElement & HTMLDivElement>(null)
 
   useEffect(() => {
     const el = ref.current
@@ -30,6 +34,20 @@ export default function Reveal({ children, delay = 0, className = '', style, tag
   const combinedStyle = delay
     ? { transitionDelay: `${delay * 0.1}s`, ...style }
     : style
+
+  if (to) {
+    return (
+      <Link
+        to={to}
+        ref={ref}
+        data-reveal=""
+        className={className}
+        style={combinedStyle}
+      >
+        {children}
+      </Link>
+    )
+  }
 
   return (
     <Tag

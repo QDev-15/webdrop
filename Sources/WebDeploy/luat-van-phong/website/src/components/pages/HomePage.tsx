@@ -155,7 +155,7 @@ export default function HomePage() {
           </Reveal>
           <div className="lv-case-list">
             {featuredCases.map((c, i) => (
-              <Reveal key={c.id} delay={i} className="lv-case">
+              <Reveal key={c.id} delay={i} to={c.slug ? `/vu-viec/${c.slug}` : undefined} className="lv-case">
                 <div className="lv-case-left">
                   <div className="lv-case-tag">{c.category}</div>
                   <div className="lv-case-title">{c.title}</div>

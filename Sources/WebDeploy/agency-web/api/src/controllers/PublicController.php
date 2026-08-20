@@ -39,6 +39,31 @@ class PublicController {
         Response::json($this->db->query($sql, $params));
     }
 
+    public function projectBySlug(array $p): void {
+        $item = $this->db->queryOne(
+            "SELECT * FROM projects WHERE slug=? AND status='published'",
+            [$p['slug']]
+        );
+        if (!$item) { Response::error('Không tìm thấy dự án.', 404); return; }
+        Response::json($item);
+    }
+
+    public function faqs(array $p): void {
+        $page = trim($_GET['page'] ?? 'dich-vu');
+        $items = $this->db->query(
+            "SELECT * FROM faqs WHERE status='published' AND page=? ORDER BY sort_order, id",
+            [$page]
+        );
+        Response::json($items);
+    }
+
+    public function pricingPlans(array $p): void {
+        $items = $this->db->query(
+            "SELECT * FROM pricing_plans WHERE status='published' ORDER BY sort_order, id"
+        );
+        Response::json($items);
+    }
+
     public function team(array $p): void {
         $team = $this->db->query(
             "SELECT * FROM team_members WHERE status='published' ORDER BY sort_order, id"
@@ -83,13 +108,16 @@ class PublicController {
         $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
         $base   = $scheme . '://' . ($_SERVER['HTTP_HOST'] ?? 'localhost');
 
-        // Site này không có trang chi tiết dự án/dịch vụ riêng — chỉ route tĩnh
         $staticRoutes = ['/', '/dich-vu', '/du-an', '/ve-chung-toi', '/lien-he'];
+        $projectSlugs = $this->db->query("SELECT slug FROM projects WHERE status='published' AND slug IS NOT NULL AND slug != ''");
 
         echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
         echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
         foreach ($staticRoutes as $route) {
             echo '  <url><loc>' . htmlspecialchars($base . $route, ENT_XML1) . '</loc></url>' . "\n";
+        }
+        foreach ($projectSlugs as $row) {
+            echo '  <url><loc>' . htmlspecialchars($base . '/du-an/' . $row['slug'], ENT_XML1) . '</loc></url>' . "\n";
         }
         echo '</urlset>';
     }

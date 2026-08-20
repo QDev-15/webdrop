@@ -302,37 +302,12 @@ export default function Settings() {
               <div className="form-group"><label className="form-label">Tiêu đề</label><input className="form-control" value={s.services_hero_title ?? ''} onChange={e => set('services_hero_title', e.target.value)} /></div>
               <div className="form-group"><label className="form-label">Mô tả</label><textarea className="form-control" rows={2} value={s.services_hero_sub ?? ''} onChange={e => set('services_hero_sub', e.target.value)} /></div>
 
-              <div style={sectionLabelStyle}>Trang Dịch vụ — Gói dịch vụ (3 gói)</div>
+              <div style={sectionLabelStyle}>Trang Dịch vụ — Bảng giá (tiêu đề khối)</div>
               <div className="form-group"><label className="form-label">Eyebrow</label><input className="form-control" value={s.pricing_eyebrow ?? ''} onChange={e => set('pricing_eyebrow', e.target.value)} /></div>
               <div className="form-group"><label className="form-label">Tiêu đề</label><input className="form-control" value={s.pricing_title ?? ''} onChange={e => set('pricing_title', e.target.value)} /></div>
-              {[1, 2, 3].map(i => (
-                <div key={i} style={{ border: '1px solid var(--border-light)', borderRadius: 8, padding: 12, marginBottom: 12 }}>
-                  <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: 12 }}>
-                    <div className="form-group" style={{ marginBottom: 8 }}>
-                      <label className="form-label">Gói {i} — Tên</label>
-                      <input className="form-control" value={s[`pricing_pkg${i}_name`] ?? ''} onChange={e => set(`pricing_pkg${i}_name`, e.target.value)} />
-                    </div>
-                    <div className="form-group" style={{ marginBottom: 8 }}>
-                      <label className="form-label">Giá</label>
-                      <input className="form-control" value={s[`pricing_pkg${i}_price`] ?? ''} onChange={e => set(`pricing_pkg${i}_price`, e.target.value)} />
-                    </div>
-                    {i === 2 ? (
-                      <div className="form-group" style={{ marginBottom: 8 }}>
-                        <label className="form-label">Nhãn nổi bật</label>
-                        <input className="form-control" value={s.pricing_pkg2_badge ?? ''} onChange={e => set('pricing_pkg2_badge', e.target.value)} placeholder="Phổ biến" />
-                      </div>
-                    ) : <div />}
-                  </div>
-                  <div className="form-group" style={{ marginBottom: 8 }}>
-                    <label className="form-label">Mô tả ngắn</label>
-                    <input className="form-control" value={s[`pricing_pkg${i}_desc`] ?? ''} onChange={e => set(`pricing_pkg${i}_desc`, e.target.value)} />
-                  </div>
-                  <div className="form-group" style={{ marginBottom: 0 }}>
-                    <label className="form-label">Tính năng (mỗi dòng 1 tính năng)</label>
-                    <textarea className="form-control" rows={4} value={s[`pricing_pkg${i}_features`] ?? ''} onChange={e => set(`pricing_pkg${i}_features`, e.target.value)} />
-                  </div>
-                </div>
-              ))}
+              <p style={{ fontSize: 13, color: 'var(--text-2)', margin: '0 0 20px' }}>
+                Từng gói giá (tên, giá, tính năng...) nay được quản lý ở mục <strong>Bảng giá</strong> riêng trong menu Nội dung.
+              </p>
 
               <div style={sectionLabelStyle}>Trang Dịch vụ — CTA</div>
               <div className="form-group"><label className="form-label">Tiêu đề CTA</label><input className="form-control" value={s.services_cta_title ?? ''} onChange={e => set('services_cta_title', e.target.value)} /></div>

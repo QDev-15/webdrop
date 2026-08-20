@@ -12,7 +12,7 @@ async function request<T>(method: string, path: string, body?: unknown): Promise
     body: body instanceof FormData ? body : (body ? JSON.stringify(body) : undefined),
   })
   if (!res.ok) {
-    const err = await res.json().catch(() => ({ error: 'Lá»—i khÃ´ng xÃ¡c Ä‘á»‹nh' }))
+    const err = await res.json().catch(() => ({ error: 'Lỗi không xác định' }))
     throw new Error(err.error || 'Request failed')
   }
   return res.json()

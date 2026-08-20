@@ -184,14 +184,14 @@ export default function HomePage() {
 
           <div className="xd-project-grid" data-reveal data-delay="1">
             {displayProjects.map((p, i) => (
-              <div key={p.id} className="xd-project-item">
+              <Link key={p.id} to={`/du-an/${p.slug}`} className="xd-project-item">
                 <img src={p.image} alt={p.name} loading={i === 0 ? 'eager' : 'lazy'} />
                 <div className="xd-project-overlay">
                   <div className="xd-proj-cat">{CATEGORY_LABELS[p.category] || p.category}</div>
                   <div className="xd-proj-name">{p.name}</div>
                   <div className="xd-proj-loc">{p.location}</div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

@@ -12,6 +12,10 @@ import TeamList from './pages/team/TeamList'
 import TeamForm from './pages/team/TeamForm'
 import TestimonialList from './pages/testimonials/TestimonialList'
 import TestimonialForm from './pages/testimonials/TestimonialForm'
+import FaqList from './pages/faqs/FaqList'
+import FaqForm from './pages/faqs/FaqForm'
+import PricingList from './pages/pricing/PricingList'
+import PricingForm from './pages/pricing/PricingForm'
 import ContactList from './pages/contacts/ContactList'
 import MediaPage from './pages/media/MediaPage'
 import ProfilePage from './pages/profile/ProfilePage'
@@ -37,6 +41,12 @@ function ProtectedRoutes() {
         <Route path="/testimonials"           element={<TestimonialList />} />
         <Route path="/testimonials/new"       element={<TestimonialForm />} />
         <Route path="/testimonials/:id/edit"  element={<TestimonialForm />} />
+        <Route path="/faqs"                   element={<FaqList />} />
+        <Route path="/faqs/new"               element={<FaqForm />} />
+        <Route path="/faqs/:id/edit"          element={<FaqForm />} />
+        <Route path="/pricing"                element={<PricingList />} />
+        <Route path="/pricing/new"            element={<PricingForm />} />
+        <Route path="/pricing/:id/edit"       element={<PricingForm />} />
         <Route path="/contacts"               element={<ContactList />} />
         <Route path="/media"                  element={<MediaPage />} />
         <Route path="/settings"               element={<Settings />} />

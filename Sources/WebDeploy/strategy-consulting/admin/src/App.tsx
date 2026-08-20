@@ -8,6 +8,10 @@ import HeroSlideList from './pages/slides/HeroSlideList'
 import HeroSlideForm from './pages/slides/HeroSlideForm'
 import ServiceList from './pages/services/ServiceList'
 import ServiceForm from './pages/services/ServiceForm'
+import FaqList from './pages/faqs/FaqList'
+import FaqForm from './pages/faqs/FaqForm'
+import PricingList from './pages/pricing/PricingList'
+import PricingForm from './pages/pricing/PricingForm'
 import ContactList from './pages/contacts/ContactList'
 import MediaPage from './pages/media/MediaPage'
 import ProfilePage from './pages/profile/ProfilePage'
@@ -27,6 +31,12 @@ function ProtectedRoutes() {
         <Route path="/services"          element={<ServiceList />} />
         <Route path="/services/new"      element={<ServiceForm />} />
         <Route path="/services/:id/edit" element={<ServiceForm />} />
+        <Route path="/faqs"              element={<FaqList />} />
+        <Route path="/faqs/new"          element={<FaqForm />} />
+        <Route path="/faqs/:id/edit"     element={<FaqForm />} />
+        <Route path="/pricing"           element={<PricingList />} />
+        <Route path="/pricing/new"       element={<PricingForm />} />
+        <Route path="/pricing/:id/edit"  element={<PricingForm />} />
         <Route path="/contacts"          element={<ContactList />} />
         <Route path="/media"             element={<MediaPage />} />
         <Route path="/settings"          element={<Settings />} />

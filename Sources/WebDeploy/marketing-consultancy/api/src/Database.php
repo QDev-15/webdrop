@@ -50,6 +50,8 @@ class Database {
         $this->seedServices();
         $this->seedTeamMembers();
         $this->seedTestimonials();
+        $this->seedFaqs();
+        $this->seedPricingPlans();
     }
 
     private function seedUsers(): void {
@@ -398,6 +400,59 @@ HTML;
             $this->execute(
                 "INSERT INTO testimonials (author_name, author_title, author_avatar, content, rating, sort_order, status) VALUES (?, ?, ?, ?, ?, ?, 'published')",
                 [$name, $title, $avatar, $content, $rating, $order]
+            );
+        }
+    }
+
+    // ─── Extensions (FAQs — mục H, trang /dich-vu) ───────────────────────────
+
+    private function seedFaqs(): void {
+        if ($this->scalar("SELECT COUNT(*) FROM faqs") > 0) return;
+        $faqs = [
+            ['Bao lâu thì thấy kết quả từ chiến dịch marketing?', 'Tùy kênh triển khai: quảng cáo trả phí (Google/Facebook Ads) thường có số liệu đầu tiên sau 1–2 tuần, trong khi SEO và content marketing cần 2–4 tháng để thấy chuyển biến rõ rệt về thứ hạng và traffic tự nhiên. Chúng tôi luôn thống nhất mốc thời gian kỳ vọng cụ thể trước khi bắt đầu.'],
+            ['Ngân sách tối thiểu để bắt đầu là bao nhiêu?', 'Gói Startup khởi điểm từ 5 triệu/tháng, phù hợp doanh nghiệp mới bắt đầu làm marketing bài bản. Với ngân sách quảng cáo (ads spend), chúng tôi tư vấn riêng dựa trên ngành hàng và mục tiêu tăng trưởng cụ thể của bạn.'],
+            ['Quy trình báo cáo hiệu quả chiến dịch diễn ra như thế nào?', 'Chúng tôi gửi báo cáo định kỳ (1–2 lần/tháng tùy gói) qua Google Data Studio với đầy đủ chỉ số: reach, engagement, traffic, chi phí trên mỗi kết quả (CPA/CPL) và ROI. Kèm theo là nhận định và đề xuất tối ưu cho giai đoạn tiếp theo, không chỉ là con số thô.'],
+            ['Markco có cam kết KPI cụ thể không?', 'Có — KPI (số lượng lead, traffic, tỷ lệ chuyển đổi...) được thống nhất bằng văn bản trong hợp đồng dựa trên khảo sát thực tế ngành hàng và ngân sách. Nếu không đạt KPI cam kết do lỗi từ phía chúng tôi, bạn sẽ được bù đắp theo điều khoản đã ký.'],
+            ['Hợp đồng tính theo tháng hay theo dự án?', 'Cả hai — dịch vụ retainer (chiến lược, social, content, ads dài hạn) tính theo tháng với cam kết tối thiểu 3 tháng để đảm bảo hiệu quả. Các hạng mục độc lập như SEO audit, thiết kế chiến dịch một lần có thể ký theo dự án.'],
+            ['Tôi có được làm việc trực tiếp với account phụ trách không?', 'Có — mỗi khách hàng được gán 1 account manager cố định làm đầu mối liên lạc xuyên suốt hợp đồng, cùng đội chuyên môn (content, ads, SEO) hỗ trợ phía sau. Bạn không phải làm việc qua nhiều người khác nhau ở mỗi giai đoạn.'],
+            ['Tôi có thể dừng hoặc điều chỉnh hợp đồng giữa chừng không?', 'Có — sau giai đoạn cam kết tối thiểu, hợp đồng gia hạn theo tháng và có thể điều chỉnh phạm vi dịch vụ hoặc dừng lại với thông báo trước 30 ngày, theo đúng điều khoản đã ký.'],
+        ];
+        foreach ($faqs as $i => [$question, $answer]) {
+            $this->execute(
+                "INSERT INTO faqs (question, answer, page, sort_order, status) VALUES (?, ?, 'dich-vu', ?, 'published')",
+                [$question, $answer, $i + 1]
+            );
+        }
+    }
+
+    // ─── Extensions (Pricing Plans — mục I, trang /dich-vu) ──────────────────
+
+    private function seedPricingPlans(): void {
+        if ($this->scalar("SELECT COUNT(*) FROM pricing_plans") > 0) return;
+        $plans = [
+            [
+                'name' => 'Gói Startup', 'price' => '5tr/tháng',
+                'description' => 'Dành cho startup hoặc doanh nghiệp vừa bắt đầu.',
+                'features' => "Chiến lược marketing cơ bản\nQuản lý 2 kênh social media\n4 bài blog/tháng\n1 báo cáo/tháng",
+                'is_featured' => 0, 'cta_text' => 'Chọn gói Startup', 'cta_link' => '/lien-he', 'sort_order' => 1,
+            ],
+            [
+                'name' => 'Gói Standard', 'price' => '12tr/tháng',
+                'description' => 'Dành cho doanh nghiệp vừa và nhỏ.',
+                'features' => "Chiến lược marketing toàn diện\nQuản lý 4 kênh social media\n8 bài blog/tháng\nQuảng cáo Google/Facebook\n2 báo cáo/tháng",
+                'is_featured' => 1, 'cta_text' => 'Chọn gói Standard', 'cta_link' => '/lien-he', 'sort_order' => 2,
+            ],
+            [
+                'name' => 'Gói Premium', 'price' => '25tr+/tháng',
+                'description' => 'Dành cho doanh nghiệp lớn và tập đoàn.',
+                'features' => "Chiến lược marketing tùy chỉnh\nQuản lý toàn bộ kênh\nKhông giới hạn nội dung\nChuyên gia riêng biệt\nTư vấn hàng tuần\nBáo cáo thời gian thực",
+                'is_featured' => 0, 'cta_text' => 'Liên hệ tư vấn', 'cta_link' => '/lien-he', 'sort_order' => 3,
+            ],
+        ];
+        foreach ($plans as $plan) {
+            $this->execute(
+                "INSERT INTO pricing_plans (name, price, description, features, is_featured, cta_text, cta_link, sort_order, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'published')",
+                [$plan['name'], $plan['price'], $plan['description'], $plan['features'], $plan['is_featured'], $plan['cta_text'], $plan['cta_link'], $plan['sort_order']]
             );
         }
     }

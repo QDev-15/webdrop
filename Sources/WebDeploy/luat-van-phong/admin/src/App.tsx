@@ -11,6 +11,8 @@ import LawyerList from './pages/lawyers/LawyerList'
 import LawyerForm from './pages/lawyers/LawyerForm'
 import CaseList from './pages/cases/CaseList'
 import CaseForm from './pages/cases/CaseForm'
+import FaqList from './pages/faqs/FaqList'
+import PricingList from './pages/pricing/PricingList'
 import TestimonialList from './pages/testimonials/TestimonialList'
 import ContactList from './pages/contacts/ContactList'
 import ConsultationList from './pages/consultations/ConsultationList'
@@ -50,6 +52,8 @@ export default function App() {
               <Route path="/cases"             element={<CaseList />} />
               <Route path="/cases/new"         element={<CaseForm />} />
               <Route path="/cases/:id/edit"    element={<CaseForm />} />
+              <Route path="/faqs"              element={<FaqList />} />
+              <Route path="/pricing-plans"     element={<PricingList />} />
               <Route path="/testimonials"      element={<TestimonialList />} />
               <Route path="/contacts"          element={<ContactList />} />
               <Route path="/consultations"     element={<ConsultationList />} />

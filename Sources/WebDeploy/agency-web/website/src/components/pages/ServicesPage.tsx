@@ -7,14 +7,28 @@ import { usePageTitle } from '../../hooks/usePageTitle'
 interface Service {
   id: number; name: string; description: string; content: string; icon: string; image: string; price: string; status: string
 }
+interface PricingPlan {
+  id: number; name: string; price: string; description: string; features: string; is_featured: number; cta_text: string; cta_link: string
+}
+interface Faq {
+  id: number; question: string; answer: string
+}
+
+function parseFeatures(raw: string): string[] {
+  return (raw || '').split(/\r?\n/).map(s => s.trim()).filter(Boolean)
+}
 
 export default function ServicesPage() {
   const { settings } = useSite()
   usePageTitle('Dịch vụ', `Các dịch vụ agency cung cấp tại ${settings.site_name || 'chúng tôi'}.`)
   const [services, setServices] = useState<Service[]>([])
+  const [pricing, setPricing] = useState<PricingPlan[]>([])
+  const [faqs, setFaqs] = useState<Faq[]>([])
 
   useEffect(() => {
     api.get<Service[]>('/public/services').then(setServices).catch(console.error)
+    api.get<PricingPlan[]>('/public/pricing-plans').then(setPricing).catch(console.error)
+    api.get<Faq[]>('/public/faqs?page=dich-vu').then(setFaqs).catch(console.error)
   }, [])
 
   useEffect(() => {
@@ -27,13 +41,7 @@ export default function ServicesPage() {
       return () => ro.disconnect()
     }, 0)
     return () => clearTimeout(timer)
-  }, [services])
-
-  const pricing = [
-    { tier: 'Starter', price: '15.000.000', sub: 'đ', desc: 'Website landing page đơn giản, responsive, deploy lên hosting.', items: ['Tối đa 5 trang', 'Thiết kế theo mẫu có sẵn', 'Responsive mobile', 'Hỗ trợ 1 tháng'], hot: false },
-    { tier: 'Professional', price: '35.000.000', sub: 'đ', desc: 'Website đầy đủ tính năng, CMS admin, SEO cơ bản, 1 năm hosting.', items: ['Không giới hạn trang', 'Thiết kế riêng theo brand', 'CMS quản lý nội dung', 'SEO on-page cơ bản', 'Hỗ trợ 3 tháng'], hot: true },
-    { tier: 'Enterprise', price: 'Liên hệ', sub: '', desc: 'Hệ thống phức tạp, tích hợp API, custom logic theo yêu cầu doanh nghiệp.', items: ['Phân tích chuyên sâu', 'Kiến trúc hệ thống riêng', 'Tích hợp bên thứ 3', 'Bàn giao source code', 'Bảo trì dài hạn'], hot: false },
-  ]
+  }, [services, pricing, faqs])
 
   const process = [
     { num: '01', title: 'Tư vấn & Phân tích yêu cầu', desc: 'Gặp gỡ, lắng nghe, phân tích mục tiêu kinh doanh và xác định scope dự án chi tiết.' },
@@ -124,33 +132,48 @@ export default function ServicesPage() {
           </div>
           <div className="row g-3">
             {pricing.map((pc, i) => (
-              <div key={pc.tier} className="col-md-4">
-                <div className={`reveal${i === 1 ? ' reveal-d1' : i === 2 ? ' reveal-d2' : ''}`} data-reveal style={{ background: pc.hot ? 'linear-gradient(160deg,var(--accent-light) 0%,#fff 60%)' : 'var(--surface)', border: `1px solid ${pc.hot ? 'var(--accent-mid)' : 'var(--border)'}`, borderRadius: '16px', padding: '28px', position: 'relative', height: '100%' }}>
-                  {pc.hot && (
-                    <div style={{ position: 'absolute', top: '-11px', left: '50%', transform: 'translateX(-50%)', background: 'var(--accent)', color: '#fff', fontSize: '11px', fontWeight: 600, padding: '4px 14px', borderRadius: '20px', whiteSpace: 'nowrap' }}>✦ Phổ biến nhất</div>
-                  )}
-                  <div style={{ fontSize: '11px', fontWeight: 600, color: pc.hot ? 'var(--accent)' : 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '.8px', marginBottom: '10px' }}>{pc.tier}</div>
-                  <div style={{ fontSize: 'clamp(24px,3vw,34px)', fontWeight: 600, color: 'var(--text)', letterSpacing: '-.8px', marginBottom: '6px', lineHeight: 1 }}>
-                    {pc.price}{pc.sub && <sub style={{ fontSize: '13px', fontWeight: 400, color: 'var(--text-2)' }}>{pc.sub}</sub>}
-                  </div>
-                  <div style={{ fontSize: '13px', fontWeight: 300, color: 'var(--text-2)', marginBottom: '18px', lineHeight: 1.6 }}>{pc.desc}</div>
-                  <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '22px' }}>
-                    {pc.items.map(item => (
-                      <li key={item} style={{ fontSize: '13px', color: 'var(--text-2)', display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                        <span style={{ color: 'var(--accent)', fontWeight: 600, fontSize: '11.5px', flexShrink: 0 }}>✓</span>
-                        {item}
-                      </li>
-                    ))}
+              <div key={pc.id} className="col-md-4">
+                <div className={`price-card${pc.is_featured ? ' hot' : ''} reveal${i === 1 ? ' reveal-d1' : i === 2 ? ' reveal-d2' : ''}`} data-reveal style={{ position: 'relative' }}>
+                  {pc.is_featured === 1 && <div className="pc-hot-tag">✦ Phổ biến nhất</div>}
+                  <div className="pc-tier">{pc.name}</div>
+                  <div className="pc-price">{pc.price}</div>
+                  <div className="pc-desc">{pc.description}</div>
+                  <ul className="pc-list">
+                    {parseFeatures(pc.features).map(item => <li key={item}>{item}</li>)}
                   </ul>
-                  <button onClick={() => window.location.href = '/lien-he'} style={{ width: '100%', padding: '11px', borderRadius: '9px', fontSize: '13.5px', fontWeight: 500, cursor: 'pointer', transition: 'all .2s', border: `1px solid ${pc.hot ? 'var(--accent)' : 'var(--border)'}`, background: pc.hot ? 'var(--accent)' : 'transparent', color: pc.hot ? '#fff' : 'var(--text)', fontFamily: 'var(--sans)' }}>
-                    {pc.tier === 'Enterprise' ? 'Liên hệ tư vấn' : 'Yêu cầu báo giá'}
-                  </button>
+                  <Link to={pc.cta_link || '/lien-he'} className="pc-btn" style={{ display: 'block', textAlign: 'center', textDecoration: 'none' }}>
+                    {pc.cta_text || 'Liên hệ ngay'}
+                  </Link>
                 </div>
               </div>
             ))}
+            {pricing.length === 0 && (
+              <div className="text-center" style={{ padding: '48px', color: 'var(--text-3)', width: '100%' }}>Đang tải bảng giá...</div>
+            )}
           </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      {faqs.length > 0 && (
+        <section className="sec-pad" style={{ background: 'var(--surface)' }} id="faq">
+          <div className="wd-container" style={{ maxWidth: '760px' }}>
+            <div className="text-center mb-5 reveal" data-reveal>
+              <div className="eyebrow">Câu hỏi thường gặp</div>
+              <h2 className="sec-title">Giải đáp <em>thắc mắc</em></h2>
+              <p className="sec-sub">Những câu hỏi khách hàng thường hỏi trước khi bắt đầu dự án cùng chúng tôi.</p>
+            </div>
+            <div className="reveal" data-reveal>
+              {faqs.map(f => (
+                <details className="svc-faq-item" key={f.id}>
+                  <summary>{f.question} <span className="svc-faq-icon">+</span></summary>
+                  <p className="svc-faq-a">{f.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CTA */}
       <section className="cta-sec">

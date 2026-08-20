@@ -40,6 +40,8 @@ export default function Sidebar() {
       { to: '/services',     icon: '⚙',  label: 'Dịch vụ' },
       { to: '/team',         icon: '👥', label: 'Đội ngũ' },
       { to: '/testimonials', icon: '💬', label: 'Đánh giá' },
+      { to: '/pricing',      icon: '💰', label: 'Bảng giá' },
+      { to: '/faqs',         icon: '❓', label: 'FAQ' },
     ]},
     { section: 'Khách hàng', links: [
       { to: '/contacts', icon: '✉', label: 'Liên hệ', badge: newContacts },

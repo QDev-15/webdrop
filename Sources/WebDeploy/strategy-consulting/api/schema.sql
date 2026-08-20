@@ -71,3 +71,33 @@ CREATE TABLE IF NOT EXISTS services (
     status      TEXT NOT NULL DEFAULT 'published',
     created_at  TEXT NOT NULL DEFAULT (datetime('now','localtime'))
 );
+
+-- ── FAQS (Câu hỏi thường gặp — mục H, trang /dich-vu) ──────────────────────
+CREATE TABLE IF NOT EXISTS faqs (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    question    TEXT NOT NULL,
+    answer      TEXT NOT NULL,
+    page        TEXT NOT NULL DEFAULT 'dich-vu',
+    sort_order  INTEGER NOT NULL DEFAULT 0,
+    status      TEXT NOT NULL DEFAULT 'published',
+    created_at  TEXT NOT NULL DEFAULT (datetime('now','localtime'))
+);
+
+-- ── PRICING PLANS (mục I, trang /dich-vu) ───────────────────────────────────
+-- Site này không dùng bảng giá cố định — thay bằng "hình thức hợp tác" (engagement
+-- models): cột "price" lưu nhịp độ hợp tác (vd "Theo dự án"/"Hàng tháng"/"1 buổi")
+-- thay vì số tiền, khớp đúng nội dung gốc ở services.html (bản HTML tĩnh).
+-- Cột "features": mỗi dòng (\n) là 1 gạch đầu dòng — parse bằng split newline ở frontend.
+CREATE TABLE IF NOT EXISTS pricing_plans (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    name        TEXT NOT NULL,
+    price       TEXT NOT NULL,
+    description TEXT NOT NULL DEFAULT '',
+    features    TEXT NOT NULL DEFAULT '',
+    is_featured INTEGER NOT NULL DEFAULT 0,
+    cta_text    TEXT NOT NULL DEFAULT 'Yêu cầu tư vấn',
+    cta_link    TEXT NOT NULL DEFAULT '/lien-he',
+    sort_order  INTEGER NOT NULL DEFAULT 0,
+    status      TEXT NOT NULL DEFAULT 'published',
+    created_at  TEXT NOT NULL DEFAULT (datetime('now','localtime'))
+);

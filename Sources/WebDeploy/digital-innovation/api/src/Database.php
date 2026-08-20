@@ -48,6 +48,8 @@ class Database {
 
     protected function seedExtensions(): void {
         $this->seedServices();
+        $this->seedFaqs();
+        $this->seedPricingPlans();
     }
 
     private function seedUsers(): void {
@@ -257,6 +259,59 @@ HTML;
             $this->execute(
                 "INSERT INTO services (icon, title, description, sort_order, status) VALUES (?, ?, ?, ?, 'published')",
                 [$icon, $title, $desc, $order]
+            );
+        }
+    }
+
+    // ─── Extensions (FAQs — mục H, trang /dich-vu) ───────────────────────────
+
+    private function seedFaqs(): void {
+        if ($this->scalar("SELECT COUNT(*) FROM faqs") > 0) return;
+        $faqs = [
+            ['Thời gian triển khai một dự án digital transformation mất bao lâu?', 'Tùy quy mô giải pháp. Một module đơn (vd chatbot AI, dashboard analytics) thường mất 3–6 tuần. Dự án tích hợp đa giải pháp (AI + Automation + Integration) mất 2–4 tháng. Timeline cụ thể được thống nhất ngay sau buổi discovery workshop.'],
+            ['Chi phí/báo giá được tính như thế nào?', 'Báo giá dựa trên phạm vi giải pháp, số lượng hệ thống cần tích hợp và mức độ tùy biến. Sau buổi khảo sát yêu cầu (miễn phí), chúng tôi gửi báo giá chi tiết theo gói cố định hoặc theo giờ tùy tính chất dự án.'],
+            ['Quy trình làm việc giữa hai bên diễn ra như thế nào?', '4 bước: Discovery & khảo sát hạ tầng hiện có → Đề xuất giải pháp & báo giá → Triển khai theo sprint 2 tuần với demo định kỳ → Nghiệm thu, đào tạo và bàn giao. Bạn luôn theo dõi tiến độ qua dashboard dự án riêng.'],
+            ['Chính sách bảo hành và bảo trì sau bàn giao ra sao?', 'Mọi dự án được bảo hành lỗi kỹ thuật miễn phí 90 ngày sau bàn giao. Sau thời gian này, bạn có thể chọn gói bảo trì hàng tháng để được cập nhật, vá lỗi bảo mật và tối ưu hiệu năng liên tục.'],
+            ['Đội ngũ có hỗ trợ kỹ thuật ngoài giờ hành chính không?', 'Có — tùy gói dịch vụ. Gói Growth có hỗ trợ ưu tiên 12/7 qua chat và hotline, gói Enterprise có hỗ trợ 24/7 với SLA cam kết thời gian phản hồi cụ thể trong hợp đồng.'],
+            ['Chúng tôi có được sở hữu toàn bộ source code và dữ liệu không?', 'Có — sau khi hoàn tất thanh toán, bạn sở hữu toàn bộ source code, mô hình AI đã huấn luyện và dữ liệu liên quan. Chúng tôi bàn giao đầy đủ tài liệu kỹ thuật kèm hướng dẫn vận hành.'],
+            ['Giải pháp có tích hợp được với hệ thống CRM/ERP hiện tại không?', 'Có — chúng tôi thiết kế theo kiến trúc API-first nên tương thích với hầu hết CRM/ERP phổ biến (Salesforce, HubSpot, SAP, Odoo...). Với hệ thống nội bộ tùy biến, chúng tôi khảo sát và xây dựng connector riêng.'],
+        ];
+        foreach ($faqs as $i => [$question, $answer]) {
+            $this->execute(
+                "INSERT INTO faqs (question, answer, page, sort_order, status) VALUES (?, ?, 'dich-vu', ?, 'published')",
+                [$question, $answer, $i + 1]
+            );
+        }
+    }
+
+    // ─── Extensions (Pricing Plans — mục I, trang /dich-vu) ──────────────────
+
+    private function seedPricingPlans(): void {
+        if ($this->scalar("SELECT COUNT(*) FROM pricing_plans") > 0) return;
+        $plans = [
+            [
+                'name' => 'Essentials', 'price' => '[Từ X triệu]/tháng',
+                'description' => 'Bắt đầu với một giải pháp lõi — phù hợp startup và SME mới chuyển đổi số.',
+                'features' => "1 giải pháp lõi (AI, Automation hoặc Analytics)\nSetup & onboarding trong 2 tuần\nHỗ trợ email trong giờ hành chính\nBáo cáo hiệu suất hàng tháng\nSLA uptime 99%",
+                'is_featured' => 0, 'cta_text' => 'Yêu cầu demo', 'cta_link' => '/lien-he', 'sort_order' => 1,
+            ],
+            [
+                'name' => 'Professional', 'price' => '[Từ X triệu]/tháng',
+                'description' => 'Tích hợp đa giải pháp cho doanh nghiệp đang tăng trưởng, cần đội ngũ đồng hành sát sao.',
+                'features' => "Tối đa 3 giải pháp tích hợp\nDedicated project manager\nHỗ trợ ưu tiên 12/7 (chat + hotline)\nDashboard analytics real-time\nTraining đội ngũ định kỳ\nSLA uptime 99.5%",
+                'is_featured' => 1, 'cta_text' => 'Yêu cầu demo', 'cta_link' => '/lien-he', 'sort_order' => 2,
+            ],
+            [
+                'name' => 'Custom Scale', 'price' => '[Liên hệ]',
+                'description' => 'Giải pháp toàn diện, tùy biến theo hạ tầng và quy trình riêng của doanh nghiệp lớn.',
+                'features' => "Toàn bộ giải pháp + custom development\nĐội ngũ kỹ thuật riêng biệt\nHỗ trợ 24/7 với SLA cam kết bằng hợp đồng\nBảo mật & compliance nâng cao (GDPR, ISO 27001)\nOnsite support khi cần\nSLA uptime tùy chỉnh theo yêu cầu",
+                'is_featured' => 0, 'cta_text' => 'Liên hệ tư vấn', 'cta_link' => '/lien-he', 'sort_order' => 3,
+            ],
+        ];
+        foreach ($plans as $plan) {
+            $this->execute(
+                "INSERT INTO pricing_plans (name, price, description, features, is_featured, cta_text, cta_link, sort_order, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'published')",
+                [$plan['name'], $plan['price'], $plan['description'], $plan['features'], $plan['is_featured'], $plan['cta_text'], $plan['cta_link'], $plan['sort_order']]
             );
         }
     }

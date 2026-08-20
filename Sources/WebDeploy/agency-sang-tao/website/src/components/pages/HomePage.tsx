@@ -16,6 +16,7 @@ interface Service {
 interface Project {
   id: number
   title: string
+  slug: string
   category: string
   description: string
   image: string
@@ -217,7 +218,8 @@ export default function HomePage() {
         </div>
         <div className="ag-work-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gridAutoRows: '300px', gap: '4px' }}>
           {projects.slice(0, 5).map((proj, idx) => (
-            <article
+            <Link
+              to={`/du-an/${proj.slug}`}
               key={proj.id}
               className="ag-work-item"
               data-reveal
@@ -229,7 +231,7 @@ export default function HomePage() {
                 <span className="ag-work-name">{proj.title}</span>
               </div>
               <div className="ag-work-arrow" aria-hidden="true">&#8599;</div>
-            </article>
+            </Link>
           ))}
           {projects.length === 0 && [1,2,3,4,5].map((_, idx) => (
             <article

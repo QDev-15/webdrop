@@ -1,15 +1,33 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
+import { api } from '../../api/client'
 import { useDocumentMeta } from '../../hooks/useDocumentMeta'
+
+interface PricingPlan {
+  id: number; name: string; price: string; description: string; features: string
+  is_featured: number; cta_text: string; cta_link: string
+}
+interface Faq { id: number; question: string; answer: string }
+
+function parseFeatures(raw: string): string[] {
+  return (raw || '').split(/\r?\n/).map(s => s.trim()).filter(Boolean)
+}
 
 export default function ServicePage() {
   const { settings, services } = useSite()
+  const [pricing, setPricing] = useState<PricingPlan[]>([])
+  const [faqs, setFaqs] = useState<Faq[]>([])
 
   useDocumentMeta({
     title: 'Dịch vụ — Công Ty Xây Dựng Hoàng Gia',
     description: 'Các dịch vụ xây dựng của Công Ty Xây Dựng Hoàng Gia: thi công dân dụng, công nghiệp, thiết kế kiến trúc, tư vấn dự án, cải tạo sửa chữa.',
   })
+
+  useEffect(() => {
+    api.get<PricingPlan[]>('/public/pricing-plans').then(setPricing).catch(console.error)
+    api.get<Faq[]>('/public/faqs?page=dich-vu').then(setFaqs).catch(console.error)
+  }, [])
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -21,7 +39,7 @@ export default function ServicePage() {
       return () => ro.disconnect()
     }, 0)
     return () => clearTimeout(timer)
-  }, [services])
+  }, [services, pricing, faqs])
 
   const displayServices = services.length > 0 ? services : [
     { id: 1, name: 'Thi Công Dân Dụng', description: 'Xây dựng nhà ở, biệt thự, chung cư, văn phòng. Thi công trọn gói từ móng đến hoàn thiện nội thất.', image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80' },
@@ -71,6 +89,74 @@ export default function ServicePage() {
           </div>
         </div>
       </section>
+
+      {/* BẢNG GIÁ DỊCH VỤ */}
+      <section className="sec-pad" aria-labelledby="price-title">
+        <div className="wd-container">
+          <div className="text-center mb-5">
+            <div className="xd-eyebrow" data-reveal>Gói dịch vụ</div>
+            <h2 className="xd-sec-title" id="price-title" data-reveal data-delay="1">
+              Chi phí <span className="xd-accent">tham khảo</span>
+            </h2>
+            <p className="xd-sec-sub mx-auto" data-reveal data-delay="2">
+              Giá xây dựng phụ thuộc vào vật liệu, quy mô và khu vực. Liên hệ nhận báo giá chính xác miễn phí.
+            </p>
+          </div>
+
+          <div className="row g-4 justify-content-center">
+            {pricing.map((pc, i) => (
+              <div key={pc.id} className="col-12 col-md-4" data-reveal data-delay={(i % 3).toString()}>
+                <div className={`xd-pkg-card${pc.is_featured ? ' hot' : ''}`}>
+                  {pc.is_featured === 1 && <div className="xd-pkg-label">Phổ biến nhất</div>}
+                  <div className="xd-pkg-name">{pc.name}</div>
+                  <p className="xd-pkg-price"><strong>{pc.price}</strong></p>
+                  {pc.description && <p style={{ fontSize: 13, color: 'var(--text-2)', marginTop: -16, marginBottom: 20 }}>{pc.description}</p>}
+                  <ul className="xd-pkg-list">
+                    {parseFeatures(pc.features).map(item => <li key={item}>{item}</li>)}
+                  </ul>
+                  <Link to={pc.cta_link || '/lien-he'} className="xd-btn-solid" style={{ display: 'block', textAlign: 'center' }}>
+                    {pc.cta_text || 'Nhận báo giá'}
+                  </Link>
+                </div>
+              </div>
+            ))}
+            {pricing.length === 0 && (
+              <div className="text-center" style={{ padding: 48, color: 'var(--text-3)', width: '100%' }}>Đang tải bảng giá...</div>
+            )}
+          </div>
+
+          <div className="text-center mt-4" data-reveal>
+            <p style={{ fontSize: 13, color: 'var(--text-3)' }}>
+              * Giá trên là tham khảo, chưa bao gồm VAT và chi phí thiết kế. Báo giá chính thức sau khi khảo sát thực tế.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ — Accordion thật (details/summary, không cần JS) */}
+      {faqs.length > 0 && (
+        <section className="sec-pad" style={{ background: 'var(--bg)' }} id="faq" aria-labelledby="faq-title">
+          <div className="wd-container">
+            <div className="row g-5">
+              <div className="col-lg-4" data-reveal>
+                <div className="xd-eyebrow">Câu hỏi thường gặp</div>
+                <h2 className="xd-sec-title" id="faq-title">Giải đáp<br /><span className="xd-accent">thắc mắc</span></h2>
+                <p className="xd-sec-sub" style={{ marginTop: 8 }}>
+                  Không tìm thấy câu trả lời bạn cần? <Link to="/lien-he" style={{ color: 'var(--accent)', fontWeight: 600 }}>Liên hệ trực tiếp</Link> — đội ngũ kỹ sư của chúng tôi luôn sẵn sàng tư vấn.
+                </p>
+              </div>
+              <div className="col-lg-8" data-reveal data-delay="1">
+                {faqs.map(f => (
+                  <details className="xd-faq-item" key={f.id}>
+                    <summary>{f.question} <span className="xd-faq-icon">+</span></summary>
+                    <p className="xd-faq-a">{f.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CTA */}
       <section style={{ background: 'var(--warm)', padding: 'clamp(48px,6vw,80px) 0' }}>

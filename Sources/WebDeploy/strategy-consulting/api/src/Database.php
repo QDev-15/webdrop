@@ -50,6 +50,8 @@ class Database {
 
     protected function seedExtensions(): void {
         $this->seedServices();
+        $this->seedFaqs();
+        $this->seedPricingPlans();
     }
 
     private function seedUsers(): void {
@@ -160,6 +162,16 @@ HTML;
             ['services_cta_sub', 'Hãy liên hệ với chúng tôi để tìm hiểu giải pháp phù hợp nhất cho doanh nghiệp của bạn.', 'content'],
             ['services_cta_button', 'Liên hệ', 'content'],
 
+            // ── Hình thức hợp tác (mục I — thay bảng giá cố định), trang /dich-vu ──
+            ['pricing_eyebrow', 'Hình thức hợp tác', 'content'],
+            ['pricing_title', 'Cách <em>đồng hành</em> cùng bạn', 'content'],
+            ['pricing_sub', 'Mỗi doanh nghiệp có bối cảnh và quy mô bài toán khác nhau — chúng tôi không áp một bảng giá cố định, mà thiết kế phạm vi hợp tác phù hợp với đúng nhu cầu của bạn.', 'content'],
+            ['pricing_footnote', 'Chi phí cụ thể được thống nhất sau buổi trao đổi ban đầu, dựa trên đúng phạm vi và quy mô bài toán của doanh nghiệp bạn.', 'content'],
+
+            // ── FAQ (mục H), trang /dich-vu ─────────────────────────────────
+            ['faq_eyebrow', 'Câu hỏi thường gặp', 'content'],
+            ['faq_title', 'Giải đáp <em>Thắc mắc</em>', 'content'],
+
             ['contact_hero_eyebrow', 'Liên hệ', 'content'],
             ['contact_hero_title', 'Hãy nói chuyện <em>với chúng tôi</em>', 'content'],
             ['contact_hero_sub', 'Gửi tin nhắn và chúng tôi sẽ phản hồi trong 24h.', 'content'],
@@ -260,6 +272,59 @@ HTML;
             $this->execute(
                 "INSERT INTO services (icon, title, description, sort_order, status) VALUES (?, ?, ?, ?, 'published')",
                 [$icon, $title, $desc, $order]
+            );
+        }
+    }
+
+    private function seedFaqs(): void {
+        if ($this->scalar("SELECT COUNT(*) FROM faqs") > 0) return;
+        $faqs = [
+            ['Một dự án tư vấn chiến lược điển hình kéo dài bao lâu?', 'Tùy phạm vi hợp tác: workshop 1 buổi cho kết quả ngay trong ngày, dự án chẩn đoán + xây dựng roadmap thường kéo dài 4–8 tuần, còn hình thức retainer là hợp tác liên tục theo tháng/quý, không có mốc kết thúc cố định.', 1],
+            ['Chi phí tư vấn được tính như thế nào?', 'Chúng tôi không áp bảng giá cố định vì mỗi doanh nghiệp có quy mô và bài toán khác nhau. Chi phí tính theo phạm vi dự án (project-based) hoặc theo tháng (retainer), được thống nhất cụ thể sau buổi trao đổi ban đầu để hiểu đúng nhu cầu của bạn.', 2],
+            ['Ai là người trực tiếp phụ trách dự án của chúng tôi?', 'Mỗi dự án có một lead consultant phụ trách xuyên suốt từ đầu đến khi bàn giao, không đổi người giữa các giai đoạn — đảm bảo hiểu bối cảnh doanh nghiệp liền mạch và nhất quán.', 3],
+            ['Thông tin doanh nghiệp của chúng tôi có được bảo mật không?', 'Có. Chúng tôi ký thỏa thuận bảo mật (NDA) trước khi trao đổi thông tin chi tiết. Dữ liệu chỉ được sử dụng trong phạm vi dự án và không chia sẻ với bất kỳ bên thứ ba nào, kể cả các doanh nghiệp khác cùng ngành.', 4],
+            ['Chúng tôi nhận được gì khi kết thúc — chỉ là báo cáo hay có hỗ trợ triển khai?', 'Tùy hình thức hợp tác. Gói theo dự án bàn giao báo cáo chiến lược cùng buổi workshop trình bày với ban lãnh đạo; nếu cần đồng hành triển khai thực tế, gói retainer cho phép chúng tôi theo sát và điều chỉnh cùng đội ngũ của bạn theo thời gian.', 5],
+            ['Doanh nghiệp quy mô nhỏ có phù hợp làm việc với chúng tôi không?', 'Có — chúng tôi nhận cả doanh nghiệp vừa và nhỏ lẫn tập đoàn lớn. Với doanh nghiệp nhỏ, chúng tôi thường bắt đầu bằng workshop 1 buổi hoặc một gói tư vấn thu gọn phạm vi thay vì dự án dài hạn, để phù hợp với nguồn lực thực tế.', 6],
+            ['Nếu chiến lược đề xuất không phù hợp với thực tế vận hành thì sao?', 'Chiến lược luôn được điều chỉnh theo phản hồi thực tế trong quá trình triển khai. Hình thức retainer đặc biệt phù hợp cho việc này — cho phép theo dõi và tinh chỉnh định kỳ theo quý, thay vì bàn giao một lần rồi kết thúc hợp tác.', 7],
+        ];
+        foreach ($faqs as [$question, $answer, $order]) {
+            $this->execute(
+                "INSERT INTO faqs (question, answer, page, sort_order, status) VALUES (?, ?, 'dich-vu', ?, 'published')",
+                [$question, $answer, $order]
+            );
+        }
+    }
+
+    // Ghi chú: site này không có bảng giá cố định — "pricing_plans" seed lại từ nội dung
+    // gốc "Hình thức hợp tác" (engagement models) trong services.html. Cột "price" giữ
+    // nhịp độ hợp tác (Theo dự án/Hàng tháng/1 buổi) thay vì số tiền, is_featured=0 cho
+    // cả 3 vì thiết kế gốc không có card nổi bật (3 hình thức ngang hàng nhau).
+    private function seedPricingPlans(): void {
+        if ($this->scalar("SELECT COUNT(*) FROM pricing_plans") > 0) return;
+        $plans = [
+            [
+                'Tư vấn theo Dự án', 'Theo dự án',
+                'Phù hợp khi doanh nghiệp có một bài toán chiến lược rõ ràng, có điểm bắt đầu và điểm kết thúc cụ thể.',
+                "Discovery & chẩn đoán hiện trạng\nXây dựng chiến lược + roadmap triển khai\nTrình bày & bàn giao báo cáo điều hành",
+                'Trao đổi về dự án của bạn', 1,
+            ],
+            [
+                'Retainer Đồng hành', 'Hàng tháng',
+                'Phù hợp khi doanh nghiệp cần một cố vấn chiến lược liên tục, theo sát biến động thị trường theo thời gian.',
+                "Buổi review chiến lược định kỳ hàng tháng\nTư vấn nhanh qua kênh riêng khi cần quyết định gấp\nTheo dõi KPI & điều chỉnh chiến lược theo quý",
+                'Tìm hiểu gói đồng hành', 2,
+            ],
+            [
+                'Workshop Chiến lược', '1 buổi',
+                'Phù hợp khi đội ngũ lãnh đạo cần thống nhất định hướng nhanh trong một khoảng thời gian ngắn.',
+                "Buổi làm việc tập trung 1 ngày cùng ban lãnh đạo\nFramework phân tích & bản đồ chiến lược thực hiện tại chỗ\nBản tóm tắt hành động ngay sau workshop",
+                'Đặt lịch workshop', 3,
+            ],
+        ];
+        foreach ($plans as [$name, $price, $desc, $features, $ctaText, $order]) {
+            $this->execute(
+                "INSERT INTO pricing_plans (name, price, description, features, is_featured, cta_text, cta_link, sort_order, status) VALUES (?, ?, ?, ?, 0, ?, '/lien-he', ?, 'published')",
+                [$name, $price, $desc, $features, $ctaText, $order]
             );
         }
     }

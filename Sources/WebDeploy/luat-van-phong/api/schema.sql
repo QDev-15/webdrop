@@ -135,3 +135,45 @@ CREATE TABLE IF NOT EXISTS consultations (
   source     TEXT    DEFAULT 'website',
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
+-- ─── CASE STUDY EXTENSION (cases) ──────────────────────────
+-- Cột mở rộng cho trang chi tiết vụ việc (/vu-viec/:slug). ALTER TABLE ADD COLUMN
+-- lỗi "duplicate column" ở lần chạy sau sẽ bị Database::migrate() bắt và bỏ qua
+-- (xem catch trong migrate()) — an toàn để chạy lại nhiều lần.
+ALTER TABLE cases ADD COLUMN slug TEXT;
+ALTER TABLE cases ADD COLUMN client_name TEXT;
+ALTER TABLE cases ADD COLUMN practice_area TEXT;
+ALTER TABLE cases ADD COLUMN duration_text TEXT;
+ALTER TABLE cases ADD COLUMN scope_text TEXT;
+ALTER TABLE cases ADD COLUMN result_headline TEXT;
+ALTER TABLE cases ADD COLUMN challenge TEXT;
+ALTER TABLE cases ADD COLUMN solution TEXT;
+ALTER TABLE cases ADD COLUMN gallery_images TEXT;
+ALTER TABLE cases ADD COLUMN stats TEXT;
+ALTER TABLE cases ADD COLUMN testimonial_content TEXT;
+ALTER TABLE cases ADD COLUMN testimonial_author TEXT;
+ALTER TABLE cases ADD COLUMN testimonial_title TEXT;
+
+-- ─── FAQ ────────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS faqs (
+  id         INTEGER PRIMARY KEY AUTOINCREMENT,
+  question   TEXT    NOT NULL,
+  answer     TEXT    NOT NULL,
+  page       TEXT    DEFAULT 'dich-vu',
+  sort_order INTEGER DEFAULT 0,
+  status     TEXT    DEFAULT 'published'
+);
+
+-- ─── PRICING PLANS ──────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS pricing_plans (
+  id           INTEGER PRIMARY KEY AUTOINCREMENT,
+  name         TEXT    NOT NULL,
+  price        TEXT    NOT NULL,
+  description  TEXT,
+  features     TEXT,
+  is_featured  INTEGER DEFAULT 0,
+  cta_text     TEXT    DEFAULT 'Nhận báo giá',
+  cta_link     TEXT    DEFAULT '/lien-he',
+  sort_order   INTEGER DEFAULT 0,
+  status       TEXT    DEFAULT 'published'
+);

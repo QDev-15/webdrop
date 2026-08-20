@@ -619,6 +619,83 @@ a { text-decoration: none; }
   clip-path: polygon(0 0,100% 50%,0 100%); flex-shrink: 0; margin-top: 3px;
 }
 
+/* ══ CASE STUDY — DU AN CHI TIET (/du-an/:slug) ══ */
+.xd-cs-meta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.xd-cs-back {
+  display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
+  color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; transition: color .2s;
+}
+.xd-cs-back:hover { color: var(--accent); }
+
+.xd-cs-overview { background: var(--dark); border-top: 1px solid rgba(255,255,255,.06); }
+.xd-cs-overview-inner {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+}
+.xd-cs-overview-item {
+  padding: 28px 24px; border-right: 1px solid rgba(255,255,255,.06);
+}
+.xd-cs-overview-item:last-child { border-right: none; }
+.xd-cs-overview-label {
+  font-size: 10px; font-weight: 600; color: rgba(255,255,255,.35);
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px;
+}
+.xd-cs-overview-value { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: -.3px; }
+@media (max-width: 768px) {
+  .xd-cs-overview-inner { grid-template-columns: repeat(2, 1fr); }
+  .xd-cs-overview-item:nth-child(2) { border-right: none; }
+}
+
+.xd-cs-body p { font-size: 15px; font-weight: 300; color: var(--text-2); line-height: 1.8; margin-bottom: 20px; }
+.xd-cs-body p:last-child { margin-bottom: 0; }
+.xd-cs-body ul { list-style: none; padding: 0; margin: 0; }
+.xd-cs-body ul li {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 14.5px; font-weight: 300; color: var(--text-2); line-height: 1.7;
+  padding: 14px 0; border-bottom: 1px solid var(--border-light);
+}
+.xd-cs-body ul li:last-child { border-bottom: none; }
+.xd-cs-body ul li::before {
+  content: ''; width: 14px; height: 14px; background: var(--accent);
+  clip-path: polygon(0 0,100% 50%,0 100%); flex-shrink: 0; margin-top: 4px;
+}
+.xd-cs-body ul li strong { color: var(--text); font-weight: 700; }
+
+.xd-cs-gallery {
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 6px;
+}
+.xd-cs-gallery img { width: 100%; height: 320px; object-fit: cover; border-radius: 2px; }
+@media (max-width: 768px) {
+  .xd-cs-gallery { grid-template-columns: 1fr; }
+  .xd-cs-gallery img { height: 220px; }
+}
+
+.xd-cs-testi { background: var(--surface); padding: clamp(64px,8vw,100px) 0; }
+.xd-cs-quote { max-width: 760px; margin: 0 auto; text-align: center; }
+.xd-cs-quote-mark { font-size: 64px; line-height: 1; color: var(--accent); margin-bottom: 8px; font-family: Georgia, serif; }
+.xd-cs-quote-text { font-size: clamp(18px,2.2vw,24px); font-weight: 300; color: var(--text); line-height: 1.6; letter-spacing: -.3px; margin-bottom: 24px; }
+.xd-cs-quote-author { font-size: 15px; font-weight: 700; color: var(--text); letter-spacing: -.2px; }
+.xd-cs-quote-role { font-size: 13px; color: var(--text-3); letter-spacing: .3px; margin-top: 4px; }
+
+/* ══ FAQ (DICH VU PAGE) ══ */
+.xd-faq-item {
+  border-bottom: 1px solid var(--border-light); padding: 22px 0;
+}
+.xd-faq-item:first-child { padding-top: 0; }
+.xd-faq-item summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -.2px;
+  cursor: pointer; list-style: none; user-select: none;
+}
+.xd-faq-item summary::-webkit-details-marker { display: none; }
+.xd-faq-icon {
+  flex-shrink: 0; width: 22px; height: 22px; border-radius: 2px;
+  background: var(--accent-light); color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 700; transition: transform .25s;
+}
+.xd-faq-item[open] .xd-faq-icon { transform: rotate(45deg); }
+.xd-faq-a { font-size: 14px; font-weight: 300; color: var(--text-2); line-height: 1.75; margin: 14px 0 0; }
+
 /* ══ LIEN HE PAGE ══ */
 .xd-contact-card {
   background: var(--surface); border: 1px solid var(--border);

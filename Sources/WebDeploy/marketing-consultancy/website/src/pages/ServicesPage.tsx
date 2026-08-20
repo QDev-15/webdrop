@@ -1,21 +1,44 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../contexts/SiteContext'
 import { useDocumentMeta } from '../hooks/useDocumentMeta'
+import { api } from '../api/client'
+
+interface PricingPlan {
+  id: number
+  name: string
+  price: string
+  description: string
+  features: string
+  is_featured: number
+  cta_text: string
+  cta_link: string
+}
+
+interface Faq {
+  id: number
+  question: string
+  answer: string
+}
+
+function parseFeatures(raw: string): string[] {
+  return (raw || '').split(/\r?\n/).map(s => s.trim()).filter(Boolean)
+}
 
 export default function ServicesPage() {
   const { settings, services } = useSite()
+  const [pricing, setPricing] = useState<PricingPlan[]>([])
+  const [faqs, setFaqs] = useState<Faq[]>([])
+
   useDocumentMeta({
     title: `Dịch vụ — ${settings.site_name || 'Markco'}`,
     description: settings.services_hero_sub,
   })
 
-  const packages = [1, 2, 3].map(i => ({
-    name: settings[`pricing_pkg${i}_name`] || '',
-    badge: settings[`pricing_pkg${i}_badge`] || '',
-    price: settings[`pricing_pkg${i}_price`] || '',
-    desc: settings[`pricing_pkg${i}_desc`] || '',
-    features: (settings[`pricing_pkg${i}_features`] || '').split('\n').filter(Boolean),
-  }))
+  useEffect(() => {
+    api.get<PricingPlan[]>('/public/pricing-plans').then(setPricing).catch(() => {})
+    api.get<Faq[]>('/public/faqs?page=dich-vu').then(setFaqs).catch(() => {})
+  }, [])
 
   return (
     <>
@@ -45,29 +68,59 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* PRICING PACKAGES */}
-      <section className="mc-sec-pad" style={{ background: 'linear-gradient(135deg, rgba(155, 126, 240, .05), rgba(52, 201, 142, .05))' }}>
-        <div className="wd-container">
-          <div style={{ textAlign: 'center', marginBottom: 48 }}>
-            <div className="mc-eyebrow">{settings.pricing_eyebrow || 'Gói dịch vụ'}</div>
-            <h2 className="mc-title" dangerouslySetInnerHTML={{ __html: settings.pricing_title || 'Chọn gói phù hợp <em>cho doanh nghiệp</em> của bạn' }} />
-          </div>
+      {/* PRICING PACKAGES — Bảng giá dịch vụ (mục I) */}
+      {pricing.length > 0 && (
+        <section className="mc-sec-pad" id="pricing" style={{ background: 'linear-gradient(135deg, rgba(155, 126, 240, .05), rgba(52, 201, 142, .05))' }}>
+          <div className="wd-container">
+            <div style={{ textAlign: 'center', marginBottom: 48 }}>
+              <div className="mc-eyebrow">{settings.pricing_eyebrow || 'Gói dịch vụ'}</div>
+              <h2 className="mc-title" dangerouslySetInnerHTML={{ __html: settings.pricing_title || 'Chọn gói phù hợp <em>cho doanh nghiệp</em> của bạn' }} />
+            </div>
 
-          <div className="mc-feature-grid">
-            {packages.map((pkg, i) => (
-              <div className={`mc-feature-card mc-pricing-card${i === 1 ? ' featured' : ''}`} key={i}>
-                {pkg.badge && <div className="mc-pricing-badge">{pkg.badge}</div>}
-                <h3 className="mc-feature-title">{pkg.name}</h3>
-                <div className="mc-pricing-price">{pkg.price}</div>
-                <p className="mc-feature-desc mc-pricing-desc">{pkg.desc}</p>
-                <ul className="mc-pricing-features">
-                  {pkg.features.map((f, fi) => <li key={fi}>{f}</li>)}
-                </ul>
-              </div>
-            ))}
+            <div className="mc-feature-grid">
+              {pricing.map(pkg => (
+                <div className={`mc-feature-card mc-pricing-card${pkg.is_featured ? ' featured' : ''}`} key={pkg.id}>
+                  {!!pkg.is_featured && <div className="mc-pricing-badge">Phổ biến</div>}
+                  <h3 className="mc-feature-title">{pkg.name}</h3>
+                  <div className="mc-pricing-price">{pkg.price}</div>
+                  {pkg.description && <p className="mc-feature-desc mc-pricing-desc">{pkg.description}</p>}
+                  <ul className="mc-pricing-features">
+                    {parseFeatures(pkg.features).map(f => <li key={f}>{f}</li>)}
+                  </ul>
+                  <Link to={pkg.cta_link || '/lien-he'} className={`${pkg.is_featured ? 'btn-mc-primary' : 'btn-mc-secondary'} mc-pricing-cta`}>
+                    {pkg.cta_text || 'Chọn gói'}
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
+      {/* FAQ — Accordion thật (details/summary, không cần JS) (mục H) */}
+      {faqs.length > 0 && (
+        <section className="mc-sec-pad" id="faq">
+          <div className="wd-container">
+            <div className="row g-5">
+              <div className="col-lg-4" data-reveal="true">
+                <div className="mc-eyebrow">FAQ</div>
+                <h2 className="mc-title">Câu hỏi <em>thường gặp</em></h2>
+                <p className="mc-sub" style={{ margin: 0 }}>
+                  Chưa tìm thấy câu trả lời bạn cần? <Link to="/lien-he" style={{ color: 'var(--accent)', fontWeight: 600 }}>Liên hệ trực tiếp</Link> — chúng tôi luôn sẵn sàng giải đáp.
+                </p>
+              </div>
+              <div className="col-lg-8" data-reveal="true">
+                {faqs.map(f => (
+                  <details className="mc-faq-item" key={f.id}>
+                    <summary>{f.question} <span className="mc-faq-icon">+</span></summary>
+                    <p className="mc-faq-a">{f.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CTA */}
       <section className="mc-sec-pad">

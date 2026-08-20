@@ -1,11 +1,29 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from '../../contexts/SiteContext'
 import { usePageTitle } from '../../hooks/usePageTitle'
+import { api } from '../../api/client'
+
+interface PricingPlan {
+  id: number; name: string; price: string; description: string; features: string
+  is_featured: number; cta_text: string; cta_link: string
+}
+interface Faq { id: number; question: string; answer: string }
+
+function parseFeatures(raw: string): string[] {
+  return (raw || '').split(/\r?\n/).map(s => s.trim()).filter(Boolean)
+}
 
 export default function ServicesPage() {
   const { services, settings } = useSite()
+  const [pricing, setPricing] = useState<PricingPlan[]>([])
+  const [faqs, setFaqs] = useState<Faq[]>([])
   usePageTitle('Dịch vụ', `Các dịch vụ tư vấn tài chính tại ${settings.site_name || 'chúng tôi'}.`)
+
+  useEffect(() => {
+    api.get<PricingPlan[]>('/public/pricing-plans').then(setPricing).catch(() => {})
+    api.get<Faq[]>('/public/faqs?page=dich-vu').then(setFaqs).catch(() => {})
+  }, [])
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -17,7 +35,7 @@ export default function ServicesPage() {
       return () => ro.disconnect()
     }, 0)
     return () => clearTimeout(timer)
-  }, [services])
+  }, [services, pricing, faqs])
 
   const displayServices = services.length > 0 ? services : [
     { id: 1, name: 'Quản lý Đầu tư', description: 'Xây dựng danh mục đầu tư tối ưu dựa trên khẩu vị rủi ro và mục tiêu tài chính.', content: 'Chúng tôi xây dựng và quản lý danh mục đầu tư đa dạng phù hợp với mục tiêu tài chính và khẩu vị rủi ro của từng khách hàng. Bao gồm cổ phiếu, trái phiếu, quỹ ETF, bất động sản và các công cụ tài chính khác.', price: '500 triệu (tối thiểu)', slug: 'quan-ly-dau-tu' },
@@ -123,58 +141,70 @@ export default function ServicesPage() {
             <p className="tc-sub tc-sub-center">Chúng tôi cung cấp các gói dịch vụ linh hoạt, phù hợp với quy mô tài sản và nhu cầu của từng khách hàng.</p>
           </div>
           <div className="row g-4">
-            <div className="col-lg-4" data-reveal="">
-              <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', padding: '32px', height: '100%' }}>
-                <div style={{ fontSize: '12px', fontWeight: '600', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: '12px' }}>Cơ Bản</div>
-                <div style={{ fontSize: '36px', fontWeight: '700', color: 'var(--text)', marginBottom: '4px' }}>5 triệu <span style={{ fontSize: '16px', color: 'var(--text-3)', fontWeight: '400' }}>/tháng</span></div>
-                <p style={{ fontSize: '13px', color: 'var(--text-2)', marginBottom: '24px' }}>Dành cho cá nhân mới bắt đầu đầu tư, tài sản dưới 1 tỷ đồng.</p>
-                <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 28px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                  {['Tư vấn hoạch định tài chính cơ bản','Báo cáo hàng quý','Hỗ trợ email & điện thoại','1 cuộc họp đánh giá/quý'].map(item => (
-                    <li key={item} style={{ fontSize: '13px', color: 'var(--text-2)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <svg width="16" height="16" fill="var(--accent)" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>{item}
-                    </li>
-                  ))}
-                </ul>
-                <Link to="/lien-he" className="tc-btn-ghost" style={{ width: '100%', textAlign: 'center', display: 'block' }}>Bắt đầu ngay</Link>
-              </div>
-            </div>
-            <div className="col-lg-4" data-reveal="" data-delay="1">
-              <div style={{ background: 'var(--accent)', borderRadius: '8px', padding: '32px', height: '100%', position: 'relative', boxShadow: '0 16px 48px rgba(21,101,192,.25)' }}>
-                <div style={{ position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%)', background: '#fff', color: 'var(--accent)', fontSize: '11px', fontWeight: '700', padding: '5px 16px', borderRadius: '20px', whiteSpace: 'nowrap', letterSpacing: '1px' }}>PHỔ BIẾN NHẤT</div>
-                <div style={{ fontSize: '12px', fontWeight: '600', color: 'rgba(255,255,255,.6)', textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: '12px' }}>Chuyên Nghiệp</div>
-                <div style={{ fontSize: '36px', fontWeight: '700', color: '#fff', marginBottom: '4px' }}>15 triệu <span style={{ fontSize: '16px', color: 'rgba(255,255,255,.6)', fontWeight: '400' }}>/tháng</span></div>
-                <p style={{ fontSize: '13px', color: 'rgba(255,255,255,.7)', marginBottom: '24px' }}>Dành cho nhà đầu tư có kinh nghiệm, tài sản từ 1–10 tỷ đồng.</p>
-                <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 28px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                  {['Tất cả tính năng gói Cơ bản','Quản lý danh mục đầu tư chủ động','Báo cáo hàng tháng chi tiết','Tư vấn thuế cơ bản','Chuyên gia riêng phụ trách','Họp đánh giá hàng tháng'].map(item => (
-                    <li key={item} style={{ fontSize: '13px', color: 'rgba(255,255,255,.9)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <svg width="16" height="16" fill="#fff" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>{item}
-                    </li>
-                  ))}
-                </ul>
-                <Link to="/lien-he" className="tc-btn-white" style={{ width: '100%', textAlign: 'center', display: 'block' }}>Đăng ký ngay</Link>
-              </div>
-            </div>
-            <div className="col-lg-4" data-reveal="" data-delay="2">
-              <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', padding: '32px', height: '100%' }}>
-                <div style={{ fontSize: '12px', fontWeight: '600', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: '12px' }}>Cao Cấp</div>
-                <div style={{ fontSize: '36px', fontWeight: '700', color: 'var(--text)', marginBottom: '4px' }}>Liên hệ <span style={{ fontSize: '16px', color: 'var(--text-3)', fontWeight: '400' }}>/tháng</span></div>
-                <p style={{ fontSize: '13px', color: 'var(--text-2)', marginBottom: '24px' }}>Dành cho UHNW và doanh nghiệp, tài sản trên 10 tỷ đồng.</p>
-                <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 28px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                  {['Tất cả tính năng gói Chuyên nghiệp','Chiến lược đầu tư độc quyền','Tư vấn thuế doanh nghiệp đầy đủ','Kế hoạch di sản & thừa kế','Tiếp cận cơ hội đầu tư riêng','Hotline riêng 24/7'].map(item => (
-                    <li key={item} style={{ fontSize: '13px', color: 'var(--text-2)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <svg width="16" height="16" fill="var(--accent)" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>{item}
-                    </li>
-                  ))}
-                </ul>
-                <Link to="/lien-he" className="tc-btn-primary" style={{ width: '100%', textAlign: 'center', display: 'block' }}>Liên hệ tư vấn</Link>
-              </div>
-            </div>
+            {pricing.map((pc, i) => {
+              const featured = pc.is_featured === 1
+              return (
+                <div key={pc.id} className="col-lg-4" data-reveal="" data-delay={i > 0 ? String(i) : undefined}>
+                  <div style={featured
+                    ? { background: 'var(--accent)', borderRadius: '8px', padding: '32px', height: '100%', position: 'relative', boxShadow: '0 16px 48px rgba(21,101,192,.25)' }
+                    : { background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', padding: '32px', height: '100%' }
+                  }>
+                    {featured && (
+                      <div style={{ position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%)', background: '#fff', color: 'var(--accent)', fontSize: '11px', fontWeight: '700', padding: '5px 16px', borderRadius: '20px', whiteSpace: 'nowrap', letterSpacing: '1px' }}>PHỔ BIẾN NHẤT</div>
+                    )}
+                    <div style={{ fontSize: '12px', fontWeight: '600', color: featured ? 'rgba(255,255,255,.6)' : 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: '12px' }}>{pc.name}</div>
+                    <div style={{ fontSize: '30px', fontWeight: '700', color: featured ? '#fff' : 'var(--text)', marginBottom: '4px' }}>{pc.price}</div>
+                    {pc.description && (
+                      <p style={{ fontSize: '13px', color: featured ? 'rgba(255,255,255,.7)' : 'var(--text-2)', marginBottom: '24px' }}>{pc.description}</p>
+                    )}
+                    <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 28px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                      {parseFeatures(pc.features).map(item => (
+                        <li key={item} style={{ fontSize: '13px', color: featured ? 'rgba(255,255,255,.9)' : 'var(--text-2)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <svg width="16" height="16" fill={featured ? '#fff' : 'var(--accent)'} viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>{item}
+                        </li>
+                      ))}
+                    </ul>
+                    <Link to={pc.cta_link || '/lien-he'} className={featured ? 'tc-btn-white' : 'tc-btn-ghost'} style={{ width: '100%', textAlign: 'center', display: 'block' }}>{pc.cta_text || 'Nhận báo giá'}</Link>
+                  </div>
+                </div>
+              )
+            })}
+            {pricing.length === 0 && (
+              <div className="text-center" style={{ padding: '48px', color: 'var(--text-3)', width: '100%' }}>Đang tải bảng giá...</div>
+            )}
           </div>
           <p style={{ textAlign: 'center', fontSize: '12px', color: 'var(--text-3)', marginTop: '24px' }}>
             * Phí trên là mức tham khảo. Giá thực tế được xác định sau buổi tư vấn ban đầu miễn phí.
           </p>
         </div>
       </section>
+
+      {/* FAQ — Accordion thật (details/summary, không cần JS) */}
+      {faqs.length > 0 && (
+        <section className="tc-sec-pad" style={{ background: 'var(--surface)' }} id="faq">
+          <div className="wd-container">
+            <div className="text-center mb-5" data-reveal="">
+              <div className="tc-label" style={{ marginLeft: 'auto', marginRight: 'auto' }}>Câu hỏi thường gặp</div>
+              <h2 className="tc-title">Bạn muốn <span>tìm hiểu</span> thêm?</h2>
+              <p className="tc-sub tc-sub-center">Những thắc mắc phổ biến nhất về phí dịch vụ, tính pháp lý và cam kết đầu tư — nếu chưa tìm thấy câu trả lời, hãy <Link to="/lien-he" style={{ color: 'var(--accent)' }}>liên hệ trực tiếp</Link> với chuyên gia của chúng tôi.</p>
+            </div>
+            <div className="row justify-content-center">
+              <div className="col-lg-8">
+                {faqs.map(f => (
+                  <details className="tc-faq-item" key={f.id} data-reveal="">
+                    <summary>{f.question} <span className="tc-faq-icon" aria-hidden="true">+</span></summary>
+                    <p className="tc-faq-a">{f.answer}</p>
+                  </details>
+                ))}
+                <div className="tc-faq-disclaimer" data-reveal="">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                  <p>Đầu tư có rủi ro. Mọi thông tin, số liệu hiệu suất trên trang này chỉ mang tính tham khảo và không cấu thành cam kết hay lời khuyên đầu tư đảm bảo lợi nhuận.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CTA */}
       <section className="tc-cta-section" style={{ padding: 'clamp(56px,8vw,96px) 0' }}>

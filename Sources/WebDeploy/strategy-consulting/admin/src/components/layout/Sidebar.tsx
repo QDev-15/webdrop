@@ -38,6 +38,8 @@ export default function Sidebar() {
     ]},
     { section: 'Nội dung', links: [
       { to: '/services', icon: '🎯', label: 'Dịch vụ' },
+      { to: '/pricing',  icon: '💼', label: 'Hình thức hợp tác' },
+      { to: '/faqs',     icon: '❓', label: 'FAQ' },
     ]},
     { section: 'Khách hàng', links: [
       { to: '/contacts', icon: '✉', label: 'Liên hệ', badge: newContacts },

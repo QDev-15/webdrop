@@ -1153,6 +1153,84 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* ══════════════════════════════════════
+   DICH VU page — FAQ Accordion (details/summary, native)
+══════════════════════════════════════ */
+.tc-faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.tc-faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: var(--sans);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -.2px;
+}
+.tc-faq-item summary::-webkit-details-marker { display: none; }
+.tc-faq-item summary::marker { content: ''; }
+.tc-faq-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  transition: transform .25s, background .25s, color .25s;
+}
+.tc-faq-item[open] {
+  border-color: var(--accent-mid);
+}
+.tc-faq-item[open] .tc-faq-icon {
+  transform: rotate(45deg);
+  background: var(--accent);
+  color: #fff;
+}
+.tc-faq-a {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 300;
+  color: var(--text-2);
+  line-height: 1.8;
+  padding: 0 22px 20px;
+  margin: 0;
+  border-top: 1px solid var(--border-light);
+  padding-top: 14px;
+}
+.tc-faq-disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--warm);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-top: 24px;
+}
+.tc-faq-disclaimer svg { flex-shrink: 0; width: 18px; height: 18px; fill: var(--text-3); margin-top: 2px; }
+.tc-faq-disclaimer p {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--text-2);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════
    DOI NGU page — Bento-style team
 ══════════════════════════════════════ */
 .tc-expert-detail-card {

@@ -37,11 +37,24 @@ export interface Service {
 export interface Case {
   id: number
   title: string
+  slug: string
   category: string
   summary: string
   outcome: string
   year: number
   location: string
+  client_name?: string
+  practice_area?: string
+  duration_text?: string
+  scope_text?: string
+  result_headline?: string
+  challenge?: string
+  solution?: string
+  gallery_images?: string
+  stats?: string
+  testimonial_content?: string
+  testimonial_author?: string
+  testimonial_title?: string
 }
 
 export interface Testimonial {
@@ -52,6 +65,24 @@ export interface Testimonial {
   case_type: string
 }
 
+export interface Faq {
+  id: number
+  question: string
+  answer: string
+  page: string
+}
+
+export interface PricingPlan {
+  id: number
+  name: string
+  price: string
+  description: string
+  features: string
+  is_featured: number
+  cta_text: string
+  cta_link: string
+}
+
 interface SiteData {
   settings: Settings
   slides: Slide[]
@@ -59,16 +90,18 @@ interface SiteData {
   lawyers: Lawyer[]
   cases: Case[]
   testimonials: Testimonial[]
+  faqs: Faq[]
+  pricingPlans: PricingPlan[]
   loading: boolean
 }
 
 const SiteContext = createContext<SiteData>({
-  settings: {}, slides: [], services: [], lawyers: [], cases: [], testimonials: [], loading: true,
+  settings: {}, slides: [], services: [], lawyers: [], cases: [], testimonials: [], faqs: [], pricingPlans: [], loading: true,
 })
 
 export function SiteProvider({ children }: { children: React.ReactNode }) {
   const [data, setData] = useState<SiteData>({
-    settings: {}, slides: [], services: [], lawyers: [], cases: [], testimonials: [], loading: true,
+    settings: {}, slides: [], services: [], lawyers: [], cases: [], testimonials: [], faqs: [], pricingPlans: [], loading: true,
   })
 
   useEffect(() => {
@@ -79,8 +112,10 @@ export function SiteProvider({ children }: { children: React.ReactNode }) {
       api.get<Lawyer[]>('/public/lawyers'),
       api.get<Case[]>('/public/cases'),
       api.get<Testimonial[]>('/public/testimonials'),
-    ]).then(([settings, slides, services, lawyers, cases, testimonials]) => {
-      setData({ settings, slides, services, lawyers, cases, testimonials, loading: false })
+      api.get<Faq[]>('/public/faqs'),
+      api.get<PricingPlan[]>('/public/pricing-plans'),
+    ]).then(([settings, slides, services, lawyers, cases, testimonials, faqs, pricingPlans]) => {
+      setData({ settings, slides, services, lawyers, cases, testimonials, faqs, pricingPlans, loading: false })
       if (settings.meta_title) document.title = settings.meta_title
       if (settings.meta_description) {
         const meta = document.querySelector('meta[name="description"]')

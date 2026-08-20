@@ -1,6 +1,9 @@
 /* ══ Agency Sáng Tạo — BOLD-EDITORIAL ══ */
-/* Font: Syne (all weights) | Tone: mixed (light bg + dark hero/sections) | Identity: BOLD-EDITORIAL */
+/* Font: Bricolage Grotesque (heading) + DM Sans (body) | Tone: mixed (light bg + dark hero/sections) | Identity: BOLD-EDITORIAL */
 /* Prefix class: ag- | Accent: Amber #f59e0b | Nav: Nav-8 Underline-Active */
+/* Đồng bộ font 2026-08 từ bản retrofit Sources/templates/web/Companies/agency-sang-tao/ —
+   Syne (dùng cho cả heading lẫn body) bị phản hồi "to cứng lùn xấu", thay bằng Bricolage
+   Grotesque cho heading + DM Sans cho body/UI. Xem --heading/--sans bên dưới. */
 
 :root {
   --bg: #f5f5f0;
@@ -19,7 +22,8 @@
   --warm: #f0f0e8;
   --warm2: #e5e5de;
   --danger: #ef4444;
-  --sans: 'Syne', sans-serif;
+  --heading: 'Bricolage Grotesque', sans-serif;
+  --sans: 'DM Sans', sans-serif;
   --bs-body-font-family: var(--sans);
   --bs-body-bg: var(--bg);
   --bs-body-color: var(--text);
@@ -124,7 +128,7 @@ a {
 }
 
 .ag-logo {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: 17px;
   font-weight: 800;
   color: var(--text);
@@ -258,7 +262,7 @@ a {
 }
 
 .ag-nav-mob a {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: 28px;
   font-weight: 800;
   color: rgba(255, 255, 255, .55);
@@ -346,11 +350,11 @@ a {
 }
 
 .ag-hero-headline {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: clamp(72px, 12vw, 160px);
   font-weight: 800;
   line-height: .9;
-  letter-spacing: -4px;
+  letter-spacing: -2px;
   color: #fff;
   text-transform: uppercase;
   margin-bottom: 0;
@@ -388,12 +392,12 @@ a {
 .ag-hero-stat {}
 
 .ag-hero-stat-num {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: clamp(28px, 4vw, 48px);
   font-weight: 800;
   color: #fff;
   line-height: 1;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
 }
 
 .ag-hero-stat-label {
@@ -486,12 +490,12 @@ a {
 }
 
 .ag-section-title {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: clamp(28px, 4vw, 48px);
   font-weight: 800;
   color: var(--text);
   line-height: 1.0;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
   text-transform: uppercase;
   margin: 0;
 }
@@ -579,7 +583,7 @@ a {
 }
 
 .ag-work-name {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: clamp(16px, 2vw, 22px);
   font-weight: 800;
   color: #fff;
@@ -686,12 +690,12 @@ a {
 .ag-svc-body {}
 
 .ag-svc-name {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: clamp(22px, 3vw, 36px);
   font-weight: 800;
   color: #fff;
   text-transform: uppercase;
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
   margin-bottom: 12px;
   transition: color .2s;
 }
@@ -796,17 +800,17 @@ a {
 }
 
 .ag-step-num {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: 80px;
   font-weight: 800;
   color: rgba(0, 0, 0, .06);
   line-height: 1;
-  letter-spacing: -4px;
+  letter-spacing: -2px;
   margin-bottom: 24px;
 }
 
 .ag-step-name {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: 20px;
   font-weight: 800;
   color: var(--text);
@@ -865,12 +869,12 @@ a {
 }
 
 .ag-team-hero-title {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: clamp(32px, 5vw, 64px);
   font-weight: 800;
   color: #fff;
   text-transform: uppercase;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
   line-height: .95;
   text-shadow: 0 2px 40px rgba(0, 0, 0, .5);
 }
@@ -926,7 +930,7 @@ a {
 }
 
 .ag-member-name {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: 18px;
   font-weight: 800;
   color: var(--text);
@@ -994,7 +998,7 @@ a {
 }
 
 .ag-quote-mark {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: 200px;
   font-weight: 800;
   color: rgba(255, 255, 255, .04);
@@ -1094,12 +1098,12 @@ a {
 }
 
 .ag-cta-title {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: clamp(36px, 5vw, 64px);
   font-weight: 800;
   color: var(--dark);
   text-transform: uppercase;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
   line-height: .95;
   margin-bottom: 24px;
 }
@@ -1143,7 +1147,7 @@ a {
 }
 
 .ag-form-title {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: 18px;
   font-weight: 800;
   color: #fff;
@@ -1251,7 +1255,7 @@ a {
 .ag-footer-brand {}
 
 .ag-footer-logo {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: 20px;
   font-weight: 800;
   color: #fff;
@@ -1400,12 +1404,12 @@ a {
 }
 
 .ag-ph-title {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: clamp(40px, 6vw, 88px);
   font-weight: 800;
   color: #fff;
   text-transform: uppercase;
-  letter-spacing: -3px;
+  letter-spacing: -1.5px;
   line-height: .92;
   margin-bottom: 20px;
 }
@@ -1540,12 +1544,12 @@ a {
 }
 
 .ag-stat-number {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: clamp(36px, 5vw, 56px);
   font-weight: 800;
   color: var(--dark);
   line-height: 1;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
 }
 
 .ag-stat-name {
@@ -1617,7 +1621,7 @@ a {
 }
 
 .ag-project-title {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: 18px;
   font-weight: 800;
   color: var(--text);
@@ -1701,7 +1705,7 @@ a {
 }
 
 .ag-svc-card-title {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: 18px;
   font-weight: 800;
   color: var(--text);
@@ -1757,12 +1761,12 @@ a {
 }
 
 .ag-manifesto-text {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: clamp(28px, 4vw, 52px);
   font-weight: 800;
   color: rgba(255, 255, 255, .15);
   text-transform: uppercase;
-  letter-spacing: -1.5px;
+  letter-spacing: -1px;
   line-height: 1.05;
 }
 
@@ -1793,7 +1797,7 @@ a {
 }
 
 .ag-value-title {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: 20px;
   font-weight: 800;
   color: var(--text);
@@ -1826,12 +1830,12 @@ a {
 .ag-contact-info {}
 
 .ag-contact-big-title {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: clamp(48px, 7vw, 96px);
   font-weight: 800;
   color: var(--text);
   text-transform: uppercase;
-  letter-spacing: -4px;
+  letter-spacing: -2px;
   line-height: .9;
   margin-bottom: 32px;
 }
@@ -1882,7 +1886,7 @@ a {
 }
 
 .ag-contact-form-title {
-  font-family: var(--sans);
+  font-family: var(--heading);
   font-size: 20px;
   font-weight: 800;
   color: var(--text);

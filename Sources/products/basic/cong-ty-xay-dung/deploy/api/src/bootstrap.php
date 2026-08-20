@@ -45,6 +45,8 @@ require_once __DIR__ . '/controllers/MediaController.php';
 require_once __DIR__ . '/controllers/UserController.php';
 require_once __DIR__ . '/controllers/ServiceController.php';
 require_once __DIR__ . '/controllers/ProjectController.php';
+require_once __DIR__ . '/controllers/FaqController.php';
+require_once __DIR__ . '/controllers/PricingController.php';
 require_once __DIR__ . '/controllers/TestimonialController.php';
 require_once __DIR__ . '/controllers/TeamMemberController.php';
 require_once __DIR__ . '/controllers/UploadController.php';
@@ -94,6 +96,20 @@ $router->add('POST', '/projects',              [$project, 'store']);
 $router->add('POST', '/projects/:id/update',   [$project, 'update']);
 $router->add('POST', '/projects/:id/delete',   [$project, 'destroy']);
 
+// ── FAQ ───────────────────────────────────────────────────────────────────────
+$faq = new FaqController($db);
+$router->add('GET',  '/faqs',              [$faq, 'index']);
+$router->add('POST', '/faqs',              [$faq, 'store']);
+$router->add('POST', '/faqs/:id/update',   [$faq, 'update']);
+$router->add('POST', '/faqs/:id/delete',   [$faq, 'destroy']);
+
+// ── PRICING PLANS ─────────────────────────────────────────────────────────────
+$pricing = new PricingController($db);
+$router->add('GET',  '/pricing-plans',              [$pricing, 'index']);
+$router->add('POST', '/pricing-plans',              [$pricing, 'store']);
+$router->add('POST', '/pricing-plans/:id/update',   [$pricing, 'update']);
+$router->add('POST', '/pricing-plans/:id/delete',   [$pricing, 'destroy']);
+
 // ── TESTIMONIALS ──────────────────────────────────────────────────────────────
 $testi = new TestimonialController($db);
 $router->add('GET',  '/testimonials',              [$testi, 'index']);
@@ -132,7 +148,10 @@ $router->add('GET',  '/public/settings',      [$pub, 'settings']);
 $router->add('GET',  '/public/hero-slides',   [$pub, 'heroSlides']);
 $router->add('GET',  '/public/services',      [$pub, 'services']);
 $router->add('GET',  '/public/projects',      [$pub, 'projects']);
+$router->add('GET',  '/public/projects/:slug',[$pub, 'projectBySlug']);
 $router->add('GET',  '/public/testimonials',  [$pub, 'testimonials']);
+$router->add('GET',  '/public/faqs',          [$pub, 'faqs']);
+$router->add('GET',  '/public/pricing-plans', [$pub, 'pricingPlans']);
 $router->add('POST', '/public/contact',       [$pub, 'submitContact']);
 $router->add('GET',  '/sitemap.xml',          [$pub, 'sitemap']);
 

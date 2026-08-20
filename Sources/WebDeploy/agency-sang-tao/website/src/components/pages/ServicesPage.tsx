@@ -12,6 +12,23 @@ interface Service {
   featured: number
 }
 
+interface Faq {
+  id: number
+  question: string
+  answer: string
+}
+
+interface PricingPlan {
+  id: number
+  name: string
+  price: string
+  description: string
+  features: string
+  is_featured: number
+  cta_text: string
+  cta_link: string
+}
+
 export default function ServicesPage() {
   useDocumentMeta({
     title: 'Dịch vụ — Agency Sáng Tạo',
@@ -19,12 +36,19 @@ export default function ServicesPage() {
   })
   const [services, setServices] = useState<Service[]>([])
   const [loading, setLoading]   = useState(true)
+  const [faqs, setFaqs]         = useState<Faq[]>([])
+  const [plans, setPlans]       = useState<PricingPlan[]>([])
 
   useEffect(() => {
     api.get<Service[]>('/public/services')
       .then(setServices)
       .catch(console.error)
       .finally(() => setLoading(false))
+  }, [])
+
+  useEffect(() => {
+    api.get<Faq[]>('/public/faqs?page=dich-vu').then(setFaqs).catch(console.error)
+    api.get<PricingPlan[]>('/public/pricing-plans').then(setPlans).catch(console.error)
   }, [])
 
   useEffect(() => {
@@ -37,7 +61,7 @@ export default function ServicesPage() {
       return () => ro.disconnect()
     }, 0)
     return () => clearTimeout(timer)
-  }, [services])
+  }, [services, faqs, plans])
 
   const featuredServices = services.filter(s => s.featured)
 
@@ -63,7 +87,7 @@ export default function ServicesPage() {
                 <div key={svc.id} className="col-md-4">
                   <div className="text-center" style={{ padding: '24px 0', ...(idx === 1 ? { borderLeft: '1px solid var(--border)', borderRight: '1px solid var(--border)' } : {}) }}>
                     <div style={{ fontSize: '11px', fontWeight: 700, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '8px' }}>0{idx + 1}</div>
-                    <h2 style={{ fontFamily: 'var(--sans)', fontSize: '22px', fontWeight: 800, color: 'var(--text)', textTransform: 'uppercase', letterSpacing: '-0.5px', marginBottom: '8px' }}>{svc.name}</h2>
+                    <h2 style={{ fontFamily: 'var(--heading)', fontSize: '22px', fontWeight: 800, color: 'var(--text)', textTransform: 'uppercase', letterSpacing: '-0.5px', marginBottom: '8px' }}>{svc.name}</h2>
                     <p style={{ fontSize: '13px', color: 'var(--text-2)', lineHeight: '1.7' }}>{svc.description.substring(0, 80)}...</p>
                   </div>
                 </div>
@@ -126,11 +150,79 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* PRICING */}
+      {plans.length > 0 && (
+        <section className="ag-sec-pad" style={{ background: 'var(--surface)' }}>
+          <div className="wd-container">
+            <div className="text-center mb-5" data-reveal>
+              <div className="ag-section-label" style={{ textAlign: 'center', display: 'block', marginBottom: 12 }}>Bảng giá dịch vụ</div>
+              <h2 className="ag-section-title" style={{ fontSize: 'clamp(32px,5vw,56px)' }}>Đầu tư vào <em>thương hiệu</em></h2>
+              <p style={{ fontFamily: 'var(--sans)', fontSize: 14, color: 'var(--text-2)', maxWidth: 480, margin: '0 auto', lineHeight: 1.7 }}>Chúng tôi cung cấp gói dịch vụ linh hoạt phù hợp với từng giai đoạn phát triển của doanh nghiệp.</p>
+            </div>
+            <div className="row g-0">
+              <div className="col-12" data-reveal>
+                {plans.map(plan => (
+                  <div
+                    key={plan.id}
+                    style={{
+                      display: 'grid', gridTemplateColumns: '1fr auto auto', alignItems: 'center', gap: 24,
+                      padding: '32px 0', borderBottom: '1px solid var(--border)',
+                      ...(plan.is_featured ? { background: 'var(--accent-light)', margin: '0 -24px', paddingLeft: 24, paddingRight: 24 } : {}),
+                    }}
+                  >
+                    <div>
+                      <div style={{ fontFamily: 'var(--sans)', fontSize: 10, fontWeight: 600, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: 2, marginBottom: 6 }}>
+                        {plan.name}{plan.is_featured ? ' ★ Phổ biến nhất' : ''}
+                      </div>
+                      <h3 style={{ fontFamily: 'var(--heading)', fontSize: 22, fontWeight: 800, color: 'var(--text)', textTransform: 'uppercase', letterSpacing: '-0.5px', marginBottom: 6 }}>{plan.name}</h3>
+                      <p style={{ fontFamily: 'var(--sans)', fontSize: 13, color: 'var(--text-2)' }}>{plan.description}</p>
+                      {plan.features && (
+                        <ul style={{ fontFamily: 'var(--sans)', fontSize: 12.5, color: 'var(--text-2)', lineHeight: 1.8, marginTop: 8, paddingLeft: 18 }}>
+                          {plan.features.split(/\r?\n/).filter(Boolean).map((f, i) => <li key={i}>{f}</li>)}
+                        </ul>
+                      )}
+                    </div>
+                    <div style={{ fontFamily: 'var(--heading)', fontSize: 22, fontWeight: 800, color: 'var(--text)', whiteSpace: 'nowrap' }}>{plan.price}</div>
+                    <Link to="/lien-he" className={plan.is_featured ? 'ag-btn-primary' : 'ag-btn-outline'} style={{ whiteSpace: 'nowrap' }}>{plan.cta_text || 'Liên hệ ngay'}</Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <p style={{ fontFamily: 'var(--sans)', fontSize: 12, color: 'var(--text-3)', textAlign: 'center', marginTop: 24, textTransform: 'uppercase', letterSpacing: 1 }} data-reveal>* Giá tham khảo, chính xác sau khi khảo sát yêu cầu thực tế</p>
+          </div>
+        </section>
+      )}
+
+      {/* FAQ */}
+      {faqs.length > 0 && (
+        <section className="ag-sec-pad" style={{ background: 'var(--bg)' }} id="faq">
+          <div className="wd-container">
+            <div className="row g-5">
+              <div className="col-lg-4" data-reveal>
+                <div className="ag-section-label" style={{ marginBottom: 12 }}>FAQ</div>
+                <h2 className="ag-section-title">Câu hỏi<br/><em>thường gặp</em></h2>
+                <p style={{ fontFamily: 'var(--sans)', fontSize: 13, color: 'var(--text-2)', lineHeight: 1.8, marginTop: 16 }}>
+                  Không tìm thấy câu trả lời bạn cần? <Link to="/lien-he" style={{ color: 'var(--accent)' }}>Liên hệ trực tiếp</Link> — chúng tôi luôn sẵn sàng giải đáp.
+                </p>
+              </div>
+              <div className="col-lg-8" data-reveal>
+                {faqs.map(f => (
+                  <details className="ag-faq-item" key={f.id}>
+                    <summary>{f.question} <span className="ag-faq-icon">+</span></summary>
+                    <p className="ag-faq-a">{f.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* CTA */}
       <section style={{ background: 'var(--dark)', padding: 'clamp(72px, 9vw, 112px) 0' }}>
         <div className="wd-container text-center" data-reveal>
           <div style={{ fontFamily: 'var(--sans)', fontSize: '11px', fontWeight: 600, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '20px' }}>Bắt đầu cùng chúng tôi</div>
-          <h2 style={{ fontFamily: 'var(--sans)', fontSize: 'clamp(36px,6vw,80px)', fontWeight: 800, color: '#fff', textTransform: 'uppercase', letterSpacing: '-3px', lineHeight: '.92', marginBottom: '28px' }}>
+          <h2 style={{ fontFamily: 'var(--heading)', fontSize: 'clamp(36px,6vw,80px)', fontWeight: 800, color: '#fff', textTransform: 'uppercase', letterSpacing: '-1.5px', lineHeight: '.92', marginBottom: '28px' }}>
             THƯƠNG HIỆU CỦA BẠN<br/><span style={{ color: 'var(--accent)' }}>XỨNG ĐÁNG</span> HƠN
           </h2>
           <p style={{ fontFamily: 'var(--sans)', fontSize: '14px', color: 'rgba(255,255,255,.4)', maxWidth: '400px', margin: '0 auto 36px', lineHeight: '1.7' }}>Liên hệ ngay để nhận tư vấn miễn phí và báo giá chi tiết cho dự án của bạn.</p>

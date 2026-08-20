@@ -44,6 +44,8 @@ export default function Sidebar() {
       section: 'Dịch vụ',
       links: [
         { to: '/services', icon: '💼', label: 'Dịch vụ tư vấn' },
+        { to: '/pricing', icon: '💰', label: 'Bảng giá' },
+        { to: '/faqs', icon: '❓', label: 'Câu hỏi thường gặp' },
       ],
     },
     {

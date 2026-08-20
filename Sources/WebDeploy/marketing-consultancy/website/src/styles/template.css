@@ -866,6 +866,76 @@ a {
 }
 
 /* ══════════════════════════════════════
+   FAQ ACCORDION (details/summary, no JS) — services.html
+══════════════════════════════════════ */
+
+.mc-faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 4px 24px;
+  margin-bottom: 14px;
+  transition: border-color .25s, box-shadow .25s;
+}
+
+.mc-faq-item:hover {
+  border-color: var(--accent-mid);
+}
+
+.mc-faq-item[open] {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+
+.mc-faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.mc-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.mc-faq-icon {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 26px;
+  text-align: center;
+  transition: transform .25s, background .25s, color .25s;
+}
+
+.mc-faq-item[open] .mc-faq-icon {
+  transform: rotate(45deg);
+  background: var(--accent);
+  color: #fff;
+}
+
+.mc-faq-a {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 300;
+  color: var(--text-2);
+  line-height: 1.8;
+  padding: 0 0 22px;
+  max-width: 700px;
+}
+
+/* ══════════════════════════════════════
    CTA SECTION
 ══════════════════════════════════════ */
 
@@ -1246,6 +1316,24 @@ footer {
 /* ══════════════════════════════════════
    PRICING (Gói dịch vụ) — trang Dịch vụ
 ══════════════════════════════════════ */
+
+.mc-pricing-card {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.mc-pricing-card .mc-feature-title,
+.mc-pricing-card .mc-feature-desc {
+  text-align: left;
+}
+
+.mc-pricing-cta {
+  margin-top: auto;
+  align-self: flex-start;
+  text-align: center;
+  width: 100%;
+}
 
 .mc-pricing-price {
   font-size: 28px;

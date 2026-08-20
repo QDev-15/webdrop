@@ -9,6 +9,10 @@ import ServiceList from './pages/services/ServiceList'
 import ServiceForm from './pages/services/ServiceForm'
 import ProjectList from './pages/projects/ProjectList'
 import ProjectForm from './pages/projects/ProjectForm'
+import FaqList from './pages/faqs/FaqList'
+import FaqForm from './pages/faqs/FaqForm'
+import PricingList from './pages/pricing/PricingList'
+import PricingForm from './pages/pricing/PricingForm'
 import TeamList from './pages/team/TeamList'
 import TeamForm from './pages/team/TeamForm'
 import TestimonialList from './pages/testimonials/TestimonialList'
@@ -44,6 +48,12 @@ function ProtectedRoutes() {
         <Route path="/projects" element={<ProjectList />} />
         <Route path="/projects/new" element={<ProjectForm />} />
         <Route path="/projects/:id/edit" element={<ProjectForm />} />
+        <Route path="/faqs" element={<FaqList />} />
+        <Route path="/faqs/new" element={<FaqForm />} />
+        <Route path="/faqs/:id/edit" element={<FaqForm />} />
+        <Route path="/pricing" element={<PricingList />} />
+        <Route path="/pricing/new" element={<PricingForm />} />
+        <Route path="/pricing/:id/edit" element={<PricingForm />} />
         <Route path="/team" element={<TeamList />} />
         <Route path="/team/new" element={<TeamForm />} />
         <Route path="/team/:id/edit" element={<TeamForm />} />

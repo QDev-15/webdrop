@@ -13,6 +13,10 @@ import TestimonialList from './pages/testimonials/TestimonialList'
 import TestimonialForm from './pages/testimonials/TestimonialForm'
 import ContactList from './pages/contacts/ContactList'
 import ContactDetail from './pages/contacts/ContactDetail'
+import FaqList from './pages/faqs/FaqList'
+import FaqForm from './pages/faqs/FaqForm'
+import PricingList from './pages/pricing/PricingList'
+import PricingForm from './pages/pricing/PricingForm'
 import MediaPage from './pages/media/MediaPage'
 import Settings from './pages/settings/Settings'
 import ProfilePage from './pages/profile/ProfilePage'
@@ -46,6 +50,12 @@ export default function App() {
         <Route path="/testimonials/:id/edit" element={<TestimonialForm />} />
         <Route path="/contacts" element={<ContactList />} />
         <Route path="/contacts/:id" element={<ContactDetail />} />
+        <Route path="/faqs" element={<FaqList />} />
+        <Route path="/faqs/new" element={<FaqForm />} />
+        <Route path="/faqs/:id/edit" element={<FaqForm />} />
+        <Route path="/pricing" element={<PricingList />} />
+        <Route path="/pricing/new" element={<PricingForm />} />
+        <Route path="/pricing/:id/edit" element={<PricingForm />} />
         <Route path="/media" element={<MediaPage />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/profile" element={<ProfilePage />} />
