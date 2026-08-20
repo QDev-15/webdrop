@@ -39,6 +39,22 @@ class PublicController {
         Response::json($testimonials);
     }
 
+    public function faqs(array $p): void {
+        $page = trim($_GET['page'] ?? 'dich-vu');
+        $items = $this->db->query(
+            "SELECT * FROM faqs WHERE status='published' AND page=? ORDER BY sort_order, id",
+            [$page]
+        );
+        Response::json($items);
+    }
+
+    public function pricingPlans(array $p): void {
+        $items = $this->db->query(
+            "SELECT * FROM pricing_plans WHERE status='published' ORDER BY sort_order, id"
+        );
+        Response::json($items);
+    }
+
     public function submitContact(array $p): void {
         $b = bodyJson();
         $name = trim($b['name'] ?? '');

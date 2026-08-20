@@ -17,6 +17,7 @@ import FaqList from './pages/faqs/FaqList'
 import FaqForm from './pages/faqs/FaqForm'
 import MediaPage from './pages/media/MediaPage'
 import Settings from './pages/settings/Settings'
+import Profile from './pages/profile/Profile'
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
   const { user, loading } = useAuth()
@@ -54,6 +55,7 @@ export default function App() {
               <Route path="/faqs/:id/edit"       element={<FaqForm />} />
               <Route path="/media"               element={<MediaPage />} />
               <Route path="/settings"            element={<Settings />} />
+              <Route path="/profile"             element={<Profile />} />
               <Route path="*"                    element={<Navigate to="/" replace />} />
             </Routes>
           </AdminLayout>

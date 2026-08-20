@@ -38,11 +38,9 @@ if (!existsSync(join(root, 'admin', 'node_modules'))) {
 // Build React apps
 run('npm run build', join(root, 'website'), 'Build website')
 run('npm run build', join(root, 'admin'), 'Build admin')
-run('npm run build', join(root, 'admin'), 'Build admin')
 
 // Create directory structure
 console.log('  Tạo cấu trúc deploy...')
-mkdirSync(join(deploy, 'admin'), { recursive: true })
 mkdirSync(join(deploy, 'admin'), { recursive: true })
 mkdirSync(join(deploy, 'api', 'src', 'controllers'), { recursive: true })
 mkdirSync(join(deploy, 'api', 'uploads'), { recursive: true })
