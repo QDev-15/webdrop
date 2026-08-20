@@ -21,6 +21,8 @@ require_once __DIR__ . '/controllers/UnsplashController.php';
 require_once __DIR__ . '/controllers/ServiceController.php';
 require_once __DIR__ . '/controllers/TeamController.php';
 require_once __DIR__ . '/controllers/TestimonialController.php';
+require_once __DIR__ . '/controllers/FaqController.php';
+require_once __DIR__ . '/controllers/PricingController.php';
 require_once __DIR__ . '/controllers/StatsController.php';
 require_once __DIR__ . '/controllers/PublicController.php';
 
@@ -101,6 +103,22 @@ $router->add('POST', '/testimonials',            [$testimonial, 'store']);
 $router->add('POST', '/testimonials/:id/update', [$testimonial, 'update']);
 $router->add('POST', '/testimonials/:id/delete', [$testimonial, 'destroy']);
 
+// ─── Extension: FAQ (Câu hỏi thường gặp) ───────────────────────────────────
+$faq = new FaqController($db);
+$router->add('GET',  '/faqs',            [$faq, 'index']);
+$router->add('GET',  '/faqs/:id',        [$faq, 'show']);
+$router->add('POST', '/faqs',            [$faq, 'store']);
+$router->add('POST', '/faqs/:id/update', [$faq, 'update']);
+$router->add('POST', '/faqs/:id/delete', [$faq, 'destroy']);
+
+// ─── Extension: Pricing Plans (Bảng giá dịch vụ) ───────────────────────────────
+$pricing = new PricingController($db);
+$router->add('GET',  '/pricing-plans',            [$pricing, 'index']);
+$router->add('GET',  '/pricing-plans/:id',        [$pricing, 'show']);
+$router->add('POST', '/pricing-plans',            [$pricing, 'store']);
+$router->add('POST', '/pricing-plans/:id/update', [$pricing, 'update']);
+$router->add('POST', '/pricing-plans/:id/delete', [$pricing, 'destroy']);
+
 // ─── Admin Stats ────────────────────────────────────────────────────────────
 $stats = new StatsController($db);
 $router->add('GET', '/stats', [$stats, 'index']);
@@ -112,6 +130,8 @@ $router->add('GET',  '/public/hero-slides',   [$pub, 'heroSlides']);
 $router->add('GET',  '/public/services',      [$pub, 'services']);
 $router->add('GET',  '/public/team',          [$pub, 'team']);
 $router->add('GET',  '/public/testimonials',  [$pub, 'testimonials']);
+$router->add('GET',  '/public/faqs',          [$pub, 'faqs']);
+$router->add('GET',  '/public/pricing-plans', [$pub, 'pricingPlans']);
 $router->add('POST', '/public/contact',       [$pub, 'submitContact']);
 $router->add('GET',  '/sitemap.xml',          [$pub, 'sitemap']);
 
