@@ -75,47 +75,47 @@ export default function PricingForm() {
       <form onSubmit={handleSubmit} className="card">
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           <div className="form-group">
-            <label className="form-label">Tên gói *</label>
-            <input type="text" className="form-control" value={form.name} onChange={e => set('name', e.target.value)} placeholder="Tư Vấn Thiết Kế" required />
+            <label className="form-label" htmlFor="name">Tên gói *</label>
+            <input id="name" type="text" className="form-control" value={form.name} onChange={e => set('name', e.target.value)} placeholder="Tư Vấn Thiết Kế" required />
           </div>
           <div className="form-group">
-            <label className="form-label">Nhãn (tag)</label>
-            <input type="text" className="form-control" value={form.tag} onChange={e => set('tag', e.target.value)} placeholder="Gói cơ bản / Phổ biến nhất / Trọn gói" />
+            <label className="form-label" htmlFor="tag">Nhãn (tag)</label>
+            <input id="tag" type="text" className="form-control" value={form.tag} onChange={e => set('tag', e.target.value)} placeholder="Gói cơ bản / Phổ biến nhất / Trọn gói" />
           </div>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           <div className="form-group">
-            <label className="form-label">Giá *</label>
-            <input type="text" className="form-control" value={form.price} onChange={e => set('price', e.target.value)} placeholder="180.000 – 250.000" required />
+            <label className="form-label" htmlFor="price">Giá *</label>
+            <input id="price" type="text" className="form-control" value={form.price} onChange={e => set('price', e.target.value)} placeholder="180.000 – 250.000" required />
           </div>
           <div className="form-group">
-            <label className="form-label">Đơn vị</label>
-            <input type="text" className="form-control" value={form.unit} onChange={e => set('unit', e.target.value)} placeholder="đ/m²" />
+            <label className="form-label" htmlFor="unit">Đơn vị</label>
+            <input id="unit" type="text" className="form-control" value={form.unit} onChange={e => set('unit', e.target.value)} placeholder="đ/m²" />
           </div>
         </div>
         <div className="form-group">
-          <label className="form-label">Tính năng (mỗi dòng 1 mục)</label>
-          <textarea className="form-control" rows={6} value={form.features} onChange={e => set('features', e.target.value)}
+          <label className="form-label" htmlFor="features">Tính năng (mỗi dòng 1 mục)</label>
+          <textarea id="features" className="form-control" rows={6} value={form.features} onChange={e => set('features', e.target.value)}
             placeholder={'Khảo sát hiện trạng đất/công trình\n3 phương án concept thiết kế'} />
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           <div className="form-group">
-            <label className="form-label">Chữ nút CTA</label>
-            <input type="text" className="form-control" value={form.cta_text} onChange={e => set('cta_text', e.target.value)} />
+            <label className="form-label" htmlFor="cta_text">Chữ nút CTA</label>
+            <input id="cta_text" type="text" className="form-control" value={form.cta_text} onChange={e => set('cta_text', e.target.value)} />
           </div>
           <div className="form-group">
-            <label className="form-label">Liên kết nút</label>
-            <input type="text" className="form-control" value={form.cta_link} onChange={e => set('cta_link', e.target.value)} />
+            <label className="form-label" htmlFor="cta_link">Liên kết nút</label>
+            <input id="cta_link" type="text" className="form-control" value={form.cta_link} onChange={e => set('cta_link', e.target.value)} />
           </div>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
           <div className="form-group">
-            <label className="form-label">Thứ tự hiển thị</label>
-            <input type="number" className="form-control" value={form.sort_order} onChange={e => set('sort_order', parseInt(e.target.value) || 0)} min={0} />
+            <label className="form-label" htmlFor="sort_order">Thứ tự hiển thị</label>
+            <input id="sort_order" type="number" className="form-control" value={form.sort_order} onChange={e => set('sort_order', parseInt(e.target.value) || 0)} min={0} />
           </div>
           <div className="form-group">
-            <label className="form-label">Trạng thái</label>
-            <select className="form-control" value={form.status} onChange={e => set('status', e.target.value)}>
+            <label className="form-label" htmlFor="status">Trạng thái</label>
+            <select id="status" className="form-control" value={form.status} onChange={e => set('status', e.target.value)}>
               <option value="published">Đang hiện</option>
               <option value="draft">Ẩn</option>
             </select>

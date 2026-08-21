@@ -71,21 +71,21 @@ export default function HeroSlideForm() {
 
       <form onSubmit={handleSubmit} className="card">
         <div className="form-group">
-          <label className="form-label">Tiêu đề *</label>
-          <input type="text" className="form-control" value={form.title} onChange={e => set('title', e.target.value)} placeholder="Tiêu đề chính của slide" required />
+          <label className="form-label" htmlFor="title">Tiêu đề *</label>
+          <input id="title" type="text" className="form-control" value={form.title} onChange={e => set('title', e.target.value)} placeholder="Tiêu đề chính của slide" required />
         </div>
         <div className="form-group">
-          <label className="form-label">Mô tả</label>
-          <textarea className="form-control" value={form.subtitle} onChange={e => set('subtitle', e.target.value)} placeholder="Nội dung mô tả slide" />
+          <label className="form-label" htmlFor="subtitle">Mô tả</label>
+          <textarea id="subtitle" className="form-control" value={form.subtitle} onChange={e => set('subtitle', e.target.value)} placeholder="Nội dung mô tả slide" />
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           <div className="form-group">
-            <label className="form-label">Chữ nút</label>
-            <input type="text" className="form-control" value={form.button_text} onChange={e => set('button_text', e.target.value)} placeholder="Vd: Đặt bàn ngay" />
+            <label className="form-label" htmlFor="button_text">Chữ nút</label>
+            <input id="button_text" type="text" className="form-control" value={form.button_text} onChange={e => set('button_text', e.target.value)} placeholder="Vd: Đặt bàn ngay" />
           </div>
           <div className="form-group">
-            <label className="form-label">Liên kết nút</label>
-            <input type="text" className="form-control" value={form.button_link} onChange={e => set('button_link', e.target.value)} placeholder="/dat-ban" />
+            <label className="form-label" htmlFor="button_link">Liên kết nút</label>
+            <input id="button_link" type="text" className="form-control" value={form.button_link} onChange={e => set('button_link', e.target.value)} placeholder="/dat-ban" />
           </div>
         </div>
         <div className="form-group">
@@ -93,12 +93,12 @@ export default function HeroSlideForm() {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           <div className="form-group">
-            <label className="form-label">Thứ tự hiển thị</label>
-            <input type="number" className="form-control" value={form.sort_order} onChange={e => set('sort_order', parseInt(e.target.value) || 0)} min={0} />
+            <label className="form-label" htmlFor="sort_order">Thứ tự hiển thị</label>
+            <input id="sort_order" type="number" className="form-control" value={form.sort_order} onChange={e => set('sort_order', parseInt(e.target.value) || 0)} min={0} />
           </div>
           <div className="form-group">
-            <label className="form-label">Trạng thái</label>
-            <select className="form-control" value={form.status} onChange={e => set('status', e.target.value)}>
+            <label className="form-label" htmlFor="status">Trạng thái</label>
+            <select id="status" className="form-control" value={form.status} onChange={e => set('status', e.target.value)}>
               <option value="published">Đang hiện</option>
               <option value="draft">Ẩn</option>
             </select>

@@ -66,30 +66,30 @@ export default function TestimonialForm() {
       <form onSubmit={handleSubmit} className="card">
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           <div className="form-group">
-            <label className="form-label">Tên khách hàng *</label>
-            <input type="text" className="form-control" value={form.author_name} onChange={e => set('author_name', e.target.value)} placeholder="Anh Hoàng" required />
+            <label className="form-label" htmlFor="author_name">Tên khách hàng *</label>
+            <input id="author_name" type="text" className="form-control" value={form.author_name} onChange={e => set('author_name', e.target.value)} placeholder="Anh Hoàng" required />
           </div>
           <div className="form-group">
-            <label className="form-label">Vai trò / bối cảnh</label>
-            <input type="text" className="form-control" value={form.author_title} onChange={e => set('author_title', e.target.value)} placeholder="Chủ nhà — Nhà Phố Tối Giản, Long Biên" />
+            <label className="form-label" htmlFor="author_title">Vai trò / bối cảnh</label>
+            <input id="author_title" type="text" className="form-control" value={form.author_title} onChange={e => set('author_title', e.target.value)} placeholder="Chủ nhà — Nhà Phố Tối Giản, Long Biên" />
           </div>
         </div>
         <div className="form-group">
-          <label className="form-label">Nội dung đánh giá</label>
-          <textarea className="form-control" rows={4} value={form.content} onChange={e => set('content', e.target.value)} />
+          <label className="form-label" htmlFor="content">Nội dung đánh giá</label>
+          <textarea id="content" className="form-control" rows={4} value={form.content} onChange={e => set('content', e.target.value)} />
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
           <div className="form-group">
-            <label className="form-label">Số sao</label>
-            <input type="number" className="form-control" min={1} max={5} value={form.rating} onChange={e => set('rating', parseInt(e.target.value) || 5)} />
+            <label className="form-label" htmlFor="rating">Số sao</label>
+            <input id="rating" type="number" className="form-control" min={1} max={5} value={form.rating} onChange={e => set('rating', parseInt(e.target.value) || 5)} />
           </div>
           <div className="form-group">
-            <label className="form-label">Thứ tự hiển thị</label>
-            <input type="number" className="form-control" value={form.sort_order} onChange={e => set('sort_order', parseInt(e.target.value) || 0)} min={0} />
+            <label className="form-label" htmlFor="sort_order">Thứ tự hiển thị</label>
+            <input id="sort_order" type="number" className="form-control" value={form.sort_order} onChange={e => set('sort_order', parseInt(e.target.value) || 0)} min={0} />
           </div>
           <div className="form-group">
-            <label className="form-label">Trạng thái</label>
-            <select className="form-control" value={form.status} onChange={e => set('status', e.target.value)}>
+            <label className="form-label" htmlFor="status">Trạng thái</label>
+            <select id="status" className="form-control" value={form.status} onChange={e => set('status', e.target.value)}>
               <option value="published">Đang hiện</option>
               <option value="draft">Ẩn</option>
             </select>

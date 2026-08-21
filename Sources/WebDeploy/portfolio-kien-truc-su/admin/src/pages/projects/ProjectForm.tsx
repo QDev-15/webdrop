@@ -109,27 +109,27 @@ export default function ProjectForm() {
       <form onSubmit={handleSubmit} className="card">
         <h3 style={{ fontSize: 14, fontWeight: 600, marginBottom: 16 }}>Thông tin thẻ dự án</h3>
         <div className="form-group">
-          <label className="form-label">Tiêu đề * (vd: Nhà Phố Tối Giản)</label>
-          <input type="text" className="form-control" value={form.title} onChange={e => set('title', e.target.value)} required />
+          <label className="form-label" htmlFor="title">Tiêu đề * (vd: Nhà Phố Tối Giản)</label>
+          <input id="title" type="text" className="form-control" value={form.title} onChange={e => set('title', e.target.value)} required />
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           <div className="form-group">
-            <label className="form-label">Slug (để trống sẽ tự tạo từ tiêu đề)</label>
-            <input type="text" className="form-control" value={form.slug} onChange={e => set('slug', e.target.value)} placeholder="nha-pho-toi-gian-long-bien" />
+            <label className="form-label" htmlFor="slug">Slug (để trống sẽ tự tạo từ tiêu đề)</label>
+            <input id="slug" type="text" className="form-control" value={form.slug} onChange={e => set('slug', e.target.value)} placeholder="nha-pho-toi-gian-long-bien" />
           </div>
           <div className="form-group">
-            <label className="form-label">Danh mục</label>
-            <input type="text" className="form-control" value={form.category} onChange={e => set('category', e.target.value)} placeholder="Nhà ở dân dụng / Cải tạo công trình cũ" />
+            <label className="form-label" htmlFor="category">Danh mục</label>
+            <input id="category" type="text" className="form-control" value={form.category} onChange={e => set('category', e.target.value)} placeholder="Nhà ở dân dụng / Cải tạo công trình cũ" />
           </div>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           <div className="form-group">
-            <label className="form-label">Địa điểm</label>
-            <input type="text" className="form-control" value={form.location} onChange={e => set('location', e.target.value)} placeholder="Long Biên, Hà Nội" />
+            <label className="form-label" htmlFor="location">Địa điểm</label>
+            <input id="location" type="text" className="form-control" value={form.location} onChange={e => set('location', e.target.value)} placeholder="Long Biên, Hà Nội" />
           </div>
           <div className="form-group">
-            <label className="form-label">Năm hoàn thành</label>
-            <input type="text" className="form-control" value={form.year} onChange={e => set('year', e.target.value)} placeholder="2024" />
+            <label className="form-label" htmlFor="year">Năm hoàn thành</label>
+            <input id="year" type="text" className="form-control" value={form.year} onChange={e => set('year', e.target.value)} placeholder="2024" />
           </div>
         </div>
         <div className="form-group">
@@ -148,20 +148,20 @@ export default function ProjectForm() {
             <h3 style={{ fontSize: 14, fontWeight: 600, margin: '8px 0 16px' }}>Case Study — trang chi tiết</h3>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
               <div className="form-group">
-                <label className="form-label">Khách hàng</label>
-                <input type="text" className="form-control" value={form.client_name} onChange={e => set('client_name', e.target.value)} placeholder="Anh Hoàng & gia đình" />
+                <label className="form-label" htmlFor="client_name">Khách hàng</label>
+                <input id="client_name" type="text" className="form-control" value={form.client_name} onChange={e => set('client_name', e.target.value)} placeholder="Anh Hoàng & gia đình" />
               </div>
               <div className="form-group">
-                <label className="form-label">Diện tích</label>
-                <input type="text" className="form-control" value={form.area} onChange={e => set('area', e.target.value)} placeholder="120m² đất · 4 tầng" />
+                <label className="form-label" htmlFor="area">Diện tích</label>
+                <input id="area" type="text" className="form-control" value={form.area} onChange={e => set('area', e.target.value)} placeholder="120m² đất · 4 tầng" />
               </div>
               <div className="form-group">
-                <label className="form-label">Thời gian thi công</label>
-                <input type="text" className="form-control" value={form.duration} onChange={e => set('duration', e.target.value)} placeholder="8 tháng" />
+                <label className="form-label" htmlFor="duration">Thời gian thi công</label>
+                <input id="duration" type="text" className="form-control" value={form.duration} onChange={e => set('duration', e.target.value)} placeholder="8 tháng" />
               </div>
               <div className="form-group">
-                <label className="form-label">Ngân sách</label>
-                <input type="text" className="form-control" value={form.budget} onChange={e => set('budget', e.target.value)} placeholder="~2,8 tỷ VNĐ" />
+                <label className="form-label" htmlFor="budget">Ngân sách</label>
+                <input id="budget" type="text" className="form-control" value={form.budget} onChange={e => set('budget', e.target.value)} placeholder="~2,8 tỷ VNĐ" />
               </div>
             </div>
             <div className="form-group">
@@ -170,62 +170,62 @@ export default function ProjectForm() {
 
             <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '.5px', margin: '16px 0 10px' }}>Bối cảnh &amp; thách thức</div>
             <div className="form-group">
-              <label className="form-label">Tiêu đề (dùng *từ* để in nghiêng màu nhấn)</label>
-              <input type="text" className="form-control" value={form.challenge_title} onChange={e => set('challenge_title', e.target.value)} placeholder="Đất hình thang hẹp, *hai con nhỏ, ngân sách có hạn*" />
+              <label className="form-label" htmlFor="challenge_title">Tiêu đề (dùng *từ* để in nghiêng màu nhấn)</label>
+              <input id="challenge_title" type="text" className="form-control" value={form.challenge_title} onChange={e => set('challenge_title', e.target.value)} placeholder="Đất hình thang hẹp, *hai con nhỏ, ngân sách có hạn*" />
             </div>
             <div className="form-group">
-              <label className="form-label">Nội dung — mỗi đoạn cách nhau 1 dòng trống</label>
-              <textarea className="form-control" rows={5} value={form.challenge_body} onChange={e => set('challenge_body', e.target.value)} />
+              <label className="form-label" htmlFor="challenge_body">Nội dung — mỗi đoạn cách nhau 1 dòng trống</label>
+              <textarea id="challenge_body" className="form-control" rows={5} value={form.challenge_body} onChange={e => set('challenge_body', e.target.value)} />
             </div>
 
             <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '.5px', margin: '16px 0 10px' }}>Giải pháp thiết kế</div>
             <div className="form-group">
-              <label className="form-label">Tiêu đề (dùng *từ* để in nghiêng màu nhấn)</label>
-              <input type="text" className="form-control" value={form.solution_title} onChange={e => set('solution_title', e.target.value)} placeholder="Khối hộp xuyên sáng, *giếng trời làm trung tâm*" />
+              <label className="form-label" htmlFor="solution_title">Tiêu đề (dùng *từ* để in nghiêng màu nhấn)</label>
+              <input id="solution_title" type="text" className="form-control" value={form.solution_title} onChange={e => set('solution_title', e.target.value)} placeholder="Khối hộp xuyên sáng, *giếng trời làm trung tâm*" />
             </div>
             <div className="form-group">
-              <label className="form-label">Kiểu hiển thị</label>
-              <select className="form-control" value={form.solution_layout} onChange={e => set('solution_layout', e.target.value)}>
+              <label className="form-label" htmlFor="solution_layout">Kiểu hiển thị</label>
+              <select id="solution_layout" className="form-control" value={form.solution_layout} onChange={e => set('solution_layout', e.target.value)}>
                 <option value="grid">Lưới 2 cột (4 mục ngắn — vd Concept/Vật liệu/Công năng/Cầu thang)</option>
                 <option value="list">Danh sách đánh số (5+ bước dài — vd quy trình cải tạo)</option>
               </select>
             </div>
             <div className="form-group">
-              <label className="form-label">Các mục giải pháp (mỗi dòng: Tiêu đề::Mô tả)</label>
-              <textarea className="form-control" rows={6} value={form.solution_items} onChange={e => set('solution_items', e.target.value)}
+              <label className="form-label" htmlFor="solution_items">Các mục giải pháp (mỗi dòng: Tiêu đề::Mô tả)</label>
+              <textarea id="solution_items" className="form-control" rows={6} value={form.solution_items} onChange={e => set('solution_items', e.target.value)}
                 placeholder={'Concept::Toàn bộ công trình...\nVật liệu::Bê tông mài...'} style={{ fontFamily: 'monospace', fontSize: 12.5 }} />
             </div>
 
             <div className="form-group">
-              <label className="form-label">Ảnh gallery (mỗi dòng: URL|Mô tả ảnh|Kích thước ô — g1 lớn, g2/g3 thường)</label>
-              <textarea className="form-control" rows={5} value={form.gallery_images} onChange={e => set('gallery_images', e.target.value)}
+              <label className="form-label" htmlFor="gallery_images">Ảnh gallery (mỗi dòng: URL|Mô tả ảnh|Kích thước ô — g1 lớn, g2/g3 thường)</label>
+              <textarea id="gallery_images" className="form-control" rows={5} value={form.gallery_images} onChange={e => set('gallery_images', e.target.value)}
                 placeholder={'https://...jpg|Mặt tiền nhà|g1\nhttps://...jpg|Nội thất|g2'} style={{ fontFamily: 'monospace', fontSize: 12.5 }} />
             </div>
 
             <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '.5px', margin: '16px 0 10px' }}>Kết quả</div>
             <div className="form-group">
-              <label className="form-label">Tiêu đề (dùng *từ* để in nghiêng màu nhấn)</label>
-              <input type="text" className="form-control" value={form.results_title} onChange={e => set('results_title', e.target.value)} placeholder="Đo lường được, *không chỉ đẹp trên bản vẽ*" />
+              <label className="form-label" htmlFor="results_title">Tiêu đề (dùng *từ* để in nghiêng màu nhấn)</label>
+              <input id="results_title" type="text" className="form-control" value={form.results_title} onChange={e => set('results_title', e.target.value)} placeholder="Đo lường được, *không chỉ đẹp trên bản vẽ*" />
             </div>
             <div className="form-group">
-              <label className="form-label">Số liệu kết quả (mỗi dòng: giá trị|hậu tố|nhãn)</label>
-              <textarea className="form-control" rows={4} value={form.results_items} onChange={e => set('results_items', e.target.value)}
+              <label className="form-label" htmlFor="results_items">Số liệu kết quả (mỗi dòng: giá trị|hậu tố|nhãn)</label>
+              <textarea id="results_items" className="form-control" rows={4} value={form.results_items} onChange={e => set('results_items', e.target.value)}
                 placeholder={'30|%|Tiết kiệm điện chiếu sáng...\n8||Tháng thi công'} style={{ fontFamily: 'monospace', fontSize: 12.5 }} />
             </div>
 
             <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '.5px', margin: '16px 0 10px' }}>Đánh giá khách hàng (case study)</div>
             <div className="form-group">
-              <label className="form-label">Nội dung đánh giá</label>
-              <textarea className="form-control" rows={3} value={form.testimonial_content} onChange={e => set('testimonial_content', e.target.value)} />
+              <label className="form-label" htmlFor="testimonial_content">Nội dung đánh giá</label>
+              <textarea id="testimonial_content" className="form-control" rows={3} value={form.testimonial_content} onChange={e => set('testimonial_content', e.target.value)} />
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
               <div className="form-group">
-                <label className="form-label">Tên khách hàng</label>
-                <input type="text" className="form-control" value={form.testimonial_author} onChange={e => set('testimonial_author', e.target.value)} />
+                <label className="form-label" htmlFor="testimonial_author">Tên khách hàng</label>
+                <input id="testimonial_author" type="text" className="form-control" value={form.testimonial_author} onChange={e => set('testimonial_author', e.target.value)} />
               </div>
               <div className="form-group">
-                <label className="form-label">Vai trò / bối cảnh</label>
-                <input type="text" className="form-control" value={form.testimonial_role} onChange={e => set('testimonial_role', e.target.value)} placeholder="Chủ nhà — Nhà Phố Tối Giản, Long Biên" />
+                <label className="form-label" htmlFor="testimonial_role">Vai trò / bối cảnh</label>
+                <input id="testimonial_role" type="text" className="form-control" value={form.testimonial_role} onChange={e => set('testimonial_role', e.target.value)} placeholder="Chủ nhà — Nhà Phố Tối Giản, Long Biên" />
               </div>
             </div>
           </>
@@ -233,12 +233,12 @@ export default function ProjectForm() {
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16, marginTop: 16, paddingTop: 16, borderTop: '1px solid var(--border-light)' }}>
           <div className="form-group">
-            <label className="form-label">Thứ tự hiển thị</label>
-            <input type="number" className="form-control" value={form.sort_order} onChange={e => set('sort_order', parseInt(e.target.value) || 0)} min={0} />
+            <label className="form-label" htmlFor="sort_order">Thứ tự hiển thị</label>
+            <input id="sort_order" type="number" className="form-control" value={form.sort_order} onChange={e => set('sort_order', parseInt(e.target.value) || 0)} min={0} />
           </div>
           <div className="form-group">
-            <label className="form-label">Trạng thái</label>
-            <select className="form-control" value={form.status} onChange={e => set('status', e.target.value)}>
+            <label className="form-label" htmlFor="status">Trạng thái</label>
+            <select id="status" className="form-control" value={form.status} onChange={e => set('status', e.target.value)}>
               <option value="published">Đang hiện</option>
               <option value="draft">Ẩn</option>
             </select>

@@ -55,16 +55,16 @@ export default function ProfilePage() {
         <div style={{ fontSize: '11px', fontWeight: '600', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '16px' }}>Đổi mật khẩu</div>
         <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '16px' }}>
           <div>
-            <label className="form-label">Mật khẩu hiện tại</label>
-            <input type="password" className="form-control" value={currentPassword} onChange={e => setCurrentPassword(e.target.value)} placeholder="Nhập mật khẩu hiện tại" required />
+            <label className="form-label" htmlFor="currentPassword">Mật khẩu hiện tại</label>
+            <input id="currentPassword" type="password" className="form-control" value={currentPassword} onChange={e => setCurrentPassword(e.target.value)} placeholder="Nhập mật khẩu hiện tại" required />
           </div>
           <div>
-            <label className="form-label">Mật khẩu mới</label>
-            <input type="password" className="form-control" value={password} onChange={e => setPassword(e.target.value)} placeholder="Tối thiểu 6 ký tự" required />
+            <label className="form-label" htmlFor="newPassword">Mật khẩu mới</label>
+            <input id="newPassword" type="password" className="form-control" value={password} onChange={e => setPassword(e.target.value)} placeholder="Tối thiểu 6 ký tự" required />
           </div>
           <div>
-            <label className="form-label">Xác nhận mật khẩu mới</label>
-            <input type="password" className="form-control" value={confirm} onChange={e => setConfirm(e.target.value)} placeholder="Nhập lại mật khẩu mới" required />
+            <label className="form-label" htmlFor="confirmPassword">Xác nhận mật khẩu mới</label>
+            <input id="confirmPassword" type="password" className="form-control" value={confirm} onChange={e => setConfirm(e.target.value)} placeholder="Nhập lại mật khẩu mới" required />
           </div>
           {msg && (
             <div style={{ padding: '10px 14px', borderRadius: '8px', fontSize: '13px', background: msg.type === 'success' ? 'var(--accent-light)' : '#fff0f0', color: msg.type === 'success' ? 'var(--accent)' : 'var(--danger)', border: `1px solid ${msg.type === 'success' ? 'var(--accent-light)' : '#fdd'}` }}>

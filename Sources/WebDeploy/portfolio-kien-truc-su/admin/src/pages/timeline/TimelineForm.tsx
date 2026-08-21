@@ -64,26 +64,26 @@ export default function TimelineForm() {
       <form onSubmit={handleSubmit} className="card">
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 16 }}>
           <div className="form-group">
-            <label className="form-label">Năm *</label>
-            <input type="text" className="form-control" value={form.year} onChange={e => set('year', e.target.value)} placeholder="2018 hoặc 2010–2015" required />
+            <label className="form-label" htmlFor="year">Năm *</label>
+            <input id="year" type="text" className="form-control" value={form.year} onChange={e => set('year', e.target.value)} placeholder="2018 hoặc 2010–2015" required />
           </div>
           <div className="form-group">
-            <label className="form-label">Tiêu đề *</label>
-            <input type="text" className="form-control" value={form.title} onChange={e => set('title', e.target.value)} placeholder="Thành lập Tuấn Đặng Studio" required />
+            <label className="form-label" htmlFor="title">Tiêu đề *</label>
+            <input id="title" type="text" className="form-control" value={form.title} onChange={e => set('title', e.target.value)} placeholder="Thành lập Tuấn Đặng Studio" required />
           </div>
         </div>
         <div className="form-group">
-          <label className="form-label">Mô tả</label>
-          <textarea className="form-control" rows={3} value={form.description} onChange={e => set('description', e.target.value)} />
+          <label className="form-label" htmlFor="description">Mô tả</label>
+          <textarea id="description" className="form-control" rows={3} value={form.description} onChange={e => set('description', e.target.value)} />
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           <div className="form-group">
-            <label className="form-label">Thứ tự hiển thị</label>
-            <input type="number" className="form-control" value={form.sort_order} onChange={e => set('sort_order', parseInt(e.target.value) || 0)} min={0} />
+            <label className="form-label" htmlFor="sort_order">Thứ tự hiển thị</label>
+            <input id="sort_order" type="number" className="form-control" value={form.sort_order} onChange={e => set('sort_order', parseInt(e.target.value) || 0)} min={0} />
           </div>
           <div className="form-group">
-            <label className="form-label">Trạng thái</label>
-            <select className="form-control" value={form.status} onChange={e => set('status', e.target.value)}>
+            <label className="form-label" htmlFor="status">Trạng thái</label>
+            <select id="status" className="form-control" value={form.status} onChange={e => set('status', e.target.value)}>
               <option value="published">Đang hiện</option>
               <option value="draft">Ẩn</option>
             </select>

@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useId } from 'react'
 import { api } from '../api/client'
 import UnsplashPicker from './UnsplashPicker'
 
@@ -15,6 +15,10 @@ export default function ImageField({ value, onChange, label, placeholder }: Prop
   const [uploadError, setUploadError] = useState('')
   const [dragOver,    setDragOver]    = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  // Label above associates with the visible URL text input below (the closest
+  // native control representing this field's value) — id generated via useId()
+  // since this component can be mounted multiple times on the same page.
+  const inputId = useId()
 
   const handleFile = useCallback(async (file: File) => {
     if (!file.type.startsWith('image/')) { setUploadError('Chỉ hỗ trợ file ảnh.'); return }
@@ -37,7 +41,7 @@ export default function ImageField({ value, onChange, label, placeholder }: Prop
 
   return (
     <div>
-      {label && <label className="form-label fw-semibold small">{label}</label>}
+      {label && <label className="form-label fw-semibold small" htmlFor={inputId}>{label}</label>}
 
       {/* Drop zone */}
       <div
@@ -89,7 +93,7 @@ export default function ImageField({ value, onChange, label, placeholder }: Prop
 
       {/* URL input row */}
       <div className="input-group input-group-sm">
-        <input type="text" className="form-control" value={value}
+        <input id={inputId} type="text" className="form-control" value={value}
           onChange={e => { setUploadError(''); onChange(e.target.value) }}
           placeholder={placeholder || 'https://... hoặc upload ảnh bên trên'} />
         <button type="button" className="btn btn-outline-secondary" disabled={uploading}

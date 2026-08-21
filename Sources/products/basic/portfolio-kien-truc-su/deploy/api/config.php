@@ -1,6 +1,6 @@
 <?php
 /**
- * {{SLUG}} — Cấu hình hệ thống
+ * portfolio-kien-truc-su — Cấu hình hệ thống
  * ⚠️  SAU KHI UPLOAD LÊN HOSTING, BẮT BUỘC SỬA:
  *     1. APP_URL  → URL thực của website (ví dụ: https://tenweb.vn)
  *     2. APP_KEY  → chuỗi ngẫu nhiên 64 ký tự hex (auto-generate bởi build.mjs)
@@ -8,7 +8,7 @@
 
 // ─── DATABASE — Mặc định SQLite, không cần cài thêm gì ────────────────────
 define('DB_TYPE', 'sqlite');
-define('DB_FILE', __DIR__ . '/database/app.db');
+define('DB_FILE', __DIR__ . '/database/portfolio-kien-truc-su.db');
 
 // Chỉ điền nếu dùng MySQL / PostgreSQL (đổi DB_TYPE thành 'mysql' hoặc 'pgsql'):
 define('DB_HOST', 'localhost');
@@ -22,7 +22,7 @@ define('DB_PASS', 'mat_khau');
 define('APP_URL', 'http://localhost:8081');
 define('APP_ENV', 'development');
 // ⚠️  APP_KEY được auto-generate bởi build.mjs — không cần sửa thủ công
-define('APP_KEY', 'd0fae2e69f9b74ac2b2bceab3d49887dbd4732476e066b2d89c3e030aa597b4e');
+define('APP_KEY', '25597d3999b25e53f132a8a8c6860c775d38841c61e27cfddde1839f132df904');
 
 // ─── CORS ────────────────────────────────────────────────────────────────────
 // Danh sách origin được phép gọi API (để trống = chỉ cho phép APP_URL)

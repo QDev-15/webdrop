@@ -32,8 +32,9 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label className="form-label">Email</label>
+            <label className="form-label" htmlFor="email">Email</label>
             <input
+              id="email"
               type="email"
               className="form-control"
               value={email}
@@ -43,8 +44,9 @@ export default function LoginPage() {
             />
           </div>
           <div className="form-group">
-            <label className="form-label">Mật khẩu</label>
+            <label className="form-label" htmlFor="password">Mật khẩu</label>
             <input
+              id="password"
               type="password"
               className="form-control"
               value={password}

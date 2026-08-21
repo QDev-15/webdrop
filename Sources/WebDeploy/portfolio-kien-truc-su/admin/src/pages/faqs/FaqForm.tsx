@@ -63,21 +63,21 @@ export default function FaqForm() {
 
       <form onSubmit={handleSubmit} className="card">
         <div className="form-group">
-          <label className="form-label">Câu hỏi *</label>
-          <input type="text" className="form-control" value={form.question} onChange={e => set('question', e.target.value)} required />
+          <label className="form-label" htmlFor="question">Câu hỏi *</label>
+          <input id="question" type="text" className="form-control" value={form.question} onChange={e => set('question', e.target.value)} required />
         </div>
         <div className="form-group">
-          <label className="form-label">Câu trả lời *</label>
-          <textarea className="form-control" rows={5} value={form.answer} onChange={e => set('answer', e.target.value)} required />
+          <label className="form-label" htmlFor="answer">Câu trả lời *</label>
+          <textarea id="answer" className="form-control" rows={5} value={form.answer} onChange={e => set('answer', e.target.value)} required />
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           <div className="form-group">
-            <label className="form-label">Thứ tự hiển thị</label>
-            <input type="number" className="form-control" value={form.sort_order} onChange={e => set('sort_order', parseInt(e.target.value) || 0)} min={0} />
+            <label className="form-label" htmlFor="sort_order">Thứ tự hiển thị</label>
+            <input id="sort_order" type="number" className="form-control" value={form.sort_order} onChange={e => set('sort_order', parseInt(e.target.value) || 0)} min={0} />
           </div>
           <div className="form-group">
-            <label className="form-label">Trạng thái</label>
-            <select className="form-control" value={form.status} onChange={e => set('status', e.target.value)}>
+            <label className="form-label" htmlFor="status">Trạng thái</label>
+            <select id="status" className="form-control" value={form.status} onChange={e => set('status', e.target.value)}>
               <option value="published">Đang hiện</option>
               <option value="draft">Ẩn</option>
             </select>
