@@ -80,7 +80,7 @@ Xây dựng và bán 3 nhóm sản phẩm chính:
 - [x] Nhà hàng / Quán ăn / Cafe — **DONE** (10 templates: `Restaurants/`, `Cafes/`)
 - [x] Spa / Thẩm mỹ / Làm đẹp — **DONE** (10 templates: `Spa-Services/`)
 - [ ] Bất động sản
-- [x] Agency / Portfolio / Công ty — **DONE** (6 templates: `Companies/`, `Portfolios/`. 9 template Companies đã retrofit nội dung chiều sâu — case study chi tiết dự án (mục G, chỉ 3 site có: `agency-sang-tao`, `agency-web`, `cong-ty-xay-dung`; `luat-van-phong` case study là "vụ việc" pháp lý), FAQ thật ≥6 câu qua `<details>/<summary>` (mục H) và bảng giá ≥3 tier (mục I, `strategy-consulting` dùng "Hình thức hợp tác" thay vì giá cố định do bản chất dịch vụ). Áp dụng cả 2 lớp: bản tĩnh `Sources/templates/web/Companies/[slug]/` VÀ bản WebDeploy `Sources/WebDeploy/[slug]/` tương ứng (schema mới `faqs`/`pricing_plans` + case-study columns, controller CRUD, trang chi tiết React, admin quản lý). `startup-cong-nghe` không cần retrofit vì đã có sẵn FAQ+Pricing từ khi build (site dạng SaaS landing). Rule cho template mới từ nay: xem `.claude/agents/template-builder.md` mục G/H/I.)
+- [x] Agency / Portfolio / Công ty — **DONE** (11 templates: `Companies/` 6, `Portfolios/` 5 — chưa tính `portfolio-toi` cũ, xem bảng bên dưới). 9 template Companies đã retrofit nội dung chiều sâu — case study chi tiết dự án (mục G, chỉ 3 site có: `agency-sang-tao`, `agency-web`, `cong-ty-xay-dung`; `luat-van-phong` case study là "vụ việc" pháp lý), FAQ thật ≥6 câu qua `<details>/<summary>` (mục H) và bảng giá ≥3 tier (mục I, `strategy-consulting` dùng "Hình thức hợp tác" thay vì giá cố định do bản chất dịch vụ). Áp dụng cả 2 lớp: bản tĩnh `Sources/templates/web/Companies/[slug]/` VÀ bản WebDeploy `Sources/WebDeploy/[slug]/` tương ứng (schema mới `faqs`/`pricing_plans` + case-study columns, controller CRUD, trang chi tiết React, admin quản lý). `startup-cong-nghe` không cần retrofit vì đã có sẵn FAQ+Pricing từ khi build (site dạng SaaS landing). **Batch 5 template Portfolio mới (2026-08-21)** — `portfolio-nhiep-anh` (WARM-ARTISAN), `portfolio-thiet-ke-do-hoa` (BOLD-EDITORIAL), `portfolio-ux-designer` (GLASS-MODERN), `portfolio-kien-truc-su` (ZEN-MINIMAL), `portfolio-minh-hoa` (RETRO-BOLD) — mỗi site 9 trang (trang chủ carousel hero + dự án + 2 case-study mục G + dịch vụ có FAQ mục H/bảng giá mục I + về tôi + liên hệ + 2 trang pháp lý footer-only), xem block "5 template Portfolio" riêng bên dưới. Rule cho template mới từ nay: xem `.claude/agents/template-builder.md` mục G/H/I.)
 - [x] Blog / Forum — **DONE** (`Blogs/`, `Forums/`)
 - [x] Nha khoa — **DONE** (10 template: `Dental-Clinics/` — 10 Identity Token khác nhau: LUXE-DARK, FRESH-MINIMAL, BOLD-EDITORIAL, GEOMETRIC-MODERN, SOFT-PASTEL, DARK-ENERGY, CLEAN-CORPORATE, ZEN-MINIMAL, RETRO-BOLD, GLASS-MODERN)
 - [x] Shop bán hàng — **DONE** (16 templates, TOÀN BỘ 16 đã có WebDeploy đầy đủ — `shop-ban-hang/` ORGANIC-EARTH, `shop-thoi-trang/` BOLD-EDITORIAL, `shop-giay-dep/` DARK-ENERGY, `shop-quan-ao/` SOFT-PASTEL, `shop-rau-xanh/` WARM-ARTISAN, `shop-thuc-pham-sach/` FRESH-MINIMAL, `shop-tui-sach/` LUXE-DARK, `shop-may-tinh/` GLASS-MODERN, `shop-may-anh/` GEOMETRIC-MODERN, `shop-ami-mobile/` RETRO-BOLD, `shop-quan-ao-ami/` ZEN-MINIMAL (WebDeploy build 2026-07-24), `shop-my-pham/` LUXE-DARK variant Rose Gold (WebDeploy build 2026-07-28), `shop-do-gia-dung/` WARM-ARTISAN variant Terracotta+Sage (WebDeploy build 2026-07-29), `shop-do-choi/` SOFT-PASTEL variant Sky Blue+Coral (WebDeploy build 2026-07-29, phát hiện lại 2026-08-04), `shop-van-phong-pham/` CLEAN-CORPORATE fresh token Steel Blue (WebDeploy build 2026-08-06), `shop-the-thao/` DARK-ENERGY variant Signal Orange (WebDeploy build dở dang phát hiện + fix hoàn chỉnh 2026-08-06) — xem bảng **WebDeploy Projects**)
@@ -197,7 +197,7 @@ webdrop/
 │       ├── Cafes/                  ← ✅ cafe-thoi-gian
 │       ├── Blogs/                  ← ✅ blog-ca-nhan
 │       ├── Forums/                 ← ✅ forum-cong-dong
-│       ├── Portfolios/             ← ✅ portfolio-toi
+│       ├── Portfolios/             ← ✅ 6 templates (portfolio-toi + 5 mới, xem ghi chú kỹ thuật)
 │       ├── Dental-Clinics/         ← ✅ 10 templates (xem ghi chú kỹ thuật)
 │       ├── Shops/                  ← ✅ 14 shop templates (xem bảng tra nhanh cho chi tiết từng site)
 │       │   ├── shop-ban-hang/      (ORGANIC-EARTH, WebDeploy đầy đủ)
@@ -241,3 +241,29 @@ VPS AZDIGI Linux
 ├── PostgreSQL     → System DB
 └── PHP-FPM        → website khách (Gói B) + SQLite
 ```
+
+---
+
+## 📝 GHI CHÚ KỸ THUẬT
+
+### 5 template Portfolio mới (2026-08-21)
+
+`Sources/templates/web/Portfolios/` — build song song qua 5 sub-agent, mỗi agent 1 Identity Token riêng:
+
+| Slug | Persona | Identity Token | Font | Nav | Hero | Prefix |
+|---|---|---|---|---|---|---|
+| `portfolio-nhiep-anh` | Nhiếp ảnh gia cưới | WARM-ARTISAN | Fraunces + DM Sans | Nav-5 | H3 Magazine Grid | `pna-` |
+| `portfolio-thiet-ke-do-hoa` | Thiết kế đồ họa (brand/packaging) | ~~BOLD-EDITORIAL~~ (token bị loại, xem ghi chú dưới) | Bricolage Grotesque + Inter (đổi từ Syne) | Nav-8 | H5 Bold Typography | `ptk-` |
+| `portfolio-ux-designer` | UX/Product Designer | GLASS-MODERN | Plus Jakarta Sans | Nav-3 | H2 Split 45/55 | `pux-` |
+| `portfolio-kien-truc-su` | Kiến trúc sư | ZEN-MINIMAL | Cormorant Garamond + DM Sans | Nav-4 | H4 Centered Minimal | `pkt-` |
+| `portfolio-minh-hoa` | Họa sĩ minh họa | RETRO-BOLD | Space Grotesk | Nav-6 | H6 Asymmetric Offset | `pmh-` |
+
+Mỗi site 9 trang: trang chủ (Carousel Hero 4 slide) + `du-an.html` + 2 trang case-study đủ 7 mục (mục G) + `dich-vu.html` (FAQ ≥6 câu mục H + bảng giá ≥3 gói mục I) + `ve-toi.html` + `lien-he.html` + 2 trang pháp lý chỉ ở footer.
+
+**Bug hệ thống phát hiện sau batch, đã fix cả 5 site**: mỗi carousel hero 4 slide dùng riêng `<h1>` cho từng slide → 4 `<h1>` cùng tồn tại trong DOM 1 trang (vi phạm rule 1-h1/trang, hại SEO/accessibility). Nguyên nhân: brief giao cho agent không nói rõ chỉ slide đầu mới là `<h1>`. Fix: giữ `<h1>` cho slide 1, đổi 3 slide còn lại sang `<h2>` (giữ nguyên class CSS). **Rule cho lần build carousel hero tiếp theo: chỉ slide đầu tiên/active mặc định dùng `<h1>`, các slide khác dùng `<h2>`.**
+
+**Bug trùng hue phát hiện qua đối chiếu chéo sau khi cả 5 build xong**: 3/5 site rơi vào cùng nhóm hue đỏ/cam-đỏ (`portfolio-nhiep-anh` rust `#a13d2b`, `portfolio-thiet-ke-do-hoa` crimson `#e8291c`, `portfolio-minh-hoa` cam-đỏ `#e2542b` ban đầu) — do 5 agent chạy song song không thấy lựa chọn màu của nhau. Fix: đổi accent `portfolio-minh-hoa` sang vàng mù tạt `#d9a441` (hoán đổi giá trị 2 biến `--accent`↔`--gold` có sẵn trong file, không đổi tên biến). **Rule cho batch nhiều template cùng lúc: giao sẵn identity token/màu accent cụ thể cho từng agent thay vì để agent tự chọn, và đối chiếu chéo màu giữa các site sau khi build xong** (5 agent song song không thể tự tránh trùng nhau vì không thấy tiến trình của nhau).
+
+`portfolio-thiet-ke-do-hoa` có thêm 1 bug riêng: biến CSS `--ink:#10161f` khai báo nhưng không khớp màu xanh thật sự dùng cho tone "ink" của carousel (`rgba(46,84,171,...)`) — đã sửa giá trị `--ink` thành `#2e54ab` cho khớp đúng những gì hiển thị thật (theo đúng pattern `--forest`/`--mustard` khác trong cùng file, vốn có giá trị khớp chính xác màu glow base của tone tương ứng).
+
+**Phản hồi của chủ dự án sau khi xem `portfolio-thiet-ke-do-hoa` (2026-08-21): font "to và xấu"** — Identity Token `BOLD-EDITORIAL` (Syne weight 800, heading tới 148px, uppercase toàn heading chính) đã **loại khỏi danh sách chọn cho template MỚI trong `template-builder.md`** (còn 11 token). Site đã build đổi font sang Bricolage Grotesque (heading) + Inter (body), giảm size heading lớn nhất (~148px→88px, footer brand ~120px→84px), bỏ uppercase ở heading chính (giữ uppercase ở nhãn nhỏ: eyebrow/nav/label — không đổi). Layout/màu/nav/hero pattern/nội dung giữ nguyên, chỉ đổi typography. Các site cũ dùng BOLD-EDITORIAL (`shop-thoi-trang`, `nha-khoa-tham-my-luxdental`) KHÔNG bị đụng tới — quyết định chỉ áp dụng cho build mới.

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liên hệ — Lam Trúc Illustration</title>
+<meta name="description" content="Liên hệ Lam Trúc để trao đổi dự án minh họa, character design hoặc sách tranh thiếu nhi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<nav id="pmhNav">
+  <div class="pmh-nav-inner">
+    <a href="index.html" class="pmh-logo"><span class="dot"></span>LAM TRÚC<small>Illustration Studio</small></a>
+    <div class="pmh-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="du-an.html">Dự án</a>
+      <a href="dich-vu.html">Dịch vụ</a>
+      <a href="ve-toi.html">Về tôi</a>
+      <a href="lien-he.html" class="active">Liên hệ</a>
+    </div>
+    <div class="pmh-nav-cta">
+      <a href="lien-he.html" class="pmh-btn pmh-btn-primary pmh-btn-sm">Nhận dự án mới</a>
+    </div>
+    <div class="pmh-burger" id="pmhBurger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="pmh-nav-mobile" id="pmhNavMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="du-an.html">Dự án</a>
+  <a href="dich-vu.html">Dịch vụ</a>
+  <a href="ve-toi.html">Về tôi</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="lien-he.html" class="pmh-btn pmh-btn-primary">Nhận dự án mới</a>
+</div>
+
+<section class="pmh-page-hero">
+  <div class="pmh-container inner">
+    <div class="pmh-crumb"><a href="index.html">Trang chủ</a> / Liên hệ</div>
+    <h1>Kể mình nghe <em>ý tưởng của bạn</em></h1>
+    <p>Điền thông tin dự án bên dưới, hoặc liên hệ trực tiếp qua email/Zalo — mình phản hồi trong vòng 24-48h.</p>
+  </div>
+</section>
+
+<section class="pmh-sec">
+  <div class="pmh-container">
+    <div class="pmh-contact-grid">
+
+      <form class="pmh-form" data-reveal onsubmit="return false;">
+        <div class="pmh-form-row">
+          <div class="pmh-field">
+            <label for="pmhName">Họ và tên *</label>
+            <input type="text" id="pmhName" name="name" placeholder="Nguyễn Văn A" required>
+          </div>
+          <div class="pmh-field">
+            <label for="pmhEmail">Email *</label>
+            <input type="email" id="pmhEmail" name="email" placeholder="ban@email.com" required>
+          </div>
+        </div>
+        <div class="pmh-form-row">
+          <div class="pmh-field">
+            <label for="pmhPhone">Số điện thoại</label>
+            <input type="tel" id="pmhPhone" name="phone" placeholder="0987 654 321">
+          </div>
+          <div class="pmh-field">
+            <label for="pmhType">Loại dự án *</label>
+            <select id="pmhType" name="type" required>
+              <option value="">— Chọn loại dự án —</option>
+              <option value="sach-thieu-nhi">Sách tranh thiếu nhi</option>
+              <option value="character">Character Design / Bộ nhân vật</option>
+              <option value="editorial">Editorial Illustration / Tạp chí</option>
+              <option value="khac">Khác</option>
+            </select>
+          </div>
+        </div>
+        <div class="pmh-field">
+          <label for="pmhBudget">Ngân sách dự kiến</label>
+          <select id="pmhBudget" name="budget">
+            <option value="">— Chọn khoảng ngân sách —</option>
+            <option value="duoi-5tr">Dưới 5 triệu</option>
+            <option value="5-15tr">5 – 15 triệu</option>
+            <option value="15-25tr">15 – 25 triệu</option>
+            <option value="tren-25tr">Trên 25 triệu</option>
+          </select>
+        </div>
+        <div class="pmh-field">
+          <label for="pmhMsg">Mô tả dự án *</label>
+          <textarea id="pmhMsg" name="message" placeholder="Kể mình nghe về câu chuyện/dự án bạn đang ấp ủ, timeline mong muốn..." required></textarea>
+        </div>
+        <button type="submit" class="pmh-btn pmh-btn-primary" style="align-self:flex-start;">Gửi yêu cầu</button>
+      </form>
+
+      <div class="pmh-contact-info" data-reveal>
+        <div class="pmh-info-card">
+          <h4>Email</h4>
+          <a href="mailto:hello@lamtruc-illustration.vn">hello@lamtruc-illustration.vn</a>
+        </div>
+        <div class="pmh-info-card">
+          <h4>Điện thoại / Zalo</h4>
+          <a href="tel:+84987654321">0987 654 321</a>
+        </div>
+        <div class="pmh-info-card">
+          <h4>Khu vực làm việc</h4>
+          <p>Hà Nội, Việt Nam — nhận dự án từ xa toàn quốc &amp; quốc tế</p>
+        </div>
+        <div class="pmh-info-card">
+          <h4>Mạng xã hội</h4>
+          <div class="pmh-social-row">
+            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Behance">Be</a>
+            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook">FB</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pmh-map-embed" data-reveal>
+      <iframe src="https://maps.google.com/maps?q=21.0285,105.8542&hl=vi&z=15&output=embed" loading="lazy" title="Vị trí studio Lam Trúc trên Google Maps"></iframe>
+    </div>
+  </div>
+</section>
+
+<footer id="pmhFooter">
+  <div class="pmh-container">
+    <div class="pmh-footer-top">
+      <div class="pmh-footer-brand">
+        <a href="index.html" class="pmh-logo"><span class="dot"></span>LAM TRÚC</a>
+        <p>Họa sĩ minh họa tự do — character design, minh họa sách thiếu nhi &amp; editorial illustration cho tạp chí.</p>
+        <div class="pmh-social-row">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Behance">Be</a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook">FB</a>
+        </div>
+      </div>
+      <div class="pmh-footer-col">
+        <h5>Điều hướng</h5>
+        <a href="index.html">Trang chủ</a>
+        <a href="du-an.html">Dự án</a>
+        <a href="dich-vu.html">Dịch vụ</a>
+        <a href="ve-toi.html">Về tôi</a>
+      </div>
+      <div class="pmh-footer-col">
+        <h5>Liên hệ</h5>
+        <a href="mailto:hello@lamtruc-illustration.vn">hello@lamtruc-illustration.vn</a>
+        <a href="tel:+84987654321">0987 654 321</a>
+        <p>Hà Nội, Việt Nam</p>
+      </div>
+      <div class="pmh-footer-col">
+        <h5>Vị trí studio</h5>
+        <div class="pmh-footer-maps">
+          <iframe src="https://maps.google.com/maps?q=21.0285,105.8542&hl=vi&z=15&output=embed" loading="lazy" title="Vị trí studio Lam Trúc trên Google Maps"></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="pmh-footer-bottom">
+      <span>© 2026 Lam Trúc Illustration Studio. All rights reserved.</span>
+      <div class="legal-links">
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/0987654321" target="_blank" rel="noopener noreferrer" class="pmh-zalo-float" aria-label="Chat Zalo">Z</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const pmhRo = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); pmhRo.unobserve(e.target); } });
+}, { threshold: .08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => pmhRo.observe(el));
+
+const pmhBurger = document.getElementById('pmhBurger');
+const pmhMob = document.getElementById('pmhNavMob');
+if (pmhBurger && pmhMob) {
+  pmhBurger.addEventListener('click', () => {
+    const o = pmhMob.classList.toggle('open');
+    pmhBurger.classList.toggle('open', o);
+    document.body.style.overflow = o ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && pmhMob.classList.contains('open')) {
+      pmhMob.classList.remove('open'); pmhBurger.classList.remove('open'); document.body.style.overflow = '';
+    }
+  });
+  pmhMob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    pmhMob.classList.remove('open'); pmhBurger.classList.remove('open'); document.body.style.overflow = '';
+  }));
+}
+</script>
+</body>
+</html>

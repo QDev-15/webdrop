@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liên hệ — Đăng Photography | Đặt lịch tư vấn miễn phí</title>
+<meta name="description" content="Liên hệ Đăng Photography để đặt lịch tư vấn chụp ảnh cưới miễn phí — studio tại Đà Lạt, phục vụ khắp Việt Nam.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav" class="scrolled nav-solid" aria-label="Navigation chính">
+  <div class="wd-container">
+    <div class="pna-nav-inner">
+      <a href="index.html" class="pna-logo">ĐĂNG<span>.</span><span class="pna-logo-sub">Wedding Photography</span></a>
+      <ul class="pna-nav-links">
+        <li><a href="index.html">Trang chủ</a></li>
+        <li><a href="du-an.html">Dự án</a></li>
+        <li><a href="dich-vu.html">Dịch vụ</a></li>
+        <li><a href="ve-toi.html">Về tôi</a></li>
+        <li><a href="lien-he.html" class="active">Liên hệ</a></li>
+      </ul>
+      <a href="lien-he.html" class="pna-nav-cta">Đặt lịch tư vấn</a>
+      <button class="pna-burger" id="navBurger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="pna-nav-mob" id="navMob" role="dialog" aria-modal="true">
+  <a href="index.html">Trang chủ</a>
+  <a href="du-an.html">Dự án</a>
+  <a href="dich-vu.html">Dịch vụ</a>
+  <a href="ve-toi.html">Về tôi</a>
+  <a href="lien-he.html" class="active">Liên hệ</a>
+  <a href="lien-he.html" class="pna-mob-cta">Đặt lịch tư vấn</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="pna-page-hero">
+  <div class="wd-container">
+    <div class="pna-ph-tag" data-reveal>Liên hệ</div>
+    <h1 class="pna-ph-title" data-reveal>Kể tôi nghe về <em style="color:var(--accent);font-style:italic;">ngày cưới</em> của bạn</h1>
+    <p class="pna-ph-sub" data-reveal>Điền thông tin bên dưới hoặc liên hệ trực tiếp — tôi sẽ phản hồi trong vòng 24 giờ để sắp xếp buổi tư vấn miễn phí.</p>
+  </div>
+</section>
+
+<!-- CONTACT GRID -->
+<section class="sec-pad" style="background:var(--surface);">
+  <div class="wd-container">
+    <div class="pna-contact-grid">
+
+      <form data-reveal>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="pna-form-group">
+              <label for="fname">Họ tên cô dâu/chú rể *</label>
+              <input type="text" id="fname" name="fname" placeholder="VD: Nguyễn Thị Thảo" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="pna-form-group">
+              <label for="fphone">Số điện thoại *</label>
+              <input type="tel" id="fphone" name="fphone" placeholder="09xxxxxxxx" required>
+            </div>
+          </div>
+        </div>
+        <div class="pna-form-group">
+          <label for="femail">Email</label>
+          <input type="email" id="femail" name="femail" placeholder="ban@email.com">
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="pna-form-group">
+              <label for="fdate">Ngày dự kiến tổ chức</label>
+              <input type="date" id="fdate" name="fdate">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="pna-form-group">
+              <label for="fpackage">Gói dịch vụ quan tâm</label>
+              <select id="fpackage" name="fpackage">
+                <option value="">— Chọn gói —</option>
+                <option value="co-ban">Gói Cơ Bản</option>
+                <option value="nang-cao">Gói Nâng Cao</option>
+                <option value="tron-goi">Gói Trọn Gói</option>
+                <option value="chua-ro">Chưa rõ, cần tư vấn</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="pna-form-group">
+          <label for="flocation">Địa điểm tổ chức dự kiến</label>
+          <input type="text" id="flocation" name="flocation" placeholder="VD: Đà Lạt, Phú Quốc, Hội An...">
+        </div>
+        <div class="pna-form-group">
+          <label for="fmessage">Lời nhắn</label>
+          <textarea id="fmessage" name="fmessage" placeholder="Kể tôi nghe thêm về lễ cưới của bạn — phong cách bạn thích, số lượng khách mời dự kiến..."></textarea>
+        </div>
+        <button type="submit" class="pna-btn pna-btn-accent" style="width:100%;justify-content:center;">Gửi thông tin tư vấn</button>
+      </form>
+
+      <div data-reveal data-reveal-d1>
+        <div class="pna-info-item">
+          <div class="pna-info-icon">&#9742;</div>
+          <div>
+            <div class="pna-info-label">Điện thoại / Zalo</div>
+            <div class="pna-info-value">090 000 0000</div>
+          </div>
+        </div>
+        <div class="pna-info-item">
+          <div class="pna-info-icon">&#9993;</div>
+          <div>
+            <div class="pna-info-label">Email</div>
+            <div class="pna-info-value">hello@dangphotography.vn</div>
+          </div>
+        </div>
+        <div class="pna-info-item">
+          <div class="pna-info-icon">&#128205;</div>
+          <div>
+            <div class="pna-info-label">Studio</div>
+            <div class="pna-info-value">12 Đường Trần Hưng Đạo, Phường 3, Đà Lạt, Lâm Đồng</div>
+          </div>
+        </div>
+        <div class="pna-info-item">
+          <div class="pna-info-icon">&#128337;</div>
+          <div>
+            <div class="pna-info-label">Giờ làm việc</div>
+            <div class="pna-info-value">8:00 – 19:00, tất cả các ngày trong tuần</div>
+          </div>
+        </div>
+        <div class="pna-info-item" style="border-bottom:none;">
+          <div class="pna-info-icon">&#128247;</div>
+          <div>
+            <div class="pna-info-label">Khu vực phục vụ</div>
+            <div class="pna-info-value">Đà Lạt và 45+ tỉnh thành trên cả nước</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MAP FULL WIDTH SECTION -->
+<section class="sec-pad" style="background:var(--bg);padding-top:0;">
+  <div class="wd-container" data-reveal>
+    <div style="width:100%;height:360px;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.1);">
+      <iframe src="https://maps.google.com/maps?q=11.9404,108.4583&hl=vi&z=15&output=embed" style="width:100%;height:100%;border:0;" loading="lazy" title="Bản đồ studio Đăng Photography tại Đà Lạt" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="pna-footer">
+  <div class="wd-container">
+    <div class="pna-footer-main">
+      <div>
+        <a href="index.html" class="pna-footer-logo">ĐĂNG<span>.</span></a>
+        <p class="pna-footer-tagline">Nhiếp ảnh gia cưới tự do — 9 năm ghi lại những câu chuyện tình yêu thật khắp Việt Nam. Đặt trụ sở tại Đà Lạt.</p>
+        <div class="pna-footer-social">
+          <a href="#" class="pna-social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
+          <a href="#" class="pna-social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">ig</a>
+          <a href="#" class="pna-social-link" target="_blank" rel="noopener noreferrer" aria-label="Zalo">zl</a>
+        </div>
+      </div>
+      <div>
+        <div class="pna-footer-col-title">Điều hướng</div>
+        <ul class="pna-footer-links">
+          <li><a href="index.html">Trang chủ</a></li>
+          <li><a href="du-an.html">Dự án</a></li>
+          <li><a href="dich-vu.html">Dịch vụ</a></li>
+          <li><a href="ve-toi.html">Về tôi</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="pna-footer-col-title">Dịch vụ</div>
+        <ul class="pna-footer-links">
+          <li><a href="dich-vu.html">Phóng sự cưới</a></li>
+          <li><a href="dich-vu.html">Pre-wedding</a></li>
+          <li><a href="dich-vu.html">Destination Wedding</a></li>
+          <li><a href="dich-vu.html">Quay phim cưới</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="pna-footer-col-title">Nhận tin mới</div>
+        <p style="font-size:13.5px;font-weight:300;margin-bottom:14px;">Nhận lịch trống & ưu đãi đặt sớm mỗi mùa cưới.</p>
+        <form class="pna-footer-newsletter" onsubmit="return false;">
+          <input type="email" placeholder="Email của bạn" required>
+          <button type="submit">Gửi</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="pna-footer-maps">
+      <iframe src="https://maps.google.com/maps?q=11.9404,108.4583&hl=vi&z=14&output=embed" loading="lazy" title="Vị trí studio Đăng Photography tại Đà Lạt" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <div class="pna-footer-bottom">
+      <div>&copy; 2026 Đăng Photography. Toàn bộ hình ảnh thuộc bản quyền nhiếp ảnh gia.</div>
+      <div style="display:flex;gap:20px;">
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản dịch vụ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/0900000000" class="pna-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ Zalo">Z</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+}, { threshold: .08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+const nav = document.getElementById('nav');
+if (!nav.classList.contains('nav-solid')) {
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', scrollY > 80); }, { passive: true });
+}
+
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+if (burger && mob) {
+  burger.addEventListener('click', () => {
+    const o = mob.classList.toggle('open');
+    burger.classList.toggle('open', o);
+    document.body.style.overflow = o ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mob.classList.contains('open')) {
+      mob.classList.remove('open'); burger.classList.remove('open'); document.body.style.overflow = '';
+    }
+  });
+}
+
+// === Contact form (demo — không backend thật trong bản template) ===
+const contactForm = document.querySelector('.pna-contact-grid form');
+if (contactForm) {
+  contactForm.addEventListener('submit', e => {
+    e.preventDefault();
+    alert('Cảm ơn bạn đã gửi thông tin! Đăng sẽ liên hệ lại trong vòng 24 giờ.');
+    contactForm.reset();
+  });
+}
+</script>
+</body>
+</html>
