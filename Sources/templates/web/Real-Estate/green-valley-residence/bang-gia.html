@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bảng giá &amp; Mặt bằng căn hộ | Green Valley Residence</title>
+<meta name="description" content="Bảng giá đầy đủ 10 loại căn hộ Green Valley Residence — từ Studio 1PN đến Penthouse. Lọc theo loại căn, giá, diện tích, tầng, hướng và tình trạng còn hàng.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%234361ee'/%3E%3Ctext x='50' y='66' font-size='50' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3EG%3C/text%3E%3C/svg%3E">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="gvr-ambient"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner wd-container">
+    <a href="index.html" class="logo">
+      <span class="mark">GV</span>
+      <span>Green Valley Residence<span class="logo-sub">Dự án căn hộ ven sông</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="ve-chu-dau-tu.html">Tổng quan dự án</a>
+      <a href="bang-gia.html" class="active">Bảng giá &amp; Mặt bằng</a>
+      <a href="tien-ich.html">Tiện ích</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <a href="tel:19006868" class="nav-cta">Hotline 1900 6868</a>
+    <button class="nav-hamburger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="ve-chu-dau-tu.html">Tổng quan dự án</a>
+  <a href="bang-gia.html">Bảng giá &amp; Mặt bằng</a>
+  <a href="tien-ich.html">Tiện ích</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="tel:19006868" class="nm-phone">☎ 1900 6868</a>
+  <a href="lien-he.html" class="nm-cta">Đăng ký nhận bảng giá</a>
+</div>
+
+<!-- PAGE HERO -->
+<header class="gvr-page-hero">
+  <span class="blob blob-a"></span><span class="blob blob-b"></span>
+  <div class="wd-container">
+    <div class="gvr-crumb"><a href="index.html">Trang chủ</a> / Bảng giá &amp; Mặt bằng</div>
+    <div class="eyebrow eyebrow-light">10 loại căn đang mở bán</div>
+    <h1 class="sec-title on-dark" style="margin-bottom:12px;">Bảng giá &amp; Mặt bằng căn hộ</h1>
+    <p class="sec-sub on-dark">Lọc theo loại căn, khoảng giá, diện tích, tầng, hướng và tình trạng để tìm căn hộ phù hợp nhất với nhu cầu của bạn.</p>
+  </div>
+</header>
+
+<!-- CATALOG -->
+<section class="sec-pad">
+  <div class="wd-container">
+
+    <!-- Toolbar -->
+    <div class="gvr-toolbar">
+      <div class="gvr-toolbar-row1 d-none d-lg-flex">
+        <div class="gvr-pill-group" id="typePills">
+          <button class="gvr-pill active" data-filter="type" data-value="all">Tất cả loại căn</button>
+          <button class="gvr-pill" data-filter="type" data-value="1pn">1PN</button>
+          <button class="gvr-pill" data-filter="type" data-value="2pn">2PN</button>
+          <button class="gvr-pill" data-filter="type" data-value="3pn">3PN</button>
+          <button class="gvr-pill" data-filter="type" data-value="duplex">Duplex</button>
+          <button class="gvr-pill" data-filter="type" data-value="penthouse">Penthouse</button>
+        </div>
+
+        <div class="gvr-dd" id="ddPrice">
+          <button class="gvr-dd-btn" type="button">Khoảng giá <span class="gvr-dd-badge" style="display:none;">0</span> ▾</button>
+          <div class="gvr-dd-menu">
+            <label class="gvr-dd-check"><input type="checkbox" data-filter="price" value="b1"> Dưới 3 tỷ</label>
+            <label class="gvr-dd-check"><input type="checkbox" data-filter="price" value="b2"> 3 - 5 tỷ</label>
+            <label class="gvr-dd-check"><input type="checkbox" data-filter="price" value="b3"> 5 - 8 tỷ</label>
+            <label class="gvr-dd-check"><input type="checkbox" data-filter="price" value="b4"> 8 - 12 tỷ</label>
+            <label class="gvr-dd-check"><input type="checkbox" data-filter="price" value="b5"> Trên 12 tỷ</label>
+          </div>
+        </div>
+
+        <div class="gvr-dd" id="ddArea">
+          <button class="gvr-dd-btn" type="button">Diện tích <span class="gvr-dd-badge" style="display:none;">0</span> ▾</button>
+          <div class="gvr-dd-menu">
+            <label class="gvr-dd-check"><input type="checkbox" data-filter="area" value="a1"> Dưới 60m²</label>
+            <label class="gvr-dd-check"><input type="checkbox" data-filter="area" value="a2"> 60 - 90m²</label>
+            <label class="gvr-dd-check"><input type="checkbox" data-filter="area" value="a3"> 90 - 120m²</label>
+            <label class="gvr-dd-check"><input type="checkbox" data-filter="area" value="a4"> Trên 120m²</label>
+          </div>
+        </div>
+
+        <div class="gvr-dd" id="ddFloor">
+          <button class="gvr-dd-btn" type="button">Tầng <span class="gvr-dd-badge" style="display:none;">0</span> ▾</button>
+          <div class="gvr-dd-menu">
+            <label class="gvr-dd-check"><input type="checkbox" data-filter="floor" value="f1"> Thấp tầng (5-15)</label>
+            <label class="gvr-dd-check"><input type="checkbox" data-filter="floor" value="f2"> Trung tầng (16-25)</label>
+            <label class="gvr-dd-check"><input type="checkbox" data-filter="floor" value="f3"> Cao tầng (26-35)</label>
+          </div>
+        </div>
+
+        <div class="gvr-dd" id="ddDirection">
+          <button class="gvr-dd-btn" type="button">Hướng <span class="gvr-dd-badge" style="display:none;">0</span> ▾</button>
+          <div class="gvr-dd-menu" id="directionMenu"></div>
+        </div>
+
+        <div class="gvr-pill-group" id="statusPills">
+          <button class="gvr-pill active" data-filter="status" data-value="all">Mọi tình trạng</button>
+          <button class="gvr-pill" data-filter="status" data-value="con-hang">Còn hàng</button>
+          <button class="gvr-pill" data-filter="status" data-value="sap-mo-ban">Sắp mở bán</button>
+        </div>
+
+        <select class="gvr-sort-select ms-auto" id="sortSelect">
+          <option value="newest">Mới nhất</option>
+          <option value="price-asc">Giá tăng dần</option>
+          <option value="price-desc">Giá giảm dần</option>
+          <option value="area-desc">Diện tích lớn nhất</option>
+        </select>
+      </div>
+
+      <!-- Mobile trigger -->
+      <div class="d-lg-none d-flex align-items-center justify-content-between gap-2">
+        <button class="gvr-dd-btn gvr-toolbar-mobile-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas">
+          ⚙ Bộ lọc <span class="gvr-toolbar-mobile-badge" id="mobileFilterBadge" style="display:none;">0</span>
+        </button>
+        <select class="gvr-sort-select" id="sortSelectMobile">
+          <option value="newest">Mới nhất</option>
+          <option value="price-asc">Giá tăng dần</option>
+          <option value="price-desc">Giá giảm dần</option>
+          <option value="area-desc">Diện tích lớn nhất</option>
+        </select>
+      </div>
+
+      <div class="d-flex align-items-center justify-content-between flex-wrap gap-2" style="margin-top:14px;">
+        <div class="gvr-count-text" id="countText" aria-live="polite">Tìm thấy <b>0</b> loại căn phù hợp</div>
+      </div>
+
+      <div class="gvr-chips-row" id="chipsRow" style="display:none;"></div>
+    </div>
+
+    <!-- Grid -->
+    <div class="row g-4" id="unitGrid"></div>
+
+    <!-- Empty state -->
+    <div class="gvr-empty" id="emptyState" style="display:none;">
+      <div class="gvr-empty-icon">🏢</div>
+      <h3 style="font-weight:700; margin-bottom:8px;">Không tìm thấy loại căn phù hợp</h3>
+      <p class="sec-sub" style="margin:0 auto 20px;">Thử điều chỉnh lại bộ lọc để xem thêm lựa chọn khác.</p>
+      <button class="gvr-btn gvr-btn-ghost" id="emptyClearBtn">Xóa tất cả bộ lọc</button>
+    </div>
+
+    <ul class="gvr-pagination" id="pagination"></ul>
+  </div>
+</section>
+
+<!-- Mobile offcanvas filter -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="filterOffcanvas">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">Bộ lọc</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="mb-4">
+      <div class="gvr-footer-head" style="color:var(--text);">Loại căn</div>
+      <div class="gvr-pill-group" id="typePillsMob">
+        <button class="gvr-pill active" data-filter="type" data-value="all">Tất cả</button>
+        <button class="gvr-pill" data-filter="type" data-value="1pn">1PN</button>
+        <button class="gvr-pill" data-filter="type" data-value="2pn">2PN</button>
+        <button class="gvr-pill" data-filter="type" data-value="3pn">3PN</button>
+        <button class="gvr-pill" data-filter="type" data-value="duplex">Duplex</button>
+        <button class="gvr-pill" data-filter="type" data-value="penthouse">Penthouse</button>
+      </div>
+    </div>
+    <div class="mb-4">
+      <div class="gvr-footer-head" style="color:var(--text);">Khoảng giá</div>
+      <label class="gvr-dd-check"><input type="checkbox" data-filter="price" value="b1"> Dưới 3 tỷ</label>
+      <label class="gvr-dd-check"><input type="checkbox" data-filter="price" value="b2"> 3 - 5 tỷ</label>
+      <label class="gvr-dd-check"><input type="checkbox" data-filter="price" value="b3"> 5 - 8 tỷ</label>
+      <label class="gvr-dd-check"><input type="checkbox" data-filter="price" value="b4"> 8 - 12 tỷ</label>
+      <label class="gvr-dd-check"><input type="checkbox" data-filter="price" value="b5"> Trên 12 tỷ</label>
+    </div>
+    <div class="mb-4">
+      <div class="gvr-footer-head" style="color:var(--text);">Diện tích</div>
+      <label class="gvr-dd-check"><input type="checkbox" data-filter="area" value="a1"> Dưới 60m²</label>
+      <label class="gvr-dd-check"><input type="checkbox" data-filter="area" value="a2"> 60 - 90m²</label>
+      <label class="gvr-dd-check"><input type="checkbox" data-filter="area" value="a3"> 90 - 120m²</label>
+      <label class="gvr-dd-check"><input type="checkbox" data-filter="area" value="a4"> Trên 120m²</label>
+    </div>
+    <div class="mb-4">
+      <div class="gvr-footer-head" style="color:var(--text);">Tầng</div>
+      <label class="gvr-dd-check"><input type="checkbox" data-filter="floor" value="f1"> Thấp tầng (5-15)</label>
+      <label class="gvr-dd-check"><input type="checkbox" data-filter="floor" value="f2"> Trung tầng (16-25)</label>
+      <label class="gvr-dd-check"><input type="checkbox" data-filter="floor" value="f3"> Cao tầng (26-35)</label>
+    </div>
+    <div class="mb-4">
+      <div class="gvr-footer-head" style="color:var(--text);">Hướng</div>
+      <div id="directionMenuMob"></div>
+    </div>
+    <div class="mb-4">
+      <div class="gvr-footer-head" style="color:var(--text);">Tình trạng</div>
+      <div class="gvr-pill-group" id="statusPillsMob">
+        <button class="gvr-pill active" data-filter="status" data-value="all">Tất cả</button>
+        <button class="gvr-pill" data-filter="status" data-value="con-hang">Còn hàng</button>
+        <button class="gvr-pill" data-filter="status" data-value="sap-mo-ban">Sắp mở bán</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="gvr-footer">
+  <div class="wd-container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="gvr-footer-brand"><span class="mark" style="width:28px;height:28px;border-radius:8px;background:var(--gradient-1);display:inline-flex;align-items:center;justify-content:center;font-size:12px;">GV</span>Green Valley Residence</div>
+        <p class="gvr-footer-desc">Dự án căn hộ cao cấp ven sông Sài Gòn tại Thảo Điền, TP. Thủ Đức — phát triển bởi Tập đoàn Lộc Việt Land.</p>
+      </div>
+      <div class="col-lg-2 col-6">
+        <div class="gvr-footer-head">Dự án</div>
+        <ul class="gvr-footer-links">
+          <li><a href="index.html">Trang chủ</a></li>
+          <li><a href="ve-chu-dau-tu.html">Tổng quan dự án</a></li>
+          <li><a href="bang-gia.html">Bảng giá &amp; Mặt bằng</a></li>
+          <li><a href="tien-ich.html">Tiện ích</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <div class="gvr-footer-head">Chính sách</div>
+        <ul class="gvr-footer-links">
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <div class="gvr-footer-head">Liên hệ nhanh</div>
+        <div class="gvr-footer-hotline"><span>☎</span><b>1900 6868</b></div>
+        <p class="gvr-footer-desc">Số 88 Nguyễn Văn Hưởng, P. Thảo Điền, TP. Thủ Đức, TP.HCM<br>kinhdoanh@greenvalleyresidence.vn</p>
+      </div>
+    </div>
+    <div class="gvr-footer-maps">
+      <iframe src="https://maps.google.com/maps?q=10.8046,106.7350&hl=vi&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Vị trí Green Valley Residence"></iframe>
+    </div>
+    <div class="gvr-footer-bottom">
+      <div class="gvr-footer-copy">© 2026 Green Valley Residence — Phát triển bởi Tập đoàn Lộc Việt Land. All rights reserved.</div>
+      <div class="gvr-footer-copy">Thiết kế bởi webdrop.store</div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/0909888686" target="_blank" rel="noopener noreferrer" class="zf">
+  <span class="zf-tip">Chat Zalo tư vấn ngay</span>
+  <span class="zf-btn">💬</span>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/units-data.js"></script>
+<script>
+  /* ── Mobile hamburger ── */
+  const burger = document.getElementById('navBurger');
+  const mob = document.getElementById('navMob');
+  if (burger && mob) {
+    burger.addEventListener('click', () => {
+      const o = mob.classList.toggle('open');
+      burger.classList.toggle('open', o);
+      document.body.style.overflow = o ? 'hidden' : '';
+    });
+  }
+
+  /* ══════════ FILTER ENGINE ══════════ */
+  const PRICE_BANDS = [
+    { id:'b1', min:0, max:3e9, label:'Dưới 3 tỷ' },
+    { id:'b2', min:3e9, max:5e9, label:'3 - 5 tỷ' },
+    { id:'b3', min:5e9, max:8e9, label:'5 - 8 tỷ' },
+    { id:'b4', min:8e9, max:12e9, label:'8 - 12 tỷ' },
+    { id:'b5', min:12e9, max:Infinity, label:'Trên 12 tỷ' }
+  ];
+  const AREA_BANDS = [
+    { id:'a1', min:0, max:60, label:'Dưới 60m²' },
+    { id:'a2', min:60, max:90, label:'60 - 90m²' },
+    { id:'a3', min:90, max:120, label:'90 - 120m²' },
+    { id:'a4', min:120, max:Infinity, label:'Trên 120m²' }
+  ];
+  const FLOOR_BANDS = [
+    { id:'f1', min:5, max:15, label:'Thấp tầng (5-15)' },
+    { id:'f2', min:16, max:25, label:'Trung tầng (16-25)' },
+    { id:'f3', min:26, max:35, label:'Cao tầng (26-35)' }
+  ];
+  const TYPE_LABELS = { '1pn':'1PN', '2pn':'2PN', '3pn':'3PN', 'duplex':'Duplex', 'penthouse':'Penthouse' };
+
+  let state = { type:'all', price:[], area:[], floor:[], directions:[], status:'all', sort:'newest', page:1 };
+  const PER_PAGE = 4;
+
+  /* Build direction checkboxes dynamically from data */
+  const uniqueDirections = [...new Set(UNIT_TYPES.map(u => u.direction))];
+  const dirMenuHtml = uniqueDirections.map(d => `<label class="gvr-dd-check"><input type="checkbox" data-filter="direction" value="${d}"> ${DIRECTION_LABELS[d] || d}</label>`).join('');
+  document.getElementById('directionMenu').innerHTML = dirMenuHtml;
+  document.getElementById('directionMenuMob').innerHTML = dirMenuHtml;
+
+  function matchUnit(u) {
+    if (state.type !== 'all' && u.typeTag !== state.type) return false;
+    if (state.status !== 'all' && u.status !== state.status) return false;
+    if (state.price.length && !state.price.some(id => { const b = PRICE_BANDS.find(x=>x.id===id); return u.priceFrom >= b.min && u.priceFrom < b.max; })) return false;
+    if (state.area.length && !state.area.some(id => { const b = AREA_BANDS.find(x=>x.id===id); return u.area >= b.min && u.area < b.max; })) return false;
+    if (state.floor.length) {
+      const [uMin, uMax] = parseFloorRange(u.floorRange);
+      const overlaps = state.floor.some(id => { const b = FLOOR_BANDS.find(x=>x.id===id); return uMin <= b.max && uMax >= b.min; });
+      if (!overlaps) return false;
+    }
+    if (state.directions.length && !state.directions.includes(u.direction)) return false;
+    return true;
+  }
+
+  function sortUnits(list) {
+    const arr = [...list];
+    if (state.sort === 'price-asc') arr.sort((a,b) => a.priceFrom - b.priceFrom);
+    else if (state.sort === 'price-desc') arr.sort((a,b) => b.priceFrom - a.priceFrom);
+    else if (state.sort === 'area-desc') arr.sort((a,b) => b.area - a.area);
+    else arr.sort((a,b) => b.id - a.id);
+    return arr;
+  }
+
+  function render() {
+    const filtered = sortUnits(UNIT_TYPES.filter(matchUnit));
+    const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+    state.page = Math.min(state.page, totalPages);
+    const start = (state.page - 1) * PER_PAGE;
+    const pageItems = filtered.slice(start, start + PER_PAGE);
+
+    const grid = document.getElementById('unitGrid');
+    const empty = document.getElementById('emptyState');
+    if (pageItems.length === 0) {
+      grid.innerHTML = ''; grid.style.display = 'none'; empty.style.display = 'block';
+    } else {
+      grid.style.display = ''; empty.style.display = 'none';
+      grid.innerHTML = pageItems.map(u => {
+        const st = STATUS_LABELS[u.status];
+        return `
+        <div class="col-lg-3 col-md-6">
+          <a href="loai-can-chi-tiet.html?loai=${u.slug}" class="gvr-unit-card gvr-card">
+            <div class="gvr-unit-thumb">
+              <img src="${u.gallery[0]}" alt="${u.name}" loading="lazy">
+              <span class="gvr-unit-ribbon ${st.cls}">${st.label}</span>
+              <span class="gvr-unit-tag">${TYPE_LABELS[u.typeTag]}</span>
+            </div>
+            <div class="gvr-unit-body">
+              <div class="gvr-unit-cat">${u.block} · ${u.view}</div>
+              <div class="gvr-unit-name">${u.name}</div>
+              <div class="gvr-unit-meta">
+                <span>🛏 ${u.bedrooms} PN</span>
+                <span>📐 ${u.area}m²</span>
+                <span>🧭 ${DIRECTION_LABELS[u.direction] || u.direction}</span>
+                <span>🏢 Tầng ${u.floorRange}</span>
+              </div>
+              <div class="gvr-unit-price-row">
+                <div class="gvr-unit-price">${formatVND(u.priceFrom)} <span>từ</span></div>
+                <div class="gvr-unit-more">Chi tiết →</div>
+              </div>
+            </div>
+          </a>
+        </div>`;
+      }).join('');
+    }
+
+    document.getElementById('countText').innerHTML = `Tìm thấy <b>${filtered.length}</b> loại căn phù hợp`;
+    renderPagination(totalPages);
+    renderChips();
+    writeStateToURL();
+  }
+
+  function renderPagination(totalPages) {
+    const el = document.getElementById('pagination');
+    if (totalPages <= 1) { el.innerHTML = ''; return; }
+    el.innerHTML = Array.from({ length: totalPages }, (_, i) => {
+      const n = i + 1;
+      return `<li class="page-item${n === state.page ? ' active' : ''}"><button class="page-link" data-page="${n}">${n}</button></li>`;
+    }).join('');
+  }
+  document.getElementById('pagination').addEventListener('click', e => {
+    const btn = e.target.closest('[data-page]');
+    if (!btn) return;
+    state.page = +btn.dataset.page;
+    render();
+    document.getElementById('unitGrid').scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+
+  function renderChips() {
+    const chips = [];
+    if (state.type !== 'all') chips.push({ k:'type', label: TYPE_LABELS[state.type] });
+    if (state.status !== 'all') chips.push({ k:'status', label: STATUS_LABELS[state.status].label });
+    state.price.forEach(id => chips.push({ k:'price', v:id, label: PRICE_BANDS.find(b=>b.id===id).label }));
+    state.area.forEach(id => chips.push({ k:'area', v:id, label: AREA_BANDS.find(b=>b.id===id).label }));
+    state.floor.forEach(id => chips.push({ k:'floor', v:id, label: FLOOR_BANDS.find(b=>b.id===id).label }));
+    state.directions.forEach(d => chips.push({ k:'direction', v:d, label: DIRECTION_LABELS[d] || d }));
+
+    const row = document.getElementById('chipsRow');
+    const badges = { price: state.price.length, area: state.area.length, floor: state.floor.length, direction: state.directions.length };
+    ['ddPrice','ddArea','ddFloor','ddDirection'].forEach((id, i) => {
+      const key = ['price','area','floor','direction'][i];
+      const badge = document.querySelector(`#${id} .gvr-dd-badge`);
+      if (badges[key] > 0) { badge.style.display = 'inline-flex'; badge.textContent = badges[key]; }
+      else badge.style.display = 'none';
+    });
+    const totalActive = chips.length;
+    const mobBadge = document.getElementById('mobileFilterBadge');
+    if (totalActive > 0) { mobBadge.style.display = 'inline-flex'; mobBadge.textContent = totalActive; } else mobBadge.style.display = 'none';
+
+    if (!chips.length) { row.style.display = 'none'; row.innerHTML = ''; return; }
+    row.style.display = 'flex';
+    row.innerHTML = chips.map(c => `<span class="gvr-chip" data-remove-k="${c.k}" data-remove-v="${c.v||''}">${c.label}<button type="button">✕</button></span>`).join('') +
+      `<button class="gvr-chip-clear" id="clearAllBtn">Xóa tất cả</button>`;
+  }
+
+  document.getElementById('chipsRow').addEventListener('click', e => {
+    const clearBtn = e.target.closest('#clearAllBtn');
+    if (clearBtn) { resetAllFilters(); return; }
+    const chip = e.target.closest('.gvr-chip');
+    if (!chip) return;
+    const k = chip.dataset.removeK, v = chip.dataset.removeV;
+    if (k === 'type') { state.type = 'all'; syncPillUI('type','all'); }
+    else if (k === 'status') { state.status = 'all'; syncPillUI('status','all'); }
+    else if (k === 'price') { state.price = state.price.filter(x=>x!==v); syncCheckUI('price', v, false); }
+    else if (k === 'area') { state.area = state.area.filter(x=>x!==v); syncCheckUI('area', v, false); }
+    else if (k === 'floor') { state.floor = state.floor.filter(x=>x!==v); syncCheckUI('floor', v, false); }
+    else if (k === 'direction') { state.directions = state.directions.filter(x=>x!==v); syncCheckUI('direction', v, false); }
+    onFilterChange();
+  });
+  document.getElementById('emptyClearBtn').addEventListener('click', resetAllFilters);
+
+  function resetAllFilters() {
+    state = { type:'all', price:[], area:[], floor:[], directions:[], status:'all', sort: state.sort, page:1 };
+    document.querySelectorAll('.gvr-pill[data-filter]').forEach(p => p.classList.toggle('active', p.dataset.value === 'all'));
+    document.querySelectorAll('input[data-filter]').forEach(c => c.checked = false);
+    render();
+  }
+
+  function syncPillUI(filterKey, value) {
+    document.querySelectorAll(`.gvr-pill[data-filter="${filterKey}"]`).forEach(p => p.classList.toggle('active', p.dataset.value === value));
+  }
+  function syncCheckUI(filterKey, value, checked) {
+    document.querySelectorAll(`input[data-filter="${filterKey}"][value="${value}"]`).forEach(c => c.checked = checked);
+  }
+
+  function onFilterChange() { state.page = 1; render(); }
+
+  /* Pill groups (type + status, desktop & mobile) */
+  document.querySelectorAll('.gvr-pill[data-filter]').forEach(pill => {
+    pill.addEventListener('click', () => {
+      const key = pill.dataset.filter, val = pill.dataset.value;
+      state[key] = val;
+      syncPillUI(key, val);
+      onFilterChange();
+    });
+  });
+
+  /* Checkbox groups (price/area/floor/direction, desktop dropdown + mobile offcanvas share same data-filter/value) */
+  document.addEventListener('change', e => {
+    const el = e.target;
+    if (!el.matches('input[data-filter]')) return;
+    const key = el.dataset.filter, val = el.value;
+    const stateKey = key === 'direction' ? 'directions' : key;
+    if (el.checked) { if (!state[stateKey].includes(val)) state[stateKey].push(val); }
+    else { state[stateKey] = state[stateKey].filter(x => x !== val); }
+    syncCheckUI(key, val, el.checked);
+    onFilterChange();
+  });
+
+  /* Sort (desktop + mobile) */
+  ['sortSelect','sortSelectMobile'].forEach(id => {
+    document.getElementById(id).addEventListener('change', e => {
+      state.sort = e.target.value;
+      document.getElementById('sortSelect').value = state.sort;
+      document.getElementById('sortSelectMobile').value = state.sort;
+      onFilterChange();
+    });
+  });
+
+  /* Dropdown open/close (desktop) */
+  document.querySelectorAll('.gvr-dd').forEach(dd => {
+    const btn = dd.querySelector('.gvr-dd-btn');
+    const menu = dd.querySelector('.gvr-dd-menu');
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = menu.classList.contains('open');
+      document.querySelectorAll('.gvr-dd-menu.open').forEach(m => m.classList.remove('open'));
+      if (!isOpen) menu.classList.add('open');
+    });
+  });
+  document.addEventListener('click', () => document.querySelectorAll('.gvr-dd-menu.open').forEach(m => m.classList.remove('open')));
+
+  /* ── URL sync ── */
+  function writeStateToURL() {
+    const p = new URLSearchParams();
+    if (state.type !== 'all') p.set('loai', state.type);
+    if (state.status !== 'all') p.set('tt', state.status);
+    if (state.price.length) p.set('gia', state.price.join(','));
+    if (state.area.length) p.set('dt', state.area.join(','));
+    if (state.floor.length) p.set('tang', state.floor.join(','));
+    if (state.directions.length) p.set('huong', state.directions.join(','));
+    if (state.sort !== 'newest') p.set('sort', state.sort);
+    if (state.page > 1) p.set('page', state.page);
+    const qs = p.toString();
+    history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
+  }
+  function readStateFromURL() {
+    const p = new URLSearchParams(location.search);
+    if (p.get('loai')) { state.type = p.get('loai'); syncPillUI('type', state.type); }
+    if (p.get('tt')) { state.status = p.get('tt'); syncPillUI('status', state.status); }
+    if (p.get('gia')) { state.price = p.get('gia').split(','); state.price.forEach(v => syncCheckUI('price', v, true)); }
+    if (p.get('dt')) { state.area = p.get('dt').split(','); state.area.forEach(v => syncCheckUI('area', v, true)); }
+    if (p.get('tang')) { state.floor = p.get('tang').split(','); state.floor.forEach(v => syncCheckUI('floor', v, true)); }
+    if (p.get('huong')) { state.directions = p.get('huong').split(','); state.directions.forEach(v => syncCheckUI('direction', v, true)); }
+    if (p.get('sort')) { state.sort = p.get('sort'); document.getElementById('sortSelect').value = state.sort; document.getElementById('sortSelectMobile').value = state.sort; }
+    if (p.get('page')) state.page = +p.get('page');
+  }
+
+  readStateFromURL();
+  render();
+</script>
+</body>
+</html>

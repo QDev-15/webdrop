@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chi tiết bài viết | RaoNhà</title>
+<meta name="description" content="Bài viết kiến thức bất động sản từ RaoNhà.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="rn-container rn-nav-inner">
+    <a href="index.html" class="rn-logo">Rao<span>Nhà</span></a>
+    <div class="rn-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="bat-dong-san.html?nhu-cau=ban">Nhà đất bán</a>
+      <a href="bat-dong-san.html?nhu-cau=cho-thue">Nhà đất cho thuê</a>
+      <a href="tin-tuc.html" class="active">Tin tức</a>
+    </div>
+    <div class="rn-nav-right">
+      <span class="rn-nav-phone">📞 1900 6789</span>
+      <a href="dang-tin.html" class="rn-nav-cta">+ Đăng tin</a>
+    </div>
+    <button class="rn-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="rn-nav-mob" id="navMob">
+    <div class="rn-nav-mob-inner">
+      <a href="index.html">Trang chủ</a>
+      <a href="bat-dong-san.html?nhu-cau=ban">Nhà đất bán</a>
+      <a href="bat-dong-san.html?nhu-cau=cho-thue">Nhà đất cho thuê</a>
+      <a href="tin-tuc.html">Tin tức</a>
+      <a href="ve-chung-toi.html">Giới thiệu</a>
+      <a href="lien-he.html">Liên hệ</a>
+      <a href="dang-tin.html" class="rn-nav-cta">+ Đăng tin</a>
+      <div class="rn-nav-mob-phone">📞 Hotline: 1900 6789</div>
+    </div>
+  </div>
+</nav>
+
+<article id="articleDetail">
+  <section style="padding:150px 0 0">
+    <div class="rn-container" style="max-width:760px">
+      <div class="rn-breadcrumb"><a href="index.html">Trang chủ</a> / <a href="tin-tuc.html">Tin tức</a></div>
+      <span class="eyebrow" id="articleCategory"></span>
+      <h1 class="sec-title" id="articleTitle" style="margin-bottom:14px"></h1>
+      <p style="color:var(--text-3);font-size:14px;margin-bottom:24px" id="articleMeta"></p>
+      <img id="articleThumb" src="" alt="" style="width:100%;border-radius:var(--radius-lg);margin-bottom:32px;aspect-ratio:16/9;object-fit:cover">
+      <div id="articleContent" style="font-size:16px;line-height:1.85;color:var(--text-2)"></div>
+    </div>
+  </section>
+
+  <section class="sec-pad">
+    <div class="rn-container">
+      <div class="eyebrow">Đọc thêm</div>
+      <h2 class="sec-title" style="margin-bottom:24px">Bài viết <em>liên quan</em></h2>
+      <div class="rn-news-grid" id="relatedArticles" style="grid-template-columns:repeat(3,1fr)"></div>
+    </div>
+  </section>
+</article>
+
+<footer class="rn-footer">
+  <div class="rn-container">
+    <div class="rn-footer-grid">
+      <div>
+        <a href="index.html" class="rn-footer-logo">Rao<span>Nhà</span></a>
+        <p class="rn-footer-desc">Sàn giao dịch bất động sản trực tuyến — kết nối trực tiếp người mua, người thuê với chính chủ, môi giới tự do và công ty môi giới trên khắp Việt Nam.</p>
+        <div class="rn-social"><a href="#">f</a><a href="#">Z</a><a href="#">▶</a></div>
+      </div>
+      <div class="rn-footer-col">
+        <h4>Khám phá</h4>
+        <a href="index.html">Trang chủ</a>
+        <a href="bat-dong-san.html?nhu-cau=ban">Nhà đất bán</a>
+        <a href="bat-dong-san.html?nhu-cau=cho-thue">Nhà đất cho thuê</a>
+        <a href="dang-tin.html">Đăng tin</a>
+      </div>
+      <div class="rn-footer-col">
+        <h4>Về RaoNhà</h4>
+        <a href="ve-chung-toi.html">Giới thiệu</a>
+        <a href="tin-tuc.html">Tin tức</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <div class="rn-footer-col">
+        <h4>Pháp lý</h4>
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+        <p style="margin-top:14px;color:#fff;font-weight:700">Hotline: 1900 6789</p>
+      </div>
+    </div>
+    <iframe class="rn-footer-maps" src="https://maps.google.com/maps?q=21.0308,105.7988&hl=vi&z=15&output=embed" loading="lazy"></iframe>
+    <div class="rn-footer-bottom">
+      <span>© <span data-year></span> RaoNhà. Mọi quyền được bảo lưu.</span>
+      <span>Văn phòng đại diện: Cầu Giấy, Hà Nội</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/19006789" target="_blank" rel="noopener noreferrer" class="rn-zalo-float">Zalo</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/properties-data.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

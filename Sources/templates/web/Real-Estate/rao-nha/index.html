@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RaoNhà — Sàn giao dịch bất động sản trực tuyến</title>
+<meta name="description" content="RaoNhà — nền tảng đăng tin và tìm kiếm bất động sản trực tuyến: chung cư, nhà phố, đất nền, biệt thự, shophouse tại Hà Nội, TP.HCM, Đà Nẵng. Đăng tin miễn phí, kết nối trực tiếp người mua - người bán.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="rn-container rn-nav-inner">
+    <a href="index.html" class="rn-logo">Rao<span>Nhà</span></a>
+    <div class="rn-nav-links">
+      <a href="index.html" class="active">Trang chủ</a>
+      <a href="bat-dong-san.html?nhu-cau=ban">Nhà đất bán</a>
+      <a href="bat-dong-san.html?nhu-cau=cho-thue">Nhà đất cho thuê</a>
+      <a href="tin-tuc.html">Tin tức</a>
+    </div>
+    <div class="rn-nav-right">
+      <span class="rn-nav-phone">📞 1900 6789</span>
+      <a href="dang-tin.html" class="rn-nav-cta">+ Đăng tin</a>
+    </div>
+    <button class="rn-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="rn-nav-mob" id="navMob">
+    <div class="rn-nav-mob-inner">
+      <a href="index.html">Trang chủ</a>
+      <a href="bat-dong-san.html?nhu-cau=ban">Nhà đất bán</a>
+      <a href="bat-dong-san.html?nhu-cau=cho-thue">Nhà đất cho thuê</a>
+      <a href="tin-tuc.html">Tin tức</a>
+      <a href="ve-chung-toi.html">Giới thiệu</a>
+      <a href="lien-he.html">Liên hệ</a>
+      <a href="dang-tin.html" class="rn-nav-cta">+ Đăng tin</a>
+      <div class="rn-nav-mob-phone">📞 Hotline: 1900 6789</div>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== CAROUSEL HERO — H3 Magazine Grid ===== -->
+<section class="rn-hero" id="heroCarousel">
+  <div class="rn-hero-slide active" data-slide="0">
+    <div class="rn-container rn-hero-slide-inner">
+      <div>
+        <span class="rn-hero-label">Sàn giao dịch bất động sản trực tuyến</span>
+        <h1>Tìm nhà đất nhanh chóng — <em>giao dịch an tâm</em> cùng RaoNhà</h1>
+        <p class="rn-hero-sub">Hàng nghìn tin đăng từ chính chủ, môi giới tự do và công ty môi giới trên khắp Hà Nội, TP.HCM, Đà Nẵng — cập nhật mỗi ngày, kiểm duyệt trước khi hiển thị.</p>
+        <div class="rn-hero-ctas">
+          <a href="bat-dong-san.html" class="btn-rn btn-rn-primary">Xem tất cả tin đăng</a>
+          <a href="dang-tin.html" class="btn-rn btn-rn-ghost">Đăng tin miễn phí</a>
+        </div>
+      </div>
+      <div class="rn-hero-grid">
+        <div><img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=700&auto=format&fit=crop&q=80" alt="Nhà đẹp"></div>
+        <div><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=500&auto=format&fit=crop&q=80" alt="Nội thất"></div>
+        <div><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&auto=format&fit=crop&q=80" alt="Phòng khách"></div>
+      </div>
+    </div>
+  </div>
+  <div class="rn-hero-slide" data-slide="1">
+    <div class="rn-container rn-hero-slide-inner">
+      <div>
+        <span class="rn-hero-label">Đa dạng loại hình</span>
+        <h2 class="rn-hero-heading">Chung cư, nhà phố, đất nền, biệt thự, <em>shophouse</em></h2>
+        <p class="rn-hero-sub">Dù bạn tìm căn hộ đầu tiên, nhà phố an cư hay đất nền đầu tư, RaoNhà đều có bộ lọc chi tiết theo giá, diện tích, hướng nhà và pháp lý.</p>
+        <div class="rn-hero-ctas">
+          <a href="bat-dong-san.html" class="btn-rn btn-rn-primary">Khám phá ngay</a>
+        </div>
+      </div>
+      <div class="rn-hero-grid">
+        <div><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=700&auto=format&fit=crop&q=80" alt="Nhà phố"></div>
+        <div><img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=500&auto=format&fit=crop&q=80" alt="Biệt thự"></div>
+        <div><img src="https://images.unsplash.com/photo-1449844908441-8829872d2607?w=500&auto=format&fit=crop&q=80" alt="Bếp"></div>
+      </div>
+    </div>
+  </div>
+  <div class="rn-hero-slide" data-slide="2">
+    <div class="rn-container rn-hero-slide-inner">
+      <div>
+        <span class="rn-hero-label">Phủ khắp 3 thành phố lớn</span>
+        <h2 class="rn-hero-heading">Hà Nội — TP.HCM — <em>Đà Nẵng</em></h2>
+        <p class="rn-hero-sub">Hơn 12.500 tin đăng đang hoạt động tại 15 khu vực trọng điểm — lọc theo đúng quận/thành phố bạn quan tâm chỉ trong vài giây.</p>
+        <div class="rn-hero-ctas">
+          <a href="bat-dong-san.html" class="btn-rn btn-rn-primary">Xem theo khu vực</a>
+        </div>
+      </div>
+      <div class="rn-hero-grid">
+        <div><img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=700&auto=format&fit=crop&q=80" alt="Thành phố"></div>
+        <div><img src="https://images.unsplash.com/photo-1555431189-0fabf2667795?w=500&auto=format&fit=crop&q=80" alt="Đô thị"></div>
+        <div><img src="https://images.unsplash.com/photo-1470004914212-05527e49370b?w=500&auto=format&fit=crop&q=80" alt="Khu dân cư"></div>
+      </div>
+    </div>
+  </div>
+  <div class="rn-hero-slide" data-slide="3">
+    <div class="rn-container rn-hero-slide-inner">
+      <div>
+        <span class="rn-hero-label">Dành cho người bán & môi giới</span>
+        <h2 class="rn-hero-heading">Đăng tin miễn phí — <em>nâng cấp VIP</em> khi cần bán nhanh</h2>
+        <p class="rn-hero-sub">Chọn gói Tin thường miễn phí hoặc nâng cấp VIP Bạc/Vàng/Kim Cương để tin đăng luôn ở vị trí ưu tiên, tiếp cận nhiều người mua hơn.</p>
+        <div class="rn-hero-ctas">
+          <a href="dang-tin.html" class="btn-rn btn-rn-primary">Đăng tin ngay</a>
+        </div>
+      </div>
+      <div class="rn-hero-grid">
+        <div><img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=700&auto=format&fit=crop&q=80" alt="Phòng ngủ"></div>
+        <div><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500&auto=format&fit=crop&q=80" alt="Không gian sống"></div>
+        <div><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=500&auto=format&fit=crop&q=80" alt="Căn hộ"></div>
+      </div>
+    </div>
+  </div>
+  <button class="rn-hero-nav rn-hero-prev" id="heroPrev" aria-label="Slide trước">‹</button>
+  <button class="rn-hero-nav rn-hero-next" id="heroNext" aria-label="Slide sau">›</button>
+  <div class="rn-hero-dots" id="heroDots">
+    <button class="rn-hero-dot active" data-dot="0"></button>
+    <button class="rn-hero-dot" data-dot="1"></button>
+    <button class="rn-hero-dot" data-dot="2"></button>
+    <button class="rn-hero-dot" data-dot="3"></button>
+  </div>
+</section>
+
+<div class="rn-container rn-search-wrap">
+  <form class="rn-search-card" id="heroSearchForm">
+    <input type="hidden" name="need" value="">
+    <div class="rn-search-tabs">
+      <button type="button" class="rn-search-tab active" data-need-tab="">Tất cả</button>
+      <button type="button" class="rn-search-tab" data-need-tab="ban">Mua bán</button>
+      <button type="button" class="rn-search-tab" data-need-tab="cho-thue">Cho thuê</button>
+    </div>
+    <div class="rn-search-fields">
+      <div class="rn-search-field">
+        <label>Khu vực</label>
+        <select name="area">
+          <option value="">Tất cả khu vực</option>
+          <optgroup label="Hà Nội">
+            <option value="cau-giay-ha-noi">Cầu Giấy</option>
+            <option value="dong-da-ha-noi">Đống Đa</option>
+            <option value="tay-ho-ha-noi">Tây Hồ</option>
+          </optgroup>
+          <optgroup label="TP.HCM">
+            <option value="quan-1-hcm">Quận 1</option>
+            <option value="quan-7-hcm">Quận 7</option>
+            <option value="thu-duc-hcm">TP. Thủ Đức</option>
+          </optgroup>
+          <optgroup label="Đà Nẵng">
+            <option value="hai-chau-da-nang">Hải Châu</option>
+            <option value="son-tra-da-nang">Sơn Trà</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="rn-search-field">
+        <label>Loại hình</label>
+        <select name="type">
+          <option value="">Tất cả loại hình</option>
+          <option value="chung-cu">Chung cư</option>
+          <option value="nha-pho">Nhà phố</option>
+          <option value="dat-nen">Đất nền</option>
+          <option value="biet-thu">Biệt thự</option>
+          <option value="shophouse">Shophouse</option>
+          <option value="can-ho-dich-vu">Căn hộ dịch vụ</option>
+        </select>
+      </div>
+      <div class="rn-search-field">
+        <label>Khoảng giá</label>
+        <select name="price">
+          <option value="">Khoảng giá</option>
+          <option value="duoi-2ty">Dưới 2 tỷ</option>
+          <option value="2-5ty">2 - 5 tỷ</option>
+          <option value="5-10ty">5 - 10 tỷ</option>
+          <option value="10-20ty">10 - 20 tỷ</option>
+          <option value="tren-20ty">Trên 20 tỷ</option>
+        </select>
+      </div>
+      <div class="rn-search-field">
+        <label>Từ khóa</label>
+        <input type="text" name="q" placeholder="Tên đường, dự án...">
+      </div>
+      <button type="submit" class="rn-search-submit">🔍 Tìm kiếm</button>
+    </div>
+  </form>
+</div>
+
+<!-- ===== Area chips — HORIZONTAL-SCROLL ===== -->
+<section class="sec-pad" style="padding-top:32px">
+  <div class="rn-container">
+    <div class="eyebrow">Khu vực nổi bật</div>
+    <div class="rn-area-scroll" id="areaChipRow"></div>
+  </div>
+</section>
+
+<!-- ===== Tin VIP nổi bật ===== -->
+<section class="sec-pad" style="padding-top:0">
+  <div class="rn-container">
+    <div class="sec-head-row" data-reveal>
+      <div>
+        <div class="eyebrow">💎 Ưu tiên hiển thị</div>
+        <h2 class="sec-title">Tin <em>VIP</em> nổi bật</h2>
+      </div>
+      <a href="bat-dong-san.html" class="btn-rn btn-rn-ghost">Xem tất cả →</a>
+    </div>
+    <div class="rn-grid" id="vipGrid"></div>
+  </div>
+</section>
+
+<!-- ===== Mới đăng — GRID-CARDS ===== -->
+<section class="sec-pad" style="padding-top:0">
+  <div class="rn-container">
+    <div class="sec-head-row" data-reveal>
+      <div>
+        <div class="eyebrow">Cập nhật liên tục</div>
+        <h2 class="sec-title">Tin <em>mới đăng</em></h2>
+      </div>
+      <a href="bat-dong-san.html" class="btn-rn btn-rn-ghost">Xem tất cả →</a>
+    </div>
+    <div class="rn-grid" id="newGrid"></div>
+  </div>
+</section>
+
+<!-- ===== STAT-BAR ===== -->
+<section class="rn-statbar sec-pad">
+  <div class="rn-container">
+    <div class="rn-stats-grid">
+      <div data-reveal>
+        <div class="rn-stat-num"><span data-counter="12500" data-suffix="+">0</span></div>
+        <div class="rn-stat-label">Tin đăng đang hoạt động</div>
+      </div>
+      <div data-reveal data-reveal-d1>
+        <div class="rn-stat-num"><span data-counter="3200" data-suffix="+">0</span></div>
+        <div class="rn-stat-label">Môi giới & chính chủ tham gia</div>
+      </div>
+      <div data-reveal data-reveal-d2>
+        <div class="rn-stat-num"><span data-counter="850" data-suffix="k">0</span></div>
+        <div class="rn-stat-label">Lượt truy cập mỗi tháng</div>
+      </div>
+      <div data-reveal data-reveal-d3>
+        <div class="rn-stat-num"><span data-counter="98" data-suffix="%">0</span></div>
+        <div class="rn-stat-label">Người dùng hài lòng</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURE-ICON-ROW — Cách hoạt động ===== -->
+<section class="sec-pad">
+  <div class="rn-container">
+    <div class="sec-head center" data-reveal>
+      <div class="eyebrow">Quy trình</div>
+      <h2 class="sec-title">RaoNhà hoạt động <em>như thế nào?</em></h2>
+      <p class="sec-sub">Chỉ 4 bước đơn giản để đăng tin hoặc tìm được bất động sản phù hợp.</p>
+    </div>
+    <div class="rn-steps-row">
+      <div class="rn-step" data-reveal><div class="rn-step-num">1</div><h3>Đăng tin miễn phí</h3><p>Điền thông tin bất động sản, tải ảnh và chọn gói tin phù hợp — chỉ mất vài phút.</p></div>
+      <div class="rn-step" data-reveal data-reveal-d1><div class="rn-step-num">2</div><h3>RaoNhà kiểm duyệt</h3><p>Đội ngũ kiểm duyệt xác minh thông tin trước khi tin đăng được hiển thị công khai.</p></div>
+      <div class="rn-step" data-reveal data-reveal-d2><div class="rn-step-num">3</div><h3>Hiển thị công khai</h3><p>Tin đăng xuất hiện trong kết quả tìm kiếm, xếp hạng theo gói tin đã chọn.</p></div>
+      <div class="rn-step" data-reveal data-reveal-d3><div class="rn-step-num">4</div><h3>Kết nối trực tiếp</h3><p>Người mua/thuê liên hệ thẳng với người đăng tin — không qua trung gian.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Testimonials — LIST-ELEGANT ===== -->
+<section class="sec-pad" style="background:var(--surface)">
+  <div class="rn-container">
+    <div class="sec-head center" data-reveal>
+      <div class="eyebrow">Người dùng nói gì</div>
+      <h2 class="sec-title">Câu chuyện từ <em>người dùng RaoNhà</em></h2>
+    </div>
+    <div class="rn-testi-list" style="max-width:820px;margin:0 auto">
+      <div class="rn-testi-item" data-reveal>
+        <img src="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?w=200&auto=format&fit=crop&q=80" class="rn-testi-avatar" alt="Nguyễn Thu Hằng">
+        <div>
+          <p class="rn-testi-quote">"Tôi lọc theo đúng khoảng giá và khu vực Cầu Giấy, tìm được căn hộ ưng ý chỉ sau 3 ngày. Bộ lọc pháp lý/hướng nhà rất chi tiết, đúng thứ tôi cần khi mua nhà lần đầu."</p>
+          <div class="rn-testi-name">Nguyễn Thu Hằng</div>
+          <div class="rn-testi-role">Người mua nhà tại Cầu Giấy, Hà Nội</div>
+        </div>
+        <div class="rn-testi-stars">★★★★★</div>
+      </div>
+      <div class="rn-testi-item" data-reveal>
+        <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=200&auto=format&fit=crop&q=80" class="rn-testi-avatar" alt="Trần Quốc Huy">
+        <div>
+          <p class="rn-testi-quote">"Đăng tin gói VIP Vàng chưa đầy một tuần đã có hơn 20 cuộc gọi hỏi mua. Trước đó đăng tin thường mãi không ai liên hệ, nâng gói là quyết định đúng đắn."</p>
+          <div class="rn-testi-name">Trần Quốc Huy</div>
+          <div class="rn-testi-role">Chủ nhà đăng tin bán tại Quận 7, TP.HCM</div>
+        </div>
+        <div class="rn-testi-stars">★★★★★</div>
+      </div>
+      <div class="rn-testi-item" data-reveal>
+        <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&auto=format&fit=crop&q=80" class="rn-testi-avatar" alt="Lê Minh Tuấn">
+        <div>
+          <p class="rn-testi-quote">"Là môi giới tự do, RaoNhà giúp tôi quản lý nhiều tin đăng cùng lúc và tiếp cận khách hàng ở cả 3 thành phố mà không cần văn phòng riêng."</p>
+          <div class="rn-testi-name">Lê Minh Tuấn</div>
+          <div class="rn-testi-role">Môi giới tự do</div>
+        </div>
+        <div class="rn-testi-stars">★★★★★</div>
+      </div>
+      <div class="rn-testi-item" data-reveal>
+        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=200&auto=format&fit=crop&q=80" class="rn-testi-avatar" alt="Phạm Thu Hà">
+        <div>
+          <p class="rn-testi-quote">"Cho thuê căn hộ dịch vụ của mình chỉ sau 5 ngày đăng tin, người thuê liên hệ trực tiếp qua số điện thoại hiển thị, không mất phí môi giới trung gian."</p>
+          <div class="rn-testi-name">Phạm Thu Hà</div>
+          <div class="rn-testi-role">Chính chủ cho thuê tại Tây Hồ, Hà Nội</div>
+        </div>
+        <div class="rn-testi-stars">★★★★★</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Tin tức mới nhất ===== -->
+<section class="sec-pad">
+  <div class="rn-container">
+    <div class="sec-head-row" data-reveal>
+      <div>
+        <div class="eyebrow">Kiến thức bất động sản</div>
+        <h2 class="sec-title">Tin tức <em>mới nhất</em></h2>
+      </div>
+      <a href="tin-tuc.html" class="btn-rn btn-rn-ghost">Xem tất cả →</a>
+    </div>
+    <div class="rn-news-grid" id="homeNewsGrid"></div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="sec-pad" style="background:var(--surface)">
+  <div class="rn-container">
+    <div class="sec-head center" data-reveal>
+      <div class="eyebrow">Giải đáp</div>
+      <h2 class="sec-title">Câu hỏi <em>thường gặp</em></h2>
+    </div>
+    <div class="rn-faq" id="faqAccordion">
+      <div class="rn-faq-item">
+        <button class="rn-faq-q">Tìm kiếm và liên hệ người bán trên RaoNhà có mất phí không?<span class="rn-faq-icon">+</span></button>
+        <div class="rn-faq-a"><div class="rn-faq-a-inner">Hoàn toàn miễn phí. Người mua/thuê có thể tìm kiếm, lọc tin đăng và xem thông tin liên hệ (số điện thoại, Zalo) của người đăng tin mà không phải trả bất kỳ khoản phí nào cho RaoNhà.</div></div>
+      </div>
+      <div class="rn-faq-item">
+        <button class="rn-faq-q">Làm sao biết tin đăng là thật, không phải lừa đảo?<span class="rn-faq-icon">+</span></button>
+        <div class="rn-faq-a"><div class="rn-faq-a-inner">Mọi tin đăng đều được đội ngũ RaoNhà kiểm duyệt nội dung và xác minh số điện thoại người đăng trước khi hiển thị công khai. Tuy vậy, người mua vẫn nên kiểm tra trực tiếp giấy tờ pháp lý và gặp mặt trước khi đặt cọc.</div></div>
+      </div>
+      <div class="rn-faq-item">
+        <button class="rn-faq-q">Gói tin VIP khác gì tin thường?<span class="rn-faq-icon">+</span></button>
+        <div class="rn-faq-a"><div class="rn-faq-a-inner">Tin VIP (Bạc/Vàng/Kim Cương) được ưu tiên hiển thị ở vị trí đầu danh sách và trang chủ, có badge nổi bật, kèm số lần làm mới tin tự động — giúp tiếp cận nhiều người mua/thuê hơn so với Tin thường hiển thị theo thứ tự thời gian đăng.</div></div>
+      </div>
+      <div class="rn-faq-item">
+        <button class="rn-faq-q">Tôi có thể đăng tin miễn phí không?<span class="rn-faq-icon">+</span></button>
+        <div class="rn-faq-a"><div class="rn-faq-a-inner">Có. Gói Tin thường hoàn toàn miễn phí và không giới hạn số lượng tin đăng cơ bản. Bạn chỉ trả phí nếu muốn nâng cấp lên các gói VIP để tăng khả năng tiếp cận.</div></div>
+      </div>
+      <div class="rn-faq-item">
+        <button class="rn-faq-q">RaoNhà có hỗ trợ tính toán vay ngân hàng không?<span class="rn-faq-icon">+</span></button>
+        <div class="rn-faq-a"><div class="rn-faq-a-inner">Có. Mỗi trang chi tiết bất động sản đều có công cụ ước tính khoản trả góp hàng tháng dựa trên giá nhà, tỷ lệ vay, lãi suất và thời hạn vay bạn nhập vào — mang tính tham khảo, vui lòng liên hệ ngân hàng để biết mức lãi suất chính xác.</div></div>
+      </div>
+      <div class="rn-faq-item">
+        <button class="rn-faq-q">Làm sao liên hệ trực tiếp với người đăng tin?<span class="rn-faq-icon">+</span></button>
+        <div class="rn-faq-a"><div class="rn-faq-a-inner">Trên mỗi trang chi tiết bất động sản đều có thẻ "Người đăng tin" hiển thị tên, vai trò (chính chủ/môi giới tự do/công ty môi giới), số điện thoại và nút gọi/Zalo trực tiếp — không qua tổng đài trung gian.</div></div>
+      </div>
+      <div class="rn-faq-item">
+        <button class="rn-faq-q">Tôi phát hiện tin đăng sai thông tin, báo cáo ở đâu?<span class="rn-faq-icon">+</span></button>
+        <div class="rn-faq-a"><div class="rn-faq-a-inner">Bạn có thể liên hệ qua trang Liên hệ hoặc hotline 1900 6789 để báo cáo tin đăng có dấu hiệu sai lệch thông tin hoặc lừa đảo — đội ngũ kiểm duyệt sẽ xác minh và xử lý trong 24 giờ.</div></div>
+      </div>
+      <div class="rn-faq-item">
+        <button class="rn-faq-q">RaoNhà hiện có mặt ở những khu vực nào?<span class="rn-faq-icon">+</span></button>
+        <div class="rn-faq-a"><div class="rn-faq-a-inner">Hiện tại RaoNhà tập trung tại 15 khu vực thuộc Hà Nội, TP.HCM và Đà Nẵng, và đang tiếp tục mở rộng sang các tỉnh thành khác trong thời gian tới.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="rn-footer">
+  <div class="rn-container">
+    <div class="rn-footer-grid">
+      <div>
+        <a href="index.html" class="rn-footer-logo">Rao<span>Nhà</span></a>
+        <p class="rn-footer-desc">Sàn giao dịch bất động sản trực tuyến — kết nối trực tiếp người mua, người thuê với chính chủ, môi giới tự do và công ty môi giới trên khắp Việt Nam.</p>
+        <div class="rn-social">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Zalo">Z</a>
+          <a href="#" aria-label="Youtube">▶</a>
+        </div>
+      </div>
+      <div class="rn-footer-col">
+        <h4>Khám phá</h4>
+        <a href="index.html">Trang chủ</a>
+        <a href="bat-dong-san.html?nhu-cau=ban">Nhà đất bán</a>
+        <a href="bat-dong-san.html?nhu-cau=cho-thue">Nhà đất cho thuê</a>
+        <a href="dang-tin.html">Đăng tin</a>
+      </div>
+      <div class="rn-footer-col">
+        <h4>Về RaoNhà</h4>
+        <a href="ve-chung-toi.html">Giới thiệu</a>
+        <a href="tin-tuc.html">Tin tức</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <div class="rn-footer-col">
+        <h4>Pháp lý</h4>
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+        <p style="margin-top:14px;color:#fff;font-weight:700">Hotline: 1900 6789</p>
+      </div>
+    </div>
+    <iframe class="rn-footer-maps" src="https://maps.google.com/maps?q=21.0308,105.7988&hl=vi&z=15&output=embed" loading="lazy"></iframe>
+    <div class="rn-footer-bottom">
+      <span>© <span data-year></span> RaoNhà. Mọi quyền được bảo lưu.</span>
+      <span>Văn phòng đại diện: Cầu Giấy, Hà Nội</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/19006789" target="_blank" rel="noopener noreferrer" class="rn-zalo-float">Zalo</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/properties-data.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+/* Carousel hero */
+(function(){
+  const slides = document.querySelectorAll('.rn-hero-slide');
+  const dots = document.querySelectorAll('.rn-hero-dot');
+  let cur = 0, timer;
+  function show(i){
+    cur = (i + slides.length) % slides.length;
+    slides.forEach((s,idx)=>s.classList.toggle('active', idx===cur));
+    dots.forEach((d,idx)=>d.classList.toggle('active', idx===cur));
+  }
+  function next(){ show(cur+1); }
+  function restart(){ clearInterval(timer); timer = setInterval(next, 5000); }
+  document.getElementById('heroPrev').addEventListener('click', ()=>{ show(cur-1); restart(); });
+  document.getElementById('heroNext').addEventListener('click', ()=>{ show(cur+1); restart(); });
+  dots.forEach(d=>d.addEventListener('click', ()=>{ show(+d.dataset.dot); restart(); }));
+  restart();
+})();
+/* FAQ accordion */
+document.querySelectorAll('.rn-faq-q').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const item = btn.closest('.rn-faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.rn-faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

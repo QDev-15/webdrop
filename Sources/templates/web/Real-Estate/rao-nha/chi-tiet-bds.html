@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chi tiết bất động sản | RaoNhà</title>
+<meta name="description" content="Xem đầy đủ thông tin bất động sản: giá, diện tích, pháp lý, vị trí, công cụ tính vay và liên hệ trực tiếp người đăng tin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="rn-container rn-nav-inner">
+    <a href="index.html" class="rn-logo">Rao<span>Nhà</span></a>
+    <div class="rn-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="bat-dong-san.html?nhu-cau=ban">Nhà đất bán</a>
+      <a href="bat-dong-san.html?nhu-cau=cho-thue">Nhà đất cho thuê</a>
+      <a href="tin-tuc.html">Tin tức</a>
+    </div>
+    <div class="rn-nav-right">
+      <span class="rn-nav-phone">📞 1900 6789</span>
+      <a href="dang-tin.html" class="rn-nav-cta">+ Đăng tin</a>
+    </div>
+    <button class="rn-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="rn-nav-mob" id="navMob">
+    <div class="rn-nav-mob-inner">
+      <a href="index.html">Trang chủ</a>
+      <a href="bat-dong-san.html?nhu-cau=ban">Nhà đất bán</a>
+      <a href="bat-dong-san.html?nhu-cau=cho-thue">Nhà đất cho thuê</a>
+      <a href="tin-tuc.html">Tin tức</a>
+      <a href="ve-chung-toi.html">Giới thiệu</a>
+      <a href="lien-he.html">Liên hệ</a>
+      <a href="dang-tin.html" class="rn-nav-cta">+ Đăng tin</a>
+      <div class="rn-nav-mob-phone">📞 Hotline: 1900 6789</div>
+    </div>
+  </div>
+</nav>
+
+<div id="bdsDetail">
+
+<section class="rn-detail-hero">
+  <div class="rn-container">
+    <div class="rn-breadcrumb"><a href="index.html">Trang chủ</a> / <a href="bat-dong-san.html">Nhà đất</a> / <span id="breadcrumbTitle">Chi tiết bất động sản</span></div>
+    <h1 id="detailH1" style="font-size:clamp(22px,3vw,30px);margin-bottom:18px"></h1>
+
+    <!-- 1. Gallery -->
+    <div class="rn-gallery">
+      <div class="rn-gallery-main" id="mainImageWrap">
+        <img id="mainImage" src="" alt="">
+        <span class="rn-gallery-status" id="galleryStatus"></span>
+      </div>
+      <div class="rn-thumbs-row" id="galleryThumbs"></div>
+    </div>
+
+    <!-- 2. Quick facts -->
+    <div class="rn-quickfacts">
+      <div class="rn-qf-item"><div class="rn-qf-icon">💰</div><div class="rn-qf-val" id="factPrice"></div><div class="rn-qf-label">Giá</div></div>
+      <div class="rn-qf-item"><div class="rn-qf-icon">📐</div><div class="rn-qf-val" id="factArea"></div><div class="rn-qf-label">Diện tích</div></div>
+      <div class="rn-qf-item"><div class="rn-qf-icon">🛏️</div><div class="rn-qf-val" id="factBed"></div><div class="rn-qf-label">Phòng ngủ</div></div>
+      <div class="rn-qf-item"><div class="rn-qf-icon">🛁</div><div class="rn-qf-val" id="factBath"></div><div class="rn-qf-label">Phòng tắm</div></div>
+      <div class="rn-qf-item"><div class="rn-qf-icon">🧭</div><div class="rn-qf-val" id="factDirection"></div><div class="rn-qf-label">Hướng nhà</div></div>
+      <div class="rn-qf-item"><div class="rn-qf-icon">📜</div><div class="rn-qf-val" id="factLegal"></div><div class="rn-qf-label">Pháp lý</div></div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <!-- 3. Mô tả -->
+        <div class="rn-detail-section">
+          <h2>Mô tả chi tiết</h2>
+          <p id="detailDesc" style="color:var(--text-2);line-height:1.8"></p>
+          <p style="margin-top:10px;font-size:14px;color:var(--text-3)">📍 Địa chỉ: <span id="detailAddress"></span></p>
+          <p style="margin-top:8px;font-size:14px;color:var(--text-3)">🗓️ Đăng ngày <span id="detailPosted"></span> · <span id="detailExpiry"></span></p>
+        </div>
+
+        <!-- 4. Đặc điểm nổi bật -->
+        <div class="rn-detail-section">
+          <h2>Đặc điểm nổi bật</h2>
+          <p style="margin-bottom:12px;font-size:14px;color:var(--text-2)">Tình trạng nội thất: <strong id="detailFurnishing"></strong></p>
+          <ul class="rn-feature-chips" id="detailFeatures"></ul>
+        </div>
+
+        <!-- 5. Bản đồ + tiện ích xung quanh -->
+        <div class="rn-detail-section">
+          <h2>Vị trí &amp; tiện ích xung quanh</h2>
+          <iframe class="rn-map-frame" id="detailMap" src="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <ul class="rn-nearby-list">
+            <li>🏫 Gần trường học trong bán kính 1km tại <span id="nearbyDistrict"></span></li>
+            <li>🛒 Cách chợ/siêu thị dân sinh khoảng 500m</li>
+            <li>🏥 Cách bệnh viện/phòng khám khoảng 2km</li>
+            <li>🚌 Kết nối tuyến đường chính trong 5 phút di chuyển</li>
+          </ul>
+        </div>
+
+        <!-- 6. Công cụ tính vay -->
+        <div class="rn-detail-section" id="loanCalc">
+          <h2>Công cụ tính vay / trả góp</h2>
+          <div class="rn-calc-box">
+            <div class="rn-calc-row">
+              <div><label>Giá trị BĐS (triệu đồng)</label><input type="number" id="calcPrice"></div>
+              <div><label>Tỷ lệ vay (%)</label><input type="number" id="calcPercent" value="70"></div>
+            </div>
+            <div class="rn-calc-row">
+              <div><label>Lãi suất (%/năm)</label><input type="number" id="calcRate" value="8.5" step="0.1"></div>
+              <div><label>Thời hạn vay (năm)</label><input type="number" id="calcYears" value="20"></div>
+            </div>
+            <div class="rn-calc-result">Trả góp hàng tháng ước tính<br><span class="val" id="calcResult"></span></div>
+            <p class="rn-calc-note">* Lãi suất chỉ mang tính tham khảo, vui lòng liên hệ ngân hàng để biết mức lãi suất chính xác.</p>
+          </div>
+        </div>
+        <div class="rn-detail-section" id="rentEstimate" hidden>
+          <h2>Ước tính chi phí thuê</h2>
+          <div class="rn-calc-box">
+            <div class="rn-calc-row">
+              <div><label>Tiền thuê / tháng</label><div class="rn-calc-result" id="rentMonthly" style="margin-top:0"></div></div>
+              <div><label>Tiền cọc thường yêu cầu (2 tháng)</label><div class="rn-calc-result" id="rentDeposit" style="margin-top:0"></div></div>
+            </div>
+            <p class="rn-calc-note">Tổng chi phí lần đầu tham khảo (cọc 2 tháng + thanh toán tháng đầu): <strong id="rentFirstPay"></strong></p>
+          </div>
+        </div>
+
+        <!-- 8. Form đặt lịch xem nhà -->
+        <div class="rn-detail-section" style="border-bottom:none">
+          <h2>Đặt lịch xem nhà</h2>
+          <form class="rn-booking-form" id="bookingForm">
+            <div class="row g-3">
+              <div class="col-md-6 rn-form-group"><label>Họ và tên</label><input type="text" required placeholder="Nguyễn Văn A"></div>
+              <div class="col-md-6 rn-form-group"><label>Số điện thoại</label><input type="tel" required placeholder="09xx xxx xxx"></div>
+              <div class="col-md-6 rn-form-group"><label>Ngày mong muốn xem nhà</label><input type="date"></div>
+              <div class="col-md-6 rn-form-group"><label>Khung giờ</label><select><option>Sáng (8h - 11h)</option><option>Chiều (13h - 17h)</option><option>Tối (17h - 19h)</option></select></div>
+              <div class="col-12 rn-form-group"><label>Ghi chú</label><textarea rows="3" placeholder="Câu hỏi thêm về bất động sản..."></textarea></div>
+            </div>
+            <button type="submit" class="btn-rn btn-rn-primary btn-rn-block mt-2">Gửi yêu cầu đặt lịch</button>
+            <div class="rn-form-success" id="bookingSuccess" hidden>✓ Đã gửi yêu cầu! Người đăng tin sẽ liên hệ lại với bạn sớm nhất.</div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <!-- 7. Người đăng tin -->
+        <h2 style="font-size:16px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-3);margin-bottom:14px">Người đăng tin</h2>
+        <div class="rn-poster-card mb-4">
+          <img id="posterAvatar" src="" alt="" class="rn-poster-avatar">
+          <div class="rn-poster-role" id="posterRole"></div>
+          <div class="rn-poster-name" id="posterName"></div>
+          <div class="rn-poster-phone" id="posterPhone"></div>
+          <div class="rn-poster-actions">
+            <a href="#" id="posterCallBtn" class="btn-rn btn-rn-primary btn-rn-block">📞 Gọi ngay</a>
+            <a href="#" id="posterZaloBtn" target="_blank" rel="noopener noreferrer" class="btn-rn rn-poster-zalo btn-rn-block">Chat Zalo</a>
+          </div>
+          <a href="#" id="posterAllListings" style="font-size:13px;color:var(--accent);font-weight:600">Xem tất cả tin của người này →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. BĐS tương tự -->
+    <div class="sec-pad" style="padding-bottom:0">
+      <div class="eyebrow">Có thể bạn quan tâm</div>
+      <h2 class="sec-title" style="margin-bottom:24px">Bất động sản <em>tương tự</em></h2>
+      <div class="rn-grid" id="relatedGrid"></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- Lightbox -->
+<div class="rn-lightbox" id="lightbox">
+  <button class="rn-lightbox-close" id="lightboxClose">✕</button>
+  <button class="rn-lightbox-prev" id="lightboxPrev">‹</button>
+  <img id="lightboxImg" src="" alt="Ảnh phóng to">
+  <button class="rn-lightbox-next" id="lightboxNext">›</button>
+</div>
+
+<footer class="rn-footer">
+  <div class="rn-container">
+    <div class="rn-footer-grid">
+      <div>
+        <a href="index.html" class="rn-footer-logo">Rao<span>Nhà</span></a>
+        <p class="rn-footer-desc">Sàn giao dịch bất động sản trực tuyến — kết nối trực tiếp người mua, người thuê với chính chủ, môi giới tự do và công ty môi giới trên khắp Việt Nam.</p>
+        <div class="rn-social"><a href="#">f</a><a href="#">Z</a><a href="#">▶</a></div>
+      </div>
+      <div class="rn-footer-col">
+        <h4>Khám phá</h4>
+        <a href="index.html">Trang chủ</a>
+        <a href="bat-dong-san.html?nhu-cau=ban">Nhà đất bán</a>
+        <a href="bat-dong-san.html?nhu-cau=cho-thue">Nhà đất cho thuê</a>
+        <a href="dang-tin.html">Đăng tin</a>
+      </div>
+      <div class="rn-footer-col">
+        <h4>Về RaoNhà</h4>
+        <a href="ve-chung-toi.html">Giới thiệu</a>
+        <a href="tin-tuc.html">Tin tức</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <div class="rn-footer-col">
+        <h4>Pháp lý</h4>
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+        <p style="margin-top:14px;color:#fff;font-weight:700">Hotline: 1900 6789</p>
+      </div>
+    </div>
+    <iframe class="rn-footer-maps" src="https://maps.google.com/maps?q=21.0308,105.7988&hl=vi&z=15&output=embed" loading="lazy"></iframe>
+    <div class="rn-footer-bottom">
+      <span>© <span data-year></span> RaoNhà. Mọi quyền được bảo lưu.</span>
+      <span>Văn phòng đại diện: Cầu Giấy, Hà Nội</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/19006789" target="_blank" rel="noopener noreferrer" class="rn-zalo-float">Zalo</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/properties-data.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
