@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liên hệ — NOX Cà Phê Đêm Muộn</title>
+<meta name="description" content="Liên hệ NOX để đặt bàn, đặt phòng học nhóm, hoặc hỏi thông tin — mở cửa 18:00 đến 2 giờ sáng mỗi ngày.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="cdm-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html"><span class="logo-dot"></span>NOX <span>COFFEE</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="menu.html">Thực đơn</a>
+        <a href="khong-gian.html">Không gian</a>
+        <a href="gioi-thieu.html">Giới thiệu</a>
+        <a href="lien-he.html" class="active">Liên hệ</a>
+      </div>
+      <a href="lien-he.html" class="nav-cta">Đặt bàn đêm</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="menu.html">Thực đơn</a>
+  <a href="khong-gian.html">Không gian</a>
+  <a href="gioi-thieu.html">Giới thiệu</a>
+  <a href="lien-he.html" class="active">Liên hệ</a>
+  <a href="lien-he.html" class="nm-cta">Đặt bàn đêm</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="cdm-container">
+    <div class="ph-eyebrow reveal">Liên hệ NOX</div>
+    <h1 class="ph-title reveal reveal-d1">Giữ bàn cho <em>đêm nay</em></h1>
+    <p class="ph-sub reveal reveal-d2">Đặt trước qua form dưới đây hoặc nhắn Zalo — chúng tôi phản hồi trong vòng 15 phút, kể cả sau nửa đêm.</p>
+  </div>
+</section>
+
+<!-- CONTACT INFO + FORM -->
+<section class="sec-pad" style="background:var(--bg);">
+  <div class="cdm-container">
+    <div class="row g-3 mb-5">
+      <div class="col-6 col-md-3">
+        <div class="contact-info-block reveal reveal-d1">
+          <div class="cib-icon">📍</div>
+          <div class="cib-label">Địa chỉ</div>
+          <div class="cib-val">[Số nhà, Đường, Quận, TP]</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="contact-info-block reveal reveal-d2">
+          <div class="cib-icon">📱</div>
+          <div class="cib-label">Điện thoại</div>
+          <div class="cib-val">[0901 234 567]</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="contact-info-block reveal reveal-d3">
+          <div class="cib-icon">✉️</div>
+          <div class="cib-label">Email</div>
+          <div class="cib-val">[email@domain.com]</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="contact-info-block reveal reveal-d3" style="transition-delay:.32s">
+          <div class="cib-icon">🕐</div>
+          <div class="cib-label">Giờ mở cửa</div>
+          <div class="cib-val">18:00 – 02:00</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row align-items-start g-5">
+      <div class="col-lg-5 reveal">
+        <div class="eyebrow">Đặt bàn trước</div>
+        <h2 class="sec-title">Giữ chỗ cho <em>ca đêm</em> của bạn</h2>
+        <p class="sec-sub">Đặt trước để đảm bảo có bàn — đặc biệt vào cuối tuần và tuần thi cử. Chúng tôi xác nhận qua Zalo/điện thoại trong 15 phút.</p>
+        <ul class="mt-4" style="list-style:none;padding:0;display:flex;flex-direction:column;gap:10px;">
+          <li style="font-size:13.5px;color:var(--text-2);display:flex;gap:10px;align-items:center;"><span style="color:var(--accent);font-size:16px;">✓</span>Phản hồi xác nhận trong 15 phút</li>
+          <li style="font-size:13.5px;color:var(--text-2);display:flex;gap:10px;align-items:center;"><span style="color:var(--accent);font-size:16px;">✓</span>Hủy miễn phí trước 1 tiếng</li>
+          <li style="font-size:13.5px;color:var(--text-2);display:flex;gap:10px;align-items:center;"><span style="color:var(--accent);font-size:16px;">✓</span>Giữ bàn 20 phút sau giờ đặt</li>
+        </ul>
+      </div>
+      <div class="col-lg-7 reveal reveal-d1">
+        <div class="inline-booking">
+          <h3 style="font-size:17px;font-weight:800;color:var(--text);margin-bottom:22px;letter-spacing:-.3px;">Điền thông tin đặt bàn</h3>
+          <form class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Họ và tên</label>
+              <input type="text" class="form-control" placeholder="[Nguyễn Văn A]">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Số điện thoại</label>
+              <input type="tel" class="form-control" placeholder="[0901 234 567]">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Ngày đến</label>
+              <input type="date" class="form-control">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Giờ đến</label>
+              <select class="form-select">
+                <option value="">-- Chọn giờ --</option>
+                <option>18:00 – 20:00</option>
+                <option>20:00 – 22:00</option>
+                <option>22:00 – 00:00</option>
+                <option>00:00 – 02:00</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Số người</label>
+              <select class="form-select">
+                <option>1 người</option>
+                <option>2 người</option>
+                <option>3 – 4 người</option>
+                <option>5 – 6 người</option>
+                <option>7 – 8 người (phòng học nhóm)</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Khu vực</label>
+              <select class="form-select">
+                <option>Coding Corner</option>
+                <option>Phòng Học Nhóm</option>
+                <option>Quầy Bar Espresso</option>
+                <option>Góc Sofa Thư Giãn</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Ghi chú thêm</label>
+              <textarea class="form-control" rows="3" placeholder="[Yêu cầu đặc biệt nếu có]"></textarea>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn-accent w-100 justify-content-center" style="padding:13px;font-size:14px;">Gửi yêu cầu đặt bàn</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="cdm-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo"><span class="logo-dot"></span>NOX <span>COFFEE</span></div>
+        <p class="ft-desc">Espresso bar mở đến 2 giờ sáng — nơi thành phố ngủ nhưng công việc, bài vở và ý tưởng của bạn thì chưa xong.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc" aria-label="Facebook" target="_blank" rel="noopener noreferrer">fb</a>
+          <a href="#" class="ft-soc" aria-label="Instagram" target="_blank" rel="noopener noreferrer">ig</a>
+          <a href="#" class="ft-soc" aria-label="Zalo" target="_blank" rel="noopener noreferrer">zl</a>
+          <a href="#" class="ft-soc" aria-label="TikTok" target="_blank" rel="noopener noreferrer">tt</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Trang</div>
+        <div class="ft-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="menu.html">Thực đơn</a>
+          <a href="khong-gian.html">Không gian</a>
+          <a href="gioi-thieu.html">Giới thiệu</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Dịch vụ</div>
+        <div class="ft-links">
+          <a href="lien-he.html">Đặt bàn trước</a>
+          <a href="lien-he.html">Đặt phòng học nhóm</a>
+          <a href="menu.html">Mua cà phê hạt</a>
+          <a href="lien-he.html">Hợp tác</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Pháp lý</div>
+        <div class="ft-links">
+          <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+          <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links">
+          <a href="tel:[0901234567]">📱 [0901 234 567]</a>
+          <a href="#">📍 [Số nhà, Đường, Quận, TP]</a>
+          <a href="mailto:[email@domain.com]">✉️ [email@domain.com]</a>
+          <a href="#">🕐 18:00 – 02:00 hàng ngày</a>
+        </div>
+      </div>
+    </div>
+    <div class="reveal pb-4">
+      <iframe class="cdm-map-embed" src="https://maps.google.com/maps?q=[LAT],[LNG]&hl=vi&z=15&output=embed" title="Bản đồ vị trí NOX Coffee" loading="lazy"></iframe>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="cdm-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="ft-copy">© [NĂM] NOX Coffee · Made in Vietnam 🇻🇳</div>
+        <div class="ft-copy">Thiết kế bởi webdrop.store</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ZALO FLOAT -->
+<div class="zf">
+  <div class="zf-tip">Liên hệ Zalo</div>
+  <a href="https://zalo.me/[SỐ_ZALO]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); }, {passive:true});
+
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} });
+}, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+}
+
+// Contact form — chặn submit thật (demo/template)
+const bookingForm = document.querySelector('.inline-booking form');
+if (bookingForm) {
+  bookingForm.addEventListener('submit', e => { e.preventDefault(); alert('Cảm ơn bạn! NOX sẽ liên hệ xác nhận trong ít phút.'); });
+}
+</script>
+</body>
+</html>

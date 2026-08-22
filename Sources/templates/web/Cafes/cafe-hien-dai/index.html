@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[TÊN QUÁN] — Cà Phê Hiện Đại, Tối Giản Cho Dân Công Sở & Startup</title>
+<meta name="description" content="[TÊN QUÁN] — quán cà phê hiện đại tối giản, chuyên specialty coffee pha máy espresso và syphon. Không gian yên tĩnh, wifi nhanh, ổ cắm mỗi bàn — nơi làm việc lý tưởng cho dân công sở và startup.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV — Nav-8 Underline-Active only -->
+<nav id="chd-nav">
+  <div class="chd-container chd-nav-inner">
+    <a href="index.html" class="chd-logo"><span class="chd-logo-dot"></span>[TÊN QUÁN] <span>Coffee</span></a>
+    <div class="chd-nav-links">
+      <a href="index.html" class="chd-active">Trang chủ</a>
+      <a href="menu.html">Thực đơn</a>
+      <a href="khong-gian.html">Không gian</a>
+      <a href="gioi-thieu.html">Giới thiệu</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <a href="lien-he.html" class="chd-btn chd-btn-accent chd-nav-cta chd-nav-cta-desktop">Đặt chỗ nhóm</a>
+    <button class="chd-burger" id="chdBurger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="chd-mob-nav" id="chdMobNav">
+  <ul>
+    <li><a href="index.html" class="chd-active">Trang chủ</a></li>
+    <li><a href="menu.html">Thực đơn</a></li>
+    <li><a href="khong-gian.html">Không gian</a></li>
+    <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+  <div class="chd-mob-actions">
+    <a href="lien-he.html" class="chd-btn chd-btn-accent chd-btn-full">Đặt chỗ nhóm</a>
+  </div>
+</div>
+
+<!-- HERO CAROUSEL — H12 Two-Column Equal, fullscreen 4 slides -->
+<section class="chd-carousel-hero">
+
+  <div class="chd-carousel-slide chd-slide-bg1 chd-active">
+    <div class="chd-container">
+      <div class="chd-slide-grid">
+        <div class="chd-slide-text">
+          <div class="chd-slide-label">Specialty Coffee · Tối giản</div>
+          <h1 class="chd-slide-title">Cà phê ngon, <em>không gian gọn gàng</em>.</h1>
+          <p class="chd-slide-sub">[TÊN QUÁN] pha chế bằng máy espresso chuyên nghiệp và syphon thủ công — phục vụ đúng gu người bận rộn: nhanh, chuẩn vị, không rườm rà.</p>
+          <div class="chd-slide-actions">
+            <a href="menu.html" class="chd-btn chd-btn-white">Xem thực đơn</a>
+            <a href="khong-gian.html" class="chd-btn chd-btn-outline-light">Khám phá không gian</a>
+          </div>
+        </div>
+        <div class="chd-slide-visual">
+          <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=900&q=80&auto=format&fit=crop" alt="Barista pha espresso tại quầy mở của [TÊN QUÁN]" loading="eager">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chd-carousel-slide chd-slide-bg2">
+    <div class="chd-container">
+      <div class="chd-slide-grid">
+        <div class="chd-slide-text">
+          <div class="chd-slide-label">Máy móc chuyên nghiệp</div>
+          <h2 class="chd-slide-title">Espresso chuẩn <em>từng gram</em>.</h2>
+          <p class="chd-slide-sub">Máy espresso 3 nhóm pha chuẩn áp suất, cân điện tử định lượng từng shot — mỗi ly ra quán đều đồng nhất về hương vị, không phụ thuộc cảm tính.</p>
+          <div class="chd-slide-actions">
+            <a href="menu.html" class="chd-btn chd-btn-white">Menu Espresso-based</a>
+            <a href="gioi-thieu.html" class="chd-btn chd-btn-outline-light">Triết lý pha chế</a>
+          </div>
+        </div>
+        <div class="chd-slide-visual">
+          <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=900&q=80&auto=format&fit=crop" alt="Máy pha espresso chuyên nghiệp tại quán" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chd-carousel-slide chd-slide-bg3">
+    <div class="chd-container">
+      <div class="chd-slide-grid">
+        <div class="chd-slide-text">
+          <div class="chd-slide-label">Dành cho dân công sở</div>
+          <h2 class="chd-slide-title">Nơi làm việc <em>tập trung hơn</em>.</h2>
+          <p class="chd-slide-sub">Ổ cắm ở mọi bàn, wifi tốc độ cao ổn định, ánh sáng tự nhiên và âm lượng vừa đủ — không gian được thiết kế để bạn ngồi làm việc cả buổi mà không mỏi.</p>
+          <div class="chd-slide-actions">
+            <a href="khong-gian.html" class="chd-btn chd-btn-accent">Xem khu làm việc</a>
+            <a href="lien-he.html" class="chd-btn chd-btn-ghost">Đặt phòng họp nhỏ</a>
+          </div>
+        </div>
+        <div class="chd-slide-visual">
+          <img src="https://images.unsplash.com/photo-1522992319-0365e5f11656?w=900&q=80&auto=format&fit=crop" alt="Khu làm việc yên tĩnh dành cho dân công sở" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chd-carousel-slide chd-slide-bg4">
+    <div class="chd-container">
+      <div class="chd-slide-grid">
+        <div class="chd-slide-text">
+          <div class="chd-slide-label">Thiết kế tối giản Bắc Âu</div>
+          <h2 class="chd-slide-title">Ít chi tiết, <em>nhiều cảm hứng</em>.</h2>
+          <p class="chd-slide-sub">Đường nét vuông vắn, gam màu trung tính, ánh sáng dịu — không gian được lược bỏ mọi chi tiết thừa để bạn tập trung vào việc đang làm và tách cà phê trước mặt.</p>
+          <div class="chd-slide-actions">
+            <a href="khong-gian.html" class="chd-btn chd-btn-white">Xem không gian</a>
+            <a href="lien-he.html" class="chd-btn chd-btn-outline-light">Liên hệ đặt chỗ</a>
+          </div>
+        </div>
+        <div class="chd-slide-visual">
+          <img src="https://images.unsplash.com/photo-1493857671505-72967e2e2760?w=900&q=80&auto=format&fit=crop" alt="Không gian quán cà phê thiết kế tối giản" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="chd-hero-nav-btn chd-hero-prev" id="chdHeroPrev" aria-label="Slide trước">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 6l-6 6 6 6"/></svg>
+  </button>
+  <button class="chd-hero-nav-btn chd-hero-next" id="chdHeroNext" aria-label="Slide sau">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 6l6 6-6 6"/></svg>
+  </button>
+  <div class="chd-hero-dots">
+    <button class="chd-hero-dot chd-active" aria-label="Slide 1"></button>
+    <button class="chd-hero-dot" aria-label="Slide 2"></button>
+    <button class="chd-hero-dot" aria-label="Slide 3"></button>
+    <button class="chd-hero-dot" aria-label="Slide 4"></button>
+  </div>
+</section>
+
+<!-- VÌ SAO CHỌN CHÚNG TÔI — Feature icon row -->
+<section class="chd-sec">
+  <div class="chd-container">
+    <div class="chd-sec-header chd-center" data-reveal>
+      <div class="chd-eyebrow">Vì sao chọn [TÊN QUÁN]</div>
+      <h2 class="chd-sec-title">Bốn lý do dân công sở <em>chọn quay lại</em></h2>
+      <p class="chd-sec-sub">Không chỉ là cà phê ngon — mà là một nơi làm việc và gặp gỡ thực sự hiệu quả.</p>
+    </div>
+    <div class="chd-feature-grid" style="margin-top:48px;">
+      <div class="chd-feature" data-reveal data-delay="1">
+        <div class="chd-feature-icon">☕</div>
+        <h3>Máy pha chuyên nghiệp</h3>
+        <p>Máy espresso 3 nhóm + syphon thủ công, chiết xuất chuẩn áp suất và nhiệt độ cho từng loại hạt.</p>
+      </div>
+      <div class="chd-feature" data-reveal data-delay="2">
+        <div class="chd-feature-icon">🌱</div>
+        <h3>Hạt specialty chọn lọc</h3>
+        <p>Nguồn hạt Arabica đơn giống từ Cầu Đất, Khe Sanh — rang mới mỗi tuần, ghi rõ ngày rang trên bao bì.</p>
+      </div>
+      <div class="chd-feature" data-reveal data-delay="3">
+        <div class="chd-feature-icon">🔌</div>
+        <h3>Ổ cắm mỗi bàn</h3>
+        <p>100% bàn có ổ cắm điện, wifi tốc độ cao ổn định — ngồi làm việc cả buổi không lo hết pin, rớt mạng.</p>
+      </div>
+      <div class="chd-feature" data-reveal data-delay="4">
+        <div class="chd-feature-icon">🤫</div>
+        <h3>Không gian yên tĩnh</h3>
+        <p>Nhạc nền âm lượng thấp, cách âm tốt giữa các khu — phù hợp gọi video call hoặc tập trung sâu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU NỔI BẬT -->
+<section class="chd-sec chd-sec-alt">
+  <div class="chd-container">
+    <div class="chd-sec-header chd-center" data-reveal>
+      <div class="chd-eyebrow">Thực đơn</div>
+      <h2 class="chd-sec-title">Những ly <em>được gọi nhiều nhất</em></h2>
+      <p class="chd-sec-sub">Từ espresso đậm đà đến cold brew mát lạnh — mỗi công thức đều được canh định lượng chính xác.</p>
+    </div>
+    <div class="chd-drink-grid" style="margin-top:48px;">
+      <div class="chd-drink-card" data-reveal data-delay="1">
+        <div class="chd-drink-thumb">
+          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&q=80&auto=format&fit=crop" alt="Flat White" loading="lazy">
+        </div>
+        <div class="chd-drink-body">
+          <span class="chd-drink-tag">Espresso-based</span>
+          <div class="chd-drink-name">Flat White</div>
+          <div class="chd-drink-desc">Double shot, sữa hấp microfoam mịn, tỉ lệ chuẩn Úc</div>
+          <div class="chd-drink-price">52.000đ</div>
+        </div>
+      </div>
+      <div class="chd-drink-card" data-reveal data-delay="2">
+        <div class="chd-drink-thumb">
+          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&q=80&auto=format&fit=crop" alt="Cortado" loading="lazy">
+        </div>
+        <div class="chd-drink-body">
+          <span class="chd-drink-tag">Espresso-based</span>
+          <div class="chd-drink-name">Cortado</div>
+          <div class="chd-drink-desc">Espresso và sữa nóng tỉ lệ 1:1, đậm nhưng không gắt</div>
+          <div class="chd-drink-price">48.000đ</div>
+        </div>
+      </div>
+      <div class="chd-drink-card" data-reveal data-delay="3">
+        <div class="chd-drink-thumb">
+          <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=500&q=80&auto=format&fit=crop" alt="Pour Over V60" loading="lazy">
+        </div>
+        <div class="chd-drink-body">
+          <span class="chd-drink-tag">Manual Brew</span>
+          <div class="chd-drink-name">Pour Over V60</div>
+          <div class="chd-drink-desc">Single origin Cầu Đất, rót tay, hương hoa quả rõ nét</div>
+          <div class="chd-drink-price">65.000đ</div>
+        </div>
+      </div>
+      <div class="chd-drink-card" data-reveal data-delay="4">
+        <div class="chd-drink-thumb">
+          <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500&q=80&auto=format&fit=crop" alt="Cold Brew" loading="lazy">
+        </div>
+        <div class="chd-drink-body">
+          <span class="chd-drink-tag">Cold Brew</span>
+          <div class="chd-drink-name">Cold Brew Nitro</div>
+          <div class="chd-drink-desc">Ủ lạnh 18 giờ, bơm nitro tạo bọt kem mịn như bia</div>
+          <div class="chd-drink-price">62.000đ</div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5" data-reveal>
+      <a href="menu.html" class="chd-btn chd-btn-ghost">Xem toàn bộ thực đơn</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRIẾT LÝ THƯƠNG HIỆU — Alternating strip -->
+<section class="chd-sec">
+  <div class="chd-container">
+    <div class="chd-story-row">
+      <div class="chd-story-img" data-reveal>
+        <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=700&q=80&auto=format&fit=crop" alt="Hạt cà phê specialty rang mới">
+      </div>
+      <div data-reveal data-delay="1">
+        <div class="chd-story-badge">Triết lý pha chế</div>
+        <h3 class="chd-story-title">Đơn giản hoá <em>ly cà phê ngon</em></h3>
+        <p class="chd-story-text">Chúng tôi tin một quán cà phê hiện đại không cần quá nhiều lựa chọn — chỉ cần vài công thức được làm đúng, đều đặn, mỗi ngày. Đó là lý do menu của [TÊN QUÁN] gọn nhưng chất lượng đồng nhất từ ly đầu đến ly cuối trong ngày.</p>
+        <ul class="chd-story-list">
+          <li><i>✓</i>Định lượng bằng cân điện tử cho mọi shot espresso</li>
+          <li><i>✓</i>Hạt rang mới mỗi tuần, ghi ngày rang trên bao bì</li>
+          <li><i>✓</i>Barista được đào tạo chuẩn hoá quy trình pha chế</li>
+        </ul>
+        <a href="gioi-thieu.html" class="chd-btn chd-btn-ghost" style="margin-top:8px;">Đọc câu chuyện thương hiệu</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAT BAR -->
+<section class="chd-stats">
+  <div class="chd-container">
+    <div class="chd-stats-grid">
+      <div class="chd-stat" data-reveal>
+        <div class="chd-stat-num"><span data-counter="6">0</span>+</div>
+        <div class="chd-stat-label">Năm hoạt động</div>
+      </div>
+      <div class="chd-stat" data-reveal data-delay="1">
+        <div class="chd-stat-num"><span data-counter="300">0</span>+</div>
+        <div class="chd-stat-label">Ly phục vụ/ngày</div>
+      </div>
+      <div class="chd-stat" data-reveal data-delay="2">
+        <div class="chd-stat-num"><span data-counter="12">0</span></div>
+        <div class="chd-stat-label">Công thức pha chuẩn</div>
+      </div>
+      <div class="chd-stat" data-reveal data-delay="3">
+        <div class="chd-stat-num"><span data-counter="4">0</span>.8★</div>
+        <div class="chd-stat-label">Đánh giá trung bình</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KHÔNG GIAN QUÁN — Preview 3 cards -->
+<section class="chd-sec">
+  <div class="chd-container">
+    <div class="chd-sec-header chd-center" data-reveal>
+      <div class="chd-eyebrow">Không gian quán</div>
+      <h2 class="chd-sec-title">Ba khu vực, <em>một tinh thần tối giản</em></h2>
+      <p class="chd-sec-sub">Từ quầy bar mở đến khu làm việc yên tĩnh — mỗi góc đều phục vụ một mục đích rõ ràng.</p>
+    </div>
+    <div class="chd-space-grid" style="margin-top:48px;">
+      <div class="chd-space-card" data-reveal data-delay="1">
+        <img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=700&q=80&auto=format&fit=crop" alt="Quầy bar mở của quán" loading="lazy">
+        <div class="chd-space-overlay"></div>
+        <div class="chd-space-info">
+          <h3>Quầy Bar Mở</h3>
+          <span>Xem barista pha chế trực tiếp</span>
+        </div>
+      </div>
+      <div class="chd-space-card" data-reveal data-delay="2">
+        <img src="https://images.unsplash.com/photo-1522992319-0365e5f11656?w=700&q=80&auto=format&fit=crop" alt="Khu làm việc co-working" loading="lazy">
+        <div class="chd-space-overlay"></div>
+        <div class="chd-space-info">
+          <h3>Khu Làm Việc</h3>
+          <span>Bàn đơn, ổ cắm, ánh sáng tự nhiên</span>
+        </div>
+      </div>
+      <div class="chd-space-card" data-reveal data-delay="3">
+        <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=700&q=80&auto=format&fit=crop" alt="Phòng họp nhỏ" loading="lazy">
+        <div class="chd-space-overlay"></div>
+        <div class="chd-space-info">
+          <h3>Phòng Họp Nhỏ</h3>
+          <span>Tối đa 6 người, đặt trước qua liên hệ</span>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5" data-reveal>
+      <a href="khong-gian.html" class="chd-btn chd-btn-accent">Khám phá toàn bộ không gian</a>
+    </div>
+  </div>
+</section>
+
+<!-- ĐÁNH GIÁ -->
+<section class="chd-sec chd-sec-alt">
+  <div class="chd-container">
+    <div class="chd-sec-header chd-center" data-reveal>
+      <div class="chd-eyebrow">Khách nói gì</div>
+      <h2 class="chd-sec-title">Được dân công sở <em>tin dùng</em></h2>
+    </div>
+    <div class="chd-testi-track" style="margin-top:44px;" data-reveal data-delay="1">
+      <div class="chd-testi-card">
+        <div class="chd-testi-stars">★★★★★</div>
+        <div class="chd-testi-text">"Không gian đúng kiểu tối giản mình thích — không ồn, ổ cắm ở đâu cũng có, wifi nhanh. Mình hay đặt bàn làm việc cả buổi chiều ở đây, năng suất hơn hẳn ở nhà."</div>
+        <div class="chd-testi-author">
+          <div class="chd-testi-avatar"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&q=80&auto=format&fit=crop" alt="Khách hàng" loading="lazy"></div>
+          <div><div class="chd-testi-name">Đặng Hoàng Nam</div><div class="chd-testi-role">Product Manager, startup fintech</div></div>
+        </div>
+      </div>
+      <div class="chd-testi-card">
+        <div class="chd-testi-stars">★★★★★</div>
+        <div class="chd-testi-text">"Flat White ở đây pha chuẩn vị nhất khu vực — foam mịn, không quá ngọt. Team mình hay họp nhóm nhỏ ở phòng riêng, giá thuê hợp lý mà không gian yên tĩnh."</div>
+        <div class="chd-testi-author">
+          <div class="chd-testi-avatar"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80&auto=format&fit=crop" alt="Khách hàng" loading="lazy"></div>
+          <div><div class="chd-testi-name">Vũ Thị Ngọc Anh</div><div class="chd-testi-role">Trưởng nhóm marketing</div></div>
+        </div>
+      </div>
+      <div class="chd-testi-card">
+        <div class="chd-testi-stars">★★★★★</div>
+        <div class="chd-testi-text">"Mua hạt cà phê mang về thường xuyên, chất lượng ổn định qua từng đợt. Đặt giao văn phòng cũng nhanh, đúng giờ. Rất recommend cho ai làm remote."</div>
+        <div class="chd-testi-author">
+          <div class="chd-testi-avatar"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&q=80&auto=format&fit=crop" alt="Khách hàng" loading="lazy"></div>
+          <div><div class="chd-testi-name">Trần Gia Bảo</div><div class="chd-testi-role">Kỹ sư phần mềm freelance</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ — bắt buộc, section riêng ≥6 câu -->
+<section class="chd-sec">
+  <div class="chd-container">
+    <div class="chd-sec-header chd-center" data-reveal>
+      <div class="chd-eyebrow">Câu hỏi thường gặp</div>
+      <h2 class="chd-sec-title">Giải đáp <em>nhanh cho bạn</em></h2>
+    </div>
+    <div class="chd-faq-list" style="margin-top:44px;" data-reveal data-delay="1">
+      <div class="chd-faq-item chd-open">
+        <button class="chd-faq-q" aria-expanded="true">Tôi có thể đặt chỗ trước cho họp nhóm không?<span class="chd-faq-icon">+</span></button>
+        <div class="chd-faq-a">Có. [TÊN QUÁN] có phòng họp nhỏ tối đa 6 người và khu bàn nhóm ở Tầng 1. Bạn có thể đặt trước qua trang Liên hệ hoặc gọi hotline, xác nhận trong vòng 15 phút. Phòng họp giữ chỗ miễn phí trong 20 phút đầu.</div>
+      </div>
+      <div class="chd-faq-item">
+        <button class="chd-faq-q" aria-expanded="false">Wifi và ổ cắm điện có sẵn ở mọi bàn không?<span class="chd-faq-icon">+</span></button>
+        <div class="chd-faq-a">Có, 100% bàn tại quán đều có ổ cắm điện gần kề và phủ sóng wifi tốc độ cao ổn định. Mật khẩu wifi được in trên hóa đơn hoặc hỏi trực tiếp nhân viên quầy.</div>
+      </div>
+      <div class="chd-faq-item">
+        <button class="chd-faq-q" aria-expanded="false">Giá đồ uống ở [TÊN QUÁN] có đắt không?<span class="chd-faq-icon">+</span></button>
+        <div class="chd-faq-a">Giá dao động 40.000đ – 70.000đ tùy loại thức uống — tương đương mặt bằng chung các quán specialty coffee. Chúng tôi ưu tiên chất lượng nguyên liệu và độ chuẩn xác trong pha chế hơn là cạnh tranh về giá thấp.</div>
+      </div>
+      <div class="chd-faq-item">
+        <button class="chd-faq-q" aria-expanded="false">Tôi có thể mua hạt cà phê rang sẵn mang về không?<span class="chd-faq-icon">+</span></button>
+        <div class="chd-faq-a">Có. Quán bán hạt cà phê rang mới mỗi tuần theo túi 250g/500g, có ghi rõ ngày rang và vùng trồng. Bạn có thể mua trực tiếp tại quầy hoặc đặt qua Zalo, nhận trong ngày với đơn nội thành.</div>
+      </div>
+      <div class="chd-faq-item">
+        <button class="chd-faq-q" aria-expanded="false">Quán có giao cà phê đến văn phòng không?<span class="chd-faq-icon">+</span></button>
+        <div class="chd-faq-a">Có, chúng tôi nhận đơn giao văn phòng từ 5 ly trở lên trong bán kính 3km, thời gian giao trung bình 20–30 phút. Đặt qua Zalo hoặc gọi trực tiếp trước 30 phút để đảm bảo nóng/lạnh đúng chuẩn khi đến nơi.</div>
+      </div>
+      <div class="chd-faq-item">
+        <button class="chd-faq-q" aria-expanded="false">Tôi muốn đặt tiệc nhỏ cho công ty thì liên hệ thế nào?<span class="chd-faq-icon">+</span></button>
+        <div class="chd-faq-a">Với nhóm trên 15 người, vui lòng liên hệ trước ít nhất 1 ngày qua trang Liên hệ để được tư vấn set menu riêng, sắp xếp khu vực và giữ chỗ độc quyền theo khung giờ bạn cần.</div>
+      </div>
+      <div class="chd-faq-item">
+        <button class="chd-faq-q" aria-expanded="false">Quán có phục vụ đồ ăn nhẹ không, hay chỉ có đồ uống?<span class="chd-faq-icon">+</span></button>
+        <div class="chd-faq-a">Có bánh ngọt, sandwich và snack nhẹ phục vụ kèm — xem chi tiết tại mục "Bánh & Snack" trong trang Thực đơn. Quán không phục vụ bữa chính đầy đủ như nhà hàng.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA DARK -->
+<section class="chd-cta-dark">
+  <div class="chd-container">
+    <div class="chd-cta-grid">
+      <div class="chd-cta-content" data-reveal>
+        <div class="chd-eyebrow">Đặt chỗ ngay</div>
+        <h2>Ghé <em>[TÊN QUÁN]</em> hôm nay</h2>
+        <p>Mở cửa từ 7:00 đến 21:00 mỗi ngày. Đặt bàn trước để đảm bảo có chỗ vào giờ cao điểm 8:00–10:00 và 14:00–16:00.</p>
+        <div class="chd-slide-actions" style="display:flex;gap:14px;flex-wrap:wrap;">
+          <a href="lien-he.html" class="chd-btn chd-btn-white">Đặt chỗ / Liên hệ</a>
+          <a href="menu.html" class="chd-btn chd-btn-outline-light">Xem thực đơn</a>
+        </div>
+      </div>
+      <div class="chd-cta-images" data-reveal data-delay="1">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&q=80&auto=format&fit=crop" alt="Không gian quán buổi sáng">
+        <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=500&q=80&auto=format&fit=crop" alt="Pha chế pour over">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="chd-footer">
+  <div class="chd-container">
+    <div class="chd-footer-grid">
+      <div>
+        <a href="index.html" class="chd-footer-logo"><span class="chd-logo-dot"></span>[TÊN QUÁN]</a>
+        <p class="chd-footer-desc">Cà phê hiện đại, tối giản — pha máy espresso và syphon chuẩn từng gram. Không gian yên tĩnh dành cho dân công sở và startup.</p>
+        <div class="chd-footer-social">
+          <a href="#" class="chd-soc-btn" aria-label="Facebook" target="_blank" rel="noopener noreferrer">FB</a>
+          <a href="#" class="chd-soc-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">IG</a>
+          <a href="#" class="chd-soc-btn" aria-label="TikTok" target="_blank" rel="noopener noreferrer">TT</a>
+        </div>
+      </div>
+      <div class="chd-footer-col">
+        <h4>Trang</h4>
+        <ul>
+          <li><a href="index.html">Trang chủ</a></li>
+          <li><a href="menu.html">Thực đơn</a></li>
+          <li><a href="khong-gian.html">Không gian</a></li>
+          <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div class="chd-footer-col">
+        <h4>Dịch vụ</h4>
+        <ul>
+          <li><a href="lien-he.html">Đặt chỗ nhóm</a></li>
+          <li><a href="lien-he.html">Đặt tiệc công ty</a></li>
+          <li><a href="menu.html">Mua hạt cà phê</a></li>
+          <li><a href="lien-he.html">Giao văn phòng</a></li>
+        </ul>
+      </div>
+      <div class="chd-footer-col">
+        <h4>Liên hệ</h4>
+        <ul class="chd-footer-contact">
+          <li><i>📍</i>[Số nhà, đường Nguyễn Huệ, Quận 1, TP.HCM]</li>
+          <li><i>📱</i><a href="tel:0901234567">0901 234 567</a></li>
+          <li><i>✉️</i><a href="mailto:hello@[tenquan].vn">hello@[tenquan].vn</a></li>
+          <li><i>🕐</i>7:00 – 21:00 hàng ngày</li>
+        </ul>
+      </div>
+    </div>
+    <div class="chd-contact-map" style="margin-bottom:32px;">
+      <iframe src="https://maps.google.com/maps?q=10.7826,106.6957&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ [TÊN QUÁN]" allowfullscreen></iframe>
+    </div>
+    <div class="chd-footer-bottom">
+      <p>© 2026 [TÊN QUÁN] · Made in Vietnam 🇻🇳</p>
+      <div class="chd-footer-legal">
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+      </div>
+      <p>Thiết kế bởi webdrop.store</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ZALO FLOAT -->
+<div class="chd-zalo-float">
+  <div class="chd-zalo-tooltip">Chat Zalo với quán</div>
+  <a href="https://zalo.me/0901234567" class="chd-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Reveal on scroll
+const chdObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('chd-visible'); chdObserver.unobserve(e.target); } });
+}, { threshold: .1, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => chdObserver.observe(el));
+
+// Counter animation
+const chdCounterObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = parseInt(el.dataset.counter, 10);
+    const step = Math.max(1, Math.ceil(target / 40));
+    let cur = 0;
+    const t = setInterval(() => {
+      cur = Math.min(cur + step, target);
+      el.textContent = cur;
+      if (cur >= target) clearInterval(t);
+    }, 30);
+    chdCounterObserver.unobserve(el);
+  });
+}, { threshold: .5 });
+document.querySelectorAll('[data-counter]').forEach(el => chdCounterObserver.observe(el));
+
+// Mobile off-canvas nav
+const chdBurger = document.getElementById('chdBurger');
+const chdMobNav = document.getElementById('chdMobNav');
+if (chdBurger && chdMobNav) {
+  chdBurger.addEventListener('click', () => {
+    const open = chdMobNav.classList.toggle('chd-open');
+    chdBurger.classList.toggle('chd-open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      chdMobNav.classList.remove('chd-open');
+      chdBurger.classList.remove('chd-open');
+      document.body.style.overflow = '';
+    }
+  });
+}
+
+// FAQ accordion
+document.querySelectorAll('.chd-faq-item').forEach(item => {
+  const q = item.querySelector('.chd-faq-q');
+  q.addEventListener('click', () => {
+    const isOpen = item.classList.contains('chd-open');
+    document.querySelectorAll('.chd-faq-item').forEach(i => {
+      i.classList.remove('chd-open');
+      i.querySelector('.chd-faq-q').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('chd-open');
+      q.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+
+// Hero carousel — vanilla JS, autoplay 5s, fade transition
+(function () {
+  const slides = document.querySelectorAll('.chd-carousel-slide');
+  const dots = document.querySelectorAll('.chd-hero-dot');
+  const prevBtn = document.getElementById('chdHeroPrev');
+  const nextBtn = document.getElementById('chdHeroNext');
+  let cur = 0, timer;
+  function show(i) {
+    slides[cur].classList.remove('chd-active');
+    dots[cur].classList.remove('chd-active');
+    cur = (i + slides.length) % slides.length;
+    slides[cur].classList.add('chd-active');
+    dots[cur].classList.add('chd-active');
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  function startAuto() { timer = setInterval(next, 5000); }
+  function resetAuto() { clearInterval(timer); startAuto(); }
+  if (prevBtn && nextBtn && slides.length) {
+    prevBtn.addEventListener('click', () => { prev(); resetAuto(); });
+    nextBtn.addEventListener('click', () => { next(); resetAuto(); });
+    dots.forEach((d, i) => d.addEventListener('click', () => { show(i); resetAuto(); }));
+    startAuto();
+  }
+})();
+</script>
+</body>
+</html>

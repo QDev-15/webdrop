@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thực đơn — [TÊN QUÁN] | Specialty Coffee & Đồ Uống</title>
+<meta name="description" content="Thực đơn [TÊN QUÁN] — espresso-based, pour over/syphon thủ công, cold brew, trà và bánh ngọt. Giá niêm yết rõ ràng, nguyên liệu specialty chọn lọc.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<nav id="chd-nav">
+  <div class="chd-container chd-nav-inner">
+    <a href="index.html" class="chd-logo"><span class="chd-logo-dot"></span>[TÊN QUÁN] <span>Coffee</span></a>
+    <div class="chd-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="menu.html" class="chd-active">Thực đơn</a>
+      <a href="khong-gian.html">Không gian</a>
+      <a href="gioi-thieu.html">Giới thiệu</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <a href="lien-he.html" class="chd-btn chd-btn-accent chd-nav-cta chd-nav-cta-desktop">Đặt chỗ nhóm</a>
+    <button class="chd-burger" id="chdBurger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="chd-mob-nav" id="chdMobNav">
+  <ul>
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="menu.html" class="chd-active">Thực đơn</a></li>
+    <li><a href="khong-gian.html">Không gian</a></li>
+    <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+  <div class="chd-mob-actions">
+    <a href="lien-he.html" class="chd-btn chd-btn-accent chd-btn-full">Đặt chỗ nhóm</a>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<header class="chd-page-hero">
+  <div class="chd-container">
+    <div class="chd-breadcrumb"><a href="index.html">Trang chủ</a><span>/</span><span>Thực đơn</span></div>
+    <h1 class="chd-page-title">Thực đơn</h1>
+    <p class="chd-page-sub">Giá niêm yết rõ ràng — mỗi món ghi rõ phương pháp pha và nguồn gốc nguyên liệu.</p>
+  </div>
+</header>
+
+<section class="chd-sec">
+  <div class="chd-container">
+
+    <!-- Tabs -->
+    <div class="chd-menu-tabs" id="chdMenuTabs">
+      <button class="chd-menu-tab chd-active" data-tab="espresso">Espresso-based</button>
+      <button class="chd-menu-tab" data-tab="manual">Pour Over / Syphon</button>
+      <button class="chd-menu-tab" data-tab="cold">Cold Brew & Đá xay</button>
+      <button class="chd-menu-tab" data-tab="tra">Trà & Không caffeine</button>
+      <button class="chd-menu-tab" data-tab="banh">Bánh & Snack</button>
+    </div>
+
+    <!-- Espresso-based -->
+    <div class="chd-menu-panel chd-active" id="tab-espresso">
+      <div class="chd-menu-section-title">☕ Espresso-based</div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Espresso Signature</div><div class="chd-mli-desc">Blend Arabica Cầu Đất & Robusta, chiết xuất 25–28 giây, crema dày</div></div><div class="chd-mli-price">42.000đ</div></div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Americano</div><div class="chd-mli-desc">Espresso pha loãng với nước nóng/lạnh, giữ trọn hương thơm</div></div><div class="chd-mli-price">45.000đ</div></div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Cortado</div><div class="chd-mli-desc">Espresso và sữa hấp tỉ lệ 1:1, đậm nhưng không gắt</div></div><div class="chd-mli-price">48.000đ</div></div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Flat White</div><div class="chd-mli-desc">Double shot, microfoam mịn, tỉ lệ chuẩn kiểu Úc</div></div><div class="chd-mli-price">52.000đ</div></div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Cappuccino</div><div class="chd-mli-desc">Espresso, sữa hấp, lớp foam dày rắc bột cacao</div></div><div class="chd-mli-price">50.000đ</div></div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Latte Sữa Tươi</div><div class="chd-mli-desc">Double shot, sữa tươi tiệt trùng, có thể vẽ latte art</div></div><div class="chd-mli-price">55.000đ</div></div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Mocha</div><div class="chd-mli-desc">Espresso, socola nguyên chất, sữa hấp, kem tươi</div></div><div class="chd-mli-price">58.000đ</div></div>
+    </div>
+
+    <!-- Pour Over / Syphon -->
+    <div class="chd-menu-panel" id="tab-manual">
+      <div class="chd-menu-section-title">🫗 Pour Over / Syphon</div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Pour Over V60 — Cầu Đất, Đà Lạt</div><div class="chd-mli-desc">Single origin, rót tay qua giấy lọc, hương hoa và cam quýt</div></div><div class="chd-mli-price">65.000đ</div></div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Pour Over V60 — Khe Sanh, Quảng Trị</div><div class="chd-mli-desc">Single origin, body dày hơn, hậu vị caramel và hạt dẻ</div></div><div class="chd-mli-price">65.000đ</div></div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Syphon Thủ Công</div><div class="chd-mli-desc">Pha bằng đèn cồn và bình thủy tinh, chiết xuất sạch, trong vị</div></div><div class="chd-mli-price">75.000đ</div></div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Aeropress</div><div class="chd-mli-desc">Áp lực tay ép nhanh, vị đậm gọn, ít chua, uống nhanh gọn</div></div><div class="chd-mli-price">60.000đ</div></div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">French Press</div><div class="chd-mli-desc">Ngâm 4 phút, ép pít-tông, giữ tinh dầu tự nhiên, body dày</div></div><div class="chd-mli-price">58.000đ</div></div>
+    </div>
+
+    <!-- Cold Brew & Đá xay -->
+    <div class="chd-menu-panel" id="tab-cold">
+      <div class="chd-menu-section-title">🧊 Cold Brew & Đá Xay</div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Cold Brew 18h</div><div class="chd-mli-desc">Ủ lạnh 18 giờ ở 4°C, vị mượt, ít acid, ngọt tự nhiên</div></div><div class="chd-mli-price">58.000đ</div></div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Cold Brew Nitro</div><div class="chd-mli-desc">Cold brew bơm nitro, bọt kem mịn như bia, uống lạnh trực tiếp</div></div><div class="chd-mli-price">62.000đ</div></div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Espresso Tonic</div><div class="chd-mli-desc">Espresso, tonic water, đá viên, lát cam — vị sảng khoái</div></div><div class="chd-mli-price">60.000đ</div></div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Cà Phê Đá Xay Caramel</div><div class="chd-mli-desc">Espresso xay đá, sốt caramel, kem tươi phủ trên</div></div><div class="chd-mli-price">62.000đ</div></div>
+    </div>
+
+    <!-- Trà & Không caffeine -->
+    <div class="chd-menu-panel" id="tab-tra">
+      <div class="chd-menu-section-title">🍵 Trà & Không Caffeine</div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Matcha Latte</div><div class="chd-mli-desc">Bột matcha Uji Nhật Bản, sữa tươi hấp, không đường</div></div><div class="chd-mli-price">55.000đ</div></div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Hồng Trà Đào</div><div class="chd-mli-desc">Hồng trà Sri Lanka ủ lạnh, đào ngâm, đá viên</div></div><div class="chd-mli-price">50.000đ</div></div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Trà Ô Long Sữa</div><div class="chd-mli-desc">Ô long Đài Loan, sữa béo nhẹ, topping thạch</div></div><div class="chd-mli-price">50.000đ</div></div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Nước Ép Táo Gừng</div><div class="chd-mli-desc">Táo Fuji ép tươi, gừng, mật ong — không caffeine</div></div><div class="chd-mli-price">48.000đ</div></div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Soda Chanh Sả</div><div class="chd-mli-desc">Chanh tươi, sả đập dập, soda lạnh — giải nhiệt giữa giờ họp</div></div><div class="chd-mli-price">42.000đ</div></div>
+    </div>
+
+    <!-- Bánh & Snack -->
+    <div class="chd-menu-panel" id="tab-banh">
+      <div class="chd-menu-section-title">🥐 Bánh & Snack</div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Croissant Bơ Pháp</div><div class="chd-mli-desc">Bơ AOP, lớp vỏ giòn, ruột mềm — phù hợp ăn kèm espresso</div></div><div class="chd-mli-price">38.000đ</div></div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Bánh Mì Sandwich Kẹp</div><div class="chd-mli-desc">Bánh mì nướng giòn, trứng, phô mai, rau xanh — no bụng bữa sáng</div></div><div class="chd-mli-price">48.000đ</div></div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Cheesecake New York</div><div class="chd-mli-desc">Cream cheese không nướng, mịn béo, ăn kèm espresso rất hợp</div></div><div class="chd-mli-price">55.000đ</div></div>
+      <div class="chd-menu-list-item"><div><div class="chd-mli-name">Cookie Bơ Hạnh Nhân</div><div class="chd-mli-desc">Giòn rụm, hạnh nhân lát mỏng, ít ngọt — snack giữa giờ làm việc</div></div><div class="chd-mli-price">28.000đ</div></div>
+    </div>
+
+    <!-- Beans-to-go banner -->
+    <div class="chd-beans-banner">
+      <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=600&q=80&auto=format&fit=crop" alt="Hạt cà phê rang mới đóng gói mang về" loading="lazy">
+      <div>
+        <span class="chd-drink-tag">Mua mang về</span>
+        <h3>Hạt cà phê specialty rang mới mỗi tuần</h3>
+        <p>Đóng gói 250g / 500g, ghi rõ ngày rang và vùng trồng (Cầu Đất, Khe Sanh). Đặt trực tiếp tại quầy hoặc qua Zalo — nhận trong ngày với đơn nội thành.</p>
+        <a href="lien-he.html" class="chd-btn chd-btn-accent">Đặt hạt cà phê ngay</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="chd-footer">
+  <div class="chd-container">
+    <div class="chd-footer-grid">
+      <div>
+        <a href="index.html" class="chd-footer-logo"><span class="chd-logo-dot"></span>[TÊN QUÁN]</a>
+        <p class="chd-footer-desc">Cà phê hiện đại, tối giản — pha máy espresso và syphon chuẩn từng gram. Không gian yên tĩnh dành cho dân công sở và startup.</p>
+        <div class="chd-footer-social">
+          <a href="#" class="chd-soc-btn" aria-label="Facebook" target="_blank" rel="noopener noreferrer">FB</a>
+          <a href="#" class="chd-soc-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">IG</a>
+          <a href="#" class="chd-soc-btn" aria-label="TikTok" target="_blank" rel="noopener noreferrer">TT</a>
+        </div>
+      </div>
+      <div class="chd-footer-col">
+        <h4>Trang</h4>
+        <ul>
+          <li><a href="index.html">Trang chủ</a></li>
+          <li><a href="menu.html">Thực đơn</a></li>
+          <li><a href="khong-gian.html">Không gian</a></li>
+          <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div class="chd-footer-col">
+        <h4>Dịch vụ</h4>
+        <ul>
+          <li><a href="lien-he.html">Đặt chỗ nhóm</a></li>
+          <li><a href="lien-he.html">Đặt tiệc công ty</a></li>
+          <li><a href="menu.html">Mua hạt cà phê</a></li>
+          <li><a href="lien-he.html">Giao văn phòng</a></li>
+        </ul>
+      </div>
+      <div class="chd-footer-col">
+        <h4>Liên hệ</h4>
+        <ul class="chd-footer-contact">
+          <li><i>📍</i>[Số nhà, đường Nguyễn Huệ, Quận 1, TP.HCM]</li>
+          <li><i>📱</i><a href="tel:0901234567">0901 234 567</a></li>
+          <li><i>✉️</i><a href="mailto:hello@[tenquan].vn">hello@[tenquan].vn</a></li>
+          <li><i>🕐</i>7:00 – 21:00 hàng ngày</li>
+        </ul>
+      </div>
+    </div>
+    <div class="chd-contact-map" style="margin-bottom:32px;">
+      <iframe src="https://maps.google.com/maps?q=10.7826,106.6957&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ [TÊN QUÁN]" allowfullscreen></iframe>
+    </div>
+    <div class="chd-footer-bottom">
+      <p>© 2026 [TÊN QUÁN] · Made in Vietnam 🇻🇳</p>
+      <div class="chd-footer-legal">
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+      </div>
+      <p>Thiết kế bởi webdrop.store</p>
+    </div>
+  </div>
+</footer>
+
+<div class="chd-zalo-float">
+  <div class="chd-zalo-tooltip">Chat Zalo với quán</div>
+  <a href="https://zalo.me/0901234567" class="chd-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const chdObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('chd-visible'); chdObserver.unobserve(e.target); } });
+}, { threshold: .1, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => chdObserver.observe(el));
+
+const chdBurger = document.getElementById('chdBurger');
+const chdMobNav = document.getElementById('chdMobNav');
+if (chdBurger && chdMobNav) {
+  chdBurger.addEventListener('click', () => {
+    const open = chdMobNav.classList.toggle('chd-open');
+    chdBurger.classList.toggle('chd-open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      chdMobNav.classList.remove('chd-open');
+      chdBurger.classList.remove('chd-open');
+      document.body.style.overflow = '';
+    }
+  });
+}
+
+// Menu tabs
+const chdTabBtns = document.querySelectorAll('#chdMenuTabs .chd-menu-tab');
+chdTabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    chdTabBtns.forEach(b => b.classList.remove('chd-active'));
+    btn.classList.add('chd-active');
+    document.querySelectorAll('.chd-menu-panel').forEach(p => p.classList.remove('chd-active'));
+    const panel = document.getElementById('tab-' + btn.dataset.tab);
+    if (panel) panel.classList.add('chd-active');
+  });
+});
+</script>
+</body>
+</html>
