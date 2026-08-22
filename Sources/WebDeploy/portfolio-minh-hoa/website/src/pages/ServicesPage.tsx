@@ -159,7 +159,7 @@ export default function ServicesPage() {
             <div className="inner">
               <h2>{settings.services_cta_title}</h2>
               <p>{settings.services_cta_text}</p>
-              <div className="row">
+              <div className="pmh-cta-row">
                 <Link to="/lien-he" className="pmh-btn pmh-btn-white">Nhận tư vấn miễn phí</Link>
               </div>
             </div>

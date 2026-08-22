@@ -150,7 +150,7 @@ export default function HomePage() {
             <div className="inner">
               <h2>{settings.home_cta_title}</h2>
               <p>{settings.home_cta_text}</p>
-              <div className="row">
+              <div className="pmh-cta-row">
                 <Link to="/lien-he" className="pmh-btn pmh-btn-white">Bắt đầu dự án</Link>
                 <Link to="/dich-vu" className="pmh-btn pmh-btn-ghost-dark" style={{ borderColor: 'rgba(255,255,255,.6)' }}>Xem bảng giá</Link>
               </div>

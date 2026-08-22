@@ -129,9 +129,9 @@ export default function ContactPage() {
               <div className="pmh-info-card">
                 <h4>Mạng xã hội</h4>
                 <div className="pmh-social-row">
-                  <a href={settings.instagram || '#'} target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
-                  <a href={settings.behance || '#'} target="_blank" rel="noopener noreferrer" aria-label="Behance">Be</a>
-                  <a href={settings.facebook || '#'} target="_blank" rel="noopener noreferrer" aria-label="Facebook">FB</a>
+                  {settings.instagram && <a href={settings.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>}
+                  {settings.behance && <a href={settings.behance} target="_blank" rel="noopener noreferrer" aria-label="Behance">Be</a>}
+                  {settings.facebook && <a href={settings.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">FB</a>}
                 </div>
               </div>
             </div>

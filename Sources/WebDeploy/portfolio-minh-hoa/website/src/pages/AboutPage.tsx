@@ -127,7 +127,7 @@ export default function AboutPage() {
             <div className="inner">
               <h2>{settings.about_cta_title}</h2>
               <p>{settings.about_cta_text}</p>
-              <div className="row">
+              <div className="pmh-cta-row">
                 <Link to="/lien-he" className="pmh-btn pmh-btn-white">Liên hệ ngay</Link>
                 <Link to="/du-an" className="pmh-btn pmh-btn-ghost-dark" style={{ borderColor: 'rgba(255,255,255,.6)' }}>Xem dự án</Link>
               </div>

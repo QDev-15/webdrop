@@ -222,7 +222,7 @@ export default function ProjectDetailPage() {
             <div className="inner">
               <h2>Muốn có một dự án tương tự?</h2>
               <p>Kể mình nghe ý tưởng — cùng lên kế hoạch từ concept đến bản bàn giao cuối cùng.</p>
-              <div className="row">
+              <div className="pmh-cta-row">
                 <Link to="/lien-he" className="pmh-btn pmh-btn-white">Bắt đầu dự án</Link>
                 <Link to="/du-an" className="pmh-btn pmh-btn-ghost-dark" style={{ borderColor: 'rgba(255,255,255,.6)' }}>Xem thêm dự án</Link>
               </div>

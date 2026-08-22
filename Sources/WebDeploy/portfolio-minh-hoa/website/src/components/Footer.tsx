@@ -13,9 +13,9 @@ export default function Footer() {
             <Link to="/" className="pmh-logo"><span className="dot"></span>{brandName}</Link>
             <p>{settings.footer_description || ''}</p>
             <div className="pmh-social-row">
-              <a href={settings.instagram || '#'} target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
-              <a href={settings.behance || '#'} target="_blank" rel="noopener noreferrer" aria-label="Behance">Be</a>
-              <a href={settings.facebook || '#'} target="_blank" rel="noopener noreferrer" aria-label="Facebook">FB</a>
+              {settings.instagram && <a href={settings.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>}
+              {settings.behance && <a href={settings.behance} target="_blank" rel="noopener noreferrer" aria-label="Behance">Be</a>}
+              {settings.facebook && <a href={settings.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">FB</a>}
             </div>
           </div>
           <div className="pmh-footer-col">
