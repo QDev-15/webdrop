@@ -35,6 +35,7 @@
 | `web-deploy-fixer` | Nhận slug → chạy TS build + PHP check → tự fix lỗi → lặp đến 0 error | Read, Write, Edit, Glob, Grep, Bash |
 | `cv-template-builder` | Nhận tên template (minimal/creative/dark/executive) → tạo React CV component vào `Sources/system/src/components/cv/templates/` → cập nhật CvPreview.tsx → TypeScript check 0 lỗi | Read, Write, Edit, Glob, Grep, Bash |
 | `design-match` | Dựng/fix HTML+CSS khớp 100% với ảnh thiết kế tham chiếu — vòng lặp screenshot (Playwright) → đối chiếu ảnh gốc → fix → lặp lại đến khi khớp | Read, Write, Edit, Glob, Grep, Bash |
+| `db-template-sync` | Đối chiếu `Sources/products/basic/` + `Sources/templates/web/` với bảng `Template` trong DB hệ thống (`Sources/system` — Neon Postgres CHIA SẺ VỚI PRODUCTION) → phát hiện + tự sửa an toàn: template thiếu record, cờ `hasWebsite` sai. KHÔNG tự set `deployUrl` trừ khi user xác nhận site đã deploy thật. KHÔNG bao giờ chạy lại `npm run db:seed` toàn bộ | Read, Write, Edit, Glob, Grep, Bash |
 
 ### Project Settings
 
