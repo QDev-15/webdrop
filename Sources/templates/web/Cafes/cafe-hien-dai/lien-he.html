@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liên hệ — [TÊN QUÁN] | Đặt Chỗ, Đặt Tiệc Công Ty, Mua Hạt Cà Phê</title>
+<meta name="description" content="Liên hệ [TÊN QUÁN] để đặt chỗ nhóm, đặt tiệc công ty, giao cà phê văn phòng hoặc mua hạt cà phê rang mới mang về. Phản hồi trong vòng 15 phút.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<nav id="chd-nav">
+  <div class="chd-container chd-nav-inner">
+    <a href="index.html" class="chd-logo"><span class="chd-logo-dot"></span>[TÊN QUÁN] <span>Coffee</span></a>
+    <div class="chd-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="menu.html">Thực đơn</a>
+      <a href="khong-gian.html">Không gian</a>
+      <a href="gioi-thieu.html">Giới thiệu</a>
+      <a href="lien-he.html" class="chd-active">Liên hệ</a>
+    </div>
+    <a href="lien-he.html" class="chd-btn chd-btn-accent chd-nav-cta chd-nav-cta-desktop">Đặt chỗ nhóm</a>
+    <button class="chd-burger" id="chdBurger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="chd-mob-nav" id="chdMobNav">
+  <ul>
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="menu.html">Thực đơn</a></li>
+    <li><a href="khong-gian.html">Không gian</a></li>
+    <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+    <li><a href="lien-he.html" class="chd-active">Liên hệ</a></li>
+  </ul>
+  <div class="chd-mob-actions">
+    <a href="lien-he.html" class="chd-btn chd-btn-accent chd-btn-full">Đặt chỗ nhóm</a>
+  </div>
+</div>
+
+<!-- QUICK BAR -->
+<div class="chd-quick-bar" style="margin-top:72px;">
+  <div class="chd-container">
+    <div class="chd-quick-item"><i>📱</i> Hotline: <strong>0901 234 567</strong></div>
+    <div class="chd-quick-item"><i>🕐</i> Mở cửa: <strong>7:00 – 21:00</strong> hàng ngày</div>
+    <div class="chd-quick-item"><i>📍</i> <strong>Quận 1, TP.HCM</strong></div>
+  </div>
+</div>
+
+<section class="chd-sec">
+  <div class="chd-container">
+    <div class="chd-contact-grid">
+
+      <!-- Thông tin liên hệ -->
+      <div class="chd-contact-info" data-reveal>
+        <h1>Liên hệ với [TÊN QUÁN]</h1>
+        <p>Đặt chỗ nhóm, đặt tiệc công ty, giao cà phê văn phòng hoặc mua hạt cà phê rang mới mang về — chúng tôi phản hồi trong vòng 15 phút trong giờ mở cửa.</p>
+
+        <div class="chd-contact-details">
+          <div class="chd-contact-detail">
+            <div class="chd-contact-icon">📍</div>
+            <div class="chd-contact-detail-text">
+              <strong>Địa chỉ</strong>
+              <p>[Số nhà, đường Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP.HCM]</p>
+            </div>
+          </div>
+          <div class="chd-contact-detail">
+            <div class="chd-contact-icon">📱</div>
+            <div class="chd-contact-detail-text">
+              <strong>Điện thoại</strong>
+              <p><a href="tel:0901234567">0901 234 567</a></p>
+            </div>
+          </div>
+          <div class="chd-contact-detail">
+            <div class="chd-contact-icon">✉️</div>
+            <div class="chd-contact-detail-text">
+              <strong>Email</strong>
+              <p><a href="mailto:hello@[tenquan].vn">hello@[tenquan].vn</a></p>
+            </div>
+          </div>
+          <div class="chd-contact-detail">
+            <div class="chd-contact-icon">🕐</div>
+            <div class="chd-contact-detail-text">
+              <strong>Giờ mở cửa</strong>
+              <p>7:00 – 21:00, tất cả các ngày trong tuần</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="chd-contact-map">
+          <iframe src="https://maps.google.com/maps?q=10.7826,106.6957&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ [TÊN QUÁN]" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <!-- Form liên hệ -->
+      <div class="chd-contact-form" data-reveal data-delay="1">
+        <h2>Gửi yêu cầu</h2>
+        <form onsubmit="return false;">
+          <div class="chd-form-row">
+            <div class="chd-form-group">
+              <label for="chdName">Họ và tên</label>
+              <input type="text" id="chdName" placeholder="[Nguyễn Văn A]" required>
+            </div>
+            <div class="chd-form-group">
+              <label for="chdPhone">Số điện thoại</label>
+              <input type="tel" id="chdPhone" placeholder="[0901 234 567]" required>
+            </div>
+          </div>
+          <div class="chd-form-group">
+            <label for="chdReason">Loại yêu cầu</label>
+            <select id="chdReason">
+              <option>Đặt chỗ nhóm / phòng họp</option>
+              <option>Đặt tiệc công ty</option>
+              <option>Giao cà phê văn phòng</option>
+              <option>Mua hạt cà phê mang về</option>
+              <option>Hợp tác / khác</option>
+            </select>
+          </div>
+          <div class="chd-form-row">
+            <div class="chd-form-group">
+              <label for="chdDate">Ngày mong muốn</label>
+              <input type="date" id="chdDate">
+            </div>
+            <div class="chd-form-group">
+              <label for="chdPeople">Số người</label>
+              <select id="chdPeople">
+                <option>1 – 2 người</option>
+                <option>3 – 6 người (phòng họp nhỏ)</option>
+                <option>7 – 15 người</option>
+                <option>Trên 15 người (đặt tiệc)</option>
+              </select>
+            </div>
+          </div>
+          <div class="chd-form-group">
+            <label for="chdMsg">Nội dung</label>
+            <textarea id="chdMsg" placeholder="[Mô tả chi tiết yêu cầu của bạn...]"></textarea>
+          </div>
+          <button type="submit" class="chd-btn chd-btn-accent chd-btn-full">Gửi yêu cầu</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="chd-footer">
+  <div class="chd-container">
+    <div class="chd-footer-grid">
+      <div>
+        <a href="index.html" class="chd-footer-logo"><span class="chd-logo-dot"></span>[TÊN QUÁN]</a>
+        <p class="chd-footer-desc">Cà phê hiện đại, tối giản — pha máy espresso và syphon chuẩn từng gram. Không gian yên tĩnh dành cho dân công sở và startup.</p>
+        <div class="chd-footer-social">
+          <a href="#" class="chd-soc-btn" aria-label="Facebook" target="_blank" rel="noopener noreferrer">FB</a>
+          <a href="#" class="chd-soc-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">IG</a>
+          <a href="#" class="chd-soc-btn" aria-label="TikTok" target="_blank" rel="noopener noreferrer">TT</a>
+        </div>
+      </div>
+      <div class="chd-footer-col">
+        <h4>Trang</h4>
+        <ul>
+          <li><a href="index.html">Trang chủ</a></li>
+          <li><a href="menu.html">Thực đơn</a></li>
+          <li><a href="khong-gian.html">Không gian</a></li>
+          <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div class="chd-footer-col">
+        <h4>Dịch vụ</h4>
+        <ul>
+          <li><a href="lien-he.html">Đặt chỗ nhóm</a></li>
+          <li><a href="lien-he.html">Đặt tiệc công ty</a></li>
+          <li><a href="menu.html">Mua hạt cà phê</a></li>
+          <li><a href="lien-he.html">Giao văn phòng</a></li>
+        </ul>
+      </div>
+      <div class="chd-footer-col">
+        <h4>Liên hệ</h4>
+        <ul class="chd-footer-contact">
+          <li><i>📍</i>[Số nhà, đường Nguyễn Huệ, Quận 1, TP.HCM]</li>
+          <li><i>📱</i><a href="tel:0901234567">0901 234 567</a></li>
+          <li><i>✉️</i><a href="mailto:hello@[tenquan].vn">hello@[tenquan].vn</a></li>
+          <li><i>🕐</i>7:00 – 21:00 hàng ngày</li>
+        </ul>
+      </div>
+    </div>
+    <div class="chd-footer-bottom">
+      <p>© 2026 [TÊN QUÁN] · Made in Vietnam 🇻🇳</p>
+      <div class="chd-footer-legal">
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+      </div>
+      <p>Thiết kế bởi webdrop.store</p>
+    </div>
+  </div>
+</footer>
+
+<div class="chd-zalo-float">
+  <div class="chd-zalo-tooltip">Chat Zalo với quán</div>
+  <a href="https://zalo.me/0901234567" class="chd-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const chdObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('chd-visible'); chdObserver.unobserve(e.target); } });
+}, { threshold: .1, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => chdObserver.observe(el));
+
+const chdBurger = document.getElementById('chdBurger');
+const chdMobNav = document.getElementById('chdMobNav');
+if (chdBurger && chdMobNav) {
+  chdBurger.addEventListener('click', () => {
+    const open = chdMobNav.classList.toggle('chd-open');
+    chdBurger.classList.toggle('chd-open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      chdMobNav.classList.remove('chd-open');
+      chdBurger.classList.remove('chd-open');
+      document.body.style.overflow = '';
+    }
+  });
+}
+</script>
+</body>
+</html>

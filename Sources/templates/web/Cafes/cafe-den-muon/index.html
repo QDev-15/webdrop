@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trang chủ — NOX Cà Phê Đêm Muộn</title>
+<meta name="description" content="NOX — quán cà phê mở đến 2 giờ sáng dành cho dân văn phòng làm việc muộn, sinh viên ôn thi và những ai không muốn dừng lại khi thành phố đã ngủ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="cdm-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html"><span class="logo-dot"></span>NOX <span>COFFEE</span></a>
+      <div class="nav-links">
+        <a href="index.html" class="active">Trang chủ</a>
+        <a href="menu.html">Thực đơn</a>
+        <a href="khong-gian.html">Không gian</a>
+        <a href="gioi-thieu.html">Giới thiệu</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="lien-he.html" class="nav-cta">Đặt bàn đêm</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html" class="active">Trang chủ</a>
+  <a href="menu.html">Thực đơn</a>
+  <a href="khong-gian.html">Không gian</a>
+  <a href="gioi-thieu.html">Giới thiệu</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="lien-he.html" class="nm-cta">Đặt bàn đêm</a>
+</div>
+
+<!-- CAROUSEL HERO — H10 GEOMETRIC SPLIT — 4 SLIDE -->
+<section class="cdm-carousel-hero" id="carouselHero">
+
+  <!-- Slide 1 (active) -->
+  <div class="cdm-carousel-slide active" data-index="0">
+    <div class="cdm-slide-bg cdm-slide-bg--1">
+      <span class="cdm-split-a"></span><span class="cdm-split-b"></span>
+      <span class="cdm-split-glow"></span><span class="cdm-noise-grid"></span>
+    </div>
+    <div class="cdm-container cdm-slide-content">
+      <div class="cdm-slide-label"><span class="dot-live"></span>Mở cửa đến 2 giờ sáng</div>
+      <h1 class="cdm-slide-title">Thành phố ngủ,<br><em>NOX vẫn sáng đèn</em>.</h1>
+      <p class="cdm-slide-sub">Không gian espresso bar dành cho những ai chưa muốn kết thúc một ngày — dân văn phòng tăng ca, freelancer deadline gấp, sinh viên ôn thi thâu đêm.</p>
+      <div class="cdm-slide-cta">
+        <a href="menu.html" class="btn-accent">Xem thực đơn ☕</a>
+        <a href="khong-gian.html" class="btn-ghost">Khám phá không gian →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="cdm-carousel-slide" data-index="1">
+    <div class="cdm-slide-bg cdm-slide-bg--2">
+      <span class="cdm-split-a"></span><span class="cdm-split-b"></span>
+      <span class="cdm-split-glow"></span><span class="cdm-noise-grid"></span>
+    </div>
+    <div class="cdm-container cdm-slide-content">
+      <div class="cdm-slide-label"><span class="dot-live"></span>Góc làm việc đêm</div>
+      <h2 class="cdm-slide-title">Deadline không đợi,<br><em>cà phê thì có</em>.</h2>
+      <p class="cdm-slide-sub">Mỗi bàn một ổ cắm, wifi 300Mbps, đèn bàn ánh sáng ấm dịu mắt. Ngồi bao lâu cũng không ai giục — đó là nguyên tắc của NOX.</p>
+      <div class="cdm-slide-cta">
+        <a href="khong-gian.html" class="btn-accent">Xem góc làm việc</a>
+        <a href="lien-he.html" class="btn-ghost">Đặt bàn riêng →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="cdm-carousel-slide" data-index="2">
+    <div class="cdm-slide-bg cdm-slide-bg--3">
+      <span class="cdm-split-a"></span><span class="cdm-split-b"></span>
+      <span class="cdm-split-glow"></span><span class="cdm-noise-grid"></span>
+    </div>
+    <div class="cdm-container cdm-slide-content">
+      <div class="cdm-slide-label"><span class="dot-live"></span>Mùa thi đến rồi</div>
+      <h2 class="cdm-slide-title">Ôn thi thâu đêm,<br><em>NOX lo phần caffeine</em>.</h2>
+      <p class="cdm-slide-sub">Combo sinh viên: 1 espresso đúp + 1 bánh mặn, giá mềm sau 22h. Khu vực yên tĩnh riêng cho nhóm học bài từ 4–8 người.</p>
+      <div class="cdm-slide-cta">
+        <a href="menu.html" class="btn-accent">Xem combo sinh viên</a>
+        <a href="gioi-thieu.html" class="btn-ghost">Giờ mở cửa & FAQ →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 4 -->
+  <div class="cdm-carousel-slide" data-index="3">
+    <div class="cdm-slide-bg cdm-slide-bg--4">
+      <span class="cdm-split-a"></span><span class="cdm-split-b"></span>
+      <span class="cdm-split-glow"></span><span class="cdm-noise-grid"></span>
+    </div>
+    <div class="cdm-container cdm-slide-content">
+      <div class="cdm-slide-label"><span class="dot-live"></span>Năng lượng không ngủ</div>
+      <h2 class="cdm-slide-title">Espresso đậm,<br><em>tỉnh táo trọn đêm</em>.</h2>
+      <p class="cdm-slide-sub">Hạt rang đậm riêng cho khung giờ khuya — caffeine cao hơn 20% so với menu ban ngày, vị đắng nhẹ hậu ngọt, không gắt.</p>
+      <div class="cdm-slide-cta">
+        <a href="menu.html" class="btn-accent">Xem menu đêm</a>
+        <a href="lien-he.html" class="btn-ghost">Liên hệ đặt chỗ →</a>
+      </div>
+    </div>
+  </div>
+
+  <button class="cdm-car-arrow cdm-car-prev" id="carPrev" aria-label="Slide trước">‹</button>
+  <button class="cdm-car-arrow cdm-car-next" id="carNext" aria-label="Slide sau">›</button>
+  <div class="cdm-car-dots" id="carDots">
+    <button class="cdm-car-dot active" data-index="0" aria-label="Slide 1"></button>
+    <button class="cdm-car-dot" data-index="1" aria-label="Slide 2"></button>
+    <button class="cdm-car-dot" data-index="2" aria-label="Slide 3"></button>
+    <button class="cdm-car-dot" data-index="3" aria-label="Slide 4"></button>
+  </div>
+</section>
+
+<!-- STATS: VÌ SAO CHỌN GIỜ MUỘN -->
+<section class="sec-pad" style="background:var(--bg);">
+  <div class="cdm-container">
+    <div class="text-center reveal mb-5 mx-auto" style="max-width:640px;">
+      <div class="eyebrow">Vì sao chọn NOX</div>
+      <h2 class="sec-title">Được thiết kế cho <em>ca đêm</em></h2>
+      <p class="sec-sub mx-auto">Không phải quán cà phê nào cũng hiểu người làm việc ban đêm cần gì — NOX thì có.</p>
+    </div>
+    <div class="cdm-stats-grid reveal">
+      <div class="cdm-stat-item">
+        <div class="cdm-stat-num">18:00–02:00</div>
+        <div class="cdm-stat-label">Giờ hoạt động mỗi ngày</div>
+      </div>
+      <div class="cdm-stat-item">
+        <div class="cdm-stat-num">100%</div>
+        <div class="cdm-stat-label">Bàn có ổ cắm riêng</div>
+      </div>
+      <div class="cdm-stat-item">
+        <div class="cdm-stat-num">300Mbps</div>
+        <div class="cdm-stat-label">Wifi tốc độ cao</div>
+      </div>
+      <div class="cdm-stat-item">
+        <div class="cdm-stat-num">80</div>
+        <div class="cdm-stat-label">Chỗ ngồi, 3 khu vực</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THỨC UỐNG NỔI BẬT -->
+<section class="sec-pad" style="background:var(--warm);">
+  <div class="cdm-container">
+    <div class="text-center reveal mb-5 mx-auto" style="max-width:640px;">
+      <div class="eyebrow">Thức uống nổi bật</div>
+      <h2 class="sec-title">Caffeine cho <em>ca đêm dài</em></h2>
+      <p class="sec-sub mx-auto">Menu đêm được pha đậm hơn, ngọt hậu hơn — để bạn tỉnh táo mà không gắt bụng.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-6 col-md-3">
+        <div class="cdm-drink-card reveal reveal-d1">
+          <img class="cdm-dc-img" src="https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=500&q=80&auto=format&fit=crop" alt="Espresso đúp rang đậm" loading="lazy">
+          <div class="cdm-dc-body">
+            <span class="cdm-dc-tag">Best seller</span>
+            <div class="cdm-dc-name">Double Shot Đêm</div>
+            <div class="cdm-dc-desc">Espresso đúp, rang đậm riêng cho khung giờ khuya, hậu vị ca cao</div>
+            <div class="cdm-dc-price">49.000đ</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="cdm-drink-card reveal reveal-d2">
+          <img class="cdm-dc-img" src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500&q=80&auto=format&fit=crop" alt="Cold brew nitro" loading="lazy">
+          <div class="cdm-dc-body">
+            <span class="cdm-dc-tag">Mát lạnh</span>
+            <div class="cdm-dc-name">Nitro Cold Brew</div>
+            <div class="cdm-dc-desc">Ủ lạnh 20 giờ, bơm nitro tạo bọt kem mịn, vị mượt không chua gắt</div>
+            <div class="cdm-dc-price">65.000đ</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="cdm-drink-card reveal reveal-d3">
+          <img class="cdm-dc-img" src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=500&q=80&auto=format&fit=crop" alt="Bạc xỉu năng lượng" loading="lazy">
+          <div class="cdm-dc-body">
+            <span class="cdm-dc-tag">Dịu nhẹ</span>
+            <div class="cdm-dc-name">Bạc Xỉu Năng Lượng</div>
+            <div class="cdm-dc-desc">Sữa đặc, espresso đậm, thêm shot caffeine cho ai cần tỉnh táo lâu</div>
+            <div class="cdm-dc-price">52.000đ</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="cdm-drink-card reveal reveal-d3" style="transition-delay:.32s">
+          <img class="cdm-dc-img" src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500&q=80&auto=format&fit=crop" alt="Trà đào năng lượng" loading="lazy">
+          <div class="cdm-dc-body">
+            <span class="cdm-dc-tag">Không caffeine cao</span>
+            <div class="cdm-dc-name">Hồng Trà Đào Đêm</div>
+            <div class="cdm-dc-desc">Cho ai muốn tỉnh táo nhẹ nhàng — hồng trà, đào ngâm, ít đường</div>
+            <div class="cdm-dc-price">58.000đ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5 reveal">
+      <a href="menu.html" class="btn-outline-accent">Xem toàn bộ thực đơn →</a>
+    </div>
+  </div>
+</section>
+
+<!-- VÌ SAO NOX — FEATURE CARDS -->
+<section class="sec-pad" style="background:var(--bg);">
+  <div class="cdm-container">
+    <div class="row align-items-center g-5 mb-5">
+      <div class="col-lg-5 reveal">
+        <div class="eyebrow">Dành riêng cho dân đêm</div>
+        <h2 class="sec-title">Ai hay ghé <em>NOX</em>?</h2>
+        <p class="sec-sub">Chúng tôi thiết kế không gian và menu xoay quanh 3 nhóm khách chính — không phải quán cà phê "chung chung" nào cũng làm vậy.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="cdm-feat-card reveal reveal-d1">
+          <div class="cdm-feat-icon">💻</div>
+          <div class="cdm-feat-name">Dân văn phòng tăng ca</div>
+          <div class="cdm-feat-desc">Bàn riêng, ổ cắm, đèn không chói mắt — làm việc đến khuya vẫn thoải mái như ở nhà.</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="cdm-feat-card reveal reveal-d2">
+          <div class="cdm-feat-icon">📖</div>
+          <div class="cdm-feat-name">Sinh viên ôn thi</div>
+          <div class="cdm-feat-desc">Khu học nhóm yên tĩnh, combo giá sinh viên sau 22h, wifi ổn định xuyên đêm.</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="cdm-feat-card reveal reveal-d3">
+          <div class="cdm-feat-icon">🎨</div>
+          <div class="cdm-feat-name">Người làm sáng tạo</div>
+          <div class="cdm-feat-desc">Không gian yên tĩnh sau nửa đêm, nhạc lo-fi nhẹ nhàng, không gian riêng tư để tập trung.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KHÔNG GIAN PREVIEW -->
+<section class="sec-pad" style="background:var(--warm);">
+  <div class="cdm-container">
+    <div class="text-center reveal mb-5 mx-auto" style="max-width:640px;">
+      <div class="eyebrow">Không gian quán</div>
+      <h2 class="sec-title">Ánh đèn <em>neon dịu</em>, giữ nhịp làm việc</h2>
+      <p class="sec-sub mx-auto">Ba khu vực, một tông màu tối ấm — dễ tập trung, dễ thư giãn.</p>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="space-card reveal reveal-d1">
+          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=700&q=80&auto=format&fit=crop" alt="Khu quầy bar espresso ánh đèn ấm" loading="lazy">
+          <div class="sc-caption">
+            <div class="sc-name">Quầy Bar Espresso</div>
+            <div class="sc-sub">Xem barista pha chế trực tiếp</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="space-card reveal reveal-d2">
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=700&q=80&auto=format&fit=crop" alt="Góc làm việc cá nhân ánh đèn neon" loading="lazy">
+          <div class="sc-caption">
+            <div class="sc-name">Coding Corner</div>
+            <div class="sc-sub">Bàn đơn, ổ cắm, đèn bàn riêng</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="space-card reveal reveal-d3">
+          <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=700&q=80&auto=format&fit=crop" alt="Phòng học nhóm ban đêm" loading="lazy">
+          <div class="sc-caption">
+            <div class="sc-name">Phòng Học Nhóm</div>
+            <div class="sc-sub">4–8 người · Đặt trước · Cách âm nhẹ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5 reveal">
+      <a href="khong-gian.html" class="btn-accent">Khám phá toàn bộ không gian →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ĐÁNH GIÁ -->
+<section class="sec-pad" style="background:var(--bg);">
+  <div class="cdm-container">
+    <div class="text-center reveal mb-5 mx-auto" style="max-width:640px;">
+      <div class="eyebrow">Khách nói gì</div>
+      <h2 class="sec-title">Được tin tưởng bởi <em>dân cú đêm</em></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="rv reveal reveal-d1">
+          <div class="rv-stars">★★★★★</div>
+          <div class="rv-text">"Làm dev, hay code đến 1–2 giờ sáng. NOX là chỗ duy nhất tôi tìm được có ổ cắm ở mọi bàn và không ai giục về. Espresso đêm cũng đậm hơn hẳn quán khác."</div>
+          <div class="rv-foot">
+            <img class="rv-av" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80&auto=format&fit=crop" alt="Khách hàng Đức Anh" loading="lazy">
+            <div><div class="rv-name">Phạm Đức Anh</div><div class="rv-role">Lập trình viên · TP.HCM</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="rv reveal reveal-d2">
+          <div class="rv-stars">★★★★★</div>
+          <div class="rv-text">"Mùa thi năm nào cả nhóm cũng đặt phòng học nhóm ở đây. Yên tĩnh, giá combo sinh viên hợp lý, nhân viên dễ chịu dù mình ngồi tới gần 1 giờ sáng."</div>
+          <div class="rv-foot">
+            <img class="rv-av" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&q=80&auto=format&fit=crop" alt="Khách hàng Thảo Vy" loading="lazy">
+            <div><div class="rv-name">Nguyễn Thảo Vy</div><div class="rv-role">Sinh viên năm 3 · Hà Nội</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="rv reveal reveal-d3">
+          <div class="rv-stars">★★★★★</div>
+          <div class="rv-text">"Không gian ánh đèn neon dịu, không quá tối cũng không quá sáng, ngồi vẽ minh họa cả buổi tối vẫn thoải mái. Nitro cold brew là món tôi order mỗi lần ghé."</div>
+          <div class="rv-foot">
+            <img class="rv-av" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=80&q=80&auto=format&fit=crop" alt="Khách hàng Minh Khuê" loading="lazy">
+            <div><div class="rv-name">Trần Minh Khuê</div><div class="rv-role">Illustrator freelance · Đà Nẵng</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec reveal">
+  <div class="cdm-container">
+    <h2 class="cta-title">Giữ bàn cho <em>ca đêm</em> của bạn</h2>
+    <p class="cta-sub">Đặt trước để chắc chắn có chỗ — đặc biệt vào mùa thi và cuối tuần.</p>
+    <a href="lien-he.html" class="btn-accent">Đặt bàn ngay →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="cdm-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo"><span class="logo-dot"></span>NOX <span>COFFEE</span></div>
+        <p class="ft-desc">Espresso bar mở đến 2 giờ sáng — nơi thành phố ngủ nhưng công việc, bài vở và ý tưởng của bạn thì chưa xong.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc" aria-label="Facebook" target="_blank" rel="noopener noreferrer">fb</a>
+          <a href="#" class="ft-soc" aria-label="Instagram" target="_blank" rel="noopener noreferrer">ig</a>
+          <a href="#" class="ft-soc" aria-label="Zalo" target="_blank" rel="noopener noreferrer">zl</a>
+          <a href="#" class="ft-soc" aria-label="TikTok" target="_blank" rel="noopener noreferrer">tt</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Trang</div>
+        <div class="ft-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="menu.html">Thực đơn</a>
+          <a href="khong-gian.html">Không gian</a>
+          <a href="gioi-thieu.html">Giới thiệu</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Dịch vụ</div>
+        <div class="ft-links">
+          <a href="lien-he.html">Đặt bàn trước</a>
+          <a href="lien-he.html">Đặt phòng học nhóm</a>
+          <a href="menu.html">Mua cà phê hạt</a>
+          <a href="lien-he.html">Hợp tác</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Pháp lý</div>
+        <div class="ft-links">
+          <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+          <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links">
+          <a href="tel:[0901234567]">📱 [0901 234 567]</a>
+          <a href="#">📍 [Số nhà, Đường, Quận, TP]</a>
+          <a href="mailto:[email@domain.com]">✉️ [email@domain.com]</a>
+          <a href="#">🕐 18:00 – 02:00 hàng ngày</a>
+        </div>
+      </div>
+    </div>
+    <div class="reveal pb-4">
+      <iframe class="cdm-map-embed" src="https://maps.google.com/maps?q=[LAT],[LNG]&hl=vi&z=15&output=embed" title="Bản đồ vị trí NOX Coffee" loading="lazy"></iframe>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="cdm-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="ft-copy">© [NĂM] NOX Coffee · Made in Vietnam 🇻🇳</div>
+        <div class="ft-copy">Thiết kế bởi webdrop.store</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ZALO FLOAT -->
+<div class="zf">
+  <div class="zf-tip">Liên hệ Zalo</div>
+  <a href="https://zalo.me/[SỐ_ZALO]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Nav scroll shadow
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); }, {passive:true});
+
+// Reveal on scroll
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} });
+}, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+// Mobile nav
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+}
+
+// Carousel Hero — vanilla JS, auto-play 5s, fade .8s
+(function(){
+  const slides = document.querySelectorAll('.cdm-carousel-slide');
+  const dots = document.querySelectorAll('.cdm-car-dot');
+  const prevBtn = document.getElementById('carPrev');
+  const nextBtn = document.getElementById('carNext');
+  let current = 0;
+  let timer = null;
+
+  function goTo(index) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+  function startAuto() { timer = setInterval(next, 5000); }
+  function resetAuto() { clearInterval(timer); startAuto(); }
+
+  if (prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', () => { prev(); resetAuto(); });
+    nextBtn.addEventListener('click', () => { next(); resetAuto(); });
+  }
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => { goTo(parseInt(dot.dataset.index, 10)); resetAuto(); });
+  });
+  if (slides.length) startAuto();
+})();
+</script>
+</body>
+</html>

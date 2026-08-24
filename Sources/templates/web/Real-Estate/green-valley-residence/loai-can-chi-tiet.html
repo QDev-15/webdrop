@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Chi tiết loại căn | Green Valley Residence</title>
+<meta name="description" content="Thông tin chi tiết loại căn hộ tại Green Valley Residence — mặt bằng, thông số kỹ thuật, tiến độ thanh toán, công cụ tính vay và liên hệ Phòng Kinh doanh dự án.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%234361ee'/%3E%3Ctext x='50' y='66' font-size='50' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3EG%3C/text%3E%3C/svg%3E">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="gvr-ambient"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner wd-container">
+    <a href="index.html" class="logo">
+      <span class="mark">GV</span>
+      <span>Green Valley Residence<span class="logo-sub">Dự án căn hộ ven sông</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="ve-chu-dau-tu.html">Tổng quan dự án</a>
+      <a href="bang-gia.html" class="active">Bảng giá &amp; Mặt bằng</a>
+      <a href="tien-ich.html">Tiện ích</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <a href="tel:19006868" class="nav-cta">Hotline 1900 6868</a>
+    <button class="nav-hamburger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="ve-chu-dau-tu.html">Tổng quan dự án</a>
+  <a href="bang-gia.html">Bảng giá &amp; Mặt bằng</a>
+  <a href="tien-ich.html">Tiện ích</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="tel:19006868" class="nm-phone">☎ 1900 6868</a>
+  <a href="lien-he.html" class="nm-cta">Đăng ký nhận bảng giá</a>
+</div>
+
+<!-- HEADER -->
+<section style="padding-top:118px;">
+  <div class="wd-container">
+    <div class="gvr-crumb" style="color:var(--text-3);"><a href="index.html" style="color:var(--text-2);">Trang chủ</a> / <a href="bang-gia.html" style="color:var(--text-2);">Bảng giá &amp; Mặt bằng</a> / <span id="breadcrumbUnit">...</span></div>
+    <div class="d-flex align-items-center gap-3 flex-wrap mb-2">
+      <span class="gvr-tag" id="unitTypeTag"><span class="gvr-tag-dot"></span> —</span>
+      <span class="gvr-tag" id="unitBlockTag">—</span>
+    </div>
+    <h1 class="sec-title" id="unitTitle" style="margin-bottom:8px;">Đang tải…</h1>
+    <p class="sec-sub" id="unitViewText" style="max-width:640px;">—</p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="sec-pad-sm">
+  <div class="wd-container">
+    <div class="gvr-gallery-main">
+      <span class="gvr-gallery-badge" id="galleryBadge">—</span>
+      <img id="galleryMainImg" src="" alt="Ảnh căn hộ">
+    </div>
+    <div class="gvr-gallery-thumbs" id="galleryThumbs"></div>
+    <p id="galleryLabel" style="font-size:12.5px; color:var(--text-3); margin-top:10px;">—</p>
+  </div>
+</section>
+
+<!-- QUICK FACTS -->
+<section class="sec-pad-sm" style="padding-top:0;">
+  <div class="wd-container">
+    <div class="gvr-qf-bar" data-reveal>
+      <div class="gvr-qf-item"><div class="gvr-qf-icon">📐</div><div class="gvr-qf-value" id="qfArea">—</div><div class="gvr-qf-label">Diện tích</div></div>
+      <div class="gvr-qf-item"><div class="gvr-qf-icon">🛏</div><div class="gvr-qf-value" id="qfBedrooms">—</div><div class="gvr-qf-label">Phòng ngủ</div></div>
+      <div class="gvr-qf-item"><div class="gvr-qf-icon">🚿</div><div class="gvr-qf-value" id="qfBathrooms">—</div><div class="gvr-qf-label">Phòng tắm</div></div>
+      <div class="gvr-qf-item"><div class="gvr-qf-icon">🧭</div><div class="gvr-qf-value" id="qfDirection">—</div><div class="gvr-qf-label">Hướng</div></div>
+      <div class="gvr-qf-item"><div class="gvr-qf-icon">🏢</div><div class="gvr-qf-value" id="qfFloor">—</div><div class="gvr-qf-label">Tầng áp dụng</div></div>
+      <div class="gvr-qf-item"><div class="gvr-qf-icon">💰</div><div class="gvr-qf-value" id="qfPrice">—</div><div class="gvr-qf-label">Giá từ</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<section class="sec-pad" style="padding-top:20px;">
+  <div class="wd-container">
+    <div class="row g-4">
+      <div class="col-lg-7">
+
+        <!-- Mô tả -->
+        <div class="mb-5">
+          <div class="eyebrow">Mô tả chi tiết</div>
+          <p id="unitDescription" style="font-size:15px; line-height:1.85; color:var(--text-2);">—</p>
+        </div>
+
+        <!-- Đặc điểm nổi bật -->
+        <div class="mb-5">
+          <div class="eyebrow">Đặc điểm nổi bật</div>
+          <div class="row g-3" id="unitFeatures"></div>
+        </div>
+
+        <!-- Bảng thông số -->
+        <div class="mb-5">
+          <div class="eyebrow">Bảng thông số kỹ thuật</div>
+          <div class="gvr-card gvr-card-solid p-4">
+            <table class="gvr-spec-table" id="specTable"></table>
+          </div>
+        </div>
+
+        <!-- Tiến độ thanh toán -->
+        <div class="mb-5">
+          <div class="eyebrow">Tiến độ thanh toán</div>
+          <h2 class="sec-title" style="font-size:24px; margin-bottom:24px;">7 đợt thanh toán theo <em>tiến độ xây dựng</em></h2>
+          <div class="gvr-timeline" id="paymentTimeline"></div>
+        </div>
+
+        <!-- Bản đồ vị trí -->
+        <div class="mb-5">
+          <div class="eyebrow">Vị trí dự án</div>
+          <div class="gvr-footer-maps" style="margin:0 0 16px;">
+            <iframe src="https://maps.google.com/maps?q=10.8046,106.7350&hl=vi&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Vị trí Green Valley Residence"></iframe>
+          </div>
+          <ul class="gvr-ext-list" id="extAmenities"></ul>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div style="position:sticky; top:100px;">
+
+          <!-- CÔNG CỤ TÍNH VAY -->
+          <div class="gvr-calc mb-4">
+            <span class="blob blob-a"></span><span class="blob blob-b"></span>
+            <div class="eyebrow eyebrow-light">Công cụ tài chính</div>
+            <h3 style="font-size:20px; font-weight:700; margin-bottom:20px;">Tính vay &amp; trả góp</h3>
+
+            <div class="gvr-calc-field">
+              <div class="gvr-calc-label">Giá trị căn hộ <b id="calcPriceLabel">— tỷ</b></div>
+              <input type="number" id="calcPrice" step="0.05" min="1">
+            </div>
+            <div class="gvr-calc-field">
+              <div class="gvr-calc-label">Tỷ lệ vay <b id="calcLoanPercentLabel">70%</b></div>
+              <input type="range" id="calcLoanPercent" min="30" max="90" step="5" value="70">
+            </div>
+            <div class="gvr-calc-field">
+              <div class="gvr-calc-label">Lãi suất ưu đãi năm đầu <b id="calcRateLabel">8.5%/năm</b></div>
+              <input type="range" id="calcRate" min="5" max="14" step="0.1" value="8.5">
+            </div>
+            <div class="gvr-calc-field">
+              <div class="gvr-calc-label">Thời hạn vay <b id="calcYearsLabel">20 năm</b></div>
+              <input type="range" id="calcYears" min="5" max="30" step="1" value="20">
+            </div>
+
+            <div class="gvr-calc-result">
+              <div class="gvr-calc-result-label">Trả góp hàng tháng ước tính</div>
+              <div class="gvr-calc-result-value" id="calcResult">— đ/tháng</div>
+            </div>
+            <p class="gvr-calc-note">* Lãi suất tham khảo tại thời điểm hiện tại, chỉ mang tính minh họa. Vui lòng liên hệ ngân hàng liên kết (Vietcombank / Techcombank / BIDV) để biết chính sách vay chính xác nhất.</p>
+          </div>
+
+          <!-- PHÒNG KINH DOANH DỰ ÁN -->
+          <div class="gvr-card gvr-card-solid gvr-agent-card mb-4">
+            <img class="gvr-agent-avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&auto=format&fit=crop&q=80" alt="Phòng Kinh doanh dự án Green Valley Residence">
+            <div>
+              <div class="gvr-agent-name">Phòng Kinh doanh dự án</div>
+              <div class="gvr-agent-role">Green Valley Residence — Lộc Việt Land</div>
+              <div class="gvr-agent-actions">
+                <a href="tel:0909888686" class="gvr-agent-btn call" title="Gọi ngay">📞</a>
+                <a href="https://zalo.me/0909888686" target="_blank" rel="noopener noreferrer" class="gvr-agent-btn zalo" title="Chat Zalo">💬</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- FORM ĐĂNG KÝ -->
+          <div class="gvr-card gvr-card-solid p-4 gvr-form">
+            <h3 style="font-size:16px; font-weight:700; margin-bottom:6px;">Đăng ký nhận bảng giá &amp; tư vấn</h3>
+            <p style="font-size:13px; color:var(--text-2); margin-bottom:18px;">Để lại thông tin — chúng tôi liên hệ trong 30 phút.</p>
+            <form onsubmit="event.preventDefault(); this.reset(); alert('Cảm ơn bạn đã đăng ký! Phòng Kinh doanh dự án sẽ liên hệ sớm nhất.');">
+              <div class="mb-3"><label class="form-label">Họ và tên</label><input type="text" class="form-control" required placeholder="Nguyễn Văn A"></div>
+              <div class="mb-3"><label class="form-label">Số điện thoại</label><input type="tel" class="form-control" required placeholder="09xx xxx xxx"></div>
+              <div class="mb-3"><label class="form-label">Loại căn quan tâm</label>
+                <select class="form-select" id="formUnitSelect"></select>
+              </div>
+              <button type="submit" class="gvr-btn gvr-btn-accent gvr-btn-block">Gửi đăng ký →</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOẠI CĂN TƯƠNG TỰ -->
+<section class="sec-pad sec-tint" style="padding-top:60px;">
+  <div class="wd-container">
+    <div class="eyebrow">Có thể bạn quan tâm</div>
+    <h2 class="sec-title" style="margin-bottom:32px;">Loại căn <em>tương tự</em></h2>
+    <div class="row g-4" id="relatedUnits"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="gvr-footer">
+  <div class="wd-container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="gvr-footer-brand"><span class="mark" style="width:28px;height:28px;border-radius:8px;background:var(--gradient-1);display:inline-flex;align-items:center;justify-content:center;font-size:12px;">GV</span>Green Valley Residence</div>
+        <p class="gvr-footer-desc">Dự án căn hộ cao cấp ven sông Sài Gòn tại Thảo Điền, TP. Thủ Đức — phát triển bởi Tập đoàn Lộc Việt Land.</p>
+      </div>
+      <div class="col-lg-2 col-6">
+        <div class="gvr-footer-head">Dự án</div>
+        <ul class="gvr-footer-links">
+          <li><a href="index.html">Trang chủ</a></li>
+          <li><a href="ve-chu-dau-tu.html">Tổng quan dự án</a></li>
+          <li><a href="bang-gia.html">Bảng giá &amp; Mặt bằng</a></li>
+          <li><a href="tien-ich.html">Tiện ích</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <div class="gvr-footer-head">Chính sách</div>
+        <ul class="gvr-footer-links">
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <div class="gvr-footer-head">Liên hệ nhanh</div>
+        <div class="gvr-footer-hotline"><span>☎</span><b>1900 6868</b></div>
+        <p class="gvr-footer-desc">Số 88 Nguyễn Văn Hưởng, P. Thảo Điền, TP. Thủ Đức, TP.HCM<br>kinhdoanh@greenvalleyresidence.vn</p>
+      </div>
+    </div>
+    <div class="gvr-footer-maps">
+      <iframe src="https://maps.google.com/maps?q=10.8046,106.7350&hl=vi&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Vị trí Green Valley Residence"></iframe>
+    </div>
+    <div class="gvr-footer-bottom">
+      <div class="gvr-footer-copy">© 2026 Green Valley Residence — Phát triển bởi Tập đoàn Lộc Việt Land. All rights reserved.</div>
+      <div class="gvr-footer-copy">Thiết kế bởi webdrop.store</div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/0909888686" target="_blank" rel="noopener noreferrer" class="zf">
+  <span class="zf-tip">Chat Zalo tư vấn ngay</span>
+  <span class="zf-btn">💬</span>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/units-data.js"></script>
+<script>
+  /* ── Reveal + hamburger ── */
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); }});
+  }, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+  document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+  const burger = document.getElementById('navBurger');
+  const mob = document.getElementById('navMob');
+  if (burger && mob) burger.addEventListener('click', () => {
+    const o = mob.classList.toggle('open'); burger.classList.toggle('open', o); document.body.style.overflow = o ? 'hidden' : '';
+  });
+
+  /* ══════════ DATA-DRIVEN: tìm loại căn theo query param ?loai= ══════════ */
+  const params = new URLSearchParams(location.search);
+  const requestedSlug = params.get('loai');
+  const unit = UNIT_TYPES.find(u => u.slug === requestedSlug) || UNIT_TYPES.find(u => u.slug === 'sky-terrace-3pn');
+  const TYPE_LABELS = { '1pn':'1PN', '2pn':'2PN', '3pn':'3PN', 'duplex':'Duplex', 'penthouse':'Penthouse' };
+  const st = STATUS_LABELS[unit.status];
+
+  document.title = `${unit.name} | Green Valley Residence`;
+  document.getElementById('breadcrumbUnit').textContent = unit.name;
+  document.getElementById('unitTypeTag').innerHTML = `<span class="gvr-tag-dot"></span> ${TYPE_LABELS[unit.typeTag]}`;
+  document.getElementById('unitBlockTag').textContent = unit.block;
+  document.getElementById('unitTitle').textContent = unit.name;
+  document.getElementById('unitViewText').textContent = unit.view + ' — ' + unit.description.split('.')[0] + '.';
+  document.getElementById('unitDescription').textContent = unit.description;
+
+  /* Gallery */
+  const allImages = [{ src: unit.floorPlanImage, label: 'Mặt bằng minh họa' }]
+    .concat(unit.gallery.map((g, i) => ({ src: g, label: `Ảnh căn hộ mẫu ${i+1}` })));
+  const mainImg = document.getElementById('galleryMainImg');
+  const galleryLabel = document.getElementById('galleryLabel');
+  const thumbsWrap = document.getElementById('galleryThumbs');
+  const badgeEl = document.getElementById('galleryBadge');
+  badgeEl.textContent = st.label; badgeEl.className = 'gvr-gallery-badge ' + st.cls;
+  function setImage(i) {
+    mainImg.src = allImages[i].src; mainImg.alt = unit.name + ' — ' + allImages[i].label;
+    galleryLabel.textContent = allImages[i].label;
+    thumbsWrap.querySelectorAll('img').forEach((t, idx) => t.classList.toggle('active', idx === i));
+  }
+  thumbsWrap.innerHTML = allImages.map((im, i) => `<img src="${im.src}" alt="${im.label}" data-i="${i}">`).join('');
+  thumbsWrap.addEventListener('click', e => { const t = e.target.closest('img'); if (t) setImage(+t.dataset.i); });
+  setImage(0);
+
+  /* Quick facts */
+  document.getElementById('qfArea').textContent = unit.area + 'm²';
+  document.getElementById('qfBedrooms').textContent = unit.bedrooms + ' PN';
+  document.getElementById('qfBathrooms').textContent = unit.bathrooms + ' WC';
+  document.getElementById('qfDirection').textContent = DIRECTION_LABELS[unit.direction] || unit.direction;
+  document.getElementById('qfFloor').textContent = 'Tầng ' + unit.floorRange;
+  document.getElementById('qfPrice').textContent = formatVND(unit.priceFrom);
+
+  /* Đặc điểm nổi bật */
+  document.getElementById('unitFeatures').innerHTML = unit.features.map(f => `
+    <div class="col-md-6">
+      <div class="gvr-feat"><div class="gvr-feat-icon">✓</div><div class="gvr-feat-desc" style="font-weight:500; color:var(--text);">${f}</div></div>
+    </div>`).join('');
+
+  /* Bảng thông số */
+  const specs = [
+    ['Loại căn', TYPE_LABELS[unit.typeTag]],
+    ['Diện tích thông thủy', unit.area + ' m²'],
+    ['Số phòng ngủ', unit.bedrooms],
+    ['Số phòng vệ sinh', unit.bathrooms],
+    ['Hướng ban công', DIRECTION_LABELS[unit.direction] || unit.direction],
+    ['Tầng áp dụng', unit.floorRange],
+    ['Khối tháp', unit.block],
+    ['View', unit.view],
+    ['Tình trạng', st.label],
+    ['Giá bán từ', formatFullVND(unit.priceFrom)]
+  ];
+  document.getElementById('specTable').innerHTML = specs.map(([k,v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('');
+
+  /* Tiến độ thanh toán (từ PROJECT.paymentSchedule) */
+  document.getElementById('paymentTimeline').innerHTML = PROJECT.paymentSchedule.map((p, i) => `
+    <div class="gvr-tl-item">
+      <div class="gvr-tl-dot">${i+1}</div>
+      <div class="gvr-tl-head"><div class="gvr-tl-title">${p.phase}</div><div class="gvr-tl-percent">${p.percent}%</div></div>
+      <div class="gvr-tl-desc">${p.milestone}</div>
+    </div>`).join('');
+
+  /* Tiện ích xung quanh */
+  document.getElementById('extAmenities').innerHTML = PROJECT.externalAmenities.map(a => `<li>${a.name} <span class="d">${a.distance}</span></li>`).join('');
+
+  /* Form select loại căn */
+  document.getElementById('formUnitSelect').innerHTML = UNIT_TYPES.map(u => `<option value="${u.slug}" ${u.slug===unit.slug?'selected':''}>${u.name} — ${formatVND(u.priceFrom)}</option>`).join('');
+
+  /* Loại căn tương tự */
+  const related = getRelatedUnits(unit, 3);
+  document.getElementById('relatedUnits').innerHTML = related.map(u => {
+    const rst = STATUS_LABELS[u.status];
+    return `
+    <div class="col-lg-4 col-md-6">
+      <a href="loai-can-chi-tiet.html?loai=${u.slug}" class="gvr-unit-card gvr-card">
+        <div class="gvr-unit-thumb">
+          <img src="${u.gallery[0]}" alt="${u.name}" loading="lazy">
+          <span class="gvr-unit-ribbon ${rst.cls}">${rst.label}</span>
+          <span class="gvr-unit-tag">${TYPE_LABELS[u.typeTag]}</span>
+        </div>
+        <div class="gvr-unit-body">
+          <div class="gvr-unit-cat">${u.block} · ${u.view}</div>
+          <div class="gvr-unit-name">${u.name}</div>
+          <div class="gvr-unit-meta"><span>🛏 ${u.bedrooms} PN</span><span>📐 ${u.area}m²</span></div>
+          <div class="gvr-unit-price-row"><div class="gvr-unit-price">${formatVND(u.priceFrom)} <span>từ</span></div><div class="gvr-unit-more">Chi tiết →</div></div>
+        </div>
+      </a>
+    </div>`;
+  }).join('');
+
+  /* ══════════ CÔNG CỤ TÍNH VAY (mặc định = giá căn hộ đang xem) ══════════ */
+  const calcPrice = document.getElementById('calcPrice');
+  const calcLoanPercent = document.getElementById('calcLoanPercent');
+  const calcRate = document.getElementById('calcRate');
+  const calcYears = document.getElementById('calcYears');
+  const calcResult = document.getElementById('calcResult');
+  calcPrice.value = (unit.priceFrom / 1e9).toFixed(2);
+
+  function onCalcInput() {
+    const priceVND = (+calcPrice.value || 0) * 1e9;
+    const loanPercent = +calcLoanPercent.value;
+    const rate = +calcRate.value;
+    const years = +calcYears.value;
+    const loanAmount = priceVND * (loanPercent / 100);
+    const monthly = calcMonthlyPayment(loanAmount, rate, years);
+    document.getElementById('calcPriceLabel').textContent = (priceVND/1e9).toFixed(2) + ' tỷ';
+    document.getElementById('calcLoanPercentLabel').textContent = loanPercent + '%';
+    document.getElementById('calcRateLabel').textContent = rate.toFixed(1) + '%/năm';
+    document.getElementById('calcYearsLabel').textContent = years + ' năm';
+    calcResult.textContent = formatFullVND(monthly) + '/tháng';
+  }
+  [calcPrice, calcLoanPercent, calcRate, calcYears].forEach(el => el.addEventListener('input', onCalcInput, { passive: true }));
+  onCalcInput();
+</script>
+</body>
+</html>

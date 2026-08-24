@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rosette Bakery &amp; Cafe — Bánh Ngọt Thủ Công &amp; Cà Phê Specialty</title>
+<meta name="description" content="Rosette Bakery & Cafe — tiệm bánh ngọt thủ công kết hợp cà phê specialty, không gian hồng pastel ấm cúng, lý tưởng cho hẹn hò, chụp ảnh và tụ tập bạn bè. Nhận đặt bánh sinh nhật, tiệc nhỏ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV — Nav-2 Always Solid Light -->
+<nav id="cbnNav">
+  <div class="cbn-container">
+    <div class="cbn-nav-inner">
+      <a class="cbn-logo" href="index.html"><span class="dot">🌸</span><span>Rosette<small>Bakery &amp; Cafe</small></span></a>
+      <div class="cbn-nav-links">
+        <a href="index.html" class="active">Trang chủ</a>
+        <a href="menu.html">Thực đơn</a>
+        <a href="khong-gian.html">Không gian</a>
+        <a href="gioi-thieu.html">Giới thiệu</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="lien-he.html" class="cbn-nav-cta">Đặt bánh ngay</a>
+      <button class="cbn-burger" id="cbnBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="cbn-nav-mobile" id="cbnNavMobile">
+  <a href="index.html" class="active">Trang chủ</a>
+  <a href="menu.html">Thực đơn</a>
+  <a href="khong-gian.html">Không gian</a>
+  <a href="gioi-thieu.html">Giới thiệu</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="lien-he.html" class="cbn-nm-cta">Đặt bánh ngay</a>
+</div>
+
+<!-- CAROUSEL HERO — H9 Product Showcase × 4 slides -->
+<section class="cbn-carousel-hero" id="cbnHero">
+
+  <div class="cbn-carousel-slide s1 active" data-slide="0">
+    <div class="cbn-slide-inner">
+      <div class="cbn-slide-text">
+        <span class="cbn-slide-tag">Bánh ngọt thủ công mỗi ngày</span>
+        <h1 class="cbn-slide-title">Ngọt ngào <em>từ từng lớp bánh</em></h1>
+        <p class="cbn-slide-sub">Rosette là tiệm bánh &amp; cà phê nhỏ xinh, nơi mỗi chiếc bánh kem đều được nặn tay tỉ mỉ như một bông hoa — ngọt vừa đủ, đẹp vừa mắt.</p>
+        <div class="cbn-slide-cta">
+          <a href="menu.html" class="cbn-btn-accent">Xem thực đơn</a>
+          <a href="lien-he.html" class="cbn-btn-ghost">Đặt bánh sinh nhật</a>
+        </div>
+      </div>
+      <div class="cbn-slide-showcase">
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=500&q=80&auto=format&fit=crop" alt="Bánh kem hoa hồng bơ trang trí tinh tế" loading="lazy"></div>
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&q=80&auto=format&fit=crop" alt="Hộp macaron Pháp nhiều màu pastel" loading="lazy"></div>
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=500&q=80&auto=format&fit=crop" alt="Croissant bơ Pháp mới nướng" loading="lazy"></div>
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=500&q=80&auto=format&fit=crop" alt="Cupcake trang trí kem bơ màu pastel" loading="lazy"></div>
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1587668178277-295251f900ce?w=500&q=80&auto=format&fit=crop" alt="Lát bánh kem dâu tươi" loading="lazy"></div>
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?w=500&q=80&auto=format&fit=crop" alt="Latte art hình trái tim" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cbn-carousel-slide s2" data-slide="1">
+    <div class="cbn-slide-inner">
+      <div class="cbn-slide-text">
+        <span class="cbn-slide-tag">Cà phê specialty</span>
+        <h2 class="cbn-slide-title">Một tách cà phê, <em>một khoảnh khắc dịu êm</em></h2>
+        <p class="cbn-slide-sub">Hạt cà phê specialty rang mới mỗi tuần, kết hợp cùng những công thức pha chế nhẹ nhàng như latte lavender, cappuccino hoa hồng.</p>
+        <div class="cbn-slide-cta">
+          <a href="menu.html" class="cbn-btn-accent">Khám phá đồ uống</a>
+          <a href="lien-he.html" class="cbn-btn-ghost">Đặt chỗ trước</a>
+        </div>
+      </div>
+      <div class="cbn-slide-showcase">
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?w=500&q=80&auto=format&fit=crop" alt="Ly cà phê cappuccino với foam mịn" loading="lazy"></div>
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?w=500&q=80&auto=format&fit=crop" alt="Cà phê nhìn từ trên xuống trên bàn gỗ" loading="lazy"></div>
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=500&q=80&auto=format&fit=crop" alt="Ly cà phê đá bên cửa sổ" loading="lazy"></div>
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1541599468348-e96984315921?w=500&q=80&auto=format&fit=crop" alt="Quầy bày bánh ngọt tại tiệm" loading="lazy"></div>
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1517705008128-361805f42e07?w=500&q=80&auto=format&fit=crop" alt="Bánh ngọt bày trên khay gỗ" loading="lazy"></div>
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=500&q=80&auto=format&fit=crop" alt="Pha chế cà phê thủ công" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cbn-carousel-slide s3" data-slide="2">
+    <div class="cbn-slide-inner">
+      <div class="cbn-slide-text">
+        <span class="cbn-slide-tag">Không gian check-in</span>
+        <h2 class="cbn-slide-title">Góc nhỏ xinh <em>cho những tấm hình đẹp</em></h2>
+        <p class="cbn-slide-sub">Tông hồng pastel ấm áp, góc tường hoa và ánh sáng tự nhiên — mỗi góc trong Rosette đều sẵn sàng cho một bức ảnh đẹp.</p>
+        <div class="cbn-slide-cta">
+          <a href="khong-gian.html" class="cbn-btn-accent">Xem không gian</a>
+          <a href="lien-he.html" class="cbn-btn-ghost">Đặt bàn nhóm</a>
+        </div>
+      </div>
+      <div class="cbn-slide-showcase">
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=500&q=80&auto=format&fit=crop" alt="Không gian tiệm cà phê ấm cúng" loading="lazy"></div>
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?w=500&q=80&auto=format&fit=crop" alt="Góc ngồi bên cửa sổ nhiều ánh sáng" loading="lazy"></div>
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?w=500&q=80&auto=format&fit=crop" alt="Quầy bánh trưng bày tại quán" loading="lazy"></div>
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1524351199678-941a58a3df50?w=500&q=80&auto=format&fit=crop" alt="Kệ trưng bày bánh ngọt nhiều màu" loading="lazy"></div>
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=500&q=80&auto=format&fit=crop" alt="Bàn bánh ngọt trang trí hoa" loading="lazy"></div>
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=500&q=80&auto=format&fit=crop" alt="Góc chụp ảnh với bánh và hoa" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cbn-carousel-slide s4" data-slide="3">
+    <div class="cbn-slide-inner">
+      <div class="cbn-slide-text">
+        <span class="cbn-slide-tag">Đặt bánh sự kiện</span>
+        <h2 class="cbn-slide-title">Bánh sinh nhật, <em>tiệc nhỏ, kỷ niệm lớn</em></h2>
+        <p class="cbn-slide-sub">Từ bánh kem thiết kế riêng đến set tiệc trà cho nhóm bạn — Rosette đồng hành cùng những dịp đặc biệt của bạn.</p>
+        <div class="cbn-slide-cta">
+          <a href="lien-he.html" class="cbn-btn-accent">Đặt bánh ngay</a>
+          <a href="gioi-thieu.html" class="cbn-btn-ghost">Về Rosette</a>
+        </div>
+      </div>
+      <div class="cbn-slide-showcase">
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?w=500&q=80&auto=format&fit=crop" alt="Bánh kem sinh nhật trang trí trái cây" loading="lazy"></div>
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?w=500&q=80&auto=format&fit=crop" alt="Khay bánh donut và pastry nhiều màu" loading="lazy"></div>
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1428515613728-6b4607e44363?w=500&q=80&auto=format&fit=crop" alt="Bánh mì và bánh ngọt bày bàn tiệc" loading="lazy"></div>
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&q=80&auto=format&fit=crop" alt="Bàn tiệc trà nhỏ ấm cúng" loading="lazy"></div>
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=500&q=80&auto=format&fit=crop" alt="Trang trí bánh kem với hoa tươi" loading="lazy"></div>
+        <div class="cbn-showcase-img"><img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=500&q=80&auto=format&fit=crop" alt="Cupcake bày theo tầng cho tiệc" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cbn-carousel-nav">
+    <button class="cbn-carousel-arrow" id="cbnPrev" aria-label="Slide trước">‹</button>
+    <div class="cbn-carousel-dots" id="cbnDots">
+      <button class="active" data-goto="0" aria-label="Slide 1"></button>
+      <button data-goto="1" aria-label="Slide 2"></button>
+      <button data-goto="2" aria-label="Slide 3"></button>
+      <button data-goto="3" aria-label="Slide 4"></button>
+    </div>
+    <button class="cbn-carousel-arrow" id="cbnNext" aria-label="Slide sau">›</button>
+  </div>
+</section>
+
+<!-- INTRO — FEATURE ROW -->
+<section class="cbn-sec-pad" style="background:var(--bg);">
+  <div class="cbn-container">
+    <div class="text-center cbn-reveal mb-5">
+      <div class="cbn-eyebrow">Vì sao chọn Rosette</div>
+      <h2 class="cbn-sec-title">Ba điều làm nên <em>một Rosette dễ thương</em></h2>
+      <p class="cbn-sec-sub mx-auto">Không chỉ là bánh ngon — đó còn là trải nghiệm nhỏ xinh mà chúng mình muốn dành tặng mỗi khách ghé qua.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="cbn-feature cbn-reveal cbn-reveal-d1">
+          <div class="cbn-feature-icon">🧁</div>
+          <div class="cbn-feature-title">Bánh làm mới mỗi ngày</div>
+          <div class="cbn-feature-desc">Không bảo quản qua đêm — mỗi mẻ bánh đều được nướng và trang trí ngay trong ngày để đảm bảo độ tươi ngon.</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="cbn-feature cbn-reveal cbn-reveal-d2">
+          <div class="cbn-feature-icon">☕</div>
+          <div class="cbn-feature-title">Cà phê specialty tuyển chọn</div>
+          <div class="cbn-feature-desc">Hạt cà phê từ Cầu Đất, Đà Lạt, rang mỗi tuần với hồ sơ hương vị được barista trưởng kiểm định kỹ.</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="cbn-feature cbn-reveal cbn-reveal-d3">
+          <div class="cbn-feature-icon">📷</div>
+          <div class="cbn-feature-title">Không gian đẹp để lưu giữ</div>
+          <div class="cbn-feature-desc">Tông hồng pastel ấm áp, góc tường hoa, ánh sáng tự nhiên — lý tưởng cho hẹn hò và tụ tập bạn bè.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BÁNH & ĐỒ UỐNG NỔI BẬT -->
+<section class="cbn-sec-pad" style="background:var(--warm);">
+  <div class="cbn-container">
+    <div class="text-center cbn-reveal mb-5">
+      <div class="cbn-eyebrow">Món được yêu thích</div>
+      <h2 class="cbn-sec-title">Bánh &amp; đồ uống <em>khách hay gọi nhất</em></h2>
+      <p class="cbn-sec-sub mx-auto">Những món "signature" mà khách quay lại Rosette lần nào cũng gọi thêm.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-6 col-md-3">
+        <div class="cbn-product-card cbn-reveal cbn-reveal-d1">
+          <div class="cbn-pc-img"><img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=440&q=80&auto=format&fit=crop" alt="Bánh kem hoa hồng bơ" loading="lazy"></div>
+          <div class="cbn-pc-body">
+            <span class="cbn-pc-tag">Best-seller</span>
+            <div class="cbn-pc-name">Bánh Kem Hoa Hồng Bơ</div>
+            <div class="cbn-pc-desc">Cốt bông lan mềm, kem bơ nặn hoa hồng thủ công, vị ngọt thanh</div>
+            <div class="cbn-pc-price">320.000đ</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="cbn-product-card cbn-reveal cbn-reveal-d2">
+          <div class="cbn-pc-img"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=440&q=80&auto=format&fit=crop" alt="Macaron Pháp" loading="lazy"></div>
+          <div class="cbn-pc-body">
+            <span class="cbn-pc-tag">Mới</span>
+            <div class="cbn-pc-name">Macaron Pháp (hộp 6)</div>
+            <div class="cbn-pc-desc">Vỏ giòn nhẹ, nhân kem bơ mềm mịn, 6 vị pastel đổi mỗi tuần</div>
+            <div class="cbn-pc-price">120.000đ</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="cbn-product-card cbn-reveal cbn-reveal-d3">
+          <div class="cbn-pc-img"><img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=440&q=80&auto=format&fit=crop" alt="Croissant bơ Pháp" loading="lazy"></div>
+          <div class="cbn-pc-body">
+            <span class="cbn-pc-tag">Signature</span>
+            <div class="cbn-pc-name">Croissant Bơ Pháp</div>
+            <div class="cbn-pc-desc">Bơ Isigny AOP, ủ 3 lớp, vỏ giòn tan, ruột mềm thơm bơ</div>
+            <div class="cbn-pc-price">42.000đ</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="cbn-product-card cbn-reveal cbn-reveal-d3" style="transition-delay:.32s">
+          <div class="cbn-pc-img"><img src="https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?w=440&q=80&auto=format&fit=crop" alt="Cappuccino hoa hồng" loading="lazy"></div>
+          <div class="cbn-pc-body">
+            <span class="cbn-pc-tag">Đồ uống</span>
+            <div class="cbn-pc-name">Cappuccino Hoa Hồng</div>
+            <div class="cbn-pc-desc">Espresso đậm, sữa hấp foam mịn, syrup hoa hồng nhẹ nhàng</div>
+            <div class="cbn-pc-price">55.000đ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5 cbn-reveal">
+      <a href="menu.html" class="cbn-btn-ghost">Xem toàn bộ thực đơn →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CÂU CHUYỆN THƯƠNG HIỆU — dark preview -->
+<section class="cbn-sec-pad cbn-sec-dark cbn-story-sec">
+  <div class="cbn-container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5 cbn-reveal">
+        <div class="cbn-eyebrow">Câu chuyện Rosette</div>
+        <h2 class="cbn-sec-title">Từ bếp bánh nhỏ <em>đến tiệm bánh trong mơ</em></h2>
+        <p class="cbn-story-text mb-4">Rosette bắt đầu từ một bếp bánh gia đình nhỏ, nơi mỗi chiếc bánh kem đều được nặn tay như một bông hoa hồng. Sau 5 năm, Rosette trở thành điểm hẹn quen thuộc của những ai yêu bánh ngọt và cà phê nhẹ nhàng.</p>
+        <div class="row g-4 mt-2">
+          <div class="col-4 text-center">
+            <div class="cbn-stat-num">5</div>
+            <div class="cbn-stat-label">Năm hoạt động</div>
+          </div>
+          <div class="col-4 text-center">
+            <div class="cbn-stat-num">300+</div>
+            <div class="cbn-stat-label">Bánh sinh nhật/tháng</div>
+          </div>
+          <div class="col-4 text-center">
+            <div class="cbn-stat-num">4.9★</div>
+            <div class="cbn-stat-label">Đánh giá khách hàng</div>
+          </div>
+        </div>
+        <a href="gioi-thieu.html" class="cbn-btn-white mt-4 d-inline-block">Đọc câu chuyện đầy đủ →</a>
+      </div>
+      <div class="col-lg-7 cbn-reveal cbn-reveal-d1">
+        <div class="row g-3">
+          <div class="col-6">
+            <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?w=600&q=80&auto=format&fit=crop" alt="Bếp trưởng bánh đang trang trí bánh kem" loading="lazy" style="border-radius:20px;width:100%;aspect-ratio:3/4;object-fit:cover;">
+          </div>
+          <div class="col-6 d-flex flex-column gap-3">
+            <img src="https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?w=600&q=80&auto=format&fit=crop" alt="Nguyên liệu làm bánh tươi" loading="lazy" style="border-radius:20px;width:100%;flex:1;object-fit:cover;min-height:0;">
+            <img src="https://images.unsplash.com/photo-1524351199678-941a58a3df50?w=600&q=80&auto=format&fit=crop" alt="Kệ trưng bày bánh ngọt" loading="lazy" style="border-radius:20px;width:100%;flex:1;object-fit:cover;min-height:0;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KHÔNG GIAN QUÁN — preview -->
+<section class="cbn-sec-pad" style="background:var(--bg);">
+  <div class="cbn-container">
+    <div class="text-center cbn-reveal mb-5">
+      <div class="cbn-eyebrow">Không gian quán</div>
+      <h2 class="cbn-sec-title">Ba góc nhỏ, <em>một cảm giác ấm áp</em></h2>
+      <p class="cbn-sec-sub mx-auto">Dù bạn muốn ngồi làm việc yên tĩnh, hẹn hò hay chụp ảnh cùng hội bạn — Rosette đều có góc dành riêng cho bạn.</p>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="cbn-space-card cbn-reveal cbn-reveal-d1">
+          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=700&q=80&auto=format&fit=crop" alt="Quầy bánh Rosette" loading="lazy">
+          <div class="cbn-sc-caption">
+            <div class="cbn-sc-name">Quầy Bày Bánh</div>
+            <div class="cbn-sc-sub">Tủ kính mát · Bánh mới mỗi ngày</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="cbn-space-card cbn-reveal cbn-reveal-d2">
+          <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?w=700&q=80&auto=format&fit=crop" alt="Góc check-in tường hoa" loading="lazy">
+          <div class="cbn-sc-caption">
+            <div class="cbn-sc-name">Góc Tường Hoa</div>
+            <div class="cbn-sc-sub">Check-in · Ánh sáng tự nhiên</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="cbn-space-card cbn-reveal cbn-reveal-d3">
+          <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=700&q=80&auto=format&fit=crop" alt="Ban công nhỏ ngoài trời" loading="lazy">
+          <div class="cbn-sc-caption">
+            <div class="cbn-sc-name">Ban Công Nhỏ</div>
+            <div class="cbn-sc-sub">Ngoài trời · Tối đa 6 người</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5 cbn-reveal">
+      <a href="khong-gian.html" class="cbn-btn-accent">Khám phá không gian →</a>
+    </div>
+  </div>
+</section>
+
+<!-- MENU NHANH — Tabbed -->
+<section class="cbn-sec-pad" style="background:var(--warm);">
+  <div class="cbn-container">
+    <div class="row g-5 align-items-start">
+      <div class="col-lg-4 cbn-reveal">
+        <div class="cbn-eyebrow">Thực đơn</div>
+        <h2 class="cbn-sec-title">Menu <em>hôm nay</em></h2>
+        <p class="cbn-sec-sub mb-4">Danh sách bánh và đồ uống được yêu thích nhất — cập nhật theo mùa để luôn có món mới cho bạn khám phá.</p>
+        <a href="menu.html" class="cbn-btn-accent">Xem menu đầy đủ</a>
+      </div>
+      <div class="col-lg-8 cbn-reveal cbn-reveal-d1">
+        <div class="cbn-menu-tabs" id="cbnMenuTabs">
+          <button class="cbn-mt-btn active" data-tab="banh">Bánh kem &amp; Tart</button>
+          <button class="cbn-mt-btn" data-tab="banhnho">Bánh nhỏ &amp; Croissant</button>
+          <button class="cbn-mt-btn" data-tab="douong">Cà phê &amp; Trà</button>
+        </div>
+        <div class="cbn-menu-tab-panel active" id="tab-banh">
+          <div class="cbn-menu-list-item"><div><div class="cbn-mli-name">Bánh Kem Hoa Hồng Bơ</div><div class="cbn-mli-desc">Cốt bông lan, kem bơ nặn hoa hồng thủ công</div></div><div class="cbn-mli-price">320.000đ</div></div>
+          <div class="cbn-menu-list-item"><div><div class="cbn-mli-name">Bánh Kem Dâu Tươi</div><div class="cbn-mli-desc">Kem tươi, dâu tây Đà Lạt, cốt bông lan mềm</div></div><div class="cbn-mli-price">285.000đ</div></div>
+          <div class="cbn-menu-list-item"><div><div class="cbn-mli-name">Red Velvet Cream Cheese</div><div class="cbn-mli-desc">Cốt red velvet, kem phô mai tươi mịn</div></div><div class="cbn-mli-price">260.000đ</div></div>
+          <div class="cbn-menu-list-item"><div><div class="cbn-mli-name">Tart Trứng Bồ Đào Nha</div><div class="cbn-mli-desc">Vỏ giòn nhiều lớp, nhân trứng nướng caramen mặt</div></div><div class="cbn-mli-price">35.000đ</div></div>
+          <div class="cbn-menu-list-item"><div><div class="cbn-mli-name">Tart Chanh Dây</div><div class="cbn-mli-desc">Lemon curd chua thanh, meringue phủ mặt</div></div><div class="cbn-mli-price">42.000đ</div></div>
+        </div>
+        <div class="cbn-menu-tab-panel" id="tab-banhnho">
+          <div class="cbn-menu-list-item"><div><div class="cbn-mli-name">Croissant Bơ Pháp</div><div class="cbn-mli-desc">Bơ Isigny AOP, ủ 3 lớp, vỏ giòn tan</div></div><div class="cbn-mli-price">42.000đ</div></div>
+          <div class="cbn-menu-list-item"><div><div class="cbn-mli-name">Pain Au Chocolat</div><div class="cbn-mli-desc">Vỏ bơ giòn, 2 thanh socola đen bên trong</div></div><div class="cbn-mli-price">45.000đ</div></div>
+          <div class="cbn-menu-list-item"><div><div class="cbn-mli-name">Cinnamon Roll Phô Mai Kem</div><div class="cbn-mli-desc">Cuộn quế nướng, phủ kem phô mai béo nhẹ</div></div><div class="cbn-mli-price">48.000đ</div></div>
+          <div class="cbn-menu-list-item"><div><div class="cbn-mli-name">Macaron Pháp (hộp 6)</div><div class="cbn-mli-desc">6 vị pastel đổi theo tuần, vỏ giòn nhân mềm</div></div><div class="cbn-mli-price">120.000đ</div></div>
+          <div class="cbn-menu-list-item"><div><div class="cbn-mli-name">Cookie Bơ Chocolate Chip</div><div class="cbn-mli-desc">Giòn rìa, mềm tâm, socola chip đậm đà</div></div><div class="cbn-mli-price">25.000đ</div></div>
+        </div>
+        <div class="cbn-menu-tab-panel" id="tab-douong">
+          <div class="cbn-menu-list-item"><div><div class="cbn-mli-name">Cappuccino Hoa Hồng</div><div class="cbn-mli-desc">Espresso, sữa hấp foam mịn, syrup hoa hồng</div></div><div class="cbn-mli-price">55.000đ</div></div>
+          <div class="cbn-menu-list-item"><div><div class="cbn-mli-name">Latte Lavender</div><div class="cbn-mli-desc">Sữa tươi, syrup oải hương thơm nhẹ</div></div><div class="cbn-mli-price">58.000đ</div></div>
+          <div class="cbn-menu-list-item"><div><div class="cbn-mli-name">Cold Brew Đào</div><div class="cbn-mli-desc">Cà phê ngâm lạnh 20 giờ, syrup đào tự nhiên</div></div><div class="cbn-mli-price">62.000đ</div></div>
+          <div class="cbn-menu-list-item"><div><div class="cbn-mli-name">Trà Đào Cam Sả</div><div class="cbn-mli-desc">Hồng trà, đào ngâm, cam tươi, sả thơm</div></div><div class="cbn-mli-price">55.000đ</div></div>
+          <div class="cbn-menu-list-item"><div><div class="cbn-mli-name">Matcha Latte Đá Xay</div><div class="cbn-mli-desc">Matcha Uji, sữa tươi, đá xay mịn</div></div><div class="cbn-mli-price">62.000đ</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ — BẮT BUỘC -->
+<section class="cbn-sec-pad" style="background:var(--bg);">
+  <div class="cbn-container">
+    <div class="text-center cbn-reveal mb-5">
+      <div class="cbn-eyebrow">Câu hỏi thường gặp</div>
+      <h2 class="cbn-sec-title">Những điều bạn <em>hay thắc mắc</em></h2>
+      <p class="cbn-sec-sub mx-auto">Chưa tìm thấy câu trả lời? Liên hệ trực tiếp qua Zalo hoặc hotline, Rosette luôn sẵn sàng giải đáp.</p>
+    </div>
+    <div class="cbn-faq cbn-reveal">
+      <details class="cbn-faq-item" open>
+        <summary>Đặt bánh sinh nhật cần đặt trước bao lâu?</summary>
+        <div class="cbn-faq-answer">Với bánh kem thiết kế theo yêu cầu, quán cần đặt trước tối thiểu 48 giờ để chuẩn bị nguyên liệu và trang trí. Với các mẫu bánh có sẵn, bạn có thể đặt trước 24 giờ hoặc ghé mua trực tiếp tại quầy nếu còn hàng.</div>
+      </details>
+      <details class="cbn-faq-item">
+        <summary>Quán có giao bánh tận nơi không?</summary>
+        <div class="cbn-faq-answer">Có. Rosette giao bánh trong bán kính 8km nội thành, phí giao dao động 20.000đ – 40.000đ tùy khoảng cách. Đơn hàng từ 500.000đ trở lên được miễn phí giao hàng.</div>
+      </details>
+      <details class="cbn-faq-item">
+        <summary>Bánh kem giữ được bao lâu và bảo quản thế nào?</summary>
+        <div class="cbn-faq-answer">Bánh kem tươi nên dùng trong vòng 24–48 giờ để đảm bảo hương vị tốt nhất. Bảo quản trong ngăn mát tủ lạnh 2–5°C, tránh để bánh ở nhiệt độ phòng quá 2 giờ, đặc biệt vào mùa nóng.</div>
+      </details>
+      <details class="cbn-faq-item">
+        <summary>Rosette có nhận đặt tiệc trà cho nhóm hoặc sự kiện nhỏ không?</summary>
+        <div class="cbn-faq-answer">Có. Quán nhận đặt bàn cho nhóm từ 6 người trở lên và tổ chức tiệc trà sinh nhật quy mô nhỏ. Vui lòng liên hệ trước ít nhất 3 ngày để đội ngũ chuẩn bị bàn, bánh và trang trí phù hợp.</div>
+      </details>
+      <details class="cbn-faq-item">
+        <summary>Giá bánh kem thiết kế theo yêu cầu được tính như thế nào?</summary>
+        <div class="cbn-faq-answer">Giá phụ thuộc vào kích thước, loại nhân bánh và độ phức tạp của phần trang trí, thường dao động từ 350.000đ đến 1.200.000đ cho bánh 1–2kg. Nhân viên sẽ tư vấn và báo giá cụ thể sau khi trao đổi ý tưởng cùng bạn.</div>
+      </details>
+      <details class="cbn-faq-item">
+        <summary>Bánh có nguyên liệu gây dị ứng không? Có bánh dành cho người ăn kiêng không?</summary>
+        <div class="cbn-faq-answer">Đa số bánh tại Rosette có chứa gluten, trứng, sữa và một số loại có thể chứa hạt (hạnh nhân, óc chó). Quán có 2–3 loại bánh ít đường phù hợp người ăn kiêng — vui lòng báo trước với nhân viên nếu bạn có dị ứng thực phẩm đặc biệt.</div>
+      </details>
+      <details class="cbn-faq-item">
+        <summary>Có thể đặt bánh online và thanh toán trước không?</summary>
+        <div class="cbn-faq-answer">Bạn có thể đặt qua Zalo hoặc hotline của quán. Với bánh thiết kế riêng, Rosette thu trước 50% giá trị đơn hàng qua chuyển khoản, phần còn lại thanh toán khi nhận bánh.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ĐÁNH GIÁ -->
+<section class="cbn-sec-pad" style="background:var(--warm);">
+  <div class="cbn-container">
+    <div class="text-center cbn-reveal mb-5">
+      <div class="cbn-eyebrow">Đánh giá từ khách</div>
+      <h2 class="cbn-sec-title">Họ nói gì về <em>Rosette</em></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="cbn-rv cbn-reveal cbn-reveal-d1">
+          <div class="cbn-rv-stars">★★★★★</div>
+          <div class="cbn-rv-text">"Bánh kem hoa hồng bơ đẹp như tiệm bánh Hàn Quốc, vị ngọt vừa phải không ngán. Không gian màu hồng pastel chụp ảnh cực xinh, tọa độ sống ảo mới của mình!"</div>
+          <div class="cbn-rv-foot">
+            <img class="cbn-rv-av" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&q=80&auto=format&fit=crop" alt="Khách hàng Đặng Thảo Vy" loading="lazy">
+            <div><div class="cbn-rv-name">Đặng Thảo Vy</div><div class="cbn-rv-role">Food blogger · TP.HCM</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="cbn-rv cbn-reveal cbn-reveal-d2">
+          <div class="cbn-rv-stars">★★★★★</div>
+          <div class="cbn-rv-text">"Đặt bánh sinh nhật cho con gái, nhân viên tư vấn nhiệt tình, bánh giao đúng giờ và đẹp hơn cả hình mẫu mình gửi. Chắc chắn sẽ quay lại đặt lần sau!"</div>
+          <div class="cbn-rv-foot">
+            <img class="cbn-rv-av" src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=80&q=80&auto=format&fit=crop" alt="Khách hàng Ngô Bảo Trâm" loading="lazy">
+            <div><div class="cbn-rv-name">Ngô Bảo Trâm</div><div class="cbn-rv-role">Khách hàng thân thiết</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="cbn-rv cbn-reveal cbn-reveal-d3">
+          <div class="cbn-rv-stars">★★★★★</div>
+          <div class="cbn-rv-text">"Croissant ở đây giòn xốp đúng chuẩn Pháp, latte lavender thơm nhẹ nhàng dễ chịu. Chỗ ngồi làm việc buổi sáng rất yên tĩnh và dễ chịu."</div>
+          <div class="cbn-rv-foot">
+            <img class="cbn-rv-av" src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=80&q=80&auto=format&fit=crop" alt="Khách hàng Trịnh Anh Duy" loading="lazy">
+            <div><div class="cbn-rv-name">Trịnh Anh Duy</div><div class="cbn-rv-role">Content creator · Hà Nội</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA — ĐẶT BÁNH -->
+<section class="cbn-cta-sec">
+  <div class="cbn-container">
+    <div class="cbn-eyebrow" style="color:rgba(255,255,255,.85);">Đặt bánh &amp; đặt chỗ</div>
+    <h2 class="cbn-cta-title">Sẵn sàng cho <em>chiếc bánh của bạn</em>?</h2>
+    <p class="cbn-cta-sub">Đặt bánh sinh nhật, tiệc nhỏ hoặc giữ chỗ trước cho nhóm bạn — Rosette xác nhận trong vòng 15 phút.</p>
+    <a href="lien-he.html" class="cbn-btn-white">Đặt ngay hôm nay →</a>
+  </div>
+</section>
+
+<!-- ĐẶT CHỖ / ĐẶT BÁNH NHANH -->
+<section class="cbn-sec-pad" style="background:var(--bg);">
+  <div class="cbn-container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5 cbn-reveal">
+        <div class="cbn-eyebrow">Đặt chỗ trước</div>
+        <h2 class="cbn-sec-title">Giữ bàn cho <em>buổi hẹn ngọt ngào</em></h2>
+        <p class="cbn-sec-sub">Đặt trước để đảm bảo có chỗ — đặc biệt vào cuối tuần. Chúng mình xác nhận qua điện thoại hoặc Zalo trong vòng 15 phút.</p>
+        <ul class="mt-4" style="list-style:none;padding:0;display:flex;flex-direction:column;gap:10px;">
+          <li style="font-size:13.5px;color:var(--text-2);display:flex;gap:10px;align-items:center;"><span style="color:var(--accent);font-size:16px;">✓</span>Phản hồi xác nhận nhanh</li>
+          <li style="font-size:13.5px;color:var(--text-2);display:flex;gap:10px;align-items:center;"><span style="color:var(--accent);font-size:16px;">✓</span>Giữ bàn 20 phút sau giờ đặt</li>
+          <li style="font-size:13.5px;color:var(--text-2);display:flex;gap:10px;align-items:center;"><span style="color:var(--accent);font-size:16px;">✓</span>Hỗ trợ tư vấn bánh sinh nhật miễn phí</li>
+        </ul>
+      </div>
+      <div class="col-lg-7 cbn-reveal cbn-reveal-d1">
+        <div class="cbn-inline-form">
+          <h3>Điền thông tin đặt chỗ / đặt bánh</h3>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="cbn-form-label">Họ và tên</label>
+              <input type="text" class="cbn-form-control" placeholder="[Nguyễn Văn A]">
+            </div>
+            <div class="col-md-6">
+              <label class="cbn-form-label">Số điện thoại</label>
+              <input type="tel" class="cbn-form-control" placeholder="[0901 234 567]">
+            </div>
+            <div class="col-md-6">
+              <label class="cbn-form-label">Ngày đến</label>
+              <input type="date" class="cbn-form-control">
+            </div>
+            <div class="col-md-6">
+              <label class="cbn-form-label">Nhu cầu</label>
+              <select class="cbn-form-select">
+                <option value="">-- Chọn nhu cầu --</option>
+                <option>Đặt chỗ ngồi</option>
+                <option>Đặt bánh sinh nhật</option>
+                <option>Đặt tiệc trà nhóm</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="cbn-form-label">Ghi chú thêm</label>
+              <textarea class="cbn-form-control" rows="3" placeholder="[Số người, loại bánh mong muốn, ngân sách...]"></textarea>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="cbn-btn-accent w-100" style="padding:14px;font-size:14px;">Gửi yêu cầu</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="cbn-footer">
+  <div class="cbn-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 cbn-reveal">
+        <div class="cbn-ft-logo">🌸 Rosette <span style="color:var(--accent);">Bakery &amp; Cafe</span></div>
+        <p class="cbn-ft-desc">Tiệm bánh ngọt thủ công &amp; cà phê specialty với không gian hồng pastel ấm cúng — nơi mỗi khoảnh khắc đều đáng được lưu giữ.</p>
+        <div class="cbn-ft-socials">
+          <a href="#" class="cbn-ft-soc fb" aria-label="Facebook" target="_blank" rel="noopener noreferrer">f</a>
+          <a href="#" class="cbn-ft-soc ig" aria-label="Instagram" target="_blank" rel="noopener noreferrer">ig</a>
+          <a href="https://zalo.me/[SỐ_ZALO]" class="cbn-ft-soc zl" aria-label="Zalo" target="_blank" rel="noopener noreferrer">zl</a>
+          <a href="#" class="cbn-ft-soc tt" aria-label="TikTok" target="_blank" rel="noopener noreferrer">tt</a>
+        </div>
+      </div>
+      <div class="col cbn-reveal cbn-reveal-d1">
+        <div class="cbn-ft-col-title">Trang</div>
+        <div class="cbn-ft-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="menu.html">Thực đơn</a>
+          <a href="khong-gian.html">Không gian</a>
+          <a href="gioi-thieu.html">Giới thiệu</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div class="col cbn-reveal cbn-reveal-d2">
+        <div class="cbn-ft-col-title">Dịch vụ</div>
+        <div class="cbn-ft-links">
+          <a href="lien-he.html">Đặt bánh sinh nhật</a>
+          <a href="lien-he.html">Đặt chỗ trước</a>
+          <a href="lien-he.html">Đặt tiệc trà nhóm</a>
+          <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+          <a href="dieu-khoan.html">Điều khoản dịch vụ</a>
+        </div>
+      </div>
+      <div class="col cbn-reveal cbn-reveal-d3">
+        <div class="cbn-ft-col-title">Liên hệ</div>
+        <div class="cbn-ft-links">
+          <a href="tel:[0901234567]">📱 [0901 234 567]</a>
+          <a href="#">📍 [Số nhà, Đường, Quận, TP]</a>
+          <a href="mailto:[email@domain.com]">✉️ [email@domain.com]</a>
+          <a href="#">🕐 7:30 – 21:30 hàng ngày</a>
+        </div>
+      </div>
+    </div>
+    <div class="cbn-reveal pb-5">
+      <iframe class="cbn-ft-map" src="https://maps.google.com/maps?q=10.7769,106.7009&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ Rosette Bakery & Cafe"></iframe>
+    </div>
+  </div>
+  <div class="cbn-ft-bottom">
+    <div class="cbn-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="cbn-ft-copy">© [NĂM] Rosette Bakery &amp; Cafe · Made in Vietnam 🇻🇳</div>
+        <div class="cbn-ft-copy"><a href="#">Thiết kế bởi webdrop.store</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ZALO FLOAT -->
+<div class="cbn-zf">
+  <div class="cbn-zf-tip">Liên hệ Zalo</div>
+  <a href="https://zalo.me/[SỐ_ZALO]" class="cbn-zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Reveal on scroll
+const cbnRo = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); cbnRo.unobserve(e.target); } });
+}, { threshold: .08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('.cbn-reveal').forEach(el => cbnRo.observe(el));
+
+// Mobile nav
+const cbnBurger = document.getElementById('cbnBurger');
+const cbnMobileNav = document.getElementById('cbnNavMobile');
+if (cbnBurger && cbnMobileNav) {
+  cbnBurger.addEventListener('click', () => {
+    const open = cbnMobileNav.classList.toggle('open');
+    cbnBurger.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      cbnMobileNav.classList.remove('open');
+      cbnBurger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+}
+
+// Menu quick tabs
+const cbnTabBtns = document.querySelectorAll('#cbnMenuTabs .cbn-mt-btn');
+cbnTabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    cbnTabBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.cbn-menu-tab-panel').forEach(p => p.classList.remove('active'));
+    const panel = document.getElementById('tab-' + btn.dataset.tab);
+    if (panel) panel.classList.add('active');
+  });
+});
+
+// Carousel Hero
+(function () {
+  const slides = document.querySelectorAll('.cbn-carousel-slide');
+  const dots = document.querySelectorAll('#cbnDots button');
+  let idx = 0, timer;
+  function go(n) {
+    slides[idx].classList.remove('active');
+    dots[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    dots[idx].classList.add('active');
+  }
+  function next() { go(idx + 1); }
+  function prev() { go(idx - 1); }
+  function restart() { clearInterval(timer); timer = setInterval(next, 5000); }
+  document.getElementById('cbnNext').addEventListener('click', () => { next(); restart(); });
+  document.getElementById('cbnPrev').addEventListener('click', () => { prev(); restart(); });
+  dots.forEach(d => d.addEventListener('click', () => { go(+d.dataset.goto); restart(); }));
+  restart();
+})();
+</script>
+</body>
+</html>

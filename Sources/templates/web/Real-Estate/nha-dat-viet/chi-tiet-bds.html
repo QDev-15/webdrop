@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Chi tiết bất động sản | Nhà Đất Việt</title>
+<meta name="description" id="pageDesc" content="Chi tiết bất động sản tại Nhà Đất Việt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header class="ndv-fixed-head">
+  <div class="ndv-topbar">
+    <div class="ndv-container">
+      <div class="ndv-topbar-left">
+        <span class="ndv-topbar-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Thứ 2 - Chủ nhật: 8:00 - 20:00</span>
+        <span class="ndv-topbar-item ndv-hide-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg> hotro@nhadatviet.vn</span>
+      </div>
+      <div class="ndv-topbar-right">
+        <a href="tel:19006789" class="ndv-topbar-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Hotline: 1900 6789</a>
+        <a href="lien-he.html">Đăng tin ký gửi</a>
+      </div>
+    </div>
+  </div>
+  <nav id="ndvNav">
+    <div class="ndv-container ndv-nav-inner">
+      <a href="index.html" class="ndv-logo">
+        <span class="ndv-logo-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 2 10h3v10h6v-6h2v6h6V10h3z"/></svg></span>
+        Nhà Đất <span>Việt</span>
+      </a>
+      <div class="ndv-nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="bat-dong-san.html" class="active">Bất động sản</a>
+        <a href="du-an.html">Dự án</a>
+        <a href="ve-chung-toi.html">Giới thiệu</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <div class="ndv-nav-cta">
+        <a href="tel:0909888777" class="ndv-nav-phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> 0909 888 777</a>
+        <a href="lien-he.html" class="ndv-btn ndv-btn-primary ndv-btn-sm">Liên hệ ngay</a>
+        <button class="ndv-nav-burger" id="ndvNavBurger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="ndv-nav-mob" id="ndvNavMob">
+    <div class="ndv-container">
+      <a href="index.html">Trang chủ</a>
+      <a href="bat-dong-san.html" class="active">Bất động sản</a>
+      <a href="du-an.html">Dự án</a>
+      <a href="ve-chung-toi.html">Giới thiệu</a>
+      <a href="lien-he.html">Liên hệ</a>
+      <a href="tel:0909888777" class="ndv-btn ndv-btn-primary ndv-btn-block ndv-nav-mob-cta">Gọi ngay: 0909 888 777</a>
+    </div>
+  </div>
+</header>
+
+<main class="ndv-page-body">
+  <div class="ndv-container" style="padding-top:26px">
+    <div class="ndv-breadcrumb" id="breadcrumb"></div>
+    <h1 id="propTitle" style="font-size:clamp(22px,3vw,30px);margin-bottom:8px"></h1>
+    <div class="ndv-prop-addr" style="font-size:14.5px;margin-bottom:22px" id="propAddr">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span></span>
+    </div>
+
+    <!-- 1. Gallery -->
+    <div class="ndv-gallery">
+      <div class="ndv-gallery-main" id="galleryMain">
+        <div style="position:absolute;top:14px;left:14px;z-index:2;display:flex;gap:6px" id="galleryBadges"></div>
+        <img id="galleryMainImg" src="" alt="">
+      </div>
+      <div class="ndv-gallery-thumbs" id="galleryThumbs"></div>
+    </div>
+
+    <!-- 2. Quick-facts bar -->
+    <div class="ndv-quickfacts" id="quickFacts"></div>
+
+    <div class="ndv-detail-grid">
+      <div id="mainCol">
+        <!-- 3. Mô tả chi tiết -->
+        <div class="ndv-detail-block" data-reveal>
+          <h2>Mô tả chi tiết</h2>
+          <p id="propDesc"></p>
+        </div>
+
+        <!-- 4. Đặc điểm nổi bật -->
+        <div class="ndv-detail-block" data-reveal>
+          <h2>Đặc điểm nổi bật</h2>
+          <div class="ndv-feature-chips" id="propFeatures"></div>
+        </div>
+
+        <!-- 5. Bản đồ vị trí + tiện ích xung quanh -->
+        <div class="ndv-detail-block" data-reveal>
+          <h2>Vị trí & tiện ích xung quanh</h2>
+          <div class="ndv-map-embed"><iframe id="mapEmbed" src="" loading="lazy" title="Bản đồ vị trí bất động sản"></iframe></div>
+          <ul class="ndv-amenities" id="amenitiesList"></ul>
+        </div>
+
+        <!-- 6. Công cụ tính vay / trả góp -->
+        <div class="ndv-detail-block" data-reveal id="calcBlock">
+          <h2 id="calcTitle">Công cụ tính vay trả góp</h2>
+          <div id="calcBody"></div>
+        </div>
+
+        <!-- 8. Form đặt lịch xem nhà -->
+        <div class="ndv-detail-block" data-reveal>
+          <h2>Đặt lịch xem nhà</h2>
+          <form id="bookingForm">
+            <div class="ndv-form-row2">
+              <div class="ndv-form-group">
+                <label for="bkName">Họ và tên *</label>
+                <input type="text" id="bkName" required placeholder="Nguyễn Văn A">
+              </div>
+              <div class="ndv-form-group">
+                <label for="bkPhone">Số điện thoại *</label>
+                <input type="tel" id="bkPhone" required placeholder="09xx xxx xxx">
+              </div>
+            </div>
+            <div class="ndv-form-row2">
+              <div class="ndv-form-group">
+                <label for="bkDate">Ngày mong muốn xem nhà</label>
+                <input type="date" id="bkDate">
+              </div>
+              <div class="ndv-form-group">
+                <label for="bkTime">Khung giờ</label>
+                <select id="bkTime">
+                  <option>Sáng (8:00 - 11:00)</option>
+                  <option>Chiều (13:00 - 17:00)</option>
+                  <option>Tối (17:00 - 19:30)</option>
+                </select>
+              </div>
+            </div>
+            <div class="ndv-form-group">
+              <label for="bkNote">Ghi chú</label>
+              <textarea id="bkNote" rows="3" placeholder="Câu hỏi thêm về bất động sản (nếu có)"></textarea>
+            </div>
+            <button type="submit" class="ndv-btn ndv-btn-primary ndv-btn-block">Gửi yêu cầu đặt lịch</button>
+            <p class="ndv-form-note">Chúng tôi sẽ liên hệ xác nhận lịch hẹn trong vòng 30 phút trong giờ làm việc.</p>
+            <div class="ndv-form-success" id="bookingSuccess">Đã gửi yêu cầu thành công! Môi giới phụ trách sẽ liên hệ với bạn sớm nhất.</div>
+          </form>
+        </div>
+      </div>
+
+      <!-- 7. Môi giới phụ trách -->
+      <div class="ndv-sidebar-sticky" data-reveal>
+        <div class="ndv-agent-card" id="agentCard"></div>
+      </div>
+    </div>
+
+    <!-- 9. BĐS tương tự -->
+    <section class="ndv-sec">
+      <div class="ndv-sec-head" data-reveal>
+        <div>
+          <div class="ndv-eyebrow">Có thể bạn quan tâm</div>
+          <h2 class="ndv-title">Bất động sản <em>tương tự</em></h2>
+        </div>
+      </div>
+      <div class="ndv-prop-grid" id="similarGrid"></div>
+    </section>
+  </div>
+</main>
+
+<!-- Lightbox -->
+<div class="ndv-lightbox" id="ndvLightbox">
+  <button class="ndv-lightbox-close" onclick="ndvCloseLightbox()" aria-label="Đóng"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  <img src="" alt="Ảnh phóng to">
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer class="ndv-footer">
+  <div class="ndv-container">
+    <div class="ndv-footer-grid">
+      <div class="ndv-footer-brand">
+        <a href="index.html" class="ndv-logo"><span class="ndv-logo-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 2 10h3v10h6v-6h2v6h6V10h3z"/></svg></span>Nhà Đất <span>Việt</span></a>
+        <p>Sàn giao dịch bất động sản tổng hợp tại TP.HCM — nhà phố, căn hộ, đất nền, biệt thự, shophouse. Tư vấn tận tâm, pháp lý minh bạch, đồng hành cùng khách hàng từ tìm kiếm đến bàn giao.</p>
+        <div class="ndv-footer-social">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="#fff"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Youtube"><svg viewBox="0 0 24 24" fill="#fff"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.42 8.6.42 8.6.42s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#0d2c35"/></svg></a>
+          <a href="https://zalo.me/0909888777" target="_blank" rel="noopener noreferrer" aria-label="Zalo"><svg viewBox="0 0 24 24" fill="#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Khám phá</h4>
+        <ul>
+          <li><a href="bat-dong-san.html?listingType=ban">Nhà đất bán</a></li>
+          <li><a href="bat-dong-san.html?listingType=cho-thue">Nhà đất cho thuê</a></li>
+          <li><a href="du-an.html">Dự án đang phân phối</a></li>
+          <li><a href="ve-chung-toi.html">Về Nhà Đất Việt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Công ty</h4>
+        <ul>
+          <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Liên hệ</h4>
+        <ul class="ndv-footer-contact">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> 88 Nguyễn Huệ, P. Bến Nghé, Quận 1, TP.HCM</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Hotline: 1900 6789 — 0909 888 777</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg> hotro@nhadatviet.vn</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ndv-footer-maps">
+      <iframe src="https://maps.google.com/maps?q=10.7756,106.7019&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ văn phòng Nhà Đất Việt"></iframe>
+    </div>
+    <div class="ndv-footer-bottom">
+      <span>© 2026 Nhà Đất Việt. Đã đăng ký bản quyền.</span>
+      <div style="display:flex;gap:20px">
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/0909888777" target="_blank" rel="noopener noreferrer" class="ndv-zalo-float" aria-label="Chat Zalo">
+  <svg viewBox="0 0 24 24" fill="#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/properties-data.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+(function () {
+  const qp = new URLSearchParams(location.search);
+  const slug = qp.get('slug');
+  const p = PROPERTIES.find(x => x.slug === slug) || PROPERTIES[0];
+
+  document.getElementById('pageTitle').textContent = p.title + ' | Nhà Đất Việt';
+  document.getElementById('pageDesc').setAttribute('content', p.description.slice(0, 155));
+  document.getElementById('breadcrumb').innerHTML = `<a href="index.html">Trang chủ</a> / <a href="bat-dong-san.html">Bất động sản</a> / <span>${p.title}</span>`;
+  document.getElementById('propTitle').textContent = p.title;
+  document.querySelector('#propAddr span').textContent = p.address;
+
+  /* 1. Gallery */
+  document.getElementById('galleryMainImg').src = p.images[0];
+  document.getElementById('galleryMainImg').alt = p.title;
+  document.getElementById('galleryMain').addEventListener('click', () => ndvOpenLightbox(document.getElementById('galleryMainImg').src));
+  document.getElementById('galleryBadges').innerHTML = ndvBadgeHTML(p.badge) + `<span class="ndv-prop-listing-tag" style="position:static">${p.listingType === 'ban' ? 'Đang bán' : 'Cho thuê'}</span>`;
+  const thumbsEl = document.getElementById('galleryThumbs');
+  thumbsEl.innerHTML = p.images.map((img, i) => `<button class="ndv-gallery-thumb${i === 0 ? ' active' : ''}" data-src="${img}"><img src="${img}" alt="${p.title} ảnh ${i + 1}" loading="lazy"></button>`).join('');
+  thumbsEl.addEventListener('click', e => {
+    const btn = e.target.closest('.ndv-gallery-thumb');
+    if (!btn) return;
+    thumbsEl.querySelectorAll('.ndv-gallery-thumb').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('galleryMainImg').src = btn.dataset.src;
+  });
+
+  /* 2. Quick-facts */
+  const qf = document.getElementById('quickFacts');
+  const facts = [
+    { icon: '', label: 'Giá', val: formatPrice(p.price, p.priceUnit), isPrice: true },
+    { icon: NDV_ICON_AREA, label: 'Diện tích', val: p.area + ' m²' },
+    { icon: NDV_ICON_BED, label: 'Phòng ngủ', val: p.bedrooms || '—' },
+    { icon: NDV_ICON_BATH, label: 'Phòng tắm', val: p.bathrooms || '—' },
+    { icon: NDV_ICON_COMPASS, label: 'Hướng nhà', val: DIRECTION_LABELS[p.direction] },
+    { icon: NDV_ICON_SHIELD, label: 'Pháp lý', val: LEGAL_LABELS[p.legalStatus] }
+  ];
+  qf.innerHTML = facts.map(f => `<div class="ndv-qf-item">${f.icon}<div class="ndv-qf-val" style="${f.isPrice ? 'color:var(--accent)' : ''}">${f.val}</div><div class="ndv-qf-label">${f.label}</div></div>`).join('');
+
+  /* 3. Mô tả */
+  document.getElementById('propDesc').textContent = p.description;
+
+  /* 4. Đặc điểm nổi bật (kèm tình trạng nội thất — trường đặc thù thị trường VN) */
+  const featureList = [FURNISHING_LABELS[p.furnishing], ...p.features];
+  document.getElementById('propFeatures').innerHTML = featureList.map(f => `<span class="ndv-feature-chip">${NDV_ICON_CHECK}${f}</span>`).join('');
+
+  /* 5. Bản đồ + tiện ích */
+  document.getElementById('mapEmbed').src = `https://maps.google.com/maps?q=${p.lat},${p.lng}&hl=vi&z=16&output=embed`;
+  document.getElementById('amenitiesList').innerHTML = nearbyAmenities(districtLabel(p.district)).map(a => `<li>${NDV_ICON_CHECK}${a}</li>`).join('');
+
+  /* 6. Công cụ tính vay / chi phí thuê */
+  const calcBody = document.getElementById('calcBody');
+  if (p.listingType === 'ban') {
+    calcBody.innerHTML = `
+      <div class="ndv-calc-row">
+        <div class="ndv-calc-field">
+          <label>Giá trị bất động sản <b id="lblCalcPrice"></b></label>
+          <input type="number" id="calcPrice" value="${p.price}" step="10000000">
+        </div>
+        <div class="ndv-calc-field">
+          <label>Tỷ lệ vay <b id="lblCalcPercent">70%</b></label>
+          <input type="range" id="calcPercent" min="10" max="90" value="70" step="5">
+        </div>
+      </div>
+      <div class="ndv-calc-row">
+        <div class="ndv-calc-field">
+          <label>Lãi suất vay / năm <b id="lblCalcRate">8.5%</b></label>
+          <input type="range" id="calcRate" min="4" max="15" value="8.5" step="0.1">
+        </div>
+        <div class="ndv-calc-field">
+          <label>Thời hạn vay <b id="lblCalcYears">20 năm</b></label>
+          <input type="range" id="calcYears" min="5" max="25" value="20" step="1">
+        </div>
+      </div>
+      <div class="ndv-calc-result">
+        <div class="ndv-calc-result-label">Số tiền trả góp ước tính mỗi tháng</div>
+        <div class="ndv-calc-result-val" id="calcResult">— <span>đ/tháng</span></div>
+      </div>
+      <p class="ndv-calc-note">* Đây là số liệu ước tính tham khảo dựa trên phương pháp trả góp đều hàng tháng, chưa bao gồm phí bảo hiểm khoản vay. Lãi suất thực tế tùy thuộc chính sách từng ngân hàng tại thời điểm vay — vui lòng liên hệ môi giới hoặc ngân hàng để được tư vấn chính xác.</p>`;
+
+    function calcMonthlyPayment(loanAmount, annualRatePercent, years) {
+      const r = (annualRatePercent / 100) / 12;
+      const n = years * 12;
+      if (r === 0) return loanAmount / n;
+      return loanAmount * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+    }
+    const priceInput = document.getElementById('calcPrice');
+    const percentInput = document.getElementById('calcPercent');
+    const rateInput = document.getElementById('calcRate');
+    const yearsInput = document.getElementById('calcYears');
+    function onCalcInput() {
+      const price = +priceInput.value || 0;
+      const percent = +percentInput.value;
+      const rate = +rateInput.value;
+      const years = +yearsInput.value;
+      document.getElementById('lblCalcPrice').textContent = formatPrice(price, price >= 1e9 ? 'tỷ' : 'triệu');
+      document.getElementById('lblCalcPercent').textContent = percent + '%';
+      document.getElementById('lblCalcRate').textContent = rate + '%';
+      document.getElementById('lblCalcYears').textContent = years + ' năm';
+      const loanAmount = price * (percent / 100);
+      const monthly = calcMonthlyPayment(loanAmount, rate, years);
+      document.getElementById('calcResult').innerHTML = formatVND(monthly) + ' <span>đ/tháng</span>';
+    }
+    [priceInput, percentInput, rateInput, yearsInput].forEach(el => el.addEventListener('input', onCalcInput, { passive: true }));
+    onCalcInput();
+  } else {
+    document.getElementById('calcTitle').textContent = 'Ước tính chi phí thuê ban đầu';
+    calcBody.innerHTML = `
+      <div class="ndv-calc-row">
+        <div class="ndv-calc-field">
+          <label>Giá thuê / tháng <b>${formatPrice(p.price, p.priceUnit)}</b></label>
+        </div>
+        <div class="ndv-calc-field">
+          <label>Số tháng đặt cọc <b id="lblDeposit">2 tháng</b></label>
+          <input type="range" id="calcDeposit" min="1" max="6" value="2" step="1">
+        </div>
+      </div>
+      <div class="ndv-calc-result">
+        <div class="ndv-calc-result-label">Tổng chi phí thanh toán lần đầu (tiền thuê tháng đầu + cọc)</div>
+        <div class="ndv-calc-result-val" id="rentResult">— <span>đ</span></div>
+      </div>
+      <p class="ndv-calc-note">* Số liệu ước tính tham khảo, không bao gồm phí quản lý/dịch vụ (nếu có). Vui lòng liên hệ môi giới phụ trách để biết chi tiết chính xác trước khi đặt cọc.</p>`;
+    const depositInput = document.getElementById('calcDeposit');
+    function onRentInput() {
+      const months = +depositInput.value;
+      document.getElementById('lblDeposit').textContent = months + ' tháng';
+      const total = p.price * (1 + months);
+      document.getElementById('rentResult').innerHTML = formatVND(total) + ' <span>đ</span>';
+    }
+    depositInput.addEventListener('input', onRentInput, { passive: true });
+    onRentInput();
+  }
+
+  /* 7. Môi giới phụ trách */
+  document.getElementById('agentCard').innerHTML = `
+    <div class="ndv-agent-avatar"><img src="${p.agent.avatar}" alt="${p.agent.name}"></div>
+    <div class="ndv-agent-name">${p.agent.name}</div>
+    <div class="ndv-agent-title">${p.agent.title}</div>
+    <div class="ndv-agent-actions">
+      <a href="tel:${p.agent.phone.replace(/\s/g, '')}" class="ndv-btn ndv-btn-primary">Gọi ngay: ${p.agent.phone}</a>
+      <a href="https://zalo.me/${p.agent.zalo}" target="_blank" rel="noopener noreferrer" class="ndv-btn ndv-btn-ghost">Chat Zalo</a>
+      <a href="lien-he.html" class="ndv-btn ndv-btn-ghost">Gửi tin nhắn</a>
+    </div>`;
+
+  /* 8. Booking form */
+  document.getElementById('bookingForm').addEventListener('submit', e => {
+    e.preventDefault();
+    document.getElementById('bookingSuccess').classList.add('show');
+    e.target.reset();
+  });
+
+  /* 9. BĐS tương tự */
+  let similar = PROPERTIES.filter(x => x.id !== p.id && x.propertyType === p.propertyType);
+  if (similar.length < 4) similar = similar.concat(PROPERTIES.filter(x => x.id !== p.id && x.district === p.district && !similar.includes(x)));
+  if (similar.length < 4) similar = similar.concat(PROPERTIES.filter(x => x.id !== p.id && !similar.includes(x)));
+  document.getElementById('similarGrid').innerHTML = similar.slice(0, 4).map(ndvPropCardHTML).join('');
+  document.querySelectorAll('[data-reveal]').forEach(el => ndvRO.observe(el));
+})();
+</script>
+</body>
+</html>

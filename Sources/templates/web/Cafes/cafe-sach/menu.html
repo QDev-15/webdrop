@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thực đơn — Lặng Trang Cà Phê Sách</title>
+<meta name="description" content="Thực đơn Lặng Trang — trà, cà phê nhẹ, đồ uống không caffeine buổi tối và bánh nhẹ, được chọn lọc để đồng hành cùng những buổi đọc sách dài.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="csa-nav" data-scroll-nav="true">
+  <div class="csa-container csa-nav-inner">
+    <a href="index.html" class="csa-logo">Lặng Trang<span>Cà Phê Sách</span></a>
+    <div class="csa-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="menu.html" class="active">Thực đơn</a>
+      <a href="khong-gian.html">Không gian</a>
+      <a href="gioi-thieu.html">Giới thiệu</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <a href="lien-he.html" class="csa-nav-cta">Đặt chỗ đọc</a>
+    <button class="csa-burger" id="csaBurger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="csa-mobile" id="csaMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="menu.html">Thực đơn</a>
+  <a href="khong-gian.html">Không gian</a>
+  <a href="gioi-thieu.html">Giới thiệu</a>
+  <a href="lien-he.html">Liên hệ</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="csa-page-hero sec-bg">
+  <div class="csa-container">
+    <div class="csa-eyebrow center" data-reveal>Thực đơn</div>
+    <h1 data-reveal>Vị nhẹ nhàng <em>cho những trang sách</em></h1>
+    <p data-reveal data-reveal-d1>Chúng tôi hạn chế caffeine mạnh và vị quá ngọt — để bạn đọc trọn một buổi chiều mà không thấy bồn chồn hay mất ngủ.</p>
+  </div>
+</section>
+
+<!-- MENU TABS -->
+<section class="sec-pad sec-surface" style="padding-top:0">
+  <div class="csa-container">
+    <div class="csa-menu-tabs" id="csaMenuTabs" data-reveal>
+      <button class="csa-mt-btn active" data-tab="tra">Trà</button>
+      <button class="csa-mt-btn" data-tab="caphe">Cà Phê Nhẹ</button>
+      <button class="csa-mt-btn" data-tab="toi">Buổi Tối Không Caffein</button>
+      <button class="csa-mt-btn" data-tab="banh">Bánh &amp; Snack</button>
+    </div>
+
+    <!-- TRÀ -->
+    <div class="csa-menu-panel active" id="tab-tra">
+      <ul class="csa-book-list" data-reveal data-reveal-d1>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Trà Ô Long Truyền Thống</div>
+            <div class="csa-bl-desc">Ô long Bảo Lộc ủ nóng, vị chát dịu hậu ngọt, uống được nhiều lượt nước.</div>
+          </div>
+          <div class="csa-bl-price">45.000đ</div>
+        </li>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Trà Hoa Cúc Mật Ong<span class="csa-bl-tag">Không caffein</span></div>
+            <div class="csa-bl-desc">Cúc trắng Đà Lạt, mật ong rừng, thanh mát dịu nhẹ.</div>
+          </div>
+          <div class="csa-bl-price">42.000đ</div>
+        </li>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Trà Bạc Hà Chanh</div>
+            <div class="csa-bl-desc">Lá bạc hà tươi, chanh vàng, đá viên — tỉnh táo nhẹ nhàng, không gắt.</div>
+          </div>
+          <div class="csa-bl-price">45.000đ</div>
+        </li>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Trà Atiso Đỏ<span class="csa-bl-tag">Không caffein</span></div>
+            <div class="csa-bl-desc">Hoa atiso đỏ, vị chua thanh nhẹ, giàu vitamin C.</div>
+          </div>
+          <div class="csa-bl-price">42.000đ</div>
+        </li>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Trà Sen Trắng</div>
+            <div class="csa-bl-desc">Trà xanh ướp sen, hương thơm dịu, phù hợp buổi chiều đọc sách.</div>
+          </div>
+          <div class="csa-bl-price">48.000đ</div>
+        </li>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Trà Gừng Mật Ong Ấm<span class="csa-bl-tag">Không caffein</span></div>
+            <div class="csa-bl-desc">Gừng tươi, mật ong, ấm bụng những ngày mưa.</div>
+          </div>
+          <div class="csa-bl-price">42.000đ</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- CÀ PHÊ NHẸ -->
+    <div class="csa-menu-panel" id="tab-caphe">
+      <ul class="csa-book-list" data-reveal data-reveal-d1>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Cà Phê Sữa Nhạt</div>
+            <div class="csa-bl-desc">Robusta pha loãng, sữa đặc ít, êm dịu không gắt.</div>
+          </div>
+          <div class="csa-bl-price">42.000đ</div>
+        </li>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Latte Yến Mạch</div>
+            <div class="csa-bl-desc">Espresso single shot, sữa yến mạch, foam mịn, vị béo nhẹ.</div>
+          </div>
+          <div class="csa-bl-price">55.000đ</div>
+        </li>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Cà Phê Muối Nhẹ</div>
+            <div class="csa-bl-desc">Espresso, lớp kem muối mỏng, vị mặn ngọt cân bằng.</div>
+          </div>
+          <div class="csa-bl-price">48.000đ</div>
+        </li>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Americano Nhạt</div>
+            <div class="csa-bl-desc">Espresso pha loãng gấp đôi nước, thanh nhẹ, uống được cả ngày.</div>
+          </div>
+          <div class="csa-bl-price">40.000đ</div>
+        </li>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Cappuccino Decaf<span class="csa-bl-tag">Ít caffein</span></div>
+            <div class="csa-bl-desc">Cà phê khử phần lớn caffeine, phù hợp uống vào buổi chiều muộn.</div>
+          </div>
+          <div class="csa-bl-price">52.000đ</div>
+        </li>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Cold Brew Loãng</div>
+            <div class="csa-bl-desc">Ủ lạnh 12 giờ, pha loãng hơn thường lệ, ít đắng, uống mát dễ chịu.</div>
+          </div>
+          <div class="csa-bl-price">50.000đ</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- BUỔI TỐI KHÔNG CAFFEIN -->
+    <div class="csa-menu-panel" id="tab-toi">
+      <ul class="csa-book-list" data-reveal data-reveal-d1>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Sữa Hạt Óc Chó<span class="csa-bl-tag">Không caffein</span></div>
+            <div class="csa-bl-desc">Óc chó rang, không đường, béo nhẹ tự nhiên.</div>
+          </div>
+          <div class="csa-bl-price">48.000đ</div>
+        </li>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Cacao Nóng Nguyên Chất<span class="csa-bl-tag">Không caffein</span></div>
+            <div class="csa-bl-desc">Bột cacao 70%, sữa tươi, vị đậm nhưng dịu, không caffeine.</div>
+          </div>
+          <div class="csa-bl-price">50.000đ</div>
+        </li>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Trà Thảo Mộc Ngủ Ngon<span class="csa-bl-tag">Không caffein</span></div>
+            <div class="csa-bl-desc">Hoa oải hương, cúc la mã, hỗ trợ thư giãn trước giờ ngủ.</div>
+          </div>
+          <div class="csa-bl-price">42.000đ</div>
+        </li>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Sữa Nghệ Ấm (Golden Milk)<span class="csa-bl-tag">Không caffein</span></div>
+            <div class="csa-bl-desc">Nghệ tươi, mật ong, chút tiêu đen, ấm dịu.</div>
+          </div>
+          <div class="csa-bl-price">48.000đ</div>
+        </li>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Chocolate Trắng Ấm<span class="csa-bl-tag">Không caffein</span></div>
+            <div class="csa-bl-desc">Chocolate trắng Bỉ, sữa tươi, ngọt nhẹ êm dịu.</div>
+          </div>
+          <div class="csa-bl-price">52.000đ</div>
+        </li>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Trà Táo Quế<span class="csa-bl-tag">Không caffein</span></div>
+            <div class="csa-bl-desc">Táo sấy, quế, thơm ấm áp, phù hợp buổi tối se lạnh.</div>
+          </div>
+          <div class="csa-bl-price">45.000đ</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- BÁNH & SNACK -->
+    <div class="csa-menu-panel" id="tab-banh">
+      <ul class="csa-book-list" data-reveal data-reveal-d1>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Bánh Quy Bơ Yến Mạch</div>
+            <div class="csa-bl-desc">Yến mạch, bơ lạt, giòn nhẹ không quá ngọt.</div>
+          </div>
+          <div class="csa-bl-price">35.000đ</div>
+        </li>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Financier Hạnh Nhân</div>
+            <div class="csa-bl-desc">Bánh Pháp bơ hạnh nhân, ẩm mềm bên trong, thơm bơ.</div>
+          </div>
+          <div class="csa-bl-price">38.000đ</div>
+        </li>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Bánh Mì Nướng Phô Mai</div>
+            <div class="csa-bl-desc">Phô mai Mozzarella, bơ tỏi, nướng giòn — món mặn nhẹ đi kèm.</div>
+          </div>
+          <div class="csa-bl-price">45.000đ</div>
+        </li>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Cookie Chocolate Chip</div>
+            <div class="csa-bl-desc">Bột mì nguyên cám, chocolate 55%, giòn rìa mềm giữa.</div>
+          </div>
+          <div class="csa-bl-price">35.000đ</div>
+        </li>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Bánh Chuối Yến Mạch</div>
+            <div class="csa-bl-desc">Chuối chín, yến mạch, không dùng đường tinh luyện.</div>
+          </div>
+          <div class="csa-bl-price">40.000đ</div>
+        </li>
+        <li>
+          <div class="csa-bl-main">
+            <div class="csa-bl-name">Panna Cotta Trà Xanh</div>
+            <div class="csa-bl-desc">Kem sữa tươi, matcha Nhật, vị béo thanh mát.</div>
+          </div>
+          <div class="csa-bl-price">48.000đ</div>
+        </li>
+      </ul>
+    </div>
+
+    <p class="text-center mt-5" style="font-size:13.5px;color:var(--text-3)" data-reveal>Giá đã bao gồm thuế · Đặt món tại quầy, chúng tôi sẽ mang đến tận bàn đọc của bạn.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="csa-footer">
+  <div class="csa-container">
+    <div class="csa-footer-grid">
+      <div>
+        <a href="index.html" class="csa-footer-logo">Lặng Trang<span>Cà Phê Sách Yên Tĩnh</span></a>
+        <p class="csa-footer-desc">Không gian cà phê sách yên tĩnh — nơi bạn có thể đọc, làm việc và chậm lại giữa một ngày bận rộn. Mượn sách miễn phí, đồ uống nhẹ nhàng, luôn giữ sự tĩnh lặng cần thiết.</p>
+      </div>
+      <div class="csa-footer-cols">
+        <div class="csa-footer-col">
+          <h5>Khám phá</h5>
+          <a href="menu.html">Thực đơn</a>
+          <a href="khong-gian.html">Không gian</a>
+          <a href="gioi-thieu.html">Giới thiệu</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+        <div class="csa-footer-col">
+          <h5>Thông tin</h5>
+          <span>[0912 345 678]</span>
+          <span>[hello@langtrang.cafe]</span>
+          <span>[Số nhà, Ngõ nhỏ, Quận Hoàn Kiếm, Hà Nội]</span>
+          <span>7:30 – 21:30 hàng ngày</span>
+        </div>
+      </div>
+    </div>
+    <div class="csa-footer-maps">
+      <iframe src="https://maps.google.com/maps?q=21.0285,105.8542&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ Lặng Trang Cà Phê Sách" allowfullscreen></iframe>
+    </div>
+    <div class="csa-footer-bottom">
+      <span>© 2026 Lặng Trang. Bản quyền thuộc về [Tên chủ sở hữu].</span>
+      <div>
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="csa-zalo">
+  <span class="csa-zalo-tip">Chat Zalo đặt chỗ</span>
+  <a href="https://zalo.me/[SỐ_ZALO]" target="_blank" rel="noopener noreferrer" class="csa-zalo-btn" aria-label="Chat Zalo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7A8.4 8.4 0 0 1 3.5 11.5 8.5 8.5 0 0 1 12 3a8.5 8.5 0 0 1 9 8.5z"/></svg>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const csaRo = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); csaRo.unobserve(e.target); } });
+}, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('[data-reveal]').forEach(el => csaRo.observe(el));
+
+const csaNav = document.getElementById('csa-nav');
+if (csaNav && csaNav.dataset.scrollNav) {
+  window.addEventListener('scroll', () => csaNav.classList.toggle('scrolled', window.scrollY > 80), {passive:true});
+}
+
+const csaBurger = document.getElementById('csaBurger');
+const csaMobile = document.getElementById('csaMobile');
+if (csaBurger && csaMobile) {
+  csaBurger.addEventListener('click', () => {
+    const o = csaMobile.classList.toggle('open');
+    csaBurger.classList.toggle('open', o);
+    document.body.style.overflow = o ? 'hidden' : '';
+  });
+  csaMobile.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    csaMobile.classList.remove('open'); csaBurger.classList.remove('open'); document.body.style.overflow = '';
+  }));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && csaMobile.classList.contains('open')) {
+      csaMobile.classList.remove('open'); csaBurger.classList.remove('open'); document.body.style.overflow = '';
+    }
+  });
+}
+
+// Menu tabs
+const csaTabBtns = document.querySelectorAll('#csaMenuTabs .csa-mt-btn');
+csaTabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    csaTabBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.csa-menu-panel').forEach(p => p.classList.remove('active'));
+    const panel = document.getElementById('tab-' + btn.dataset.tab);
+    if (panel) panel.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

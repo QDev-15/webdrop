@@ -45,7 +45,10 @@
       "Bash(dir \"d:\\\\Data\\\\Projects\\\\AIProject\\\\webdrop\" -Exclude node_modules)",
       "Bash(node scaffolder.mjs yoga-wellness spa-service)",
       "Bash(curl -s http://localhost:5175)",
-      "Bash(timeout 5 curl -s http://localhost:5173/)"
+      "Bash(timeout 5 curl -s http://localhost:5173/)",
+      "WebFetch(domain:batdongsan.com.vn)",
+      "Bash(rm -rf database sessions sessions_acc)",
+      "Bash(rm -rf uploads/*)"
     ],
     "additionalDirectories": [
       "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"

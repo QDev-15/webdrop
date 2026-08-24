@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thực đơn — NOX Cà Phê Đêm Muộn</title>
+<meta name="description" content="Thực đơn NOX — espresso rang đậm, cold brew, trà đá xay và đồ ăn nhẹ đêm. Menu dành riêng cho ca làm việc và học tập muộn.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="cdm-container">
+    <div class="nav-inner">
+      <a class="logo" href="index.html"><span class="logo-dot"></span>NOX <span>COFFEE</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="menu.html" class="active">Thực đơn</a>
+        <a href="khong-gian.html">Không gian</a>
+        <a href="gioi-thieu.html">Giới thiệu</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="lien-he.html" class="nav-cta">Đặt bàn đêm</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="menu.html" class="active">Thực đơn</a>
+  <a href="khong-gian.html">Không gian</a>
+  <a href="gioi-thieu.html">Giới thiệu</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="lien-he.html" class="nm-cta">Đặt bàn đêm</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="cdm-container">
+    <div class="ph-eyebrow reveal">Thực đơn NOX</div>
+    <h1 class="ph-title reveal reveal-d1">Menu cho <em>ca đêm dài</em></h1>
+    <p class="ph-sub reveal reveal-d2">Cập nhật theo mùa, luôn rang đậm và pha đúng liều caffeine cho khung giờ khuya.</p>
+  </div>
+</section>
+
+<!-- MENU TABS -->
+<section class="sec-pad" style="background:var(--bg);">
+  <div class="cdm-container">
+    <div class="menu-section-note reveal">🌙 Sau 22:00, mọi món giảm 10% cho khách xuất trình thẻ sinh viên</div>
+
+    <div class="menu-tabs reveal" id="menuTabs">
+      <button class="mt-btn active" data-tab="espresso">Espresso-based</button>
+      <button class="mt-btn" data-tab="coldbrew">Cold Brew đặc biệt</button>
+      <button class="mt-btn" data-tab="tra">Trà & Đá xay</button>
+      <button class="mt-btn" data-tab="an">Đồ ăn nhẹ đêm</button>
+    </div>
+
+    <!-- Espresso-based -->
+    <div class="menu-tab-panel active reveal reveal-d1" id="tab-espresso">
+      <div class="menu-section-title">☕ Espresso-based</div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="menu-list-item"><div><div class="mli-name">Double Shot Đêm</div><div class="mli-desc">Espresso đúp rang đậm, hậu vị ca cao — dòng chủ lực buổi tối</div></div><div class="mli-price">49.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Americano Rang Đậm</div><div class="mli-desc">Espresso pha loãng với nước nóng, caffeine cao, ít calo</div></div><div class="mli-price">42.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Cappuccino Đêm</div><div class="mli-desc">Espresso, sữa hấp foam dày, rắc bột ca cao đắng nhẹ</div></div><div class="mli-price">52.000đ</div></div>
+        </div>
+        <div class="col-md-6">
+          <div class="menu-list-item"><div><div class="mli-name">Bạc Xỉu Năng Lượng</div><div class="mli-desc">Sữa đặc, espresso đậm, thêm 1 shot caffeine tùy chọn</div></div><div class="mli-price">52.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Latte Muối Biển</div><div class="mli-desc">Sữa tươi, foam muối biển nhẹ, cân bằng vị đắng-mặn</div></div><div class="mli-price">58.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Flat White Đúp</div><div class="mli-desc">Tỉ lệ sữa/espresso cô đặc, uống nhanh tỉnh táo tức thì</div></div><div class="mli-price">55.000đ</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cold Brew -->
+    <div class="menu-tab-panel" id="tab-coldbrew">
+      <div class="menu-section-title">🧊 Cold Brew đặc biệt</div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="menu-list-item"><div><div class="mli-name">Nitro Cold Brew</div><div class="mli-desc">Ủ lạnh 20 giờ, bơm nitro tạo bọt kem mịn như bia đen</div></div><div class="mli-price">65.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Cold Brew Tonic</div><div class="mli-desc">Cold brew pha nước tonic, vị sảng khoái, ga nhẹ</div></div><div class="mli-price">62.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Dirty Cold Brew</div><div class="mli-desc">Sữa tươi đổ trước, cold brew rót lên tạo lớp — trend "dirty"</div></div><div class="mli-price">60.000đ</div></div>
+        </div>
+        <div class="col-md-6">
+          <div class="menu-list-item"><div><div class="mli-name">Cold Brew Cam Sả</div><div class="mli-desc">Cold brew, nước cam tươi, sả đập dập — vị lạ, tỉnh táo</div></div><div class="mli-price">65.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Cold Brew Đen Đá</div><div class="mli-desc">Nguyên chất không thêm gì, caffeine cao nhất trong menu</div></div><div class="mli-price">55.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Cold Brew Dừa</div><div class="mli-desc">Cold brew, nước cốt dừa béo nhẹ, đá bào mịn</div></div><div class="mli-price">62.000đ</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trà & đá xay -->
+    <div class="menu-tab-panel" id="tab-tra">
+      <div class="menu-section-title">🍵 Trà & Đá xay</div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="menu-list-item"><div><div class="mli-name">Hồng Trà Đào Đêm</div><div class="mli-desc">Hồng trà, đào ngâm, ít đường — tỉnh táo nhẹ không gắt bụng</div></div><div class="mli-price">58.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Trà Ô Long Sữa</div><div class="mli-desc">Ô long đậm, sữa béo, topping trân châu đường đen</div></div><div class="mli-price">56.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Matcha Đá Xay</div><div class="mli-desc">Matcha Nhật, sữa tươi, đá xay mịn — caffeine vừa phải</div></div><div class="mli-price">62.000đ</div></div>
+        </div>
+        <div class="col-md-6">
+          <div class="menu-list-item"><div><div class="mli-name">Mocha Đá Xay</div><div class="mli-desc">Espresso, chocolate, đá xay, kem tươi — ngọt đậm cho đêm dài</div></div><div class="mli-price">65.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Trà Chanh Sả Gừng</div><div class="mli-desc">Trà đen, chanh, sả, gừng — không caffeine cao, dễ uống</div></div><div class="mli-price">45.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Việt Quất Đá Xay</div><div class="mli-desc">Việt quất, sữa chua, không caffeine — dành cho ai cần nghỉ ngơi mắt</div></div><div class="mli-price">60.000đ</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Đồ ăn nhẹ đêm -->
+    <div class="menu-tab-panel" id="tab-an">
+      <div class="menu-section-title">🥪 Đồ ăn nhẹ đêm</div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="menu-list-item"><div><div class="mli-name">Bánh Mì Que Pate</div><div class="mli-desc">Bánh mì que giòn, pate béo, dễ ăn khi tập trung làm việc</div></div><div class="mli-price">35.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Sandwich Gà Nướng</div><div class="mli-desc">Ức gà nướng, rau sống, sốt mù tạt mật ong</div></div><div class="mli-price">55.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Croissant Trứng Muối</div><div class="mli-desc">Croissant bơ, nhân trứng muối tan chảy — món hot buổi tối</div></div><div class="mli-price">48.000đ</div></div>
+        </div>
+        <div class="col-md-6">
+          <div class="menu-list-item"><div><div class="mli-name">Mì Ý Sốt Kem Nấm</div><div class="mli-desc">Phần vừa, ăn nhẹ bụng, phù hợp bữa khuya trước khi về</div></div><div class="mli-price">62.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Snack Khoai Tây Phô Mai</div><div class="mli-desc">Ăn kèm khi làm việc nhóm, chia sẻ được 2–3 người</div></div><div class="mli-price">45.000đ</div></div>
+          <div class="menu-list-item"><div><div class="mli-name">Tiramisu Espresso</div><div class="mli-desc">Mascarpone, espresso đậm, cacao — vừa tráng miệng vừa tỉnh táo</div></div><div class="mli-price">58.000đ</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="cdm-container">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 reveal">
+        <div class="ft-logo"><span class="logo-dot"></span>NOX <span>COFFEE</span></div>
+        <p class="ft-desc">Espresso bar mở đến 2 giờ sáng — nơi thành phố ngủ nhưng công việc, bài vở và ý tưởng của bạn thì chưa xong.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc" aria-label="Facebook" target="_blank" rel="noopener noreferrer">fb</a>
+          <a href="#" class="ft-soc" aria-label="Instagram" target="_blank" rel="noopener noreferrer">ig</a>
+          <a href="#" class="ft-soc" aria-label="Zalo" target="_blank" rel="noopener noreferrer">zl</a>
+          <a href="#" class="ft-soc" aria-label="TikTok" target="_blank" rel="noopener noreferrer">tt</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d1">
+        <div class="ft-col-title">Trang</div>
+        <div class="ft-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="menu.html">Thực đơn</a>
+          <a href="khong-gian.html">Không gian</a>
+          <a href="gioi-thieu.html">Giới thiệu</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d2">
+        <div class="ft-col-title">Dịch vụ</div>
+        <div class="ft-links">
+          <a href="lien-he.html">Đặt bàn trước</a>
+          <a href="lien-he.html">Đặt phòng học nhóm</a>
+          <a href="menu.html">Mua cà phê hạt</a>
+          <a href="lien-he.html">Hợp tác</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Pháp lý</div>
+        <div class="ft-links">
+          <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+          <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+        </div>
+      </div>
+      <div class="col reveal reveal-d3">
+        <div class="ft-col-title">Liên hệ</div>
+        <div class="ft-links">
+          <a href="tel:[0901234567]">📱 [0901 234 567]</a>
+          <a href="#">📍 [Số nhà, Đường, Quận, TP]</a>
+          <a href="mailto:[email@domain.com]">✉️ [email@domain.com]</a>
+          <a href="#">🕐 18:00 – 02:00 hàng ngày</a>
+        </div>
+      </div>
+    </div>
+    <div class="reveal pb-4">
+      <iframe class="cdm-map-embed" src="https://maps.google.com/maps?q=[LAT],[LNG]&hl=vi&z=15&output=embed" title="Bản đồ vị trí NOX Coffee" loading="lazy"></iframe>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="cdm-container">
+      <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+        <div class="ft-copy">© [NĂM] NOX Coffee · Made in Vietnam 🇻🇳</div>
+        <div class="ft-copy">Thiết kế bởi webdrop.store</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ZALO FLOAT -->
+<div class="zf">
+  <div class="zf-tip">Liên hệ Zalo</div>
+  <a href="https://zalo.me/[SỐ_ZALO]" class="zf-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); }, {passive:true});
+
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);} });
+}, {threshold:.08, rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+const hamburger = document.getElementById('navHamburger');
+const mobileNav = document.getElementById('navMobile');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => { const o=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''; });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';} });
+}
+
+// Menu tabs
+const tabBtns = document.querySelectorAll('#menuTabs .mt-btn');
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    tabBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.menu-tab-panel').forEach(p => p.classList.remove('active'));
+    const panel = document.getElementById('tab-' + btn.dataset.tab);
+    if (panel) panel.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

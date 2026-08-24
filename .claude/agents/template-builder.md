@@ -57,13 +57,14 @@ JS:  https://cdn.jsdelivr.net/npm/bootstrap@{VERSION}/dist/js/bootstrap.bundle.m
 
 ### Chọn Design Identity Token
 
-Đọc các template CSS đã có trong `Sources/templates/web/*/assets/css/style.css`, sau đó chọn **1 trong 12 identity** chưa ai dùng:
+Đọc các template CSS đã có trong `Sources/templates/web/*/assets/css/style.css`, sau đó chọn **1 trong 11 identity** chưa ai dùng:
+
+> **⚠️ [2026-08-21] `BOLD-EDITORIAL` đã bị loại khỏi danh sách chọn cho template MỚI** — phản hồi thực tế từ chủ dự án khi thấy `portfolio-thiet-ke-do-hoa`: heading 120-148px + uppercase toàn trang + font Syne 800 bị đánh giá "to và xấu". Site đó đã được sửa lại font (Bricolage Grotesque + Inter, size vừa phải, bỏ uppercase heading chính). Các site cũ đã dùng token này (`shop-thoi-trang`, `nha-khoa-tham-my-luxdental`...) KHÔNG cần sửa lại — chỉ áp dụng cho việc build template mới từ nay, không tự ý retroactive sang site cũ.
 
 | Token | Tên | Đặc trưng |
 |-------|-----|-----------|
 | `LUXE-DARK` | Xa xỉ tối | Dark dominant 80%+, gold/amber accent, heading weight 300, full-bleed |
 | `FRESH-MINIMAL` | Tươi tối giản | White dominant, green/nature accent, generous whitespace, clean grid |
-| `BOLD-EDITORIAL` | Đậm magazine | Heading cực lớn 120px+, high contrast B&W, magazine asymmetric layout |
 | `WARM-ARTISAN` | Thủ công ấm | Warm sand/brown, wabi-sabi feel, rough texture, handwritten-esque |
 | `GEOMETRIC-MODERN` | Hình học hiện đại | Grid-heavy, geometric dividers, two-tone palette, sharp borders |
 | `SOFT-PASTEL` | Pastel dịu nhẹ | Soft pinks/lilacs/mints, curved shapes, lifestyle photography |
@@ -93,6 +94,7 @@ JS:  https://cdn.jsdelivr.net/npm/bootstrap@{VERSION}/dist/js/bootstrap.bundle.m
 - **Menu:** Nổi trên carousel (position: fixed/absolute)
 - **CSS class:** `{prefix}-carousel-hero`, `{prefix}-carousel-slide`, v.v.
 - **JS:** Vanilla JS, không Bootstrap Carousel
+- **⚠️ Heading tag — chỉ 1 `<h1>`/trang (thêm 2026-08-21, bug đã lặp lại ở cả 5 template Portfolio cùng batch):** CHỈ slide đầu tiên (active mặc định) dùng `<h1>` cho heading lớn — 3 slide còn lại PHẢI dùng `<h2>` (giữ nguyên class CSS, không đổi style). Cả 4 slide cùng tồn tại trong DOM dù chỉ 1 slide hiển thị tại 1 thời điểm — nếu cả 4 đều là `<h1>` thì trang có 4 heading chính cùng lúc, vi phạm rule "mỗi trang 1 `<h1>`" (hại SEO + accessibility, screen reader đọc lộn xộn).
 
 ---
 
@@ -117,7 +119,6 @@ Nếu không có → tự research:
 |-------|-------------|-----------|----------|
 | `LUXE-DARK` | Cormorant Garamond (serif) | DM Sans | Heading italic, weight 300, tracking -2px |
 | `FRESH-MINIMAL` | Plus Jakarta Sans | Plus Jakarta Sans | Heading weight 600, clean |
-| `BOLD-EDITORIAL` | Syne | Syne | Heading weight 800, uppercase |
 | `WARM-ARTISAN` | Fraunces (serif) | DM Sans | Heading weight 400, earthy |
 | `GEOMETRIC-MODERN` | Space Grotesk | Space Grotesk | Heading weight 700, tight |
 | `SOFT-PASTEL` | DM Sans | DM Sans | Heading italic weight 300, soft |
@@ -247,7 +248,6 @@ Viết component từ đầu dựa trên identity — KHÔNG copy class names t�
 ```
 LUXE-DARK:      Không border, không shadow. Chỉ image + minimal text. Hover: opacity text thay đổi
 FRESH-MINIMAL:  Border nhạt, border-radius 20px, hover lift -8px + shadow nhẹ
-BOLD-EDITORIAL: Sharp corner (border-radius 0), thick border-left accent, hover bg thay đổi
 WARM-ARTISAN:   Border-radius 8px, box-shadow subtle warm, hover chỉ lift nhẹ -4px
 GEOMETRIC-MOD:  Border-radius 2-4px, thick border-top accent color, hover border-color thay đổi
 SOFT-PASTEL:    Border-radius 24px, shadow nhẹ hồng, hover glow effect
@@ -263,7 +263,6 @@ GLASS-MODERN:   backdrop-filter blur, semi-transparent bg, border rgba white
 ```
 LUXE-DARK:      Ghost uppercase tracking-3px, hover border-color thay đổi
 FRESH-MINIMAL:  Solid green, border-radius 9999px (pill), hover darken
-BOLD-EDITORIAL: Sharp 0px border-radius, all-caps, thick border, hover fill
 WARM-ARTISAN:   Border-radius 6px, warm bg, hover opacity .9
 GEOMETRIC-MOD:  border-radius 2px, geometric, hover rotate 1deg
 SOFT-PASTEL:    border-radius 9999px, soft pink bg, hover shadow-glow
@@ -296,7 +295,6 @@ Maps section được đặt trong footer, trên footer-bottom (copyright + soci
 |-------|-------------|
 | `LUXE-DARK` | Dark full, minimal 2-col, centered copyright |
 | `FRESH-MINIMAL` | Light bg, 4-col, green accent links |
-| `BOLD-EDITORIAL` | Dark, headline-style footer, huge brand name |
 | `WARM-ARTISAN` | Dark warm brown, newsletter form, social icons large |
 | `GEOMETRIC-MOD` | Light/mid, geometric dividers, structured grid |
 | `SOFT-PASTEL` | Light pink bg, soft, 3-col, social icons colorful |

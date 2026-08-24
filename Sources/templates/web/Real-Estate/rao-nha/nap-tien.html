@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nạp credit | RaoNhà</title>
+<meta name="description" content="Nạp credit vào ví RaoNhà để mua và gia hạn các gói tin VIP Bạc, VIP Vàng, VIP Kim Cương.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="rn-container rn-nav-inner">
+    <a href="index.html" class="rn-logo">Rao<span>Nhà</span></a>
+    <div class="rn-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="bat-dong-san.html?nhu-cau=ban">Nhà đất bán</a>
+      <a href="bat-dong-san.html?nhu-cau=cho-thue">Nhà đất cho thuê</a>
+      <a href="tin-tuc.html">Tin tức</a>
+    </div>
+    <div class="rn-nav-right">
+      <span class="rn-nav-phone">📞 1900 6789</span>
+      <a href="dang-tin.html" class="rn-nav-cta">+ Đăng tin</a>
+    </div>
+    <button class="rn-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="rn-nav-mob" id="navMob">
+    <div class="rn-nav-mob-inner">
+      <a href="index.html">Trang chủ</a>
+      <a href="bat-dong-san.html?nhu-cau=ban">Nhà đất bán</a>
+      <a href="bat-dong-san.html?nhu-cau=cho-thue">Nhà đất cho thuê</a>
+      <a href="tin-tuc.html">Tin tức</a>
+      <a href="ve-chung-toi.html">Giới thiệu</a>
+      <a href="lien-he.html">Liên hệ</a>
+      <a href="dang-tin.html" class="rn-nav-cta">+ Đăng tin</a>
+      <div class="rn-nav-mob-phone">📞 Hotline: 1900 6789</div>
+    </div>
+  </div>
+</nav>
+
+<section class="rn-page-hero" style="padding-bottom:32px">
+  <div class="rn-container">
+    <div class="eyebrow" style="justify-content:center">Ví RaoNhà</div>
+    <h1 class="sec-title">Nạp credit vào ví</h1>
+    <p class="sec-sub" style="margin-left:auto;margin-right:auto">Credit dùng để mua và gia hạn các gói tin VIP Bạc, VIP Vàng, VIP Kim Cương bất cứ lúc nào.</p>
+  </div>
+</section>
+
+<section class="sec-pad" style="padding-top:24px">
+  <div class="rn-container" style="max-width:720px">
+
+    <div id="accountGuard" style="text-align:center;padding:40px 0">
+      <p style="font-size:16px;margin-bottom:16px">Bạn chưa đăng nhập. Vui lòng đăng nhập để nạp credit vào ví.</p>
+      <a href="dang-nhap.html" class="btn-rn btn-rn-primary">Đăng nhập ngay</a>
+    </div>
+
+    <div id="topupPage" hidden>
+      <div class="rn-wallet-box" style="margin-bottom:28px">
+        <div>
+          <div class="lbl">Số dư hiện tại</div>
+          <div class="val" id="topupCurrentBalance"></div>
+        </div>
+        <a href="tai-khoan.html" class="btn-rn btn-rn-white">← Về tài khoản</a>
+      </div>
+
+      <h3 style="font-size:15px;margin-bottom:6px">1. Chọn số tiền muốn nạp</h3>
+      <div class="rn-topup-grid">
+        <div class="rn-topup-chip" data-amount="100000">100.000đ</div>
+        <div class="rn-topup-chip" data-amount="200000">200.000đ</div>
+        <div class="rn-topup-chip" data-amount="500000">500.000đ</div>
+        <div class="rn-topup-chip" data-amount="1000000">1.000.000đ</div>
+        <div class="rn-topup-chip" data-amount="2000000">2.000.000đ</div>
+      </div>
+      <div class="rn-form-group" style="max-width:280px">
+        <label for="topupCustomAmount">Hoặc nhập số tiền khác (đ)</label>
+        <input type="number" id="topupCustomAmount" min="20000" step="10000" placeholder="Vd: 350000">
+      </div>
+
+      <h3 style="font-size:15px;margin:26px 0 12px">2. Chuyển khoản theo thông tin bên dưới</h3>
+      <div class="rn-qr-box">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mã QR chuyển khoản demo">
+          <rect width="100" height="100" fill="#fff"/>
+          <rect x="6" y="6" width="24" height="24" fill="#10201a"/><rect x="70" y="6" width="24" height="24" fill="#10201a"/><rect x="6" y="70" width="24" height="24" fill="#10201a"/>
+          <rect x="12" y="12" width="12" height="12" fill="#fff"/><rect x="76" y="12" width="12" height="12" fill="#fff"/><rect x="12" y="76" width="12" height="12" fill="#fff"/>
+          <rect x="38" y="10" width="6" height="6" fill="#10201a"/><rect x="50" y="18" width="6" height="6" fill="#10201a"/><rect x="60" y="34" width="6" height="6" fill="#10201a"/>
+          <rect x="42" y="42" width="16" height="16" fill="#10201a"/><rect x="18" y="42" width="6" height="6" fill="#10201a"/><rect x="66" y="52" width="6" height="6" fill="#10201a"/>
+          <rect x="38" y="66" width="6" height="6" fill="#10201a"/><rect x="52" y="72" width="6" height="6" fill="#10201a"/><rect x="70" y="70" width="18" height="18" fill="#10201a"/>
+        </svg>
+        <div class="rn-qr-info">
+          <div>Ngân hàng: <b>Vietcombank — CN Cầu Giấy</b></div>
+          <div>Chủ tài khoản: <b>CTY TNHH RAONHA VIET NAM</b></div>
+          <div>Số tài khoản: <b>0071000123456</b></div>
+          <div>Nội dung chuyển khoản: <b>NAPCREDIT [Số điện thoại của bạn]</b></div>
+        </div>
+      </div>
+
+      <button type="button" id="topupConfirmBtn" class="btn-rn btn-rn-primary" style="width:100%;justify-content:center;margin-top:22px">✓ Tôi đã chuyển khoản — Xác nhận nạp</button>
+      <div class="rn-auth-note">🎬 Đây là bản demo giao diện — số dư được cộng ngay lập tức để minh hoạ trải nghiệm. Ở phiên bản vận hành thật, RaoNhà sẽ xác nhận giao dịch chuyển khoản trước khi cộng credit vào ví.</div>
+
+      <div id="topupSuccess" hidden style="margin-top:20px;padding:20px;border-radius:var(--radius-lg);background:var(--accent-light);text-align:center">
+        <p style="font-weight:700;color:var(--accent);margin-bottom:8px">🎉 Nạp credit thành công!</p>
+        <a href="tai-khoan.html" class="btn-rn btn-rn-primary">Về trang Tài khoản của tôi</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="rn-footer">
+  <div class="rn-container">
+    <div class="rn-footer-grid">
+      <div>
+        <a href="index.html" class="rn-footer-logo">Rao<span>Nhà</span></a>
+        <p class="rn-footer-desc">Sàn giao dịch bất động sản trực tuyến — kết nối trực tiếp người mua, người thuê với chính chủ, môi giới tự do và công ty môi giới trên khắp Việt Nam.</p>
+        <div class="rn-social"><a href="#">f</a><a href="#">Z</a><a href="#">▶</a></div>
+      </div>
+      <div class="rn-footer-col">
+        <h4>Khám phá</h4>
+        <a href="index.html">Trang chủ</a>
+        <a href="bat-dong-san.html?nhu-cau=ban">Nhà đất bán</a>
+        <a href="bat-dong-san.html?nhu-cau=cho-thue">Nhà đất cho thuê</a>
+        <a href="dang-tin.html">Đăng tin</a>
+      </div>
+      <div class="rn-footer-col">
+        <h4>Về RaoNhà</h4>
+        <a href="ve-chung-toi.html">Giới thiệu</a>
+        <a href="tin-tuc.html">Tin tức</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <div class="rn-footer-col">
+        <h4>Pháp lý</h4>
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+        <p style="margin-top:14px;color:#fff;font-weight:700">Hotline: 1900 6789</p>
+      </div>
+    </div>
+    <iframe class="rn-footer-maps" src="https://maps.google.com/maps?q=21.0308,105.7988&hl=vi&z=15&output=embed" loading="lazy"></iframe>
+    <div class="rn-footer-bottom">
+      <span>© <span data-year></span> RaoNhà. Mọi quyền được bảo lưu.</span>
+      <span>Văn phòng đại diện: Cầu Giấy, Hà Nội</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/19006789" target="_blank" rel="noopener noreferrer" class="rn-zalo-float">Zalo</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/properties-data.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
