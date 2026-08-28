@@ -48,7 +48,8 @@
       "Bash(timeout 5 curl -s http://localhost:5173/)",
       "WebFetch(domain:batdongsan.com.vn)",
       "Bash(rm -rf database sessions sessions_acc)",
-      "Bash(rm -rf uploads/*)"
+      "Bash(rm -rf uploads/*)",
+      "Bash(node -e ' *)"
     ],
     "additionalDirectories": [
       "d:\\Data\\Projects\\AIProject\\webdrop\\.claude\\plans"

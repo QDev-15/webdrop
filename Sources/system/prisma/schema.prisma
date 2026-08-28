@@ -18,7 +18,6 @@ model User {
   role         UserRole      @default(user)
   createdAt    DateTime      @default(now()) @map("created_at")
   activityLogs ActivityLog[]
-  cvProfile    CvProfile?
   media        Media[]
   pages        Page[]
   posts        Post[]
@@ -27,6 +26,25 @@ model User {
   projectNotes ProjectNote[]
 
   @@map("users")
+  @@schema("webdrop")
+}
+
+/// Tài khoản khách hàng công khai (đăng ký/đăng nhập bằng email hoặc SĐT) — HOÀN TOÀN TÁCH BIỆT
+/// khỏi `User` (bảng admin/staff nội bộ). Quản lý template/CV/website đã mua qua liên kết `customerId`.
+model CustomerAccount {
+  id         Int        @id @default(autoincrement())
+  name       String
+  email      String     @unique
+  phone      String?    @unique
+  password   String
+  avatarUrl  String?    @map("avatar_url")
+  customerId Int?       @unique @map("customer_id")
+  customer   Customer?  @relation(fields: [customerId], references: [id])
+  cvProfile  CvProfile?
+  createdAt  DateTime   @default(now()) @map("created_at")
+  updatedAt  DateTime   @updatedAt @map("updated_at")
+
+  @@map("customer_accounts")
   @@schema("webdrop")
 }
 
@@ -237,6 +255,7 @@ model Customer {
   contacts  CustomerContact[]
   orders    Order[]
   projects  Project[]
+  account   CustomerAccount?
 
   @@index([email])
   @@index([status])
@@ -578,15 +597,15 @@ model DiscountCode {
 }
 
 model CvProfile {
-  id           Int      @id @default(autoincrement())
-  userId       Int      @unique @map("user_id")
-  templateType String   @default("classic") @map("template_type")
-  slug         String   @unique
-  isPublic     Boolean  @default(true) @map("is_public")
-  createdAt    DateTime @default(now()) @map("created_at")
-  updatedAt    DateTime @updatedAt @map("updated_at")
+  id           Int             @id @default(autoincrement())
+  accountId    Int             @unique @map("account_id")
+  templateType String          @default("classic") @map("template_type")
+  slug         String          @unique
+  isPublic     Boolean         @default(true) @map("is_public")
+  createdAt    DateTime        @default(now()) @map("created_at")
+  updatedAt    DateTime        @updatedAt @map("updated_at")
   data         CvData?
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  account      CustomerAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
 
   @@map("cv_profiles")
   @@schema("webdrop")

@@ -1,24 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { hashPassword } from '@/lib/auth'
+import { getAccountSession } from '@/lib/auth'
 import { randomUUID } from 'crypto'
+import { resolveCustomerId, ensureCvProfileForAccount, createOrReuseGuestCvAccount } from '@/lib/checkoutAccount'
+import type { AccountSessionPayload } from '@/lib/auth'
 
 function generateOrderCode(): string {
   const ts   = Date.now().toString(36).toUpperCase().slice(-5)
   const rand = Math.random().toString(36).slice(2, 5).toUpperCase()
   return `WD${ts}${rand}`
-}
-
-function generateCvSlug(name: string): string {
-  const base = name.toLowerCase()
-    .normalize('NFD').replace(/[̀-ͯ]/g, '')
-    .replace(/đ/g, 'd')
-    .replace(/[^\w\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .slice(0, 30).replace(/-$/, '')
-  const suffix = Math.random().toString(36).slice(2, 6)
-  return `${base}-${suffix}`
 }
 
 function calcDiscountAmount(type: string, value: number, price: number): number {
@@ -33,6 +23,7 @@ interface CartItemInput { slug: string; purchaseType: 'template' | 'website' }
 
 export async function POST(req: NextRequest) {
   try {
+    const session = await getAccountSession()
     const body = await req.json()
     const { name, phone, email, company, note, templateSlug, purchaseType, discountCode: rawCode, items: cartItems } = body
 
@@ -45,7 +36,7 @@ export async function POST(req: NextRequest) {
 
     // ── Giỏ hàng nhiều sản phẩm — nhánh riêng, không đụng logic 1-sản-phẩm bên dưới ──
     if (Array.isArray(cartItems) && cartItems.length > 0) {
-      return handleCartOrder(cartItems as CartItemInput[], { name, phone, email, note, discountCode: rawCode })
+      return handleCartOrder(cartItems as CartItemInput[], { name, phone, email, note, discountCode: rawCode }, session)
     }
 
     // ── 1. Tính giá gốc ──────────────────────────────────────
@@ -101,46 +92,24 @@ export async function POST(req: NextRequest) {
     if (finalTotal === 0 && type === 'cv') {
       if (!email) return NextResponse.json({ error: 'Email là bắt buộc' }, { status: 400 })
 
-      // Kiểm tra user tồn tại và hash password TRƯỚC transaction
-      // để tránh bcrypt làm timeout (bcrypt ~200-400ms, default timeout 5s)
-      const tempPassword = 'WD' + randomUUID().replace(/-/g, '').slice(0, 6).toUpperCase()
-      const existingUserCheck = await prisma.user.findUnique({ where: { email }, select: { id: true } })
-      const hashedPassword = existingUserCheck ? null : hashPassword(tempPassword)
-
       const order = await prisma.$transaction(async (tx) => {
-        let customer = await tx.customer.findFirst({ where: { email } })
-        if (!customer) {
-          customer = await tx.customer.create({
-            data: { name, phone, email, company: company || null, status: 'active' },
-          })
-        }
+        const customerId = await resolveCustomerId(tx, session, { name, phone, email, company })
 
+        // Đã đăng nhập → gắn CV thẳng vào tài khoản đang đăng nhập, không tạo tài khoản mới/mật khẩu tạm.
+        // Chưa đăng nhập (guest) → giữ hành vi cũ: tìm/tạo tài khoản kèm mật khẩu tạm hiển thị 1 lần.
         let credentialToken: string
-
-        if (!existingUserCheck) {
-          const newUser = await tx.user.create({
-            data: { name, email, password: hashedPassword!, role: 'user' },
-          })
-          const slug = generateCvSlug(name)
-          await tx.cvProfile.create({
-            data: { userId: newUser.id, slug, templateType: 'classic', data: { create: {} } },
-          })
-          credentialToken = tempPassword
-        } else {
-          const existingProfile = await tx.cvProfile.findUnique({ where: { userId: existingUserCheck.id } })
-          if (!existingProfile) {
-            const slug = generateCvSlug(name)
-            await tx.cvProfile.create({
-              data: { userId: existingUserCheck.id, slug, templateType: 'classic', data: { create: {} } },
-            })
-          }
+        if (session) {
+          await ensureCvProfileForAccount(tx, session.id, name)
           credentialToken = 'EXISTING_USER'
+        } else {
+          const result = await createOrReuseGuestCvAccount(tx, customerId, name, email)
+          credentialToken = result.credentialToken
         }
 
         const code = generateOrderCode()
         const ord = await tx.order.create({
           data: {
-            code, customerId: customer.id, type: 'cv', title,
+            code, customerId, type: 'cv', title,
             price: basePrice, discount: discountAmount, total: 0,
             discountCode: appliedCode,
             status: 'confirmed', paidAt: now,
@@ -168,20 +137,12 @@ export async function POST(req: NextRequest) {
       const downloadToken  = randomUUID()
       const tokenExpiresAt = new Date(Date.now() + TOKEN_TTL_HOURS * 3600 * 1000)
 
-      let customer = email
-        ? await prisma.customer.findFirst({ where: { email } })
-        : null
-      if (!customer) {
-        customer = await prisma.customer.create({
-          data: { name, phone, email: email || null, company: company || null, status: 'active' },
-        })
-      }
-
       const code = generateOrderCode()
       const order = await prisma.$transaction(async (tx) => {
+        const customerId = await resolveCustomerId(tx, session, { name, phone, email, company })
         const ord = await tx.order.create({
           data: {
-            code, customerId: customer!.id, type, title,
+            code, customerId, type, title,
             price: basePrice, discount: discountAmount, total: 0,
             discountCode: appliedCode,
             status: 'confirmed', paidAt: now,
@@ -206,20 +167,12 @@ export async function POST(req: NextRequest) {
     }
 
     // ── 4. Đơn thường (có thanh toán) ────────────────────────
-    let customer = email
-      ? await prisma.customer.findFirst({ where: { email } })
-      : null
-    if (!customer) {
-      customer = await prisma.customer.create({
-        data: { name, phone, email: email || null, company: company || null, status: 'active' },
-      })
-    }
-
     const code = generateOrderCode()
     const order = await prisma.$transaction(async (tx) => {
+      const customerId = await resolveCustomerId(tx, session, { name, phone, email, company })
       const ord = await tx.order.create({
         data: {
-          code, customerId: customer!.id, type, title,
+          code, customerId, type, title,
           price: basePrice, discount: discountAmount, total: finalTotal,
           discountCode: appliedCode,
           status: 'new',
@@ -245,7 +198,8 @@ export async function POST(req: NextRequest) {
 // để /api/download và /api/orders/[code]/status đọc lại chính xác (không phụ thuộc regex title). ──
 async function handleCartOrder(
   cartItems: CartItemInput[],
-  info: { name: string; phone: string; email?: string; note?: string; discountCode?: string }
+  info: { name: string; phone: string; email?: string; note?: string; discountCode?: string },
+  session: AccountSessionPayload | null
 ) {
   try {
     const { name, phone, email, note, discountCode: rawCode } = info
@@ -293,11 +247,6 @@ async function handleCartOrder(
     }
 
     const now = new Date()
-    let customer = email ? await prisma.customer.findFirst({ where: { email } }) : null
-    if (!customer) {
-      customer = await prisma.customer.create({ data: { name, phone, email: email || null, status: 'active' } })
-    }
-
     const code = generateOrderCode()
     const orderItemsData = resolvedItems.map(i => ({
       itemType: i.type, itemName: i.name, qty: 1, unitPrice: i.unitPrice, subtotal: i.unitPrice, note: i.slug,
@@ -309,9 +258,10 @@ async function handleCartOrder(
       const tokenExpiresAt = new Date(Date.now() + TOKEN_TTL_HOURS * 3600 * 1000)
 
       const order = await prisma.$transaction(async (tx) => {
+        const customerId = await resolveCustomerId(tx, session, { name, phone, email })
         const ord = await tx.order.create({
           data: {
-            code, customerId: customer!.id, type, title,
+            code, customerId, type, title,
             price: basePrice, discount: discountAmount, total: 0,
             discountCode: appliedCode, status: 'confirmed', paidAt: now,
             downloadToken, tokenExpiresAt, tokenUsedCount: 0, note: note || null,
@@ -331,9 +281,10 @@ async function handleCartOrder(
 
     // ── Đơn thường (chờ thanh toán) ──
     const order = await prisma.$transaction(async (tx) => {
+      const customerId = await resolveCustomerId(tx, session, { name, phone, email })
       const ord = await tx.order.create({
         data: {
-          code, customerId: customer!.id, type, title,
+          code, customerId, type, title,
           price: basePrice, discount: discountAmount, total: finalTotal,
           discountCode: appliedCode, status: 'new', note: note || null,
           items: { create: orderItemsData },

@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { prisma } from '@/lib/prisma'
 import { getAccountSession } from '@/lib/auth'
 
 export const dynamic = 'force-dynamic'
 
-const MAX_SIZE   = 32 * 1024 * 1024 // imgBB hỗ trợ tối đa 32MB
+const MAX_SIZE = 32 * 1024 * 1024 // imgBB hỗ trợ tối đa 32MB
 const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/bmp', 'image/tiff']
 
 export async function POST(req: NextRequest) {
@@ -39,20 +40,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Ảnh quá lớn — tối đa 32MB' }, { status: 400 })
   }
 
-  // Chuyển file → base64 để gửi lên imgBB
   const buffer = await file.arrayBuffer()
   const base64 = Buffer.from(buffer).toString('base64')
 
   const body = new URLSearchParams()
   body.append('image', base64)
-  body.append('name', `cv-avatar-${session.id}-${Date.now()}`)
+  body.append('name', `account-avatar-${session.id}-${Date.now()}`)
 
   let result: { data: { url: string; display_url: string }; success: boolean }
   try {
-    const res = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
-      method: 'POST',
-      body,
-    })
+    const res = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, { method: 'POST', body })
     result = await res.json()
     if (!res.ok || !result.success) {
       console.error('[imgBB error]', result)
@@ -63,5 +60,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Lỗi kết nối đến dịch vụ upload' }, { status: 502 })
   }
 
-  return NextResponse.json({ ok: true, url: result.data.display_url })
+  const account = await prisma.customerAccount.update({
+    where: { id: session.id },
+    data: { avatarUrl: result.data.display_url },
+    select: { avatarUrl: true },
+  })
+
+  return NextResponse.json({ ok: true, url: account.avatarUrl })
 }

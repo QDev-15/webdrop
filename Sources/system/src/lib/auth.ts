@@ -3,7 +3,9 @@ import { cookies } from 'next/headers'
 
 const COOKIE_NAME = 'wd_session'
 const CV_COOKIE_NAME = 'wd_cv_session'
+const ACCOUNT_COOKIE_NAME = 'wd_account_session'
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 7 // 7 days
+const ACCOUNT_COOKIE_MAX_AGE = 60 * 60 * 24 * 30 // 30 days — tài khoản khách hàng nhớ đăng nhập lâu hơn admin
 
 function getSecret(): string {
   const s = process.env.SESSION_SECRET
@@ -89,5 +91,62 @@ export async function getCvSession() {
   return verifySessionToken(token)
 }
 
+// ─── Tài khoản khách hàng công khai (CustomerAccount) — hoàn toàn tách biệt khỏi
+// admin `wd_session` và CV cũ `wd_cv_session`. Payload không có `role` (không phân quyền). ───
+
+export interface AccountSessionPayload {
+  id: number
+  email: string
+  phone: string | null
+}
+
+export function createAccountSessionToken(payload: AccountSessionPayload): string {
+  const secret = getSecret()
+  const data = Buffer.from(JSON.stringify({
+    ...payload,
+    iat: Date.now(),
+    exp: Date.now() + ACCOUNT_COOKIE_MAX_AGE * 1000,
+  })).toString('base64url')
+  const sig = createHmac('sha256', secret).update(data).digest('base64url')
+  return `${data}.${sig}`
+}
+
+export function verifyAccountSessionToken(token: string): AccountSessionPayload | null {
+  const secret = getSecret()
+  const parts = token.split('.')
+  if (parts.length !== 2) return null
+  const [data, sig] = parts
+  const expected = createHmac('sha256', secret).update(data).digest('base64url')
+  const sigBuf = Buffer.from(sig, 'base64url')
+  const expectedBuf = Buffer.from(expected, 'base64url')
+  if (sigBuf.length !== expectedBuf.length || !timingSafeEqual(sigBuf, expectedBuf)) return null
+  try {
+    const payload = JSON.parse(Buffer.from(data, 'base64url').toString())
+    if (payload.exp && Date.now() > payload.exp) return null
+    return payload
+  } catch {
+    return null
+  }
+}
+
+export function getAccountSessionCookieOptions() {
+  return {
+    name: ACCOUNT_COOKIE_NAME,
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax' as const,
+    maxAge: ACCOUNT_COOKIE_MAX_AGE,
+    path: '/',
+  }
+}
+
+export async function getAccountSession(): Promise<AccountSessionPayload | null> {
+  const cookieStore = await cookies()
+  const token = cookieStore.get(ACCOUNT_COOKIE_NAME)?.value
+  if (!token) return null
+  return verifyAccountSessionToken(token)
+}
+
 export const COOKIE_NAME_EXPORT = COOKIE_NAME
 export const CV_COOKIE_NAME_EXPORT = CV_COOKIE_NAME
+export const ACCOUNT_COOKIE_NAME_EXPORT = ACCOUNT_COOKIE_NAME

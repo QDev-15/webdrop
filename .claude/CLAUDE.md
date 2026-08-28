@@ -87,7 +87,7 @@ Xây dựng và bán 3 nhóm sản phẩm chính:
 - [x] Nha khoa — **DONE** (10 template: `Dental-Clinics/` — 10 Identity Token khác nhau: LUXE-DARK, FRESH-MINIMAL, BOLD-EDITORIAL, GEOMETRIC-MODERN, SOFT-PASTEL, DARK-ENERGY, CLEAN-CORPORATE, ZEN-MINIMAL, RETRO-BOLD, GLASS-MODERN)
 - [x] Shop bán hàng — **DONE** (16 templates, TOÀN BỘ 16 đã có WebDeploy đầy đủ — `shop-ban-hang/` ORGANIC-EARTH, `shop-thoi-trang/` BOLD-EDITORIAL, `shop-giay-dep/` DARK-ENERGY, `shop-quan-ao/` SOFT-PASTEL, `shop-rau-xanh/` WARM-ARTISAN, `shop-thuc-pham-sach/` FRESH-MINIMAL, `shop-tui-sach/` LUXE-DARK, `shop-may-tinh/` GLASS-MODERN, `shop-may-anh/` GEOMETRIC-MODERN, `shop-ami-mobile/` RETRO-BOLD, `shop-quan-ao-ami/` ZEN-MINIMAL (WebDeploy build 2026-07-24), `shop-my-pham/` LUXE-DARK variant Rose Gold (WebDeploy build 2026-07-28), `shop-do-gia-dung/` WARM-ARTISAN variant Terracotta+Sage (WebDeploy build 2026-07-29), `shop-do-choi/` SOFT-PASTEL variant Sky Blue+Coral (WebDeploy build 2026-07-29, phát hiện lại 2026-08-04), `shop-van-phong-pham/` CLEAN-CORPORATE fresh token Steel Blue (WebDeploy build 2026-08-06), `shop-the-thao/` DARK-ENERGY variant Signal Orange (WebDeploy build dở dang phát hiện + fix hoàn chỉnh 2026-08-06) — xem bảng **WebDeploy Projects**)
 - [ ] Landing page sản phẩm / Dịch vụ
-- [ ] CV cá nhân — **PLANNING** (CV Builder SaaS — xem `.claude/plans/cv-template-saas.md`)
+- [ ] CV cá nhân — **PLANNING** (CV Builder SaaS — xem `.claude/plans/cv-template-saas.md`). Nền tảng cho phase này đã có sẵn: hệ thống tài khoản khách hàng (`CustomerAccount`) — xem ghi chú kỹ thuật bên dưới.
 
 ---
 
@@ -248,6 +248,20 @@ VPS AZDIGI Linux
 ---
 
 ## 📝 GHI CHÚ KỸ THUẬT
+
+### Hệ thống tài khoản khách hàng — `CustomerAccount` (2026-08-28, `Sources/system`)
+
+Trước đây webdrop.store KHÔNG có tài khoản khách hàng thật — checkout luôn guest (match/tạo `Customer` CRM theo email, không login được), và CV Builder dùng tạm bảng `users` (bảng ADMIN, role mặc định `user`) làm tài khoản CV, tạo mật khẩu ngẫu nhiên khi mua CV. Đã thay bằng model mới **`CustomerAccount`** (bảng `customer_accounts`) hoàn toàn tách biệt khỏi `User` — đăng ký/đăng nhập bằng email HOẶC SĐT (`email`/`phone` đều `@unique` trong schema, tự nhiên đảm bảo 1 SĐT chỉ gắn 1 email và ngược lại), quản lý tập trung template/CV/website đã mua + lịch sử đơn hàng + avatar + đổi mật khẩu.
+
+**Phát hiện & vá kèm theo (độc lập với task nhưng liên quan trực tiếp)**: `POST /api/auth/login` (login admin) trước đây KHÔNG kiểm tra `role` — bất kỳ row nào trong `users` (kể cả tài khoản CV cũ role=`user`) đều lấy được session admin thật vì nhiều route `/api/admin/*` (GET) chỉ check "đã đăng nhập" chứ không check role. Đã vá thêm `if (user.role !== 'superadmin') return 403` trước khi cấp session.
+
+**Kiến trúc**: `CvProfile.userId` (FK → `users`) đổi thành `CvProfile.accountId` (FK → `customer_accounts`) — CV Builder giờ dùng chung 1 tài khoản với phần còn lại của site. Session riêng `wd_account_session` (cookie/HMAC token pattern y hệt `wd_session`/`wd_cv_session` có sẵn trong `src/lib/auth.ts`, xem `getAccountSession()`/`createAccountSessionToken()`). Route API mới `app/api/account/{register,login,logout,me,profile,avatar,orders,cv}`. Trang giao diện `/login`, `/register`, `/account` (3 tab: Sản phẩm đã mua, CV của tôi, Thông tin cá nhân) dưới `app/(site)/`, `AccountProvider` (`src/contexts/AccountContext.tsx`) bọc toàn app trong `app/layout.tsx` cạnh `CartProvider`, `NavBar.tsx` hiển thị "Đăng nhập" hoặc avatar+tên tuỳ trạng thái (gate theo `loading` để tránh flash sai trạng thái).
+
+**Checkout tích hợp**: `app/api/orders/route.ts` + `src/lib/orderConfirm.ts` (webhook/admin xác nhận thanh toán) dùng chung helper mới `src/lib/checkoutAccount.ts` (`resolveCustomerId`/`ensureCvProfileForAccount`/`createOrReuseGuestCvAccount`) — nếu đang đăng nhập, đơn hàng gắn thẳng vào `CustomerAccount.customerId` (không phụ thuộc khách gõ đúng email mỗi lần mua); mua CV lúc đã đăng nhập gắn `CvProfile` thẳng vào tài khoản, KHÔNG tạo tài khoản mới/mật khẩu tạm; guest mua CV vẫn giữ hành vi cũ (tạo/tái dùng tài khoản kèm mật khẩu tạm hiển thị 1 lần qua `downloadToken`).
+
+**Migration production (2 `cv_profiles` hiện có, dữ liệu ít nên rủi ro thấp)**: viết tay `prisma/migration_20260828_customer_accounts.sql` + script Node chạy qua `DIRECT_URL` (theo đúng rule của DB này — KHÔNG dùng `prisma migrate dev/deploy`, xem mục Hạ tầng), copy nguyên `password` hash (cùng định dạng `scryptSync`, không cần reset mật khẩu 2 tài khoản CV cũ). Đã xoá tính năng admin "Cấp/Thu hồi CV profile cho User" (`/admin/users`, route `api/admin/users/[id]/cv-profile`) vì không còn ý nghĩa — CV giờ thuộc `CustomerAccount`, không thuộc `User`.
+
+Đã verify bằng test thật qua `next start` + curl (không phải chỉ đọc code): đăng ký/đăng nhập bằng cả email lẫn SĐT, từ chối đúng khi email/SĐT trùng, đổi mật khẩu, đơn hàng lúc đăng nhập gắn đúng `customerId`, mua CV lúc đăng nhập gắn thẳng tài khoản không tạo trùng, tài khoản khách hàng KHÔNG đăng nhập được vào `/admin/login`. Toàn bộ dữ liệu test đã dọn sạch ngay sau khi verify (DB này dùng chung với production thật — xem cảnh báo mục Hạ tầng).
 
 ### 5 template Portfolio mới (2026-08-21)
 

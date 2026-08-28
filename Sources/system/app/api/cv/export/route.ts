@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createElement } from 'react'
 import { prisma } from '@/lib/prisma'
-import { getCvSession } from '@/lib/auth'
+import { getAccountSession } from '@/lib/auth'
 import { buildCvDocx } from '@/lib/cv-to-docx'
 import type { CvDataType } from '@/types/cv'
 
@@ -54,7 +54,7 @@ ${autoPrint ? `<script>window.addEventListener('load', function() { setTimeout(f
 }
 
 export async function GET(req: NextRequest) {
-  const session = await getCvSession()
+  const session = await getAccountSession()
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const format = req.nextUrl.searchParams.get('format') ?? 'html'
@@ -63,7 +63,7 @@ export async function GET(req: NextRequest) {
   }
 
   const profile = await prisma.cvProfile.findUnique({
-    where: { userId: session.id },
+    where: { accountId: session.id },
     include: { data: true },
   })
   if (!profile || !profile.data) {

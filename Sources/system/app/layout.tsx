@@ -3,6 +3,7 @@ import { DM_Sans } from 'next/font/google'
 import Script from 'next/script'
 import { getLayoutSettings } from '@/lib/getLayoutSettings'
 import { CartProvider } from '@/contexts/CartContext'
+import { AccountProvider } from '@/contexts/AccountContext'
 import '../src/styles/globals.css'
 import '../src/styles/help-center.css'
 
@@ -114,7 +115,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             />
           </noscript>
         )}
-        <CartProvider>{children}</CartProvider>
+        <AccountProvider><CartProvider>{children}</CartProvider></AccountProvider>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_SCHEMA) }}

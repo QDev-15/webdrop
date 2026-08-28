@@ -1,26 +1,13 @@
 import { prisma } from '@/lib/prisma'
 import { randomUUID } from 'crypto'
-import { hashPassword } from '@/lib/auth'
 import { sendDownloadEmail } from '@/lib/email'
+import { createOrReuseGuestCvAccount } from '@/lib/checkoutAccount'
 
 const TOKEN_TTL_HOURS = 72
 
 type ConfirmResult =
   | { ok: true }
   | { ok: false; reason: 'not_found' | 'already_paid' }
-
-function generateCvSlug(name: string): string {
-  const base = name.toLowerCase()
-    .normalize('NFD').replace(/[̀-ͯ]/g, '')
-    .replace(/đ/g, 'd')
-    .replace(/[^\w\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .slice(0, 30)
-    .replace(/-$/, '')
-  const suffix = Math.random().toString(36).slice(2, 6)
-  return `${base}-${suffix}`
-}
 
 function extractSlug(title: string): string {
   const m = title.match(/Template:\s*(.+)/) ?? title.match(/Website Gói B \((.+)\)/)
@@ -41,36 +28,13 @@ export async function confirmOrderPayment(orderCode: string, note: string): Prom
   if (!order) return { ok: false, reason: 'not_found' }
   if (order.paidAt !== null) return { ok: false, reason: 'already_paid' }
 
-  // Đơn CV — tạo tài khoản user, không cần download token
+  // Đơn CV — tạo/tái sử dụng tài khoản khách hàng (CustomerAccount), không cần download token
   if (order.type === 'cv') {
     const customerEmail = order.customer.email
     if (!customerEmail) return { ok: false, reason: 'not_found' }
 
-    const tempPassword = 'WD' + randomUUID().replace(/-/g, '').slice(0, 6).toUpperCase()
-
     await prisma.$transaction(async (tx) => {
-      const existingUser = await tx.user.findUnique({ where: { email: customerEmail } })
-      let credentialToken: string
-
-      if (!existingUser) {
-        const newUser = await tx.user.create({
-          data: { name: order.customer.name, email: customerEmail, password: hashPassword(tempPassword), role: 'user' },
-        })
-        const slug = generateCvSlug(order.customer.name)
-        await tx.cvProfile.create({
-          data: { userId: newUser.id, slug, templateType: 'classic', data: { create: {} } },
-        })
-        credentialToken = tempPassword
-      } else {
-        const existingProfile = await tx.cvProfile.findUnique({ where: { userId: existingUser.id } })
-        if (!existingProfile) {
-          const slug = generateCvSlug(order.customer.name)
-          await tx.cvProfile.create({
-            data: { userId: existingUser.id, slug, templateType: 'classic', data: { create: {} } },
-          })
-        }
-        credentialToken = 'EXISTING_USER'
-      }
+      const { credentialToken } = await createOrReuseGuestCvAccount(tx, order.customerId, order.customer.name, customerEmail)
 
       await tx.order.update({
         where: { id: order.id },

@@ -109,8 +109,8 @@ export default function CvEditorClient({ profile, initialData }: Props) {
   }
 
   async function handleLogout() {
-    await fetch('/api/cv/auth/logout', { method: 'POST' })
-    window.location.href = '/cv-manager'
+    await fetch('/api/account/logout', { method: 'POST' })
+    window.location.href = '/'
   }
 
   // ── shared styles ─────────────────────────────────────────

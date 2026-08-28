@@ -14,6 +14,9 @@ export async function POST(req: NextRequest) {
     if (!user || !verifyPassword(password, user.password)) {
       return NextResponse.json({ error: 'Email hoặc mật khẩu không đúng' }, { status: 401 })
     }
+    if (user.role !== 'superadmin') {
+      return NextResponse.json({ error: 'Tài khoản không có quyền truy cập admin' }, { status: 403 })
+    }
 
     const token = createSessionToken({ id: user.id, email: user.email, role: user.role })
     const opts = getSessionCookieOptions()

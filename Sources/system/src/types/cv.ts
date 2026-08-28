@@ -72,7 +72,7 @@ export interface CvDataType {
 
 export interface CvProfileType {
   id: number
-  userId: number
+  accountId: number
   templateType: string
   slug: string
   isPublic: boolean

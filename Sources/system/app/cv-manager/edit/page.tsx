@@ -1,16 +1,16 @@
 import { redirect } from 'next/navigation'
-import { getCvSession } from '@/lib/auth'
+import { getAccountSession } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import CvEditorClient from './CvEditorClient'
 
 export const metadata = { title: 'Chỉnh sửa CV — webdrop.store' }
 
 export default async function CvEditPage() {
-  const session = await getCvSession()
-  if (!session) redirect('/cv-manager/login')
+  const session = await getAccountSession()
+  if (!session) redirect('/login?redirect=/cv-manager/edit')
 
   const profile = await prisma.cvProfile.findUnique({
-    where: { userId: session.id },
+    where: { accountId: session.id },
     include: { data: true },
   })
 
@@ -20,7 +20,7 @@ export default async function CvEditPage() {
     <CvEditorClient
       profile={{
         id: profile.id,
-        userId: profile.userId,
+        accountId: profile.accountId,
         templateType: profile.templateType,
         slug: profile.slug,
         isPublic: profile.isPublic,

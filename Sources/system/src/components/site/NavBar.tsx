@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useCart } from '@/contexts/CartContext'
+import { useAccount } from '@/contexts/AccountContext'
 
 const navLinks: { href: string; label: string; highlight?: boolean }[] = [
   { href: '/templates',   label: 'Thư viện mẫu' },
@@ -21,6 +22,7 @@ export default function NavBar() {
   const pathname = usePathname()
   const router = useRouter()
   const { itemCount } = useCart()
+  const { account, loading: accountLoading } = useAccount()
   const isHome = pathname === '/'
   const isActive = (href: string) =>
     pathname === href || (href !== '/' && pathname.startsWith(href.split('#')[0]) && !href.includes('#'))
@@ -76,6 +78,20 @@ export default function NavBar() {
               ))}
             </div>
             <div className="nav-actions">
+              {!accountLoading && (
+                account ? (
+                  <Link href="/account" className="nav-account-link d-none d-md-inline-flex" onClick={() => setMobileOpen(false)}>
+                    <span className="nav-account-avatar">
+                      {account.avatarUrl ? <img src={account.avatarUrl} alt={account.name} /> : account.name.charAt(0).toUpperCase()}
+                    </span>
+                    {account.name.split(' ').slice(-1)[0]}
+                  </Link>
+                ) : (
+                  <Link href="/login" className="nav-account-link d-none d-md-inline-flex" onClick={() => setMobileOpen(false)}>
+                    Đăng nhập
+                  </Link>
+                )
+              )}
               <Link href="/gio-hang" className="nav-cart-btn" aria-label="Giỏ hàng" onClick={() => setMobileOpen(false)}>
                 🛒
                 {itemCount > 0 && <span className="nav-cart-badge">{itemCount}</span>}
@@ -103,6 +119,11 @@ export default function NavBar() {
             {l.label}
           </Link>
         ))}
+        {!accountLoading && (
+          account
+            ? <Link href="/account" onClick={() => setMobileOpen(false)}>👤 {account.name}</Link>
+            : <Link href="/login" onClick={() => setMobileOpen(false)}>Đăng nhập / Đăng ký</Link>
+        )}
         <Link href="/gio-hang" onClick={() => setMobileOpen(false)}>
           🛒 Giỏ hàng{itemCount > 0 && ` (${itemCount})`}
         </Link>

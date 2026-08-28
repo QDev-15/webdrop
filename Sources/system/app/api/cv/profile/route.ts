@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { getCvSession as getSession } from '@/lib/auth'
+import { getAccountSession as getSession } from '@/lib/auth'
 
 export async function GET() {
   const session = await getSession()
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const profile = await prisma.cvProfile.findUnique({
-    where: { userId: session.id },
+    where: { accountId: session.id },
     include: { data: true },
   })
 
@@ -36,7 +36,7 @@ export async function PUT(req: NextRequest) {
 
   try {
     const profile = await prisma.cvProfile.update({
-      where: { userId: session.id },
+      where: { accountId: session.id },
       data,
     })
     return NextResponse.json({ profile })

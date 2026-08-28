@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { getCvSession as getSession } from '@/lib/auth'
+import { getAccountSession as getSession } from '@/lib/auth'
 
 const ALLOWED_FIELDS = [
   'fullName', 'jobTitle', 'avatarUrl', 'summary',
@@ -15,7 +15,7 @@ export async function GET() {
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const profile = await prisma.cvProfile.findUnique({
-    where: { userId: session.id },
+    where: { accountId: session.id },
     include: { data: true },
   })
 
@@ -27,7 +27,7 @@ export async function PUT(req: NextRequest) {
   const session = await getSession()
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const profile = await prisma.cvProfile.findUnique({ where: { userId: session.id } })
+  const profile = await prisma.cvProfile.findUnique({ where: { accountId: session.id } })
   if (!profile) return NextResponse.json({ error: 'CV profile not found' }, { status: 404 })
 
   const body = await req.json()
