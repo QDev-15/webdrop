@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Giỏ hàng — Pet Haus, cửa hàng thú cưng chính hãng.">
+<title>Giỏ hàng — Pet Haus</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="tc-topbar">
+  <div class="tc-topbar-inner">
+    <span>Miễn phí ship đơn từ 400K</span><span class="tc-topbar-sep">·</span>
+    <span>Đổi trả trong 7 ngày</span><span class="tc-topbar-sep">·</span>
+    <span>100% sản phẩm kiểm định an toàn</span>
+  </div>
+</div>
+
+<nav id="tcNav">
+  <div class="tc-nav-inner">
+    <a href="index.html" class="tc-logo"><span class="tc-logo-dot"></span>PET<span style="color:var(--accent-mid)">HAUS</span></a>
+    <div class="tc-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="bo-suu-tap.html">Bộ sưu tập</a>
+      <a href="khuyen-mai.html">Khuyến mãi</a>
+      <a href="ve-chung-toi.html">Giới thiệu</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <div class="tc-nav-actions">
+      <button class="tc-nav-btn" id="tcNavSearchBtn" aria-label="Tìm kiếm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <a href="gio-hang.html" class="tc-nav-btn" aria-label="Giỏ hàng" style="position:relative">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="tc-cart-count" id="tcCartCount" style="display:none">0</span>
+      </a>
+      <button class="tc-burger" id="tcBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="tc-mob-nav" id="tcMobNav">
+  <a href="index.html">Trang chủ</a>
+  <a href="bo-suu-tap.html">Bộ sưu tập</a>
+  <a href="khuyen-mai.html">Khuyến mãi</a>
+  <a href="ve-chung-toi.html">Giới thiệu</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <div class="tc-mob-nav-sep"></div>
+  <div class="tc-mob-nav-footer">
+    <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+    <a href="dieu-khoan.html">Điều khoản</a>
+  </div>
+</div>
+
+<div class="tc-nav-search-panel" id="tcNavSearchPanel" style="display:none">
+  <div class="tc-container" style="display:flex;gap:8px;align-items:center">
+    <input type="text" id="tcNavSearchInput" placeholder="Tìm sản phẩm cho chó, mèo..." autocomplete="off">
+    <button id="tcNavSearchSubmit" class="tc-btn tc-btn-primary">Tìm</button>
+    <button id="tcNavSearchClose" style="background:none;border:none;color:#fff;font-size:22px;line-height:1;padding:4px 8px" aria-label="Đóng">×</button>
+  </div>
+</div>
+
+<div class="tc-breadcrumb">
+  <div class="tc-container"><a href="index.html">Trang chủ</a><span class="tc-bc-sep">/</span><span>Giỏ hàng</span></div>
+</div>
+
+<main class="tc-sec-sm">
+  <div class="tc-container">
+    <h1 style="font-family:var(--head);font-size:28px;font-weight:800;margin-bottom:32px">Giỏ hàng của bạn</h1>
+
+    <div id="tcCartEmpty" style="display:none;text-align:center;padding:80px 0">
+      <div style="font-size:56px;margin-bottom:20px">🛒</div>
+      <p style="color:var(--text-2);font-size:16px;margin-bottom:24px">Giỏ hàng đang trống — hãy chọn vài món cho bé cưng nhé!</p>
+      <a href="index.html" class="tc-btn tc-btn-primary">Tiếp tục mua sắm</a>
+    </div>
+
+    <div class="tc-cart-layout" id="tcCartLayout">
+      <div>
+        <div id="tcCartItems"></div>
+        <a href="index.html" class="tc-btn tc-btn-ghost" style="margin-top:20px;display:inline-flex">← Tiếp tục mua sắm</a>
+      </div>
+      <div>
+        <div class="tc-cart-summary">
+          <h3>Tóm tắt đơn hàng</h3>
+          <div class="tc-summary-row"><span>Tạm tính</span><span id="tcSubtotal">0₫</span></div>
+          <div class="tc-summary-row"><span>Phí vận chuyển</span><span id="tcShipping">—</span></div>
+          <div class="tc-summary-row tc-summary-total"><span>Tổng cộng</span><span id="tcTotal">0₫</span></div>
+          <div class="tc-shipping-note" id="tcShippingNote"></div>
+          <button class="tc-btn tc-btn-primary tc-btn-block tc-btn-lg" id="tcCheckoutBtn">Tiến hành thanh toán →</button>
+          <div class="tc-cart-trust">
+            <span>🔒 Thanh toán bảo mật</span>
+            <span>🩺 Đổi trả trong 7 ngày</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="tc-footer">
+  <div class="tc-container">
+    <div class="tc-footer-grid">
+      <div class="tc-footer-col">
+        <div class="tc-footer-logo"><span class="tc-logo-dot"></span>PET<span style="color:var(--accent-mid)">HAUS</span></div>
+        <p class="tc-footer-desc">Cửa hàng thú cưng chính hãng — thức ăn, phụ kiện, đồ chơi, chuồng nhà & chăm sóc cho chó mèo.</p>
+        <div class="tc-footer-social">
+          <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer">f</a>
+          <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">ig</a>
+          <a href="https://zalo.me/[ZALO_NUMBER]" aria-label="Zalo" target="_blank" rel="noopener noreferrer">z</a>
+        </div>
+      </div>
+      <div class="tc-footer-col">
+        <h4>Danh mục</h4>
+        <ul>
+          <li><a href="index.html?category=thuc-an">Thức ăn</a></li>
+          <li><a href="index.html?category=phu-kien">Phụ kiện</a></li>
+          <li><a href="index.html?category=do-choi">Đồ chơi</a></li>
+          <li><a href="index.html?category=chuong-nha">Chuồng & Nhà ở</a></li>
+          <li><a href="index.html?category=cham-soc">Chăm sóc & Vệ sinh</a></li>
+        </ul>
+      </div>
+      <div class="tc-footer-col">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+          <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+          <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+      <div class="tc-footer-col">
+        <h4>Liên hệ</h4>
+        <div class="tc-footer-contact-items">
+          <p>📍 [ĐỊA CHỈ CỬA HÀNG PET HAUS]</p>
+          <p>📞 <a href="tel:[SỐ_ĐIỆN_THOẠI]" style="color:inherit">[SỐ_ĐIỆN_THOẠI]</a></p>
+          <p>✉️ <a href="mailto:[EMAIL@PETHAUS.VN]" style="color:inherit">[EMAIL@PETHAUS.VN]</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="tc-footer-maps"><iframe src="https://maps.google.com/maps?q=10.7769,106.7009&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ cửa hàng Pet Haus"></iframe></div>
+    <div class="tc-footer-bottom">
+      <p>© 2026 Pet Haus. Tất cả quyền được bảo lưu.</p>
+      <div class="tc-footer-bottom-links"><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a><a href="dieu-khoan.html">Điều khoản</a></div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[ZALO_NUMBER]" class="tc-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.17.7 4.18 1.88 5.81L2.5 21.5l3.8-1.35A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a7.95 7.95 0 01-4.13-1.15l-.29-.18-3.04 1.08 1.09-2.97-.2-.31A8 8 0 1112 20zm4.51-5.95c-.24-.12-1.43-.71-1.65-.79-.22-.08-.38-.12-.54.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.19-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.1-.49.1-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.47-.39-.4-.54-.41-.14 0-.3-.01-.46-.01s-.42.06-.64.3c-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.09 3.62.57.25 1.02.4 1.37.5.57.18 1.1.16 1.51.1.46-.07 1.43-.59 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+'use strict';
+function renderCart() {
+  const cart = tcGetCart();
+  const emptyEl = document.getElementById('tcCartEmpty');
+  const layoutEl = document.getElementById('tcCartLayout');
+  if (cart.length === 0) { emptyEl.style.display = 'block'; layoutEl.style.display = 'none'; return; }
+  emptyEl.style.display = 'none'; layoutEl.style.display = 'grid';
+
+  document.getElementById('tcCartItems').innerHTML = cart.map((item, idx) => `
+    <div class="tc-cart-item">
+      <img src="${item.image || TC_FALLBACK_SVG}" alt="${item.name}" onerror="this.src='${TC_FALLBACK_SVG}'" class="tc-cart-item-img">
+      <div>
+        <div class="tc-cart-item-name">${item.name}</div>
+        ${item.size ? `<div class="tc-cart-item-meta"><span>Size: ${item.size}</span></div>` : ''}
+        <div class="tc-cart-item-price">${tcFmt(item.price)}</div>
+      </div>
+      <div class="tc-cart-item-qty">
+        <button class="tc-qty-sm" onclick="changeQty(${idx}, -1)" aria-label="Giảm">−</button>
+        <span class="tc-qty-num">${item.qty}</span>
+        <button class="tc-qty-sm" onclick="changeQty(${idx}, 1)" aria-label="Tăng">+</button>
+      </div>
+      <div class="tc-cart-item-total">${tcFmt(item.price * item.qty)}</div>
+      <button class="tc-cart-item-remove" onclick="removeItem(${idx})" aria-label="Xóa sản phẩm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>`).join('');
+
+  const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const FREE_SHIP = 400000, SHIP_FEE = 25000;
+  const shipping = subtotal >= FREE_SHIP ? 0 : SHIP_FEE;
+  document.getElementById('tcSubtotal').textContent = tcFmt(subtotal);
+  document.getElementById('tcShipping').textContent = shipping === 0 ? 'Miễn phí' : tcFmt(shipping);
+  document.getElementById('tcTotal').textContent = tcFmt(subtotal + shipping);
+  const note = document.getElementById('tcShippingNote');
+  note.innerHTML = subtotal >= FREE_SHIP
+    ? '<span style="color:#1e8a5c">✓ Bạn được miễn phí vận chuyển!</span>'
+    : `Mua thêm <strong style="color:var(--accent)">${tcFmt(FREE_SHIP - subtotal)}</strong> để được miễn phí ship`;
+}
+function changeQty(idx, delta) {
+  const cart = tcGetCart();
+  cart[idx].qty = Math.max(1, cart[idx].qty + delta);
+  tcSaveCart(cart); renderCart();
+}
+function removeItem(idx) {
+  const cart = tcGetCart(); cart.splice(idx, 1); tcSaveCart(cart); renderCart();
+}
+document.getElementById('tcCheckoutBtn').addEventListener('click', () => {
+  alert('Tính năng thanh toán sẽ được tích hợp. Vui lòng liên hệ Zalo để hoàn tất đơn hàng.');
+});
+renderCart();
+</script>
+</body>
+</html>

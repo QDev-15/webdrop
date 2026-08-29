@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bộ sưu tập — MERIDIAN</title>
+<meta name="description" content="Các bộ sưu tập đồng hồ chính hãng nổi bật tại MERIDIAN: Cổ điển da bò Ý, Thể thao, Sang trọng nữ, Phiên bản giới hạn 2026.">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="dh-nav" aria-label="Menu chính">
+  <div class="dh-nav-inner">
+    <a href="index.html" class="dh-logo" aria-label="MERIDIAN — Trang chủ"><span class="dh-logo-mark">M</span>MERIDIAN</a>
+    <ul class="dh-nav-links d-none d-lg-flex">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="san-pham.html">Sản phẩm</a></li>
+      <li><a href="bo-suu-tap.html" class="active">Bộ sưu tập</a></li>
+      <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+      <li><a href="lien-he.html">Liên hệ</a></li>
+    </ul>
+    <div class="dh-nav-actions">
+      <button class="dh-nav-icon-btn" id="dhSearchBtn" aria-label="Tìm kiếm" aria-expanded="false" aria-controls="dhSearchPanel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      </button>
+      <a href="gio-hang.html" class="dh-nav-icon-btn" aria-label="Giỏ hàng">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="dh-cart-count">0</span>
+      </a>
+      <a href="san-pham.html" class="dh-nav-cta d-none d-md-inline-flex">Khám phá ngay</a>
+      <button id="dh-burger" class="d-lg-none" aria-label="Mở menu" aria-expanded="false" aria-controls="dh-nav-mob"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="dh-search-panel" id="dhSearchPanel">
+    <form id="dhSearchForm">
+      <input type="search" id="dhSearchInput" placeholder="Tìm theo tên, thương hiệu..." aria-label="Từ khóa tìm kiếm">
+      <button type="submit">Tìm kiếm</button>
+    </form>
+  </div>
+</nav>
+
+<div id="dh-nav-mob" role="dialog" aria-modal="true" aria-label="Menu điều hướng">
+  <button class="dh-mob-close" id="dhMobClose" aria-label="Đóng menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  <a href="index.html">Trang chủ</a>
+  <a href="san-pham.html">Sản phẩm</a>
+  <a href="bo-suu-tap.html" class="active">Bộ sưu tập</a>
+  <a href="ve-chung-toi.html">Giới thiệu</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="gio-hang.html" style="margin-top:16px;">Giỏ hàng của tôi</a>
+</div>
+
+<section class="dh-catalog-header">
+  <div class="dh-container">
+    <div class="dh-breadcrumb"><a href="index.html">Trang chủ</a> / <span>Bộ sưu tập</span></div>
+    <h1>Bộ sưu tập nổi bật</h1>
+    <p>Những bộ sưu tập được tuyển chọn kỹ lưỡng theo phong cách và chất liệu</p>
+  </div>
+</section>
+
+<section class="dh-sec">
+  <div class="dh-container">
+
+    <div class="dh-collection-block" data-reveal>
+      <div class="dh-collection-banner">
+        <img src="https://images.unsplash.com/photo-1580287017488-706e4d7598a1?w=1400&auto=format&fit=crop&q=80" alt="BST Cổ điển da bò Ý">
+        <div class="dh-collection-info">
+          <div class="tag">Bộ sưu tập</div>
+          <h2>Cổ điển da bò Ý</h2>
+          <p>Dây da mềm mại, mặt số tối giản — vẻ đẹp vượt thời gian cho phong cách công sở và dạo phố.</p>
+          <a href="san-pham.html?style=co-dien&material=da" class="dh-btn dh-btn-solid">Xem toàn bộ</a>
+        </div>
+      </div>
+      <div class="dh-prod-grid" id="dhColCoDien"></div>
+    </div>
+
+    <div class="dh-collection-block" data-reveal>
+      <div class="dh-collection-banner">
+        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=1400&auto=format&fit=crop&q=80" alt="BST Thể thao">
+        <div class="dh-collection-info">
+          <div class="tag">Bộ sưu tập</div>
+          <h2>Thể thao năng động</h2>
+          <p>Chống nước tốt, dây cao su bền bỉ — đồng hành cùng mọi hoạt động vận động hằng ngày.</p>
+          <a href="san-pham.html?style=the-thao" class="dh-btn dh-btn-solid">Xem toàn bộ</a>
+        </div>
+      </div>
+      <div class="dh-prod-grid" id="dhColTheThao"></div>
+    </div>
+
+    <div class="dh-collection-block" data-reveal>
+      <div class="dh-collection-banner">
+        <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=1400&auto=format&fit=crop&q=80" alt="BST Nữ sang trọng">
+        <div class="dh-collection-info">
+          <div class="tag">Bộ sưu tập</div>
+          <h2>Nữ sang trọng</h2>
+          <p>Thiết kế tinh xảo, đính đá lấp lánh — tôn lên vẻ đẹp thanh lịch trong từng khoảnh khắc.</p>
+          <a href="san-pham.html?category=nu&style=sang-trong" class="dh-btn dh-btn-solid">Xem toàn bộ</a>
+        </div>
+      </div>
+      <div class="dh-prod-grid" id="dhColNuSangTrong"></div>
+    </div>
+
+    <div class="dh-collection-block" data-reveal>
+      <div class="dh-collection-banner">
+        <img src="https://images.unsplash.com/photo-1637160151663-a410315e4e75?w=1400&auto=format&fit=crop&q=80" alt="Phiên bản giới hạn 2026">
+        <div class="dh-collection-info">
+          <div class="tag">Limited Edition</div>
+          <h2>Phiên bản giới hạn 2026</h2>
+          <p>Số lượng có hạn, kèm giấy chứng nhận số thứ tự riêng và bảo hành mở rộng 5 năm.</p>
+          <a href="san-pham.html?theme=gioi-han" class="dh-btn dh-btn-solid">Xem toàn bộ</a>
+        </div>
+      </div>
+      <div class="dh-prod-grid" id="dhColGioiHan"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer id="dh-footer">
+  <div class="dh-container">
+    <div class="dh-footer-top">
+      <div class="dh-footer-brand">
+        <div class="dh-logo"><span class="dh-logo-mark">M</span>MERIDIAN</div>
+        <p>Đồng hồ chính hãng đa thương hiệu — cam kết nguồn gốc rõ ràng, bảo hành đầy đủ, giao hàng toàn quốc.</p>
+      </div>
+      <div class="dh-footer-col"><h5>Khám phá</h5><a href="san-pham.html">Sản phẩm</a><a href="bo-suu-tap.html">Bộ sưu tập</a><a href="ve-chung-toi.html">Giới thiệu</a><a href="lien-he.html">Liên hệ</a></div>
+      <div class="dh-footer-col"><h5>Hỗ trợ</h5><a href="lien-he.html">Liên hệ</a><a href="gio-hang.html">Giỏ hàng</a><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a><a href="dieu-khoan.html">Điều khoản sử dụng</a></div>
+      <div class="dh-footer-col"><h5>Liên hệ</h5><a href="tel:[SỐ_ĐIỆN_THOẠI]">Hotline: [SỐ_ĐIỆN_THOẠI]</a><a href="mailto:[EMAIL]">[EMAIL]</a><a href="lien-he.html">[ĐỊA CHỈ SHOWROOM]</a></div>
+    </div>
+    <div class="dh-footer-maps"><iframe src="https://maps.google.com/maps?q=10.7769,106.7009&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ cửa hàng MERIDIAN"></iframe></div>
+    <div class="dh-footer-bottom">
+      <span>© 2026 MERIDIAN. Toàn bộ nội dung là dữ liệu demo cho mục đích minh họa template.</span>
+      <span><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a><a href="dieu-khoan.html">Điều khoản sử dụng</a></span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[ZALO_NUMBER]" target="_blank" rel="noopener noreferrer" class="dh-zalo-float" aria-label="Chat Zalo"><svg viewBox="0 0 48 48" fill="#fff"><path d="M24 4C12.95 4 4 12.06 4 22c0 5.66 2.95 10.7 7.56 13.98L10 44l8.53-4.16c1.75.44 3.6.68 5.47.68 11.05 0 20-8.06 20-18S35.05 4 24 4z"/></svg></a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products-data.js"></script>
+<script src="assets/js/cart.js"></script>
+<script>
+  const dhRO = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); dhRO.unobserve(e.target); } }); }, { threshold: .06, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => dhRO.observe(el));
+
+  const dhNav = document.getElementById('dh-nav');
+  window.addEventListener('scroll', () => dhNav.classList.toggle('scrolled', scrollY > 40), { passive: true });
+  const dhBurger = document.getElementById('dh-burger');
+  const dhMob = document.getElementById('dh-nav-mob');
+  function dhCloseMob() { dhMob.classList.remove('open'); dhBurger.classList.remove('open'); document.body.style.overflow = ''; }
+  dhBurger.addEventListener('click', () => { const o = dhMob.classList.toggle('open'); dhBurger.classList.toggle('open', o); document.body.style.overflow = o ? 'hidden' : ''; });
+  document.getElementById('dhMobClose').addEventListener('click', dhCloseMob);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && dhMob.classList.contains('open')) dhCloseMob(); });
+  const dhSearchBtn = document.getElementById('dhSearchBtn');
+  const dhSearchPanel = document.getElementById('dhSearchPanel');
+  dhSearchBtn.addEventListener('click', () => { const o = dhSearchPanel.classList.toggle('open'); dhSearchBtn.setAttribute('aria-expanded', o); if (o) document.getElementById('dhSearchInput').focus(); });
+  document.getElementById('dhSearchForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const q = document.getElementById('dhSearchInput').value.trim();
+    window.location.href = 'san-pham.html' + (q ? ('?q=' + encodeURIComponent(q)) : '');
+  });
+
+  function dhCardHTML(p) {
+    const badgeMap = { new: 'Mới', sale: 'Giảm giá', hot: 'Hot' };
+    const badge = p.badge ? `<span class="dh-card-badge ${p.badge}">${badgeMap[p.badge]}</span>` : '';
+    const priceOld = p.salePrice ? `<span class="dh-card-price-old">${dhFormatVND(p.price)}</span>` : '';
+    const price = dhFormatVND(p.salePrice || p.price);
+    return `<div class="dh-card ${!p.stock ? 'dh-card-stock-out' : ''}">
+      <div class="dh-card-thumb">${badge}<a href="chi-tiet-san-pham.html?slug=${p.slug}"><img src="${p.image}" alt="${p.name}" loading="lazy"></a></div>
+      <div class="dh-card-body">
+        <div class="dh-card-brand">${p.brand}</div>
+        <h3 class="dh-card-name"><a href="chi-tiet-san-pham.html?slug=${p.slug}">${p.name}</a></h3>
+        <div class="dh-card-meta"><span class="dh-card-rating">★ ${p.rating}</span><span>·</span><span>Đã bán ${p.sold}</span></div>
+        <div class="dh-card-price-row"><span class="dh-card-price">${price}</span>${priceOld}</div>
+        <button class="dh-card-add" ${!p.stock ? 'disabled' : ''} onclick="dhAddToCart('${p.slug}',1)">Thêm vào giỏ</button>
+      </div>
+    </div>`;
+  }
+
+  document.getElementById('dhColCoDien').innerHTML = PRODUCTS.filter(p => p.style === 'co-dien' && p.material === 'da').slice(0, 4).map(dhCardHTML).join('');
+  document.getElementById('dhColTheThao').innerHTML = PRODUCTS.filter(p => p.style === 'the-thao').slice(0, 4).map(dhCardHTML).join('');
+  document.getElementById('dhColNuSangTrong').innerHTML = PRODUCTS.filter(p => p.category === 'nu' && p.style === 'sang-trong').slice(0, 4).map(dhCardHTML).join('');
+  document.getElementById('dhColGioiHan').innerHTML = PRODUCTS.filter(p => p.limited).slice(0, 4).map(dhCardHTML).join('');
+</script>
+</body>
+</html>

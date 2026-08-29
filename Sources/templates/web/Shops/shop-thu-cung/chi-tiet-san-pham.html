@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Chi tiết sản phẩm thú cưng tại Pet Haus — thông số, đánh giá, sản phẩm liên quan.">
+<title id="tcPageTitle">Chi tiết sản phẩm — Pet Haus</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="tc-topbar">
+  <div class="tc-topbar-inner">
+    <span>Miễn phí ship đơn từ 400K</span><span class="tc-topbar-sep">·</span>
+    <span>Đổi trả trong 7 ngày</span><span class="tc-topbar-sep">·</span>
+    <span>100% sản phẩm kiểm định an toàn</span>
+  </div>
+</div>
+
+<nav id="tcNav">
+  <div class="tc-nav-inner">
+    <a href="index.html" class="tc-logo"><span class="tc-logo-dot"></span>PET<span style="color:var(--accent-mid)">HAUS</span></a>
+    <div class="tc-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="bo-suu-tap.html">Bộ sưu tập</a>
+      <a href="khuyen-mai.html">Khuyến mãi</a>
+      <a href="ve-chung-toi.html">Giới thiệu</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <div class="tc-nav-actions">
+      <button class="tc-nav-btn" id="tcNavSearchBtn" aria-label="Tìm kiếm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <a href="gio-hang.html" class="tc-nav-btn" aria-label="Giỏ hàng" style="position:relative">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="tc-cart-count" id="tcCartCount" style="display:none">0</span>
+      </a>
+      <button class="tc-burger" id="tcBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="tc-mob-nav" id="tcMobNav">
+  <a href="index.html">Trang chủ</a>
+  <a href="bo-suu-tap.html">Bộ sưu tập</a>
+  <a href="khuyen-mai.html">Khuyến mãi</a>
+  <a href="ve-chung-toi.html">Giới thiệu</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <div class="tc-mob-nav-sep"></div>
+  <div class="tc-mob-nav-footer">
+    <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+    <a href="dieu-khoan.html">Điều khoản</a>
+  </div>
+</div>
+
+<div class="tc-nav-search-panel" id="tcNavSearchPanel" style="display:none">
+  <div class="tc-container" style="display:flex;gap:8px;align-items:center">
+    <input type="text" id="tcNavSearchInput" placeholder="Tìm sản phẩm cho chó, mèo..." autocomplete="off">
+    <button id="tcNavSearchSubmit" class="tc-btn tc-btn-primary">Tìm</button>
+    <button id="tcNavSearchClose" style="background:none;border:none;color:#fff;font-size:22px;line-height:1;padding:4px 8px" aria-label="Đóng">×</button>
+  </div>
+</div>
+
+<div class="tc-breadcrumb">
+  <div class="tc-container">
+    <a href="index.html">Trang chủ</a><span class="tc-bc-sep">/</span>
+    <a href="index.html" id="tcBcCategory">Sản phẩm</a><span class="tc-bc-sep">/</span>
+    <span id="tcBcName">Chi tiết sản phẩm</span>
+  </div>
+</div>
+
+<main class="tc-sec-sm">
+  <div class="tc-container">
+    <div class="tc-pd-layout">
+      <div>
+        <div class="tc-pd-gallery-main"><img id="tcPdMainImg" src="" alt=""></div>
+        <div class="tc-pd-thumbs" id="tcPdThumbs"></div>
+      </div>
+      <div>
+        <div class="tc-pd-cat" id="tcPdCat">Danh mục</div>
+        <h1 class="tc-pd-title" id="tcPdTitle">Tên sản phẩm</h1>
+        <div class="tc-pd-rating">
+          <span class="tc-stars" id="tcPdStars">★★★★★</span>
+          <span id="tcPdRatingNum">4.8</span>
+          <span>·</span>
+          <span id="tcPdSold">0 đã bán</span>
+        </div>
+        <div class="tc-pd-price-row">
+          <span class="tc-pd-price" id="tcPdPrice">0₫</span>
+          <span class="tc-pd-price-orig" id="tcPdPriceOrig" style="display:none">0₫</span>
+        </div>
+        <p class="tc-pd-desc" id="tcPdDesc">Mô tả sản phẩm.</p>
+
+        <div class="tc-pd-option-group" id="tcPdSizeGroup" style="display:none">
+          <div class="tc-pd-option-label">Kích cỡ</div>
+          <div class="tc-pd-sizes" id="tcPdSizes"></div>
+        </div>
+
+        <div class="tc-pd-option-group">
+          <div class="tc-pd-option-label">Số lượng</div>
+          <div class="tc-pd-qty">
+            <button type="button" id="tcQtyMinus" aria-label="Giảm">−</button>
+            <input type="text" id="tcQtyInput" value="1" readonly>
+            <button type="button" id="tcQtyPlus" aria-label="Tăng">+</button>
+          </div>
+        </div>
+
+        <div class="tc-pd-actions">
+          <button class="tc-btn tc-btn-dark tc-btn-lg tc-btn-block" id="tcAddCartBtn">Thêm vào giỏ hàng</button>
+          <a href="gio-hang.html" class="tc-btn tc-btn-primary tc-btn-lg tc-btn-block" id="tcBuyNowBtn">Mua ngay</a>
+        </div>
+
+        <div class="tc-pd-trust">
+          <span>🚚 Miễn phí vận chuyển cho đơn từ 400.000₫</span>
+          <span>🩺 Sản phẩm có tem kiểm định nguồn gốc</span>
+          <span>↩️ Đổi trả trong 7 ngày nếu bé cưng không hợp</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tc-tabs-nav">
+      <button class="tc-tab-btn active" data-tab="mo-ta">Mô tả</button>
+      <button class="tc-tab-btn" data-tab="thong-so">Thông số</button>
+      <button class="tc-tab-btn" data-tab="danh-gia">Đánh giá</button>
+    </div>
+    <div class="tc-tab-pane active" id="tab-mo-ta">
+      <p id="tcTabDesc" style="color:var(--text-2);font-size:14.5px;line-height:1.8;max-width:720px">Đang tải mô tả sản phẩm…</p>
+    </div>
+    <div class="tc-tab-pane" id="tab-thong-so">
+      <table class="tc-spec-table" id="tcSpecTable"></table>
+    </div>
+    <div class="tc-tab-pane" id="tab-danh-gia">
+      <div class="tc-list-elegant" style="max-width:680px">
+        <div class="tc-list-item">
+          <img class="tc-list-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&auto=format&fit=crop&q=80" alt="[Chân dung khách hàng]" loading="lazy">
+          <div>
+            <p class="tc-list-quote">Sản phẩm đúng như mô tả, bé nhà mình rất thích. Sẽ ủng hộ shop lâu dài.</p>
+            <div class="tc-list-name">Khách hàng đã mua</div>
+          </div>
+          <div class="tc-list-stars">★★★★★</div>
+        </div>
+        <div class="tc-list-item">
+          <img class="tc-list-avatar" src="https://images.unsplash.com/photo-1552058544-f2b08422138a?w=200&auto=format&fit=crop&q=80" alt="[Chân dung khách hàng]" loading="lazy">
+          <div>
+            <p class="tc-list-quote">Đóng gói cẩn thận, giao hàng nhanh hơn dự kiến. Chất lượng tốt so với giá.</p>
+            <div class="tc-list-name">Khách hàng đã mua</div>
+          </div>
+          <div class="tc-list-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+
+    <section class="tc-sec-sm" style="padding-left:0;padding-right:0">
+      <div class="tc-sec-header" data-reveal>
+        <h2 class="tc-sec-title" style="font-size:22px">Sản phẩm <em>liên quan</em></h2>
+      </div>
+      <div class="tc-product-grid" id="tcRelatedGrid"></div>
+    </section>
+  </div>
+</main>
+
+<footer class="tc-footer">
+  <div class="tc-container">
+    <div class="tc-footer-grid">
+      <div class="tc-footer-col">
+        <div class="tc-footer-logo"><span class="tc-logo-dot"></span>PET<span style="color:var(--accent-mid)">HAUS</span></div>
+        <p class="tc-footer-desc">Cửa hàng thú cưng chính hãng — thức ăn, phụ kiện, đồ chơi, chuồng nhà & chăm sóc cho chó mèo.</p>
+        <div class="tc-footer-social">
+          <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer">f</a>
+          <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">ig</a>
+          <a href="https://zalo.me/[ZALO_NUMBER]" aria-label="Zalo" target="_blank" rel="noopener noreferrer">z</a>
+        </div>
+      </div>
+      <div class="tc-footer-col">
+        <h4>Danh mục</h4>
+        <ul>
+          <li><a href="index.html?category=thuc-an">Thức ăn</a></li>
+          <li><a href="index.html?category=phu-kien">Phụ kiện</a></li>
+          <li><a href="index.html?category=do-choi">Đồ chơi</a></li>
+          <li><a href="index.html?category=chuong-nha">Chuồng & Nhà ở</a></li>
+          <li><a href="index.html?category=cham-soc">Chăm sóc & Vệ sinh</a></li>
+        </ul>
+      </div>
+      <div class="tc-footer-col">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+          <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+          <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+      <div class="tc-footer-col">
+        <h4>Liên hệ</h4>
+        <div class="tc-footer-contact-items">
+          <p>📍 [ĐỊA CHỈ CỬA HÀNG PET HAUS]</p>
+          <p>📞 <a href="tel:[SỐ_ĐIỆN_THOẠI]" style="color:inherit">[SỐ_ĐIỆN_THOẠI]</a></p>
+          <p>✉️ <a href="mailto:[EMAIL@PETHAUS.VN]" style="color:inherit">[EMAIL@PETHAUS.VN]</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="tc-footer-maps"><iframe src="https://maps.google.com/maps?q=10.7769,106.7009&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ cửa hàng Pet Haus"></iframe></div>
+    <div class="tc-footer-bottom">
+      <p>© 2026 Pet Haus. Tất cả quyền được bảo lưu.</p>
+      <div class="tc-footer-bottom-links"><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a><a href="dieu-khoan.html">Điều khoản</a></div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[ZALO_NUMBER]" class="tc-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.17.7 4.18 1.88 5.81L2.5 21.5l3.8-1.35A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a7.95 7.95 0 01-4.13-1.15l-.29-.18-3.04 1.08 1.09-2.97-.2-.31A8 8 0 1112 20zm4.51-5.95c-.24-.12-1.43-.71-1.65-.79-.22-.08-.38-.12-.54.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.19-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.1-.49.1-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.47-.39-.4-.54-.41-.14 0-.3-.01-.46-.01s-.42.06-.64.3c-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.09 3.62.57.25 1.02.4 1.37.5.57.18 1.1.16 1.51.1.46-.07 1.43-.59 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products-data.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+'use strict';
+const params = new URLSearchParams(location.search);
+const slug = params.get('slug');
+const product = PRODUCTS.find(p => p.slug === slug) || PRODUCTS[0];
+const CAT_LABELS = {}; CATEGORIES.forEach(c => CAT_LABELS[c.slug] = c.label);
+const PET_LABELS = {}; PET_TYPES.forEach(p => PET_LABELS[p.slug] = p.label);
+
+document.title = product.name + ' — Pet Haus';
+document.getElementById('tcPageTitle').textContent = product.name + ' — Pet Haus';
+document.getElementById('tcBcCategory').textContent = CAT_LABELS[product.category];
+document.getElementById('tcBcCategory').href = `index.html?category=${product.category}`;
+document.getElementById('tcBcName').textContent = product.name;
+document.getElementById('tcPdCat').textContent = `${CAT_LABELS[product.category]} · ${PET_LABELS[product.petType]} · ${product.brand}`;
+document.getElementById('tcPdTitle').textContent = product.name;
+document.getElementById('tcPdStars').textContent = '★'.repeat(Math.round(product.rating)) + '☆'.repeat(5 - Math.round(product.rating));
+document.getElementById('tcPdRatingNum').textContent = product.rating;
+document.getElementById('tcPdSold').textContent = product.sold + ' đã bán';
+
+const price = product.salePrice || product.price;
+document.getElementById('tcPdPrice').textContent = tcFmt(price);
+if (product.salePrice) {
+  const origEl = document.getElementById('tcPdPriceOrig');
+  origEl.textContent = tcFmt(product.price); origEl.style.display = 'inline';
+}
+
+const descText = `${product.name} thuộc dòng ${CAT_LABELS[product.category].toLowerCase()} dành cho ${PET_LABELS[product.petType].toLowerCase()}, thương hiệu ${product.brand}. Sản phẩm được tuyển chọn kỹ về nguồn gốc, phù hợp sử dụng hằng ngày và an toàn cho thú cưng.`;
+document.getElementById('tcPdDesc').textContent = descText;
+document.getElementById('tcTabDesc').textContent = descText + ' Đội ngũ Pet Haus khuyến nghị theo dõi phản ứng của bé cưng trong lần đầu sử dụng và liên hệ tư vấn nếu cần hỗ trợ thêm.';
+
+/* Gallery */
+const mainImg = document.getElementById('tcPdMainImg');
+mainImg.src = product.image; mainImg.alt = '[' + product.name + ']';
+document.getElementById('tcPdThumbs').innerHTML = product.gallery.map((src, i) =>
+  `<div class="tc-pd-thumb${i === 0 ? ' active' : ''}" data-src="${src}"><img src="${src}" alt="[Ảnh ${i + 1} của ${product.name}]" loading="lazy"></div>`
+).join('');
+document.querySelectorAll('.tc-pd-thumb').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tc-pd-thumb').forEach(x => x.classList.remove('active'));
+  t.classList.add('active'); mainImg.src = t.dataset.src;
+}));
+
+/* Size selector */
+let selectedSize = null;
+if (product.size && product.size.length) {
+  document.getElementById('tcPdSizeGroup').style.display = 'block';
+  selectedSize = product.size[0];
+  document.getElementById('tcPdSizes').innerHTML = product.size.map((s, i) =>
+    `<button type="button" class="tc-pd-size-btn${i === 0 ? ' active' : ''}" data-size="${s}">${s}</button>`
+  ).join('');
+  document.querySelectorAll('.tc-pd-size-btn').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.tc-pd-size-btn').forEach(x => x.classList.remove('active'));
+    b.classList.add('active'); selectedSize = b.dataset.size;
+  }));
+}
+
+/* Quantity */
+let qty = 1;
+const qtyInput = document.getElementById('tcQtyInput');
+document.getElementById('tcQtyMinus').addEventListener('click', () => { qty = Math.max(1, qty - 1); qtyInput.value = qty; });
+document.getElementById('tcQtyPlus').addEventListener('click', () => { qty = qty + 1; qtyInput.value = qty; });
+
+/* Add to cart / Buy now */
+document.getElementById('tcAddCartBtn').addEventListener('click', () => {
+  tcAddToCart(product.id, qty, selectedSize);
+  const btn = document.getElementById('tcAddCartBtn');
+  btn.textContent = '✓ Đã thêm vào giỏ';
+  setTimeout(() => { btn.textContent = 'Thêm vào giỏ hàng'; }, 1500);
+});
+document.getElementById('tcBuyNowBtn').addEventListener('click', () => { tcAddToCart(product.id, qty, selectedSize); });
+
+/* Specs table */
+const specs = [
+  ['Danh mục', CAT_LABELS[product.category]],
+  ['Loại thú cưng', PET_LABELS[product.petType]],
+  ['Thương hiệu', product.brand],
+  ['Kích cỡ có sẵn', product.size.length ? product.size.join(', ') : 'Không phân loại size'],
+  ['Tình trạng', product.stock ? 'Còn hàng' : 'Hết hàng'],
+  ['Đánh giá', product.rating + ' / 5 (' + product.sold + ' lượt bán)'],
+];
+document.getElementById('tcSpecTable').innerHTML = specs.map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('');
+
+/* Tabs */
+document.querySelectorAll('.tc-tab-btn').forEach(btn => btn.addEventListener('click', () => {
+  document.querySelectorAll('.tc-tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tc-tab-pane').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+}));
+
+/* Related products — round robin cùng danh mục */
+const related = PRODUCTS.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+const fallbackList = related.length ? related : PRODUCTS.filter(p => p.id !== product.id).slice(0, 4);
+document.getElementById('tcRelatedGrid').innerHTML = fallbackList.map(p => {
+  const pr = p.salePrice || p.price;
+  return `<div class="tc-prod-card">
+    <a href="chi-tiet-san-pham.html?slug=${p.slug}" class="tc-prod-img-wrap"><img src="${p.image}" alt="[${p.name}]" loading="lazy"></a>
+    <div class="tc-prod-body">
+      <div class="tc-prod-cat">${CAT_LABELS[p.category]}</div>
+      <h3 class="tc-prod-name"><a href="chi-tiet-san-pham.html?slug=${p.slug}">${p.name}</a></h3>
+      <div class="tc-prod-price"><span class="tc-price${p.salePrice ? ' sale' : ''}">${tcFmt(pr)}</span></div>
+      <div class="tc-prod-actions"><a href="chi-tiet-san-pham.html?slug=${p.slug}" class="tc-btn-detail" style="width:100%;text-align:center">Xem chi tiết</a></div>
+    </div>
+  </div>`;
+}).join('');
+</script>
+</body>
+</html>

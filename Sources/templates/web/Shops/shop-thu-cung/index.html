@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Pet Haus — 42 sản phẩm thú cưng chính hãng: thức ăn, phụ kiện, đồ chơi, chuồng nhà & chăm sóc cho chó mèo. Nguồn gốc rõ ràng, giao hàng toàn quốc.">
+<meta property="og:title" content="Pet Haus — Mọi thứ boss cưng cần, một nơi mua đủ">
+<meta property="og:description" content="42 sản phẩm thú cưng chính hãng cho chó & mèo — thức ăn, phụ kiện, đồ chơi, chuồng nhà, chăm sóc.">
+<meta property="og:type" content="website">
+<title>Pet Haus — Cửa hàng thú cưng chính hãng cho chó & mèo</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="tc-topbar">
+  <div class="tc-topbar-inner">
+    <span>Miễn phí ship đơn từ 400K</span>
+    <span class="tc-topbar-sep">·</span>
+    <span>Đổi trả trong 7 ngày</span>
+    <span class="tc-topbar-sep">·</span>
+    <span>100% sản phẩm kiểm định an toàn</span>
+  </div>
+</div>
+
+<!-- NAV-6 Full-Width Dark Bar -->
+<nav id="tcNav">
+  <div class="tc-nav-inner">
+    <a href="index.html" class="tc-logo"><span class="tc-logo-dot"></span>PET<span style="color:var(--accent-mid)">HAUS</span></a>
+    <div class="tc-nav-links">
+      <a href="index.html" class="active">Trang chủ</a>
+      <a href="bo-suu-tap.html">Bộ sưu tập</a>
+      <a href="khuyen-mai.html">Khuyến mãi</a>
+      <a href="ve-chung-toi.html">Giới thiệu</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <div class="tc-nav-actions">
+      <button class="tc-nav-btn" id="tcNavSearchBtn" aria-label="Tìm kiếm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <a href="gio-hang.html" class="tc-nav-btn" aria-label="Giỏ hàng" style="position:relative">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="tc-cart-count" id="tcCartCount" style="display:none">0</span>
+      </a>
+      <button class="tc-burger" id="tcBurger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="tc-mob-nav" id="tcMobNav">
+  <a href="index.html" class="active">Trang chủ</a>
+  <a href="bo-suu-tap.html">Bộ sưu tập</a>
+  <a href="khuyen-mai.html">Khuyến mãi</a>
+  <a href="ve-chung-toi.html">Giới thiệu</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <div class="tc-mob-nav-sep"></div>
+  <div class="tc-mob-nav-footer">
+    <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+    <a href="dieu-khoan.html">Điều khoản</a>
+  </div>
+</div>
+
+<!-- Nav search panel -->
+<div class="tc-nav-search-panel" id="tcNavSearchPanel" style="display:none">
+  <div class="tc-container" style="display:flex;gap:8px;align-items:center">
+    <input type="text" id="tcNavSearchInput" placeholder="Tìm sản phẩm cho chó, mèo..." autocomplete="off">
+    <button id="tcNavSearchSubmit" class="tc-btn tc-btn-primary">Tìm</button>
+    <button id="tcNavSearchClose" style="background:none;border:none;color:#fff;font-size:22px;line-height:1;padding:4px 8px" aria-label="Đóng">×</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     THIN BANNER — Mode A CATALOG-UNIFIED (không hero fullscreen)
+══════════════════════════════════════════ -->
+<section class="tc-banner" aria-label="Giới thiệu cửa hàng">
+  <div class="tc-container tc-banner-inner">
+    <div data-reveal>
+      <div class="tc-banner-tag">Cửa hàng thú cưng uy tín</div>
+      <h1>Mọi thứ boss cưng cần,<br><em>một nơi mua đủ</em></h1>
+      <p class="tc-banner-desc">Thức ăn, phụ kiện, đồ chơi, chuồng nhà & chăm sóc cho chó mèo — 42 sản phẩm nguồn gốc rõ ràng, kiểm định an toàn trước khi lên kệ.</p>
+    </div>
+    <form class="tc-banner-search" id="tcBannerSearchForm" data-reveal data-delay="1">
+      <input type="text" id="tcBannerSearchInput" placeholder="Tìm hạt khô, vòng cổ, đồ chơi..." autocomplete="off">
+      <button type="submit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Tìm</button>
+    </form>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FILTER TOOLBAR — ngang, áp dụng tức thì
+══════════════════════════════════════════ -->
+<div class="tc-filter-wrap" id="tcFilterWrap">
+  <div class="tc-container">
+
+    <div class="tc-filter-row1 d-none d-lg-flex">
+      <div class="tc-cat-pills" id="tcCatPills">
+        <button class="tc-cat-pill active" data-cat="">Tất cả</button>
+        <button class="tc-cat-pill" data-cat="thuc-an">Thức ăn</button>
+        <button class="tc-cat-pill" data-cat="phu-kien">Phụ kiện</button>
+        <button class="tc-cat-pill" data-cat="do-choi">Đồ chơi</button>
+        <button class="tc-cat-pill" data-cat="chuong-nha">Chuồng & Nhà ở</button>
+        <button class="tc-cat-pill" data-cat="cham-soc">Chăm sóc</button>
+      </div>
+
+      <div class="tc-filter-sep"></div>
+
+      <div class="dropdown tc-dropdown">
+        <button class="tc-drop-btn dropdown-toggle" id="tcDropPrice" data-bs-toggle="dropdown">Khoảng giá</button>
+        <div class="dropdown-menu tc-drop-menu" style="width:230px">
+          <div class="tc-price-labels"><span>0₫</span><span id="tcPriceMaxLabel">1.500.000₫</span></div>
+          <input type="range" id="tcPriceRange" class="tc-range" min="0" max="1500000" step="10000" value="1500000">
+        </div>
+      </div>
+
+      <div class="dropdown tc-dropdown">
+        <button class="tc-drop-btn dropdown-toggle" id="tcDropPet" data-bs-toggle="dropdown">Loại thú cưng</button>
+        <div class="dropdown-menu tc-drop-menu">
+          <label class="form-check"><input type="checkbox" class="form-check-input tc-pet-cb" value="cho"><span class="form-check-label">Chó</span></label>
+          <label class="form-check"><input type="checkbox" class="form-check-input tc-pet-cb" value="meo"><span class="form-check-label">Mèo</span></label>
+          <label class="form-check"><input type="checkbox" class="form-check-input tc-pet-cb" value="ca-hai"><span class="form-check-label">Cả chó & mèo</span></label>
+        </div>
+      </div>
+
+      <div class="dropdown tc-dropdown">
+        <button class="tc-drop-btn dropdown-toggle" id="tcDropSize" data-bs-toggle="dropdown">Kích cỡ</button>
+        <div class="dropdown-menu tc-drop-menu">
+          <label class="form-check"><input type="checkbox" class="form-check-input tc-size-cb" value="S"><span class="form-check-label">S</span></label>
+          <label class="form-check"><input type="checkbox" class="form-check-input tc-size-cb" value="M"><span class="form-check-label">M</span></label>
+          <label class="form-check"><input type="checkbox" class="form-check-input tc-size-cb" value="L"><span class="form-check-label">L</span></label>
+        </div>
+      </div>
+
+      <div class="dropdown tc-dropdown">
+        <button class="tc-drop-btn dropdown-toggle" id="tcDropBrand" data-bs-toggle="dropdown">Thương hiệu</button>
+        <div class="dropdown-menu tc-drop-menu" id="tcBrandMenu"></div>
+      </div>
+
+      <div style="margin-left:auto">
+        <select id="tcSort" class="tc-sort-select">
+          <option value="newest">Mới nhất</option>
+          <option value="price-asc">Giá tăng dần</option>
+          <option value="price-desc">Giá giảm dần</option>
+          <option value="bestseller">Bán chạy</option>
+          <option value="rating">Đánh giá cao</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="tc-filter-row2" id="tcFilterRow2">
+      <div class="tc-chips-row" id="tcActiveChips"></div>
+      <div class="tc-result-count" id="tcResultCount" aria-live="polite">42 sản phẩm</div>
+    </div>
+
+    <div class="tc-filter-mobile d-lg-none">
+      <button class="tc-btn-filter" id="tcMobileFilterBtn" data-bs-toggle="offcanvas" data-bs-target="#tcFilterOffcanvas">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="12" y1="18" x2="20" y2="18"/></svg>
+        Bộ lọc
+        <span class="tc-filter-badge" id="tcFilterBadge" style="display:none">0</span>
+      </button>
+      <div style="margin-left:auto">
+        <select id="tcSortMobile" class="tc-sort-select">
+          <option value="newest">Mới nhất</option>
+          <option value="price-asc">Giá tăng</option>
+          <option value="price-desc">Giá giảm</option>
+          <option value="bestseller">Bán chạy</option>
+          <option value="rating">Đánh giá</option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CATALOG SECTION -->
+<div class="tc-catalog-section">
+  <div class="tc-container">
+    <div class="tc-product-grid" id="tcProductGrid"></div>
+
+    <div class="tc-empty-state" id="tcEmptyState">
+      <div class="tc-empty-icon">🐾</div>
+      <h3>Không tìm thấy sản phẩm phù hợp</h3>
+      <p>Hãy thử điều chỉnh bộ lọc hoặc từ khóa tìm kiếm khác</p>
+      <button class="tc-btn-reset" id="tcResetAll">Xóa tất cả bộ lọc</button>
+    </div>
+
+    <nav aria-label="Phân trang sản phẩm">
+      <ul class="tc-pagination" id="tcPagination"></ul>
+    </nav>
+  </div>
+</div>
+
+<!-- MOBILE FILTER OFFCANVAS -->
+<div class="offcanvas offcanvas-start tc-offcanvas" tabindex="-1" id="tcFilterOffcanvas" aria-labelledby="tcFilterOffcanvasLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="tcFilterOffcanvasLabel">Bộ lọc sản phẩm</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Đóng"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="tc-oc-section">
+      <div class="tc-oc-section-title">Danh mục</div>
+      <div class="tc-cat-pills" style="flex-wrap:wrap" id="tcOcCatPills">
+        <button class="tc-cat-pill active" data-cat-oc="">Tất cả</button>
+        <button class="tc-cat-pill" data-cat-oc="thuc-an">Thức ăn</button>
+        <button class="tc-cat-pill" data-cat-oc="phu-kien">Phụ kiện</button>
+        <button class="tc-cat-pill" data-cat-oc="do-choi">Đồ chơi</button>
+        <button class="tc-cat-pill" data-cat-oc="chuong-nha">Chuồng & Nhà ở</button>
+        <button class="tc-cat-pill" data-cat-oc="cham-soc">Chăm sóc</button>
+      </div>
+    </div>
+    <div class="tc-oc-section">
+      <div class="tc-oc-section-title">Khoảng giá</div>
+      <div class="tc-price-labels"><span>0₫</span><span id="tcOcPriceLabel">1.500.000₫</span></div>
+      <input type="range" id="tcOcPriceRange" class="tc-range" min="0" max="1500000" step="10000" value="1500000">
+    </div>
+    <div class="tc-oc-section">
+      <div class="tc-oc-section-title">Loại thú cưng</div>
+      <label class="form-check"><input type="checkbox" class="form-check-input tc-oc-pet-cb" value="cho"><span class="form-check-label">Chó</span></label>
+      <label class="form-check"><input type="checkbox" class="form-check-input tc-oc-pet-cb" value="meo"><span class="form-check-label">Mèo</span></label>
+      <label class="form-check"><input type="checkbox" class="form-check-input tc-oc-pet-cb" value="ca-hai"><span class="form-check-label">Cả chó & mèo</span></label>
+    </div>
+    <div class="tc-oc-section">
+      <div class="tc-oc-section-title">Kích cỡ</div>
+      <div style="display:flex;gap:16px">
+        <label class="form-check"><input type="checkbox" class="form-check-input tc-oc-size-cb" value="S"><span class="form-check-label">S</span></label>
+        <label class="form-check"><input type="checkbox" class="form-check-input tc-oc-size-cb" value="M"><span class="form-check-label">M</span></label>
+        <label class="form-check"><input type="checkbox" class="form-check-input tc-oc-size-cb" value="L"><span class="form-check-label">L</span></label>
+      </div>
+    </div>
+    <div class="tc-oc-section">
+      <div class="tc-oc-section-title">Thương hiệu</div>
+      <div id="tcOcBrandMenu"></div>
+    </div>
+    <div class="tc-oc-section">
+      <div class="tc-oc-section-title">Sắp xếp</div>
+      <select id="tcSortOc" class="tc-sort-select" style="width:100%">
+        <option value="newest">Mới nhất</option>
+        <option value="price-asc">Giá tăng dần</option>
+        <option value="price-desc">Giá giảm dần</option>
+        <option value="bestseller">Bán chạy</option>
+        <option value="rating">Đánh giá cao</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURE-ICON-ROW -->
+<section class="tc-sec tc-sec-alt">
+  <div class="tc-container">
+    <div class="tc-sec-header tc-center" data-reveal>
+      <div class="tc-eyebrow" style="color:var(--accent-h)">Vì sao chọn Pet Haus</div>
+      <h2 class="tc-sec-title">An tâm chăm sóc <em>bé cưng</em> mỗi ngày</h2>
+      <p class="tc-sec-sub">Từng sản phẩm đều được kiểm định nguồn gốc và tư vấn bởi đội ngũ am hiểu thú cưng.</p>
+    </div>
+    <div class="tc-feature-grid">
+      <div class="tc-feature" data-reveal data-delay="1">
+        <div class="tc-feature-icon">🚚</div>
+        <h3>Giao hàng toàn quốc</h3>
+        <p>Miễn phí vận chuyển cho đơn từ 400.000₫, giao nhanh 1-3 ngày.</p>
+      </div>
+      <div class="tc-feature" data-reveal data-delay="2">
+        <div class="tc-feature-icon">🩺</div>
+        <h3>Nguồn gốc rõ ràng</h3>
+        <p>100% sản phẩm có tem kiểm định, ưu tiên thương hiệu được bác sĩ thú y khuyên dùng.</p>
+      </div>
+      <div class="tc-feature" data-reveal data-delay="3">
+        <div class="tc-feature-icon">↩️</div>
+        <h3>Đổi trả dễ dàng</h3>
+        <p>Đổi trả trong 7 ngày nếu sản phẩm lỗi hoặc bé cưng không hợp.</p>
+      </div>
+      <div class="tc-feature" data-reveal data-delay="4">
+        <div class="tc-feature-icon">💬</div>
+        <h3>Tư vấn tận tâm</h3>
+        <p>Đội ngũ hỗ trợ hiểu về dinh dưỡng & chăm sóc thú cưng, phản hồi nhanh trong ngày.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIST-ELEGANT — Testimonials -->
+<section class="tc-sec">
+  <div class="tc-container">
+    <div class="tc-sec-header tc-center" data-reveal>
+      <div class="tc-eyebrow">Khách hàng nói gì</div>
+      <h2 class="tc-sec-title">Hàng nghìn <em>"con sen"</em> tin tưởng</h2>
+    </div>
+    <div class="tc-list-elegant" style="max-width:820px;margin:0 auto" data-reveal>
+      <div class="tc-list-item">
+        <img class="tc-list-avatar" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&auto=format&fit=crop&q=80" alt="[Chân dung khách hàng nữ mỉm cười]" loading="lazy">
+        <div>
+          <p class="tc-list-quote">Hạt khô ở đây bé nhà mình ăn rất hợp, lông mượt hẳn sau <em>2 tuần</em>. Giao hàng cũng nhanh nữa.</p>
+          <div class="tc-list-name">Thu Hà</div>
+          <div class="tc-list-role">Khách hàng tại TP.HCM</div>
+        </div>
+        <div class="tc-list-stars">★★★★★</div>
+      </div>
+      <div class="tc-list-item">
+        <img class="tc-list-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&auto=format&fit=crop&q=80" alt="[Chân dung khách hàng nam]" loading="lazy">
+        <div>
+          <p class="tc-list-quote">Mua chuồng cho mèo, đóng gói chắc chắn, tư vấn kích cỡ rất kỹ trước khi đặt. <em>Rất hài lòng!</em></p>
+          <div class="tc-list-name">Minh Quân</div>
+          <div class="tc-list-role">Khách hàng tại Hà Nội</div>
+        </div>
+        <div class="tc-list-stars">★★★★★</div>
+      </div>
+      <div class="tc-list-item">
+        <img class="tc-list-avatar" src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&auto=format&fit=crop&q=80" alt="[Chân dung khách hàng nữ trẻ]" loading="lazy">
+        <div>
+          <p class="tc-list-quote">Đồ chơi bền, cún nhà mình cắn cả tháng chưa hỏng. Giá lại hợp lý so với <em>chất lượng</em>.</p>
+          <div class="tc-list-name">Bảo Ngọc</div>
+          <div class="tc-list-role">Khách hàng tại Đà Nẵng</div>
+        </div>
+        <div class="tc-list-stars">★★★★☆</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="tc-sec tc-sec-alt">
+  <div class="tc-container">
+    <div class="tc-sec-header tc-center" data-reveal>
+      <div class="tc-eyebrow">Giải đáp thắc mắc</div>
+      <h2 class="tc-sec-title">Câu hỏi <em>thường gặp</em></h2>
+    </div>
+    <div class="tc-faq" data-reveal>
+      <div class="tc-faq-item open">
+        <button class="tc-faq-q">Sản phẩm có kiểm định an toàn không? <span class="tc-faq-icon">+</span></button>
+        <div class="tc-faq-a"><div class="tc-faq-a-inner">Có. 100% sản phẩm tại Pet Haus đều có tem nguồn gốc/kiểm định trước khi lên kệ, ưu tiên các thương hiệu được bác sĩ thú y khuyên dùng.</div></div>
+      </div>
+      <div class="tc-faq-item">
+        <button class="tc-faq-q">Thời gian giao hàng mất bao lâu? <span class="tc-faq-icon">+</span></button>
+        <div class="tc-faq-a"><div class="tc-faq-a-inner">Nội thành các thành phố lớn: 1-2 ngày. Các tỉnh khác: 2-4 ngày làm việc. Đơn từ 400.000₫ được miễn phí vận chuyển.</div></div>
+      </div>
+      <div class="tc-faq-item">
+        <button class="tc-faq-q">Tôi có thể đổi trả nếu bé cưng không hợp sản phẩm không? <span class="tc-faq-icon">+</span></button>
+        <div class="tc-faq-a"><div class="tc-faq-a-inner">Được. Đổi trả miễn phí trong 7 ngày với sản phẩm còn nguyên tem, chưa qua sử dụng (riêng thức ăn đã mở gói không áp dụng đổi trả vì lý do vệ sinh).</div></div>
+      </div>
+      <div class="tc-faq-item">
+        <button class="tc-faq-q">Hình thức thanh toán nào được hỗ trợ? <span class="tc-faq-icon">+</span></button>
+        <div class="tc-faq-a"><div class="tc-faq-a-inner">Thanh toán khi nhận hàng (COD), chuyển khoản ngân hàng, hoặc ví điện tử. Thông tin chi tiết hiển thị ở bước thanh toán.</div></div>
+      </div>
+      <div class="tc-faq-item">
+        <button class="tc-faq-q">Làm sao chọn đúng kích cỡ phụ kiện/chuồng cho thú cưng? <span class="tc-faq-icon">+</span></button>
+        <div class="tc-faq-a"><div class="tc-faq-a-inner">Mỗi sản phẩm đều có bảng thông số kích cỡ trong phần "Thông số" ở trang chi tiết. Nếu chưa chắc chắn, hãy nhắn Zalo cho đội ngũ tư vấn để được hỗ trợ đo & chọn size phù hợp.</div></div>
+      </div>
+      <div class="tc-faq-item">
+        <button class="tc-faq-q">Pet Haus có bán sỉ/đại lý không? <span class="tc-faq-icon">+</span></button>
+        <div class="tc-faq-a"><div class="tc-faq-a-inner">Có chương trình hợp tác đại lý & bán sỉ cho các cửa hàng thú cưng, phòng khám thú y. Vui lòng liên hệ qua trang Liên hệ để được báo giá riêng.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="tc-footer">
+  <div class="tc-container">
+    <div class="tc-footer-grid">
+      <div class="tc-footer-col">
+        <div class="tc-footer-logo"><span class="tc-logo-dot"></span>PET<span style="color:var(--accent-mid)">HAUS</span></div>
+        <p class="tc-footer-desc">Cửa hàng thú cưng chính hãng — thức ăn, phụ kiện, đồ chơi, chuồng nhà & chăm sóc cho chó mèo. Nguồn gốc rõ ràng, kiểm định trước khi bán.</p>
+        <div class="tc-footer-social">
+          <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer">f</a>
+          <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">ig</a>
+          <a href="https://zalo.me/[ZALO_NUMBER]" aria-label="Zalo" target="_blank" rel="noopener noreferrer">z</a>
+        </div>
+      </div>
+      <div class="tc-footer-col">
+        <h4>Danh mục</h4>
+        <ul>
+          <li><a href="index.html?category=thuc-an">Thức ăn</a></li>
+          <li><a href="index.html?category=phu-kien">Phụ kiện</a></li>
+          <li><a href="index.html?category=do-choi">Đồ chơi</a></li>
+          <li><a href="index.html?category=chuong-nha">Chuồng & Nhà ở</a></li>
+          <li><a href="index.html?category=cham-soc">Chăm sóc & Vệ sinh</a></li>
+        </ul>
+      </div>
+      <div class="tc-footer-col">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+          <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+          <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+      <div class="tc-footer-col">
+        <h4>Liên hệ</h4>
+        <div class="tc-footer-contact-items">
+          <p>📍 [ĐỊA CHỈ CỬA HÀNG PET HAUS]</p>
+          <p>📞 <a href="tel:[SỐ_ĐIỆN_THOẠI]" style="color:inherit">[SỐ_ĐIỆN_THOẠI]</a></p>
+          <p>✉️ <a href="mailto:[EMAIL@PETHAUS.VN]" style="color:inherit">[EMAIL@PETHAUS.VN]</a></p>
+          <p>🕐 T2–CN: 8:00–20:00</p>
+        </div>
+      </div>
+    </div>
+    <div class="tc-footer-maps">
+      <iframe src="https://maps.google.com/maps?q=10.7769,106.7009&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ cửa hàng Pet Haus"></iframe>
+    </div>
+    <div class="tc-footer-bottom">
+      <p>© 2026 Pet Haus. Tất cả quyền được bảo lưu.</p>
+      <div class="tc-footer-bottom-links">
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[ZALO_NUMBER]" class="tc-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.17.7 4.18 1.88 5.81L2.5 21.5l3.8-1.35A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a7.95 7.95 0 01-4.13-1.15l-.29-.18-3.04 1.08 1.09-2.97-.2-.31A8 8 0 1112 20zm4.51-5.95c-.24-.12-1.43-.71-1.65-.79-.22-.08-.38-.12-.54.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.19-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.1-.49.1-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.47-.39-.4-.54-.41-.14 0-.3-.01-.46-.01s-.42.06-.64.3c-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.09 3.62.57.25 1.02.4 1.37.5.57.18 1.1.16 1.51.1.46-.07 1.43-.59 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products-data.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+'use strict';
+const MAX_PRICE = 1500000;
+const PER_PAGE = 12;
+
+/* Populate brand dropdown menus (desktop + offcanvas) từ BRANDS */
+document.getElementById('tcBrandMenu').innerHTML = BRANDS.map(b =>
+  `<label class="form-check"><input type="checkbox" class="form-check-input tc-brand-cb" value="${b}"><span class="form-check-label">${b}</span></label>`
+).join('');
+document.getElementById('tcOcBrandMenu').innerHTML = BRANDS.map(b =>
+  `<label class="form-check"><input type="checkbox" class="form-check-input tc-oc-brand-cb" value="${b}"><span class="form-check-label">${b}</span></label>`
+).join('');
+
+let state = { category: [], priceMax: MAX_PRICE, petType: [], size: [], brand: [], search: '', sort: 'newest', page: 1 };
+
+const grid = document.getElementById('tcProductGrid');
+const emptyEl = document.getElementById('tcEmptyState');
+const paginationEl = document.getElementById('tcPagination');
+const chipsEl = document.getElementById('tcActiveChips');
+const countEl = document.getElementById('tcResultCount');
+const sortSelect = document.getElementById('tcSort');
+const sortMobile = document.getElementById('tcSortMobile');
+const sortOc = document.getElementById('tcSortOc');
+const priceRange = document.getElementById('tcPriceRange');
+const priceLabel = document.getElementById('tcPriceMaxLabel');
+const catPills = document.querySelectorAll('#tcCatPills [data-cat]');
+const petCbs = document.querySelectorAll('.tc-pet-cb');
+const sizeCbs = document.querySelectorAll('.tc-size-cb');
+const brandCbs = document.querySelectorAll('.tc-brand-cb');
+const ocPriceRange = document.getElementById('tcOcPriceRange');
+const ocPriceLabel = document.getElementById('tcOcPriceLabel');
+const ocCatPills = document.querySelectorAll('#tcOcCatPills [data-cat-oc]');
+const ocPetCbs = document.querySelectorAll('.tc-oc-pet-cb');
+const ocSizeCbs = document.querySelectorAll('.tc-oc-size-cb');
+const ocBrandCbs = document.querySelectorAll('.tc-oc-brand-cb');
+
+const PET_LABELS = {}; PET_TYPES.forEach(p => PET_LABELS[p.slug] = p.label);
+const CAT_LABELS = {}; CATEGORIES.forEach(c => CAT_LABELS[c.slug] = c.label);
+
+function match(p) {
+  if (state.category.length && !state.category.includes(p.category)) return false;
+  const price = p.salePrice ?? p.price;
+  if (price > state.priceMax) return false;
+  if (state.petType.length && !state.petType.includes(p.petType)) return false;
+  if (state.size.length && !p.size.some(s => state.size.includes(s))) return false;
+  if (state.brand.length && !state.brand.includes(p.brand)) return false;
+  if (state.search && !p.name.toLowerCase().includes(state.search.toLowerCase())) return false;
+  return true;
+}
+
+function sortList(list) {
+  const arr = [...list];
+  const eff = p => p.salePrice ?? p.price;
+  if (state.sort === 'price-asc') arr.sort((a, b) => eff(a) - eff(b));
+  else if (state.sort === 'price-desc') arr.sort((a, b) => eff(b) - eff(a));
+  else if (state.sort === 'rating') arr.sort((a, b) => b.rating - a.rating);
+  else if (state.sort === 'bestseller') arr.sort((a, b) => (b.sold || 0) - (a.sold || 0));
+  else arr.sort((a, b) => b.id - a.id);
+  return arr;
+}
+
+function cardHTML(p) {
+  const price = p.salePrice ? p.salePrice : p.price;
+  const badgeLabel = { sale: 'Sale', new: 'Mới', hot: 'Hot' };
+  return `<div class="tc-prod-card">
+    <a href="chi-tiet-san-pham.html?slug=${p.slug}" class="tc-prod-img-wrap">
+      <img src="${p.image}" alt="[${p.name}]" loading="lazy" onerror="this.src='${TC_FALLBACK_SVG}'">
+      ${p.badge ? `<span class="tc-badge tc-badge-${p.badge}">${badgeLabel[p.badge]}</span>` : ''}
+    </a>
+    <div class="tc-prod-body">
+      <div class="tc-prod-cat">${CAT_LABELS[p.category]} · ${PET_LABELS[p.petType]}</div>
+      <h3 class="tc-prod-name"><a href="chi-tiet-san-pham.html?slug=${p.slug}">${p.name}</a></h3>
+      <div class="tc-prod-rating"><span class="tc-stars">${'★'.repeat(Math.round(p.rating))}</span><span>${p.rating}</span><span>(${p.sold} đã bán)</span></div>
+      <div class="tc-prod-price">
+        <span class="tc-price${p.salePrice ? ' sale' : ''}">${tcFmt(price)}</span>
+        ${p.salePrice ? `<span class="tc-price-orig">${tcFmt(p.price)}</span>` : ''}
+      </div>
+      <div class="tc-prod-actions">
+        <button class="tc-btn-cart" data-add-cart="${p.id}">Thêm vào giỏ</button>
+        <a href="chi-tiet-san-pham.html?slug=${p.slug}" class="tc-btn-detail">Chi tiết</a>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderGrid(items) {
+  if (items.length === 0) { grid.innerHTML = ''; emptyEl.classList.add('visible'); }
+  else { emptyEl.classList.remove('visible'); grid.innerHTML = items.map(cardHTML).join(''); }
+}
+function renderCount(total, start, len) {
+  countEl.textContent = total === 0 ? '0 sản phẩm' : `Hiển thị ${start + 1}–${start + len} trong ${total} sản phẩm`;
+}
+function renderPagination(totalPages) {
+  paginationEl.hidden = totalPages <= 1;
+  if (totalPages <= 1) { paginationEl.innerHTML = ''; return; }
+  paginationEl.innerHTML = Array.from({ length: totalPages }, (_, i) => {
+    const n = i + 1;
+    return `<li class="page-item${n === state.page ? ' active' : ''}"><button class="page-link" data-page="${n}">${n}</button></li>`;
+  }).join('');
+}
+function renderChips() {
+  const chips = [];
+  state.category.forEach(c => chips.push({ label: CAT_LABELS[c], type: 'category', val: c }));
+  state.petType.forEach(p => chips.push({ label: PET_LABELS[p], type: 'petType', val: p }));
+  state.size.forEach(s => chips.push({ label: `Size: ${s}`, type: 'size', val: s }));
+  state.brand.forEach(b => chips.push({ label: b, type: 'brand', val: b }));
+  if (state.priceMax < MAX_PRICE) chips.push({ label: `Đến ${tcFmt(state.priceMax)}`, type: 'price', val: '' });
+  if (state.search) chips.push({ label: `"${state.search}"`, type: 'search', val: '' });
+
+  chipsEl.innerHTML = chips.map(c => `<span class="tc-chip" data-chip-type="${c.type}" data-chip-val="${c.val}">${c.label}<button class="tc-chip-close" aria-label="Xóa ${c.label}">×</button></span>`).join('');
+  if (chips.length) chipsEl.insertAdjacentHTML('beforeend', `<button class="tc-chip-clear" id="tcChipClear">Xóa tất cả</button>`) && document.getElementById('tcChipClear').addEventListener('click', resetAll);
+
+  const badge = document.getElementById('tcFilterBadge');
+  badge.style.display = chips.length ? 'inline-flex' : 'none';
+  badge.textContent = chips.length;
+
+  document.getElementById('tcDropPrice').classList.toggle('has-filter', state.priceMax < MAX_PRICE);
+  document.getElementById('tcDropPet').classList.toggle('has-filter', state.petType.length > 0);
+  document.getElementById('tcDropSize').classList.toggle('has-filter', state.size.length > 0);
+  document.getElementById('tcDropBrand').classList.toggle('has-filter', state.brand.length > 0);
+}
+function writeURL() {
+  const p = new URLSearchParams();
+  if (state.category.length) p.set('category', state.category.join(','));
+  if (state.petType.length) p.set('petType', state.petType.join(','));
+  if (state.size.length) p.set('size', state.size.join(','));
+  if (state.brand.length) p.set('brand', state.brand.join(','));
+  if (state.search) p.set('q', state.search);
+  if (state.sort !== 'newest') p.set('sort', state.sort);
+  if (state.priceMax < MAX_PRICE) p.set('priceMax', state.priceMax);
+  if (state.page > 1) p.set('page', state.page);
+  const qs = p.toString();
+  history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
+}
+function readURL() {
+  const p = new URLSearchParams(location.search);
+  if (p.get('category')) state.category = p.get('category').split(',');
+  if (p.get('petType')) state.petType = p.get('petType').split(',');
+  if (p.get('size')) state.size = p.get('size').split(',');
+  if (p.get('brand')) state.brand = p.get('brand').split(',');
+  if (p.get('q')) state.search = p.get('q');
+  if (p.get('sort')) state.sort = p.get('sort');
+  if (p.get('priceMax')) state.priceMax = +p.get('priceMax');
+  if (p.get('page')) state.page = +p.get('page') || 1;
+}
+function syncUI() {
+  document.getElementById('tcBannerSearchInput').value = state.search;
+  sortSelect.value = state.sort; sortMobile.value = state.sort; sortOc.value = state.sort;
+  priceRange.value = state.priceMax; priceLabel.textContent = tcFmt(state.priceMax);
+  ocPriceRange.value = state.priceMax; ocPriceLabel.textContent = tcFmt(state.priceMax);
+  catPills.forEach(btn => { const c = btn.dataset.cat; btn.classList.toggle('active', c === '' ? state.category.length === 0 : state.category.includes(c)); });
+  ocCatPills.forEach(btn => { const c = btn.dataset.catOc; btn.classList.toggle('active', c === '' ? state.category.length === 0 : state.category.includes(c)); });
+  petCbs.forEach(cb => cb.checked = state.petType.includes(cb.value));
+  sizeCbs.forEach(cb => cb.checked = state.size.includes(cb.value));
+  brandCbs.forEach(cb => cb.checked = state.brand.includes(cb.value));
+  ocPetCbs.forEach(cb => cb.checked = state.petType.includes(cb.value));
+  ocSizeCbs.forEach(cb => cb.checked = state.size.includes(cb.value));
+  ocBrandCbs.forEach(cb => cb.checked = state.brand.includes(cb.value));
+}
+function render() {
+  const filtered = sortList(PRODUCTS.filter(match));
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+  state.page = Math.min(state.page, totalPages);
+  const start = (state.page - 1) * PER_PAGE;
+  const pageItems = filtered.slice(start, start + PER_PAGE);
+  renderGrid(pageItems);
+  renderCount(filtered.length, start, pageItems.length);
+  renderPagination(totalPages);
+  renderChips();
+  writeURL();
+}
+function onFilterChange() { state.page = 1; render(); }
+function resetAll() {
+  state = { category: [], priceMax: MAX_PRICE, petType: [], size: [], brand: [], search: '', sort: 'newest', page: 1 };
+  syncUI(); render();
+}
+
+/* Category pills (single-select, exclusive) */
+catPills.forEach(btn => btn.addEventListener('click', () => {
+  const c = btn.dataset.cat;
+  state.category = c === '' ? [] : (state.category.includes(c) ? [] : [c]);
+  syncUI(); onFilterChange();
+}));
+ocCatPills.forEach(btn => btn.addEventListener('click', () => {
+  const c = btn.dataset.catOc;
+  state.category = c === '' ? [] : (state.category.includes(c) ? [] : [c]);
+  syncUI(); onFilterChange();
+}));
+
+/* Price range — debounce 250ms */
+let priceTimer;
+priceRange.addEventListener('input', () => {
+  clearTimeout(priceTimer);
+  const val = +priceRange.value; priceLabel.textContent = tcFmt(val);
+  priceTimer = setTimeout(() => { state.priceMax = val; onFilterChange(); }, 250);
+});
+ocPriceRange.addEventListener('input', () => {
+  clearTimeout(priceTimer);
+  const val = +ocPriceRange.value; ocPriceLabel.textContent = tcFmt(val);
+  priceTimer = setTimeout(() => { state.priceMax = val; priceRange.value = val; priceLabel.textContent = tcFmt(val); onFilterChange(); }, 250);
+});
+
+/* Checkbox groups — apply immediately */
+function bindCbs(cbs, ocCbs, key) {
+  function upd() { state[key] = [...cbs].filter(c => c.checked).map(c => c.value); syncUI(); onFilterChange(); }
+  function updOc() { state[key] = [...ocCbs].filter(c => c.checked).map(c => c.value); syncUI(); onFilterChange(); }
+  cbs.forEach(cb => cb.addEventListener('change', upd));
+  ocCbs.forEach(cb => cb.addEventListener('change', updOc));
+}
+bindCbs(petCbs, ocPetCbs, 'petType');
+bindCbs(sizeCbs, ocSizeCbs, 'size');
+bindCbs(brandCbs, ocBrandCbs, 'brand');
+
+/* Sort */
+sortSelect.addEventListener('change', () => { state.sort = sortSelect.value; syncUI(); onFilterChange(); });
+sortMobile.addEventListener('change', () => { state.sort = sortMobile.value; syncUI(); onFilterChange(); });
+sortOc.addEventListener('change', () => { state.sort = sortOc.value; syncUI(); onFilterChange(); });
+
+/* Pagination */
+paginationEl.addEventListener('click', e => {
+  const btn = e.target.closest('[data-page]'); if (!btn) return;
+  state.page = +btn.dataset.page; render();
+  document.getElementById('tcProductGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+/* Chips remove */
+chipsEl.addEventListener('click', e => {
+  const btn = e.target.closest('.tc-chip-close'); if (!btn) return;
+  const chip = btn.closest('.tc-chip'); const { chipType: type, chipVal: val } = chip.dataset;
+  if (type === 'category') state.category = state.category.filter(v => v !== val);
+  else if (type === 'petType') state.petType = state.petType.filter(v => v !== val);
+  else if (type === 'size') state.size = state.size.filter(v => v !== val);
+  else if (type === 'brand') state.brand = state.brand.filter(v => v !== val);
+  else if (type === 'price') state.priceMax = MAX_PRICE;
+  else if (type === 'search') state.search = '';
+  syncUI(); onFilterChange();
+});
+document.getElementById('tcResetAll').addEventListener('click', resetAll);
+
+/* Search (banner) */
+document.getElementById('tcBannerSearchForm').addEventListener('submit', e => {
+  e.preventDefault();
+  state.search = document.getElementById('tcBannerSearchInput').value.trim();
+  onFilterChange();
+  document.getElementById('tcFilterWrap').scrollIntoView({ behavior: 'smooth' });
+});
+
+/* Add to cart */
+grid.addEventListener('click', e => {
+  const btn = e.target.closest('[data-add-cart]'); if (!btn) return;
+  tcAddToCart(+btn.dataset.addCart, 1);
+  btn.textContent = '✓ Đã thêm';
+  setTimeout(() => { btn.textContent = 'Thêm vào giỏ'; }, 1500);
+});
+
+readURL();
+syncUI();
+render();
+</script>
+</body>
+</html>

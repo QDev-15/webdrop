@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MỘC AN — Nội thất tối giản cho không gian sống chậm</title>
+<meta name="description" content="MỘC AN — nội thất gỗ tối giản: sofa, bàn ghế, tủ kệ, đèn trang trí. Chất liệu gỗ tự nhiên, bảo hành 24 tháng, giao hàng &amp; lắp đặt tận nơi toàn quốc.">
+<meta property="og:title" content="MỘC AN — Nội thất tối giản cho không gian sống chậm">
+<meta property="og:description" content="Hơn 500 mẫu nội thất gỗ tối giản — sofa, bàn ghế, tủ kệ, đèn trang trí. Bảo hành 24 tháng, lắp đặt tận nơi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="nt-topbar" role="status">
+  <span>Miễn phí giao hàng nội thành cho đơn từ 5.000.000₫</span>
+  <span class="nt-topbar-sep">·</span>
+  <span>Bảo hành 24 tháng</span>
+  <span class="nt-topbar-sep">·</span>
+  <span>Lắp đặt tận nơi toàn quốc</span>
+</div>
+
+<nav id="nt-nav" aria-label="Menu chính">
+  <div class="nt-container">
+    <div class="nt-nav-inner">
+      <a href="index.html" class="nt-logo" aria-label="MỘC AN - Trang chủ">MỘC <em>AN</em></a>
+      <ul class="nt-nav-links d-none d-lg-flex">
+        <li><a href="index.html" class="active">Trang chủ</a></li>
+        <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+        <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+        <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+        <li><a href="lien-he.html">Liên hệ</a></li>
+      </ul>
+      <div class="nt-nav-actions">
+        <button id="navSearchBtn" class="nt-nav-icon-btn" aria-label="Tìm kiếm" aria-expanded="false" aria-controls="navSearchPanel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </button>
+        <a href="gio-hang.html" class="nt-nav-icon-btn" aria-label="Giỏ hàng">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="nt-cart-badge">0</span>
+        </a>
+        <button id="navBurger" class="nt-hamburger d-lg-none" aria-label="Mở menu" aria-expanded="false" aria-controls="navMob">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="nt-search-panel" id="navSearchPanel" hidden>
+      <form class="nt-search-form" onsubmit="return false;">
+        <input type="search" id="navSearchInput" placeholder="Tìm sofa, bàn ăn, đèn trang trí..." aria-label="Từ khóa tìm kiếm">
+        <button type="button" id="navSearchSubmit" aria-label="Tìm kiếm">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="nt-nav-mob" id="navMob" role="dialog" aria-modal="true" aria-label="Menu điều hướng">
+  <div class="nt-nav-mob-top">
+    <span class="nt-logo">MỘC <em>AN</em></span>
+    <button class="nt-nav-mob-close" id="navMobClose" aria-label="Đóng menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <ul>
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+    <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+    <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+  <div class="nt-nav-mob-actions">
+    <a href="gio-hang.html">🛒 Giỏ hàng của tôi</a>
+    <a href="tel:[SỐ_ĐIỆN_THOẠI]">📞 [SỐ_ĐIỆN_THOẠI]</a>
+  </div>
+</div>
+
+<!-- ── BANNER MỎNG (Mode A — thay hero fullscreen) ── -->
+<section class="nt-banner">
+  <div class="nt-container">
+    <h1>Nội thất tối giản cho <em>không gian sống chậm</em></h1>
+    <p>Hơn 500 mẫu sofa, bàn ghế, tủ kệ và phụ kiện trang trí — chất liệu gỗ tự nhiên, thiết kế bền vững theo thời gian.</p>
+    <div class="nt-banner-search" role="search">
+      <input type="search" id="bannerSearchInput" placeholder="Tìm sofa, bàn ăn, kệ tivi, đèn trang trí..." aria-label="Tìm sản phẩm">
+      <button type="button" id="bannerSearchBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" style="display:inline;margin-right:4px;vertical-align:-2px"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        Tìm kiếm
+      </button>
+    </div>
+    <div class="nt-quickcats" data-reveal>
+      <a href="#" class="nt-quickcat" data-quickcat="sofa">
+        <span class="nt-quickcat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 18v-5a2 2 0 012-2h12a2 2 0 012 2v5"/><path d="M4 13V9a2 2 0 012-2h0M20 13V9a2 2 0 00-2-2h0"/><path d="M3 18h18v2H3z"/></svg></span>
+        <span>Sofa</span>
+      </a>
+      <a href="#" class="nt-quickcat" data-quickcat="ban">
+        <span class="nt-quickcat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 9h18M6 9v10M18 9v10"/></svg></span>
+        <span>Bàn</span>
+      </a>
+      <a href="#" class="nt-quickcat" data-quickcat="ghe">
+        <span class="nt-quickcat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 11V6a2 2 0 012-2h10a2 2 0 012 2v5M5 11h14v6H5z"/><path d="M6 17v3M18 17v3"/></svg></span>
+        <span>Ghế</span>
+      </a>
+      <a href="#" class="nt-quickcat" data-quickcat="tu-ke">
+        <span class="nt-quickcat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="3" width="16" height="18" rx="1"/><line x1="12" y1="3" x2="12" y2="21"/></svg></span>
+        <span>Tủ &amp; kệ</span>
+      </a>
+      <a href="#" class="nt-quickcat" data-quickcat="giuong">
+        <span class="nt-quickcat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6M3 18h18M3 18v2M21 18v2M7 10V6h4v4"/></svg></span>
+        <span>Giường ngủ</span>
+      </a>
+      <a href="#" class="nt-quickcat" data-quickcat="den">
+        <span class="nt-quickcat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-4 10.5c.6.6 1 1.3 1 2.5h6c0-1.2.4-1.9 1-2.5A6 6 0 0012 3z"/></svg></span>
+        <span>Đèn</span>
+      </a>
+      <a href="#" class="nt-quickcat" data-quickcat="trang-tri">
+        <span class="nt-quickcat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></span>
+        <span>Trang trí</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FILTER TOOLBAR ── -->
+<div class="nt-toolbar-wrap" id="toolbarWrap">
+  <div class="nt-container">
+
+    <!-- Desktop: category pills -->
+    <div class="nt-toolbar-pills d-none d-lg-flex" id="catPills" role="group" aria-label="Lọc theo danh mục">
+      <button class="nt-pill nt-cat-pill active" data-cat="tat-ca">Tất cả</button>
+      <button class="nt-pill nt-cat-pill" data-cat="sofa">Sofa &amp; ghế bành</button>
+      <button class="nt-pill nt-cat-pill" data-cat="ban">Bàn</button>
+      <button class="nt-pill nt-cat-pill" data-cat="ghe">Ghế</button>
+      <button class="nt-pill nt-cat-pill" data-cat="tu-ke">Tủ &amp; kệ</button>
+      <button class="nt-pill nt-cat-pill" data-cat="giuong">Giường ngủ</button>
+      <button class="nt-pill nt-cat-pill" data-cat="den">Đèn trang trí</button>
+      <button class="nt-pill nt-cat-pill" data-cat="trang-tri">Đồ trang trí</button>
+    </div>
+
+    <!-- Desktop: dropdown controls -->
+    <div class="nt-toolbar-controls d-none d-lg-flex">
+      <div class="nt-dropdown">
+        <button class="nt-dropdown-btn" id="matDropBtn" aria-expanded="false" aria-controls="matMenu">
+          Chất liệu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nt-dropdown-menu" id="matMenu">
+          <label class="nt-dd-option"><input type="checkbox" data-cb-group="material" value="go-tu-nhien"> Gỗ tự nhiên</label>
+          <label class="nt-dd-option"><input type="checkbox" data-cb-group="material" value="go-cong-nghiep"> Gỗ công nghiệp</label>
+          <label class="nt-dd-option"><input type="checkbox" data-cb-group="material" value="kim-loai"> Kim loại</label>
+          <label class="nt-dd-option"><input type="checkbox" data-cb-group="material" value="vai-boc"> Vải bọc</label>
+          <label class="nt-dd-option"><input type="checkbox" data-cb-group="material" value="da"> Da</label>
+          <label class="nt-dd-option"><input type="checkbox" data-cb-group="material" value="may-tre"> Mây tre đan</label>
+          <label class="nt-dd-option"><input type="checkbox" data-cb-group="material" value="khac"> Khác</label>
+        </div>
+      </div>
+
+      <div class="nt-dropdown">
+        <button class="nt-dropdown-btn" id="colDropBtn" aria-expanded="false" aria-controls="colMenu">
+          Màu sắc <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nt-dropdown-menu" id="colMenu">
+          <label class="nt-dd-option"><input type="checkbox" data-cb-group="color" value="nau-go"> Nâu gỗ</label>
+          <label class="nt-dd-option"><input type="checkbox" data-cb-group="color" value="trang-kem"> Trắng kem</label>
+          <label class="nt-dd-option"><input type="checkbox" data-cb-group="color" value="den"> Đen</label>
+          <label class="nt-dd-option"><input type="checkbox" data-cb-group="color" value="xam"> Xám</label>
+          <label class="nt-dd-option"><input type="checkbox" data-cb-group="color" value="be"> Be</label>
+          <label class="nt-dd-option"><input type="checkbox" data-cb-group="color" value="xanh-rem"> Xanh rêu</label>
+        </div>
+      </div>
+
+      <div class="nt-dropdown">
+        <button class="nt-dropdown-btn" id="roomDropBtn" aria-expanded="false" aria-controls="roomMenu">
+          Không gian <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nt-dropdown-menu" id="roomMenu">
+          <label class="nt-dd-option"><input type="checkbox" data-cb-group="room" value="phong-khach"> Phòng khách</label>
+          <label class="nt-dd-option"><input type="checkbox" data-cb-group="room" value="phong-an"> Phòng ăn</label>
+          <label class="nt-dd-option"><input type="checkbox" data-cb-group="room" value="phong-ngu"> Phòng ngủ</label>
+          <label class="nt-dd-option"><input type="checkbox" data-cb-group="room" value="phong-lam-viec"> Phòng làm việc</label>
+          <label class="nt-dd-option"><input type="checkbox" data-cb-group="room" value="ban-cong-san-vuon"> Ban công &amp; sân vườn</label>
+        </div>
+      </div>
+
+      <div class="nt-toolbar-divider"></div>
+
+      <div class="nt-price-range" aria-label="Khoảng giá">
+        <span>Giá tối đa:</span>
+        <input type="range" id="priceRange" min="200000" max="18000000" step="200000" value="18000000" aria-label="Giá tối đa">
+        <span id="priceDisplay">Tất cả</span>
+      </div>
+
+      <div class="nt-toolbar-divider"></div>
+
+      <div class="nt-sort" aria-label="Sắp xếp">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M7 12h10M11 18h2"/></svg>
+        <select id="sortSelect" aria-label="Sắp xếp theo">
+          <option value="newest">Mới nhất</option>
+          <option value="price-asc">Giá tăng dần</option>
+          <option value="price-desc">Giá giảm dần</option>
+          <option value="bestseller">Bán chạy</option>
+          <option value="rating">Đánh giá cao</option>
+        </select>
+      </div>
+
+      <div class="nt-result-count" id="resultCount" aria-live="polite">44 sản phẩm</div>
+    </div>
+
+    <!-- Mobile row -->
+    <div class="d-flex d-lg-none" style="overflow-x:auto;gap:8px;padding-bottom:4px;" id="catPillsMobileWrap">
+      <button class="nt-pill nt-cat-pill active" data-cat="tat-ca">Tất cả</button>
+      <button class="nt-pill nt-cat-pill" data-cat="sofa">Sofa</button>
+      <button class="nt-pill nt-cat-pill" data-cat="ban">Bàn</button>
+      <button class="nt-pill nt-cat-pill" data-cat="ghe">Ghế</button>
+      <button class="nt-pill nt-cat-pill" data-cat="tu-ke">Tủ &amp; kệ</button>
+      <button class="nt-pill nt-cat-pill" data-cat="giuong">Giường</button>
+      <button class="nt-pill nt-cat-pill" data-cat="den">Đèn</button>
+      <button class="nt-pill nt-cat-pill" data-cat="trang-tri">Trang trí</button>
+    </div>
+    <div class="nt-toolbar-mobile-row d-lg-none">
+      <button class="nt-filter-mobile-btn" id="filterMobileBtn" aria-label="Mở bộ lọc" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
+        Bộ lọc
+        <span class="nt-filter-badge" id="filterBadge" style="display:none">0</span>
+      </button>
+      <select id="sortSelectMobile" class="nt-sort-mobile" aria-label="Sắp xếp">
+        <option value="newest">Mới nhất</option>
+        <option value="price-asc">Giá tăng</option>
+        <option value="price-desc">Giá giảm</option>
+        <option value="bestseller">Bán chạy</option>
+        <option value="rating">Đánh giá cao</option>
+      </select>
+    </div>
+
+    <!-- Active chips -->
+    <div class="nt-chips-row" id="chipsRow" style="display:none;" aria-live="polite"></div>
+  </div>
+</div>
+
+<!-- ── CATALOG ── -->
+<main class="nt-catalog">
+  <div class="nt-container">
+    <div class="nt-prod-grid" id="productGrid" aria-live="polite" aria-label="Danh sách sản phẩm"></div>
+
+    <div class="nt-empty-state" id="emptyState" style="display:none;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+      <h3>Không tìm thấy sản phẩm nào</h3>
+      <p>Thử thay đổi bộ lọc hoặc từ khóa tìm kiếm khác.</p>
+      <button class="nt-btn-outline" id="clearAllFiltersBtn">Xóa tất cả bộ lọc</button>
+    </div>
+
+    <ul class="nt-pagination" id="pagination" aria-label="Phân trang"></ul>
+  </div>
+</main>
+
+<!-- ── Mobile Offcanvas Filter ── -->
+<div class="nt-offcanvas" id="filterOffcanvas" role="dialog" aria-modal="true" aria-label="Bộ lọc sản phẩm">
+  <div class="nt-offcanvas-backdrop" id="offcanvasBackdrop"></div>
+  <div class="nt-offcanvas-panel">
+    <div class="nt-offcanvas-header">
+      <span class="nt-offcanvas-title">Bộ lọc</span>
+      <button class="nt-offcanvas-close" id="offcanvasClose" aria-label="Đóng bộ lọc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="nt-filter-section">
+      <div class="nt-filter-section-title">Chất liệu</div>
+      <label class="nt-dd-option"><input type="checkbox" data-cb-group="material" value="go-tu-nhien"> Gỗ tự nhiên</label>
+      <label class="nt-dd-option"><input type="checkbox" data-cb-group="material" value="go-cong-nghiep"> Gỗ công nghiệp</label>
+      <label class="nt-dd-option"><input type="checkbox" data-cb-group="material" value="kim-loai"> Kim loại</label>
+      <label class="nt-dd-option"><input type="checkbox" data-cb-group="material" value="vai-boc"> Vải bọc</label>
+      <label class="nt-dd-option"><input type="checkbox" data-cb-group="material" value="da"> Da</label>
+      <label class="nt-dd-option"><input type="checkbox" data-cb-group="material" value="may-tre"> Mây tre đan</label>
+      <label class="nt-dd-option"><input type="checkbox" data-cb-group="material" value="khac"> Khác</label>
+    </div>
+
+    <div class="nt-filter-section">
+      <div class="nt-filter-section-title">Màu sắc</div>
+      <label class="nt-dd-option"><input type="checkbox" data-cb-group="color" value="nau-go"> Nâu gỗ</label>
+      <label class="nt-dd-option"><input type="checkbox" data-cb-group="color" value="trang-kem"> Trắng kem</label>
+      <label class="nt-dd-option"><input type="checkbox" data-cb-group="color" value="den"> Đen</label>
+      <label class="nt-dd-option"><input type="checkbox" data-cb-group="color" value="xam"> Xám</label>
+      <label class="nt-dd-option"><input type="checkbox" data-cb-group="color" value="be"> Be</label>
+      <label class="nt-dd-option"><input type="checkbox" data-cb-group="color" value="xanh-rem"> Xanh rêu</label>
+    </div>
+
+    <div class="nt-filter-section">
+      <div class="nt-filter-section-title">Không gian phù hợp</div>
+      <label class="nt-dd-option"><input type="checkbox" data-cb-group="room" value="phong-khach"> Phòng khách</label>
+      <label class="nt-dd-option"><input type="checkbox" data-cb-group="room" value="phong-an"> Phòng ăn</label>
+      <label class="nt-dd-option"><input type="checkbox" data-cb-group="room" value="phong-ngu"> Phòng ngủ</label>
+      <label class="nt-dd-option"><input type="checkbox" data-cb-group="room" value="phong-lam-viec"> Phòng làm việc</label>
+      <label class="nt-dd-option"><input type="checkbox" data-cb-group="room" value="ban-cong-san-vuon"> Ban công &amp; sân vườn</label>
+    </div>
+
+    <div class="nt-filter-section">
+      <div class="nt-filter-section-title">Khoảng giá</div>
+      <input type="range" id="priceRangeMobile" min="200000" max="18000000" step="200000" value="18000000" style="width:100%;accent-color:var(--accent);" aria-label="Giá tối đa">
+      <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-2);margin-top:6px;">
+        <span>200.000₫</span>
+        <span id="priceDisplayMobile">Tất cả</span>
+        <span>18.000.000₫</span>
+      </div>
+    </div>
+
+    <div class="nt-offcanvas-footer">
+      <button class="nt-btn-outline" id="offcanvasClear" style="flex:1">Xóa bộ lọc</button>
+      <button class="nt-btn" id="offcanvasDone" style="flex:1">Xem kết quả</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── TRUST / FEATURE ROW ── -->
+<section class="nt-container">
+  <div class="nt-feature-row" data-reveal>
+    <div class="nt-feature-item">
+      <span class="nt-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 3v12a2 2 0 002 2h14"/><path d="M7 21h10M7 17l3-8 3 5 3-8"/></svg></span>
+      <div><h4>Chất liệu chọn lọc</h4><p>Gỗ tự nhiên, gỗ công nghiệp phủ Melamine chống ẩm, kiểm định trước khi giao.</p></div>
+    </div>
+    <div class="nt-feature-item">
+      <span class="nt-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="1" y="6" width="15" height="12" rx="1"/><path d="M16 10h4l3 4v4h-7"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg></span>
+      <div><h4>Giao hàng &amp; lắp đặt</h4><p>Miễn phí giao hàng nội thành đơn từ 5.000.000₫, lắp đặt tận nơi toàn quốc.</p></div>
+    </div>
+    <div class="nt-feature-item">
+      <span class="nt-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2l8 4v6c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6l8-4z"/></svg></span>
+      <div><h4>Bảo hành 24 tháng</h4><p>Bảo hành khung, bản lề, cơ chế vận hành — bảo trì tận nhà khi cần.</p></div>
+    </div>
+    <div class="nt-feature-item">
+      <span class="nt-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12a9 9 0 11-9-9M21 3v6h-6"/></svg></span>
+      <div><h4>Đổi trả trong 15 ngày</h4><p>Không đúng ý — đổi trả miễn phí nếu sản phẩm còn nguyên trạng.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="nt-sec">
+  <div class="nt-container">
+    <div class="nt-sec-head center" data-reveal>
+      <div class="nt-eyebrow" style="justify-content:center;">Hỏi đáp</div>
+      <h2 class="nt-sec-title">Câu hỏi <em>thường gặp</em></h2>
+      <p class="nt-sec-sub">Những thắc mắc phổ biến nhất về sản phẩm, vận chuyển và bảo hành tại MỘC AN.</p>
+    </div>
+    <div class="nt-faq" data-reveal>
+      <div class="nt-faq-item">
+        <button class="nt-faq-q">Thời gian giao hàng mất bao lâu?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="nt-faq-a"><div class="nt-faq-a-inner">Nội thành các thành phố lớn: 2–4 ngày làm việc. Khu vực tỉnh/thành khác: 5–8 ngày làm việc tùy sản phẩm và địa điểm. Đơn hàng lắp ráp sẵn (sofa, giường lớn) có thể cần thêm 1–2 ngày để đóng gói cẩn thận.</div></div>
+      </div>
+      <div class="nt-faq-item">
+        <button class="nt-faq-q">Sản phẩm có được lắp đặt tận nơi không?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="nt-faq-a"><div class="nt-faq-a-inner">Có. Với các sản phẩm cần lắp ráp như tủ, giường, bàn ăn lớn, đội kỹ thuật của MỘC AN sẽ lắp đặt và dọn dẹp bao bì tận nơi, hoàn toàn miễn phí trong nội thành.</div></div>
+      </div>
+      <div class="nt-faq-item">
+        <button class="nt-faq-q">Chính sách bảo hành áp dụng như thế nào?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="nt-faq-a"><div class="nt-faq-a-inner">Toàn bộ sản phẩm nội thất gỗ được bảo hành 24 tháng đối với lỗi khung, bản lề, cơ chế vận hành (ray trượt, bánh xe, khớp gấp...). Đèn trang trí và phụ kiện nhỏ bảo hành 6 tháng đối với lỗi kỹ thuật từ nhà sản xuất.</div></div>
+      </div>
+      <div class="nt-faq-item">
+        <button class="nt-faq-q">Tôi có thể đổi trả nếu không vừa ý?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="nt-faq-a"><div class="nt-faq-a-inner">Được đổi trả miễn phí trong vòng 15 ngày kể từ ngày nhận hàng nếu sản phẩm còn nguyên trạng, chưa qua sử dụng và còn đầy đủ bao bì. Phụ kiện trang trí giá trị nhỏ áp dụng đổi trả trong 7 ngày.</div></div>
+      </div>
+      <div class="nt-faq-item">
+        <button class="nt-faq-q">Có hỗ trợ thanh toán trả góp không?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="nt-faq-a"><div class="nt-faq-a-inner">Có. MỘC AN hỗ trợ trả góp 0% lãi suất qua thẻ tín dụng của các ngân hàng liên kết cho đơn hàng từ 3.000.000₫, kỳ hạn 3–6 tháng. Liên hệ tư vấn viên để biết chi tiết ngân hàng hỗ trợ.</div></div>
+      </div>
+      <div class="nt-faq-item">
+        <button class="nt-faq-q">Đồ gỗ tự nhiên có bị cong vênh theo thời gian?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="nt-faq-a"><div class="nt-faq-a-inner">Gỗ tự nhiên tại MỘC AN được xử lý sấy tẩm và tẩm sấy đạt độ ẩm tiêu chuẩn (8–12%) trước khi gia công, hạn chế tối đa cong vênh, mối mọt trong điều kiện khí hậu Việt Nam khi được đặt ở nơi khô ráo, tránh ánh nắng trực tiếp kéo dài.</div></div>
+      </div>
+      <div class="nt-faq-item">
+        <button class="nt-faq-q">Làm sao để đo đạc không gian trước khi đặt mua nội thất lớn?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="nt-faq-a"><div class="nt-faq-a-inner">Mỗi sản phẩm đều có bảng kích thước chi tiết tại trang chi tiết sản phẩm. Với đơn hàng từ 10.000.000₫ trở lên (sofa góc, tủ quần áo lớn...), MỘC AN hỗ trợ tư vấn đo đạc tận nhà miễn phí tại khu vực nội thành.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="nt-footer" aria-label="Footer">
+  <div class="nt-container">
+    <div class="nt-footer-grid">
+      <div>
+        <div class="nt-footer-logo">MỘC <em>AN</em></div>
+        <p class="nt-footer-desc">Nội thất tối giản cho không gian sống chậm — chất liệu gỗ tự nhiên, thiết kế bền vững, đồng hành cùng tổ ấm Việt.</p>
+        <div class="nt-footer-social">
+          <a href="#" aria-label="Facebook" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" aria-label="Pinterest" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 2a10 10 0 00-3.6 19.3c0-.8 0-1.8.2-2.6l1.4-6s-.3-.7-.3-1.7c0-1.6.9-2.8 2.1-2.8 1 0 1.4.7 1.4 1.6 0 1-.6 2.4-1 3.8-.2 1 .5 1.8 1.5 1.8 1.8 0 3-2.3 3-5 0-2.1-1.4-3.6-4-3.6-2.9 0-4.7 2.1-4.7 4.5 0 .8.2 1.4.6 1.9.2.2.2.3.1.5l-.2 1c-.1.3-.3.4-.6.2-1.2-.5-1.7-1.9-1.7-3.4 0-2.6 2.2-5.6 6.5-5.6 3.4 0 5.7 2.5 5.7 5.2 0 3.5-1.9 6.2-4.7 6.2-1 0-1.9-.5-2.2-1.1l-.6 2.4c-.2.9-.7 1.9-1.2 2.6a10 10 0 1013.3-14.4A10 10 0 0012 2z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Danh mục</h5>
+        <ul class="nt-footer-links">
+          <li><a href="index.html?category=sofa">Sofa &amp; ghế bành</a></li>
+          <li><a href="index.html?category=ban">Bàn</a></li>
+          <li><a href="index.html?category=tu-ke">Tủ &amp; kệ</a></li>
+          <li><a href="index.html?category=giuong">Giường ngủ</a></li>
+          <li><a href="index.html?category=den">Đèn trang trí</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Hỗ trợ</h5>
+        <ul class="nt-footer-links">
+          <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+          <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+          <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Liên hệ</h5>
+        <div class="nt-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>[ĐỊA CHỈ SHOWROOM]</span></div>
+        <div class="nt-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg><a href="tel:[SỐ_ĐIỆN_THOẠI]" style="color:inherit">[SỐ_ĐIỆN_THOẠI]</a></div>
+        <div class="nt-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:[EMAIL]" style="color:inherit">[EMAIL]</a></div>
+        <div class="nt-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>T2–CN: 8:30–20:00</span></div>
+      </div>
+    </div>
+
+    <iframe class="nt-footer-maps" src="https://maps.google.com/maps?q=10.7769,106.7009&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ showroom MỘC AN"></iframe>
+
+    <div class="nt-footer-bottom">
+      <p>© 2026 MỘC AN. Tất cả quyền được bảo lưu.</p>
+      <div class="nt-footer-bottom-links">
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="nt-zalo-float">
+  <a href="https://zalo.me/[ZALO_NUMBER]" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+    <svg viewBox="0 0 48 48" width="26" height="26"><text y="34" x="8" font-size="28" fill="#fff" font-family="sans-serif">Z</text></svg>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products-data.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

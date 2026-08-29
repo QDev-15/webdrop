@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MERIDIAN — Đồng hồ chính hãng đa thương hiệu</title>
+<meta name="description" content="MERIDIAN — đồng hồ nam nữ chính hãng đa thương hiệu: CASIO, SEIKO, CITIZEN, TISSOT, LONGINES... Bảo hành chính hãng, giao hàng toàn quốc, đổi trả 30 ngày.">
+<meta property="og:title" content="MERIDIAN — Đồng hồ chính hãng đa thương hiệu">
+<meta property="og:description" content="Hơn 40 mẫu đồng hồ nam nữ chính hãng, cam kết nguồn gốc rõ ràng, bảo hành đầy đủ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="dh-nav" aria-label="Menu chính">
+  <div class="dh-nav-inner">
+    <a href="index.html" class="dh-logo" aria-label="MERIDIAN — Trang chủ"><span class="dh-logo-mark">M</span>MERIDIAN</a>
+    <ul class="dh-nav-links d-none d-lg-flex">
+      <li><a href="index.html" class="active">Trang chủ</a></li>
+      <li><a href="san-pham.html">Sản phẩm</a></li>
+      <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+      <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+      <li><a href="lien-he.html">Liên hệ</a></li>
+    </ul>
+    <div class="dh-nav-actions">
+      <button class="dh-nav-icon-btn" id="dhSearchBtn" aria-label="Tìm kiếm" aria-expanded="false" aria-controls="dhSearchPanel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      </button>
+      <a href="gio-hang.html" class="dh-nav-icon-btn" aria-label="Giỏ hàng">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="dh-cart-count">0</span>
+      </a>
+      <a href="san-pham.html" class="dh-nav-cta d-none d-md-inline-flex">Khám phá ngay</a>
+      <button id="dh-burger" class="d-lg-none" aria-label="Mở menu" aria-expanded="false" aria-controls="dh-nav-mob"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="dh-search-panel" id="dhSearchPanel">
+    <form id="dhSearchForm">
+      <input type="search" id="dhSearchInput" placeholder="Tìm theo tên, thương hiệu (CASIO, SEIKO...)..." aria-label="Từ khóa tìm kiếm">
+      <button type="submit">Tìm kiếm</button>
+    </form>
+  </div>
+</nav>
+
+<div id="dh-nav-mob" role="dialog" aria-modal="true" aria-label="Menu điều hướng">
+  <button class="dh-mob-close" id="dhMobClose" aria-label="Đóng menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  <a href="index.html" class="active">Trang chủ</a>
+  <a href="san-pham.html">Sản phẩm</a>
+  <a href="bo-suu-tap.html">Bộ sưu tập</a>
+  <a href="ve-chung-toi.html">Giới thiệu</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="gio-hang.html" style="margin-top:16px;">Giỏ hàng của tôi</a>
+</div>
+
+<!-- ══ HERO CAROUSEL — H2 Split 45/55, 4 slide ══ -->
+<section class="dh-hero" id="dhHero">
+  <div class="dh-hero-slide active" data-slide="0">
+    <div class="dh-hero-text">
+      <div class="dh-hero-tag"><span class="dot"></span>MERIDIAN — TRUSTED TIMEPIECES</div>
+      <h1 class="dh-hero-title">Đồng hồ chính hãng<br><span>đa thương hiệu</span></h1>
+      <p class="dh-hero-sub">Hơn 40 mẫu đồng hồ nam nữ từ CASIO, SEIKO, CITIZEN, TISSOT, LONGINES... nguồn gốc rõ ràng, bảo hành đầy đủ toàn quốc.</p>
+      <div class="dh-hero-ctas">
+        <a href="san-pham.html" class="dh-btn dh-btn-primary">Khám phá ngay</a>
+        <a href="bo-suu-tap.html" class="dh-btn dh-btn-glass">Xem bộ sưu tập</a>
+      </div>
+    </div>
+    <div class="dh-hero-visual">
+      <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=1200&auto=format&fit=crop&q=80" alt="Đồng hồ chính hãng MERIDIAN">
+      <div class="dh-hero-price-card"><div class="lbl">Cam kết</div><div class="val">100% chính hãng</div></div>
+    </div>
+  </div>
+
+  <div class="dh-hero-slide" data-slide="1">
+    <div class="dh-hero-text">
+      <div class="dh-hero-tag"><span class="dot"></span>BST NAM 2026</div>
+      <h2 class="dh-hero-title">Bộ sưu tập Nam<br><span>Bản lĩnh & Đẳng cấp</span></h2>
+      <p class="dh-hero-sub">Từ thể thao năng động đến sang trọng cổ điển — hơn 24 mẫu đồng hồ nam đa phong cách, đa mức giá.</p>
+      <div class="dh-hero-ctas">
+        <a href="san-pham.html?theme=nam" class="dh-btn dh-btn-primary">Xem BST Nam</a>
+        <a href="san-pham.html" class="dh-btn dh-btn-glass">Tất cả sản phẩm</a>
+      </div>
+    </div>
+    <div class="dh-hero-visual">
+      <img src="https://images.unsplash.com/photo-1590995505834-e5380bba1865?w=1200&auto=format&fit=crop&q=80" alt="Bộ sưu tập đồng hồ Nam MERIDIAN">
+      <div class="dh-hero-price-card"><div class="lbl">Giá chỉ từ</div><div class="val">1.290.000₫</div></div>
+    </div>
+  </div>
+
+  <div class="dh-hero-slide" data-slide="2">
+    <div class="dh-hero-text">
+      <div class="dh-hero-tag"><span class="dot"></span>BST NỮ 2026</div>
+      <h2 class="dh-hero-title">Bộ sưu tập Nữ<br><span>Tinh tế mọi khoảnh khắc</span></h2>
+      <p class="dh-hero-sub">Thiết kế thanh lịch, dây da & kim loại mảnh, phù hợp mọi phong cách công sở lẫn dạo phố.</p>
+      <div class="dh-hero-ctas">
+        <a href="san-pham.html?theme=nu" class="dh-btn dh-btn-primary">Xem BST Nữ</a>
+        <a href="san-pham.html" class="dh-btn dh-btn-glass">Tất cả sản phẩm</a>
+      </div>
+    </div>
+    <div class="dh-hero-visual">
+      <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=1200&auto=format&fit=crop&q=80" alt="Bộ sưu tập đồng hồ Nữ MERIDIAN">
+      <div class="dh-hero-price-card"><div class="lbl">Giá chỉ từ</div><div class="val">2.100.000₫</div></div>
+    </div>
+  </div>
+
+  <div class="dh-hero-slide" data-slide="3">
+    <div class="dh-hero-text">
+      <div class="dh-hero-tag"><span class="dot"></span>LIMITED EDITION</div>
+      <h2 class="dh-hero-title">Phiên bản giới hạn<br><span>Đẳng cấp hiếm có</span></h2>
+      <p class="dh-hero-sub">Số lượng có hạn từ LONGINES, SEIKO, TISSOT, ORIENT — bảo hành mở rộng 5 năm, kèm giấy chứng nhận riêng.</p>
+      <div class="dh-hero-ctas">
+        <a href="san-pham.html?theme=gioi-han" class="dh-btn dh-btn-primary">Khám phá Limited</a>
+        <a href="ve-chung-toi.html" class="dh-btn dh-btn-glass">Cam kết chính hãng</a>
+      </div>
+    </div>
+    <div class="dh-hero-visual">
+      <img src="https://images.unsplash.com/photo-1637160151663-a410315e4e75?w=1200&auto=format&fit=crop&q=80" alt="Phiên bản giới hạn MERIDIAN">
+      <div class="dh-hero-price-card"><div class="lbl">Chỉ còn</div><div class="val">6 sản phẩm</div></div>
+    </div>
+  </div>
+
+  <button class="dh-hero-nav-btn dh-hero-prev" id="dhHeroPrev" aria-label="Slide trước"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <button class="dh-hero-nav-btn dh-hero-next" id="dhHeroNext" aria-label="Slide tiếp theo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 18l6-6-6-6"/></svg></button>
+  <div class="dh-hero-dots" id="dhHeroDots">
+    <button class="active" data-goto="0" aria-label="Slide 1"></button>
+    <button data-goto="1" aria-label="Slide 2"></button>
+    <button data-goto="2" aria-label="Slide 3"></button>
+    <button data-goto="3" aria-label="Slide 4"></button>
+  </div>
+</section>
+
+<!-- ══ STAT-BAR ══ -->
+<section class="dh-statbar">
+  <div class="dh-container">
+    <div class="dh-stats-grid">
+      <div data-reveal><div class="dh-stat-num"><span data-counter="40" data-suffix="+">0</span></div><div class="dh-stat-label">Mẫu đồng hồ chính hãng</div></div>
+      <div data-reveal data-reveal-d1><div class="dh-stat-num"><span data-counter="10" data-suffix="">0</span></div><div class="dh-stat-label">Thương hiệu phân phối</div></div>
+      <div data-reveal data-reveal-d2><div class="dh-stat-num"><span data-counter="8500" data-suffix="+">0</span></div><div class="dh-stat-label">Khách hàng tin dùng</div></div>
+      <div data-reveal data-reveal-d3><div class="dh-stat-num"><span data-counter="2" data-suffix=" năm">0</span></div><div class="dh-stat-label">Bảo hành chính hãng tối thiểu</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HORIZONTAL-SCROLL — Thương hiệu ══ -->
+<section class="dh-sec-tight">
+  <div class="dh-container">
+    <p class="dh-eyebrow" data-reveal>Thương hiệu phân phối</p>
+    <div class="dh-brand-scroll" data-reveal>
+      <a href="san-pham.html?brand=CASIO" class="dh-brand-pill">CASIO</a>
+      <a href="san-pham.html?brand=SEIKO" class="dh-brand-pill">SEIKO</a>
+      <a href="san-pham.html?brand=CITIZEN" class="dh-brand-pill">CITIZEN</a>
+      <a href="san-pham.html?brand=ORIENT" class="dh-brand-pill">ORIENT</a>
+      <a href="san-pham.html?brand=TISSOT" class="dh-brand-pill">TISSOT</a>
+      <a href="san-pham.html?brand=FOSSIL" class="dh-brand-pill">FOSSIL</a>
+      <a href="san-pham.html?brand=MVMT" class="dh-brand-pill">MVMT</a>
+      <a href="san-pham.html?brand=TIMEX" class="dh-brand-pill">TIMEX</a>
+      <a href="san-pham.html?brand=LONGINES" class="dh-brand-pill">LONGINES</a>
+      <a href="san-pham.html?brand=DANIEL WELLINGTON" class="dh-brand-pill">DANIEL WELLINGTON</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ THEMED SECTION 1 — Bộ sưu tập Nam ══ -->
+<section class="dh-theme-section">
+  <div class="dh-container">
+    <div class="dh-theme-head" data-reveal>
+      <div>
+        <p class="dh-eyebrow">Bộ sưu tập Nam</p>
+        <h2 class="dh-sec-title">Bản lĩnh & <em>đẳng cấp</em></h2>
+      </div>
+      <a href="san-pham.html?theme=nam" class="dh-theme-viewall">Xem tất cả BST Nam <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="dh-theme-tools" data-reveal>
+      <div class="dh-theme-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="search" id="dhSearchNam" placeholder="Tìm trong BST Nam...">
+      </div>
+      <div class="dh-chip-row" id="dhChipsNam">
+        <button class="dh-chip active" data-style="all">Tất cả</button>
+        <button class="dh-chip" data-style="the-thao">Thể thao</button>
+        <button class="dh-chip" data-style="co-dien">Cổ điển</button>
+        <button class="dh-chip" data-style="sang-trong">Sang trọng</button>
+      </div>
+    </div>
+    <div class="dh-prod-grid" id="dhGridNam" data-reveal></div>
+  </div>
+</section>
+
+<!-- ══ THEMED SECTION 2 — Bộ sưu tập Nữ ══ -->
+<section class="dh-theme-section alt">
+  <div class="dh-container">
+    <div class="dh-theme-head" data-reveal>
+      <div>
+        <p class="dh-eyebrow">Bộ sưu tập Nữ</p>
+        <h2 class="dh-sec-title">Tinh tế <em>mọi khoảnh khắc</em></h2>
+      </div>
+      <a href="san-pham.html?theme=nu" class="dh-theme-viewall">Xem tất cả BST Nữ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="dh-theme-tools" data-reveal>
+      <div class="dh-theme-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="search" id="dhSearchNu" placeholder="Tìm trong BST Nữ...">
+      </div>
+      <div class="dh-chip-row" id="dhChipsNu">
+        <button class="dh-chip active" data-style="all">Tất cả</button>
+        <button class="dh-chip" data-style="sang-trong">Sang trọng</button>
+        <button class="dh-chip" data-style="co-dien">Cổ điển</button>
+        <button class="dh-chip" data-style="the-thao">Thể thao</button>
+      </div>
+    </div>
+    <div class="dh-prod-grid" id="dhGridNu" data-reveal></div>
+  </div>
+</section>
+
+<!-- ══ THEMED SECTION 3 — Phiên bản giới hạn ══ -->
+<section class="dh-theme-section">
+  <div class="dh-container">
+    <div class="dh-theme-head" data-reveal>
+      <div>
+        <p class="dh-eyebrow">Limited Edition</p>
+        <h2 class="dh-sec-title">Phiên bản <em>giới hạn</em></h2>
+      </div>
+      <a href="san-pham.html?theme=gioi-han" class="dh-theme-viewall">Xem tất cả Limited <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="dh-theme-tools" data-reveal>
+      <div class="dh-theme-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="search" id="dhSearchLimited" placeholder="Tìm trong Limited Edition...">
+      </div>
+    </div>
+    <div class="dh-prod-grid dh-cols-3" id="dhGridLimited" data-reveal></div>
+  </div>
+</section>
+
+<!-- ══ THEMED SECTION 4 — Bán chạy nhất ══ -->
+<section class="dh-theme-section alt">
+  <div class="dh-container">
+    <div class="dh-theme-head" data-reveal>
+      <div>
+        <p class="dh-eyebrow">Được yêu thích</p>
+        <h2 class="dh-sec-title">Bán chạy <em>nhất</em></h2>
+      </div>
+      <a href="san-pham.html?theme=ban-chay" class="dh-theme-viewall">Xem tất cả <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="dh-theme-tools" data-reveal>
+      <div class="dh-theme-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="search" id="dhSearchBanChay" placeholder="Tìm trong Bán chạy nhất...">
+      </div>
+    </div>
+    <div class="dh-prod-grid" id="dhGridBanChay" data-reveal></div>
+  </div>
+</section>
+
+<!-- ══ BENTO-GRID — Vì sao chọn MERIDIAN ══ -->
+<section class="dh-sec">
+  <div class="dh-container">
+    <div class="dh-sec-head" data-reveal>
+      <div>
+        <p class="dh-eyebrow">Vì sao chọn MERIDIAN</p>
+        <h2 class="dh-sec-title">Cam kết <em>chính hãng, minh bạch</em></h2>
+      </div>
+    </div>
+    <div class="dh-bento" data-reveal>
+      <div class="dh-bento-item b1">
+        <div class="dh-bento-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>100% chính hãng, có giấy tờ</h3>
+        <p>Mỗi sản phẩm kèm hóa đơn VAT, phiếu bảo hành điện tử và tem chống hàng giả — truy xuất nguồn gốc rõ ràng.</p>
+      </div>
+      <div class="dh-bento-item b2">
+        <div class="dh-bento-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12v-2a2 2 0 00-2-2h-2M4 12v2a2 2 0 002 2h2M9 21l3-3 3 3M9 3l3 3 3-3"/></svg></div>
+        <h3>Bảo hành chính hãng đến 5 năm</h3>
+        <p>Tối thiểu 2 năm cho mọi sản phẩm, riêng phiên bản giới hạn bảo hành mở rộng 5 năm toàn quốc.</p>
+      </div>
+      <div class="dh-bento-item b3">
+        <div class="dh-bento-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h15l3 5v10a2 2 0 01-2 2H5a2 2 0 01-2-2V3z"/><path d="M16 3v5h5"/></svg></div>
+        <h3>Đổi trả trong 30 ngày</h3>
+        <p>Không hài lòng — đổi mẫu khác hoặc hoàn tiền 100% trong 30 ngày đầu, không cần lý do phức tạp.</p>
+      </div>
+      <div class="dh-bento-item b4">
+        <div class="dh-bento-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8h14M5 8a2 2 0 01-2-2V4a2 2 0 012-2h14a2 2 0 012 2v2a2 2 0 01-2 2M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/></svg></div>
+        <h3>Giao hàng toàn quốc</h3>
+        <p>Miễn phí ship đơn từ 2.000.000₫, kiểm tra hàng trước khi thanh toán (COD).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FEATURE-ICON-ROW — Quy trình mua hàng ══ -->
+<section class="dh-sec-tight" style="background:var(--surface)">
+  <div class="dh-container">
+    <div class="dh-sec-head" data-reveal><div><p class="dh-eyebrow">Quy trình đơn giản</p><h2 class="dh-sec-title">Mua sắm <em>4 bước dễ dàng</em></h2></div></div>
+    <div class="dh-feature-row">
+      <div class="dh-feature-item" data-reveal>
+        <div class="dh-feature-icon">01</div>
+        <h4>Chọn mẫu yêu thích</h4>
+        <p>Lọc theo danh mục, chất liệu dây, thương hiệu và mức giá phù hợp.</p>
+      </div>
+      <div class="dh-feature-item" data-reveal data-reveal-d1>
+        <div class="dh-feature-icon">02</div>
+        <h4>Đặt hàng nhanh chóng</h4>
+        <p>Thêm vào giỏ, điền thông tin giao hàng — chỉ mất 2 phút.</p>
+      </div>
+      <div class="dh-feature-item" data-reveal data-reveal-d2>
+        <div class="dh-feature-icon">03</div>
+        <h4>Kiểm tra trước khi nhận</h4>
+        <p>Xem hàng, kiểm tra tem chính hãng trước khi thanh toán COD.</p>
+      </div>
+      <div class="dh-feature-item" data-reveal data-reveal-d3>
+        <div class="dh-feature-icon">04</div>
+        <h4>Kích hoạt bảo hành</h4>
+        <p>Đăng ký bảo hành điện tử ngay khi nhận hàng, tra cứu online 24/7.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="dh-sec">
+  <div class="dh-container">
+    <div class="dh-sec-head" data-reveal><div><p class="dh-eyebrow">Khách hàng nói gì</p><h2 class="dh-sec-title">Được <em>tin tưởng lựa chọn</em></h2></div></div>
+    <div class="dh-testi-grid">
+      <div class="dh-testi-card" data-reveal>
+        <div class="dh-testi-stars">★★★★★</div>
+        <p>"Mua chiếc SEIKO Presage ở đây, kiểm tra tem chính hãng kỹ trước khi nhận hàng. Đóng gói cẩn thận, có đầy đủ giấy bảo hành."</p>
+        <div class="dh-testi-user"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&auto=format&fit=crop&q=80" alt="Khách hàng"><div><strong>Minh Quân</strong><span>TP. Hồ Chí Minh</span></div></div>
+      </div>
+      <div class="dh-testi-card" data-reveal data-reveal-d1>
+        <div class="dh-testi-stars">★★★★★</div>
+        <p>"Đổi trả rất dễ dàng, mình đổi size dây sau 1 tuần không mất phí. Nhân viên tư vấn nhiệt tình, không ép mua."</p>
+        <div class="dh-testi-user"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop&q=80" alt="Khách hàng"><div><strong>Thu Hà</strong><span>Hà Nội</span></div></div>
+      </div>
+      <div class="dh-testi-card" data-reveal data-reveal-d2>
+        <div class="dh-testi-stars">★★★★★</div>
+        <p>"Đặt chiếc TISSOT PRX làm quà sinh nhật, giao hàng đúng hẹn, hộp quà sang trọng. Chắc chắn sẽ quay lại mua thêm."</p>
+        <div class="dh-testi-user"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80" alt="Khách hàng"><div><strong>Đức Anh</strong><span>Đà Nẵng</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ — LIST-ELEGANT ══ -->
+<section class="dh-sec-tight" style="background:var(--surface)">
+  <div class="dh-container">
+    <div class="dh-sec-head" style="justify-content:center;text-align:center;flex-direction:column;align-items:center" data-reveal>
+      <p class="dh-eyebrow">Câu hỏi thường gặp</p>
+      <h2 class="dh-sec-title">Giải đáp <em>thắc mắc của bạn</em></h2>
+    </div>
+    <div class="dh-faq" id="dhFaq" data-reveal>
+      <div class="dh-faq-item open">
+        <button class="dh-faq-q"><span>Làm sao để biết đồng hồ MERIDIAN là hàng chính hãng?</span><span class="plus">+</span></button>
+        <div class="dh-faq-a"><div class="dh-faq-a-inner">Mỗi sản phẩm đều có tem chống hàng giả, hóa đơn VAT và phiếu bảo hành điện tử tra cứu được trên hệ thống của hãng. Bạn có thể kiểm tra trực tiếp mã serial trên website chính hãng trước khi thanh toán.</div></div>
+      </div>
+      <div class="dh-faq-item">
+        <button class="dh-faq-q"><span>Chính sách bảo hành cụ thể như thế nào?</span><span class="plus">+</span></button>
+        <div class="dh-faq-a"><div class="dh-faq-a-inner">Tối thiểu 2 năm chính hãng cho toàn bộ sản phẩm, riêng dòng phiên bản giới hạn được bảo hành mở rộng 5 năm. Bảo hành bao gồm lỗi máy, lỗi kỹ thuật từ nhà sản xuất — không bao gồm rơi vỡ, vào nước do sử dụng sai cách.</div></div>
+      </div>
+      <div class="dh-faq-item">
+        <button class="dh-faq-q"><span>Tôi có thể đổi trả nếu không vừa ý không?</span><span class="plus">+</span></button>
+        <div class="dh-faq-a"><div class="dh-faq-a-inner">Có. Trong 30 ngày kể từ ngày nhận hàng, nếu sản phẩm còn nguyên tem, chưa qua sử dụng, bạn có thể đổi mẫu khác hoặc hoàn tiền 100% giá trị đơn hàng.</div></div>
+      </div>
+      <div class="dh-faq-item">
+        <button class="dh-faq-q"><span>Thời gian giao hàng mất bao lâu?</span><span class="plus">+</span></button>
+        <div class="dh-faq-a"><div class="dh-faq-a-inner">Nội thành TP.HCM và Hà Nội: 1-2 ngày làm việc. Các tỉnh thành khác: 2-4 ngày làm việc. Miễn phí vận chuyển cho đơn hàng từ 2.000.000₫.</div></div>
+      </div>
+      <div class="dh-faq-item">
+        <button class="dh-faq-q"><span>Có hỗ trợ trả góp không?</span><span class="plus">+</span></button>
+        <div class="dh-faq-a"><div class="dh-faq-a-inner">Có, hỗ trợ trả góp 0% lãi suất qua thẻ tín dụng của các ngân hàng liên kết cho đơn hàng từ 3.000.000₫, kỳ hạn 3-6 tháng.</div></div>
+      </div>
+      <div class="dh-faq-item">
+        <button class="dh-faq-q"><span>Đồng hồ có được điều chỉnh dây miễn phí không?</span><span class="plus">+</span></button>
+        <div class="dh-faq-a"><div class="dh-faq-a-inner">Có, MERIDIAN hỗ trợ chỉnh dây (bấm mắt dây kim loại hoặc đục lỗ dây da) miễn phí tại cửa hàng hoặc hướng dẫn qua video nếu bạn ở xa.</div></div>
+      </div>
+      <div class="dh-faq-item">
+        <button class="dh-faq-q"><span>Sản phẩm phiên bản giới hạn có gì khác biệt?</span><span class="plus">+</span></button>
+        <div class="dh-faq-a"><div class="dh-faq-a-inner">Dòng Limited Edition được sản xuất số lượng có hạn, kèm giấy chứng nhận số thứ tự riêng, hộp đựng cao cấp và bảo hành mở rộng 5 năm — phù hợp làm quà tặng cao cấp hoặc sưu tầm.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA BAND ══ -->
+<section class="dh-sec-tight">
+  <div class="dh-container">
+    <div class="dh-cta-band" data-reveal>
+      <div>
+        <h3>Nhận ưu đãi & mẫu mới sớm nhất</h3>
+        <p>Đăng ký email để nhận thông báo phiên bản giới hạn mới và mã giảm giá độc quyền.</p>
+      </div>
+      <form class="dh-cta-form" onsubmit="event.preventDefault(); dhShowToast('Đăng ký thành công (demo)');">
+        <input type="email" placeholder="Nhập email của bạn" required>
+        <button type="submit" class="dh-btn dh-btn-primary">Đăng ký</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer id="dh-footer">
+  <div class="dh-container">
+    <div class="dh-footer-top">
+      <div class="dh-footer-brand">
+        <div class="dh-logo"><span class="dh-logo-mark">M</span>MERIDIAN</div>
+        <p>Đồng hồ chính hãng đa thương hiệu — cam kết nguồn gốc rõ ràng, bảo hành đầy đủ, giao hàng toàn quốc.</p>
+        <div class="dh-footer-social">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.5 9.9v-7H8v-2.9h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6v1.9H16l-.4 2.9h-2.1v7A10 10 0 0022 12z"/></svg></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Youtube"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.5 6.5s-.2-1.6-.9-2.3c-.9-.9-1.9-.9-2.3-1C16.4 3 12 3 12 3s-4.4 0-7.3.2c-.4 0-1.4.1-2.3 1-.7.7-.9 2.3-.9 2.3S1.3 8.4 1.3 10.3v1.4c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9.9 2 .9 2.5 1 1.8.2 7.1.2 7.1.2s4.4 0 7.3-.2c.4 0 1.4-.1 2.3-1 .7-.7.9-2.3.9-2.3s.2-1.9.2-3.8v-1.4c0-1.9-.2-3.8-.2-3.8z"/><path d="M9.8 14.5l5.9-3.2-5.9-3.2z" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+      <div class="dh-footer-col"><h5>Khám phá</h5><a href="san-pham.html">Sản phẩm</a><a href="bo-suu-tap.html">Bộ sưu tập</a><a href="ve-chung-toi.html">Giới thiệu</a><a href="lien-he.html">Liên hệ</a></div>
+      <div class="dh-footer-col"><h5>Hỗ trợ</h5><a href="lien-he.html">Liên hệ</a><a href="gio-hang.html">Giỏ hàng</a><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a><a href="dieu-khoan.html">Điều khoản sử dụng</a></div>
+      <div class="dh-footer-col"><h5>Liên hệ</h5><a href="tel:[SỐ_ĐIỆN_THOẠI]">Hotline: [SỐ_ĐIỆN_THOẠI]</a><a href="mailto:[EMAIL]">[EMAIL]</a><a href="lien-he.html">[ĐỊA CHỈ SHOWROOM]</a></div>
+    </div>
+    <div class="dh-footer-maps"><iframe src="https://maps.google.com/maps?q=10.7769,106.7009&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ cửa hàng MERIDIAN"></iframe></div>
+    <div class="dh-footer-bottom">
+      <span>© 2026 MERIDIAN. Toàn bộ nội dung là dữ liệu demo cho mục đích minh họa template.</span>
+      <span><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a><a href="dieu-khoan.html">Điều khoản sử dụng</a></span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[ZALO_NUMBER]" target="_blank" rel="noopener noreferrer" class="dh-zalo-float" aria-label="Chat Zalo"><svg viewBox="0 0 48 48" fill="#fff"><path d="M24 4C12.95 4 4 12.06 4 22c0 5.66 2.95 10.7 7.56 13.98L10 44l8.53-4.16c1.75.44 3.6.68 5.47.68 11.05 0 20-8.06 20-18S35.05 4 24 4z"/></svg></a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products-data.js"></script>
+<script src="assets/js/cart.js"></script>
+<script>
+  /* Reveal animation */
+  const dhRO = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); dhRO.unobserve(e.target); } });
+  }, { threshold: .08, rootMargin: '0px 0px -36px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => dhRO.observe(el));
+
+  /* Nav scroll shade */
+  const dhNav = document.getElementById('dh-nav');
+  window.addEventListener('scroll', () => dhNav.classList.toggle('scrolled', scrollY > 40), { passive: true });
+
+  /* Mobile hamburger */
+  const dhBurger = document.getElementById('dh-burger');
+  const dhMob = document.getElementById('dh-nav-mob');
+  function dhCloseMob() { dhMob.classList.remove('open'); dhBurger.classList.remove('open'); document.body.style.overflow = ''; }
+  dhBurger.addEventListener('click', () => {
+    const o = dhMob.classList.toggle('open');
+    dhBurger.classList.toggle('open', o);
+    document.body.style.overflow = o ? 'hidden' : '';
+  });
+  document.getElementById('dhMobClose').addEventListener('click', dhCloseMob);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && dhMob.classList.contains('open')) dhCloseMob(); });
+
+  /* Search panel */
+  const dhSearchBtn = document.getElementById('dhSearchBtn');
+  const dhSearchPanel = document.getElementById('dhSearchPanel');
+  dhSearchBtn.addEventListener('click', () => {
+    const o = dhSearchPanel.classList.toggle('open');
+    dhSearchBtn.setAttribute('aria-expanded', o);
+    if (o) document.getElementById('dhSearchInput').focus();
+  });
+  document.getElementById('dhSearchForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const q = document.getElementById('dhSearchInput').value.trim();
+    window.location.href = 'san-pham.html' + (q ? ('?q=' + encodeURIComponent(q)) : '');
+  });
+
+  /* Counter animation */
+  document.querySelectorAll('[data-counter]').forEach(el => {
+    const cro = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        const target = +el.dataset.counter;
+        const suffix = el.dataset.suffix || '';
+        let cur = 0; const step = Math.ceil(target / 60);
+        const t = setInterval(() => { cur = Math.min(cur + step, target); el.textContent = cur.toLocaleString('vi-VN') + suffix; if (cur >= target) clearInterval(t); }, 25);
+        cro.disconnect();
+      }
+    }, { threshold: .5 });
+    cro.observe(el);
+  });
+
+  /* ══ Hero carousel — vanilla JS, autoplay 5s, fade ══ */
+  (function () {
+    const slides = document.querySelectorAll('.dh-hero-slide');
+    const dots = document.querySelectorAll('#dhHeroDots button');
+    let idx = 0, timer;
+    function go(n) {
+      slides[idx].classList.remove('active'); dots[idx].classList.remove('active');
+      idx = (n + slides.length) % slides.length;
+      slides[idx].classList.add('active'); dots[idx].classList.add('active');
+      resetTimer();
+    }
+    function resetTimer() { clearInterval(timer); timer = setInterval(() => go(idx + 1), 5000); }
+    document.getElementById('dhHeroPrev').addEventListener('click', () => go(idx - 1));
+    document.getElementById('dhHeroNext').addEventListener('click', () => go(idx + 1));
+    dots.forEach(d => d.addEventListener('click', () => go(+d.dataset.goto)));
+    resetTimer();
+  })();
+
+  /* ══ Themed sections — render cards + local search + chip filter ══ */
+  function dhCardHTML(p) {
+    const badgeMap = { new: 'Mới', sale: 'Giảm giá', hot: 'Hot' };
+    const badge = p.badge ? `<span class="dh-card-badge ${p.badge}">${badgeMap[p.badge]}</span>` : '';
+    const priceOld = p.salePrice ? `<span class="dh-card-price-old">${dhFormatVND(p.price)}</span>` : '';
+    const price = dhFormatVND(p.salePrice || p.price);
+    return `<div class="dh-card ${!p.stock ? 'dh-card-stock-out' : ''}">
+      <div class="dh-card-thumb">
+        ${badge}
+        <button class="dh-card-wish" aria-label="Yêu thích"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg></button>
+        <a href="chi-tiet-san-pham.html?slug=${p.slug}"><img src="${p.image}" alt="${p.name}" loading="lazy"></a>
+      </div>
+      <div class="dh-card-body">
+        <div class="dh-card-brand">${p.brand}</div>
+        <h3 class="dh-card-name"><a href="chi-tiet-san-pham.html?slug=${p.slug}">${p.name}</a></h3>
+        <div class="dh-card-meta"><span class="dh-card-rating">★ ${p.rating}</span><span>·</span><span>Đã bán ${p.sold}</span></div>
+        <div class="dh-card-price-row"><span class="dh-card-price">${price}</span>${priceOld}</div>
+        <button class="dh-card-add" ${!p.stock ? 'disabled' : ''} onclick="dhAddToCart('${p.slug}',1)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+          ${p.stock ? 'Thêm vào giỏ' : 'Hết hàng'}
+        </button>
+      </div>
+    </div>`;
+  }
+
+  function dhInitThemeSection(opts) {
+    const pool = PRODUCTS.filter(p => p.theme.includes(opts.theme)).slice(0, opts.limit || 8);
+    const gridEl = document.getElementById(opts.gridId);
+    const searchEl = document.getElementById(opts.searchId);
+    const chipEls = opts.chipsId ? document.querySelectorAll('#' + opts.chipsId + ' .dh-chip') : [];
+    let activeStyle = 'all';
+
+    function render() {
+      const q = (searchEl.value || '').trim().toLowerCase();
+      const filtered = pool.filter(p => {
+        const matchQ = !q || p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q);
+        const matchStyle = activeStyle === 'all' || p.style === activeStyle;
+        return matchQ && matchStyle;
+      });
+      gridEl.innerHTML = filtered.length
+        ? filtered.map(dhCardHTML).join('')
+        : `<div class="dh-theme-empty">Không tìm thấy sản phẩm phù hợp trong mục này.</div>`;
+    }
+
+    searchEl.addEventListener('input', render);
+    chipEls.forEach(chip => chip.addEventListener('click', () => {
+      chipEls.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      activeStyle = chip.dataset.style;
+      render();
+    }));
+    render();
+  }
+
+  dhInitThemeSection({ theme: 'nam', gridId: 'dhGridNam', searchId: 'dhSearchNam', chipsId: 'dhChipsNam', limit: 8 });
+  dhInitThemeSection({ theme: 'nu', gridId: 'dhGridNu', searchId: 'dhSearchNu', chipsId: 'dhChipsNu', limit: 8 });
+  dhInitThemeSection({ theme: 'gioi-han', gridId: 'dhGridLimited', searchId: 'dhSearchLimited', limit: 6 });
+  dhInitThemeSection({ theme: 'ban-chay', gridId: 'dhGridBanChay', searchId: 'dhSearchBanChay', limit: 8 });
+
+  /* ══ FAQ accordion ══ */
+  document.querySelectorAll('#dhFaq .dh-faq-item').forEach(item => {
+    item.querySelector('.dh-faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('#dhFaq .dh-faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>

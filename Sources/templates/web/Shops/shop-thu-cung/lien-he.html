@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Liên hệ Pet Haus — cửa hàng thú cưng chính hãng. Gửi câu hỏi, hợp tác đại lý, hoặc phản hồi dịch vụ.">
+<title>Liên hệ — Pet Haus</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="tc-topbar">
+  <div class="tc-topbar-inner">
+    <span>Miễn phí ship đơn từ 400K</span><span class="tc-topbar-sep">·</span>
+    <span>Đổi trả trong 7 ngày</span><span class="tc-topbar-sep">·</span>
+    <span>100% sản phẩm kiểm định an toàn</span>
+  </div>
+</div>
+
+<nav id="tcNav">
+  <div class="tc-nav-inner">
+    <a href="index.html" class="tc-logo"><span class="tc-logo-dot"></span>PET<span style="color:var(--accent-mid)">HAUS</span></a>
+    <div class="tc-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="bo-suu-tap.html">Bộ sưu tập</a>
+      <a href="khuyen-mai.html">Khuyến mãi</a>
+      <a href="ve-chung-toi.html">Giới thiệu</a>
+      <a href="lien-he.html" class="active">Liên hệ</a>
+    </div>
+    <div class="tc-nav-actions">
+      <button class="tc-nav-btn" id="tcNavSearchBtn" aria-label="Tìm kiếm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <a href="gio-hang.html" class="tc-nav-btn" aria-label="Giỏ hàng" style="position:relative">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="tc-cart-count" id="tcCartCount" style="display:none">0</span>
+      </a>
+      <button class="tc-burger" id="tcBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="tc-mob-nav" id="tcMobNav">
+  <a href="index.html">Trang chủ</a>
+  <a href="bo-suu-tap.html">Bộ sưu tập</a>
+  <a href="khuyen-mai.html">Khuyến mãi</a>
+  <a href="ve-chung-toi.html">Giới thiệu</a>
+  <a href="lien-he.html" class="active">Liên hệ</a>
+  <div class="tc-mob-nav-sep"></div>
+  <div class="tc-mob-nav-footer">
+    <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+    <a href="dieu-khoan.html">Điều khoản</a>
+  </div>
+</div>
+
+<div class="tc-nav-search-panel" id="tcNavSearchPanel" style="display:none">
+  <div class="tc-container" style="display:flex;gap:8px;align-items:center">
+    <input type="text" id="tcNavSearchInput" placeholder="Tìm sản phẩm cho chó, mèo..." autocomplete="off">
+    <button id="tcNavSearchSubmit" class="tc-btn tc-btn-primary">Tìm</button>
+    <button id="tcNavSearchClose" style="background:none;border:none;color:#fff;font-size:22px;line-height:1;padding:4px 8px" aria-label="Đóng">×</button>
+  </div>
+</div>
+
+<section class="tc-page-header">
+  <div class="tc-container tc-page-header-inner">
+    <div class="tc-eyebrow">Chúng tôi luôn lắng nghe</div>
+    <h1>Liên hệ với Pet Haus</h1>
+    <p>Có câu hỏi về sản phẩm, đơn hàng, hoặc muốn hợp tác đại lý? Gửi cho chúng tôi, đội ngũ sẽ phản hồi trong ngày.</p>
+  </div>
+</section>
+
+<section class="tc-sec">
+  <div class="tc-container">
+    <div class="row g-3 mb-5" data-reveal>
+      <div class="col-md-4">
+        <div class="tc-prod-card" style="padding:26px;border-top-color:var(--accent)">
+          <div class="tc-feature-icon" style="margin-bottom:14px">📍</div>
+          <h3 style="font-family:var(--sans);font-size:15px;font-weight:700;margin-bottom:8px">Địa chỉ cửa hàng</h3>
+          <p style="font-size:13.5px;color:var(--text-2)">[ĐỊA CHỈ CỬA HÀNG PET HAUS]</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="tc-prod-card" style="padding:26px;border-top-color:var(--accent)">
+          <div class="tc-feature-icon" style="margin-bottom:14px">📞</div>
+          <h3 style="font-family:var(--sans);font-size:15px;font-weight:700;margin-bottom:8px">Hotline</h3>
+          <p style="font-size:13.5px;color:var(--text-2)"><a href="tel:[SỐ_ĐIỆN_THOẠI]" style="color:inherit">[SỐ_ĐIỆN_THOẠI]</a> · T2–CN: 8:00–20:00</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="tc-prod-card" style="padding:26px;border-top-color:var(--accent)">
+          <div class="tc-feature-icon" style="margin-bottom:14px">✉️</div>
+          <h3 style="font-family:var(--sans);font-size:15px;font-weight:700;margin-bottom:8px">Email hỗ trợ</h3>
+          <p style="font-size:13.5px;color:var(--text-2)"><a href="mailto:[EMAIL@PETHAUS.VN]" style="color:inherit">[EMAIL@PETHAUS.VN]</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-5">
+      <div class="col-lg-7" data-reveal>
+        <h2 class="tc-sec-title" style="font-size:24px;margin-bottom:20px">Gửi tin nhắn cho chúng tôi</h2>
+        <form id="tcContactForm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="tc-form-group">
+                <label for="tcName">Họ tên</label>
+                <input type="text" id="tcName" name="name" required placeholder="Nguyễn Văn A">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="tc-form-group">
+                <label for="tcPhone">Số điện thoại</label>
+                <input type="tel" id="tcPhone" name="phone" required placeholder="09xx xxx xxx">
+              </div>
+            </div>
+          </div>
+          <div class="tc-form-group">
+            <label for="tcEmail">Email</label>
+            <input type="email" id="tcEmail" name="email" required placeholder="ban@email.com">
+          </div>
+          <div class="tc-form-group">
+            <label for="tcSubject">Chủ đề</label>
+            <select id="tcSubject" name="subject">
+              <option>Hỏi về sản phẩm</option>
+              <option>Hỗ trợ đơn hàng</option>
+              <option>Hợp tác đại lý / bán sỉ</option>
+              <option>Góp ý dịch vụ</option>
+              <option>Khác</option>
+            </select>
+          </div>
+          <div class="tc-form-group">
+            <label for="tcMessage">Nội dung</label>
+            <textarea id="tcMessage" name="message" required placeholder="Nội dung bạn muốn gửi..."></textarea>
+          </div>
+          <button type="submit" class="tc-btn tc-btn-primary tc-btn-lg">Gửi liên hệ</button>
+          <p id="tcFormNote" style="margin-top:14px;font-size:13.5px;color:var(--accent-h);display:none">✓ Cảm ơn bạn! Chúng tôi sẽ phản hồi sớm nhất.</p>
+        </form>
+      </div>
+      <div class="col-lg-5" data-reveal data-delay="1">
+        <div class="tc-faq" style="max-width:none">
+          <div class="tc-faq-item open">
+            <button class="tc-faq-q">Thời gian phản hồi trung bình? <span class="tc-faq-icon">+</span></button>
+            <div class="tc-faq-a"><div class="tc-faq-a-inner">Trong vòng 24 giờ làm việc, thường phản hồi Zalo/hotline nhanh hơn email.</div></div>
+          </div>
+          <div class="tc-faq-item">
+            <button class="tc-faq-q">Có hỗ trợ tư vấn qua điện thoại không? <span class="tc-faq-icon">+</span></button>
+            <div class="tc-faq-a"><div class="tc-faq-a-inner">Có, gọi hotline trong giờ làm việc để được tư vấn trực tiếp về sản phẩm phù hợp cho thú cưng.</div></div>
+          </div>
+          <div class="tc-faq-item">
+            <button class="tc-faq-q">Tôi muốn trở thành đại lý phân phối? <span class="tc-faq-icon">+</span></button>
+            <div class="tc-faq-a"><div class="tc-faq-a-inner">Vui lòng chọn chủ đề "Hợp tác đại lý / bán sỉ" ở form bên cạnh, đội ngũ kinh doanh sẽ liên hệ báo giá riêng.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="tc-footer">
+  <div class="tc-container">
+    <div class="tc-footer-grid">
+      <div class="tc-footer-col">
+        <div class="tc-footer-logo"><span class="tc-logo-dot"></span>PET<span style="color:var(--accent-mid)">HAUS</span></div>
+        <p class="tc-footer-desc">Cửa hàng thú cưng chính hãng — thức ăn, phụ kiện, đồ chơi, chuồng nhà & chăm sóc cho chó mèo.</p>
+        <div class="tc-footer-social">
+          <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer">f</a>
+          <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">ig</a>
+          <a href="https://zalo.me/[ZALO_NUMBER]" aria-label="Zalo" target="_blank" rel="noopener noreferrer">z</a>
+        </div>
+      </div>
+      <div class="tc-footer-col">
+        <h4>Danh mục</h4>
+        <ul>
+          <li><a href="index.html?category=thuc-an">Thức ăn</a></li>
+          <li><a href="index.html?category=phu-kien">Phụ kiện</a></li>
+          <li><a href="index.html?category=do-choi">Đồ chơi</a></li>
+          <li><a href="index.html?category=chuong-nha">Chuồng & Nhà ở</a></li>
+          <li><a href="index.html?category=cham-soc">Chăm sóc & Vệ sinh</a></li>
+        </ul>
+      </div>
+      <div class="tc-footer-col">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+          <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+          <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+      <div class="tc-footer-col">
+        <h4>Liên hệ</h4>
+        <div class="tc-footer-contact-items">
+          <p>📍 [ĐỊA CHỈ CỬA HÀNG PET HAUS]</p>
+          <p>📞 <a href="tel:[SỐ_ĐIỆN_THOẠI]" style="color:inherit">[SỐ_ĐIỆN_THOẠI]</a></p>
+          <p>✉️ <a href="mailto:[EMAIL@PETHAUS.VN]" style="color:inherit">[EMAIL@PETHAUS.VN]</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="tc-footer-maps"><iframe src="https://maps.google.com/maps?q=10.7769,106.7009&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ cửa hàng Pet Haus"></iframe></div>
+    <div class="tc-footer-bottom">
+      <p>© 2026 Pet Haus. Tất cả quyền được bảo lưu.</p>
+      <div class="tc-footer-bottom-links"><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a><a href="dieu-khoan.html">Điều khoản</a></div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[ZALO_NUMBER]" class="tc-zalo-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.17.7 4.18 1.88 5.81L2.5 21.5l3.8-1.35A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a7.95 7.95 0 01-4.13-1.15l-.29-.18-3.04 1.08 1.09-2.97-.2-.31A8 8 0 1112 20zm4.51-5.95c-.24-.12-1.43-.71-1.65-.79-.22-.08-.38-.12-.54.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.19-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.1-.49.1-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.47-.39-.4-.54-.41-.14 0-.3-.01-.46-.01s-.42.06-.64.3c-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.09 3.62.57.25 1.02.4 1.37.5.57.18 1.1.16 1.51.1.46-.07 1.43-.59 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+'use strict';
+document.getElementById('tcContactForm').addEventListener('submit', e => {
+  e.preventDefault();
+  document.getElementById('tcFormNote').style.display = 'block';
+  e.target.reset();
+});
+</script>
+</body>
+</html>

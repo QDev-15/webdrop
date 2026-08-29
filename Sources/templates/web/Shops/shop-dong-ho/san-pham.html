@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tất cả sản phẩm — MERIDIAN</title>
+<meta name="description" content="Toàn bộ đồng hồ chính hãng tại MERIDIAN — lọc theo danh mục, chất liệu dây, thương hiệu, phong cách và mức giá.">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="dh-nav" aria-label="Menu chính">
+  <div class="dh-nav-inner">
+    <a href="index.html" class="dh-logo" aria-label="MERIDIAN — Trang chủ"><span class="dh-logo-mark">M</span>MERIDIAN</a>
+    <ul class="dh-nav-links d-none d-lg-flex">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="san-pham.html" class="active">Sản phẩm</a></li>
+      <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+      <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+      <li><a href="lien-he.html">Liên hệ</a></li>
+    </ul>
+    <div class="dh-nav-actions">
+      <button class="dh-nav-icon-btn" id="dhSearchBtn" aria-label="Tìm kiếm" aria-expanded="false" aria-controls="dhSearchPanel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      </button>
+      <a href="gio-hang.html" class="dh-nav-icon-btn" aria-label="Giỏ hàng">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="dh-cart-count">0</span>
+      </a>
+      <a href="san-pham.html" class="dh-nav-cta d-none d-md-inline-flex">Khám phá ngay</a>
+      <button id="dh-burger" class="d-lg-none" aria-label="Mở menu" aria-expanded="false" aria-controls="dh-nav-mob"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="dh-search-panel" id="dhSearchPanel">
+    <form id="dhSearchForm">
+      <input type="search" id="dhSearchInput" placeholder="Tìm theo tên, thương hiệu..." aria-label="Từ khóa tìm kiếm">
+      <button type="submit">Tìm kiếm</button>
+    </form>
+  </div>
+</nav>
+
+<div id="dh-nav-mob" role="dialog" aria-modal="true" aria-label="Menu điều hướng">
+  <button class="dh-mob-close" id="dhMobClose" aria-label="Đóng menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  <a href="index.html">Trang chủ</a>
+  <a href="san-pham.html" class="active">Sản phẩm</a>
+  <a href="bo-suu-tap.html">Bộ sưu tập</a>
+  <a href="ve-chung-toi.html">Giới thiệu</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="gio-hang.html" style="margin-top:16px;">Giỏ hàng của tôi</a>
+</div>
+
+<!-- ══ Catalog header ══ -->
+<section class="dh-catalog-header">
+  <div class="dh-container">
+    <div class="dh-breadcrumb"><a href="index.html">Trang chủ</a> / <span id="dhBreadcrumbCurrent">Sản phẩm</span></div>
+    <h1 id="dhCatalogTitle">Tất cả sản phẩm</h1>
+    <p id="dhCatalogSub">Hơn 40 mẫu đồng hồ chính hãng — lọc theo nhu cầu của bạn</p>
+  </div>
+</section>
+
+<!-- ══ Toolbar ══ -->
+<div class="dh-toolbar-wrap">
+  <div class="dh-container">
+    <div class="dh-toolbar">
+      <div class="dh-toolbar-filters">
+        <div class="dh-chip-row" id="dhCategoryPills">
+          <button class="dh-chip active" data-cat="all">Tất cả</button>
+          <button class="dh-chip" data-cat="nam">Nam</button>
+          <button class="dh-chip" data-cat="nu">Nữ</button>
+          <button class="dh-chip" data-cat="unisex">Unisex</button>
+        </div>
+
+        <div class="dh-fdrop" id="dhDropMaterial">
+          <button class="dh-fdrop-btn" type="button">Chất liệu dây <span class="dh-fdrop-badge" hidden>0</span><svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 1l5 5 5-5"/></svg></button>
+          <div class="dh-fdrop-panel" id="dhPanelMaterial"></div>
+        </div>
+
+        <div class="dh-fdrop" id="dhDropBrand">
+          <button class="dh-fdrop-btn" type="button">Thương hiệu <span class="dh-fdrop-badge" hidden>0</span><svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 1l5 5 5-5"/></svg></button>
+          <div class="dh-fdrop-panel" id="dhPanelBrand"></div>
+        </div>
+
+        <div class="dh-fdrop" id="dhDropStyle">
+          <button class="dh-fdrop-btn" type="button">Phong cách <span class="dh-fdrop-badge" hidden>0</span><svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 1l5 5 5-5"/></svg></button>
+          <div class="dh-fdrop-panel" id="dhPanelStyle"></div>
+        </div>
+
+        <div class="dh-fdrop" id="dhDropPrice">
+          <button class="dh-fdrop-btn" type="button">Khoảng giá <span class="dh-fdrop-badge" hidden>0</span><svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 1l5 5 5-5"/></svg></button>
+          <div class="dh-fdrop-panel" style="min-width:260px" id="dhPanelPrice">
+            <div class="dh-price-range">
+              <div class="dh-price-vals"><span>0₫</span><span id="dhPriceMaxLabel">45.000.000₫</span></div>
+              <input type="range" id="dhPriceRange" min="0" max="45000000" step="500000" value="45000000">
+            </div>
+          </div>
+        </div>
+
+        <button class="dh-mobile-filter-btn" id="dhMobileFilterBtn" data-bs-toggle="offcanvas" data-bs-target="#dhFilterOffcanvas">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M8 12h8M11 18h2"/></svg>
+          Bộ lọc <span class="badge" id="dhMobileFilterBadge" hidden>0</span>
+        </button>
+      </div>
+
+      <div class="dh-toolbar-right">
+        <span class="dh-result-count" id="dhResultCount" aria-live="polite">Hiển thị 1–12 trong 44 sản phẩm</span>
+        <select class="dh-sort-select" id="dhSortSelect">
+          <option value="newest">Mới nhất</option>
+          <option value="price-asc">Giá tăng dần</option>
+          <option value="price-desc">Giá giảm dần</option>
+          <option value="bestseller">Bán chạy</option>
+          <option value="rating">Đánh giá cao</option>
+        </select>
+      </div>
+    </div>
+    <div class="dh-chips-row" id="dhChipsRow"></div>
+  </div>
+</div>
+
+<!-- ══ Grid + Pagination ══ -->
+<section class="dh-sec">
+  <div class="dh-container">
+    <div class="dh-prod-grid" id="dhCatalogGrid"></div>
+    <nav class="dh-pagination" id="dhPagination" aria-label="Phân trang" hidden></nav>
+  </div>
+</section>
+
+<!-- ══ Mobile filter offcanvas ══ -->
+<div class="offcanvas offcanvas-end dh-offcanvas" tabindex="-1" id="dhFilterOffcanvas" aria-labelledby="dhFilterOffcanvasLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="dhFilterOffcanvasLabel">Bộ lọc sản phẩm</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Đóng"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="dh-off-section">
+      <h6>Danh mục</h6>
+      <div class="dh-chip-row" id="dhOffCategory">
+        <button class="dh-chip active" data-cat="all">Tất cả</button>
+        <button class="dh-chip" data-cat="nam">Nam</button>
+        <button class="dh-chip" data-cat="nu">Nữ</button>
+        <button class="dh-chip" data-cat="unisex">Unisex</button>
+      </div>
+    </div>
+    <div class="dh-off-section">
+      <h6>Khoảng giá</h6>
+      <div class="dh-price-vals"><span>0₫</span><span id="dhOffPriceMaxLabel">45.000.000₫</span></div>
+      <input type="range" id="dhOffPriceRange" min="0" max="45000000" step="500000" value="45000000" style="width:100%;accent-color:var(--accent)">
+    </div>
+    <div class="dh-off-section"><h6>Chất liệu dây</h6><div id="dhOffMaterial"></div></div>
+    <div class="dh-off-section"><h6>Thương hiệu</h6><div id="dhOffBrand"></div></div>
+    <div class="dh-off-section"><h6>Phong cách</h6><div id="dhOffStyle"></div></div>
+    <div class="dh-off-section">
+      <h6>Sắp xếp</h6>
+      <select class="dh-sort-select" id="dhOffSort" style="width:100%">
+        <option value="newest">Mới nhất</option>
+        <option value="price-asc">Giá tăng dần</option>
+        <option value="price-desc">Giá giảm dần</option>
+        <option value="bestseller">Bán chạy</option>
+        <option value="rating">Đánh giá cao</option>
+      </select>
+    </div>
+    <div class="dh-off-apply">
+      <button class="dh-btn dh-btn-solid" style="width:100%" data-bs-dismiss="offcanvas">Xem kết quả</button>
+      <button class="dh-clear-all" style="display:block;margin:14px auto 0" id="dhOffClearAll">Xóa tất cả bộ lọc</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer id="dh-footer">
+  <div class="dh-container">
+    <div class="dh-footer-top">
+      <div class="dh-footer-brand">
+        <div class="dh-logo"><span class="dh-logo-mark">M</span>MERIDIAN</div>
+        <p>Đồng hồ chính hãng đa thương hiệu — cam kết nguồn gốc rõ ràng, bảo hành đầy đủ, giao hàng toàn quốc.</p>
+        <div class="dh-footer-social">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.5 9.9v-7H8v-2.9h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6v1.9H16l-.4 2.9h-2.1v7A10 10 0 0022 12z"/></svg></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Youtube"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.5 6.5s-.2-1.6-.9-2.3c-.9-.9-1.9-.9-2.3-1C16.4 3 12 3 12 3s-4.4 0-7.3.2c-.4 0-1.4.1-2.3 1-.7.7-.9 2.3-.9 2.3S1.3 8.4 1.3 10.3v1.4c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9.9 2 .9 2.5 1 1.8.2 7.1.2 7.1.2s4.4 0 7.3-.2c.4 0 1.4-.1 2.3-1 .7-.7.9-2.3.9-2.3s.2-1.9.2-3.8v-1.4c0-1.9-.2-3.8-.2-3.8z"/></svg></a>
+        </div>
+      </div>
+      <div class="dh-footer-col"><h5>Khám phá</h5><a href="san-pham.html">Sản phẩm</a><a href="bo-suu-tap.html">Bộ sưu tập</a><a href="ve-chung-toi.html">Giới thiệu</a><a href="lien-he.html">Liên hệ</a></div>
+      <div class="dh-footer-col"><h5>Hỗ trợ</h5><a href="lien-he.html">Liên hệ</a><a href="gio-hang.html">Giỏ hàng</a><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a><a href="dieu-khoan.html">Điều khoản sử dụng</a></div>
+      <div class="dh-footer-col"><h5>Liên hệ</h5><a href="tel:[SỐ_ĐIỆN_THOẠI]">Hotline: [SỐ_ĐIỆN_THOẠI]</a><a href="mailto:[EMAIL]">[EMAIL]</a><a href="lien-he.html">[ĐỊA CHỈ SHOWROOM]</a></div>
+    </div>
+    <div class="dh-footer-maps"><iframe src="https://maps.google.com/maps?q=10.7769,106.7009&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ cửa hàng MERIDIAN"></iframe></div>
+    <div class="dh-footer-bottom">
+      <span>© 2026 MERIDIAN. Toàn bộ nội dung là dữ liệu demo cho mục đích minh họa template.</span>
+      <span><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a><a href="dieu-khoan.html">Điều khoản sử dụng</a></span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[ZALO_NUMBER]" target="_blank" rel="noopener noreferrer" class="dh-zalo-float" aria-label="Chat Zalo"><svg viewBox="0 0 48 48" fill="#fff"><path d="M24 4C12.95 4 4 12.06 4 22c0 5.66 2.95 10.7 7.56 13.98L10 44l8.53-4.16c1.75.44 3.6.68 5.47.68 11.05 0 20-8.06 20-18S35.05 4 24 4z"/></svg></a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products-data.js"></script>
+<script src="assets/js/cart.js"></script>
+<script>
+  /* ══ Nav interactions (dùng chung mọi trang) ══ */
+  const dhNav = document.getElementById('dh-nav');
+  window.addEventListener('scroll', () => dhNav.classList.toggle('scrolled', scrollY > 40), { passive: true });
+  const dhBurger = document.getElementById('dh-burger');
+  const dhMob = document.getElementById('dh-nav-mob');
+  function dhCloseMob() { dhMob.classList.remove('open'); dhBurger.classList.remove('open'); document.body.style.overflow = ''; }
+  dhBurger.addEventListener('click', () => { const o = dhMob.classList.toggle('open'); dhBurger.classList.toggle('open', o); document.body.style.overflow = o ? 'hidden' : ''; });
+  document.getElementById('dhMobClose').addEventListener('click', dhCloseMob);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && dhMob.classList.contains('open')) dhCloseMob(); });
+  const dhSearchBtn = document.getElementById('dhSearchBtn');
+  const dhSearchPanel = document.getElementById('dhSearchPanel');
+  dhSearchBtn.addEventListener('click', () => { const o = dhSearchPanel.classList.toggle('open'); dhSearchBtn.setAttribute('aria-expanded', o); if (o) document.getElementById('dhSearchInput').focus(); });
+  document.getElementById('dhSearchForm').addEventListener('submit', e => {
+    e.preventDefault();
+    dhState.search = document.getElementById('dhSearchInput').value.trim();
+    dhState.page = 1; dhRender();
+    dhSearchPanel.classList.remove('open');
+  });
+
+  /* ══════════════════════════════════════════════════════════════════
+     CATALOG FILTER ENGINE — Bước D/E của shop-template-builder.md
+     ══════════════════════════════════════════════════════════════════ */
+  const MAX_PRICE = 45000000;
+  const PER_PAGE = 12;
+  const BRANDS = [...new Set(PRODUCTS.map(p => p.brand))].sort();
+  const MATERIALS = Object.keys(MATERIAL_LABELS);
+  const STYLES = Object.keys(STYLE_LABELS);
+
+  const dhState = { category: [], material: [], brand: [], style: [], price: MAX_PRICE, search: '', sort: 'newest', page: 1, limitedOnly: false, themeLabel: null };
+
+  function dhCount(field, value) {
+    return PRODUCTS.filter(p => p[field] === value).length;
+  }
+
+  function dhBuildCheckPanel(panelId, field, labels, values) {
+    const panel = document.getElementById(panelId);
+    panel.innerHTML = values.map(v => `
+      <label class="dh-fdrop-check">
+        <input type="checkbox" data-field="${field}" value="${v}">
+        <span>${labels ? labels[v] : v}</span>
+        <span class="cnt">${dhCount(field, v)}</span>
+      </label>`).join('');
+  }
+  dhBuildCheckPanel('dhPanelMaterial', 'material', MATERIAL_LABELS, MATERIALS);
+  dhBuildCheckPanel('dhPanelBrand', 'brand', null, BRANDS);
+  dhBuildCheckPanel('dhPanelStyle', 'style', STYLE_LABELS, STYLES);
+  dhBuildCheckPanel('dhOffMaterial', 'material', MATERIAL_LABELS, MATERIALS);
+  dhBuildCheckPanel('dhOffBrand', 'brand', null, BRANDS);
+  dhBuildCheckPanel('dhOffStyle', 'style', STYLE_LABELS, STYLES);
+
+  function dhSyncCheckboxesFromState() {
+    document.querySelectorAll('[data-field]').forEach(input => {
+      const field = input.dataset.field;
+      input.checked = dhState[field].includes(input.value);
+    });
+    document.querySelectorAll('#dhCategoryPills .dh-chip, #dhOffCategory .dh-chip').forEach(chip => {
+      const isAll = chip.dataset.cat === 'all';
+      const active = isAll ? dhState.category.length === 0 : dhState.category.includes(chip.dataset.cat);
+      chip.classList.toggle('active', active);
+    });
+    document.getElementById('dhPriceRange').value = dhState.price;
+    document.getElementById('dhOffPriceRange').value = dhState.price;
+    document.getElementById('dhPriceMaxLabel').textContent = dhFormatVND(dhState.price);
+    document.getElementById('dhOffPriceMaxLabel').textContent = dhFormatVND(dhState.price);
+    document.getElementById('dhSortSelect').value = dhState.sort;
+    document.getElementById('dhOffSort').value = dhState.sort;
+    document.getElementById('dhSearchInput').value = dhState.search;
+  }
+
+  function dhMatchProduct(p) {
+    if (dhState.category.length && !dhState.category.includes(p.category)) return false;
+    if (dhState.material.length && !dhState.material.includes(p.material)) return false;
+    if (dhState.brand.length && !dhState.brand.includes(p.brand)) return false;
+    if (dhState.style.length && !dhState.style.includes(p.style)) return false;
+    const price = p.salePrice ?? p.price;
+    if (price > dhState.price) return false;
+    if (dhState.limitedOnly && !p.limited) return false;
+    if (dhState.search) {
+      const q = dhState.search.toLowerCase();
+      if (!p.name.toLowerCase().includes(q) && !p.brand.toLowerCase().includes(q)) return false;
+    }
+    return true;
+  }
+
+  function dhSortProducts(list) {
+    const arr = [...list];
+    const byPrice = p => p.salePrice ?? p.price;
+    if (dhState.sort === 'price-asc') arr.sort((a, b) => byPrice(a) - byPrice(b));
+    else if (dhState.sort === 'price-desc') arr.sort((a, b) => byPrice(b) - byPrice(a));
+    else if (dhState.sort === 'rating') arr.sort((a, b) => b.rating - a.rating);
+    else if (dhState.sort === 'bestseller') arr.sort((a, b) => b.sold - a.sold);
+    else arr.sort((a, b) => b.id - a.id);
+    return arr;
+  }
+
+  function dhCountActiveFilters() {
+    return dhState.category.length + dhState.material.length + dhState.brand.length + dhState.style.length
+      + (dhState.price < MAX_PRICE ? 1 : 0) + (dhState.search ? 1 : 0);
+  }
+
+  function dhRenderChips() {
+    const chips = [];
+    dhState.category.forEach(v => chips.push({ label: CATEGORY_LABELS[v], clear: () => dhState.category = dhState.category.filter(x => x !== v) }));
+    dhState.material.forEach(v => chips.push({ label: MATERIAL_LABELS[v], clear: () => dhState.material = dhState.material.filter(x => x !== v) }));
+    dhState.brand.forEach(v => chips.push({ label: v, clear: () => dhState.brand = dhState.brand.filter(x => x !== v) }));
+    dhState.style.forEach(v => chips.push({ label: STYLE_LABELS[v], clear: () => dhState.style = dhState.style.filter(x => x !== v) }));
+    if (dhState.price < MAX_PRICE) chips.push({ label: 'Dưới ' + dhFormatVND(dhState.price), clear: () => dhState.price = MAX_PRICE });
+    if (dhState.search) chips.push({ label: 'Tìm: "' + dhState.search + '"', clear: () => dhState.search = '' });
+
+    const row = document.getElementById('dhChipsRow');
+    if (!chips.length) { row.innerHTML = ''; return; }
+    row.innerHTML = chips.map((c, i) => `<span class="dh-active-chip" data-chip="${i}">${c.label}<button aria-label="Gỡ bộ lọc">✕</button></span>`).join('')
+      + `<button class="dh-clear-all" id="dhClearAllChips">Xóa tất cả</button>`;
+    row.querySelectorAll('[data-chip]').forEach((el, i) => {
+      el.querySelector('button').addEventListener('click', () => { chips[i].clear(); dhState.page = 1; dhRender(); });
+    });
+    document.getElementById('dhClearAllChips').addEventListener('click', dhClearAll);
+  }
+
+  function dhClearAll() {
+    dhState.category = []; dhState.material = []; dhState.brand = []; dhState.style = [];
+    dhState.price = MAX_PRICE; dhState.search = ''; dhState.limitedOnly = false; dhState.page = 1;
+    dhRender();
+  }
+
+  function dhRenderPagination(totalPages) {
+    const nav = document.getElementById('dhPagination');
+    nav.hidden = totalPages <= 1;
+    if (totalPages <= 1) { nav.innerHTML = ''; return; }
+    let html = `<button data-page="${dhState.page - 1}" ${dhState.page === 1 ? 'disabled' : ''} aria-label="Trang trước">‹</button>`;
+    for (let i = 1; i <= totalPages; i++) html += `<button data-page="${i}" class="${i === dhState.page ? 'active' : ''}">${i}</button>`;
+    html += `<button data-page="${dhState.page + 1}" ${dhState.page === totalPages ? 'disabled' : ''} aria-label="Trang sau">›</button>`;
+    nav.innerHTML = html;
+    nav.querySelectorAll('[data-page]').forEach(btn => btn.addEventListener('click', () => {
+      dhState.page = +btn.dataset.page; dhRender();
+      document.getElementById('dhCatalogGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }));
+  }
+
+  function dhWriteStateToURL() {
+    const params = new URLSearchParams();
+    if (dhState.category.length) params.set('category', dhState.category.join(','));
+    if (dhState.material.length) params.set('material', dhState.material.join(','));
+    if (dhState.brand.length) params.set('brand', dhState.brand.join(','));
+    if (dhState.style.length) params.set('style', dhState.style.join(','));
+    if (dhState.price < MAX_PRICE) params.set('price', dhState.price);
+    if (dhState.search) params.set('q', dhState.search);
+    if (dhState.sort !== 'newest') params.set('sort', dhState.sort);
+    if (dhState.page > 1) params.set('page', dhState.page);
+    const qs = params.toString();
+    history.replaceState(null, '', qs ? ('?' + qs) : location.pathname);
+  }
+
+  function dhUpdateHeaderTitle() {
+    const titleEl = document.getElementById('dhCatalogTitle');
+    const crumbEl = document.getElementById('dhBreadcrumbCurrent');
+    if (dhState.themeLabel) { titleEl.textContent = dhState.themeLabel; crumbEl.textContent = dhState.themeLabel; }
+    else { titleEl.textContent = 'Tất cả sản phẩm'; crumbEl.textContent = 'Sản phẩm'; }
+  }
+
+  function dhRender() {
+    const filtered = dhSortProducts(PRODUCTS.filter(dhMatchProduct));
+    const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+    dhState.page = Math.min(dhState.page, totalPages);
+    const start = (dhState.page - 1) * PER_PAGE;
+    const pageItems = filtered.slice(start, start + PER_PAGE);
+    const gridEl = document.getElementById('dhCatalogGrid');
+
+    gridEl.innerHTML = pageItems.length
+      ? pageItems.map(dhCardHTML).join('')
+      : `<div class="dh-empty-state"><div class="ico">🔍</div><h3>Không tìm thấy sản phẩm phù hợp</h3><p>Hãy thử điều chỉnh hoặc xóa bớt bộ lọc đang áp dụng.</p><button class="dh-btn dh-btn-solid" onclick="dhClearAll()">Xóa tất cả bộ lọc</button></div>`;
+
+    document.getElementById('dhResultCount').textContent = filtered.length
+      ? `Hiển thị ${start + 1}–${start + pageItems.length} trong ${filtered.length} sản phẩm`
+      : 'Không có sản phẩm nào';
+
+    dhRenderPagination(totalPages);
+    dhRenderChips();
+    dhSyncCheckboxesFromState();
+
+    const activeCount = dhCountActiveFilters();
+    document.getElementById('dhMobileFilterBadge').hidden = activeCount === 0;
+    document.getElementById('dhMobileFilterBadge').textContent = activeCount;
+
+    dhWriteStateToURL();
+  }
+
+  function dhCardHTML(p) {
+    const badgeMap = { new: 'Mới', sale: 'Giảm giá', hot: 'Hot' };
+    const badge = p.badge ? `<span class="dh-card-badge ${p.badge}">${badgeMap[p.badge]}</span>` : '';
+    const priceOld = p.salePrice ? `<span class="dh-card-price-old">${dhFormatVND(p.price)}</span>` : '';
+    const price = dhFormatVND(p.salePrice || p.price);
+    return `<div class="dh-card ${!p.stock ? 'dh-card-stock-out' : ''}">
+      <div class="dh-card-thumb">
+        ${badge}
+        <button class="dh-card-wish" aria-label="Yêu thích"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg></button>
+        <a href="chi-tiet-san-pham.html?slug=${p.slug}"><img src="${p.image}" alt="${p.name}" loading="lazy"></a>
+      </div>
+      <div class="dh-card-body">
+        <div class="dh-card-brand">${p.brand}</div>
+        <h3 class="dh-card-name"><a href="chi-tiet-san-pham.html?slug=${p.slug}">${p.name}</a></h3>
+        <div class="dh-card-meta"><span class="dh-card-rating">★ ${p.rating}</span><span>·</span><span>Đã bán ${p.sold}</span></div>
+        <div class="dh-card-price-row"><span class="dh-card-price">${price}</span>${priceOld}</div>
+        <button class="dh-card-add" ${!p.stock ? 'disabled' : ''} onclick="dhAddToCart('${p.slug}',1)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+          ${p.stock ? 'Thêm vào giỏ' : 'Hết hàng'}
+        </button>
+      </div>
+    </div>`;
+  }
+
+  /* ══ Event wiring ══ */
+  document.querySelectorAll('[data-field]').forEach(input => {
+    input.addEventListener('change', () => {
+      const field = input.dataset.field;
+      if (input.checked) dhState[field] = [...new Set([...dhState[field], input.value])];
+      else dhState[field] = dhState[field].filter(v => v !== input.value);
+      dhState.page = 1; dhRender();
+    });
+  });
+
+  document.querySelectorAll('#dhCategoryPills .dh-chip, #dhOffCategory .dh-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const cat = chip.dataset.cat;
+      dhState.category = cat === 'all' ? [] : [cat];
+      dhState.page = 1; dhRender();
+    });
+  });
+
+  let dhPriceTimer;
+  function dhOnPriceInput(e) {
+    document.getElementById('dhPriceMaxLabel').textContent = dhFormatVND(+e.target.value);
+    document.getElementById('dhOffPriceMaxLabel').textContent = dhFormatVND(+e.target.value);
+    clearTimeout(dhPriceTimer);
+    dhPriceTimer = setTimeout(() => { dhState.price = +e.target.value; dhState.page = 1; dhRender(); }, 250);
+  }
+  document.getElementById('dhPriceRange').addEventListener('input', dhOnPriceInput);
+  document.getElementById('dhOffPriceRange').addEventListener('input', dhOnPriceInput);
+
+  ['dhSortSelect', 'dhOffSort'].forEach(id => {
+    document.getElementById(id).addEventListener('change', e => { dhState.sort = e.target.value; dhRender(); });
+  });
+
+  document.getElementById('dhOffClearAll').addEventListener('click', dhClearAll);
+
+  /* Dropdown open/close (desktop) */
+  document.querySelectorAll('.dh-fdrop').forEach(drop => {
+    const btn = drop.querySelector('.dh-fdrop-btn');
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const wasOpen = drop.classList.contains('open');
+      document.querySelectorAll('.dh-fdrop.open').forEach(d => d.classList.remove('open'));
+      if (!wasOpen) drop.classList.add('open');
+    });
+  });
+  document.addEventListener('click', () => document.querySelectorAll('.dh-fdrop.open').forEach(d => d.classList.remove('open')));
+
+  /* Sync dropdown badge counts */
+  function dhSyncDropBadges() {
+    const map = { dhDropMaterial: dhState.material.length, dhDropBrand: dhState.brand.length, dhDropStyle: dhState.style.length, dhDropPrice: dhState.price < MAX_PRICE ? 1 : 0 };
+    Object.entries(map).forEach(([id, count]) => {
+      const badge = document.querySelector('#' + id + ' .dh-fdrop-badge');
+      badge.hidden = count === 0; badge.textContent = count;
+    });
+  }
+  const dhRenderOrig = dhRender;
+  dhRender = function () { dhRenderOrig(); dhSyncDropBadges(); dhUpdateHeaderTitle(); };
+
+  /* ══ Đọc URL khi tải trang (kể cả ?theme= từ trang chủ) ══ */
+  (function dhReadStateFromURL() {
+    const p = new URLSearchParams(location.search);
+    if (p.get('category')) dhState.category = p.get('category').split(',');
+    if (p.get('material')) dhState.material = p.get('material').split(',');
+    if (p.get('brand')) dhState.brand = p.get('brand').split(',');
+    if (p.get('style')) dhState.style = p.get('style').split(',');
+    if (p.get('price')) dhState.price = +p.get('price');
+    if (p.get('q')) dhState.search = p.get('q');
+    if (p.get('sort')) dhState.sort = p.get('sort');
+    if (p.get('page')) dhState.page = +p.get('page');
+
+    const theme = p.get('theme');
+    if (theme === 'nam' || theme === 'nu' || theme === 'unisex') { dhState.category = [theme]; dhState.themeLabel = THEME_LABELS[theme]; }
+    else if (theme === 'gioi-han') { dhState.limitedOnly = true; dhState.themeLabel = THEME_LABELS['gioi-han']; }
+    else if (theme === 'ban-chay') { dhState.sort = 'bestseller'; dhState.themeLabel = THEME_LABELS['ban-chay']; }
+  })();
+
+  dhRender();
+</script>
+</body>
+</html>

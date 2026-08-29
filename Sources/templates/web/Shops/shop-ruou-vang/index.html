@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mộc Vang — Rượu Vang Nhập Khẩu Chính Hãng</title>
+<meta name="description" content="Mộc Vang — cửa hàng rượu vang nhập khẩu chính hãng: vang đỏ, vang trắng, vang sủi, vang hồng & set quà tặng từ Pháp, Ý, Chile, Tây Ban Nha, Úc, Argentina, Mỹ.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<script>window.RV_IS_CATALOG_PAGE = true;</script>
+
+<!-- ── Age gate ─────────────────────────────────────────────────────────── -->
+<div class="rv-agegate" id="rvAgeGate" hidden>
+  <div class="rv-agegate-box">
+    <div class="rv-agegate-mark">18+</div>
+    <h2>Xác nhận độ tuổi</h2>
+    <p>Mộc Vang là nền tảng bán rượu vang trực tuyến. Theo quy định pháp luật Việt Nam, chúng tôi chỉ phục vụ khách hàng từ đủ 18 tuổi trở lên. Vui lòng xác nhận bạn đã đủ 18 tuổi để tiếp tục truy cập website.</p>
+    <div class="rv-agegate-actions">
+      <button class="rv-btn rv-btn-outline" id="rvAgeDecline">Tôi chưa đủ 18</button>
+      <button class="rv-btn rv-btn-solid" id="rvAgeConfirm">Tôi đã đủ 18 tuổi</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Navigation (Nav-4 Minimal Top Line — biến thể dark) ────────────────── -->
+<header id="rv-nav" data-scroll-nav>
+  <div class="wd-container rv-nav-inner">
+    <a href="index.html" class="rv-logo">
+      <span class="rv-logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2h8M9 2v6a5 5 0 0 0 10 0V2M9 2 5 8a5 5 0 0 0 10 0L11 2"/><path d="M12 15v7M9 22h6"/></svg></span>
+      MỘC<em>VANG</em>
+    </a>
+    <nav class="rv-nav-links">
+      <a href="index.html" class="active">Trang chủ</a>
+      <a href="bo-suu-tap.html">Bộ sưu tập</a>
+      <a href="khuyen-mai.html">Khuyến mãi</a>
+      <a href="ve-chung-toi.html">Giới thiệu</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+    <div class="rv-nav-actions">
+      <button class="rv-icon-btn" id="rvSearchToggle" aria-label="Tìm kiếm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+      <a href="gio-hang.html" class="rv-icon-btn" aria-label="Giỏ hàng">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="rv-cart-count" id="rvCartCount">0</span>
+      </a>
+      <button class="rv-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="rv-nav-search" id="rvNavSearch">
+    <div class="wd-container">
+      <form id="rvSearchForm">
+        <input type="search" id="rvSearchInput" placeholder="Tìm vang đỏ, vang Pháp, Champagne...">
+        <button type="submit">Tìm</button>
+      </form>
+    </div>
+  </div>
+</header>
+<nav class="rv-nav-mobile" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="bo-suu-tap.html">Bộ sưu tập</a>
+  <a href="khuyen-mai.html">Khuyến mãi</a>
+  <a href="ve-chung-toi.html">Giới thiệu</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="gio-hang.html">Giỏ hàng</a>
+</nav>
+
+<!-- ── Banner mỏng (Mode A — KHÔNG phải hero fullscreen 100vh) ────────────── -->
+<section class="rv-banner" id="rvBanner">
+  <div class="rv-banner-track">
+    <div class="rv-banner-slide is-active" style="background-image:url('https://images.unsplash.com/photo-1543418219-44e30b057fea?w=1600&auto=format&fit=crop&q=80')">
+      <div class="rv-banner-overlay"></div>
+      <div class="wd-container rv-banner-content">
+        <span class="rv-banner-label">Nhập khẩu chính hãng</span>
+        <h1 class="rv-banner-title">Rượu vang tuyển chọn<br>từ <em>7 vùng đất</em> danh tiếng</h1>
+        <p class="rv-banner-sub">Hơn 200 nhãn hiệu vang đỏ, trắng, sủi & rosé từ Pháp, Ý, Chile, Tây Ban Nha, Úc, Argentina & Mỹ — bảo quản kho lạnh chuẩn 16°C.</p>
+        <div class="rv-banner-cta">
+          <a href="#rvCatalog" class="rv-btn rv-btn-solid">Khám phá bộ sưu tập</a>
+          <a href="khuyen-mai.html" class="rv-btn rv-btn-ghost">Xem khuyến mãi</a>
+        </div>
+      </div>
+      <div class="rv-banner-stamp">Hàng chính hãng<br>100%</div>
+    </div>
+    <div class="rv-banner-slide" style="background-image:url('https://images.unsplash.com/photo-1504279577054-acfeccf8fc52?w=1600&auto=format&fit=crop&q=80')">
+      <div class="rv-banner-overlay"></div>
+      <div class="wd-container rv-banner-content">
+        <span class="rv-banner-label">Set quà tặng</span>
+        <h2 class="rv-banner-title">Quà tặng đối tác<br><em>sang trọng & tinh tế</em></h2>
+        <p class="rv-banner-sub">Hộp quà vang cao cấp đóng gói thủ công, kèm thiệp chúc mừng — phù hợp tặng đối tác, lễ Tết, khai trương.</p>
+        <div class="rv-banner-cta">
+          <a href="index.html?category=qua-tang-set" class="rv-btn rv-btn-solid">Xem set quà tặng</a>
+          <a href="bo-suu-tap.html" class="rv-btn rv-btn-ghost">Tất cả bộ sưu tập</a>
+        </div>
+      </div>
+    </div>
+    <div class="rv-banner-slide" style="background-image:url('https://images.unsplash.com/photo-1596142332133-327e2a0ff006?w=1600&auto=format&fit=crop&q=80')">
+      <div class="rv-banner-overlay"></div>
+      <div class="wd-container rv-banner-content">
+        <span class="rv-banner-label">Giao hàng 2 giờ</span>
+        <h2 class="rv-banner-title">Đặt trước 5 giờ chiều<br><em>nhận vang ngay hôm nay</em></h2>
+        <p class="rv-banner-sub">Áp dụng nội thành Hà Nội & TP.HCM. Đội ngũ sommelier tư vấn miễn phí trước khi giao.</p>
+        <div class="rv-banner-cta">
+          <a href="lien-he.html" class="rv-btn rv-btn-solid">Liên hệ tư vấn</a>
+          <a href="#rvCatalog" class="rv-btn rv-btn-ghost">Xem sản phẩm</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="rv-banner-nav prev" id="rvBannerPrev" aria-label="Slide trước">‹</button>
+  <button class="rv-banner-nav next" id="rvBannerNext" aria-label="Slide sau">›</button>
+  <div class="rv-banner-dots" id="rvBannerDots"></div>
+</section>
+
+<!-- ── Trust strip (FEATURE-ICON-ROW) ─────────────────────────────────────── -->
+<section class="rv-trust">
+  <div class="wd-container rv-trust-grid">
+    <div class="rv-trust-item" data-reveal>
+      <div class="rv-trust-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 6v6c0 5 3.8 8.7 9 10 5.2-1.3 9-5 9-10V6l-9-4Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+      <div><strong>Hàng chính hãng 100%</strong><span>Chứng từ nhập khẩu đầy đủ</span></div>
+    </div>
+    <div class="rv-trust-item" data-reveal data-delay="1">
+      <div class="rv-trust-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="1.8"/><circle cx="18.5" cy="18.5" r="1.8"/></svg></div>
+      <div><strong>Giao nhanh 2 giờ</strong><span>Nội thành Hà Nội, TP.HCM</span></div>
+    </div>
+    <div class="rv-trust-item" data-reveal data-delay="2">
+      <div class="rv-trust-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg></div>
+      <div><strong>Đổi trả trong 24h</strong><span>Nếu vỡ, lỗi vận chuyển</span></div>
+    </div>
+    <div class="rv-trust-item" data-reveal data-delay="3">
+      <div class="rv-trust-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-8h3Z"/><path d="M3 19a2 2 0 0 0 2 2h1v-8H3Z"/></svg></div>
+      <div><strong>Tư vấn sommelier</strong><span>Miễn phí trước khi mua</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Catalog: toolbar + lưới sản phẩm + phân trang (Mode A) ─────────────── -->
+<section class="rv-catalog" id="rvCatalog">
+  <div class="wd-container">
+    <div class="rv-catalog-head">
+      <div>
+        <div class="rv-eyebrow">Toàn bộ sản phẩm</div>
+        <h2 class="rv-sec-title">Danh mục <span>rượu vang</span></h2>
+      </div>
+    </div>
+
+    <div class="rv-toolbar">
+      <!-- Desktop toolbar -->
+      <div class="rv-toolbar-row d-none d-lg-flex" id="rvToolbarDesktop">
+        <div class="rv-cat-pills" id="rvCatPills">
+          <button class="rv-cat-pill" data-value="vang-do">Vang đỏ</button>
+          <button class="rv-cat-pill" data-value="vang-trang">Vang trắng</button>
+          <button class="rv-cat-pill" data-value="vang-sui">Vang sủi</button>
+          <button class="rv-cat-pill" data-value="vang-hong">Vang hồng</button>
+          <button class="rv-cat-pill" data-value="qua-tang-set">Set quà tặng</button>
+        </div>
+
+        <div class="rv-dd" id="rvDdOrigin">
+          <button class="rv-dd-btn" type="button">Xuất xứ <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2"><path d="m1 1 5 5 5-5"/></svg></button>
+          <div class="rv-dd-panel">
+            <label class="rv-dd-check"><input type="checkbox" data-filter="origin" value="phap"> Pháp</label>
+            <label class="rv-dd-check"><input type="checkbox" data-filter="origin" value="y"> Ý</label>
+            <label class="rv-dd-check"><input type="checkbox" data-filter="origin" value="chile"> Chile</label>
+            <label class="rv-dd-check"><input type="checkbox" data-filter="origin" value="tay-ban-nha"> Tây Ban Nha</label>
+            <label class="rv-dd-check"><input type="checkbox" data-filter="origin" value="argentina"> Argentina</label>
+            <label class="rv-dd-check"><input type="checkbox" data-filter="origin" value="uc"> Úc</label>
+            <label class="rv-dd-check"><input type="checkbox" data-filter="origin" value="my"> Mỹ</label>
+            <label class="rv-dd-check"><input type="checkbox" data-filter="origin" value="duc"> Đức</label>
+            <label class="rv-dd-check"><input type="checkbox" data-filter="origin" value="nam-phi"> Nam Phi</label>
+          </div>
+        </div>
+
+        <div class="rv-dd" id="rvDdAbv">
+          <button class="rv-dd-btn" type="button">Nồng độ cồn <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2"><path d="m1 1 5 5 5-5"/></svg></button>
+          <div class="rv-dd-panel">
+            <label class="rv-dd-check"><input type="checkbox" data-filter="abv" value="duoi-12"> Dưới 12%</label>
+            <label class="rv-dd-check"><input type="checkbox" data-filter="abv" value="12-13"> 12% – 13%</label>
+            <label class="rv-dd-check"><input type="checkbox" data-filter="abv" value="13-14"> 13% – 14%</label>
+            <label class="rv-dd-check"><input type="checkbox" data-filter="abv" value="tren-14"> Trên 14%</label>
+          </div>
+        </div>
+
+        <div class="rv-dd" id="rvDdOccasion">
+          <button class="rv-dd-btn" type="button">Dịp dùng <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2"><path d="m1 1 5 5 5-5"/></svg></button>
+          <div class="rv-dd-panel">
+            <label class="rv-dd-check"><input type="checkbox" data-filter="occasion" value="qua-tang"> Quà tặng</label>
+            <label class="rv-dd-check"><input type="checkbox" data-filter="occasion" value="tiec-tung"> Tiệc tùng</label>
+            <label class="rv-dd-check"><input type="checkbox" data-filter="occasion" value="suu-tam"> Sưu tầm</label>
+            <label class="rv-dd-check"><input type="checkbox" data-filter="occasion" value="khai-vi"> Khai vị</label>
+            <label class="rv-dd-check"><input type="checkbox" data-filter="occasion" value="hang-ngay"> Dùng hàng ngày</label>
+          </div>
+        </div>
+
+        <div class="rv-price-wrap">
+          <label>Giá tối đa</label>
+          <input type="range" id="rvPriceRange" min="0" step="50000">
+          <span class="rv-price-val" id="rvPriceVal"></span>
+        </div>
+
+        <select class="rv-sort-select" id="rvSortSelect">
+          <option value="newest">Mới nhất</option>
+          <option value="price-asc">Giá tăng dần</option>
+          <option value="price-desc">Giá giảm dần</option>
+          <option value="bestseller">Bán chạy</option>
+          <option value="rating">Đánh giá cao</option>
+        </select>
+
+        <span class="rv-result-count" id="rvResultCount" aria-live="polite"></span>
+      </div>
+
+      <!-- Mobile toolbar -->
+      <div class="rv-toolbar-mobile">
+        <button class="rv-filter-mob-btn" id="rvFilterMobBtn" data-bs-toggle="offcanvas" data-bs-target="#rvOffcanvas">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+          Bộ lọc
+          <span class="rv-filter-badge" id="rvFilterBadge" hidden>0</span>
+        </button>
+        <select class="rv-select-native" id="rvSortSelectMob" style="flex:0 0 150px">
+          <option value="newest">Mới nhất</option>
+          <option value="price-asc">Giá tăng</option>
+          <option value="price-desc">Giá giảm</option>
+          <option value="bestseller">Bán chạy</option>
+          <option value="rating">Đánh giá</option>
+        </select>
+      </div>
+
+      <div class="rv-active-chips" id="rvActiveChips" hidden></div>
+    </div>
+
+    <div class="rv-grid" id="rvGrid"></div>
+
+    <div class="rv-empty" id="rvEmpty" hidden>
+      <div class="rv-empty-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <h3>Không tìm thấy sản phẩm phù hợp</h3>
+      <p>Hãy thử điều chỉnh bộ lọc hoặc xóa bớt tiêu chí tìm kiếm.</p>
+      <button class="rv-btn rv-btn-outline" id="rvEmptyClear">Xóa tất cả bộ lọc</button>
+    </div>
+
+    <nav class="rv-pagination" id="rvPagination" hidden></nav>
+  </div>
+</section>
+
+<!-- Offcanvas filter (mobile) -->
+<div class="offcanvas offcanvas-start rv-offcanvas" tabindex="-1" id="rvOffcanvas">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">Bộ lọc sản phẩm</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Đóng"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="rv-oc-group">
+      <h6>Loại rượu</h6>
+      <div class="rv-cat-pills">
+        <button class="rv-cat-pill" data-value="vang-do">Vang đỏ</button>
+        <button class="rv-cat-pill" data-value="vang-trang">Vang trắng</button>
+        <button class="rv-cat-pill" data-value="vang-sui">Vang sủi</button>
+        <button class="rv-cat-pill" data-value="vang-hong">Vang hồng</button>
+        <button class="rv-cat-pill" data-value="qua-tang-set">Set quà tặng</button>
+      </div>
+    </div>
+    <div class="rv-oc-group">
+      <h6>Xuất xứ</h6>
+      <label class="rv-dd-check"><input type="checkbox" data-filter="origin" value="phap"> Pháp</label>
+      <label class="rv-dd-check"><input type="checkbox" data-filter="origin" value="y"> Ý</label>
+      <label class="rv-dd-check"><input type="checkbox" data-filter="origin" value="chile"> Chile</label>
+      <label class="rv-dd-check"><input type="checkbox" data-filter="origin" value="tay-ban-nha"> Tây Ban Nha</label>
+      <label class="rv-dd-check"><input type="checkbox" data-filter="origin" value="argentina"> Argentina</label>
+      <label class="rv-dd-check"><input type="checkbox" data-filter="origin" value="uc"> Úc</label>
+      <label class="rv-dd-check"><input type="checkbox" data-filter="origin" value="my"> Mỹ</label>
+      <label class="rv-dd-check"><input type="checkbox" data-filter="origin" value="duc"> Đức</label>
+      <label class="rv-dd-check"><input type="checkbox" data-filter="origin" value="nam-phi"> Nam Phi</label>
+    </div>
+    <div class="rv-oc-group">
+      <h6>Nồng độ cồn</h6>
+      <label class="rv-dd-check"><input type="checkbox" data-filter="abv" value="duoi-12"> Dưới 12%</label>
+      <label class="rv-dd-check"><input type="checkbox" data-filter="abv" value="12-13"> 12% – 13%</label>
+      <label class="rv-dd-check"><input type="checkbox" data-filter="abv" value="13-14"> 13% – 14%</label>
+      <label class="rv-dd-check"><input type="checkbox" data-filter="abv" value="tren-14"> Trên 14%</label>
+    </div>
+    <div class="rv-oc-group">
+      <h6>Dịp dùng</h6>
+      <label class="rv-dd-check"><input type="checkbox" data-filter="occasion" value="qua-tang"> Quà tặng</label>
+      <label class="rv-dd-check"><input type="checkbox" data-filter="occasion" value="tiec-tung"> Tiệc tùng</label>
+      <label class="rv-dd-check"><input type="checkbox" data-filter="occasion" value="suu-tam"> Sưu tầm</label>
+      <label class="rv-dd-check"><input type="checkbox" data-filter="occasion" value="khai-vi"> Khai vị</label>
+      <label class="rv-dd-check"><input type="checkbox" data-filter="occasion" value="hang-ngay"> Dùng hàng ngày</label>
+    </div>
+    <div class="rv-oc-group">
+      <h6>Giá tối đa</h6>
+      <div class="rv-price-wrap" style="width:100%">
+        <input type="range" id="rvPriceRangeMob" min="0" step="50000" style="flex:1;width:auto">
+        <span class="rv-price-val" id="rvPriceValMob"></span>
+      </div>
+    </div>
+    <button class="rv-btn rv-btn-solid rv-btn-block" data-bs-dismiss="offcanvas">Xem kết quả (đã áp dụng ngay)</button>
+    <button class="rv-btn rv-btn-outline rv-btn-block" id="rvOcClear" style="margin-top:10px">Xóa tất cả bộ lọc</button>
+  </div>
+</div>
+
+<!-- ── Bộ sưu tập nổi bật (HORIZONTAL-SCROLL) ──────────────────────────────── -->
+<section class="sec-pad" style="padding-top:0">
+  <div class="wd-container">
+    <div class="rv-sec-head" data-reveal>
+      <div class="rv-eyebrow">Gợi ý cho bạn</div>
+      <h2 class="rv-sec-title">Bộ sưu tập <span>nổi bật</span></h2>
+    </div>
+    <div class="rv-hscroll" data-reveal data-delay="1">
+      <a href="index.html?origin=phap&price=900000" class="rv-collection-card">
+        <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=700&auto=format&fit=crop&q=80" alt="Vang Pháp thượng hạng" loading="lazy">
+        <div class="rv-collection-overlay"><span>7 nhãn hiệu</span><h4>Vang Pháp thượng hạng</h4></div>
+      </a>
+      <a href="index.html?category=qua-tang-set" class="rv-collection-card">
+        <img src="https://images.unsplash.com/photo-1694481901573-a970f982ac5e?w=700&auto=format&fit=crop&q=80" alt="Set quà tặng doanh nhân" loading="lazy">
+        <div class="rv-collection-overlay"><span>Quà tặng</span><h4>Set quà doanh nhân</h4></div>
+      </a>
+      <a href="index.html?category=vang-sui" class="rv-collection-card">
+        <img src="https://images.unsplash.com/photo-1446822775955-c34f483b410b?w=700&auto=format&fit=crop&q=80" alt="Vang sủi lễ hội" loading="lazy">
+        <div class="rv-collection-overlay"><span>8 nhãn hiệu</span><h4>Vang sủi lễ hội</h4></div>
+      </a>
+      <a href="index.html?occasion=suu-tam" class="rv-collection-card">
+        <img src="https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=700&auto=format&fit=crop&q=80" alt="Sưu tầm cao cấp" loading="lazy">
+        <div class="rv-collection-overlay"><span>Hiếm & lâu năm</span><h4>Sưu tầm cao cấp</h4></div>
+      </a>
+      <a href="index.html?price=400000" class="rv-collection-card">
+        <img src="https://images.unsplash.com/photo-1568930157403-9ad464e5f075?w=700&auto=format&fit=crop&q=80" alt="Dưới 400k mỗi ngày" loading="lazy">
+        <div class="rv-collection-overlay"><span>Giá tốt</span><h4>Dưới 400K mỗi ngày</h4></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Câu chuyện (ALTERNATING-STRIPS) ─────────────────────────────────────── -->
+<section class="sec-pad" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border)">
+  <div class="wd-container">
+    <div class="rv-strip" data-reveal>
+      <div class="rv-strip-img"><img src="https://images.unsplash.com/photo-1472352327492-9765783b74e1?w=800&auto=format&fit=crop&q=80" alt="Nhập khẩu trực tiếp từ nhà làm rượu" loading="lazy"></div>
+      <div class="rv-strip-body">
+        <div class="rv-strip-num">01</div>
+        <h3>Nhập khẩu trực tiếp<br>từ nhà làm rượu</h3>
+        <p>Mộc Vang làm việc trực tiếp với hơn 40 nhà rượu (château, cantina, bodega, viña) tại 7 quốc gia — không qua trung gian, đảm bảo giá tốt và nguồn gốc minh bạch cho từng chai.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Chứng từ nhập khẩu (C/O, tem phụ) đầy đủ mỗi lô hàng</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Vận chuyển container lạnh xuyên suốt hành trình</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rv-strip reverse" data-reveal>
+      <div class="rv-strip-body">
+        <div class="rv-strip-num">02</div>
+        <h3>Bảo quản chuẩn<br>hầm rượu 16°C</h3>
+        <p>Toàn bộ kho lưu trữ được kiểm soát nhiệt độ 14–16°C, độ ẩm 65–75% theo tiêu chuẩn cellar quốc tế — giữ trọn hương vị nguyên bản đến tay khách hàng.</p>
+        <a href="ve-chung-toi.html" class="rv-btn rv-btn-outline" style="margin-top:6px">Xem quy trình đầy đủ →</a>
+      </div>
+      <div class="rv-strip-img"><img src="https://images.unsplash.com/photo-1474722883778-792e7990302f?w=800&auto=format&fit=crop&q=80" alt="Hầm rượu bảo quản 16 độ C" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Stat bar ─────────────────────────────────────────────────────────────── -->
+<section class="rv-statbar">
+  <div class="wd-container rv-stats-grid">
+    <div data-reveal><div class="rv-stat-num" data-counter="200" data-suffix="+">0</div><div class="rv-stat-label">Nhãn hiệu vang</div></div>
+    <div data-reveal data-delay="1"><div class="rv-stat-num" data-counter="7">0</div><div class="rv-stat-label">Quốc gia xuất xứ</div></div>
+    <div data-reveal data-delay="2"><div class="rv-stat-num" data-counter="12800" data-suffix="+">0</div><div class="rv-stat-label">Khách hàng đã phục vụ</div></div>
+    <div data-reveal data-delay="3"><div class="rv-stat-num" data-counter="10" data-suffix="+">0</div><div class="rv-stat-label">Năm kinh nghiệm</div></div>
+  </div>
+</section>
+
+<!-- ── Testimonials (LIST-ELEGANT) ─────────────────────────────────────────── -->
+<section class="sec-pad">
+  <div class="wd-container">
+    <div class="rv-sec-head center" data-reveal>
+      <div class="rv-eyebrow">Khách hàng nói gì</div>
+      <h2 class="rv-sec-title">Được tin dùng bởi <span>hàng ngàn khách</span></h2>
+    </div>
+    <div class="rv-testi-list" style="max-width:820px;margin:0 auto">
+      <div class="rv-testi-item" data-reveal>
+        <div class="rv-testi-avatar"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&auto=format&fit=crop&q=80" alt="Khách hàng Minh Anh" loading="lazy"></div>
+        <div>
+          <div class="rv-testi-stars">★★★★★</div>
+          <p class="rv-testi-quote">"Đặt set quà tặng cho đối tác dịp Tết, đóng gói rất sang, vang Bordeaux uống mềm mượt. Giao đúng hẹn dù đặt gấp."</p>
+          <div class="rv-testi-name">Minh Anh</div>
+          <div class="rv-testi-role">Giám đốc kinh doanh, TP.HCM</div>
+        </div>
+      </div>
+      <div class="rv-testi-item" data-reveal data-delay="1">
+        <div class="rv-testi-avatar"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&auto=format&fit=crop&q=80" alt="Khách hàng Hoàng Long" loading="lazy"></div>
+        <div>
+          <div class="rv-testi-stars">★★★★★</div>
+          <p class="rv-testi-quote">"Thích nhất là được tư vấn theo món ăn trước khi mua — chọn đúng chai Chianti hợp với bữa tiệc sinh nhật, cả nhà đều khen."</p>
+          <div class="rv-testi-name">Hoàng Long</div>
+          <div class="rv-testi-role">Khách hàng thân thiết, Hà Nội</div>
+        </div>
+      </div>
+      <div class="rv-testi-item" data-reveal data-delay="2">
+        <div class="rv-testi-avatar"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&auto=format&fit=crop&q=80" alt="Khách hàng Thu Trang" loading="lazy"></div>
+        <div>
+          <div class="rv-testi-stars">★★★★★</div>
+          <p class="rv-testi-quote">"Mua vang sủi cho tiệc cưới, giá tốt hơn hẳn ngoài cửa hàng mà vẫn chính hãng có tem phụ đầy đủ. Sẽ quay lại mua tiếp."</p>
+          <div class="rv-testi-name">Thu Trang</div>
+          <div class="rv-testi-role">Cô dâu, Đà Nẵng</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ───────────────────────────────────────────────────────────────── -->
+<footer class="rv-footer">
+  <div class="rv-footer-brand-bg">MỘC VANG</div>
+  <div class="wd-container">
+    <div class="rv-footer-legal-strip">
+      <div class="rv-age-badge">18+</div>
+      <p>Sản phẩm chỉ dành cho người từ 18 tuổi trở lên. Uống có trách nhiệm — không lái xe hoặc vận hành máy móc sau khi sử dụng rượu bia. Mộc Vang hoạt động tuân thủ Nghị định số 105/2017/NĐ-CP về kinh doanh rượu.</p>
+    </div>
+    <div class="rv-footer-inner">
+      <div class="rv-footer-about">
+        <div class="rv-footer-logo">MỘC<em>VANG</em></div>
+        <p>Nhà nhập khẩu &amp; phân phối rượu vang chính hãng — hơn 200 nhãn hiệu từ Pháp, Ý, Chile, Tây Ban Nha, Úc, Argentina, Mỹ. Bảo quản kho lạnh chuẩn 16°C, giao hàng toàn quốc.</p>
+        <div class="rv-footer-social">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1"/></svg></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Youtube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3Z" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+      <div class="rv-footer-col">
+        <h6>Danh mục</h6>
+        <ul>
+          <li><a href="index.html?category=vang-do">Vang đỏ</a></li>
+          <li><a href="index.html?category=vang-trang">Vang trắng</a></li>
+          <li><a href="index.html?category=vang-sui">Vang sủi</a></li>
+          <li><a href="index.html?category=vang-hong">Vang hồng</a></li>
+          <li><a href="index.html?category=qua-tang-set">Set quà tặng</a></li>
+        </ul>
+      </div>
+      <div class="rv-footer-col">
+        <h6>Hỗ trợ</h6>
+        <ul>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+          <li><a href="gio-hang.html">Giỏ hàng</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+      <div class="rv-footer-col rv-footer-newsletter">
+        <h6>Nhận ưu đãi mới</h6>
+        <p style="font-size:13px;color:rgba(255,255,255,.5);margin-bottom:10px">Đăng ký để nhận thông báo vang mới về &amp; mã giảm giá.</p>
+        <form onsubmit="event.preventDefault(); rvShowToast('Cảm ơn bạn đã đăng ký!'); this.reset();">
+          <label for="rvNewsletterEmail" class="visually-hidden">Email</label>
+          <input type="email" id="rvNewsletterEmail" placeholder="Email của bạn" required>
+          <button type="submit">Gửi</button>
+        </form>
+      </div>
+    </div>
+    <div class="rv-footer-maps">
+      <iframe src="https://maps.google.com/maps?q=10.7769,106.7009&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ cửa hàng Mộc Vang"></iframe>
+    </div>
+    <div class="rv-footer-bottom">
+      <span>© 2026 Mộc Vang. Nội dung trên website chỉ mang tính chất minh họa demo.</span>
+      <span>Giấy phép kinh doanh rượu số [XXXX/GP-KDR] · TP. Hồ Chí Minh</span>
+    </div>
+  </div>
+</footer>
+<a href="https://zalo.me/0900000000" class="rv-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat qua Zalo">
+  <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="40" height="40" rx="20" fill="#0068FF"/>
+    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="14" font-weight="bold" font-family="Arial">Zalo</text>
+  </svg>
+</a>
+
+<script src="assets/js/products-data.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/* ── Banner carousel (slim, KHÔNG fullscreen) — vanilla JS ─────────────── */
+(function () {
+  const slides = document.querySelectorAll('.rv-banner-slide');
+  const dotsWrap = document.getElementById('rvBannerDots');
+  let cur = 0, timer;
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    if (i === 0) b.classList.add('active');
+    b.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(b);
+  });
+  function goTo(i) {
+    slides[cur].classList.remove('is-active');
+    dotsWrap.children[cur].classList.remove('active');
+    cur = (i + slides.length) % slides.length;
+    slides[cur].classList.add('is-active');
+    dotsWrap.children[cur].classList.add('active');
+    resetTimer();
+  }
+  function resetTimer() { clearInterval(timer); timer = setInterval(() => goTo(cur + 1), 5000); }
+  document.getElementById('rvBannerPrev').addEventListener('click', () => goTo(cur - 1));
+  document.getElementById('rvBannerNext').addEventListener('click', () => goTo(cur + 1));
+  resetTimer();
+})();
+
+/* ── Catalog filter engine ────────────────────────────────────────────── */
+const PER_PAGE = 12;
+const ORIGIN_LABEL = { phap:'Pháp', y:'Ý', chile:'Chile', 'tay-ban-nha':'Tây Ban Nha', argentina:'Argentina', uc:'Úc', my:'Mỹ', duc:'Đức', 'nam-phi':'Nam Phi' };
+const ABV_LABEL = { 'duoi-12':'Dưới 12%', '12-13':'12% – 13%', '13-14':'13% – 14%', 'tren-14':'Trên 14%' };
+const OCCASION_LABEL = { 'qua-tang':'Quà tặng', 'tiec-tung':'Tiệc tùng', 'suu-tam':'Sưu tầm', 'khai-vi':'Khai vị', 'hang-ngay':'Dùng hàng ngày' };
+const CATEGORY_LABEL = { 'vang-do':'Vang đỏ', 'vang-trang':'Vang trắng', 'vang-sui':'Vang sủi', 'vang-hong':'Vang hồng', 'qua-tang-set':'Set quà tặng' };
+
+let state = { category: [], origin: [], abv: [], occasion: [], price: [0, MAX_PRICE], search: '', sort: 'newest', page: 1 };
+
+function abvBucket(abv) { if (abv < 12) return 'duoi-12'; if (abv < 13) return '12-13'; if (abv < 14) return '13-14'; return 'tren-14'; }
+function volumeLabel(p) { return p.category === 'qua-tang-set' ? ('Bộ ' + (p.volume / 750) + ' chai') : (p.volume + 'ml'); }
+
+function matchProduct(p) {
+  if (state.category.length && !state.category.includes(p.category)) return false;
+  if (state.origin.length && !state.origin.includes(p.origin)) return false;
+  if (state.abv.length && !state.abv.includes(abvBucket(p.abv))) return false;
+  if (state.occasion.length && !p.occasion.some(o => state.occasion.includes(o))) return false;
+  const price = p.salePrice ?? p.price;
+  if (price < state.price[0] || price > state.price[1]) return false;
+  if (state.search && !p.name.toLowerCase().includes(state.search.toLowerCase())) return false;
+  return true;
+}
+
+function sortProducts(list) {
+  const arr = [...list];
+  const eff = p => p.salePrice ?? p.price;
+  if (state.sort === 'price-asc') arr.sort((a, b) => eff(a) - eff(b));
+  else if (state.sort === 'price-desc') arr.sort((a, b) => eff(b) - eff(a));
+  else if (state.sort === 'rating') arr.sort((a, b) => b.rating - a.rating);
+  else if (state.sort === 'bestseller') arr.sort((a, b) => (b.sold || 0) - (a.sold || 0));
+  else arr.sort((a, b) => b.id - a.id);
+  return arr;
+}
+
+function badgesHtml(p) {
+  let out = '';
+  if (p.badge === 'new') out += '<span class="rv-badge new">Mới</span>';
+  if (p.badge === 'sale') out += '<span class="rv-badge sale">-15%</span>';
+  if (p.badge === 'hot') out += '<span class="rv-badge hot">Bán chạy</span>';
+  return out;
+}
+
+function cardHtml(p) {
+  return `<div class="rv-card" data-reveal>
+    <div class="rv-card-thumb">
+      <div class="rv-card-badges">${badgesHtml(p)}</div>
+      <a href="chi-tiet-san-pham.html?slug=${p.slug}" aria-label="Xem chi tiết ${p.name}">
+        <img src="${p.image}" alt="${p.name}" loading="lazy">
+      </a>
+      <button class="rv-quick-add" onclick="rvQuickAddToCart(${p.id}, event)" aria-label="Thêm ${p.name} vào giỏ">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      </button>
+    </div>
+    <a href="chi-tiet-san-pham.html?slug=${p.slug}" class="rv-card-body-link">
+      <div class="rv-card-body">
+        <span class="rv-card-origin">${p.originLabel} · ${volumeLabel(p)}</span>
+        <h3 class="rv-card-name">${p.name}</h3>
+        <div class="rv-card-meta"><span class="rv-star">★</span> ${p.rating.toFixed(1)} · Đã bán ${p.sold}</div>
+        <div class="rv-card-price">
+          <span class="rv-price-now">${rvFormatVND(p.salePrice ?? p.price)}</span>
+          ${p.salePrice ? `<span class="rv-price-old">${rvFormatVND(p.price)}</span>` : ''}
+        </div>
+      </div>
+    </a>
+  </div>`;
+}
+
+function renderGrid(items) {
+  const grid = document.getElementById('rvGrid');
+  const empty = document.getElementById('rvEmpty');
+  if (items.length === 0) {
+    grid.innerHTML = ''; empty.hidden = false;
+  } else {
+    empty.hidden = true;
+    grid.innerHTML = items.map(cardHtml).join('');
+    grid.querySelectorAll('[data-reveal]').forEach(el => rvRevealObserver.observe(el));
+  }
+}
+
+function renderCount(total, start, shown) {
+  const el = document.getElementById('rvResultCount');
+  el.textContent = total === 0 ? '' : `Hiển thị ${start + 1}–${start + shown} trong ${total} sản phẩm`;
+}
+
+function renderPagination(totalPages) {
+  const el = document.getElementById('rvPagination');
+  el.hidden = totalPages <= 1;
+  if (totalPages <= 1) { el.innerHTML = ''; return; }
+  el.innerHTML = Array.from({ length: totalPages }, (_, i) => {
+    const n = i + 1;
+    return `<button class="${n === state.page ? 'active' : ''}" data-page="${n}">${n}</button>`;
+  }).join('');
+}
+
+function chip(label, onRemove) {
+  return `<span class="rv-chip">${label}<button data-remove='${onRemove}'>✕</button></span>`;
+}
+
+function renderActiveChips() {
+  const wrap = document.getElementById('rvActiveChips');
+  let chips = [];
+  state.category.forEach(v => chips.push(chip(CATEGORY_LABEL[v], JSON.stringify({ t: 'category', v }))));
+  state.origin.forEach(v => chips.push(chip(ORIGIN_LABEL[v], JSON.stringify({ t: 'origin', v }))));
+  state.abv.forEach(v => chips.push(chip(ABV_LABEL[v], JSON.stringify({ t: 'abv', v }))));
+  state.occasion.forEach(v => chips.push(chip(OCCASION_LABEL[v], JSON.stringify({ t: 'occasion', v }))));
+  if (state.price[1] < MAX_PRICE) chips.push(chip('Dưới ' + rvFormatVND(state.price[1]), JSON.stringify({ t: 'price' })));
+  if (state.search) chips.push(chip('Tìm: "' + state.search + '"', JSON.stringify({ t: 'search' })));
+  if (chips.length === 0) { wrap.hidden = true; wrap.innerHTML = ''; return; }
+  wrap.hidden = false;
+  wrap.innerHTML = chips.join('') + '<button class="rv-clear-all" id="rvClearAllChips">Xóa tất cả</button>';
+  wrap.querySelectorAll('[data-remove]').forEach(btn => btn.addEventListener('click', () => {
+    const d = JSON.parse(btn.dataset.remove);
+    if (d.t === 'price') state.price[1] = MAX_PRICE;
+    else if (d.t === 'search') { state.search = ''; document.getElementById('rvSearchInput').value = ''; }
+    else { const arr = state[d.t]; const idx = arr.indexOf(d.v); if (idx > -1) arr.splice(idx, 1); }
+    state.page = 1; render();
+  }));
+  document.getElementById('rvClearAllChips').addEventListener('click', clearAllFilters);
+}
+
+function updateFilterBadge() {
+  const count = state.category.length + state.origin.length + state.abv.length + state.occasion.length + (state.price[1] < MAX_PRICE ? 1 : 0);
+  const badge = document.getElementById('rvFilterBadge');
+  badge.hidden = count === 0;
+  badge.textContent = count;
+}
+
+function syncControlsFromState() {
+  document.querySelectorAll('.rv-cat-pill').forEach(btn => btn.classList.toggle('active', state.category.includes(btn.dataset.value)));
+  document.querySelectorAll('input[data-filter]').forEach(cb => cb.checked = state[cb.dataset.filter].includes(cb.value));
+  [document.getElementById('rvPriceRange'), document.getElementById('rvPriceRangeMob')].forEach(r => { if (r) r.value = state.price[1]; });
+  const priceText = 'Đến ' + rvFormatVND(state.price[1]);
+  document.getElementById('rvPriceVal').textContent = priceText;
+  document.getElementById('rvPriceValMob').textContent = priceText;
+  [document.getElementById('rvSortSelect'), document.getElementById('rvSortSelectMob')].forEach(s => { if (s) s.value = state.sort; });
+}
+
+function writeStateToURL() {
+  const p = new URLSearchParams();
+  if (state.category.length) p.set('category', state.category.join(','));
+  if (state.origin.length) p.set('origin', state.origin.join(','));
+  if (state.abv.length) p.set('abv', state.abv.join(','));
+  if (state.occasion.length) p.set('occasion', state.occasion.join(','));
+  if (state.price[1] < MAX_PRICE) p.set('price', state.price[1]);
+  if (state.search) p.set('q', state.search);
+  if (state.sort !== 'newest') p.set('sort', state.sort);
+  if (state.page > 1) p.set('page', state.page);
+  const qs = p.toString();
+  history.replaceState(null, '', qs ? ('?' + qs) : location.pathname);
+}
+
+function applyCollectionPreset(name) {
+  const presets = {
+    'vang-phap': () => { state.origin = ['phap']; },
+    'qua-tang-doanh-nhan': () => { state.category = ['qua-tang-set']; },
+    'vang-sui-le-hoi': () => { state.category = ['vang-sui']; },
+    'suu-tam-cao-cap': () => { state.occasion = ['suu-tam']; },
+    'duoi-400k': () => { state.price[1] = 400000; },
+    'tiec-cuoi-su-kien': () => { state.occasion = ['tiec-tung']; }
+  };
+  if (presets[name]) presets[name]();
+}
+
+function readStateFromURL() {
+  const p = new URLSearchParams(location.search);
+  if (p.get('collection')) applyCollectionPreset(p.get('collection'));
+  if (p.get('category')) state.category = p.get('category').split(',');
+  if (p.get('origin')) state.origin = p.get('origin').split(',');
+  if (p.get('abv')) state.abv = p.get('abv').split(',');
+  if (p.get('occasion')) state.occasion = p.get('occasion').split(',');
+  if (p.get('price')) state.price[1] = Math.min(+p.get('price'), MAX_PRICE);
+  if (p.get('q')) { state.search = p.get('q'); document.getElementById('rvSearchInput').value = state.search; }
+  if (p.get('sort')) state.sort = p.get('sort');
+  if (p.get('page')) state.page = +p.get('page');
+}
+
+function clearAllFilters() {
+  state.category = []; state.origin = []; state.abv = []; state.occasion = [];
+  state.price = [0, MAX_PRICE]; state.search = ''; state.page = 1;
+  document.getElementById('rvSearchInput').value = '';
+  render();
+}
+
+function render() {
+  const filtered = sortProducts(PRODUCTS.filter(matchProduct));
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+  state.page = Math.min(state.page, totalPages);
+  const start = (state.page - 1) * PER_PAGE;
+  const pageItems = filtered.slice(start, start + PER_PAGE);
+  renderGrid(pageItems);
+  renderCount(filtered.length, start, pageItems.length);
+  renderPagination(totalPages);
+  renderActiveChips();
+  updateFilterBadge();
+  syncControlsFromState();
+  writeStateToURL();
+}
+
+function onFilterChange() { state.page = 1; render(); }
+
+document.querySelectorAll('.rv-cat-pill').forEach(btn => btn.addEventListener('click', () => {
+  const v = btn.dataset.value;
+  const idx = state.category.indexOf(v);
+  if (idx > -1) state.category.splice(idx, 1); else state.category.push(v);
+  onFilterChange();
+}));
+document.querySelectorAll('input[data-filter]').forEach(cb => cb.addEventListener('change', () => {
+  const type = cb.dataset.filter, val = cb.value, arr = state[type], idx = arr.indexOf(val);
+  if (cb.checked && idx === -1) arr.push(val);
+  if (!cb.checked && idx > -1) arr.splice(idx, 1);
+  onFilterChange();
+}));
+[['rvSortSelect'], ['rvSortSelectMob']].forEach(([id]) => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('change', () => { state.sort = el.value; onFilterChange(); });
+});
+let priceTimer;
+[document.getElementById('rvPriceRange'), document.getElementById('rvPriceRangeMob')].forEach(range => {
+  if (!range) return;
+  range.addEventListener('input', () => {
+    document.getElementById('rvPriceVal').textContent = 'Đến ' + rvFormatVND(+range.value);
+    document.getElementById('rvPriceValMob').textContent = 'Đến ' + rvFormatVND(+range.value);
+    clearTimeout(priceTimer);
+    priceTimer = setTimeout(() => { state.price[1] = +range.value; onFilterChange(); }, 250);
+  });
+});
+document.getElementById('rvEmptyClear').addEventListener('click', clearAllFilters);
+document.getElementById('rvOcClear').addEventListener('click', clearAllFilters);
+document.getElementById('rvPagination').addEventListener('click', e => {
+  const btn = e.target.closest('[data-page]');
+  if (!btn) return;
+  state.page = +btn.dataset.page;
+  render();
+  document.getElementById('rvCatalog').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+document.getElementById('rvSearchForm').addEventListener('submit', e => {
+  e.preventDefault();
+  state.search = document.getElementById('rvSearchInput').value.trim();
+  onFilterChange();
+  document.getElementById('rvNavSearch').classList.remove('open');
+  document.getElementById('rvCatalog').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+document.getElementById('rvPriceRange').max = MAX_PRICE;
+document.getElementById('rvPriceRangeMob').max = MAX_PRICE;
+readStateFromURL();
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title id="dhPageTitle">Chi tiết sản phẩm — MERIDIAN</title>
+<meta name="description" content="Chi tiết đồng hồ chính hãng tại MERIDIAN — thông số kỹ thuật, bảo hành, chính sách đổi trả.">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="dh-nav" aria-label="Menu chính">
+  <div class="dh-nav-inner">
+    <a href="index.html" class="dh-logo" aria-label="MERIDIAN — Trang chủ"><span class="dh-logo-mark">M</span>MERIDIAN</a>
+    <ul class="dh-nav-links d-none d-lg-flex">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="san-pham.html" class="active">Sản phẩm</a></li>
+      <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+      <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+      <li><a href="lien-he.html">Liên hệ</a></li>
+    </ul>
+    <div class="dh-nav-actions">
+      <button class="dh-nav-icon-btn" id="dhSearchBtn" aria-label="Tìm kiếm" aria-expanded="false" aria-controls="dhSearchPanel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      </button>
+      <a href="gio-hang.html" class="dh-nav-icon-btn" aria-label="Giỏ hàng">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="dh-cart-count">0</span>
+      </a>
+      <a href="san-pham.html" class="dh-nav-cta d-none d-md-inline-flex">Khám phá ngay</a>
+      <button id="dh-burger" class="d-lg-none" aria-label="Mở menu" aria-expanded="false" aria-controls="dh-nav-mob"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="dh-search-panel" id="dhSearchPanel">
+    <form id="dhSearchForm">
+      <input type="search" id="dhSearchInput" placeholder="Tìm theo tên, thương hiệu..." aria-label="Từ khóa tìm kiếm">
+      <button type="submit">Tìm kiếm</button>
+    </form>
+  </div>
+</nav>
+
+<div id="dh-nav-mob" role="dialog" aria-modal="true" aria-label="Menu điều hướng">
+  <button class="dh-mob-close" id="dhMobClose" aria-label="Đóng menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  <a href="index.html">Trang chủ</a>
+  <a href="san-pham.html" class="active">Sản phẩm</a>
+  <a href="bo-suu-tap.html">Bộ sưu tập</a>
+  <a href="ve-chung-toi.html">Giới thiệu</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="gio-hang.html" style="margin-top:16px;">Giỏ hàng của tôi</a>
+</div>
+
+<section class="dh-sec" style="padding-top:150px">
+  <div class="dh-container">
+    <div class="dh-breadcrumb" id="dhBreadcrumb"><a href="index.html">Trang chủ</a> / <a href="san-pham.html">Sản phẩm</a> / <span id="dhBreadcrumbName">...</span></div>
+
+    <div class="dh-pd-wrap">
+      <div>
+        <div class="dh-pd-gallery-main"><img id="dhPdMainImg" src="" alt=""></div>
+        <div class="dh-pd-thumbs" id="dhPdThumbs"></div>
+      </div>
+      <div>
+        <div class="dh-pd-brand" id="dhPdBrand"></div>
+        <h1 class="dh-pd-title" id="dhPdTitle"></h1>
+        <div class="dh-pd-meta-row">
+          <span class="dh-card-rating">★ <span id="dhPdRating"></span></span>
+          <span style="color:var(--text-3)">·</span>
+          <span style="color:var(--text-2);font-size:13.5px" id="dhPdSold"></span>
+          <span style="color:var(--text-3)">·</span>
+          <span style="color:var(--text-2);font-size:13.5px" id="dhPdStock"></span>
+        </div>
+        <div class="dh-pd-price-row">
+          <span class="dh-pd-price" id="dhPdPrice"></span>
+          <span class="dh-pd-price-old" id="dhPdPriceOld"></span>
+          <span class="dh-pd-save" id="dhPdSave" hidden></span>
+        </div>
+        <p class="dh-pd-desc" id="dhPdDesc"></p>
+
+        <div class="dh-quickfacts" id="dhPdQuickfacts"></div>
+
+        <div class="dh-pd-actions">
+          <div class="dh-qty-box">
+            <button type="button" id="dhQtyMinus" aria-label="Giảm số lượng">−</button>
+            <input type="text" id="dhQtyInput" value="1" inputmode="numeric" aria-label="Số lượng">
+            <button type="button" id="dhQtyPlus" aria-label="Tăng số lượng">+</button>
+          </div>
+          <button class="dh-btn dh-btn-solid" style="flex:1" id="dhAddToCartBtn">Thêm vào giỏ hàng</button>
+          <a href="gio-hang.html" class="dh-btn dh-btn-outline" id="dhBuyNowBtn">Mua ngay</a>
+        </div>
+
+        <div class="dh-pd-badges">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>100% chính hãng</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h15l3 5v10a2 2 0 01-2 2H5a2 2 0 01-2-2V3z"/></svg>Đổi trả 30 ngày</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8h14M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/></svg>Giao hàng toàn quốc</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:70px">
+      <div class="dh-tabs">
+        <button class="dh-tab-btn active" data-tab="desc">Mô tả sản phẩm</button>
+        <button class="dh-tab-btn" data-tab="spec">Thông số kỹ thuật</button>
+        <button class="dh-tab-btn" data-tab="review">Đánh giá</button>
+      </div>
+      <div class="dh-tab-panel active" data-panel="desc">
+        <p id="dhPdDescFull" style="max-width:760px;color:var(--text-2);font-size:15px;line-height:1.8"></p>
+      </div>
+      <div class="dh-tab-panel" data-panel="spec">
+        <table class="dh-spec-table" id="dhSpecTable" style="max-width:640px"></table>
+      </div>
+      <div class="dh-tab-panel" data-panel="review">
+        <div class="dh-testi-grid">
+          <div class="dh-testi-card"><div class="dh-testi-stars">★★★★★</div><p>"Đồng hồ chuẩn chính hãng, đóng gói cẩn thận, giao hàng nhanh."</p><div class="dh-testi-user"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&auto=format&fit=crop&q=80" alt="Khách hàng"><div><strong>Anh Tuấn</strong><span>Đã mua hàng</span></div></div></div>
+          <div class="dh-testi-card"><div class="dh-testi-stars">★★★★★</div><p>"Dây đeo thoải mái, mặt kính không bị trầy sau 2 tháng sử dụng."</p><div class="dh-testi-user"><img src="https://images.unsplash.com/photo-1484863137850-59afcfe05386?w=100&auto=format&fit=crop&q=80" alt="Khách hàng"><div><strong>Ngọc Linh</strong><span>Đã mua hàng</span></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:90px">
+      <div class="dh-sec-head"><div><p class="dh-eyebrow">Có thể bạn thích</p><h2 class="dh-sec-title">Sản phẩm <em>tương tự</em></h2></div></div>
+      <div class="dh-prod-grid" id="dhRelatedGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer id="dh-footer">
+  <div class="dh-container">
+    <div class="dh-footer-top">
+      <div class="dh-footer-brand">
+        <div class="dh-logo"><span class="dh-logo-mark">M</span>MERIDIAN</div>
+        <p>Đồng hồ chính hãng đa thương hiệu — cam kết nguồn gốc rõ ràng, bảo hành đầy đủ, giao hàng toàn quốc.</p>
+      </div>
+      <div class="dh-footer-col"><h5>Khám phá</h5><a href="san-pham.html">Sản phẩm</a><a href="bo-suu-tap.html">Bộ sưu tập</a><a href="ve-chung-toi.html">Giới thiệu</a><a href="lien-he.html">Liên hệ</a></div>
+      <div class="dh-footer-col"><h5>Hỗ trợ</h5><a href="lien-he.html">Liên hệ</a><a href="gio-hang.html">Giỏ hàng</a><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a><a href="dieu-khoan.html">Điều khoản sử dụng</a></div>
+      <div class="dh-footer-col"><h5>Liên hệ</h5><a href="tel:[SỐ_ĐIỆN_THOẠI]">Hotline: [SỐ_ĐIỆN_THOẠI]</a><a href="mailto:[EMAIL]">[EMAIL]</a><a href="lien-he.html">[ĐỊA CHỈ SHOWROOM]</a></div>
+    </div>
+    <div class="dh-footer-maps"><iframe src="https://maps.google.com/maps?q=10.7769,106.7009&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ cửa hàng MERIDIAN"></iframe></div>
+    <div class="dh-footer-bottom">
+      <span>© 2026 MERIDIAN. Toàn bộ nội dung là dữ liệu demo cho mục đích minh họa template.</span>
+      <span><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a><a href="dieu-khoan.html">Điều khoản sử dụng</a></span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[ZALO_NUMBER]" target="_blank" rel="noopener noreferrer" class="dh-zalo-float" aria-label="Chat Zalo"><svg viewBox="0 0 48 48" fill="#fff"><path d="M24 4C12.95 4 4 12.06 4 22c0 5.66 2.95 10.7 7.56 13.98L10 44l8.53-4.16c1.75.44 3.6.68 5.47.68 11.05 0 20-8.06 20-18S35.05 4 24 4z"/></svg></a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products-data.js"></script>
+<script src="assets/js/cart.js"></script>
+<script>
+  const dhNav = document.getElementById('dh-nav');
+  window.addEventListener('scroll', () => dhNav.classList.toggle('scrolled', scrollY > 40), { passive: true });
+  const dhBurger = document.getElementById('dh-burger');
+  const dhMob = document.getElementById('dh-nav-mob');
+  function dhCloseMob() { dhMob.classList.remove('open'); dhBurger.classList.remove('open'); document.body.style.overflow = ''; }
+  dhBurger.addEventListener('click', () => { const o = dhMob.classList.toggle('open'); dhBurger.classList.toggle('open', o); document.body.style.overflow = o ? 'hidden' : ''; });
+  document.getElementById('dhMobClose').addEventListener('click', dhCloseMob);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && dhMob.classList.contains('open')) dhCloseMob(); });
+  const dhSearchBtn = document.getElementById('dhSearchBtn');
+  const dhSearchPanel = document.getElementById('dhSearchPanel');
+  dhSearchBtn.addEventListener('click', () => { const o = dhSearchPanel.classList.toggle('open'); dhSearchBtn.setAttribute('aria-expanded', o); if (o) document.getElementById('dhSearchInput').focus(); });
+  document.getElementById('dhSearchForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const q = document.getElementById('dhSearchInput').value.trim();
+    window.location.href = 'san-pham.html' + (q ? ('?q=' + encodeURIComponent(q)) : '');
+  });
+
+  function dhCardHTML(p) {
+    const badgeMap = { new: 'Mới', sale: 'Giảm giá', hot: 'Hot' };
+    const badge = p.badge ? `<span class="dh-card-badge ${p.badge}">${badgeMap[p.badge]}</span>` : '';
+    const priceOld = p.salePrice ? `<span class="dh-card-price-old">${dhFormatVND(p.price)}</span>` : '';
+    const price = dhFormatVND(p.salePrice || p.price);
+    return `<div class="dh-card ${!p.stock ? 'dh-card-stock-out' : ''}">
+      <div class="dh-card-thumb">
+        ${badge}
+        <a href="chi-tiet-san-pham.html?slug=${p.slug}"><img src="${p.image}" alt="${p.name}" loading="lazy"></a>
+      </div>
+      <div class="dh-card-body">
+        <div class="dh-card-brand">${p.brand}</div>
+        <h3 class="dh-card-name"><a href="chi-tiet-san-pham.html?slug=${p.slug}">${p.name}</a></h3>
+        <div class="dh-card-meta"><span class="dh-card-rating">★ ${p.rating}</span><span>·</span><span>Đã bán ${p.sold}</span></div>
+        <div class="dh-card-price-row"><span class="dh-card-price">${price}</span>${priceOld}</div>
+        <button class="dh-card-add" ${!p.stock ? 'disabled' : ''} onclick="dhAddToCart('${p.slug}',1)">Thêm vào giỏ</button>
+      </div>
+    </div>`;
+  }
+
+  /* ══ Render sản phẩm data-driven qua ?slug= ══ */
+  const dhParams = new URLSearchParams(location.search);
+  const dhSlug = dhParams.get('slug');
+  const dhProduct = dhFindBySlug(dhSlug) || PRODUCTS[0];
+
+  document.title = dhProduct.name + ' — MERIDIAN';
+  document.getElementById('dhPageTitle').textContent = dhProduct.name + ' — MERIDIAN';
+  document.getElementById('dhBreadcrumbName').textContent = dhProduct.name;
+  document.getElementById('dhPdBrand').textContent = dhProduct.brand;
+  document.getElementById('dhPdTitle').textContent = dhProduct.name;
+  document.getElementById('dhPdRating').textContent = dhProduct.rating;
+  document.getElementById('dhPdSold').textContent = 'Đã bán ' + dhProduct.sold;
+  document.getElementById('dhPdStock').textContent = dhProduct.stock ? 'Còn hàng' : 'Tạm hết hàng';
+  document.getElementById('dhPdPrice').textContent = dhFormatVND(dhProduct.salePrice || dhProduct.price);
+  document.getElementById('dhPdDesc').textContent = dhProduct.description;
+  document.getElementById('dhPdDescFull').textContent = dhProduct.description + ' Sản phẩm được nhập khẩu và phân phối chính hãng bởi MERIDIAN, đi kèm đầy đủ hộp, sách hướng dẫn và phiếu bảo hành điện tử.';
+
+  if (dhProduct.salePrice) {
+    document.getElementById('dhPdPriceOld').textContent = dhFormatVND(dhProduct.price);
+    const percent = Math.round((1 - dhProduct.salePrice / dhProduct.price) * 100);
+    const saveEl = document.getElementById('dhPdSave'); saveEl.hidden = false; saveEl.textContent = '-' + percent + '%';
+  }
+
+  document.getElementById('dhPdMainImg').src = dhProduct.images[0];
+  document.getElementById('dhPdMainImg').alt = dhProduct.name;
+  document.getElementById('dhPdThumbs').innerHTML = dhProduct.images.map((img, i) => `<button class="dh-pd-thumb ${i === 0 ? 'active' : ''}" data-img="${img}"><img src="${img}" alt="${dhProduct.name} ảnh ${i + 1}"></button>`).join('');
+  document.querySelectorAll('.dh-pd-thumb').forEach(t => t.addEventListener('click', () => {
+    document.querySelectorAll('.dh-pd-thumb').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('dhPdMainImg').src = t.dataset.img;
+  }));
+
+  const quickfacts = [
+    ['Danh mục', CATEGORY_LABELS[dhProduct.category]],
+    ['Chất liệu dây', MATERIAL_LABELS[dhProduct.material]],
+    ['Phong cách', STYLE_LABELS[dhProduct.style]],
+    ['Đường kính mặt', dhProduct.diameter + 'mm'],
+    ['Bộ máy', dhProduct.movement],
+    ['Chống nước', dhProduct.waterResist]
+  ];
+  document.getElementById('dhPdQuickfacts').innerHTML = quickfacts.map(([lbl, val]) => `
+    <div class="dh-quickfact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      <div><div class="lbl">${lbl}</div><div class="val">${val}</div></div>
+    </div>`).join('');
+
+  document.getElementById('dhSpecTable').innerHTML = [
+    ['Thương hiệu', dhProduct.brand], ['Danh mục', CATEGORY_LABELS[dhProduct.category]],
+    ['Chất liệu dây', MATERIAL_LABELS[dhProduct.material]], ['Phong cách', STYLE_LABELS[dhProduct.style]],
+    ['Đường kính mặt', dhProduct.diameter + 'mm'], ['Bộ máy', dhProduct.movement],
+    ['Khả năng chống nước', dhProduct.waterResist], ['Bảo hành', dhProduct.warranty]
+  ].map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('');
+
+  document.getElementById('dhRelatedGrid').innerHTML = dhGetRelated(dhProduct, 4).map(dhCardHTML).join('');
+
+  /* Tabs */
+  document.querySelectorAll('.dh-tab-btn').forEach(btn => btn.addEventListener('click', () => {
+    document.querySelectorAll('.dh-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.dh-tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelector(`.dh-tab-panel[data-panel="${btn.dataset.tab}"]`).classList.add('active');
+  }));
+
+  /* Quantity + Add to cart */
+  const dhQtyInput = document.getElementById('dhQtyInput');
+  document.getElementById('dhQtyMinus').addEventListener('click', () => { dhQtyInput.value = Math.max(1, (+dhQtyInput.value || 1) - 1); });
+  document.getElementById('dhQtyPlus').addEventListener('click', () => { dhQtyInput.value = (+dhQtyInput.value || 1) + 1; });
+  document.getElementById('dhAddToCartBtn').addEventListener('click', () => dhAddToCart(dhProduct.slug, +dhQtyInput.value || 1));
+  document.getElementById('dhBuyNowBtn').addEventListener('click', () => dhAddToCart(dhProduct.slug, +dhQtyInput.value || 1));
+</script>
+</body>
+</html>

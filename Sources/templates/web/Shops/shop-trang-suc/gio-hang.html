@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Giỏ hàng — VIOLETTE Fine Jewelry</title>
+<meta name="description" content="Xem lại giỏ hàng trang sức VIOLETTE trước khi thanh toán.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav id="tr-nav" aria-label="Menu chính">
+  <div class="tr-container">
+    <div class="tr-nav-inner">
+      <a href="index.html" class="tr-logo" aria-label="VIOLETTE - Trang chủ"><span class="tr-logo-mark">V</span><span class="tr-logo-text">VIOLETTE</span></a>
+      <ul class="tr-nav-links">
+        <li><a href="index.html">Trang chủ</a></li>
+        <li><a href="san-pham.html">Sản phẩm</a></li>
+        <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+        <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+        <li><a href="lien-he.html">Liên hệ</a></li>
+      </ul>
+      <div class="tr-nav-actions">
+        <button class="tr-nav-icon-btn" id="tr-search-btn" aria-label="Tìm kiếm" aria-expanded="false" aria-controls="tr-search-panel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button>
+        <a href="gio-hang.html" class="tr-nav-icon-btn active" aria-label="Giỏ hàng"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="tr-cart-count" id="cartCount">0</span></a>
+        <button id="navBurger" class="tr-nav-icon-btn d-lg-none" aria-label="Mở menu" aria-expanded="false" aria-controls="navMob"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="tr-search-panel" id="tr-search-panel">
+      <form class="tr-search-form" id="navSearchForm">
+        <input type="search" id="navSearchInput" placeholder="Tìm nhẫn, dây chuyền, bông tai..." aria-label="Từ khóa tìm kiếm">
+        <button type="submit" aria-label="Tìm kiếm"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button>
+      </form>
+    </div>
+  </div>
+</nav>
+<div class="tr-mob-nav" id="navMob" role="dialog" aria-modal="true" aria-label="Menu điều hướng">
+  <button class="tr-mob-close" id="navMobClose" aria-label="Đóng menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  <ul class="tr-mob-links">
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="san-pham.html">Sản phẩm</a></li>
+    <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+    <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+</div>
+
+<main class="tr-cart-wrap">
+  <div class="tr-container">
+    <div class="tr-breadcrumb" style="margin-bottom:26px;"><a href="index.html">Trang chủ</a> / <span>Giỏ hàng</span></div>
+    <h1 style="font-size:clamp(28px,3.4vw,38px);margin-bottom:40px;">Giỏ hàng của bạn</h1>
+
+    <div id="cartHasItems" class="tr-cart-grid" hidden>
+      <div id="cartItemsList"></div>
+      <div class="tr-cart-summary">
+        <div class="tr-cart-summary-title">Tóm tắt đơn hàng</div>
+        <div class="tr-cart-summary-row"><span>Tạm tính</span><span id="sumSubtotal">0₫</span></div>
+        <div class="tr-cart-summary-row"><span>Phí đóng gói &amp; vận chuyển</span><span>Miễn phí</span></div>
+        <div class="tr-cart-summary-row total"><span>Tổng cộng</span><span id="sumTotal">0₫</span></div>
+        <a href="lien-he.html" class="tr-btn tr-btn-fill tr-btn-block" style="margin-top:22px;">Tiến hành đặt hàng</a>
+        <a href="san-pham.html" class="tr-btn tr-btn-block" style="margin-top:12px;">Tiếp tục mua sắm</a>
+      </div>
+    </div>
+
+    <div class="tr-cart-empty" id="cartEmpty" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <h2>Giỏ hàng của bạn đang trống</h2>
+      <p>Hãy khám phá bộ sưu tập trang sức tinh xảo của VIOLETTE.</p>
+      <a href="san-pham.html" class="tr-btn tr-btn-fill">Khám phá sản phẩm</a>
+    </div>
+  </div>
+</main>
+
+<footer class="tr-footer" aria-label="Footer">
+  <div class="tr-container">
+    <div class="tr-footer-top">
+      <div>
+        <div class="tr-footer-brand"><span class="tr-logo-mark">V</span><span class="tr-logo-text">VIOLETTE</span></div>
+        <p class="tr-footer-desc">Trang sức bạc 925, vàng 18K/24K và đá quý tự nhiên — chế tác tỉ mỉ, kiểm định rõ ràng, bảo hành trọn đời.</p>
+      </div>
+      <div>
+        <h5>Sản phẩm</h5>
+        <ul class="tr-footer-links">
+          <li><a href="san-pham.html?category=nhan">Nhẫn</a></li>
+          <li><a href="san-pham.html?category=day-chuyen">Dây chuyền</a></li>
+          <li><a href="san-pham.html?category=bong-tai">Bông tai</a></li>
+          <li><a href="san-pham.html?category=lac-tay">Lắc tay</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Hỗ trợ</h5>
+        <ul class="tr-footer-links">
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Liên hệ</h5>
+        <div class="tr-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>[ĐỊA CHỈ CỬA HÀNG]</span></div>
+        <div class="tr-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 010 1.18 2 2 0 012 1h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg><a href="tel:[SỐ_ĐIỆN_THOẠI]">[SỐ_ĐIỆN_THOẠI]</a></div>
+      </div>
+    </div>
+    <div class="tr-footer-bottom">
+      <p>© 2026 VIOLETTE Fine Jewelry. Tất cả quyền được bảo lưu.</p>
+      <div class="tr-footer-bottom-links"><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a><a href="dieu-khoan.html">Điều khoản</a><a href="lien-he.html">Liên hệ</a></div>
+    </div>
+  </div>
+</footer>
+<div class="tr-toast" id="trToast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products-data.js"></script>
+<script src="assets/js/common.js"></script>
+<script>
+(function () {
+  function render() {
+    const cart = trGetCart();
+    const hasItems = document.getElementById('cartHasItems');
+    const empty = document.getElementById('cartEmpty');
+    if (cart.length === 0) { hasItems.hidden = true; empty.hidden = false; return; }
+    hasItems.hidden = false; empty.hidden = true;
+
+    let subtotal = 0;
+    const listEl = document.getElementById('cartItemsList');
+    listEl.innerHTML = cart.map(line => {
+      const p = PRODUCTS.find(pp => pp.id === line.id);
+      if (!p) return '';
+      const unit = p.salePrice ?? p.price;
+      const lineTotal = unit * line.qty;
+      subtotal += lineTotal;
+      const matLabel = (MATERIALS.find(m => m.slug === p.material) || {}).label || '';
+      return `<div class="tr-cart-item" data-line-id="${p.id}">
+        <img class="tr-cart-item-img" src="${p.image}" alt="${p.name}" onerror="this.src='${SVG_FALLBACK}'">
+        <div>
+          <div class="tr-cart-item-name">${p.name}</div>
+          <div class="tr-cart-item-meta">${matLabel} · ${formatVND(unit)} / sản phẩm</div>
+          <div class="tr-qty-selector">
+            <button type="button" data-qty-minus="${p.id}">−</button>
+            <input type="text" value="${line.qty}" readonly>
+            <button type="button" data-qty-plus="${p.id}">+</button>
+          </div>
+        </div>
+        <div class="tr-cart-item-right">
+          <div class="tr-price-main">${formatVND(lineTotal)}</div>
+          <span class="tr-cart-item-remove" role="button" data-remove="${p.id}">Xóa</span>
+        </div>
+      </div>`;
+    }).join('');
+
+    document.getElementById('sumSubtotal').textContent = formatVND(subtotal);
+    document.getElementById('sumTotal').textContent = formatVND(subtotal);
+
+    listEl.querySelectorAll('[data-qty-plus]').forEach(b => b.addEventListener('click', () => {
+      const id = +b.dataset.qtyPlus;
+      const line = trGetCart().find(l => l.id === id);
+      trSetQty(id, (line ? line.qty : 1) + 1);
+      render();
+    }));
+    listEl.querySelectorAll('[data-qty-minus]').forEach(b => b.addEventListener('click', () => {
+      const id = +b.dataset.qtyMinus;
+      const line = trGetCart().find(l => l.id === id);
+      if (line && line.qty <= 1) { trRemoveFromCart(id); } else { trSetQty(id, line.qty - 1); }
+      render();
+    }));
+    listEl.querySelectorAll('[data-remove]').forEach(b => b.addEventListener('click', () => {
+      trRemoveFromCart(+b.dataset.remove);
+      trShowToast('Đã xóa sản phẩm khỏi giỏ hàng');
+      render();
+    }));
+  }
+  render();
+
+  const searchBtn = document.getElementById('tr-search-btn');
+  const searchPanel = document.getElementById('tr-search-panel');
+  searchBtn.addEventListener('click', () => {
+    const open = searchPanel.classList.toggle('open');
+    searchBtn.setAttribute('aria-expanded', String(open));
+    if (open) document.getElementById('navSearchInput').focus();
+  });
+  document.getElementById('navSearchForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const q = document.getElementById('navSearchInput').value.trim();
+    window.location.href = 'san-pham.html' + (q ? '?q=' + encodeURIComponent(q) : '');
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Giỏ hàng — MỘC AN</title>
+<meta name="description" content="Giỏ hàng của bạn tại MỘC AN — kiểm tra sản phẩm, số lượng và tổng thanh toán trước khi đặt hàng.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="nt-topbar" role="status">
+  <span>Miễn phí giao hàng nội thành cho đơn từ 5.000.000₫</span>
+  <span class="nt-topbar-sep">·</span>
+  <span>Bảo hành 24 tháng</span>
+  <span class="nt-topbar-sep">·</span>
+  <span>Lắp đặt tận nơi toàn quốc</span>
+</div>
+
+<nav id="nt-nav" aria-label="Menu chính">
+  <div class="nt-container">
+    <div class="nt-nav-inner">
+      <a href="index.html" class="nt-logo" aria-label="MỘC AN - Trang chủ">MỘC <em>AN</em></a>
+      <ul class="nt-nav-links d-none d-lg-flex">
+        <li><a href="index.html">Trang chủ</a></li>
+        <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+        <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+        <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+        <li><a href="lien-he.html">Liên hệ</a></li>
+      </ul>
+      <div class="nt-nav-actions">
+        <button id="navSearchBtn" class="nt-nav-icon-btn" aria-label="Tìm kiếm" aria-expanded="false" aria-controls="navSearchPanel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </button>
+        <a href="gio-hang.html" class="nt-nav-icon-btn" aria-label="Giỏ hàng">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="nt-cart-badge">0</span>
+        </a>
+        <button id="navBurger" class="nt-hamburger d-lg-none" aria-label="Mở menu" aria-expanded="false" aria-controls="navMob">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="nt-search-panel" id="navSearchPanel" hidden>
+      <form class="nt-search-form" onsubmit="return false;">
+        <input type="search" id="navSearchInput" placeholder="Tìm sofa, bàn ăn, đèn trang trí..." aria-label="Từ khóa tìm kiếm">
+        <button type="button" id="navSearchSubmit" aria-label="Tìm kiếm">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="nt-nav-mob" id="navMob" role="dialog" aria-modal="true" aria-label="Menu điều hướng">
+  <div class="nt-nav-mob-top">
+    <span class="nt-logo">MỘC <em>AN</em></span>
+    <button class="nt-nav-mob-close" id="navMobClose" aria-label="Đóng menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+  <ul>
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+    <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+    <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+  <div class="nt-nav-mob-actions">
+    <a href="gio-hang.html">🛒 Giỏ hàng của tôi</a>
+    <a href="tel:[SỐ_ĐIỆN_THOẠI]">📞 [SỐ_ĐIỆN_THOẠI]</a>
+  </div>
+</div>
+
+<div id="cartRoot">
+<section class="nt-container" style="padding-top:calc(var(--topbar-h) + var(--nav-h) + 48px);padding-bottom:80px;">
+  <div class="nt-sec-head" style="margin-bottom:36px;">
+    <div class="nt-eyebrow">Giỏ hàng</div>
+    <h1 class="nt-sec-title">Giỏ hàng <em>của bạn</em></h1>
+  </div>
+
+  <div class="nt-cart-grid" id="cartFilled">
+    <div>
+      <div id="cartRows"></div>
+    </div>
+    <div class="nt-cart-summary">
+      <h3>Tóm tắt đơn hàng</h3>
+      <div class="nt-cart-sum-row"><span>Tạm tính</span><span id="cartSubtotal">0₫</span></div>
+      <div class="nt-cart-sum-row"><span>Phí vận chuyển</span><span id="cartShipping">Miễn phí</span></div>
+      <div class="nt-cart-sum-row total"><span>Tổng cộng</span><span id="cartTotal">0₫</span></div>
+      <button class="nt-btn" id="cartCheckoutBtn" style="width:100%;margin-top:20px;">Tiến hành đặt hàng</button>
+      <a href="index.html" class="nt-link" style="margin-top:16px;justify-content:center;width:100%;">Tiếp tục mua sắm</a>
+    </div>
+  </div>
+
+  <div class="nt-cart-empty" id="cartEmpty" style="display:none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    <h3>Giỏ hàng của bạn đang trống</h3>
+    <p style="color:var(--text-2);margin-bottom:24px;">Hãy khám phá các sản phẩm nội thất tối giản của MỘC AN.</p>
+    <a href="index.html" class="nt-btn">Khám phá sản phẩm</a>
+  </div>
+</section>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="nt-footer" aria-label="Footer">
+  <div class="nt-container">
+    <div class="nt-footer-grid">
+      <div>
+        <div class="nt-footer-logo">MỘC <em>AN</em></div>
+        <p class="nt-footer-desc">Nội thất tối giản cho không gian sống chậm — chất liệu gỗ tự nhiên, thiết kế bền vững, đồng hành cùng tổ ấm Việt.</p>
+        <div class="nt-footer-social">
+          <a href="#" aria-label="Facebook" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" aria-label="Pinterest" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 2a10 10 0 00-3.6 19.3c0-.8 0-1.8.2-2.6l1.4-6s-.3-.7-.3-1.7c0-1.6.9-2.8 2.1-2.8 1 0 1.4.7 1.4 1.6 0 1-.6 2.4-1 3.8-.2 1 .5 1.8 1.5 1.8 1.8 0 3-2.3 3-5 0-2.1-1.4-3.6-4-3.6-2.9 0-4.7 2.1-4.7 4.5 0 .8.2 1.4.6 1.9.2.2.2.3.1.5l-.2 1c-.1.3-.3.4-.6.2-1.2-.5-1.7-1.9-1.7-3.4 0-2.6 2.2-5.6 6.5-5.6 3.4 0 5.7 2.5 5.7 5.2 0 3.5-1.9 6.2-4.7 6.2-1 0-1.9-.5-2.2-1.1l-.6 2.4c-.2.9-.7 1.9-1.2 2.6a10 10 0 1013.3-14.4A10 10 0 0012 2z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Danh mục</h5>
+        <ul class="nt-footer-links">
+          <li><a href="index.html?category=sofa">Sofa &amp; ghế bành</a></li>
+          <li><a href="index.html?category=ban">Bàn</a></li>
+          <li><a href="index.html?category=tu-ke">Tủ &amp; kệ</a></li>
+          <li><a href="index.html?category=giuong">Giường ngủ</a></li>
+          <li><a href="index.html?category=den">Đèn trang trí</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Hỗ trợ</h5>
+        <ul class="nt-footer-links">
+          <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+          <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+          <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Liên hệ</h5>
+        <div class="nt-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>[ĐỊA CHỈ SHOWROOM]</span></div>
+        <div class="nt-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg><a href="tel:[SỐ_ĐIỆN_THOẠI]" style="color:inherit">[SỐ_ĐIỆN_THOẠI]</a></div>
+        <div class="nt-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:[EMAIL]" style="color:inherit">[EMAIL]</a></div>
+        <div class="nt-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>T2–CN: 8:30–20:00</span></div>
+      </div>
+    </div>
+    <iframe class="nt-footer-maps" src="https://maps.google.com/maps?q=10.7769,106.7009&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ showroom MỘC AN"></iframe>
+    <div class="nt-footer-bottom">
+      <p>© 2026 MỘC AN. Tất cả quyền được bảo lưu.</p>
+      <div class="nt-footer-bottom-links">
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="nt-zalo-float">
+  <a href="https://zalo.me/[ZALO_NUMBER]" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo"><svg viewBox="0 0 48 48" width="26" height="26"><text y="34" x="8" font-size="28" fill="#fff" font-family="sans-serif">Z</text></svg></a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products-data.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

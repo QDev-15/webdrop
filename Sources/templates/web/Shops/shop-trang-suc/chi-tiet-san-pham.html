@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title id="pageTitle">Chi tiết sản phẩm — VIOLETTE Fine Jewelry</title>
+<meta name="description" content="Chi tiết sản phẩm trang sức VIOLETTE — thông số chất liệu, đá quý, chính sách bảo hành và đổi trả.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="tr-nav" aria-label="Menu chính">
+  <div class="tr-container">
+    <div class="tr-nav-inner">
+      <a href="index.html" class="tr-logo" aria-label="VIOLETTE - Trang chủ"><span class="tr-logo-mark">V</span><span class="tr-logo-text">VIOLETTE</span></a>
+      <ul class="tr-nav-links">
+        <li><a href="index.html">Trang chủ</a></li>
+        <li><a href="san-pham.html" class="active">Sản phẩm</a></li>
+        <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+        <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+        <li><a href="lien-he.html">Liên hệ</a></li>
+      </ul>
+      <div class="tr-nav-actions">
+        <button class="tr-nav-icon-btn" id="tr-search-btn" aria-label="Tìm kiếm" aria-expanded="false" aria-controls="tr-search-panel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button>
+        <a href="gio-hang.html" class="tr-nav-icon-btn" aria-label="Giỏ hàng"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="tr-cart-count" id="cartCount">0</span></a>
+        <button id="navBurger" class="tr-nav-icon-btn d-lg-none" aria-label="Mở menu" aria-expanded="false" aria-controls="navMob"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="tr-search-panel" id="tr-search-panel">
+      <form class="tr-search-form" id="navSearchForm">
+        <input type="search" id="navSearchInput" placeholder="Tìm nhẫn, dây chuyền, bông tai..." aria-label="Từ khóa tìm kiếm">
+        <button type="submit" aria-label="Tìm kiếm"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button>
+      </form>
+    </div>
+  </div>
+</nav>
+<div class="tr-mob-nav" id="navMob" role="dialog" aria-modal="true" aria-label="Menu điều hướng">
+  <button class="tr-mob-close" id="navMobClose" aria-label="Đóng menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  <ul class="tr-mob-links">
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="san-pham.html" class="active">Sản phẩm</a></li>
+    <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+    <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+  <div class="tr-mob-actions">
+    <a href="gio-hang.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>Giỏ hàng của tôi</a>
+    <a href="tel:[SỐ_ĐIỆN_THOẠI]"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 010 1.18 2 2 0 012 1h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>[SỐ_ĐIỆN_THOẠI]</a>
+  </div>
+</div>
+
+<main class="tr-pd-wrap">
+  <div class="tr-container">
+    <div class="tr-breadcrumb" id="pdBreadcrumb" style="margin-bottom:26px;"><a href="index.html">Trang chủ</a> / <a href="san-pham.html">Sản phẩm</a> / <span id="pdCrumbName"></span></div>
+
+    <div class="tr-pd-grid">
+      <div>
+        <div class="tr-pd-gallery-main"><img id="pdMainImg" src="" alt="" loading="lazy"></div>
+        <div class="tr-pd-gallery-thumbs" id="pdThumbs"></div>
+      </div>
+      <div data-reveal>
+        <div class="tr-pd-material" id="pdMaterial"></div>
+        <h1 class="tr-pd-title" id="pdTitle"></h1>
+        <div class="tr-pd-rating" id="pdRating"></div>
+        <div class="tr-pd-price" id="pdPrice"></div>
+        <p class="tr-pd-desc" id="pdDesc"></p>
+
+        <div class="tr-pd-quickfacts" id="pdQuickFacts"></div>
+
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);">Số lượng</span>
+          <div class="tr-qty-selector">
+            <button type="button" id="qtyMinus" aria-label="Giảm số lượng">−</button>
+            <input type="text" id="qtyInput" value="1" readonly aria-label="Số lượng">
+            <button type="button" id="qtyPlus" aria-label="Tăng số lượng">+</button>
+          </div>
+        </div>
+
+        <div class="tr-pd-actions">
+          <button class="tr-btn tr-btn-fill" id="addToCartBtn">Thêm vào giỏ hàng</button>
+          <button class="tr-pd-fav-btn" aria-label="Yêu thích"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+        </div>
+
+        <div class="tr-pd-trust">
+          <div class="tr-pd-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z"/></svg>Bảo hành trọn đời khung trang sức</div>
+          <div class="tr-pd-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Đổi size miễn phí trong 30 ngày</div>
+          <div class="tr-pd-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a4 4 0 018 0v2"/></svg>Kèm giấy kiểm định &amp; hóa đơn VAT</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tr-tabs">
+      <button class="tr-tab-btn active" data-tab="desc">Mô tả</button>
+      <button class="tr-tab-btn" data-tab="spec">Thông số</button>
+      <button class="tr-tab-btn" data-tab="care">Bảo quản &amp; Bảo hành</button>
+    </div>
+    <div class="tr-tab-panel active" data-tab-panel="desc" id="tabDesc"></div>
+    <div class="tr-tab-panel" data-tab-panel="spec">
+      <table class="tr-spec-table" id="pdSpecTable"></table>
+    </div>
+    <div class="tr-tab-panel" data-tab-panel="care">
+      <p>Trang sức VIOLETTE nên được cất giữ riêng trong hộp/túi vải mềm đi kèm, tránh va chạm với bề mặt cứng hoặc trang sức khác. Hạn chế tiếp xúc trực tiếp với nước hoa, mỹ phẩm và mồ hôi trong thời gian dài. Vệ sinh định kỳ bằng khăn mềm chuyên dụng cho bạc/vàng.</p>
+      <p>Chính sách bảo hành: bảo hành trọn đời cho khung trang sức (không áp dụng cho đá quý bị vỡ do va đập ngoại lực), đánh bóng và làm mới miễn phí 1 lần/năm tại toàn bộ cửa hàng VIOLETTE. Vui lòng giữ hóa đơn mua hàng để được hỗ trợ bảo hành nhanh chóng.</p>
+    </div>
+
+    <section class="tr-pad" style="padding-left:0;padding-right:0;">
+      <div class="tr-sec-head" data-reveal>
+        <div class="tr-eyebrow">Có thể bạn cũng thích</div>
+        <h2 class="tr-sec-title">Sản phẩm <em>tương tự</em></h2>
+      </div>
+      <div class="tr-prod-grid" id="relatedGrid" data-reveal></div>
+    </section>
+  </div>
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer class="tr-footer" aria-label="Footer">
+  <div class="tr-container">
+    <div class="tr-footer-top">
+      <div>
+        <div class="tr-footer-brand"><span class="tr-logo-mark">V</span><span class="tr-logo-text">VIOLETTE</span></div>
+        <p class="tr-footer-desc">Trang sức bạc 925, vàng 18K/24K và đá quý tự nhiên — chế tác tỉ mỉ, kiểm định rõ ràng, bảo hành trọn đời.</p>
+        <div class="tr-footer-social">
+          <a href="#" aria-label="Facebook" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Sản phẩm</h5>
+        <ul class="tr-footer-links">
+          <li><a href="san-pham.html?category=nhan">Nhẫn</a></li>
+          <li><a href="san-pham.html?category=day-chuyen">Dây chuyền</a></li>
+          <li><a href="san-pham.html?category=bong-tai">Bông tai</a></li>
+          <li><a href="san-pham.html?category=lac-tay">Lắc tay</a></li>
+          <li><a href="san-pham.html?category=bo-trang-suc">Bộ trang sức</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Hỗ trợ</h5>
+        <ul class="tr-footer-links">
+          <li><a href="bo-suu-tap.html">Bộ sưu tập</a></li>
+          <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Liên hệ</h5>
+        <div class="tr-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>[ĐỊA CHỈ CỬA HÀNG]</span></div>
+        <div class="tr-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 010 1.18 2 2 0 012 1h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg><a href="tel:[SỐ_ĐIỆN_THOẠI]">[SỐ_ĐIỆN_THOẠI]</a></div>
+        <div class="tr-footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>T2–CN: 9:00–20:00</span></div>
+      </div>
+    </div>
+    <div class="tr-footer-maps"><iframe src="https://maps.google.com/maps?q=10.7769,106.7009&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ cửa hàng VIOLETTE"></iframe></div>
+    <div class="tr-footer-bottom">
+      <p>© 2026 VIOLETTE Fine Jewelry. Tất cả quyền được bảo lưu.</p>
+      <div class="tr-footer-bottom-links"><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a><a href="dieu-khoan.html">Điều khoản</a><a href="lien-he.html">Liên hệ</a></div>
+    </div>
+  </div>
+</footer>
+<div class="tr-zalo-float"><a href="https://zalo.me/[ZALO_NUMBER]" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo"><svg viewBox="0 0 48 48" width="26" height="26"><text x="50%" y="60%" font-size="26" fill="#fff" text-anchor="middle" font-family="sans-serif" font-weight="700">Z</text></svg></a></div>
+<div class="tr-toast" id="trToast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products-data.js"></script>
+<script src="assets/js/common.js"></script>
+<script>
+(function () {
+  const params = new URLSearchParams(location.search);
+  const slug = params.get('slug');
+  const product = PRODUCTS.find(p => p.slug === slug) || PRODUCTS[0];
+
+  document.title = product.name + ' — VIOLETTE Fine Jewelry';
+  document.getElementById('pdCrumbName').textContent = product.name;
+  document.getElementById('pdTitle').textContent = product.name;
+
+  const catLabel = (CATEGORIES.find(c => c.slug === product.category) || {}).label || '';
+  const matLabel = (MATERIALS.find(m => m.slug === product.material) || {}).label || '';
+  const toneLabel = (TONES.find(t => t.slug === product.tone) || {}).label || '';
+  const occLabel = (OCCASIONS.find(o => o.slug === product.occasion) || {}).label || '';
+
+  document.getElementById('pdMaterial').textContent = catLabel + ' · ' + matLabel;
+
+  function renderStars(rating) { const full = Math.round(rating); return '★'.repeat(full) + '☆'.repeat(5 - full); }
+  document.getElementById('pdRating').innerHTML = `<span class="tr-rating-stars">${renderStars(product.rating)}</span><span>${product.rating} / 5 · Đã bán ${product.sold.toLocaleString('vi-VN')}</span>`;
+
+  const priceHtml = product.salePrice
+    ? `<span class="tr-price-main tr-price-sale">${formatVND(product.salePrice)}</span><span class="tr-price-old">${formatVND(product.price)}</span>`
+    : `<span class="tr-price-main">${formatVND(product.price)}</span>`;
+  document.getElementById('pdPrice').innerHTML = priceHtml;
+
+  document.getElementById('pdDesc').textContent = `${product.name} thuộc dòng ${catLabel.toLowerCase()} chất liệu ${matLabel.toLowerCase()}, tông màu ${toneLabel.toLowerCase()}, phù hợp cho dịp ${occLabel.toLowerCase()}. Sản phẩm được chế tác thủ công tỉ mỉ, đánh bóng hoàn thiện đạt tiêu chuẩn cao cấp, đi kèm hộp quà sang trọng và giấy kiểm định.`;
+
+  document.getElementById('pdQuickFacts').innerHTML = `
+    <div><div class="tr-pd-fact-label">Chất liệu</div><div class="tr-pd-fact-value">${matLabel}</div></div>
+    <div><div class="tr-pd-fact-label">Tông màu</div><div class="tr-pd-fact-value">${toneLabel}</div></div>
+    <div><div class="tr-pd-fact-label">Dịp sử dụng</div><div class="tr-pd-fact-value">${occLabel}</div></div>
+    <div><div class="tr-pd-fact-label">Tình trạng</div><div class="tr-pd-fact-value">${product.stock ? 'Còn hàng' : 'Hết hàng'}</div></div>`;
+
+  document.getElementById('tabDesc').innerHTML = `<p>Mỗi sản phẩm VIOLETTE trải qua quy trình chế tác hơn 12 công đoạn thủ công — từ tạo phôi, gắn đá, đánh bóng đến kiểm tra chất lượng cuối cùng. ${product.name} là lựa chọn lý tưởng cho dịp ${occLabel.toLowerCase()}, phù hợp phối cùng nhiều trang phục khác nhau nhờ thiết kế tinh tế, không lỗi mốt theo thời gian.</p><p>Sản phẩm đi kèm hộp đựng cao cấp, túi vải bảo quản, giấy kiểm định (đối với sản phẩm đá quý tự nhiên) và hóa đơn VAT đầy đủ.</p>`;
+
+  document.getElementById('pdSpecTable').innerHTML = `
+    <tr><td>Danh mục</td><td>${catLabel}</td></tr>
+    <tr><td>Chất liệu chính</td><td>${matLabel}</td></tr>
+    <tr><td>Tông màu</td><td>${toneLabel}</td></tr>
+    <tr><td>Dịp sử dụng phù hợp</td><td>${occLabel}</td></tr>
+    <tr><td>Xuất xứ</td><td>Chế tác tại Việt Nam</td></tr>
+    <tr><td>Bảo hành</td><td>Trọn đời khung trang sức</td></tr>
+    <tr><td>Đóng gói</td><td>Hộp quà VIOLETTE + túi vải bảo quản</td></tr>`;
+
+  /* Gallery */
+  const gallery = getProductGallery(product);
+  const mainImg = document.getElementById('pdMainImg');
+  mainImg.src = gallery[0]; mainImg.alt = product.name;
+  mainImg.onerror = () => mainImg.src = SVG_FALLBACK;
+  document.getElementById('pdThumbs').innerHTML = gallery.map((src, i) =>
+    `<div class="tr-pd-thumb${i === 0 ? ' active' : ''}" data-thumb="${i}"><img src="${src}" alt="${product.name} - ảnh ${i + 1}" onerror="this.src='${SVG_FALLBACK}'"></div>`
+  ).join('');
+  document.querySelectorAll('.tr-pd-thumb').forEach(t => t.addEventListener('click', () => {
+    document.querySelectorAll('.tr-pd-thumb').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    mainImg.src = gallery[+t.dataset.thumb];
+  }));
+
+  /* Tabs */
+  document.querySelectorAll('.tr-tab-btn').forEach(btn => btn.addEventListener('click', () => {
+    document.querySelectorAll('.tr-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tr-tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelector(`[data-tab-panel="${btn.dataset.tab}"]`).classList.add('active');
+  }));
+
+  /* Quantity */
+  const qtyInput = document.getElementById('qtyInput');
+  document.getElementById('qtyMinus').addEventListener('click', () => { qtyInput.value = Math.max(1, +qtyInput.value - 1); });
+  document.getElementById('qtyPlus').addEventListener('click', () => { qtyInput.value = +qtyInput.value + 1; });
+
+  /* Add to cart */
+  document.getElementById('addToCartBtn').addEventListener('click', () => {
+    trAddToCart(product.id, +qtyInput.value);
+    trShowToast('Đã thêm ' + qtyInput.value + ' sản phẩm vào giỏ hàng');
+  });
+
+  /* Related products */
+  const related = getRelatedProducts(product, 4);
+  document.getElementById('relatedGrid').innerHTML = related.map(p => {
+    const price = p.salePrice ? formatVND(p.salePrice) : formatVND(p.price);
+    const oldPrice = p.salePrice ? `<span class="tr-price-old">${formatVND(p.price)}</span>` : '';
+    const priceClass = p.salePrice ? 'tr-price-main tr-price-sale' : 'tr-price-main';
+    const rMat = (MATERIALS.find(m => m.slug === p.material) || {}).label || '';
+    return `<article class="tr-prod-card">
+      <a href="chi-tiet-san-pham.html?slug=${p.slug}" class="tr-prod-img" aria-label="${p.name}"><img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='${SVG_FALLBACK}'"></a>
+      <div class="tr-prod-body">
+        <div class="tr-prod-material">${rMat}</div>
+        <h3 class="tr-prod-name"><a href="chi-tiet-san-pham.html?slug=${p.slug}">${p.name}</a></h3>
+        <div class="tr-prod-price"><span class="${priceClass}">${price}</span>${oldPrice}</div>
+      </div>
+    </article>`;
+  }).join('');
+
+  /* Nav search */
+  const searchBtn = document.getElementById('tr-search-btn');
+  const searchPanel = document.getElementById('tr-search-panel');
+  searchBtn.addEventListener('click', () => {
+    const open = searchPanel.classList.toggle('open');
+    searchBtn.setAttribute('aria-expanded', String(open));
+    if (open) document.getElementById('navSearchInput').focus();
+  });
+  document.getElementById('navSearchForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const q = document.getElementById('navSearchInput').value.trim();
+    window.location.href = 'san-pham.html' + (q ? '?q=' + encodeURIComponent(q) : '');
+  });
+})();
+</script>
+</body>
+</html>

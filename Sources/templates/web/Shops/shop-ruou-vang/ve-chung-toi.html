@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giới thiệu — Mộc Vang</title>
+<meta name="description" content="Mộc Vang — nhà nhập khẩu & phân phối rượu vang chính hãng tại Việt Nam. Tìm hiểu câu chuyện, hành trình phát triển & đội ngũ của chúng tôi.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="rv-agegate" id="rvAgeGate" hidden>
+  <div class="rv-agegate-box">
+    <div class="rv-agegate-mark">18+</div>
+    <h2>Xác nhận độ tuổi</h2>
+    <p>Mộc Vang là nền tảng bán rượu vang trực tuyến. Chúng tôi chỉ phục vụ khách hàng từ đủ 18 tuổi trở lên.</p>
+    <div class="rv-agegate-actions">
+      <button class="rv-btn rv-btn-outline" id="rvAgeDecline">Tôi chưa đủ 18</button>
+      <button class="rv-btn rv-btn-solid" id="rvAgeConfirm">Tôi đã đủ 18 tuổi</button>
+    </div>
+  </div>
+</div>
+
+<header id="rv-nav" data-scroll-nav>
+  <div class="wd-container rv-nav-inner">
+    <a href="index.html" class="rv-logo">
+      <span class="rv-logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2h8M9 2v6a5 5 0 0 0 10 0V2M9 2 5 8a5 5 0 0 0 10 0L11 2"/><path d="M12 15v7M9 22h6"/></svg></span>
+      MỘC<em>VANG</em>
+    </a>
+    <nav class="rv-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="bo-suu-tap.html">Bộ sưu tập</a>
+      <a href="khuyen-mai.html">Khuyến mãi</a>
+      <a href="ve-chung-toi.html" class="active">Giới thiệu</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+    <div class="rv-nav-actions">
+      <button class="rv-icon-btn" id="rvSearchToggle" aria-label="Tìm kiếm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+      <a href="gio-hang.html" class="rv-icon-btn" aria-label="Giỏ hàng">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="rv-cart-count" id="rvCartCount">0</span>
+      </a>
+      <button class="rv-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="rv-nav-search" id="rvNavSearch">
+    <div class="wd-container">
+      <form id="rvSearchForm">
+        <input type="search" id="rvSearchInput" placeholder="Tìm vang đỏ, vang Pháp, Champagne...">
+        <button type="submit">Tìm</button>
+      </form>
+    </div>
+  </div>
+</header>
+<nav class="rv-nav-mobile" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="bo-suu-tap.html">Bộ sưu tập</a>
+  <a href="khuyen-mai.html">Khuyến mãi</a>
+  <a href="ve-chung-toi.html">Giới thiệu</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="gio-hang.html">Giỏ hàng</a>
+</nav>
+
+<section class="rv-page-hero">
+  <div class="rv-page-hero-bg"><img src="https://images.unsplash.com/photo-1567590997610-cca4b1fd9027?w=1600&auto=format&fit=crop&q=80" alt=""></div>
+  <div class="wd-container rv-page-hero-content">
+    <div class="rv-eyebrow">Câu chuyện của chúng tôi</div>
+    <h1>Về Mộc Vang</h1>
+    <p>Mộc Vang là cầu nối giữa những nhà làm rượu tâm huyết trên thế giới và người yêu vang tại Việt Nam — mang đến trải nghiệm rượu vang chính hãng, minh bạch và dễ tiếp cận.</p>
+  </div>
+</section>
+
+<section class="sec-pad">
+  <div class="wd-container">
+    <div class="rv-strip" data-reveal>
+      <div class="rv-strip-img"><img src="https://images.unsplash.com/photo-1637181156153-bedd1098f8c1?w=800&auto=format&fit=crop&q=80" alt="Khởi đầu từ đam mê rượu vang" loading="lazy"></div>
+      <div class="rv-strip-body">
+        <div class="rv-strip-num">01</div>
+        <h3>Khởi đầu từ đam mê,<br>không phải phong trào</h3>
+        <p>Mộc Vang thành lập năm 2014 bởi một nhóm nhỏ những người yêu rượu vang, xuất phát từ mong muốn đơn giản: mang những chai vang thật sự chất lượng — không pha trộn, không hàng trôi nổi — đến gần hơn với người Việt.</p>
+        <p>Từ một cửa hàng nhỏ tại TP.HCM, đến nay Mộc Vang đã có mặt tại 2 thành phố lớn với kho lạnh đạt chuẩn quốc tế.</p>
+      </div>
+    </div>
+    <div class="rv-strip reverse" data-reveal>
+      <div class="rv-strip-body">
+        <div class="rv-strip-num">02</div>
+        <h3>Đội ngũ sommelier<br>đồng hành cùng bạn</h3>
+        <p>Mỗi đơn hàng đều có thể được tư vấn bởi đội ngũ sommelier được đào tạo bài bản — từ việc chọn vang hợp món ăn, hợp dịp, cho đến cách khai chai và thưởng thức đúng cách.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Tư vấn miễn phí qua điện thoại, Zalo, tại cửa hàng</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Hướng dẫn bảo quản & phối món chi tiết theo từng chai</li>
+        </ul>
+      </div>
+      <div class="rv-strip-img"><img src="https://images.unsplash.com/photo-1558138818-34316d616e44?w=800&auto=format&fit=crop&q=80" alt="Đội ngũ sommelier tư vấn khách hàng" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-pad" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border)">
+  <div class="wd-container" style="max-width:760px">
+    <div class="rv-sec-head" data-reveal>
+      <div class="rv-eyebrow">Hành trình phát triển</div>
+      <h2 class="rv-sec-title">10 năm <span>xây dựng niềm tin</span></h2>
+    </div>
+    <div class="rv-timeline" data-reveal data-delay="1">
+      <div class="rv-timeline-item">
+        <div class="rv-timeline-dot"></div>
+        <div class="rv-timeline-year">2014</div>
+        <h4>Cửa hàng đầu tiên</h4>
+        <p>Mộc Vang mở cửa hàng đầu tiên tại Quận 1, TP.HCM với hơn 30 nhãn hiệu vang nhập khẩu từ Pháp & Ý.</p>
+      </div>
+      <div class="rv-timeline-item">
+        <div class="rv-timeline-dot"></div>
+        <div class="rv-timeline-year">2017</div>
+        <h4>Mở kho lạnh chuẩn quốc tế</h4>
+        <p>Đầu tư kho lưu trữ kiểm soát nhiệt độ 14–16°C, độ ẩm 65–75% theo tiêu chuẩn cellar châu Âu.</p>
+      </div>
+      <div class="rv-timeline-item">
+        <div class="rv-timeline-dot"></div>
+        <div class="rv-timeline-year">2019</div>
+        <h4>Mở rộng ra Hà Nội</h4>
+        <p>Thành lập chi nhánh & kho lạnh thứ hai tại Hà Nội, phục vụ khách hàng khu vực phía Bắc.</p>
+      </div>
+      <div class="rv-timeline-item">
+        <div class="rv-timeline-dot"></div>
+        <div class="rv-timeline-year">2022</div>
+        <h4>Ra mắt kênh bán online</h4>
+        <p>Triển khai nền tảng đặt hàng trực tuyến, giao nhanh 2 giờ nội thành cho khách hàng TP.HCM & Hà Nội.</p>
+      </div>
+      <div class="rv-timeline-item">
+        <div class="rv-timeline-dot"></div>
+        <div class="rv-timeline-year">2026</div>
+        <h4>Hơn 200 nhãn hiệu, 7 quốc gia</h4>
+        <p>Danh mục mở rộng lên hơn 200 nhãn hiệu vang từ 7 quốc gia, phục vụ hơn 12.800 khách hàng.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rv-statbar">
+  <div class="wd-container rv-stats-grid">
+    <div data-reveal><div class="rv-stat-num" data-counter="2" data-suffix=" kho">0</div><div class="rv-stat-label">Kho lạnh chuẩn 16°C</div></div>
+    <div data-reveal data-delay="1"><div class="rv-stat-num" data-counter="40" data-suffix="+">0</div><div class="rv-stat-label">Nhà làm rượu đối tác</div></div>
+    <div data-reveal data-delay="2"><div class="rv-stat-num" data-counter="98" data-suffix="%">0</div><div class="rv-stat-label">Khách hàng hài lòng</div></div>
+    <div data-reveal data-delay="3"><div class="rv-stat-num" data-counter="10" data-suffix="+">0</div><div class="rv-stat-label">Năm kinh nghiệm</div></div>
+  </div>
+</section>
+
+<section class="sec-pad">
+  <div class="wd-container">
+    <div class="rv-sec-head center" data-reveal>
+      <div class="rv-eyebrow">Con người Mộc Vang</div>
+      <h2 class="rv-sec-title">Đội ngũ <span>đồng hành</span></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-6 col-lg-3" data-reveal>
+        <div class="rv-testi-avatar" style="width:100%;height:220px;border-radius:8px;margin-bottom:14px"><img src="https://images.unsplash.com/photo-1558222218-b7b54eede3f3?w=400&auto=format&fit=crop&q=80" alt="Sommelier trưởng" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="rv-testi-name">Nguyễn Anh Khoa</div>
+        <div class="rv-testi-role">Sommelier trưởng</div>
+      </div>
+      <div class="col-6 col-lg-3" data-reveal data-delay="1">
+        <div class="rv-testi-avatar" style="width:100%;height:220px;border-radius:8px;margin-bottom:14px"><img src="https://images.unsplash.com/photo-1543132220-3ec99c6094dc?w=400&auto=format&fit=crop&q=80" alt="Quản lý kho lạnh" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="rv-testi-name">Trần Bảo Ngọc</div>
+        <div class="rv-testi-role">Quản lý kho lạnh</div>
+      </div>
+      <div class="col-6 col-lg-3" data-reveal data-delay="2">
+        <div class="rv-testi-avatar" style="width:100%;height:220px;border-radius:8px;margin-bottom:14px"><img src="https://images.unsplash.com/photo-1655249493799-9cee4fe983bb?w=400&auto=format&fit=crop&q=80" alt="Chuyên gia nhập khẩu" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="rv-testi-name">Lê Minh Đức</div>
+        <div class="rv-testi-role">Chuyên gia nhập khẩu</div>
+      </div>
+      <div class="col-6 col-lg-3" data-reveal data-delay="3">
+        <div class="rv-testi-avatar" style="width:100%;height:220px;border-radius:8px;margin-bottom:14px"><img src="https://images.unsplash.com/photo-1581841064838-a470c740e8ee?w=400&auto=format&fit=crop&q=80" alt="Tư vấn khách hàng" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="rv-testi-name">Phạm Thùy Linh</div>
+        <div class="rv-testi-role">Tư vấn khách hàng</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ (bắt buộc mục H) ─────────────────────────────────────────────── -->
+<section class="sec-pad" style="background:var(--surface); border-top:1px solid var(--border)">
+  <div class="wd-container">
+    <div class="rv-sec-head center" data-reveal>
+      <div class="rv-eyebrow">Giải đáp thắc mắc</div>
+      <h2 class="rv-sec-title">Câu hỏi <span>thường gặp</span></h2>
+    </div>
+    <div class="rv-faq" data-reveal data-delay="1">
+      <div class="rv-faq-item">
+        <button class="rv-faq-q"><span>Làm sao để chọn rượu vang phù hợp với món ăn?</span><span class="rv-faq-plus">+</span></button>
+        <div class="rv-faq-a"><p>Nguyên tắc cơ bản: vang đỏ tannin cao hợp với thịt đỏ, vang trắng chua nhẹ hợp hải sản & khai vị, vang sủi hợp món chiên/tiệc nhẹ. Đội ngũ sommelier của Mộc Vang luôn sẵn sàng tư vấn miễn phí theo thực đơn cụ thể của bạn qua điện thoại hoặc Zalo.</p></div>
+      </div>
+      <div class="rv-faq-item">
+        <button class="rv-faq-q"><span>Rượu vang cần bảo quản như thế nào sau khi mua?</span><span class="rv-faq-plus">+</span></button>
+        <div class="rv-faq-a"><p>Bảo quản nơi khô ráo, thoáng mát, tránh ánh nắng và nhiệt độ dao động lớn, lý tưởng 14–16°C. Với chai có nút bần, nên đặt nằm ngang để nút không bị khô, tránh không khí lọt vào làm oxy hóa rượu.</p></div>
+      </div>
+      <div class="rv-faq-item">
+        <button class="rv-faq-q"><span>Mộc Vang có giao hàng toàn quốc không? Mất bao lâu?</span><span class="rv-faq-plus">+</span></button>
+        <div class="rv-faq-a"><p>Có. Nội thành Hà Nội & TP.HCM giao trong 2 giờ nếu đặt trước 17h. Các tỉnh thành khác giao trong 2–4 ngày làm việc bằng xe chuyên dụng chống sốc, chống nóng để đảm bảo chất lượng rượu.</p></div>
+      </div>
+      <div class="rv-faq-item">
+        <button class="rv-faq-q"><span>Chính sách đổi trả nếu chai vang bị vỡ hoặc lỗi vận chuyển?</span><span class="rv-faq-plus">+</span></button>
+        <div class="rv-faq-a"><p>Mộc Vang hỗ trợ đổi trả miễn phí trong vòng 24 giờ kể từ khi nhận hàng nếu sản phẩm bị vỡ, sai mẫu hoặc lỗi do quá trình vận chuyển. Vui lòng giữ nguyên bao bì, chụp ảnh hiện trạng và liên hệ hotline ngay khi phát hiện.</p></div>
+      </div>
+      <div class="rv-faq-item">
+        <button class="rv-faq-q"><span>Làm sao biết vang là hàng chính hãng, không phải hàng trôi nổi?</span><span class="rv-faq-plus">+</span></button>
+        <div class="rv-faq-a"><p>Mọi sản phẩm tại Mộc Vang đều có tem phụ tiếng Việt, hóa đơn chứng từ nhập khẩu (C/O, C/Q) đầy đủ và có thể tra cứu theo từng lô hàng. Chúng tôi nhập khẩu trực tiếp từ nhà làm rượu, không qua trung gian không rõ nguồn gốc.</p></div>
+      </div>
+      <div class="rv-faq-item">
+        <button class="rv-faq-q"><span>Có cần xác nhận độ tuổi khi nhận hàng không?</span><span class="rv-faq-plus">+</span></button>
+        <div class="rv-faq-a"><p>Có. Theo quy định pháp luật, shipper có quyền yêu cầu xuất trình giấy tờ tùy thân để xác minh người nhận đã đủ 18 tuổi trước khi giao hàng. Đơn hàng sẽ không được giao nếu không xác minh được độ tuổi.</p></div>
+      </div>
+      <div class="rv-faq-item">
+        <button class="rv-faq-q"><span>Có hỗ trợ xuất hóa đơn VAT cho doanh nghiệp mua quà tặng không?</span><span class="rv-faq-plus">+</span></button>
+        <div class="rv-faq-a"><p>Có. Với đơn hàng số lượng lớn hoặc mua làm quà tặng doanh nghiệp, vui lòng cung cấp thông tin xuất hóa đơn khi đặt hàng hoặc liên hệ trực tiếp bộ phận CSKH để được hỗ trợ nhanh nhất.</p></div>
+      </div>
+      <div class="rv-faq-item">
+        <button class="rv-faq-q"><span>Vang đã mở nắp bảo quản được bao lâu?</span><span class="rv-faq-plus">+</span></button>
+        <div class="rv-faq-a"><p>Vang đỏ/trắng đã mở nên dùng trong 3–5 ngày (đậy kín, để tủ lạnh với vang trắng), vang sủi nên dùng trong 1–2 ngày với nút chặn chuyên dụng để giữ ga. Hương vị sẽ giảm dần theo thời gian sau khi tiếp xúc với không khí.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="rv-footer">
+  <div class="rv-footer-brand-bg">MỘC VANG</div>
+  <div class="wd-container">
+    <div class="rv-footer-legal-strip">
+      <div class="rv-age-badge">18+</div>
+      <p>Sản phẩm chỉ dành cho người từ 18 tuổi trở lên. Uống có trách nhiệm — không lái xe hoặc vận hành máy móc sau khi sử dụng rượu bia. Mộc Vang hoạt động tuân thủ Nghị định số 105/2017/NĐ-CP về kinh doanh rượu.</p>
+    </div>
+    <div class="rv-footer-inner">
+      <div class="rv-footer-about">
+        <div class="rv-footer-logo">MỘC<em>VANG</em></div>
+        <p>Nhà nhập khẩu &amp; phân phối rượu vang chính hãng — hơn 200 nhãn hiệu từ Pháp, Ý, Chile, Tây Ban Nha, Úc, Argentina, Mỹ. Bảo quản kho lạnh chuẩn 16°C, giao hàng toàn quốc.</p>
+        <div class="rv-footer-social">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1"/></svg></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Youtube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3Z" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+      <div class="rv-footer-col">
+        <h6>Danh mục</h6>
+        <ul>
+          <li><a href="index.html?category=vang-do">Vang đỏ</a></li>
+          <li><a href="index.html?category=vang-trang">Vang trắng</a></li>
+          <li><a href="index.html?category=vang-sui">Vang sủi</a></li>
+          <li><a href="index.html?category=vang-hong">Vang hồng</a></li>
+          <li><a href="index.html?category=qua-tang-set">Set quà tặng</a></li>
+        </ul>
+      </div>
+      <div class="rv-footer-col">
+        <h6>Hỗ trợ</h6>
+        <ul>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="ve-chung-toi.html">Giới thiệu</a></li>
+          <li><a href="gio-hang.html">Giỏ hàng</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+      <div class="rv-footer-col rv-footer-newsletter">
+        <h6>Nhận ưu đãi mới</h6>
+        <p style="font-size:13px;color:rgba(255,255,255,.5);margin-bottom:10px">Đăng ký để nhận thông báo vang mới về &amp; mã giảm giá.</p>
+        <form onsubmit="event.preventDefault(); rvShowToast('Cảm ơn bạn đã đăng ký!'); this.reset();">
+          <label for="rvNewsletterEmail6" class="visually-hidden">Email</label>
+          <input type="email" id="rvNewsletterEmail6" placeholder="Email của bạn" required>
+          <button type="submit">Gửi</button>
+        </form>
+      </div>
+    </div>
+    <div class="rv-footer-maps">
+      <iframe src="https://maps.google.com/maps?q=10.7769,106.7009&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ cửa hàng Mộc Vang"></iframe>
+    </div>
+    <div class="rv-footer-bottom">
+      <span>© 2026 Mộc Vang. Nội dung trên website chỉ mang tính chất minh họa demo.</span>
+      <span>Giấy phép kinh doanh rượu số [XXXX/GP-KDR] · TP. Hồ Chí Minh</span>
+    </div>
+  </div>
+</footer>
+<a href="https://zalo.me/0900000000" class="rv-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat qua Zalo">
+  <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="40" height="40" rx="20" fill="#0068FF"/>
+    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="14" font-weight="bold" font-family="Arial">Zalo</text>
+  </svg>
+</a>
+
+<script src="assets/js/products-data.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
