@@ -9,7 +9,7 @@ const SENSITIVE_KEYS = new Set([
 
 export async function GET() {
   const session = await getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!session || session.role !== 'superadmin') return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const rows = await prisma.setting.findMany()
   const settings = Object.fromEntries(rows.map(r => {

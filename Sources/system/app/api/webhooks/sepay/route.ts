@@ -62,8 +62,15 @@ export async function POST(req: NextRequest) {
   }
 
   // 7. Xác nhận thanh toán — logic dùng chung với admin "Xác nhận thủ công"
-  const result = await confirmOrderPayment(orderCode, `Thanh toán tự động qua Sepay — ${body.referenceCode ?? ''}`)
-  if (!result.ok) return skip()
+  //    Bọc try/catch: nếu confirmOrderPayment lỗi (bug, DB tạm gián đoạn...), trả 500 rõ ràng để
+  //    Sepay tự retry theo cơ chế của họ, thay vì để lỗi không kiểm soát rơi ra ngoài.
+  try {
+    const result = await confirmOrderPayment(orderCode, `Thanh toán tự động qua Sepay — ${body.referenceCode ?? ''}`)
+    if (!result.ok) return skip()
+  } catch (e) {
+    console.error(`[sepay] Lỗi xác nhận đơn ${orderCode}:`, e)
+    return NextResponse.json({ error: 'Internal error, please retry' }, { status: 500 })
+  }
 
   console.log(`[sepay] Đơn ${orderCode} đã thanh toán`)
   return ok()

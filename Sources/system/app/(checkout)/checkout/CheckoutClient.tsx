@@ -32,11 +32,6 @@ export default function CheckoutClient({
   const template     = templates.find(t => t.slug === slug)
   const bank          = useBankInfo()
 
-  // Không có ?slug= → checkout từ giỏ hàng (nhiều sản phẩm) thay vì mua ngay 1 sản phẩm
-  if (!slug) {
-    return <CartCheckoutClient />
-  }
-
   const [step, setStep]                 = useState(1)
   const [purchaseType, setPurchaseType] = useState<PurchaseType>('template')
   const [form, setForm]                 = useState<FormData>({ name: '', email: '', phone: '', note: '' })
@@ -117,6 +112,14 @@ export default function CheckoutClient({
     { n: 2, label: 'Thông tin' },
     { n: 3, label: 'Thanh toán' },
   ]
+
+  // Không có ?slug= → checkout từ giỏ hàng (nhiều sản phẩm) thay vì mua ngay 1 sản phẩm.
+  // Đặt SAU toàn bộ hook (useState/useEffect) để không vi phạm Rules of Hooks — return sớm trước
+  // khi hook chạy hết sẽ khiến React crash "Rendered fewer hooks than expected" nếu slug đổi giữa
+  // các lần render (component vẫn giữ nguyên mount khi điều hướng client-side).
+  if (!slug) {
+    return <CartCheckoutClient />
+  }
 
   return (
     <>

@@ -12,6 +12,7 @@ export async function GET(
     select: {
       paidAt:        true,
       downloadToken: true,
+      newCvAccount:  true,
       type:          true,
       title:         true,
       customer:      { select: { email: true } },
@@ -28,13 +29,12 @@ export async function GET(
   }
 
   if (order.type === 'cv') {
-    const isExisting = order.downloadToken === 'EXISTING_USER'
     return NextResponse.json({
       paid:         true,
       type:         'cv',
       email:        order.customer.email ?? '',
-      password:     isExisting ? null : order.downloadToken,
-      existingUser: isExisting,
+      password:     order.newCvAccount ? order.downloadToken : null,
+      existingUser: !order.newCvAccount,
     })
   }
 

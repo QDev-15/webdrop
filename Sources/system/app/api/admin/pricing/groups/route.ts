@@ -4,7 +4,7 @@ import { getSession } from '@/lib/auth'
 
 export async function GET() {
   const session = await getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!session || session.role !== 'superadmin') return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const groups = await prisma.pricingGroup.findMany({
     orderBy: { sortOrder: 'asc' },
@@ -15,7 +15,7 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   const session = await getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!session || session.role !== 'superadmin') return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const body = await req.json()
   const { slug, eyebrow, title, titleEm, subtitle, footnote, bg, type, description, tags, ctaLabel, ctaHref, status } = body

@@ -1,14 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { getAccountSession } from '@/lib/auth'
-import { randomUUID } from 'crypto'
-import { resolveCustomerId, ensureCvProfileForAccount, createOrReuseGuestCvAccount } from '@/lib/checkoutAccount'
+import { randomUUID, randomBytes } from 'crypto'
+import { resolveCustomerId, ensureCvProfileForAccount, createOrReuseGuestCvAccount, consumeDiscountCode } from '@/lib/checkoutAccount'
 import type { AccountSessionPayload } from '@/lib/auth'
 
+// 12 ký tự ngẫu nhiên MẬT MÃ HỌC (không dùng Math.random()) — order code này bị dùng làm "khoá" gần
+// như duy nhất để tra cứu trạng thái đơn công khai (GET /api/orders/[code]/status, không yêu cầu đăng
+// nhập) và trả về downloadToken/mật khẩu CV. Trước đây ghép timestamp (dễ đoán theo thời điểm) + 3 ký
+// tự Math.random() (~46.656 tổ hợp) — có thể brute-force. Giờ dùng đủ 12 ký tự random từ CSPRNG
+// (~36^12 ≈ 4.7×10^18 tổ hợp, ~62 bit) — vẫn khớp giới hạn 5-12 ký tự trong regex webhook Sepay
+// (`extractOrderCode` ở app/api/webhooks/sepay/route.ts), không cần đổi regex đó.
 function generateOrderCode(): string {
-  const ts   = Date.now().toString(36).toUpperCase().slice(-5)
-  const rand = Math.random().toString(36).slice(2, 5).toUpperCase()
-  return `WD${ts}${rand}`
+  const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  const bytes = randomBytes(12)
+  let rand = ''
+  for (const b of bytes) rand += chars[b % chars.length]
+  return `WD${rand}`
 }
 
 function calcDiscountAmount(type: string, value: number, price: number): number {
@@ -97,13 +105,22 @@ export async function POST(req: NextRequest) {
 
         // Đã đăng nhập → gắn CV thẳng vào tài khoản đang đăng nhập, không tạo tài khoản mới/mật khẩu tạm.
         // Chưa đăng nhập (guest) → giữ hành vi cũ: tìm/tạo tài khoản kèm mật khẩu tạm hiển thị 1 lần.
-        let credentialToken: string
+        // downloadToken có @unique — KHÔNG được dùng chung 1 literal string cho nhiều đơn (sẽ đụng
+        // constraint). Trạng thái "tài khoản mới hay đã có sẵn" lưu riêng ở cột newCvAccount.
+        let credentialToken: string | null
+        let isNewAccount: boolean
         if (session) {
           await ensureCvProfileForAccount(tx, session.id, name)
-          credentialToken = 'EXISTING_USER'
+          credentialToken = null
+          isNewAccount = false
         } else {
           const result = await createOrReuseGuestCvAccount(tx, customerId, name, email)
           credentialToken = result.credentialToken
+          isNewAccount = result.isNewAccount
+        }
+
+        if (appliedCode && !(await consumeDiscountCode(tx, appliedCode))) {
+          throw new Error('DISCOUNT_CODE_EXPIRED')
         }
 
         const code = generateOrderCode()
@@ -114,20 +131,25 @@ export async function POST(req: NextRequest) {
             discountCode: appliedCode,
             status: 'confirmed', paidAt: now,
             downloadToken: credentialToken,
+            newCvAccount: isNewAccount,
             items: { create: [{ itemType: 'service', itemName, qty: 1, unitPrice: basePrice, subtotal: 0 }] },
             payments: { create: { amount: 0, method: 'bank', status: 'paid', paidAt: now } },
           },
         })
 
-        if (appliedCode) {
-          await tx.discountCode.update({ where: { code: appliedCode }, data: { usedCount: { increment: 1 } } })
-        }
         await tx.revenue.create({
           data: { orderId: ord.id, amount: 0, month: now.getMonth() + 1, year: now.getFullYear(), note: `CV miễn phí${appliedCode ? ` — mã ${appliedCode}` : ''}` },
         })
 
         return ord
-      }, { timeout: 15000 })
+      }, { timeout: 15000 }).catch(e => {
+        if (e instanceof Error && e.message === 'DISCOUNT_CODE_EXPIRED') return null
+        throw e
+      })
+
+      if (!order) {
+        return NextResponse.json({ error: 'Mã giảm giá đã hết lượt sử dụng hoặc hết hạn, vui lòng thử lại.' }, { status: 409 })
+      }
 
       return NextResponse.json({ ok: true, code: order.code, orderId: order.id })
     }
@@ -140,6 +162,11 @@ export async function POST(req: NextRequest) {
       const code = generateOrderCode()
       const order = await prisma.$transaction(async (tx) => {
         const customerId = await resolveCustomerId(tx, session, { name, phone, email, company })
+
+        if (appliedCode && !(await consumeDiscountCode(tx, appliedCode))) {
+          throw new Error('DISCOUNT_CODE_EXPIRED')
+        }
+
         const ord = await tx.order.create({
           data: {
             code, customerId, type, title,
@@ -153,16 +180,19 @@ export async function POST(req: NextRequest) {
           },
         })
 
-        if (appliedCode) {
-          await tx.discountCode.update({ where: { code: appliedCode }, data: { usedCount: { increment: 1 } } })
-        }
         await tx.revenue.create({
           data: { orderId: ord.id, amount: 0, month: now.getMonth() + 1, year: now.getFullYear(), note: `Miễn phí${appliedCode ? ` — mã ${appliedCode}` : ''}` },
         })
 
         return ord
-      }, { timeout: 15000 })
+      }, { timeout: 15000 }).catch(e => {
+        if (e instanceof Error && e.message === 'DISCOUNT_CODE_EXPIRED') return null
+        throw e
+      })
 
+      if (!order) {
+        return NextResponse.json({ error: 'Mã giảm giá đã hết lượt sử dụng hoặc hết hạn, vui lòng thử lại.' }, { status: 409 })
+      }
       return NextResponse.json({ ok: true, code: order.code, orderId: order.id })
     }
 
@@ -170,6 +200,11 @@ export async function POST(req: NextRequest) {
     const code = generateOrderCode()
     const order = await prisma.$transaction(async (tx) => {
       const customerId = await resolveCustomerId(tx, session, { name, phone, email, company })
+
+      if (appliedCode && !(await consumeDiscountCode(tx, appliedCode))) {
+        throw new Error('DISCOUNT_CODE_EXPIRED')
+      }
+
       const ord = await tx.order.create({
         data: {
           code, customerId, type, title,
@@ -181,12 +216,15 @@ export async function POST(req: NextRequest) {
           payments: { create: { amount: finalTotal, method: 'bank', status: 'pending' } },
         },
       })
-      if (appliedCode) {
-        await tx.discountCode.update({ where: { code: appliedCode }, data: { usedCount: { increment: 1 } } })
-      }
       return ord
-    }, { timeout: 15000 })
+    }, { timeout: 15000 }).catch(e => {
+      if (e instanceof Error && e.message === 'DISCOUNT_CODE_EXPIRED') return null
+      throw e
+    })
 
+    if (!order) {
+      return NextResponse.json({ error: 'Mã giảm giá đã hết lượt sử dụng hoặc hết hạn, vui lòng thử lại.' }, { status: 409 })
+    }
     return NextResponse.json({ ok: true, code: order.code, orderId: order.id })
   } catch (e) {
     console.error(e)
@@ -259,6 +297,11 @@ async function handleCartOrder(
 
       const order = await prisma.$transaction(async (tx) => {
         const customerId = await resolveCustomerId(tx, session, { name, phone, email })
+
+        if (appliedCode && !(await consumeDiscountCode(tx, appliedCode))) {
+          throw new Error('DISCOUNT_CODE_EXPIRED')
+        }
+
         const ord = await tx.order.create({
           data: {
             code, customerId, type, title,
@@ -269,19 +312,29 @@ async function handleCartOrder(
             payments: { create: { amount: 0, method: 'bank', status: 'paid', paidAt: now } },
           },
         })
-        if (appliedCode) await tx.discountCode.update({ where: { code: appliedCode }, data: { usedCount: { increment: 1 } } })
         await tx.revenue.create({
           data: { orderId: ord.id, amount: 0, month: now.getMonth() + 1, year: now.getFullYear(), note: `Giỏ hàng miễn phí${appliedCode ? ` — mã ${appliedCode}` : ''}` },
         })
         return ord
-      }, { timeout: 15000 })
+      }, { timeout: 15000 }).catch(e => {
+        if (e instanceof Error && e.message === 'DISCOUNT_CODE_EXPIRED') return null
+        throw e
+      })
 
+      if (!order) {
+        return NextResponse.json({ error: 'Mã giảm giá đã hết lượt sử dụng hoặc hết hạn, vui lòng thử lại.' }, { status: 409 })
+      }
       return NextResponse.json({ ok: true, code: order.code, orderId: order.id })
     }
 
     // ── Đơn thường (chờ thanh toán) ──
     const order = await prisma.$transaction(async (tx) => {
       const customerId = await resolveCustomerId(tx, session, { name, phone, email })
+
+      if (appliedCode && !(await consumeDiscountCode(tx, appliedCode))) {
+        throw new Error('DISCOUNT_CODE_EXPIRED')
+      }
+
       const ord = await tx.order.create({
         data: {
           code, customerId, type, title,
@@ -291,10 +344,15 @@ async function handleCartOrder(
           payments: { create: { amount: finalTotal, method: 'bank', status: 'pending' } },
         },
       })
-      if (appliedCode) await tx.discountCode.update({ where: { code: appliedCode }, data: { usedCount: { increment: 1 } } })
       return ord
-    }, { timeout: 15000 })
+    }, { timeout: 15000 }).catch(e => {
+      if (e instanceof Error && e.message === 'DISCOUNT_CODE_EXPIRED') return null
+      throw e
+    })
 
+    if (!order) {
+      return NextResponse.json({ error: 'Mã giảm giá đã hết lượt sử dụng hoặc hết hạn, vui lòng thử lại.' }, { status: 409 })
+    }
     return NextResponse.json({ ok: true, code: order.code, orderId: order.id })
   } catch (e) {
     console.error(e)

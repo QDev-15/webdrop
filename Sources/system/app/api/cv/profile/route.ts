@@ -26,7 +26,7 @@ export async function PUT(req: NextRequest) {
     if (key in body) data[key] = body[key]
   }
 
-  if (data.slug) {
+  if ('slug' in data) {
     const slug = String(data.slug).toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')
     if (slug.length < 3 || slug.length > 50) {
       return NextResponse.json({ error: 'Slug phải từ 3 đến 50 ký tự' }, { status: 400 })

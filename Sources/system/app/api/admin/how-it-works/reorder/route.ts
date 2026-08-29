@@ -6,7 +6,7 @@ import { getSession } from '@/lib/auth'
 // body: { ids: number[] } — ordered list of package IDs
 export async function PATCH(req: NextRequest) {
   const session = await getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!session || session.role !== 'superadmin') return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { ids } = await req.json()
   if (!Array.isArray(ids)) return NextResponse.json({ error: 'ids phải là mảng' }, { status: 400 })

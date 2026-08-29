@@ -3,7 +3,7 @@ import { getSession } from '@/lib/auth'
 
 export async function POST(req: Request, { params }: { params: Promise<{ id: string }> }) {
   const session = await getSession()
-  if (!session) return Response.redirect('/admin/login')
+  if (!session || session.role !== 'superadmin') return Response.redirect('/admin/login')
 
   const { id } = await params
   const categoryId = parseInt(id)

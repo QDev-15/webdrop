@@ -10,6 +10,26 @@ import type { AccountSessionPayload } from '@/lib/auth'
 
 type Db = PrismaClient | Prisma.TransactionClient
 
+/**
+ * Trừ 1 lượt dùng mã giảm giá MỘT CÁCH ATOMIC — tránh race condition TOCTOU: check
+ * `usedCount < maxUses` rồi mới increment ở 2 câu lệnh tách rời có thể để 2 request đồng thời
+ * cùng vượt qua check trước khi bên nào update xong, khiến usedCount vượt maxUses. Dùng raw SQL
+ * vì Prisma không hỗ trợ so sánh 2 cột cùng dòng (usedCount < maxUses) ngay trong mệnh đề where
+ * của updateMany. Gọi BÊN TRONG transaction đang tạo Order — nếu trả về false, phải rollback
+ * toàn bộ (mã đã hết lượt/hết hạn/bị tắt giữa lúc tính giá và lúc ghi đơn).
+ */
+export async function consumeDiscountCode(db: Db, code: string): Promise<boolean> {
+  const rows = await db.$queryRaw<{ id: number }[]>`
+    UPDATE webdrop.discount_codes
+    SET used_count = used_count + 1
+    WHERE code = ${code} AND is_active = true
+      AND (expires_at IS NULL OR expires_at > now())
+      AND (max_uses IS NULL OR used_count < max_uses)
+    RETURNING id
+  `
+  return rows.length > 0
+}
+
 function generateCvSlug(name: string): string {
   const base = name.toLowerCase()
     .normalize('NFD').replace(/[̀-ͯ]/g, '')
@@ -66,7 +86,7 @@ export async function ensureCvProfileForAccount(db: Db, accountId: number, name:
  */
 export async function createOrReuseGuestCvAccount(
   db: Db, customerId: number, name: string, email: string
-): Promise<{ credentialToken: string }> {
+): Promise<{ credentialToken: string | null; isNewAccount: boolean }> {
   const existing =
     (await db.customerAccount.findFirst({ where: { customerId } })) ??
     (await db.customerAccount.findUnique({ where: { email } }))
@@ -76,7 +96,11 @@ export async function createOrReuseGuestCvAccount(
       await db.customerAccount.update({ where: { id: existing.id }, data: { customerId } })
     }
     await ensureCvProfileForAccount(db, existing.id, name)
-    return { credentialToken: 'EXISTING_USER' }
+    // KHÔNG dùng literal string chung — Order.downloadToken có @unique, dùng chung 1 giá trị cho
+    // nhiều đơn hàng khác nhau sẽ đụng constraint và làm crash transaction. Trạng thái "tài khoản đã
+    // tồn tại" được lưu riêng qua cột Order.newCvAccount, downloadToken để null (nullable+unique, cho
+    // phép nhiều NULL cùng lúc trong Postgres).
+    return { credentialToken: null, isNewAccount: false }
   }
 
   const tempPassword = 'WD' + randomUUID().replace(/-/g, '').slice(0, 6).toUpperCase()
@@ -84,5 +108,5 @@ export async function createOrReuseGuestCvAccount(
     data: { name, email, password: hashPassword(tempPassword), customerId },
   })
   await ensureCvProfileForAccount(db, created.id, name)
-  return { credentialToken: tempPassword }
+  return { credentialToken: tempPassword, isNewAccount: true }
 }

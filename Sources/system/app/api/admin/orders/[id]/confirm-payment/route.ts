@@ -7,16 +7,21 @@ import { confirmOrderPayment } from '@/lib/orderConfirm'
 // hoặc nội dung chuyển khoản không khớp mã đơn) nhưng admin đã tự kiểm tra tiền đã về tài khoản.
 export async function POST(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const session = await getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!session || session.role !== 'superadmin') return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { id } = await params
   const order = await prisma.order.findUnique({ where: { id: parseInt(id) } })
   if (!order) return NextResponse.json({ error: 'Không tìm thấy đơn hàng' }, { status: 404 })
   if (order.paidAt !== null) return NextResponse.json({ error: 'Đơn hàng đã được xác nhận thanh toán trước đó' }, { status: 409 })
 
-  const result = await confirmOrderPayment(order.code, `Xác nhận thủ công bởi ${session.email} — webhook Sepay không xử lý được`)
-  if (!result.ok) {
-    return NextResponse.json({ error: result.reason === 'already_paid' ? 'Đơn hàng đã được xác nhận' : 'Không tìm thấy đơn hàng' }, { status: 409 })
+  try {
+    const result = await confirmOrderPayment(order.code, `Xác nhận thủ công bởi ${session.email} — webhook Sepay không xử lý được`)
+    if (!result.ok) {
+      return NextResponse.json({ error: result.reason === 'already_paid' ? 'Đơn hàng đã được xác nhận' : 'Không tìm thấy đơn hàng' }, { status: 409 })
+    }
+  } catch (e) {
+    console.error(`[confirm-payment] Lỗi xác nhận đơn ${order.code}:`, e)
+    return NextResponse.json({ error: 'Lỗi xác nhận thanh toán, vui lòng thử lại' }, { status: 500 })
   }
 
   return NextResponse.json({ success: true })

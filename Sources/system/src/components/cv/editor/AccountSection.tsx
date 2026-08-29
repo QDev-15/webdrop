@@ -38,8 +38,10 @@ export default function AccountSection() {
   const [savingPwd, setSavingPwd] = useState(false)
 
   useEffect(() => {
-    fetch('/api/cv/account').then(r => r.json()).then(d => {
-      if (d.user) { setName(d.user.name); setEmail(d.user.email) }
+    // CV Manager giờ dùng chung hệ tài khoản khách hàng (/api/account/*) — /api/cv/account cũ
+    // đã bị xoá khi migrate sang CustomerAccount, route này KHÔNG còn tồn tại.
+    fetch('/api/account/me').then(r => r.json()).then(d => {
+      if (d.account) { setName(d.account.name); setEmail(d.account.email) }
     })
   }, [])
 
@@ -47,7 +49,7 @@ export default function AccountSection() {
     e.preventDefault()
     setSavingInfo(true); setInfoStatus(null)
     try {
-      const res = await fetch('/api/cv/account', {
+      const res = await fetch('/api/account/profile', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email }),
@@ -65,7 +67,7 @@ export default function AccountSection() {
     if (newPwd !== confirmPwd) { setPwdStatus({ type: 'err', msg: 'Mật khẩu xác nhận không khớp' }); return }
     setSavingPwd(true); setPwdStatus(null)
     try {
-      const res = await fetch('/api/cv/account', {
+      const res = await fetch('/api/account/profile', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ currentPassword: currentPwd, newPassword: newPwd }),

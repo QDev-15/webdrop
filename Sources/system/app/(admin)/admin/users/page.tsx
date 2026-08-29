@@ -23,12 +23,13 @@ export default function UsersPage() {
   const [fetchError, setFetchError] = useState('')
   const [currentUserId, setCurrentUserId] = useState<number | null>(null)
 
-  // Create user modal
+  // Create user modal — chỉ tạo được Super Admin: role 'user' không còn đăng nhập được
+  // /admin/login (đã chặn ở /api/auth/login), giữ tuỳ chọn 'user' trong form chỉ tạo ra
+  // tài khoản chết ngay từ lúc tạo.
   const [showModal, setShowModal] = useState(false)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [role, setRole] = useState<'user' | 'superadmin'>('user')
   const [creating, setCreating] = useState(false)
   const [modalError, setModalError] = useState('')
 
@@ -55,7 +56,7 @@ export default function UsersPage() {
   }, [])
 
   function openModal() {
-    setName(''); setEmail(''); setPassword(''); setRole('user'); setModalError('')
+    setName(''); setEmail(''); setPassword(''); setModalError('')
     setShowModal(true)
   }
 
@@ -66,7 +67,7 @@ export default function UsersPage() {
       const res = await fetch('/api/admin/users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password, role }),
+        body: JSON.stringify({ name, email, password, role: 'superadmin' }),
       })
       const data = await res.json()
       if (!res.ok) { setModalError(data.error || 'Lỗi tạo tài khoản'); return }
@@ -77,18 +78,21 @@ export default function UsersPage() {
     } finally { setCreating(false) }
   }
 
-  async function handleToggleRole(user: AdminUser) {
+  // Chỉ cho nâng cấp 'user' → 'superadmin' (dọn nợ tài khoản cũ từ trước khi role 'user' bị
+  // chặn đăng nhập admin). KHÔNG cho hạ cấp ngược lại — hạ 1 superadmin xuống 'user' hiện tương
+  // đương khoá tài khoản vĩnh viễn (route /api/auth/login đã chặn mọi role khác 'superadmin'),
+  // nên hành động đó nên dùng nút "Xóa" cho rõ ràng thay vì núp dưới nhãn "Hạ cấp".
+  async function handleUpgradeRole(user: AdminUser) {
     if (togglingId !== null) return
-    const newRole = user.role === 'superadmin' ? 'user' : 'superadmin'
-    if (!confirm(`${newRole === 'superadmin' ? 'Nâng cấp' : 'Hạ cấp'} tài khoản "${user.name}" thành ${newRole === 'superadmin' ? 'Super Admin' : 'User'}?`)) return
+    if (!confirm(`Nâng cấp tài khoản "${user.name}" thành Super Admin?`)) return
     setTogglingId(user.id)
     try {
       const res = await fetch(`/api/admin/users/${user.id}`, {
         method: 'PATCH', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ role: newRole }),
+        body: JSON.stringify({ role: 'superadmin' }),
       })
       if (!res.ok) { const d = await res.json(); alert(d.error || 'Lỗi cập nhật vai trò'); return }
-      setUsers(prev => prev.map(u => u.id === user.id ? { ...u, role: newRole } : u))
+      setUsers(prev => prev.map(u => u.id === user.id ? { ...u, role: 'superadmin' } : u))
     } catch { alert('Lỗi kết nối server') }
     finally { setTogglingId(null) }
   }
@@ -148,7 +152,7 @@ export default function UsersPage() {
                     <td style={{ padding: '12px 16px', fontSize: 13, color: 'var(--text-2)' }}>{u.email}</td>
                     <td style={{ padding: '12px 16px' }}>
                       <span style={{ fontSize: 11, fontWeight: 600, padding: '3px 9px', borderRadius: 5, background: u.role === 'superadmin' ? 'var(--accent-light)' : 'var(--warm)', color: u.role === 'superadmin' ? 'var(--accent)' : 'var(--text-2)' }}>
-                        {u.role === 'superadmin' ? 'Super Admin' : 'User'}
+                        {u.role === 'superadmin' ? 'Super Admin' : 'User (không đăng nhập được)'}
                       </span>
                     </td>
                     <td style={{ padding: '12px 16px', fontSize: 12, color: 'var(--text-3)' }}>
@@ -157,10 +161,12 @@ export default function UsersPage() {
                     <td style={{ padding: '12px 16px' }}>
                       {u.id !== currentUserId && (
                         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                          <button onClick={() => handleToggleRole(u)} disabled={togglingId === u.id}
-                            style={{ padding: '5px 10px', borderRadius: 6, border: '1px solid var(--border)', background: 'transparent', fontSize: 11, cursor: togglingId === u.id ? 'not-allowed' : 'pointer', color: 'var(--text-2)', fontFamily: 'var(--sans)', whiteSpace: 'nowrap', opacity: togglingId === u.id ? .5 : 1 }}>
-                            {u.role === 'superadmin' ? '↓ Hạ cấp' : '↑ Nâng cấp'}
-                          </button>
+                          {u.role !== 'superadmin' && (
+                            <button onClick={() => handleUpgradeRole(u)} disabled={togglingId === u.id}
+                              style={{ padding: '5px 10px', borderRadius: 6, border: '1px solid var(--border)', background: 'transparent', fontSize: 11, cursor: togglingId === u.id ? 'not-allowed' : 'pointer', color: 'var(--text-2)', fontFamily: 'var(--sans)', whiteSpace: 'nowrap', opacity: togglingId === u.id ? .5 : 1 }}>
+                              ↑ Nâng cấp
+                            </button>
+                          )}
                           <button onClick={() => handleDelete(u)}
                             style={{ padding: '5px 10px', borderRadius: 6, border: '1px solid #fecaca', background: '#fff5f5', fontSize: 11, cursor: 'pointer', color: 'var(--danger)', fontFamily: 'var(--sans)' }}>
                             Xóa
@@ -196,12 +202,8 @@ export default function UsersPage() {
                   <label style={{ display: 'block', fontSize: 12, fontWeight: 500, color: 'var(--text-2)', marginBottom: 5 }}>Mật khẩu * (tối thiểu 6 ký tự)</label>
                   <input type="password" value={password} onChange={e => setPassword(e.target.value)} style={inputStyle} required autoComplete="new-password" />
                 </div>
-                <div>
-                  <label style={{ display: 'block', fontSize: 12, fontWeight: 500, color: 'var(--text-2)', marginBottom: 5 }}>Vai trò</label>
-                  <select value={role} onChange={e => setRole(e.target.value as 'user' | 'superadmin')} style={inputStyle}>
-                    <option value="user">User</option>
-                    <option value="superadmin">Super Admin</option>
-                  </select>
+                <div style={{ fontSize: 12, color: 'var(--text-3)' }}>
+                  Tài khoản mới luôn được tạo với quyền Super Admin — hệ thống hiện chỉ cấp quyền truy cập /admin cho vai trò này.
                 </div>
                 {modalError && <div style={{ fontSize: 13, color: 'var(--danger)' }}>✕ {modalError}</div>}
               </div>

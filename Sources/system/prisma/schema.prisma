@@ -293,6 +293,7 @@ model Order {
   completedAt    DateTime?       @map("completed_at")
   createdAt      DateTime        @default(now()) @map("created_at")
   downloadToken  String?         @unique @map("download_token")
+  newCvAccount   Boolean?        @map("new_cv_account")
   paidAt         DateTime?       @map("paid_at")
   tokenExpiresAt DateTime?       @map("token_expires_at")
   tokenUsedCount Int             @default(0) @map("token_used_count")

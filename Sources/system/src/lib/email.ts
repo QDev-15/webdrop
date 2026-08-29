@@ -1,6 +1,17 @@
 import nodemailer from 'nodemailer'
 import { prisma } from './prisma'
 
+// Escape giá trị do khách hàng nhập (tên, email...) trước khi chèn vào HTML email —
+// tránh HTML injection nếu khách đặt tên kiểu "<img src=x onerror=...>" lúc checkout.
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
 async function getSmtpConfig() {
   const keys = ['smtp_host', 'smtp_port', 'smtp_user', 'smtp_password', 'smtp_from_name', 'smtp_from_email']
   const rows = await prisma.setting.findMany({ where: { key: { in: keys } } })
@@ -69,7 +80,7 @@ export async function sendDownloadEmail(opts: {
       </a>`
     : `
       <a href="${baseUrl}/api/download?token=${tokenParam}&file=template" style="display:block;margin:8px 0;padding:12px 18px;background:#1a6b52;color:#fff;border-radius:8px;text-decoration:none;font-weight:600">
-        ↓ Tải ${opts.slug}.zip — File template
+        ↓ Tải ${escapeHtml(opts.slug)}.zip — File template
       </a>`
 
   const html = `
@@ -83,7 +94,7 @@ export async function sendDownloadEmail(opts: {
     </div>
     <div style="padding:32px">
       <h1 style="font-size:20px;font-weight:700;margin:0 0 8px;color:#1a1917">Thanh toán thành công! 🎉</h1>
-      <p style="color:#6b6760;font-size:14px;margin:0 0 24px">Xin chào <strong>${opts.customerName}</strong>, đơn hàng <strong>${opts.orderCode}</strong> đã được xác nhận.</p>
+      <p style="color:#6b6760;font-size:14px;margin:0 0 24px">Xin chào <strong>${escapeHtml(opts.customerName)}</strong>, đơn hàng <strong>${escapeHtml(opts.orderCode)}</strong> đã được xác nhận.</p>
 
       <div style="background:#e8f4ef;border:1px solid #2d9b73;border-radius:10px;padding:16px 18px;margin-bottom:24px">
         <div style="font-size:12px;font-weight:600;color:#1a6b52;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px">Tải xuống ngay</div>
@@ -161,13 +172,13 @@ export async function sendCvCredentialsEmail(opts: {
     </div>
     <div style="padding:32px">
       <h1 style="font-size:20px;font-weight:700;margin:0 0 8px;color:#1a1917">Tài khoản CV của bạn đã sẵn sàng! 🎉</h1>
-      <p style="color:#6b6760;font-size:14px;margin:0 0 24px">Xin chào <strong>${opts.name}</strong>, thanh toán đơn hàng <strong>${opts.orderCode}</strong> đã được xác nhận. Dưới đây là thông tin đăng nhập CV Manager.</p>
+      <p style="color:#6b6760;font-size:14px;margin:0 0 24px">Xin chào <strong>${escapeHtml(opts.name)}</strong>, thanh toán đơn hàng <strong>${escapeHtml(opts.orderCode)}</strong> đã được xác nhận. Dưới đây là thông tin đăng nhập CV Manager.</p>
 
       <div style="background:#e8f4ef;border:1px solid #2d9b73;border-radius:10px;padding:16px 18px;margin-bottom:24px">
         <div style="font-size:12px;font-weight:600;color:#1a6b52;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px">Thông tin đăng nhập</div>
         <div style="font-size:13px;color:#1a1917;line-height:2">
-          <div><strong>Email:</strong> ${opts.email}</div>
-          <div><strong>Mật khẩu:</strong> <code style="background:#f5f0e8;padding:2px 8px;border-radius:4px;font-size:14px;letter-spacing:1px">${opts.password}</code></div>
+          <div><strong>Email:</strong> ${escapeHtml(opts.email)}</div>
+          <div><strong>Mật khẩu:</strong> <code style="background:#f5f0e8;padding:2px 8px;border-radius:4px;font-size:14px;letter-spacing:1px">${escapeHtml(opts.password)}</code></div>
         </div>
         <a href="${loginUrl}" style="display:block;margin-top:16px;padding:12px 18px;background:#1a6b52;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;text-align:center;font-size:14px">
           Đăng nhập CV Manager →

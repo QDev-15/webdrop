@@ -34,7 +34,7 @@ function signCloudinary(params: Record<string, string | number>, apiSecret: stri
 
 export async function POST(req: NextRequest) {
   const session = await getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!session || session.role !== 'superadmin') return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const cfg = await getCloudinarySettings()
   if (!cfg) {

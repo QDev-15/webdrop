@@ -9,7 +9,7 @@ async function getAccessKey(): Promise<string | null> {
 
 export async function GET(req: NextRequest) {
   const session = await getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!session || session.role !== 'superadmin') return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { searchParams } = new URL(req.url)
   const q    = searchParams.get('q')?.trim()
@@ -72,18 +72,31 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   const session = await getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!session || session.role !== 'superadmin') return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { downloadLocation } = await req.json()
   if (!downloadLocation || typeof downloadLocation !== 'string') {
     return NextResponse.json({ error: 'Missing downloadLocation' }, { status: 400 })
   }
 
+  // SSRF guard: downloadLocation phải là URL thật của Unsplash API do chính response GET ở trên
+  // trả về (links.download_location) — không cho phép client gửi tuỳ ý bất kỳ URL nào, vì server
+  // sẽ tự fetch kèm theo Access Key thật trong header Authorization.
+  let parsed: URL
+  try {
+    parsed = new URL(downloadLocation)
+  } catch {
+    return NextResponse.json({ error: 'Invalid downloadLocation' }, { status: 400 })
+  }
+  if (parsed.protocol !== 'https:' || parsed.hostname !== 'api.unsplash.com') {
+    return NextResponse.json({ error: 'Invalid downloadLocation' }, { status: 400 })
+  }
+
   const accessKey = await getAccessKey()
   if (!accessKey) return NextResponse.json({ ok: true })
 
   try {
-    await fetch(downloadLocation, {
+    await fetch(parsed.toString(), {
       headers: { Authorization: `Client-ID ${accessKey}` },
     })
   } catch {

@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prisma'
 import { randomUUID } from 'crypto'
-import { sendDownloadEmail } from '@/lib/email'
+import { sendDownloadEmail, sendCvCredentialsEmail } from '@/lib/email'
 import { createOrReuseGuestCvAccount } from '@/lib/checkoutAccount'
 
 const TOKEN_TTL_HOURS = 72
@@ -33,13 +33,17 @@ export async function confirmOrderPayment(orderCode: string, note: string): Prom
     const customerEmail = order.customer.email
     if (!customerEmail) return { ok: false, reason: 'not_found' }
 
-    await prisma.$transaction(async (tx) => {
-      const { credentialToken } = await createOrReuseGuestCvAccount(tx, order.customerId, order.customer.name, customerEmail)
+    const result = await prisma.$transaction(async (tx) => {
+      const { credentialToken, isNewAccount } = await createOrReuseGuestCvAccount(tx, order.customerId, order.customer.name, customerEmail)
 
-      await tx.order.update({
-        where: { id: order.id },
-        data: { status: 'confirmed', paidAt: new Date(), downloadToken: credentialToken },
+      // UPDATE có điều kiện paidAt=null — chống race condition (webhook Sepay retry + admin xác nhận
+      // thủ công gần như đồng thời có thể cùng đọc paidAt=null trước khi bên nào update xong, dẫn tới
+      // ghi trùng Revenue/gửi email 2 lần). Nếu 0 dòng bị ảnh hưởng nghĩa là request khác đã xử lý xong.
+      const { count } = await tx.order.updateMany({
+        where: { id: order.id, paidAt: null },
+        data: { status: 'confirmed', paidAt: new Date(), downloadToken: credentialToken, newCvAccount: isNewAccount },
       })
+      if (count === 0) return null
 
       if (order.payments.length > 0) {
         await tx.payment.update({ where: { id: order.payments[0].id }, data: { status: 'paid', paidAt: new Date() } })
@@ -56,7 +60,26 @@ export async function confirmOrderPayment(orderCode: string, note: string): Prom
           note,
         },
       })
+
+      return { isNewAccount, credentialToken }
     })
+
+    if (!result) return { ok: false, reason: 'already_paid' }
+
+    // Gửi email thông tin đăng nhập nếu là tài khoản mới tạo (có mật khẩu tạm cần gửi) — tránh mất
+    // mật khẩu tạm vĩnh viễn nếu khách đóng tab trước khi trang polling kịp hiển thị.
+    if (result.isNewAccount && result.credentialToken) {
+      const emailToggle = await prisma.setting.findFirst({ where: { key: 'email_send_download' } })
+      if (emailToggle?.value === 'true') {
+        sendCvCredentialsEmail({
+          to: customerEmail,
+          name: order.customer.name,
+          email: customerEmail,
+          password: result.credentialToken,
+          orderCode: order.code,
+        }).catch(e => console.error('[email] sendCvCredentialsEmail failed:', e))
+      }
+    }
 
     return { ok: true }
   }
@@ -65,11 +88,12 @@ export async function confirmOrderPayment(orderCode: string, note: string): Prom
   const downloadToken  = randomUUID()
   const tokenExpiresAt = new Date(Date.now() + TOKEN_TTL_HOURS * 60 * 60 * 1000)
 
-  await prisma.$transaction(async (tx) => {
-    await tx.order.update({
-      where: { id: order.id },
+  const confirmed = await prisma.$transaction(async (tx) => {
+    const { count } = await tx.order.updateMany({
+      where: { id: order.id, paidAt: null },
       data: { status: 'confirmed', paidAt: new Date(), downloadToken, tokenExpiresAt, tokenUsedCount: 0 },
     })
+    if (count === 0) return false
 
     if (order.payments.length > 0) {
       await tx.payment.update({ where: { id: order.payments[0].id }, data: { status: 'paid', paidAt: new Date() } })
@@ -86,7 +110,10 @@ export async function confirmOrderPayment(orderCode: string, note: string): Prom
         note,
       },
     })
+    return true
   })
+
+  if (!confirmed) return { ok: false, reason: 'already_paid' }
 
   if (order.customer.email) {
     const emailToggle = await prisma.setting.findFirst({ where: { key: 'email_send_download' } })

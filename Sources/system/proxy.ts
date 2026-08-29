@@ -2,10 +2,12 @@ import { NextRequest, NextResponse } from 'next/server'
 
 const COOKIE_NAME = 'wd_session'
 
-async function verifyTokenEdge(token: string, secret: string): Promise<boolean> {
+// Trả về payload nếu chữ ký hợp lệ + chưa hết hạn, null nếu không — để caller tự kiểm tra
+// thêm `role` (không chỉ "có token hợp lệ" là đủ, còn phải đúng superadmin).
+async function verifyTokenEdge(token: string, secret: string): Promise<{ role?: string } | null> {
   try {
     const [data, sig] = token.split('.')
-    if (!data || !sig) return false
+    if (!data || !sig) return null
     const encoder = new TextEncoder()
     const key = await crypto.subtle.importKey(
       'raw',
@@ -17,13 +19,12 @@ async function verifyTokenEdge(token: string, secret: string): Promise<boolean> 
     const sigBytes = Buffer.from(sig, 'base64url')
     const dataBytes = encoder.encode(data)
     const valid = await crypto.subtle.verify('HMAC', key, sigBytes, dataBytes)
-    if (!valid) return false
-    // Check token expiry
+    if (!valid) return null
     const payload = JSON.parse(Buffer.from(data, 'base64url').toString())
-    if (payload.exp && Date.now() > payload.exp) return false
-    return true
+    if (payload.exp && Date.now() > payload.exp) return null
+    return payload
   } catch {
-    return false
+    return null
   }
 }
 
@@ -39,10 +40,14 @@ export async function proxy(req: NextRequest) {
     return NextResponse.next()
   }
 
-  // Bảo vệ tất cả /admin/* và /api/admin/*
+  // Bảo vệ tất cả /admin/* và /api/admin/* — phải vừa có token hợp lệ vừa đúng role
+  // superadmin. Trước đây chỉ check "có token hợp lệ" (không xem role) → 1 session
+  // role 'user' hợp lệ (còn hạn) vẫn lọt qua được lớp proxy này, dữ liệu thật vẫn có
+  // thể rò rỉ qua các trang Server Component gọi thẳng Prisma (không qua fetch API).
   if (pathname.startsWith('/admin') || pathname.startsWith('/api/admin')) {
     const token = req.cookies.get(COOKIE_NAME)?.value
-    if (!token || !(await verifyTokenEdge(token, secret))) {
+    const payload = token ? await verifyTokenEdge(token, secret) : null
+    if (!payload || payload.role !== 'superadmin') {
       if (pathname.startsWith('/api/')) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
       }
