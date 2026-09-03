@@ -30,7 +30,7 @@ if (isTest == false) {
     deploy = productDir
 }
 
-console.log('=== shop-dong-ho — Build Script ===')
+console.log('=== shop-ruou-vang — Build Script ===')
 console.log('')
 
 if (existsSync(deploy)) {
