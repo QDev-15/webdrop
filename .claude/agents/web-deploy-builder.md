@@ -148,6 +148,12 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển �
       const { settings } = useSite()
       const location = useLocation()
 
+      // Chuyển trang qua <Link> không tự cuộn lên đầu như full page load —
+      // reset scroll mỗi khi đổi route để không giữ nguyên vị trí cuộn trang cũ.
+      useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [location.pathname])
+
       useEffect(() => {
         const io = new IntersectionObserver(
           entries => entries.forEach(e => {
@@ -201,6 +207,7 @@ Bạn là **Web Deploy Builder** của dự án **webdrop.store** — chuyển �
     }
     ```
     **Lý do:** Pattern này đảm bảo hoạt động cả khi F5, load URL trực tiếp, và navigate bằng Link — vì MutationObserver tự động observe elements mới được add vào DOM bởi async data renders. `.reveal`/`[data-reveal]` được dùng ở Footer (render trên MỌI route) và nhiều section component. Nếu observer chỉ trong một page function (như `HomePage`), khi navigate sang route khác, Footer + sections của page đó bị opacity: 0 mãi mãi → trắng màn hình. `AppShell` với `[location.pathname, settings]` bao phủ tất cả route và Footer tự động.
+    **Scroll-to-top [BUG PATTERN — phát hiện 2026-08-24 ở `shop-noi-that`]:** React Router `<Link>` giữ nguyên vị trí cuộn khi chuyển trang (khác hẳn full page load luôn về đỉnh trang) — thiếu `useEffect(() => window.scrollTo(0,0), [location.pathname])` khiến khách hàng bấm vào 1 trang mới nhưng vẫn thấy nội dung ở giữa/cuối trang cũ. Đã thêm sẵn hook dùng chung `_scaffold/website/src/hooks/useScrollToTop.ts` (copy tự động vào mọi site mới qua scaffolder) — có thể gọi `useScrollToTop()` thay cho việc viết tay `useEffect` này trong AppShell, hoặc giữ nguyên inline như code mẫu trên đều được (2 cách tương đương).
     **Với pattern này trong AppShell, các individual component KHÔNG cần `useEffect([data])` riêng nữa — nhưng có thêm cũng không sao (defense in depth).** Với component fetch API riêng + dùng `data-reveal`, vẫn có thể thêm `useEffect([data])` như defense in depth (không bắt buộc vì AppShell đã xử lý đúng gốc rễ):
     ```tsx
     // Defense in depth — MutationObserver trong AppShell mới là fix đúng gốc rễ

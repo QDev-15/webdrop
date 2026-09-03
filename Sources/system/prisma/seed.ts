@@ -1141,7 +1141,7 @@ async function main() {
         price: 99000,
         category: 'web',
         industrySlug: 'shop',
-        hasWebsite: false,
+        hasWebsite: true,
         salesCount: 0,
         status: 'published',
       },

@@ -29,7 +29,7 @@
 | `design-scout` | Thu thập & phân tích design website theo ngành → Design Brief | WebSearch, WebFetch, Read |
 | `template-builder` | Nhận chủ đề + Brief → tạo template HTML/CSS/Bootstrap vào `Sources/templates/` | Read, Write, Edit, WebFetch, WebSearch |
 | `shop-template-builder` | Chuyên biệt từ `template-builder` cho ngách shop — catalog sản phẩm JS thật (bộ lọc ngang trên lưới, sort, phân trang cổ điển, áp dụng tức thì không nút Apply), 2 mode trang chủ (catalog hợp nhất / chia chủ đề) random mỗi lần tạo | Read, Write, Edit, Glob, Grep, WebFetch, WebSearch, Bash |
-| `shop-catalog-builder` | Chuyên biệt hóa thêm từ `shop-template-builder` — trang chủ CHỈ tìm kiếm + catalog sản phẩm, KHÔNG hero/story/testimonials/stat-bar thương hiệu; toàn bộ nội dung giới thiệu dồn sang trang Giới thiệu/Dịch vụ riêng trong nav | Read, Write, Edit, Glob, Grep, WebFetch, WebSearch, Bash |
+| `shop-template-catalog-builder` | Chuyên biệt hóa thêm từ `shop-template-builder` — trang chủ CHỈ tìm kiếm + catalog sản phẩm, KHÔNG hero/story/testimonials/stat-bar thương hiệu; toàn bộ nội dung giới thiệu dồn sang trang Giới thiệu/Dịch vụ riêng trong nav | Read, Write, Edit, Glob, Grep, WebFetch, WebSearch, Bash |
 | `real-estate-template-builder` | Chuyên biệt hóa từ `template-builder` cho ngách bất động sản — catalog tin đăng/dự án data-driven (filter giá/khu vực/diện tích/phòng ngủ/hướng nhà/pháp lý, sort, phân trang), trang chi tiết BĐS riêng (gallery, bản đồ, tính vay trả góp, môi giới phụ trách, BĐS tương tự — thay cho case-study 7 mục), 2 loại hình (môi giới tổng hợp / dự án chủ đầu tư đơn lẻ) | Read, Write, Edit, Glob, Grep, WebFetch, WebSearch, Bash |
 | `web-deploy-builder` | Nhận slug → **chạy scaffolder** → đọc template HTML → fill ~45% AI files → tạo React + PHP + SQLite vào `Sources/WebDeploy/[slug]/` | Read, Write, Edit, Glob, Grep, Bash |
 | `web-deploy-fixer` | Nhận slug → chạy TS build + PHP check → tự fix lỗi → lặp đến 0 error | Read, Write, Edit, Glob, Grep, Bash |
@@ -212,12 +212,12 @@ webdrop/
 │       │   ├── shop-may-anh/       (GEOMETRIC-MODERN, WebDeploy đầy đủ)
 │       │   ├── shop-may-tinh/      (GLASS-MODERN, WebDeploy đầy đủ)
 │       │   ├── shop-ami-mobile/    (RETRO-BOLD, WebDeploy đầy đủ, css prefix mb-)
-│       │   ├── shop-quan-ao-ami/   (ZEN-MINIMAL, WebDeploy đầy đủ, css prefix am-, shop-catalog-builder)
-│       │   ├── shop-the-thao/      (DARK-ENERGY variant Signal Orange, WebDeploy đầy đủ, css prefix tt-, shop-catalog-builder)
-│       │   ├── shop-do-choi/       (SOFT-PASTEL variant Sky Blue+Coral, WebDeploy đầy đủ, css prefix dc-, shop-catalog-builder)
-│       │   ├── shop-my-pham/       (LUXE-DARK variant Rose Gold #c98a8a, WebDeploy đầy đủ, css prefix mp-, shop-catalog-builder)
-│       │   ├── shop-do-gia-dung/   (WARM-ARTISAN Terracotta+Sage, WebDeploy đầy đủ, css prefix dg-, shop-catalog-builder 2026-07-29, styling fixed 2026-07-30)
-│       │   ├── shop-van-phong-pham/ (CLEAN-CORPORATE fresh token Steel Blue, WebDeploy đầy đủ, css prefix vp-, shop-catalog-builder, WebDeploy build 2026-08-06)
+│       │   ├── shop-quan-ao-ami/   (ZEN-MINIMAL, WebDeploy đầy đủ, css prefix am-, shop-template-catalog-builder)
+│       │   ├── shop-the-thao/      (DARK-ENERGY variant Signal Orange, WebDeploy đầy đủ, css prefix tt-, shop-template-catalog-builder)
+│       │   ├── shop-do-choi/       (SOFT-PASTEL variant Sky Blue+Coral, WebDeploy đầy đủ, css prefix dc-, shop-template-catalog-builder)
+│       │   ├── shop-my-pham/       (LUXE-DARK variant Rose Gold #c98a8a, WebDeploy đầy đủ, css prefix mp-, shop-template-catalog-builder)
+│       │   ├── shop-do-gia-dung/   (WARM-ARTISAN Terracotta+Sage, WebDeploy đầy đủ, css prefix dg-, shop-template-catalog-builder 2026-07-29, styling fixed 2026-07-30)
+│       │   ├── shop-van-phong-pham/ (CLEAN-CORPORATE fresh token Steel Blue, WebDeploy đầy đủ, css prefix vp-, shop-template-catalog-builder, WebDeploy build 2026-08-06)
 │       │   ├── shop-noi-that/      (ZEN-MINIMAL variant Walnut Brown #8b5e3c, bản tĩnh only (chưa WebDeploy), css prefix nt-, shop-template-builder Mode A CATALOG-UNIFIED, build 2026-08-29)
 │       │   ├── shop-trang-suc/     (LUXE-DARK variant 3 Amethyst #7c5ba6, bản tĩnh only (chưa WebDeploy), css prefix tr-, shop-template-builder Mode B THEMED-SECTIONS, build 2026-08-29)
 │       │   ├── shop-thu-cung/      (GEOMETRIC-MODERN variant Coral #ff6b5b, bản tĩnh only (chưa WebDeploy), css prefix tc-, shop-template-builder Mode A CATALOG-UNIFIED, build 2026-08-29)
