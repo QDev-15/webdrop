@@ -150,11 +150,11 @@ export default function ProductForm() {
         <div className="form-row">
           <div className="form-group" style={{ flex: 2 }}>
             <label>Tên sản phẩm <span className="req">*</span></label>
-            <input type="text" value={form.name} onChange={e => set('name', e.target.value)} placeholder="VD: CASIO Edifice Chronograph EFR-556" />
+            <input type="text" className="form-control" value={form.name} onChange={e => set('name', e.target.value)} placeholder="VD: CASIO Edifice Chronograph EFR-556" />
           </div>
           <div className="form-group" style={{ flex: 1 }}>
             <label>Danh mục</label>
-            <select value={form.category_id} onChange={e => set('category_id', e.target.value)}>
+            <select className="form-control" value={form.category_id} onChange={e => set('category_id', e.target.value)}>
               <option value="">-- Chọn danh mục --</option>
               {cats.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
             </select>
@@ -164,21 +164,21 @@ export default function ProductForm() {
         <div className="form-row">
           <div className="form-group" style={{ flex: 1 }}>
             <label>Thương hiệu</label>
-            <select value={form.brand} onChange={e => set('brand', e.target.value)}>
+            <select className="form-control" value={form.brand} onChange={e => set('brand', e.target.value)}>
               <option value="">-- Chọn thương hiệu --</option>
               {BRANDS.map(b => <option key={b} value={b}>{b}</option>)}
             </select>
           </div>
           <div className="form-group" style={{ flex: 1 }}>
             <label>Chất liệu dây</label>
-            <select value={form.material} onChange={e => set('material', e.target.value)}>
+            <select className="form-control" value={form.material} onChange={e => set('material', e.target.value)}>
               <option value="">-- Chọn chất liệu --</option>
               {MATERIALS.map(m => <option key={m.value} value={m.value}>{m.label}</option>)}
             </select>
           </div>
           <div className="form-group" style={{ flex: 1 }}>
             <label>Phong cách</label>
-            <select value={form.style} onChange={e => set('style', e.target.value)}>
+            <select className="form-control" value={form.style} onChange={e => set('style', e.target.value)}>
               <option value="">-- Chọn phong cách --</option>
               {STYLES.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
             </select>
@@ -204,61 +204,61 @@ export default function ProductForm() {
         <div className="form-row">
           <div className="form-group" style={{ flex: 1 }}>
             <label>Giá (VND)</label>
-            <input type="number" value={form.price} onChange={e => set('price', e.target.value)} min={0} placeholder="VD: 3290000" />
+            <input type="number" className="form-control" value={form.price} onChange={e => set('price', e.target.value)} min={0} placeholder="VD: 3290000" />
           </div>
           <div className="form-group" style={{ flex: 1 }}>
             <label>Giá sale (VND)</label>
-            <input type="number" value={form.price_sale} onChange={e => set('price_sale', e.target.value)} min={0} placeholder="VD: 2790000" />
+            <input type="number" className="form-control" value={form.price_sale} onChange={e => set('price_sale', e.target.value)} min={0} placeholder="VD: 2790000" />
           </div>
           <div className="form-group" style={{ flex: 1 }}>
             <label>Badge</label>
-            <input type="text" value={form.badge} onChange={e => set('badge', e.target.value)} placeholder="new | sale | hot" />
+            <input type="text" className="form-control" value={form.badge} onChange={e => set('badge', e.target.value)} placeholder="new | sale | hot" />
           </div>
         </div>
 
         <div className="form-group">
           <label>Mô tả sản phẩm</label>
-          <textarea rows={4} value={form.description} onChange={e => set('description', e.target.value)} placeholder="Mô tả chi tiết sản phẩm..." />
+          <textarea rows={4} className="form-control" value={form.description} onChange={e => set('description', e.target.value)} placeholder="Mô tả chi tiết sản phẩm..." />
         </div>
 
         <div className="form-row">
           <div className="form-group" style={{ flex: 1 }}>
             <label>Bảo hành</label>
-            <input type="text" value={form.warranty} onChange={e => set('warranty', e.target.value)} placeholder="VD: 2 năm chính hãng" />
+            <input type="text" className="form-control" value={form.warranty} onChange={e => set('warranty', e.target.value)} placeholder="VD: 2 năm chính hãng" />
           </div>
           <div className="form-group" style={{ flex: 1 }}>
             <label>Bộ máy</label>
-            <input type="text" value={form.movement} onChange={e => set('movement', e.target.value)} placeholder="VD: Automatic (Cơ tự động)" />
+            <input type="text" className="form-control" value={form.movement} onChange={e => set('movement', e.target.value)} placeholder="VD: Automatic (Cơ tự động)" />
           </div>
           <div className="form-group" style={{ flex: 1 }}>
             <label>Khả năng chống nước</label>
-            <input type="text" value={form.water_resist} onChange={e => set('water_resist', e.target.value)} placeholder="VD: 100-200m" />
+            <input type="text" className="form-control" value={form.water_resist} onChange={e => set('water_resist', e.target.value)} placeholder="VD: 100-200m" />
           </div>
           <div className="form-group" style={{ flex: 1 }}>
             <label>Đường kính mặt (mm)</label>
-            <input type="number" value={form.diameter} onChange={e => set('diameter', e.target.value)} min={0} />
+            <input type="number" className="form-control" value={form.diameter} onChange={e => set('diameter', e.target.value)} min={0} />
           </div>
         </div>
 
         <div className="form-row">
           <div className="form-group" style={{ flex: 1 }}>
             <label>Trạng thái</label>
-            <select value={form.status} onChange={e => set('status', e.target.value)}>
+            <select className="form-control" value={form.status} onChange={e => set('status', e.target.value)}>
               <option value="published">Đã xuất bản</option>
               <option value="draft">Nháp</option>
             </select>
           </div>
           <div className="form-group" style={{ flex: 1 }}>
             <label>Đánh giá (0-5 sao)</label>
-            <input type="number" value={form.rating} onChange={e => set('rating', e.target.value)} min={0} max={5} step={0.1} />
+            <input type="number" className="form-control" value={form.rating} onChange={e => set('rating', e.target.value)} min={0} max={5} step={0.1} />
           </div>
           <div className="form-group" style={{ flex: 1 }}>
             <label>Đã bán</label>
-            <input type="number" value={form.sold} onChange={e => set('sold', e.target.value)} min={0} />
+            <input type="number" className="form-control" value={form.sold} onChange={e => set('sold', e.target.value)} min={0} />
           </div>
           <div className="form-group" style={{ flex: 1 }}>
             <label>Thứ tự sắp xếp</label>
-            <input type="number" value={form.sort_order} onChange={e => set('sort_order', e.target.value)} min={0} />
+            <input type="number" className="form-control" value={form.sort_order} onChange={e => set('sort_order', e.target.value)} min={0} />
           </div>
         </div>
 

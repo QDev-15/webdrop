@@ -70,11 +70,11 @@ export default function TestimonialForm() {
         <div className="form-row">
           <div className="form-group" style={{ flex: 1 }}>
             <label>Tên khách hàng <span className="req">*</span></label>
-            <input type="text" value={form.author_name} onChange={e => set('author_name', e.target.value)} placeholder="VD: Ngọc Hân" />
+            <input type="text" className="form-control" value={form.author_name} onChange={e => set('author_name', e.target.value)} placeholder="VD: Ngọc Hân" />
           </div>
           <div className="form-group" style={{ flex: 1 }}>
             <label>Khu vực</label>
-            <input type="text" value={form.author_location} onChange={e => set('author_location', e.target.value)} placeholder="VD: TP. Thủ Đức" />
+            <input type="text" className="form-control" value={form.author_location} onChange={e => set('author_location', e.target.value)} placeholder="VD: TP. Thủ Đức" />
           </div>
         </div>
 
@@ -85,12 +85,12 @@ export default function TestimonialForm() {
 
         <div className="form-group">
           <label>Nội dung đánh giá <span className="req">*</span></label>
-          <textarea rows={4} value={form.content} onChange={e => set('content', e.target.value)} placeholder="Nội dung đánh giá của khách hàng..." />
+          <textarea rows={4} className="form-control" value={form.content} onChange={e => set('content', e.target.value)} placeholder="Nội dung đánh giá của khách hàng..." />
         </div>
 
         <div className="form-group">
           <label>Thứ tự sắp xếp</label>
-          <input type="number" value={form.sort_order} onChange={e => set('sort_order', Number(e.target.value))} min={0} />
+          <input type="number" className="form-control" value={form.sort_order} onChange={e => set('sort_order', Number(e.target.value))} min={0} />
         </div>
 
         <div className="form-actions">

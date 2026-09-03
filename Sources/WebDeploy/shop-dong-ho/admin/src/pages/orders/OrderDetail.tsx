@@ -112,7 +112,7 @@ export default function OrderDetail() {
             <p>Phương thức: <strong>{order.payment_method === 'cod' ? 'COD (thanh toán khi nhận hàng)' : 'Chuyển khoản SePay'}</strong></p>
             <div className="form-group" style={{ marginTop: 12 }}>
               <label>Trạng thái thanh toán</label>
-              <select value={order.payment_status} disabled={saving} onChange={e => updateStatus({ payment_status: e.target.value })}>
+              <select className="form-control" value={order.payment_status} disabled={saving} onChange={e => updateStatus({ payment_status: e.target.value })}>
                 <option value="unpaid">Chưa thanh toán</option>
                 <option value="pending">Chờ chuyển khoản</option>
                 <option value="paid">Đã thanh toán</option>
@@ -120,7 +120,7 @@ export default function OrderDetail() {
             </div>
             <div className="form-group">
               <label>Trạng thái đơn hàng</label>
-              <select value={order.status} disabled={saving} onChange={e => updateStatus({ status: e.target.value })}>
+              <select className="form-control" value={order.status} disabled={saving} onChange={e => updateStatus({ status: e.target.value })}>
                 <option value="pending">Chờ xử lý</option>
                 <option value="processing">Đang xử lý</option>
                 <option value="shipping">Đang giao</option>

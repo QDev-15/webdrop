@@ -24,9 +24,9 @@ function Field({ label, name, value, onChange, type = 'text', placeholder = '' }
     <div className="form-group">
       <label>{label}</label>
       {type === 'textarea' ? (
-        <textarea rows={3} value={value} onChange={e => onChange(name, e.target.value)} placeholder={placeholder} />
+        <textarea rows={3} className="form-control" value={value} onChange={e => onChange(name, e.target.value)} placeholder={placeholder} />
       ) : (
-        <input type={type} value={value} onChange={e => onChange(name, e.target.value)} placeholder={placeholder} />
+        <input type={type} className="form-control" value={value} onChange={e => onChange(name, e.target.value)} placeholder={placeholder} />
       )}
     </div>
   )

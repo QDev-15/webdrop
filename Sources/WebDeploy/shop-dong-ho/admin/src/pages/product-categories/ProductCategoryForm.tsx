@@ -61,7 +61,7 @@ export default function ProductCategoryForm() {
 
         <div className="form-group">
           <label>Tên danh mục <span className="req">*</span></label>
-          <input type="text" value={form.name} onChange={e => set('name', e.target.value)} placeholder="VD: Thời Trang" />
+          <input type="text" className="form-control" value={form.name} onChange={e => set('name', e.target.value)} placeholder="VD: Thời Trang" />
         </div>
 
         <div className="form-group">
@@ -71,7 +71,7 @@ export default function ProductCategoryForm() {
 
         <div className="form-group">
           <label>Thứ tự sắp xếp</label>
-          <input type="number" value={form.sort_order} onChange={e => set('sort_order', Number(e.target.value))} min={0} />
+          <input type="number" className="form-control" value={form.sort_order} onChange={e => set('sort_order', Number(e.target.value))} min={0} />
         </div>
 
         <div className="form-actions">

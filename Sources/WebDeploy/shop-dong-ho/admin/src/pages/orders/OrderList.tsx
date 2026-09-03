@@ -54,7 +54,7 @@ export default function OrderList() {
           <h1 className="admin-page-title">Đơn hàng</h1>
           <p className="admin-page-sub">Quản lý đơn hàng COD và chuyển khoản SePay</p>
         </div>
-        <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} style={{ height: 38, borderRadius: 8, padding: '0 12px' }}>
+        <select className="form-control" value={statusFilter} onChange={e => setStatusFilter(e.target.value)} style={{ width: 'auto' }}>
           <option value="">Tất cả trạng thái</option>
           {Object.entries(STATUS_LABEL).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
         </select>
