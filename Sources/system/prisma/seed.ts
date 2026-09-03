@@ -1055,19 +1055,6 @@ async function main() {
         status: 'published',
       },
 
-      // ── Admin ──────────────────────────────────────────────────────────────
-      {
-        slug: 'admin-basic',
-        name: 'Admin Basic',
-        description: 'Template admin dashboard cơ bản. Quản lý bài viết, người dùng, cài đặt. Dark sidebar.',
-        thumbnail: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&auto=format&fit=crop',
-        demoUrl: null,
-        price: 99000,
-        category: 'admin',
-        industrySlug: null,
-        salesCount: 8,
-        status: 'published',
-      },
     ]
 
   for (const t of templateData) {
