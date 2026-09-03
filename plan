@@ -1,10 +1,19 @@
-6 template chưa có admin + website (Gói B / WebDeploy):
+16 template chưa có admin + website (Gói B / WebDeploy):
 
-Slug	Tên	Ngành
-cafe-banh-ngot	Rosette Bakery & Cafe	Cafe
-cafe-den-muon	Cafe Đêm Muộn NOX	Cafe
-cafe-hien-dai	Cafe Hiện Đại	Cafe
-cafe-rang-xay	Cafe Rang Xay	Cafe
-cafe-sach	Cafe Sách Lặng Trang	Cafe
-nha-dat-viet	Nhà Đất Việt	Bất động sản
-Còn lại 67/73 template (tất cả trừ 6 site trên) đã có đầy đủ cả Gói A (template tĩnh) lẫn Gói B (website+admin+API).
+Ngành	Slug	Tên
+Blog	blog-am-thuc	Bếp Xanh
+Blog	blog-cong-nghe	PIXEL. — Blog Công Nghệ
+Blog	blog-du-lich	Xê Dịch — Travel Journal
+Blog	blog-me-va-be	Cỏ Non — Nhật Ký Nuôi Con
+Blog	blog-tai-chinh	La Bàn Tài Chính
+Cafe	cafe-banh-ngot	Rosette Bakery & Cafe
+Cafe	cafe-den-muon	Cafe Đêm Muộn NOX
+Cafe	cafe-hien-dai	Cafe Hiện Đại
+Cafe	cafe-rang-xay	Cafe Rang Xay
+Cafe	cafe-sach	Cafe Sách Lặng Trang
+Bất động sản	nha-dat-viet	Nhà Đất Việt
+Shop	shop-dong-ho	MERIDIAN — Đồng Hồ
+Shop	shop-noi-that	MỘC AN — Nội Thất
+Shop	shop-ruou-vang	Mộc Vang — Rượu Vang
+Shop	shop-thu-cung	Pet Haus — Thú Cưng
+Shop	shop-trang-suc	VIOLETTE — Trang Sức
