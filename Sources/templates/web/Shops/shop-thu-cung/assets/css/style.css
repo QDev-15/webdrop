@@ -86,7 +86,12 @@ h1, h2, h3, h4 { font-family: var(--head); letter-spacing: -0.01em; }
   position: fixed; top: 33px; left: 0; right: 0; z-index: 990;
   background: var(--dark2);
   border-bottom: 1px solid rgba(255,255,255,.07);
+  transition: top .25s ease;
 }
+/* Topbar chỉ hiện khi ở đỉnh trang (scroll=0) rồi cuộn ra khỏi flow bình thường —
+   #tcNav là fixed nên KHÔNG tự trôi theo, phải JS toggle class này để kéo nav lên
+   sát mép trên khi topbar không còn hiện, tránh để trống 1 khoảng 33px vĩnh viễn. */
+#tcNav.scrolled { top: 0; }
 .tc-nav-inner {
   max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 56px);
   height: 74px; display: flex; align-items: center; gap: 32px;

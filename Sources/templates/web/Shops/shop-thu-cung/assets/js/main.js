@@ -26,6 +26,18 @@ function tcUpdateCartBadge() {
   });
 }
 
+/* ── Nav bám đỉnh khi topbar đã cuộn khỏi màn hình ──
+   #tcNav là position:fixed, top:33px cố định để chừa chỗ cho .tc-topbar khi ở đỉnh trang.
+   Khi cuộn xuống, topbar (nằm trong flow bình thường) trôi ra khỏi khung nhìn nhưng
+   nav fixed không tự theo — phải toggle class .scrolled để CSS kéo top về 0. */
+(function initNavScroll() {
+  const nav = document.getElementById('tcNav');
+  if (!nav) return;
+  function sync() { nav.classList.toggle('scrolled', window.scrollY > 0); }
+  sync();
+  window.addEventListener('scroll', sync, { passive: true });
+})();
+
 /* ── Mobile burger + Escape close ── */
 (function initNav() {
   const burger = document.getElementById('tcBurger');

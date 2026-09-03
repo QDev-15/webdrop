@@ -196,9 +196,15 @@ p { margin: 0; }
   top: var(--topbar-h);
   left: 0; right: 0;
   z-index: 200;
+  transition: top .25s ease;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
 }
+/* Topbar chỉ hiện khi ở đỉnh trang (scroll=0) rồi cuộn ra khỏi flow bình thường —
+   #nt-nav là fixed nên KHÔNG tự trôi theo, phải JS toggle .scrolled trên <body>
+   để kéo nav lên sát mép trên khi topbar không còn hiện, tránh để trống 1 khoảng
+   --topbar-h vĩnh viễn. Xem thêm body.scrolled .nt-toolbar-wrap bên dưới. */
+body.scrolled #nt-nav { top: 0; }
 .nt-nav-inner {
   height: var(--nav-h);
   display: flex;
@@ -378,10 +384,14 @@ p { margin: 0; }
   position: sticky;
   top: calc(var(--topbar-h) + var(--nav-h));
   z-index: 80;
+  transition: top .25s ease;
   background: var(--bg);
   border-bottom: 1px solid var(--border);
   padding: 18px 0;
 }
+/* Nav đã tụt về top:0 sau khi cuộn (xem body.scrolled #nt-nav) → toolbar sticky
+   chỉ cần chừa đúng chiều cao nav, không còn cộng thêm --topbar-h nữa. */
+body.scrolled .nt-toolbar-wrap { top: var(--nav-h); }
 .nt-toolbar-pills {
   display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px;
   scrollbar-width: none;
@@ -494,6 +504,7 @@ p { margin: 0; }
 
 .nt-prod-card { display: block; }
 .nt-prod-thumb {
+  display: block;
   position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;

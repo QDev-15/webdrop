@@ -11,6 +11,21 @@
   document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
 
   /* ══════════════════════════════════════════════════════════════
+     NAV/TOOLBAR BÁM ĐỈNH KHI TOPBAR ĐÃ CUỘN KHỎI MÀN HÌNH
+     #nt-nav (fixed) và .nt-toolbar-wrap (sticky) đều tính top dựa trên
+     var(--topbar-h) + var(--nav-h) để chừa chỗ cho .nt-topbar khi ở đỉnh
+     trang. Khi cuộn xuống, topbar (nằm trong flow bình thường) trôi ra khỏi
+     khung nhìn nhưng các phần tử fixed/sticky không tự theo — toggle class
+     .scrolled trên <body> để CSS bớt đi đúng phần --topbar-h cho mọi phần
+     tử liên quan (nav về top:0, toolbar về top:var(--nav-h)).
+     ══════════════════════════════════════════════════════════════ */
+  (function () {
+    function sync() { document.body.classList.toggle('scrolled', window.scrollY > 0); }
+    sync();
+    window.addEventListener('scroll', sync, { passive: true });
+  })();
+
+  /* ══════════════════════════════════════════════════════════════
      COUNTER
      ══════════════════════════════════════════════════════════════ */
   document.querySelectorAll('[data-counter]').forEach(el => {
