@@ -193,7 +193,7 @@
         </div>
 
         <div class="rv-price-wrap">
-          <label>Giá tối đa</label>
+          <label for="rvPriceRange">Giá tối đa</label>
           <input type="range" id="rvPriceRange" min="0" step="50000">
           <span class="rv-price-val" id="rvPriceVal"></span>
         </div>
@@ -535,19 +535,19 @@ function sortProducts(list) {
 function badgesHtml(p) {
   let out = '';
   if (p.badge === 'new') out += '<span class="rv-badge new">Mới</span>';
-  if (p.badge === 'sale') out += '<span class="rv-badge sale">-15%</span>';
+  if (p.badge === 'sale' && p.salePrice != null) out += `<span class="rv-badge sale">-${Math.round((1 - p.salePrice / p.price) * 100)}%</span>`;
   if (p.badge === 'hot') out += '<span class="rv-badge hot">Bán chạy</span>';
   return out;
 }
 
 function cardHtml(p) {
-  return `<div class="rv-card" data-reveal>
+  return `<div class="rv-card${!p.stock ? ' rv-card-stock-out' : ''}" data-reveal>
     <div class="rv-card-thumb">
-      <div class="rv-card-badges">${badgesHtml(p)}</div>
+      <div class="rv-card-badges">${badgesHtml(p)}${!p.stock ? '<span class="rv-badge out">Hết hàng</span>' : ''}</div>
       <a href="chi-tiet-san-pham.html?slug=${p.slug}" aria-label="Xem chi tiết ${p.name}">
         <img src="${p.image}" alt="${p.name}" loading="lazy">
       </a>
-      <button class="rv-quick-add" onclick="rvQuickAddToCart(${p.id}, event)" aria-label="Thêm ${p.name} vào giỏ">
+      <button class="rv-quick-add" ${p.stock ? `onclick="rvQuickAddToCart(${p.id}, event)"` : 'disabled'} aria-label="${p.stock ? 'Thêm ' + p.name + ' vào giỏ' : p.name + ' đã hết hàng'}">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
       </button>
     </div>
@@ -592,8 +592,14 @@ function renderPagination(totalPages) {
   }).join('');
 }
 
+// state.search/category/origin/... có thể đến thẳng từ query string không qua validate — escape
+// cả label (text context) lẫn onRemove (attribute context, bọc trong dấu nháy đơn) để chặn XSS
+// phản chiếu (chèn thẻ qua label, hoặc phá vỡ attribute qua dấu nháy đơn trong giá trị JSON).
+function rvEscapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+}
 function chip(label, onRemove) {
-  return `<span class="rv-chip">${label}<button data-remove='${onRemove}'>✕</button></span>`;
+  return `<span class="rv-chip">${rvEscapeHtml(label)}<button data-remove='${rvEscapeHtml(onRemove)}'>✕</button></span>`;
 }
 
 function renderActiveChips() {

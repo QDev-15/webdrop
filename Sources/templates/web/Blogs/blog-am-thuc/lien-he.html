@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liên hệ — Bếp Xanh</title>
+<meta name="description" content="Liên hệ Bếp Xanh — góp ý công thức, báo lỗi bài viết, hoặc trao đổi hợp tác quảng cáo/review quán ăn.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="bam-container bam-nav-inner">
+    <a href="index.html" class="bam-logo"><span class="bam-logo-mark">🥗</span>Bếp <span>Xanh</span></a>
+    <div class="bam-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="chuyen-muc.html">Chuyên mục</a>
+      <a href="cong-thuc-nau-an.html">Công thức nấu ăn</a>
+      <a href="ve-toi.html">Về tôi</a>
+      <a href="lien-he.html" class="active">Liên hệ</a>
+    </div>
+    <div class="bam-nav-cta">
+      <div class="bam-nav-search"><i class="bi bi-search"></i><input type="text" placeholder="Tìm công thức..."></div>
+      <button class="bam-hamburger" id="navBurger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="bam-nav-mobile" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="chuyen-muc.html">Chuyên mục</a>
+  <a href="cong-thuc-nau-an.html">Công thức nấu ăn</a>
+  <a href="ve-toi.html">Về tôi</a>
+  <a href="lien-he.html">Liên hệ</a>
+</div>
+
+<header class="bam-page-header">
+  <div class="bam-container">
+    <div class="bam-breadcrumb"><a href="index.html">Trang chủ</a> / Liên hệ</div>
+    <h1 class="bam-page-title">Liên hệ với Bếp Xanh</h1>
+    <p class="bam-page-sub">Góp ý công thức, báo lỗi bài viết, hay đơn giản là muốn chào hỏi — điền form bên dưới, tôi sẽ phản hồi trong 1-2 ngày làm việc.</p>
+  </div>
+</header>
+
+<section class="bam-sec">
+  <div class="bam-container">
+    <div class="bam-contact-layout">
+      <div data-reveal>
+        <h2 class="bam-sec-title" style="margin-bottom:24px;">Thông tin <em>liên hệ</em></h2>
+        <div class="bam-info-item">
+          <div class="bam-info-icon"><i class="bi bi-geo-alt"></i></div>
+          <div><div class="bam-info-label">Địa chỉ</div><div class="bam-info-value">[Số nhà, Ngõ, Phường, Quận Hoàn Kiếm, Hà Nội]</div></div>
+        </div>
+        <div class="bam-info-item">
+          <div class="bam-info-icon"><i class="bi bi-telephone"></i></div>
+          <div><div class="bam-info-label">Điện thoại / Zalo</div><div class="bam-info-value">[0901 234 567]</div></div>
+        </div>
+        <div class="bam-info-item">
+          <div class="bam-info-icon"><i class="bi bi-envelope"></i></div>
+          <div><div class="bam-info-label">Email</div><div class="bam-info-value">[email@domain.com]</div></div>
+        </div>
+        <div class="bam-info-item">
+          <div class="bam-info-icon"><i class="bi bi-clock"></i></div>
+          <div><div class="bam-info-label">Thời gian phản hồi</div><div class="bam-info-value">Trong vòng 1–2 ngày làm việc</div></div>
+        </div>
+        <div class="bam-info-item">
+          <div class="bam-info-icon"><i class="bi bi-briefcase"></i></div>
+          <div><div class="bam-info-label">Hợp tác quảng cáo/review</div><div class="bam-info-value">Vui lòng ghi rõ "Hợp tác" trong chủ đề form</div></div>
+        </div>
+
+        <div class="bam-footer-social" style="margin-top:24px;">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Youtube"><i class="bi bi-youtube"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+        </div>
+      </div>
+
+      <div class="bam-form-card" data-reveal data-reveal-d1>
+        <form onsubmit="event.preventDefault(); alert('Cảm ơn bạn đã liên hệ! Đây là bản demo template, form chưa kết nối gửi thực tế.');">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="bam-form-group"><label for="bamName">Họ và tên</label><input type="text" id="bamName" placeholder="[Nguyễn Văn A]" required></div>
+            </div>
+            <div class="col-md-6">
+              <div class="bam-form-group"><label for="bamEmail">Email</label><input type="email" id="bamEmail" placeholder="[email@domain.com]" required></div>
+            </div>
+          </div>
+          <div class="bam-form-group">
+            <label for="bamSubject">Chủ đề</label>
+            <select id="bamSubject">
+              <option>Góp ý về một công thức</option>
+              <option>Báo lỗi bài viết</option>
+              <option>Hợp tác quảng cáo / review</option>
+              <option>Gửi công thức đóng góp</option>
+              <option>Khác</option>
+            </select>
+          </div>
+          <div class="bam-form-group">
+            <label for="bamMsg">Nội dung</label>
+            <textarea id="bamMsg" placeholder="Bạn muốn chia sẻ điều gì với Bếp Xanh?" required></textarea>
+          </div>
+          <button type="submit" class="bam-btn bam-btn-primary" style="width:100%;">Gửi liên hệ <i class="bi bi-send"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="bam-footer-top bam-container">
+    <div class="bam-footer-grid">
+      <div>
+        <div class="bam-footer-logo">🥗 Bếp <span style="color:var(--accent)">Xanh</span></div>
+        <p class="bam-footer-desc">Blog ẩm thực chia sẻ công thức nấu ăn, review quán ngon và mẹo bếp núc mỗi ngày — nấu ngon tại nhà, sống lành mỗi bữa.</p>
+        <div class="bam-footer-social">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Youtube"><i class="bi bi-youtube"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="bam-footer-col-title">Khám phá</div>
+        <div class="bam-footer-links">
+          <a href="chuyen-muc.html">Món chính</a>
+          <a href="chuyen-muc.html">Tráng miệng</a>
+          <a href="chuyen-muc.html">Đồ uống</a>
+          <a href="chuyen-muc.html">Review quán ăn</a>
+        </div>
+      </div>
+      <div>
+        <div class="bam-footer-col-title">Về Bếp Xanh</div>
+        <div class="bam-footer-links">
+          <a href="ve-toi.html">Câu chuyện của tôi</a>
+          <a href="cong-thuc-nau-an.html">Công thức nấu ăn</a>
+          <a href="lien-he.html">Liên hệ hợp tác</a>
+          <a href="index.html#faq">Câu hỏi thường gặp</a>
+        </div>
+      </div>
+      <div>
+        <div class="bam-footer-col-title">Pháp lý</div>
+        <div class="bam-footer-links">
+          <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+          <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+        </div>
+      </div>
+    </div>
+    <div class="bam-footer-maps">
+      <iframe src="https://maps.google.com/maps?q=21.0333,105.8500&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ vị trí văn phòng Bếp Xanh"></iframe>
+    </div>
+  </div>
+  <div class="bam-container bam-footer-bottom">
+    <div class="bam-footer-copy">© [NĂM] Bếp Xanh. Mọi quyền được bảo lưu.</div>
+    <div class="bam-footer-legal">
+      <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+      <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[SỐ_ZALO]" class="bam-zf" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+  <span class="bam-zf-tip">Chat Zalo</span>
+  <span class="bam-zf-btn">💬</span>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

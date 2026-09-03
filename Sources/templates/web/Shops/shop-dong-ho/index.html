@@ -77,7 +77,7 @@
     <div class="dh-hero-text">
       <div class="dh-hero-tag"><span class="dot"></span>BST NAM 2026</div>
       <h2 class="dh-hero-title">Bộ sưu tập Nam<br><span>Bản lĩnh & Đẳng cấp</span></h2>
-      <p class="dh-hero-sub">Từ thể thao năng động đến sang trọng cổ điển — hơn 24 mẫu đồng hồ nam đa phong cách, đa mức giá.</p>
+      <p class="dh-hero-sub">Từ thể thao năng động đến sang trọng cổ điển — 24 mẫu đồng hồ nam đa phong cách, đa mức giá.</p>
       <div class="dh-hero-ctas">
         <a href="san-pham.html?theme=nam" class="dh-btn dh-btn-primary">Xem BST Nam</a>
         <a href="san-pham.html" class="dh-btn dh-btn-glass">Tất cả sản phẩm</a>
@@ -85,7 +85,7 @@
     </div>
     <div class="dh-hero-visual">
       <img src="https://images.unsplash.com/photo-1590995505834-e5380bba1865?w=1200&auto=format&fit=crop&q=80" alt="Bộ sưu tập đồng hồ Nam MERIDIAN">
-      <div class="dh-hero-price-card"><div class="lbl">Giá chỉ từ</div><div class="val">1.290.000₫</div></div>
+      <div class="dh-hero-price-card"><div class="lbl">Giá chỉ từ</div><div class="val">2.200.000₫</div></div>
     </div>
   </div>
 
@@ -522,7 +522,10 @@
   }
 
   function dhInitThemeSection(opts) {
-    const pool = PRODUCTS.filter(p => p.theme.includes(opts.theme)).slice(0, opts.limit || 8);
+    // Lọc theo theme trước, KHÔNG cắt limit ở đây — nếu cắt trước thì chip lọc theo
+    // style/search phía sau có thể lọc trên 1 tập con đã bị cắt sẵn, dẫn tới chip hợp lệ
+    // (có sản phẩm thật trong catalog) nhưng vẫn báo rỗng vì sản phẩm đó bị cắt mất từ đầu.
+    const pool = PRODUCTS.filter(p => p.theme.includes(opts.theme));
     const gridEl = document.getElementById(opts.gridId);
     const searchEl = document.getElementById(opts.searchId);
     const chipEls = opts.chipsId ? document.querySelectorAll('#' + opts.chipsId + ' .dh-chip') : [];
@@ -534,7 +537,7 @@
         const matchQ = !q || p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q);
         const matchStyle = activeStyle === 'all' || p.style === activeStyle;
         return matchQ && matchStyle;
-      });
+      }).slice(0, opts.limit || 8);
       gridEl.innerHTML = filtered.length
         ? filtered.map(dhCardHTML).join('')
         : `<div class="dh-theme-empty">Không tìm thấy sản phẩm phù hợp trong mục này.</div>`;

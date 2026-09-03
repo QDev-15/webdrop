@@ -519,6 +519,11 @@ function renderPagination(totalPages) {
     return `<li class="page-item${n === state.page ? ' active' : ''}"><button class="page-link" data-page="${n}">${n}</button></li>`;
   }).join('');
 }
+// state.search/size/brand có thể đến thẳng từ query string (?q=, ?size=, ?brand=) không qua
+// validate — escape trước khi nội suy vào innerHTML/attribute để chặn XSS phản chiếu.
+function tcEscapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+}
 function renderChips() {
   const chips = [];
   state.category.forEach(c => chips.push({ label: CAT_LABELS[c], type: 'category', val: c }));
@@ -528,8 +533,11 @@ function renderChips() {
   if (state.priceMax < MAX_PRICE) chips.push({ label: `Đến ${tcFmt(state.priceMax)}`, type: 'price', val: '' });
   if (state.search) chips.push({ label: `"${state.search}"`, type: 'search', val: '' });
 
-  chipsEl.innerHTML = chips.map(c => `<span class="tc-chip" data-chip-type="${c.type}" data-chip-val="${c.val}">${c.label}<button class="tc-chip-close" aria-label="Xóa ${c.label}">×</button></span>`).join('');
-  if (chips.length) chipsEl.insertAdjacentHTML('beforeend', `<button class="tc-chip-clear" id="tcChipClear">Xóa tất cả</button>`) && document.getElementById('tcChipClear').addEventListener('click', resetAll);
+  chipsEl.innerHTML = chips.map(c => { const safeLabel = tcEscapeHtml(c.label), safeVal = tcEscapeHtml(c.val); return `<span class="tc-chip" data-chip-type="${c.type}" data-chip-val="${safeVal}">${safeLabel}<button class="tc-chip-close" aria-label="Xóa ${safeLabel}">×</button></span>`; }).join('');
+  if (chips.length) {
+    chipsEl.insertAdjacentHTML('beforeend', `<button class="tc-chip-clear" id="tcChipClear">Xóa tất cả</button>`);
+    document.getElementById('tcChipClear').addEventListener('click', resetAll);
+  }
 
   const badge = document.getElementById('tcFilterBadge');
   badge.style.display = chips.length ? 'inline-flex' : 'none';
@@ -562,7 +570,7 @@ function readURL() {
   if (p.get('q')) state.search = p.get('q');
   if (p.get('sort')) state.sort = p.get('sort');
   if (p.get('priceMax')) state.priceMax = +p.get('priceMax');
-  if (p.get('page')) state.page = +p.get('page') || 1;
+  if (p.get('page')) state.page = Math.max(1, +p.get('page') || 1);
 }
 function syncUI() {
   document.getElementById('tcBannerSearchInput').value = state.search;
@@ -581,7 +589,7 @@ function syncUI() {
 function render() {
   const filtered = sortList(PRODUCTS.filter(match));
   const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
-  state.page = Math.min(state.page, totalPages);
+  state.page = Math.max(1, Math.min(state.page, totalPages));
   const start = (state.page - 1) * PER_PAGE;
   const pageItems = filtered.slice(start, start + PER_PAGE);
   renderGrid(pageItems);

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Công cụ tính toán tài chính cá nhân — La Bàn Tài Chính</title>
+<meta name="description" content="3 công cụ miễn phí: tính lãi kép, lập ngân sách theo quy tắc 50/30/20, và tính quỹ khẩn cấp phù hợp với chi phí sinh hoạt của bạn.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wd-container btc-nav-inner">
+    <a href="index.html" class="btc-logo"><span class="btc-logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16.2 7.8-2.1 6.3-6.3 2.1 2.1-6.3z"/></svg></span>La Bàn <span>Tài Chính</span></a>
+    <div class="btc-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="chuyen-muc.html">Chuyên mục</a>
+      <a href="cong-cu-tinh-toan.html" class="active">Công cụ tính toán</a>
+      <a href="ve-toi.html">Về tôi</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <div class="btc-nav-cta">
+      <button class="btc-nav-search-btn" aria-label="Tìm kiếm bài viết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
+      <a href="lien-he.html" class="btc-btn btc-btn-primary btc-btn-sm">Nhận bản tin</a>
+      <button class="btc-nav-burger" id="navBurger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="btc-nav-mob" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="chuyen-muc.html">Chuyên mục</a>
+  <a href="cong-cu-tinh-toan.html" class="active">Công cụ tính toán</a>
+  <a href="ve-toi.html">Về tôi</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="lien-he.html" class="btc-btn btc-btn-primary btc-btn-block">Nhận bản tin miễn phí</a>
+</div>
+
+<header class="btc-page-header" style="background-image:url('https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?w=1600&auto=format&fit=crop&q=60')">
+  <div class="wd-container btc-page-header-in">
+    <div class="btc-breadcrumb"><a href="index.html">Trang chủ</a><span>/</span><span>Công cụ tính toán</span></div>
+    <div class="btc-tag">3 công cụ miễn phí</div>
+    <h1>Công cụ tính toán <em style="color:var(--accent-mid);font-style:normal">tài chính</em></h1>
+    <p>Không cần công thức phức tạp — nhập số liệu của bạn, kết quả hiển thị ngay lập tức, tính toán hoàn toàn trên trình duyệt của bạn.</p>
+  </div>
+</header>
+
+<section class="btc-sec">
+  <div class="wd-container">
+    <div class="btc-tabs" data-reveal>
+      <button class="btc-tab-btn active" data-tab="tabCompound">Máy tính lãi kép</button>
+      <button class="btc-tab-btn" data-tab="tabBudget">Ngân sách 50/30/20</button>
+      <button class="btc-tab-btn" data-tab="tabEmergency">Quỹ khẩn cấp</button>
+    </div>
+
+    <!-- TAB 1: Lãi kép -->
+    <div class="btc-tab-panel active" id="tabCompound">
+      <div class="btc-calc-wrap" data-reveal data-delay="1">
+        <form class="btc-calc-form" id="btcCompoundForm">
+          <h3 style="margin-bottom:20px">Nhập thông tin đầu tư</h3>
+          <div class="btc-field">
+            <label for="btcPrincipal">Số tiền gốc ban đầu (đ)</label>
+            <input type="number" id="btcPrincipal" value="50000000" min="0" step="1000000">
+          </div>
+          <div class="btc-field-row">
+            <div class="btc-field">
+              <label for="btcRate">Lãi suất kỳ vọng / năm (%)</label>
+              <input type="number" id="btcRate" value="9" min="0" max="50" step="0.1">
+            </div>
+            <div class="btc-field">
+              <label for="btcYears">Số năm đầu tư</label>
+              <input type="number" id="btcYears" value="20" min="1" max="60" step="1">
+            </div>
+          </div>
+          <div class="btc-field-row">
+            <div class="btc-field">
+              <label for="btcMonthly">Đóng góp thêm / tháng (đ)</label>
+              <input type="number" id="btcMonthly" value="2000000" min="0" step="100000">
+            </div>
+            <div class="btc-field">
+              <label for="btcFreq">Tần suất ghép lãi</label>
+              <select id="btcFreq">
+                <option value="yearly">Hàng năm</option>
+                <option value="quarterly">Hàng quý</option>
+                <option value="monthly" selected>Hàng tháng</option>
+              </select>
+            </div>
+          </div>
+        </form>
+        <div class="btc-calc-result">
+          <div class="btc-result-main">
+            <div class="btc-result-label">Tổng tài sản sau kỳ đầu tư</div>
+            <div class="btc-result-value" id="btcCompoundTotal">0 đ</div>
+          </div>
+          <div class="btc-result-row"><span>Tổng tiền đã đóng góp</span><strong id="btcCompoundContrib">0 đ</strong></div>
+          <div class="btc-result-row"><span>Tổng lãi kiếm được</span><strong id="btcCompoundInterest" style="color:var(--accent-mid)">0 đ</strong></div>
+          <div class="btc-result-bar-wrap">
+            <div class="btc-result-bar"><div class="btc-result-bar-seg" id="btcBarContrib" style="background:rgba(255,255,255,.28)"></div><div class="btc-result-bar-seg" id="btcBarInterest" style="background:var(--accent-mid)"></div></div>
+            <div class="btc-result-bar-legend"><span><span class="btc-legend-dot" style="background:rgba(255,255,255,.28)"></span>Đã đóng góp</span><span><span class="btc-legend-dot" style="background:var(--accent-mid)"></span>Tiền lãi</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: Ngân sách 50/30/20 -->
+    <div class="btc-tab-panel" id="tabBudget">
+      <div class="btc-calc-wrap" data-reveal>
+        <form class="btc-calc-form" id="btcBudgetForm">
+          <h3 style="margin-bottom:20px">Nhập thu nhập hàng tháng</h3>
+          <div class="btc-field">
+            <label for="btcIncome">Thu nhập ròng hàng tháng (đ)</label>
+            <input type="number" id="btcIncome" value="15000000" min="0" step="500000">
+          </div>
+          <p style="font-size:13px;font-weight:300;color:var(--text-2);line-height:1.7;margin-top:10px">Quy tắc 50/30/20 chia thu nhập của bạn thành 3 nhóm: 50% cho nhu cầu thiết yếu (nhà ở, ăn uống, điện nước, đi lại), 30% cho mong muốn cá nhân (giải trí, mua sắm, du lịch), và 20% cho tiết kiệm hoặc trả nợ.</p>
+        </form>
+        <div class="btc-calc-result">
+          <div class="btc-result-row"><span>50% — Nhu cầu thiết yếu</span><strong id="btcBudgetNeeds" style="color:#fff">0 đ</strong></div>
+          <div class="btc-result-row"><span>30% — Mong muốn cá nhân</span><strong id="btcBudgetWants" style="color:#fff">0 đ</strong></div>
+          <div class="btc-result-row"><span>20% — Tiết kiệm / trả nợ</span><strong id="btcBudgetSave" style="color:var(--accent-mid)">0 đ</strong></div>
+          <div class="btc-result-bar-wrap">
+            <div class="btc-result-bar">
+              <div class="btc-result-bar-seg" id="btcBarNeeds" style="background:rgba(255,255,255,.65)"></div>
+              <div class="btc-result-bar-seg" id="btcBarWants" style="background:rgba(255,255,255,.32)"></div>
+              <div class="btc-result-bar-seg" id="btcBarSave" style="background:var(--accent-mid)"></div>
+            </div>
+            <div class="btc-result-bar-legend"><span>Thiết yếu</span><span>Mong muốn</span><span>Tiết kiệm</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: Quỹ khẩn cấp -->
+    <div class="btc-tab-panel" id="tabEmergency">
+      <div class="btc-calc-wrap" data-reveal>
+        <form class="btc-calc-form" id="btcEmergencyForm">
+          <h3 style="margin-bottom:20px">Nhập chi phí sinh hoạt</h3>
+          <div class="btc-field">
+            <label for="btcMonthlyCost">Chi phí sinh hoạt hàng tháng (đ)</label>
+            <input type="number" id="btcMonthlyCost" value="10000000" min="0" step="500000">
+          </div>
+          <div class="btc-field">
+            <label for="btcMonthsTarget">Số tháng dự phòng mong muốn</label>
+            <select id="btcMonthsTarget">
+              <option value="3">3 tháng — công việc ổn định</option>
+              <option value="6" selected>6 tháng — khuyến nghị phổ biến</option>
+              <option value="9">9 tháng — thu nhập không ổn định</option>
+              <option value="12">12 tháng — freelancer / kinh doanh riêng</option>
+            </select>
+          </div>
+        </form>
+        <div class="btc-calc-result">
+          <div class="btc-result-main">
+            <div class="btc-result-label">Tổng quỹ khẩn cấp cần có</div>
+            <div class="btc-result-value" id="btcEmergencyTotal">0 đ</div>
+          </div>
+          <div class="btc-result-row"><span>Chi phí sinh hoạt / tháng</span><strong id="btcEmergencyMonthly">0 đ</strong></div>
+          <div class="btc-result-row"><span>Số tháng dự phòng</span><strong id="btcEmergencyMonths">0 tháng</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="btc-disclaimer" style="margin-top:48px" data-reveal>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+      <div>Các công cụ trên chỉ mang tính ước lượng tham khảo dựa trên số liệu bạn nhập vào, không tính đến thuế, phí giao dịch hay biến động lãi suất thực tế. Đây không phải lời khuyên đầu tư — vui lòng cân nhắc kỹ hoặc tham khảo chuyên gia tài chính trước khi ra quyết định.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="btc-footer">
+  <div class="wd-container">
+    <div class="btc-footer-grid">
+      <div>
+        <div class="btc-footer-logo"><span class="btc-logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16.2 7.8-2.1 6.3-6.3 2.1 2.1-6.3z"/></svg></span> La Bàn <span style="color:var(--accent-mid)">Tài Chính</span></div>
+        <p class="btc-footer-desc">Blog chia sẻ kiến thức tài chính cá nhân dễ hiểu — tiết kiệm, đầu tư, quản lý chi tiêu và kế hoạch nghỉ hưu cho người Việt trẻ. Nội dung mang tính tham khảo, không phải lời khuyên đầu tư.</p>
+        <div class="btc-footer-social">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.6-.5-5.3c-.3-1-1-1.7-2-2C18.8 4.2 12 4.2 12 4.2s-6.8 0-8.5.5c-1 .3-1.7 1-2 2C1 8.4 1 12 1 12s0 3.6.5 5.3c.3 1 1 1.7 2 2 1.7.5 8.5.5 8.5.5s6.8 0 8.5-.5c1-.3 1.7-1 2-2 .5-1.7.5-5.3.5-5.3zM9.8 15.3V8.7l6 3.3-6 3.3z"/></svg></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.1c-1-.9-1.6-2.1-1.6-3.5h-3.3v14.2c0 1.6-1.3 2.9-2.9 2.9s-2.9-1.3-2.9-2.9 1.3-2.9 2.9-2.9c.3 0 .6 0 .9.1V9.6c-.3 0-.6-.1-.9-.1-3.4 0-6.2 2.8-6.2 6.2S6.4 22 9.8 22s6.2-2.8 6.2-6.2V8.9c1.3 1 3 1.5 4.7 1.5V7.1c-1.4 0-2.7-.5-3.7-1.4-.1-.2-.3-.4-.4-.6z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <div class="btc-footer-title">Chuyên mục</div>
+        <div class="btc-footer-links">
+          <a href="chuyen-muc.html?cat=tiet-kiem">Tiết kiệm</a>
+          <a href="chuyen-muc.html?cat=dau-tu">Đầu tư</a>
+          <a href="chuyen-muc.html?cat=quan-ly-no">Quản lý nợ</a>
+          <a href="chuyen-muc.html?cat=ngan-sach">Ngân sách</a>
+          <a href="chuyen-muc.html?cat=bao-hiem">Bảo hiểm</a>
+          <a href="chuyen-muc.html?cat=huu-tri">Hưu trí</a>
+        </div>
+      </div>
+      <div>
+        <div class="btc-footer-title">Trang</div>
+        <div class="btc-footer-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="chuyen-muc.html">Chuyên mục</a>
+          <a href="cong-cu-tinh-toan.html">Công cụ tính toán</a>
+          <a href="ve-toi.html">Về tôi</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div>
+        <div class="btc-footer-title">Liên hệ</div>
+        <div class="btc-footer-links">
+          <a href="mailto:hello@[labantaichinh].vn">hello@[labantaichinh].vn</a>
+          <span>[024 1234 5678]</span>
+          <span>[Số nhà, Phố, Quận Cầu Giấy, Hà Nội]</span>
+        </div>
+      </div>
+    </div>
+    <div class="btc-footer-maps">
+      <iframe src="https://maps.google.com/maps?q=21.0285,105.8542&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ vị trí La Bàn Tài Chính"></iframe>
+    </div>
+    <div class="btc-footer-bottom">
+      <span>© 2026 La Bàn Tài Chính. Bản quyền thuộc về [Tên chủ sở hữu].</span>
+      <div class="btc-footer-bottom-links">
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<a href="https://zalo.me/[SỐ_ZALO]" class="btc-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

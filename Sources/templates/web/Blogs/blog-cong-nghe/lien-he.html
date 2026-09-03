@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liên hệ — PIXEL. Blog Công Nghệ</title>
+<meta name="description" content="Liên hệ PIXEL. để gửi bài viết, đề xuất chủ đề, hợp tác review sản phẩm hoặc quảng cáo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav id="bcn-nav">
+  <div class="bcn-container bcn-nav-inner">
+    <a href="index.html" class="bcn-logo"><span class="bcn-logo-mark"></span>PIXEL<span>.</span></a>
+    <div class="bcn-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="chuyen-muc.html">Chuyên mục</a>
+      <a href="danh-gia-san-pham.html">Đánh giá sản phẩm</a>
+      <a href="ve-toi.html">Về tôi</a>
+      <a href="lien-he.html" class="bcn-active">Liên hệ</a>
+    </div>
+    <div class="bcn-nav-cta bcn-nav-cta-desktop">
+      <a href="index.html#bcn-newsletter" class="bcn-btn bcn-btn-accent bcn-btn-sm">Đăng ký nhận tin</a>
+    </div>
+    <button class="bcn-burger" id="bcnBurger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="bcn-mob-overlay" id="bcnMobOverlay"></div>
+<div class="bcn-mob-nav" id="bcnMobNav">
+  <ul>
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="chuyen-muc.html">Chuyên mục</a></li>
+    <li><a href="danh-gia-san-pham.html">Đánh giá sản phẩm</a></li>
+    <li><a href="ve-toi.html">Về tôi</a></li>
+    <li><a href="lien-he.html" class="bcn-active">Liên hệ</a></li>
+  </ul>
+  <div class="bcn-mob-actions">
+    <a href="index.html#bcn-newsletter" class="bcn-btn bcn-btn-accent bcn-btn-full">Đăng ký nhận tin</a>
+  </div>
+</div>
+
+<header class="bcn-page-hero">
+  <div class="bcn-page-hero-grid" aria-hidden="true"></div>
+  <div class="bcn-container bcn-page-hero-inner">
+    <div class="bcn-hero-label" style="margin-bottom:18px;">Kết nối</div>
+    <h1>Liên hệ</h1>
+    <p>Gửi bài viết, đề xuất chủ đề, hợp tác review sản phẩm hoặc quảng cáo — chúng tôi phản hồi trong 3-5 ngày làm việc.</p>
+  </div>
+</header>
+
+<section class="bcn-sec">
+  <div class="bcn-container">
+    <div class="bcn-contact-grid">
+      <div data-reveal>
+        <div class="bcn-eyebrow">Gửi tin nhắn</div>
+        <h2 class="bcn-sec-title">Bạn muốn trao đổi điều gì?</h2>
+        <form onsubmit="event.preventDefault(); alert('[Demo] Cảm ơn bạn đã liên hệ, PIXEL. sẽ phản hồi sớm nhất!');" style="margin-top:24px;">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="bcn-form-group">
+                <label for="bcnName">Họ và tên</label>
+                <input type="text" id="bcnName" name="name" required placeholder="Nguyễn Văn A">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="bcn-form-group">
+                <label for="bcnEmail">Email</label>
+                <input type="email" id="bcnEmail" name="email" required placeholder="ban@email.com">
+              </div>
+            </div>
+          </div>
+          <div class="bcn-form-group">
+            <label for="bcnSubject">Chủ đề</label>
+            <select id="bcnSubject" name="subject" required>
+              <option value="">— Chọn chủ đề —</option>
+              <option>Gửi bài viết cộng tác</option>
+              <option>Đề xuất chủ đề bài viết</option>
+              <option>Hợp tác review sản phẩm</option>
+              <option>Hợp tác quảng cáo</option>
+              <option>Báo lỗi nội dung</option>
+              <option>Khác</option>
+            </select>
+          </div>
+          <div class="bcn-form-group">
+            <label for="bcnMessage">Nội dung</label>
+            <textarea id="bcnMessage" name="message" rows="5" required placeholder="Nội dung bạn muốn trao đổi với PIXEL...."></textarea>
+          </div>
+          <button type="submit" class="bcn-btn bcn-btn-accent bcn-btn-full">Gửi liên hệ <i class="bi bi-send"></i></button>
+        </form>
+      </div>
+
+      <div data-reveal data-delay="1">
+        <div class="bcn-eyebrow">Thông tin</div>
+        <h2 class="bcn-sec-title">Kênh liên hệ khác</h2>
+        <div style="margin-top:8px;">
+          <div class="bcn-contact-info-item">
+            <span class="bcn-contact-info-icon"><i class="bi bi-envelope"></i></span>
+            <div><h5>Email biên tập</h5><p>bientap@pixelblog.vn</p></div>
+          </div>
+          <div class="bcn-contact-info-item">
+            <span class="bcn-contact-info-icon"><i class="bi bi-megaphone"></i></span>
+            <div><h5>Hợp tác quảng cáo</h5><p>quangcao@pixelblog.vn</p></div>
+          </div>
+          <div class="bcn-contact-info-item">
+            <span class="bcn-contact-info-icon"><i class="bi bi-telephone"></i></span>
+            <div><h5>Hotline</h5><p>098 123 45 67 (8:00 - 18:00, Thứ 2 - Thứ 6)</p></div>
+          </div>
+          <div class="bcn-contact-info-item">
+            <span class="bcn-contact-info-icon"><i class="bi bi-geo-alt"></i></span>
+            <div><h5>Văn phòng</h5><p>Tầng 5, tòa Innotech, số 39A Ngô Quyền, Cầu Giấy, Hà Nội</p></div>
+          </div>
+          <div class="bcn-contact-info-item" style="border-bottom:none;">
+            <span class="bcn-contact-info-icon"><i class="bi bi-clock"></i></span>
+            <div><h5>Thời gian phản hồi</h5><p>3-5 ngày làm việc đối với bài viết cộng tác</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bcn-footer">
+  <div class="bcn-container">
+    <div class="bcn-footer-grid">
+      <div>
+        <a href="index.html" class="bcn-footer-logo"><span class="bcn-logo-mark"></span>PIXEL.</a>
+        <p class="bcn-footer-desc">Blog công nghệ độc lập — cập nhật tin tức, đánh giá sản phẩm và thủ thuật hữu ích mỗi ngày, viết bởi người thật dùng thật.</p>
+        <div class="bcn-footer-social">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="bcn-footer-title">Chuyên mục</div>
+        <div class="bcn-footer-links">
+          <a href="chuyen-muc.html#tin-tuc">Tin tức công nghệ</a>
+          <a href="danh-gia-san-pham.html">Đánh giá sản phẩm</a>
+          <a href="chuyen-muc.html#thu-thuat">Thủ thuật &amp; Mẹo</a>
+          <a href="chuyen-muc.html#ai-xu-huong">AI &amp; Xu hướng</a>
+          <a href="chuyen-muc.html#bao-mat">Bảo mật</a>
+        </div>
+      </div>
+      <div>
+        <div class="bcn-footer-title">Về PIXEL.</div>
+        <div class="bcn-footer-links">
+          <a href="ve-toi.html">Về tôi</a>
+          <a href="chuyen-muc.html">Chuyên mục</a>
+          <a href="danh-gia-san-pham.html">Đánh giá sản phẩm</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div>
+        <div class="bcn-footer-title">Pháp lý</div>
+        <div class="bcn-footer-links">
+          <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+          <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+          <a href="lien-he.html">Hợp tác quảng cáo</a>
+        </div>
+      </div>
+    </div>
+    <div class="bcn-footer-maps">
+      <iframe src="https://maps.google.com/maps?q=21.0378,105.7826&hl=vi&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Vị trí văn phòng PIXEL. trên Google Maps"></iframe>
+    </div>
+    <div class="bcn-footer-bottom">
+      <div>© 2026 PIXEL. Blog Công Nghệ. Mọi quyền được bảo lưu.</div>
+      <div style="display:flex; gap:20px;"><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a><a href="dieu-khoan.html">Điều khoản sử dụng</a></div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/" target="_blank" rel="noopener noreferrer" class="bcn-zalo-float" aria-label="Chat Zalo"><i class="bi bi-chat-dots-fill"></i></a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -320,8 +320,15 @@
       }).join('');
     }
 
+    // Escape trước khi nội suy vào innerHTML — label chip có thể chứa state.search/state.category
+    // đọc thẳng từ query string (?q=..., ?category=...), không escape sẽ là XSS phản chiếu.
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+    }
+
     function chip(label, onRemove) {
-      return `<span class="nt-chip">${label}<button data-chip-remove aria-label="Bỏ lọc ${label}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6L6 18M6 6l12 12"/></svg></button></span>`;
+      const safeLabel = escapeHtml(label);
+      return `<span class="nt-chip">${safeLabel}<button data-chip-remove aria-label="Bỏ lọc ${safeLabel}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6L6 18M6 6l12 12"/></svg></button></span>`;
     }
 
     function renderActiveChips() {
@@ -373,17 +380,23 @@
       history.replaceState(null, '', qsStr ? `?${qsStr}` : location.pathname);
     }
 
+    // Đọc query string — mọi giá trị dùng để phân loại (category/material/color/room/collection)
+    // phải khớp đúng 1 slug hợp lệ trong dữ liệu thật, bỏ qua nếu không khớp (không gán thẳng
+    // chuỗi thô từ URL vào state) — chặn cả sai lệch filter lẫn XSS phản chiếu qua chip label.
     function readStateFromURL() {
       const p = new URLSearchParams(location.search);
-      if (p.get('category')) state.category = p.get('category');
-      if (p.get('material')) state.material = p.get('material').split(',');
-      if (p.get('color')) state.color = p.get('color').split(',');
-      if (p.get('room')) state.room = p.get('room').split(',');
-      if (p.get('price')) state.price = +p.get('price');
-      if (p.get('q')) state.search = p.get('q');
+      const cat = p.get('category');
+      if (cat && (cat === 'tat-ca' || CATEGORIES.some(x => x.slug === cat))) state.category = cat;
+      if (p.get('material')) state.material = p.get('material').split(',').filter(s => MATERIALS.some(x => x.slug === s));
+      if (p.get('color')) state.color = p.get('color').split(',').filter(s => COLORS.some(x => x.slug === s));
+      if (p.get('room')) state.room = p.get('room').split(',').filter(s => ROOMS.some(x => x.slug === s));
+      const price = +p.get('price');
+      if (p.get('price') && !Number.isNaN(price) && price > 0) state.price = price;
+      if (p.get('q')) state.search = p.get('q').slice(0, 100);
       if (p.get('sort')) state.sort = p.get('sort');
-      if (p.get('page')) state.page = +p.get('page');
-      if (p.get('collection')) state.collection = p.get('collection');
+      if (p.get('page')) state.page = Math.max(1, +p.get('page') || 1);
+      const coll = p.get('collection');
+      if (coll && COLLECTIONS.some(x => x.slug === coll)) state.collection = coll;
     }
 
     function syncCatPills() {
@@ -397,7 +410,7 @@
     function render() {
       const filtered = sortProducts(PRODUCTS.filter(matchProduct));
       const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
-      state.page = Math.min(state.page, totalPages);
+      state.page = Math.max(1, Math.min(state.page, totalPages));
       const start = (state.page - 1) * PER_PAGE;
       const pageItems = filtered.slice(start, start + PER_PAGE);
 
@@ -606,6 +619,7 @@
     qs('pdTitle').textContent = product.name;
     qs('pdRating').textContent = product.rating;
     qs('pdSold').textContent = product.sold;
+    if (qs('pdRatingBig')) qs('pdRatingBig').textContent = product.rating;
 
     const sale = product.salePrice != null;
     qs('pdPriceBox').innerHTML = sale

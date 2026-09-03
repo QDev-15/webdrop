@@ -454,6 +454,12 @@
     });
   }
 
+  // state.search/category/theme có thể đến thẳng từ query string (?q=, ?category=, ?theme=)
+  // không qua validate — escape trước khi nội suy vào innerHTML để chặn XSS phản chiếu.
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+  }
+
   function renderActiveChips() {
     const chips = [];
     if (state.category !== 'tat-ca') { const c = CATEGORIES.find(c => c.slug === state.category); chips.push({ label: c ? c.label : state.category, type: 'category' }); }
@@ -465,8 +471,8 @@
 
     if (chips.length === 0) { chipsRow.style.display = 'none'; updateFilterBadge(); return; }
     chipsRow.style.display = '';
-    chipsRow.innerHTML = chips.map((c, i) =>
-      `<span class="tr-chip">${c.label}<span class="tr-chip-remove" data-chip-idx="${i}" role="button" tabindex="0" aria-label="Xóa ${c.label}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg></span></span>`
+    chipsRow.innerHTML = chips.map((c, i) => { const safeLabel = escapeHtml(c.label); return
+      `<span class="tr-chip">${safeLabel}<span class="tr-chip-remove" data-chip-idx="${i}" role="button" tabindex="0" aria-label="Xóa ${safeLabel}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg></span></span>`; }
     ).join('') + `<span class="tr-chips-clear" role="button" tabindex="0" id="chipsClr">Xóa tất cả</span>`;
 
     chipsRow.querySelectorAll('.tr-chip-remove').forEach(btn => {
@@ -477,7 +483,7 @@
         else if (chip.type === 'occasion') { state.occasion = state.occasion.filter(o => o !== chip.value); syncCheckboxUI(); }
         else if (chip.type === 'price') { state.price = MAX_PRICE; [priceRange, priceRangeMobile].forEach(i => i.value = MAX_PRICE); [priceDisplay, priceDisplayMobile].forEach(d => d.textContent = 'Tất cả'); }
         else if (chip.type === 'theme') { state.theme = null; }
-        else if (chip.type === 'search') { state.search = ''; }
+        else if (chip.type === 'search') { state.search = ''; document.getElementById('navSearchInput').value = ''; }
         onFilterChange();
       });
     });
@@ -494,6 +500,7 @@
   function clearAllState() {
     state.category = 'tat-ca'; state.material = []; state.occasion = []; state.theme = null;
     state.price = MAX_PRICE; state.search = ''; state.sort = 'newest'; state.page = 1;
+    document.getElementById('navSearchInput').value = '';
     syncCatPills('tat-ca'); syncCheckboxUI();
     [priceRange, priceRangeMobile].forEach(i => i.value = MAX_PRICE);
     [priceDisplay, priceDisplayMobile].forEach(d => d.textContent = 'Tất cả');

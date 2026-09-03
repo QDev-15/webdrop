@@ -293,9 +293,15 @@
     return arr;
   }
 
+  // dhState.search/brand có thể đến thẳng từ query string (?q=, ?brand=) không qua validate —
+  // escape trước khi nội suy vào innerHTML để chặn XSS phản chiếu.
+  function dhEscapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+  }
+
   function dhCountActiveFilters() {
     return dhState.category.length + dhState.material.length + dhState.brand.length + dhState.style.length
-      + (dhState.price < MAX_PRICE ? 1 : 0) + (dhState.search ? 1 : 0);
+      + (dhState.price < MAX_PRICE ? 1 : 0) + (dhState.search ? 1 : 0) + (dhState.limitedOnly ? 1 : 0);
   }
 
   function dhRenderChips() {
@@ -306,10 +312,11 @@
     dhState.style.forEach(v => chips.push({ label: STYLE_LABELS[v], clear: () => dhState.style = dhState.style.filter(x => x !== v) }));
     if (dhState.price < MAX_PRICE) chips.push({ label: 'Dưới ' + dhFormatVND(dhState.price), clear: () => dhState.price = MAX_PRICE });
     if (dhState.search) chips.push({ label: 'Tìm: "' + dhState.search + '"', clear: () => dhState.search = '' });
+    if (dhState.limitedOnly) chips.push({ label: 'Chỉ phiên bản giới hạn', clear: () => { dhState.limitedOnly = false; dhState.themeLabel = null; } });
 
     const row = document.getElementById('dhChipsRow');
     if (!chips.length) { row.innerHTML = ''; return; }
-    row.innerHTML = chips.map((c, i) => `<span class="dh-active-chip" data-chip="${i}">${c.label}<button aria-label="Gỡ bộ lọc">✕</button></span>`).join('')
+    row.innerHTML = chips.map((c, i) => `<span class="dh-active-chip" data-chip="${i}">${dhEscapeHtml(c.label)}<button aria-label="Gỡ bộ lọc">✕</button></span>`).join('')
       + `<button class="dh-clear-all" id="dhClearAllChips">Xóa tất cả</button>`;
     row.querySelectorAll('[data-chip]').forEach((el, i) => {
       el.querySelector('button').addEventListener('click', () => { chips[i].clear(); dhState.page = 1; dhRender(); });
@@ -320,6 +327,7 @@
   function dhClearAll() {
     dhState.category = []; dhState.material = []; dhState.brand = []; dhState.style = [];
     dhState.price = MAX_PRICE; dhState.search = ''; dhState.limitedOnly = false; dhState.page = 1;
+    dhState.themeLabel = null;
     dhRender();
   }
 

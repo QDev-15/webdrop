@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bếp Xanh — Blog Ẩm Thực: Công Thức Nấu Ăn, Review Quán Ngon & Mẹo Bếp</title>
+<meta name="description" content="Bếp Xanh — blog ẩm thực chia sẻ công thức nấu ăn chuẩn vị, review quán ăn ngon thật, và mẹo bếp núc giúp bạn nấu ngon tại nhà mỗi ngày.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="bam-container bam-nav-inner">
+    <a href="index.html" class="bam-logo"><span class="bam-logo-mark">🥗</span>Bếp <span>Xanh</span></a>
+    <div class="bam-nav-links">
+      <a href="index.html" class="active">Trang chủ</a>
+      <a href="chuyen-muc.html">Chuyên mục</a>
+      <a href="cong-thuc-nau-an.html">Công thức nấu ăn</a>
+      <a href="ve-toi.html">Về tôi</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <div class="bam-nav-cta">
+      <div class="bam-nav-search"><i class="bi bi-search"></i><input type="text" placeholder="Tìm công thức..."></div>
+      <button class="bam-hamburger" id="navBurger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="bam-nav-mobile" id="navMob">
+  <a href="index.html">Trang chủ</a>
+  <a href="chuyen-muc.html">Chuyên mục</a>
+  <a href="cong-thuc-nau-an.html">Công thức nấu ăn</a>
+  <a href="ve-toi.html">Về tôi</a>
+  <a href="lien-he.html">Liên hệ</a>
+</div>
+
+<!-- ═══ CAROUSEL HERO — H9 Product Showcase ═══ -->
+<section class="bam-hero">
+
+  <div class="bam-hero-slide active" data-tone="1">
+    <div class="bam-hero-inner">
+      <div class="bam-hero-text">
+        <div class="bam-hero-label">Mỗi tuần một công thức mới</div>
+        <h1 class="bam-hero-title">Nấu ăn ngon <em>mỗi ngày</em> tại căn bếp nhà bạn</h1>
+        <p class="bam-hero-desc">Hơn 320 công thức đã được thử đi thử lại nhiều lần, đo lường chính xác từng gram — dễ làm, dễ thành công ngay từ lần vào bếp đầu tiên.</p>
+        <div class="bam-hero-ctas">
+          <a href="cong-thuc-nau-an.html" class="bam-btn bam-btn-primary">Xem công thức mới nhất</a>
+          <a href="chuyen-muc.html" class="bam-btn bam-btn-ghost">Khám phá chuyên mục</a>
+        </div>
+      </div>
+      <div class="bam-hero-photogrid">
+        <a href="cong-thuc-nau-an.html"><img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=760&q=80&auto=format&fit=crop" alt="Mâm bữa sáng đầy đủ dinh dưỡng nhìn từ trên xuống" loading="lazy"></a>
+        <a href="chuyen-muc.html"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=500&q=80&auto=format&fit=crop" alt="Cơm chiên rau củ trong chảo, vắt thêm chanh" loading="lazy"></a>
+        <a href="chuyen-muc.html"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500&q=80&auto=format&fit=crop" alt="Bò áp chảo ăn kèm bánh mì nướng và salad" loading="lazy"></a>
+        <a href="chuyen-muc.html"><img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=500&q=80&auto=format&fit=crop" alt="Mâm cơm kiểu Ấn Độ nhiều món nhỏ" loading="lazy"></a>
+        <a href="cong-thuc-nau-an.html"><img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=500&q=80&auto=format&fit=crop" alt="Bánh pancake xếp chồng rưới mật ong" loading="lazy"></a>
+        <a href="chuyen-muc.html"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=80&auto=format&fit=crop" alt="Buddha bowl rau củ nhiều màu sắc" loading="lazy"></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="bam-hero-slide" data-tone="2">
+    <div class="bam-hero-inner">
+      <div class="bam-hero-text">
+        <div class="bam-hero-label">Review thật — không PR</div>
+        <h2 class="bam-hero-title">Review quán ăn ngon, <em>giá thật</em> quanh bạn</h2>
+        <p class="bam-hero-desc">Đi ăn thật, tự trả tiền, viết cảm nhận thật — từ quán vỉa hè quen thuộc tới nhà hàng sang trọng, không nhận bài PR trá hình.</p>
+        <div class="bam-hero-ctas">
+          <a href="bai-viet-chi-tiet.html" class="bam-btn bam-btn-primary">Đọc bài review mới</a>
+          <a href="chuyen-muc.html" class="bam-btn bam-btn-ghost">Xem chuyên mục Review</a>
+        </div>
+      </div>
+      <div class="bam-hero-photogrid">
+        <a href="bai-viet-chi-tiet.html"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=760&q=80&auto=format&fit=crop" alt="Bàn ăn nhà hàng bày biện tinh tế" loading="lazy"></a>
+        <a href="chuyen-muc.html"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500&q=80&auto=format&fit=crop" alt="Không gian nhà hàng hiện đại ấm cúng" loading="lazy"></a>
+        <a href="chuyen-muc.html"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=500&q=80&auto=format&fit=crop" alt="Burger bò phô mai ăn kèm nước ngọt có ga" loading="lazy"></a>
+        <a href="chuyen-muc.html"><img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=500&q=80&auto=format&fit=crop" alt="Đĩa taco nhiều loại nhân" loading="lazy"></a>
+        <a href="chuyen-muc.html"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=500&q=80&auto=format&fit=crop" alt="Set nướng thập cẩm bò gà tôm trên vỉ" loading="lazy"></a>
+        <a href="chuyen-muc.html"><img src="https://images.unsplash.com/photo-1512152272829-e3139592d56f?w=500&q=80&auto=format&fit=crop" alt="Burger bò ăn kèm khoai tây chiên" loading="lazy"></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="bam-hero-slide" data-tone="3">
+    <div class="bam-hero-inner">
+      <div class="bam-hero-text">
+        <div class="bam-hero-label">Mẹo nhỏ, hiệu quả lớn</div>
+        <h2 class="bam-hero-title">Mẹo bếp núc giúp bạn <em>nấu ăn nhàn hơn</em></h2>
+        <p class="bam-hero-desc">Từ cách bảo quản rau củ tươi lâu tới bí quyết hầm nước dùng trong veo — những mẹo được đúc kết từ hàng trăm lần thử-sai trong bếp.</p>
+        <div class="bam-hero-ctas">
+          <a href="cong-thuc-nau-an.html" class="bam-btn bam-btn-primary">Xem mẹo bếp hay</a>
+          <a href="chuyen-muc.html" class="bam-btn bam-btn-ghost">Tất cả chuyên mục</a>
+        </div>
+      </div>
+      <div class="bam-hero-photogrid">
+        <a href="cong-thuc-nau-an.html"><img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=760&q=80&auto=format&fit=crop" alt="Máy tính bảng dựng công thức nấu ăn trên quầy bếp" loading="lazy"></a>
+        <a href="chuyen-muc.html"><img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=500&q=80&auto=format&fit=crop" alt="Khay rau củ thái sẵn nhiều màu sắc" loading="lazy"></a>
+        <a href="chuyen-muc.html"><img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=500&q=80&auto=format&fit=crop" alt="Bàn ăn sáng bày waffle nhìn từ trên xuống" loading="lazy"></a>
+        <a href="chuyen-muc.html"><img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=500&q=80&auto=format&fit=crop" alt="Súp bí đỏ kem tươi trang trí hạt bí" loading="lazy"></a>
+        <a href="chuyen-muc.html"><img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=500&q=80&auto=format&fit=crop" alt="Súp cà chua kem tươi rắc hạnh nhân" loading="lazy"></a>
+        <a href="chuyen-muc.html"><img src="https://images.unsplash.com/photo-1543339494-b4cd4f7ba686?w=500&q=80&auto=format&fit=crop" alt="Ổ bánh mì nướng tại nhà còn nóng" loading="lazy"></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="bam-hero-slide" data-tone="4">
+    <div class="bam-hero-inner">
+      <div class="bam-hero-text">
+        <div class="bam-hero-label">Ăn ngon không đánh đổi sức khỏe</div>
+        <h2 class="bam-hero-title">Ăn lành, <em>sống xanh</em> mỗi ngày</h2>
+        <p class="bam-hero-desc">Gợi ý thực đơn cân bằng dinh dưỡng, nguyên liệu tươi sạch theo mùa và cách chế biến giữ trọn vitamin trong từng món ăn.</p>
+        <div class="bam-hero-ctas">
+          <a href="chuyen-muc.html" class="bam-btn bam-btn-primary">Xem thực đơn ăn lành</a>
+          <a href="ve-toi.html" class="bam-btn bam-btn-ghost">Câu chuyện Bếp Xanh</a>
+        </div>
+      </div>
+      <div class="bam-hero-photogrid">
+        <a href="chuyen-muc.html"><img src="https://images.unsplash.com/photo-1543353071-873f17a7a088?w=760&q=80&auto=format&fit=crop" alt="Nhiều bát buddha bowl rau củ nhìn từ trên xuống" loading="lazy"></a>
+        <a href="chuyen-muc.html"><img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=500&q=80&auto=format&fit=crop" alt="Trái cây mọng nước bày cùng hoa tươi" loading="lazy"></a>
+        <a href="chuyen-muc.html"><img src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=500&q=80&auto=format&fit=crop" alt="Đĩa trái cây thập cẩm ăn kèm socola đen" loading="lazy"></a>
+        <a href="chuyen-muc.html"><img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=500&q=80&auto=format&fit=crop" alt="Bánh mì nướng kiểu Pháp ăn kèm chuối việt quất" loading="lazy"></a>
+        <a href="chuyen-muc.html"><img src="https://images.unsplash.com/photo-1493770348161-369560ae357d?w=500&q=80&auto=format&fit=crop" alt="Rổ rau củ tươi nhiều màu trên nền tối" loading="lazy"></a>
+        <a href="chuyen-muc.html"><img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?w=500&q=80&auto=format&fit=crop" alt="Cận cảnh quả việt quất tươi" loading="lazy"></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="bam-hero-nav">
+    <button class="bam-hero-arrow bam-hero-prev" aria-label="Slide trước"><i class="bi bi-chevron-left"></i></button>
+    <div class="bam-hero-dots">
+      <button class="bam-hero-dot active" aria-label="Slide 1"></button>
+      <button class="bam-hero-dot" aria-label="Slide 2"></button>
+      <button class="bam-hero-dot" aria-label="Slide 3"></button>
+      <button class="bam-hero-dot" aria-label="Slide 4"></button>
+    </div>
+    <button class="bam-hero-arrow bam-hero-next" aria-label="Slide tiếp"><i class="bi bi-chevron-right"></i></button>
+  </div>
+</section>
+
+<!-- ═══ BENTO-GRID — Chuyên mục nổi bật ═══ -->
+<section class="bam-sec">
+  <div class="bam-container">
+    <div class="bam-sec-head" data-reveal>
+      <div class="bam-eyebrow">Khám phá</div>
+      <h2 class="bam-sec-title">Chuyên mục <em>nổi bật</em></h2>
+      <p class="bam-sec-sub">Chọn đúng chủ đề bạn quan tâm — từ món ăn hằng ngày đến review quán ăn khắp phố phường.</p>
+    </div>
+    <div class="bam-bento" data-reveal data-reveal-d1>
+      <a href="chuyen-muc.html" class="bam-bento-item a">
+        <img src="https://images.unsplash.com/photo-1600335895229-6e75511892c8?w=700&q=80&auto=format&fit=crop" alt="Đĩa mì Ý sốt cà chua trình bày đẹp mắt" loading="lazy">
+        <div class="bam-bento-body"><div class="bam-bento-count">86 bài viết</div><div class="bam-bento-name">Món chính</div></div>
+      </a>
+      <a href="chuyen-muc.html" class="bam-bento-item b">
+        <img src="https://images.unsplash.com/photo-1615937691194-97dbd3f3dc29?w=700&q=80&auto=format&fit=crop" alt="Bánh donut trang trí hoa quả tươi" loading="lazy">
+        <div class="bam-bento-body"><div class="bam-bento-count">54 bài viết</div><div class="bam-bento-name">Tráng miệng</div></div>
+      </a>
+      <a href="chuyen-muc.html" class="bam-bento-item c">
+        <img src="https://images.unsplash.com/photo-1546554137-f86b9593a222?w=500&q=80&auto=format&fit=crop" alt="Các ly sinh tố nhiều màu sắc trong hũ thủy tinh" loading="lazy">
+        <div class="bam-bento-body"><div class="bam-bento-count">31 bài</div><div class="bam-bento-name">Đồ uống</div></div>
+      </a>
+      <a href="chuyen-muc.html" class="bam-bento-item d">
+        <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=500&q=80&auto=format&fit=crop" alt="Bàn ăn nhà hàng bày nhiều món nhìn từ trên xuống" loading="lazy">
+        <div class="bam-bento-body"><div class="bam-bento-count">42 bài</div><div class="bam-bento-name">Review quán ăn</div></div>
+      </a>
+      <a href="chuyen-muc.html" class="bam-bento-item e">
+        <img src="https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?w=700&q=80&auto=format&fit=crop" alt="Ổ bánh mì nướng tại nhà xếp cạnh nhau" loading="lazy">
+        <div class="bam-bento-body"><div class="bam-bento-count">37 bài</div><div class="bam-bento-name">Mẹo bếp</div></div>
+      </a>
+      <a href="chuyen-muc.html" class="bam-bento-item f">
+        <img src="https://images.unsplash.com/photo-1518843875459-f738682238a6?w=700&q=80&auto=format&fit=crop" alt="Nhiều tô salad ăn lành nhìn từ trên xuống" loading="lazy">
+        <div class="bam-bento-body"><div class="bam-bento-count">29 bài</div><div class="bam-bento-name">Ăn lành</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Bài viết nổi bật (Featured) ═══ -->
+<section class="bam-sec-sm">
+  <div class="bam-container">
+    <div class="bam-featured" data-reveal>
+      <div class="bam-featured-img">
+        <img src="https://images.unsplash.com/photo-1547573854-74d2a71d0826?w=900&q=80&auto=format&fit=crop" alt="Set nướng thập cẩm ăn kèm salad tại nhà hàng" loading="lazy">
+      </div>
+      <div class="bam-featured-body">
+        <div class="bam-featured-tag">Bài viết nổi bật</div>
+        <h3 class="bam-featured-title">Quán Phở Gia Truyền 50 Năm Ở Hàng Trống: Bát Phở Giữ Trọn Vị Hà Nội Xưa</h3>
+        <p class="bam-featured-desc">Một buổi sáng lang thang phố cổ, tôi tình cờ ghé quán phở không biển hiệu đã tồn tại nửa thế kỷ — và nhận ra vì sao người ta vẫn xếp hàng mỗi sáng.</p>
+        <div class="bam-featured-meta">
+          <img class="bam-featured-av" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80&auto=format&fit=crop" alt="Ảnh đại diện tác giả Đức Anh">
+          <span>Đức Anh · 8 phút đọc</span>
+        </div>
+      </div>
+      <a href="bai-viet-chi-tiet.html" style="position:absolute;inset:0;" aria-label="Đọc bài viết Quán Phở Gia Truyền 50 Năm"></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GRID-CARDS — Bài viết mới nhất ═══ -->
+<section class="bam-sec">
+  <div class="bam-container">
+    <div class="bam-sec-head-row" data-reveal>
+      <div>
+        <div class="bam-eyebrow">Cập nhật liên tục</div>
+        <h2 class="bam-sec-title">Bài viết <em>mới nhất</em></h2>
+      </div>
+      <a href="chuyen-muc.html" class="bam-btn bam-btn-outline bam-btn-sm">Xem tất cả <i class="bi bi-arrow-right"></i></a>
+    </div>
+    <div class="bam-post-grid" data-reveal data-reveal-d1>
+      <a href="bai-viet-chi-tiet.html" class="bam-post-card">
+        <div class="bam-post-thumb-wrap">
+          <span class="bam-post-cat">Review quán ăn</span>
+          <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=600&q=80&auto=format&fit=crop" alt="Đầu bếp đứng trong bếp nhà hàng đang nấu ăn" loading="lazy">
+        </div>
+        <div class="bam-post-body">
+          <div class="bam-post-meta"><span>24/08/2026</span><span>8 phút đọc</span></div>
+          <h3 class="bam-post-title">Quán Phở Gia Truyền 50 Năm Ở Hàng Trống</h3>
+          <p class="bam-post-excerpt">Bát phở giữ trọn vị Hà Nội xưa — nước dùng trong veo, bánh phở dai mềm đúng chuẩn phố cổ.</p>
+        </div>
+      </a>
+      <a href="cong-thuc-nau-an.html" class="bam-post-card">
+        <div class="bam-post-thumb-wrap">
+          <span class="bam-post-cat">Món chính</span>
+          <img src="https://images.unsplash.com/photo-1607330289024-1535c6b4e1c1?w=600&q=80&auto=format&fit=crop" alt="Tô mì cá hồi sốt cà ri kiểu Nhật" loading="lazy">
+        </div>
+        <div class="bam-post-body">
+          <div class="bam-post-meta"><span>22/08/2026</span><span>12 phút đọc</span></div>
+          <h3 class="bam-post-title">Cách Nấu Phở Bò Truyền Thống Chuẩn Vị Hà Nội</h3>
+          <p class="bam-post-excerpt">Công thức đầy đủ từ hầm xương, nêm gia vị đến cách trần bánh phở sao cho không bị nát.</p>
+        </div>
+      </a>
+      <a href="bai-viet-chi-tiet.html" class="bam-post-card">
+        <div class="bam-post-thumb-wrap">
+          <span class="bam-post-cat">Mẹo bếp</span>
+          <img src="https://images.unsplash.com/photo-1626804475297-41608ea09aeb?w=600&q=80&auto=format&fit=crop" alt="Tô mì nui phô mai nóng hổi" loading="lazy">
+        </div>
+        <div class="bam-post-body">
+          <div class="bam-post-meta"><span>20/08/2026</span><span>5 phút đọc</span></div>
+          <h3 class="bam-post-title">7 Mẹo Bảo Quản Rau Củ Tươi Lâu Gấp Đôi Trong Tủ Lạnh</h3>
+          <p class="bam-post-excerpt">Không cần tủ lạnh xịn, chỉ cần đúng cách gói và đúng ngăn — rau vẫn tươi sau cả tuần.</p>
+        </div>
+      </a>
+      <a href="bai-viet-chi-tiet.html" class="bam-post-card">
+        <div class="bam-post-thumb-wrap">
+          <span class="bam-post-cat">Đồ uống</span>
+          <img src="https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=600&q=80&auto=format&fit=crop" alt="Bàn ăn sáng bày waffle và nước cam" loading="lazy">
+        </div>
+        <div class="bam-post-body">
+          <div class="bam-post-meta"><span>18/08/2026</span><span>6 phút đọc</span></div>
+          <h3 class="bam-post-title">3 Công Thức Sinh Tố Detox Buổi Sáng Dễ Làm</h3>
+          <p class="bam-post-excerpt">Chỉ mất 5 phút mỗi sáng để có một ly sinh tố đủ chất, đẹp da mà không cần đường tinh luyện.</p>
+        </div>
+      </a>
+      <a href="bai-viet-chi-tiet.html" class="bam-post-card">
+        <div class="bam-post-thumb-wrap">
+          <span class="bam-post-cat">Tráng miệng</span>
+          <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80&auto=format&fit=crop" alt="Bánh pancake xếp chồng rưới mật ong" loading="lazy">
+        </div>
+        <div class="bam-post-body">
+          <div class="bam-post-meta"><span>15/08/2026</span><span>7 phút đọc</span></div>
+          <h3 class="bam-post-title">Pancake Bông Xốp Kiểu Nhật — Bí Quyết Không Bị Xẹp</h3>
+          <p class="bam-post-excerpt">Ba lỗi thường gặp khiến pancake xẹp lép sau khi ra chảo, và cách khắc phục từng lỗi.</p>
+        </div>
+      </a>
+      <a href="chuyen-muc.html" class="bam-post-card">
+        <div class="bam-post-thumb-wrap">
+          <span class="bam-post-cat">Ăn lành</span>
+          <img src="https://images.unsplash.com/photo-1607532941433-304659e8198a?w=600&q=80&auto=format&fit=crop" alt="Đĩa salad rau xanh đơn giản" loading="lazy">
+        </div>
+        <div class="bam-post-body">
+          <div class="bam-post-meta"><span>12/08/2026</span><span>9 phút đọc</span></div>
+          <h3 class="bam-post-title">Thực Đơn Ăn Lành 5 Ngày Cho Người Bận Rộn</h3>
+          <p class="bam-post-excerpt">Chuẩn bị 1 lần cuối tuần, ăn đủ chất cả tuần — kèm bảng nguyên liệu chi tiết đi chợ.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HORIZONTAL-SCROLL — Công thức đang hot ═══ -->
+<section class="bam-sec" style="background:var(--accent-light);">
+  <div class="bam-container">
+    <div class="bam-sec-head" data-reveal>
+      <div class="bam-eyebrow">Được lưu nhiều nhất tuần này</div>
+      <h2 class="bam-sec-title">Công thức đang <em>hot</em></h2>
+    </div>
+    <div class="bam-hscroll" data-reveal data-reveal-d1>
+      <a href="cong-thuc-nau-an.html" class="bam-recipe-card">
+        <div class="bam-recipe-thumb">
+          <span class="bam-recipe-difficulty">Trung bình</span>
+          <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&q=80&auto=format&fit=crop" alt="Nồi cà ri bò hầm đang sôi" loading="lazy">
+        </div>
+        <div class="bam-recipe-body">
+          <div class="bam-recipe-title">Cà Ri Bò Hầm Kiểu Việt Đậm Đà</div>
+          <div class="bam-recipe-stats"><span><i class="bi bi-clock"></i>90 phút</span><span><i class="bi bi-bookmark"></i>2.1k lưu</span></div>
+        </div>
+      </a>
+      <a href="cong-thuc-nau-an.html" class="bam-recipe-card">
+        <div class="bam-recipe-thumb">
+          <span class="bam-recipe-difficulty">Dễ</span>
+          <img src="https://images.unsplash.com/photo-1495546968767-f0573cca821e?w=500&q=80&auto=format&fit=crop" alt="Bơ nhồi salad phô mai và lựu" loading="lazy">
+        </div>
+        <div class="bam-recipe-body">
+          <div class="bam-recipe-title">Bơ Nhồi Salad Phô Mai Lựu</div>
+          <div class="bam-recipe-stats"><span><i class="bi bi-clock"></i>15 phút</span><span><i class="bi bi-bookmark"></i>1.8k lưu</span></div>
+        </div>
+      </a>
+      <a href="cong-thuc-nau-an.html" class="bam-recipe-card">
+        <div class="bam-recipe-thumb">
+          <span class="bam-recipe-difficulty">Khó</span>
+          <img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?w=500&q=80&auto=format&fit=crop" alt="Bò áp chảo xém cạnh trên thớt gỗ" loading="lazy">
+        </div>
+        <div class="bam-recipe-body">
+          <div class="bam-recipe-title">Bò Áp Chảo Kiểu Bistro Pháp</div>
+          <div class="bam-recipe-stats"><span><i class="bi bi-clock"></i>35 phút</span><span><i class="bi bi-bookmark"></i>3.4k lưu</span></div>
+        </div>
+      </a>
+      <a href="cong-thuc-nau-an.html" class="bam-recipe-card">
+        <div class="bam-recipe-thumb">
+          <span class="bam-recipe-difficulty">Dễ</span>
+          <img src="https://images.unsplash.com/photo-1526318896980-cf78c088247c?w=500&q=80&auto=format&fit=crop" alt="Ăn mì ramen bằng đũa" loading="lazy">
+        </div>
+        <div class="bam-recipe-body">
+          <div class="bam-recipe-title">Ramen Nước Dùng Nhanh 30 Phút</div>
+          <div class="bam-recipe-stats"><span><i class="bi bi-clock"></i>30 phút</span><span><i class="bi bi-bookmark"></i>2.7k lưu</span></div>
+        </div>
+      </a>
+      <a href="cong-thuc-nau-an.html" class="bam-recipe-card">
+        <div class="bam-recipe-thumb">
+          <span class="bam-recipe-difficulty">Trung bình</span>
+          <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=500&q=80&auto=format&fit=crop" alt="Cà ri gà ăn kèm cơm trắng" loading="lazy">
+        </div>
+        <div class="bam-recipe-body">
+          <div class="bam-recipe-title">Cà Ri Gà Nước Cốt Dừa</div>
+          <div class="bam-recipe-stats"><span><i class="bi bi-clock"></i>50 phút</span><span><i class="bi bi-bookmark"></i>1.5k lưu</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STAT-BAR ═══ -->
+<section class="bam-sec-sm">
+  <div class="bam-container">
+    <div class="bam-stat-bar" data-reveal>
+      <div class="bam-stats-grid">
+        <div><div class="bam-stat-num" data-counter="420" data-suffix="+">0</div><div class="bam-stat-label">Công thức đã đăng</div></div>
+        <div><div class="bam-stat-num" data-counter="85" data-suffix="+">0</div><div class="bam-stat-label">Quán ăn đã review</div></div>
+        <div><div class="bam-stat-num" data-counter="180" data-suffix="k">0</div><div class="bam-stat-label">Độc giả mỗi tháng</div></div>
+        <div><div class="bam-stat-num" data-counter="8">0</div><div class="bam-stat-label">Năm chia sẻ bếp núc</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURE-ICON-ROW ═══ -->
+<section class="bam-sec">
+  <div class="bam-container">
+    <div class="bam-sec-head center" data-reveal>
+      <div class="bam-eyebrow">Vì sao đọc Bếp Xanh</div>
+      <h2 class="bam-sec-title">Nội dung được <em>làm thật</em>, không sao chép</h2>
+    </div>
+    <div class="bam-feature-row" data-reveal data-reveal-d1>
+      <div class="bam-feature-item">
+        <div class="bam-feature-icon"><i class="bi bi-clipboard-check"></i></div>
+        <div class="bam-feature-title">Công thức đã test kỹ</div>
+        <div class="bam-feature-desc">Mỗi công thức được nấu thử tối thiểu 3 lần, đo lường chính xác từng gram trước khi đăng.</div>
+      </div>
+      <div class="bam-feature-item">
+        <div class="bam-feature-icon"><i class="bi bi-cash-coin"></i></div>
+        <div class="bam-feature-title">Review tự trả tiền</div>
+        <div class="bam-feature-desc">Không nhận bài PR — mọi bài review đều là trải nghiệm và hóa đơn thật của Bếp Xanh.</div>
+      </div>
+      <div class="bam-feature-item">
+        <div class="bam-feature-icon"><i class="bi bi-camera"></i></div>
+        <div class="bam-feature-title">Hình ảnh từng bước</div>
+        <div class="bam-feature-desc">Ảnh minh họa rõ ràng cho từng bước quan trọng, không cần đoán "vừa đủ" là bao nhiêu.</div>
+      </div>
+      <div class="bam-feature-item">
+        <div class="bam-feature-icon"><i class="bi bi-people"></i></div>
+        <div class="bam-feature-title">Cộng đồng phản hồi</div>
+        <div class="bam-feature-desc">Hàng nghìn bình luận góp ý, chỉnh sửa công thức phù hợp hơn với khẩu vị số đông.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ (mục H) ═══ -->
+<section class="bam-sec" id="faq" style="background:var(--bg);">
+  <div class="bam-container-sm">
+    <div class="bam-sec-head center" data-reveal>
+      <div class="bam-eyebrow">Giải đáp</div>
+      <h2 class="bam-sec-title">Câu hỏi <em>thường gặp</em></h2>
+      <p class="bam-sec-sub">Những thắc mắc độc giả hay hỏi nhất về Bếp Xanh.</p>
+    </div>
+    <div class="bam-faq-list" data-reveal data-reveal-d1>
+      <div class="bam-faq-item open">
+        <div class="bam-faq-q"><span>Làm sao để đóng góp công thức cho Bếp Xanh?</span><span class="bam-faq-icon"><i class="bi bi-plus"></i></span></div>
+        <div class="bam-faq-a"><p>Gửi công thức kèm ảnh (nếu có) qua form ở trang Liên hệ, ghi rõ tên món, khẩu phần và nguồn gốc công thức (gia truyền/tự sáng tạo). Bếp Xanh sẽ test lại trước khi đăng và luôn ghi credit đúng tên bạn.</p></div>
+      </div>
+      <div class="bam-faq-item">
+        <div class="bam-faq-q"><span>Bếp Xanh đăng bài mới với tần suất như thế nào?</span><span class="bam-faq-icon"><i class="bi bi-plus"></i></span></div>
+        <div class="bam-faq-a"><p>Trung bình 3 bài viết mới mỗi tuần — xen kẽ giữa công thức nấu ăn, review quán ăn và mẹo bếp núc. Bạn có thể đăng ký nhận bản tin để không bỏ lỡ bài mới.</p></div>
+      </div>
+      <div class="bam-faq-item">
+        <div class="bam-faq-q"><span>Tôi có thể sử dụng lại công thức trên blog để đăng lên kênh khác không?</span><span class="bam-faq-icon"><i class="bi bi-plus"></i></span></div>
+        <div class="bam-faq-a"><p>Bạn có thể nấu theo và chia sẻ trải nghiệm cá nhân, nhưng vui lòng không sao chép nguyên văn nội dung/ảnh để đăng lại trên nền tảng khác mà không xin phép hoặc không dẫn nguồn về Bếp Xanh. Chi tiết xem tại Điều khoản sử dụng.</p></div>
+      </div>
+      <div class="bam-faq-item">
+        <div class="bam-faq-q"><span>Bếp Xanh có nhận hợp tác quảng cáo hoặc review nhà hàng/quán ăn không?</span><span class="bam-faq-icon"><i class="bi bi-plus"></i></span></div>
+        <div class="bam-faq-a"><p>Có — Bếp Xanh nhận hợp tác review có gắn nhãn "Bài viết được tài trợ" rõ ràng, tách biệt hoàn toàn với các bài review tự chi trả. Liên hệ qua trang Liên hệ để trao đổi chi tiết gói hợp tác.</p></div>
+      </div>
+      <div class="bam-faq-item">
+        <div class="bam-faq-q"><span>Làm sao để đăng ký nhận bản tin (newsletter) từ Bếp Xanh?</span><span class="bam-faq-icon"><i class="bi bi-plus"></i></span></div>
+        <div class="bam-faq-a"><p>Điền email vào ô đăng ký ở cuối trang chủ hoặc trong chân trang (footer). Bản tin gửi 1 lần/tuần, tổng hợp bài viết mới và công thức được yêu thích nhất — có thể hủy đăng ký bất cứ lúc nào.</p></div>
+      </div>
+      <div class="bam-faq-item">
+        <div class="bam-faq-q"><span>Chính sách bình luận trên Bếp Xanh như thế nào?</span><span class="bam-faq-icon"><i class="bi bi-plus"></i></span></div>
+        <div class="bam-faq-a"><p>Mọi bình luận góp ý, hỏi đáp về công thức đều được hoan nghênh. Bình luận spam, quảng cáo trá hình hoặc công kích cá nhân sẽ bị ẩn/xóa mà không cần báo trước.</p></div>
+      </div>
+      <div class="bam-faq-item">
+        <div class="bam-faq-q"><span>Bếp Xanh có bán khóa học nấu ăn hay ebook công thức không?</span><span class="bam-faq-icon"><i class="bi bi-plus"></i></span></div>
+        <div class="bam-faq-a"><p>Hiện tại toàn bộ nội dung trên Bếp Xanh đều miễn phí. Trong tương lai có thể ra mắt ebook tổng hợp công thức theo chủ đề — thông tin sẽ được thông báo qua bản tin trước tiên.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Newsletter ═══ -->
+<section class="bam-sec-sm">
+  <div class="bam-container">
+    <div class="bam-newsletter" data-reveal>
+      <div>
+        <div class="bam-newsletter-title">Đăng ký nhận bản tin ẩm thực</div>
+        <p class="bam-newsletter-desc">Mỗi tuần 1 email — tổng hợp công thức mới, quán ăn đáng thử và mẹo bếp hay nhất.</p>
+      </div>
+      <form class="bam-newsletter-form" onsubmit="event.preventDefault();">
+        <input type="email" placeholder="[email@domain.com]" required>
+        <button type="submit" class="bam-btn bam-btn-primary">Đăng ký ngay</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="bam-footer-top bam-container">
+    <div class="bam-footer-grid">
+      <div>
+        <div class="bam-footer-logo">🥗 Bếp <span style="color:var(--accent)">Xanh</span></div>
+        <p class="bam-footer-desc">Blog ẩm thực chia sẻ công thức nấu ăn, review quán ngon và mẹo bếp núc mỗi ngày — nấu ngon tại nhà, sống lành mỗi bữa.</p>
+        <div class="bam-footer-social">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Youtube"><i class="bi bi-youtube"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="bam-footer-col-title">Khám phá</div>
+        <div class="bam-footer-links">
+          <a href="chuyen-muc.html">Món chính</a>
+          <a href="chuyen-muc.html">Tráng miệng</a>
+          <a href="chuyen-muc.html">Đồ uống</a>
+          <a href="chuyen-muc.html">Review quán ăn</a>
+        </div>
+      </div>
+      <div>
+        <div class="bam-footer-col-title">Về Bếp Xanh</div>
+        <div class="bam-footer-links">
+          <a href="ve-toi.html">Câu chuyện của tôi</a>
+          <a href="cong-thuc-nau-an.html">Công thức nấu ăn</a>
+          <a href="lien-he.html">Liên hệ hợp tác</a>
+          <a href="index.html#faq">Câu hỏi thường gặp</a>
+        </div>
+      </div>
+      <div>
+        <div class="bam-footer-col-title">Pháp lý</div>
+        <div class="bam-footer-links">
+          <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+          <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+        </div>
+      </div>
+    </div>
+    <div class="bam-footer-maps">
+      <iframe src="https://maps.google.com/maps?q=21.0333,105.8500&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ vị trí văn phòng Bếp Xanh"></iframe>
+    </div>
+  </div>
+  <div class="bam-container bam-footer-bottom">
+    <div class="bam-footer-copy">© [NĂM] Bếp Xanh. Mọi quyền được bảo lưu.</div>
+    <div class="bam-footer-legal">
+      <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+      <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[SỐ_ZALO]" class="bam-zf" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+  <span class="bam-zf-tip">Chat Zalo</span>
+  <span class="bam-zf-btn">💬</span>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xê Dịch — Travel Journal | Blog Du Lịch Kinh Nghiệm Thực Tế</title>
+<meta name="description" content="Xê Dịch — blog du lịch chia sẻ kinh nghiệm thực tế, điểm đến trong nước & quốc tế, mẹo du lịch tiết kiệm và review lưu trú từ những hành trình có thật.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="bdlNav" data-scroll-nav="true">
+  <div class="bdl-container bdl-nav-inner">
+    <a href="index.html" class="bdl-logo">
+      <span class="bdl-logo-mark">✈</span>
+      <span>Xê Dịch<span class="bdl-logo-sub">Travel Journal</span></span>
+    </a>
+    <div class="bdl-nav-links">
+      <a href="index.html" class="active">Trang chủ</a>
+      <a href="chuyen-muc.html">Chuyên mục</a>
+      <a href="cam-nang-du-lich.html">Cẩm nang du lịch</a>
+      <a href="ve-toi.html">Về tôi</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <div class="bdl-nav-right">
+      <a href="lien-he.html" class="bdl-nav-cta">Hợp tác cùng tôi</a>
+      <button class="bdl-burger" id="bdlBurger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="bdl-nav-mob" id="bdlNavMob">
+  <a href="index.html" class="active">Trang chủ</a>
+  <a href="chuyen-muc.html">Chuyên mục</a>
+  <a href="cam-nang-du-lich.html">Cẩm nang du lịch</a>
+  <a href="ve-toi.html">Về tôi</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="lien-he.html" class="bdl-mob-cta">Hợp tác cùng tôi</a>
+</div>
+
+<!-- ══ CAROUSEL HERO — H11 Full-Width Text + Scroll Hint × 4 slides ══ -->
+<header class="bdl-hero">
+  <div class="bdl-hero-slide active" data-tone="forest">
+    <div class="bdl-hero-inner bdl-container">
+      <div class="bdl-hero-text">
+        <div class="bdl-hero-label">Travel Journal Việt Nam</div>
+        <h1 class="bdl-hero-title">Những Miền Đất <strong>Chưa Kể</strong></h1>
+        <p class="bdl-hero-sub">Nhật ký hành trình, kinh nghiệm thực tế và những khoảnh khắc đáng nhớ từ khắp các nẻo đường — từ cao nguyên đá phía Bắc đến đồng bằng miền Tây sông nước.</p>
+        <div class="bdl-hero-cta-row">
+          <a href="chuyen-muc.html" class="bdl-btn bdl-btn-accent">Khám phá bài viết</a>
+          <a href="cam-nang-du-lich.html" class="bdl-btn bdl-btn-outline-light">Cẩm nang du lịch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bdl-hero-slide" data-tone="temple">
+    <div class="bdl-hero-inner bdl-container">
+      <div class="bdl-hero-text">
+        <div class="bdl-hero-label">Điểm đến quốc tế</div>
+        <h2 class="bdl-hero-title">Xách Ba Lô Ra <strong>Thế Giới</strong></h2>
+        <p class="bdl-hero-sub">Từ ruộng bậc thang Bali đến những con phố cổ Kyoto — mỗi hành trình là một câu chuyện đáng để kể lại, kèm chi phí thực tế cho từng chặng.</p>
+        <div class="bdl-hero-cta-row">
+          <a href="chuyen-muc.html" class="bdl-btn bdl-btn-stamp">Xem điểm đến quốc tế</a>
+          <a href="cam-nang-du-lich.html" class="bdl-btn bdl-btn-outline-light">Đọc cẩm nang visa</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bdl-hero-slide" data-tone="trail">
+    <div class="bdl-hero-inner bdl-container">
+      <div class="bdl-hero-text">
+        <div class="bdl-hero-label">Mẹo du lịch</div>
+        <h2 class="bdl-hero-title">Đi Xa Nhưng <strong>Không Lo Cháy Túi</strong></h2>
+        <p class="bdl-hero-sub">Bí quyết săn vé máy bay giá tốt, chọn chỗ ở tiết kiệm và lên lịch trình hợp lý cho mọi chuyến đi — dù ngân sách của bạn là bao nhiêu.</p>
+        <div class="bdl-hero-cta-row">
+          <a href="cam-nang-du-lich.html" class="bdl-btn bdl-btn-accent">Xem mẹo du lịch</a>
+          <a href="chuyen-muc.html" class="bdl-btn bdl-btn-outline-light">Đọc bài viết liên quan</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bdl-hero-slide" data-tone="lantern">
+    <div class="bdl-hero-inner bdl-container">
+      <div class="bdl-hero-text">
+        <div class="bdl-hero-label">Review lưu trú</div>
+        <h2 class="bdl-hero-title">Ở Đâu Cho <strong>Trọn Vẹn Chuyến Đi</strong></h2>
+        <p class="bdl-hero-sub">Review thật từ homestay vùng cao đến resort ven biển — chọn đúng chỗ ở, chuyến đi mới thực sự trọn vẹn.</p>
+        <div class="bdl-hero-cta-row">
+          <a href="chuyen-muc.html" class="bdl-btn bdl-btn-accent">Xem review lưu trú</a>
+          <a href="lien-he.html" class="bdl-btn bdl-btn-outline-light">Gợi ý cho tôi chỗ ở</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bdl-hero-ticker" aria-hidden="true">
+    <div class="bdl-hero-ticker-track">
+      <span>✈ HÀ GIANG · VN</span><span>✈ BALI · ID</span><span>✈ HỘI AN · VN</span><span>✈ KYOTO · JP</span><span>✈ SA PA · VN</span><span>✈ SANTORINI · GR</span>
+      <span>✈ HÀ GIANG · VN</span><span>✈ BALI · ID</span><span>✈ HỘI AN · VN</span><span>✈ KYOTO · JP</span><span>✈ SA PA · VN</span><span>✈ SANTORINI · GR</span>
+    </div>
+  </div>
+  <div class="bdl-hero-scrollhint"><span>Cuộn xuống khám phá</span><span class="bdl-hero-scrollhint-arrow">↓</span></div>
+
+  <button class="bdl-hero-nav-btn bdl-hero-prev" aria-label="Slide trước">‹</button>
+  <button class="bdl-hero-nav-btn bdl-hero-next" aria-label="Slide sau">›</button>
+  <div class="bdl-hero-dots">
+    <button class="bdl-hero-dot active" aria-label="Slide 1"></button>
+    <button class="bdl-hero-dot" aria-label="Slide 2"></button>
+    <button class="bdl-hero-dot" aria-label="Slide 3"></button>
+    <button class="bdl-hero-dot" aria-label="Slide 4"></button>
+  </div>
+</header>
+
+<!-- ══ FULL-BLEED — Bài viết nổi bật (cover story) ══ -->
+<section class="bdl-sec-pad">
+  <div class="bdl-container">
+    <div class="bdl-eyebrow" data-reveal>Bài viết nổi bật tuần này</div>
+    <a href="bai-viet-chi-tiet.html" class="bdl-cover" data-reveal data-reveal-d1>
+      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1400&q=80&auto=format&fit=crop" alt="Toàn cảnh dãy núi trùng điệp tại cao nguyên đá Đồng Văn">
+      <div class="bdl-cover-overlay"></div>
+      <div class="bdl-cover-body">
+        <span class="bdl-stamp-tag domestic">Điểm đến trong nước</span>
+        <h2 class="bdl-cover-title">7 Ngày Khám Phá Cao Nguyên Đá Đồng Văn — Cung Đường Hà Giang Trọn Vẹn Nhất</h2>
+        <p class="bdl-cover-excerpt">Từ đèo Mã Pí Lèng đến cột cờ Lũng Cú, đây là lịch trình chi tiết 7 ngày kèm chi phí thực tế, chỗ nghỉ và những lưu ý sống còn khi tự lái xe máy qua cung đường hiểm trở nhất Việt Nam.</p>
+        <div class="bdl-cover-meta">
+          <span>Lam Trang</span><span>·</span><span>18 Tháng 8, 2026</span><span>·</span><span>12 phút đọc</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ══ HORIZONTAL-SCROLL — chip chuyên mục ══ -->
+<section class="bdl-sec-pad" style="padding-top:0;">
+  <div class="bdl-container">
+    <div class="bdl-chip-scroll" data-reveal>
+      <a href="chuyen-muc.html" class="bdl-chip"><span class="bdl-chip-icon">🏔️</span> Điểm đến trong nước</a>
+      <a href="chuyen-muc.html" class="bdl-chip"><span class="bdl-chip-icon">🌏</span> Điểm đến quốc tế</a>
+      <a href="cam-nang-du-lich.html" class="bdl-chip"><span class="bdl-chip-icon">🎒</span> Mẹo du lịch</a>
+      <a href="chuyen-muc.html" class="bdl-chip"><span class="bdl-chip-icon">🏡</span> Review lưu trú</a>
+      <a href="chuyen-muc.html" class="bdl-chip"><span class="bdl-chip-icon">🍜</span> Ẩm thực vùng miền</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GRID-CARDS — Bài viết mới nhất ══ -->
+<section class="bdl-sec-pad" style="background:var(--surface);">
+  <div class="bdl-container">
+    <div class="bdl-sec-head-row" data-reveal>
+      <div>
+        <div class="bdl-eyebrow">Mới cập nhật</div>
+        <h2 class="bdl-sec-title">Bài viết <strong>mới nhất</strong></h2>
+      </div>
+      <a href="chuyen-muc.html" class="bdl-sec-more">Xem tất cả bài viết →</a>
+    </div>
+    <div class="bdl-post-grid">
+      <a href="bai-viet-chi-tiet.html" class="bdl-post-card" data-reveal>
+        <div class="bdl-post-thumb">
+          <span class="bdl-stamp-tag domestic">Trong nước</span>
+          <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=700&q=80&auto=format&fit=crop" alt="Con đường đèo uốn lượn giữa rừng núi phía Bắc Việt Nam">
+        </div>
+        <div class="bdl-post-body">
+          <div class="bdl-post-meta"><span class="bdl-post-date">18/08/2026</span><span class="bdl-post-dot"></span><span class="bdl-post-read">12 phút đọc</span></div>
+          <h3 class="bdl-post-title">7 Ngày Khám Phá Cao Nguyên Đá Đồng Văn</h3>
+          <p class="bdl-post-excerpt">Lịch trình chi tiết cung đường Hà Giang loop, từ Mã Pí Lèng đến Lũng Cú, kèm chi phí thực tế.</p>
+          <div class="bdl-post-foot">
+            <img class="bdl-post-av" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&q=80&auto=format&fit=crop" alt="Ảnh đại diện Lam Trang">
+            <span class="bdl-post-author">Lam Trang</span>
+          </div>
+        </div>
+      </a>
+      <a href="bai-viet-chi-tiet.html" class="bdl-post-card" data-reveal data-reveal-d1>
+        <div class="bdl-post-thumb">
+          <span class="bdl-stamp-tag tips">Mẹo du lịch</span>
+          <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=700&q=80&auto=format&fit=crop" alt="Cánh máy bay trên bầu trời trong chuyến bay quốc tế">
+        </div>
+        <div class="bdl-post-body">
+          <div class="bdl-post-meta"><span class="bdl-post-date">14/08/2026</span><span class="bdl-post-dot"></span><span class="bdl-post-read">8 phút đọc</span></div>
+          <h3 class="bdl-post-title">Kinh Nghiệm Xin Visa Nhật Bản Tự Túc Cho Người Mới</h3>
+          <p class="bdl-post-excerpt">Hồ sơ cần chuẩn bị, lịch trình mẫu và những lỗi thường gặp khiến hồ sơ visa bị từ chối.</p>
+          <div class="bdl-post-foot">
+            <img class="bdl-post-av" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&q=80&auto=format&fit=crop" alt="Ảnh đại diện Lam Trang">
+            <span class="bdl-post-author">Lam Trang</span>
+          </div>
+        </div>
+      </a>
+      <a href="bai-viet-chi-tiet.html" class="bdl-post-card" data-reveal data-reveal-d2>
+        <div class="bdl-post-thumb">
+          <span class="bdl-stamp-tag stay">Review lưu trú</span>
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=700&q=80&auto=format&fit=crop" alt="Homestay gỗ nhìn ra ruộng bậc thang vùng núi Tây Bắc">
+        </div>
+        <div class="bdl-post-body">
+          <div class="bdl-post-meta"><span class="bdl-post-date">10/08/2026</span><span class="bdl-post-dot"></span><span class="bdl-post-read">6 phút đọc</span></div>
+          <h3 class="bdl-post-title">Review Homestay View Ruộng Bậc Thang Ở Sa Pa</h3>
+          <p class="bdl-post-excerpt">Giá phòng, tiện nghi thực tế và lý do đây là chỗ nghỉ đáng đồng tiền nhất tôi từng ở tại Sa Pa.</p>
+          <div class="bdl-post-foot">
+            <img class="bdl-post-av" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&q=80&auto=format&fit=crop" alt="Ảnh đại diện Lam Trang">
+            <span class="bdl-post-author">Lam Trang</span>
+          </div>
+        </div>
+      </a>
+      <a href="bai-viet-chi-tiet.html" class="bdl-post-card" data-reveal>
+        <div class="bdl-post-thumb">
+          <span class="bdl-stamp-tag intl">Quốc tế</span>
+          <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=700&q=80&auto=format&fit=crop" alt="Khinh khí cầu bay trên thung lũng đá Cappadocia, Thổ Nhĩ Kỳ">
+        </div>
+        <div class="bdl-post-body">
+          <div class="bdl-post-meta"><span class="bdl-post-date">05/08/2026</span><span class="bdl-post-dot"></span><span class="bdl-post-read">10 phút đọc</span></div>
+          <h3 class="bdl-post-title">Cappadocia — Ngồi Khinh Khí Cầu Ngắm Bình Minh Có Đắt Không?</h3>
+          <p class="bdl-post-excerpt">So sánh giá các hãng khinh khí cầu, thời điểm bay đẹp nhất và cách đặt vé không qua trung gian.</p>
+          <div class="bdl-post-foot">
+            <img class="bdl-post-av" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&q=80&auto=format&fit=crop" alt="Ảnh đại diện Lam Trang">
+            <span class="bdl-post-author">Lam Trang</span>
+          </div>
+        </div>
+      </a>
+      <a href="bai-viet-chi-tiet.html" class="bdl-post-card" data-reveal data-reveal-d1>
+        <div class="bdl-post-thumb">
+          <span class="bdl-stamp-tag food">Ẩm thực</span>
+          <img src="https://images.unsplash.com/photo-1528127269322-539801943592?w=700&q=80&auto=format&fit=crop" alt="Gánh hàng ăn đường phố với nhiều món ngon địa phương">
+        </div>
+        <div class="bdl-post-body">
+          <div class="bdl-post-meta"><span class="bdl-post-date">01/08/2026</span><span class="bdl-post-dot"></span><span class="bdl-post-read">7 phút đọc</span></div>
+          <h3 class="bdl-post-title">10 Món Ăn Đường Phố Không Thể Bỏ Lỡ Khi Đến Hội An</h3>
+          <p class="bdl-post-excerpt">Từ cao lầu, bánh mì Phượng đến chè bắp — danh sách quán ăn được dân địa phương tin dùng.</p>
+          <div class="bdl-post-foot">
+            <img class="bdl-post-av" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&q=80&auto=format&fit=crop" alt="Ảnh đại diện Lam Trang">
+            <span class="bdl-post-author">Lam Trang</span>
+          </div>
+        </div>
+      </a>
+      <a href="bai-viet-chi-tiet.html" class="bdl-post-card" data-reveal data-reveal-d2>
+        <div class="bdl-post-thumb">
+          <span class="bdl-stamp-tag tips">Mẹo du lịch</span>
+          <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=700&q=80&auto=format&fit=crop" alt="Hộ chiếu, bản đồ và la bàn đặt trên bàn chuẩn bị cho chuyến đi">
+        </div>
+        <div class="bdl-post-body">
+          <div class="bdl-post-meta"><span class="bdl-post-date">28/07/2026</span><span class="bdl-post-dot"></span><span class="bdl-post-read">9 phút đọc</span></div>
+          <h3 class="bdl-post-title">Checklist Đóng Gói Hành Lý Cho Chuyến Đi 10 Ngày Gọn Trong 1 Balo</h3>
+          <p class="bdl-post-excerpt">Danh sách đầy đủ những món cần mang theo và những thứ bạn hoàn toàn có thể bỏ lại ở nhà.</p>
+          <div class="bdl-post-foot">
+            <img class="bdl-post-av" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&q=80&auto=format&fit=crop" alt="Ảnh đại diện Lam Trang">
+            <span class="bdl-post-author">Lam Trang</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BENTO-GRID — Điểm đến được yêu thích ══ -->
+<section class="bdl-sec-pad">
+  <div class="bdl-container">
+    <div class="bdl-sec-head" data-reveal>
+      <div class="bdl-eyebrow">Được độc giả yêu thích nhất</div>
+      <h2 class="bdl-sec-title">Điểm đến <strong>đáng ghi vào sổ tay</strong></h2>
+      <p class="bdl-sec-sub">5 điểm đến được nhắc đến nhiều nhất trong hộp thư độc giả gửi về cho Xê Dịch trong năm qua.</p>
+    </div>
+    <div class="bdl-bento" data-reveal data-reveal-d1>
+      <a href="bai-viet-chi-tiet.html" class="bdl-bento-item">
+        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=900&q=80&auto=format&fit=crop" alt="Ruộng bậc thang xanh mướt tại Bali, Indonesia">
+        <div class="bdl-bento-overlay"></div>
+        <div class="bdl-bento-cap"><div class="bdl-bento-name">Bali, Indonesia</div><div class="bdl-bento-sub">Điểm đến quốc tế</div></div>
+      </a>
+      <a href="bai-viet-chi-tiet.html" class="bdl-bento-item">
+        <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=700&q=80&auto=format&fit=crop" alt="Kiến trúc mái vòm xanh trắng đặc trưng của Santorini, Hy Lạp">
+        <div class="bdl-bento-overlay"></div>
+        <div class="bdl-bento-cap"><div class="bdl-bento-name">Santorini, Hy Lạp</div><div class="bdl-bento-sub">Điểm đến quốc tế</div></div>
+      </a>
+      <a href="bai-viet-chi-tiet.html" class="bdl-bento-item">
+        <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=700&q=80&auto=format&fit=crop" alt="Thuyền trên vịnh biển đảo đá vôi tại Việt Nam">
+        <div class="bdl-bento-overlay"></div>
+        <div class="bdl-bento-cap"><div class="bdl-bento-name">Vịnh Hạ Long</div><div class="bdl-bento-sub">Điểm đến trong nước</div></div>
+      </a>
+      <a href="bai-viet-chi-tiet.html" class="bdl-bento-item">
+        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=900&q=80&auto=format&fit=crop" alt="Cổng torii đỏ truyền thống tại Kyoto, Nhật Bản">
+        <div class="bdl-bento-overlay"></div>
+        <div class="bdl-bento-cap"><div class="bdl-bento-name">Kyoto, Nhật Bản</div><div class="bdl-bento-sub">Điểm đến quốc tế</div></div>
+      </a>
+      <a href="bai-viet-chi-tiet.html" class="bdl-bento-item">
+        <img src="https://images.unsplash.com/photo-1500835556837-99ac94a94552?w=700&q=80&auto=format&fit=crop" alt="Đụn cát vàng trải dài giữa sa mạc Sahara, Morocco">
+        <div class="bdl-bento-overlay"></div>
+        <div class="bdl-bento-cap"><div class="bdl-bento-name">Sa mạc Sahara, Morocco</div><div class="bdl-bento-sub">Điểm đến quốc tế</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STAT-BAR ══ -->
+<section class="bdl-stat-bar">
+  <div class="bdl-container">
+    <div class="bdl-stats-grid">
+      <div data-reveal><div class="bdl-stat-num" data-counter="27" data-suffix="+">0</div><div class="bdl-stat-label">Quốc gia đã đặt chân</div></div>
+      <div data-reveal data-reveal-d1><div class="bdl-stat-num" data-counter="184">0</div><div class="bdl-stat-label">Bài viết đã xuất bản</div></div>
+      <div data-reveal data-reveal-d2><div class="bdl-stat-num" data-counter="6">0</div><div class="bdl-stat-label">Năm cầm bút viết blog</div></div>
+      <div data-reveal data-reveal-d3><div class="bdl-stat-num" data-counter="42" data-suffix="K">0</div><div class="bdl-stat-label">Độc giả nhận bản tin</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LIST-ELEGANT — Cẩm nang nổi bật ══ -->
+<section class="bdl-sec-pad" style="background:var(--surface);">
+  <div class="bdl-container">
+    <div class="bdl-sec-head-row" data-reveal>
+      <div>
+        <div class="bdl-eyebrow">Cẩm nang du lịch</div>
+        <h2 class="bdl-sec-title">Đọc trước khi <strong>xách balo lên đường</strong></h2>
+      </div>
+      <a href="cam-nang-du-lich.html" class="bdl-sec-more">Xem toàn bộ cẩm nang →</a>
+    </div>
+    <div class="bdl-list-elegant" data-reveal data-reveal-d1>
+      <div class="bdl-list-row">
+        <span class="bdl-list-num">01</span>
+        <div class="bdl-list-main"><a href="cam-nang-du-lich.html" class="bdl-list-name">Chuẩn bị visa & giấy tờ trước chuyến đi</a><div class="bdl-list-desc">Những loại giấy tờ cần photo công chứng, thời gian xin visa tối thiểu.</div></div>
+        <span class="bdl-list-meta">5 phút đọc</span>
+      </div>
+      <div class="bdl-list-row">
+        <span class="bdl-list-num">02</span>
+        <div class="bdl-list-main"><a href="cam-nang-du-lich.html" class="bdl-list-name">Cách đặt vé máy bay giá tốt không cần công cụ trả phí</a><div class="bdl-list-desc">3 thời điểm trong tuần vé rẻ nhất và mẹo dùng ẩn danh trình duyệt.</div></div>
+        <span class="bdl-list-meta">7 phút đọc</span>
+      </div>
+      <div class="bdl-list-row">
+        <span class="bdl-list-num">03</span>
+        <div class="bdl-list-main"><a href="cam-nang-du-lich.html" class="bdl-list-name">Checklist đóng gói hành lý gọn nhẹ</a><div class="bdl-list-desc">Danh sách vật dụng cần thiết cho chuyến đi ngắn ngày lẫn dài ngày.</div></div>
+        <span class="bdl-list-meta">6 phút đọc</span>
+      </div>
+      <div class="bdl-list-row">
+        <span class="bdl-list-num">04</span>
+        <div class="bdl-list-main"><a href="cam-nang-du-lich.html" class="bdl-list-name">Bảo hiểm du lịch — mua loại nào, khi nào cần?</a><div class="bdl-list-desc">So sánh các gói bảo hiểm phổ biến và tình huống nên mua thêm.</div></div>
+        <span class="bdl-list-meta">8 phút đọc</span>
+      </div>
+      <div class="bdl-list-row">
+        <span class="bdl-list-num">05</span>
+        <div class="bdl-list-main"><a href="cam-nang-du-lich.html" class="bdl-list-name">An toàn khi du lịch một mình dành cho phái nữ</a><div class="bdl-list-desc">Kinh nghiệm thực tế sau hơn 20 chuyến đi solo của tác giả.</div></div>
+        <span class="bdl-list-meta">9 phút đọc</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ (mục H) ══ -->
+<section class="bdl-sec-pad">
+  <div class="bdl-container">
+    <div class="bdl-sec-head bdl-center bdl-mx-auto" style="max-width:640px;" data-reveal>
+      <div class="bdl-eyebrow" style="justify-content:center;">Hỏi đáp</div>
+      <h2 class="bdl-sec-title">Câu hỏi <strong>thường gặp</strong></h2>
+      <p class="bdl-sec-sub bdl-mx-auto" style="text-align:center;">Những thắc mắc độc giả hay gửi về cho Xê Dịch — nếu câu hỏi của bạn chưa có ở đây, cứ nhắn qua trang Liên hệ nhé.</p>
+    </div>
+    <div class="bdl-faq-list" data-reveal data-reveal-d1>
+      <details class="bdl-faq-item" open>
+        <summary>Làm sao để đóng góp bài viết cho blog Xê Dịch?<span class="bdl-faq-icon">+</span></summary>
+        <p class="bdl-faq-a">Rất hoan nghênh! Gửi bài viết kèm ảnh chụp thực tế (không dùng ảnh mạng) qua form ở trang Liên hệ, ghi rõ tiêu đề "Đóng góp bài viết". Bài phù hợp sẽ được biên tập lại và đăng kèm tên tác giả, có phản hồi trong vòng 5-7 ngày làm việc.</p>
+      </details>
+      <details class="bdl-faq-item">
+        <summary>Blog đăng bài mới với tần suất như thế nào?<span class="bdl-faq-icon">+</span></summary>
+        <p class="bdl-faq-a">Trung bình 2-3 bài viết mới mỗi tuần, thường vào thứ Ba và thứ Sáu. Vào mùa cao điểm du lịch (hè, dịp Tết) tần suất có thể tăng lên 4 bài/tuần. Đăng ký bản tin ở footer để không bỏ lỡ bài mới.</p>
+      </details>
+      <details class="bdl-faq-item">
+        <summary>Mình có thể sử dụng lại nội dung hoặc hình ảnh trên blog không?<span class="bdl-faq-icon">+</span></summary>
+        <p class="bdl-faq-a">Bạn có thể trích dẫn một phần nội dung kèm liên kết dẫn nguồn về bài viết gốc. Việc đăng lại toàn bộ bài viết hoặc sử dụng ảnh cho mục đích thương mại cần liên hệ xin phép trước qua email ở trang Liên hệ.</p>
+      </details>
+      <details class="bdl-faq-item">
+        <summary>Blog có nhận hợp tác quảng cáo hoặc bài viết tài trợ không?<span class="bdl-faq-icon">+</span></summary>
+        <p class="bdl-faq-a">Có. Xê Dịch nhận hợp tác với các thương hiệu du lịch, khách sạn, hãng lữ hành phù hợp với tệp độc giả của blog. Mọi bài viết tài trợ đều được gắn nhãn "Nội dung hợp tác" rõ ràng để đảm bảo minh bạch với độc giả. Liên hệ qua trang Liên hệ để nhận bảng giá.</p>
+      </details>
+      <details class="bdl-faq-item">
+        <summary>Làm sao để đăng ký nhận bản tin qua email?<span class="bdl-faq-icon">+</span></summary>
+        <p class="bdl-faq-a">Điền email vào ô đăng ký ở cuối trang chủ hoặc trong footer của bất kỳ trang nào. Bản tin gửi 1 lần/tuần, tổng hợp bài viết mới và mẹo du lịch độc quyền không đăng trên blog. Bạn có thể hủy đăng ký bất cứ lúc nào chỉ với 1 cú click.</p>
+      </details>
+      <details class="bdl-faq-item">
+        <summary>Chính sách bình luận trên blog như thế nào?<span class="bdl-faq-icon">+</span></summary>
+        <p class="bdl-faq-a">Mọi bình luận được kiểm duyệt trước khi hiển thị để tránh spam. Khuyến khích bình luận chia sẻ kinh nghiệm thực tế, câu hỏi liên quan đến bài viết. Bình luận quảng cáo, spam liên kết hoặc ngôn từ không phù hợp sẽ bị xoá mà không cần thông báo trước.</p>
+      </details>
+      <details class="bdl-faq-item">
+        <summary>Thông tin giá cả, lịch trình trong bài viết có được cập nhật thường xuyên không?<span class="bdl-faq-icon">+</span></summary>
+        <p class="bdl-faq-a">Các bài viết có ghi rõ ngày xuất bản/cập nhật ở đầu bài. Giá vé, giá phòng có thể thay đổi theo thời gian và mùa vụ — luôn kiểm tra lại thông tin mới nhất trực tiếp với nhà cung cấp dịch vụ trước khi đặt.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FULL-BLEED — Newsletter CTA ══ -->
+<section class="bdl-full-bleed" data-reveal>
+  <div class="bdl-container">
+    <h2 class="bdl-fb-title">Đừng bỏ lỡ <strong>hành trình tiếp theo</strong></h2>
+    <p class="bdl-fb-sub">Đăng ký nhận bản tin để cập nhật bài viết mới, mẹo du lịch độc quyền và ưu đãi từ các đối tác lữ hành của Xê Dịch.</p>
+    <form class="bdl-newsletter-form" onsubmit="return false;">
+      <input type="email" placeholder="Nhập email của bạn" required>
+      <button type="submit">Đăng ký</button>
+    </form>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="bdl-footer">
+  <div class="bdl-container">
+    <div class="bdl-footer-main">
+      <div>
+        <a href="index.html" class="bdl-footer-logo"><span class="bdl-logo-mark">✈</span><span>Xê Dịch</span></a>
+        <p class="bdl-footer-tagline">Nhật ký hành trình, kinh nghiệm thực tế và những khoảnh khắc đáng nhớ từ khắp các nẻo đường — viết bởi [Lam Trang], một người thích xê dịch hơn là đứng yên.</p>
+        <div class="bdl-footer-social">
+          <a href="#" class="bdl-social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">f</a>
+          <a href="#" class="bdl-social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">ig</a>
+          <a href="#" class="bdl-social-link" aria-label="YouTube" target="_blank" rel="noopener noreferrer">▶</a>
+        </div>
+      </div>
+      <div>
+        <div class="bdl-footer-col-title">Chuyên mục</div>
+        <ul class="bdl-footer-links">
+          <li><a href="chuyen-muc.html">Điểm đến trong nước</a></li>
+          <li><a href="chuyen-muc.html">Điểm đến quốc tế</a></li>
+          <li><a href="chuyen-muc.html">Mẹo du lịch</a></li>
+          <li><a href="chuyen-muc.html">Review lưu trú</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="bdl-footer-col-title">Về blog</div>
+        <ul class="bdl-footer-links">
+          <li><a href="ve-toi.html">Về tôi</a></li>
+          <li><a href="cam-nang-du-lich.html">Cẩm nang du lịch</a></li>
+          <li><a href="lien-he.html">Liên hệ</a></li>
+          <li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+          <li><a href="dieu-khoan.html">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="bdl-footer-col-title">Nhận bản tin</div>
+        <p class="bdl-footer-tagline" style="margin-bottom:14px;">Mẹo du lịch & điểm đến mới mỗi tuần, gửi thẳng vào hộp thư của bạn.</p>
+        <form class="bdl-footer-newsletter" onsubmit="return false;">
+          <input type="email" placeholder="Email của bạn" required>
+          <button type="submit">Gửi</button>
+        </form>
+      </div>
+    </div>
+    <div class="bdl-footer-maps">
+      <iframe src="https://maps.google.com/maps?q=11.9404,108.4583&hl=vi&z=14&output=embed" loading="lazy" title="Bản đồ văn phòng đại diện Xê Dịch tại Đà Lạt"></iframe>
+    </div>
+    <div class="bdl-footer-bottom">
+      <span>© 2026 Xê Dịch Travel Journal. Bản quyền thuộc về [Lam Trang].</span>
+      <span><a href="chinh-sach-bao-mat.html">Bảo mật</a> · <a href="dieu-khoan.html">Điều khoản</a></span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[SO_DIEN_THOAI]" target="_blank" rel="noopener noreferrer" class="bdl-zalo-float" aria-label="Chat Zalo">Z</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

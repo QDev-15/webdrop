@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cỏ Non — Nhật Ký Nuôi Con Từ Trái Tim Một Người Mẹ</title>
+<meta name="description" content="Cỏ Non — blog cá nhân của mẹ Hạ Vy chia sẻ nhật ký nuôi con, kinh nghiệm chăm sóc trẻ sơ sinh, dinh dưỡng ăn dặm, giáo dục sớm và những câu chuyện chân thật của một người mẹ hai con.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV — Nav-8 Underline-Active -->
+<nav id="bmbNav">
+  <div class="bmb-container">
+    <div class="bmb-nav-inner">
+      <a class="bmb-logo" href="index.html"><span class="leaf">🌱</span>Cỏ Non<em>.blog</em></a>
+      <div class="bmb-nav-links">
+        <a href="index.html" class="active">Trang chủ</a>
+        <a href="chuyen-muc.html">Chuyên mục</a>
+        <a href="cam-nang.html">Cẩm nang</a>
+        <a href="ve-toi.html">Về tôi</a>
+        <a href="lien-he.html">Liên hệ</a>
+      </div>
+      <a href="#newsletter" class="bmb-nav-cta">Nhận bản tin 💌</a>
+      <button class="bmb-burger" id="bmbBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="bmb-nav-mobile" id="bmbNavMobile">
+  <a href="index.html" class="active">Trang chủ</a>
+  <a href="chuyen-muc.html">Chuyên mục</a>
+  <a href="cam-nang.html">Cẩm nang</a>
+  <a href="ve-toi.html">Về tôi</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="#newsletter" class="bmb-nm-cta">Nhận bản tin 💌</a>
+</div>
+
+<!-- CAROUSEL HERO — H4 Centered Minimal -->
+<section class="bmb-hero" id="bmbHero">
+  <div class="bmb-hero-slide s1 active" data-slide="0">
+    <div class="bmb-hero-blob"><img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=500&q=80&auto=format&fit=crop" alt="Mẹ ôm con nhỏ trong vòng tay" loading="lazy"></div>
+    <div class="bmb-hero-inner">
+      <span class="bmb-hero-tag">🌱 Cỏ Non Blog</span>
+      <h1 class="bmb-hero-title">Nhật ký nuôi con — <em>chân thật</em> đến từng khoảnh khắc nhỏ</h1>
+      <p class="bmb-hero-sub">Mình là Hạ Vy, mẹ của Kem và Sữa. Đây là nơi mình ghi lại hành trình làm mẹ — không tô hồng, không áp lực, chỉ có những điều thật.</p>
+      <div class="bmb-hero-cta">
+        <a href="chuyen-muc.html" class="bmb-btn bmb-btn-primary">Khám phá chuyên mục</a>
+        <a href="ve-toi.html" class="bmb-btn bmb-btn-ghost">Về mình — Hạ Vy</a>
+      </div>
+    </div>
+  </div>
+  <div class="bmb-hero-slide s2" data-slide="1">
+    <div class="bmb-hero-blob"><img src="https://images.unsplash.com/photo-1541692641319-981cc79ee10a?w=500&q=80&auto=format&fit=crop" alt="Mẹ đọc sách cùng con nhỏ" loading="lazy"></div>
+    <div class="bmb-hero-inner">
+      <span class="bmb-hero-tag">🥣 Dinh dưỡng cho bé</span>
+      <h2 class="bmb-hero-title">Ăn dặm không nước mắt — <em>cùng con</em> khám phá vị giác</h2>
+      <p class="bmb-hero-sub">Thực đơn, công thức và những bài học rút ra từ 2 năm cho hai bé ăn dặm — chia sẻ thật, không quảng cáo.</p>
+      <div class="bmb-hero-cta">
+        <a href="cam-nang.html" class="bmb-btn bmb-btn-primary">Xem cẩm nang ăn dặm</a>
+        <a href="chuyen-muc.html" class="bmb-btn bmb-btn-ghost">Đọc bài mới nhất</a>
+      </div>
+    </div>
+  </div>
+  <div class="bmb-hero-slide s3" data-slide="2">
+    <div class="bmb-hero-blob"><img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=500&q=80&auto=format&fit=crop" alt="Mẹ bầu chăm sóc bản thân trong thai kỳ" loading="lazy"></div>
+    <div class="bmb-hero-inner">
+      <span class="bmb-hero-tag">🌷 Mang thai &amp; sinh nở</span>
+      <h2 class="bmb-hero-title">9 tháng 10 ngày — <em>hành trình</em> không ai giống ai</h2>
+      <p class="bmb-hero-sub">Từ ốm nghén, khám thai đến ngày vượt cạn — những điều mình ước ai đó đã nói với mình sớm hơn.</p>
+      <div class="bmb-hero-cta">
+        <a href="chuyen-muc.html" class="bmb-btn bmb-btn-primary">Đọc chuyên mục Mang thai</a>
+        <a href="lien-he.html" class="bmb-btn bmb-btn-ghost">Liên hệ chia sẻ</a>
+      </div>
+    </div>
+  </div>
+  <div class="bmb-hero-slide s4" data-slide="3">
+    <div class="bmb-hero-blob"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=500&q=80&auto=format&fit=crop" alt="Em bé ngủ say giấc bình yên" loading="lazy"></div>
+    <div class="bmb-hero-inner">
+      <span class="bmb-hero-tag">🧸 Giáo dục sớm</span>
+      <h2 class="bmb-hero-title">Chơi cùng con mỗi ngày — <em>bài học</em> lớn nhất của mẹ</h2>
+      <p class="bmb-hero-sub">Những trò chơi đơn giản tại nhà giúp con phát triển ngôn ngữ, vận động và cảm xúc — không cần đồ chơi đắt tiền.</p>
+      <div class="bmb-hero-cta">
+        <a href="cam-nang.html" class="bmb-btn bmb-btn-primary">Xem cẩm nang theo giai đoạn</a>
+        <a href="#newsletter" class="bmb-btn bmb-btn-ghost">Theo dõi Cỏ Non</a>
+      </div>
+    </div>
+  </div>
+  <div class="bmb-hero-nav">
+    <button class="bmb-hero-arrow" id="bmbPrev" aria-label="Slide trước">‹</button>
+    <div class="bmb-hero-dots" id="bmbDots">
+      <button class="active" data-goto="0" aria-label="Slide 1"></button>
+      <button data-goto="1" aria-label="Slide 2"></button>
+      <button data-goto="2" aria-label="Slide 3"></button>
+      <button data-goto="3" aria-label="Slide 4"></button>
+    </div>
+    <button class="bmb-hero-arrow" id="bmbNext" aria-label="Slide sau">›</button>
+  </div>
+</section>
+
+<main>
+
+  <!-- STAT-BAR -->
+  <section class="bmb-statbar">
+    <div class="bmb-container">
+      <div class="bmb-stats-grid">
+        <div><div class="bmb-stat-num" data-counter="5" data-suffix="+">0</div><div class="bmb-stat-label">Năm viết blog</div></div>
+        <div><div class="bmb-stat-num" data-counter="260" data-suffix="+">0</div><div class="bmb-stat-label">Bài viết đã đăng</div></div>
+        <div><div class="bmb-stat-num" data-counter="48" data-suffix="K">0</div><div class="bmb-stat-label">Độc giả mỗi tháng</div></div>
+        <div><div class="bmb-stat-num" data-counter="12" data-suffix="K">0</div><div class="bmb-stat-label">Thành viên nhóm kín</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED POST -->
+  <section class="bmb-sec">
+    <div class="bmb-container">
+      <div class="bmb-eyebrow" data-reveal>🌟 Bài viết nổi bật</div>
+      <h2 class="bmb-sec-title" data-reveal style="max-width:640px">Đang được đọc nhiều nhất <em>tuần này</em></h2>
+      <div style="height:28px"></div>
+      <a href="bai-viet-chi-tiet.html" class="bmb-featured" data-reveal style="display:block">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=1400&q=80&auto=format&fit=crop" class="bmb-featured-img" alt="Bé tập ăn dặm cùng mẹ tại bàn ăn gia đình" loading="lazy">
+        <div class="bmb-featured-overlay"></div>
+        <div class="bmb-featured-body">
+          <span class="bmb-featured-tag">Dinh dưỡng cho bé</span>
+          <h3 class="bmb-featured-title">Ăn dặm kiểu Nhật hay BLW? Mình đã thử <em>cả hai</em> và đây là điều rút ra</h3>
+          <p class="bmb-featured-sub">Sau 2 năm cho Kem rồi đến Sữa ăn dặm bằng hai phương pháp khác nhau, mình nhận ra không có công thức đúng tuyệt đối — chỉ có điều phù hợp với từng bé.</p>
+          <div class="bmb-featured-meta"><span>Hạ Vy</span><span>12 phút đọc</span><span>Cập nhật 20/08/2026</span></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- GRID-CARDS — Latest posts -->
+  <section class="bmb-sec bmb-sec-tint">
+    <div class="bmb-container">
+      <div class="bmb-eyebrow" data-reveal>📝 Mới đăng</div>
+      <h2 class="bmb-sec-title" data-reveal>Bài viết mới nhất từ <em>Cỏ Non</em></h2>
+      <div style="height:32px"></div>
+      <div class="bmb-post-grid">
+        <a href="bai-viet-chi-tiet.html" class="bmb-post-card" data-reveal>
+          <div class="bmb-post-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1476234251651-f353703a034d?w=700&q=80&auto=format&fit=crop" alt="Bộ đồ sơ sinh ấm áp cho bé mùa đông" loading="lazy">
+            <span class="bmb-post-cat">Sơ sinh</span>
+          </div>
+          <div class="bmb-post-body">
+            <div class="bmb-post-meta"><span class="bmb-post-date">18/08/2026</span><span class="bmb-post-dot"></span><span class="bmb-post-read">6 phút đọc</span></div>
+            <h3 class="bmb-post-title">Set đồ sơ sinh cho bé mùa đông: Mua gì là đủ, đừng mua thừa</h3>
+            <p class="bmb-post-excerpt">Danh sách 12 món đồ thực sự cần thiết mình đúc kết sau 2 lần chuẩn bị đồ sơ sinh — tiết kiệm hơn 3 triệu so với lần đầu.</p>
+            <div class="bmb-post-footer">
+              <img src="https://images.unsplash.com/photo-1516981879613-9f5da904015f?w=100&q=70&auto=format&fit=crop" class="bmb-post-avatar" alt="Ảnh đại diện Hạ Vy">
+              <span class="bmb-post-author">Hạ Vy</span>
+            </div>
+          </div>
+        </a>
+        <a href="bai-viet-chi-tiet.html" class="bmb-post-card" data-reveal data-reveal-d1>
+          <div class="bmb-post-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1522771930-78848d9293e8?w=700&q=80&auto=format&fit=crop" alt="Bé chơi trò chơi giáo dục cùng mẹ" loading="lazy">
+            <span class="bmb-post-cat">Giáo dục sớm</span>
+          </div>
+          <div class="bmb-post-body">
+            <div class="bmb-post-meta"><span class="bmb-post-date">15/08/2026</span><span class="bmb-post-dot"></span><span class="bmb-post-read">7 phút đọc</span></div>
+            <h3 class="bmb-post-title">5 trò chơi giúp bé 18 tháng phát triển ngôn ngữ ngay tại nhà</h3>
+            <p class="bmb-post-excerpt">Không cần đồ chơi đắt tiền — chỉ cần 15 phút mỗi ngày với các trò chơi mình áp dụng cho cả Kem và Sữa.</p>
+            <div class="bmb-post-footer">
+              <img src="https://images.unsplash.com/photo-1516981879613-9f5da904015f?w=100&q=70&auto=format&fit=crop" class="bmb-post-avatar" alt="Ảnh đại diện Hạ Vy">
+              <span class="bmb-post-author">Hạ Vy</span>
+            </div>
+          </div>
+        </a>
+        <a href="bai-viet-chi-tiet.html" class="bmb-post-card" data-reveal data-reveal-d2>
+          <div class="bmb-post-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=700&q=80&auto=format&fit=crop" alt="Mẹ ôm con chia sẻ cảm xúc sau sinh" loading="lazy">
+            <span class="bmb-post-cat">Góc của mẹ</span>
+          </div>
+          <div class="bmb-post-body">
+            <div class="bmb-post-meta"><span class="bmb-post-date">11/08/2026</span><span class="bmb-post-dot"></span><span class="bmb-post-read">9 phút đọc</span></div>
+            <h3 class="bmb-post-title">Trầm cảm sau sinh không đáng xấu hổ — câu chuyện của mình</h3>
+            <p class="bmb-post-excerpt">3 tháng đầu sau khi sinh Sữa, mình đã im lặng chịu đựng vì nghĩ "làm mẹ ai chẳng mệt". Đây là điều mình ước mình đã nói ra sớm hơn.</p>
+            <div class="bmb-post-footer">
+              <img src="https://images.unsplash.com/photo-1516981879613-9f5da904015f?w=100&q=70&auto=format&fit=crop" class="bmb-post-avatar" alt="Ảnh đại diện Hạ Vy">
+              <span class="bmb-post-author">Hạ Vy</span>
+            </div>
+          </div>
+        </a>
+        <a href="bai-viet-chi-tiet.html" class="bmb-post-card" data-reveal>
+          <div class="bmb-post-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1543342384-1f1350e27861?w=700&q=80&auto=format&fit=crop" alt="Bé sơ sinh khám sức khỏe định kỳ" loading="lazy">
+            <span class="bmb-post-cat">Sơ sinh</span>
+          </div>
+          <div class="bmb-post-body">
+            <div class="bmb-post-meta"><span class="bmb-post-date">08/08/2026</span><span class="bmb-post-dot"></span><span class="bmb-post-read">8 phút đọc</span></div>
+            <h3 class="bmb-post-title">Lịch tiêm chủng cho bé 0-24 tháng mẹ cần nhớ</h3>
+            <p class="bmb-post-excerpt">Bảng tổng hợp đầy đủ các mũi tiêm bắt buộc và khuyến khích theo khuyến cáo của Bộ Y tế, kèm mẹo giúp bé bớt quấy khóc khi tiêm.</p>
+            <div class="bmb-post-footer">
+              <img src="https://images.unsplash.com/photo-1516981879613-9f5da904015f?w=100&q=70&auto=format&fit=crop" class="bmb-post-avatar" alt="Ảnh đại diện Hạ Vy">
+              <span class="bmb-post-author">Hạ Vy</span>
+            </div>
+          </div>
+        </a>
+        <a href="bai-viet-chi-tiet.html" class="bmb-post-card" data-reveal data-reveal-d1>
+          <div class="bmb-post-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=700&q=80&auto=format&fit=crop" alt="Gia đình chuẩn bị bữa ăn dặm cho bé" loading="lazy">
+            <span class="bmb-post-cat">Dinh dưỡng cho bé</span>
+          </div>
+          <div class="bmb-post-body">
+            <div class="bmb-post-meta"><span class="bmb-post-date">04/08/2026</span><span class="bmb-post-dot"></span><span class="bmb-post-read">10 phút đọc</span></div>
+            <h3 class="bmb-post-title">Thực đơn ăn dặm 1 tuần cho bé 6 tháng tuổi (kèm công thức chi tiết)</h3>
+            <p class="bmb-post-excerpt">7 ngày thực đơn chi tiết từng bữa, nguyên liệu dễ tìm, phù hợp cho mẹ mới bắt đầu cho bé ăn dặm.</p>
+            <div class="bmb-post-footer">
+              <img src="https://images.unsplash.com/photo-1516981879613-9f5da904015f?w=100&q=70&auto=format&fit=crop" class="bmb-post-avatar" alt="Ảnh đại diện Hạ Vy">
+              <span class="bmb-post-author">Hạ Vy</span>
+            </div>
+          </div>
+        </a>
+        <a href="bai-viet-chi-tiet.html" class="bmb-post-card" data-reveal data-reveal-d2>
+          <div class="bmb-post-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=700&q=80&auto=format&fit=crop" alt="Bé được mẹ đọc sách trước giờ ngủ" loading="lazy">
+            <span class="bmb-post-cat">Giáo dục sớm</span>
+          </div>
+          <div class="bmb-post-body">
+            <div class="bmb-post-meta"><span class="bmb-post-date">01/08/2026</span><span class="bmb-post-dot"></span><span class="bmb-post-read">6 phút đọc</span></div>
+            <h3 class="bmb-post-title">Đọc sách cho con từ 0 tuổi: Bắt đầu như thế nào?</h3>
+            <p class="bmb-post-excerpt">Mình đã đọc sách cho Sữa từ lúc bé 2 tháng tuổi — đây là cách chọn sách và duy trì thói quen mà không tạo áp lực cho cả mẹ và con.</p>
+            <div class="bmb-post-footer">
+              <img src="https://images.unsplash.com/photo-1516981879613-9f5da904015f?w=100&q=70&auto=format&fit=crop" class="bmb-post-avatar" alt="Ảnh đại diện Hạ Vy">
+              <span class="bmb-post-author">Hạ Vy</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="text-center" style="margin-top:40px">
+        <a href="chuyen-muc.html" class="bmb-btn bmb-btn-ghost">Xem tất cả bài viết</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE-ICON-ROW -->
+  <section class="bmb-sec">
+    <div class="bmb-container">
+      <div class="bmb-eyebrow bmb-center" data-reveal style="display:flex;justify-content:center">🍃 Vì sao đọc Cỏ Non</div>
+      <h2 class="bmb-sec-title bmb-center" data-reveal>Một blog viết bằng <em>sự thật</em>, không phải công thức</h2>
+      <div style="height:44px"></div>
+      <div class="bmb-feature-row">
+        <div class="bmb-feature-item" data-reveal>
+          <div class="bmb-feature-icon">✍️</div>
+          <div class="bmb-feature-title">Chia sẻ thật</div>
+          <div class="bmb-feature-text">Không tô vẽ, chỉ kể lại đúng những gì mình đã trải qua cùng Kem và Sữa.</div>
+        </div>
+        <div class="bmb-feature-item" data-reveal data-reveal-d1>
+          <div class="bmb-feature-icon">🔬</div>
+          <div class="bmb-feature-title">Có căn cứ khoa học</div>
+          <div class="bmb-feature-text">Tham khảo tài liệu y khoa, tư vấn bác sĩ nhi khoa trước khi đăng bài.</div>
+        </div>
+        <div class="bmb-feature-item" data-reveal data-reveal-d2>
+          <div class="bmb-feature-icon">👩‍👩‍👧‍👦</div>
+          <div class="bmb-feature-title">Cộng đồng đồng cảm</div>
+          <div class="bmb-feature-text">Hơn 12.000 mẹ bỉm cùng chia sẻ, hỏi đáp trong nhóm kín mỗi ngày.</div>
+        </div>
+        <div class="bmb-feature-item" data-reveal data-reveal-d3>
+          <div class="bmb-feature-icon">📬</div>
+          <div class="bmb-feature-title">Cập nhật đều đặn</div>
+          <div class="bmb-feature-text">2 bài viết mới mỗi tuần, đúng hẹn thứ Ba và thứ Sáu.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HORIZONTAL-SCROLL — Được đọc nhiều nhất -->
+  <section class="bmb-sec bmb-sec-peach">
+    <div class="bmb-container">
+      <div class="bmb-eyebrow" data-reveal>🔥 Được đọc nhiều nhất</div>
+      <h2 class="bmb-sec-title" data-reveal>Mẹ nào cũng nên đọc <em>ít nhất một lần</em></h2>
+      <div style="height:32px"></div>
+      <div class="bmb-hscroll">
+        <a href="bai-viet-chi-tiet.html" class="bmb-hscroll-card bmb-post-card">
+          <div class="bmb-post-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1590650046871-92c887180603?w=500&q=80&auto=format&fit=crop" alt="Mẹ bầu vượt qua ốm nghén 3 tháng đầu thai kỳ" loading="lazy">
+            <span class="bmb-post-cat">Mang thai</span>
+          </div>
+          <div class="bmb-post-body">
+            <h3 class="bmb-post-title" style="font-size:15px">Ốm nghén 3 tháng đầu: 7 cách mình đã vượt qua mà không cần thuốc</h3>
+          </div>
+        </a>
+        <a href="bai-viet-chi-tiet.html" class="bmb-hscroll-card bmb-post-card">
+          <div class="bmb-post-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1522771930-78848d9293e8?w=500&q=80&auto=format&fit=crop" alt="Bé phát triển ngôn ngữ qua trò chơi cùng mẹ" loading="lazy">
+            <span class="bmb-post-cat">Giáo dục sớm</span>
+          </div>
+          <div class="bmb-post-body">
+            <h3 class="bmb-post-title" style="font-size:15px">5 trò chơi giúp bé 18 tháng phát triển ngôn ngữ ngay tại nhà</h3>
+          </div>
+        </a>
+        <a href="bai-viet-chi-tiet.html" class="bmb-hscroll-card bmb-post-card">
+          <div class="bmb-post-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&q=80&auto=format&fit=crop" alt="Thực đơn ăn dặm chi tiết cho bé 6 tháng tuổi" loading="lazy">
+            <span class="bmb-post-cat">Dinh dưỡng</span>
+          </div>
+          <div class="bmb-post-body">
+            <h3 class="bmb-post-title" style="font-size:15px">Thực đơn ăn dặm 1 tuần cho bé 6 tháng tuổi (kèm công thức chi tiết)</h3>
+          </div>
+        </a>
+        <a href="bai-viet-chi-tiet.html" class="bmb-hscroll-card bmb-post-card">
+          <div class="bmb-post-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=500&q=80&auto=format&fit=crop" alt="Mẹ bầu phân biệt dấu hiệu chuyển dạ thật và giả" loading="lazy">
+            <span class="bmb-post-cat">Mang thai</span>
+          </div>
+          <div class="bmb-post-body">
+            <h3 class="bmb-post-title" style="font-size:15px">Dấu hiệu chuyển dạ thật và giả — phân biệt thế nào?</h3>
+          </div>
+        </a>
+        <a href="bai-viet-chi-tiet.html" class="bmb-hscroll-card bmb-post-card">
+          <div class="bmb-post-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=500&q=80&auto=format&fit=crop" alt="Mẹ cân bằng công việc và chăm sóc con nhỏ" loading="lazy">
+            <span class="bmb-post-cat">Góc của mẹ</span>
+          </div>
+          <div class="bmb-post-body">
+            <h3 class="bmb-post-title" style="font-size:15px">Cân bằng công việc và làm mẹ: mình đã học cách buông bỏ sự hoàn hảo</h3>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ — mục H -->
+  <section class="bmb-sec" id="faq">
+    <div class="bmb-container">
+      <div class="bmb-eyebrow bmb-center" data-reveal style="display:flex;justify-content:center">❓ Câu hỏi thường gặp</div>
+      <h2 class="bmb-sec-title bmb-center" data-reveal>Mọi điều bạn cần biết về <em>Cỏ Non</em></h2>
+      <div style="height:36px"></div>
+      <div class="bmb-faq-list" id="bmbFaqList" data-reveal>
+        <div class="bmb-faq-item">
+          <button class="bmb-faq-q"><span>Làm sao để mình có thể chia sẻ câu chuyện nuôi con lên Cỏ Non?</span><span class="bmb-faq-icon">+</span></button>
+          <div class="bmb-faq-a"><div class="bmb-faq-a-inner">Gửi bài viết nháp (500–1500 từ) kèm 2–3 ảnh thật tới email <strong>hoptac@[DOMAIN]</strong> hoặc điền form ở trang Liên hệ. Hạ Vy sẽ đọc và phản hồi trong 5–7 ngày làm việc, ưu tiên những câu chuyện có trải nghiệm thật, cụ thể.</div></div>
+        </div>
+        <div class="bmb-faq-item">
+          <button class="bmb-faq-q"><span>Cỏ Non đăng bài mới với tần suất như thế nào?</span><span class="bmb-faq-icon">+</span></button>
+          <div class="bmb-faq-a"><div class="bmb-faq-a-inner">Mình cố gắng duy trì 2 bài viết mới mỗi tuần vào thứ Ba và thứ Sáu. Riêng chuyên mục Cẩm nang cập nhật theo quý khi có khuyến nghị mới từ Bộ Y tế hoặc các tổ chức nhi khoa uy tín.</div></div>
+        </div>
+        <div class="bmb-faq-item">
+          <button class="bmb-faq-q"><span>Mình có thể sử dụng lại nội dung, hình ảnh trên blog không?</span><span class="bmb-faq-icon">+</span></button>
+          <div class="bmb-faq-a"><div class="bmb-faq-a-inner">Bạn có thể trích dẫn tối đa 150 từ kèm link dẫn nguồn về bài viết gốc. Vui lòng không sao chép nguyên bài hoặc dùng cho mục đích thương mại nếu chưa có sự đồng ý bằng văn bản — xem thêm ở trang Điều khoản sử dụng.</div></div>
+        </div>
+        <div class="bmb-faq-item">
+          <button class="bmb-faq-q"><span>Cỏ Non có nhận hợp tác quảng cáo hoặc review sản phẩm mẹ và bé không?</span><span class="bmb-faq-icon">+</span></button>
+          <div class="bmb-faq-a"><div class="bmb-faq-a-inner">Có, nhưng mình chỉ nhận review những sản phẩm mình thực sự dùng cho Kem và Sữa. Mọi bài viết có yếu tố tài trợ đều được gắn nhãn "Hợp tác" rõ ràng ngay đầu bài — mình không nhận quảng cáo cho sản phẩm chưa qua kiểm định an toàn.</div></div>
+        </div>
+        <div class="bmb-faq-item">
+          <button class="bmb-faq-q"><span>Làm sao để đăng ký nhận bản tin (newsletter) từ Cỏ Non?</span><span class="bmb-faq-icon">+</span></button>
+          <div class="bmb-faq-a"><div class="bmb-faq-a-inner">Điền email vào ô "Nhận bản tin" ở cuối trang chủ hoặc trang Liên hệ. Mỗi Chủ nhật mình gửi 1 email tổng hợp bài viết trong tuần, không spam, có thể hủy đăng ký bất cứ lúc nào.</div></div>
+        </div>
+        <div class="bmb-faq-item">
+          <button class="bmb-faq-q"><span>Chính sách bình luận trên Cỏ Non như thế nào?</span><span class="bmb-faq-icon">+</span></button>
+          <div class="bmb-faq-a"><div class="bmb-faq-a-inner">Mình khuyến khích bình luận chia sẻ kinh nghiệm thật. Bình luận công kích cá nhân, spam link hoặc quảng cáo trái phép sẽ bị ẩn/xóa mà không cần báo trước, theo đúng Điều khoản sử dụng của blog.</div></div>
+        </div>
+        <div class="bmb-faq-item">
+          <button class="bmb-faq-q"><span>Thông tin y khoa trên blog có được chuyên gia kiểm duyệt không?</span><span class="bmb-faq-icon">+</span></button>
+          <div class="bmb-faq-a"><div class="bmb-faq-a-inner">Các bài liên quan sức khỏe, dinh dưỡng, tiêm chủng đều được mình đối chiếu tài liệu của Bộ Y tế, WHO và tham khảo ý kiến bác sĩ nhi khoa quen biết trước khi đăng. Tuy nhiên nội dung mang tính chia sẻ kinh nghiệm cá nhân, không thay thế tư vấn y tế trực tiếp — vui lòng hỏi ý kiến bác sĩ cho tình huống cụ thể của bé.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="bmb-sec-sm" id="newsletter">
+    <div class="bmb-container">
+      <div class="bmb-newsletter" data-reveal>
+        <div>
+          <h3 class="bmb-sec-title bmb-mb-0" style="font-size:24px;margin-bottom:8px">💌 Đừng bỏ lỡ bài viết mới</h3>
+          <p class="bmb-sec-sub bmb-mb-0">Mỗi Chủ nhật, một email tổng hợp bài viết trong tuần — không spam, hủy đăng ký bất cứ lúc nào.</p>
+        </div>
+        <form class="bmb-newsletter-form" onsubmit="return false">
+          <input type="email" placeholder="Email của bạn" required>
+          <button type="submit" class="bmb-btn bmb-btn-peach">Đăng ký</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bmb-footer">
+  <div class="bmb-container">
+    <div class="bmb-ft-top">
+      <div>
+        <div class="bmb-ft-logo">🌱 Cỏ Non<em>.blog</em></div>
+        <p class="bmb-ft-desc">Nhật ký nuôi con của mẹ Hạ Vy — chia sẻ thật, không áp lực, đồng hành cùng mẹ và bé qua từng giai đoạn.</p>
+        <div class="bmb-ft-social">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">📘</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">📷</a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="Youtube">▶️</a>
+        </div>
+      </div>
+      <div>
+        <div class="bmb-ft-col-title">Chuyên mục</div>
+        <div class="bmb-ft-links">
+          <a href="chuyen-muc.html">Mang thai</a>
+          <a href="chuyen-muc.html">Sơ sinh</a>
+          <a href="chuyen-muc.html">Dinh dưỡng cho bé</a>
+          <a href="chuyen-muc.html">Giáo dục sớm</a>
+          <a href="chuyen-muc.html">Góc của mẹ</a>
+        </div>
+      </div>
+      <div>
+        <div class="bmb-ft-col-title">Khám phá</div>
+        <div class="bmb-ft-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="cam-nang.html">Cẩm nang</a>
+          <a href="ve-toi.html">Về tôi</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div>
+        <div class="bmb-ft-col-title">Liên hệ</div>
+        <div class="bmb-ft-links">
+          <a href="mailto:hoptac@[DOMAIN]">hoptac@[DOMAIN]</a>
+          <a href="tel:[SỐ_ĐIỆN_THOẠI]">[SỐ_ĐIỆN_THOẠI]</a>
+          <a href="lien-he.html">Gửi tin nhắn</a>
+        </div>
+      </div>
+    </div>
+    <iframe class="bmb-footer-maps" src="https://maps.google.com/maps?q=21.0285,105.8542&hl=vi&z=15&output=embed" loading="lazy" title="Vị trí Cỏ Non Blog tại Hà Nội"></iframe>
+  </div>
+  <div class="bmb-ft-bottom">
+    <div class="bmb-container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+      <div class="bmb-ft-copy">© [NĂM] Cỏ Non Blog · Viết bằng cả trái tim tại Hà Nội 🇻🇳</div>
+      <div class="bmb-ft-legal">
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ZALO FLOAT -->
+<a href="https://zalo.me/[SỐ_ZALO]" class="bmb-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Reveal animation
+const bmbRo = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); bmbRo.unobserve(e.target); } });
+}, { threshold: .08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => bmbRo.observe(el));
+
+// Mobile hamburger
+const bmbBurger = document.getElementById('bmbBurger');
+const bmbMobileNav = document.getElementById('bmbNavMobile');
+if (bmbBurger && bmbMobileNav) {
+  bmbBurger.addEventListener('click', () => {
+    const open = bmbMobileNav.classList.toggle('open');
+    bmbBurger.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      bmbMobileNav.classList.remove('open');
+      bmbBurger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+}
+
+// Counter animation
+document.querySelectorAll('[data-counter]').forEach(el => {
+  const cro = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      const target = +el.dataset.counter;
+      const suffix = el.dataset.suffix || '';
+      let cur = 0; const step = Math.ceil(target / 60);
+      const t = setInterval(() => { cur = Math.min(cur + step, target); el.textContent = cur + suffix; if (cur >= target) clearInterval(t); }, 25);
+      cro.disconnect();
+    }
+  }, { threshold: .5 });
+  cro.observe(el);
+});
+
+// Carousel Hero
+(function () {
+  const slides = document.querySelectorAll('.bmb-hero-slide');
+  const dots = document.querySelectorAll('#bmbDots button');
+  let idx = 0, timer;
+  function go(n) {
+    slides[idx].classList.remove('active');
+    dots[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    dots[idx].classList.add('active');
+  }
+  function next() { go(idx + 1); }
+  function prev() { go(idx - 1); }
+  function restart() { clearInterval(timer); timer = setInterval(next, 5000); }
+  document.getElementById('bmbNext').addEventListener('click', () => { next(); restart(); });
+  document.getElementById('bmbPrev').addEventListener('click', () => { prev(); restart(); });
+  dots.forEach(d => d.addEventListener('click', () => { go(+d.dataset.goto); restart(); }));
+  restart();
+})();
+
+// FAQ accordion
+document.querySelectorAll('#bmbFaqList .bmb-faq-item').forEach(item => {
+  const q = item.querySelector('.bmb-faq-q');
+  const a = item.querySelector('.bmb-faq-a');
+  q.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('#bmbFaqList .bmb-faq-item.open').forEach(el => {
+      el.classList.remove('open');
+      el.querySelector('.bmb-faq-a').style.maxHeight = null;
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      a.style.maxHeight = a.scrollHeight + 'px';
+    }
+  });
+});
+</script>
+</body>
+</html>

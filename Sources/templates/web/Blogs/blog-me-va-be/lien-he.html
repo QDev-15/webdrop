@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liên hệ — Cỏ Non Blog</title>
+<meta name="description" content="Liên hệ với Hạ Vy — Cỏ Non Blog để chia sẻ câu chuyện, đóng góp bài viết, hợp tác quảng cáo hoặc góp ý cho blog.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<nav id="bmbNav">
+  <div class="bmb-container">
+    <div class="bmb-nav-inner">
+      <a class="bmb-logo" href="index.html"><span class="leaf">🌱</span>Cỏ Non<em>.blog</em></a>
+      <div class="bmb-nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="chuyen-muc.html">Chuyên mục</a>
+        <a href="cam-nang.html">Cẩm nang</a>
+        <a href="ve-toi.html">Về tôi</a>
+        <a href="lien-he.html" class="active">Liên hệ</a>
+      </div>
+      <a href="index.html#newsletter" class="bmb-nav-cta">Nhận bản tin 💌</a>
+      <button class="bmb-burger" id="bmbBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="bmb-nav-mobile" id="bmbNavMobile">
+  <a href="index.html">Trang chủ</a>
+  <a href="chuyen-muc.html">Chuyên mục</a>
+  <a href="cam-nang.html">Cẩm nang</a>
+  <a href="ve-toi.html">Về tôi</a>
+  <a href="lien-he.html" class="active">Liên hệ</a>
+  <a href="index.html#newsletter" class="bmb-nm-cta">Nhận bản tin 💌</a>
+</div>
+
+<main>
+  <section class="bmb-sec bmb-center" style="padding-top:130px;padding-bottom:20px">
+    <div class="bmb-container">
+      <div class="bmb-eyebrow" data-reveal style="display:flex;justify-content:center">💌 Liên hệ</div>
+      <h1 class="bmb-sec-title" data-reveal>Mình luôn sẵn sàng <em>lắng nghe</em></h1>
+      <p class="bmb-sec-sub" data-reveal>Có câu chuyện muốn chia sẻ, góp ý cho blog hay đề xuất hợp tác — điền form bên dưới, mình sẽ phản hồi trong 3–5 ngày làm việc.</p>
+    </div>
+  </section>
+
+  <section class="bmb-sec" style="padding-top:24px">
+    <div class="bmb-container">
+      <div class="row g-5">
+        <div class="col-lg-5" data-reveal>
+          <div class="d-flex flex-column gap-3">
+            <div class="bmb-contact-card">
+              <div class="bmb-contact-icon">✉️</div>
+              <div>
+                <h4>Email</h4>
+                <p>hoptac@[DOMAIN]<br>Phản hồi trong 3-5 ngày làm việc</p>
+              </div>
+            </div>
+            <div class="bmb-contact-card">
+              <div class="bmb-contact-icon">💬</div>
+              <div>
+                <h4>Zalo / Điện thoại</h4>
+                <p>[SỐ_ĐIỆN_THOẠI]<br>Từ 9:00 - 21:00 các ngày trong tuần</p>
+              </div>
+            </div>
+            <div class="bmb-contact-card">
+              <div class="bmb-contact-icon">👩‍👩‍👧‍👦</div>
+              <div>
+                <h4>Nhóm kín Facebook</h4>
+                <p>"Cỏ Non — Hội mẹ bỉm chia sẻ thật"<br>12.000+ thành viên</p>
+              </div>
+            </div>
+            <div class="bmb-contact-card">
+              <div class="bmb-contact-icon">📍</div>
+              <div>
+                <h4>Địa chỉ văn phòng</h4>
+                <p>[SỐ NHÀ, TÊN ĐƯỜNG], Hà Nội</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7" data-reveal data-reveal-d1>
+          <form onsubmit="return false" style="background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:36px">
+            <div class="row g-3">
+              <div class="col-md-6 bmb-form-group">
+                <label class="bmb-form-label">Họ và tên</label>
+                <input type="text" class="bmb-form-input" placeholder="Nguyễn Thị A" required>
+              </div>
+              <div class="col-md-6 bmb-form-group">
+                <label class="bmb-form-label">Email</label>
+                <input type="email" class="bmb-form-input" placeholder="ban@email.com" required>
+              </div>
+              <div class="col-12 bmb-form-group">
+                <label class="bmb-form-label">Chủ đề</label>
+                <select class="bmb-form-input">
+                  <option>Chia sẻ câu chuyện của mình</option>
+                  <option>Đóng góp bài viết</option>
+                  <option>Đề xuất hợp tác quảng cáo / review</option>
+                  <option>Góp ý cho blog</option>
+                  <option>Khác</option>
+                </select>
+              </div>
+              <div class="col-12 bmb-form-group">
+                <label class="bmb-form-label">Nội dung</label>
+                <textarea class="bmb-form-textarea" placeholder="Viết nội dung bạn muốn chia sẻ..." required></textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="bmb-btn bmb-btn-primary">Gửi tin nhắn 💌</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bmb-footer">
+  <div class="bmb-container">
+    <div class="bmb-ft-top">
+      <div>
+        <div class="bmb-ft-logo">🌱 Cỏ Non<em>.blog</em></div>
+        <p class="bmb-ft-desc">Nhật ký nuôi con của mẹ Hạ Vy — chia sẻ thật, không áp lực, đồng hành cùng mẹ và bé qua từng giai đoạn.</p>
+        <div class="bmb-ft-social">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">📘</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">📷</a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="Youtube">▶️</a>
+        </div>
+      </div>
+      <div>
+        <div class="bmb-ft-col-title">Chuyên mục</div>
+        <div class="bmb-ft-links">
+          <a href="chuyen-muc.html">Mang thai</a>
+          <a href="chuyen-muc.html">Sơ sinh</a>
+          <a href="chuyen-muc.html">Dinh dưỡng cho bé</a>
+          <a href="chuyen-muc.html">Giáo dục sớm</a>
+          <a href="chuyen-muc.html">Góc của mẹ</a>
+        </div>
+      </div>
+      <div>
+        <div class="bmb-ft-col-title">Khám phá</div>
+        <div class="bmb-ft-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="cam-nang.html">Cẩm nang</a>
+          <a href="ve-toi.html">Về tôi</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div>
+        <div class="bmb-ft-col-title">Liên hệ</div>
+        <div class="bmb-ft-links">
+          <a href="mailto:hoptac@[DOMAIN]">hoptac@[DOMAIN]</a>
+          <a href="tel:[SỐ_ĐIỆN_THOẠI]">[SỐ_ĐIỆN_THOẠI]</a>
+          <a href="lien-he.html">Gửi tin nhắn</a>
+        </div>
+      </div>
+    </div>
+    <iframe class="bmb-footer-maps" src="https://maps.google.com/maps?q=21.0285,105.8542&hl=vi&z=15&output=embed" loading="lazy" title="Vị trí Cỏ Non Blog tại Hà Nội"></iframe>
+  </div>
+  <div class="bmb-ft-bottom">
+    <div class="bmb-container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+      <div class="bmb-ft-copy">© [NĂM] Cỏ Non Blog · Viết bằng cả trái tim tại Hà Nội 🇻🇳</div>
+      <div class="bmb-ft-legal">
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/[SỐ_ZALO]" class="bmb-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const bmbRo = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); bmbRo.unobserve(e.target); } });
+}, { threshold: .08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => bmbRo.observe(el));
+
+const bmbBurger = document.getElementById('bmbBurger');
+const bmbMobileNav = document.getElementById('bmbNavMobile');
+if (bmbBurger && bmbMobileNav) {
+  bmbBurger.addEventListener('click', () => {
+    const open = bmbMobileNav.classList.toggle('open');
+    bmbBurger.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      bmbMobileNav.classList.remove('open');
+      bmbBurger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+}
+</script>
+</body>
+</html>

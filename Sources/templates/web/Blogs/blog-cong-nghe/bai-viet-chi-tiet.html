@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bên trong nhà máy chip 2nm: cuộc đua bán dẫn toàn cầu | PIXEL.</title>
+<meta name="description" content="TSMC, Samsung và Intel đều dồn lực cho tiến trình 2nm trong năm 2026. Vì sao cuộc đua bán dẫn này quyết định tương lai của mọi thiết bị bạn dùng hàng ngày.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav id="bcn-nav">
+  <div class="bcn-container bcn-nav-inner">
+    <a href="index.html" class="bcn-logo"><span class="bcn-logo-mark"></span>PIXEL<span>.</span></a>
+    <div class="bcn-nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="chuyen-muc.html">Chuyên mục</a>
+      <a href="danh-gia-san-pham.html">Đánh giá sản phẩm</a>
+      <a href="ve-toi.html">Về tôi</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <div class="bcn-nav-cta bcn-nav-cta-desktop">
+      <a href="index.html#bcn-newsletter" class="bcn-btn bcn-btn-accent bcn-btn-sm">Đăng ký nhận tin</a>
+    </div>
+    <button class="bcn-burger" id="bcnBurger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="bcn-mob-overlay" id="bcnMobOverlay"></div>
+<div class="bcn-mob-nav" id="bcnMobNav">
+  <ul>
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="chuyen-muc.html">Chuyên mục</a></li>
+    <li><a href="danh-gia-san-pham.html">Đánh giá sản phẩm</a></li>
+    <li><a href="ve-toi.html">Về tôi</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+  <div class="bcn-mob-actions">
+    <a href="index.html#bcn-newsletter" class="bcn-btn bcn-btn-accent bcn-btn-full">Đăng ký nhận tin</a>
+  </div>
+</div>
+
+<header class="bcn-article-hero">
+  <div class="bcn-article-hero-grid" aria-hidden="true"></div>
+  <div class="bcn-container">
+    <div class="bcn-breadcrumb">
+      <a href="index.html">Trang chủ</a><i class="bi bi-chevron-right" style="font-size:10px;"></i>
+      <a href="chuyen-muc.html#tin-tuc">Tin tức công nghệ</a><i class="bi bi-chevron-right" style="font-size:10px;"></i>
+      <span>Bên trong nhà máy chip 2nm</span>
+    </div>
+    <span class="bcn-article-cat">Tin tức công nghệ</span>
+    <h1 class="bcn-article-title">Bên trong nhà máy chip 2nm: cuộc đua bán dẫn toàn cầu đang nóng lên thế nào</h1>
+    <div class="bcn-article-meta-row">
+      <div class="bcn-article-author">
+        <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&auto=format&fit=crop&q=70" class="bcn-article-av" alt="Đăng Khoa">
+        <div>
+          <div class="bcn-article-author-name">Đăng Khoa</div>
+          <div class="bcn-article-author-role">Biên tập viên công nghệ</div>
+        </div>
+      </div>
+      <span class="bcn-article-meta-item"><i class="bi bi-calendar3"></i> 15 tháng 8, 2026</span>
+      <span class="bcn-article-meta-item"><i class="bi bi-clock"></i> 9 phút đọc</span>
+      <span class="bcn-article-meta-item"><i class="bi bi-eye"></i> 24.600 lượt đọc</span>
+    </div>
+  </div>
+</header>
+
+<section class="bcn-sec" style="padding-top:56px;">
+  <div class="bcn-container">
+    <div class="bcn-article-layout">
+      <article>
+        <div class="bcn-article-cover">
+          <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&auto=format&fit=crop&q=75" alt="Kỹ sư kiểm tra dữ liệu sản xuất chip trên nhiều màn hình trong nhà máy bán dẫn">
+        </div>
+
+        <div class="bcn-prose">
+          <p>Giữa năm 2026, cụm từ "2 nanomet" xuất hiện dày đặc trong các buổi công bố kết quả kinh doanh của TSMC, Samsung và Intel. Đây không đơn thuần là một con số kỹ thuật — nó là ranh giới quyết định ai sẽ làm chủ thế hệ chip tiếp theo cho smartphone, laptop và cả trung tâm dữ liệu AI. Bài viết này sẽ giải thích vì sao tiến trình 2nm quan trọng đến vậy, và điều gì đang thực sự diễn ra bên trong các nhà máy trị giá hàng chục tỷ đô la.</p>
+
+          <h2 id="vi-sao">Vì sao 2nm lại là cột mốc quan trọng</h2>
+          <p>Mỗi khi tiến trình sản xuất chip thu nhỏ hơn, số lượng bóng bán dẫn có thể nhồi vào cùng một diện tích silicon tăng lên đáng kể — kéo theo hiệu năng cao hơn và mức tiêu thụ điện thấp hơn. So với tiến trình 3nm hiện tại, chip 2nm được kỳ vọng cải thiện khoảng 15% tốc độ xử lý hoặc giảm tới 25-30% điện năng tiêu thụ ở cùng mức hiệu năng — con số cực kỳ ý nghĩa với các thiết bị chạy pin như smartphone và laptop mỏng nhẹ.</p>
+          <p>Điểm khác biệt lớn nhất ở thế hệ 2nm là việc chuyển từ kiến trúc bóng bán dẫn FinFET sang <strong>Gate-All-Around (GAA)</strong> — cho phép dòng điện được kiểm soát chính xác hơn từ mọi phía của kênh dẫn, giảm thất thoát điện năng vốn là vấn đề nan giải khi tiến trình càng thu nhỏ.</p>
+
+          <blockquote>"2nm không chỉ là bước tiến kỹ thuật — nó là bài kiểm tra xem công ty nào đủ vốn, đủ kiên nhẫn để tiếp tục cuộc chơi bán dẫn trong 5 năm tới." — nhận định từ một kỹ sư thiết kế chip giấu tên tại Đài Loan.</blockquote>
+
+          <h2 id="ai-dan-dau">Ai đang dẫn đầu cuộc đua?</h2>
+          <p><strong>TSMC</strong> hiện vẫn giữ vị trí dẫn đầu về sản lượng, với nhà máy N2 tại Tân Trúc và Cao Hùng đã bắt đầu sản xuất đại trà từ cuối 2025, phục vụ trước tiên cho các khách hàng lớn như Apple và AMD. <strong>Samsung Foundry</strong> đặt cược vào việc là hãng đầu tiên áp dụng GAA từ tiến trình 3nm, và đang tận dụng kinh nghiệm đó để đẩy nhanh tiến trình 2nm (SF2) nhắm vào cả khách hàng di động lẫn trung tâm dữ liệu. Trong khi đó, <strong>Intel</strong> đặt toàn bộ tham vọng phục hồi vào tiến trình 18A (tương đương khoảng 1.8nm) với công nghệ cấp điện mặt sau (backside power) độc quyền — một canh bạc lớn để giành lại vị thế dẫn đầu công nghệ đã đánh mất suốt gần một thập kỷ.</p>
+          <ul>
+            <li><strong>TSMC N2</strong> — sản lượng lớn nhất, giá thành sản xuất cao nhất, khách hàng chủ lực: Apple, AMD, Qualcomm.</li>
+            <li><strong>Samsung SF2</strong> — kinh nghiệm GAA lâu năm, giá cạnh tranh hơn, đang tìm cách thu hút thêm khách hàng ngoài Samsung Electronics.</li>
+            <li><strong>Intel 18A</strong> — công nghệ cấp điện mặt sau độc đáo, mục tiêu giành lại đơn hàng gia công (foundry) từ bên thứ ba.</li>
+          </ul>
+
+          <div class="bcn-article-gallery">
+            <img src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=500&auto=format&fit=crop&q=70" alt="Cận cảnh bảng mạch bán dẫn với các đường dẫn điện tử phức tạp">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&auto=format&fit=crop&q=70" alt="Laptop hiển thị sơ đồ thiết kế chip trong phòng nghiên cứu">
+            <img src="https://images.unsplash.com/photo-1607346256330-dee7af15f7c5?w=500&auto=format&fit=crop&q=70" alt="Thiết bị đo kiểm chính xác trong dây chuyền sản xuất bán dẫn">
+          </div>
+
+          <h2 id="tac-dong">Tác động đến người dùng cuối</h2>
+          <p>Với người dùng phổ thông, lợi ích rõ ràng nhất là thời lượng pin. Các mẫu smartphone flagship dùng chip 2nm dự kiến ra mắt cuối 2026 hoặc đầu 2027 được kỳ vọng kéo dài thời gian sử dụng thêm nửa ngày so với thế hệ hiện tại ở cùng dung lượng pin. Ở mảng laptop, hiệu năng xử lý AI on-device (chạy mô hình ngôn ngữ nhỏ ngay trên máy, không cần gửi lên cloud) sẽ tăng đáng kể — mở đường cho các tính năng như dịch thuật thời gian thực, tạo ảnh, và trợ lý ảo hoạt động mượt mà ngay cả khi không có kết nối mạng.</p>
+          <p>Ở quy mô lớn hơn, các trung tâm dữ liệu AI cũng hưởng lợi trực tiếp: chip 2nm giúp giảm chi phí điện năng vận hành — vốn đang chiếm tỷ trọng ngày càng lớn trong tổng chi phí huấn luyện các mô hình AI khổng lồ.</p>
+
+          <h2 id="thach-thuc">Thách thức phía trước</h2>
+          <p>Không phải mọi thứ đều thuận lợi. Chi phí xây dựng một nhà máy 2nm hiện đại đã vượt mốc 20 tỷ USD, và tỷ lệ chip đạt chuẩn trên mỗi tấm wafer (yield) trong giai đoạn đầu thường thấp hơn đáng kể so với tiến trình cũ đã ổn định. Điều này đồng nghĩa giá thành sản xuất chip 2nm ở giai đoạn đầu sẽ cao hơn 30-50% so với 3nm — và chi phí đó gần như chắc chắn sẽ được phản ánh vào giá bán thiết bị cuối cùng.</p>
+          <p>Bên cạnh đó, căng thẳng địa chính trị xoay quanh chuỗi cung ứng bán dẫn — đặc biệt là các quy định xuất khẩu thiết bị quang khắc EUV — tiếp tục là biến số khó lường, có thể làm chậm tiến độ mở rộng công suất tại một số khu vực.</p>
+
+          <h2 id="ket-luan">Kết luận</h2>
+          <p>Cuộc đua 2nm không chỉ là câu chuyện của riêng ba tập đoàn bán dẫn lớn nhất thế giới. Nó sẽ định hình trực tiếp trải nghiệm mà bạn có với chiếc điện thoại, laptop tiếp theo — và cả tốc độ phát triển của AI trong vài năm tới. PIXEL. sẽ tiếp tục theo dõi sát diễn biến này và cập nhật khi có thông tin chính thức từ các nhà sản xuất.</p>
+        </div>
+
+        <div class="bcn-article-tags">
+          <a href="chuyen-muc.html#tin-tuc" class="bcn-tag">#bán-dẫn</a>
+          <a href="chuyen-muc.html#tin-tuc" class="bcn-tag">#chip-2nm</a>
+          <a href="chuyen-muc.html#ai-xu-huong" class="bcn-tag">#AI</a>
+          <a href="chuyen-muc.html#tin-tuc" class="bcn-tag">#TSMC</a>
+          <a href="chuyen-muc.html#tin-tuc" class="bcn-tag">#Samsung</a>
+          <a href="chuyen-muc.html#tin-tuc" class="bcn-tag">#Intel</a>
+        </div>
+
+        <div class="bcn-author-box">
+          <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=140&auto=format&fit=crop&q=70" alt="Đăng Khoa">
+          <div>
+            <h4>Đăng Khoa</h4>
+            <p>Biên tập viên công nghệ tại PIXEL., theo dõi mảng bán dẫn và phần cứng máy tính hơn 6 năm. Từng là kỹ sư kiểm thử phần cứng trước khi chuyển sang viết lách toàn thời gian.</p>
+          </div>
+        </div>
+      </article>
+
+      <aside>
+        <div class="bcn-sidebar-box">
+          <div class="bcn-sidebar-title">Mục lục</div>
+          <div class="bcn-toc-list">
+            <a href="#vi-sao">Vì sao 2nm quan trọng</a>
+            <a href="#ai-dan-dau">Ai đang dẫn đầu</a>
+            <a href="#tac-dong">Tác động đến người dùng</a>
+            <a href="#thach-thuc">Thách thức phía trước</a>
+            <a href="#ket-luan">Kết luận</a>
+          </div>
+        </div>
+        <div class="bcn-sidebar-box">
+          <div class="bcn-sidebar-title">Bài viết liên quan</div>
+          <div class="bcn-sidebar-related">
+            <a href="bai-viet-chi-tiet.html" class="bcn-sidebar-related-item">
+              <img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=160&auto=format&fit=crop&q=70" alt="Chip xử lý AI Snapdragon">
+              <h5>Snapdragon 8 Elite Gen 2 lộ diện: bước nhảy vọt hiệu năng AI</h5>
+            </a>
+            <a href="bai-viet-chi-tiet.html" class="bcn-sidebar-related-item">
+              <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=160&auto=format&fit=crop&q=70" alt="Màn hình code Gemini 3">
+              <h5>Google Gemini 3 chính thức ra mắt</h5>
+            </a>
+            <a href="bai-viet-chi-tiet.html" class="bcn-sidebar-related-item">
+              <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=160&auto=format&fit=crop&q=70" alt="Trung tâm dữ liệu AI">
+              <h5>Bên trong trung tâm dữ liệu AI lớn nhất Đông Nam Á</h5>
+            </a>
+          </div>
+        </div>
+        <div class="bcn-sidebar-box" style="background:var(--ink); border-color:var(--ink);">
+          <div class="bcn-sidebar-title" style="color:#fff;">Nhận bản tin</div>
+          <p style="font-size:13px; color:rgba(255,255,255,.6); margin-bottom:14px; line-height:1.6;">Tin công nghệ chọn lọc mỗi tuần, gửi thẳng vào email.</p>
+          <a href="index.html#bcn-newsletter" class="bcn-btn bcn-btn-accent bcn-btn-full bcn-btn-sm">Đăng ký ngay</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bcn-footer">
+  <div class="bcn-container">
+    <div class="bcn-footer-grid">
+      <div>
+        <a href="index.html" class="bcn-footer-logo"><span class="bcn-logo-mark"></span>PIXEL.</a>
+        <p class="bcn-footer-desc">Blog công nghệ độc lập — cập nhật tin tức, đánh giá sản phẩm và thủ thuật hữu ích mỗi ngày, viết bởi người thật dùng thật.</p>
+        <div class="bcn-footer-social">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="bcn-footer-title">Chuyên mục</div>
+        <div class="bcn-footer-links">
+          <a href="chuyen-muc.html#tin-tuc">Tin tức công nghệ</a>
+          <a href="danh-gia-san-pham.html">Đánh giá sản phẩm</a>
+          <a href="chuyen-muc.html#thu-thuat">Thủ thuật &amp; Mẹo</a>
+          <a href="chuyen-muc.html#ai-xu-huong">AI &amp; Xu hướng</a>
+          <a href="chuyen-muc.html#bao-mat">Bảo mật</a>
+        </div>
+      </div>
+      <div>
+        <div class="bcn-footer-title">Về PIXEL.</div>
+        <div class="bcn-footer-links">
+          <a href="ve-toi.html">Về tôi</a>
+          <a href="chuyen-muc.html">Chuyên mục</a>
+          <a href="danh-gia-san-pham.html">Đánh giá sản phẩm</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div>
+        <div class="bcn-footer-title">Pháp lý</div>
+        <div class="bcn-footer-links">
+          <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+          <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+          <a href="lien-he.html">Hợp tác quảng cáo</a>
+        </div>
+      </div>
+    </div>
+    <div class="bcn-footer-maps">
+      <iframe src="https://maps.google.com/maps?q=21.0378,105.7826&hl=vi&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Vị trí văn phòng PIXEL. trên Google Maps"></iframe>
+    </div>
+    <div class="bcn-footer-bottom">
+      <div>© 2026 PIXEL. Blog Công Nghệ. Mọi quyền được bảo lưu.</div>
+      <div style="display:flex; gap:20px;"><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a><a href="dieu-khoan.html">Điều khoản sử dụng</a></div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/" target="_blank" rel="noopener noreferrer" class="bcn-zalo-float" aria-label="Chat Zalo"><i class="bi bi-chat-dots-fill"></i></a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

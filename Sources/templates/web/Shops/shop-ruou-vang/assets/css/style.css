@@ -336,6 +336,11 @@ svg { display: block; }
 .rv-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
 .rv-empty { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 70px 20px; }
 .rv-empty[hidden] { display: none; }
+/* #rvCartWrap dùng class Bootstrap .row (display:flex ở author stylesheet) — thuộc tính [hidden]
+   mặc định chỉ có hiệu lực ở UA stylesheet (độ ưu tiên thấp nhất), nên bị .row đè mất nếu không
+   khai báo tường minh ở đây. Thiếu dòng này khiến giỏ hàng trống vẫn hiện khối 2 cột + thông báo
+   trống cùng lúc cho MỌI khách ghé lần đầu. */
+#rvCartWrap[hidden] { display: none; }
 .rv-empty-ico { width: 70px; height: 70px; border-radius: 50%; background: var(--accent-light); color: var(--accent); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
 .rv-empty-ico svg { width: 32px; height: 32px; }
 .rv-empty h3 { font-size: 20px; text-transform: uppercase; margin-bottom: 8px; }
@@ -358,6 +363,10 @@ svg { display: block; }
 .rv-badge.new { background: var(--mustard); color: var(--dark); }
 .rv-badge.sale { background: var(--accent); }
 .rv-badge.hot { background: var(--dark); }
+.rv-badge.out { background: var(--text-3); }
+.rv-card-stock-out .rv-card-thumb img { opacity: .55; filter: grayscale(.4); }
+.rv-quick-add:disabled { cursor: not-allowed; background: var(--text-3); }
+.rv-card:hover .rv-quick-add:disabled { opacity: .5; transform: none; }
 .rv-quick-add {
   position: absolute; bottom: 10px; right: 10px; z-index: 2;
   width: 38px; height: 38px; border-radius: 50%; background: var(--dark); color: #fff;

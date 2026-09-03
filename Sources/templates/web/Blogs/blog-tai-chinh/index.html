@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Bàn Tài Chính — Blog tài chính cá nhân: tiết kiệm, đầu tư, quản lý chi tiêu</title>
+<meta name="description" content="La Bàn Tài Chính — blog chia sẻ kiến thức tài chính cá nhân dễ hiểu cho người Việt trẻ: tiết kiệm, đầu tư, quản lý nợ, ngân sách và kế hoạch nghỉ hưu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- ══ NAV — Nav-6 Full-Width Dark Bar ══ -->
+<nav id="nav">
+  <div class="wd-container btc-nav-inner">
+    <a href="index.html" class="btc-logo">
+      <span class="btc-logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16.2 7.8-2.1 6.3-6.3 2.1 2.1-6.3z"/></svg></span>
+      La Bàn <span>Tài Chính</span>
+    </a>
+    <div class="btc-nav-links">
+      <a href="index.html" class="active">Trang chủ</a>
+      <a href="chuyen-muc.html">Chuyên mục</a>
+      <a href="cong-cu-tinh-toan.html">Công cụ tính toán</a>
+      <a href="ve-toi.html">Về tôi</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <div class="btc-nav-cta">
+      <button class="btc-nav-search-btn" aria-label="Tìm kiếm bài viết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
+      <a href="lien-he.html" class="btc-btn btc-btn-primary btc-btn-sm">Nhận bản tin</a>
+      <button class="btc-nav-burger" id="navBurger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="btc-nav-mob" id="navMob">
+  <a href="index.html" class="active">Trang chủ</a>
+  <a href="chuyen-muc.html">Chuyên mục</a>
+  <a href="cong-cu-tinh-toan.html">Công cụ tính toán</a>
+  <a href="ve-toi.html">Về tôi</a>
+  <a href="lien-he.html">Liên hệ</a>
+  <a href="lien-he.html" class="btc-btn btc-btn-primary btc-btn-block">Nhận bản tin miễn phí</a>
+</div>
+
+<!-- ══ CAROUSEL HERO — H2 Split 45/55 ══ -->
+<section class="btc-hero">
+  <div class="btc-hero-slide active">
+    <div class="btc-hero-left">
+      <span class="btc-hero-label">Kiến thức tài chính cá nhân</span>
+      <h1 class="btc-hero-title">Hiểu tiền của bạn,<br><em>làm chủ</em> tương lai</h1>
+      <p class="btc-hero-desc">Những bài viết dễ hiểu, không hàn lâm về tiết kiệm, đầu tư và quản lý chi tiêu — dành cho người Việt trẻ mới bắt đầu hành trình tài chính.</p>
+      <div class="btc-hero-cta">
+        <a href="chuyen-muc.html" class="btc-btn btc-btn-primary">Khám phá bài viết</a>
+        <a href="cong-cu-tinh-toan.html" class="btc-btn btc-btn-outline">Dùng công cụ tính toán</a>
+      </div>
+    </div>
+    <div class="btc-hero-right"><img src="https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?w=1400&auto=format&fit=crop&q=80" alt="Biểu đồ tăng trưởng đầu tư trên máy tính"></div>
+  </div>
+  <div class="btc-hero-slide">
+    <div class="btc-hero-left">
+      <span class="btc-hero-label">Ngân sách thông minh</span>
+      <h2 class="btc-hero-title">Lập ngân sách<br>chỉ trong <em>5 phút</em></h2>
+      <p class="btc-hero-desc">Áp dụng quy tắc 50/30/20 với công cụ tính toán miễn phí — nhập thu nhập, nhận ngay kế hoạch chi tiêu hợp lý.</p>
+      <div class="btc-hero-cta">
+        <a href="cong-cu-tinh-toan.html" class="btc-btn btc-btn-primary">Thử ngay công cụ</a>
+        <a href="chuyen-muc.html?cat=ngan-sach" class="btc-btn btc-btn-outline">Xem bài viết Ngân sách</a>
+      </div>
+    </div>
+    <div class="btc-hero-right"><img src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=1400&auto=format&fit=crop&q=80" alt="Sổ tay lập kế hoạch ngân sách cá nhân"></div>
+  </div>
+  <div class="btc-hero-slide">
+    <div class="btc-hero-left">
+      <span class="btc-hero-label">Quỹ dự phòng</span>
+      <h2 class="btc-hero-title">An tâm trước<br>mọi <em>rủi ro</em> bất ngờ</h2>
+      <p class="btc-hero-desc">Bạn cần bao nhiêu tiền trong quỹ khẩn cấp? Tính toán chính xác theo chi phí sinh hoạt thực tế của riêng bạn.</p>
+      <div class="btc-hero-cta">
+        <a href="cong-cu-tinh-toan.html" class="btc-btn btc-btn-primary">Tính quỹ khẩn cấp</a>
+        <a href="chuyen-muc.html?cat=tiet-kiem" class="btc-btn btc-btn-outline">Xem bài viết Tiết kiệm</a>
+      </div>
+    </div>
+    <div class="btc-hero-right"><img src="https://images.unsplash.com/photo-1621981386829-9b458a2cddde?w=1400&auto=format&fit=crop&q=80" alt="Lọ tiết kiệm tiền xu cho quỹ khẩn cấp"></div>
+  </div>
+  <div class="btc-hero-slide">
+    <div class="btc-hero-left">
+      <span class="btc-hero-label">Đầu tư dài hạn</span>
+      <h2 class="btc-hero-title">Lãi kép — <em>kỳ quan</em><br>thứ 8 của thế giới</h2>
+      <p class="btc-hero-desc">Tìm hiểu vì sao bắt đầu đầu tư sớm — dù chỉ với số tiền nhỏ — lại tạo ra khác biệt lớn sau nhiều năm.</p>
+      <div class="btc-hero-cta">
+        <a href="bai-viet-chi-tiet.html" class="btc-btn btc-btn-primary">Đọc bài viết</a>
+        <a href="cong-cu-tinh-toan.html" class="btc-btn btc-btn-outline">Tính lãi kép</a>
+      </div>
+    </div>
+    <div class="btc-hero-right"><img src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?w=1400&auto=format&fit=crop&q=80" alt="Lập kế hoạch đầu tư dài hạn trên laptop"></div>
+  </div>
+
+  <button class="btc-hero-nav btc-hero-prev" aria-label="Slide trước"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <button class="btc-hero-nav btc-hero-next" aria-label="Slide tiếp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+  <div class="btc-hero-dots">
+    <button class="btc-hero-dot active" aria-label="Slide 1"></button>
+    <button class="btc-hero-dot" aria-label="Slide 2"></button>
+    <button class="btc-hero-dot" aria-label="Slide 3"></button>
+    <button class="btc-hero-dot" aria-label="Slide 4"></button>
+  </div>
+</section>
+
+<!-- ══ STAT-BAR ══ -->
+<section class="btc-sec-dark">
+  <div class="wd-container">
+    <div class="btc-stats-grid">
+      <div data-reveal><div class="btc-stat-num" data-counter="180">0</div><div class="btc-stat-label">Bài viết đã đăng</div></div>
+      <div data-reveal data-delay="1"><div class="btc-stat-num" data-counter="42" data-suffix="k">0</div><div class="btc-stat-label">Độc giả mỗi tháng</div></div>
+      <div data-reveal data-delay="2"><div class="btc-stat-num" data-counter="7">0</div><div class="btc-stat-label">Chuyên mục kiến thức</div></div>
+      <div data-reveal data-delay="3"><div class="btc-stat-num" data-counter="5">0</div><div class="btc-stat-label">Năm hoạt động</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BENTO-GRID — Bài viết nổi bật ══ -->
+<section class="btc-sec">
+  <div class="wd-container">
+    <div class="btc-head-row" data-reveal>
+      <div>
+        <div class="btc-tag">Đang được đọc nhiều nhất</div>
+        <h2 class="btc-h2">Bài viết <em>nổi bật</em></h2>
+      </div>
+      <a href="chuyen-muc.html" class="btc-head-link">Xem tất cả bài viết <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="btc-bento" data-reveal data-delay="1">
+      <a href="bai-viet-chi-tiet.html" class="btc-post-card btc-bento-main">
+        <div class="btc-post-thumb">
+          <span class="btc-post-cat">Đầu tư</span>
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1000&auto=format&fit=crop&q=80" alt="Biểu đồ tăng trưởng đầu tư minh họa lãi kép">
+        </div>
+        <div class="btc-post-body">
+          <h3 class="btc-post-title">Lãi kép là gì? Vì sao Warren Buffett gọi đây là kỳ quan thứ 8 của thế giới</h3>
+          <p class="btc-post-excerpt">Chỉ cần bắt đầu sớm vài năm, số tiền bạn có ở tuổi nghỉ hưu có thể chênh lệch gấp đôi, gấp ba — ngay cả khi số tiền đóng góp hàng tháng là như nhau. Đây là công thức toán học đơn giản nhưng ít người thực sự tận dụng.</p>
+          <div class="btc-post-meta">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&auto=format&fit=crop&q=70" alt="Đặng Minh Thư">
+            <span>Đặng Minh Thư</span><span>·</span><span>12 Th08, 2026</span><span>·</span><span>9 phút đọc</span>
+          </div>
+        </div>
+      </a>
+      <div class="btc-bento-side">
+        <a href="bai-viet-chi-tiet.html" class="btc-post-card">
+          <div class="btc-post-thumb"><span class="btc-post-cat">Ngân sách</span><img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=400&auto=format&fit=crop&q=75" alt="Tiền giấy minh họa lập ngân sách 50/30/20"></div>
+          <div class="btc-post-body"><h3 class="btc-post-title">Quy tắc 50/30/20: Cách chia ngân sách đơn giản mà hiệu quả</h3><div class="btc-post-meta"><span>08 Th08, 2026</span><span>·</span><span>6 phút đọc</span></div></div>
+        </a>
+        <a href="bai-viet-chi-tiet.html" class="btc-post-card">
+          <div class="btc-post-thumb"><span class="btc-post-cat">Tiết kiệm</span><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&auto=format&fit=crop&q=75" alt="Heo đất tiết kiệm cho quỹ khẩn cấp"></div>
+          <div class="btc-post-body"><h3 class="btc-post-title">Quỹ khẩn cấp: Bạn cần bao nhiêu tiền để an tâm?</h3><div class="btc-post-meta"><span>02 Th08, 2026</span><span>·</span><span>7 phút đọc</span></div></div>
+        </a>
+        <a href="bai-viet-chi-tiet.html" class="btc-post-card">
+          <div class="btc-post-thumb"><span class="btc-post-cat">Quản lý nợ</span><img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&auto=format&fit=crop&q=75" alt="Tiền xu minh họa phương pháp trả nợ"></div>
+          <div class="btc-post-body"><h3 class="btc-post-title">Trả nợ nhanh hơn với phương pháp Snowball và Avalanche</h3><div class="btc-post-meta"><span>26 Th07, 2026</span><span>·</span><span>8 phút đọc</span></div></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FEATURE-ICON-ROW — Chuyên mục ══ -->
+<section class="btc-sec btc-sec-tint">
+  <div class="wd-container">
+    <div class="btc-center" data-reveal style="margin-bottom:40px">
+      <div class="btc-tag" style="justify-content:center">Khám phá theo chủ đề</div>
+      <h2 class="btc-h2">6 <em>chuyên mục</em> kiến thức</h2>
+      <p class="btc-sub btc-mx-auto btc-center">Mỗi chuyên mục là một mảnh ghép trong bức tranh tài chính cá nhân toàn diện của bạn.</p>
+    </div>
+    <div class="btc-cat-row" data-reveal data-delay="1">
+      <a href="chuyen-muc.html?cat=tiet-kiem" class="btc-cat-item">
+        <span class="btc-cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9h-1V6a3 3 0 0 0-3-3H7a1 1 0 0 0-1 1v2H5a1 1 0 0 0-1 1v3a2 2 0 0 0 2 2h.28a5 5 0 0 0 1.72 2.24V19a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-1h2v1a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4.76A5 5 0 0 0 20 9.24V9z"/><circle cx="16" cy="8" r=".5" fill="currentColor"/></svg></span>
+        <span class="btc-cat-name">Tiết kiệm</span><span class="btc-cat-count">42 bài viết</span>
+      </a>
+      <a href="chuyen-muc.html?cat=dau-tu" class="btc-cat-item">
+        <span class="btc-cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></span>
+        <span class="btc-cat-name">Đầu tư</span><span class="btc-cat-count">56 bài viết</span>
+      </a>
+      <a href="chuyen-muc.html?cat=quan-ly-no" class="btc-cat-item">
+        <span class="btc-cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg></span>
+        <span class="btc-cat-name">Quản lý nợ</span><span class="btc-cat-count">24 bài viết</span>
+      </a>
+      <a href="chuyen-muc.html?cat=ngan-sach" class="btc-cat-item">
+        <span class="btc-cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg></span>
+        <span class="btc-cat-name">Ngân sách</span><span class="btc-cat-count">38 bài viết</span>
+      </a>
+      <a href="chuyen-muc.html?cat=bao-hiem" class="btc-cat-item">
+        <span class="btc-cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+        <span class="btc-cat-name">Bảo hiểm</span><span class="btc-cat-count">19 bài viết</span>
+      </a>
+      <a href="chuyen-muc.html?cat=huu-tri" class="btc-cat-item">
+        <span class="btc-cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 18a5 5 0 0 0-10 0"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="23" y2="18"/><line x1="23" y1="22" x2="1" y2="22"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/></svg></span>
+        <span class="btc-cat-name">Hưu trí</span><span class="btc-cat-count">21 bài viết</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GRID-CARDS — Bài viết mới nhất ══ -->
+<section class="btc-sec">
+  <div class="wd-container">
+    <div class="btc-head-row" data-reveal>
+      <div>
+        <div class="btc-tag">Cập nhật liên tục</div>
+        <h2 class="btc-h2">Bài viết <em>mới nhất</em></h2>
+      </div>
+      <a href="chuyen-muc.html" class="btc-head-link">Xem tất cả <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="btc-grid-cards" data-reveal data-delay="1">
+      <a href="bai-viet-chi-tiet.html" class="btc-post-card">
+        <div class="btc-post-thumb"><span class="btc-post-cat">Hưu trí</span><img src="https://images.unsplash.com/photo-1607863680198-23d4b2565df0?w=500&auto=format&fit=crop&q=78" alt="Cặp đôi lên kế hoạch nghỉ hưu sớm FIRE"></div>
+        <div class="btc-post-body"><h3 class="btc-post-title">Về hưu sớm (FIRE) tại Việt Nam: Giấc mơ có thực tế không?</h3><p class="btc-post-excerpt">Phong trào FIRE đang lan rộng, nhưng áp dụng vào bối cảnh Việt Nam cần điều chỉnh ra sao?</p><div class="btc-post-meta"><span>20 Th08, 2026</span><span>·</span><span>10 phút đọc</span></div></div>
+      </a>
+      <a href="bai-viet-chi-tiet.html" class="btc-post-card">
+        <div class="btc-post-thumb"><span class="btc-post-cat">Đầu tư</span><img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=500&auto=format&fit=crop&q=78" alt="Tài liệu so sánh gửi tiết kiệm và trái phiếu"></div>
+        <div class="btc-post-body"><h3 class="btc-post-title">So sánh gửi tiết kiệm ngân hàng và trái phiếu doanh nghiệp</h3><p class="btc-post-excerpt">Kênh nào an toàn hơn, kênh nào sinh lời tốt hơn trong giai đoạn lãi suất hiện nay?</p><div class="btc-post-meta"><span>16 Th08, 2026</span><span>·</span><span>8 phút đọc</span></div></div>
+      </a>
+      <a href="bai-viet-chi-tiet.html" class="btc-post-card">
+        <div class="btc-post-thumb"><span class="btc-post-cat">Ngân sách</span><img src="https://images.unsplash.com/photo-1633265486064-086b219458ec?w=500&auto=format&fit=crop&q=78" alt="Bàn làm việc với ứng dụng quản lý chi tiêu trên điện thoại"></div>
+        <div class="btc-post-body"><h3 class="btc-post-title">5 ứng dụng quản lý chi tiêu miễn phí đáng dùng nhất 2026</h3><p class="btc-post-excerpt">Không cần Excel phức tạp — những app này giúp bạn theo dõi dòng tiền chỉ trong vài giây mỗi ngày.</p><div class="btc-post-meta"><span>10 Th08, 2026</span><span>·</span><span>5 phút đọc</span></div></div>
+      </a>
+      <a href="bai-viet-chi-tiet.html" class="btc-post-card">
+        <div class="btc-post-thumb"><span class="btc-post-cat">Bảo hiểm</span><img src="https://images.unsplash.com/photo-1553729784-e91953dec042?w=500&auto=format&fit=crop&q=78" alt="Mô hình ngôi nhà và tiền xu minh họa bảo hiểm nhân thọ"></div>
+        <div class="btc-post-body"><h3 class="btc-post-title">Bảo hiểm nhân thọ: Mua thế nào để không lãng phí tiền</h3><p class="btc-post-excerpt">Phân biệt bảo hiểm bảo vệ thuần túy và sản phẩm đầu tư lồng ghép trước khi đặt bút ký hợp đồng.</p><div class="btc-post-meta"><span>04 Th08, 2026</span><span>·</span><span>7 phút đọc</span></div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ALTERNATING-STRIPS — Công cụ tính toán nổi bật ══ -->
+<section class="btc-sec btc-sec-tint">
+  <div class="wd-container">
+    <div class="btc-strip" data-reveal>
+      <div class="btc-strip-text">
+        <div class="btc-tag">Công cụ miễn phí</div>
+        <h2 class="btc-h2">Tính <em>lãi kép</em> chỉ trong vài giây</h2>
+        <p class="btc-sub">Nhập số tiền gốc, lãi suất kỳ vọng và thời gian đầu tư — công cụ sẽ tính ngay tổng tài sản bạn có thể tích lũy được, không cần công thức phức tạp.</p>
+        <div class="btc-strip-list">
+          <div class="btc-strip-list-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Có thể thêm khoản đóng góp hàng tháng</div>
+          <div class="btc-strip-list-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Tùy chỉnh tần suất ghép lãi</div>
+          <div class="btc-strip-list-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Trực quan hóa gốc và lãi bằng biểu đồ</div>
+        </div>
+        <a href="cong-cu-tinh-toan.html" class="btc-btn btc-btn-primary" style="margin-top:28px">Mở công cụ tính lãi kép</a>
+      </div>
+      <div class="btc-strip-visual">
+        <div class="btc-tool-mock">
+          <div class="btc-tool-mock-row"><span>Số tiền gốc</span><strong>50.000.000 đ</strong></div>
+          <div class="btc-tool-mock-row"><span>Đóng góp / tháng</span><strong>2.000.000 đ</strong></div>
+          <div class="btc-tool-mock-row"><span>Lãi suất kỳ vọng</span><strong>9% / năm</strong></div>
+          <div class="btc-tool-mock-row"><span>Sau 20 năm</span><strong>1.636.231.000 đ</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="btc-strip rev" data-reveal>
+      <div class="btc-strip-text">
+        <div class="btc-tag">Quy tắc 50/30/20</div>
+        <h2 class="btc-h2">Lập ngân sách <em>không đau đầu</em></h2>
+        <p class="btc-sub">Chỉ cần nhập thu nhập hàng tháng, công cụ tự động chia thành 3 nhóm: nhu cầu thiết yếu, mong muốn cá nhân và tiết kiệm — dễ áp dụng ngay từ hôm nay.</p>
+        <a href="cong-cu-tinh-toan.html" class="btc-btn btc-btn-ghost" style="margin-top:28px">Mở công cụ lập ngân sách</a>
+      </div>
+      <div class="btc-strip-visual">
+        <div class="btc-tool-mock">
+          <div class="btc-tool-mock-row"><span>50% Nhu cầu thiết yếu</span><strong>7.500.000 đ</strong></div>
+          <div class="btc-tool-mock-row"><span>30% Mong muốn cá nhân</span><strong>4.500.000 đ</strong></div>
+          <div class="btc-tool-mock-row"><span>20% Tiết kiệm / trả nợ</span><strong>3.000.000 đ</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LIST-ELEGANT — Nhận xét độc giả ══ -->
+<section class="btc-sec">
+  <div class="wd-container" style="max-width:880px">
+    <div class="btc-center" data-reveal style="margin-bottom:40px">
+      <div class="btc-tag" style="justify-content:center">Độc giả nói gì</div>
+      <h2 class="btc-h2">Câu chuyện từ <em>người đọc</em></h2>
+    </div>
+    <div class="btc-testi-list" data-reveal data-delay="1">
+      <div class="btc-testi-item">
+        <div class="btc-testi-person"><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=120&auto=format&fit=crop&q=75" alt="Anh Quốc Huy"><div><div class="btc-testi-name">Quốc Huy</div><div class="btc-testi-role">Nhân viên văn phòng, 27 tuổi</div></div></div>
+        <div class="btc-testi-quote">"Bài viết về quỹ khẩn cấp đã thay đổi cách mình nhìn nhận tiết kiệm. Trước đây mình nghĩ tiết kiệm là để dành mua đồ, giờ mình hiểu đó là lớp bảo vệ đầu tiên trước rủi ro."</div>
+      </div>
+      <div class="btc-testi-item">
+        <div class="btc-testi-person"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&auto=format&fit=crop&q=75" alt="Chị Thanh Huyền"><div><div class="btc-testi-name">Thanh Huyền</div><div class="btc-testi-role">Freelancer thiết kế, 24 tuổi</div></div></div>
+        <div class="btc-testi-quote">"Công cụ tính lãi kép cực kỳ trực quan — mình nhập thử vài kịch bản và nhận ra bắt đầu đầu tư sớm 5 năm khác biệt lớn đến mức nào. Đã chia sẻ cho cả nhóm bạn thân."</div>
+      </div>
+      <div class="btc-testi-item">
+        <div class="btc-testi-person"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=120&auto=format&fit=crop&q=75" alt="Anh Minh Đức"><div><div class="btc-testi-name">Minh Đức</div><div class="btc-testi-role">Kỹ sư phần mềm, 30 tuổi</div></div></div>
+        <div class="btc-testi-quote">"Cách viết dễ hiểu, không dùng thuật ngữ khó nuốt như nhiều nguồn tài chính khác. Loạt bài về Snowball và Avalanche giúp mình trả hết nợ thẻ tín dụng sau 14 tháng."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ (mục H — 8 câu hỏi) ══ -->
+<section class="btc-sec btc-sec-tint">
+  <div class="wd-container">
+    <div class="btc-center" data-reveal style="margin-bottom:36px">
+      <div class="btc-tag" style="justify-content:center">Giải đáp thắc mắc</div>
+      <h2 class="btc-h2">Câu hỏi <em>thường gặp</em></h2>
+    </div>
+    <div class="btc-faq-list" data-reveal data-delay="1">
+      <div class="btc-faq-item open">
+        <button class="btc-faq-q"><span>Nội dung trên blog có phải là lời khuyên đầu tư không?</span><span class="btc-faq-q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="btc-faq-a" style="max-height:200px"><div class="btc-faq-a-in">Không. Toàn bộ nội dung trên La Bàn Tài Chính mang tính chất giáo dục và tham khảo, không phải lời khuyên đầu tư hay tư vấn tài chính cá nhân hóa. Trước khi đưa ra quyết định tài chính quan trọng, bạn nên tìm hiểu kỹ hoặc trao đổi với chuyên gia tài chính được cấp phép phù hợp với hoàn cảnh của mình.</div></div>
+      </div>
+      <div class="btc-faq-item">
+        <button class="btc-faq-q"><span>Làm sao để đóng góp bài viết cho La Bàn Tài Chính?</span><span class="btc-faq-q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="btc-faq-a"><div class="btc-faq-a-in">Bạn có thể gửi đề xuất chủ đề hoặc bản nháp bài viết qua form ở trang Liên hệ, ghi rõ chủ đề "Đóng góp bài viết". Đội ngũ biên tập sẽ phản hồi trong vòng 5-7 ngày làm việc nếu nội dung phù hợp với định hướng của blog.</div></div>
+      </div>
+      <div class="btc-faq-item">
+        <button class="btc-faq-q"><span>Blog đăng bài mới với tần suất như thế nào?</span><span class="btc-faq-q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="btc-faq-a"><div class="btc-faq-a-in">Trung bình 2-3 bài viết mới mỗi tuần, xoay quanh 6 chuyên mục chính. Bạn có thể đăng ký nhận bản tin để không bỏ lỡ bài viết mới ngay khi xuất bản.</div></div>
+      </div>
+      <div class="btc-faq-item">
+        <button class="btc-faq-q"><span>Tôi có thể sử dụng lại nội dung của blog không?</span><span class="btc-faq-q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="btc-faq-a"><div class="btc-faq-a-in">Bạn có thể trích dẫn một phần nội dung kèm theo liên kết nguồn rõ ràng về bài viết gốc. Việc sao chép toàn bộ bài viết để đăng lại trên nền tảng khác mà không xin phép là không được phép — xem chi tiết tại trang Điều khoản sử dụng.</div></div>
+      </div>
+      <div class="btc-faq-item">
+        <button class="btc-faq-q"><span>La Bàn Tài Chính có nhận hợp tác quảng cáo, tài trợ không?</span><span class="btc-faq-q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="btc-faq-a"><div class="btc-faq-a-in">Có, nhưng với tiêu chí chọn lọc nghiêm ngặt — chỉ hợp tác với các sản phẩm/dịch vụ tài chính minh bạch, phù hợp với độc giả. Mọi bài viết có yếu tố tài trợ đều được gắn nhãn rõ ràng. Liên hệ qua email hợp tác ở trang Liên hệ để trao đổi chi tiết.</div></div>
+      </div>
+      <div class="btc-faq-item">
+        <button class="btc-faq-q"><span>Làm sao để đăng ký nhận bản tin (newsletter)?</span><span class="btc-faq-q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="btc-faq-a"><div class="btc-faq-a-in">Điền email vào form đăng ký ở cuối trang chủ hoặc trong khối CTA phía dưới trang này. Bạn sẽ nhận email tổng hợp bài viết mới và mẹo tài chính ngắn gọn mỗi tuần, có thể hủy đăng ký bất kỳ lúc nào.</div></div>
+      </div>
+      <div class="btc-faq-item">
+        <button class="btc-faq-q"><span>Chính sách bình luận trên blog như thế nào?</span><span class="btc-faq-q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="btc-faq-a"><div class="btc-faq-a-in">Mọi bình luận đều được khuyến khích miễn là tôn trọng và mang tính xây dựng. Bình luận chứa quảng cáo trá hình, spam, hoặc ngôn từ công kích sẽ bị ẩn mà không cần báo trước.</div></div>
+      </div>
+      <div class="btc-faq-item">
+        <button class="btc-faq-q"><span>Công cụ tính toán trên blog có chính xác 100% không?</span><span class="btc-faq-q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="btc-faq-a"><div class="btc-faq-a-in">Các công cụ (lãi kép, ngân sách 50/30/20, quỹ khẩn cấp) tính toán dựa trên công thức tài chính chuẩn và giả định bạn nhập vào, chỉ mang tính ước lượng tham khảo — không tính đến thuế, phí giao dịch hay biến động lãi suất thực tế theo từng năm.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA band + Newsletter ══ -->
+<section class="btc-sec-sm">
+  <div class="wd-container">
+    <div class="btc-cta-band" data-reveal>
+      <div>
+        <div class="btc-cta-title">Nhận bài viết mới mỗi tuần <span>miễn phí</span></div>
+        <div class="btc-cta-sub">Không spam. Chỉ những kiến thức tài chính thực sự hữu ích, gửi thẳng vào hộp thư của bạn.</div>
+      </div>
+      <form class="btc-cta-form" id="btcNewsletterForm">
+        <input type="email" placeholder="Email của bạn" required>
+        <button type="submit" class="btc-btn btc-btn-white">Đăng ký ngay</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="btc-footer">
+  <div class="wd-container">
+    <div class="btc-footer-grid">
+      <div>
+        <div class="btc-footer-logo"><span class="btc-logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16.2 7.8-2.1 6.3-6.3 2.1 2.1-6.3z"/></svg></span> La Bàn <span style="color:var(--accent-mid)">Tài Chính</span></div>
+        <p class="btc-footer-desc">Blog chia sẻ kiến thức tài chính cá nhân dễ hiểu — tiết kiệm, đầu tư, quản lý chi tiêu và kế hoạch nghỉ hưu cho người Việt trẻ. Nội dung mang tính tham khảo, không phải lời khuyên đầu tư.</p>
+        <div class="btc-footer-social">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.6-.5-5.3c-.3-1-1-1.7-2-2C18.8 4.2 12 4.2 12 4.2s-6.8 0-8.5.5c-1 .3-1.7 1-2 2C1 8.4 1 12 1 12s0 3.6.5 5.3c.3 1 1 1.7 2 2 1.7.5 8.5.5 8.5.5s6.8 0 8.5-.5c1-.3 1.7-1 2-2 .5-1.7.5-5.3.5-5.3zM9.8 15.3V8.7l6 3.3-6 3.3z"/></svg></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.1c-1-.9-1.6-2.1-1.6-3.5h-3.3v14.2c0 1.6-1.3 2.9-2.9 2.9s-2.9-1.3-2.9-2.9 1.3-2.9 2.9-2.9c.3 0 .6 0 .9.1V9.6c-.3 0-.6-.1-.9-.1-3.4 0-6.2 2.8-6.2 6.2S6.4 22 9.8 22s6.2-2.8 6.2-6.2V8.9c1.3 1 3 1.5 4.7 1.5V7.1c-1.4 0-2.7-.5-3.7-1.4-.1-.2-.3-.4-.4-.6z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <div class="btc-footer-title">Chuyên mục</div>
+        <div class="btc-footer-links">
+          <a href="chuyen-muc.html?cat=tiet-kiem">Tiết kiệm</a>
+          <a href="chuyen-muc.html?cat=dau-tu">Đầu tư</a>
+          <a href="chuyen-muc.html?cat=quan-ly-no">Quản lý nợ</a>
+          <a href="chuyen-muc.html?cat=ngan-sach">Ngân sách</a>
+          <a href="chuyen-muc.html?cat=bao-hiem">Bảo hiểm</a>
+          <a href="chuyen-muc.html?cat=huu-tri">Hưu trí</a>
+        </div>
+      </div>
+      <div>
+        <div class="btc-footer-title">Trang</div>
+        <div class="btc-footer-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="chuyen-muc.html">Chuyên mục</a>
+          <a href="cong-cu-tinh-toan.html">Công cụ tính toán</a>
+          <a href="ve-toi.html">Về tôi</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div>
+        <div class="btc-footer-title">Liên hệ</div>
+        <div class="btc-footer-links">
+          <a href="mailto:hello@[labantaichinh].vn">hello@[labantaichinh].vn</a>
+          <span>[024 1234 5678]</span>
+          <span>[Số nhà, Phố, Quận Cầu Giấy, Hà Nội]</span>
+        </div>
+      </div>
+    </div>
+    <div class="btc-footer-maps">
+      <iframe src="https://maps.google.com/maps?q=21.0285,105.8542&hl=vi&z=15&output=embed" loading="lazy" title="Bản đồ vị trí La Bàn Tài Chính"></iframe>
+    </div>
+    <div class="btc-footer-bottom">
+      <span>© 2026 La Bàn Tài Chính. Bản quyền thuộc về [Tên chủ sở hữu].</span>
+      <div class="btc-footer-bottom-links">
+        <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+        <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<a href="https://zalo.me/[SỐ_ZALO]" class="btc-zalo-float" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">💬</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

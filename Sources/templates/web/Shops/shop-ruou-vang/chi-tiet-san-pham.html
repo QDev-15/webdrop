@@ -246,7 +246,15 @@ document.querySelectorAll('.rv-pd-thumbs button').forEach(btn => btn.addEventLis
 
 document.getElementById('rvQtyMinus').addEventListener('click', () => { qty = Math.max(1, qty - 1); document.getElementById('rvQtyVal').textContent = qty; });
 document.getElementById('rvQtyPlus').addEventListener('click', () => { qty = Math.min(20, qty + 1); document.getElementById('rvQtyVal').textContent = qty; });
-document.getElementById('rvAddToCartBtn').addEventListener('click', () => rvAddToCartById(product.id, qty));
+const rvAddBtn = document.getElementById('rvAddToCartBtn');
+if (!product.stock) {
+  rvAddBtn.disabled = true;
+  rvAddBtn.textContent = 'Hết hàng';
+  document.getElementById('rvQtyMinus').disabled = true;
+  document.getElementById('rvQtyPlus').disabled = true;
+} else {
+  rvAddBtn.addEventListener('click', () => rvAddToCartById(product.id, qty));
+}
 
 document.querySelectorAll('.rv-pd-tab').forEach(tab => tab.addEventListener('click', () => {
   document.querySelectorAll('.rv-pd-tab').forEach(t => t.classList.remove('active'));

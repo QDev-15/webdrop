@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PIXEL. — Blog Công Nghệ | Tin tức, đánh giá & thủ thuật công nghệ</title>
+<meta name="description" content="PIXEL. — blog công nghệ cập nhật tin tức, đánh giá sản phẩm và thủ thuật hữu ích mỗi ngày. Nội dung chọn lọc, không giật tít.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav id="bcn-nav">
+  <div class="bcn-container bcn-nav-inner">
+    <a href="index.html" class="bcn-logo"><span class="bcn-logo-mark"></span>PIXEL<span>.</span></a>
+    <div class="bcn-nav-links">
+      <a href="index.html" class="bcn-active">Trang chủ</a>
+      <a href="chuyen-muc.html">Chuyên mục</a>
+      <a href="danh-gia-san-pham.html">Đánh giá sản phẩm</a>
+      <a href="ve-toi.html">Về tôi</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <div class="bcn-nav-cta bcn-nav-cta-desktop">
+      <a href="index.html#bcn-newsletter" class="bcn-btn bcn-btn-accent bcn-btn-sm">Đăng ký nhận tin</a>
+    </div>
+    <button class="bcn-burger" id="bcnBurger" aria-label="Mở menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="bcn-mob-overlay" id="bcnMobOverlay"></div>
+<div class="bcn-mob-nav" id="bcnMobNav">
+  <ul>
+    <li><a href="index.html" class="bcn-active">Trang chủ</a></li>
+    <li><a href="chuyen-muc.html">Chuyên mục</a></li>
+    <li><a href="danh-gia-san-pham.html">Đánh giá sản phẩm</a></li>
+    <li><a href="ve-toi.html">Về tôi</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+  <div class="bcn-mob-actions">
+    <a href="index.html#bcn-newsletter" class="bcn-btn bcn-btn-accent bcn-btn-full">Đăng ký nhận tin</a>
+  </div>
+</div>
+
+<!-- ============ CAROUSEL HERO — H6 Asymmetric Offset ============ -->
+<section class="bcn-hero">
+
+  <div class="bcn-hero-slide bcn-active">
+    <div class="bcn-hero-bg" style="--bcn-grad: linear-gradient(135deg, #1c1f24 0%, #2a2410 55%, #14161a 100%);"></div>
+    <div class="bcn-hero-grid"></div>
+    <div class="bcn-hero-inner">
+      <div class="bcn-hero-grid-row">
+        <div class="bcn-hero-text">
+          <div class="bcn-hero-label">Công nghệ hôm nay</div>
+          <h1 class="bcn-hero-title">Cập nhật <em>công nghệ</em> mỗi ngày, đúng trọng tâm</h1>
+          <p class="bcn-hero-sub">Tin tức, đánh giá và thủ thuật công nghệ được chọn lọc kỹ càng — không giật tít, không lan man, chỉ những gì đáng đọc.</p>
+          <div class="bcn-hero-cta">
+            <a href="bai-viet-chi-tiet.html" class="bcn-btn bcn-btn-accent">Đọc bài mới nhất</a>
+            <a href="chuyen-muc.html" class="bcn-btn bcn-btn-outline-light">Xem chuyên mục</a>
+          </div>
+        </div>
+        <div style="position:relative;">
+          <div class="bcn-hero-frame" aria-hidden="true"></div>
+          <div class="bcn-hero-media">
+            <span class="bcn-hero-media-tag">Mới cập nhật</span>
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&auto=format&fit=crop&q=70" alt="Bảng mạch điện tử cận cảnh, biểu tượng cho nội dung công nghệ mới nhất">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bcn-hero-slide">
+    <div class="bcn-hero-bg" style="--bcn-grad: linear-gradient(135deg, #1c1f24 0%, #16232a 55%, #14161a 100%);"></div>
+    <div class="bcn-hero-grid"></div>
+    <div class="bcn-hero-inner">
+      <div class="bcn-hero-grid-row">
+        <div class="bcn-hero-text">
+          <div class="bcn-hero-label">AI &amp; Lập trình</div>
+          <h2 class="bcn-hero-title">AI tạo sinh đang định hình lại cách chúng ta làm việc</h2>
+          <p class="bcn-hero-sub">Phân tích chuyên sâu các xu hướng AI, mô hình ngôn ngữ lớn và công cụ lập trình đáng chú ý nhất năm 2026.</p>
+          <div class="bcn-hero-cta">
+            <a href="chuyen-muc.html" class="bcn-btn bcn-btn-accent">Xem bài phân tích</a>
+            <a href="ve-toi.html" class="bcn-btn bcn-btn-outline-light">Về tôi</a>
+          </div>
+        </div>
+        <div style="position:relative;">
+          <div class="bcn-hero-frame" aria-hidden="true"></div>
+          <div class="bcn-hero-media">
+            <span class="bcn-hero-media-tag">AI &amp; Xu hướng</span>
+            <img src="https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=700&auto=format&fit=crop&q=70" alt="Màn hình laptop hiển thị dòng code, minh họa cho chủ đề AI và lập trình">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bcn-hero-slide">
+    <div class="bcn-hero-bg" style="--bcn-grad: linear-gradient(135deg, #1c1f24 0%, #241b0d 55%, #14161a 100%);"></div>
+    <div class="bcn-hero-grid"></div>
+    <div class="bcn-hero-inner">
+      <div class="bcn-hero-grid-row">
+        <div class="bcn-hero-text">
+          <div class="bcn-hero-label">Đánh giá thiết bị</div>
+          <h2 class="bcn-hero-title">Đánh giá trung thực trước khi bạn xuống tiền</h2>
+          <p class="bcn-hero-sub">Từ smartphone, laptop đến thiết bị đeo thông minh — thử nghiệm thực tế nhiều tuần, chấm điểm rõ ràng theo từng tiêu chí.</p>
+          <div class="bcn-hero-cta">
+            <a href="danh-gia-san-pham.html" class="bcn-btn bcn-btn-accent">Xem đánh giá</a>
+            <a href="danh-gia-san-pham.html#bcn-compare" class="bcn-btn bcn-btn-outline-light">Bảng so sánh</a>
+          </div>
+        </div>
+        <div style="position:relative;">
+          <div class="bcn-hero-frame" aria-hidden="true"></div>
+          <div class="bcn-hero-media">
+            <span class="bcn-hero-media-tag">Review</span>
+            <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=700&auto=format&fit=crop&q=70" alt="Người dùng cầm smartphone trên tay, minh họa cho bài đánh giá thiết bị">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bcn-hero-slide">
+    <div class="bcn-hero-bg" style="--bcn-grad: linear-gradient(135deg, #1c1f24 0%, #1a2420 55%, #14161a 100%);"></div>
+    <div class="bcn-hero-grid"></div>
+    <div class="bcn-hero-inner">
+      <div class="bcn-hero-grid-row">
+        <div class="bcn-hero-text">
+          <div class="bcn-hero-label">Bảo mật &amp; Hạ tầng</div>
+          <h2 class="bcn-hero-title">Bảo mật dữ liệu không còn là chuyện của riêng ai</h2>
+          <p class="bcn-hero-sub">Hướng dẫn thực tế giúp bạn và doanh nghiệp nhỏ an toàn hơn trước rủi ro an ninh mạng ngày càng tinh vi.</p>
+          <div class="bcn-hero-cta">
+            <a href="chuyen-muc.html" class="bcn-btn bcn-btn-accent">Đọc thủ thuật</a>
+            <a href="lien-he.html" class="bcn-btn bcn-btn-outline-light">Liên hệ hợp tác</a>
+          </div>
+        </div>
+        <div style="position:relative;">
+          <div class="bcn-hero-frame" aria-hidden="true"></div>
+          <div class="bcn-hero-media">
+            <span class="bcn-hero-media-tag">Bảo mật</span>
+            <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=700&auto=format&fit=crop&q=70" alt="Dãy máy chủ trong trung tâm dữ liệu, minh họa cho chủ đề bảo mật và hạ tầng">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bcn-hero-nav">
+    <div class="bcn-hero-nav-inner">
+      <div class="bcn-hero-dots">
+        <button class="bcn-hero-dot bcn-active" aria-label="Slide 1"></button>
+        <button class="bcn-hero-dot" aria-label="Slide 2"></button>
+        <button class="bcn-hero-dot" aria-label="Slide 3"></button>
+        <button class="bcn-hero-dot" aria-label="Slide 4"></button>
+      </div>
+      <div class="bcn-hero-arrows">
+        <button class="bcn-hero-arrow bcn-hero-prev" aria-label="Slide trước"><i class="bi bi-arrow-left"></i></button>
+        <button class="bcn-hero-arrow bcn-hero-next" aria-label="Slide tiếp"><i class="bi bi-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CATEGORY QUICK-NAV (FEATURE-ICON-ROW) ============ -->
+<section class="bcn-sec" style="padding-top:56px;">
+  <div class="bcn-container">
+    <div class="bcn-cat-row" data-reveal>
+      <a href="chuyen-muc.html#tin-tuc" class="bcn-cat-item">
+        <span class="bcn-cat-icon"><i class="bi bi-broadcast"></i></span>
+        <span class="bcn-cat-name">Tin tức công nghệ</span>
+        <span class="bcn-cat-count">186 bài viết</span>
+      </a>
+      <a href="danh-gia-san-pham.html" class="bcn-cat-item">
+        <span class="bcn-cat-icon"><i class="bi bi-star"></i></span>
+        <span class="bcn-cat-name">Đánh giá sản phẩm</span>
+        <span class="bcn-cat-count">94 bài viết</span>
+      </a>
+      <a href="chuyen-muc.html#thu-thuat" class="bcn-cat-item">
+        <span class="bcn-cat-icon"><i class="bi bi-lightbulb"></i></span>
+        <span class="bcn-cat-name">Thủ thuật &amp; Mẹo</span>
+        <span class="bcn-cat-count">211 bài viết</span>
+      </a>
+      <a href="chuyen-muc.html#ai-xu-huong" class="bcn-cat-item">
+        <span class="bcn-cat-icon"><i class="bi bi-cpu"></i></span>
+        <span class="bcn-cat-name">AI &amp; Xu hướng</span>
+        <span class="bcn-cat-count">128 bài viết</span>
+      </a>
+      <a href="chuyen-muc.html#bao-mat" class="bcn-cat-item">
+        <span class="bcn-cat-icon"><i class="bi bi-shield-lock"></i></span>
+        <span class="bcn-cat-name">Bảo mật</span>
+        <span class="bcn-cat-count">67 bài viết</span>
+      </a>
+      <a href="chuyen-muc.html#di-dong" class="bcn-cat-item">
+        <span class="bcn-cat-icon"><i class="bi bi-phone"></i></span>
+        <span class="bcn-cat-name">Di động</span>
+        <span class="bcn-cat-count">142 bài viết</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURED + LATEST (GRID-CARDS) ============ -->
+<section class="bcn-sec">
+  <div class="bcn-container">
+    <div class="bcn-sec-header bcn-split" data-reveal>
+      <div>
+        <div class="bcn-eyebrow">Nổi bật</div>
+        <h2 class="bcn-sec-title">Bài viết đang được quan tâm</h2>
+      </div>
+      <a href="chuyen-muc.html" class="bcn-btn bcn-btn-ghost bcn-btn-sm">Xem tất cả <i class="bi bi-arrow-right"></i></a>
+    </div>
+
+    <a href="bai-viet-chi-tiet.html" class="bcn-featured" style="text-decoration:none; margin-bottom:32px; display:grid;" data-reveal>
+      <div class="bcn-featured-media">
+        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=900&auto=format&fit=crop&q=70" alt="Kỹ sư kiểm tra dữ liệu trên nhiều màn hình, minh họa bài viết về sản xuất chip 2nm">
+      </div>
+      <div class="bcn-featured-body">
+        <span class="bcn-featured-cat">Tin tức công nghệ</span>
+        <h3 class="bcn-featured-title">Bên trong nhà máy chip 2nm: cuộc đua bán dẫn toàn cầu đang nóng lên thế nào</h3>
+        <p class="bcn-featured-excerpt">TSMC, Samsung và Intel đều dồn lực cho tiến trình 2nm trong năm 2026. Bài viết phân tích vì sao cuộc đua này quyết định tương lai của mọi thiết bị bạn dùng hàng ngày.</p>
+        <div class="bcn-featured-meta"><span>Đăng Khoa</span><span>15 tháng 8, 2026</span><span>9 phút đọc</span></div>
+      </div>
+    </a>
+
+    <div class="bcn-post-grid">
+      <a href="bai-viet-chi-tiet.html" class="bcn-post-card" style="text-decoration:none;" data-reveal data-delay="1">
+        <div class="bcn-post-thumb">
+          <span class="bcn-post-cat-tag">AI &amp; Xu hướng</span>
+          <img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=500&auto=format&fit=crop&q=70" alt="Chip xử lý AI trên bo mạch, minh họa bài viết về Snapdragon 8 Elite Gen 2">
+        </div>
+        <div class="bcn-post-body">
+          <div class="bcn-post-meta"><span>12/8/2026</span><span>6 phút đọc</span></div>
+          <h4 class="bcn-post-title">Snapdragon 8 Elite Gen 2 lộ diện: bước nhảy vọt về hiệu năng AI</h4>
+          <p class="bcn-post-excerpt">Chip flagship mới của Qualcomm hứa hẹn tăng 40% hiệu năng xử lý AI on-device so với thế hệ trước.</p>
+          <div class="bcn-post-foot">
+            <div class="bcn-post-author">
+              <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=80&auto=format&fit=crop&q=70" class="bcn-post-av" alt="Đăng Khoa">
+              <span class="bcn-post-author-name">Đăng Khoa</span>
+            </div>
+            <span class="bcn-post-more">Đọc tiếp →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="bai-viet-chi-tiet.html" class="bcn-post-card" style="text-decoration:none;" data-reveal data-delay="2">
+        <div class="bcn-post-thumb">
+          <span class="bcn-post-cat-tag">Thủ thuật</span>
+          <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=500&auto=format&fit=crop&q=70" alt="Người dùng thao tác trên smartphone, minh họa bài viết thủ thuật tối ưu hệ điều hành">
+        </div>
+        <div class="bcn-post-body">
+          <div class="bcn-post-meta"><span>10/8/2026</span><span>5 phút đọc</span></div>
+          <h4 class="bcn-post-title">5 thủ thuật tăng tốc Windows 11 không cần phần mềm thứ ba</h4>
+          <p class="bcn-post-excerpt">Chỉ với vài thao tác trong Settings, máy tính của bạn có thể khởi động nhanh hơn rõ rệt.</p>
+          <div class="bcn-post-foot">
+            <div class="bcn-post-author">
+              <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=80&auto=format&fit=crop&q=70" class="bcn-post-av" alt="Thu Hà">
+              <span class="bcn-post-author-name">Thu Hà</span>
+            </div>
+            <span class="bcn-post-more">Đọc tiếp →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="bai-viet-chi-tiet.html" class="bcn-post-card" style="text-decoration:none;" data-reveal data-delay="3">
+        <div class="bcn-post-thumb">
+          <span class="bcn-post-cat-tag">Tin tức</span>
+          <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500&auto=format&fit=crop&q=70" alt="Dòng code hiển thị trên màn hình tối, minh họa bài viết về Google Gemini 3">
+        </div>
+        <div class="bcn-post-body">
+          <div class="bcn-post-meta"><span>8/8/2026</span><span>7 phút đọc</span></div>
+          <h4 class="bcn-post-title">Google Gemini 3 chính thức ra mắt: đối thủ đáng gờm của GPT-5</h4>
+          <p class="bcn-post-excerpt">Mô hình mới của Google vượt trội ở khả năng suy luận đa bước và xử lý video thời gian thực.</p>
+          <div class="bcn-post-foot">
+            <div class="bcn-post-author">
+              <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=80&auto=format&fit=crop&q=70" class="bcn-post-av" alt="Đăng Khoa">
+              <span class="bcn-post-author-name">Đăng Khoa</span>
+            </div>
+            <span class="bcn-post-more">Đọc tiếp →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="bai-viet-chi-tiet.html" class="bcn-post-card" style="text-decoration:none;" data-reveal data-delay="1">
+        <div class="bcn-post-thumb">
+          <span class="bcn-post-cat-tag">Đánh giá</span>
+          <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500&auto=format&fit=crop&q=70" alt="Tai nghe chống ồn đặt trên bàn làm việc, minh họa bài đánh giá sản phẩm">
+        </div>
+        <div class="bcn-post-body">
+          <div class="bcn-post-meta"><span>6/8/2026</span><span>8 phút đọc</span></div>
+          <h4 class="bcn-post-title">Đánh giá tai nghe chống ồn ANC thế hệ mới: đáng tiền hay không?</h4>
+          <p class="bcn-post-excerpt">Chúng tôi đeo thử suốt 3 tuần làm việc để trả lời câu hỏi này một cách công tâm nhất.</p>
+          <div class="bcn-post-foot">
+            <div class="bcn-post-author">
+              <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=80&auto=format&fit=crop&q=70" class="bcn-post-av" alt="Thu Hà">
+              <span class="bcn-post-author-name">Thu Hà</span>
+            </div>
+            <span class="bcn-post-more">Đọc tiếp →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="bai-viet-chi-tiet.html" class="bcn-post-card" style="text-decoration:none;" data-reveal data-delay="2">
+        <div class="bcn-post-thumb">
+          <span class="bcn-post-cat-tag">Bảo mật</span>
+          <img src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?w=500&auto=format&fit=crop&q=70" alt="Không gian làm việc với nhiều màn hình, minh họa bài viết về lỗ hổng bảo mật trình duyệt">
+        </div>
+        <div class="bcn-post-body">
+          <div class="bcn-post-meta"><span>4/8/2026</span><span>6 phút đọc</span></div>
+          <h4 class="bcn-post-title">Lỗ hổng bảo mật zero-day trên Chrome: người dùng cần làm gì ngay?</h4>
+          <p class="bcn-post-excerpt">Google đã phát hành bản vá khẩn cấp — nhưng bạn cần chủ động cập nhật ngay hôm nay.</p>
+          <div class="bcn-post-foot">
+            <div class="bcn-post-author">
+              <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=80&auto=format&fit=crop&q=70" class="bcn-post-av" alt="Đăng Khoa">
+              <span class="bcn-post-author-name">Đăng Khoa</span>
+            </div>
+            <span class="bcn-post-more">Đọc tiếp →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="bai-viet-chi-tiet.html" class="bcn-post-card" style="text-decoration:none;" data-reveal data-delay="3">
+        <div class="bcn-post-thumb">
+          <span class="bcn-post-cat-tag">Di động</span>
+          <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=500&auto=format&fit=crop&q=70" alt="Người dùng cầm điện thoại màn hình gập, minh họa bài trải nghiệm sản phẩm di động">
+        </div>
+        <div class="bcn-post-body">
+          <div class="bcn-post-meta"><span>2/8/2026</span><span>7 phút đọc</span></div>
+          <h4 class="bcn-post-title">Trải nghiệm gập ba lần: điện thoại màn hình gập thế hệ tiếp theo</h4>
+          <p class="bcn-post-excerpt">Thiết kế bản lề mới giúp nếp gấp gần như biến mất — nhưng độ bền vẫn còn là dấu hỏi.</p>
+          <div class="bcn-post-foot">
+            <div class="bcn-post-author">
+              <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=80&auto=format&fit=crop&q=70" class="bcn-post-av" alt="Thu Hà">
+              <span class="bcn-post-author-name">Thu Hà</span>
+            </div>
+            <span class="bcn-post-more">Đọc tiếp →</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STAT-BAR ============ -->
+<section class="bcn-sec bcn-sec-dark">
+  <div class="bcn-container">
+    <div class="bcn-stats-grid">
+      <div class="bcn-stat-item" data-reveal>
+        <div class="bcn-stat-num" data-counter="1240" data-suffix="+">0</div>
+        <div class="bcn-stat-label">Bài viết đã đăng</div>
+      </div>
+      <div class="bcn-stat-item" data-reveal data-delay="1">
+        <div class="bcn-stat-num" data-counter="850" data-suffix="K+">0</div>
+        <div class="bcn-stat-label">Lượt đọc / tháng</div>
+      </div>
+      <div class="bcn-stat-item" data-reveal data-delay="2">
+        <div class="bcn-stat-num" data-counter="32" data-suffix="K+">0</div>
+        <div class="bcn-stat-label">Người đăng ký bản tin</div>
+      </div>
+      <div class="bcn-stat-item" data-reveal data-delay="3">
+        <div class="bcn-stat-num" data-counter="6" data-suffix="+">0</div>
+        <div class="bcn-stat-label">Năm hoạt động</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BENTO-GRID — Nổi bật tuần này ============ -->
+<section class="bcn-sec bcn-sec-alt">
+  <div class="bcn-container">
+    <div class="bcn-sec-header" data-reveal>
+      <div class="bcn-eyebrow">Tuần này</div>
+      <h2 class="bcn-sec-title">Nổi bật trong tuần</h2>
+      <p class="bcn-sec-sub">Những câu chuyện công nghệ được đọc và chia sẻ nhiều nhất tuần qua.</p>
+    </div>
+    <div class="bcn-bento" style="margin-top:32px;" data-reveal>
+      <a href="bai-viet-chi-tiet.html" class="bcn-bento-item bcn-big">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&auto=format&fit=crop&q=70" alt="Trung tâm dữ liệu AI với ánh sáng xanh, minh họa bài viết nổi bật trong tuần">
+        <div class="bcn-bento-overlay">
+          <span class="bcn-bento-cat">AI &amp; Xu hướng</span>
+          <span class="bcn-bento-title">Bên trong trung tâm dữ liệu AI lớn nhất Đông Nam Á</span>
+        </div>
+      </a>
+      <a href="bai-viet-chi-tiet.html" class="bcn-bento-item">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500&auto=format&fit=crop&q=70" alt="Thiết bị công nghệ đặt trên bàn studio, minh họa bài viết về lừa đảo deepfake">
+        <div class="bcn-bento-overlay">
+          <span class="bcn-bento-cat">Bảo mật</span>
+          <span class="bcn-bento-title">Mẹo bảo vệ tài khoản khỏi lừa đảo deepfake</span>
+        </div>
+      </a>
+      <a href="bai-viet-chi-tiet.html" class="bcn-bento-item">
+        <img src="https://images.unsplash.com/photo-1550439062-609e1531270e?w=500&auto=format&fit=crop&q=70" alt="Không gian văn phòng công nghệ hiện đại, minh họa bài so sánh laptop">
+        <div class="bcn-bento-overlay">
+          <span class="bcn-bento-cat">Đánh giá</span>
+          <span class="bcn-bento-title">So sánh nhanh 3 laptop mỏng nhẹ tầm giá 20 triệu</span>
+        </div>
+      </a>
+      <a href="bai-viet-chi-tiet.html" class="bcn-bento-item">
+        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=500&auto=format&fit=crop&q=70" alt="Laptop mở trên bàn làm việc, minh họa bài thủ thuật dọn dẹp ổ cứng">
+        <div class="bcn-bento-overlay">
+          <span class="bcn-bento-cat">Thủ thuật</span>
+          <span class="bcn-bento-title">Cách dọn dẹp ổ cứng chỉ trong 5 phút</span>
+        </div>
+      </a>
+      <a href="bai-viet-chi-tiet.html" class="bcn-bento-item">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=500&auto=format&fit=crop&q=70" alt="Nhóm kỹ sư thảo luận trong nhà máy công nghệ, minh họa bài viết về robot hình người">
+        <div class="bcn-bento-overlay">
+          <span class="bcn-bento-cat">Tin tức</span>
+          <span class="bcn-bento-title">Robot hình người bắt đầu vào nhà máy sản xuất</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HORIZONTAL-SCROLL — Đánh giá mới nhất ============ -->
+<section class="bcn-sec">
+  <div class="bcn-container">
+    <div class="bcn-sec-header bcn-split" data-reveal>
+      <div>
+        <div class="bcn-eyebrow">Review</div>
+        <h2 class="bcn-sec-title">Đánh giá sản phẩm mới nhất</h2>
+      </div>
+      <a href="danh-gia-san-pham.html" class="bcn-btn bcn-btn-ghost bcn-btn-sm">Tất cả đánh giá <i class="bi bi-arrow-right"></i></a>
+    </div>
+    <div class="bcn-hscroll" data-reveal>
+      <a href="danh-gia-san-pham.html" class="bcn-review-card" style="text-decoration:none;">
+        <div class="bcn-review-thumb"><img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=500&auto=format&fit=crop&q=70" alt="Đồng hồ thông minh Series X đeo trên cổ tay"></div>
+        <div class="bcn-review-body">
+          <span class="bcn-review-score">9.2/10</span>
+          <h4 class="bcn-review-title">Đồng hồ thông minh Series X</h4>
+          <p class="bcn-review-excerpt">Pin trâu hơn hẳn thế hệ trước, theo dõi sức khỏe chính xác đáng ngạc nhiên.</p>
+        </div>
+      </a>
+      <a href="danh-gia-san-pham.html" class="bcn-review-card" style="text-decoration:none;">
+        <div class="bcn-review-thumb"><img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500&auto=format&fit=crop&q=70" alt="Tai nghe chống ồn Aria Pro"></div>
+        <div class="bcn-review-body">
+          <span class="bcn-review-score">8.8/10</span>
+          <h4 class="bcn-review-title">Tai nghe chống ồn Aria Pro</h4>
+          <p class="bcn-review-excerpt">Chống ồn tốt nhất phân khúc, nhưng ứng dụng đi kèm vẫn còn hơi rối.</p>
+        </div>
+      </a>
+      <a href="danh-gia-san-pham.html" class="bcn-review-card" style="text-decoration:none;">
+        <div class="bcn-review-thumb"><img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&auto=format&fit=crop&q=70" alt="Laptop mỏng nhẹ UltraBook 14 mở trên bàn"></div>
+        <div class="bcn-review-body">
+          <span class="bcn-review-score">9.0/10</span>
+          <h4 class="bcn-review-title">Laptop mỏng nhẹ UltraBook 14</h4>
+          <p class="bcn-review-excerpt">Thời lượng pin cả ngày, bàn phím gõ sướng tay — điểm trừ duy nhất là giá.</p>
+        </div>
+      </a>
+      <a href="danh-gia-san-pham.html" class="bcn-review-card" style="text-decoration:none;">
+        <div class="bcn-review-thumb"><img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=500&auto=format&fit=crop&q=70" alt="Smartphone màn hình gập Fold V3"></div>
+        <div class="bcn-review-body">
+          <span class="bcn-review-score">8.6/10</span>
+          <h4 class="bcn-review-title">Smartphone màn hình gập Fold V3</h4>
+          <p class="bcn-review-excerpt">Bản lề bền hơn, nếp gấp mờ hẳn — vẫn là chiếc gập đáng cân nhắc nhất năm nay.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER (FULL-BLEED) ============ -->
+<section class="bcn-newsletter" id="bcn-newsletter">
+  <div class="bcn-newsletter-grid" aria-hidden="true"></div>
+  <div class="bcn-container bcn-newsletter-inner" data-reveal>
+    <div class="bcn-newsletter-text">
+      <h3>Nhận bản tin công nghệ mỗi tuần</h3>
+      <p>Tổng hợp tin tức, đánh giá và thủ thuật đáng chú ý nhất — gửi thẳng vào hộp thư, không spam.</p>
+    </div>
+    <form class="bcn-newsletter-form" onsubmit="event.preventDefault(); alert('[Demo] Cảm ơn bạn đã đăng ký nhận bản tin!');">
+      <input type="email" placeholder="Email của bạn" required aria-label="Email đăng ký nhận bản tin">
+      <button type="submit" class="bcn-btn bcn-btn-dark">Đăng ký ngay</button>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FAQ (mục H) ============ -->
+<section class="bcn-sec">
+  <div class="bcn-container">
+    <div class="bcn-sec-header bcn-center" data-reveal>
+      <div class="bcn-eyebrow">Hỏi đáp</div>
+      <h2 class="bcn-sec-title">Câu hỏi thường gặp</h2>
+      <p class="bcn-sec-sub">Một vài điều độc giả và đối tác thường thắc mắc về PIXEL.</p>
+    </div>
+    <div class="bcn-faq-list" style="margin-top:36px;" data-reveal>
+      <details class="bcn-faq-item" open>
+        <summary><span>Làm sao để đóng góp bài viết cho PIXEL.?</span><span class="bcn-faq-plus"></span></summary>
+        <div class="bcn-faq-answer">Bạn có thể gửi bản nháp bài viết (định dạng .docx hoặc Google Docs) kèm chủ đề đề xuất qua trang <a href="lien-he.html">Liên hệ</a>. Đội ngũ biên tập sẽ phản hồi trong vòng 3-5 ngày làm việc, kèm góp ý chỉnh sửa nếu cần trước khi đăng.</div>
+      </details>
+      <details class="bcn-faq-item">
+        <summary><span>PIXEL. đăng bài mới với tần suất như thế nào?</span><span class="bcn-faq-plus"></span></summary>
+        <div class="bcn-faq-answer">Trung bình 4-6 bài viết mới mỗi tuần, gồm tin tức nóng cập nhật trong 24 giờ và các bài phân tích/đánh giá chuyên sâu xuất bản định kỳ vào thứ Ba và thứ Sáu hàng tuần.</div>
+      </details>
+      <details class="bcn-faq-item">
+        <summary><span>Tôi có thể sử dụng lại nội dung trên PIXEL. không?</span><span class="bcn-faq-plus"></span></summary>
+        <div class="bcn-faq-answer">Bạn được phép trích dẫn tối đa 150 từ kèm liên kết dẫn nguồn rõ ràng về bài viết gốc. Việc đăng lại toàn văn hoặc sử dụng cho mục đích thương mại cần có sự đồng ý bằng văn bản — vui lòng liên hệ trước.</div>
+      </details>
+      <details class="bcn-faq-item">
+        <summary><span>PIXEL. có nhận review sản phẩm tài trợ không?</span><span class="bcn-faq-plus"></span></summary>
+        <div class="bcn-faq-answer">Có. Chúng tôi nhận sản phẩm dùng thử từ nhãn hàng để đánh giá, nhưng mọi nhận định trong bài đều độc lập và không bị chi phối bởi nhà tài trợ. Bài viết hợp tác luôn được gắn nhãn "Có tài trợ" minh bạch.</div>
+      </details>
+      <details class="bcn-faq-item">
+        <summary><span>Làm sao để đăng ký nhận bản tin công nghệ hàng tuần?</span><span class="bcn-faq-plus"></span></summary>
+        <div class="bcn-faq-answer">Chỉ cần nhập email vào form "Đăng ký nhận tin" ở cuối trang chủ hoặc trên thanh điều hướng. Bản tin được gửi vào sáng thứ Hai mỗi tuần, bạn có thể hủy đăng ký bất cứ lúc nào chỉ với 1 cú nhấp.</div>
+      </details>
+      <details class="bcn-faq-item">
+        <summary><span>Chính sách bình luận của PIXEL. như thế nào?</span><span class="bcn-faq-plus"></span></summary>
+        <div class="bcn-faq-answer">Chúng tôi khuyến khích thảo luận văn minh, đúng chủ đề. Bình luận công kích cá nhân, spam liên kết hoặc quảng cáo không liên quan sẽ bị ẩn mà không cần báo trước.</div>
+      </details>
+      <details class="bcn-faq-item">
+        <summary><span>Thông tin đánh giá sản phẩm trên PIXEL. có khách quan không?</span><span class="bcn-faq-plus"></span></summary>
+        <div class="bcn-faq-answer">Mọi sản phẩm đều được thử nghiệm thực tế tối thiểu 1-2 tuần trước khi lên bài, chấm điểm theo bộ tiêu chí cố định (hiệu năng, thời lượng pin, giá trị so với giá tiền...). Xem chi tiết phương pháp đánh giá tại trang <a href="danh-gia-san-pham.html">Đánh giá sản phẩm</a>.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bcn-footer">
+  <div class="bcn-container">
+    <div class="bcn-footer-grid">
+      <div>
+        <a href="index.html" class="bcn-footer-logo"><span class="bcn-logo-mark"></span>PIXEL.</a>
+        <p class="bcn-footer-desc">Blog công nghệ độc lập — cập nhật tin tức, đánh giá sản phẩm và thủ thuật hữu ích mỗi ngày, viết bởi người thật dùng thật.</p>
+        <div class="bcn-footer-social">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="bcn-footer-title">Chuyên mục</div>
+        <div class="bcn-footer-links">
+          <a href="chuyen-muc.html#tin-tuc">Tin tức công nghệ</a>
+          <a href="danh-gia-san-pham.html">Đánh giá sản phẩm</a>
+          <a href="chuyen-muc.html#thu-thuat">Thủ thuật &amp; Mẹo</a>
+          <a href="chuyen-muc.html#ai-xu-huong">AI &amp; Xu hướng</a>
+          <a href="chuyen-muc.html#bao-mat">Bảo mật</a>
+        </div>
+      </div>
+      <div>
+        <div class="bcn-footer-title">Về PIXEL.</div>
+        <div class="bcn-footer-links">
+          <a href="ve-toi.html">Về tôi</a>
+          <a href="chuyen-muc.html">Chuyên mục</a>
+          <a href="danh-gia-san-pham.html">Đánh giá sản phẩm</a>
+          <a href="lien-he.html">Liên hệ</a>
+        </div>
+      </div>
+      <div>
+        <div class="bcn-footer-title">Pháp lý</div>
+        <div class="bcn-footer-links">
+          <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+          <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+          <a href="lien-he.html">Hợp tác quảng cáo</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bcn-footer-maps">
+      <iframe src="https://maps.google.com/maps?q=21.0378,105.7826&hl=vi&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Vị trí văn phòng PIXEL. trên Google Maps"></iframe>
+    </div>
+
+    <div class="bcn-footer-bottom">
+      <div>© 2026 PIXEL. Blog Công Nghệ. Mọi quyền được bảo lưu.</div>
+      <div style="display:flex; gap:20px;"><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a><a href="dieu-khoan.html">Điều khoản sử dụng</a></div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://zalo.me/" target="_blank" rel="noopener noreferrer" class="bcn-zalo-float" aria-label="Chat Zalo"><i class="bi bi-chat-dots-fill"></i></a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
