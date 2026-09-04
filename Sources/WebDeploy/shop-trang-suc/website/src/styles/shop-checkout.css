@@ -1,0 +1,55 @@
+/* CSS TĨNH cho CheckoutPage.tsx — import 1 lần trong App.tsx: import './styles/shop-checkout.css'
+   Dùng CSS vars sẵn có của site (--accent/--border/--text/--text-2) với fallback an toàn,
+   không phụ thuộc prefix riêng của từng site (sb-/st-/gd-/qa-...). */
+
+.shop-checkout-wrap { padding: 48px 0 96px; }
+.shop-checkout-container { max-width: 1080px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); }
+.shop-checkout-title { font-size: clamp(24px, 4vw, 32px); font-weight: 600; margin-bottom: 24px; color: var(--text, #1a1a1a); }
+.shop-checkout-muted { color: var(--text-2, #666); }
+
+.shop-checkout-layout { display: grid; grid-template-columns: 1.6fr 1fr; gap: 40px; align-items: start; }
+@media (max-width: 860px) { .shop-checkout-layout { grid-template-columns: 1fr; } }
+
+.shop-checkout-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.shop-checkout-row > .shop-checkout-field { flex: 1; min-width: 200px; }
+
+.shop-checkout-field { margin-bottom: 16px; }
+.shop-checkout-field label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--text, #1a1a1a); }
+.shop-checkout-field input,
+.shop-checkout-field textarea {
+  width: 100%; padding: 10px 14px; border: 1.5px solid var(--border, #e0e0e0); border-radius: 8px;
+  font-size: 14px; font-family: inherit; color: var(--text, #1a1a1a); background: #fff;
+}
+.shop-checkout-field input:focus,
+.shop-checkout-field textarea:focus { outline: none; border-color: var(--accent, #16a34a); }
+
+.shop-checkout-payment-opt {
+  display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+  border: 1.5px solid var(--border, #e0e0e0); border-radius: 8px; cursor: pointer; font-size: 14px;
+}
+
+.shop-checkout-submit-btn {
+  width: 100%; padding: 14px 20px; border: none; border-radius: 8px;
+  background: var(--accent, #16a34a); color: #fff; font-size: 15px; font-weight: 600;
+  cursor: pointer; margin-top: 8px; transition: opacity .15s;
+}
+.shop-checkout-submit-btn:disabled { opacity: .5; cursor: not-allowed; }
+.shop-checkout-submit-btn:not(:disabled):hover { opacity: .9; }
+
+.shop-checkout-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none;
+}
+.shop-checkout-btn-primary { background: var(--accent, #16a34a); color: #fff; }
+
+.shop-checkout-summary {
+  border: 1px solid var(--border, #e0e0e0); border-radius: 12px; padding: 24px; background: var(--bg, #fafafa);
+}
+.shop-checkout-summary-title { font-size: 16px; font-weight: 600; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border, #e0e0e0); }
+.shop-checkout-summary-row { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; padding: 6px 0; color: var(--text-2, #555); }
+.shop-checkout-summary-total { font-weight: 700; font-size: 16px; color: var(--text, #1a1a1a); border-top: 1px solid var(--border, #e0e0e0); margin-top: 8px; padding-top: 14px; }
+
+.shop-checkout-error {
+  color: #dc2626; background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px;
+  padding: 10px 16px; margin-bottom: 16px; font-size: 14px;
+}
