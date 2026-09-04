@@ -26,14 +26,14 @@ function tcUpdateCartBadge() {
   });
 }
 
-/* ── Nav bám đỉnh khi topbar đã cuộn khỏi màn hình ──
-   #tcNav là position:fixed, top:33px cố định để chừa chỗ cho .tc-topbar khi ở đỉnh trang.
-   Khi cuộn xuống, topbar (nằm trong flow bình thường) trôi ra khỏi khung nhìn nhưng
-   nav fixed không tự theo — phải toggle class .scrolled để CSS kéo top về 0. */
+/* ── Nav/filter bám đỉnh khi topbar đã cuộn khỏi màn hình ──
+   #tcNav (fixed) và .tc-filter-wrap (sticky) đều tính top dựa trên chiều cao
+   topbar + nav để chừa chỗ cho .tc-topbar khi ở đỉnh trang. Khi cuộn xuống,
+   topbar (nằm trong flow bình thường) trôi ra khỏi khung nhìn nhưng các phần
+   tử fixed/sticky không tự theo — toggle class .scrolled trên <body> để CSS
+   bớt đi đúng phần chiều cao topbar cho mọi phần tử liên quan. */
 (function initNavScroll() {
-  const nav = document.getElementById('tcNav');
-  if (!nav) return;
-  function sync() { nav.classList.toggle('scrolled', window.scrollY > 0); }
+  function sync() { document.body.classList.toggle('scrolled', window.scrollY > 0); }
   sync();
   window.addEventListener('scroll', sync, { passive: true });
 })();

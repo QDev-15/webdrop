@@ -89,9 +89,10 @@ h1, h2, h3, h4 { font-family: var(--head); letter-spacing: -0.01em; }
   transition: top .25s ease;
 }
 /* Topbar chỉ hiện khi ở đỉnh trang (scroll=0) rồi cuộn ra khỏi flow bình thường —
-   #tcNav là fixed nên KHÔNG tự trôi theo, phải JS toggle class này để kéo nav lên
-   sát mép trên khi topbar không còn hiện, tránh để trống 1 khoảng 33px vĩnh viễn. */
-#tcNav.scrolled { top: 0; }
+   #tcNav là fixed nên KHÔNG tự trôi theo, phải JS toggle .scrolled trên <body>
+   để kéo nav lên sát mép trên khi topbar không còn hiện, tránh để trống 1 khoảng
+   33px vĩnh viễn. Xem thêm body.scrolled .tc-filter-wrap bên dưới. */
+body.scrolled #tcNav { top: 0; }
 .tc-nav-inner {
   max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 56px);
   height: 74px; display: flex; align-items: center; gap: 32px;
@@ -253,7 +254,10 @@ h1, h2, h3, h4 { font-family: var(--head); letter-spacing: -0.01em; }
 /* ══════════════════════════════════════════
    FILTER TOOLBAR (ngang, phía trên lưới sản phẩm)
 ══════════════════════════════════════════ */
-.tc-filter-wrap { background: var(--surface); border-bottom: 1px solid var(--border); padding: 18px 0; position: sticky; top: 107px; z-index: 80; }
+.tc-filter-wrap { background: var(--surface); border-bottom: 1px solid var(--border); padding: 18px 0; position: sticky; top: 107px; z-index: 80; transition: top .25s ease; }
+/* Nav đã tụt về top:0 sau khi cuộn (xem body.scrolled #tcNav) → filter wrap sticky
+   chỉ cần chừa đúng chiều cao nav (74px), không còn cộng thêm 33px topbar nữa. */
+body.scrolled .tc-filter-wrap { top: 74px; }
 .tc-filter-row1 { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 
 .tc-cat-pills { display: flex; gap: 8px; flex-wrap: wrap; }
