@@ -475,6 +475,9 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--serif); font-weight: 500; line-heigh
   overflow: hidden;
   transition: transform .25s ease, box-shadow .25s ease, border-top-color .25s ease;
   box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .dg-card:hover {
   transform: translateY(-5px);
@@ -486,6 +489,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--serif); font-weight: 500; line-heigh
   aspect-ratio: 4/3;
   overflow: hidden;
   position: relative;
+  flex-shrink: 0;
 }
 .dg-card__img {
   width: 100%;
@@ -510,7 +514,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--serif); font-weight: 500; line-heigh
 .dg-badge--sale { background: #e04a2e; color: #fff; }
 .dg-badge--new { background: var(--sage); color: #fff; }
 
-.dg-card__body { padding: 14px 16px 16px; }
+.dg-card__body { padding: 14px 16px 16px; flex: 1 1 auto; display: flex; flex-direction: column; }
 .dg-card__cat {
   font-size: 11px;
   font-weight: 600;
@@ -588,6 +592,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--serif); font-weight: 500; line-heigh
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+  margin-top: auto;
 }
 .dg-card__prices { display: flex; flex-direction: column; gap: 1px; }
 .dg-price {

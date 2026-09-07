@@ -774,7 +774,9 @@ h6 {
 }
 
 .ts-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   color: var(--text);
 }
 
@@ -784,6 +786,7 @@ h6 {
   aspect-ratio: 4 / 5;
   background: var(--surface);
   margin-bottom: 18px;
+  flex-shrink: 0;
 }
 
 .ts-card-media img {
@@ -874,6 +877,7 @@ h6 {
   font-size: 15px;
   font-weight: 500;
   color: var(--accent);
+  margin-top: auto;
 }
 
 .ts-card-price del {

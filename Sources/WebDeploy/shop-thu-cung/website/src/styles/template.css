@@ -330,22 +330,23 @@ body.scrolled .tc-filter-wrap { top: 74px; }
 .tc-prod-card {
   background: var(--surface); border: 1px solid var(--border); border-top: 4px solid var(--charcoal);
   border-radius: var(--radius); overflow: hidden; transition: all .25s;
+  display: flex; flex-direction: column; height: 100%;
 }
 .tc-prod-card:hover { border-top-color: var(--accent); border-color: var(--accent-mid); transform: translateY(-4px); box-shadow: 0 16px 36px rgba(31,36,48,.1); }
-.tc-prod-img-wrap { position: relative; display: block; aspect-ratio: 1/1; overflow: hidden; background: var(--surface-2); }
+.tc-prod-img-wrap { position: relative; display: block; aspect-ratio: 1/1; overflow: hidden; background: var(--surface-2); flex-shrink: 0; }
 .tc-prod-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
 .tc-prod-card:hover .tc-prod-img-wrap img { transform: scale(1.06); }
 .tc-badge { position: absolute; top: 10px; left: 10px; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 3px; color: #fff; text-transform: uppercase; letter-spacing: .03em; }
 .tc-badge-sale { background: var(--accent); }
 .tc-badge-new { background: var(--charcoal); }
 .tc-badge-hot { background: var(--gold); }
-.tc-prod-body { padding: 16px; }
+.tc-prod-body { padding: 16px; flex: 1 1 auto; display: flex; flex-direction: column; }
 .tc-prod-cat { font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--text-3); margin-bottom: 6px; }
 .tc-prod-name { font-family: var(--sans); font-size: 14.5px; font-weight: 600; line-height: 1.4; margin-bottom: 8px; min-height: 41px; }
 .tc-prod-name a:hover { color: var(--accent); }
 .tc-prod-rating { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-2); margin-bottom: 10px; }
 .tc-stars { color: var(--gold); letter-spacing: 1px; }
-.tc-prod-price { display: flex; align-items: baseline; gap: 8px; margin-bottom: 12px; }
+.tc-prod-price { display: flex; align-items: baseline; gap: 8px; margin-bottom: 12px; margin-top: auto; }
 .tc-price { font-weight: 700; font-size: 16px; color: var(--text); }
 .tc-price.sale { color: var(--accent); }
 .tc-price-orig { font-size: 12.5px; color: var(--text-3); text-decoration: line-through; }

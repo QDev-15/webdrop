@@ -157,6 +157,9 @@ input, textarea, select { font-family: var(--sans); }
   position: relative;
   transition: box-shadow .3s, transform .3s;
   box-shadow: 0 4px 18px rgba(185,139,209,.08);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .qa-prod-card:hover {
   box-shadow: 0 20px 48px rgba(185,139,209,.22);
@@ -167,6 +170,7 @@ input, textarea, select { font-family: var(--sans); }
   overflow: hidden;
   position: relative;
   background: var(--blush-light);
+  flex-shrink: 0;
 }
 .qa-prod-thumb img {
   width: 100%; height: 100%;
@@ -214,7 +218,7 @@ input, textarea, select { font-family: var(--sans); }
 }
 .qa-prod-action-btn:hover { background: var(--accent); color: #fff; }
 
-.qa-prod-info { padding: 20px; }
+.qa-prod-info { padding: 20px; flex: 1 1 auto; display: flex; flex-direction: column; }
 .qa-prod-cat {
   font-size: 11.5px;
   font-weight: 700;
@@ -233,7 +237,7 @@ input, textarea, select { font-family: var(--sans); }
 }
 .qa-prod-name a { transition: color .2s; }
 .qa-prod-name a:hover { color: var(--accent); }
-.qa-prod-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.qa-prod-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; }
 .qa-prod-price-new { font-size: 15.5px; font-weight: 700; color: var(--text); }
 .qa-prod-price-old { font-size: 13px; color: var(--text-3); text-decoration: line-through; margin-left: 8px; }
 .qa-add-cart {

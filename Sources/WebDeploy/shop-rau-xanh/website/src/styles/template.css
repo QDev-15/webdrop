@@ -198,6 +198,9 @@ input, textarea, select { font-family: var(--sans); }
   border: 1px solid var(--border-light);
   box-shadow: 0 3px 14px rgba(42,29,18,.05);
   transition: transform .25s, box-shadow .25s;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .rx-prod-card:hover {
   transform: translateY(-4px);
@@ -208,6 +211,7 @@ input, textarea, select { font-family: var(--sans); }
   overflow: hidden;
   position: relative;
   background: var(--accent-light);
+  flex-shrink: 0;
 }
 .rx-prod-thumb img {
   width: 100%; height: 100%;
@@ -255,7 +259,7 @@ input, textarea, select { font-family: var(--sans); }
 }
 .rx-prod-action-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-.rx-prod-info { padding: 18px 18px 20px; }
+.rx-prod-info { padding: 18px 18px 20px; flex: 1 1 auto; display: flex; flex-direction: column; }
 .rx-prod-cat {
   font-size: 11px;
   font-weight: 600;
@@ -275,7 +279,7 @@ input, textarea, select { font-family: var(--sans); }
 }
 .rx-prod-name a { transition: color .2s; }
 .rx-prod-name a:hover { color: var(--accent); }
-.rx-prod-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.rx-prod-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; }
 .rx-prod-price { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
 .rx-prod-price-new { font-size: 16px; font-weight: 700; color: var(--text); }
 .rx-prod-price-old { font-size: 12.5px; color: var(--text-3); text-decoration: line-through; }

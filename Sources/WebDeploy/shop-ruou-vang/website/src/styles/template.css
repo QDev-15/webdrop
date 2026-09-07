@@ -348,10 +348,10 @@ svg { display: block; }
 
 .rv-card {
   position: relative; background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius-lg);
-  overflow: hidden; transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease; display: flex; flex-direction: column;
+  overflow: hidden; transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease; display: flex; flex-direction: column; height: 100%;
 }
 .rv-card:hover { border-color: var(--dark); box-shadow: 6px 6px 0 var(--accent); transform: translate(-3px,-3px); }
-.rv-card-thumb { position: relative; aspect-ratio: 3/4; overflow: hidden; background: var(--border-light); }
+.rv-card-thumb { position: relative; aspect-ratio: 3/4; overflow: hidden; background: var(--border-light); flex-shrink: 0; }
 .rv-card-thumb a { display: block; width: 100%; height: 100%; }
 .rv-card-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
 .rv-card:hover .rv-card-thumb img { transform: scale(1.07); }

@@ -1,0 +1,143 @@
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { api } from '../../api/client'
+
+interface Post {
+  id: number
+  title: string
+  slug: string
+  thumbnail: string
+  category_name: string | null
+  read_time: number
+  featured: number
+  popular: number
+  saved: number
+  status: string
+  published_at: string
+}
+
+const PER_PAGE = 20
+
+export default function PostList() {
+  const [items, setItems] = useState<Post[]>([])
+  const [total, setTotal] = useState(0)
+  const [page, setPage] = useState(1)
+  const [q, setQ] = useState('')
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const t = setTimeout(() => { setPage(1); load(1, q) }, 400)
+    return () => clearTimeout(t)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [q])
+
+  useEffect(() => { load(page, q) }, [page]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  async function load(p: number, search: string) {
+    setLoading(true)
+    try {
+      const { data, total } = await api.getPaged<Post[]>(`/posts?page=${p}&q=${encodeURIComponent(search)}`)
+      setItems(data)
+      setTotal(total)
+    } finally { setLoading(false) }
+  }
+
+  async function handleDelete(id: number) {
+    if (!confirm('Xóa bài viết này?')) return
+    await api.delete(`/posts/${id}`)
+    load(page, q)
+  }
+
+  const totalPages = Math.max(1, Math.ceil(total / PER_PAGE))
+
+  return (
+    <div>
+      <div className="page-header">
+        <div>
+          <div className="page-title">Bài viết</div>
+          <div className="page-sub">{total} bài viết</div>
+        </div>
+        <Link to="/posts/new" className="btn-accent">+ Viết bài mới</Link>
+      </div>
+
+      <div className="form-group" style={{ maxWidth: 320 }}>
+        <input type="search" className="form-control" placeholder="Tìm theo tiêu đề hoặc mô tả ngắn..." value={q} onChange={e => setQ(e.target.value)} />
+      </div>
+
+      {loading ? (
+        <div className="admin-loading-box"><div className="admin-loading-box-text">Đang tải...</div></div>
+      ) : items.length === 0 ? (
+        <div className="empty-state">
+          <div className="empty-state-icon">📝</div>
+          <div className="empty-state-text">
+            {q ? `Không tìm thấy bài viết nào khớp "${q}"` : 'Chưa có bài viết nào. Viết bài đầu tiên!'}
+          </div>
+        </div>
+      ) : (
+        <>
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Tiêu đề</th>
+                  <th>Chuyên mục</th>
+                  <th>Nhãn</th>
+                  <th>Ngày đăng</th>
+                  <th>Trạng thái</th>
+                  <th>Thao tác</th>
+                </tr>
+              </thead>
+              <tbody>
+                {items.map(post => (
+                  <tr key={post.id}>
+                    <td>{post.thumbnail && <img src={post.thumbnail} alt={post.title} className="thumb" />}</td>
+                    <td style={{ maxWidth: 320 }}>
+                      <div style={{ fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{post.title}</div>
+                      <div style={{ fontSize: 11.5, color: 'var(--text-3)' }}>{post.read_time} phút đọc</div>
+                    </td>
+                    <td style={{ fontSize: 13 }}>{post.category_name || '—'}</td>
+                    <td>
+                      <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+                        {!!post.featured && <span className="badge badge-confirmed">Nổi bật</span>}
+                        {!!post.popular && <span className="badge badge-new">Đọc nhiều</span>}
+                        {!!post.saved && <span className="badge badge-pending">Lưu nhiều</span>}
+                      </div>
+                    </td>
+                    <td style={{ fontSize: 12, color: 'var(--text-3)' }}>{new Date(post.published_at).toLocaleDateString('vi-VN')}</td>
+                    <td><span className={`badge badge-${post.status}`}>{post.status === 'published' ? 'Đang hiện' : 'Nháp'}</span></td>
+                    <td>
+                      <div style={{ display: 'flex', gap: 8 }}>
+                        <Link to={`/posts/${post.id}/edit`} className="btn-ghost btn-sm">Sửa</Link>
+                        <button onClick={() => handleDelete(post.id)} className="btn-danger btn-sm">Xóa</button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {totalPages > 1 && (
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 16, flexWrap: 'wrap', gap: 12 }}>
+              <div style={{ fontSize: 12.5, color: 'var(--text-3)' }}>
+                Hiển thị {(page - 1) * PER_PAGE + 1}–{Math.min(page * PER_PAGE, total)} trong số {total} bài viết
+              </div>
+              <div className="admin-pagination" style={{ display: 'flex', gap: 6 }}>
+                <button className="admin-page-btn btn-ghost btn-sm" disabled={page <= 1} onClick={() => setPage(p => p - 1)}>‹ Trước</button>
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(n => (
+                  <button
+                    key={n}
+                    className={`admin-page-btn btn-sm ${n === page ? 'active btn-accent' : 'btn-ghost'}`}
+                    onClick={() => setPage(n)}
+                  >{n}</button>
+                ))}
+                <button className="admin-page-btn btn-ghost btn-sm" disabled={page >= totalPages} onClick={() => setPage(p => p + 1)}>Sau ›</button>
+              </div>
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  )
+}

@@ -2128,15 +2128,15 @@ textarea.dc-form-control { resize: vertical; min-height: 120px; }
 .dc-empty-error { color: #991b1b; }
 .dc-empty-icon { font-size: 48px; margin-bottom: 16px; }
 .dc-prod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-bottom: 32px; }
-.dc-prod-card { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: all .2s; }
+.dc-prod-card { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; height: 100%; transition: all .2s; }
 .dc-prod-card:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(126,200,227,.12); }
-.dc-prod-link { display: block; text-decoration: none; color: inherit; flex: 1; }
-.dc-prod-img-wrap { position: relative; padding-bottom: 100%; overflow: hidden; background: #f5f5f5; }
+.dc-prod-link { display: flex; flex-direction: column; text-decoration: none; color: inherit; flex: 1; }
+.dc-prod-img-wrap { position: relative; padding-bottom: 100%; overflow: hidden; background: #f5f5f5; flex-shrink: 0; }
 .dc-prod-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .dc-prod-sale-badge { position: absolute; top: 8px; right: 8px; background: var(--coral); color: white; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
 .dc-prod-body { padding: 10px; flex: 1; display: flex; flex-direction: column; }
 .dc-prod-name { font-size: 13px; font-weight: 600; margin-bottom: 6px; line-height: 1.3; min-height: 2.6em; }
-.dc-prod-price-wrap { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.dc-prod-price-wrap { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: auto; }
 .dc-prod-price { font-size: 13px; font-weight: 600; color: var(--accent); }
 .dc-prod-price-old { font-size: 11px; color: var(--text-3); text-decoration: line-through; }
 .dc-prod-cta { width: 100%; padding: 8px; background: var(--accent); color: white; border: none; cursor: pointer; font-size: 12px; font-weight: 600; transition: background .2s; }
@@ -2183,3 +2183,9 @@ textarea.dc-form-control { resize: vertical; min-height: 120px; }
   .dc-filter-price { width: 100%; min-width: auto; }
   .dc-prod-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
 }
+
+/* Product card: giá luôn nằm sát đáy thẻ, không co theo độ dài tên/mô tả */
+.dc-prod-card > a { display: flex !important; flex-direction: column; flex: 1 1 auto; }
+.dc-prod-card > a > div:first-child { flex-shrink: 0; }
+.dc-prod-card > a > div:last-child { flex: 1 1 auto; display: flex; flex-direction: column; }
+.dc-prod-card > a > div:last-child > div:last-child { margin-top: auto; }

@@ -298,6 +298,7 @@ Sources/templates/web/[slug]/
 □ URL query params đồng bộ qua history.replaceState (không pushState), đọc lại đúng khi load trang
 □ Nếu Mode B: mỗi section có tìm kiếm cục bộ riêng (không đụng URL/state trang catalog), có link "Xem tất cả" đúng chủ đề trỏ san-pham.html?theme=
 □ Tìm kiếm chung (nav) và tìm kiếm cục bộ theo chủ đề (nếu có) không xung đột nhau
+□ Thẻ sản phẩm: card là flex-column height:100%, phần giá dùng `margin-top:auto` để LUÔN nằm sát đáy thẻ — không bị đẩy lên/co lại theo độ dài tên/mô tả; các thẻ cùng hàng canh giá thẳng nhau
 □ Mảng PRODUCTS có 30–60 sản phẩm mock, đủ ít nhất 3 trang phân trang
 □ Toàn bộ ảnh (PRODUCTS, collection, about, avatar...) là URL Unsplash thật đã verify HTTP 200 — grep "assets/img/" toàn bộ *.html + assets/js/*.js phải KHÔNG ra kết quả
 □ onerror fallback (nếu có) trỏ về SVG data-URI, không trỏ về file local không tồn tại
