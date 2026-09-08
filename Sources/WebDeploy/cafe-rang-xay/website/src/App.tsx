@@ -105,6 +105,53 @@ function Faq() {
   )
 }
 
+// FAQ rút gọn riêng cho trang chủ (3 câu, khác nội dung FAQ đầy đủ ở trang Giới thiệu —
+// đúng bản tĩnh: index.html chỉ teaser 3 câu kèm link "Xem thêm... tại trang Giới thiệu").
+const HOME_FAQS = [
+  { q: 'Giá cà phê hạt tại xưởng tính như thế nào?', a: 'Giá theo trọng lượng và vùng nguyên liệu, dao động từ 150.000đ đến 320.000đ/500g tùy loại hạt và mức độ rang. Xem bảng giá chi tiết tại trang Thực đơn.' },
+  { q: 'Cà phê có bị hết hạn sau khi rang không?', a: 'Hạt rang ngon nhất trong 2–4 tuần sau khi rang. Chúng tôi luôn ghi ngày rang trên bao bì để khách nắm được độ tươi.' },
+  { q: 'Có nhận đặt sỉ cho quán khác không?', a: 'Có. Xem thêm chi tiết chính sách đặt sỉ và bảo quản tại trang Giới thiệu — mục Câu hỏi thường gặp.' },
+]
+
+function HomeFaq() {
+  return (
+    <section className="crx-sec-pad" style={{ background: 'var(--bg)' }}>
+      <div className="crx-container">
+        <div className="crx-sec-head" data-reveal>
+          <div className="crx-eyebrow">Câu hỏi thường gặp</div>
+          <h2 className="crx-sec-title">Giải đáp <em>nhanh</em></h2>
+          <p className="crx-sec-sub crx-mx-auto">Xem thêm chi tiết đầy đủ tại trang <Link to="/gioi-thieu" style={{ color: 'var(--accent)', fontWeight: 500 }}>Giới thiệu</Link>.</p>
+        </div>
+        <div className="crx-faq-list" data-reveal>
+          {HOME_FAQS.map((f, i) => (
+            <details className="crx-faq-item" key={f.q} open={i === 0}>
+              <summary>{f.q} <span className="crx-faq-icon">+</span></summary>
+              <div className="crx-faq-a">{f.a}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Teaser "Thức uống nổi bật" trên trang chủ — nội dung tĩnh đúng bản gốc (index.html),
+// khác hẳn danh sách đầy đủ có tab của <Menu/> (chỉ dùng ở trang /thuc-don).
+const FEATURED_DRINKS = [
+  { origin: 'Signature Blend', name: 'Espresso Nguyên Chất', desc: 'Robusta Đắk Lắk 100%, rang đậm, hậu vị socola đắng', price: '35.000đ', image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&q=80&auto=format&fit=crop' },
+  { origin: 'Cầu Đất, Đà Lạt', name: 'Pour Over Bourbon', desc: 'Arabica Bourbon, hương hoa nhài, hậu cam quýt', price: '68.000đ', image: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?w=500&q=80&auto=format&fit=crop' },
+  { origin: 'Signature Blend', name: 'Latte Caramel Xưởng', desc: 'Caramel tự nấu, sữa tươi local, foam mịn', price: '52.000đ', image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500&q=80&auto=format&fit=crop' },
+  { origin: 'Khe Sanh, Quảng Trị', name: 'Cold Brew Nguyên Bản', desc: 'Ngâm lạnh 18 giờ, vị mượt, ít acid, hậu ngọt', price: '55.000đ', image: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=500&q=80&auto=format&fit=crop' },
+]
+
+// Teaser "Không gian xưởng" trên trang chủ — 3 khu cố định đúng bản gốc, khác hẳn
+// thư viện ảnh masonry đầy đủ của <Gallery/> (chỉ dùng ở trang /khong-gian).
+const SPACE_PREVIEW = [
+  { name: 'Khu Rang', sub: 'Máy rang trống · Quan sát trực tiếp', image: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=700&q=80&auto=format&fit=crop' },
+  { name: 'Khu Pha Chế', sub: 'Quầy bar mở · Barista trình diễn', image: 'https://images.unsplash.com/photo-1442550528053-c431ecb55509?w=700&q=80&auto=format&fit=crop' },
+  { name: 'Khu Ngồi', sub: 'Gỗ mộc · Ánh sáng tự nhiên', image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=700&q=80&auto=format&fit=crop' },
+]
+
 // ── Pages ─────────────────────────────────────────────────────────────────────
 function HomePage() {
   const { settings } = useSite()
@@ -148,22 +195,106 @@ function HomePage() {
         </div>
       </section>
 
-      <Menu />
-      <Gallery />
-      <Testimonials />
-      <Faq />
+      {/* STAT BAR */}
+      <section className="crx-stat-bar">
+        <div className="crx-container">
+          <div className="crx-stats-grid">
+            <div data-reveal data-reveal-d1><div className="crx-stat-num">3</div><div className="crx-stat-label">Vùng nguyên liệu chính</div></div>
+            <div data-reveal data-reveal-d2><div className="crx-stat-num">6+</div><div className="crx-stat-label">Năm vận hành xưởng rang</div></div>
+            <div data-reveal data-reveal-d3><div className="crx-stat-num">5kg</div><div className="crx-stat-label">Mỗi mẻ rang micro-batch</div></div>
+            <div data-reveal data-reveal-d3 style={{ transitionDelay: '.32s' }}><div className="crx-stat-num">120+</div><div className="crx-stat-label">Kg hạt rang mỗi tuần</div></div>
+          </div>
+        </div>
+      </section>
+
+      {/* THỨC UỐNG NỔI BẬT — teaser 4 món, khác hẳn menu đầy đủ có tab ở /thuc-don */}
+      <section className="crx-sec-pad" style={{ background: 'var(--bg)' }}>
+        <div className="crx-container">
+          <div className="crx-sec-head" data-reveal>
+            <div className="crx-eyebrow">Thức uống nổi bật</div>
+            <h2 className="crx-sec-title">Những gì <em>khách hay gọi nhất</em></h2>
+            <p className="crx-sec-sub crx-mx-auto">Từ espresso rang đậm đến pour over single-origin — mỗi ly đều bắt đầu từ hạt do chính xưởng chúng tôi rang.</p>
+          </div>
+          <div className="crx-drink-grid">
+            {FEATURED_DRINKS.map((d, i) => (
+              <div className="crx-drink-card" key={d.name} data-reveal data-reveal-d1={i === 0 ? '' : undefined} data-reveal-d2={i === 1 ? '' : undefined} data-reveal-d3={i >= 2 ? '' : undefined}>
+                <div className="crx-dc-img"><img src={d.image} alt={d.name} loading="lazy" /></div>
+                <div className="crx-dc-body">
+                  <div className="crx-dc-origin">{d.origin}</div>
+                  <div className="crx-dc-name">{d.name}</div>
+                  <div className="crx-dc-desc">{d.desc}</div>
+                  <div className="crx-dc-price">{d.price}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-5" data-reveal>
+            <Link to="/thuc-don" className="crx-btn crx-btn-ghost">Xem toàn bộ thực đơn →</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* KHÔNG GIAN XƯỞNG — teaser 3 khu, khác hẳn thư viện ảnh đầy đủ ở /khong-gian */}
+      <section className="crx-sec-pad" style={{ background: 'var(--bg)' }}>
+        <div className="crx-container">
+          <div className="crx-sec-head" data-reveal>
+            <div className="crx-eyebrow">Không gian xưởng</div>
+            <h2 className="crx-sec-title">Ba khu vực, <em>một quy trình</em></h2>
+            <p className="crx-sec-sub crx-mx-auto">Từ khu rang hạt đến bàn pha chế và khu ngồi — mọi công đoạn đều có thể nhìn thấy tận mắt.</p>
+          </div>
+          <div className="crx-space-grid">
+            {SPACE_PREVIEW.map((s, i) => (
+              <div className="crx-space-card" key={s.name} data-reveal data-reveal-d1={i === 0 ? '' : undefined} data-reveal-d2={i === 1 ? '' : undefined} data-reveal-d3={i === 2 ? '' : undefined}>
+                <img src={s.image} alt={s.name} loading="lazy" />
+                <div className="crx-space-caption">
+                  <div className="crx-space-name">{s.name}</div>
+                  <div className="crx-space-sub">{s.sub}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-5" data-reveal>
+            <Link to="/khong-gian" className="crx-btn crx-btn-accent">Khám phá toàn bộ không gian →</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ĐÁNH GIÁ */}
+      <section className="crx-sec-pad" style={{ background: 'var(--roast-light)' }}>
+        <div className="crx-container">
+          <div className="crx-sec-head" data-reveal>
+            <div className="crx-eyebrow">Đánh giá từ khách</div>
+            <h2 className="crx-sec-title">Họ nói gì về <em>xưởng rang</em></h2>
+          </div>
+          <Testimonials />
+        </div>
+      </section>
+
+      <HomeFaq />
 
       {/* CTA */}
       <section className="crx-full-bleed">
         <div className="crx-container">
-          <h2 className="crx-fb-title">Muốn nếm thử<br /><em>trước khi đặt sỉ?</em></h2>
-          <p className="crx-fb-sub">Ghé xưởng để cupping trực tiếp cùng barista trước khi quyết định đặt hàng số lượng lớn.</p>
-          <Link to="/lien-he" className="crx-btn crx-btn-accent">Liên hệ ngay</Link>
+          <h2 className="crx-fb-title">Ghé xưởng, uống thử<br /><em>một mẻ rang mới</em></h2>
+          <p className="crx-fb-sub">Mỗi tuần chúng tôi đều có mẻ rang mới — ghé xưởng để cupping cùng barista hoặc đặt hàng giao tận nơi.</p>
+          <div className="d-flex gap-3 justify-content-center flex-wrap">
+            <Link to="/lien-he" className="crx-btn crx-btn-accent">Liên hệ đặt lịch</Link>
+            <Link to="/thuc-don" className="crx-btn crx-btn-outline-light">Xem thực đơn</Link>
+          </div>
         </div>
       </section>
     </>
   )
 }
+
+// "Hạt Rang Mang Về" — mục riêng cuối trang Thực đơn (bán hạt theo trọng lượng,
+// khác hẳn danh sách đồ uống pha sẵn của <Menu/> ở trên).
+const RETAIL_BEANS = [
+  { origin: 'Đắk Lắk', name: 'Robusta Rang Đậm Cổ Điển', desc: '200g: 70.000đ · 500g: 150.000đ', price: 'Từ 70.000đ', image: 'https://images.unsplash.com/photo-1610632380989-680fe40816c6?w=500&q=80&auto=format&fit=crop' },
+  { origin: 'Blend Xưởng', name: 'Signature Blend', desc: '200g: 85.000đ · 500g: 180.000đ', price: 'Từ 85.000đ', image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=500&q=80&auto=format&fit=crop' },
+  { origin: 'Cầu Đất, Đà Lạt', name: 'Single Origin Bourbon', desc: '200g: 115.000đ · 500g: 260.000đ', price: 'Từ 115.000đ', image: 'https://images.unsplash.com/photo-1587734195342-579ed260ba8c?w=500&q=80&auto=format&fit=crop' },
+  { origin: 'Nhập khẩu', name: 'Ethiopia Yirgacheffe', desc: '200g: 140.000đ · 500g: 320.000đ', price: 'Từ 140.000đ', image: 'https://images.unsplash.com/photo-1516557070061-c3d1653fa646?w=500&q=80&auto=format&fit=crop' },
+]
 
 function MenuPage() {
   const { settings } = useSite()
@@ -180,10 +311,47 @@ function MenuPage() {
           <p className="crx-ph-sub crx-mx-auto">Mọi món trong thực đơn đều pha từ hạt rang tại xưởng — bạn có thể mua nguyên hạt mang về hoặc thưởng thức tại chỗ.</p>
         </div>
       </section>
-      <Menu />
+
+      <section className="crx-sec-pad" style={{ background: 'var(--bg)' }}>
+        <div className="crx-container">
+          <Menu />
+        </div>
+      </section>
+
+      <section className="crx-sec-pad" style={{ background: 'var(--roast-light)' }}>
+        <div className="crx-container">
+          <div className="crx-sec-head" data-reveal>
+            <div className="crx-eyebrow">Mua mang về</div>
+            <h2 className="crx-sec-title">Cà phê <em>hạt rang</em> nguyên chất</h2>
+            <p className="crx-sec-sub crx-mx-auto">Đóng túi có van thoát khí, ghi rõ ngày rang. Giá niêm yết theo trọng lượng.</p>
+          </div>
+          <div className="crx-drink-grid" data-reveal data-reveal-d1>
+            {RETAIL_BEANS.map(b => (
+              <div className="crx-drink-card" key={b.name}>
+                <div className="crx-dc-img"><img src={b.image} alt={b.name} loading="lazy" /></div>
+                <div className="crx-dc-body">
+                  <div className="crx-dc-origin">{b.origin}</div>
+                  <div className="crx-dc-name">{b.name}</div>
+                  <div className="crx-dc-desc">{b.desc}</div>
+                  <div className="crx-dc-price">{b.price}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-5" data-reveal>
+            <Link to="/lien-he" className="crx-btn crx-btn-accent">Đặt hạt rang / Đặt sỉ →</Link>
+          </div>
+        </div>
+      </section>
     </>
   )
 }
+
+const WORK_AREAS = [
+  { tag: 'Khu rang', name: 'Rang Trống Micro-Batch', desc: 'Máy rang trống công suất nhỏ, mỗi mẻ tối đa 5kg. Khách có thể đứng ngay cạnh quan sát và ngửi mùi hạt chuyển màu qua từng phút rang.', image: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=700&q=80&auto=format&fit=crop' },
+  { tag: 'Khu pha chế', name: 'Quầy Bar Mở', desc: 'Quầy bar thiết kế mở hoàn toàn — khách ngồi ngay trước mặt barista, có thể trò chuyện về profile rang và cách pha từng loại hạt.', image: 'https://images.unsplash.com/photo-1442550528053-c431ecb55509?w=700&q=80&auto=format&fit=crop' },
+  { tag: 'Khu ngồi', name: 'Bàn Gỗ Mộc & Ánh Sáng Tự Nhiên', desc: 'Nội thất gỗ thô mộc, cửa kính lớn đón ánh sáng tự nhiên. Có khu bàn dài cho nhóm và góc bàn đơn cho khách làm việc một mình.', image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=700&q=80&auto=format&fit=crop' },
+]
 
 function KhongGianPage() {
   const { settings } = useSite()
@@ -200,13 +368,56 @@ function KhongGianPage() {
           <p className="crx-ph-sub crx-mx-auto">Không có gì giấu sau cánh cửa — khách có thể quan sát toàn bộ quá trình rang, pha chế ngay tại quầy.</p>
         </div>
       </section>
-      <Gallery />
+
+      {/* 3 KHU VỰC CHI TIẾT */}
+      <section className="crx-sec-pad" style={{ background: 'var(--bg)' }}>
+        <div className="crx-container">
+          <div className="row g-4">
+            {WORK_AREAS.map((a, i) => (
+              <div className="col-md-4" key={a.name}>
+                <div className="crx-area-card" data-reveal data-reveal-d1={i === 0 ? '' : undefined} data-reveal-d2={i === 1 ? '' : undefined} data-reveal-d3={i === 2 ? '' : undefined}>
+                  <img className="crx-area-img" src={a.image} alt={a.name} loading="lazy" />
+                  <div className="crx-area-body">
+                    <div className="crx-area-cap">{a.tag}</div>
+                    <div className="crx-area-name">{a.name}</div>
+                    <div className="crx-area-desc">{a.desc}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* STAT BAR */}
+      <section className="crx-stat-bar">
+        <div className="crx-container">
+          <div className="crx-stats-grid">
+            <div data-reveal data-reveal-d1><div className="crx-stat-num">45</div><div className="crx-stat-label">m² khu rang mở</div></div>
+            <div data-reveal data-reveal-d2><div className="crx-stat-num">12</div><div className="crx-stat-label">Chỗ ngồi tại quầy bar</div></div>
+            <div data-reveal data-reveal-d3><div className="crx-stat-num">40</div><div className="crx-stat-label">Chỗ ngồi khu vực chính</div></div>
+            <div data-reveal data-reveal-d3 style={{ transitionDelay: '.32s' }}><div className="crx-stat-num">7:00</div><div className="crx-stat-label">Mở cửa mỗi ngày</div></div>
+          </div>
+        </div>
+      </section>
+
+      {/* GALLERY MASONRY */}
       <section className="crx-sec-pad" style={{ background: 'var(--roast-light)' }}>
-        <div className="crx-container crx-mx-auto text-center" data-reveal style={{ maxWidth: 640 }}>
-          <div className="crx-eyebrow">Trước khi bạn ghé</div>
-          <h2 className="crx-sec-title" style={{ fontSize: 'clamp(24px,3.4vw,34px)' }}>Một xưởng rang <em>luôn mở cửa để tham quan</em></h2>
-          <p className="crx-sec-sub crx-mx-auto" style={{ margin: '0 auto 22px' }}>Ghé bất cứ giờ mở cửa nào để xem quy trình chọn hạt và rang trực tiếp — hoặc đặt lịch cupping cùng barista.</p>
-          <Link to="/gioi-thieu" className="crx-btn crx-btn-accent">Tìm hiểu câu chuyện xưởng</Link>
+        <div className="crx-container">
+          <div className="crx-sec-head" data-reveal>
+            <div className="crx-eyebrow">Thư viện ảnh</div>
+            <h2 className="crx-sec-title">Vài khoảnh khắc <em>tại xưởng</em></h2>
+          </div>
+          <Gallery />
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="crx-full-bleed">
+        <div className="crx-container">
+          <h2 className="crx-fb-title">Ghé thăm xưởng rang<br /><em>bất cứ lúc nào</em></h2>
+          <p className="crx-fb-sub">Không cần đặt trước để tham quan khu rang và pha chế — chỉ cần ghé và hỏi nhân viên tại quầy.</p>
+          <Link to="/lien-he" className="crx-btn crx-btn-accent">Xem giờ mở cửa &amp; địa chỉ</Link>
         </div>
       </section>
     </>

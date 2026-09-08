@@ -36,6 +36,7 @@
 | `cv-template-builder` | Nhận tên template (minimal/creative/dark/executive) → tạo React CV component vào `Sources/system/src/components/cv/templates/` → cập nhật CvPreview.tsx → TypeScript check 0 lỗi | Read, Write, Edit, Glob, Grep, Bash |
 | `design-match` | Dựng/fix HTML+CSS khớp 100% với ảnh thiết kế tham chiếu — vòng lặp screenshot (Playwright) → đối chiếu ảnh gốc → fix → lặp lại đến khi khớp | Read, Write, Edit, Glob, Grep, Bash |
 | `db-template-sync` | Đối chiếu `Sources/products/basic/` + `Sources/templates/web/` với bảng `Template` trong DB hệ thống (`Sources/system` — Neon Postgres CHIA SẺ VỚI PRODUCTION) → phát hiện + tự sửa an toàn: template thiếu record, cờ `hasWebsite` sai. KHÔNG tự set `deployUrl` trừ khi user xác nhận site đã deploy thật. KHÔNG bao giờ chạy lại `npm run db:seed` toàn bộ | Read, Write, Edit, Glob, Grep, Bash |
+| `shopBH-template-builder` | Chuyên biệt từ `shop-template-catalog-builder` + `shop-template-builder` cho ngách **POS/quản lý bán hàng** — 2 giao diện: Cashier (lập hóa đơn, in) + Admin (quản lý menu, thống kê doanh thu), phân quyền 2 role, lưu localStorage, format in thermal paper 80mm, target template tĩnh (Gói A) cho nhà hàng/café/shop bán lẻ | Read, Write, Edit, Glob, Grep, WebFetch, WebSearch, Bash |
 
 ### Project Settings
 
@@ -86,6 +87,7 @@ Xây dựng và bán 3 nhóm sản phẩm chính:
 - [x] Blog / Forum — **DONE** (`Blogs/` 6 templates — `blog-ca-nhan` + 5 mới batch 2026-08-29, xem ghi chú kỹ thuật, `Forums/` `forum-cong-dong`. Cả 5 template Blog mới đã có WebDeploy đầy đủ, build 2026-09-07)
 - [x] Nha khoa — **DONE** (10 template: `Dental-Clinics/` — 10 Identity Token khác nhau: LUXE-DARK, FRESH-MINIMAL, BOLD-EDITORIAL, GEOMETRIC-MODERN, SOFT-PASTEL, DARK-ENERGY, CLEAN-CORPORATE, ZEN-MINIMAL, RETRO-BOLD, GLASS-MODERN)
 - [x] Shop bán hàng — **DONE** (21 templates — 17 đã có WebDeploy đầy đủ (thêm `shop-dong-ho` build 2026-09-03), 3 còn lại (`shop-trang-suc`/`shop-thu-cung`/`shop-ruou-vang`) mới chỉ có bản tĩnh — `shop-ban-hang/` ORGANIC-EARTH, `shop-thoi-trang/` BOLD-EDITORIAL, `shop-giay-dep/` DARK-ENERGY, `shop-quan-ao/` SOFT-PASTEL, `shop-rau-xanh/` WARM-ARTISAN, `shop-thuc-pham-sach/` FRESH-MINIMAL, `shop-tui-sach/` LUXE-DARK, `shop-may-tinh/` GLASS-MODERN, `shop-may-anh/` GEOMETRIC-MODERN, `shop-ami-mobile/` RETRO-BOLD, `shop-quan-ao-ami/` ZEN-MINIMAL (WebDeploy build 2026-07-24), `shop-my-pham/` LUXE-DARK variant Rose Gold (WebDeploy build 2026-07-28), `shop-do-gia-dung/` WARM-ARTISAN variant Terracotta+Sage (WebDeploy build 2026-07-29), `shop-do-choi/` SOFT-PASTEL variant Sky Blue+Coral (WebDeploy build 2026-07-29, phát hiện lại 2026-08-04), `shop-van-phong-pham/` CLEAN-CORPORATE fresh token Steel Blue (WebDeploy build 2026-08-06), `shop-the-thao/` DARK-ENERGY variant Signal Orange (WebDeploy build dở dang phát hiện + fix hoàn chỉnh 2026-08-06), `shop-noi-that/` ZEN-MINIMAL variant Walnut Brown (WebDeploy build 2026-08-29), `shop-dong-ho/` GLASS-MODERN variant Deep Teal (WebDeploy build 2026-09-03, xem ghi chú kỹ thuật bên dưới). **Batch 5 template Shop mới (2026-08-29)**: `shop-noi-that/`, `shop-trang-suc/` LUXE-DARK variant 3 Amethyst, `shop-thu-cung/` GEOMETRIC-MODERN variant Coral, `shop-dong-ho/`, `shop-ruou-vang/` RETRO-BOLD variant Burgundy — cả 5 build qua `shop-template-builder`, xem block "5 template Shop mới" riêng bên dưới — xem bảng **WebDeploy Projects**)
+- [x] POS / Quản lý bán hàng — **DONE** (1 template: `POS/shop-banhang/` CLEAN-CORPORATE, Gói A tĩnh, 8 trang: login + lập đơn cashier + in hóa đơn thermal + 3 admin pages (dashboard/quản lý menu/thống kê) + 2 public (giới thiệu/liên hệ), localStorage dữ liệu, 20 sản phẩm seed, 2 tài khoản demo, Bootstrap 5.3.3, DM Sans, không build system. Xem agent `shopBH-template-builder` trong mục Agents.)
 - [ ] Landing page sản phẩm / Dịch vụ
 - [ ] CV cá nhân — **PLANNING** (CV Builder SaaS — xem `.claude/plans/cv-template-saas.md`). Nền tảng cho phase này đã có sẵn: hệ thống tài khoản khách hàng (`CustomerAccount`) — xem ghi chú kỹ thuật bên dưới.
 
@@ -318,6 +320,10 @@ Mỗi site 9 trang: trang chủ (Carousel Hero 4 slide) + `du-an.html` + 2 trang
 
 **(4) Cùng bug class, phát hiện ở `blog-tai-chinh` qua báo cáo người dùng riêng — nặng hơn cả (3)**: ngoài `website/App.tsx` (TODO stub) và `website/src/main.tsx` (thiếu hẳn, như blog-am-thuc), site này còn có `website/src/styles/template.css` **hoàn toàn là TODO stub 1 dòng** — nghĩa là bản build trước đó không hề có CSS, chỉ riêng phần layout đã hỏng chứ không chỉ 3 trang entry. Root cause giống hệt (2)/(3): agent dừng giữa chừng trước khi ghi các file này, và verify ban đầu (grep hẹp + không kiểm tra file rỗng/thiếu) không bắt được. Fix: `template.css` — copy nguyên văn `Sources/templates/web/Blogs/blog-tai-chinh/assets/css/style.css` (444 dòng, xác nhận qua đối chiếu 1 site khác cùng batch — `blog-me-va-be` — có `template.css` khớp 100% với `assets/css/style.css` gốc, tức đây luôn là bản copy nguyên văn chứ không phải file viết lại); `index.html`/`main.tsx` viết theo đúng pattern chuẩn (giống (3)); `App.tsx` viết route đầy đủ dùng đúng các file đã có sẵn và ĐẦY ĐỦ (site này có `pages/HomePage.tsx` + `components/PostList.tsx` (đã tự là trang `/chuyen-muc` hoàn chỉnh, không cần viết thêm) + `About`/`Contact`/`PostDetail`/`HeroSlider`/`Footer`/`Header` — chỉ thiếu đúng `ToolPage` cho `/cong-cu-tinh-toan` (3 tab công cụ: lãi kép/ngân sách 50-30-20/quỹ khẩn cấp, port đúng công thức từ `assets/js/main.js` bản tĩnh sang state React, tính hoàn toàn client-side) và 2 trang pháp lý — cả 3 định nghĩa inline trong `App.tsx` theo đúng convention "không có file riêng thì viết inline" đã áp dụng ở (3). Verify: `tsc --noEmit` + `vite build` sạch (48 module), `php -l` toàn bộ API sạch, đối chiếu schema.sql + `PublicController::postBySlug()` xác nhận đúng field frontend cần (`show_on_home`/`home_section`/`home_order`/`trending_order`/`related`) đã có sẵn ở backend — chỉ thiếu đúng phần frontend entry. **Ghi chú chung cho cả (3) và (4)**: `README.md` ở gốc mỗi site cũng thường là TODO stub chưa điền (xác nhận cả ở `cafe-rang-xay`/`blog-am-thuc` — 2 site đã coi là "hoàn chỉnh" trước đó) — đây là stub vô hại (không ảnh hưởng build/runtime, chỉ là tài liệu bàn giao), cố tình KHÔNG fix để giữ nhất quán với các site khác, khác hẳn `App.tsx`/`main.tsx`/`index.html`/`template.css` là các file bắt buộc phải có để site chạy được.
 
+**(5) Bug khác hẳn class (2)-(4), phát hiện ở `cafe-den-muon/admin` qua báo cáo người dùng ("trang admin trắng tinh")**: không phải file thiếu/TODO — mọi file admin đều đầy đủ, `tsc`/`vite build` sạch — mà `admin/src/App.tsx` dùng SAI pattern routing: định nghĩa route lồng nhau kiểu `<Route path="/" element={<AdminLayout/>}><Route index .../>...</Route>` (React Router nested-route, cần `AdminLayout` tự render `<Outlet/>` để hiện route con), trong khi `AdminLayout.tsx` (component dùng chung mọi site, ĐÚNG và giữ nguyên ở 83 site khác) chỉ render `{children}` chứ không có `<Outlet/>` — hậu quả: `<AdminLayout/>` luôn nhận `children=undefined`, khu vực nội dung admin trắng trơn ở MỌI trang (kể cả Dashboard), trong khi Sidebar (component tách riêng, không phụ thuộc children) vẫn hiện bình thường — đúng khớp triệu chứng "sidebar còn, nội dung trắng tinh". Xác minh bằng `grep -L Outlet admin/src/App.tsx` trên toàn bộ 84 site: `cafe-den-muon` là site DUY NHẤT dùng nested-route/Outlet, còn lại 100% dùng đúng pattern `<AdminLayout><Routes>...</Routes></AdminLayout>` (Routes phẳng, truyền thẳng làm children). Fix: viết lại `App.tsx` theo đúng pattern chuẩn đó (tham chiếu 1:1 cấu trúc từ `cafe-rang-xay/admin/src/App.tsx`, giữ nguyên toàn bộ page/route đã có của `cafe-den-muon`) — KHÔNG sửa `AdminLayout.tsx` vì nó đúng và dùng chung, sửa App.tsx (file riêng của site) mới đúng phạm vi. Verify: `tsc --noEmit` + `vite build` sạch, và test sống bằng Playwright headless qua PHP built-in server (đăng nhập thật bằng tài khoản seed `sysadmin@admin.com`/`123456`) — xác nhận cả 12 route admin (Dashboard, Hero Slides, Menu Categories/Items, Gallery, Testimonials, FAQs, Contacts, Media, Settings, Profile) đều render nội dung thật, 0 lỗi console.
+
+**(6) `cafe-rang-xay/website` — lỗi UI diện rộng ở `App.tsx`, phát hiện qua báo cáo người dùng (ảnh chụp trang `/thuc-don` bể layout tràn full-width)**: root cause của riêng bug này là do chính `App.tsx` viết lại ở mục (2) trên — lúc viết đã gọi thẳng `<Menu/>`/`<Gallery/>`/`<Testimonials/>` (3 component pre-existing từ agent gốc, tự thiết kế KHÔNG tự bọc `<section>`/`crx-container` — khác `Faq()`/`About`/`Contact` do chính (2) viết, có tự bọc) mà không bọc container, và còn dùng SAI thành phần cho trang chủ (bản tĩnh `index.html` dùng teaser riêng — `crx-drink-grid` 4 món cho "Thức uống nổi bật", `crx-space-grid` 3 khu cho "Không gian xưởng" — KHÔNG dùng thẳng `<Menu/>`/`<Gallery/>` đầy đủ như trang con `/thuc-don`/`/khong-gian`). Rà soát toàn bộ 5 trang theo đúng yêu cầu người dùng ("rà soát lại toàn bộ UI"), đối chiếu từng trang với bản tĩnh tương ứng, phát hiện thêm nhiều thiếu sót khác ngoài bug tràn layout: (a) `MenuPage` thiếu mục "Hạt Rang Mang Về" (bán hạt theo trọng lượng, 4 sản phẩm) — mục cuối trang thực đơn bản tĩnh; (b) `HomePage` thiếu hẳn STAT-BAR (3 vùng nguyên liệu/6+ năm/5kg mỗi mẻ/120+ kg mỗi tuần); (c) `HomePage` FAQ dùng trùng y hệt bộ 7 câu đầy đủ của trang Giới thiệu — bản tĩnh thực ra có bộ FAQ TEASER riêng chỉ 3 câu kèm link "Xem thêm tại Giới thiệu" (tách thành `HomeFaq()`/`HOME_FAQS` riêng, giữ `Faq()`/`FAQS` 7 câu cho đúng mỗi trang Giới thiệu); (d) `HomePage` CTA cuối trang dùng nhầm y hệt text CTA của trang Giới thiệu ("Muốn nếm thử trước khi đặt sỉ?") — bản tĩnh trang chủ có CTA riêng ("Ghé xưởng, uống thử một mẻ rang mới", 2 nút Liên hệ đặt lịch/Xem thực đơn); (e) `KhongGianPage` thiếu hẳn 2 mục — "3 khu vực chi tiết" (area-card × 3, `row g-4`) và STAT-BAR riêng (45m²/12 chỗ quầy bar/40 chỗ chính/7:00 mở cửa) — và mục CTA cuối trang bị thay bằng đoạn tự viết không khớp bản tĩnh (đã trả lại đúng CTA gốc "Ghé thăm xưởng rang bất cứ lúc nào"). Đã fix toàn bộ, không đụng `Menu.tsx`/`Gallery.tsx`/`Testimonials.tsx`/`About.tsx`/`Contact.tsx` (đúng phạm vi, các file này không có bug — bug nằm ở cách `App.tsx` gọi/bọc chúng). Verify: `tsc --noEmit` + `vite build` sạch, và **kiểm tra trực quan thật** qua Playwright headless (không chỉ đọc code) — dựng `website/dist` + PHP API qua built-in server, đo `document.documentElement.scrollWidth` so với `clientWidth` ở cả 3 trang `/`, `/thuc-don`, `/khong-gian` xác nhận hết tràn ngang, và chụp full-page screenshot đối chiếu bằng mắt khớp đúng bố cục bản tĩnh (stat-bar/drink-grid/space-grid/testimonials đều hiện đúng, không vỡ layout).
+
 **(4) `blog-du-lich` — cùng lỗi hệ thống, phát hiện qua báo cáo người dùng "lỗi khi chạy deploy" (2026-09-08)**: `vite build` fail `Rollup failed to resolve import "/src/main.tsx"` — `website/src/main.tsx` thiếu hẳn, kèm `App.tsx` + `components/{About,Contact,PostDetail}.tsx` còn ở dạng `// TODO: AI-generated` (các component khác như `Header`/`Footer`/`HeroSlider`/`PostList`/`NewsletterForm`/`SiteContext`/`api/client` đã hoàn chỉnh sẵn). Đã tạo `main.tsx` (entry chuẩn: `BrowserRouter` wrap ở đây) + viết lại 4 file theo đúng component/API/route có sẵn của site và nội dung thật từ bản tĩnh + `Database.php` (toàn bộ nội dung About/Guide/Contact seed sẵn dạng settings key `about_*`/`guide_*`/`contact_*` — component đọc từ `useSite().settings`). Convention riêng của site: `SiteContext` KHÔNG cấp `posts` (mỗi page tự fetch `/public/posts`), `HomePage`/`CategoryPage`/`GuidePage`/`PrivacyPage`/`TermsPage` inline trong `App.tsx`, `AppShell` tự gắn IntersectionObserver cho `[data-reveal]` (CSS đặt `opacity:0` — thiếu observer là trắng trang). Tiện thể fix `Header.tsx`/`Footer.tsx` (`brandShort = site_name.split(' ')[0]` cho ra "Xê" thay vì "Xê Dịch" — đổi sang tách theo dấu gạch ngang) và dedupe block lặp trong `build.mjs` (chạy `npm run build` admin 2 lần + `mkdirSync`/log hướng dẫn ×2 — bug scaffold quen thuộc). Verify: `build.mjs` full pipeline pass, live smoke-test PHP built-in server (health/settings/4 hero-slides/15 posts/5 categories/7 faqs/5 destinations/post-detail/related/sitemap 22 URL đều đúng), Playwright 6 trang 0 console error + xác nhận `.bdl-article-body` render đủ nội dung (reveal observer fire). **Bài học chung: bước verify batch phải (a) build FULL `build.mjs` từng site chứ không chỉ `tsc` lẻ, (b) check sự tồn tại của các file entry cố định (`main.tsx`, `index.html`) chứ không chỉ grep TODO.**
 
 ### Bất động sản — agent chuyên biệt `real-estate-template-builder` (mới, 2026-08-22; Loại hình A viết lại 2026-08-23)
@@ -443,3 +449,68 @@ Mỗi site 8 trang, cấu trúc thống nhất tự thiết kế cho ngách blog
 - **Đã fix riêng cho batch Blog (2026-08-30, theo yêu cầu chủ dự án — khác quyết định "chấp nhận" ở batch Shop)**: dispatch agent riêng sửa `blog-du-lich` (site dính cả 2 lần trùng) — đổi Nav-2→**Nav-1 Transparent→Scrolled** (trong suốt trên page-hero tối, solid kraft-paper khi `scrollY>80`) và Hero H6→**H11 Full-Width Text + Scroll Hint** (text căn giữa + ticker cuộn ngang tên điểm đến kiểu bảng chuyến bay + mũi tên scroll-hint), giữ nguyên carousel 4 slide/gradient/auto-play/dot-indicator bắt buộc và toàn bộ token/font/màu/nội dung/prefix khác. Verify lại: tag-balance, đúng 1 `<h1>`/trang, `node --check` pass, không class CSS chết sót lại, không link hỏng. `blog-am-thuc`/`blog-cong-nghe` không bị đụng tới.
 
 **Cả 5 site đã có WebDeploy đầy đủ (build 2026-09-07)** — cùng đợt với 5 template Cafe mới, xem ghi chú kỹ thuật đầy đủ ở block "5 template Cafe mới" phía trên (bug JSX-trong-file-`.ts` ở `blog-am-thuc`, verify chung cho cả 10 site).
+
+### POS Bán hàng — Template quản lý bán hàng (2026-09-08)
+
+`Sources/templates/web/POS/shop-banhang/` — Template tĩnh **Gói A** cho quản lý bán hàng: nhà hàng, quán ăn, café, shop bán lẻ. **Không WebDeploy** (chỉ template HTML tĩnh, không React/PHP).
+
+**Cấu trúc 8 trang:**
+- `index.html` — Login (2 tài khoản: nv01/123456 cashier, admin/admin123 admin)
+- `lap-don.html` — Cashier: 3-column layout (menu trái + sản phẩm giữa + hóa đơn phải)
+- `in-hoa-don.html` — Print hóa đơn thermal 80mm
+- `admin/index.html` — Dashboard quản lý (tổng quan + 5 hóa đơn gần đây)
+- `admin/ql-menu.html` — CRUD sản phẩm (20 seed items × 5 danh mục)
+- `admin/thong-ke.html` — Báo cáo doanh thu (lọc ngày, tính tổng/trung bình)
+- `gioi-thieu.html` — Thông tin cửa hàng + FAQ 7 câu
+- `lien-he.html` — Form liên hệ + thông tin, FAQ 4 câu
+
+**Tính năng Cashier:**
+- Lọc menu theo danh mục (6 pill)
+- Tìm kiếm sản phẩm real-time
+- Thêm vào đơn (click 1 lần), điều chỉnh số lượng (+/-)
+- Chiết khấu theo % hoặc tiền cố định
+- Nhập số bàn, tên khách (tuỳ chọn)
+- Thanh toán → auto redirect in-hoa-don
+- Huỷ đơn (xác nhận)
+
+**Tính năng Admin:**
+- Quản lý menu: thêm/sửa/xóa sản phẩm, tìm kiếm
+- Thống kê: lọc ngày từ/đến, tính doanh thu, bảng chi tiết, in báo cáo
+
+**Dữ liệu & Seed:**
+- localStorage schema: `bp_auth_session`, `bp_products`, `bp_categories`, `bp_orders`, `bp_users`, `bp_contacts`
+- **20 sản phẩm** × 5 danh mục (Cơm/Mì-Phở/Nước/Tráng miệng/Khác), giá 15k–120k
+- **5 danh mục** seed sẵn
+- Ảnh Unsplash verified HTTP 200
+
+**Design & Tech:**
+- Bootstrap 5.3.3 CDN
+- DM Sans font (Google Fonts)
+- CLEAN-CORPORATE token: Teal `#0f6d82` + Navy `#0a2129`
+- CSS prefix: `bp-`
+- Responsive: 320px–1920px (mobile-first)
+- Vanilla JavaScript (node --check pass)
+- No build system, no server — mở thẳng `.html` trên browser
+
+**Không có (Gói A tĩnh):**
+- ❌ Quản lý nhân viên thêm (chỉ 2 tài khoản demo)
+- ❌ Quản lý bàn ăn
+- ❌ Lịch sử lâu dài (chỉ phiên hiện tại)
+- ❌ Xuất Excel
+- ❌ Multi-language
+- ❌ Backup/sync
+
+**Checklist chuẩn:**
+- ✅ JS syntax: `node --check` pass
+- ✅ HTML: 1 h1/trang, semantic, tag-balance
+- ✅ Bootstrap 5.3.3 + DM Sans
+- ✅ CLEAN-CORPORATE token (Teal/Navy)
+- ✅ Responsive: 320px–1920px, clamp() padding/font
+- ✅ localStorage: login/products/orders persistent
+- ✅ Tính toán: tổng tiền, chiết khấu, doanh thu đúng
+- ✅ Filter/search: tìm kiếm, lọc danh mục, lọc ngày
+- ✅ Print CSS: in hóa đơn + báo cáo đẹp
+- ✅ Page protection: redirect chưa login
+- ✅ Form validation: tên bàn, số lượng, giá > 0
+- ✅ Sanitize input: không nội suy HTML trực tiếp
+- ✅ README.md: hướng dẫn dùng + API localStorage

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lập đơn - POS Bán hàng</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <meta name="description" content="Lập đơn bán hàng — quét mã vạch, giữ đơn, đa thanh toán">
+</head>
+<body>
+  <nav class="bp-navbar">
+    <div class="bp-navbar-brand">🍴 POS Bán Hàng</div>
+    <ul class="bp-navbar-menu">
+      <li><a href="lap-don.html">Lập đơn</a></li>
+      <li><a href="tra-hang.html">Trả hàng</a></li>
+      <li><a href="ca-lam-viec.html">Ca làm việc</a></li>
+      <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+      <li><a href="lien-he.html">Liên hệ</a></li>
+    </ul>
+    <div class="bp-navbar-user">
+      <span id="userDisplay"></span>
+      <button id="logoutBtn" class="bp-btn bp-btn-secondary bp-btn-sm" onclick="Auth.handleLogoutClick()" style="display: none;">Đăng xuất</button>
+    </div>
+  </nav>
+
+  <div class="bp-page-content">
+    <h1 class="visually-hidden">Lập đơn bán hàng</h1>
+
+    <div class="bp-barcode-bar">
+      <span style="font-size:1.2rem;">📷</span>
+      <input type="text" id="barcodeInput" placeholder="Quét hoặc nhập mã vạch sản phẩm rồi nhấn Enter..." autofocus>
+      <span id="barcodeHint" style="font-size:0.8rem; color: var(--text-3);"></span>
+    </div>
+
+    <div class="bp-order-tabs" id="orderTabsBar"></div>
+
+    <div class="bp-cashier-layout">
+      <!-- Left: Categories -->
+      <div class="bp-cashier-section">
+        <div class="bp-cashier-header">
+          <h3>Menu</h3>
+        </div>
+        <div class="bp-cashier-body">
+          <div class="bp-category-pills" id="categoryPills" style="flex-direction: column;">
+            <button class="bp-category-pill active" data-cat="0">Tất cả</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center: Products -->
+      <div class="bp-cashier-section">
+        <div class="bp-cashier-header">
+          <h3>Sản phẩm</h3>
+          <input type="text" class="bp-search" id="searchInput" placeholder="Tìm sản phẩm theo tên/SKU...">
+        </div>
+        <div class="bp-cashier-body">
+          <div class="bp-product-grid" id="productGrid"></div>
+        </div>
+      </div>
+
+      <!-- Right: Order -->
+      <div class="bp-cashier-section">
+        <div class="bp-cashier-header">
+          <h3>Hóa đơn</h3>
+        </div>
+        <div class="bp-cashier-body">
+          <div class="bp-input-group">
+            <label for="tableNumber">Số bàn (tuỳ chọn)</label>
+            <input type="text" id="tableNumber" placeholder="Nhập số bàn">
+          </div>
+
+          <div class="bp-input-group bp-customer-search-wrap">
+            <label for="customerSearchInput">Khách hàng (tìm theo SĐT)</label>
+            <input type="text" id="customerSearchInput" placeholder="Nhập số điện thoại khách hàng...">
+            <div class="bp-autocomplete-list" id="customerAutocomplete" style="display:none;"></div>
+          </div>
+          <div id="customerChip" style="display:none;"></div>
+          <button type="button" class="bp-btn bp-btn-secondary bp-btn-sm bp-btn-full" id="quickAddCustomerBtn" data-bs-toggle="modal" data-bs-target="#quickAddCustomerModal" style="margin-bottom:1rem;">+ Khách mới</button>
+
+          <div style="margin: 1rem 0;">
+            <strong>Danh sách món:</strong>
+          </div>
+          <ul class="bp-order-list" id="orderList"></ul>
+          <div style="margin-top: 1rem; display: none;" id="emptyOrderMsg">
+            <p style="color: var(--text-3); text-align: center; margin: 0;">Chưa có món nào</p>
+          </div>
+        </div>
+        <div class="bp-cashier-footer">
+          <div class="bp-order-summary">
+            <div class="bp-summary-row subtotal">
+              <span>Tạm tính:</span>
+              <span id="subtotalDisplay">0đ</span>
+            </div>
+            <div class="bp-input-group">
+              <label for="discountValue">Chiết khấu</label>
+              <div style="display: flex; gap: 0.5rem;">
+                <select id="discountType" style="flex: 0.4;">
+                  <option value="percent">%</option>
+                  <option value="fixed">đ</option>
+                </select>
+                <input type="number" id="discountValue" placeholder="0" min="0">
+              </div>
+            </div>
+            <div class="bp-summary-row subtotal" id="pointsRow" style="display:none;">
+              <span>Điểm tích lũy dự kiến:</span>
+              <span id="pointsDisplay">0 điểm</span>
+            </div>
+            <div class="bp-summary-row total">
+              <span>Thành tiền:</span>
+              <span id="totalDisplay">0đ</span>
+            </div>
+
+            <div class="bp-payment-methods" id="paymentMethods">
+              <button type="button" class="bp-payment-option active" data-method="cash"><span class="picon">💵</span>Tiền mặt</button>
+              <button type="button" class="bp-payment-option" data-method="transfer"><span class="picon">🏦</span>Chuyển khoản</button>
+              <button type="button" class="bp-payment-option" data-method="qr"><span class="picon">📱</span>QR Code</button>
+              <button type="button" class="bp-payment-option" data-method="card"><span class="picon">💳</span>Thẻ</button>
+            </div>
+
+            <div class="bp-payment-detail" id="paymentDetailCash">
+              <div class="bp-input-group" style="margin-bottom:0.5rem;">
+                <label for="cashReceived">Tiền khách đưa</label>
+                <input type="number" id="cashReceived" min="0" placeholder="Nhập số tiền khách đưa">
+              </div>
+              <div id="changeDisplay" class="bp-change-display" style="display:none;"></div>
+            </div>
+            <div class="bp-payment-detail" id="paymentDetailTransfer" style="display:none;">
+              <p style="margin:0; font-size:0.85rem; color: var(--text-2);">Khách chuyển khoản tới số tài khoản cửa hàng. Xác nhận đã nhận được tiền trước khi bấm Thanh toán.</p>
+            </div>
+            <div class="bp-payment-detail" id="paymentDetailQr" style="display:none; text-align:center;">
+              <svg class="bp-qr-mock" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Mã QR thanh toán demo">
+                <rect width="100" height="100" fill="#fff"/>
+                <rect x="6" y="6" width="24" height="24" fill="#0a2129"/>
+                <rect x="70" y="6" width="24" height="24" fill="#0a2129"/>
+                <rect x="6" y="70" width="24" height="24" fill="#0a2129"/>
+                <rect x="14" y="14" width="8" height="8" fill="#fff"/>
+                <rect x="78" y="14" width="8" height="8" fill="#fff"/>
+                <rect x="14" y="78" width="8" height="8" fill="#fff"/>
+                <rect x="40" y="10" width="6" height="6" fill="#0a2129"/>
+                <rect x="50" y="20" width="6" height="6" fill="#0a2129"/>
+                <rect x="60" y="40" width="6" height="6" fill="#0a2129"/>
+                <rect x="40" y="50" width="6" height="6" fill="#0a2129"/>
+                <rect x="50" y="60" width="6" height="6" fill="#0a2129"/>
+                <rect x="70" y="50" width="6" height="6" fill="#0a2129"/>
+                <rect x="40" y="70" width="6" height="6" fill="#0a2129"/>
+                <rect x="60" y="80" width="6" height="6" fill="#0a2129"/>
+                <rect x="80" y="70" width="14" height="14" fill="#0a2129"/>
+              </svg>
+              <p style="margin:0; font-size:0.85rem; color: var(--text-2);">Khách quét mã QR để thanh toán (demo)</p>
+            </div>
+            <div class="bp-payment-detail" id="paymentDetailCard" style="display:none;">
+              <p style="margin:0; font-size:0.85rem; color: var(--text-2);">Quẹt/chạm thẻ trên máy POS, sau đó bấm Thanh toán để xác nhận.</p>
+            </div>
+
+            <button class="bp-btn bp-btn-primary bp-btn-full" onclick="handlePayment()" style="margin-top: 1rem;">Thanh toán</button>
+            <button class="bp-btn bp-btn-secondary bp-btn-full" onclick="handleHold()" style="margin-top: 0.5rem;">Giữ đơn</button>
+            <button class="bp-btn bp-btn-secondary bp-btn-full" onclick="handleCancel()" style="margin-top: 0.5rem;">Huỷ đơn</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal chọn biến thể -->
+  <div class="modal fade" id="variantModal" tabindex="-1" aria-labelledby="variantModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="variantModalLabel" style="font-size:1.15rem; margin:0;">Chọn biến thể</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+        </div>
+        <div class="modal-body" id="variantModalBody"></div>
+        <div class="modal-footer">
+          <button type="button" class="bp-btn bp-btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+          <button type="button" class="bp-btn bp-btn-primary" id="variantConfirmBtn">Thêm vào đơn</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal thêm khách mới -->
+  <div class="modal fade" id="quickAddCustomerModal" tabindex="-1" aria-labelledby="quickAddCustomerLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="quickAddCustomerLabel" style="font-size:1.15rem; margin:0;">Thêm khách hàng mới</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+        </div>
+        <div class="modal-body">
+          <div class="bp-input-group">
+            <label for="quickCustName">Tên khách hàng</label>
+            <input type="text" id="quickCustName" placeholder="Nhập tên khách hàng">
+          </div>
+          <div class="bp-input-group">
+            <label for="quickCustPhone">Số điện thoại</label>
+            <input type="tel" id="quickCustPhone" placeholder="VD: 0901234567">
+          </div>
+          <div id="quickAddAlert" class="bp-alert"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="bp-btn bp-btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+          <button type="button" class="bp-btn bp-btn-primary" onclick="handleQuickAddCustomer()">Lưu &amp; chọn</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/seed-data.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/crm.js"></script>
+  <script src="assets/js/inventory.js"></script>
+  <script src="assets/js/pos.js"></script>
+  <script>
+    let session = null;
+    let currentShift = null;
+    let activeCategory = 0;
+    let variantModalInstance = null;
+    let pendingVariantProduct = null;
+    let pendingVariantSelection = null;
+
+    function initPage() {
+      if (!Auth.checkAuth()) return;
+      if (!Auth.requireOpenShift()) return;
+      session = Auth.getSession();
+      currentShift = Auth.getCurrentShift();
+      Auth.updateUserDisplay();
+
+      Cashier.init();
+      variantModalInstance = new bootstrap.Modal(document.getElementById('variantModal'));
+
+      renderCategories();
+      renderProducts();
+      renderOrderTabs();
+      renderOrder();
+
+      document.getElementById('searchInput').addEventListener('input', renderProducts);
+      document.getElementById('discountType').addEventListener('change', () => { syncDiscount(); renderOrder(); });
+      document.getElementById('discountValue').addEventListener('input', () => { syncDiscount(); renderOrder(); });
+      document.getElementById('cashReceived').addEventListener('input', renderOrder);
+      document.getElementById('barcodeInput').addEventListener('keydown', handleBarcodeKeydown);
+      document.getElementById('customerSearchInput').addEventListener('input', handleCustomerSearch);
+      document.getElementById('variantConfirmBtn').addEventListener('click', confirmVariantSelection);
+
+      document.querySelectorAll('.bp-payment-option').forEach(btn => {
+        btn.addEventListener('click', () => selectPaymentMethod(btn.dataset.method));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.bp-customer-search-wrap')) {
+          document.getElementById('customerAutocomplete').style.display = 'none';
+        }
+      });
+    }
+
+    // -------------------- Categories / Products --------------------
+    function renderCategories() {
+      const categories = POS.getCategories();
+      const container = document.getElementById('categoryPills');
+      container.innerHTML = `<button class="bp-category-pill active" data-cat="0">Tất cả</button>`;
+      categories.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.className = 'bp-category-pill';
+        btn.dataset.cat = cat.id;
+        btn.textContent = cat.name;
+        container.appendChild(btn);
+      });
+      container.querySelectorAll('.bp-category-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+          container.querySelectorAll('.bp-category-pill').forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          activeCategory = Number(pill.dataset.cat);
+          renderProducts();
+        });
+      });
+    }
+
+    function renderProducts() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      let products = POS.getProducts();
+      if (activeCategory !== 0) products = products.filter(p => p.categoryId === activeCategory);
+      if (query) {
+        products = products.filter(p =>
+          p.name.toLowerCase().includes(query) ||
+          (p.barcode && p.barcode.includes(query)) ||
+          (p.hasVariants && p.variants.some(v => v.sku.toLowerCase().includes(query)))
+        );
+      }
+
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = '';
+
+      if (products.length === 0) {
+        grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-3);">Không tìm thấy sản phẩm</p>';
+        return;
+      }
+
+      products.forEach(product => {
+        const low = POS.isLowStock(product);
+        const totalStock = POS.getTotalStock(product);
+        const priceLabel = product.hasVariants ? `Từ ${POS.formatCurrency(POS.getMinPrice(product))}` : POS.formatCurrency(product.price);
+
+        const card = document.createElement('div');
+        card.className = 'bp-product-card';
+        card.innerHTML = `
+          ${low ? '<span class="bp-badge-low-stock">⚠ Sắp hết</span>' : ''}
+          ${product.hasVariants ? '<span class="bp-variant-hint">Có biến thể</span>' : ''}
+          <img src="${POS.safeImage(product.image)}" alt="${POS.escapeHtml(product.name)}" class="bp-product-image">
+          <div class="bp-product-content">
+            <div class="bp-product-name">${POS.escapeHtml(product.name)}</div>
+            <div class="bp-product-price">${priceLabel}</div>
+            <div class="bp-product-unit">${POS.escapeHtml(product.unit)} · Tồn: ${totalStock}</div>
+            <div class="bp-product-actions">
+              <button class="bp-btn bp-btn-primary bp-btn-full bp-btn-sm" ${totalStock <= 0 ? 'disabled' : ''} data-product-id="${product.id}">
+                ${product.hasVariants ? 'Chọn biến thể' : '+ Thêm'}
+              </button>
+            </div>
+          </div>
+        `;
+        card.querySelector('button[data-product-id]').addEventListener('click', () => handleProductClick(product));
+        grid.appendChild(card);
+      });
+    }
+
+    function handleProductClick(product) {
+      if (product.hasVariants) {
+        openVariantModal(product);
+        return;
+      }
+      try {
+        Cashier.addItem(product, null);
+        renderOrder();
+      } catch (e) {
+        alert(e.message);
+      }
+    }
+
+    // -------------------- Barcode --------------------
+    function handleBarcodeKeydown(e) {
+      if (e.key !== 'Enter') return;
+      const input = e.target;
+      const code = input.value.trim();
+      if (!code) return;
+      const result = Cashier.scanBarcode(code);
+      if (result.status === 'added') {
+        input.value = '';
+        renderOrder();
+      } else if (result.status === 'needVariant') {
+        input.value = '';
+        openVariantModal(result.product);
+      } else {
+        alert('Không tìm thấy sản phẩm với mã vạch: ' + code);
+        input.select();
+      }
+    }
+
+    // -------------------- Variant Modal --------------------
+    function openVariantModal(product) {
+      pendingVariantProduct = product;
+      pendingVariantSelection = null;
+      document.getElementById('variantModalLabel').textContent = 'Chọn biến thể — ' + product.name;
+
+      const sizes = [...new Set(product.variants.map(v => v.size))];
+      const colors = [...new Set(product.variants.map(v => v.color))];
+
+      let html = '<div class="bp-variant-group"><div class="bp-variant-group-label">Chọn tổ hợp size / loại</div><div class="bp-variant-options">';
+      product.variants.forEach(v => {
+        const disabled = v.stock <= 0;
+        html += `
+          <button type="button" class="bp-variant-option${disabled ? ' disabled' : ''}" data-sku="${POS.escapeHtml(v.sku)}">
+            <span class="vname">${POS.escapeHtml(v.size)} · ${POS.escapeHtml(v.color)}</span>
+            <span class="vmeta">${POS.formatCurrency(v.price)} — Tồn: ${v.stock}</span>
+          </button>`;
+      });
+      html += '</div></div>';
+      document.getElementById('variantModalBody').innerHTML = html;
+
+      document.querySelectorAll('#variantModalBody .bp-variant-option').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.classList.contains('disabled')) return;
+          document.querySelectorAll('#variantModalBody .bp-variant-option').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          pendingVariantSelection = btn.dataset.sku;
+        });
+      });
+
+      variantModalInstance.show();
+    }
+
+    function confirmVariantSelection() {
+      if (!pendingVariantSelection) {
+        alert('Vui lòng chọn 1 biến thể');
+        return;
+      }
+      try {
+        Cashier.addItem(pendingVariantProduct, pendingVariantSelection);
+        renderOrder();
+        variantModalInstance.hide();
+      } catch (e) {
+        alert(e.message);
+      }
+    }
+
+    // -------------------- Customer search --------------------
+    function handleCustomerSearch() {
+      const query = document.getElementById('customerSearchInput').value.trim();
+      const list = document.getElementById('customerAutocomplete');
+      if (!query) { list.style.display = 'none'; return; }
+
+      const matches = POS.findCustomersByPhonePrefix(query).length
+        ? POS.findCustomersByPhonePrefix(query)
+        : POS.searchCustomers(query).slice(0, 8);
+
+      if (matches.length === 0) {
+        list.innerHTML = '<div class="bp-autocomplete-item" style="color:var(--text-3);">Không tìm thấy khách hàng</div>';
+        list.style.display = 'block';
+        return;
+      }
+
+      list.innerHTML = matches.map(c => {
+        const tier = CRM.calcTier(c.totalSpent);
+        return `<div class="bp-autocomplete-item" data-customer-id="${POS.escapeHtml(c.id)}">
+          <strong>${POS.escapeHtml(c.name)}</strong> · ${POS.escapeHtml(c.phone)}
+          <span class="bp-tier-badge tier-${tier}" style="margin-left:0.4rem;">${CRM.TIER_LABELS[tier]}</span>
+          <div style="font-size:0.75rem; color:var(--text-3);">${c.points} điểm</div>
+        </div>`;
+      }).join('');
+      list.style.display = 'block';
+
+      list.querySelectorAll('[data-customer-id]').forEach(el => {
+        el.addEventListener('click', () => {
+          Cashier.selectCustomer(el.dataset.customerId);
+          document.getElementById('customerSearchInput').value = '';
+          list.style.display = 'none';
+          renderCustomerChip();
+          renderOrder();
+        });
+      });
+    }
+
+    function renderCustomerChip() {
+      const chip = document.getElementById('customerChip');
+      const customerId = Cashier.state.activeOrder.customerId;
+      if (!customerId) { chip.style.display = 'none'; chip.innerHTML = ''; return; }
+      const customer = POS.getCustomerById(customerId);
+      if (!customer) { chip.style.display = 'none'; return; }
+      const tier = CRM.calcTier(customer.totalSpent);
+      chip.style.display = 'flex';
+      chip.className = 'bp-customer-chip';
+      chip.innerHTML = `
+        <span>👤 ${POS.escapeHtml(customer.name)} <span class="bp-tier-badge tier-${tier}">${CRM.TIER_LABELS[tier]}</span> · ${customer.points} điểm</span>
+        <button type="button" id="clearCustomerBtn">✕</button>
+      `;
+      document.getElementById('clearCustomerBtn').addEventListener('click', () => {
+        Cashier.clearCustomer();
+        renderCustomerChip();
+        renderOrder();
+      });
+    }
+
+    function handleQuickAddCustomer() {
+      const name = document.getElementById('quickCustName').value;
+      const phone = document.getElementById('quickCustPhone').value;
+      const alertEl = document.getElementById('quickAddAlert');
+      try {
+        Cashier.quickAddCustomer(name, phone);
+        document.getElementById('quickCustName').value = '';
+        document.getElementById('quickCustPhone').value = '';
+        alertEl.className = 'bp-alert';
+        bootstrap.Modal.getInstance(document.getElementById('quickAddCustomerModal')).hide();
+        renderCustomerChip();
+        renderOrder();
+      } catch (e) {
+        alertEl.textContent = e.message;
+        alertEl.className = 'bp-alert error show';
+      }
+    }
+
+    // -------------------- Order tabs (hold orders) --------------------
+    function renderOrderTabs() {
+      const bar = document.getElementById('orderTabsBar');
+      bar.innerHTML = '';
+
+      const activeLabel = Cashier.state.activeOrder.holdId
+        ? Cashier.state.activeOrder.label
+        : (Cashier.state.activeOrder.items.length ? 'Đơn hiện tại' : 'Đơn mới');
+
+      const activeTab = document.createElement('button');
+      activeTab.className = 'bp-order-tab active';
+      activeTab.innerHTML = `${POS.escapeHtml(activeLabel)} <span class="bp-tab-badge">${Cashier.state.activeOrder.items.length}</span>`;
+      bar.appendChild(activeTab);
+
+      Cashier.state.heldOrders.forEach(h => {
+        const tab = document.createElement('button');
+        tab.className = 'bp-order-tab';
+        tab.innerHTML = `${POS.escapeHtml(h.label)} <span class="bp-tab-badge">${h.items.length}</span>`;
+        tab.addEventListener('click', () => {
+          Cashier.switchToHeldOrder(h.holdId);
+          syncFormFromActiveOrder();
+          renderOrderTabs();
+          renderOrder();
+          renderCustomerChip();
+        });
+        bar.appendChild(tab);
+      });
+
+      const newTab = document.createElement('button');
+      newTab.className = 'bp-order-tab-new';
+      newTab.textContent = '+ Đơn mới';
+      newTab.addEventListener('click', () => {
+        Cashier.startNewOrder();
+        syncFormFromActiveOrder();
+        renderOrderTabs();
+        renderOrder();
+        renderCustomerChip();
+      });
+      bar.appendChild(newTab);
+    }
+
+    function syncFormFromActiveOrder() {
+      document.getElementById('tableNumber').value = Cashier.state.activeOrder.table || '';
+      document.getElementById('discountType').value = Cashier.state.activeOrder.discount.type;
+      document.getElementById('discountValue').value = Cashier.state.activeOrder.discount.value || '';
+      selectPaymentMethod(Cashier.state.activeOrder.payment.method);
+      document.getElementById('cashReceived').value = Cashier.state.activeOrder.payment.cashReceived || '';
+    }
+
+    // -------------------- Order rendering --------------------
+    function renderOrder() {
+      Cashier.state.activeOrder.table = document.getElementById('tableNumber').value;
+
+      const list = document.getElementById('orderList');
+      const emptyMsg = document.getElementById('emptyOrderMsg');
+      const items = Cashier.state.activeOrder.items;
+      list.innerHTML = '';
+
+      if (items.length === 0) {
+        emptyMsg.style.display = 'block';
+      } else {
+        emptyMsg.style.display = 'none';
+        items.forEach(item => {
+          const li = document.createElement('li');
+          li.className = 'bp-order-item';
+          const variantLabel = item.size ? ` (${POS.escapeHtml(item.size)}/${POS.escapeHtml(item.color)})` : '';
+          li.innerHTML = `
+            <div class="bp-order-item-info">
+              <div class="bp-order-item-name">${POS.escapeHtml(item.name)}${variantLabel}</div>
+              <div class="bp-order-item-qty">x${item.quantity} ${POS.escapeHtml(item.unit)} = ${POS.formatCurrency(item.price * item.quantity)}</div>
+              <div class="bp-order-item-qty-control">
+                <button class="bp-order-item-qty-btn" data-action="dec">−</button>
+                <span style="width: 30px; text-align: center;">${item.quantity}</span>
+                <button class="bp-order-item-qty-btn" data-action="inc">+</button>
+              </div>
+            </div>
+            <div style="text-align: right;">
+              <div class="bp-order-item-price">${POS.formatCurrency(item.price * item.quantity)}</div>
+              <button class="bp-order-item-remove" data-action="remove">✕</button>
+            </div>
+          `;
+          li.querySelector('[data-action="dec"]').addEventListener('click', () => { safeUpdateQty(item, -1); });
+          li.querySelector('[data-action="inc"]').addEventListener('click', () => { safeUpdateQty(item, 1); });
+          li.querySelector('[data-action="remove"]').addEventListener('click', () => {
+            Cashier.removeItem(item.productId, item.variantSku);
+            renderOrder();
+          });
+          list.appendChild(li);
+        });
+      }
+
+      syncDiscount();
+      updateTotalsDisplay();
+      renderOrderTabsBadgeOnly();
+    }
+
+    function safeUpdateQty(item, delta) {
+      try {
+        Cashier.updateItemQty(item.productId, item.variantSku, delta);
+        renderOrder();
+      } catch (e) {
+        alert(e.message);
+      }
+    }
+
+    function renderOrderTabsBadgeOnly() {
+      const activeTab = document.querySelector('#orderTabsBar .bp-order-tab.active .bp-tab-badge');
+      if (activeTab) activeTab.textContent = Cashier.state.activeOrder.items.length;
+    }
+
+    function syncDiscount() {
+      Cashier.setDiscount(document.getElementById('discountType').value, document.getElementById('discountValue').value);
+    }
+
+    function selectPaymentMethod(method) {
+      Cashier.state.activeOrder.payment.method = method;
+      document.querySelectorAll('.bp-payment-option').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.method === method);
+      });
+      ['Cash', 'Transfer', 'Qr', 'Card'].forEach(key => {
+        document.getElementById('paymentDetail' + key).style.display = (key.toLowerCase() === method) ? 'block' : 'none';
+      });
+      updateTotalsDisplay();
+    }
+
+    function updateTotalsDisplay() {
+      const totals = Cashier.calcTotals();
+      document.getElementById('subtotalDisplay').textContent = POS.formatCurrency(totals.subtotal);
+      document.getElementById('totalDisplay').textContent = POS.formatCurrency(totals.total);
+
+      const pointsRow = document.getElementById('pointsRow');
+      if (Cashier.state.activeOrder.customerId) {
+        pointsRow.style.display = 'flex';
+        document.getElementById('pointsDisplay').textContent = CRM.calcPointsForAmount(totals.total) + ' điểm';
+      } else {
+        pointsRow.style.display = 'none';
+      }
+
+      Cashier.state.activeOrder.payment.cashReceived = document.getElementById('cashReceived').value;
+      const changeDisplay = document.getElementById('changeDisplay');
+      if (Cashier.state.activeOrder.payment.method === 'cash') {
+        const received = Number(document.getElementById('cashReceived').value) || 0;
+        if (document.getElementById('cashReceived').value !== '') {
+          changeDisplay.style.display = 'block';
+          if (received >= totals.total) {
+            changeDisplay.className = 'bp-change-display ok';
+            changeDisplay.textContent = 'Tiền thối lại: ' + POS.formatCurrency(received - totals.total);
+          } else {
+            changeDisplay.className = 'bp-change-display insufficient';
+            changeDisplay.textContent = 'Còn thiếu: ' + POS.formatCurrency(totals.total - received);
+          }
+        } else {
+          changeDisplay.style.display = 'none';
+        }
+      } else {
+        changeDisplay.style.display = 'none';
+      }
+    }
+
+    // -------------------- Payment / Hold / Cancel --------------------
+    function handlePayment() {
+      try {
+        const order = Cashier.checkout(session, currentShift.id);
+        sessionStorage.setItem('bp_current_order', JSON.stringify(order));
+        window.location.href = 'in-hoa-don.html';
+      } catch (e) {
+        alert(e.message);
+      }
+    }
+
+    function handleHold() {
+      const held = Cashier.holdActiveOrder();
+      if (!held) {
+        alert('Chưa có món nào trong đơn để giữ');
+        return;
+      }
+      Cashier.state.activeOrder = { holdId: null, label: 'Đơn mới', table: '', customerId: null, customerName: '', items: [], discount: { type: 'percent', value: 0 }, payment: { method: 'cash', cashReceived: 0 } };
+      syncFormFromActiveOrder();
+      renderOrderTabs();
+      renderOrder();
+      renderCustomerChip();
+    }
+
+    function handleCancel() {
+      if (Cashier.state.activeOrder.items.length > 0 && !confirm('Bạn chắc chắn muốn huỷ đơn này?')) {
+        return;
+      }
+      Cashier.clearCustomer();
+      Cashier.state.activeOrder.items = [];
+      Cashier.state.activeOrder.table = '';
+      document.getElementById('tableNumber').value = '';
+      document.getElementById('discountValue').value = '';
+      document.getElementById('discountType').value = 'percent';
+      document.getElementById('cashReceived').value = '';
+      renderCustomerChip();
+      renderOrder();
+    }
+
+    document.addEventListener('DOMContentLoaded', initPage);
+  </script>
+</body>
+</html>

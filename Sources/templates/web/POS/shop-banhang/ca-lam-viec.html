@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ca làm việc - POS Bán hàng</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <meta name="description" content="Quản lý ca làm việc — mở ca, đóng ca, kiểm kê tiền mặt">
+</head>
+<body>
+  <nav class="bp-navbar">
+    <div class="bp-navbar-brand">🍴 POS Bán Hàng</div>
+    <ul class="bp-navbar-menu">
+      <li><a href="lap-don.html">Lập đơn</a></li>
+      <li><a href="tra-hang.html">Trả hàng</a></li>
+      <li><a href="ca-lam-viec.html">Ca làm việc</a></li>
+      <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+      <li><a href="lien-he.html">Liên hệ</a></li>
+    </ul>
+    <div class="bp-navbar-user">
+      <span id="userDisplay"></span>
+      <button id="logoutBtn" class="bp-btn bp-btn-secondary bp-btn-sm" onclick="Auth.handleLogoutClick()" style="display: none;">Đăng xuất</button>
+    </div>
+  </nav>
+
+  <div class="bp-page-content">
+    <div class="bp-container" style="max-width: 720px;">
+      <h1>Ca làm việc</h1>
+
+      <!-- Chưa mở ca -->
+      <div class="bp-card" id="openShiftCard" style="display:none;">
+        <h3>Mở ca mới</h3>
+        <p style="color: var(--text-2);">Nhập số tiền mặt có sẵn trong quầy trước khi bắt đầu ca làm việc.</p>
+        <div class="bp-input-group">
+          <label for="openingCashInput">Tiền mặt đầu ca</label>
+          <input type="number" id="openingCashInput" min="0" placeholder="VD: 500000">
+        </div>
+        <div id="openAlert" class="bp-alert"></div>
+        <button class="bp-btn bp-btn-primary" onclick="handleOpenShift()">Mở ca</button>
+      </div>
+
+      <!-- Đang mở ca -->
+      <div id="activeShiftCard" style="display:none;">
+        <div class="bp-card" style="margin-bottom: 1.5rem;">
+          <h3>Ca đang mở <span class="bp-shift-status open">● Đang hoạt động</span></h3>
+          <p style="color: var(--text-2);" id="shiftMetaLabel"></p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-top: 1rem;">
+            <div style="padding: 1rem; background: var(--bg); border-radius: 8px;">
+              <div style="color: var(--text-2); font-size: 0.85rem;">Số đơn</div>
+              <div style="font-size: 1.5rem; font-weight: 600; color: var(--accent);" id="shiftOrderCount">0</div>
+            </div>
+            <div style="padding: 1rem; background: var(--bg); border-radius: 8px;">
+              <div style="color: var(--text-2); font-size: 0.85rem;">Tổng doanh thu</div>
+              <div style="font-size: 1.5rem; font-weight: 600; color: var(--accent);" id="shiftTotalRevenue">0đ</div>
+            </div>
+            <div style="padding: 1rem; background: var(--bg); border-radius: 8px;">
+              <div style="color: var(--text-2); font-size: 0.85rem;">Tiền mặt thu được</div>
+              <div style="font-size: 1.5rem; font-weight: 600; color: var(--accent);" id="shiftCashRevenue">0đ</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bp-card">
+          <h3>Đóng ca</h3>
+          <p style="color: var(--text-2);">Đếm tiền mặt thực tế trong quầy và nhập vào bên dưới để đối chiếu.</p>
+          <div class="bp-input-group">
+            <label for="closingCashInput">Tiền mặt đếm thực tế cuối ca</label>
+            <input type="number" id="closingCashInput" min="0" placeholder="Nhập số tiền đếm được">
+          </div>
+          <div id="closePreview" style="display:none; padding: 1rem; background: var(--bg); border-radius: 8px; margin-bottom: 1rem;">
+            <div>Dự kiến: <strong id="expectedCashLabel">0đ</strong> (đầu ca + tiền mặt thu được)</div>
+            <div id="differenceLabel" style="margin-top:0.5rem; font-weight:600;"></div>
+          </div>
+          <div id="closeAlert" class="bp-alert"></div>
+          <button class="bp-btn bp-btn-primary" onclick="handleCloseShift()">Xác nhận đóng ca</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/seed-data.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/shift.js"></script>
+  <script>
+    let session = null;
+
+    function initPage() {
+      if (!Auth.checkAuth()) return;
+      session = Auth.getSession();
+      Auth.updateUserDisplay();
+      render();
+
+      document.getElementById('closingCashInput').addEventListener('input', updateClosePreview);
+    }
+
+    function render() {
+      const shift = POS.getOpenShiftForUser(session.username);
+      if (!shift) {
+        document.getElementById('openShiftCard').style.display = 'block';
+        document.getElementById('activeShiftCard').style.display = 'none';
+        return;
+      }
+
+      document.getElementById('openShiftCard').style.display = 'none';
+      document.getElementById('activeShiftCard').style.display = 'block';
+      document.getElementById('shiftMetaLabel').textContent =
+        `Nhân viên: ${session.name} · Mở lúc: ${POS.formatDateTimeVN(shift.openedAt)} · Tiền mặt đầu ca: ${POS.formatCurrency(shift.openingCash)}`;
+
+      const stats = Shift.getShiftStats(shift);
+      document.getElementById('shiftOrderCount').textContent = stats.orderCount;
+      document.getElementById('shiftTotalRevenue').textContent = POS.formatCurrency(stats.totalRevenue);
+      document.getElementById('shiftCashRevenue').textContent = POS.formatCurrency(stats.cashRevenue);
+
+      window.__currentShift = shift;
+      updateClosePreview();
+    }
+
+    function updateClosePreview() {
+      const shift = window.__currentShift;
+      if (!shift) return;
+      const stats = Shift.getShiftStats(shift);
+      const expected = (shift.openingCash || 0) + stats.cashRevenue;
+      const countedRaw = document.getElementById('closingCashInput').value;
+
+      if (countedRaw === '') {
+        document.getElementById('closePreview').style.display = 'none';
+        return;
+      }
+
+      const counted = Number(countedRaw) || 0;
+      const diff = counted - expected;
+
+      document.getElementById('closePreview').style.display = 'block';
+      document.getElementById('expectedCashLabel').textContent = POS.formatCurrency(expected);
+
+      const diffLabel = document.getElementById('differenceLabel');
+      if (diff === 0) {
+        diffLabel.textContent = 'Khớp — không lệch';
+        diffLabel.style.color = 'var(--accent)';
+      } else if (diff > 0) {
+        diffLabel.textContent = 'Dư: +' + POS.formatCurrency(diff);
+        diffLabel.style.color = 'var(--accent)';
+      } else {
+        diffLabel.textContent = 'Thiếu: ' + POS.formatCurrency(diff);
+        diffLabel.style.color = 'var(--danger)';
+      }
+    }
+
+    function handleOpenShift() {
+      const alertEl = document.getElementById('openAlert');
+      const value = document.getElementById('openingCashInput').value;
+      try {
+        Shift.openShift(session.username, value);
+        document.getElementById('openingCashInput').value = '';
+        alertEl.className = 'bp-alert';
+        render();
+      } catch (e) {
+        alertEl.textContent = e.message;
+        alertEl.className = 'bp-alert error show';
+      }
+    }
+
+    function handleCloseShift() {
+      const alertEl = document.getElementById('closeAlert');
+      const shift = window.__currentShift;
+      const value = document.getElementById('closingCashInput').value;
+
+      try {
+        const updated = Shift.closeShift(shift, value);
+        const msg = updated.difference === 0
+          ? 'Đóng ca thành công — khớp quỹ.'
+          : (updated.difference > 0
+            ? `Đóng ca thành công — dư ${POS.formatCurrency(updated.difference)}.`
+            : `Đóng ca thành công — thiếu ${POS.formatCurrency(Math.abs(updated.difference))}.`);
+        alert(msg + '\nBạn sẽ được chuyển về trang đăng nhập.');
+        Auth.logout();
+        window.location.href = 'index.html';
+      } catch (e) {
+        alertEl.textContent = e.message;
+        alertEl.className = 'bp-alert error show';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initPage);
+  </script>
+</body>
+</html>

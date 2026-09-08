@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>In hóa đơn - POS Bán hàng</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <meta name="description" content="In hóa đơn">
+  <style>
+    @page {
+      size: 80mm 200mm;
+      margin: 0;
+    }
+
+    .bp-invoice-wrapper {
+      width: 80mm;
+      margin: 0 auto;
+      padding: 10mm;
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    .bp-invoice-content {
+      text-align: center;
+    }
+
+    .bp-invoice-line {
+      margin: 2mm 0;
+    }
+
+    .bp-invoice-separator {
+      border-top: 1px dashed #000;
+      margin: 3mm 0;
+    }
+
+    .bp-invoice-items {
+      margin: 5mm 0;
+      text-align: left;
+    }
+
+    .bp-invoice-items-line {
+      display: flex;
+      justify-content: space-between;
+      margin: 1mm 0;
+      font-size: 10px;
+    }
+
+    .bp-invoice-items-name {
+      flex: 1;
+      word-break: break-word;
+    }
+
+    .bp-invoice-items-price {
+      text-align: right;
+      margin-left: 5mm;
+      white-space: nowrap;
+    }
+
+    .bp-invoice-summary {
+      margin: 3mm 0;
+    }
+
+    .bp-invoice-summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 2mm 0;
+      font-weight: bold;
+    }
+
+    .bp-invoice-total {
+      border-top: 1px solid #000;
+      border-bottom: 1px solid #000;
+      padding: 2mm 0;
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    @media print {
+      body {
+        background: white;
+        margin: 0;
+        padding: 0;
+      }
+
+      .no-print {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1 class="visually-hidden">In hóa đơn bán hàng</h1>
+  <div class="bp-invoice" id="invoiceContainer">
+    <div class="bp-invoice-wrapper">
+      <div class="bp-invoice-content">
+        <div class="bp-invoice-line" style="font-weight: bold; font-size: 12px;">🍴 POS BÁN HÀNG</div>
+        <div class="bp-invoice-line">Cửa hàng demo</div>
+        <div class="bp-invoice-line">TP.HCM, Việt Nam</div>
+        <div class="bp-invoice-line">SĐT: 0000 0000 000</div>
+      </div>
+
+      <div class="bp-invoice-separator"></div>
+
+      <div class="bp-invoice-content" id="orderInfo">
+        <!-- Generated -->
+      </div>
+
+      <div class="bp-invoice-separator"></div>
+
+      <div class="bp-invoice-items" id="itemsList">
+        <!-- Generated -->
+      </div>
+
+      <div class="bp-invoice-separator"></div>
+
+      <div class="bp-invoice-summary" id="summarySection">
+        <!-- Generated -->
+      </div>
+
+      <div class="bp-invoice-separator"></div>
+
+      <div class="bp-invoice-content" style="font-size: 10px; margin-top: 5mm;">
+        <div class="bp-invoice-line">Cảm ơn quý khách!</div>
+        <div class="bp-invoice-line">Mong được phục vụ quý khách lần sau</div>
+        <div class="bp-invoice-line" style="margin-top: 3mm;">
+          <span id="printTime"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="bp-navbar no-print">
+    <div class="bp-navbar-brand">🍴 POS Bán Hàng</div>
+    <div class="bp-navbar-user">
+      <button class="bp-btn bp-btn-primary bp-btn-sm" onclick="window.print()">🖨️ In</button>
+      <button class="bp-btn bp-btn-secondary bp-btn-sm" onclick="handleBack()">Quay lại</button>
+    </div>
+  </nav>
+
+  <script src="assets/js/seed-data.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script>
+    const PAYMENT_LABELS = { cash: 'Tiền mặt', transfer: 'Chuyển khoản', qr: 'QR Code', card: 'Thẻ' };
+
+    function initPage() {
+      const data = sessionStorage.getItem('bp_current_order');
+      const order = data ? JSON.parse(data) : null;
+
+      if (!order) {
+        alert('Không tìm thấy đơn hàng. Vui lòng lập đơn mới.');
+        window.location.href = 'lap-don.html';
+        return;
+      }
+
+      renderInvoice(order);
+    }
+
+    function renderInvoice(order) {
+      const orderInfo = document.getElementById('orderInfo');
+      orderInfo.innerHTML = `
+        <div class="bp-invoice-line">Mã hóa đơn: <strong>${POS.escapeHtml(order.id)}</strong></div>
+        ${order.table ? `<div class="bp-invoice-line">Số bàn: <strong>${POS.escapeHtml(order.table)}</strong></div>` : ''}
+        <div class="bp-invoice-line">Khách: ${POS.escapeHtml(order.customer || 'Khách lẻ')}</div>
+        <div class="bp-invoice-line">Thanh toán: ${POS.escapeHtml(PAYMENT_LABELS[order.paymentMethod] || order.paymentMethod)}</div>
+      `;
+
+      const itemsList = document.getElementById('itemsList');
+      itemsList.innerHTML = '';
+
+      order.items.forEach(item => {
+        const line = document.createElement('div');
+        line.className = 'bp-invoice-items-line';
+        const total = item.price * item.quantity;
+        const variantLabel = item.size ? ` (${item.size}/${item.color})` : '';
+        line.innerHTML = `
+          <div class="bp-invoice-items-name">
+            ${POS.escapeHtml(item.name)}${POS.escapeHtml(variantLabel)}<br>
+            <span style="color: #666;">x${item.quantity} ${POS.escapeHtml(item.unit)}</span>
+          </div>
+          <div class="bp-invoice-items-price">${formatSimpleCurrency(total)}</div>
+        `;
+        itemsList.appendChild(line);
+      });
+
+      const summary = document.getElementById('summarySection');
+      summary.innerHTML = '';
+
+      appendSummaryRow(summary, 'Tạm tính:', formatSimpleCurrency(order.subtotal), false);
+
+      if (order.discount > 0) {
+        appendSummaryRow(summary, 'Chiết khấu:', '-' + formatSimpleCurrency(order.discount), false, 'red');
+      }
+
+      const totalRow = document.createElement('div');
+      totalRow.className = 'bp-invoice-total';
+      totalRow.style.textAlign = 'center';
+      totalRow.textContent = 'THÀNH TIỀN: ' + formatSimpleCurrency(order.total);
+      summary.appendChild(totalRow);
+
+      if (order.paymentMethod === 'cash' && order.cashReceived !== null && order.cashReceived !== undefined) {
+        appendSummaryRow(summary, 'Tiền khách đưa:', formatSimpleCurrency(order.cashReceived), false);
+        appendSummaryRow(summary, 'Tiền thối lại:', formatSimpleCurrency(order.changeGiven || 0), false);
+      }
+
+      if (order.customerId && order.pointsEarned) {
+        appendSummaryRow(summary, 'Điểm tích lũy:', '+' + order.pointsEarned + ' điểm', false, 'green');
+      }
+
+      document.getElementById('printTime').textContent = POS.formatDateTimeVN(order.timestamp);
+    }
+
+    function appendSummaryRow(container, label, value, bold, color) {
+      const row = document.createElement('div');
+      row.className = 'bp-invoice-summary-row';
+      row.style.fontWeight = bold ? 'bold' : 'normal';
+      if (color) row.style.color = color;
+      row.innerHTML = `<span>${POS.escapeHtml(label)}</span><span>${POS.escapeHtml(value)}</span>`;
+      container.appendChild(row);
+    }
+
+    function formatSimpleCurrency(value) {
+      return (Number(value) || 0).toLocaleString('vi-VN') + 'đ';
+    }
+
+    function handleBack() {
+      sessionStorage.removeItem('bp_current_order');
+      window.location.href = 'lap-don.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', initPage);
+    window.addEventListener('afterprint', function() {
+      handleBack();
+    });
+  </script>
+</body>
+</html>

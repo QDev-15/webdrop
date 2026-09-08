@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiểm kê kho - Quản lý POS</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <meta name="description" content="Kiểm kê tồn kho thực tế">
+</head>
+<body>
+  <nav class="bp-navbar">
+    <div class="bp-navbar-brand">🍴 Admin POS</div>
+    <ul class="bp-navbar-menu">
+      <li><a href="index.html">Tổng quan</a></li>
+      <li><a href="ql-menu.html">Quản lý menu</a></li>
+      <li><a href="nhap-kho.html">Nhập kho</a></li>
+      <li><a href="kiem-kho.html">Kiểm kho</a></li>
+      <li><a href="ql-khach-hang.html">Khách hàng</a></li>
+      <li><a href="thong-ke.html">Thống kê</a></li>
+    </ul>
+    <div class="bp-navbar-user">
+      <span id="userDisplay"></span>
+      <button id="logoutBtn" class="bp-btn bp-btn-secondary bp-btn-sm" onclick="Auth.handleLogoutClick()" style="display: none;">Đăng xuất</button>
+    </div>
+  </nav>
+
+  <div class="bp-page-content">
+    <div class="bp-container">
+      <h1>Kiểm kê tồn kho</h1>
+      <p style="color: var(--text-2);">So sánh tồn kho hệ thống với số lượng thực tế đếm được, sau đó xác nhận để cập nhật lại tồn kho.</p>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.75rem;">
+        <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+          <input type="checkbox" id="onlyDiffFilter"> Chỉ hiện sản phẩm có chênh lệch
+        </label>
+        <div class="bp-input-group" style="margin-bottom:0; max-width:220px;">
+          <input type="text" id="checkedByInput" placeholder="Tên người kiểm kê">
+        </div>
+      </div>
+
+      <div class="bp-card">
+        <table class="bp-table">
+          <thead>
+            <tr>
+              <th>Sản phẩm</th>
+              <th>Tồn kho hệ thống</th>
+              <th>Tồn kho thực tế</th>
+              <th>Chênh lệch</th>
+            </tr>
+          </thead>
+          <tbody id="stocktakeBody"></tbody>
+        </table>
+
+        <div id="stocktakeAlert" class="bp-alert" style="margin-top:1rem;"></div>
+        <button class="bp-btn bp-btn-primary" onclick="handleConfirmStocktake()" style="margin-top:1rem;">Xác nhận kiểm kê</button>
+      </div>
+
+      <div class="bp-card" style="margin-top:2rem;">
+        <h3>Lịch sử kiểm kê</h3>
+        <table class="bp-table">
+          <thead>
+            <tr><th>Ngày</th><th>Người kiểm</th><th>Số SP lệch</th></tr>
+          </thead>
+          <tbody id="stocktakeHistoryBody">
+            <tr><td colspan="3" style="text-align:center; color:var(--text-3);">Chưa có lịch sử kiểm kê</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/seed-data.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/inventory.js"></script>
+  <script>
+    let allRows = [];
+
+    function initPage() {
+      if (!Auth.checkAdminAuth()) return;
+      Auth.updateUserDisplay();
+      allRows = Inventory.buildStocktakeRows();
+      renderRows();
+      renderHistory();
+
+      document.getElementById('onlyDiffFilter').addEventListener('change', renderRows);
+    }
+
+    function rowKey(row) {
+      return row.variantSku ? (row.productId + '::' + row.variantSku) : String(row.productId);
+    }
+
+    function renderRows() {
+      const onlyDiff = document.getElementById('onlyDiffFilter').checked;
+      const tbody = document.getElementById('stocktakeBody');
+      tbody.innerHTML = '';
+
+      allRows.forEach(row => {
+        const key = rowKey(row);
+        const existingInput = document.querySelector(`.count-input[data-key="${key}"]`);
+        const currentValue = existingInput ? existingInput.value : row.systemStock;
+        const diff = (Number(currentValue) || 0) - row.systemStock;
+
+        if (onlyDiff && diff === 0) return;
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${POS.escapeHtml(row.label)}</td>
+          <td>${row.systemStock}</td>
+          <td><input type="number" class="count-input" data-key="${key}" min="0" value="${currentValue}" style="width:90px; padding:0.4rem; border:1px solid var(--border); border-radius:6px;"></td>
+          <td class="diff-cell">${formatDiff(diff)}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      tbody.querySelectorAll('.count-input').forEach(inp => {
+        inp.addEventListener('input', () => updateDiffCell(inp));
+      });
+    }
+
+    function updateDiffCell(inp) {
+      const row = allRows.find(r => rowKey(r) === inp.dataset.key);
+      const diff = (Number(inp.value) || 0) - row.systemStock;
+      const cell = inp.closest('tr').querySelector('.diff-cell');
+      cell.innerHTML = formatDiff(diff);
+    }
+
+    function formatDiff(diff) {
+      if (diff === 0) return '<span class="bp-diff-zero">0</span>';
+      if (diff > 0) return `<span class="bp-diff-pos">+${diff}</span>`;
+      return `<span class="bp-diff-neg">${diff}</span>`;
+    }
+
+    function handleConfirmStocktake() {
+      const alertEl = document.getElementById('stocktakeAlert');
+      const countedMap = {};
+      document.querySelectorAll('.count-input').forEach(inp => {
+        countedMap[inp.dataset.key] = inp.value;
+      });
+
+      const checkedBy = document.getElementById('checkedByInput').value.trim() || Auth.getSession().name;
+
+      try {
+        const record = Inventory.applyStocktake(countedMap, checkedBy);
+        alertEl.textContent = `Kiểm kê thành công! ${record.discrepancies} sản phẩm có chênh lệch, tồn kho đã được cập nhật.`;
+        alertEl.className = 'bp-alert success show';
+        allRows = Inventory.buildStocktakeRows();
+        renderRows();
+        renderHistory();
+      } catch (e) {
+        alertEl.textContent = e.message;
+        alertEl.className = 'bp-alert error show';
+      }
+    }
+
+    function renderHistory() {
+      const list = POS.getStocktakes().slice().reverse();
+      const tbody = document.getElementById('stocktakeHistoryBody');
+      tbody.innerHTML = '';
+      if (list.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:var(--text-3);">Chưa có lịch sử kiểm kê</td></tr>';
+        return;
+      }
+      list.forEach(st => {
+        const row = tbody.insertRow();
+        row.innerHTML = `<td>${POS.formatDateVN(st.date)}</td><td>${POS.escapeHtml(st.checkedBy)}</td><td>${st.discrepancies}</td>`;
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', initPage);
+  </script>
+</body>
+</html>
