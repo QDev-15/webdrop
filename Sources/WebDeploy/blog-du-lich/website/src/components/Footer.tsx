@@ -5,7 +5,7 @@ import NewsletterForm from './NewsletterForm'
 export default function Footer() {
   const { settings } = useSite()
   const siteName = settings.site_name || 'Xê Dịch'
-  const brandShort = siteName.split(' ')[0] || 'Xê Dịch'
+  const brandShort = siteName.split(/\s[—–-]\s/)[0].trim() || 'Xê Dịch'
 
   return (
     <footer className="bdl-footer">

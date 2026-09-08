@@ -37,7 +37,8 @@ export default function Header() {
   }
 
   const siteName = settings.site_name || 'Xê Dịch'
-  const brandShort = siteName.split(' ')[0] || 'Xê Dịch'
+  // site_name dạng "Xê Dịch — Travel Journal" -> lấy phần trước dấu gạch ngang làm tên logo.
+  const brandShort = siteName.split(/\s[—–-]\s/)[0].trim() || 'Xê Dịch'
 
   return (
     <>
