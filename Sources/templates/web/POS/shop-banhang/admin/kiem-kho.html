@@ -96,9 +96,12 @@
       const tbody = document.getElementById('stocktakeBody');
       tbody.innerHTML = '';
 
+      const existingInputs = Array.from(document.querySelectorAll('.count-input'));
+
       allRows.forEach(row => {
         const key = rowKey(row);
-        const existingInput = document.querySelector(`.count-input[data-key="${key}"]`);
+        const safeKey = POS.escapeHtml(key);
+        const existingInput = existingInputs.find(inp => inp.dataset.key === key);
         const currentValue = existingInput ? existingInput.value : row.systemStock;
         const diff = (Number(currentValue) || 0) - row.systemStock;
 
@@ -108,7 +111,7 @@
         tr.innerHTML = `
           <td>${POS.escapeHtml(row.label)}</td>
           <td>${row.systemStock}</td>
-          <td><input type="number" class="count-input" data-key="${key}" min="0" value="${currentValue}" style="width:90px; padding:0.4rem; border:1px solid var(--border); border-radius:6px;"></td>
+          <td><input type="number" class="count-input" data-key="${safeKey}" min="0" value="${currentValue}" style="width:90px; padding:0.4rem; border:1px solid var(--border); border-radius:6px;"></td>
           <td class="diff-cell">${formatDiff(diff)}</td>
         `;
         tbody.appendChild(tr);

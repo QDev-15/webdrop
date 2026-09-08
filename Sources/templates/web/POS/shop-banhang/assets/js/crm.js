@@ -9,7 +9,7 @@
   const TIER_ORDER = ['dong', 'bac', 'vang', 'kim-cuong'];
   const TIER_LABELS = { dong: 'Đồng', bac: 'Bạc', vang: 'Vàng', 'kim-cuong': 'Kim Cương' };
   const TIER_COLORS = { dong: '#a0714d', bac: '#94a3b8', vang: '#eab308', 'kim-cuong': '#38bdf8' };
-  const POINTS_PER_VND = 1 / 10000; // 1 điểm / 10.000đ chi tiêu
+  const VND_PER_POINT = 10000; // 1 điểm / 10.000đ chi tiêu
 
   function calcTier(totalSpent) {
     const spent = Number(totalSpent) || 0;
@@ -20,7 +20,7 @@
   }
 
   function calcPointsForAmount(amount) {
-    return Math.floor((Number(amount) || 0) * POINTS_PER_VND);
+    return Math.floor((Number(amount) || 0) / VND_PER_POINT);
   }
 
   // Thông tin tiến độ lên hạng tiếp theo

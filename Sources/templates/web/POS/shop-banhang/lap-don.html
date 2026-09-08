@@ -350,6 +350,9 @@
       } else if (result.status === 'needVariant') {
         input.value = '';
         openVariantModal(result.product);
+      } else if (result.status === 'error') {
+        alert(result.message);
+        input.select();
       } else {
         alert('Không tìm thấy sản phẩm với mã vạch: ' + code);
         input.select();
@@ -654,7 +657,7 @@
         alert('Chưa có món nào trong đơn để giữ');
         return;
       }
-      Cashier.state.activeOrder = { holdId: null, label: 'Đơn mới', table: '', customerId: null, customerName: '', items: [], discount: { type: 'percent', value: 0 }, payment: { method: 'cash', cashReceived: 0 } };
+      Cashier.state.activeOrder = Cashier.blankOrder();
       syncFormFromActiveOrder();
       renderOrderTabs();
       renderOrder();
@@ -665,13 +668,13 @@
       if (Cashier.state.activeOrder.items.length > 0 && !confirm('Bạn chắc chắn muốn huỷ đơn này?')) {
         return;
       }
-      Cashier.clearCustomer();
-      Cashier.state.activeOrder.items = [];
-      Cashier.state.activeOrder.table = '';
-      document.getElementById('tableNumber').value = '';
-      document.getElementById('discountValue').value = '';
-      document.getElementById('discountType').value = 'percent';
-      document.getElementById('cashReceived').value = '';
+      // nếu đơn đang huỷ vốn được nạp từ 1 tab đã giữ, bỏ luôn khỏi danh sách giữ đơn
+      if (Cashier.state.activeOrder.holdId) {
+        Cashier.discardHeldOrder(Cashier.state.activeOrder.holdId);
+      }
+      Cashier.state.activeOrder = Cashier.blankOrder();
+      syncFormFromActiveOrder();
+      renderOrderTabs();
       renderCustomerChip();
       renderOrder();
     }

@@ -43,7 +43,6 @@
         product.stock -= item.quantity;
       }
     }
-    POS.saveProduct.length; // no-op reference to avoid unused warnings in some linters
     localStorage.setItem('bp_products', JSON.stringify(products));
     return { ok: true };
   }

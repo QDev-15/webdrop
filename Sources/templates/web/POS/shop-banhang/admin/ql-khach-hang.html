@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý khách hàng - Quản lý POS</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <meta name="description" content="Quản lý khách hàng — hạng thành viên, tích điểm">
+</head>
+<body>
+  <nav class="bp-navbar">
+    <div class="bp-navbar-brand">🍴 Admin POS</div>
+    <ul class="bp-navbar-menu">
+      <li><a href="index.html">Tổng quan</a></li>
+      <li><a href="ql-menu.html">Quản lý menu</a></li>
+      <li><a href="nhap-kho.html">Nhập kho</a></li>
+      <li><a href="kiem-kho.html">Kiểm kho</a></li>
+      <li><a href="ql-khach-hang.html">Khách hàng</a></li>
+      <li><a href="thong-ke.html">Thống kê</a></li>
+    </ul>
+    <div class="bp-navbar-user">
+      <span id="userDisplay"></span>
+      <button id="logoutBtn" class="bp-btn bp-btn-secondary bp-btn-sm" onclick="Auth.handleLogoutClick()" style="display: none;">Đăng xuất</button>
+    </div>
+  </nav>
+
+  <div class="bp-page-content">
+    <div class="bp-container">
+      <h1>Quản lý khách hàng</h1>
+
+      <div class="bp-card" style="margin-bottom: 2rem;">
+        <h3 id="formTitle">Thêm khách hàng</h3>
+        <form id="customerForm" onsubmit="handleSaveCustomer(event)">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="bp-input-group">
+              <label for="custName">Tên khách hàng</label>
+              <input type="text" id="custName" required placeholder="Nhập tên khách hàng">
+            </div>
+            <div class="bp-input-group">
+              <label for="custPhone">Số điện thoại</label>
+              <input type="tel" id="custPhone" required placeholder="VD: 0901234567">
+            </div>
+            <div class="bp-input-group">
+              <label for="custEmail">Email (tuỳ chọn)</label>
+              <input type="email" id="custEmail" placeholder="Nhập email">
+            </div>
+            <div class="bp-input-group">
+              <label for="custBirthday">Ngày sinh (tuỳ chọn)</label>
+              <input type="date" id="custBirthday">
+            </div>
+          </div>
+          <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+            <button type="submit" class="bp-btn bp-btn-primary">Lưu</button>
+            <button type="button" class="bp-btn bp-btn-secondary" onclick="resetForm()">Huỷ</button>
+          </div>
+        </form>
+        <div id="successAlert" class="bp-alert" style="margin-top: 1rem;"></div>
+      </div>
+
+      <div class="bp-input-group" style="margin-bottom: 1rem;">
+        <input type="text" class="bp-search" id="searchInput" placeholder="Tìm khách hàng theo tên/SĐT...">
+      </div>
+
+      <div class="bp-card">
+        <h3>Danh sách khách hàng</h3>
+        <table class="bp-table">
+          <thead>
+            <tr>
+              <th>Tên</th>
+              <th>SĐT</th>
+              <th>Hạng</th>
+              <th>Điểm</th>
+              <th>Tổng chi tiêu</th>
+              <th>Lần mua gần nhất</th>
+              <th>Hành động</th>
+            </tr>
+          </thead>
+          <tbody id="customerList">
+            <tr><td colspan="7" style="text-align: center; color: var(--text-3);">Đang tải...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bp-card" id="detailCard" style="display:none; margin-top: 2rem;">
+        <h3 id="detailTitle">Chi tiết khách hàng</h3>
+        <div id="detailTierInfo"></div>
+        <h4 style="margin-top:1.5rem;">Lịch sử đơn hàng</h4>
+        <table class="bp-table">
+          <thead>
+            <tr><th>Mã HD</th><th>Thời gian</th><th>Số lượng</th><th>Thành tiền</th></tr>
+          </thead>
+          <tbody id="detailOrdersBody"></tbody>
+        </table>
+        <button class="bp-btn bp-btn-secondary bp-btn-sm" onclick="closeDetail()" style="margin-top:1rem;">Đóng</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/seed-data.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/crm.js"></script>
+  <script>
+    let editingId = null;
+
+    function initPage() {
+      if (!Auth.checkAdminAuth()) return;
+      Auth.updateUserDisplay();
+      renderCustomers();
+      document.getElementById('searchInput').addEventListener('input', handleSearch);
+    }
+
+    function renderCustomers(customers) {
+      const list = customers || POS.getCustomers();
+      const tbody = document.getElementById('customerList');
+      tbody.innerHTML = '';
+
+      if (list.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--text-3);">Không tìm thấy khách hàng nào</td></tr>';
+        return;
+      }
+
+      list.forEach(c => {
+        const tier = CRM.calcTier(c.totalSpent);
+        const lastPurchase = CRM.getLastPurchaseDate(c.id);
+        const row = tbody.insertRow();
+        row.innerHTML = `
+          <td>${POS.escapeHtml(c.name)}</td>
+          <td>${POS.escapeHtml(c.phone)}</td>
+          <td><span class="bp-tier-badge tier-${tier}">${CRM.TIER_LABELS[tier]}</span></td>
+          <td>${POS.formatNumber(c.points)}</td>
+          <td>${POS.formatCurrency(c.totalSpent)}</td>
+          <td>${lastPurchase ? POS.formatDateTimeVN(lastPurchase) : '—'}</td>
+          <td>
+            <button class="bp-btn bp-btn-secondary bp-btn-sm" data-view="${POS.escapeHtml(c.id)}">Xem</button>
+            <button class="bp-btn bp-btn-secondary bp-btn-sm" data-edit="${POS.escapeHtml(c.id)}">Sửa</button>
+            <button class="bp-btn bp-btn-danger bp-btn-sm" data-delete="${POS.escapeHtml(c.id)}">Xóa</button>
+          </td>
+        `;
+      });
+
+      tbody.querySelectorAll('[data-view]').forEach(btn => btn.addEventListener('click', () => viewDetail(btn.dataset.view)));
+      tbody.querySelectorAll('[data-edit]').forEach(btn => btn.addEventListener('click', () => editCustomer(btn.dataset.edit)));
+      tbody.querySelectorAll('[data-delete]').forEach(btn => btn.addEventListener('click', () => deleteCustomer(btn.dataset.delete)));
+    }
+
+    function viewDetail(id) {
+      const customer = POS.getCustomerById(id);
+      if (!customer) return;
+
+      document.getElementById('detailCard').style.display = 'block';
+      document.getElementById('detailTitle').textContent = 'Chi tiết khách hàng — ' + customer.name;
+
+      const progress = CRM.getTierProgress(customer.totalSpent);
+      const tier = progress.tier;
+      document.getElementById('detailTierInfo').innerHTML = `
+        <div>
+          <span class="bp-tier-badge tier-${tier}">${CRM.TIER_LABELS[tier]}</span>
+          · ${POS.formatNumber(customer.points)} điểm · Tổng chi tiêu ${POS.formatCurrency(customer.totalSpent)}
+        </div>
+        <div class="bp-tier-progress-track"><div class="bp-tier-progress-fill" style="width:${progress.percent}%;"></div></div>
+        <div class="bp-tier-progress-label">${POS.escapeHtml(progress.label)}</div>
+      `;
+
+      const orders = CRM.getCustomerOrders(customer.id);
+      const tbody = document.getElementById('detailOrdersBody');
+      tbody.innerHTML = '';
+      if (orders.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:var(--text-3);">Chưa có đơn hàng nào</td></tr>';
+      } else {
+        orders.forEach(o => {
+          const qty = (o.items || []).reduce((s, it) => s + it.quantity, 0);
+          const row = tbody.insertRow();
+          row.innerHTML = `<td>${POS.escapeHtml(o.id)}</td><td>${POS.formatDateTimeVN(o.timestamp)}</td><td>${qty}</td><td>${POS.formatCurrency(o.total)}</td>`;
+        });
+      }
+
+      document.getElementById('detailCard').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function closeDetail() {
+      document.getElementById('detailCard').style.display = 'none';
+    }
+
+    function handleSaveCustomer(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('custName').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const email = document.getElementById('custEmail').value.trim();
+      const birthday = document.getElementById('custBirthday').value;
+
+      if (!CRM.validatePhone(phone)) {
+        alert('Số điện thoại không hợp lệ (10 số, bắt đầu bằng 0)');
+        return;
+      }
+
+      const duplicate = POS.getCustomers().find(c => c.phone === phone && c.id !== editingId);
+      if (duplicate) {
+        alert('Số điện thoại này đã được dùng bởi khách hàng khác');
+        return;
+      }
+
+      if (editingId) {
+        const existing = POS.getCustomerById(editingId);
+        if (existing) {
+          existing.name = name; existing.phone = phone; existing.email = email; existing.birthday = birthday;
+          POS.saveCustomer(existing);
+        }
+        editingId = null;
+      } else {
+        POS.saveCustomer({ name, phone, email, birthday, totalSpent: 0, points: 0 });
+      }
+
+      showSuccess('Lưu khách hàng thành công');
+      resetForm();
+      renderCustomers();
+    }
+
+    function editCustomer(id) {
+      const customer = POS.getCustomerById(id);
+      if (!customer) return;
+      editingId = id;
+      document.getElementById('formTitle').textContent = 'Sửa khách hàng — ' + customer.name;
+      document.getElementById('custName').value = customer.name;
+      document.getElementById('custPhone').value = customer.phone;
+      document.getElementById('custEmail').value = customer.email || '';
+      document.getElementById('custBirthday').value = customer.birthday || '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function deleteCustomer(id) {
+      if (!confirm('Bạn chắc chắn muốn xóa khách hàng này?')) return;
+      POS.deleteCustomer(id);
+      showSuccess('Xóa khách hàng thành công');
+      resetForm();
+      renderCustomers();
+      closeDetail();
+    }
+
+    function handleSearch() {
+      const query = document.getElementById('searchInput').value;
+      renderCustomers(POS.searchCustomers(query));
+    }
+
+    function resetForm() {
+      editingId = null;
+      document.getElementById('formTitle').textContent = 'Thêm khách hàng';
+      document.getElementById('customerForm').reset();
+      document.getElementById('searchInput').value = '';
+      renderCustomers();
+    }
+
+    function showSuccess(message) {
+      const alert = document.getElementById('successAlert');
+      alert.textContent = message;
+      alert.className = 'bp-alert success show';
+      setTimeout(() => alert.classList.remove('show'), 3000);
+    }
+
+    document.addEventListener('DOMContentLoaded', initPage);
+  </script>
+</body>
+</html>

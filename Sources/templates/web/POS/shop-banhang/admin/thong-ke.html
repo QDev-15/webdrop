@@ -7,19 +7,28 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
-  <meta name="description" content="Thống kê doanh thu">
+  <meta name="description" content="Thống kê doanh thu, lợi nhuận và báo cáo theo nhân viên">
+  <style>
+    @media print {
+      .bp-navbar, .no-print { display: none !important; }
+      .bp-chart-card canvas { max-height: 220px; }
+    }
+  </style>
 </head>
 <body>
-  <nav class="bp-navbar">
+  <nav class="bp-navbar no-print">
     <div class="bp-navbar-brand">🍴 Admin POS</div>
     <ul class="bp-navbar-menu">
       <li><a href="index.html">Tổng quan</a></li>
       <li><a href="ql-menu.html">Quản lý menu</a></li>
+      <li><a href="nhap-kho.html">Nhập kho</a></li>
+      <li><a href="kiem-kho.html">Kiểm kho</a></li>
+      <li><a href="ql-khach-hang.html">Khách hàng</a></li>
       <li><a href="thong-ke.html">Thống kê</a></li>
     </ul>
     <div class="bp-navbar-user">
       <span id="userDisplay"></span>
-      <button id="logoutBtn" class="bp-btn bp-btn-secondary bp-btn-sm" onclick="handleLogout()" style="display: none;">Đăng xuất</button>
+      <button id="logoutBtn" class="bp-btn bp-btn-secondary bp-btn-sm" onclick="Auth.handleLogoutClick()" style="display: none;">Đăng xuất</button>
     </div>
   </nav>
 
@@ -27,7 +36,7 @@
     <div class="bp-container">
       <h1>Thống kê doanh thu</h1>
 
-      <div class="bp-card" style="margin-bottom: 2rem;">
+      <div class="bp-card no-print" style="margin-bottom: 2rem;">
         <h3>Bộ lọc báo cáo</h3>
         <div class="bp-filter-row">
           <div class="bp-filter-group">
@@ -44,6 +53,12 @@
               <option value="">Tất cả</option>
             </select>
           </div>
+          <div class="bp-filter-group">
+            <label for="staffFilter">Nhân viên (tuỳ chọn)</label>
+            <select id="staffFilter">
+              <option value="">Tất cả</option>
+            </select>
+          </div>
           <div>
             <button class="bp-btn bp-btn-primary" onclick="generateReport()">Xem báo cáo</button>
             <button class="bp-btn bp-btn-secondary" onclick="resetFilter()" style="margin-left: 0.5rem;">Đặt lại</button>
@@ -51,45 +66,67 @@
         </div>
       </div>
 
-      <div class="bp-card" style="margin-bottom: 2rem;" id="reportSummary" style="display: none;">
-        <h3>Tóm tắt</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-          <div style="padding: 1rem; background: var(--bg); border-radius: 8px;">
-            <div style="color: var(--text-2); font-size: 0.9rem;">Số hóa đơn</div>
-            <div style="font-size: 1.75rem; font-weight: 600; color: var(--accent);" id="totalOrders">0</div>
-          </div>
-          <div style="padding: 1rem; background: var(--bg); border-radius: 8px;">
-            <div style="color: var(--text-2); font-size: 0.9rem;">Tổng doanh thu</div>
-            <div style="font-size: 1.75rem; font-weight: 600; color: var(--accent);" id="totalRevenue">0đ</div>
-          </div>
-          <div style="padding: 1rem; background: var(--bg); border-radius: 8px;">
-            <div style="color: var(--text-2); font-size: 0.9rem;">Doanh thu trung bình</div>
-            <div style="font-size: 1.75rem; font-weight: 600; color: var(--accent);" id="avgRevenue">0đ</div>
+      <div id="reportContent" style="display:none;">
+        <div class="bp-card" style="margin-bottom: 2rem;">
+          <h3>Tóm tắt</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem;">
+            <div style="padding: 1rem; background: var(--bg); border-radius: 8px;">
+              <div style="color: var(--text-2); font-size: 0.9rem;">Số hóa đơn</div>
+              <div style="font-size: 1.5rem; font-weight: 600; color: var(--accent);" id="totalOrders">0</div>
+            </div>
+            <div style="padding: 1rem; background: var(--bg); border-radius: 8px;">
+              <div style="color: var(--text-2); font-size: 0.9rem;">Tổng doanh thu</div>
+              <div style="font-size: 1.5rem; font-weight: 600; color: var(--accent);" id="totalRevenue">0đ</div>
+            </div>
+            <div style="padding: 1rem; background: var(--bg); border-radius: 8px;">
+              <div style="color: var(--text-2); font-size: 0.9rem;">Tổng lợi nhuận</div>
+              <div style="font-size: 1.5rem; font-weight: 600; color: var(--accent);" id="totalProfit">0đ</div>
+            </div>
+            <div style="padding: 1rem; background: var(--bg); border-radius: 8px;">
+              <div style="color: var(--text-2); font-size: 0.9rem;">Doanh thu TB/đơn</div>
+              <div style="font-size: 1.5rem; font-weight: 600; color: var(--accent);" id="avgRevenue">0đ</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="bp-card" id="reportTable" style="display: none;">
-        <h3>Chi tiết báo cáo</h3>
-        <table class="bp-table">
-          <thead>
-            <tr>
-              <th>Mã hóa đơn</th>
-              <th>Số bàn</th>
-              <th>Khách hàng</th>
-              <th>Số lượng</th>
-              <th>Thành tiền</th>
-              <th>Thời gian</th>
-            </tr>
-          </thead>
-          <tbody id="reportBody">
-            <tr>
-              <td colspan="6" style="text-align: center; color: var(--text-3);">Chưa có dữ liệu</td>
-            </tr>
-          </tbody>
-        </table>
-        <div style="margin-top: 1rem; text-align: right;">
-          <button class="bp-btn bp-btn-primary" onclick="window.print()">🖨️ In báo cáo</button>
+        <div class="bp-chart-card" style="margin-bottom: 2rem;">
+          <h3>Doanh thu theo ngày</h3>
+          <canvas id="revenueBarChart"></canvas>
+        </div>
+
+        <div class="bp-card" style="margin-bottom: 2rem;">
+          <h3>Chi tiết theo ngày</h3>
+          <table class="bp-table">
+            <thead>
+              <tr>
+                <th>Ngày</th>
+                <th>Số hóa đơn</th>
+                <th>Số lượng</th>
+                <th>Doanh thu</th>
+                <th>Lợi nhuận</th>
+              </tr>
+            </thead>
+            <tbody id="reportBody"></tbody>
+          </table>
+        </div>
+
+        <div class="bp-card" style="margin-bottom: 2rem;">
+          <h3>Top sản phẩm bán chạy trong kỳ</h3>
+          <table class="bp-table">
+            <thead><tr><th>Sản phẩm</th><th>Số lượng bán</th><th>Doanh thu</th></tr></thead>
+            <tbody id="topProductsPeriodBody"></tbody>
+          </table>
+        </div>
+
+        <div class="bp-card">
+          <h3>Báo cáo theo nhân viên</h3>
+          <table class="bp-table">
+            <thead><tr><th>Nhân viên</th><th>Số hóa đơn</th><th>Doanh thu</th></tr></thead>
+            <tbody id="staffReportBody"></tbody>
+          </table>
+          <div style="margin-top: 1rem; text-align: right;" class="no-print">
+            <button class="bp-btn bp-btn-primary" onclick="window.print()">🖨️ In báo cáo</button>
+          </div>
         </div>
       </div>
 
@@ -99,31 +136,42 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="../assets/js/seed-data.js"></script>
-  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/reports.js"></script>
   <script>
+    let barChartInstance = null;
+
     function initPage() {
-      if (!POS.checkAdminAuth()) return;
-      POS.updateUserDisplay();
-      loadCategories();
+      if (!Auth.checkAdminAuth()) return;
+      Auth.updateUserDisplay();
+      loadFilters();
       setDefaultDates();
     }
 
-    function loadCategories() {
+    function loadFilters() {
       const categories = POS.getCategories();
-      const select = document.getElementById('categoryFilter');
+      const catSelect = document.getElementById('categoryFilter');
       categories.forEach(cat => {
         const option = document.createElement('option');
         option.value = cat.id;
         option.textContent = cat.name;
-        select.appendChild(option);
+        catSelect.appendChild(option);
+      });
+
+      const staffSelect = document.getElementById('staffFilter');
+      POS.getUsers().forEach(u => {
+        const option = document.createElement('option');
+        option.value = u.username;
+        option.textContent = u.name + ' (' + u.username + ')';
+        staffSelect.appendChild(option);
       });
     }
 
     function setDefaultDates() {
       const today = new Date();
       const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-
       document.getElementById('fromDate').valueAsDate = firstDayOfMonth;
       document.getElementById('toDate').valueAsDate = today;
     }
@@ -132,72 +180,117 @@
       const fromDate = document.getElementById('fromDate').value;
       const toDate = document.getElementById('toDate').value;
       const categoryId = document.getElementById('categoryFilter').value;
+      const staffUsername = document.getElementById('staffFilter').value;
 
       if (!fromDate || !toDate) {
         alert('Vui lòng chọn khoảng thời gian');
         return;
       }
+      if (fromDate > toDate) {
+        alert('"Từ ngày" phải trước hoặc bằng "Đến ngày"');
+        return;
+      }
 
-      const orders = POS.getReportData(fromDate, toDate, categoryId || null);
+      const report = Reports.buildPeriodReport(fromDate, toDate, categoryId || null, staffUsername || null);
 
-      if (orders.length === 0) {
-        document.getElementById('reportSummary').style.display = 'none';
-        document.getElementById('reportTable').style.display = 'none';
+      if (report.totalOrders === 0) {
+        document.getElementById('reportContent').style.display = 'none';
         document.getElementById('noDataMsg').style.display = 'block';
         document.getElementById('noDataMsg').textContent = 'Không có dữ liệu trong khoảng thời gian này';
         return;
       }
 
-      renderReportSummary(orders);
-      renderReportTable(orders);
+      renderSummary(report);
+      renderChart(report);
+      renderTable(report.rows);
+      renderTopProducts(report.topProducts);
+      renderStaffReport(report.staffReport);
 
-      document.getElementById('reportSummary').style.display = 'block';
-      document.getElementById('reportTable').style.display = 'block';
+      document.getElementById('reportContent').style.display = 'block';
       document.getElementById('noDataMsg').style.display = 'none';
     }
 
-    function renderReportSummary(orders) {
-      const totalOrders = orders.length;
-      const totalRevenue = orders.reduce((sum, order) => sum + (order.total || 0), 0);
-      const avgRevenue = totalRevenue / totalOrders;
-
-      document.getElementById('totalOrders').textContent = totalOrders;
-      document.getElementById('totalRevenue').textContent = POS.formatCurrency(totalRevenue);
-      document.getElementById('avgRevenue').textContent = POS.formatCurrency(avgRevenue);
+    function renderSummary(report) {
+      document.getElementById('totalOrders').textContent = report.totalOrders;
+      document.getElementById('totalRevenue').textContent = POS.formatCurrency(report.totalRevenue);
+      document.getElementById('totalProfit').textContent = POS.formatCurrency(report.totalProfit);
+      document.getElementById('avgRevenue').textContent = POS.formatCurrency(report.avgRevenue);
     }
 
-    function renderReportTable(orders) {
+    function renderChart(report) {
+      const labels = report.rows.map(r => {
+        const parts = r.date.split('-');
+        return parts[2] + '/' + parts[1];
+      });
+      if (barChartInstance) barChartInstance.destroy();
+      barChartInstance = new Chart(document.getElementById('revenueBarChart'), {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Doanh thu',
+            data: report.rows.map(r => r.revenue),
+            backgroundColor: '#0f6d82'
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true, ticks: { callback: v => POS.formatNumber(v) } } }
+        }
+      });
+    }
+
+    function renderTable(rows) {
       const tbody = document.getElementById('reportBody');
       tbody.innerHTML = '';
-
-      orders.forEach(order => {
-        const itemCount = order.items ? order.items.length : 0;
+      rows.forEach(r => {
         const row = tbody.insertRow();
         row.innerHTML = `
-          <td><strong>${order.id}</strong></td>
-          <td>${POS.sanitizeInput(order.table)}</td>
-          <td>${POS.sanitizeInput(order.customer)}</td>
-          <td>${itemCount}</td>
-          <td>${POS.formatCurrency(order.total)}</td>
-          <td>${order.timestamp}</td>
+          <td>${POS.formatDateVN(r.date)}</td>
+          <td>${r.orderCount}</td>
+          <td>${r.qty}</td>
+          <td>${POS.formatCurrency(r.revenue)}</td>
+          <td>${POS.formatCurrency(r.profit)}</td>
         `;
+      });
+    }
+
+    function renderTopProducts(list) {
+      const tbody = document.getElementById('topProductsPeriodBody');
+      tbody.innerHTML = '';
+      if (list.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:var(--text-3);">Không có dữ liệu</td></tr>';
+        return;
+      }
+      list.forEach(p => {
+        const row = tbody.insertRow();
+        row.innerHTML = `<td>${POS.escapeHtml(p.name)}</td><td>${p.qty}</td><td>${POS.formatCurrency(p.revenue)}</td>`;
+      });
+    }
+
+    function renderStaffReport(list) {
+      const tbody = document.getElementById('staffReportBody');
+      tbody.innerHTML = '';
+      if (list.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:var(--text-3);">Không có dữ liệu</td></tr>';
+        return;
+      }
+      const users = POS.getUsers();
+      list.forEach(s => {
+        const user = users.find(u => u.username === s.username);
+        const row = tbody.insertRow();
+        row.innerHTML = `<td>${POS.escapeHtml(user ? user.name : s.username)}</td><td>${s.orderCount}</td><td>${POS.formatCurrency(s.revenue)}</td>`;
       });
     }
 
     function resetFilter() {
       setDefaultDates();
       document.getElementById('categoryFilter').value = '';
-      document.getElementById('reportSummary').style.display = 'none';
-      document.getElementById('reportTable').style.display = 'none';
+      document.getElementById('staffFilter').value = '';
+      document.getElementById('reportContent').style.display = 'none';
       document.getElementById('noDataMsg').style.display = 'block';
       document.getElementById('noDataMsg').textContent = 'Vui lòng chọn khoảng thời gian để xem báo cáo';
-    }
-
-    function handleLogout() {
-      if (confirm('Bạn chắc chắn muốn đăng xuất?')) {
-        POS.logout();
-        window.location.href = '../index.html';
-      }
     }
 
     document.addEventListener('DOMContentLoaded', initPage);

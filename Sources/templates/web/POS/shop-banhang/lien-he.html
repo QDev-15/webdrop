@@ -14,12 +14,15 @@
     <div class="bp-navbar-brand">🍴 POS Bán Hàng</div>
     <ul class="bp-navbar-menu">
       <li><a href="lap-don.html">Lập đơn</a></li>
+      <li><a href="tra-hang.html">Trả hàng</a></li>
+      <li><a href="ca-lam-viec.html">Ca làm việc</a></li>
       <li><a href="gioi-thieu.html">Giới thiệu</a></li>
       <li><a href="lien-he.html">Liên hệ</a></li>
     </ul>
     <div class="bp-navbar-user">
       <span id="userDisplay"></span>
-      <a href="index.html" class="bp-btn bp-btn-secondary bp-btn-sm">Đăng nhập</a>
+      <a href="index.html" id="loginLink" class="bp-btn bp-btn-secondary bp-btn-sm">Đăng nhập</a>
+      <button id="logoutBtn" class="bp-btn bp-btn-secondary bp-btn-sm" onclick="Auth.handleLogoutClick()" style="display: none;">Đăng xuất</button>
     </div>
   </nav>
 
@@ -115,7 +118,7 @@
 
           <details style="margin-bottom: 1rem;">
             <summary style="cursor: pointer; padding: 1rem; background: var(--bg); border-radius: 8px; font-weight: 500;">Tôi có thể lập đơn hàng ngoài giờ làm việc được không?</summary>
-            <p style="padding: 1rem; background: var(--border-light); border-radius: 0 0 8px 8px; margin-top: -4px;">Có, hệ thống POS hoạt động 24/7. Bạn có thể lập đơn bất kỳ lúc nào. Hỗ trợ kỹ thuật chỉ khả dụng trong giờ làm việc.</p>
+            <p style="padding: 1rem; background: var(--border-light); border-radius: 0 0 8px 8px; margin-top: -4px;">Có, hệ thống POS hoạt động 24/7. Bạn có thể lập đơn bất kỳ lúc nào sau khi mở ca. Hỗ trợ kỹ thuật chỉ khả dụng trong giờ làm việc.</p>
           </details>
 
           <details style="margin-bottom: 1rem;">
@@ -128,12 +131,19 @@
   </div>
 
   <footer style="background: var(--dark); color: #fff; padding: 2rem; text-align: center;">
-    <p>&copy; 2026 POS Bán hàng. All rights reserved.</p>
+    <p style="margin-bottom: 0.5rem;">&copy; 2026 POS Bán hàng. All rights reserved.</p>
+    <p style="margin: 0; font-size: 0.85rem;">
+      <a href="chinh-sach-bao-mat.html" style="color: rgba(255,255,255,.7);">Chính sách bảo mật</a>
+      &nbsp;·&nbsp;
+      <a href="dieu-khoan.html" style="color: rgba(255,255,255,.7);">Điều khoản sử dụng</a>
+    </p>
   </footer>
 
   <script src="assets/js/seed-data.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/auth.js"></script>
   <script>
+    document.addEventListener('DOMContentLoaded', () => Auth.updateUserDisplay());
+
     function handleContactSubmit(event) {
       event.preventDefault();
 
@@ -148,26 +158,13 @@
         return;
       }
 
-      // Validate email
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
         showAlert('Email không hợp lệ', 'error');
         return;
       }
 
-      // Store contact message
-      const contacts = JSON.parse(localStorage.getItem('bp_contacts') || '[]');
-      contacts.push({
-        id: Date.now(),
-        name: POS.sanitizeInput(name),
-        email: POS.sanitizeInput(email),
-        phone: POS.sanitizeInput(phone),
-        subject: POS.sanitizeInput(subject),
-        message: POS.sanitizeInput(message),
-        timestamp: new Date().toLocaleString('vi-VN'),
-        status: 'new'
-      });
-      localStorage.setItem('bp_contacts', JSON.stringify(contacts));
+      POS.saveContact({ name, email, phone, subject, message });
 
       showAlert('Cảm ơn bạn! Chúng tôi sẽ liên hệ lại sớm nhất.', 'success');
       document.getElementById('contactForm').reset();

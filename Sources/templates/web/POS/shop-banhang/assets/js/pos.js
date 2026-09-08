@@ -92,13 +92,17 @@
   // ---------------------------------------------------------------------
   // Barcode
   // ---------------------------------------------------------------------
-  // Trả về { status: 'added' } | { status: 'needVariant', product } | { status: 'notfound' }
+  // Trả về { status: 'added' } | { status: 'needVariant', product } | { status: 'notfound' } | { status: 'error', message }
   function scanBarcode(code) {
     const product = POS.findProductByBarcode(code);
     if (!product) return { status: 'notfound' };
     if (product.hasVariants) return { status: 'needVariant', product };
-    addItem(product, null);
-    return { status: 'added', product };
+    try {
+      addItem(product, null);
+      return { status: 'added', product };
+    } catch (e) {
+      return { status: 'error', message: e.message };
+    }
   }
 
   // ---------------------------------------------------------------------
@@ -256,7 +260,7 @@
   }
 
   window.Cashier = {
-    state, init,
+    state, init, blankOrder,
     addItem, removeItem, updateItemQty,
     scanBarcode, setDiscount, calcTotals,
     selectCustomer, clearCustomer, quickAddCustomer,
