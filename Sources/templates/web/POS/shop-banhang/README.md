@@ -1,298 +1,236 @@
-# POS Bán Hàng — Gói A (Template tĩnh)
+# POS Bán Hàng — Gói A (Template tĩnh) — v2.0
 
 ## Giới thiệu
 
-POS Bán hàng là một hệ thống quản lý bán hàng hoàn chỉnh dành cho nhà hàng, quán ăn, café, và các cửa hàng bán lẻ. Template này được thiết kế theo chuẩn **Gói A** — mở thẳng trên trình duyệt, không cần build system hay server backend.
+POS Bán hàng là hệ thống quản lý bán hàng **chuyên nghiệp** dành cho nhà hàng, quán ăn, café và cửa hàng bán lẻ — tham khảo mô hình KiotViet/Sapo POS/Square. Bản v2.0 nâng cấp toàn diện từ 8 trang cơ bản lên **15 trang**, mô phỏng đầy đủ vòng đời một ca bán hàng: mở ca → bán hàng (barcode, giữ đơn, đa thanh toán, biến thể sản phẩm) → trả hàng → đóng ca đối soát tiền mặt — cộng với quản lý kho (nhập kho, kiểm kê, cảnh báo hết hàng), CRM khách hàng (tích điểm, hạng thành viên) và dashboard báo cáo trực quan (Chart.js).
 
-**Identity Token:** CLEAN-CORPORATE (Teal `#0f6d82` + Navy `#0a2129`)  
-**CSS Prefix:** `bp-`  
-**Bootstrap Version:** 5.3.3  
-**Font:** DM Sans
+Template được thiết kế theo chuẩn **Gói A** — mở thẳng trên trình duyệt, không cần build system hay server backend.
 
-## Cấu trúc thư mục
+**Identity Token:** CLEAN-CORPORATE (Teal `#0f6d82` + Navy `#0a2129`)
+**CSS Prefix:** `bp-`
+**Bootstrap Version:** 5.3.3 (CDN)
+**Font:** DM Sans (Google Fonts)
+**Chart:** Chart.js (CDN `https://cdn.jsdelivr.net/npm/chart.js`)
+
+## Cấu trúc thư mục (15 trang)
 
 ```
 shop-banhang/
-├── index.html              # Trang đăng nhập
-├── lap-don.html            # Lập hóa đơn (nhân viên)
-├── in-hoa-don.html         # In hóa đơn thermal 80mm
-├── gioi-thieu.html         # Giới thiệu cửa hàng
-├── lien-he.html            # Liên hệ
+├── index.html                  # Đăng nhập
+├── lap-don.html                # POS bán hàng — barcode/hold/biến thể/đa thanh toán
+├── in-hoa-don.html             # In hóa đơn thermal 80mm
+├── tra-hang.html                # Trả hàng / hoàn tiền
+├── ca-lam-viec.html             # Quản lý ca làm việc
+├── gioi-thieu.html              # Giới thiệu hệ thống + FAQ
+├── lien-he.html                 # Liên hệ
+├── chinh-sach-bao-mat.html      # Chính sách bảo mật (footer-only)
+├── dieu-khoan.html              # Điều khoản sử dụng (footer-only)
 ├── admin/
-│   ├── index.html          # Dashboard quản lý
-│   ├── ql-menu.html        # Quản lý menu sản phẩm
-│   └── thong-ke.html       # Báo cáo thống kê
+│   ├── index.html               # Dashboard — 4 stat card + Chart.js + top SP
+│   ├── ql-menu.html             # Quản lý sản phẩm + biến thể (size/màu)
+│   ├── nhap-kho.html            # Nhập kho
+│   ├── kiem-kho.html            # Kiểm kê tồn kho
+│   ├── ql-khach-hang.html       # CRM khách hàng — hạng thành viên
+│   └── thong-ke.html            # Báo cáo doanh thu/lợi nhuận + Chart.js
 └── assets/
     ├── css/
-    │   └── style.css       # CSS chính (responsive + CLEAN-CORPORATE token)
-    ├── js/
-    │   ├── main.js         # Logic ứng dụng
-    │   └── seed-data.js    # Dữ liệu khởi tạo (20 sản phẩm, 2 tài khoản)
-    └── img/
-        └── (favicon và hình ảnh)
+    │   └── style.css            # CSS chính + component v2.0 (badge/tab/modal/progress-bar)
+    └── js/
+        ├── seed-data.js         # Data layer (localStorage) + seed 20 SP/10 khách/7 ngày đơn
+        ├── auth.js               # Login/session/shift-guard
+        ├── pos.js                 # lap-don: barcode/hold/variant/payment
+        ├── inventory.js           # ql-menu/nhap-kho/kiem-kho
+        ├── crm.js                 # ql-khach-hang/tier calculation
+        ├── reports.js              # thong-ke/dashboard Chart.js
+        ├── shift.js                 # ca-lam-viec
+        └── returns.js                # tra-hang
 ```
 
 ## Cách sử dụng
 
 ### 1. Mở template
 
-Chỉ cần mở file `index.html` trên trình duyệt bất kỳ:
-- **Không cần server** — mở trực tiếp local
-- **Không cần build** — HTML/CSS/JS thuần
-- **Responsive** — hoạt động tốt từ 320px đến 4K
+Chỉ cần mở file `index.html` trên trình duyệt bất kỳ — không cần server, không cần build, responsive từ 320px đến 4K.
 
 ### 2. Đăng nhập
 
-Có 2 tài khoản demo:
-
 | Username | Mật khẩu | Vai trò | Quyền hạn |
 |----------|----------|---------|----------|
-| `nv01` | `123456` | Nhân viên | Lập hóa đơn, in hóa đơn |
-| `admin` | `admin123` | Quản lý | Quản lý menu, xem thống kê, dashboard |
+| `nv01` | `123456` | Thu ngân (cashier) | Lập đơn, trả hàng, ca làm việc |
+| `admin` | `admin123` | Quản lý (admin) | Dashboard, menu, kho, khách hàng, thống kê |
 
-### 3. Tính năng chính
+### 3. Luồng sử dụng đầy đủ
 
-#### Nhân viên (role: cashier)
-- **Lập đơn** (`lap-don.html`):
-  - Chọn menu từ danh mục hoặc tìm kiếm
-  - Thêm sản phẩm vào đơn (điều chỉnh số lượng)
-  - Nhập số bàn, tên khách
-  - Áp dụng chiết khấu (% hoặc tiền cố định)
-  - Thanh toán → In hóa đơn
-  
-- **In hóa đơn** (`in-hoa-don.html`):
-  - Format thermal 80mm sẵn sàng in
-  - Mã hóa đơn tự động
-  - In qua `window.print()`
+```
+Đăng nhập (nv01/123456)
+  ↓
+[Chưa mở ca] → ca-lam-viec.html → Nhập tiền đầu ca → Mở ca
+  ↓
+lap-don.html:
+  - Quét/nhập mã vạch HOẶC chọn sản phẩm từ lưới
+  - (Nếu sản phẩm có biến thể) → chọn size/loại trong modal
+  - Tìm khách theo SĐT (tuỳ chọn) hoặc thêm khách mới
+  - Điều chỉnh số lượng / áp dụng chiết khấu
+  - [Có thể] Giữ đơn → phục vụ khách khác → quay lại đơn cũ qua tab
+  - Chọn phương thức thanh toán (tiền mặt tự tính tiền thối / chuyển khoản / QR / thẻ)
+  - Thanh toán → cộng điểm khách hàng, trừ tồn kho
+  ↓
+in-hoa-don.html → In → Quay lại lap-don.html
+  ↓
+[Có trả hàng] → tra-hang.html → Nhập mã HD → Chọn SP + số lượng + lý do → Hoàn tiền
+  ↓
+[Cuối ca] → ca-lam-viec.html → Đếm tiền thực tế → Đóng ca → Xem chênh lệch quỹ
+```
 
-#### Quản lý (role: admin)
-- **Dashboard** (`admin/index.html`):
-  - Tổng quan doanh thu
-  - 5 hóa đơn gần đây
-  - Liên kết nhanh tới các tính năng
-  
-- **Quản lý Menu** (`admin/ql-menu.html`):
-  - Thêm sản phẩm mới
-  - Sửa thông tin sản phẩm
-  - Xóa sản phẩm
-  - Tìm kiếm thực time
-  - 20 sản phẩm seed sẵn
+**Admin**: Dashboard (biểu đồ doanh thu 7 ngày + top SP + cảnh báo tồn kho thấp) → Quản lý sản phẩm (thêm/sửa, bật biến thể) → Nhập kho khi hàng về → Kiểm kê định kỳ → CRM chăm sóc khách theo hạng → Thống kê lọc theo kỳ/nhóm/nhân viên → In báo cáo.
 
-- **Thống kê** (`admin/thong-ke.html`):
-  - Lọc theo khoảng thời gian
-  - Tính doanh thu tổng/trung bình
-  - Xuất báo cáo chi tiết
-  - In báo cáo
+## Tính năng chi tiết theo trang
 
-#### Public
-- **Giới thiệu** (`gioi-thieu.html`):
-  - Tính năng chính
-  - Cách sử dụng
-  - FAQ (7 câu)
-  
-- **Liên hệ** (`lien-he.html`):
-  - Form liên hệ
-  - Thông tin cửa hàng
-  - Giờ làm việc
-  - Mạng xã hội
+### Cashier
 
-## Dữ liệu
+- **`lap-don.html`** — POS bán hàng (trang trung tâm):
+  - Ô quét mã vạch (autofocus, Enter = thêm luôn nếu khớp)
+  - Tabs "Đơn đang xử lý" (giữ đơn) — phục vụ nhiều khách cùng lúc
+  - Grid sản phẩm 3 cột với badge "Sắp hết hàng" khi `stock ≤ minStock`
+  - Modal chọn biến thể (size/màu/loại) cho sản phẩm có `hasVariants: true`
+  - Tìm khách theo SĐT + autocomplete, hiện tên/hạng/điểm; nút "+ Khách mới"
+  - Chiết khấu % hoặc số tiền cố định
+  - 4 phương thức thanh toán: Tiền mặt (tự tính tiền thối), Chuyển khoản, QR Code (mock), Thẻ
+  - Kiểm tra đã mở ca chưa — chưa có thì redirect `ca-lam-viec.html`
+- **`in-hoa-don.html`** — hóa đơn thermal 80mm, hiện thêm khách hàng/điểm tích lũy/phương thức thanh toán/tiền thối
+- **`tra-hang.html`** — tìm hóa đơn gốc, chọn SP + số lượng trả (không vượt số đã mua), chọn lý do, tự tính hoàn tiền, cộng lại tồn kho
+- **`ca-lam-viec.html`** — mở ca (nhập tiền đầu ca) / đóng ca (đếm tiền thực tế → tự tính chênh lệch, chặn nếu chưa nhập)
 
-### localStorage Schema
+### Admin
+
+- **`admin/index.html`** — 4 stat card (doanh thu/số đơn hôm nay, SP sắp hết hàng, khách mới), line chart doanh thu 7 ngày, donut chart theo nhóm sản phẩm, top 5 SP bán chạy, 5 đơn gần nhất, trạng thái ca hiện tại
+- **`admin/ql-menu.html`** — CRUD sản phẩm với giá vốn/tồn kho/tồn kho tối thiểu; switch "Có biến thể" mở bảng con nhập size/màu/SKU/tồn kho riêng từng biến thể
+- **`admin/nhap-kho.html`** — tạo phiếu nhập (chọn/thêm NCC, nhiều dòng sản phẩm + số lượng + đơn giá), tự cộng tồn kho, lịch sử phiếu nhập
+- **`admin/kiem-kho.html`** — đối chiếu tồn kho hệ thống với thực tế đếm được, tính chênh lệch, filter "chỉ hiện chênh lệch", xác nhận ghi đè tồn kho + lưu lịch sử
+- **`admin/ql-khach-hang.html`** — danh sách khách kèm badge hạng (Đồng/Bạc/Vàng/Kim Cương), điểm, tổng chi tiêu, lần mua gần nhất; xem chi tiết lịch sử đơn hàng + thanh tiến trình lên hạng tiếp theo
+- **`admin/thong-ke.html`** — lọc theo ngày/nhóm/nhân viên, bảng có cột lợi nhuận, bar chart doanh thu theo ngày, top SP trong kỳ, báo cáo theo nhân viên, in báo cáo
+
+### Public
+
+- **`gioi-thieu.html`** — tính năng, quy trình sử dụng, FAQ 6 câu
+- **`lien-he.html`** — form liên hệ, thông tin cửa hàng, FAQ 4 câu
+- **`chinh-sach-bao-mat.html`** / **`dieu-khoan.html`** — 2 trang pháp lý, chỉ liên kết ở footer
+
+## Dữ liệu & localStorage Schema
 
 ```javascript
+// bp_products — 20 sản phẩm, 3 có biến thể
 {
-  "bp_auth_session": {
-    username: "nv01",
-    role: "cashier",
-    name: "Nhân viên 01",
-    loginTime: "2026-09-08T10:00:00.000Z"
-  },
-  "bp_products": [
-    { id, name, categoryId, price, unit, image }
-  ],
-  "bp_categories": [
-    { id, name }
-  ],
-  "bp_orders": [
-    { id, table, customer, items[], subtotal, discount, total, timestamp, status }
-  ],
-  "bp_users": [
-    { username, password, role, name }
-  ],
-  "bp_contacts": [
-    { id, name, email, phone, subject, message, timestamp, status }
-  ]
+  id, name, categoryId, price, costPrice, unit, barcode,
+  stock, minStock, hasVariants,
+  variants: [ { sku, size, color, stock, price }, ... ] // nếu hasVariants
 }
+
+// bp_customers — 10 khách hàng đủ 4 hạng
+{ id, name, phone, email, birthday, totalSpent, points, createdAt }
+
+// bp_orders
+{
+  id, table, customer, customerId, items[], subtotal, discount, total,
+  paymentMethod, cashReceived, changeGiven, pointsEarned, shiftId,
+  cashierUsername, timestamp, status, hasReturn
+}
+
+// bp_held_orders — đơn giữ tạm (cấu trúc tương tự order, chưa thanh toán)
+// bp_shifts — { id, cashierUsername, openedAt, openingCash, closedAt,
+//               closingCashCounted, closingCashExpected, difference, status }
+// bp_stock_imports — { id, supplier, date, items[], totalCost }
+// bp_returns — { id, orderId, items[], reason, refundAmount, timestamp }
+// bp_stocktakes — { id, date, checkedBy, discrepancies }
+// bp_suppliers — [ "Tên NCC 1", ... ]
+// bp_categories, bp_users, bp_contacts, bp_auth_session — giữ nguyên v1
 ```
 
-### Seed Data
+### Ràng buộc dữ liệu (đã kiểm chứng bằng test thật)
 
-- **20 sản phẩm** qua 5 danh mục:
-  - Cơm (5): Tấm, Gà, Thịt kho, Gà quay, Cơm tấm dòi
-  - Mì/Phở (5): Phở bò, Phở gà, Mì vàng, Bánh canh, Hủ tiếu
-  - Nước (5): Cam, Sinh tố, Bia, Cà phê, Trà
-  - Tráng miệng (3): Chè ba màu, Kem, Bánh flan
-  - Khác (2): Bánh mì, Bánh cuốn
+- Thanh toán → trừ đúng tồn kho sản phẩm/biến thể tương ứng; **chặn hoàn toàn** (không trừ phần nào) nếu bất kỳ item nào không đủ hàng hoặc tiền mặt khách đưa không đủ
+- Trả hàng → cộng lại đúng tồn kho, không cho trả vượt (số đã mua − số đã trả trước đó) theo từng sản phẩm/biến thể
+- Nhập kho → cộng đúng tồn kho theo từng sản phẩm/biến thể trong phiếu
+- Kiểm kê → ghi đè tồn kho hệ thống = tồn kho thực tế đã nhập
+- Đóng ca → chặn nếu chưa nhập tiền đếm thực tế hợp lệ (≥ 0)
+- Mở ca → chặn nếu đã có ca đang mở cho cùng nhân viên
+- `lap-don.html` chặn thao tác nếu chưa mở ca (redirect `ca-lam-viec.html`)
+- Điểm tích lũy: 1 điểm / 10.000đ chi tiêu (`Math.floor(total / 10000)`), hạng thành viên tự động theo tổng chi tiêu: Đồng (< 2tr) / Bạc (2-10tr) / Vàng (10-30tr) / Kim Cương (> 30tr)
 
-- **2 tài khoản** (tên đăng nhập + mật khẩu)
+## Seed Data
 
-- **Ảnh Unsplash** — tất cả verified HTTP 200
+- **20 sản phẩm** qua 5 danh mục (Cơm, Mì/Phở, Nước, Tráng miệng, Khác) — **3 sản phẩm có biến thể** (Cà Phê Sữa Đá, Trà Đào Cam Sả, Trà Sữa Trân Châu — size S/M/L × Đá/Nóng), 3 sản phẩm cố tình để tồn kho thấp để demo cảnh báo
+- **10 khách hàng** đủ 4 hạng thành viên (Đồng/Bạc/Vàng/Kim Cương)
+- **2 tài khoản** đăng nhập (thu ngân/quản lý)
+- **~30 đơn hàng** sinh tự động trải đều 7 ngày gần nhất (để dashboard/thống kê có dữ liệu biểu đồ ngay từ lần mở đầu) — 7 ca làm việc tương ứng, tất cả đã đóng ca (không có ca nào mở sẵn, đúng luồng: đăng nhập lần đầu phải tự mở ca mới)
+- **2 phiếu nhập kho mẫu**, **1 phiếu trả hàng mẫu** (liên kết đúng với 1 đơn hàng thật, đã trừ/cộng tồn kho khớp)
+- Toàn bộ dữ liệu sinh bằng giờ địa phương của trình duyệt (không dùng UTC) — tự làm mới mỗi khi xoá localStorage và mở lại
 
-## Tính năng
+## Component mới (v2.0)
 
-### Cashier (Lập đơn)
-- ✅ 3-column layout: Menu (trái) + Sản phẩm (giữa) + Hóa đơn (phải)
-- ✅ Lọc theo danh mục (6 nút pill)
-- ✅ Tìm kiếm sản phẩm thực time
-- ✅ Thêm vào đơn (click 1 lần → thêm sản phẩm)
-- ✅ Điều chỉnh số lượng (+/-)
-- ✅ Xóa item khỏi đơn
-- ✅ Tính tổng động
-- ✅ Chiết khấu theo % hoặc tiền cố định
-- ✅ Nhập số bàn, tên khách (tuỳ chọn)
-- ✅ Thanh toán → In hóa đơn
-- ✅ Huỷ đơn (xác nhận)
+- Badge tồn kho thấp (đỏ), badge hạng thành viên (4 màu: Đồng/Bạc/Vàng/Kim Cương)
+- Tab đơn hàng (hold orders) — pill tabs ngang, tab active có border-bottom accent
+- Modal chọn biến thể (Bootstrap modal) — grid chọn size/màu, disable khi hết hàng
+- Progress bar hạng thành viên — thanh tiến trình % lên hạng tiếp theo
+- Payment method selector — 4 lựa chọn với UI riêng từng loại
+- Chart.js — line/bar/doughnut cho dashboard & báo cáo
 
-### Print Hóa đơn
-- ✅ Format thermal 80mm (text-based)
-- ✅ Mã hóa đơn tự động (HD + timestamp)
-- ✅ Thông tin cửa hàng, bàn, khách
-- ✅ Chi tiết sản phẩm (tên × số lượng = tổng)
-- ✅ Cộng chiết khấu, thành tiền
-- ✅ Cảm ơn + SĐT liên hệ
-- ✅ CSS @media print tối ưu
+## Bảo mật & Validation
 
-### Admin Dashboard
-- ✅ Tổng quan thống kê
-- ✅ 5 hóa đơn gần đây (bảng)
-- ✅ Liên kết nhanh tới admin pages
+- Kiểm tra auth trước khi truy cập mọi trang protected (cashier/admin)
+- Kiểm tra ca làm việc đang mở trước khi cho phép bán hàng
+- Escape HTML cho mọi giá trị nội suy vào `innerHTML` (chống XSS tự-inject qua tên sản phẩm/khách hàng/SKU)
+- Validate số điện thoại khách hàng (10 số, bắt đầu bằng 0), chặn trùng SĐT
+- Validate mã vạch/SKU không trùng lặp khi thêm/sửa sản phẩm
+- Sanitize toàn bộ input trước khi hiển thị
 
-### Quản lý Menu
-- ✅ Form thêm/sửa (tên, nhóm, giá, đơn vị)
-- ✅ Bảng danh sách (tìm kiếm, sửa, xóa)
-- ✅ Validate form (tên, giá > 0)
-- ✅ Thông báo thành công
+## Responsive Design
 
-### Thống kê Báo cáo
-- ✅ Bộ lọc: từ ngày, đến ngày, nhóm (tuỳ chọn)
-- ✅ Tóm tắt: số hóa đơn, tổng doanh thu, trung bình
-- ✅ Bảng chi tiết (mã HĐ, bàn, khách, số lượng, tiền, thời gian)
-- ✅ In báo cáo qua `window.print()`
-
-### Security & Validation
-- ✅ Kiểm tra auth trước khi truy cập (protected pages)
-- ✅ Phân biệt cashier/admin (role check)
-- ✅ Sanitize input (không nội suy HTML trực tiếp)
-- ✅ Validate form (tên bàn, số lượng, giá > 0)
-- ✅ sessionStorage cho dữ liệu print tạm
-
-### Responsive Design
-- ✅ 320px — mobile (1 cột, navbar collapse)
-- ✅ 576px — small tablet
-- ✅ 768px — tablet (2-3 cột)
-- ✅ 1024px — desktop (3 cột full layout)
-- ✅ 1200px+ — large screen
-- ✅ Bootstrap 5.3.3 grid system
-- ✅ clamp() cho font-size/padding
-
-### Performance
-- ✅ Load < 2s (chỉ 3 JS file nhỏ)
-- ✅ Tính toán < 100ms (vanilla JS)
-- ✅ No build, no compilation
-- ✅ Client-side only (no server calls)
-
-## Sử dụng lại template
-
-### Thay đổi dữ liệu
-Chỉnh sửa `assets/js/seed-data.js`:
-
-```javascript
-const SEED_DATA = {
-  categories: [
-    { id: 1, name: 'Tên danh mục' },
-    // ...
-  ],
-  products: [
-    { id: 1, name: 'Tên sản phẩm', categoryId: 1, price: 50000, unit: 'suất', image: 'URL' },
-    // ...
-  ],
-  users: [
-    { username: 'user', password: '1234', role: 'cashier', name: 'Tên' },
-    // ...
-  ]
-};
-```
-
-### Thay đổi branding
-- **Tên cửa hàng**: Tìm "POS Bán Hàng" trong HTML, đổi thành tên của bạn
-- **Màu sắc**: CLEAN-CORPORATE là mặc định — xem `assets/css/style.css` `:root` để đổi token khác
-- **Logo**: Thay ảnh `.svg`/`.png` trong `assets/img/`
-- **Liên hệ**: Cập nhật SĐT, email, địa chỉ ở `gioi-thieu.html`, `lien-he.html`
-
-### Deployment
-Gói A tĩnh — copy toàn bộ folder `shop-banhang/` lên hosting:
-- FTP: Upload folder lên public_html/shop-banhang/
-- GitHub Pages: Push repo, enable Pages
-- Netlify: Drag & drop folder
-- Cloudflare Pages: Connect repo
-- Vercel: Import project
-
-**Không cần PHP, database, build step — chỉ cần web server để serve static files.**
-
-## Browser Support
-- Chrome/Edge 90+
-- Firefox 88+
-- Safari 14+
-- Mobile Safari (iOS 14+)
-- Android Chrome
-
-**Yêu cầu:** localStorage enabled
+- 320px — mobile (1 cột, navbar collapse, payment methods 2×2)
+- 768px — tablet (cashier layout chuyển 1 cột, chart grid 1 cột)
+- 1024px+ — desktop (layout 3 cột đầy đủ cho `lap-don.html`)
+- Bootstrap 5.3.3 grid + `clamp()` cho font-size/padding
 
 ## Giới hạn (Gói A tĩnh)
-- ❌ Quản lý nhân viên thêm (chỉ 2 tài khoản demo)
-- ❌ Quản lý bàn ăn (sơ đồ)
-- ❌ Lịch sử dài hạn (chỉ phiên hiện tại khi reload trang)
-- ❌ Xuất Excel (chỉ in PDF via browser)
-- ❌ Multi-language (chỉ Tiếng Việt)
-- ❌ Backup/Sync (localStorage chỉ local)
 
-**Để nâng cấp:** Chuyển sang **Gói B** (React SPA + PHP API + SQLite) hoặc **Gói C** (custom full-stack).
+- ❌ Quản lý nhân viên thêm (chỉ 2 tài khoản demo, không có trang tạo tài khoản mới)
+- ❌ Quản lý bàn ăn (sơ đồ bàn)
+- ❌ Đa chi nhánh, tích hợp sàn TMĐT
+- ❌ Backup/sync dữ liệu giữa các thiết bị (localStorage chỉ local)
+- ❌ Thanh toán/QR/Bluetooth print thật (đều là mock UI cho mục đích demo)
 
-## Cấu hình
+**Để nâng cấp lên hệ thống thật (đa người dùng, dữ liệu tập trung, thanh toán thật):** chuyển sang **Gói B** (React SPA + PHP API + SQLite) hoặc **Gói C** (custom full-stack).
 
-### CSS Variables (CLEAN-CORPORATE Token)
-```css
---accent: #0f6d82;        /* Teal chính */
---accent-h: #0a5460;      /* Hover */
---navy: #0a2129;          /* Navy đậm */
---dark: #141210;          /* Background tối */
---bg: #faf9f7;            /* Nền nhạt */
-```
+## Tuỳ biến
 
-Để đổi sang token khác (ORGANIC-EARTH, LUXE-DARK, v.v.), update 5 biến này ở `:root`.
+### Thay đổi dữ liệu seed
+Chỉnh sửa `assets/js/seed-data.js` — mảng `SEED_PRODUCTS`, `SEED_CUSTOMERS`, `SEED_CATEGORIES`, `SEED_USERS`, `SEED_SUPPLIERS`. Xoá `localStorage` (DevTools → Application → Storage) để seed lại từ đầu.
 
-### Seed Data Expiration
-Hóa đơn không có thời hạn trong template này. Nếu muốn tính `expiresAt`, thêm logic vào `renderReportTable()`.
+### Thay đổi branding
+- **Tên cửa hàng**: tìm "POS Bán Hàng" trong HTML, đổi thành tên của bạn
+- **Màu sắc**: CLEAN-CORPORATE mặc định — xem `:root` trong `assets/css/style.css`
+- **Liên hệ**: cập nhật SĐT/email/địa chỉ ở `gioi-thieu.html`, `lien-he.html`, `in-hoa-don.html`
 
-## Support & FAQ
+### Deployment
+Gói A tĩnh — copy toàn bộ folder `shop-banhang/` lên hosting bất kỳ (FTP/GitHub Pages/Netlify/Cloudflare Pages/Vercel). Không cần PHP, database, hay build step.
 
-**Q: Làm sao để xóa tất cả dữ liệu?**  
-A: Mở DevTools → Application → Storage → LocalStorage → Clear All
+## Browser Support
 
-**Q: Dữ liệu có backup được không?**  
-A: Có, export localStorage qua JS:
-```javascript
-const data = localStorage;
-const json = JSON.stringify(Object.assign({}, data));
-// Save json to file
-```
+Chrome/Edge 90+, Firefox 88+, Safari 14+, Mobile Safari (iOS 14+), Android Chrome. Yêu cầu `localStorage` enabled.
 
-**Q: Tôi có thể custom ngành (bán quần áo, thuốc...) không?**  
-A: Có, thay đổi `bp_categories` và `bp_products` trong seed-data.js, cập nhật tên/ảnh/giá/danh mục.
+## FAQ
 
-**Q: Làm sao để tích hợp thanh toán thật?**  
-A: Template này là Gói A (tĩnh). Để thanh toán thật, nâng cấp lên **Gói B** (React + PHP + cổng thanh toán Sepay/Momo).
+**Q: Vì sao tôi không vào được `lap-don.html`?**
+A: Cần mở ca làm việc trước ở `ca-lam-viec.html`.
+
+**Q: Làm sao xoá toàn bộ dữ liệu demo?**
+A: DevTools → Application → Storage → Clear site data. Lần mở tiếp theo sẽ tự seed lại.
+
+**Q: Sản phẩm biến thể hoạt động ra sao?**
+A: Bật switch "Có biến thể" ở `admin/ql-menu.html`, nhập từng tổ hợp size/màu/SKU/tồn kho — khi bán, hệ thống bắt buộc chọn đúng 1 biến thể trước khi thêm vào đơn.
+
+**Q: Có thể custom sang ngành khác (quần áo, thuốc...) không?**
+A: Có — đổi `SEED_CATEGORIES`/`SEED_PRODUCTS` trong `seed-data.js`. Field `variants` (size/màu) áp dụng được cho hầu hết ngành bán lẻ có biến thể.
 
 ## License
 
@@ -300,5 +238,5 @@ Template này là phần của dự án webdrop.store. Được cung cấp dư�
 
 ---
 
-**Version:** 1.0 (Sept 2026)  
+**Version:** 2.0 (Sept 2026) — nâng cấp toàn diện từ 8 trang cơ bản lên 15 trang POS chuyên nghiệp
 **Created by:** webdrop.store POS Team

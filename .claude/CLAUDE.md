@@ -87,7 +87,7 @@ Xây dựng và bán 3 nhóm sản phẩm chính:
 - [x] Blog / Forum — **DONE** (`Blogs/` 6 templates — `blog-ca-nhan` + 5 mới batch 2026-08-29, xem ghi chú kỹ thuật, `Forums/` `forum-cong-dong`. Cả 5 template Blog mới đã có WebDeploy đầy đủ, build 2026-09-07)
 - [x] Nha khoa — **DONE** (10 template: `Dental-Clinics/` — 10 Identity Token khác nhau: LUXE-DARK, FRESH-MINIMAL, BOLD-EDITORIAL, GEOMETRIC-MODERN, SOFT-PASTEL, DARK-ENERGY, CLEAN-CORPORATE, ZEN-MINIMAL, RETRO-BOLD, GLASS-MODERN)
 - [x] Shop bán hàng — **DONE** (21 templates — 17 đã có WebDeploy đầy đủ (thêm `shop-dong-ho` build 2026-09-03), 3 còn lại (`shop-trang-suc`/`shop-thu-cung`/`shop-ruou-vang`) mới chỉ có bản tĩnh — `shop-ban-hang/` ORGANIC-EARTH, `shop-thoi-trang/` BOLD-EDITORIAL, `shop-giay-dep/` DARK-ENERGY, `shop-quan-ao/` SOFT-PASTEL, `shop-rau-xanh/` WARM-ARTISAN, `shop-thuc-pham-sach/` FRESH-MINIMAL, `shop-tui-sach/` LUXE-DARK, `shop-may-tinh/` GLASS-MODERN, `shop-may-anh/` GEOMETRIC-MODERN, `shop-ami-mobile/` RETRO-BOLD, `shop-quan-ao-ami/` ZEN-MINIMAL (WebDeploy build 2026-07-24), `shop-my-pham/` LUXE-DARK variant Rose Gold (WebDeploy build 2026-07-28), `shop-do-gia-dung/` WARM-ARTISAN variant Terracotta+Sage (WebDeploy build 2026-07-29), `shop-do-choi/` SOFT-PASTEL variant Sky Blue+Coral (WebDeploy build 2026-07-29, phát hiện lại 2026-08-04), `shop-van-phong-pham/` CLEAN-CORPORATE fresh token Steel Blue (WebDeploy build 2026-08-06), `shop-the-thao/` DARK-ENERGY variant Signal Orange (WebDeploy build dở dang phát hiện + fix hoàn chỉnh 2026-08-06), `shop-noi-that/` ZEN-MINIMAL variant Walnut Brown (WebDeploy build 2026-08-29), `shop-dong-ho/` GLASS-MODERN variant Deep Teal (WebDeploy build 2026-09-03, xem ghi chú kỹ thuật bên dưới). **Batch 5 template Shop mới (2026-08-29)**: `shop-noi-that/`, `shop-trang-suc/` LUXE-DARK variant 3 Amethyst, `shop-thu-cung/` GEOMETRIC-MODERN variant Coral, `shop-dong-ho/`, `shop-ruou-vang/` RETRO-BOLD variant Burgundy — cả 5 build qua `shop-template-builder`, xem block "5 template Shop mới" riêng bên dưới — xem bảng **WebDeploy Projects**)
-- [x] POS / Quản lý bán hàng — **DONE** (1 template: `POS/shop-banhang/` CLEAN-CORPORATE, Gói A tĩnh, 8 trang: login + lập đơn cashier + in hóa đơn thermal + 3 admin pages (dashboard/quản lý menu/thống kê) + 2 public (giới thiệu/liên hệ), localStorage dữ liệu, 20 sản phẩm seed, 2 tài khoản demo, Bootstrap 5.3.3, DM Sans, không build system. Xem agent `shopBH-template-builder` trong mục Agents.)
+- [x] POS / Quản lý bán hàng — **DONE** (1 template: `POS/shop-banhang/` CLEAN-CORPORATE, Gói A tĩnh, nâng cấp lên **v2.0 — 15 trang** (2026-09-08, xem ghi chú kỹ thuật): barcode scanning, giữ đơn tạm (hold orders), đa phương thức thanh toán (tiền mặt/chuyển khoản/QR/thẻ), trả hàng/hoàn tiền, quản lý ca làm việc, biến thể sản phẩm (size/màu), nhập kho, kiểm kê tồn kho, CRM khách hàng (tích điểm + 4 hạng thành viên), dashboard Chart.js. localStorage dữ liệu, 20 sản phẩm seed (3 có biến thể), 10 khách hàng đủ 4 hạng, ~30 đơn hàng trải 7 ngày, 2 tài khoản demo, Bootstrap 5.3.3, DM Sans, không build system. Xem agent `shopBH-template-builder` (v2.0) trong mục Agents.)
 - [ ] Landing page sản phẩm / Dịch vụ
 - [ ] CV cá nhân — **PLANNING** (CV Builder SaaS — xem `.claude/plans/cv-template-saas.md`). Nền tảng cho phase này đã có sẵn: hệ thống tài khoản khách hàng (`CustomerAccount`) — xem ghi chú kỹ thuật bên dưới.
 
@@ -450,67 +450,50 @@ Mỗi site 8 trang, cấu trúc thống nhất tự thiết kế cho ngách blog
 
 **Cả 5 site đã có WebDeploy đầy đủ (build 2026-09-07)** — cùng đợt với 5 template Cafe mới, xem ghi chú kỹ thuật đầy đủ ở block "5 template Cafe mới" phía trên (bug JSX-trong-file-`.ts` ở `blog-am-thuc`, verify chung cho cả 10 site).
 
-### POS Bán hàng — Template quản lý bán hàng (2026-09-08)
+### POS Bán hàng — Template quản lý bán hàng (v1 2026-09-08, nâng cấp v2.0 cùng ngày)
 
-`Sources/templates/web/POS/shop-banhang/` — Template tĩnh **Gói A** cho quản lý bán hàng: nhà hàng, quán ăn, café, shop bán lẻ. **Không WebDeploy** (chỉ template HTML tĩnh, không React/PHP).
+`Sources/templates/web/POS/shop-banhang/` — Template tĩnh **Gói A** cho quản lý bán hàng chuyên nghiệp: nhà hàng, quán ăn, café, shop bán lẻ — tham khảo KiotViet/Sapo POS/Square. **Không WebDeploy** (chỉ template HTML tĩnh, không React/PHP). Nâng cấp v2.0 từ 8 trang cơ bản lên **15 trang** theo spec agent `shopBH-template-builder.md` (mới, tách từ `shop-template-catalog-builder`+`shop-template-builder`).
 
-**Cấu trúc 8 trang:**
-- `index.html` — Login (2 tài khoản: nv01/123456 cashier, admin/admin123 admin)
-- `lap-don.html` — Cashier: 3-column layout (menu trái + sản phẩm giữa + hóa đơn phải)
-- `in-hoa-don.html` — Print hóa đơn thermal 80mm
-- `admin/index.html` — Dashboard quản lý (tổng quan + 5 hóa đơn gần đây)
-- `admin/ql-menu.html` — CRUD sản phẩm (20 seed items × 5 danh mục)
-- `admin/thong-ke.html` — Báo cáo doanh thu (lọc ngày, tính tổng/trung bình)
-- `gioi-thieu.html` — Thông tin cửa hàng + FAQ 7 câu
-- `lien-he.html` — Form liên hệ + thông tin, FAQ 4 câu
+**Cấu trúc 15 trang** — Cashier: `index.html` (login) + `lap-don.html` (POS 3-cột, nâng cấp lớn nhất) + `in-hoa-don.html` + `tra-hang.html` (mới) + `ca-lam-viec.html` (mới). Admin: `admin/index.html` (dashboard Chart.js) + `admin/ql-menu.html` (biến thể) + `admin/nhap-kho.html` (mới) + `admin/kiem-kho.html` (mới) + `admin/ql-khach-hang.html` (mới) + `admin/thong-ke.html` (nâng cấp). Public: `gioi-thieu.html` + `lien-he.html` + `chinh-sach-bao-mat.html` (mới) + `dieu-khoan.html` (mới, footer-only).
 
-**Tính năng Cashier:**
-- Lọc menu theo danh mục (6 pill)
-- Tìm kiếm sản phẩm real-time
-- Thêm vào đơn (click 1 lần), điều chỉnh số lượng (+/-)
-- Chiết khấu theo % hoặc tiền cố định
-- Nhập số bàn, tên khách (tuỳ chọn)
-- Thanh toán → auto redirect in-hoa-don
-- Huỷ đơn (xác nhận)
+**Tính năng v2.0 (thêm mới so với v1):**
+- `lap-don.html`: ô quét mã vạch (Enter = thêm luôn, hasVariants → mở modal biến thể trước), tabs giữ đơn (hold orders — tối thiểu 2 đơn đồng thời, tự động hold đơn hiện tại khi chuyển tab), tìm khách theo SĐT + autocomplete (hiện tên/hạng/điểm), 4 phương thức thanh toán (tiền mặt tự tính tiền thối / chuyển khoản / QR mock SVG / thẻ), kiểm tra đã mở ca chưa (`Auth.requireOpenShift()` redirect `ca-lam-viec.html`)
+- `tra-hang.html`: tìm hóa đơn gốc, chọn SP + số lượng trả (chặn vượt số đã mua trừ đã trả trước — tính theo từng sản phẩm/biến thể qua `bp_returns`), chọn lý do, tự tính hoàn tiền, cộng lại tồn kho
+- `ca-lam-viec.html`: mở ca (tiền đầu ca, chặn nếu đã có ca đang mở) / đóng ca (đếm tiền thực tế, chặn nếu bỏ trống, tự tính chênh lệch `counted - expected`, dương=dư xanh/âm=thiếu đỏ) → logout + redirect login
+- `admin/ql-menu.html`: thêm giá vốn/tồn kho/tồn kho tối thiểu; switch "Có biến thể" (custom `.bp-switch` — checkbox thật bị ẩn `opacity:0`, click vào `<label>`/slider mới toggle được, **lưu ý khi test bằng Playwright: `page.check()` sẽ timeout vì input không "visible", phải click `.bp-switch-slider`**) mở bảng con size/màu/SKU/tồn kho riêng từng biến thể
+- `admin/nhap-kho.html`: chọn/thêm nhanh NCC, nhiều dòng SP + số lượng + đơn giá (mặc định = giá vốn), cộng đúng tồn kho SP/biến thể tương ứng, lịch sử phiếu nhập
+- `admin/kiem-kho.html`: đối chiếu tồn kho hệ thống vs thực tế đếm (mỗi biến thể là 1 dòng riêng), filter "chỉ hiện chênh lệch", xác nhận ghi đè tồn kho + lưu lịch sử kiểm kê
+- `admin/ql-khach-hang.html`: CRM — badge hạng tự động theo `totalSpent` (Đồng <2tr/Bạc 2-10tr/Vàng 10-30tr/Kim Cương >30tr), điểm tích lũy (1 điểm/10.000đ), xem chi tiết lịch sử đơn hàng + progress bar lên hạng tiếp theo
+- `admin/index.html` + `admin/thong-ke.html`: Chart.js (CDN `https://cdn.jsdelivr.net/npm/chart.js`) — line 7 ngày + donut theo nhóm SP (dashboard), bar theo ngày trong kỳ (thống kê) + cột lợi nhuận (doanh thu − giá vốn hiện tại, xấp xỉ vì không lưu costPrice tại thời điểm bán) + báo cáo theo nhân viên (đối chiếu `bp_shifts.cashierUsername`)
 
-**Tính năng Admin:**
-- Quản lý menu: thêm/sửa/xóa sản phẩm, tìm kiếm
-- Thống kê: lọc ngày từ/đến, tính doanh thu, bảng chi tiết, in báo cáo
+**JS modules (8 file, tách theo spec)**: `seed-data.js` (data layer — mọi hàm CRUD localStorage + format/escape, export `window.POS`) + `auth.js` (`window.Auth`) + `pos.js` (`window.Cashier`) + `inventory.js` (`window.Inventory`) + `crm.js` (`window.CRM`) + `reports.js` (`window.Reports`) + `shift.js` (`window.Shift`) + `returns.js` (`window.Returns`). **`main.js` của v1 đã bị xoá hẳn** — toàn bộ trách nhiệm (utils/data access) đã chuyển vào `seed-data.js`.
 
-**Dữ liệu & Seed:**
-- localStorage schema: `bp_auth_session`, `bp_products`, `bp_categories`, `bp_orders`, `bp_users`, `bp_contacts`
-- **20 sản phẩm** × 5 danh mục (Cơm/Mì-Phở/Nước/Tráng miệng/Khác), giá 15k–120k
-- **5 danh mục** seed sẵn
-- Ảnh Unsplash verified HTTP 200
+**Dữ liệu & Seed (mở rộng)**: localStorage thêm `bp_customers`, `bp_held_orders`, `bp_shifts`, `bp_stock_imports`, `bp_returns`, `bp_stocktakes`, `bp_suppliers` cạnh schema v1. **20 sản phẩm** (5 danh mục, giữ nguyên tên/giá cũ phần lớn) — **3 sản phẩm có biến thể** (Cà Phê Sữa Đá/Trà Đào Cam Sả/Trà Sữa Trân Châu — field `size`+`color` dùng cho cặp size cốc S/M/L × Đá/Nóng, biến tấu hợp lý cho ngành F&B thay vì literal "size áo/màu áo" trong spec gốc), 3 sản phẩm cố ý để tồn kho thấp demo cảnh báo. **10 khách hàng** đủ 4 hạng. **~30 đơn hàng + 7 ca làm việc** sinh tự động trải 7 ngày gần nhất qua hàm generator `seedGenerateHistory()` (dùng `Math.random()`, không hardcode ngày cố định — tự làm mới mỗi lần xoá localStorage) — ca hôm nay cố ý đóng sớm buổi sáng để mặc định KHÔNG có ca nào đang mở lúc mới cài (đúng luồng bắt buộc mở ca khi đăng nhập lần đầu). 2 phiếu nhập kho mẫu, 1 phiếu trả hàng mẫu (liên kết đúng 1 đơn thật, đã cộng lại tồn kho khớp).
 
-**Design & Tech:**
-- Bootstrap 5.3.3 CDN
-- DM Sans font (Google Fonts)
-- CLEAN-CORPORATE token: Teal `#0f6d82` + Navy `#0a2129`
-- CSS prefix: `bp-`
-- Responsive: 320px–1920px (mobile-first)
-- Vanilla JavaScript (node --check pass)
-- No build system, no server — mở thẳng `.html` trên browser
+**Bug tự phát hiện & fix trong vòng lặp review** (theo đúng rule bug-loop bắt buộc của dự án):
+1. `todayISODate()` ban đầu dùng `.toISOString().slice(0,10)` (giờ UTC) trong khi `dateOnly()` (dùng khắp nơi để nhóm đơn/báo cáo theo ngày) dùng giờ ĐỊA PHƯƠNG — lệch ngày vào khung giờ 00:00–07:00 tại Việt Nam (UTC+7), khiến đơn hàng buổi sáng sớm không tính vào thống kê "hôm nay". Fix: `todayISODate()` gọi lại `dateOnly(new Date())`.
+2. `input.valueAsDate = new Date()` (2 chỗ: `admin/nhap-kho.html` ngày nhập, `admin/thong-ke.html` bộ lọc ngày mặc định) — thuộc tính này diễn giải theo giờ UTC, cùng lỗi lệch ngày buổi sáng sớm. Fix: đổi sang gán `.value` bằng chuỗi `POS.dateOnly()`/`POS.todayISODate()` (giờ địa phương).
+3. `pos.js::scanBarcode()` gọi `addItem()` không try/catch nội bộ — nếu sản phẩm quét trùng mã vạch nhưng hết tồn kho, exception ném ra không được `lap-don.html` bắt (không có try/catch ở nơi gọi), lỗi console im lặng không báo người dùng. Fix: `scanBarcode()` tự bắt lỗi, trả `{status:'error', message}`, `lap-don.html` xử lý thêm nhánh này.
+4. `admin/kiem-kho.html::renderRows()` — bug tự gây ra khi đang fix lỗi escape HTML khác: đọc `document.querySelectorAll('.count-input')` để giữ lại giá trị người dùng đã nhập dở SAU KHI đã `tbody.innerHTML=''` (đã xoá sạch DOM) → mọi lần bật/tắt filter "chỉ hiện chênh lệch" sẽ xoá mất số liệu kiểm kê đang nhập dở. Fix: đọc input cũ TRƯỚC khi xoá.
+5. Reflected-self-XSS phòng ngừa: `admin/kiem-kho.html` dùng `key` (ghép từ `productId::variantSku`) làm attribute `data-key` chưa escape — đổi sang tra cứu bằng so sánh JS trực tiếp (`Array.find`) thay vì `querySelector` nội suy chuỗi, loại bỏ hoàn toàn injection surface thay vì chỉ escape.
+6. Thiếu validate: mã vạch trùng giữa 2 sản phẩm và SKU biến thể trùng trong cùng 1 sản phẩm (cả 2 đều khiến `.find()` chỉ khớp bản ghi đầu, bản ghi sau "biến mất" khỏi luồng bán hàng) — thêm 2 check chặn lưu ở `admin/ql-menu.html`.
 
-**Không có (Gói A tĩnh):**
-- ❌ Quản lý nhân viên thêm (chỉ 2 tài khoản demo)
-- ❌ Quản lý bàn ăn
-- ❌ Lịch sử lâu dài (chỉ phiên hiện tại)
-- ❌ Xuất Excel
-- ❌ Multi-language
-- ❌ Backup/sync
+**Verify**: `node --check` cả 8 file JS + toàn bộ `<script>` inline trong 15 trang HTML (pass), script kiểm tra tag-balance/id-reference/link nội bộ tự viết (pass, 0 lỗi), và **smoke test Playwright thật** (không phải chỉ đọc code) qua toàn bộ luồng: đăng nhập → mở ca (chặn khi đã mở ca) → quét mã vạch (SP thường + SP biến thể mở modal) → giữ đơn/chuyển tab → tìm khách theo SĐT → thanh toán tiền mặt (đúng tiền thối, đúng điểm tích lũy) → in hóa đơn → trả hàng (đúng số tiền hoàn, chặn trả vượt) → dashboard admin (2 chart) → thêm SP có biến thể → nhập kho (đúng cộng tồn kho) → kiểm kê (đúng ghi đè + phát hiện chênh lệch) → đóng ca (đúng dấu chênh lệch) → đăng nhập lại đúng redirect theo trạng thái ca — **0 lỗi console trong toàn bộ luồng**.
 
-**Checklist chuẩn:**
-- ✅ JS syntax: `node --check` pass
-- ✅ HTML: 1 h1/trang, semantic, tag-balance
-- ✅ Bootstrap 5.3.3 + DM Sans
-- ✅ CLEAN-CORPORATE token (Teal/Navy)
-- ✅ Responsive: 320px–1920px, clamp() padding/font
-- ✅ localStorage: login/products/orders persistent
-- ✅ Tính toán: tổng tiền, chiết khấu, doanh thu đúng
-- ✅ Filter/search: tìm kiếm, lọc danh mục, lọc ngày
-- ✅ Print CSS: in hóa đơn + báo cáo đẹp
-- ✅ Page protection: redirect chưa login
-- ✅ Form validation: tên bàn, số lượng, giá > 0
-- ✅ Sanitize input: không nội suy HTML trực tiếp
-- ✅ README.md: hướng dẫn dùng + API localStorage
+**`shop-banhang` — WebDeploy Gói B đầy đủ (build 2026-09-08)**: `Sources/WebDeploy/shop-banhang/` — React SPA (website nội bộ nhân viên + admin) + PHP API + SQLite, chuyển đổi từ bản tĩnh 15 trang ở trên. **Scaffold nền `company`** (không phải `shop` — type `shop` mang theo toàn bộ hạ tầng storefront/cart/checkout/SePay webhook không liên quan tới 1 hệ POS nội bộ, nên chọn nền trung lập rồi tự viết toàn bộ entity theo đúng CLAUDE.md rule cho phép agent tự quyết định kiến trúc triển khai miễn giữ đúng UI/behavior template).
+
+**Auth tái dùng ĐÚNG core `users`** (không bảng auth riêng) — `role='user'` = thu ngân (chỉ vào được `/pos`, `/tra-hang`, `/ca-lam-viec`, 4 trang public), `role='superadmin'` = quản lý (`/admin` toàn quyền). Do core `users` không có cột `username`, đăng nhập chuyển sang email (`nv01@pos-banhang.local` / `sysadmin@admin.com`, cùng mật khẩu `123456`) — sai khác duy nhất so với bản tĩnh (vốn dùng `nv01`/`admin`), bắt buộc vì ràng buộc schema lõi bất biến. Admin SPA tự chặn UI (`AccessDenied` nếu `role!=='superadmin'`) — lớp phòng vệ thật nằm ở backend: **mọi route quản trị (Product/Customer CRUD, Stock, Report, Stats, Settings, HeroSlide, Media, Upload, Unsplash) đều `Auth::requireRole('superadmin')`**, route POS (`/pos/*`, `/shifts/*`, `/returns/*`, `/orders/find/:code`) chỉ `Auth::require()` (mọi role đã đăng nhập).
+
+**Schema mở rộng**: `categories`, `products`(+`cost_price`/`barcode` unique partial index/`stock`/`min_stock`/`has_variants`), `product_variants`(sku unique/size/color/stock/price riêng), `customers`(phone unique, `total_spent`/`points` — hạng thành viên KHÔNG lưu cột, luôn tính động qua helper `posCalcTier()` dùng chung Database.php+CustomerController để tránh lệch ngưỡng), `shifts`(user_id FK — đóng/mở chỉ thao tác trên ca của CHÍNH session đang đăng nhập, không tin id do client gửi), `orders`+`order_items` (code sinh sau khi có `lastInsertId` — `'HD'+date+id` đảm bảo unique tuyệt đối), `suppliers`, `stock_imports`+`stock_import_items`, `returns`+`return_items`, `stocktakes`.
+
+**Toàn vẹn dữ liệu — OrderController::store()**: KHÔNG tin giá/tên/đơn vị client gửi — recompute 100% từ `products`/`product_variants` trong DB trước khi tính subtotal/discount/total. Trừ tồn kho dùng `UPDATE ... WHERE stock >= ?` + check `rowCount()` (helper `Database::executeAffected()`) trong 1 transaction — bất kỳ item nào không đủ hàng thì `rollBack()` toàn bộ, verify bằng test thật (đặt qty=9999 → lỗi đúng, tồn kho trước/sau không đổi). `ReturnController::process()` cùng pattern — tính `max_returnable` server-side từ tổng đã mua trừ tổng đã trả (JOIN `return_items`+`returns`), chặn trả vượt, cộng lại tồn kho atomic.
+
+**Frontend**: `website/` — `PosPage.tsx` port đầy đủ nghiệp vụ `pos.js` (barcode scan, modal biến thể tự dựng bằng Bootstrap CSS class thuần không phụ thuộc `bootstrap.js` Modal API — chỉ toggle qua React state, giữ đúng hiệu ứng nhờ Bootstrap CSS `.modal.show`, tabs giữ đơn **chỉ lưu trong React state** — không persist localStorage/DB theo đúng yêu cầu riêng của task này, khác hẳn hành vi `bp_held_orders` localStorage của bản tĩnh). `AppShell` (rule 18) ẩn `<Header>` trên `/` (login) và `/pos/in-hoa-don/:code` (in hóa đơn) — khớp đúng 2 trang này KHÔNG có navbar chuẩn trong bản tĩnh; `<Footer>` chỉ hiện ở 4 trang public. `admin/` — `ProductsPage.tsx`/`CustomersPage.tsx` gộp form+list+detail trên CÙNG 1 trang (khác pattern List/Form tách route thường dùng ở site khác) vì `ql-menu.html`/`ql-khach-hang.html` bản tĩnh vốn thiết kế 1-trang-duy-nhất — giữ đúng fidelity thay vì áp khuôn CRUD chuẩn. Dashboard/Thống kê dùng `chart.js`+`react-chartjs-2` (thêm vào `admin/package.json`, không có sẵn trong scaffold).
+
+**Bug tự phát hiện & fix trong self-review**: (1) `Database.php::seedSettings()` bản scaffold gốc dùng cột `"group"` thay vì `grp` — đúng lỗi rò rỉ nghiêm trọng đã từng xảy ra ở site khác, phát hiện khi đọc lại scaffold trước khi seed, sửa ngay trong bản site này trước khi seed lần đầu (không đụng `_scaffold/` gốc). (2) `seedHistory()` sinh lịch sử 7 ngày bằng `mt_rand()` thuần có xác suất ~3% KHÔNG sinh ra đơn nào chứa Cà Phê Sữa Đá (product_id=11) → mất mẫu cho tính năng trả hàng — sửa: ép 1 đơn ngày offset=5 luôn chứa item này, đảm bảo `returns`/`return_items` luôn có ≥1 bản ghi sau seed (verify lại nhiều lần chạy). (3) `Dashboard.tsx`/`CustomersPage.tsx` (admin) ban đầu thiếu cột "Khách hàng" (bảng hóa đơn gần đây) và "Lần mua gần nhất" (bảng khách hàng) so với đúng cấu trúc bảng trong `admin/index.html`/`admin/ql-khach-hang.html` bản tĩnh — phát hiện qua tự đối chiếu lại HTML gốc, bổ sung cột + JOIN cần thiết ở `ReportController::dashboard()`/`CustomerController::index()`. (4) `build.mjs` bị lặp block "Build admin" + `mkdirSync`/`.gitkeep` + dòng log hướng dẫn — bug scaffold tái diễn quen thuộc (đã gặp nhiều lần ở batch Portfolio/Cafe khác), dedupe về đúng 1 lần. (5) toàn bộ label/input tự viết (không phải scaffold có sẵn) rà lại thiếu `htmlFor`/`id` — bổ sung đủ ở `ProductsPage`/`CustomersPage`/`ReportsPage`/`StockImportPage`/`StocktakePage`/`UserForm`/`Settings.tsx` (admin); các file scaffold có sẵn cùng lỗi (`HeroSlideForm.tsx`, `ProfilePage.tsx`, admin `LoginPage.tsx`) CHỦ ĐÍCH không đụng vì thuộc `_scaffold/`, không phải do site này viết ra.
+
+**Verify**: `php -l` toàn bộ API + BOM check 0 lỗi, `tsc -b && vite build` cả `website/`+`admin/` 0 lỗi (2 lần, trước và sau vòng self-review fix), smoke-test sống qua PHP built-in server với router mô phỏng `.htaccess` — cả trên source (`api/` trực tiếp) lẫn trên chính `_output-deploy/` đã build qua `build.mjs` thật: login cashier/admin đúng role, chặn 401/403 đúng chỗ (cashier gọi `/products`/`/settings` → 403; không cookie → 401), `/public/settings` xác nhận KHÔNG lộ `smtp`/`cloudinary`/`integrations`, mở ca → checkout trừ đúng tồn kho (kể cả biến thể) → checkout vượt tồn kho rollback đúng (tồn kho không đổi) → trả hàng cộng lại đúng tồn kho + chặn trả vượt → nhập kho cộng đúng → kiểm kê ghi đè đúng + đếm chênh lệch đúng → đóng ca tính đúng dấu chênh lệch (dư/thiếu/khớp) → dashboard/thống kê trả đúng số liệu tổng hợp. Seed mặc định: 2 tài khoản, 20 sản phẩm (3 có biến thể, 10 variant), 5 danh mục, 10 khách hàng đủ 4 hạng, ~30 đơn/7 ca (ca hôm nay đóng sớm, không có ca mở sẵn), 2 phiếu nhập kho mẫu, 1 phiếu trả hàng mẫu — khớp đúng số liệu yêu cầu.
+
+**Không có (Gói A tĩnh, không đổi so với v1)**: quản lý nhân viên thêm (chỉ 2 tài khoản demo), quản lý bàn ăn (sơ đồ), đa chi nhánh/tích hợp sàn TMĐT, backup/sync đa thiết bị, thanh toán/QR/in Bluetooth thật (đều mock UI).
+
+**Checklist v2.0**: `node --check` toàn bộ JS + inline script pass, 1 `<h1>`/trang (kể cả `in-hoa-don.html` — thêm `visually-hidden` cho a11y, không bắt buộc theo rule nhưng không vi phạm), tag-balance, id JS khớp HTML, nav đủ 15 trang đúng phân quyền (cashier 5 link/admin 6 link/2 trang pháp lý footer-only/`in-hoa-don.html` chỉ reach qua flow thanh toán), Chart.js CDN đúng allowlist, escape HTML mọi nội suy `innerHTML`, README.md cập nhật đầy đủ.
