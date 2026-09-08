@@ -94,15 +94,18 @@
   // ---------------------------------------------------------------------
   // Helpers ngày giờ / tiền tệ / chuỗi
   // ---------------------------------------------------------------------
-  function todayISODate() {
-    return new Date().toISOString().slice(0, 10);
-  }
-
   function pad2(n) { return String(n).padStart(2, '0'); }
 
+  // Luôn dùng giờ ĐỊA PHƯƠNG (không phải UTC) để "hôm nay" khớp đúng lịch thực tế
+  // của người dùng — .toISOString() lấy giờ UTC nên sẽ lệch ngày vào buổi sáng sớm
+  // ở múi giờ Việt Nam (UTC+7), gây sai lệch khi so khớp với dateOnly() bên dưới.
   function dateOnly(isoOrDate) {
     const d = (isoOrDate instanceof Date) ? isoOrDate : new Date(isoOrDate);
     return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate());
+  }
+
+  function todayISODate() {
+    return dateOnly(new Date());
   }
 
   function formatCurrency(value) {
