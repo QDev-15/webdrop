@@ -102,7 +102,9 @@
     function initPage() {
       if (!Auth.checkAdminAuth()) return;
       Auth.updateUserDisplay();
-      document.getElementById('importDate').valueAsDate = new Date();
+      // Dùng POS.dateOnly() (giờ địa phương) thay vì valueAsDate (giờ UTC) để tránh
+      // lệch ngày vào buổi sáng sớm ở múi giờ Việt Nam (UTC+7)
+      document.getElementById('importDate').value = POS.todayISODate();
       loadSuppliers();
       addImportRow();
       renderHistory();

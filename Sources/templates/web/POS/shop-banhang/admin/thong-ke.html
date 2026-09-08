@@ -170,10 +170,12 @@
     }
 
     function setDefaultDates() {
+      // Dùng POS.dateOnly() (giờ địa phương) thay vì valueAsDate (giờ UTC) để tránh
+      // lệch ngày vào buổi sáng sớm ở múi giờ Việt Nam (UTC+7)
       const today = new Date();
       const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-      document.getElementById('fromDate').valueAsDate = firstDayOfMonth;
-      document.getElementById('toDate').valueAsDate = today;
+      document.getElementById('fromDate').value = POS.dateOnly(firstDayOfMonth);
+      document.getElementById('toDate').value = POS.todayISODate();
     }
 
     function generateReport() {

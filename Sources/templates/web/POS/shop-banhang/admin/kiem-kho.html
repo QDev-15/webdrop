@@ -94,9 +94,11 @@
     function renderRows() {
       const onlyDiff = document.getElementById('onlyDiffFilter').checked;
       const tbody = document.getElementById('stocktakeBody');
-      tbody.innerHTML = '';
 
-      const existingInputs = Array.from(document.querySelectorAll('.count-input'));
+      // Lấy giá trị đã nhập TRƯỚC KHI xoá bảng — để không mất dữ liệu người dùng
+      // đang nhập dở khi bật/tắt bộ lọc "chỉ hiện chênh lệch"
+      const existingInputs = Array.from(tbody.querySelectorAll('.count-input'));
+      tbody.innerHTML = '';
 
       allRows.forEach(row => {
         const key = rowKey(row);
