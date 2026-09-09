@@ -112,6 +112,7 @@ a:hover {
   gap: 2rem;
   align-items: center;
   list-style: none;
+  margin: 0;
 }
 
 .bp-navbar-menu a {
