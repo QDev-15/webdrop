@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { revalidatePath } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 import { getSession } from '@/lib/auth'
+import { slugify } from '@/lib/slugify'
 
 export async function GET(req: NextRequest) {
   const session = await getSession()
@@ -41,7 +42,7 @@ export async function POST(req: NextRequest) {
 
   const template = await prisma.template.create({
     data: {
-      name, slug, description, thumbnail, demoUrl, deployUrl, price, category,
+      name, slug: slugify(slug), description, thumbnail, demoUrl, deployUrl, price, category,
       websitePrice: websitePrice ?? null,
       customPrice:  customPrice  ?? null,
       industryId: industryId || null,

@@ -7,7 +7,7 @@ async function getCheckoutData(slug: string) {
   if (!slug) return { hasWebsite: false, templatePrice: 499000, websitePrice: undefined }
   try {
     const tmpl = await prisma.template.findFirst({
-      where: { slug },
+      where: { slug: { equals: slug, mode: 'insensitive' } },
       select: { hasWebsite: true, price: true, websitePrice: true },
     })
     return {

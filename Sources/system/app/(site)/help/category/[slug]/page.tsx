@@ -10,8 +10,8 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const category = await prisma.helpCategory.findUnique({
-    where: { slug },
+  const category = await prisma.helpCategory.findFirst({
+    where: { slug: { equals: slug, mode: 'insensitive' } },
   });
 
   if (!category) return {};
@@ -40,8 +40,8 @@ export default async function CategoryPage({
   const { slug } = await params;
   const { page: pageParam } = await searchParams;
 
-  const category = await prisma.helpCategory.findUnique({
-    where: { slug, status: 'published' },
+  const category = await prisma.helpCategory.findFirst({
+    where: { slug: { equals: slug, mode: 'insensitive' }, status: 'published' },
   });
 
   if (!category) notFound();

@@ -7,8 +7,8 @@ export async function GET(
 ) {
   try {
     const { slug } = await params;
-    const article = await prisma.helpArticle.findUnique({
-      where: { slug, status: 'published' },
+    const article = await prisma.helpArticle.findFirst({
+      where: { slug: { equals: slug, mode: 'insensitive' }, status: 'published' },
       include: {
         category: { select: { name: true, slug: true } },
         author: { select: { name: true } },

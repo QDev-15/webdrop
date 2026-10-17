@@ -15,7 +15,7 @@ export async function generateMetadata(
   { params }: { params: Promise<{ slug: string }> }
 ): Promise<Metadata> {
   const { slug } = await params
-  const article = ARTICLES.find(a => a.slug === slug)
+  const article = ARTICLES.find(a => a.slug.toLowerCase() === slug.toLowerCase())
   if (!article) return {}
   return {
     title: `${article.title} | WC 2026 — webdrop.store`,
@@ -45,11 +45,11 @@ export default async function ArticleDetailPage(
   { params }: { params: Promise<{ slug: string }> }
 ) {
   const { slug } = await params
-  const article = ARTICLES.find(a => a.slug === slug)
+  const article = ARTICLES.find(a => a.slug.toLowerCase() === slug.toLowerCase())
   if (!article) notFound()
 
   const mostRead = ARTICLES
-    .filter(a => a.slug !== slug)
+    .filter(a => a.slug.toLowerCase() !== slug.toLowerCase())
     .sort((a, b) => b.views - a.views)
     .slice(0, 5)
 

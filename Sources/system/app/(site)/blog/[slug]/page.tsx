@@ -17,15 +17,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   let title = '', desc = '', img = ''
 
   try {
-    const row = await prisma.post.findUnique({
-      where: { slug, status: 'published' },
+    const row = await prisma.post.findFirst({
+      where: { slug: { equals: slug, mode: 'insensitive' }, status: 'published' },
       select: { title: true, excerpt: true, thumbnail: true },
     })
     if (row) { title = row.title; desc = row.excerpt || ''; img = row.thumbnail || '' }
   } catch { /* fallback */ }
 
   if (!title) {
-    const mock = MOCK_POSTS[slug]
+    const mock = MOCK_POSTS[slug.toLowerCase()]
     if (mock) { title = mock.title; desc = mock.excerpt }
   }
   if (!title) return { title: 'Bài viết — webdrop.store' }
@@ -206,15 +206,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   let fromDb = false
 
   try {
-    const row = await prisma.post.findUnique({
-      where: { slug, status: 'published' },
+    const row = await prisma.post.findFirst({
+      where: { slug: { equals: slug, mode: 'insensitive' }, status: 'published' },
       include: { category: { select: { name: true, slug: true } } },
     })
     if (row) { post = row; fromDb = true }
   } catch { /* DB offline */ }
 
   if (!post) {
-    const mock = MOCK_POSTS[slug]
+    const mock = MOCK_POSTS[slug.toLowerCase()]
     if (!mock) notFound()
     post = {
       id: -1,

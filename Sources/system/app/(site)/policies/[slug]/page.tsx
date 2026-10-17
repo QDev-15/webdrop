@@ -229,7 +229,7 @@ export default async function PolicyPage({ params }: { params: Promise<{ slug: s
   const { slug } = await params
   const contact  = await getContact()
   const policies = buildPolicies(contact)
-  const policy   = policies[slug]
+  const policy   = policies[slug.toLowerCase()]
   if (!policy) notFound()
 
   return (

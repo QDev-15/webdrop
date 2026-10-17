@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   try {
     const t = await prisma.template.findFirst({
-      where: { slug, status: 'published' },
+      where: { slug: { equals: slug, mode: 'insensitive' }, status: 'published' },
       select: { name: true, thumbnail: true, category: true, industry: { select: { name: true } } },
     })
     if (t) {
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       }
     }
   } catch { /* fallback */ }
-  const mock = mockTemplates.find(t => t.slug === slug)
+  const mock = mockTemplates.find(t => t.slug.toLowerCase() === slug.toLowerCase())
   const name = mock?.name || 'Template website'
   return {
     title: `${name} — webdrop.store`,
@@ -57,7 +57,7 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
 
   try {
     const row = await prisma.template.findFirst({
-      where: { slug, status: 'published' },
+      where: { slug: { equals: slug, mode: 'insensitive' }, status: 'published' },
       include: { industry: { select: { name: true } } },
     })
     if (row) {
@@ -85,7 +85,7 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
     }
   } catch {
     dbError = true
-    template = mockTemplates.find(t => t.slug === slug)
+    template = mockTemplates.find(t => t.slug.toLowerCase() === slug.toLowerCase())
   }
 
   if (!template) {

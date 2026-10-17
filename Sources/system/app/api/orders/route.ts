@@ -60,16 +60,20 @@ export async function POST(req: NextRequest) {
     } else {
       type = purchaseType === 'website' ? 'website' : 'template'
       const tmpl = templateSlug
-        ? await prisma.template.findFirst({ where: { slug: templateSlug }, select: { price: true, websitePrice: true } })
+        ? await prisma.template.findFirst({ where: { slug: { equals: templateSlug, mode: 'insensitive' } }, select: { slug: true, price: true, websitePrice: true } })
         : null
+      // Lưu slug đúng case thật trong DB (không phải case client gõ trên URL) vào title —
+      // /api/download sau này trích slug từ title để tìm thư mục trên đĩa, mà filesystem Linux
+      // production phân biệt hoa/thường, nên lưu sai case ở đây sẽ làm khách 404 khi tải file.
+      const canonicalSlug = tmpl?.slug || templateSlug
       if (type === 'website') {
         basePrice = tmpl?.websitePrice ? Number(tmpl.websitePrice) : 5000000
-        title = `Website Gói B${templateSlug ? ` (${templateSlug})` : ''}`
+        title = `Website Gói B${canonicalSlug ? ` (${canonicalSlug})` : ''}`
         itemName = 'Website Gói B (web.zip + admin.zip)'
       } else {
         basePrice = tmpl?.price ? Number(tmpl.price) : 499000
-        title = `Template: ${templateSlug || 'unknown'}`
-        itemName = `Template ZIP: ${templateSlug}`
+        title = `Template: ${canonicalSlug || 'unknown'}`
+        itemName = `Template ZIP: ${canonicalSlug}`
       }
     }
 
@@ -244,17 +248,21 @@ async function handleCartOrder(
 
     const slugs = cartItems.map(i => i.slug)
     const templates = await prisma.template.findMany({
-      where: { slug: { in: slugs } },
+      where: { slug: { in: slugs, mode: 'insensitive' } },
       select: { slug: true, name: true, price: true, websitePrice: true, hasWebsite: true },
     })
-    const bySlug = new Map(templates.map(t => [t.slug, t]))
+    // Map key chuẩn hoá lowercase — slug trong DB admin có thể gõ hoa/thường tuỳ ý
+    // (không ép lowercase khi tạo template), nên không thể Map.get() bằng case gốc.
+    const bySlug = new Map(templates.map(t => [t.slug.toLowerCase(), t]))
 
     const resolvedItems = cartItems.map(ci => {
-      const tmpl = bySlug.get(ci.slug)
+      const tmpl = bySlug.get(ci.slug.toLowerCase())
       const wantsWebsite = ci.purchaseType === 'website' && !!tmpl?.hasWebsite && !!tmpl?.websitePrice
       const unitPrice = wantsWebsite ? Number(tmpl!.websitePrice) : (tmpl ? Number(tmpl.price) : 0)
       return {
-        slug: ci.slug,
+        // Case thật từ DB (không phải case client gửi lên) — lưu vào OrderItem.note, /api/download
+        // dùng giá trị này để tìm thư mục trên đĩa (case-sensitive ở Linux production).
+        slug: tmpl?.slug || ci.slug,
         name: tmpl?.name || ci.slug,
         type: (wantsWebsite ? 'website' : 'template') as 'template' | 'website',
         unitPrice,

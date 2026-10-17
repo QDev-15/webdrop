@@ -4,8 +4,8 @@ import { prisma } from '@/lib/prisma'
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
 
-  const profile = await prisma.cvProfile.findUnique({
-    where: { slug },
+  const profile = await prisma.cvProfile.findFirst({
+    where: { slug: { equals: slug, mode: 'insensitive' } },
     include: { data: true },
   })
 

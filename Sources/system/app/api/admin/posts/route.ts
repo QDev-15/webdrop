@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { getSession } from '@/lib/auth'
+import { slugify } from '@/lib/slugify'
 
 export async function GET(req: NextRequest) {
   const session = await getSession()
@@ -66,7 +67,7 @@ export async function POST(req: NextRequest) {
   try {
     const post = await prisma.post.create({
       data: {
-        title, slug, content: content || null, excerpt: excerpt || null,
+        title, slug: slugify(slug), content: content || null, excerpt: excerpt || null,
         thumbnail: thumbnail || null, categoryId: parsedCategoryId,
         status: status ?? 'draft', featured: !!featured,
         metaTitle: metaTitle || null, metaDescription: metaDescription || null,

@@ -13,8 +13,8 @@ export async function GET(request: NextRequest) {
     const where: any = { status: 'published' };
 
     if (categorySlug) {
-      const category = await prisma.helpCategory.findUnique({
-        where: { slug: categorySlug },
+      const category = await prisma.helpCategory.findFirst({
+        where: { slug: { equals: categorySlug, mode: 'insensitive' } },
       });
       if (category) {
         where.categoryId = category.id;

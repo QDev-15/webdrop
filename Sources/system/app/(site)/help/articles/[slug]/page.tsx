@@ -13,8 +13,8 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const article = await prisma.helpArticle.findUnique({
-    where: { slug },
+  const article = await prisma.helpArticle.findFirst({
+    where: { slug: { equals: slug, mode: 'insensitive' } },
   });
 
   if (!article) return {};
@@ -40,8 +40,8 @@ export default async function ArticlePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const article = await prisma.helpArticle.findUnique({
-    where: { slug, status: 'published' },
+  const article = await prisma.helpArticle.findFirst({
+    where: { slug: { equals: slug, mode: 'insensitive' }, status: 'published' },
     include: {
       category: { select: { name: true, slug: true } },
       author: { select: { name: true } },

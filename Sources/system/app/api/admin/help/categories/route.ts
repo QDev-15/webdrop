@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { getSession } from '@/lib/auth'
+import { slugify } from '@/lib/slugify'
 
 async function requireAdmin() {
   const session = await getSession()
@@ -47,7 +48,7 @@ export async function POST(req: NextRequest) {
     const category = await prisma.helpCategory.create({
       data: {
         name,
-        slug,
+        slug: slugify(slug),
         description,
         icon,
         sortOrder: sortOrder || 0,

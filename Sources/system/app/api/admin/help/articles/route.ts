@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { getSession } from '@/lib/auth'
+import { slugify } from '@/lib/slugify'
 
 async function requireAdmin() {
   const session = await getSession()
@@ -13,6 +14,7 @@ export async function POST(request: NextRequest) {
   try {
     await requireAdmin()
     const body = await request.json()
+    if (body.slug) body.slug = slugify(body.slug)
     const article = await prisma.helpArticle.create({ data: body })
     return NextResponse.json(article)
   } catch (error: any) {

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { revalidatePath } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 import { getSession } from '@/lib/auth'
+import { slugify } from '@/lib/slugify'
 
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const session = await getSession()
@@ -44,7 +45,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
     const post = await prisma.post.update({
       where: { id: parseInt(id) },
       data: {
-        title, slug, content: content || null, excerpt: excerpt || null,
+        title, slug: slug ? slugify(slug) : slug, content: content || null, excerpt: excerpt || null,
         thumbnail: thumbnail || null, categoryId: parsedCategoryId,
         ...(status ? { status } : {}), featured: !!featured,
         metaTitle: metaTitle || null, metaDescription: metaDescription || null,

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { getAccountSession as getSession } from '@/lib/auth'
+import { slugify } from '@/lib/slugify'
 
 export async function GET() {
   const session = await getSession()
@@ -27,7 +28,7 @@ export async function PUT(req: NextRequest) {
   }
 
   if ('slug' in data) {
-    const slug = String(data.slug).toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')
+    const slug = slugify(String(data.slug))
     if (slug.length < 3 || slug.length > 50) {
       return NextResponse.json({ error: 'Slug phải từ 3 đến 50 ký tự' }, { status: 400 })
     }

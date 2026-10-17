@@ -7,21 +7,37 @@ import { prisma } from '@/lib/prisma'
 // Thư mục gốc Sources/ (lên 1 cấp từ system/)
 const SOURCES_DIR = join(process.cwd(), '..')
 
+// Tìm thư mục con khớp `name` không phân biệt hoa/thường trong `dir` — filesystem Linux
+// production phân biệt hoa/thường nên không thể chỉ nối path rồi existsSync() như Windows dev.
+function findChildDirCaseInsensitive(dir: string, name: string): string | null {
+  if (!existsSync(dir)) return null
+  const direct = join(dir, name)
+  if (existsSync(direct) && statSync(direct).isDirectory()) return direct
+
+  const lower = name.toLowerCase()
+  for (const entry of readdirSync(dir)) {
+    if (entry.toLowerCase() !== lower) continue
+    const matched = join(dir, entry)
+    if (statSync(matched).isDirectory()) return matched
+  }
+  return null
+}
+
 // Tìm thư mục template theo slug (quét 2 cấp: web/{Category}/{slug})
 function findTemplateDir(slug: string): string | null {
   const webDir = join(SOURCES_DIR, 'templates', 'web')
   if (!existsSync(webDir)) return null
 
   // Thử tìm trực tiếp
-  const direct = join(webDir, slug)
-  if (existsSync(direct) && statSync(direct).isDirectory()) return direct
+  const direct = findChildDirCaseInsensitive(webDir, slug)
+  if (direct) return direct
 
   // Quét qua từng category
   for (const entry of readdirSync(webDir)) {
     const catPath = join(webDir, entry)
     if (!statSync(catPath).isDirectory()) continue
-    const nested = join(catPath, slug)
-    if (existsSync(nested) && statSync(nested).isDirectory()) return nested
+    const nested = findChildDirCaseInsensitive(catPath, slug)
+    if (nested) return nested
   }
   return null
 }
@@ -143,8 +159,8 @@ export async function GET(request: NextRequest) {
 
   // ── Website standard — deploy-ready package theo slug ──
   else {
-    const deployDir = join(SOURCES_DIR, 'products', 'basic', slug)
-    if (!existsSync(deployDir)) {
+    const deployDir = findChildDirCaseInsensitive(join(SOURCES_DIR, 'products', 'basic'), slug)
+    if (!deployDir) {
       return NextResponse.json({ error: `Gói website "${slug}" chưa sẵn sàng` }, { status: 503 })
     }
 
